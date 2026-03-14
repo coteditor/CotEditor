@@ -1,423 +1,423 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "Beta": {
-      "comment": "label for when the app is a prerelease version",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Betaverze"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Beta" : {
+      "comment" : "label for when the app is a prerelease version",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betaverze"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beta"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beta"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beta"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bêta"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bêta"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beta"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beta"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "베타"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "베타"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bèta"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bèta"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beta"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beta"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Тестовый"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тестовый"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beta"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beta版"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta版"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beta"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beta"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beta"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Бета"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бета"
           }
         }
       }
     },
-    "Continue": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pokračovat"
+    "Continue" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokračovat"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fortfahren"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortfahren"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Continue"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Continuar"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuar"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Continuer"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuer"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Continua"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continua"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "続ける"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "続ける"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "계속"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "계속"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ga door"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ga door"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dalej"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dalej"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Continuar"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuar"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Продолжить"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжить"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sürdür"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sürdür"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "继续"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "繼續"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繼續"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "繼續"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "繼續"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Продължи"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продължи"
           }
         }
       }
     },
-    "NewFeature.outline.description": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Icons make structure easier to scan, and tree-sitter–based syntaxes now support collapsible outlines that reflect hierarchy."
+    "NewFeature.outline.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Icons make structure easier to scan, and tree-sitter–based syntaxes now support collapsible outlines that reflect hierarchy."
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Иконите улесняват прегледа на структурата, а синтаксисите с tree-sitter вече поддържат сгъваеми нива според йерархията."
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Иконите улесняват прегледа на структурата, а синтаксисите с tree-sitter вече поддържат сгъваеми нива според йерархията."
           }
         }
       }
     },
-    "NewFeature.outline.label": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Outline with depth"
+    "NewFeature.outline.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Outline with depth"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Структура по нива"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Структура по нива"
           }
         }
       }
     },
-    "NewFeature.syntax.description": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "More accurate highlighting, smarter commenting, and improved indentation behavior — powered by a redesigned syntax engine and definition format."
+    "NewFeature.syntax.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "More accurate highlighting, smarter commenting, and improved indentation behavior — powered by a redesigned syntax engine and definition format."
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "По-точно подчертаване, по-интелигентно коментиране и подобрено поведение на отстъпа — задвижвани от преработен механизъм за синтаксис и формат на дефиниция."
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По-точно подчертаване, по-интелигентно коментиране и подобрено поведение на отстъпа — задвижвани от преработен механизъм за синтаксис и формат на дефиниция."
           }
         }
       }
     },
-    "NewFeature.syntax.label": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Smarter syntax, sharper editing"
+    "NewFeature.syntax.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Smarter syntax, sharper editing"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "По-интелигентен синтаксис, по-ясно редактиране"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По-интелигентен синтаксис, по-ясно редактиране"
           }
         }
       }
     },
-    "NewFeature.syntax.supplementalView.message": {
-      "comment": "%lld is the number of syntaxes",
-      "localizations": {
-        "de": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld eigene Syntax wurde in das neue Format migriert."
+    "NewFeature.syntax.supplementalView.message" : {
+      "comment" : "%lld is the number of syntaxes",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld eigene Syntax wurde in das neue Format migriert."
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld eigene Syntaxen wurden in das neue Format migriert."
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld eigene Syntaxen wurden in das neue Format migriert."
                 }
               }
             }
           }
         },
-        "en": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Migrated %lld custom syntax to the new format."
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Migrated %lld custom syntax to the new format."
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Migrated %lld custom syntaxes to the new format."
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Migrated %lld custom syntaxes to the new format."
                 }
               }
             }
           }
         },
-        "en-GB": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Migrated %lld custom syntax to the new format."
+        "en-GB" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Migrated %lld custom syntax to the new format."
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Migrated %lld custom syntaxes to the new format."
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Migrated %lld custom syntaxes to the new format."
                 }
               }
             }
           }
         },
-        "es": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "needs_review",
-                  "value": "%lld sintaxis personalizada se ha migrado al nuevo formato."
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld sintaxis personalizada se ha migrado al nuevo formato."
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "needs_review",
-                  "value": "%lld sintaxis personalizadas se han migrado al nuevo formato."
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld sintaxis personalizadas se han migrado al nuevo formato."
                 }
               }
             }
           }
         },
-        "fr": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "needs_review",
-                  "value": "%lld syntaxe personnalisée a été migrée vers le nouveau format."
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld syntaxe personnalisée a été migrée vers le nouveau format."
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "needs_review",
-                  "value": "%lld yntaxes personnalisées ont été migrées vers le nouveau format."
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld yntaxes personnalisées ont été migrées vers le nouveau format."
                 }
               }
             }
           }
         },
-        "ja": {
-          "variations": {
-            "plural": {
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld件のカスタムシンタックスを新しいフォーマットに移行しました。"
+        "ja" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld件のカスタムシンタックスを新しいフォーマットに移行しました。"
                 }
               }
             }
           }
         },
-        "nl": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "needs_review",
-                  "value": "%lld aangepaste syntaxis is gemigreerd naar de nieuwe indeling."
+        "nl" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld aangepaste syntaxis is gemigreerd naar de nieuwe indeling."
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "needs_review",
-                  "value": "%lld aangepaste syntaxisdefinities zijn gemigreerd naar de nieuwe indeling."
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld aangepaste syntaxisdefinities zijn gemigreerd naar de nieuwe indeling."
                 }
               }
             }
           }
         },
-        "bg": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Мигриран %lld потребителски синтаксис към новия формат."
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Мигриран %lld потребителски синтаксис към новия формат."
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Мигриран %lld потребителски синтаксис към новия формат."
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Мигриран %lld потребителски синтаксис към новия формат."
                 }
               }
             }
@@ -425,259 +425,259 @@
         }
       }
     },
-    "NewFeature.treeSitter.description": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Several built-in syntaxes now use tree-sitter — a modern, structure-based parser — enabling deeper and more reliable language awareness."
+    "NewFeature.treeSitter.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Several built-in syntaxes now use tree-sitter — a modern, structure-based parser — enabling deeper and more reliable language awareness."
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Няколко вградени синтаксиса вече използват tree-sitter, модерен анализатор на синтаксис, за по-дълбоко и по-надеждно разбиране на езика."
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няколко вградени синтаксиса вече използват tree-sitter, модерен анализатор на синтаксис, за по-дълбоко и по-надеждно разбиране на езика."
           }
         }
       }
     },
-    "NewFeature.treeSitter.label": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Powered by tree-sitter, where it matters most"
+    "NewFeature.treeSitter.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Powered by tree-sitter, where it matters most"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "С tree-sitter там, където е най-важно"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С tree-sitter там, където е най-важно"
           }
         }
       }
     },
-    "Release Notes": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Poznámky k verzi"
+    "Release Notes" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poznámky k verzi"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Versionshinweise"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versionshinweise"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Release Notes"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Release Notes"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Release Notes"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Release Notes"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Notas de la versión"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notas de la versión"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Notes de version"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes de version"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Note di rilascio"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note di rilascio"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "リリースノート"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リリースノート"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "릴리즈 노트"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "릴리즈 노트"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Versienotities"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versienotities"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Informacje o wersji"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informacje o wersji"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Notas da Versão"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notas da Versão"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Примечания к выпуску"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Примечания к выпуску"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sürüm Notları"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sürüm Notları"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "发布说明"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "发布说明"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "版本附註"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本附註"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "版本備註"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本備註"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Бележки по изданието"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бележки по изданието"
           }
         }
       }
     },
-    "What’s New in CotEditor %@": {
-      "comment": "%@ is version number",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Co je nového v aplikaci CotEditor %@"
+    "What’s New in CotEditor %@" : {
+      "comment" : "%@ is version number",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Co je nového v aplikaci CotEditor %@"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neue Funktionen in CotEditor %@"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neue Funktionen in CotEditor %@"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "What’s New in CotEditor %@"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What’s New in CotEditor %@"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Novedades de CotEditor %@"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Novedades de CotEditor %@"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nouveautés de CotEditor %@"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveautés de CotEditor %@"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le novità di CotEditor %@"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le novità di CotEditor %@"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CotEditor %@の新機能"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor %@の新機能"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CotEditor %@의 새로운 기능"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor %@의 새로운 기능"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wat is er nieuw in CotEditor %@?"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wat is er nieuw in CotEditor %@?"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nowości w aplikacji CotEditor %@"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nowości w aplikacji CotEditor %@"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Novidades no CotEditor %@"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Novidades no CotEditor %@"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Что нового в CotEditor %@"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что нового в CotEditor %@"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CotEditor %@ sürümünde neler yeni"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor %@ sürümünde neler yeni"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CotEditor %@的新功能"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor %@的新功能"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CotEditor %@的新功能"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor %@的新功能"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CotEditor %@的新功能"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor %@的新功能"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Какво е новото в CotEditor %@"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Какво е новото в CotEditor %@"
           }
         }
       }
     }
   },
-  "version": "1.1"
+  "version" : "1.1"
 }

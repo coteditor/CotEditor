@@ -1,651 +1,651 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "LineEnding.cr.description": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Klasický Mac OS"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "LineEnding.cr.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klasický Mac OS"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Klassisches Mac OS"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klassisches Mac OS"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Classic Mac OS"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Classic Mac OS"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Classic Mac OS"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Classic Mac OS"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mac OS clásico"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac OS clásico"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mac OS classic"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac OS classic"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mac OS classico"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac OS classico"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "クラシックMac OS"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "クラシックMac OS"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "클래식 Mac OS"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "클래식 Mac OS"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Classic Mac OS"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Classic Mac OS"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Klasyczny Mac OS"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klasyczny Mac OS"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mac OS clássico"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac OS clássico"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Klasik Mac OS"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klasik Mac OS"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Classic Mac OS"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Classic Mac OS"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Classic Mac OS"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Classic Mac OS"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Classic Mac OS"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Classic Mac OS"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Класически Mac OS"
-          }
-        }
-      }
-    },
-    "LineEnding.crlf.description": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Windows"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Windows"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Класически Mac OS"
           }
         }
       }
     },
-    "LineEnding.lf.description": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
+    "LineEnding.crlf.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "macOS / Unix"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Windows"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS/Unix"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "MacOS / Unix"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "macOS / Unix"
-          }
-        }
-      }
-    },
-    "LineEnding.lineSeparator.description": {
-      "comment": "Since this is a technical term, it should be left as-is.",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Line Separator"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Line Separator"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Unix Line Separator"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Line Separator"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Separador línea Unix"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix line separator"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix line separator"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Line Separator"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Line Separator"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Line Separator"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Line Separator"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix line separator"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Line Separator"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Line Separator"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Line Separator"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Line Separator"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Разделител на редове в Unix"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
           }
         }
       }
     },
-    "LineEnding.nel.description": {
-      "comment": "Since this is a technical term, it should be left as-is.",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Next Line"
+    "LineEnding.lf.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Next Line"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Unix Next Line"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "macOS / Unix"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Next Line"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nueva línea Unix"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS/Unix"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix next line"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix next line"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Next Line"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Next Line"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Next Line"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MacOS / Unix"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Next Line"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix next line"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Next Line"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Next Line"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Next Line"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Next Line"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Следващ ред в Unix"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
           }
         }
       }
     },
-    "LineEnding.paragraphSeparator.description": {
-      "comment": "Since this is a technical term, it should be left as-is.",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Paragraph Separator"
+    "LineEnding.lineSeparator.description" : {
+      "comment" : "Since this is a technical term, it should be left as-is.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Paragraph Separator"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Unix Paragraph Separator"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Unix Line Separator"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Paragraph Separator"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Separador párrafo Unix"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Separador línea Unix"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix paragraph separator"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix line separator"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix paragraph separator"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix line separator"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Paragraph Separator"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Paragraph Separator"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Paragraph Separator"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Paragraph Separator"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix paragraph separator"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix line separator"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Paragraph Separator"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Paragraph Separator"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Paragraph Separator"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unix Paragraph Separator"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Разделител на абзаци в Unix"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделител на редове в Unix"
+          }
+        }
+      }
+    },
+    "LineEnding.nel.description" : {
+      "comment" : "Since this is a technical term, it should be left as-is.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Unix Next Line"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nueva línea Unix"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix next line"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix next line"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix next line"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Следващ ред в Unix"
+          }
+        }
+      }
+    },
+    "LineEnding.paragraphSeparator.description" : {
+      "comment" : "Since this is a technical term, it should be left as-is.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Separador párrafo Unix"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix paragraph separator"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix paragraph separator"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix paragraph separator"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделител на абзаци в Unix"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

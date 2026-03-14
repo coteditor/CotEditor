@@ -1,326 +1,326 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "Go": {
-      "comment": "button label",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Přejít"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Go" : {
+      "comment" : "button label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přejít"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Los"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Go"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ir"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ir"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aller"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aller"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vai"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vai"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "移動"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移動"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이동"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이동"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ga"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ga"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Przejdź"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przejdź"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ir"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ir"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вперед"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вперед"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Git"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Git"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "跳转"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跳转"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "跳轉"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跳轉"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "前往"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前往"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Напред"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Напред"
           }
         }
       }
     },
-    "Line Number": {
-      "comment": "placeholder",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Číslo řádku"
+    "Line Number" : {
+      "comment" : "placeholder",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Číslo řádku"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zeilennummer"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeilennummer"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Line Number"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Line Number"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Número de línea"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número de línea"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Numéro de ligne"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numéro de ligne"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Numero di riga"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numero di riga"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "行番号"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行番号"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "줄 번호"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄 번호"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regelnummer"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regelnummer"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Numer wiersza"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Numer wiersza"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Número da Linha"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número da Linha"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Номер строки"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номер строки"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Satır Numarası"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satır Numarası"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "行号"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行号"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "行號"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行號"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "行號"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行號"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Номер на ред"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номер на ред"
           }
         }
       }
     },
-    "Line:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Řádek:"
+    "Line:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Řádek:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zeile:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeile:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Line:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Line:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Línea:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Línea:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ligne :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligne :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Riga:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riga:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "行:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "줄:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regel:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regel:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wiersz:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiersz:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Linha:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Linha:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Строка:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Строка:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Satır:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satır:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "行："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "行："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "行："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ред:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ред:"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

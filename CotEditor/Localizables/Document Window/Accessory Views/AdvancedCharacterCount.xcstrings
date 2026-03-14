@@ -1,334 +1,334 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "*%lld* character(s)": {
-      "comment": "counter for advanced character count",
-      "localizations": {
-        "cs": {
-          "variations": {
-            "plural": {
-              "few": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* znaky"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "*%lld* character(s)" : {
+      "comment" : "counter for advanced character count",
+      "localizations" : {
+        "cs" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znaky"
                 }
               },
-              "many": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* znaku"
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znaku"
                 }
               },
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* znak"
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znak"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* znaků"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znaků"
                 }
               }
             }
           }
         },
-        "de": {
-          "variations": {
-            "plural": {
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* Zeichen"
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* Zeichen"
                 }
               }
             }
           }
         },
-        "en": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* character"
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* character"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* characters"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* characters"
                 }
               }
             }
           }
         },
-        "en-GB": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* character"
+        "en-GB" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* character"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* characters"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* characters"
                 }
               }
             }
           }
         },
-        "es": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* carácter"
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* carácter"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* caracteres"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* caracteres"
                 }
               }
             }
           }
         },
-        "fr": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* caractère"
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* caractère"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* caractères"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* caractères"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* caractère"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* caractère"
                 }
               }
             }
           }
         },
-        "it": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* carattere"
+        "it" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* carattere"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* caratteri"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* caratteri"
                 }
               }
             }
           }
         },
-        "ja": {
-          "variations": {
-            "plural": {
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld*文字"
+        "ja" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld*文字"
                 }
               }
             }
           }
         },
-        "ko": {
-          "variations": {
-            "plural": {
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* 문자"
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* 문자"
                 }
               }
             }
           }
         },
-        "nl": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* teken"
+        "nl" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* teken"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* tekens"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* tekens"
                 }
               }
             }
           }
         },
-        "pl": {
-          "variations": {
-            "plural": {
-              "few": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* znaki"
+        "pl" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znaki"
                 }
               },
-              "many": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* znaków"
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znaków"
                 }
               },
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* znak"
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znak"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* znaku"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* znaku"
                 }
               }
             }
           }
         },
-        "pt": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* caractere"
+        "pt" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* caractere"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* caracteres"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* caracteres"
                 }
               }
             }
           }
         },
-        "ru": {
-          "variations": {
-            "plural": {
-              "few": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* символов"
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* символов"
                 }
               },
-              "many": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* символов"
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* символов"
                 }
               },
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* символ"
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* символ"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* символов"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* символов"
                 }
               }
             }
           }
         },
-        "tr": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "new",
-                  "value": "*%lld* character"
+        "tr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "*%lld* character"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* karakter"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* karakter"
                 }
               }
             }
           }
         },
-        "zh-Hans": {
-          "variations": {
-            "plural": {
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld*个字符"
+        "zh-Hans" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld*个字符"
                 }
               }
             }
           }
         },
-        "zh-Hant": {
-          "variations": {
-            "plural": {
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld*個字元"
+        "zh-Hant" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld*個字元"
                 }
               }
             }
           }
         },
-        "zh-HK": {
-          "variations": {
-            "plural": {
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld*個字元"
+        "zh-HK" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld*個字元"
                 }
               }
             }
           }
         },
-        "bg": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* знак"
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* знак"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "*%lld* знака"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* знака"
                 }
               }
             }
@@ -336,2416 +336,2416 @@
         }
       }
     },
-    "Advanced Character Count…": {
-      "comment": "menu item",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pokročilé počítání znaků…"
+    "Advanced Character Count…" : {
+      "comment" : "menu item",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokročilé počítání znaků…"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erweiterte Zeichenanzahl …"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erweiterte Zeichenanzahl …"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Advanced Character Count…"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advanced Character Count…"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recuento avanzado de caracteres…"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recuento avanzado de caracteres…"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comptage de caractères avancé…"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comptage de caractères avancé…"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conteggio caratteri avanzato…"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conteggio caratteri avanzato…"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "高度な文字カウント…"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高度な文字カウント…"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "고급 문자 개수…"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "고급 문자 개수…"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Geavanceerde tekentelling…"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geavanceerde tekentelling…"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zaawansowane zliczanie znaków…"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaawansowane zliczanie znaków…"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contagem avançada de caracteres…"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contagem avançada de caracteres…"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Продвинутый подсчет символов…"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продвинутый подсчет символов…"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gelişmiş Karakter Sayımı…"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gelişmiş Karakter Sayımı…"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "高级字符计数…"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高级字符计数…"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "進階字元統計⋯"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "進階字元統計⋯"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "進階字元量計數⋯"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "進階字元量計數⋯"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Разширен брой знаци…"
-          }
-        }
-      }
-    },
-    "CharacterUnit.byte.description": {
-      "comment": "description for byte",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Počítat bajty textu kódovaného zadaným kódováním."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bytes des mit der angegebenen Codierung codierten Textes zahlen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Count bytes of the text encoded with the specified encoding."
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Count bytes of the text encoded with the specified encoding."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contar los bytes del texto codificado con la codificación especificada."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Compter les bytes de texte encodé selon l’encodage spécifié."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conta i byte del testo codificato secondo la codifica specificata."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "指定したエンコーディングでエンコードしたときのバイト長をカウントします。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "특정한 인코딩으로 인코딩된 텍스트의 바이트를 셉니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Telt bytes van de tekst gecodeerd met de opgegeven codering."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zliczaj bajty tekstu zakodowanego z użyciem wskazanego kodowania."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contar bytes do texto codificado com a codificação especificada."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Подсчет байт текста, закодированного с указанной кодировкой."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Belirtilen kodlama ile kodlanmış metnin baytlarını say."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "计算文本按照指定编码方式后得到的字节数。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "以文本自身的編碼、來統計該文本的位元組數量。"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "計算使用指定編碼方式編碼的文字的Byte數。"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Преброяване на байтове от текста, кодиран с посоченото кодиране."
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширен брой знаци…"
           }
         }
       }
     },
-    "CharacterUnit.byte.label": {
-      "comment": "count unit",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bajty"
+    "CharacterUnit.byte.description" : {
+      "comment" : "description for byte",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Počítat bajty textu kódovaného zadaným kódováním."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Byte"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bytes des mit der angegebenen Codierung codierten Textes zahlen."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Byte"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Count bytes of the text encoded with the specified encoding."
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Byte"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Count bytes of the text encoded with the specified encoding."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Byte"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contar los bytes del texto codificado con la codificación especificada."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Byte"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compter les bytes de texte encodé selon l’encodage spécifié."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Byte"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conta i byte del testo codificato secondo la codifica specificata."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "バイト"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指定したエンコーディングでエンコードしたときのバイト長をカウントします。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "바이트"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "특정한 인코딩으로 인코딩된 텍스트의 바이트를 셉니다."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Byte"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telt bytes van de tekst gecodeerd met de opgegeven codering."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bajt"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zliczaj bajty tekstu zakodowanego z użyciem wskazanego kodowania."
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Byte"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contar bytes do texto codificado com a codificação especificada."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Байт"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подсчет байт текста, закодированного с указанной кодировкой."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bayt"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belirtilen kodlama ile kodlanmış metnin baytlarını say."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "字节"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "计算文本按照指定编码方式后得到的字节数。"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "位元組"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以文本自身的編碼、來統計該文本的位元組數量。"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Byte"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "計算使用指定編碼方式編碼的文字的Byte數。"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Байт"
-          }
-        }
-      }
-    },
-    "CharacterUnit.graphemeCluster.description": {
-      "comment": "description for grapheme cluster",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Počítat intuitivním způsobem definovaným v Unicode. Znak složený z více kódových bodů Unicode, například emotikony, se počítá jako jeden znak."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Auf intuitive Weise, die in Unicode definiert ist, zahlen. Das aus mehreren Unicode-Codepunkten bestehende Zeichen, wie Emojis, wird als ein Zeichen gezählt."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character."
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cuenta de la manera intuitiva definida en Unicode. Un carácter que consta de múltiples puntos de código Unicode, como emojis, se cuenta como un carácter."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comptage intuitif tel que défini par Unicode. Un caractère comprenant plusieurs points de code Unicode, par exemple un emoji, sont comptés comme un seul caractère."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conta nel modo intuitivo definito in Unicode. Un carattere composto di più codici Unicode, come un emoji, è conteggiato come carattere unico."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicodeで定義されている人の感覚に近い単位でカウントします。絵文字など複数のUnicodeコードポイントから成る文字も1文字で数えます。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "유니코드에서"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tel op de intuïtieve manier zoals gedefinieerd in Unicode. Een teken dat uit meerdere Unicode-codepunten bestaat, zoals emoji's, wordt als één teken geteld."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zliczaj w intuicyjny sposób zdefiniowany w Unikodzie. Znak składający się z wielu punktów kodowych Unikodu, taki jak emoji, jest liczony jako jeden znak."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conte da maneira intuitiva definida em Unicode. Um caractere que consiste em vários pontos de código Unicode, como emojis, é contado como um caractere."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Подсчет группы символов Unicode, представляющую один неделимый графический элемент, или глиф."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode’da tanımlandığı üzere sezgisel olarak say. Birden çok Unicode kod noktasından oluşan bir karakter; örneğin Emojiler, bir karakter olarak sayılır."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "以 Unicode 中定义的直观方式进行计数。如颜文字这样由多个Unicode码点组成的字符，计数为一个字符。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "以萬國碼的直觀方式來統計文字數量。哪怕像是繪文字這樣的高萬字，也都按照單個文字來計算。"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "以Unicode中定義的直覺方式計數。由多個Unicode代碼位（如表情符號）組成的字元以一個字元計算。"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Бройте по интуитивния начин, дефиниран в Unicode. Символ, състоящ се от множество Unicode кодови точки, като емотикони, се брои като един знак."
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преброяване на байтове от текста, кодиран с посоченото кодиране."
           }
         }
       }
     },
-    "CharacterUnit.graphemeCluster.label": {
-      "comment": "count unit (technical term defined in Unicode)",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Klastr grafémů"
+    "CharacterUnit.byte.label" : {
+      "comment" : "count unit",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bajty"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Graphemhaufen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byte"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Grapheme cluster"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Byte"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Grapheme cluster"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byte"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Grupo de Grafemas"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byte"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Grapheme cluster"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byte"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Raggruppamento di Grapheme"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byte"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "書記素クラスタ"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バイト"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Grapheme cluster"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "바이트"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Grafeemcluster"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byte"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zbitka grafemiczna"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bajt"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Agrupamentos de Grapheme"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byte"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Графемный кластер"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Байт"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yazıbirim demeti"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bayt"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "字位簇"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字节"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "書寫元素集"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "位元組"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "字位聚類"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byte"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Графемен клъстер"
-          }
-        }
-      }
-    },
-    "CharacterUnit.unicodeScalar.description": {
-      "comment": "description for unicode scalar",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Počítat kódové body Unicode. Stejné jako počítání UTF-32."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode-Codepunkte zahlen. Das gleiche wie UTF-32 zu zählen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Count Unicode code points. Same as counting UTF-32."
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Count Unicode code points. Same as counting UTF-32."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cuenta los puntos de código Unicode. Igual que contar UTF-32."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Count Unicode code points. Same as counting UTF-32."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conta i codici Unicode, come nella codifica UTF-32."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicodeコードポイント単位でカウントします。UTF-32のカウントと同一です。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "유니코드 코드 포인트를 셉니다. UTF-32를 세는 것과 같습니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tel Unicode-codepunten. Hetzelfde als UTF-32 tellen."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zliczaj punkty kodowe Unikodu. To samo co zliczanie UTF-32."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contar pontos de código Unicode. O mesmo que contar UTF-32."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Подсчёт кодовых точек Unicode. Аналогично подсчёту UTF-32."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode kod noktalarını say. UTF-32 sayma ile aynıdır."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "计算Unicode码点，同UTF-32。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "統計萬國碼碼點數量（以 UTF-32 的方式）。"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "計數Unicode代碼位（與計數UTF-32相同）。"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Преброяване на Unicode кодови точки. Същото като броенето на UTF-32."
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Байт"
           }
         }
       }
     },
-    "CharacterUnit.unicodeScalar.label": {
-      "comment": "count unit",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skalár Unicode"
+    "CharacterUnit.graphemeCluster.description" : {
+      "comment" : "description for grapheme cluster",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Počítat intuitivním způsobem definovaným v Unicode. Znak složený z více kódových bodů Unicode, například emotikony, se počítá jako jeden znak."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode-Skalar"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf intuitive Weise, die in Unicode definiert ist, zahlen. Das aus mehreren Unicode-Codepunkten bestehende Zeichen, wie Emojis, wird als ein Zeichen gezählt."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Unicode scalar"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character."
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode scalar"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode escalar"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuenta de la manera intuitiva definida en Unicode. Un carácter que consta de múltiples puntos de código Unicode, como emojis, se cuenta como un carácter."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Scalaire Unicode"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comptage intuitif tel que défini par Unicode. Un caractère comprenant plusieurs points de code Unicode, par exemple un emoji, sont comptés comme un seul caractère."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Scalare Unicode"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conta nel modo intuitivo definito in Unicode. Un carattere composto di più codici Unicode, come un emoji, è conteggiato come carattere unico."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicodeスカラー"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicodeで定義されている人の感覚に近い単位でカウントします。絵文字など複数のUnicodeコードポイントから成る文字も1文字で数えます。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "유니코드 스칼라"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유니코드에서"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode scalar"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tel op de intuïtieve manier zoals gedefinieerd in Unicode. Een teken dat uit meerdere Unicode-codepunten bestaat, zoals emoji's, wordt als één teken geteld."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skalar Unikodu"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zliczaj w intuicyjny sposób zdefiniowany w Unikodzie. Znak składający się z wielu punktów kodowych Unikodu, taki jak emoji, jest liczony jako jeden znak."
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode escalar"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conte da maneira intuitiva definida em Unicode. Um caractere que consiste em vários pontos de código Unicode, como emojis, é contado como um caractere."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Скалярный Unicode"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подсчет группы символов Unicode, представляющую один неделимый графический элемент, или глиф."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode sayılı"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode’da tanımlandığı üzere sezgisel olarak say. Birden çok Unicode kod noktasından oluşan bir karakter; örneğin Emojiler, bir karakter olarak sayılır."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode标量"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以 Unicode 中定义的直观方式进行计数。如颜文字这样由多个Unicode码点组成的字符，计数为一个字符。"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode 純量"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以萬國碼的直觀方式來統計文字數量。哪怕像是繪文字這樣的高萬字，也都按照單個文字來計算。"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode純量"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "以Unicode中定義的直覺方式計數。由多個Unicode代碼位（如表情符號）組成的字元以一個字元計算。"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Уникод скалар"
-          }
-        }
-      }
-    },
-    "CharacterUnit.utf16.description": {
-      "comment": "description for UTF-16",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Počítat kódové body Unicode, ale náhradní dvojici jako dva znaky."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode-Codepunkte aber Surrogate-Paaren als zwei Zeichen zahlen."
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Count Unicode code points but a surrogate pair as two characters."
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Count Unicode code points but a surrogate pair as two characters."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cuenta los puntos de código Unicode, pero un par sustituto como dos caracteres."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Compter les points de code Unicode, mais les paires de caractères de substitution comme deux caractères."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conta i codici Unicode ma considera una coppia di caratteri sostitutivi come due caratteri."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicodeコードポイント単位でカウントしますがサロゲートペアは2文字でカウントします。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "유니코드 코드 포인트를 세지만 대행 코드를 문자 두 개로 셉니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tel Unicode-codepunten maar een surrogaatpaar als twee tekens."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zliczaj punkty kodowe Unikodu, jednak parę zastępczą jako dwa znaki."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conte os pontos de código Unicode, mas um par substituto como dois caracteres."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Считать кодовые точки Unicode, а суррогатную пару — как два символа."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unicode kod noktalarını say; ancak vekil çifti iki karakter olarak say."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "计算Unicode Unicode码点，但将一个代理对计算为两个字符。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "統計萬國碼碼點數量，但將代理配對分別統計成兩個碼點。"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "計數Unicode代碼位，但將代理配對計算為兩個字元。"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Бройте Unicode кодови точки, но сурогатна двойка като два знака."
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бройте по интуитивния начин, дефиниран в Unicode. Символ, състоящ се от множество Unicode кодови точки, като емотикони, се брои като един знак."
           }
         }
       }
     },
-    "CharacterUnit.utf16.label": {
-      "comment": "count unit",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+    "CharacterUnit.graphemeCluster.label" : {
+      "comment" : "count unit (technical term defined in Unicode)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klastr grafémů"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Graphemhaufen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "UTF-16"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Grapheme cluster"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grapheme cluster"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grupo de Grafemas"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grapheme cluster"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Raggruppamento di Grapheme"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書記素クラスタ"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grapheme cluster"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grafeemcluster"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zbitka grafemiczna"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agrupamentos de Grapheme"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Графемный кластер"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yazıbirim demeti"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字位簇"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書寫元素集"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字位聚類"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "UTF-16"
-          }
-        }
-      }
-    },
-    "Copy": {
-      "comment": "menu item",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kopírovat"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kopieren"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Copy"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Copiar"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Copier"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Copia"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "コピー"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "복사"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kopieer"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kopiuj"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Copiar"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Копировать"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kopyala"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "复制"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "複製"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "複製"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Копирай"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Графемен клъстер"
           }
         }
       }
     },
-    "Encoding:": {
-      "comment": "label",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kódování:"
+    "CharacterUnit.unicodeScalar.description" : {
+      "comment" : "description for unicode scalar",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Počítat kódové body Unicode. Stejné jako počítání UTF-32."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codierung:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode-Codepunkte zahlen. Das gleiche wie UTF-32 zu zählen."
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Encoding:"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Count Unicode code points. Same as counting UTF-32."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codificación:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Count Unicode code points. Same as counting UTF-32."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Encodage :"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuenta los puntos de código Unicode. Igual que contar UTF-32."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codifica:"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Count Unicode code points. Same as counting UTF-32."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "エンコーディング:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conta i codici Unicode, come nella codifica UTF-32."
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "인코딩:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicodeコードポイント単位でカウントします。UTF-32のカウントと同一です。"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codering:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유니코드 코드 포인트를 셉니다. UTF-32를 세는 것과 같습니다."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kodowanie:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tel Unicode-codepunten. Hetzelfde als UTF-32 tellen."
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codificação:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zliczaj punkty kodowe Unikodu. To samo co zliczanie UTF-32."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Кодировка:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contar pontos de código Unicode. O mesmo que contar UTF-32."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kodlama:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подсчёт кодовых точек Unicode. Аналогично подсчёту UTF-32."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "编码："
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode kod noktalarını say. UTF-32 sayma ile aynıdır."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "編碼："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "计算Unicode码点，同UTF-32。"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "編碼："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "統計萬國碼碼點數量（以 UTF-32 的方式）。"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Кодиране:"
-          }
-        }
-      }
-    },
-    "failed": {
-      "comment": "error message when count failed",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "selhání"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "計數Unicode代碼位（與計數UTF-32相同）。"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "fehlgeschlagen"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "failed"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Falló"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "échec"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "non riuscito"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "失敗"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "실패함"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "mislukt"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "nie powiodło się"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "falhou"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ошибка"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "başarısız"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "失败"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已失敗"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "失敗"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "неуспешно"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преброяване на Unicode кодови точки. Същото като броенето на UTF-32."
           }
         }
       }
     },
-    "Ignore line endings": {
-      "comment": "setting option",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignorovat konce řádků"
+    "CharacterUnit.unicodeScalar.label" : {
+      "comment" : "count unit",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skalár Unicode"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zeilenumbrüche ignorieren"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode-Skalar"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignore line endings"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Unicode scalar"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignorar los finales de línea"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode scalar"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignorer les fins de lignes"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode escalar"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignora i fine riga"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scalaire Unicode"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "改行を無視"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scalare Unicode"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "줄바꿈 무시"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicodeスカラー"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Negeer regeleinden"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유니코드 스칼라"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignoruj koniec wierszy"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode scalar"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignorar finais de linha"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skalar Unikodu"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Игнорировать окончание линий"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode escalar"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Satır sonlarını yok say"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скалярный Unicode"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "忽略行尾"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode sayılı"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "忽略行尾"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode标量"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "忽略每行結尾"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode 純量"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Игнорирай краищата на редовете"
-          }
-        }
-      }
-    },
-    "Ignore whitespace": {
-      "comment": "setting option",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignorovat mezery"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode純量"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Leerzeichen ignorieren"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignore whitespace"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignorar los espacios en blanco"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignorer les espaces"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignora gli spazi bianchi"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "空白を無視"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "공백 무시"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Negeer wituimte"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignoruj znaki niedrukowane"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignorar espaços em branco"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Игнорировать пробелы"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Boşlukları yok say"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "忽略空格"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "忽略空白字元"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "忽略空白字元"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Игнорирай интервалите"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уникод скалар"
           }
         }
       }
     },
-    "Normalization:": {
-      "comment": "label",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Normalizace:"
+    "CharacterUnit.utf16.description" : {
+      "comment" : "description for UTF-16",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Počítat kódové body Unicode, ale náhradní dvojici jako dva znaky."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Normalisierung:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode-Codepunkte aber Surrogate-Paaren als zwei Zeichen zahlen."
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Normalisation:"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Count Unicode code points but a surrogate pair as two characters."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Normalización:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Count Unicode code points but a surrogate pair as two characters."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Normalisation :"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuenta los puntos de código Unicode, pero un par sustituto como dos caracteres."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Normalizzazione:"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compter les points de code Unicode, mais les paires de caractères de substitution comme deux caractères."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "正規化:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conta i codici Unicode ma considera una coppia di caratteri sostitutivi come due caratteri."
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "정규화:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicodeコードポイント単位でカウントしますがサロゲートペアは2文字でカウントします。"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Normalisatie:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유니코드 코드 포인트를 세지만 대행 코드를 문자 두 개로 셉니다."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Normalizacja:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tel Unicode-codepunten maar een surrogaatpaar als twee tekens."
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Normalização:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zliczaj punkty kodowe Unikodu, jednak parę zastępczą jako dwa znaki."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Нормализация:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conte os pontos de código Unicode, mas um par substituto como dois caracteres."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Olağanlaştırma:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Считать кодовые точки Unicode, а суррогатную пару — как два символа."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "标准化："
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode kod noktalarını say; ancak vekil çifti iki karakter olarak say."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "標準化："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "计算Unicode Unicode码点，但将一个代理对计算为两个字符。"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "標準化："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "統計萬國碼碼點數量，但將代理配對分別統計成兩個碼點。"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Нормализация:"
-          }
-        }
-      }
-    },
-    "Show options": {
-      "comment": "tooltip",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zobrazit volby"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "計數Unicode代碼位，但將代理配對計算為兩個字元。"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Optionen einblenden"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Show options"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mostrar opciones"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afficher les options"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mostra opzioni"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "オプションを表示"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "옵션 보기"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toon opties"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pokaż opcje"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mostrar opções"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Показать настройки"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seçenekleri göster"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "显示选项"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "顯示選項"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "顯示選項"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Покажи опциите"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бройте Unicode кодови точки, но сурогатна двойка като два знака."
           }
         }
       }
     },
-    "Start": {
-      "comment": "button label",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Start"
+    "CharacterUnit.utf16.label" : {
+      "comment" : "count unit",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Starten"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Start"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "UTF-16"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Iniciar"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Démarrer"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inizio"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "開始"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "시작"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Begin"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zacznij"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Iniciar"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Старт"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Başlangıç"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "开始"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "開始"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "開始"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Старт"
-          }
-        }
-      }
-    },
-    "Stop Advanced Character Count": {
-      "comment": "menu item",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zastavit pokročilé počítání znaků"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erweiterte Zeichenanzahl stoppen"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stop Advanced Character Count"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Detener el recuento avanzado de caracteres"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Arrêter le comptage de caractères avancé"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Interrompi il conteggio caratteri avanzato"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "高度な文字カウントを停止"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "고급 문자 세기 중단"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stop geavanceerde tekentelling"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zatrzymaj zaawansowane zliczanie znaków"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Parar Contagem Avançada de Caracteres"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Остановить продвинутый подсчет символов"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gelişmiş Karakter Sayımını Durdur"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "停止高级字符计数"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "停止進階字元統計"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "停止進階字元量計數"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Спиране на разширеното броене на символи"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
           }
         }
       }
     },
-    "Stop Count": {
-      "comment": "menu item (This “Stop” should be translated the same as it is in the “Stop Advanced Character Count” menu label.)",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zastavit počítání"
+    "Copy" : {
+      "comment" : "menu item",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopírovat"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Anzahl stoppen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopieren"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stop Count"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Parar cuenta"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copiar"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Arrêter le comptage"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copier"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Interrompi il conteggio"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copia"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "カウントを停止"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コピー"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "세기 중단"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "복사"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stop telling"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopieer"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zatrzymaj zliczanie"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopiuj"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Parar Contagem"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copiar"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Остановить подсчет"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копировать"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sayımı Durdur"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopyala"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "停止计数"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "复制"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "停止統計"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "複製"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "停止計數"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "複製"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Спрете броенето"
-          }
-        }
-      }
-    },
-    "Treat consecutive whitespace as one space": {
-      "comment": "setting option",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Považovat po sobě jdoucí prázdné znaky za jednu mezeru"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aufeinander folgende Leerzeichen als ein Zeichen behandeln"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Treat consecutive whitespace as one space"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trata los espacios en blanco consecutivos como un solo espacio"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Compter les espaces consécutifs comme un seul"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tratta spazi bianchi consecutivi come un unico spazio"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "連続する空白を1文字として扱う"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "연속적인 공백을 한 개로 취급"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Behandel opeenvolgende witruimtes als één ruimte"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Traktuj sąsiadujące znaki niedrukowane jako pojedynczą spację"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tratar espaços em branco consecutivos como um espaço"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Рассматривать последовательные пробелы как один пробел"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ardışık boşluklara tek boşluk olarak davran"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "将连续空格视作一个空格"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "將多個空白字元視為同一個"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "將連續的空格視為一個空格"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Третирайте последователните интервали като един интервал"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копирай"
           }
         }
       }
     },
-    "Unit:": {
-      "comment": "label",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jednotka:"
+    "Encoding:" : {
+      "comment" : "label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódování:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Einheit:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codierung:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unit:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encoding:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unidad:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codificación:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unité :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encodage :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unità:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codifica:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "単位:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "エンコーディング:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "단위:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인코딩:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eenheid:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codering:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jednostka:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kodowanie:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unidade:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codificação:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Юнит:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодировка:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Birim:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kodlama:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "单位："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "编码："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "單位："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編碼："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "單位："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編碼："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Единица:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодиране:"
           }
         }
       }
     },
-    "Whitespace:": {
-      "comment": "label",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mezery:"
+    "failed" : {
+      "comment" : "error message when count failed",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "selhání"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Leerzeichen:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fehlgeschlagen"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Whitespace:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "failed"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Espacio en blanco:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falló"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Espaces :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "échec"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Spazi bianchi:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "non riuscito"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "空白:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "失敗"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "공백:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "실패함"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Witruimte:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mislukt"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Znaki niedrukowane:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nie powiodło się"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Espaços em branco:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "falhou"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Пробелы:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ошибка"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Boşluk:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "başarısız"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "空格："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "失败"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "空白字元："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已失敗"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "空白字元："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "失敗"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Интервали:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "неуспешно"
+          }
+        }
+      }
+    },
+    "Ignore line endings" : {
+      "comment" : "setting option",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorovat konce řádků"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeilenumbrüche ignorieren"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignore line endings"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorar los finales de línea"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer les fins de lignes"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignora i fine riga"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "改行を無視"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄바꿈 무시"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Negeer regeleinden"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignoruj koniec wierszy"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorar finais de linha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать окончание линий"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satır sonlarını yok say"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略行尾"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略行尾"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略每行結尾"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорирай краищата на редовете"
+          }
+        }
+      }
+    },
+    "Ignore whitespace" : {
+      "comment" : "setting option",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorovat mezery"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leerzeichen ignorieren"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignore whitespace"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorar los espacios en blanco"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer les espaces"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignora gli spazi bianchi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空白を無視"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공백 무시"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Negeer wituimte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignoruj znaki niedrukowane"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorar espaços em branco"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать пробелы"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boşlukları yok say"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略空格"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略空白字元"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略空白字元"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорирай интервалите"
+          }
+        }
+      }
+    },
+    "Normalization:" : {
+      "comment" : "label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalizace:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalisierung:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalisation:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalización:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalisation :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalizzazione:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正規化:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정규화:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalisatie:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalizacja:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normalização:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нормализация:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Olağanlaştırma:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "标准化："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標準化："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標準化："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нормализация:"
+          }
+        }
+      }
+    },
+    "Show options" : {
+      "comment" : "tooltip",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit volby"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optionen einblenden"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show options"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar opciones"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher les options"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra opzioni"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オプションを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "옵션 보기"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon opties"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż opcje"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar opções"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать настройки"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçenekleri göster"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示选项"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示選項"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示選項"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи опциите"
+          }
+        }
+      }
+    },
+    "Start" : {
+      "comment" : "button label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starten"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iniciar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Démarrer"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inizio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시작"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Begin"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zacznij"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iniciar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старт"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Başlangıç"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开始"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старт"
+          }
+        }
+      }
+    },
+    "Stop Advanced Character Count" : {
+      "comment" : "menu item",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastavit pokročilé počítání znaků"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erweiterte Zeichenanzahl stoppen"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop Advanced Character Count"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detener el recuento avanzado de caracteres"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arrêter le comptage de caractères avancé"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interrompi il conteggio caratteri avanzato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高度な文字カウントを停止"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "고급 문자 세기 중단"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop geavanceerde tekentelling"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zatrzymaj zaawansowane zliczanie znaków"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parar Contagem Avançada de Caracteres"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Остановить продвинутый подсчет символов"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gelişmiş Karakter Sayımını Durdur"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止高级字符计数"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止進階字元統計"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止進階字元量計數"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спиране на разширеното броене на символи"
+          }
+        }
+      }
+    },
+    "Stop Count" : {
+      "comment" : "menu item (This “Stop” should be translated the same as it is in the “Stop Advanced Character Count” menu label.)",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastavit počítání"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anzahl stoppen"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop Count"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parar cuenta"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arrêter le comptage"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interrompi il conteggio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カウントを停止"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "세기 중단"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop telling"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zatrzymaj zliczanie"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parar Contagem"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Остановить подсчет"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sayımı Durdur"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止计数"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止統計"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止計數"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спрете броенето"
+          }
+        }
+      }
+    },
+    "Treat consecutive whitespace as one space" : {
+      "comment" : "setting option",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Považovat po sobě jdoucí prázdné znaky za jednu mezeru"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufeinander folgende Leerzeichen als ein Zeichen behandeln"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Treat consecutive whitespace as one space"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trata los espacios en blanco consecutivos como un solo espacio"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compter les espaces consécutifs comme un seul"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tratta spazi bianchi consecutivi come un unico spazio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "連続する空白を1文字として扱う"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "연속적인 공백을 한 개로 취급"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behandel opeenvolgende witruimtes als één ruimte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traktuj sąsiadujące znaki niedrukowane jako pojedynczą spację"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tratar espaços em branco consecutivos como um espaço"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рассматривать последовательные пробелы как один пробел"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ardışık boşluklara tek boşluk olarak davran"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "将连续空格视作一个空格"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "將多個空白字元視為同一個"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "將連續的空格視為一個空格"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Третирайте последователните интервали като един интервал"
+          }
+        }
+      }
+    },
+    "Unit:" : {
+      "comment" : "label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jednotka:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einheit:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unit:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidad:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unité :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unità:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "単位:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단위:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eenheid:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jednostka:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidade:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Юнит:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birim:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "单位："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "單位："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "單位："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Единица:"
+          }
+        }
+      }
+    },
+    "Whitespace:" : {
+      "comment" : "label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mezery:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leerzeichen:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Whitespace:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espacio en blanco:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espaces :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spazi bianchi:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空白:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공백:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Witruimte:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znaki niedrukowane:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espaços em branco:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пробелы:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boşluk:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空格："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空白字元："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空白字元："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интервали:"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

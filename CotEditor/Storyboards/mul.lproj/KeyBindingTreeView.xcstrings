@@ -1,386 +1,386 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "0Uo-2F-m2T.title": {
-      "comment": "Class = \"NSTextFieldCell\"; title = \"ACTION NAME\"; ObjectID = \"0Uo-2F-m2T\";",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "ACTION NAME"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "0Uo-2F-m2T.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"ACTION NAME\"; ObjectID = \"0Uo-2F-m2T\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "ACTION NAME"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ИМЕ НА ДЕЙСТВИЕТО"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ИМЕ НА ДЕЙСТВИЕТО"
           }
         }
       },
-      "shouldTranslate": false
+      "shouldTranslate" : false
     },
-    "597-z1-wgd.headerCell.title": {
-      "comment": "Class = \"NSTableColumn\"; headerCell.title = \"Menu\"; ObjectID = \"597-z1-wgd\";",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nabídka"
+    "597-z1-wgd.headerCell.title" : {
+      "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Menu\"; ObjectID = \"597-z1-wgd\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nabídka"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Menü"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menü"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Menu"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Menu"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Menu"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Menu"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Menu"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Menu"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "メニュー"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メニュー"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "메뉴"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메뉴"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Menu"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Menu"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Menu"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Меню"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Меню"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Menü"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menü"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "菜单"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "菜单"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選單"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選單"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選單"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選單"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Меню"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Меню"
           }
         }
       }
     },
-    "jNh-nd-VRd.headerCell.title": {
-      "comment": "Class = \"NSTableColumn\"; headerCell.title = \"Command\"; ObjectID = \"jNh-nd-VRd\";",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Příkaz"
+    "jNh-nd-VRd.headerCell.title" : {
+      "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Command\"; ObjectID = \"jNh-nd-VRd\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Příkaz"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Befehl"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Befehl"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Command"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Command"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Command"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Command"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comando"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comando"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Commande"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commande"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comando"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comando"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "コマンド"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コマンド"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "명령"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "명령"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Commando"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commando"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Polecenie"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Polecenie"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comando"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comando"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Команда"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Команда"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Komut"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komut"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "命令"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "命令"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "指令"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指令"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "指令"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指令"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "командване"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "командване"
           }
         }
       }
     },
-    "JTc-Rw-7wQ.title": {
-      "comment": "Class = \"NSTextFieldCell\"; title = \"MENU\"; ObjectID = \"JTc-Rw-7wQ\";",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "MENU"
+    "JTc-Rw-7wQ.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"MENU\"; ObjectID = \"JTc-Rw-7wQ\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "MENU"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "МЕНЮ"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "МЕНЮ"
           }
         }
       },
-      "shouldTranslate": false
+      "shouldTranslate" : false
     },
-    "PSD-Um-TfH.headerCell.title": {
-      "comment": "Class = \"NSTableColumn\"; headerCell.title = \"Key\"; ObjectID = \"PSD-Um-TfH\";",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zkratka"
+    "PSD-Um-TfH.headerCell.title" : {
+      "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Key\"; ObjectID = \"PSD-Um-TfH\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zkratka"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Taste"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taste"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Key"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Key"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Key"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Key"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Teclas"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teclas"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Raccourci"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Raccourci"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tasto"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasto"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "キー"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キー"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "키"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "키"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleutel"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleutel"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Klawisze"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klawisze"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Teclas"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teclas"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ключ"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Düğme"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Düğme"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "按键"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按键"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "按鍵"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按鍵"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "按鍵"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按鍵"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ключ"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

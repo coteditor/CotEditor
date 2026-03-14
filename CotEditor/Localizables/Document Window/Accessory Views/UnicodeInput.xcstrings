@@ -1,326 +1,326 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "Clear Recents": {
-      "comment": "button label",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Smazat poslední"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Clear Recents" : {
+      "comment" : "button label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smazat poslední"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verlauf löschen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verlauf löschen"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clear Recents"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear Recents"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Borrar recientes"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borrar recientes"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Effacer les éléments récents"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effacer les éléments récents"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cancella recenti"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancella recenti"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "履歴を消去"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "履歴を消去"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "최근 항목 지우기"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최근 항목 지우기"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wis recente"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wis recente"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wymaż ostatnie"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaż ostatnie"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limpar Recentes"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limpar Recentes"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Отчистить недавние"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчистить недавние"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Son Kullanılanları Sil"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Son Kullanılanları Sil"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "清除最近项目"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除最近项目"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "清除最近項目"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除最近項目"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "清除最近項目"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除最近項目"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Изчисти последните"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изчисти последните"
           }
         }
       }
     },
-    "Invalid code": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neplatný kód"
+    "Invalid code" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neplatný kód"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ungültiger Code"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ungültiger Code"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Invalid code"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid code"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Código no válido"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Código no válido"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Code invalide"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code invalide"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Invalid code"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid code"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "無効なコード"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無効なコード"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "유효하지 않은 코드"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유효하지 않은 코드"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ongeldige code"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ongeldige code"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Niepoprawny kod"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niepoprawny kod"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codice non valido"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codice non valido"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Неверный код"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неверный код"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Geçersiz Kod"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geçersiz Kod"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "无效的代码"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无效的代码"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "無效的代碼"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無效的代碼"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "無效的代碼"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無效的代碼"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Невалиден код"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невалиден код"
           }
         }
       }
     },
-    "Recents": {
-      "comment": "menu header",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Poslední použité"
+    "Recents" : {
+      "comment" : "menu header",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poslední použité"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zuletzt benutzt"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zuletzt benutzt"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recents"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recents"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recientes"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recientes"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Récents"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Récents"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recenti"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recenti"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最近の項目"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近の項目"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "최근 항목"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최근 항목"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recente"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recente"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ostatnie"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostatnie"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recentes"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recentes"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Недавние"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недавние"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Son Kullanılanlar"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Son Kullanılanlar"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最近"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最近"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最近項目"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近項目"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Последни"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последни"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

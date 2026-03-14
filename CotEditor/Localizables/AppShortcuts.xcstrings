@@ -1,151 +1,151 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "Create a document in ${applicationName}": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Create a document in ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "Vytvořit dokument v aplikaci ${applicationName}"
             ]
           }
         },
-        "de": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "de" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "Ein Dokument in ${applicationName} erstellen"
             ]
           }
         },
-        "en": {
-          "stringSet": {
-            "state": "new",
-            "values": [
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
               "Create a document in ${applicationName}"
             ]
           }
         },
-        "en-GB": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "en-GB" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "Create a document in ${applicationName}",
               "Make a document in ${applicationName}"
             ]
           }
         },
-        "es": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "es" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "Crear un documento en ${applicationName}"
             ]
           }
         },
-        "fr": {
-          "stringSet": {
-            "state": "needs_review",
-            "values": [
+        "fr" : {
+          "stringSet" : {
+            "state" : "needs_review",
+            "values" : [
               "Créer un document dans ${applicationName}"
             ]
           }
         },
-        "it": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "it" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "Crea un documento in ${applicationName}"
             ]
           }
         },
-        "ja": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "ja" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "${applicationName}で書類を作成",
               "${applicationName}で書類作成"
             ]
           }
         },
-        "ko": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "ko" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "${applicationName}에서 새로운 문서 생성"
             ]
           }
         },
-        "nl": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "nl" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "Maak een document in ${applicationName}"
             ]
           }
         },
-        "pl": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "pl" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "Utwórz dokument w ${applicationName}"
             ]
           }
         },
-        "pt": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "pt" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "Criar documento em ${applicationName}"
             ]
           }
         },
-        "ru": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "ru" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "Создать документ в ${applicationName}"
             ]
           }
         },
-        "tr": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "tr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "${applicationName} ile belge oluştur"
             ]
           }
         },
-        "zh-Hans": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "zh-Hans" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "在${applicationName}中创建文档"
             ]
           }
         },
-        "zh-Hant": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "zh-Hant" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "使用${applicationName}創建新的文件"
             ]
           }
         },
-        "zh-HK": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "zh-HK" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "在${applicationName}中製作文件"
             ]
           }
         },
-        "bg": {
-          "stringSet": {
-            "state": "translated",
-            "values": [
+        "bg" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
               "Създай документ в ${applicationName}"
             ]
           }
@@ -153,5 +153,5 @@
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

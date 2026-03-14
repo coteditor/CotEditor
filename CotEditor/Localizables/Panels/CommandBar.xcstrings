@@ -1,442 +1,442 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "%lld commands found": {
-      "comment": "VoiceOver announcement for when incrementally updating the command search result.",
-      "localizations": {
-        "cs": {
-          "variations": {
-            "plural": {
-              "few": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Nalezeny %lld příkazy"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lld commands found" : {
+      "comment" : "VoiceOver announcement for when incrementally updating the command search result.",
+      "localizations" : {
+        "cs" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nalezeny %lld příkazy"
                 }
               },
-              "many": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Nalezeno %lld příkazu"
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nalezeno %lld příkazu"
                 }
               },
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Nalezen %lld příkaz"
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nalezen %lld příkaz"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Nalezeno %lld příkazů"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nalezeno %lld příkazů"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Nebyly nalezeny žádné příkazy"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nebyly nalezeny žádné příkazy"
                 }
               }
             }
           }
         },
-        "de": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Einen Befehl gefunden"
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Einen Befehl gefunden"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld Befehle gefunden"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Befehle gefunden"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Kinen Befehl gefunden"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Kinen Befehl gefunden"
                 }
               }
             }
           }
         },
-        "en": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld command found"
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld command found"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld commands found"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld commands found"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "No commands found"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "No commands found"
                 }
               }
             }
           }
         },
-        "en-GB": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld command found"
+        "en-GB" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld command found"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld commands found"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld commands found"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "No commands found"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "No commands found"
                 }
               }
             }
           }
         },
-        "es": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld comando encontrado"
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld comando encontrado"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld comandos encontrados"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld comandos encontrados"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "No se ha encontrado ningún comando"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "No se ha encontrado ningún comando"
                 }
               }
             }
           }
         },
-        "fr": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "needs_review",
-                  "value": "%lld commande trouvé"
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld commande trouvé"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "needs_review",
-                  "value": "%lld ccommandes trouvées"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld ccommandes trouvées"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "needs_review",
-                  "value": "Aucune commande trouvé"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Aucune commande trouvé"
                 }
               }
             }
           }
         },
-        "it": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld comando rilevato"
+        "it" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld comando rilevato"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld comandi rilevati"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld comandi rilevati"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Nessun comando rilevato"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nessun comando rilevato"
                 }
               }
             }
           }
         },
-        "ja": {
-          "variations": {
-            "plural": {
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lldコマンド見つかりました"
+        "ja" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lldコマンド見つかりました"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "コマンドが見つかりませんでした"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "コマンドが見つかりませんでした"
                 }
               }
             }
           }
         },
-        "ko": {
-          "variations": {
-            "plural": {
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld개의 명령을 찾음"
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld개의 명령을 찾음"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "명령을 찾지 못함"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "명령을 찾지 못함"
                 }
               }
             }
           }
         },
-        "nl": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld commando gevonden"
+        "nl" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld commando gevonden"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld commando's gevonden"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld commando's gevonden"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Geen commando's gevonden"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Geen commando's gevonden"
                 }
               }
             }
           }
         },
-        "pl": {
-          "variations": {
-            "plural": {
-              "few": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Znaleziono %lld polecenia"
+        "pl" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld polecenia"
                 }
               },
-              "many": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Znaleziono %lld poleceń"
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld poleceń"
                 }
               },
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Znaleziono %lld polecenie"
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld polecenie"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Znaleziono %lld polecenia"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Znaleziono %lld polecenia"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Nie znaleziono poleceń"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Nie znaleziono poleceń"
                 }
               }
             }
           }
         },
-        "pt": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld comando encontrado"
+        "pt" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld comando encontrado"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld comandos encontrados"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld comandos encontrados"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Comando não encontrado"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Comando não encontrado"
                 }
               }
             }
           }
         },
-        "ru": {
-          "variations": {
-            "plural": {
-              "few": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld комманд не найдено"
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld комманд не найдено"
                 }
               },
-              "many": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld комманд не найдено"
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld комманд не найдено"
                 }
               },
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld комманда не найдена"
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld комманда не найдена"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld комманд не найдено"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld комманд не найдено"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Не найдено команд"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Не найдено команд"
                 }
               }
             }
           }
         },
-        "tr": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld komut bulundu"
+        "tr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld komut bulundu"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld komut bulundu"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld komut bulundu"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Komut bulunamadı"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Komut bulunamadı"
                 }
               }
             }
           }
         },
-        "zh-Hans": {
-          "variations": {
-            "plural": {
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "找到%lld个命令"
+        "zh-Hans" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "找到%lld个命令"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "没有找到命令"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "没有找到命令"
                 }
               }
             }
           }
         },
-        "zh-Hant": {
-          "variations": {
-            "plural": {
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "發現了%lld條指令"
+        "zh-Hant" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "發現了%lld條指令"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "尚未發現指令"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "尚未發現指令"
                 }
               }
             }
           }
         },
-        "zh-HK": {
-          "variations": {
-            "plural": {
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "找到%lld個指令"
+        "zh-HK" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "找到%lld個指令"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "未找到指令"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "未找到指令"
                 }
               }
             }
           }
         },
-        "bg": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Намерена е %lld команда"
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерена е %lld команда"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Намерени са %lld команди"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерени са %lld команди"
                 }
               },
-              "zero": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Няма намерени команди"
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Няма намерени команди"
                 }
               }
             }
@@ -444,326 +444,326 @@
         }
       }
     },
-    "Command": {
-      "comment": "command type",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Příkaz"
+    "Command" : {
+      "comment" : "command type",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Příkaz"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Befehl"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Befehl"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Command"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Command"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comando"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comando"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Commande"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commande"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comando"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comando"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "コマンド"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コマンド"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "명령"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "명령"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Commando"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commando"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Polecenie"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Polecenie"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comando"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comando"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Комманда"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комманда"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Komut"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komut"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "命令"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "命令"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "指令"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指令"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "指令"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指令"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "командване"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "командване"
           }
         }
       }
     },
-    "Quick Actions": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rychlé akce"
+    "Quick Actions" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rychlé akce"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schnellaktionen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schnellaktionen"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Quick Actions"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Actions"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Acciones rápidas"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acciones rápidas"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Actions rapides"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actions rapides"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Azioni rapide"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Azioni rapide"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "クイックアクション"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "クイックアクション"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "빠른 동작"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "빠른 동작"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Snelle taken"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snelle taken"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Szybkie czynności"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szybkie czynności"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ações Rápidas"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ações Rápidas"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Быстрые действия"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Быстрые действия"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hızlı Eylemler"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hızlı Eylemler"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "快速操作"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速操作"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "快速操作"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速操作"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "快速動作"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速動作"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Бързи действия"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бързи действия"
           }
         }
       }
     },
-    "Script": {
-      "comment": "command type",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skript"
+    "Script" : {
+      "comment" : "command type",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skript"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skript"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skript"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Script"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Script"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Script"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Script"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "スクリプト"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "スクリプト"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "스크립트"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "스크립트"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Script"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skrypt"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skrypt"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Script"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Скрипт"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Betik"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Betik"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "脚本"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "脚本"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "指令碼"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指令碼"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "程式碼"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "程式碼"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Скрипт"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

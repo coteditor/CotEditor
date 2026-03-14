@@ -1,112 +1,112 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "To change a shortcut, click the key column, then type the new keys.": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Chcete-li změnit klávesovou zkratku, vyberte ji, klikněte na sloupec Zkratka a poté zadejte klávesovou zkratku."
+  "sourceLanguage" : "en",
+  "strings" : {
+    "To change a shortcut, click the key column, then type the new keys." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chcete-li změnit klávesovou zkratku, vyberte ji, klikněte na sloupec Zkratka a poté zadejte klávesovou zkratku."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zum Ändern eines Kurzbefehls klicke in die Taste-Spalte und drücke die neuen Tasten."
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zum Ändern eines Kurzbefehls klicke in die Taste-Spalte und drücke die neuen Tasten."
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "To change a shortcut, click the key column, then type the new keys."
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To change a shortcut, click the key column, then type the new keys."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Para cambiar un atajo, haga clic en la columna teclas del atajo a editar y, a continuación, introduzca la nueva combinación."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para cambiar un atajo, haga clic en la columna teclas del atajo a editar y, a continuación, introduzca la nueva combinación."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pour changer un raccourci, cliquez dans la colonne Raccourci, puis effectuez le raccourci désiré au clavier."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour changer un raccourci, cliquez dans la colonne Raccourci, puis effectuez le raccourci désiré au clavier."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Per modificare un’abbreviazione, cliccare la colonna e poi digitare la nuova combinazione."
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per modificare un’abbreviazione, cliccare la colonna e poi digitare la nuova combinazione."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ショートカットを変更するには、キー列をクリックして編集状態にしてから、新しいキーを入力してください。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ショートカットを変更するには、キー列をクリックして編集状態にしてから、新しいキーを入力してください。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "단축키를 바꾸려면, 키 열을 클릭하고, 새 키를 입력하십시오."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단축키를 바꾸려면, 키 열을 클릭하고, 새 키를 입력하십시오."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Als je een toetscombinatie wilt wijzigen, klik je op de sleutelkolom en typ je de nieuwe toetsen."
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Als je een toetscombinatie wilt wijzigen, klik je op de sleutelkolom en typ je de nieuwe toetsen."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aby zmienić skrót, kliknij kolumnę klawiszy, a następnie wprowadź nowe klawisze."
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aby zmienić skrót, kliknij kolumnę klawiszy, a następnie wprowadź nowe klawisze."
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Para alterar o atalho, clique na coluna Teclas, então entre com as novas teclas."
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para alterar o atalho, clique na coluna Teclas, então entre com as novas teclas."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Чтобы изменить сочетание клавиш, щелкните столбец клавиш, а затем нажмите новую клавишу."
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы изменить сочетание клавиш, щелкните столбец клавиш, а затем нажмите новую клавишу."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bir kestirmeyi değiştirmek için düğme sütununa tıklayın ve yeni düğmeleri girin."
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir kestirmeyi değiştirmek için düğme sütununa tıklayın ve yeni düğmeleri girin."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "通过点击‘键’列，并输入新的键来修改快捷键。"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过点击‘键’列，并输入新的键来修改快捷键。"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "如欲修改鍵盤熱鍵，請點一下熱鍵欄目，再敲下新的熱鍵。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如欲修改鍵盤熱鍵，請點一下熱鍵欄目，再敲下新的熱鍵。"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "如要更改快捷鍵，請按一下按鍵欄，然後輸入新的按鍵。"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如要更改快捷鍵，請按一下按鍵欄，然後輸入新的按鍵。"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "За да промените пряк път, щракнете върху колоната с клавиши, след което въведете новите клавиши."
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За да промените пряк път, щракнете върху колоната с клавиши, след което въведете новите клавиши."
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

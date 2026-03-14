@@ -1,324 +1,324 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "Begin:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Začátek:"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Begin:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Začátek:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beginnt:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beginnt:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Begin:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Begin:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inicio:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicio:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Début :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Début :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inizio:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inizio:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "開始:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "시작:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시작:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Begin:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Begin:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "początek:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "początek:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Início:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Início:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Начало:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начало:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Başlangıç:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Başlangıç:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "开头："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开头："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "開頭："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開頭："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "開頭："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開頭："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Начало:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начало:"
           }
         }
       }
     },
-    "End:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Konec:"
+    "End:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konec:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Endet:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Endet:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "End:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "End:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fin:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fin:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fin :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fin :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fine:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fine:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "終了:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "終了:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "끝:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "끝:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Einde:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einde:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "koniec:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "koniec:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fim:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fim:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Конец:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конец:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bitiş:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitiş:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "结尾："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "结尾："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "結尾："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "結尾："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "結尾："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "結尾："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Край:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Край:"
           }
         }
       }
     },
-    "Surround with:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Obklopit s:"
+    "Surround with:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obklopit s:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Umgeben mit:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Umgeben mit:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Surround with:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surround with:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Envolver con:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envolver con:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Entourer avec :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entourer avec :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Circonda con:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Circonda con:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "文字で囲む:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字で囲む:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "다음으로 감싸기:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음으로 감싸기:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Omring met:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omring met:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Umieść w parze łańcuchów znaków:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Umieść w parze łańcuchów znaków:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Colocar entre:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Colocar entre:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вокруг:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вокруг:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Şunlarla sar:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şunlarla sar:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "进行环绕："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "进行环绕："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "進行環繞："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "進行環繞："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "環繞："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "環繞："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Огради с:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Огради с:"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

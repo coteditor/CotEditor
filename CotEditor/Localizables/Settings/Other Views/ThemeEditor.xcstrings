@@ -1,1922 +1,1922 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "Author:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autor:"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Author:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autor:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autor:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autor:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Author:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Author:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autor:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autor:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Auteur :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auteur :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autore:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autore:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "作者:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "作者:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "작성자:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "작성자:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Auteur:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auteur:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autor:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autor:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Autor:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autor:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Автор:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автор:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yazar:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yazar:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "作者："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "作者："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "作者："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "作者："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "作者："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "作者："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Автор:"
-          }
-        }
-      }
-    },
-    "Background:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pozadí:"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hintergrund:"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Background:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fondo:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fond :"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sfondo:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "背景:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "배경:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Achtergrond:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tło:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fundo:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Фон:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Arka plan:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "背景："
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "背景："
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "背景："
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "фон:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автор:"
           }
         }
       }
     },
-    "Current Line:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aktuální řádek:"
+    "Background:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pozadí:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aktuelle Zeile:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hintergrund:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Current Line:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Background:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Línea actual:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fondo:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ligne courante :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fond :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Riga attuale:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sfondo:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "現在の行:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "背景:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "현재 줄:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "배경:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Huidige regel:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Achtergrond:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bieżący wiersz:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tło:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Linha Atual:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fundo:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Текущая строка:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фон:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Geçerli satır:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arka plan:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "当前行："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "背景："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "當前行："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "背景："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "現用行："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "背景："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Текущ ред:"
-          }
-        }
-      }
-    },
-    "Cursor:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kurzor:"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zeiger:"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cursor:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cursor:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Curseur :"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cursore:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "カーソル:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "커서:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cursor:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kursor:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cursor:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Курсор:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "İmleç:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "光标："
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "游標："
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "游標："
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Курсор:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "фон:"
           }
         }
       }
     },
-    "Description:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Popis:"
+    "Current Line:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuální řádek:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beschreibung:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuelle Zeile:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Description:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current Line:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Descripción:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Línea actual:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Description :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligne courante :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Descrizione:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riga attuale:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "説明:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在の行:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "설명:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재 줄:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beschrijving:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Huidige regel:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opis:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bieżący wiersz:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Descrição:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Linha Atual:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Описание:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущая строка:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Açıklama:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geçerli satır:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "描述："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当前行："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "描述："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當前行："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "描述："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現用行："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Описание:"
-          }
-        }
-      }
-    },
-    "Highlight:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Zvýraznění:"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hervorhebung:"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Highlight:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Resaltar:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Surbrillance :"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Evidenziato:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ハイライト:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "강조:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Markering:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wyróżnienie:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Destaque:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Выделение:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vurgu:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "高亮标记："
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "重點："
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "重點標示："
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Акцент:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущ ред:"
           }
         }
       }
     },
-    "Invisibles:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neviditelné:"
+    "Cursor:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurzor:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Steuerzeichen:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeiger:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Invisibles:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cursor:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Invisibles:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cursor:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Invisibles :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Curseur :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Invisibili:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cursore:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不可視文字:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カーソル:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "보이지 않는 문자:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "커서:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Onzichtbare tekens:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cursor:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Znaki niewidoczne:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kursor:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Invisíveis:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cursor:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Невидимые:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Курсор:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Görünmez karakterler:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İmleç:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不可见元素："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "光标："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不可見元素："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "游標："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "隱形符號："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "游標："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Невидими:"
-          }
-        }
-      }
-    },
-    "License:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Licence:"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lizenz:"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Licence:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Licencia:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "License :"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Licenza:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ライセンス:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "사용권 계약:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Licentie:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Licencja:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Licença:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Лицензия:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lisans:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "许可证："
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "許可證："
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "許可證："
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Лиценз:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Курсор:"
           }
         }
       }
     },
-    "Not defined": {
-      "comment": "placeholder",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Není definováno"
+    "Description:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Popis:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nicht definiert"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beschreibung:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Not defined"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No definido"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descripción:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Non défini"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Non definito"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descrizione:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "未設定"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "説明:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "정의되지 않음"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설명:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Niet gedefinieerd"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beschrijving:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nie zdefiniowano"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opis:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Não definido"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descrição:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Не указано"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tanımlanmamış"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Açıklama:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "未定义"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "描述："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "未定義"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "描述："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "未定義"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "描述："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Не е дефинирано"
-          }
-        }
-      }
-    },
-    "Reload All Themes": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Znovu načíst všechny motivy"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Alle Themen neu laden"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reload All Themes"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recargar todos los temas"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recharger tous les thèmes"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ricarica tutti i Temi"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "すべてのテーマを再読み込み"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "모든 테마 다시 로드"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Laad alle thema's opnieuw"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Załaduj ponownie wszystkie motywy"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recarregar Todos os Temas"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Перезагрузить все темы"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tüm Temaları Yeniden Yükle"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "重载所有主题"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "過載所有主題"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "重新載入所有主題"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Презареди всички теми"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание:"
           }
         }
       }
     },
-    "Selection:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Výběr:"
+    "Highlight:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zvýraznění:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Auswahl:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hervorhebung:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Selection:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Highlight:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Selección:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resaltar:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sélection :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Surbrillance :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Selezione:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Evidenziato:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選択範囲:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ハイライト:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "선택 부분:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "강조:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Selectie:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markering:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zaznaczenie:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyróżnienie:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seleção:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Destaque:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Выбрано:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выделение:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seçim:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vurgu:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "选中："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高亮标记："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選中："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重點："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選擇："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重點標示："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Избор:"
-          }
-        }
-      }
-    },
-    "Show theme file information": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zobrazit informace o souboru motivu"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Info der Thema-Datei einblenden"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Show theme file information"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mostrar información del archivo del tema"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Afficher les informations du thème"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mostra informazioni sul file del tema"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "テーマファイル情報を表示"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "테마 파일 정보 보기"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toon informatie over themabestanden"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pokaż informacje o pliku motywu"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mostre o arquivo de informações do tema"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Показать информации о теме"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tema dosyası bilgisini göster"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "显示主题文件信息"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "顯示主題檔案資訊"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "顯示主題檔案資訊"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Покажи информация за файла на темата"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Акцент:"
           }
         }
       }
     },
-    "Syntax": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntaxe"
+    "Invisibles:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neviditelné:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntax"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Steuerzeichen:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntax"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invisibles:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sintaxis"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invisibles:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntaxe"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invisibles :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sintassi"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invisibili:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "シンタックス"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不可視文字:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "구문"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보이지 않는 문자:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntaxis"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onzichtbare tekens:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Składnia"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znaki niewidoczne:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sintaxe"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invisíveis:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Синтакс"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидимые:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sözdizim"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görünmez karakterler:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "语法"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不可见元素："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "文法定義"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不可見元素："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "語法"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隱形符號："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Синтаксис"
-          }
-        }
-      }
-    },
-    "Text:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Text:"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Text:"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Text:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Texto:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Texte :"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Testo:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "文字:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "텍스트:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tekst:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tekst:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Texto:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Текст:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Metin:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "字符："
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "字元："
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "文字："
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Текст:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидими:"
           }
         }
       }
     },
-    "Theme": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Motiv"
+    "License:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licence:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Thema"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lizenz:"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Theme"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licence:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Theme"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licencia:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tema"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "License :"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Thème"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licenza:"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tema"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ライセンス:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "テーマ"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용권 계약:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "테마"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licentie:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Thema"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licencja:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Motyw"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licença:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tema"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лицензия:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Тема"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisans:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tema"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "许可证："
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "主题"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "許可證："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "主題"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "許可證："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "主題"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Тема"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лиценз:"
           }
         }
       }
     },
-    "Theme Editor": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Editor témat"
+    "Not defined" : {
+      "comment" : "placeholder",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Není definováno"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Themeneditor"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht definiert"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Theme Editor"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not defined"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Editor de tema"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No definido"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Editeur de thème"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non défini"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Editor di temi"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non definito"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "テーマエディタ"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未設定"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "테마 편집기"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정의되지 않음"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Thema-editor"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niet gedefinieerd"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Edytor motywu"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie zdefiniowano"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Editor de Temas"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não definido"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Редактор Тем"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не указано"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tema editörü"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanımlanmamış"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "主题编辑器"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未定义"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "主題編輯器"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未定義"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "主題編輯器"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未定義"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Редактор на теми"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не е дефинирано"
           }
         }
       }
     },
-    "URL:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL:"
+    "Reload All Themes" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znovu načíst všechny motivy"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Themen neu laden"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reload All Themes"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recargar todos los temas"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recharger tous les thèmes"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ricarica tutti i Temi"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべてのテーマを再読み込み"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 테마 다시 로드"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laad alle thema's opnieuw"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Załaduj ponownie wszystkie motywy"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recarregar Todos os Temas"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перезагрузить все темы"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tüm Temaları Yeniden Yükle"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重载所有主题"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "過載所有主題"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新載入所有主題"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "URL:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Презареди всички теми"
           }
         }
       }
     },
-    "Use system color": {
-      "comment": "toggle button label",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Použít systémové barvy"
+    "Selection:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Výběr:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Systemfarbe verwenden"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auswahl:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Use system colour"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selection:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Usa el color del sistema"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selección:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Couleur du système"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélection :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Usa colore di sistema"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selezione:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "システムカラーを使う"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択範囲:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "시스템 색상 사용"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택 부분:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gebruik systeemkleur"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selectie:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Użyj koloru systemowego"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznaczenie:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Usar cor do sistema"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleção:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Использовать системый цвет"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрано:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sistem rengini kullan"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçim:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "使用系统颜色"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选中："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "使用系統顏色"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選中："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "使用系統顏色"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Използвай системния цвят"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избор:"
+          }
+        }
+      }
+    },
+    "Show theme file information" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit informace o souboru motivu"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Info der Thema-Datei einblenden"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show theme file information"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar información del archivo del tema"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher les informations du thème"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra informazioni sul file del tema"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "テーマファイル情報を表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "테마 파일 정보 보기"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toon informatie over themabestanden"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż informacje o pliku motywu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostre o arquivo de informações do tema"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать информации о теме"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema dosyası bilgisini göster"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示主题文件信息"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示主題檔案資訊"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示主題檔案資訊"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи информация за файла на темата"
+          }
+        }
+      }
+    },
+    "Syntax" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxe"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntax"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntax"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintaxis"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxe"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintassi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "シンタックス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구문"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxis"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Składnia"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintaxe"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтакс"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sözdizim"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "语法"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文法定義"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "語法"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
+          }
+        }
+      }
+    },
+    "Text:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texte :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testo:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "텍스트:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metin:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字符："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字元："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文字："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст:"
+          }
+        }
+      }
+    },
+    "Theme" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motiv"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thema"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Theme"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theme"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thème"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "テーマ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "테마"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thema"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motyw"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主题"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主題"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主題"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
+          }
+        }
+      }
+    },
+    "Theme Editor" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editor témat"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Themeneditor"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theme Editor"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editor de tema"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editeur de thème"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editor di temi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "テーマエディタ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "테마 편집기"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thema-editor"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edytor motywu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editor de Temas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактор Тем"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema editörü"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主题编辑器"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主題編輯器"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主題編輯器"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактор на теми"
+          }
+        }
+      }
+    },
+    "URL:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        }
+      }
+    },
+    "Use system color" : {
+      "comment" : "toggle button label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Použít systémové barvy"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Systemfarbe verwenden"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use system colour"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usa el color del sistema"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couleur du système"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usa colore di sistema"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "システムカラーを使う"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시스템 색상 사용"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruik systeemkleur"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Użyj koloru systemowego"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usar cor do sistema"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Использовать системый цвет"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sistem rengini kullan"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用系统颜色"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用系統顏色"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用系統顏色"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай системния цвят"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

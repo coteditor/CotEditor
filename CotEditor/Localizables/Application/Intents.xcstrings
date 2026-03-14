@@ -1,458 +1,458 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "CreateDocumentIntent.description": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vytvořit nový dokument se zadaným textem v aplikaci CotEditor."
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CreateDocumentIntent.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořit nový dokument se zadaným textem v aplikaci CotEditor."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Einen neues Dokument mit dem angegebenen Text in CotEditor erstellen."
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einen neues Dokument mit dem angegebenen Text in CotEditor erstellen."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Create a new document with the specified text in CotEditor."
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Create a new document with the specified text in CotEditor."
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create a new document with the specified text in CotEditor."
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create a new document with the specified text in CotEditor."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Crear un nuevo documento con el texto especificado en CotEditor."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear un nuevo documento con el texto especificado en CotEditor."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Créer un nouveau document avec le texte spécifié dans CotEditor."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Créer un nouveau document avec le texte spécifié dans CotEditor."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Crea un nuovo documento con il testo specificato in CotEditor."
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea un nuovo documento con il testo specificato in CotEditor."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CotEditorで指定されたテキストで新規書類を作成します。"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditorで指定されたテキストで新規書類を作成します。"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CotEditor에서 지정된 텍스트로 새로운 문서를 생성합니다."
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor에서 지정된 텍스트로 새로운 문서를 생성합니다."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Maak een nieuw document met de opgegeven tekst in CotEditor."
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maak een nieuw document met de opgegeven tekst in CotEditor."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Utwórz nowy dokument z podanym tekstem w CotEditorze."
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utwórz nowy dokument z podanym tekstem w CotEditorze."
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Crie um novo documento com texto especificado no CotEditor."
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crie um novo documento com texto especificado no CotEditor."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Создать новый документа с выбранным текстом в CotEditor"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать новый документа с выбранным текстом в CotEditor"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Belirtilen metin ile CotEditor’da yeni bir belge oluşturun."
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belirtilen metin ile CotEditor’da yeni bir belge oluşturun."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "在CotEditor中使用指定的文本创建新文档。"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在CotEditor中使用指定的文本创建新文档。"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "在CotEditor內以指定的文字創建新文件。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在CotEditor內以指定的文字創建新文件。"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "在CotEditor中製作包括指定文字的新文件。"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在CotEditor中製作包括指定文字的新文件。"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Създайте нов документ с посочения текст в CotEditor."
-          }
-        }
-      }
-    },
-    "CreateDocumentIntent.Parameter.content": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Obsah"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inhalt"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Content"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contents"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contenido"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Contenu"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contenuto"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "内容"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "내용"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inhoud"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zawartość"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Conteúdo"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Содержимое"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "İçerik"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "内容"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "內容"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "内容"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Съдържание"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създайте нов документ с посочения текст в CotEditor."
           }
         }
       }
     },
-    "CreateDocumentIntent.shortTitle": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vytvořit dokument"
+    "CreateDocumentIntent.Parameter.content" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obsah"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dokument erstellen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inhalt"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Create Document"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Content"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create Document"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contents"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Crear Documento"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contenido"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Créer un document"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Contenu"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Crea documento"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contenuto"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "書類を作成"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内容"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "새로운 문서"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "내용"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Maak document"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inhoud"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Utwórz dokument"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zawartość"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Criar Documento"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conteúdo"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Создать документ"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Содержимое"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Belge Oluştur"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İçerik"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "创建文档"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内容"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "創建文件"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內容"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "製作文件"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内容"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Създаване на документ"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Съдържание"
           }
         }
       }
     },
-    "CreateDocumentIntent.title": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vytvořit dokument"
+    "CreateDocumentIntent.shortTitle" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořit dokument"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dokument erstellen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokument erstellen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Create Document"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Create Document"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Create Document"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Document"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Crear Documento"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear Documento"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Créer un document"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Créer un document"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Crea documento"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea documento"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "書類を作成"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書類を作成"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "새로운 문서"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새로운 문서"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Maak document"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maak document"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Utwórz dokument"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utwórz dokument"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Criar Documento"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Criar Documento"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Создать документ"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать документ"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Belge Oluştur"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belge Oluştur"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "创建文档"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "创建文档"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "創建文件"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "創建文件"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "製作文件"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "製作文件"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Създаване на документ"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създаване на документ"
+          }
+        }
+      }
+    },
+    "CreateDocumentIntent.title" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vytvořit dokument"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokument erstellen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Create Document"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Document"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear Documento"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Créer un document"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea documento"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書類を作成"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새로운 문서"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maak document"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utwórz dokument"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Criar Documento"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать документ"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belge Oluştur"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "创建文档"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "創建文件"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "製作文件"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създаване на документ"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

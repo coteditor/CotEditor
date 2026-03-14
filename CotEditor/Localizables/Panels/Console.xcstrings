@@ -1,220 +1,220 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "Clear Log": {
-      "comment": "toolbar item label",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Smazat protokol"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Clear Log" : {
+      "comment" : "toolbar item label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smazat protokol"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Log löschen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log löschen"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clear Log"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear Log"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Borrar registro"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borrar registro"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Effacer la console"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effacer la console"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Azzera log"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Azzera log"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ログを消去"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ログを消去"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "로그 지우기"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그 지우기"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wis log"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wis log"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wymaż dziennik"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaż dziennik"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limpar Registro"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limpar Registro"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Отчистить лог"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчистить лог"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Günlüğü Temizle"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günlüğü Temizle"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "清空记录"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清空记录"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "清空記錄"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清空記錄"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "清除記錄"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除記錄"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Изчистване на дневника"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изчистване на дневника"
           }
         }
       }
     },
-    "Console": {
-      "comment": "window title",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Konzola"
+    "Console" : {
+      "comment" : "window title",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konzola"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Konsole"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konsole"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Console"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Console"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Consola"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consola"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Console"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Console"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Console"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Console"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "コンソール"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コンソール"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "콘솔"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "콘솔"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Console"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Console"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Konsola"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konsola"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Console"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Console"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Консоль"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Консоль"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Konsol"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konsol"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "控制台"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "控制台"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "主控台"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主控台"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "主控台"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主控台"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Конзола"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конзола"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

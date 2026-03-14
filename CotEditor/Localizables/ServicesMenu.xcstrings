@@ -1,221 +1,221 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "New CotEditor Window Containing Selection": {
-      "comment": "Refer to how Apple translates “New TextEdit Window Containing Selection”",
-      "extractionState": "manual",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nové okno CotEditoru s výběrem"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "New CotEditor Window Containing Selection" : {
+      "comment" : "Refer to how Apple translates “New TextEdit Window Containing Selection”",
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nové okno CotEditoru s výběrem"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Auswahl in neuem CotEditor-Fenster"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auswahl in neuem CotEditor-Fenster"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "New CotEditor Window Containing Selection"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New CotEditor Window Containing Selection"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abrir fichero en CotEditor"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir fichero en CotEditor"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Nouveau document CotEditor avec la sélection"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nouveau document CotEditor avec la sélection"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nuova finestra TextEdit contenente selezione"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nuova finestra TextEdit contenente selezione"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選択部分を含む新しいCotEditorウインドウを開く"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択部分を含む新しいCotEditorウインドウを開く"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "새로운 CotEditor 윈도우에서 선택 부분 열기"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새로운 CotEditor 윈도우에서 선택 부분 열기"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nieuw CotEditor-venster met selectie"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nieuw CotEditor-venster met selectie"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nowe okno CotEditora zawierające zaznaczenie"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nowe okno CotEditora zawierające zaznaczenie"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nova Janela do CotEditor Contendo Seleção"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nova Janela do CotEditor Contendo Seleção"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Новое окно CotEditor, которое содержит выделенное"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новое окно CotEditor, которое содержит выделенное"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seçimi İçeren Yeni CotEditor Belgesi"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçimi İçeren Yeni CotEditor Belgesi"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "使用选中内容创建新的CotEditor 窗口"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用选中内容创建新的CotEditor 窗口"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "使用選中的內容創建新的CotEditor文件"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用選中的內容創建新的CotEditor文件"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "新增包括所選範圍的CotEditor視窗"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增包括所選範圍的CotEditor視窗"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Нов CotEditor прозорец, съдържащ селекция"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нов CotEditor прозорец, съдържащ селекция"
           }
         }
       }
     },
-    "Open in CotEditor": {
-      "extractionState": "manual",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Otevřít v CotEditoru"
+    "Open in CotEditor" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít v CotEditoru"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "In CotEditor öffnen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In CotEditor öffnen"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Open in CotEditor"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in CotEditor"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abrir en CotEditor"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir en CotEditor"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ouvrir dans CotEditor"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir dans CotEditor"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apri in CotEditor"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri in CotEditor"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CotEditorで開く"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditorで開く"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CotEditor에서 열기"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor에서 열기"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Open in CotEditor"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in CotEditor"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Otwórz w CotEditorze"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz w CotEditorze"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abrir no CotEditor"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir no CotEditor"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Открыть в CotEditor"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть в CotEditor"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CotEditor’de Aç"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor’de Aç"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "在CotEditor中打开"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在CotEditor中打开"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "在CotEditor中開啟"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在CotEditor中開啟"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "在CotEditor中開啟"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在CotEditor中開啟"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Отвори в CotEditor"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори в CotEditor"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

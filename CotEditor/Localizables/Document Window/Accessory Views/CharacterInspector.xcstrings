@@ -1,856 +1,856 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "<a letter consisting of %lld characters>": {
-      "comment": "%lld is always 2 or more.",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<písmeno složené z %lld znaků>"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "<a letter consisting of %lld characters>" : {
+      "comment" : "%lld is always 2 or more.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<písmeno složené z %lld znaků>"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<ein aus %lld Zeichen bestehender Buchstabe>"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<ein aus %lld Zeichen bestehender Buchstabe>"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<a letter consisting of %lld characters>"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<a letter consisting of %lld characters>"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<una letra que consta de %lld caracteres>"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<una letra que consta de %lld caracteres>"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<un symbole constitué de %lld caractères>"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<un symbole constitué de %lld caractères>"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<una lettera composta di %lld caratteri>"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<una lettera composta di %lld caratteri>"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<%lld字から成る文字>"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<%lld字から成る文字>"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<%lld자로 구성된 문자>"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<%lld자로 구성된 문자>"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<een letter bestaande uit %lld tekens>"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<een letter bestaande uit %lld tekens>"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<litera składająca się z %lld znaków>"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<litera składająca się z %lld znaków>"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<uma letra que consiste em %lld caracteres>"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<uma letra que consiste em %lld caracteres>"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<буква, состоящая из %lld символов>"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<буква, состоящая из %lld символов>"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld karakterden oluşan bir harf"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld karakterden oluşan bir harf"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<包含有%lld个字符>"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<包含有%lld个字符>"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<包含有%lld個字元>"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<包含有%lld個字元>"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<一個由%lld個字元組成的字母>"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<一個由%lld個字元組成的字母>"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "<буква, съставена от %lld знака>"
-          }
-        }
-      }
-    },
-    "Block:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blok:"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Block:"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Block:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bloque:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sous-ensemble :"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blocco:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ブロック:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "영역:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Block:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blok:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bloco:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Блок:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blok:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "区块："
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "區段:"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "區塊："
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Блок:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<буква, съставена от %lld знака>"
           }
         }
       }
     },
-    "Category:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kategorie:"
+    "Block:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blok:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kategorie:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Block:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Category:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Block:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Categoría:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bloque:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Catégorie :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sous-ensemble :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Categoria:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blocco:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "カテゴリ:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ブロック:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "카테고리:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "영역:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Categorie:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Block:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kategoria:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blok:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Categoria:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bloco:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Категория:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блок:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kategori:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blok:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "分类："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "区块："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "分類:"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "區段:"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "類別："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "區塊："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "категория:"
-          }
-        }
-      }
-    },
-    "Code Point:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kódový bod:"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codepunkt:"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Code Point:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Punto de código:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Point de Code :"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Punto di codice:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "コードポイント:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "코드 포인트:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Codepunt:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Punkt kodowy:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ponto de Código:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Точка в коде:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kod noktası:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "码位："
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "碼位:"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "代碼位："
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Кодова точка:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блок:"
           }
         }
       }
     },
-    "deprecated": {
-      "comment": "badge for when the inspected character is deprecated in the latest Unicode specification",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "zastaralé"
+    "Category:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorie:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "abgelehnt"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategorie:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "deprecated"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Category:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "obsoleto"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categoría:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "déprécié"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catégorie :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "deprecated"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categoria:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "非推奨"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カテゴリ:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "제거됨"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카테고리:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "verouderd"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categorie:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "przestarzały"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategoria:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "depreciado"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categoria:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "запрещен"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Категория:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "kullanımdan kaldırıldı"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已弃用"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分类："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已廢棄"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分類:"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已停用"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "類別："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "отхвърлено"
-          }
-        }
-      }
-    },
-    "No Block": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Žádný blok"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kein Block"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No Block"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No bloque"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pas de bloc"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nessun Blocco"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ブロックなし"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "영역 없음"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Geen block"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Brak bloku"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nenhum Bloco"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Нет блока"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Blok Yok"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "无区块"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "無區段"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "無區塊"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Без блок"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "категория:"
           }
         }
       }
     },
-    "Unknown": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neznámý"
+    "Code Point:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kódový bod:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unbekannt"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codepunkt:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Unknown"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code Point:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Desconocido"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punto de código:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inconnu"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Point de Code :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sconosciuta"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punto di codice:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不明"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コードポイント:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "알 수 없음"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "코드 포인트:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Onbekend"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codepunt:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nieznany"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punkt kodowy:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Desconhecido"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ponto de Código:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Неизвестный"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Точка в коде:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bilinmeyen"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kod noktası:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "未知"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "码位："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "未知的"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "碼位:"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "未知"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "代碼位："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Неизвестно"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодова точка:"
           }
         }
       }
     },
-    "Version:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verze:"
+    "deprecated" : {
+      "comment" : "badge for when the inspected character is deprecated in the latest Unicode specification",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "zastaralé"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Version:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "abgelehnt"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Version:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "deprecated"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Versión:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "obsoleto"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Version :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "déprécié"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Versione:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "deprecated"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "バージョン:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "非推奨"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "버전:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제거됨"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Versie:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "verouderd"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wersja:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "przestarzały"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Versão:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "depreciado"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Версия:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "запрещен"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sürüm:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kullanımdan kaldırıldı"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "版本："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已弃用"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "版本:"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已廢棄"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "版本："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已停用"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Версия:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "отхвърлено"
+          }
+        }
+      }
+    },
+    "No Block" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Žádný blok"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Block"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Block"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No bloque"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas de bloc"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessun Blocco"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ブロックなし"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "영역 없음"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen block"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brak bloku"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhum Bloco"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет блока"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blok Yok"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无区块"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無區段"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無區塊"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без блок"
+          }
+        }
+      }
+    },
+    "Unknown" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neznámý"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbekannt"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desconocido"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inconnu"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sconosciuta"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不明"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알 수 없음"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onbekend"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nieznany"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desconhecido"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неизвестный"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bilinmeyen"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未知"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未知的"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未知"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неизвестно"
+          }
+        }
+      }
+    },
+    "Version:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verze:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versión:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versione:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バージョン:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버전:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versie:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wersja:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versão:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sürüm:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本:"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия:"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

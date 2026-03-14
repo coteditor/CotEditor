@@ -1,1512 +1,1512 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "All": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Všechny"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "All" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Všechny"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Alle"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "All"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Todo"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todo"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toutes"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toutes"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tutti"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutti"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "すべて"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべて"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "모두"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모두"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Alles"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wszystkie"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wszystkie"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Todas"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todas"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Все"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tümü"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tümü"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "全部"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "全部"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "全部"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Всички"
-          }
-        }
-      }
-    },
-    "Command": {
-      "comment": "tab label",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Příkaz"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Befehl"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Command"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comando"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Commande"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comando"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "コマンド"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "명령"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Commando"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Polecenie"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comando"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Команда"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Komut"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "命令"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "指令"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "指令"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "командване"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всички"
           }
         }
       }
     },
-    "Description": {
-      "comment": "table column header",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Popis"
+    "Command" : {
+      "comment" : "tab label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Příkaz"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beschreibung"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Befehl"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Description"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Command"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Descripción"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comando"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Description"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commande"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Descrizione"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comando"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "説明"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コマンド"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "설명"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "명령"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Beschrijving"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commando"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opis"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Polecenie"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Descrição"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comando"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Описание"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Команда"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Açıklama"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komut"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "描述"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "命令"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "描述"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指令"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "描述"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指令"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Описание"
-          }
-        }
-      }
-    },
-    "Extensions": {
-      "comment": "table column header",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Přípony"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Suffixe"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Extensions"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Extensiones"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Extensions"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Estensioni"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "拡張子"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "확장"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Extensies"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rozszerzenia"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Extensões"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Расширение"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Uzantılar"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "扩展名"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "副檔名"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "副檔名"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Разширения"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "командване"
           }
         }
       }
     },
-    "File Drop": {
-      "comment": "tab label",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Přetažení souboru"
+    "Description" : {
+      "comment" : "table column header",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Popis"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Datei-Drop"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beschreibung"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "File Drop"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Entrega de archivos"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descripción"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "File Drop"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "File trascinato"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descrizione"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ファイルドロップ"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "説明"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "파일 떨굼"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설명"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bestand neerzetten"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beschrijving"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Upuszczanie plików"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opis"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Arquivos Soltos"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descrição"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Передача файлов"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dosya Bırak"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Açıklama"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "文件拖拽"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "描述"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "檔案拖拽"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "描述"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "檔案拖移項目"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "描述"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Пускане на файл"
-          }
-        }
-      }
-    },
-    "File extensions of dropped file (comma separated).": {
-      "comment": "tooltip",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Přípony přetažených souborů (oddělené čárkou)."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dateisuffixe der abgelegte Datei (Komma-getrennt)."
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "File extensions of dropped file (comma separated)."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Extensiones de nombre de archivo del archivo eliminado (separado de comas)."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Extensions des fichiers déposés (séparées par une virgule)."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Estensione dei file rilasciati (valori separati da virgola)."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ドロップされるファイルの拡張子（カンマ区切り）"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "떨군 파일의 확장자 (반점으로 구문됨)."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bestandsextensies van neergezet bestand (door komma's gescheiden)."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rozszerzenia upuszczanych plików (rozdzielone przecinkami)."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Extensões de arquivo do arquivo solto (separadas por vírgulas)."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Расширение переданного файла (разделенные запятыми)."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bırakılan dosyanın uzantıları (virgülle ayrılmış)."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "拖拽文件的文件扩展名 (逗号分隔)。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "拖拽檔案的副檔名 (逗號分隔)。"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "拖放檔案的副檔名（逗號分隔）。"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Файлови разширения на изпуснат файл (разделени със запетая)."
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание"
           }
         }
       }
     },
-    "Insert Variable": {
-      "comment": "button label",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vložit proměnnou"
+    "Extensions" : {
+      "comment" : "table column header",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přípony"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Variable hinzufügen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suffixe"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Insert Variable"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensions"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Insertar variable"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensiones"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Insérer une variable"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensions"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inserisci Variabile"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estensioni"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "変数を挿入"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拡張子"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "변수 삽입"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확장"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Voeg variabele in"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensies"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wstaw zmienną"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozszerzenia"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Inserir Variável"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensões"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вставить переменную"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширение"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Değişken Ekle"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzantılar"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "插入变量"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "扩展名"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "插入變數"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "副檔名"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "插入變數"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "副檔名"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вмъкване на променлива"
-          }
-        }
-      }
-    },
-    "Insertion format:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Formát vložení:"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Format des einzufügenden Textes:"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Insertion format:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Insertar formato:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Format du texte à insérer :"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Formato di inserimento:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "挿入フォーマット:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "삽입 포맷:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Invoegformaat:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Format wstawianego tekstu:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Formato da inserção:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Формат вставки:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ekleme biçimi:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "按格式插入："
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "按格式插入："
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "插入格式："
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Формат на вмъкване:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширения"
           }
         }
       }
     },
-    "Key": {
-      "comment": "table column header",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zkratka"
+    "File Drop" : {
+      "comment" : "tab label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přetažení souboru"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Taste"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datei-Drop"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Key"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File Drop"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Key"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrega de archivos"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Teclas"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File Drop"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Raccourci"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File trascinato"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tasto"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイルドロップ"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "キー"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 떨굼"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "키"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestand neerzetten"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sleutel"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upuszczanie plików"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Klawisze"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arquivos Soltos"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Teclas"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Передача файлов"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ключ"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosya Bırak"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Düğme"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件拖拽"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "按键"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案拖拽"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "按鍵"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案拖移項目"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "按鍵"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ключ"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пускане на файл"
           }
         }
       }
     },
-    "Name": {
-      "comment": "table column header",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Název"
+    "File extensions of dropped file (comma separated)." : {
+      "comment" : "tooltip",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přípony přetažených souborů (oddělené čárkou)."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dateisuffixe der abgelegte Datei (Komma-getrennt)."
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Name"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File extensions of dropped file (comma separated)."
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensiones de nombre de archivo del archivo eliminado (separado de comas)."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nombre"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensions des fichiers déposés (séparées par une virgule)."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nom"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estensione dei file rilasciati (valori separati da virgola)."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nome"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ドロップされるファイルの拡張子（カンマ区切り）"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "名前"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "떨군 파일의 확장자 (반점으로 구문됨)."
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이름"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestandsextensies van neergezet bestand (door komma's gescheiden)."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Naam"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozszerzenia upuszczanych plików (rozdzielone przecinkami)."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nazwa"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extensões de arquivo do arquivo solto (separadas por vírgulas)."
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nome"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расширение переданного файла (разделенные запятыми)."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Имя"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bırakılan dosyanın uzantıları (virgülle ayrılmış)."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ad"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖拽文件的文件扩展名 (逗号分隔)。"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "名字"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖拽檔案的副檔名 (逗號分隔)。"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "名稱"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拖放檔案的副檔名（逗號分隔）。"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "名稱"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Име"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлови разширения на изпуснат файл (разделени със запетая)."
           }
         }
       }
     },
-    "Syntax": {
-      "comment": "table column header",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntaxe"
+    "Insert Variable" : {
+      "comment" : "button label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vložit proměnnou"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntax"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Variable hinzufügen"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntax"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insert Variable"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sintaxis"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insertar variable"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntaxe"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insérer une variable"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sintassi"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserisci Variabile"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "シンタックス"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "変数を挿入"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "구문"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "변수 삽입"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tekst die moet worden ingevoegd via een commando in het menu of via een sneltoets op het toetsenbord:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voeg variabele in"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Składnia"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wstaw zmienną"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sintaxe"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserir Variável"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Синтаксис"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставить переменную"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sözdizim"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Değişken Ekle"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "语法"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "插入变量"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "文法定義"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "插入變數"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "語法"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "插入變數"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Синтаксис"
-          }
-        }
-      }
-    },
-    "Syntax in which this file drop setting is used.": {
-      "comment": "tooltip",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntaxe, ve kterém se používá toto nastavení při přetažení souboru."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntax, in der diese Datei-Drop-Einstellung benutzt wird."
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntax in which this file drop setting is used."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sintaxis utilizada si se utiliza soltar archivos."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntaxe pour laquelle cette configuration de fichiers déposés est utilisée."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sintassi che utilizza le impostazioni del file trascinato nell’editor."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "このファイルドロップ定義を使用するシンタックス"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "이 파일 떨굼 설정이 사용될 구문입니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Syntaxis waarin deze instelling voor het neerzetten van bestanden wordt gebruikt."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Składnia, w której to ustawienie upuszczenia pliku jest używane."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sintaxe na qual essa configuração de soltar arquivo é usada."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Синтаксис, в котором используется этот параметр перетаскивания файла."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bu dosya bırakma ayarının etkinleştirildiği sözdizim"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "语法中的文件拖拽设置已启用"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "該檔案拽入設定所使用的文法定義。"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "此檔案拖移項目設定所使用的語法。"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Синтаксис, в който се използва тази настройка за изпускане на файл."
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вмъкване на променлива"
           }
         }
       }
     },
-    "Text to be inserted by a command in the menu or by keyboard shortcut:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Text, který má být vložen pomocí příkazu v nabídce nebo klávesovou zkratkou:"
+    "Insertion format:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formát vložení:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Text, der durch einen Befehl im Menü oder durch den Tastaturkurzbefehl eingefügt wird:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Format des einzufügenden Textes:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Text to be inserted by a command in the menu or by keyboard shortcut:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insertion format:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Texto que se insertará mediante un comando en el menú o mediante un atajo de teclado:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insertar formato:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Texte à insérer lors d’une commande de menu ou d’un raccourcis clavier :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Format du texte à insérer :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Testo da inserire con una abbreviazione o un comando da menu:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formato di inserimento:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "メニューコマンドやキーボードショートカットで挿入できるテキスト:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "挿入フォーマット:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "메뉴에서 명령을, 또는 키보드 단축키를 눌렀을 때 삽입될 텍스트:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삽입 포맷:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tekst die moet worden ingevoegd via een commando in het menu of via een sneltoets op het toetsenbord:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invoegformaat:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tekst wstawiany z użyciem polecenia w menu lub skrótu klawiszowego:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Format wstawianego tekstu:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Texto a ser inserido por um comando no menu ou por atalho no teclado:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formato da inserção:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Текст, вставляемый командой в меню или сочетанием клавиш:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Формат вставки:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Menüdeki bir komut veya klavye kestirmesi ile eklenecek metin:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekleme biçimi:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "通过菜单命令或键盘快捷键插入的文本："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按格式插入："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "欲藉由選單命令或鍵盤熱鍵插入的文字:"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按格式插入："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選單命令或鍵盤快捷鍵插入的文字："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "插入格式："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Текст за вмъкване чрез команда в менюто или чрез клавишна комбинация:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Формат на вмъкване:"
           }
         }
       }
     },
-    "Text to be inserted by dropping files to the editor:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Text, který má být vložen přetažením (upuštěním) souborů do editoru:"
+    "Key" : {
+      "comment" : "table column header",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zkratka"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Text, der durch Ablegen von Dateien in den Editor eingefügt wird:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taste"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Text to be inserted by dropping files to the editor:"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Key"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Texto que se insertará soltando archivos en el editor:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Key"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Texte à insérer en glissant-déposant des fichiers dans l’éditeur :"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teclas"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Testo da inserire mediante rilascio file nell’editor:"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Raccourci"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ファイルをエディタにドロップして挿入できるテキスト:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasto"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "파일을 편집기에 떨굴 때 삽입될 텍스트:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キー"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tekst die kan worden ingevoegd door bestanden naar de bewerker te slepen:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "키"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tekst wstawiany w miejscu upuszczenia plików w edytorze:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleutel"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Texto a ser inserido ao soltar arquivos no editor:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klawisze"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Текст, который нужно вставить, перетащив файлы в редактор:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teclas"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Düzenleyiciye dosya bırakılarak eklenecek metin:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "通过将文件拖放到编辑器插入的文本："
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Düğme"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "欲藉由將檔案拽入至編輯器的方式插入的文字:"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按键"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "透過將檔案拖放至编辑器中插入的文字："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按鍵"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Текст за вмъкване чрез пускане на файлове в редактора:"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按鍵"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ"
+          }
+        }
+      }
+    },
+    "Name" : {
+      "comment" : "table column header",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Název"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Name"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名前"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이름"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naam"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ad"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名字"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名稱"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名稱"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Име"
+          }
+        }
+      }
+    },
+    "Syntax" : {
+      "comment" : "table column header",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxe"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntax"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntax"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintaxis"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxe"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintassi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "シンタックス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구문"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst die moet worden ingevoegd via een commando in het menu of via een sneltoets op het toetsenbord:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Składnia"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintaxe"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sözdizim"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "语法"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文法定義"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "語法"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
+          }
+        }
+      }
+    },
+    "Syntax in which this file drop setting is used." : {
+      "comment" : "tooltip",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxe, ve kterém se používá toto nastavení při přetažení souboru."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntax, in der diese Datei-Drop-Einstellung benutzt wird."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntax in which this file drop setting is used."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintaxis utilizada si se utiliza soltar archivos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxe pour laquelle cette configuration de fichiers déposés est utilisée."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintassi che utilizza le impostazioni del file trascinato nell’editor."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このファイルドロップ定義を使用するシンタックス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 파일 떨굼 설정이 사용될 구문입니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxis waarin deze instelling voor het neerzetten van bestanden wordt gebruikt."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Składnia, w której to ustawienie upuszczenia pliku jest używane."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintaxe na qual essa configuração de soltar arquivo é usada."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис, в котором используется этот параметр перетаскивания файла."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu dosya bırakma ayarının etkinleştirildiği sözdizim"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "语法中的文件拖拽设置已启用"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "該檔案拽入設定所使用的文法定義。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此檔案拖移項目設定所使用的語法。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис, в който се използва тази настройка за изпускане на файл."
+          }
+        }
+      }
+    },
+    "Text to be inserted by a command in the menu or by keyboard shortcut:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text, který má být vložen pomocí příkazu v nabídce nebo klávesovou zkratkou:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text, der durch einen Befehl im Menü oder durch den Tastaturkurzbefehl eingefügt wird:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text to be inserted by a command in the menu or by keyboard shortcut:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto que se insertará mediante un comando en el menú o mediante un atajo de teclado:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texte à insérer lors d’une commande de menu ou d’un raccourcis clavier :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testo da inserire con una abbreviazione o un comando da menu:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メニューコマンドやキーボードショートカットで挿入できるテキスト:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메뉴에서 명령을, 또는 키보드 단축키를 눌렀을 때 삽입될 텍스트:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst die moet worden ingevoegd via een commando in het menu of via een sneltoets op het toetsenbord:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst wstawiany z użyciem polecenia w menu lub skrótu klawiszowego:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto a ser inserido por um comando no menu ou por atalho no teclado:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст, вставляемый командой в меню или сочетанием клавиш:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menüdeki bir komut veya klavye kestirmesi ile eklenecek metin:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过菜单命令或键盘快捷键插入的文本："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "欲藉由選單命令或鍵盤熱鍵插入的文字:"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選單命令或鍵盤快捷鍵插入的文字："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст за вмъкване чрез команда в менюто или чрез клавишна комбинация:"
+          }
+        }
+      }
+    },
+    "Text to be inserted by dropping files to the editor:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text, který má být vložen přetažením (upuštěním) souborů do editoru:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text, der durch Ablegen von Dateien in den Editor eingefügt wird:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text to be inserted by dropping files to the editor:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto que se insertará soltando archivos en el editor:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texte à insérer en glissant-déposant des fichiers dans l’éditeur :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testo da inserire mediante rilascio file nell’editor:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイルをエディタにドロップして挿入できるテキスト:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일을 편집기에 떨굴 때 삽입될 텍스트:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst die kan worden ingevoegd door bestanden naar de bewerker te slepen:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst wstawiany w miejscu upuszczenia plików w edytorze:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto a ser inserido ao soltar arquivos no editor:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст, который нужно вставить, перетащив файлы в редактор:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Düzenleyiciye dosya bırakılarak eklenecek metin:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过将文件拖放到编辑器插入的文本："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "欲藉由將檔案拽入至編輯器的方式插入的文字:"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透過將檔案拖放至编辑器中插入的文字："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст за вмъкване чрез пускане на файлове в редактора:"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

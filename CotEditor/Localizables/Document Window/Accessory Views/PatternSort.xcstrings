@@ -1,2347 +1,2347 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "Clear Recents": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Smazat poslední položky"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Clear Recents" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smazat poslední položky"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Verlauf löschen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verlauf löschen"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clear Recents"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear Recents"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Borrar recientes"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borrar recientes"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Effacer les éléments récents"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effacer les éléments récents"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cancella recenti"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancella recenti"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "履歴を消去"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "履歴を消去"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "최근 항목 지우기"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최근 항목 지우기"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wis recente"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wis recente"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wymaż ostatnie"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaż ostatnie"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Limpar Recentes"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limpar Recentes"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Отчистить недавние"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчистить недавние"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Son Kullanılanları Sil"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Son Kullanılanları Sil"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "清除最近项目"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除最近项目"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "清除最近項目"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除最近項目"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "清除最近項目"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除最近項目"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Изчисти последните"
-          }
-        }
-      }
-    },
-    "Column": {
-      "comment": "pattern sort key option",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sloupec"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Spalte"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Column"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Columna"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Colonne"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Colonna"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "列"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "열"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kolom"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kolumna"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Coluna"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Столбец"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sütun"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "列"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "列"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "欄"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Колона"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изчисти последните"
           }
         }
       }
     },
-    "Delimiter:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Oddělovač:"
+    "Column" : {
+      "comment" : "pattern sort key option",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sloupec"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trennzeichen:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spalte"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Delimiter:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Column"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Delimitador:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Columna"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Délimiteur :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Colonne"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Delimitatore:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Colonna"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "区切り文字:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "列"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "구분자:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "열"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Scheidingsteken:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kolom"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ogranicznik:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kolumna"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Delimitador:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coluna"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Разделитель:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Столбец"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sınırlandırıcı:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sütun"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "分界符："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "列"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "分界符："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "列"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "分隔符號："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "欄"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Разделител:"
-          }
-        }
-      }
-    },
-    "Empty pattern": {
-      "comment": "error message (“pattern” is a regular expression pattern)",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Prázdný vzor"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Leeres Muster"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Empty pattern"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Patrón vacío"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pattern vide"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pattern vuoto"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "空のパターン"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "빈 패턴"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Leeg patroon"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pusty wzorzec"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Padrão vazio"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Пустой шаблон"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Boş dizgi"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "空白的表达式"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "空白範式"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "模式為空"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Празен модел"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Колона"
           }
         }
       }
     },
-    "Entire line": {
-      "comment": "pattern sort key option",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Celý řádek"
+    "Delimiter:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oddělovač:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gesamte Linie"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trennzeichen:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Entire line"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delimiter:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toda la línea"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delimitador:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ligne entière"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Délimiteur :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Intera riga"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delimitatore:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "行全体"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "区切り文字:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "줄 전체"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구분자:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gehele regel"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scheidingsteken:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cały wiersz"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ogranicznik:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toda a linha"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delimitador:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Вся строка"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделитель:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tüm satır"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sınırlandırıcı:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "整行"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分界符："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "整行"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分界符："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "整個行"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分隔符號："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Целият ред"
-          }
-        }
-      }
-    },
-    "Ignore case": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignorovat velikost písmen"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Groß-/Kleinschreibung ignorieren"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignore case"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignorar capitalización"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignorer la casse"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignora maiuscole"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "大文字/小文字を無視"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "대소문자 무시"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Negeer hoofdletters"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignoruj wielkość liter"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ignorar maiúsculas/minúsculas"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Игнорировать регистр"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Büyük-Küçük Harf Fark Etmez"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "忽略大小写"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "忽略大小寫"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "忽略大小寫"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Без значение на главни и малки букви"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделител:"
           }
         }
       }
     },
-    "In descending order": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "V sestupném pořadí"
+    "Empty pattern" : {
+      "comment" : "error message (“pattern” is a regular expression pattern)",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prázdný vzor"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nach absteigender Reihenfolge"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leeres Muster"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "In descending order"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empty pattern"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "En orden descendente"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patrón vacío"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ordre descendant"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pattern vide"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "In ordine discendente"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pattern vuoto"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "降順"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空のパターン"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "내림차순"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "빈 패턴"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "In aflopende volgorde"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leeg patroon"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "W porządku malejącym"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pusty wzorzec"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Em ordem decrescente"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Padrão vazio"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "В порядке убывания"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пустой шаблон"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Azalan sıralamada"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boş dizgi"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "降序"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空白的表达式"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "降序"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空白範式"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "降序"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模式為空"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "В низходящ ред"
-          }
-        }
-      }
-    },
-    "Invalid pattern": {
-      "comment": "error message (“pattern” is a regular expression pattern)",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neplatný vzor"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ungültiges Muster"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Invalid pattern"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Patrón no válido"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pattern invalide"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pattern non valido"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "無効なパターン"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "유효하지 않은 패턴"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ongeldig patroon"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nieprawidłowy wzorzec"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Padrão inválido"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Некорректный шаблон"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Geçersiz dizgi"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "无效的表达式"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不合法的範式"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "無效的模式"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Невалиден шаблон"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Празен модел"
           }
         }
       }
     },
-    "Keep the first line at the top": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "První řádek ponechat nahoře"
+    "Entire line" : {
+      "comment" : "pattern sort key option",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Celý řádek"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Die erste Zeile oben behalten"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesamte Linie"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Keep the first line at the top"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entire line"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mantén la primera línea en la parte superior"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toda la línea"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Garder la première ligne en haut"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligne entière"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mantieni la prima riga in cima"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intera riga"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "1行目は並び替えない"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行全体"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "첫 번째 줄을 맨 위에 유지"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄 전체"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Houd de eerste regel bovenaan"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gehele regel"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trzymaj pierwszy wiersz na górze"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cały wiersz"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Manter primeira linha no topo"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toda a linha"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Первая строка всегда вверху"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вся строка"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Üstteki ilk satırı tut"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tüm satır"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "首行置顶"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "整行"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "首行置頂"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "整行"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "保持第一行顯示在最上方"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "整個行"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Запазете първия ред отгоре"
-          }
-        }
-      }
-    },
-    "Pattern:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vzor:"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Muster:"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pattern:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Patrón:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pattern :"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Motivo:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "パターン:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "패턴:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Patroon:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wzorzec:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Padrão:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Шаблон:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dizgi:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "模式："
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "模式："
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "模式："
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Шаблон:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Целият ред"
           }
         }
       }
     },
-    "Position:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pozice:"
+    "Ignore case" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorovat velikost písmen"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Position:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Groß-/Kleinschreibung ignorieren"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Position:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignore case"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Posición:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorar capitalización"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Position :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorer la casse"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Posizione:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignora maiuscole"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "位置:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "大文字/小文字を無視"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "위치:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "대소문자 무시"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Positie:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Negeer hoofdletters"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pozycja:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignoruj wielkość liter"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Posição:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorar maiúsculas/minúsculas"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Позиция:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорировать регистр"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Konum:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Büyük-Küçük Harf Fark Etmez"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "位置："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略大小写"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "位置："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略大小寫"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "位置："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "忽略大小寫"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Позиция:"
-          }
-        }
-      }
-    },
-    "Recents": {
-      "comment": "menu header",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Poslední použité"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zuletzt benutzt"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recents"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recientes"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Récents"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recenti"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最近の項目"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "최근 항목"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recente"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ostatnie"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Recentes"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Надавние"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Son Kullanılanlar"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最近"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最近"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "最近"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Последни"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без значение на главни и малки букви"
           }
         }
       }
     },
-    "Regular expression": {
-      "comment": "pattern sort key option",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regulární výraz"
+    "In descending order" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "V sestupném pořadí"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regulärer Ausdruck"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach absteigender Reihenfolge"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regular expression"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In descending order"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Expresión regular"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En orden descendente"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Expression régulière"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordre descendant"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Espressione regolare"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In ordine discendente"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "正規表現"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "降順"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "정규표현식"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "내림차순"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reguliere expressie"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In aflopende volgorde"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wyrażenie regularne"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W porządku malejącym"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Expressão regular"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Em ordem decrescente"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Регулярное выражение"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В порядке убывания"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Düzenli ifade"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Azalan sıralamada"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "正则表达式"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "降序"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "常規表示式"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "降序"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "常規表示式"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "降序"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Регулярен израз"
-          }
-        }
-      }
-    },
-    "Regular Expression": {
-      "comment": "placeholder for regular expression pattern field",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regulární výraz"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regulärer Ausdruck"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regular Expression"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Expresión regular"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Expression régulière"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Espressione regolare"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "正規表現"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "정규표현식"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Reguliere expressie"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wyrażenie regularne"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Expressão Regular"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Регулярное Выражение"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Düzenli İfade"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "正则表达式"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "常規表示式"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "常規表示式"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Регулярен израз"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В низходящ ред"
           }
         }
       }
     },
-    "Respect language rules": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Respektovat jazyková pravidla"
+    "Invalid pattern" : {
+      "comment" : "error message (“pattern” is a regular expression pattern)",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neplatný vzor"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sprachregeln respektieren"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ungültiges Muster"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Respect language rules"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid pattern"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Respeta las reglas del lenguaje"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patrón no válido"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Respecter les règles de la langue"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pattern invalide"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Rispetta le regole della lingua"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pattern non valido"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "言語ルールに従う"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無効なパターン"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "언어 규칙을 준수"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유효하지 않은 패턴"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Respecteer taalregels"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ongeldig patroon"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Przestrzegaj zasad języka"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nieprawidłowy wzorzec"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Respeitar regras do idioma"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Padrão inválido"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Соблюдайть правила языка"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Некорректный шаблон"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dil kurallarına uy"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geçersiz dizgi"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "遵守语言规则"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无效的表达式"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "遵守語言規則"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不合法的範式"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "遵循語言規則"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無效的模式"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Уважавайте езиковите правила"
-          }
-        }
-      }
-    },
-    "Sample line to check which part in a line will be used for sort comparison.": {
-      "comment": "tooltip",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vzorový řádek pro kontrolu, která část řádku bude použita pro porovnání řazení."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Probe linie zu prüfen, welchen Teil einer Linie für den Vergleich verwendet wird."
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sample line to check which part in a line will be used for sort comparison."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Línea de muestra para comprobar qué parte de una línea se utilizará para la comparación de clasificación."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ligne d’exemple pour vérifier quelle section sera utilisée pour la comparaison."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Riga di esempio per verificare quale parte di una riga verrà usata per il confronto."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "比較に使用される部分を確認するためのサンプル行です。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "줄의 어떤 부분이 정렬 비교에 사용될지 확인하기 위한 예시 줄입니다."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Voorbeeldregel om te controleren welk deel in een regel wordt gebruikt voor sorteervergelijking."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Przykładowy wiersz pozwalający sprawdzić, która część wiersza zostanie użyta do porównania w sortowaniu."
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Linha de amostra para verificar qual parte de uma linha será usada ao ordenar a comparação."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Пример строки для проверки того, какая часть строки будет использоваться для сравнения сортировок."
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sıralama karşılaştırması için bir satırdaki hangi kısmın kullanılacağını denetlemek için örnek satır."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "检查行中哪个部分将被用于比较排序的示例行。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "檢查行中哪個部分將被用於比較排序的示例行。"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "範例行，用來檢查行中的甚麼部分將用於排序比較。"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Примерен ред, за да проверите коя част от ред ще се използва за сравнение на сортиране."
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невалиден шаблон"
           }
         }
       }
     },
-    "Sample:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vzorek:"
+    "Keep the first line at the top" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "První řádek ponechat nahoře"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Probe:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die erste Zeile oben behalten"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sample:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep the first line at the top"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ejemplo:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mantén la primera línea en la parte superior"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Echantillon :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garder la première ligne en haut"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Esempio:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mantieni la prima riga in cima"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "サンプル:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1行目は並び替えない"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "예시:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "첫 번째 줄을 맨 위에 유지"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Voorbeeld:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Houd de eerste regel bovenaan"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Próbka:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trzymaj pierwszy wiersz na górze"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Amostra:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manter primeira linha no topo"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Семпл:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Первая строка всегда вверху"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Örnek:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Üstteki ilk satırı tut"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "示例："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "首行置顶"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "示例："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "首行置頂"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "範例："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保持第一行顯示在最上方"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Пример:"
-          }
-        }
-      }
-    },
-    "Sort": {
-      "comment": "button label",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seřadit"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sortieren"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sort"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ordenar"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trier"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ordina"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "並び替え"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "정렬"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sorteer"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sortuj"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ordenar"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Сортировка"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sırala"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "排序"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "排序"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "排序"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Сортиране"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запазете първия ред отгоре"
           }
         }
       }
     },
-    "Sort key:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Klíč řazení:"
+    "Pattern:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vzor:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sortierschlüssel:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muster:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sort key:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pattern:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ordenar clave:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patrón:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clé de tri :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pattern :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Criterio di ordinamento:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motivo:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "並び替えキー:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "パターン:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "정렬 키:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "패턴:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sorteersleutel:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patroon:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Klucz sortowania:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wzorzec:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ordenar por:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Padrão:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ключ сортировки:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шаблон:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sıralama anahtarı:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dizgi:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "排序键："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模式："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "排序鍵："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模式："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "排序關鍵字："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模式："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ключ за сортиране:"
-          }
-        }
-      }
-    },
-    "Sort option:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Volby řazení:"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Optionen:"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sort option:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ordenar opción:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Options de tri :"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opzioni per l’ordinamento:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "並び替えオプション:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "정렬 옵션:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sorteeroptie"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opcje sortowania:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opções de ordenação:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Параметры сортировки:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sıralama seçeneği:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "排序选项："
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "排序選項："
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "排序選項："
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Опция за сортиране:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шаблон:"
           }
         }
       }
     },
-    "Treat numbers as numeric values": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zacházet s čísly jako s číselnou hodnotou"
+    "Position:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pozice:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zahlen als numerische Werte behandeln"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Position:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Treat numbers as numeric values"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Position:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tratar los números como valores numéricos"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posición:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Traiter les nombres comme des valeurs numériques"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Position :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tratta i numeri come valori numerici"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posizione:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "数字を数値として扱う"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "位置:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "숫자를 숫자 값으로 취급"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Behandel getallen als numerieke waarden"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Positie:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Traktuj liczby jako wartości liczbowe"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pozycja:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tratar números como valor numérico"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posição:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Обрабатывать числа как числовые значения"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позиция:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sayıları rakamsal değer olarak kullan"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konum:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "将数组视为数值"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "位置："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "將陣列視為數值"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "位置："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "將數字視為數值"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "位置："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Третирайте числата като числови стойности"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позиция:"
           }
         }
       }
     },
-    "Use captured group:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Použít zachycenou skupinu:"
+    "Recents" : {
+      "comment" : "menu header",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poslední použité"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "erfasste Gruppe benutzen:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zuletzt benutzt"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Use captured group:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recents"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Usar grupo capturado:"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recientes"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Utiliser le groupe de capture :"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Récents"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Usa il gruppo selezionato:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recenti"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "キャプチャされたグループを使用:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近の項目"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "캡처 그룹 사용:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최근 항목"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gebruik vastgelegde groep:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recente"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Użyj przechwyconą grupę:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostatnie"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Usar grupo capturado:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recentes"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Использовать группу:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Надавние"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Yakalanan grup kullan:"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Son Kullanılanlar"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "使用捕获组："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "使用捕獲組："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "使用捕捉組："
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最近"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Използвай прихваната група:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последни"
+          }
+        }
+      }
+    },
+    "Regular expression" : {
+      "comment" : "pattern sort key option",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regulární výraz"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regulärer Ausdruck"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regular expression"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expresión regular"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expression régulière"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espressione regolare"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正規表現"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정규표현식"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reguliere expressie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyrażenie regularne"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expressão regular"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярное выражение"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Düzenli ifade"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正则表达式"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "常規表示式"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "常規表示式"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярен израз"
+          }
+        }
+      }
+    },
+    "Regular Expression" : {
+      "comment" : "placeholder for regular expression pattern field",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regulární výraz"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regulärer Ausdruck"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regular Expression"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expresión regular"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expression régulière"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Espressione regolare"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正規表現"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정규표현식"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reguliere expressie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyrażenie regularne"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expressão Regular"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярное Выражение"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Düzenli İfade"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正则表达式"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "常規表示式"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "常規表示式"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярен израз"
+          }
+        }
+      }
+    },
+    "Respect language rules" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Respektovat jazyková pravidla"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sprachregeln respektieren"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Respect language rules"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Respeta las reglas del lenguaje"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Respecter les règles de la langue"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rispetta le regole della lingua"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "言語ルールに従う"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "언어 규칙을 준수"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Respecteer taalregels"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przestrzegaj zasad języka"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Respeitar regras do idioma"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Соблюдайть правила языка"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dil kurallarına uy"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遵守语言规则"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遵守語言規則"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遵循語言規則"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уважавайте езиковите правила"
+          }
+        }
+      }
+    },
+    "Sample line to check which part in a line will be used for sort comparison." : {
+      "comment" : "tooltip",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vzorový řádek pro kontrolu, která část řádku bude použita pro porovnání řazení."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Probe linie zu prüfen, welchen Teil einer Linie für den Vergleich verwendet wird."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sample line to check which part in a line will be used for sort comparison."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Línea de muestra para comprobar qué parte de una línea se utilizará para la comparación de clasificación."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligne d’exemple pour vérifier quelle section sera utilisée pour la comparaison."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riga di esempio per verificare quale parte di una riga verrà usata per il confronto."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "比較に使用される部分を確認するためのサンプル行です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄의 어떤 부분이 정렬 비교에 사용될지 확인하기 위한 예시 줄입니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voorbeeldregel om te controleren welk deel in een regel wordt gebruikt voor sorteervergelijking."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przykładowy wiersz pozwalający sprawdzić, która część wiersza zostanie użyta do porównania w sortowaniu."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Linha de amostra para verificar qual parte de uma linha será usada ao ordenar a comparação."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пример строки для проверки того, какая часть строки будет использоваться для сравнения сортировок."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıralama karşılaştırması için bir satırdaki hangi kısmın kullanılacağını denetlemek için örnek satır."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "检查行中哪个部分将被用于比较排序的示例行。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檢查行中哪個部分將被用於比較排序的示例行。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "範例行，用來檢查行中的甚麼部分將用於排序比較。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Примерен ред, за да проверите коя част от ред ще се използва за сравнение на сортиране."
+          }
+        }
+      }
+    },
+    "Sample:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vzorek:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Probe:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sample:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ejemplo:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Echantillon :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esempio:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サンプル:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "예시:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voorbeeld:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Próbka:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amostra:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Семпл:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Örnek:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "示例："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "示例："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "範例："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пример:"
+          }
+        }
+      }
+    },
+    "Sort" : {
+      "comment" : "button label",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seřadit"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortieren"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordenar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trier"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordina"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "並び替え"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정렬"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorteer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortuj"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordenar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортировка"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sırala"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортиране"
+          }
+        }
+      }
+    },
+    "Sort key:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klíč řazení:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortierschlüssel:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort key:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordenar clave:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clé de tri :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Criterio di ordinamento:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "並び替えキー:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정렬 키:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorteersleutel:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klucz sortowania:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordenar por:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ сортировки:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıralama anahtarı:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序键："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序鍵："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序關鍵字："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ за сортиране:"
+          }
+        }
+      }
+    },
+    "Sort option:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volby řazení:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optionen:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort option:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordenar opción:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Options de tri :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opzioni per l’ordinamento:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "並び替えオプション:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정렬 옵션:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorteeroptie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opcje sortowania:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opções de ordenação:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Параметры сортировки:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıralama seçeneği:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序选项："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序選項："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排序選項："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Опция за сортиране:"
+          }
+        }
+      }
+    },
+    "Treat numbers as numeric values" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zacházet s čísly jako s číselnou hodnotou"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahlen als numerische Werte behandeln"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Treat numbers as numeric values"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tratar los números como valores numéricos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traiter les nombres comme des valeurs numériques"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tratta i numeri come valori numerici"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数字を数値として扱う"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "숫자를 숫자 값으로 취급"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Behandel getallen als numerieke waarden"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traktuj liczby jako wartości liczbowe"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tratar números como valor numérico"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обрабатывать числа как числовые значения"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sayıları rakamsal değer olarak kullan"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "将数组视为数值"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "將陣列視為數值"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "將數字視為數值"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Третирайте числата като числови стойности"
+          }
+        }
+      }
+    },
+    "Use captured group:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Použít zachycenou skupinu:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "erfasste Gruppe benutzen:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use captured group:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usar grupo capturado:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utiliser le groupe de capture :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usa il gruppo selezionato:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャプチャされたグループを使用:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "캡처 그룹 사용:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruik vastgelegde groep:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Użyj przechwyconą grupę:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usar grupo capturado:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Использовать группу:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yakalanan grup kullan:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用捕获组："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用捕獲組："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用捕捉組："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай прихваната група:"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

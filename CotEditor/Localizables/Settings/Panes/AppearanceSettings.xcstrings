@@ -1,2074 +1,2074 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "%@ points": {
-      "comment": "accessibility label for font size",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ bodů"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@ points" : {
+      "comment" : "accessibility label for font size",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ bodů"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ Punkt"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Punkt"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ points"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ points"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ punto"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ punto"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ points"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ points"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ punto"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ punto"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ポイント"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ポイント"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@포인트"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@포인트"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@-punts"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@-punts"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ pkt"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pkt"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ ponto"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ponto"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ точек"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ точек"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ punto"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ punto"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@点"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@点"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@點"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@點"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@點"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@點"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ точки"
-          }
-        }
-      }
-    },
-    "%@ times": {
-      "comment": "accessibility label for line height",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ krát"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@-fach"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ times"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ veces"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ fois"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ volte"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@倍"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@배"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ keer"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ wielkości czcionki"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ vezes"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ раз"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ kere"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@倍"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@倍"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@倍"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ пъти"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ точки"
           }
         }
       }
     },
-    "Antialias": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vyhlazení"
+    "%@ times" : {
+      "comment" : "accessibility label for line height",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ krát"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Text glätten"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@-fach"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Antialias"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ times"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Antialiasing"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ veces"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Anticrénelage"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ fois"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Antialias"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ volte"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "アンチエイリアス"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@倍"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "안티앨리어스"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@배"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Antialias"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ keer"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wygładzanie"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ wielkości czcionki"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Antisserrilhado"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ vezes"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Размытие"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ раз"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kenar düzleştirme"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ kere"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "抗锯齿"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@倍"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "抗鋸齒"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@倍"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "柔邊處理"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@倍"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Антиалиас"
-          }
-        }
-      }
-    },
-    "Appearance:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vzhled:"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Erscheinungsbild:"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Appearance:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Apariencia:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mode d’apparence :"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aspetto:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "外観モード:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "화면 모드:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Weergave:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wygląd:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aparência:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Оформление:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Görünüş:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "外观："
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "外觀："
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "外觀："
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Външен вид:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ пъти"
           }
         }
       }
     },
-    "AppearanceMode.automatic.label": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nastavení systému"
+    "Antialias" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyhlazení"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "System anpassen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text glätten"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Match System"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antialias"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Match System"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antialiasing"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Como en el Sistema"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anticrénelage"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Comme le système"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antialias"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Come il sistema"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アンチエイリアス"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "システムに合わせる"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "안티앨리어스"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "시스템과 일치"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antialias"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Match systeem"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wygładzanie"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Automatyczny"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antisserrilhado"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mesma do sistema"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размытие"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Как в системе"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kenar düzleştirme"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sistemle eşleştir"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "抗锯齿"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "匹配系统"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "抗鋸齒"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "匹配系統"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "柔邊處理"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "配合系統"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Система за съвпадение"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Антиалиас"
           }
         }
       }
     },
-    "AppearanceMode.dark.label": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tmavý"
+    "Appearance:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vzhled:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dunkel"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erscheinungsbild:"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Dark"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appearance:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dark"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apariencia:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Oscuro"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode d’apparence :"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sombre"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aspetto:"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Scuro"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外観モード:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ダーク"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "화면 모드:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "어둡게"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weergave:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Donker"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wygląd:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ciemny"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aparência:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Escura"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оформление:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Темная"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görünüş:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Koyu"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外观："
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "深色"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外觀："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "深色"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外觀："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "深色"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Тъмно"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Външен вид:"
           }
         }
       }
     },
-    "AppearanceMode.light.label": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Světlý"
+    "AppearanceMode.automatic.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastavení systému"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hell"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System anpassen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Light"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Match System"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Light"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match System"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Claro"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Como en el Sistema"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clair"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comme le système"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Chiaro"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Come il sistema"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ライト"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "システムに合わせる"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "밝게"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시스템과 일치"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Licht"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Match systeem"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jasny"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatyczny"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clara"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mesma do sistema"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Светлая"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как в системе"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Açık"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sistemle eşleştir"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "浅色"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "匹配系统"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "淺色"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "匹配系統"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "淺色"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "配合系統"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "светлина"
-          }
-        }
-      }
-    },
-    "Editor opacity:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neprůhlednost editoru:"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Editor-Deckkraft:"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Editor opacity:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opacidad del editor:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opacité de l’éditeur :"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opacità dell’editor:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "エディタの不透明度:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "편집기 불투명도:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Doorzichtigheid bewerker"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Krycie edytora:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opacidade do editor:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Прозрачность редактора:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Düzenleyici matlığı:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "编辑器透明度："
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "編輯器透明度："
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "編輯器透明度："
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Непрозрачност на редактора:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Система за съвпадение"
           }
         }
       }
     },
-    "Font size": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Velikost písma"
+    "AppearanceMode.dark.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tmavý"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Schriftgröße"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dunkel"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Font size"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dark"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tamaño de letra"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Taille de la police"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oscuro"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dimensioni font"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sombre"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "フォントサイズ"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scuro"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "서체 크기"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ダーク"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tekstgrootte"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "어둡게"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wielkość czcionki"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Donker"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tamanho da fonte"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ciemny"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Размер шрифта"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escura"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Font puntosu"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темная"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "字体大小"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koyu"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "字體大小"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "深色"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "字體大小"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "深色"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Размер на шрифта"
-          }
-        }
-      }
-    },
-    "Ligatures": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ligatury"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "深色"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ligaturen"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ligatures"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ligaduras"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ligatures"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Legature"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "リガチャ"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "합자"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ligaturen"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ligatury"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ligadures"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Лигатуры"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Birleşik harfler"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "连字"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "連字"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "連字"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Лигатури"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тъмно"
           }
         }
       }
     },
-    "Line height:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Výška řádku:"
+    "AppearanceMode.light.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Světlý"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zeilenhöhe:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hell"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Line height:"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Light"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Altura de línea:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hauteur de ligne :"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claro"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Altezza riga:"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clair"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "行の高さ:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chiaro"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "줄 높이:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ライト"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Regelhoogte:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "밝게"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wysokość wiersza:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Licht"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Altura da linha:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jasny"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Высота строк:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clara"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Satır yüksekliği:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Светлая"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "行高："
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Açık"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "行高："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "浅色"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "行高："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "淺色"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Височина на реда:"
-          }
-        }
-      }
-    },
-    "Monospaced font:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neproporcionální písmo:"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "淺色"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nichtproportionale Schrift:"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Monospaced font:"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fuente monoespaciada:"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Police monochasse :"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Font a spaziatura fissa:"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "等幅フォント:"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "고정폭 서체:"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Niet-proportioneel lettertype:"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Czcionka o stałej szerokości:"
-          }
-        },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fonte monoespaçada:"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Моноширинный шрифт:"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sabit genişlikli yazıtipi:"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "等宽字体："
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "等寬字體："
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "等寬字體："
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Едноразмерен шрифт:"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "светлина"
           }
         }
       }
     },
-    "MonospacedFontAlert.message": {
-      "comment": "“it” is the selected font in the title.",
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Chcete ho použít pro neproporcionální písmo?"
+    "Editor opacity:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neprůhlednost editoru:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Möchtest du sie für die nichtproportionale Schrift verwenden?"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editor-Deckkraft:"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Do you want to use it for the monospaced font?"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editor opacity:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Do you want to use it for the monospaced font?"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opacidad del editor:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¿Quieres usarlo para la fuente monoespaciada?"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opacité de l’éditeur :"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Voulez-vous l’utiliser comme police monochasse ?"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opacità dell’editor:"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La vuoi usare come font a spaziatura fissa?"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "エディタの不透明度:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選択したフォントを等幅フォントとして使用しますか?"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "편집기 불투명도:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "선택한 서체를 고정폭 서체로 사용하시겠습니까?"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doorzichtigheid bewerker"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wil je het gebruiken voor het niet-proportionele lettertype?"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krycie edytora:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Czy chcesz jej użyć jako czcionki o stałej szerokości?"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opacidade do editor:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Você deseja usar a fonte selecionada como fonte monoespaçada?"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прозрачность редактора:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Хотите использовать его для моноширинного шрифта?"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Düzenleyici matlığı:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sabit genişlikli font olarak kullanmak istiyor musunuz?"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "编辑器透明度："
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "确定将其选定为等宽字体？"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯器透明度："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "您真的要將這個字體作為等寬字體來使用嗎？"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯器透明度："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你要將它用作等寬字體嗎？"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Искате ли да го използвате за моноширинен шрифт?"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непрозрачност на редактора:"
           }
         }
       }
     },
-    "MonospacedFontAlert.title": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zdá se, že vybrané písmo není neproporcionální."
+    "Font size" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velikost písma"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Die ausgewählte Schrift scheint proportional."
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schriftgröße"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "The selected font doesn’t seem to be monospaced."
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Font size"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The selected font doesn’t seem to be monospaced."
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamaño de letra"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La fuente seleccionada no parece ser monoespaciada."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taille de la police"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La police sélectionnée ne semble pas être monochasse."
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dimensioni font"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "La font selezionata non sembra a spaziatura fissa."
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フォントサイズ"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選択したフォントは等幅フォントではないようです。"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서체 크기"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "선택한 서체가 고정폭 서체가 아닌 것 같습니다."
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekstgrootte"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Het geselecteerde lettertype lijkt niet monospaced te zijn."
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wielkość czcionki"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wybrana czcionka nie wydaje się mieć stałej szerokości."
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamanho da fonte"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "A fonte selecionada não parace ser monoespaçada."
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер шрифта"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Выбранный шрифт, похоже, не является моноширинным."
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Font puntosu"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seçili font, sabit genişlikli değil gibi görünüyor."
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字体大小"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "所选字体似乎不是等宽字体。"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字體大小"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "當前選中的字體似乎並非等寬字體。"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字體大小"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選擇的字體可能不是等寬字體。"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Избраният шрифт изглежда не е с едно пространство."
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер на шрифта"
           }
         }
       }
     },
-    "OpacitySlider.maximumValue.label": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Neprůhledné"
+    "Ligatures" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligatury"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Undurchsichtig"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligaturen"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Opaque"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligatures"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opaque"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligaduras"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opaco"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligatures"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opaque"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legature"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opaco"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リガチャ"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不透明"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "합자"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "불투명"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligaturen"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ondoorzichtig"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligatury"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nieprzezroczysty"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ligadures"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Opaco"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лигатуры"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Непрозрачный"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birleşik harfler"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mat"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "连字"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不透明"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "連字"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不透明"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "連字"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "透明"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Непрозрачен"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лигатури"
           }
         }
       }
     },
-    "OpacitySlider.minimumValue.label": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Průhledné"
+    "Line height:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Výška řádku:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Durchsichtig"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeilenhöhe:"
           }
         },
-        "en": {
-          "stringUnit": {
-            "state": "new",
-            "value": "Transparent"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Line height:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Transparent"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Altura de línea:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Transparente"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hauteur de ligne :"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Transparent"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Altezza riga:"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Trasparente"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行の高さ:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "透明"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄 높이:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "투명"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regelhoogte:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Transparant"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wysokość wiersza:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Przezroczysty"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Altura da linha:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Transparente"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Высота строк:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Прозрачный"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satır yüksekliği:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Saydam"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行高："
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "透明"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行高："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "透明"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行高："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "不透明"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Прозрачен"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Височина на реда:"
           }
         }
       }
     },
-    "Select…": {
-      "comment": "label for font picker button",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vybrat…"
+    "Monospaced font:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neproporcionální písmo:"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Auswählen …"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nichtproportionale Schrift:"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Select…"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monospaced font:"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seleccionar…"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuente monoespaciada:"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Choisir…"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Police monochasse :"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seleziona…"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Font a spaziatura fissa:"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選択…"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "等幅フォント:"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "선택…"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "고정폭 서체:"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Selecteer…"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niet-proportioneel lettertype:"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wybierz…"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czcionka o stałej szerokości:"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Selecionar…"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonte monoespaçada:"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Выбрать…"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Моноширинный шрифт:"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seç…"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sabit genişlikli yazıtipi:"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "选择…"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "等宽字体："
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選擇⋯"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "等寬字體："
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "選擇⋯"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "等寬字體："
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Избери …"
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Едноразмерен шрифт:"
           }
         }
       }
     },
-    "Standard font:": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Standardní písmo:"
+    "MonospacedFontAlert.message" : {
+      "comment" : "“it” is the selected font in the title.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chcete ho použít pro neproporcionální písmo?"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Standardschrift:"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Möchtest du sie für die nichtproportionale Schrift verwenden?"
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Standard font:"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Do you want to use it for the monospaced font?"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fuente estándar:"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you want to use it for the monospaced font?"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Police standard :"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Quieres usarlo para la fuente monoespaciada?"
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Font standard:"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voulez-vous l’utiliser comme police monochasse ?"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "標準フォント:"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La vuoi usare come font a spaziatura fissa?"
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "표준 서체:"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択したフォントを等幅フォントとして使用しますか?"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Standaardlettertype:"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 서체를 고정폭 서체로 사용하시겠습니까?"
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Czcionka podstawowa:"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wil je het gebruiken voor het niet-proportionele lettertype?"
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fonte padrão:"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy chcesz jej użyć jako czcionki o stałej szerokości?"
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Стандартный шрифт:"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você deseja usar a fonte selecionada como fonte monoespaçada?"
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Standart font:"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хотите использовать его для моноширинного шрифта?"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "标准字体："
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sabit genişlikli font olarak kullanmak istiyor musunuz?"
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "標準字體："
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "确定将其选定为等宽字体？"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "標準字體："
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您真的要將這個字體作為等寬字體來使用嗎？"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Стандартен шрифт:"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你要將它用作等寬字體嗎？"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли да го използвате за моноширинен шрифт?"
           }
         }
       }
     },
-    "times": {
-      "comment": "unit for line height",
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "krát"
+    "MonospacedFontAlert.title" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdá se, že vybrané písmo není neproporcionální."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "-fach"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die ausgewählte Schrift scheint proportional."
           }
         },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "times"
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The selected font doesn’t seem to be monospaced."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "veces"
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The selected font doesn’t seem to be monospaced."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "fois"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La fuente seleccionada no parece ser monoespaciada."
           }
         },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "volte"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La police sélectionnée ne semble pas être monochasse."
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "倍"
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La font selezionata non sembra a spaziatura fissa."
           }
         },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "배"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択したフォントは等幅フォントではないようです。"
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "keer"
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 서체가 고정폭 서체가 아닌 것 같습니다."
           }
         },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "wielkości czcionki"
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het geselecteerde lettertype lijkt niet monospaced te zijn."
           }
         },
-        "pt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "vezes"
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybrana czcionka nie wydaje się mieć stałej szerokości."
           }
         },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "раз"
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A fonte selecionada não parace ser monoespaçada."
           }
         },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "kere"
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбранный шрифт, похоже, не является моноширинным."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "倍"
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçili font, sabit genişlikli değil gibi görünüyor."
           }
         },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "倍"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所选字体似乎不是等宽字体。"
           }
         },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "倍"
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當前選中的字體似乎並非等寬字體。"
           }
         },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "пъти"
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇的字體可能不是等寬字體。"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избраният шрифт изглежда не е с едно пространство."
+          }
+        }
+      }
+    },
+    "OpacitySlider.maximumValue.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neprůhledné"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Undurchsichtig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Opaque"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opaque"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opaco"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opaque"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opaco"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不透明"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "불투명"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ondoorzichtig"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nieprzezroczysty"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opaco"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непрозрачный"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mat"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不透明"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不透明"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透明"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непрозрачен"
+          }
+        }
+      }
+    },
+    "OpacitySlider.minimumValue.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Průhledné"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durchsichtig"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Transparent"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transparent"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transparente"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transparent"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trasparente"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透明"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "투명"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transparant"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przezroczysty"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transparente"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прозрачный"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saydam"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透明"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透明"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不透明"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прозрачен"
+          }
+        }
+      }
+    },
+    "Select…" : {
+      "comment" : "label for font picker button",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vybrat…"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auswählen …"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisir…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleziona…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecteer…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybierz…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecionar…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seç…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇⋯"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇⋯"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избери …"
+          }
+        }
+      }
+    },
+    "Standard font:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standardní písmo:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standardschrift:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard font:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fuente estándar:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Police standard :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Font standard:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標準フォント:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "표준 서체:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standaardlettertype:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czcionka podstawowa:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonte padrão:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартный шрифт:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standart font:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "标准字体："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標準字體："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "標準字體："
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартен шрифт:"
+          }
+        }
+      }
+    },
+    "times" : {
+      "comment" : "unit for line height",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "krát"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "-fach"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "times"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "veces"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "fois"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "volte"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "倍"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "배"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "keer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "wielkości czcionki"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "vezes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "раз"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kere"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "倍"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "倍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "倍"
+          }
+        },
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "пъти"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }
