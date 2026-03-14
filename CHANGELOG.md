@@ -33,6 +33,7 @@
 - Add the Multiline option to syntax highlighting rules.
 - Add a Delimiters pane to the syntax editor for customizing parsing rules.
 - Show your current position in search results in the Find field while navigating between matches (for example, “2/5”).
+- Add Bulgarian localization (thanks to Miroslav Dragoev!).
 
 
 ### Compatibility Changes
