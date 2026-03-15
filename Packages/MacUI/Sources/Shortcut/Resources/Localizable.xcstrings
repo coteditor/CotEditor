@@ -4,6 +4,12 @@
     "Space" : {
       "comment" : "keyboard key name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интервал"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -86,12 +92,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空格"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Интервал"
           }
         }
       }

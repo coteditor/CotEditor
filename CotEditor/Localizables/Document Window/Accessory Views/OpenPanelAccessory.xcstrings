@@ -4,6 +4,12 @@
     "Automatic" : {
       "comment" : "menu item title for automatic encoding detection",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматично"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,18 +105,18 @@
             "state" : "translated",
             "value" : "自動"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автоматично"
-          }
         }
       }
     },
     "Open as read-only" : {
       "comment" : "toggle button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори само за четене"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -206,18 +212,18 @@
             "state" : "translated",
             "value" : "以唯讀方式開啟"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори само за четене"
-          }
         }
       }
     },
     "Show invisible files" : {
       "comment" : "toggle button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи скритите файлове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -313,17 +319,17 @@
             "state" : "translated",
             "value" : "顯示隱藏檔案"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи скритите файлове"
-          }
         }
       }
     },
     "Text encoding:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодиране на текста:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -418,12 +424,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字編碼："
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодиране на текста:"
           }
         }
       }

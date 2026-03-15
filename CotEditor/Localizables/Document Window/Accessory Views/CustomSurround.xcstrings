@@ -3,6 +3,12 @@
   "strings" : {
     "Begin:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начало:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98,17 +104,17 @@
             "state" : "translated",
             "value" : "開頭："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Начало:"
-          }
         }
       }
     },
     "End:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Край:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -204,17 +210,17 @@
             "state" : "translated",
             "value" : "結尾："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Край:"
-          }
         }
       }
     },
     "Surround with:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Огради с:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -309,12 +315,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "環繞："
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Огради с:"
           }
         }
       }

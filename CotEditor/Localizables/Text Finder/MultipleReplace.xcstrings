@@ -4,6 +4,12 @@
     "Delete Rules" : {
       "comment" : "action name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изтриване на правила"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,18 +105,18 @@
             "state" : "translated",
             "value" : "刪除規則"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изтриване на правила"
-          }
         }
       }
     },
     "Edit Rule" : {
       "comment" : "action name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактиране на правило"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -206,12 +212,6 @@
             "state" : "translated",
             "value" : "編輯規則"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактиране на правило"
-          }
         }
       }
     },
@@ -219,6 +219,12 @@
       "comment" : "CotEditor Replace Definition is a proper file type name. Refer to InfoPlist.xcstrings.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете файлове на CotEditor Replace Definition или TSV (стойности, разделени с табулация)."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -320,18 +326,18 @@
             "state" : "translated",
             "value" : "選擇CotEditor取代定義檔或TSV（定位符號分隔值）檔案。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете файлове на CotEditor Replace Definition или TSV (стойности, разделени с табулация)."
-          }
         }
       }
     },
     "Insert Rule" : {
       "comment" : "action name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вмъкване на правило"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -427,18 +433,18 @@
             "state" : "translated",
             "value" : "插入規則"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вмъкване на правило"
-          }
         }
       }
     },
     "Move Rules" : {
       "comment" : "action name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правила за преместване"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -534,18 +540,18 @@
             "state" : "translated",
             "value" : "移動規則"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Правила за преместване"
-          }
         }
       }
     },
     "Multiple Replace" : {
       "comment" : "window title",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Множествена замяна"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -641,17 +647,17 @@
             "state" : "translated",
             "value" : "多重取代"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Множествена замяна"
-          }
         }
       }
     },
     "Reload All Definitions" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Презареди всички дефиниции"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -753,18 +759,18 @@
             "state" : "translated",
             "value" : "重新載入全部定義"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Презареди всички дефиниции"
-          }
         }
       }
     },
     "Sidebar" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Странична лента"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -859,12 +865,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "側邊欄"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Странична лента"
           }
         }
       }

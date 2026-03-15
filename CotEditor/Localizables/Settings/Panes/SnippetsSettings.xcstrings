@@ -3,6 +3,12 @@
   "strings" : {
     "All" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всички"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98,18 +104,18 @@
             "state" : "translated",
             "value" : "全部"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Всички"
-          }
         }
       }
     },
     "Command" : {
       "comment" : "tab label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "командване"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -205,18 +211,18 @@
             "state" : "translated",
             "value" : "指令"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "командване"
-          }
         }
       }
     },
     "Description" : {
       "comment" : "table column header",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -312,18 +318,18 @@
             "state" : "translated",
             "value" : "描述"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Описание"
-          }
         }
       }
     },
     "Extensions" : {
       "comment" : "table column header",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширения"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -419,18 +425,18 @@
             "state" : "translated",
             "value" : "副檔名"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширения"
-          }
         }
       }
     },
     "File Drop" : {
       "comment" : "tab label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пускане на файл"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -526,18 +532,18 @@
             "state" : "translated",
             "value" : "檔案拖移項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пускане на файл"
-          }
         }
       }
     },
     "File extensions of dropped file (comma separated)." : {
       "comment" : "tooltip",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлови разширения на изпуснат файл (разделени със запетая)."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -633,18 +639,18 @@
             "state" : "translated",
             "value" : "拖放檔案的副檔名（逗號分隔）。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файлови разширения на изпуснат файл (разделени със запетая)."
-          }
         }
       }
     },
     "Insert Variable" : {
       "comment" : "button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вмъкване на променлива"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -740,17 +746,17 @@
             "state" : "translated",
             "value" : "插入變數"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вмъкване на променлива"
-          }
         }
       }
     },
     "Insertion format:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Формат на вмъкване:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -846,18 +852,18 @@
             "state" : "translated",
             "value" : "插入格式："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Формат на вмъкване:"
-          }
         }
       }
     },
     "Key" : {
       "comment" : "table column header",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -959,18 +965,18 @@
             "state" : "translated",
             "value" : "按鍵"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ключ"
-          }
         }
       }
     },
     "Name" : {
       "comment" : "table column header",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Име"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1072,18 +1078,18 @@
             "state" : "translated",
             "value" : "名稱"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Име"
-          }
         }
       }
     },
     "Syntax" : {
       "comment" : "table column header",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1179,18 +1185,18 @@
             "state" : "translated",
             "value" : "語法"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксис"
-          }
         }
       }
     },
     "Syntax in which this file drop setting is used." : {
       "comment" : "tooltip",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис, в който се използва тази настройка за изпускане на файл."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1286,17 +1292,17 @@
             "state" : "translated",
             "value" : "此檔案拖移項目設定所使用的語法。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксис, в който се използва тази настройка за изпускане на файл."
-          }
         }
       }
     },
     "Text to be inserted by a command in the menu or by keyboard shortcut:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст за вмъкване чрез команда в менюто или чрез клавишна комбинация:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1392,17 +1398,17 @@
             "state" : "translated",
             "value" : "選單命令或鍵盤快捷鍵插入的文字："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текст за вмъкване чрез команда в менюто или чрез клавишна комбинация:"
-          }
         }
       }
     },
     "Text to be inserted by dropping files to the editor:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст за вмъкване чрез пускане на файлове в редактора:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1497,12 +1503,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "透過將檔案拖放至编辑器中插入的文字："
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текст за вмъкване чрез пускане на файлове в редактора:"
           }
         }
       }

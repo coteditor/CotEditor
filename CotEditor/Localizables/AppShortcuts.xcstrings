@@ -4,6 +4,14 @@
     "Create a document in ${applicationName}" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Създай документ в ${applicationName}"
+            ]
+          }
+        },
         "cs" : {
           "stringSet" : {
             "state" : "translated",
@@ -139,14 +147,6 @@
             "state" : "translated",
             "values" : [
               "在${applicationName}中製作文件"
-            ]
-          }
-        },
-        "bg" : {
-          "stringSet" : {
-            "state" : "translated",
-            "values" : [
-              "Създай документ в ${applicationName}"
             ]
           }
         }

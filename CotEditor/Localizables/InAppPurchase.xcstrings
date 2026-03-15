@@ -4,6 +4,12 @@
     "donation.onetime.description" : {
       "extractionState" : "manual",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вкусна чаша"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -105,18 +111,18 @@
             "state" : "translated",
             "value" : "一杯美味的咖啡"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вкусна чаша"
-          }
         }
       }
     },
     "donation.onetime.displayName" : {
       "extractionState" : "manual",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Еспресо"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -218,18 +224,18 @@
             "state" : "translated",
             "value" : "濃縮咖啡"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Еспресо"
-          }
         }
       }
     },
     "donation.subscription.yearly.description" : {
       "extractionState" : "manual",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кафе за ежедневно развитие"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -331,18 +337,18 @@
             "state" : "translated",
             "value" : "用咖啡支持日常關發"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кафе за ежедневно развитие"
-          }
         }
       }
     },
     "donation.subscription.yearly.displayName" : {
       "extractionState" : "manual",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кафе на зърна"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -443,12 +449,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "咖啡豆"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кафе на зърна"
           }
         }
       }

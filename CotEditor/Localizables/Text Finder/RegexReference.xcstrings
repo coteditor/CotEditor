@@ -3,6 +3,12 @@
   "strings" : {
     "0 or more times" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 или повече пъти"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98,17 +104,17 @@
             "state" : "translated",
             "value" : "0次或多次"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "0 или повече пъти"
-          }
         }
       }
     },
     "1 or 0 times" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 или 0 пъти"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -204,17 +210,17 @@
             "state" : "translated",
             "value" : "1次或0次"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1 или 0 пъти"
-          }
         }
       }
     },
     "1 or more times" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 или повече пъти"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -310,18 +316,18 @@
             "state" : "translated",
             "value" : "1次或多次"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1 или повече пъти"
-          }
         }
       }
     },
     "Anchors" : {
       "comment" : "heading",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Котви"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -417,17 +423,17 @@
             "state" : "translated",
             "value" : "錨點"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Котви"
-          }
         }
       }
     },
     "any character" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "произволен знак"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -523,17 +529,17 @@
             "state" : "translated",
             "value" : "任何字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "произволен знак"
-          }
         }
       }
     },
     "any character in range A to Z" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "всеки знак в диапазона от A до Z"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -629,17 +635,17 @@
             "state" : "translated",
             "value" : "任何A至Z間的字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "всеки знак в диапазона от A до Z"
-          }
         }
       }
     },
     "any character not in range A to Z" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "всеки знак извън диапазона от A до Z"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -735,17 +741,17 @@
             "state" : "translated",
             "value" : "任何不在A至Z間的字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "всеки знак извън диапазона от A до Z"
-          }
         }
       }
     },
     "at least 0 but not more than n times" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "поне 0, но не повече от n пъти"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -841,17 +847,17 @@
             "state" : "translated",
             "value" : "至少0次但不多於n次"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "поне 0, но не повече от n пъти"
-          }
         }
       }
     },
     "at least n but not more than m times" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "поне n, но не повече от m пъти"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -947,17 +953,17 @@
             "state" : "translated",
             "value" : "至少n次但不多過m次"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "поне n, но не повече от m пъти"
-          }
         }
       }
     },
     "at least n times" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "поне n пъти"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1053,18 +1059,18 @@
             "state" : "translated",
             "value" : "至少n次"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "поне n пъти"
-          }
         }
       }
     },
     "Back Reference" : {
       "comment" : "heading",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Задна справка"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1160,18 +1166,18 @@
             "state" : "translated",
             "value" : "反向參照"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Задна справка"
-          }
         }
       }
     },
     "Basic Regular Expression Syntax" : {
       "comment" : "title",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Основен синтаксис на регулярен израз"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1267,17 +1273,17 @@
             "state" : "translated",
             "value" : "基本常規表示式語法"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Основен синтаксис на регулярен израз"
-          }
         }
       }
     },
     "beginning of the line" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "началото на реда"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1373,18 +1379,18 @@
             "state" : "translated",
             "value" : "行開頭"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "началото на реда"
-          }
         }
       }
     },
     "Characters" : {
       "comment" : "heading",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Знаци"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1480,17 +1486,17 @@
             "state" : "translated",
             "value" : "字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Знаци"
-          }
         }
       }
     },
     "decimal number" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "десетично число"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1586,17 +1592,17 @@
             "state" : "translated",
             "value" : "十進位制"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "десетично число"
-          }
         }
       }
     },
     "end of the line" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "край на реда"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1692,18 +1698,18 @@
             "state" : "translated",
             "value" : "行結尾"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "край на реда"
-          }
         }
       }
     },
     "Extended Groups" : {
       "comment" : "heading",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширени групи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1799,17 +1805,17 @@
             "state" : "translated",
             "value" : "延伸分組"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширени групи"
-          }
         }
       }
     },
     "first match" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "първо съвпадение"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1905,17 +1911,17 @@
             "state" : "translated",
             "value" : "第一個符合"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "първо съвпадение"
-          }
         }
       }
     },
     "ICU Regular Expressions" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ICU регулярни изрази"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2011,17 +2017,17 @@
             "state" : "translated",
             "value" : "ICU常規表示式"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ICU регулярни изрази"
-          }
         }
       }
     },
     "look-ahead" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "поглед напред"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2117,17 +2123,17 @@
             "state" : "translated",
             "value" : "往前"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "поглед напред"
-          }
         }
       }
     },
     "look-behind" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "поглед отзад"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2223,17 +2229,17 @@
             "state" : "translated",
             "value" : "往後"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "поглед отзад"
-          }
         }
       }
     },
     "n times" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "n пъти"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2329,17 +2335,17 @@
             "state" : "translated",
             "value" : "n次"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "n пъти"
-          }
         }
       }
     },
     "new line character" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "знак за нов ред"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2435,17 +2441,17 @@
             "state" : "translated",
             "value" : "新行字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "знак за нов ред"
-          }
         }
       }
     },
     "non-whitespace character" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "знак без интервал"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2541,18 +2547,18 @@
             "state" : "translated",
             "value" : "非空白字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "знак без интервал"
-          }
         }
       }
     },
     "Quantifiers" : {
       "comment" : "heading",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Квантори"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2648,17 +2654,17 @@
             "state" : "translated",
             "value" : "數量詞"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Квантори"
-          }
         }
       }
     },
     "tab character" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "табулатор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2754,18 +2760,18 @@
             "state" : "translated",
             "value" : "定位符號字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "табулатор"
-          }
         }
       }
     },
     "The syntax conforms to the %@ specifications." : {
       "comment" : "%@ is the name of the regex engine (ICU Regular Expressions)",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксисът отговаря на спецификациите %@."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2861,17 +2867,17 @@
             "state" : "translated",
             "value" : "此語法符合%@規範。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксисът отговаря на спецификациите %@."
-          }
         }
       }
     },
     "whitespace character" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "празен символ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2967,17 +2973,17 @@
             "state" : "translated",
             "value" : "空白字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "празен символ"
-          }
         }
       }
     },
     "word boundary" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "граница на думата"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3073,17 +3079,17 @@
             "state" : "translated",
             "value" : "字詞邊界"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "граница на думата"
-          }
         }
       }
     },
     "word character" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "знак от дума"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3178,12 +3184,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "字詞字元"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "знак от дума"
           }
         }
       }

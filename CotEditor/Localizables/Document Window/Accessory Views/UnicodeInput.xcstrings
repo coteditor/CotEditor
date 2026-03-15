@@ -4,6 +4,12 @@
     "Clear Recents" : {
       "comment" : "button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изчисти последните"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,17 +105,17 @@
             "state" : "translated",
             "value" : "清除最近項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изчисти последните"
-          }
         }
       }
     },
     "Invalid code" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невалиден код"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -205,18 +211,18 @@
             "state" : "translated",
             "value" : "無效的代碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невалиден код"
-          }
         }
       }
     },
     "Recents" : {
       "comment" : "menu header",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последни"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -311,12 +317,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最近項目"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Последни"
           }
         }
       }

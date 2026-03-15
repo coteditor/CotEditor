@@ -3,6 +3,12 @@
   "strings" : {
     "To change a shortcut, click the key column, then type the new keys." : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За да промените пряк път, щракнете върху колоната с клавиши, след което въведете новите клавиши."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -97,12 +103,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "如要更改快捷鍵，請按一下按鍵欄，然後輸入新的按鍵。"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "За да промените пряк път, щракнете върху колоната с клавиши, след което въведете новите клавиши."
           }
         }
       }

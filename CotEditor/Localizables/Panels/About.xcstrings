@@ -4,6 +4,12 @@
     "%@ icon" : {
       "comment" : "%@ is application name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Икона %@"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,18 +105,18 @@
             "state" : "translated",
             "value" : "%@圖像"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Икона %@"
-          }
         }
       }
     },
     "About %@" : {
       "comment" : "%@ is app name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Относно %@"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -206,18 +212,18 @@
             "state" : "translated",
             "value" : "關於%@"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Относно %@"
-          }
         }
       }
     },
     "and everyone who supports CotEditor!" : {
       "comment" : "last line of the Special Thanks section",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "и всички, които подкрепят CotEditor!"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -313,18 +319,18 @@
             "state" : "translated",
             "value" : "以及支持CotEditor的各位！"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "и всички, които подкрепят CotEditor!"
-          }
         }
       }
     },
     "Code Contributors" : {
       "comment" : "section heading",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сътрудници на кода"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -420,17 +426,17 @@
             "state" : "translated",
             "value" : "程式碼貢獻者"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сътрудници на кода"
-          }
         }
       }
     },
     "CotEditor is an open source program\nlicensed under the Apache License, Version 2.0." : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor е програма с отворен код,\nлицензирана под Apache License, Version 2.0."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -526,17 +532,17 @@
             "state" : "translated",
             "value" : "CotEditor是依Apache許可協議2.0版本授權的開放原始碼程式。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor е програма с отворен код,\nлицензирана под Apache License, Version 2.0."
-          }
         }
       }
     },
     "CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work." : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor използва следните страхотни технологии. Ние сме дълбоко благодарни на тези, които ни позволиха да използваме тяхната ценна работа."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -632,18 +638,18 @@
             "state" : "translated",
             "value" : "CotEditor採用了以下令人驚奇的技術。我們衷心多謝所有允許我們使用其寶貴成果的人。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor използва следните страхотни технологии. Ние сме дълбоко благодарни на тези, които ни позволиха да използваме тяхната ценна работа."
-          }
         }
       }
     },
     "Credits" : {
       "comment" : "button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кредити"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -739,17 +745,17 @@
             "state" : "translated",
             "value" : "致謝"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кредити"
-          }
         }
       }
     },
     "License" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лиценз"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -845,18 +851,18 @@
             "state" : "translated",
             "value" : "許可證"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лиценз"
-          }
         }
       }
     },
     "Licenses" : {
       "comment" : "button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лицензи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -952,18 +958,18 @@
             "state" : "translated",
             "value" : "許可證"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лицензи"
-          }
         }
       }
     },
     "Localization" : {
       "comment" : "section heading",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Локализация"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1059,18 +1065,18 @@
             "state" : "translated",
             "value" : "本地化"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Локализация"
-          }
         }
       }
     },
     "only on non-AppStore version" : {
       "comment" : "annotation for the Sparkle framework license",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "само във версията извън App Store"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1166,17 +1172,17 @@
             "state" : "translated",
             "value" : "僅非App Store版本使用"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "само във версията извън App Store"
-          }
         }
       }
     },
     "original developer" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "оригинален разработчик"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1272,18 +1278,18 @@
             "state" : "translated",
             "value" : "原始開發者"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "оригинален разработчик"
-          }
         }
       }
     },
     "Special Thanks" : {
       "comment" : "section heading",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Специални благодарности"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1379,18 +1385,18 @@
             "state" : "translated",
             "value" : "特別感謝"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Специални благодарности"
-          }
         }
       }
     },
     "The CotEditor Project" : {
       "comment" : "section heading",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проектът CotEditor"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1486,18 +1492,18 @@
             "state" : "translated",
             "value" : "CotEditor項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проектът CotEditor"
-          }
         }
       }
     },
     "Version %@ (%@)" : {
       "comment" : "%1$@ is version number and %2$@ is build number",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия %1$@ (%2$@)"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1598,12 +1604,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "版本%1$@ (%2$@)"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Версия %1$@ (%2$@)"
           }
         }
       }

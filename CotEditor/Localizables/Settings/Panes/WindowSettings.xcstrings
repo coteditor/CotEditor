@@ -4,6 +4,12 @@
     "Always" : {
       "comment" : "window tabbing option",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Винаги"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,18 +105,18 @@
             "state" : "translated",
             "value" : "總是"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Винаги"
-          }
         }
       }
     },
     "Auto" : {
       "comment" : "placeholder for window size field",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Авто"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -206,18 +212,18 @@
             "state" : "translated",
             "value" : "自動"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Авто"
-          }
         }
       }
     },
     "Automatically" : {
       "comment" : "window tabbing option",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматично"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -313,17 +319,17 @@
             "state" : "translated",
             "value" : "自動"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автоматично"
-          }
         }
       }
     },
     "Change background color" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Промяна на цвета на фона"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -419,17 +425,17 @@
             "state" : "translated",
             "value" : "更改背景顏色"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Промяна на цвета на фона"
-          }
         }
       }
     },
     "Character count" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Брой знаци"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -525,17 +531,17 @@
             "state" : "translated",
             "value" : "字元數"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Брой знаци"
-          }
         }
       }
     },
     "Current column" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текуща колона"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -631,17 +637,17 @@
             "state" : "translated",
             "value" : "現用欄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текуща колона"
-          }
         }
       }
     },
     "Current line" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущ ред"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -737,17 +743,17 @@
             "state" : "translated",
             "value" : "現用行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текущ ред"
-          }
         }
       }
     },
     "Current line:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущ ред:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -843,17 +849,17 @@
             "state" : "translated",
             "value" : "現用行："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текущ ред:"
-          }
         }
       }
     },
     "Draw separator" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделител за рисуване"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -949,17 +955,17 @@
             "state" : "translated",
             "value" : "繪圖分隔符號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разделител за рисуване"
-          }
         }
       }
     },
     "Height" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Височина"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1055,17 +1061,17 @@
             "state" : "translated",
             "value" : "高度"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Височина"
-          }
         }
       }
     },
     "Indent guides" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Водачи за отстъп"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1161,17 +1167,17 @@
             "state" : "translated",
             "value" : "縮排指引"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Водачи за отстъп"
-          }
         }
       }
     },
     "Indent wrapped lines by" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отстъп на обвити редове по"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1267,17 +1273,17 @@
             "state" : "translated",
             "value" : "縮排換行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отстъп на обвити редове по"
-          }
         }
       }
     },
     "Invisible characters" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидими знаци"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1373,17 +1379,17 @@
             "state" : "translated",
             "value" : "隱形字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невидими знаци"
-          }
         }
       }
     },
     "Line count" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Брой редове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1479,18 +1485,18 @@
             "state" : "translated",
             "value" : "行數"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Брой редове"
-          }
         }
       }
     },
     "Line ending" : {
       "comment" : "invisible character type",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Край на реда"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1586,17 +1592,17 @@
             "state" : "translated",
             "value" : "每行結尾"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Край на реда"
-          }
         }
       }
     },
     "Line numbers" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номерата на редовете"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1692,17 +1698,17 @@
             "state" : "translated",
             "value" : "行號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Номерата на редовете"
-          }
         }
       }
     },
     "Line wrapping:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обвиване на редове:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1798,17 +1804,17 @@
             "state" : "translated",
             "value" : "換行："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Обвиване на редове:"
-          }
         }
       }
     },
     "Location" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Местоположение"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1904,18 +1910,18 @@
             "state" : "translated",
             "value" : "位置"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Местоположение"
-          }
         }
       }
     },
     "Never" : {
       "comment" : "window tabbing option",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Никога"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2011,18 +2017,18 @@
             "state" : "translated",
             "value" : "永不"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Никога"
-          }
         }
       }
     },
     "Open documents in tabs:" : {
       "comment" : "Omit “documents” if label becomes too long.",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отваряне на документи в раздели:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2118,18 +2124,18 @@
             "state" : "translated",
             "value" : "在分頁開啟文件："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отваряне на документи в раздели:"
-          }
         }
       }
     },
     "Other control characters" : {
       "comment" : "invisible character type",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Други контролни знаци"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2225,18 +2231,18 @@
             "state" : "translated",
             "value" : "其他控制字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Други контролни знаци"
-          }
         }
       }
     },
     "Other whitespace" : {
       "comment" : "invisible character type",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Друг празен интервал"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2332,17 +2338,17 @@
             "state" : "translated",
             "value" : "其他空白字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Друг празен интервал"
-          }
         }
       }
     },
     "Overscroll:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Превъртане:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2438,17 +2444,17 @@
             "state" : "translated",
             "value" : "額外捲動："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Превъртане:"
-          }
         }
       }
     },
     "Page guide at column:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ръководство на страницата в колона:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2544,18 +2550,18 @@
             "state" : "translated",
             "value" : "欄位的頁面指引："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ръководство на страницата в колона:"
-          }
         }
       }
     },
     "pixels" : {
       "comment" : "accessibility label for “px”",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "пиксели"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2651,18 +2657,18 @@
             "state" : "translated",
             "value" : "像素"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "пиксели"
-          }
         }
       }
     },
     "px" : {
       "comment" : "length unit following an input field",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "px"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2758,17 +2764,17 @@
             "state" : "translated",
             "value" : "像素"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "px"
-          }
         }
       }
     },
     "Respect System Setting" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спазвайте системните настройки"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2864,17 +2870,17 @@
             "state" : "translated",
             "value" : "遵循系統設定"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Спазвайте системните настройки"
-          }
         }
       }
     },
     "Show:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2970,18 +2976,18 @@
             "state" : "translated",
             "value" : "顯示："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи:"
-          }
         }
       }
     },
     "Space" : {
       "comment" : "invisible character type",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "пространство"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3077,18 +3083,18 @@
             "state" : "translated",
             "value" : "空格"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "пространство"
-          }
         }
       }
     },
     "spaces" : {
       "comment" : "unit for indentation",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "пространства"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3184,17 +3190,17 @@
             "state" : "translated",
             "value" : "個空格"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "пространства"
-          }
         }
       }
     },
     "Status bar shows:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лентата на състоянието показва:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3290,18 +3296,18 @@
             "state" : "translated",
             "value" : "狀態列顯示："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лентата на състоянието показва:"
-          }
         }
       }
     },
     "Tab" : {
       "comment" : "invisible character type",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таб"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3397,17 +3403,17 @@
             "state" : "translated",
             "value" : "定位符號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Таб"
-          }
         }
       }
     },
     "Width" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ширина"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3503,17 +3509,17 @@
             "state" : "translated",
             "value" : "闊度"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ширина"
-          }
         }
       }
     },
     "Window size:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер на прозореца:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3609,17 +3615,17 @@
             "state" : "translated",
             "value" : "視窗尺寸："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Размер на прозореца:"
-          }
         }
       }
     },
     "Word count" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Брой думи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3715,17 +3721,17 @@
             "state" : "translated",
             "value" : "字數"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Брой думи"
-          }
         }
       }
     },
     "Wrap lines to editor width" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обвиване на редовете до ширината на редактора"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3821,18 +3827,18 @@
             "state" : "translated",
             "value" : "換行以符合編輯器闊度"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Обвиване на редовете до ширината на редактора"
-          }
         }
       }
     },
     "wrapped line indent spaces" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "интервали за отстъп на обвита линия"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3928,17 +3934,17 @@
             "state" : "translated",
             "value" : "換行縮排間距"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "интервали за отстъп на обвита линия"
-          }
         }
       }
     },
     "Writing direction:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Посока на писане:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4034,12 +4040,6 @@
             "state" : "translated",
             "value" : "書寫方向："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Посока на писане:"
-          }
         }
       }
     },
@@ -4047,6 +4047,12 @@
       "comment" : "writing direction option",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отляво надясно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4148,12 +4154,6 @@
             "state" : "translated",
             "value" : "由左至右"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отляво надясно"
-          }
         }
       }
     },
@@ -4161,6 +4161,12 @@
       "comment" : "writing direction option",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "От дясно на ляво"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4262,12 +4268,6 @@
             "state" : "translated",
             "value" : "由右至左"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "От дясно на ляво"
-          }
         }
       }
     },
@@ -4275,6 +4275,12 @@
       "comment" : "writing direction option",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вертикална"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4375,12 +4381,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "直書"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вертикална"
           }
         }
       }

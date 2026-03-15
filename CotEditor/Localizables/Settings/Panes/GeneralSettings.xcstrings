@@ -3,6 +3,12 @@
   "strings" : {
     "A system feature that automatically overwrites your files while editing. Even if turned off, CotEditor covertly creates a backup in case it unexpectedly quits." : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Системна функция, която автоматично презаписва вашите файлове, докато редактирате. Дори да е изключен, CotEditor скрито създава резервно копие, в случай че неочаквано се затвори."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98,17 +104,17 @@
             "state" : "translated",
             "value" : "編輯時可以自動覆寫檔案的系統功能。即使關閉此功能，CotEditor亦會秘密製作一個備份，以備程式意外結束。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Системна функция, която автоматично презаписва вашите файлове, докато редактирате. Дори да е изключен, CotEditor скрито създава резервно копие, в случай че неочаквано се затвори."
-          }
         }
       }
     },
     "Check for updates automatically" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматично проверявайте за актуализации"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -204,17 +210,17 @@
             "state" : "translated",
             "value" : "自動檢查更新項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автоматично проверявайте за актуализации"
-          }
         }
       }
     },
     "Command-line tool:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инструмент за команден ред:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -310,18 +316,18 @@
             "state" : "translated",
             "value" : "命令列工具："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Инструмент за команден ред:"
-          }
         }
       }
     },
     "CommandLineToolManager.Status.differentTarget.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущата символна връзка `cot` не е насочена към работещия CotEditor."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -423,18 +429,18 @@
             "state" : "translated",
             "value" : "目前`cot`符號連結的目標不是正在執行的CotEditor。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текущата символна връзка `cot` не е насочена към работещия CotEditor."
-          }
         }
       }
     },
     "CommandLineToolManager.Status.invalidTarget.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущата символна връзка `cot` може да е насочена към невалиден път."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -536,17 +542,17 @@
             "state" : "translated",
             "value" : "目前`cot`符號連結的目標可能是無效路徑。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текущата символна връзка `cot` може да е насочена към невалиден път."
-          }
         }
       }
     },
     "Dialog warnings:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Диалогови предупреждения:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -642,17 +648,17 @@
             "state" : "translated",
             "value" : "對話框警告："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Диалогови предупреждения:"
-          }
         }
       }
     },
     "Document save:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запазване на документ:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -748,18 +754,18 @@
             "state" : "translated",
             "value" : "儲存文件："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запазване на документ:"
-          }
         }
       }
     },
     "DocumentConflictOption.ignore.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запазете версията на CotEditor"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -861,18 +867,18 @@
             "state" : "translated",
             "value" : "保留CotEditor的版本"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запазете версията на CotEditor"
-          }
         }
       }
     },
     "DocumentConflictOption.notify.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попитайте как да разрешите"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -974,18 +980,18 @@
             "state" : "translated",
             "value" : "詢問如何解決"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Попитайте как да разрешите"
-          }
         }
       }
     },
     "DocumentConflictOption.revert.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Актуализиране до модифицирана версия"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1087,17 +1093,17 @@
             "state" : "translated",
             "value" : "更新至變更的版本"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Актуализиране до модифицирана версия"
-          }
         }
       }
     },
     "Enable Auto Save with Versions" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Активиране на автоматичното запазване с версии"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1193,17 +1199,17 @@
             "state" : "translated",
             "value" : "啟用包括版本的自動儲存"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Активиране на автоматичното запазване с версии"
-          }
         }
       }
     },
     "Inconsistent line endings" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непоследователни краища на редове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1299,17 +1305,17 @@
             "state" : "translated",
             "value" : "不一致的每行結尾"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Непоследователни краища на редове"
-          }
         }
       }
     },
     "installed at %@" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "инсталиран на %@"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1405,18 +1411,18 @@
             "state" : "translated",
             "value" : "已安装於%@"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "инсталиран на %@"
-          }
         }
       }
     },
     "Later" : {
       "comment" : "button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "по-късно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1512,17 +1518,17 @@
             "state" : "translated",
             "value" : "稍後"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "по-късно"
-          }
         }
       }
     },
     "Learn More…" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Научете повече"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1618,17 +1624,17 @@
             "state" : "translated",
             "value" : "進一步了解⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Научете повече"
-          }
         }
       }
     },
     "Manage Warnings…" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управление на предупрежденията…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1724,18 +1730,18 @@
             "state" : "translated",
             "value" : "管理警告⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Управление на предупрежденията…"
-          }
         }
       }
     },
     "NextSessionApplicationConfirmation.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли да рестартирате CotEditor сега?"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1837,18 +1843,18 @@
             "state" : "translated",
             "value" : "你要立即重新啟動CotEditor嗎？"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Искате ли да рестартирате CotEditor сега?"
-          }
         }
       }
     },
     "NextSessionApplicationConfirmation.nextAfterNext.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поведението на приложението ще се промени от следващото стартиране след това."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1950,18 +1956,18 @@
             "state" : "translated",
             "value" : "App的行為將在之後的下次啟動時更改。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Поведението на приложението ще се промени от следващото стартиране след това."
-          }
         }
       }
     },
     "NextSessionApplicationConfirmation.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Промяната ще бъде приложена първо при следващото стартиране."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2063,18 +2069,18 @@
             "state" : "translated",
             "value" : "更改將在下次啟󠄁動時首先套用。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Промяната ще бъде приложена първо при следващото стартиране."
-          }
         }
       }
     },
     "NoDocumentOnLaunchOption.none.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не правете нищо"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2176,18 +2182,18 @@
             "state" : "translated",
             "value" : "不執行任何動作"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не правете нищо"
-          }
         }
       }
     },
     "NoDocumentOnLaunchOption.openPanel.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи диалогов прозорец за отваряне"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2289,18 +2295,18 @@
             "state" : "translated",
             "value" : "顯示開啟󠄁對話框"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи диалогов прозорец за отваряне"
-          }
         }
       }
     },
     "NoDocumentOnLaunchOption.untitledDocument.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създаване на нов документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2402,17 +2408,17 @@
             "state" : "translated",
             "value" : "製作新文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Създаване на нов документ"
-          }
         }
       }
     },
     "On startup:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "При стартиране:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2508,17 +2514,17 @@
             "state" : "translated",
             "value" : "在開啟󠄁時："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "При стартиране:"
-          }
         }
       }
     },
     "Regardless of this setting, new prereleases are always included while using a prerelease." : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Независимо от тази настройка, новите предварителни версии винаги се включват при използване на предварителна версия."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2614,17 +2620,17 @@
             "state" : "translated",
             "value" : "無論此設定如何，使用預先發佈版本時永遠都會包括新的預先發佈版本。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Независимо от тази настройка, новите предварителни версии винаги се включват при използване на предварителна версия."
-          }
         }
       }
     },
     "Reopen windows from last session" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторно отваряне на прозорци от последната сесия"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2720,18 +2726,18 @@
             "state" : "translated",
             "value" : "重新開啟最後開啟的視窗"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Повторно отваряне на прозорци от последната сесия"
-          }
         }
       }
     },
     "Restart Now" : {
       "comment" : "button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рестартирайте сега"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2827,17 +2833,17 @@
             "state" : "translated",
             "value" : "立即重新啟動"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Рестартирайте сега"
-          }
         }
       }
     },
     "Software update:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Актуализация на софтуера:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2933,17 +2939,17 @@
             "state" : "translated",
             "value" : "軟件更新："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Актуализация на софтуера:"
-          }
         }
       }
     },
     "Suppress the following warnings:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потискане на следните предупреждения:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3039,17 +3045,17 @@
             "state" : "translated",
             "value" : "隱藏以下警告："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Потискане на следните предупреждения:"
-          }
         }
       }
     },
     "Update to prereleases when available" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Актуализирайте до предварителните версии, когато са налични"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3145,17 +3151,17 @@
             "state" : "translated",
             "value" : "如可用，更新到預先發佈版本"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Актуализирайте до предварителните версии, когато са налични"
-          }
         }
       }
     },
     "When document is changed by another application:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Когато документът е променен от друго приложение:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3251,17 +3257,17 @@
             "state" : "translated",
             "value" : "當文件被另一個應用程式更改時："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Когато документът е променен от друго приложение:"
-          }
         }
       }
     },
     "When nothing else is open:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Когато нищо друго не е отворено:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3357,17 +3363,17 @@
             "state" : "translated",
             "value" : "當沒有其他檔案開啟時："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Когато нищо друго не е отворено:"
-          }
         }
       }
     },
     "With the `cot` command-line tool, you can launch CotEditor and let it open files from the command line." : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С инструмента за команден ред `cot` можете да стартирате CotEditor и да му позволите да отваря файлове от командния ред."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3462,12 +3468,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用`cot`命令列工具，你可以啟動CotEditor，並讓它透過命令列開啟檔案。"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "С инструмента за команден ред `cot` можете да стартирате CotEditor и да му позволите да отваря файлове от командния ред."
           }
         }
       }

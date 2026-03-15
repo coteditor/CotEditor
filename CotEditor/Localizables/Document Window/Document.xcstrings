@@ -3,6 +3,12 @@
   "strings" : {
     " (default)" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(по подразбиране)"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98,17 +104,17 @@
             "state" : "translated",
             "value" : " (預設)"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(по подразбиране)"
-          }
         }
       }
     },
     "%@ pixels/inch" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ пиксела/инч"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -204,18 +210,18 @@
             "state" : "translated",
             "value" : "%@像素/吋"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ пиксела/инч"
-          }
         }
       }
     },
     "Alias" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Псевдоним"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -311,18 +317,18 @@
             "state" : "translated",
             "value" : "替身"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Псевдоним"
-          }
         }
       }
     },
     "Block" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блок"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -418,18 +424,18 @@
             "state" : "translated",
             "value" : "區塊"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Блок"
-          }
         }
       }
     },
     "Category" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Категория"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -525,18 +531,18 @@
             "state" : "translated",
             "value" : "類別"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Категория"
-          }
         }
       }
     },
     "Character" : {
       "comment" : "section title in inspector\ntable column header",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Знак"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -632,18 +638,18 @@
             "state" : "translated",
             "value" : "字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Знак"
-          }
         }
       }
     },
     "Close split editor" : {
       "comment" : "tooltip for button",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Затваряне на разделния редактор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -739,18 +745,18 @@
             "state" : "translated",
             "value" : "關閉分割編輯器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Затваряне на разделния редактор"
-          }
         }
       }
     },
     "Close Split Editor" : {
       "comment" : "accessibility label for button",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Затвори разделения редактор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -846,18 +852,18 @@
             "state" : "translated",
             "value" : "關閉分割編輯器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Затвори разделения редактор"
-          }
         }
       }
     },
     "Code Point" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодова точка"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -953,18 +959,18 @@
             "state" : "translated",
             "value" : "代碼位"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодова точка"
-          }
         }
       }
     },
     "Code Points" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодови точки"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1060,17 +1066,17 @@
             "state" : "translated",
             "value" : "代碼位"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодови точки"
-          }
         }
       }
     },
     "Color profile" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цветен профил"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1166,17 +1172,17 @@
             "state" : "translated",
             "value" : "色彩描述"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Цветен профил"
-          }
         }
       }
     },
     "Color space" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цветно пространство"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1272,18 +1278,18 @@
             "state" : "translated",
             "value" : "色彩空間"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Цветно пространство"
-          }
         }
       }
     },
     "Converted" : {
       "comment" : "table column header for converted character",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразувано"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1379,18 +1385,18 @@
             "state" : "translated",
             "value" : "已轉換"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преобразувано"
-          }
         }
       }
     },
     "Count" : {
       "comment" : "section title in inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Брой"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1486,18 +1492,18 @@
             "state" : "translated",
             "value" : "計數"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Брой"
-          }
         }
       }
     },
     "CountType.characters.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Знаци"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1599,18 +1605,18 @@
             "state" : "translated",
             "value" : "字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Знаци"
-          }
         }
       }
     },
     "CountType.column.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Колона"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1712,18 +1718,18 @@
             "state" : "translated",
             "value" : "欄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Колона"
-          }
         }
       }
     },
     "CountType.line.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Линия"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1825,18 +1831,18 @@
             "state" : "translated",
             "value" : "行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Линия"
-          }
         }
       }
     },
     "CountType.lines.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Линии"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1938,18 +1944,18 @@
             "state" : "translated",
             "value" : "行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Линии"
-          }
         }
       }
     },
     "CountType.location.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Местоположение"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2051,18 +2057,18 @@
             "state" : "translated",
             "value" : "位置"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Местоположение"
-          }
         }
       }
     },
     "CountType.words.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Думи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2164,18 +2170,18 @@
             "state" : "translated",
             "value" : "字詞"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Думи"
-          }
         }
       }
     },
     "Created" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създадено"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2271,17 +2277,17 @@
             "state" : "translated",
             "value" : "製作時間"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Създадено"
-          }
         }
       }
     },
     "Dimensions" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размери"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2377,18 +2383,18 @@
             "state" : "translated",
             "value" : "尺寸"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Размери"
-          }
         }
       }
     },
     "Document has unsaved changes" : {
       "comment" : "tooltip for the “edited” indicator in the window tab",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът има незапазени промени"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2484,18 +2490,18 @@
             "state" : "translated",
             "value" : "文件包括未儲存的變更"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Документът има незапазени промени"
-          }
         }
       }
     },
     "Duplicate" : {
       "comment" : "menu item label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дубликат"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2591,17 +2597,17 @@
             "state" : "translated",
             "value" : "製作副本"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дубликат"
-          }
         }
       }
     },
     "Duration" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дължина"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2697,18 +2703,18 @@
             "state" : "translated",
             "value" : "持續時間"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дължина"
-          }
         }
       }
     },
     "Editor" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "редактор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2804,18 +2810,18 @@
             "state" : "translated",
             "value" : "編輯器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "редактор"
-          }
         }
       }
     },
     "Encoding" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2911,17 +2917,17 @@
             "state" : "translated",
             "value" : "編碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодиране"
-          }
         }
       }
     },
     "Extracting Outline…" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Извличане на структурата…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3017,18 +3023,18 @@
             "state" : "translated",
             "value" : "擷取大綱⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Извличане на структурата…"
-          }
         }
       }
     },
     "File" : {
       "comment" : "section title in inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3124,18 +3130,18 @@
             "state" : "translated",
             "value" : "檔案"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файл"
-          }
         }
       }
     },
     "File Browser" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлов браузър"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3231,18 +3237,18 @@
             "state" : "translated",
             "value" : "檔案瀏覽器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файлов браузър"
-          }
         }
       }
     },
     "File size" : {
       "comment" : "tooltip",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер на файла"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3338,18 +3344,18 @@
             "state" : "translated",
             "value" : "檔案大小"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Размер на файла"
-          }
         }
       }
     },
     "File.Kind.archive.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Архив"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3451,18 +3457,18 @@
             "state" : "translated",
             "value" : "封存檔"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Архив"
-          }
         }
       }
     },
     "File.Kind.audio.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аудио"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3564,18 +3570,18 @@
             "state" : "translated",
             "value" : "音訊"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Аудио"
-          }
         }
       }
     },
     "File.Kind.folder.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Папка"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3677,18 +3683,18 @@
             "state" : "translated",
             "value" : "資料夾"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Папка"
-          }
         }
       }
     },
     "File.Kind.general.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3790,18 +3796,18 @@
             "state" : "translated",
             "value" : "文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Документ"
-          }
         }
       }
     },
     "File.Kind.image.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изображение"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3903,18 +3909,18 @@
             "state" : "translated",
             "value" : "影像"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изображение"
-          }
         }
       }
     },
     "File.Kind.movie.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Филм"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4016,18 +4022,30 @@
             "state" : "translated",
             "value" : "影片"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Филм"
-          }
         }
       }
     },
     "Found %lld incompatible characters." : {
       "comment" : "%lld is the number of characters.",
       "localizations" : {
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерен е %lld несъвместим знак."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерени са %lld несъвместими знака."
+                }
+              }
+            }
+          }
+        },
         "cs" : {
           "variations" : {
             "plural" : {
@@ -4339,30 +4357,30 @@
               }
             }
           }
-        },
-        "bg" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Намерен е %lld несъвместим знак."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Намерени са %lld несъвместими знака."
-                }
-              }
-            }
-          }
         }
       }
     },
     "Found %lld line endings other than %@." : {
       "comment" : "%lld is the number of inconsistent line endings and %@ is a line ending type, such as LF",
       "localizations" : {
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерен е %1$lld край на ред, различен от %2$@."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерени са %1$lld края на ред, различни от %2$@."
+                }
+              }
+            }
+          }
+        },
         "cs" : {
           "variations" : {
             "plural" : {
@@ -4674,30 +4692,18 @@
               }
             }
           }
-        },
-        "bg" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Намерен е %1$lld край на ред, различен от %2$@."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Намерени са %1$lld края на ред, различни от %2$@."
-                }
-              }
-            }
-          }
         }
       }
     },
     "Full Path" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пълен път"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4793,17 +4799,17 @@
             "state" : "translated",
             "value" : "完整路徑"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пълен път"
-          }
         }
       }
     },
     "Image DPI" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DPI на изображението"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4899,18 +4905,18 @@
             "state" : "translated",
             "value" : "影像DPI"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DPI на изображението"
-          }
         }
       }
     },
     "Incompatible Characters" : {
       "comment" : "section title in inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Несъвместими знаци"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5006,18 +5012,18 @@
             "state" : "translated",
             "value" : "不相容的字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Несъвместими знаци"
-          }
         }
       }
     },
     "Inconsistent Line Endings" : {
       "comment" : "section title in inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непоследователни краища на редове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5113,18 +5119,18 @@
             "state" : "translated",
             "value" : "不一致的每行結尾"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Непоследователни краища на редове"
-          }
         }
       }
     },
     "Information" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Информация"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5220,18 +5226,18 @@
             "state" : "translated",
             "value" : "資料"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Информация"
-          }
         }
       }
     },
     "Inspector" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инспектор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5327,12 +5333,6 @@
             "state" : "translated",
             "value" : "檢閱器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Инспектор"
-          }
         }
       }
     },
@@ -5340,6 +5340,12 @@
       "comment" : "inspector pane title",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инспектор по документи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5441,12 +5447,6 @@
             "state" : "translated",
             "value" : "文件檢閱器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Инспектор по документи"
-          }
         }
       }
     },
@@ -5454,6 +5454,12 @@
       "comment" : "inspector pane title",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Структура"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5555,12 +5561,6 @@
             "state" : "translated",
             "value" : "大綱"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Структура"
-          }
         }
       }
     },
@@ -5568,6 +5568,12 @@
       "comment" : "inspector pane title",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предупреждения"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5669,18 +5675,18 @@
             "state" : "translated",
             "value" : "警告"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Предупреждения"
-          }
         }
       }
     },
     "Jump to next outline item" : {
       "comment" : "tooltip for button",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Към следващия елемент от структурата"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5776,18 +5782,18 @@
             "state" : "translated",
             "value" : "跳去下個大綱項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Към следващия елемент от структурата"
-          }
         }
       }
     },
     "Jump to previous outline item" : {
       "comment" : "tooltip for button",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Към предишния елемент от структурата"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5883,17 +5889,17 @@
             "state" : "translated",
             "value" : "跳去上個大綱項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Към предишния елемент от структурата"
-          }
         }
       }
     },
     "Kind" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вид"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5989,18 +5995,18 @@
             "state" : "translated",
             "value" : "種類"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вид"
-          }
         }
       }
     },
     "Line" : {
       "comment" : "table column header",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Линия"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6096,18 +6102,18 @@
             "state" : "translated",
             "value" : "行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Линия"
-          }
         }
       }
     },
     "Line Ending" : {
       "comment" : "table column header",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Край на ред"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6203,18 +6209,18 @@
             "state" : "translated",
             "value" : "每行結尾"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Край на ред"
-          }
         }
       }
     },
     "Line Endings" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Краища на редове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6310,18 +6316,18 @@
             "state" : "translated",
             "value" : "每行結尾"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Краища на редове"
-          }
         }
       }
     },
     "Line Numbers" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номера на редовете"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6417,18 +6423,18 @@
             "state" : "translated",
             "value" : "行號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Номера на редовете"
-          }
         }
       }
     },
     "Mode" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6524,18 +6530,18 @@
             "state" : "translated",
             "value" : "模式"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Режим"
-          }
         }
       }
     },
     "Modified" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Променено"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6631,18 +6637,18 @@
             "state" : "translated",
             "value" : "已修改"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Променено"
-          }
         }
       }
     },
     "Move to Trash" : {
       "comment" : "menu item label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преместване в кошчето"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6738,12 +6744,6 @@
             "state" : "translated",
             "value" : "移至垃圾桶"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преместване в кошчето"
-          }
         }
       }
     },
@@ -6751,6 +6751,12 @@
       "comment" : "Refer to the same expression by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тази операция не може да бъде отменена."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6852,18 +6858,18 @@
             "state" : "translated",
             "value" : "無法還原此操作。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тази операция не може да бъде отменена."
-          }
         }
       }
     },
     "MoveToTrashConfirmation.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли да преместите „%@ “ в кошчето?"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6965,17 +6971,23 @@
             "state" : "translated",
             "value" : "你要將「%@」移至垃圾桶嗎？"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Искате ли да преместите „%@ “ в кошчето?"
-          }
         }
       }
     },
     "MoveToTrashConfirmation.title.many" : {
       "localizations" : {
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Искате ли да преместите%lld избрани елементи в кошчето?"
+                }
+              }
+            }
+          }
+        },
         "cs" : {
           "variations" : {
             "plural" : {
@@ -7221,24 +7233,18 @@
               }
             }
           }
-        },
-        "bg" : {
-          "variations" : {
-            "plural" : {
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Искате ли да преместите%lld избрани елементи в кошчето?"
-                }
-              }
-            }
-          }
         }
       }
     },
     "Name" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Име"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7334,18 +7340,18 @@
             "state" : "translated",
             "value" : "名稱"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Име"
-          }
         }
       }
     },
     "Navigation Bar" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лента за навигация"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7441,18 +7447,18 @@
             "state" : "translated",
             "value" : "顯示導覽列"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лента за навигация"
-          }
         }
       }
     },
     "New File" : {
       "comment" : "menu item label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нов файл"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7548,18 +7554,18 @@
             "state" : "translated",
             "value" : "新增檔案"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нов файл"
-          }
         }
       }
     },
     "New Folder" : {
       "comment" : "menu item label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нова папка"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7655,18 +7661,18 @@
             "state" : "translated",
             "value" : "新增資料夾"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нова папка"
-          }
         }
       }
     },
     "Next Outline Item" : {
       "comment" : "accessibility label for button",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Следващ елемент от структурата"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7762,17 +7768,17 @@
             "state" : "translated",
             "value" : "下個大綱項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Следващ елемент от структурата"
-          }
         }
       }
     },
     "No document selected" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма избран документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7868,18 +7874,18 @@
             "state" : "translated",
             "value" : "未選擇文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Няма избран документ"
-          }
         }
       }
     },
     "No Filter Results" : {
       "comment" : "filtering result message",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма резултати от филтъра"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7975,17 +7981,17 @@
             "state" : "translated",
             "value" : "無過濾結果"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Няма резултати от филтъра"
-          }
         }
       }
     },
     "No issues found." : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма открити проблеми."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8081,17 +8087,17 @@
             "state" : "translated",
             "value" : "未找到問題。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Няма открити проблеми."
-          }
         }
       }
     },
     "Not editable" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без редактиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8187,18 +8193,18 @@
             "state" : "translated",
             "value" : "無法編輯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Без редактиране"
-          }
         }
       }
     },
     "Not selected" : {
       "comment" : "placeholder",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не е избрано"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8294,17 +8300,17 @@
             "state" : "translated",
             "value" : "未選擇"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не е избрано"
-          }
         }
       }
     },
     "Open as Plain Text" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори като обикновен текст"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8400,18 +8406,18 @@
             "state" : "translated",
             "value" : "以純文字形式開啟"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори като обикновен текст"
-          }
         }
       }
     },
     "Open in New Window" : {
       "comment" : "menu item label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори в нов прозорец"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8507,18 +8513,18 @@
             "state" : "translated",
             "value" : "在新視窗開啟"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори в нов прозорец"
-          }
         }
       }
     },
     "Open Original" : {
       "comment" : "action label; “Original” refers to the target of an alias/symlink in macOS. Refer to how the Finder translates it.",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори оригинала"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8614,18 +8620,18 @@
             "state" : "translated",
             "value" : "開啟󠄁原始檔案"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори оригинала"
-          }
         }
       }
     },
     "Open with External Editor" : {
       "comment" : "menu item label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори с външен редактор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8721,18 +8727,18 @@
             "state" : "translated",
             "value" : "以外部編輯器開啟"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори с външен редактор"
-          }
         }
       }
     },
     "Original" : {
       "comment" : "label for the original path of alias/symlink (refer to the Finder)",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оригинал"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8828,17 +8834,17 @@
             "state" : "translated",
             "value" : "原始"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Оригинал"
-          }
         }
       }
     },
     "Other…" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Друго…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8934,18 +8940,18 @@
             "state" : "translated",
             "value" : "分享⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Друго…"
-          }
         }
       }
     },
     "Outline" : {
       "comment" : "section title in inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Структура"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9041,18 +9047,18 @@
             "state" : "translated",
             "value" : "大綱"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Структура"
-          }
         }
       }
     },
     "Outline Menu" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Меню на структурата"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9148,18 +9154,18 @@
             "state" : "translated",
             "value" : "大綱選單"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Меню на структурата"
-          }
         }
       }
     },
     "Owner" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Собственик"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9255,18 +9261,18 @@
             "state" : "translated",
             "value" : "擁有者"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Собственик"
-          }
         }
       }
     },
     "Permissions" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешения"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9362,18 +9368,18 @@
             "state" : "translated",
             "value" : "權限"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разрешения"
-          }
         }
       }
     },
     "Previous Outline Item" : {
       "comment" : "accessibility label for button",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предишен елемент от структурата"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9469,17 +9475,17 @@
             "state" : "translated",
             "value" : "上個大綱項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Предишен елемент от структурата"
-          }
         }
       }
     },
     "Scanning incompatible characters…" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сканиране на несъвместими знаци…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9575,17 +9581,17 @@
             "state" : "translated",
             "value" : "正在掃描不相容的字元⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сканиране на несъвместими знаци…"
-          }
         }
       }
     },
     "Searching in folder…" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Търсене в папка…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9681,18 +9687,18 @@
             "state" : "translated",
             "value" : "在資料夾中尋找⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Търсене в папка…"
-          }
         }
       }
     },
     "Select a single character to show Unicode information." : {
       "comment" : "tooltip",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете единичен знак, за да се покаже Unicode информация."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9788,18 +9794,18 @@
             "state" : "translated",
             "value" : "選擇一個字元來顯示其Unicode資料。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете единичен знак, за да се покаже Unicode информация."
-          }
         }
       }
     },
     "Share…" : {
       "comment" : "menu item label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Споделяне…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9895,18 +9901,18 @@
             "state" : "translated",
             "value" : "分享⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Споделяне…"
-          }
         }
       }
     },
     "Show Hidden Files" : {
       "comment" : "menu item label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи скритите файлове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10002,18 +10008,18 @@
             "state" : "translated",
             "value" : "顯示已隱藏的檔案"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи скритите файлове"
-          }
         }
       }
     },
     "Show in Finder" : {
       "comment" : "menu item label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи във Finder"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10109,18 +10115,18 @@
             "state" : "translated",
             "value" : "在Finder顯示"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи във Finder"
-          }
         }
       }
     },
     "Sidebar" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Странична лента"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10216,18 +10222,18 @@
             "state" : "translated",
             "value" : "側邊欄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Странична лента"
-          }
         }
       }
     },
     "Size" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10323,18 +10329,18 @@
             "state" : "translated",
             "value" : "大小"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Размер"
-          }
         }
       }
     },
     "Split editor" : {
       "comment" : "tooltip for button",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделен редактор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10430,18 +10436,18 @@
             "state" : "translated",
             "value" : "分割編輯器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разделен редактор"
-          }
         }
       }
     },
     "Split Editor" : {
       "comment" : "accessibility label for button",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделен редактор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10537,18 +10543,18 @@
             "state" : "translated",
             "value" : "分割編輯器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разделен редактор"
-          }
         }
       }
     },
     "Status Bar" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лента за състояние"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10644,18 +10650,18 @@
             "state" : "translated",
             "value" : "狀態列"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лента за състояние"
-          }
         }
       }
     },
     "Tags" : {
       "comment" : "label in document inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Етикети"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10751,18 +10757,18 @@
             "state" : "translated",
             "value" : "標籤"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Етикети"
-          }
         }
       }
     },
     "Text Encoding" : {
       "comment" : "menu item header",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодиране на текста"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10858,18 +10864,18 @@
             "state" : "translated",
             "value" : "文字編碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодиране на текста"
-          }
         }
       }
     },
     "Text Settings" : {
       "comment" : "section title in inspector",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текстови настройки"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10965,18 +10971,18 @@
             "state" : "translated",
             "value" : "文字設定"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текстови настройки"
-          }
         }
       }
     },
     "Thank you for your kind support!" : {
       "comment" : "message for users who made a donation",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Благодаря ви за любезната подкрепа!"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11072,18 +11078,18 @@
             "state" : "translated",
             "value" : "多謝你的有心支持！"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Благодаря ви за любезната подкрепа!"
-          }
         }
       }
     },
     "The document is not editable." : {
       "comment" : "tooltip",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът не може да се редактира."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11179,18 +11185,18 @@
             "state" : "translated",
             "value" : "此文件無法編輯。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Документът не може да се редактира."
-          }
         }
       }
     },
     "Toolbar.comment.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коментирайте"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11292,18 +11298,18 @@
             "state" : "translated",
             "value" : "註解"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Коментирайте"
-          }
         }
       }
     },
     "Toolbar.comment.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коментиране или премахване на коментар"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11405,18 +11411,18 @@
             "state" : "translated",
             "value" : "將所選範圍加入/取消加入註解"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Коментиране или премахване на коментар"
-          }
         }
       }
     },
     "Toolbar.editable.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11518,18 +11524,18 @@
             "state" : "translated",
             "value" : "編輯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактиране"
-          }
         }
       }
     },
     "Toolbar.editable.tooltip.off" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предотвратете редактирането на документа"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11631,18 +11637,18 @@
             "state" : "translated",
             "value" : "防止文件被編輯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Предотвратете редактирането на документа"
-          }
         }
       }
     },
     "Toolbar.editable.tooltip.on" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешете редактиране на документа"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11744,18 +11750,18 @@
             "state" : "translated",
             "value" : "允許編輯文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разрешете редактиране на документа"
-          }
         }
       }
     },
     "Toolbar.emojiAndSymbols.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Емотикони и символи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11857,18 +11863,18 @@
             "state" : "translated",
             "value" : "表情與符號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Емотикони и символи"
-          }
         }
       }
     },
     "Toolbar.emojiAndSymbols.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи емотикони и символи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11970,18 +11976,18 @@
             "state" : "translated",
             "value" : "顯示表情與符號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи емотикони и символи"
-          }
         }
       }
     },
     "Toolbar.find.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Търсене"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12083,18 +12089,18 @@
             "state" : "translated",
             "value" : "尋找"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Търсене"
-          }
         }
       }
     },
     "Toolbar.find.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи „Търсене и замяна“"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12196,18 +12202,18 @@
             "state" : "translated",
             "value" : "顯示尋找與取代"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи „Търсене и замяна“"
-          }
         }
       }
     },
     "Toolbar.fonts.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шрифтове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12309,12 +12315,6 @@
             "state" : "translated",
             "value" : "字體"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шрифтове"
-          }
         }
       }
     },
@@ -12322,6 +12322,12 @@
       "comment" : "menu item header",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тип на шрифта"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12423,18 +12429,18 @@
             "state" : "translated",
             "value" : "字體類型"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тип на шрифта"
-          }
         }
       }
     },
     "Toolbar.fonts.menu.monospaced.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Еднопространствен"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12536,18 +12542,18 @@
             "state" : "translated",
             "value" : "等寬"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Еднопространствен"
-          }
         }
       }
     },
     "Toolbar.fonts.menu.showFonts.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи шрифтовете"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12649,18 +12655,18 @@
             "state" : "translated",
             "value" : "顯示字體"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи шрифтовете"
-          }
         }
       }
     },
     "Toolbar.fonts.menu.standard.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартен"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12762,18 +12768,18 @@
             "state" : "translated",
             "value" : "標準"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стандартен"
-          }
         }
       }
     },
     "Toolbar.fonts.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Промяна на шрифта"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12875,18 +12881,18 @@
             "state" : "translated",
             "value" : "更改字體"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Промяна на шрифта"
-          }
         }
       }
     },
     "Toolbar.indent.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "отстъп"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12988,18 +12994,18 @@
             "state" : "translated",
             "value" : "縮排"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "отстъп"
-          }
         }
       }
     },
     "Toolbar.indent.shiftLeft.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преместване наляво"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13101,18 +13107,18 @@
             "state" : "translated",
             "value" : "左移"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преместване наляво"
-          }
         }
       }
     },
     "Toolbar.indent.shiftLeft.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преместете линиите наляво"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13214,18 +13220,18 @@
             "state" : "translated",
             "value" : "將行移至左側"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преместете линиите наляво"
-          }
         }
       }
     },
     "Toolbar.indent.shiftRight.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Измести надясно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13327,18 +13333,18 @@
             "state" : "translated",
             "value" : "右移"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Измести надясно"
-          }
         }
       }
     },
     "Toolbar.indent.shiftRight.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преместете линиите надясно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13440,18 +13446,18 @@
             "state" : "translated",
             "value" : "將行移至右側"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преместете линиите надясно"
-          }
         }
       }
     },
     "Toolbar.indent.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избор на отстъп"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13553,18 +13559,18 @@
             "state" : "translated",
             "value" : "縮排選擇"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Избор на отстъп"
-          }
         }
       }
     },
     "Toolbar.indentGuides.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Водачи за отстъпи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13666,18 +13672,18 @@
             "state" : "translated",
             "value" : "縮排指引"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Водачи за отстъпи"
-          }
         }
       }
     },
     "Toolbar.indentGuides.tooltip.off" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи водачите за отстъп"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13779,18 +13785,18 @@
             "state" : "translated",
             "value" : "顯示縮排指引線"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи водачите за отстъп"
-          }
         }
       }
     },
     "Toolbar.indentGuides.tooltip.on" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрий водачите за отстъп"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13892,18 +13898,18 @@
             "state" : "translated",
             "value" : "隱藏縮排指引線"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скрий водачите за отстъп"
-          }
         }
       }
     },
     "Toolbar.inspector.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инспектор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14005,18 +14011,18 @@
             "state" : "translated",
             "value" : "檢閱器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Инспектор"
-          }
         }
       }
     },
     "Toolbar.inspector.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи инспектора"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14118,18 +14124,18 @@
             "state" : "translated",
             "value" : "顯示檢閱器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи инспектора"
-          }
         }
       }
     },
     "Toolbar.invisibles.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидими"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14231,18 +14237,18 @@
             "state" : "translated",
             "value" : "隱形符號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невидими"
-          }
         }
       }
     },
     "Toolbar.invisibles.tooltip.off" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи невидимите знаци"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14344,18 +14350,18 @@
             "state" : "translated",
             "value" : "顯示隱形字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи невидимите знаци"
-          }
         }
       }
     },
     "Toolbar.invisibles.tooltip.on" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрийте невидимите знаци"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14457,18 +14463,18 @@
             "state" : "translated",
             "value" : "隱藏隱形字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скрийте невидимите знаци"
-          }
         }
       }
     },
     "Toolbar.keepOnTop.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бъдете на върха"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14570,18 +14576,18 @@
             "state" : "translated",
             "value" : "保持在最上方"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бъдете на върха"
-          }
         }
       }
     },
     "Toolbar.keepOnTop.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дръжте прозореца винаги отгоре"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14683,18 +14689,18 @@
             "state" : "translated",
             "value" : "保持視窗總是在最上方"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дръжте прозореца винаги отгоре"
-          }
         }
       }
     },
     "Toolbar.print.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Печат"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14796,18 +14802,18 @@
             "state" : "translated",
             "value" : "列印"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Печат"
-          }
         }
       }
     },
     "Toolbar.print.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отпечатайте документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14909,12 +14915,6 @@
             "state" : "translated",
             "value" : "列印文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отпечатайте документ"
-          }
         }
       }
     },
@@ -14922,6 +14922,12 @@
       "comment" : "(label for the Share toolbar item is automatically set)",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Споделете файл с документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15023,18 +15029,18 @@
             "state" : "translated",
             "value" : "分享文件檔案"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Споделете файл с документ"
-          }
         }
       }
     },
     "Toolbar.spellCheck.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка на правописа"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15136,18 +15142,18 @@
             "state" : "translated",
             "value" : "檢查串字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверка на правописа"
-          }
         }
       }
     },
     "Toolbar.spellCheck.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи правопис и граматика"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15249,18 +15255,18 @@
             "state" : "translated",
             "value" : "顯示串字與文法檢查"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи правопис и граматика"
-          }
         }
       }
     },
     "Toolbar.syntax.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15362,12 +15368,6 @@
             "state" : "translated",
             "value" : "語法"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксис"
-          }
         }
       }
     },
@@ -15375,6 +15375,12 @@
       "comment" : "menu item header",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изтрито"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15476,12 +15482,6 @@
             "state" : "translated",
             "value" : "已刪除"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изтрито"
-          }
         }
       }
     },
@@ -15489,6 +15489,12 @@
       "comment" : "menu item header",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наскоро използван"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15590,18 +15596,18 @@
             "state" : "translated",
             "value" : "最近使用"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Наскоро използван"
-          }
         }
       }
     },
     "Toolbar.syntax.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Промяна на синтаксиса"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15703,18 +15709,18 @@
             "state" : "translated",
             "value" : "更改語法"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Промяна на синтаксиса"
-          }
         }
       }
     },
     "Toolbar.tabStyle.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стил на раздела"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15816,18 +15822,18 @@
             "state" : "translated",
             "value" : "定位符號樣式"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стил на раздела"
-          }
         }
       }
     },
     "Toolbar.tabStyle.menu.custom.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Персонализиран…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15929,12 +15935,6 @@
             "state" : "translated",
             "value" : "自訂⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Персонализиран…"
-          }
         }
       }
     },
@@ -15942,6 +15942,12 @@
       "comment" : "menu item header",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ширина на раздела"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16043,18 +16049,18 @@
             "state" : "translated",
             "value" : "定位符號間隔闊度"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ширина на раздела"
-          }
         }
       }
     },
     "Toolbar.tabStyle.menu.toggle.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай интервали за отстъп"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16156,18 +16162,18 @@
             "state" : "translated",
             "value" : "使用空格進行縮排"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Използвай интервали за отстъп"
-          }
         }
       }
     },
     "Toolbar.tabStyle.tooltip.off" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай интервали за отстъп"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16269,18 +16275,18 @@
             "state" : "translated",
             "value" : "使用空格進行縮排"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Използвай интервали за отстъп"
-          }
         }
       }
     },
     "Toolbar.tabStyle.tooltip.on" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай табулации за отстъп"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16382,18 +16388,18 @@
             "state" : "translated",
             "value" : "使用定位符號進行縮排"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Използвай табулации за отстъп"
-          }
         }
       }
     },
     "Toolbar.textOrientation.horizontalText.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хоризонтална"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16494,12 +16500,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "橫書"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хоризонтална"
           }
         }
       }
@@ -16507,6 +16507,12 @@
     "Toolbar.textOrientation.horizontalText.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хоризонтална"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16608,18 +16614,18 @@
             "state" : "translated",
             "value" : "橫書"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хоризонтална"
-          }
         }
       }
     },
     "Toolbar.textOrientation.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ориентация на текста"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16721,18 +16727,18 @@
             "state" : "translated",
             "value" : "文字方向"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ориентация на текста"
-          }
         }
       }
     },
     "Toolbar.textOrientation.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Превключване на ориентацията на текста"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16834,18 +16840,18 @@
             "state" : "translated",
             "value" : "切換文字方向"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Превключване на ориентацията на текста"
-          }
         }
       }
     },
     "Toolbar.textOrientation.verticalText.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вертикална"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16946,12 +16952,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "直書"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вертикална"
           }
         }
       }
@@ -16959,6 +16959,12 @@
     "Toolbar.textOrientation.verticalText.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вертикална"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17059,12 +17065,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "直書"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вертикална"
           }
         }
       }
@@ -17073,6 +17073,12 @@
       "comment" : "only in Touch Bar",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Действителен размер"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17174,18 +17180,18 @@
             "state" : "translated",
             "value" : "實際大小"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Действителен размер"
-          }
         }
       }
     },
     "Toolbar.textSize.bigger.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По-голям"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17287,18 +17293,18 @@
             "state" : "translated",
             "value" : "放大"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "По-голям"
-          }
         }
       }
     },
     "Toolbar.textSize.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер на текста"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17400,18 +17406,18 @@
             "state" : "translated",
             "value" : "字體大小"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Размер на текста"
-          }
         }
       }
     },
     "Toolbar.textSize.small.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Увеличете размера на текста"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17513,18 +17519,18 @@
             "state" : "translated",
             "value" : "放大文字大小"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Увеличете размера на текста"
-          }
         }
       }
     },
     "Toolbar.textSize.smaller.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По-малък"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17626,18 +17632,18 @@
             "state" : "translated",
             "value" : "縮小"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "По-малък"
-          }
         }
       }
     },
     "Toolbar.textSize.smaller.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намалете размера на текста"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17739,18 +17745,18 @@
             "state" : "translated",
             "value" : "縮小文字大小"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Намалете размера на текста"
-          }
         }
       }
     },
     "Toolbar.textSize.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Промяна на размера на текста"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17852,18 +17858,18 @@
             "state" : "translated",
             "value" : "更改文字大小"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Промяна на размера на текста"
-          }
         }
       }
     },
     "Toolbar.wrapLines.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обвиване на линии"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17965,18 +17971,18 @@
             "state" : "translated",
             "value" : "換行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Обвиване на линии"
-          }
         }
       }
     },
     "Toolbar.wrapLines.tooltip.off" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Увийте линии"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18078,18 +18084,18 @@
             "state" : "translated",
             "value" : "換行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Увийте линии"
-          }
         }
       }
     },
     "Toolbar.wrapLines.tooltip.on" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разопаковане на редове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18191,18 +18197,18 @@
             "state" : "translated",
             "value" : "取消換行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разопаковане на редове"
-          }
         }
       }
     },
     "Toolbar.writingDirection.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Посока на писане"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18304,18 +18310,18 @@
             "state" : "translated",
             "value" : "書寫方向"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Посока на писане"
-          }
         }
       }
     },
     "Toolbar.writingDirection.leftToRight.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отляво надясно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18417,18 +18423,18 @@
             "state" : "translated",
             "value" : "由左至右"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отляво надясно"
-          }
         }
       }
     },
     "Toolbar.writingDirection.leftToRight.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отляво надясно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18530,18 +18536,18 @@
             "state" : "translated",
             "value" : "由左至右"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отляво надясно"
-          }
         }
       }
     },
     "Toolbar.writingDirection.rightToLeft.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "От дясно на ляво"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18643,18 +18649,18 @@
             "state" : "translated",
             "value" : "由右至左"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "От дясно на ляво"
-          }
         }
       }
     },
     "Toolbar.writingDirection.rightToLeft.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "От дясно на ляво"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18756,18 +18762,18 @@
             "state" : "translated",
             "value" : "由右至左"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "От дясно на ляво"
-          }
         }
       }
     },
     "Toolbar.writingDirection.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Променете посоката на писане"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18868,12 +18874,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更改書寫方向"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Променете посоката на писане"
           }
         }
       }

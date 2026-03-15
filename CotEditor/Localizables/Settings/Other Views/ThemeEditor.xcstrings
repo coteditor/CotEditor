@@ -3,6 +3,12 @@
   "strings" : {
     "Author:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автор:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98,17 +104,17 @@
             "state" : "translated",
             "value" : "作者："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автор:"
-          }
         }
       }
     },
     "Background:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "фон:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -204,17 +210,17 @@
             "state" : "translated",
             "value" : "背景："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "фон:"
-          }
         }
       }
     },
     "Current Line:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущ ред:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -310,17 +316,17 @@
             "state" : "translated",
             "value" : "現用行："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текущ ред:"
-          }
         }
       }
     },
     "Cursor:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Курсор:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -416,17 +422,17 @@
             "state" : "translated",
             "value" : "游標："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Курсор:"
-          }
         }
       }
     },
     "Description:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -522,17 +528,17 @@
             "state" : "translated",
             "value" : "描述："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Описание:"
-          }
         }
       }
     },
     "Highlight:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Акцент:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -628,17 +634,17 @@
             "state" : "translated",
             "value" : "重點標示："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Акцент:"
-          }
         }
       }
     },
     "Invisibles:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидими:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -734,17 +740,17 @@
             "state" : "translated",
             "value" : "隱形符號："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невидими:"
-          }
         }
       }
     },
     "License:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лиценз:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -840,18 +846,18 @@
             "state" : "translated",
             "value" : "許可證："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лиценз:"
-          }
         }
       }
     },
     "Not defined" : {
       "comment" : "placeholder",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не е дефинирано"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -947,17 +953,17 @@
             "state" : "translated",
             "value" : "未定義"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не е дефинирано"
-          }
         }
       }
     },
     "Reload All Themes" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Презареди всички теми"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1053,17 +1059,17 @@
             "state" : "translated",
             "value" : "重新載入所有主題"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Презареди всички теми"
-          }
         }
       }
     },
     "Selection:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избор:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1159,17 +1165,17 @@
             "state" : "translated",
             "value" : "選擇："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Избор:"
-          }
         }
       }
     },
     "Show theme file information" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи информация за файла на темата"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1265,17 +1271,17 @@
             "state" : "translated",
             "value" : "顯示主題檔案資訊"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи информация за файла на темата"
-          }
         }
       }
     },
     "Syntax" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1371,17 +1377,17 @@
             "state" : "translated",
             "value" : "語法"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксис"
-          }
         }
       }
     },
     "Text:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1477,17 +1483,17 @@
             "state" : "translated",
             "value" : "文字："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текст:"
-          }
         }
       }
     },
     "Theme" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1589,17 +1595,17 @@
             "state" : "translated",
             "value" : "主題"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тема"
-          }
         }
       }
     },
     "Theme Editor" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактор на теми"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1695,17 +1701,17 @@
             "state" : "translated",
             "value" : "主題編輯器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактор на теми"
-          }
         }
       }
     },
     "URL:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1801,18 +1807,18 @@
             "state" : "translated",
             "value" : "URL："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "URL:"
-          }
         }
       }
     },
     "Use system color" : {
       "comment" : "toggle button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай системния цвят"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1907,12 +1913,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用系統顏色"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Използвай системния цвят"
           }
         }
       }

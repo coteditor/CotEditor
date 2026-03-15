@@ -4,6 +4,12 @@
     "Syntax.Kind.code.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Код"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -105,18 +111,18 @@
             "state" : "translated",
             "value" : "程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Код"
-          }
         }
       }
     },
     "Syntax.Kind.general.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -218,18 +224,18 @@
             "state" : "translated",
             "value" : "一般"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Общи"
-          }
         }
       }
     },
     "Syntax.Outline.Kind.container.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Контейнер"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -277,18 +283,18 @@
             "state" : "translated",
             "value" : "容器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Контейнер"
-          }
         }
       }
     },
     "Syntax.Outline.Kind.function.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Функция"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -336,18 +342,18 @@
             "state" : "translated",
             "value" : "函數"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Функция"
-          }
         }
       }
     },
     "Syntax.Outline.Kind.heading.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заглавие"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -395,18 +401,18 @@
             "state" : "translated",
             "value" : "標題"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Заглавие"
-          }
         }
       }
     },
     "Syntax.Outline.Kind.mark.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Маркер"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -454,18 +460,18 @@
             "state" : "translated",
             "value" : "標示"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Маркер"
-          }
         }
       }
     },
     "Syntax.Outline.Kind.reference.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Препратка"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -513,18 +519,18 @@
             "state" : "translated",
             "value" : "參考"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Препратка"
-          }
         }
       }
     },
     "Syntax.Outline.Kind.separator.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделител"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -626,18 +632,18 @@
             "state" : "translated",
             "value" : "分隔符"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разделител"
-          }
         }
       }
     },
     "Syntax.Outline.Kind.title.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заглавие"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -739,18 +745,18 @@
             "state" : "translated",
             "value" : "標題"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Заглавие"
-          }
         }
       }
     },
     "Syntax.Outline.Kind.value.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стойност"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -798,18 +804,18 @@
             "state" : "translated",
             "value" : "值"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стойност"
-          }
         }
       }
     },
     "SyntaxType.attributes.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Атрибути"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -911,18 +917,18 @@
             "state" : "translated",
             "value" : "屬性"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Атрибути"
-          }
         }
       }
     },
     "SyntaxType.characters.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1024,18 +1030,18 @@
             "state" : "translated",
             "value" : "字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Символи"
-          }
         }
       }
     },
     "SyntaxType.commands.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Команди"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1137,18 +1143,18 @@
             "state" : "translated",
             "value" : "指令"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Команди"
-          }
         }
       }
     },
     "SyntaxType.comments.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коментари"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1250,18 +1256,18 @@
             "state" : "translated",
             "value" : "註解"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Коментари"
-          }
         }
       }
     },
     "SyntaxType.keywords.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключови думи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1363,18 +1369,18 @@
             "state" : "translated",
             "value" : "關鍵字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ключови думи"
-          }
         }
       }
     },
     "SyntaxType.numbers.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Числа"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1476,18 +1482,18 @@
             "state" : "translated",
             "value" : "數字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Числа"
-          }
         }
       }
     },
     "SyntaxType.strings.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Низове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1589,18 +1595,18 @@
             "state" : "translated",
             "value" : "字串"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Низове"
-          }
         }
       }
     },
     "SyntaxType.types.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Типове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1702,18 +1708,18 @@
             "state" : "translated",
             "value" : "種類"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Типове"
-          }
         }
       }
     },
     "SyntaxType.values.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стойности"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1815,18 +1821,18 @@
             "state" : "translated",
             "value" : "值"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стойности"
-          }
         }
       }
     },
     "SyntaxType.variables.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Променливи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1927,12 +1933,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "變數"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Променливи"
           }
         }
       }

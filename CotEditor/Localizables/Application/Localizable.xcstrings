@@ -4,6 +4,12 @@
     " (%@)" : {
       "comment" : "general format for additional string in parentheses following other string (Note that there is a space before the parentheses. In some languages, this space should be removed.)",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (%@)"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,18 +105,18 @@
             "state" : "translated",
             "value" : "（%@）"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : " (%@)"
-          }
         }
       }
     },
     "%@:" : {
       "comment" : "format for control labels followed by a colon",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -206,18 +212,18 @@
             "state" : "translated",
             "value" : "%@："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@:"
-          }
         }
       }
     },
     "%@: %@" : {
       "comment" : "set of label and value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -319,18 +325,18 @@
             "state" : "translated",
             "value" : "%1$@：%2$@"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@: %2$@"
-          }
         }
       }
     },
     "Action.add.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добави"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -432,18 +438,18 @@
             "state" : "translated",
             "value" : "加入"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Добави"
-          }
         }
       }
     },
     "Action.add.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добави нов елемент"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -545,18 +551,18 @@
             "state" : "translated",
             "value" : "加入新項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Добави нов елемент"
-          }
         }
       }
     },
     "Action.delete.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изтрий"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -658,18 +664,18 @@
             "state" : "translated",
             "value" : "刪除"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изтрий"
-          }
         }
       }
     },
     "Action.delete.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изтрий избраните елементи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -771,18 +777,18 @@
             "state" : "translated",
             "value" : "刪除已選擇的項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изтрий избраните елементи"
-          }
         }
       }
     },
     "Action.duplicate.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дублирай"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -884,18 +890,18 @@
             "state" : "translated",
             "value" : "製作副本"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дублирай"
-          }
         }
       }
     },
     "Action.duplicate.named.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дублирай „%@“"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -997,18 +1003,18 @@
             "state" : "translated",
             "value" : "製作「%@」的副本"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дублирай „%@“"
-          }
         }
       }
     },
     "Action.edit.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактирай"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1110,18 +1116,18 @@
             "state" : "translated",
             "value" : "編輯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактирай"
-          }
         }
       }
     },
     "Action.export.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Експортирай…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1223,18 +1229,18 @@
             "state" : "translated",
             "value" : "輸出⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Експортирай…"
-          }
         }
       }
     },
     "Action.export.named.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Експортирай „%@“…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1336,18 +1342,18 @@
             "state" : "translated",
             "value" : "輸出「%@」⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Експортирай „%@“…"
-          }
         }
       }
     },
     "Action.import.ellipsis.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортирай…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1449,18 +1455,18 @@
             "state" : "translated",
             "value" : "輸入⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Импортирай…"
-          }
         }
       }
     },
     "Action.import.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортирай"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1562,18 +1568,18 @@
             "state" : "translated",
             "value" : "輸入"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Импортирай"
-          }
         }
       }
     },
     "Action.rename.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преименувай"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1675,18 +1681,18 @@
             "state" : "translated",
             "value" : "重新命名"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преименувай"
-          }
         }
       }
     },
     "Action.rename.named.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преименувай „%@“"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1788,18 +1794,18 @@
             "state" : "translated",
             "value" : "重新命名「%@」"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преименувай „%@“"
-          }
         }
       }
     },
     "Action.replace.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замени"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1901,18 +1907,18 @@
             "state" : "translated",
             "value" : "取代"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замени"
-          }
         }
       }
     },
     "Action.restore.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Възстанови"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2014,18 +2020,18 @@
             "state" : "translated",
             "value" : "還原"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Възстанови"
-          }
         }
       }
     },
     "Action.restore.named.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Възстанови „%@“"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2127,18 +2133,18 @@
             "state" : "translated",
             "value" : "還原「%@」"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Възстанови „%@“"
-          }
         }
       }
     },
     "Action.restoreDefaults.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Възстанови настройките по подразбиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2240,18 +2246,18 @@
             "state" : "translated",
             "value" : "還原預設值"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Възстанови настройките по подразбиране"
-          }
         }
       }
     },
     "Action.revealInFinder.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи във Finder"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2353,18 +2359,18 @@
             "state" : "translated",
             "value" : "在Finder中顯示"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи във Finder"
-          }
         }
       }
     },
     "Action.revealInFinder.named.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи „%@“ във Finder"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2466,18 +2472,18 @@
             "state" : "translated",
             "value" : "在Finder中顯示「%@」"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи „%@“ във Finder"
-          }
         }
       }
     },
     "BadgeType.invisible.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидимо кафе"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2579,18 +2585,18 @@
             "state" : "translated",
             "value" : "隱藏的咖啡"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невидимо кафе"
-          }
         }
       }
     },
     "BadgeType.mug.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чаша кафе"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2692,12 +2698,6 @@
             "state" : "translated",
             "value" : "咖啡杯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Чаша кафе"
-          }
         }
       }
     },
@@ -2705,6 +2705,12 @@
       "comment" : "label for action menu button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Действия"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2806,18 +2812,18 @@
             "state" : "translated",
             "value" : "動作"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Действия"
-          }
         }
       }
     },
     "Cancel" : {
       "extractionState" : "manual",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отказ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2919,12 +2925,6 @@
             "state" : "translated",
             "value" : "取消"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отказ"
-          }
         }
       }
     },
@@ -2932,6 +2932,12 @@
       "comment" : "Refer to the same expression by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Това действие не може да бъде отменено."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3033,18 +3039,18 @@
             "state" : "translated",
             "value" : "此動作無法還原。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Това действие не може да бъде отменено."
-          }
         }
       }
     },
     "DeletionConfirmation.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сигурни ли сте, че искате да изтриете „%@“?"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3146,18 +3152,18 @@
             "state" : "translated",
             "value" : "確定要刪除「%@」嗎？"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сигурни ли сте, че искате да изтриете „%@“?"
-          }
         }
       }
     },
     "DirectoryDocumentError.alreadyOpen.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлът „%@“ вече е отворен в друг прозорец."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3259,12 +3265,6 @@
             "state" : "translated",
             "value" : "檔案「%@」已在另一個視窗中開啟。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файлът „%@“ вече е отворен в друг прозорец."
-          }
         }
       }
     },
@@ -3272,6 +3272,12 @@
       "comment" : "“it” is the file in description.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За да го отворите в този прозорец, първо затворете съществуващия прозорец."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3373,12 +3379,6 @@
             "state" : "translated",
             "value" : "如要在此視窗中開啟它，請先關閉現有視窗。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "За да го отворите в този прозорец, първо затворете съществуващия прозорец."
-          }
         }
       }
     },
@@ -3386,6 +3386,12 @@
       "comment" : "Refer the same sentence in AppKit.framework by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не запазвай"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3487,12 +3493,6 @@
             "state" : "translated",
             "value" : "不儲存"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не запазвай"
-          }
         }
       }
     },
@@ -3500,6 +3500,12 @@
       "comment" : "For the first sentence, refer the same sentence in AppKit.framework by Apple. For the latter one, refer the DocumentSavingAlert.lossyEncoding.recoverySuggestion.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вашите промени ще бъдат загубени, ако не ги запазите. Несъвместимите знаци се заместват или премахват при запазване."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3601,12 +3607,6 @@
             "state" : "translated",
             "value" : "如不儲存，將會遺失所作的變更。不相容的字元在儲存時被替代或移除。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вашите промени ще бъдат загубени, ако не ги запазите. Несъвместимите знаци се заместват или премахват при запазване."
-          }
         }
       }
     },
@@ -3614,6 +3614,12 @@
       "comment" : "Refer the same sentence in AppKit.framework by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли да запазите промените в документа „%@“?"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3715,18 +3721,18 @@
             "state" : "translated",
             "value" : "你要儲存對文件「%@」所作的變更嗎？"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Искате ли да запазите промените в документа „%@“?"
-          }
         }
       }
     },
     "DocumentError.notEditable.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът не може да се редактира."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3828,18 +3834,18 @@
             "state" : "translated",
             "value" : "無法編輯文件。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Документът не може да се редактира."
-          }
         }
       }
     },
     "DocumentError.notEditable.recoverySuggestion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За да направите промени в документа, първо разрешете редактирането."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3941,18 +3947,18 @@
             "state" : "translated",
             "value" : "如要更改文件，請先允許編輯。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "За да направите промени в документа, първо разрешете редактирането."
-          }
         }
       }
     },
     "DocumentOpeningError.binaryFile.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлът „%@“ не изглежда като текстови данни."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4054,12 +4060,6 @@
             "state" : "translated",
             "value" : "檔案「%@」似乎不是文字資料。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файлът „%@“ не изглежда като текстови данни."
-          }
         }
       }
     },
@@ -4067,6 +4067,12 @@
       "comment" : "%@ is a file type",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлът изглежда е %@.\n\nНаистина ли искате да отворите файла?"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4168,12 +4174,6 @@
             "state" : "translated",
             "value" : "檔案似乎是%@。\n\n確定要開啟󠄁檔案嗎？"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файлът изглежда е %@.\n\nНаистина ли искате да отворите файла?"
-          }
         }
       }
     },
@@ -4181,6 +4181,12 @@
       "comment" : "string that is inserted as the variable (%@) in the binary file alert when the type of file cannot be determined",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "непознат тип"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4282,12 +4288,6 @@
             "state" : "translated",
             "value" : "未知的類型"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "непознат тип"
-          }
         }
       }
     },
@@ -4295,6 +4295,12 @@
       "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4396,18 +4402,18 @@
             "state" : "translated",
             "value" : "開啟󠄁"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори"
-          }
         }
       }
     },
     "DocumentOpeningError.tooLarge.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлът „%1$@“ е с размер %2$@."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4509,18 +4515,18 @@
             "state" : "translated",
             "value" : "檔案「%1$@」的大小為%2$@。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файлът „%1$@“ е с размер %2$@."
-          }
         }
       }
     },
     "DocumentOpeningError.tooLarge.recoverySuggestion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отварянето на такъв голям файл може да забави приложението или да спре да реагира.\n\nНаистина ли искате да отворите файла?"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4622,12 +4628,6 @@
             "state" : "translated",
             "value" : "開啟󠄁此大型檔案可能會令應用程式執行緩慢或無回應。\n\n確定要開啟󠄁檔案嗎？"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отварянето на такъв голям файл може да забави приложението или да спре да реагира.\n\nНаистина ли искате да отворите файла?"
-          }
         }
       }
     },
@@ -4635,6 +4635,12 @@
       "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прегледай несъвместимите знаци"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4736,12 +4742,6 @@
             "state" : "translated",
             "value" : "檢視不相容的字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Прегледай несъвместимите знаци"
-          }
         }
       }
     },
@@ -4749,6 +4749,12 @@
       "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запази наличния текст"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4850,12 +4856,6 @@
             "state" : "translated",
             "value" : "儲存可用的文字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запази наличния текст"
-          }
         }
       }
     },
@@ -4863,6 +4863,12 @@
       "comment" : "“save anyway” is the standard phrase in macOS. Refer the Apple's translation.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Несъвместимите знаци се заместват или премахват при запазване. Искате ли все пак да запазите файла?"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4964,18 +4970,18 @@
             "state" : "translated",
             "value" : "不相容的字元在儲存時被替代或移除。你要強制儲存嗎？"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Несъвместимите знаци се заместват или премахват при запазване. Искате ли все пак да запазите файла?"
-          }
         }
       }
     },
     "Done" : {
       "extractionState" : "manual",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5077,18 +5083,18 @@
             "state" : "translated",
             "value" : "完成"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Готово"
-          }
         }
       }
     },
     "EncodingChangeAlert.button.convert" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразувай"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5190,18 +5196,18 @@
             "state" : "translated",
             "value" : "轉換"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преобразувай"
-          }
         }
       }
     },
     "EncodingChangeAlert.button.reinterpret" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преинтерпретирай"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5303,18 +5309,18 @@
             "state" : "translated",
             "value" : "重新解讀"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преинтерпретирай"
-          }
         }
       }
     },
     "EncodingChangeAlert.informativeText" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли документът да се преобразува или да се преинтерпретира с „%@“?"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5416,18 +5422,18 @@
             "state" : "translated",
             "value" : "你要使用「%@」來轉換或重新解讀此文件嗎？"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Искате ли документът да се преобразува или да се преинтерпретира с „%@“?"
-          }
         }
       }
     },
     "EncodingChangeAlert.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Промяна на кодирането на текста"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5529,12 +5535,6 @@
             "state" : "translated",
             "value" : "更改文字編碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Промяна на кодирането на текста"
-          }
         }
       }
     },
@@ -5542,6 +5542,12 @@
       "comment" : "duplicated form of filename with number",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ копие %2$lld"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5643,12 +5649,6 @@
             "state" : "translated",
             "value" : "%1$@的複製%2$lld"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ копие %2$lld"
-          }
         }
       }
     },
@@ -5656,6 +5656,12 @@
       "comment" : "duplicated form of filename",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ копие"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5757,18 +5763,18 @@
             "state" : "translated",
             "value" : "%@的複製"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ копие"
-          }
         }
       }
     },
     "FileDropItem.Variable.absolutePath.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Абсолютният път на изпуснатия файл."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5870,18 +5876,18 @@
             "state" : "translated",
             "value" : "拖放檔案的絕對路徑。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Абсолютният път на изпуснатия файл."
-          }
         }
       }
     },
     "FileDropItem.Variable.directory.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името на родителската директория на изпуснатия файл."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5983,18 +5989,18 @@
             "state" : "translated",
             "value" : "拖放檔案的上層目錄名稱。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Името на родителската директория на изпуснатия файл."
-          }
         }
       }
     },
     "FileDropItem.Variable.fileContent.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Ако изпуснатият файл е текстов файл) съдържанието на файла."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6096,18 +6102,18 @@
             "state" : "translated",
             "value" : "檔案內容（如拖放檔案是文字檔案）。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(Ако изпуснатият файл е текстов файл) съдържанието на файла."
-          }
         }
       }
     },
     "FileDropItem.Variable.fileExtension.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширението на изпуснатия файл."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6209,18 +6215,18 @@
             "state" : "translated",
             "value" : "拖放檔案的副檔名。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширението на изпуснатия файл."
-          }
         }
       }
     },
     "FileDropItem.Variable.fileExtensionLowercase.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширението на изпуснатия файл (преобразувано в малки букви)."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6322,18 +6328,18 @@
             "state" : "translated",
             "value" : "拖放檔案的副檔名（轉換成小寫）。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширението на изпуснатия файл (преобразувано в малки букви)."
-          }
         }
       }
     },
     "FileDropItem.Variable.fileExtensionUppercase.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширението на изпуснатия файл (преобразувано в главни букви)."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6435,18 +6441,18 @@
             "state" : "translated",
             "value" : "拖放檔案的副檔名（轉換成大寫）。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширението на изпуснатия файл (преобразувано в главни букви)."
-          }
         }
       }
     },
     "FileDropItem.Variable.filename.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името на изпуснатия файл, включително разширението (ако съществува)."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6548,18 +6554,18 @@
             "state" : "translated",
             "value" : "拖放檔案的名稱，包括副檔名（如存在）。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Името на изпуснатия файл, включително разширението (ако съществува)."
-          }
         }
       }
     },
     "FileDropItem.Variable.filenameWithoutExtension.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името на изпуснатия файл без разширение."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6661,18 +6667,18 @@
             "state" : "translated",
             "value" : "拖放檔案的名稱，不包括副檔名。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Името на изпуснатия файл без разширение."
-          }
         }
       }
     },
     "FileDropItem.Variable.imageHeight.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Ако изпуснатият файл е изображение) височина на изображението."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6774,18 +6780,18 @@
             "state" : "translated",
             "value" : "影像高度（如拖放檔案是影像）。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(Ако изпуснатият файл е изображение) височина на изображението."
-          }
         }
       }
     },
     "FileDropItem.Variable.imageWidth.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Ако изпуснатият файл е изображение) ширина на изображението."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6887,18 +6893,18 @@
             "state" : "translated",
             "value" : "影像闊度（如拖放檔案是影像）。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(Ако изпуснатият файл е изображение) ширина на изображението."
-          }
         }
       }
     },
     "FileDropItem.Variable.relativePath.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Относителният път между изпуснатия файл и документа."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7000,18 +7006,18 @@
             "state" : "translated",
             "value" : "拖放檔案與文件之間的相對路徑。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Относителният път между изпуснатия файл и документа."
-          }
         }
       }
     },
     "FilterField.placeholder" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Филтър"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7113,18 +7119,18 @@
             "state" : "translated",
             "value" : "過濾"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Филтър"
-          }
         }
       }
     },
     "FilterField.recentMenu.clear.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изчисти последните филтри"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7226,18 +7232,18 @@
             "state" : "translated",
             "value" : "清除最近的過濾條件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изчисти последните филтри"
-          }
         }
       }
     },
     "FilterField.recentMenu.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последни филтри"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7339,18 +7345,18 @@
             "state" : "translated",
             "value" : "最近的過濾條件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Последни филтри"
-          }
         }
       }
     },
     "FilterField.recentMenu.noItem.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма последни филтри"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7452,12 +7458,6 @@
             "state" : "translated",
             "value" : "無最近的過濾條件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Няма последни филтри"
-          }
         }
       }
     },
@@ -7465,6 +7465,12 @@
       "comment" : "message in the Open dialog to grant the access permission to open an alias location.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори първоначалното местоположение, за да предоставиш достъп на CotEditor."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7566,12 +7572,6 @@
             "state" : "translated",
             "value" : "開啟原始位置以授予CotEditor取用權限。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори първоначалното местоположение, за да предоставиш достъп на CotEditor."
-          }
         }
       }
     },
@@ -7579,6 +7579,12 @@
       "comment" : "%@ is a name of a setting. Refer to the same expression by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ вече съществува. Искате ли да го замените?"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7680,12 +7686,6 @@
             "state" : "translated",
             "value" : "「%@」已存在。要取代嗎？"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "„%@“ вече съществува. Искате ли да го замените?"
-          }
         }
       }
     },
@@ -7693,6 +7693,12 @@
       "comment" : "Refer to similar expressions by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Персонализирана настройка със същото име вече съществува. Замяната му ще презапише текущото му съдържание."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7794,18 +7800,18 @@
             "state" : "translated",
             "value" : "相同名稱的自訂設定已經存在。如取代，將會覆寫目前的內容。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Персонализирана настройка със същото име вече съществува. Замяната му ще презапише текущото му съдържание."
-          }
         }
       }
     },
     "InconsistentLineEndingAlert.button.convert" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразувай"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7907,18 +7913,18 @@
             "state" : "translated",
             "value" : "轉換"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преобразувай"
-          }
         }
       }
     },
     "InconsistentLineEndingAlert.button.ignore" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорирай"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8020,18 +8026,18 @@
             "state" : "translated",
             "value" : "忽略"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Игнорирай"
-          }
         }
       }
     },
     "InconsistentLineEndingAlert.button.review" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преглед"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8133,18 +8139,18 @@
             "state" : "translated",
             "value" : "檢視"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преглед"
-          }
         }
       }
     },
     "InconsistentLineEndingAlert.informativeText" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли всички краища на редовете да се преобразуват до %@, най-често използваният край на ред в този документ?"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8246,18 +8252,18 @@
             "state" : "translated",
             "value" : "你要將所有每行結尾轉換成%@（此文件中最常用的每行結尾）嗎？"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Искате ли всички краища на редовете да се преобразуват до %@, най-често използваният край на ред в този документ?"
-          }
         }
       }
     },
     "InconsistentLineEndingAlert.informativeText.notEditable" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Най-често използваният край на ред в този документ е %@."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8359,18 +8365,18 @@
             "state" : "translated",
             "value" : "此文件中最常用的每行結尾是%@。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Най-често използваният край на ред в този документ е %@."
-          }
         }
       }
     },
     "InconsistentLineEndingAlert.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът има смесени краища на редовете."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8472,12 +8478,6 @@
             "state" : "translated",
             "value" : "此文件的每行結尾不一致。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Документът има смесени краища на редовете."
-          }
         }
       }
     },
@@ -8485,6 +8485,12 @@
       "comment" : "toggle button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не питайте отново за този документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8586,18 +8592,18 @@
             "state" : "translated",
             "value" : "不要再詢問此文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не питайте отново за този документ"
-          }
         }
       }
     },
     "InvalidNameError.duplicated.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името „%@“ вече е заето."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8699,18 +8705,18 @@
             "state" : "translated",
             "value" : "名稱「%@」已經被使用。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Името „%@“ вече е заето."
-          }
         }
       }
     },
     "InvalidNameError.empty.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името не може да бъде празно."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8812,12 +8818,6 @@
             "state" : "translated",
             "value" : "名稱不能留空。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Името не може да бъде празно."
-          }
         }
       }
     },
@@ -8825,6 +8825,12 @@
       "comment" : "%@ is the character invalid for filename",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името не може да съдържа „%@“."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8926,18 +8932,18 @@
             "state" : "translated",
             "value" : "名稱不能包括「%@」。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Името не може да съдържа „%@“."
-          }
         }
       }
     },
     "InvalidNameError.newLine.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името не може да съдържа нови редове."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9039,18 +9045,18 @@
             "state" : "translated",
             "value" : "名稱不能包括新行。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Името не може да съдържа нови редове."
-          }
         }
       }
     },
     "InvalidNameError.recoverySuggestion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете друго име."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9152,18 +9158,18 @@
             "state" : "translated",
             "value" : "請選擇其他名稱。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете друго име."
-          }
         }
       }
     },
     "InvalidNameError.reserved.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името „%@“ е запазено."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9265,18 +9271,18 @@
             "state" : "translated",
             "value" : "名稱「%@」已被保留使用。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Името „%@“ е запазено."
-          }
         }
       }
     },
     "InvalidNameError.startWithDot.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името не може да започва с „.“."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9378,18 +9384,18 @@
             "state" : "translated",
             "value" : "名稱不能以「.」開頭。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Името не може да започва с „.“."
-          }
         }
       }
     },
     "InvalidNameError.tooLong.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Името е твърде дълго."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9491,12 +9497,6 @@
             "state" : "translated",
             "value" : "名稱太長。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Името е твърде дълго."
-          }
         }
       }
     },
@@ -9504,6 +9504,12 @@
       "comment" : "%1$@ is a link to a web page and %2$@ is an e-mail",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попълнете шаблона по-долу, след което го публикувайте в %1$@ или го изпратете до %2$@. Имайте предвид, че съдържанието на имейла може да бъде споделено на страницата с проблеми. Напишете съобщението на английски или японски."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9605,18 +9611,18 @@
             "state" : "translated",
             "value" : "依循以下模板填寫，然後將其發佈至%1$@或傳送至%2$@。請注意，可能會在問題頁面上分享你的電子郵件內容。請用英文或日文填寫你的訊息。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Попълнете шаблона по-долу, след което го публикувайте в %1$@ или го изпратете до %2$@. Имайте предвид, че съдържанието на имейла може да бъде споделено на страницата с проблеми. Напишете съобщението на английски или японски."
-          }
         }
       }
     },
     "IssueReport.Heading.environment" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Среда"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9718,18 +9724,18 @@
             "state" : "translated",
             "value" : "環境"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Среда"
-          }
         }
       }
     },
     "IssueReport.Heading.expectedResult" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очакван резултат"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9831,18 +9837,18 @@
             "state" : "translated",
             "value" : "預期結果"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Очакван резултат"
-          }
         }
       }
     },
     "IssueReport.Heading.shortDescription" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кратко описание"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9944,18 +9950,18 @@
             "state" : "translated",
             "value" : "簡短描述"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кратко описание"
-          }
         }
       }
     },
     "IssueReport.Heading.stepsToReproduce" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стъпки за възпроизвеждане на проблема"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10057,12 +10063,6 @@
             "state" : "translated",
             "value" : "重現問題的步驟"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стъпки за възпроизвеждане на проблема"
-          }
         }
       }
     },
@@ -10070,6 +10070,12 @@
       "comment" : "document title",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доклад за проблем"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10171,18 +10177,18 @@
             "state" : "translated",
             "value" : "回報問題"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Доклад за проблем"
-          }
         }
       }
     },
     "ItemSelection.multiple.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избрани са няколко елемента"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10284,18 +10290,18 @@
             "state" : "translated",
             "value" : "已選擇多個項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Избрани са няколко елемента"
-          }
         }
       }
     },
     "ItemSelection.zero.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма избран елемент"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10397,18 +10403,18 @@
             "state" : "translated",
             "value" : "未選擇項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Няма избран елемент"
-          }
         }
       }
     },
     "Last modified on %@" : {
       "comment" : "print header/footer (%@ is date)",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последна промяна на %@"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10504,12 +10510,6 @@
             "state" : "translated",
             "value" : "上次修改時間：%@"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Последна промяна на %@"
-          }
         }
       }
     },
@@ -10517,6 +10517,12 @@
       "comment" : "accessibility label for link button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори URL"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10618,18 +10624,18 @@
             "state" : "translated",
             "value" : "跳去URL"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори URL"
-          }
         }
       }
     },
     "LossyEncodingError.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът съдържа знаци, несъвместими с „%@“."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10731,12 +10737,6 @@
             "state" : "translated",
             "value" : "此文件包括與「%@」不相容的字元。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Документът съдържа знаци, несъвместими с „%@“."
-          }
         }
       }
     },
@@ -10744,6 +10744,12 @@
       "comment" : "button label",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Смени кодирането"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10845,18 +10851,18 @@
             "state" : "translated",
             "value" : "更改編碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Смени кодирането"
-          }
         }
       }
     },
     "LossyEncodingError.recoverySuggestion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Несъвместимите знаци се заместват или премахват при запазване. Искате ли да промените кодирането на текста и да прегледате несъвместимите знаци?"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10958,18 +10964,18 @@
             "state" : "translated",
             "value" : "不相容的字元在儲存時被替代或移除。你要更改文字編碼並檢視不相容的字元嗎？"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Несъвместимите знаци се заместват или премахват при запазване. Искате ли да промените кодирането на текста и да прегледате несъвместимите знаци?"
-          }
         }
       }
     },
     "None" : {
       "comment" : "accessibility label for “–”",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11071,18 +11077,18 @@
             "state" : "translated",
             "value" : "無"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Няма"
-          }
         }
       }
     },
     "NSColorSpace.Model.cmyk" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CMYK"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11184,12 +11190,6 @@
             "state" : "translated",
             "value" : "CMYK"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CMYK"
-          }
         }
       }
     },
@@ -11197,6 +11197,12 @@
       "comment" : "refer kCGColorSpaceModelDeviceN",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DeviceN"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11298,18 +11304,18 @@
             "state" : "translated",
             "value" : "DeviceN"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "DeviceN"
-          }
         }
       }
     },
     "NSColorSpace.Model.gray" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сив"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11411,12 +11417,6 @@
             "state" : "translated",
             "value" : "灰色"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сив"
-          }
         }
       }
     },
@@ -11424,6 +11424,12 @@
       "comment" : "refer kCGColorSpaceModelIndexed",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Индексиран"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11525,18 +11531,18 @@
             "state" : "translated",
             "value" : "已製作索引"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Индексиран"
-          }
         }
       }
     },
     "NSColorSpace.Model.lab" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lab"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11638,12 +11644,6 @@
             "state" : "translated",
             "value" : "Lab"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lab"
-          }
         }
       }
     },
@@ -11651,6 +11651,12 @@
       "comment" : "refer kCGColorSpaceModelPattern",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шарка"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11752,18 +11758,18 @@
             "state" : "translated",
             "value" : "模式"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шарка"
-          }
         }
       }
     },
     "NSColorSpace.Model.rgb" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RGB"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11865,18 +11871,18 @@
             "state" : "translated",
             "value" : "RGB"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RGB"
-          }
         }
       }
     },
     "OK" : {
       "extractionState" : "manual",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11978,18 +11984,18 @@
             "state" : "translated",
             "value" : "好"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
-          }
         }
       }
     },
     "Printed on %@" : {
       "comment" : "print header/footer (%@ is date)",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отпечатано на %@"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12085,18 +12091,18 @@
             "state" : "translated",
             "value" : "列印日期：%@"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отпечатано на %@"
-          }
         }
       }
     },
     "ReinterpretationError.noFile.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът няма файл за преинтерпретиране."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12198,18 +12204,18 @@
             "state" : "translated",
             "value" : "此文件沒有檔案可以重新解讀。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Документът няма файл за преинтерпретиране."
-          }
         }
       }
     },
     "ReinterpretationError.reinterpretationFailed.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът не можа да бъде преинтерпретиран с текстово кодиране „%@“."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12311,18 +12317,18 @@
             "state" : "translated",
             "value" : "無法使用文字編碼「%@」重新解讀文件。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Документът не можа да бъде преинтерпретиран с текстово кодиране „%@“."
-          }
         }
       }
     },
     "ReinterpretationError.reinterpretationFailed.recoverySuggestion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът може да е бил записан с различно текстово кодиране или може да не е текстов файл."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12424,18 +12430,18 @@
             "state" : "translated",
             "value" : "此文件可能使用了不同的文字編碼儲存，或可能不是文字檔案。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Документът може да е бил записан с различно текстово кодиране или може да не е текстов файл."
-          }
         }
       }
     },
     "ScriptError.noInputTarget.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма документ за вход."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12537,18 +12543,18 @@
             "state" : "translated",
             "value" : "沒有文件可以用作輸入。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Няма документ за вход."
-          }
         }
       }
     },
     "ScriptError.noOutputTarget.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма документ, в който да поставите резултата."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12650,18 +12656,18 @@
             "state" : "translated",
             "value" : "沒有文件可以用作輸出。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Няма документ, в който да поставите резултата."
-          }
         }
       }
     },
     "ScriptError.notEditable.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът не може да се редактира."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12763,18 +12769,18 @@
             "state" : "translated",
             "value" : "無法編輯文件。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Документът не може да се редактира."
-          }
         }
       }
     },
     "ScriptFileError.existence.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скриптът „%@“ не съществува."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12876,18 +12882,18 @@
             "state" : "translated",
             "value" : "程式碼「%@」不存在。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скриптът „%@“ не съществува."
-          }
         }
       }
     },
     "ScriptFileError.open.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скриптът „%@“ не може да бъде отворен."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12989,18 +12995,18 @@
             "state" : "translated",
             "value" : "無法開啟程式碼檔案「%@」。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скриптът „%@“ не може да бъде отворен."
-          }
         }
       }
     },
     "ScriptFileError.permission.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скриптът „%@“ не може да бъде изпълнен, защото нямате разрешение да го изпълните."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13102,18 +13108,18 @@
             "state" : "translated",
             "value" : "無法執行程式碼「%@」，因為你沒有執行它的權限。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скриптът „%@“ не може да бъде изпълнен, защото нямате разрешение да го изпълните."
-          }
         }
       }
     },
     "ScriptFileError.permission.recoverySuggestion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверете разрешенията на файла на скрипта."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13215,18 +13221,18 @@
             "state" : "translated",
             "value" : "檢查程式碼檔案的權限。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверете разрешенията на файла на скрипта."
-          }
         }
       }
     },
     "ScriptFileError.read.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скриптът „%@“ не може да бъде прочетен."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13328,18 +13334,18 @@
             "state" : "translated",
             "value" : "無法讀取程式碼「%@」。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скриптът „%@“ не може да бъде прочетен."
-          }
         }
       }
     },
     "ScriptFileError.recoverySuggestion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверете файла със скрипта."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13441,18 +13447,18 @@
             "state" : "translated",
             "value" : "檢查程式碼檔案。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверете файла със скрипта."
-          }
         }
       }
     },
     "SettingFileError.deletionFailed.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ не можа да бъде изтрит."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13554,18 +13560,18 @@
             "state" : "translated",
             "value" : "無法刪除「%@」。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "„%@“ не можа да бъде изтрит."
-          }
         }
       }
     },
     "SettingFileError.importFailed.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ не можа да бъде импортиран."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13667,18 +13673,18 @@
             "state" : "translated",
             "value" : "無法輸入「%@」。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "„%@“ не можа да бъде импортиран."
-          }
         }
       }
     },
     "SettingFileError.loadFailed.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%@“ не можа да бъде зареден."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13780,18 +13786,18 @@
             "state" : "translated",
             "value" : "無法載入「%@」。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "„%@“ не можа да бъде зареден."
-          }
         }
       }
     },
     "SettingFileError.loadFailed.recoverySuggestion.decodingError" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грешка при декодиране: %@"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13893,18 +13899,18 @@
             "state" : "translated",
             "value" : "解碼錯誤：%@"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Грешка при декодиране: %@"
-          }
         }
       }
     },
     "SettingFileError.noSourceFile.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не беше намерен оригинален файл за „%@“."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14006,18 +14012,18 @@
             "state" : "translated",
             "value" : "無法找到「%@」的原始檔。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не беше намерен оригинален файл за „%@“."
-          }
         }
       }
     },
     "Shortcut.CustomizationError.alreadyTaken.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„%1$@“ вече се използва от командата „%2$@“."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14119,18 +14125,18 @@
             "state" : "translated",
             "value" : "「%1$@」已經被「%2$@」命令使用。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "„%1$@“ вече се използва от командата „%2$@“."
-          }
         }
       }
     },
     "Shortcut.CustomizationError.shiftOnlyModifier.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клавишът Shift може да се използва само заедно с друг модифициращ клавиш."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14232,18 +14238,18 @@
             "state" : "translated",
             "value" : "Shift鍵只可以與其他變更鍵搭配使用。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Клавишът Shift може да се използва само заедно с друг модифициращ клавиш."
-          }
         }
       }
     },
     "Shortcut.CustomizationError.singleType.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Самостоятелен клавиш не е валиден пряк път."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14345,18 +14351,18 @@
             "state" : "translated",
             "value" : "單個按鍵類型無法用作快捷鍵。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Самостоятелен клавиш не е валиден пряк път."
-          }
         }
       }
     },
     "Shortcut.CustomizationError.unsupported.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комбинацията „%@“ не се поддържа за персонализиране на пряк път."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14458,18 +14464,18 @@
             "state" : "translated",
             "value" : "自訂快捷鍵不支援組合「%@」。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Комбинацията „%@“ не се поддържа за персонализиране на пряк път."
-          }
         }
       }
     },
     "Snippet.Variable.cursor.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Точката на вмъкване след вмъкване на фрагмента."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14571,18 +14577,18 @@
             "state" : "translated",
             "value" : "插入摘錄之後的插入點。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Точката на вмъкване след вмъкване на фрагмента."
-          }
         }
       }
     },
     "Snippet.Variable.selection.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избраният текст."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14684,18 +14690,18 @@
             "state" : "translated",
             "value" : "所選的文字。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Избраният текст."
-          }
         }
       }
     },
     "SyntaxName.none" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14797,12 +14803,6 @@
             "state" : "translated",
             "value" : "無"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Няма"
-          }
         }
       }
     },
@@ -14810,6 +14810,12 @@
       "comment" : "Generic label for items whose label couldn’t be determined somehow.",
       "extractionState" : "manual",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неизвестно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14911,18 +14917,18 @@
             "state" : "translated",
             "value" : "未知"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Неизвестно"
-          }
         }
       }
     },
     "UnsavedReinterpretationAlert.button.discard" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отхвърли промените"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15024,12 +15030,6 @@
             "state" : "translated",
             "value" : "捨棄變更"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отхвърли промените"
-          }
         }
       }
     },
@@ -15037,6 +15037,12 @@
       "comment" : "%@ is an encoding name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сигурни ли сте, че искате да отхвърлите промените и да отворите отново документа с „%@“?"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15138,18 +15144,18 @@
             "state" : "translated",
             "value" : "確定要捨棄你所作的更改並使用「%@」重新開啟文件嗎？"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сигурни ли сте, че искате да отхвърлите промените и да отворите отново документа с „%@“?"
-          }
         }
       }
     },
     "UnsavedReinterpretationAlert.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документът има незапазени промени."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15251,18 +15257,18 @@
             "state" : "translated",
             "value" : "此文件有未儲存的變更。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Документът има незапазени промени."
-          }
         }
       }
     },
     "Untitled" : {
       "comment" : "default filename for new creation\ninitial setting filename",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неозаглавен"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15358,18 +15364,18 @@
             "state" : "translated",
             "value" : "未命名"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Неозаглавен"
-          }
         }
       }
     },
     "untitled folder" : {
       "comment" : "default folder name for new creation",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "неозаглавена папка"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15465,18 +15471,18 @@
             "state" : "translated",
             "value" : "未命名資料夾"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "неозаглавена папка"
-          }
         }
       }
     },
     "UpdatedByExternalProcessAlert.button.keep" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запази версията на CotEditor"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15578,18 +15584,18 @@
             "state" : "translated",
             "value" : "保留CotEditor編輯的版本"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запази версията на CotEditor"
-          }
         }
       }
     },
     "UpdatedByExternalProcessAlert.button.update" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обнови"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15691,18 +15697,18 @@
             "state" : "translated",
             "value" : "更新"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Обнови"
-          }
         }
       }
     },
     "UpdatedByExternalProcessAlert.informativeText" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Искате ли да запазите версията на CotEditor или да я актуализирате до модифицираната версия?"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15804,18 +15810,18 @@
             "state" : "translated",
             "value" : "你要保留CotEditor的版本，還是將其更新到修改後的版本？"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Искате ли да запазите версията на CotEditor или да я актуализирате до модифицираната версия?"
-          }
         }
       }
     },
     "UpdatedByExternalProcessAlert.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлът е променен от друго приложение."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15917,18 +15923,18 @@
             "state" : "translated",
             "value" : "其他應用程式已對此檔案進行修改。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файлът е променен от друго приложение."
-          }
         }
       }
     },
     "UpdatedByExternalProcessAlert.message.edited" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлът е променен от друго приложение. Има и незапазени промени в CotEditor."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16029,12 +16035,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "其他應用程式已對此檔案進行修改。CotEditor中亦有尚未儲存的變更。"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файлът е променен от друго приложение. Има и незапазени промени в CotEditor."
           }
         }
       }
