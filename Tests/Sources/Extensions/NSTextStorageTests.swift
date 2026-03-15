@@ -41,4 +41,19 @@ struct NSTextStorageTests {
         // -> Just casting to String doesn't work.
         #expect((String(bigString) as NSString).className.contains("Mutable"))
     }
+    
+    
+    @Test func immutableCopy() {
+
+        // NSBigMutableString (513+ characters)
+        let textStorage = NSTextStorage(string: String(repeating: "a", count: 1024))
+        let immutable = textStorage.string.immutable
+
+        // mutate the original text storage
+        textStorage.replaceCharacters(in: NSRange(location: 0, length: 1), with: "X")
+
+        // the immutable copy must remain unchanged
+        #expect(immutable.first == "a")
+        #expect(immutable.count == 1024)
+    }
 }
