@@ -5,16 +5,16 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"ACTION NAME\"; ObjectID = \"0Uo-2F-m2T\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "ACTION NAME"
-          }
-        },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "ИМЕ НА ДЕЙСТВИЕТО"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "ACTION NAME"
           }
         }
       },
@@ -24,6 +24,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Menu\"; ObjectID = \"597-z1-wgd\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Меню"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -125,12 +131,6 @@
             "state" : "translated",
             "value" : "選單"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Меню"
-          }
         }
       }
     },
@@ -138,6 +138,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Command\"; ObjectID = \"jNh-nd-VRd\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "командване"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -239,12 +245,6 @@
             "state" : "translated",
             "value" : "指令"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "командване"
-          }
         }
       }
     },
@@ -252,16 +252,16 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"MENU\"; ObjectID = \"JTc-Rw-7wQ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "MENU"
-          }
-        },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "МЕНЮ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "MENU"
           }
         }
       },
@@ -271,6 +271,12 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Key\"; ObjectID = \"PSD-Um-TfH\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -371,12 +377,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "按鍵"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ключ"
           }
         }
       }

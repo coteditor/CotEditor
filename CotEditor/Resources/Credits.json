@@ -25,6 +25,12 @@
                 "name" : "1024jp"
             }
         ],
+        "bg" : [
+            {
+                "name" : "Мирослав Драгоев (Miroslav Dragoev)",
+                "url" : "https://github.com/m-dragoev"
+            }
+        ],
         "zh-Hans" : [
             {
                 "name" : "Wei Wang (onevcat)",

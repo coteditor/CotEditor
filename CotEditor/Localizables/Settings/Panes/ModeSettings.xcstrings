@@ -4,6 +4,12 @@
     "Add period with double-space" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавете точка с двоен интервал"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,17 +105,17 @@
             "state" : "translated",
             "value" : "加入全形句號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Добавете точка с двоен интервал"
-          }
         }
       }
     },
     "Automatically insert closing brackets and quotes" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматично вмъкване на затварящи скоби и кавички"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -205,18 +211,18 @@
             "state" : "translated",
             "value" : "自動插入封閉括號與引號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автоматично вмъкване на затварящи скоби и кавички"
-          }
         }
       }
     },
     "Check grammar with spelling" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка на граматика и правопис"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -312,18 +318,18 @@
             "state" : "translated",
             "value" : "檢查文法及串字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверка на граматиката с правопис"
-          }
         }
       }
     },
     "Check spelling while typing" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка на правопис по време на въвеждане на текст"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -419,17 +425,17 @@
             "state" : "translated",
             "value" : "在輸入時同時檢查串字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверявайте правописа, докато пишете"
-          }
         }
       }
     },
     "Completion list includes:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Списъкът за завършване включва:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -525,17 +531,17 @@
             "state" : "translated",
             "value" : "完成列表包括："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Списъкът за завършване включва:"
-          }
         }
       }
     },
     "Completion:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завършване:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -631,18 +637,18 @@
             "state" : "translated",
             "value" : "完成："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Завършване:"
-          }
         }
       }
     },
     "Correct spelling automatically" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматична поправка на правопис"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -738,17 +744,17 @@
             "state" : "translated",
             "value" : "自動更正串字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Правилно изписване автоматично"
-          }
         }
       }
     },
     "Font:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шрифт:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -844,18 +850,18 @@
             "state" : "translated",
             "value" : "字體："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шрифт:"
-          }
         }
       }
     },
     "FontType.monospaced.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Еднопространствен"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -957,18 +963,18 @@
             "state" : "translated",
             "value" : "等寬"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Еднопространствен"
-          }
         }
       }
     },
     "FontType.standard.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартен"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1070,17 +1076,17 @@
             "state" : "translated",
             "value" : "標準"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стандартен"
-          }
         }
       }
     },
     "Mode" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1176,18 +1182,18 @@
             "state" : "translated",
             "value" : "模式"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Режим"
-          }
         }
       }
     },
     "Not found" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не е намерено"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1283,18 +1289,18 @@
             "state" : "translated",
             "value" : "未找到"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не е намерено"
-          }
         }
       }
     },
     "Smart copy/paste" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интелигентно Копиране/Поставяне"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1390,18 +1396,18 @@
             "state" : "translated",
             "value" : "智慧型複製/貼上"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Интелигентно копиране/поставяне"
-          }
         }
       }
     },
     "Smart dashes" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интелигентни тирета"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1497,18 +1503,18 @@
             "state" : "translated",
             "value" : "智慧型破折號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Интелигентни чертички"
-          }
         }
       }
     },
     "Smart quotes" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интелигентни кавички"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1604,17 +1610,17 @@
             "state" : "translated",
             "value" : "智慧型引號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Интелигентни цитати"
-          }
         }
       }
     },
     "Spelling:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правопис:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1710,17 +1716,17 @@
             "state" : "translated",
             "value" : "串字："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Правопис:"
-          }
         }
       }
     },
     "Standard words" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартни думи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1816,17 +1822,17 @@
             "state" : "translated",
             "value" : "標準字詞"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стандартни думи"
-          }
         }
       }
     },
     "Substitution:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замяна:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1922,17 +1928,17 @@
             "state" : "translated",
             "value" : "替代項目："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замяна:"
-          }
         }
       }
     },
     "Suggest completions while typing" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предлагайте завършвания, докато пишете"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2028,17 +2034,17 @@
             "state" : "translated",
             "value" : "在輸入時建議關聯字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Предлагайте завършвания, докато пишете"
-          }
         }
       }
     },
     "Syntax" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2134,18 +2140,18 @@
             "state" : "translated",
             "value" : "語法"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксис"
-          }
         }
       }
     },
     "Text replacement" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замяна на текст"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2241,18 +2247,18 @@
             "state" : "translated",
             "value" : "文字替代"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замяна на текст"
-          }
         }
       }
     },
     "This syntax does not exist" : {
       "comment" : "tooltip",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Този синтаксис не съществува"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2348,17 +2354,17 @@
             "state" : "translated",
             "value" : "此語法不存在"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Този синтаксис не съществува"
-          }
         }
       }
     },
     "Words defined in syntax" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Думи, дефинирани в синтаксиса"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2454,17 +2460,17 @@
             "state" : "translated",
             "value" : "語法中定義的字詞"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Думи, дефинирани в синтаксиса"
-          }
         }
       }
     },
     "Words in document" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Думи в документа"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2559,12 +2565,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文件中的字詞"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Думи в документа"
           }
         }
       }

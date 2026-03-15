@@ -3,6 +3,24 @@
   "strings" : {
     "%lld custom syntaxes" : {
       "localizations" : {
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld персонализиран синтаксис"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld персонализирани синтаксиса"
+                }
+              }
+            }
+          }
+        },
         "cs" : {
           "variations" : {
             "plural" : {
@@ -314,29 +332,29 @@
               }
             }
           }
-        },
+        }
+      }
+    },
+    "%lld custom themes" : {
+      "localizations" : {
         "bg" : {
           "variations" : {
             "plural" : {
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld персонализиран синтаксис"
+                  "value" : "%lld персонализирана тема"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld персонализирани синтаксиса"
+                  "value" : "%lld персонализирани теми"
                 }
               }
             }
           }
-        }
-      }
-    },
-    "%lld custom themes" : {
-      "localizations" : {
+        },
         "cs" : {
           "variations" : {
             "plural" : {
@@ -648,30 +666,30 @@
               }
             }
           }
-        },
-        "bg" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld персонализирана тема"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld персонализирани теми"
-                }
-              }
-            }
-          }
         }
       }
     },
     "%lld definitions" : {
       "comment" : "unit for multiple replace settings",
       "localizations" : {
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld определение"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld определения"
+                }
+              }
+            }
+          }
+        },
         "cs" : {
           "variations" : {
             "plural" : {
@@ -983,29 +1001,17 @@
               }
             }
           }
-        },
-        "bg" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld определение"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld определения"
-                }
-              }
-            }
-          }
         }
       }
     },
     "Choose a CotEditor settings archive to import." : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избери архив с настройки на CotEditor за импортиране."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1101,18 +1107,18 @@
             "state" : "translated",
             "value" : "選擇要輸入的CotEditor設定封存檔。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Избери архив с настройки на CotEditor за импортиране."
-          }
         }
       }
     },
     "Error.versionMismatch.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Този архив с настройки е създаден от различна версия на CotEditor (%@)."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1214,18 +1220,18 @@
             "state" : "translated",
             "value" : "此設定封存檔是由不同版本的CotEditor （%@）製作。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Този архив с настройки е създаден от различна версия на CotEditor (%@)."
-          }
         }
       }
     },
     "Error.versionMismatch.recoverySuggestion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все още можете да импортирате тези елементи, но някои настройки може да са несъвместими."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1327,17 +1333,17 @@
             "state" : "translated",
             "value" : "你仍然可輸入這些項目，但部份設定可能不相容。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Все още можете да импортирате тези елементи, но някои настройки може да са несъвместими."
-          }
         }
       }
     },
     "Export selected settings as an archive to allow importing into other computers." : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Експортирайте избраните настройки като архив, за да разрешите импортиране в други компютри."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1433,17 +1439,17 @@
             "state" : "translated",
             "value" : "將選擇的設定輸出為封存檔，以便輸入到其他電腦。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Експортирайте избраните настройки като архив, за да разрешите импортиране в други компютри."
-          }
         }
       }
     },
     "Export Settings" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Експортиране на настройки"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1539,17 +1545,17 @@
             "state" : "translated",
             "value" : "輸出設定"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Експортиране на настройки"
-          }
         }
       }
     },
     "Import Settings" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки за импортиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1645,17 +1651,17 @@
             "state" : "translated",
             "value" : "輸入設定"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Настройки за импортиране"
-          }
         }
       }
     },
     "Select the items to import:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избери елементите за импортиране:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1751,18 +1757,18 @@
             "state" : "translated",
             "value" : "選擇要輸入的項目："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Избери елементите за импортиране:"
-          }
         }
       }
     },
     "SettingTypes.replacements.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Множество дефиниции за замяна"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1864,18 +1870,18 @@
             "state" : "translated",
             "value" : "多重取代定義"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Множество дефиниции за замяна"
-          }
         }
       }
     },
     "SettingTypes.settings.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всички настройки в прозореца Настройки"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1977,18 +1983,18 @@
             "state" : "translated",
             "value" : "「設定」視窗內的所有設定"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Всички настройки в прозореца Настройки"
-          }
         }
       }
     },
     "SettingTypes.settings.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2090,18 +2096,18 @@
             "state" : "translated",
             "value" : "設定"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Настройки"
-          }
         }
       }
     },
     "SettingTypes.syntaxes.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2203,18 +2209,18 @@
             "state" : "translated",
             "value" : "語法"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксис"
-          }
         }
       }
     },
     "SettingTypes.themes.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Теми"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2315,12 +2321,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "主題"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Теми"
           }
         }
       }

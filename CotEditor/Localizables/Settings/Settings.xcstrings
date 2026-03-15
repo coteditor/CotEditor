@@ -4,6 +4,12 @@
     "SettingsPane.appearance.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Основни"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -105,18 +111,18 @@
             "state" : "translated",
             "value" : "外觀"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Външен вид"
-          }
         }
       }
     },
     "SettingsPane.donation.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дарение"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -218,18 +224,18 @@
             "state" : "translated",
             "value" : "捐贈"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дарение"
-          }
         }
       }
     },
     "SettingsPane.edit.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -331,18 +337,18 @@
             "state" : "translated",
             "value" : "編輯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактиране"
-          }
         }
       }
     },
     "SettingsPane.format.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Форматиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -444,18 +450,18 @@
             "state" : "translated",
             "value" : "格式"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Форматиране"
-          }
         }
       }
     },
     "SettingsPane.general.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -557,18 +563,18 @@
             "state" : "translated",
             "value" : "一般"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Общи"
-          }
         }
       }
     },
     "SettingsPane.keyBindings.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Команди"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -670,18 +676,18 @@
             "state" : "translated",
             "value" : "按鍵連結"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ключови връзки"
-          }
         }
       }
     },
     "SettingsPane.mode.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -783,18 +789,18 @@
             "state" : "translated",
             "value" : "模式"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Режим"
-          }
         }
       }
     },
     "SettingsPane.snippets.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откъси"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -896,18 +902,18 @@
             "state" : "translated",
             "value" : "程式碼摘錄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Откъси"
-          }
         }
       }
     },
     "SettingsPane.window.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прозорец"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1008,12 +1014,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "視窗"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Прозорец"
           }
         }
       }

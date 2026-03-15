@@ -5,6 +5,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Word\"; ObjectID = \"0HX-j9-5jF\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избери дума"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -106,12 +112,6 @@
             "state" : "translated",
             "value" : "選擇字詞"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Избери дума"
-          }
         }
       }
     },
@@ -119,6 +119,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Monospaced\"; ObjectID = \"1Po-QB-StY\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Еднопространствен"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -220,12 +226,6 @@
             "state" : "translated",
             "value" : "等寬"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Еднопространствен"
-          }
         }
       }
     },
@@ -233,6 +233,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Enter Full Screen\"; ObjectID = \"2da-fK-Nkg\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включи цял екран"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -334,12 +340,6 @@
             "state" : "translated",
             "value" : "進入全螢幕"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Включи цял екран"
-          }
         }
       }
     },
@@ -347,6 +347,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Spelling and Grammar\"; ObjectID = \"2QI-XD-7pJ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правопис и граматика"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -448,12 +454,6 @@
             "state" : "translated",
             "value" : "串字與文法檢查"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Правопис и граматика"
-          }
         }
       }
     },
@@ -461,6 +461,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Stop Speaking\"; ObjectID = \"2rV-Ut-h4x\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спрете да говорите"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -562,12 +568,6 @@
             "state" : "translated",
             "value" : "停止朗讀"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Спрете да говорите"
-          }
         }
       }
     },
@@ -575,6 +575,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Substitutions\"; ObjectID = \"2wy-A5-6kZ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замени"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -676,12 +682,6 @@
             "state" : "translated",
             "value" : "替代項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замени"
-          }
         }
       }
     },
@@ -689,6 +689,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"URL Decode\"; ObjectID = \"3VB-Bg-Ker\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL декодиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -790,12 +796,6 @@
             "state" : "translated",
             "value" : "URL解碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "URL декодиране"
-          }
         }
       }
     },
@@ -803,6 +803,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Custom…\"; ObjectID = \"3VX-DL-PgT\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Персонализирано…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -904,12 +910,6 @@
             "state" : "translated",
             "value" : "自訂⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Персонализирано…"
-          }
         }
       }
     },
@@ -917,6 +917,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Indentation\"; ObjectID = \"4h9-iu-ehP\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вдлъбнатина"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1018,12 +1024,6 @@
             "state" : "translated",
             "value" : "縮排"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вдлъбнатина"
-          }
         }
       }
     },
@@ -1031,6 +1031,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Start Speaking\"; ObjectID = \"4mJ-DV-Qjz\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Започнете да говорите"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1132,12 +1138,6 @@
             "state" : "translated",
             "value" : "開始朗讀"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Започнете да говорите"
-          }
         }
       }
     },
@@ -1145,6 +1145,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Move Up\"; ObjectID = \"4t7-IA-1r3\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преместване нагоре"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1246,12 +1252,6 @@
             "state" : "translated",
             "value" : "向上移動"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преместване нагоре"
-          }
         }
       }
     },
@@ -1259,6 +1259,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Bring All to Front\"; ObjectID = \"5\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изведете всички отпред"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1360,12 +1366,6 @@
             "state" : "translated",
             "value" : "將所有視窗移到最前"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изведете всички отпред"
-          }
         }
       }
     },
@@ -1373,6 +1373,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Check Grammar With Spelling\"; ObjectID = \"5eg-wx-S4p\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка на граматика и правопис"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1474,12 +1480,6 @@
             "state" : "translated",
             "value" : "檢查文法及串字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверка на граматиката с правопис"
-          }
         }
       }
     },
@@ -1487,6 +1487,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Replace All\"; ObjectID = \"5HV-xo-NTK\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замени всички"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1588,12 +1594,6 @@
             "state" : "translated",
             "value" : "全部取代"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замени всички"
-          }
         }
       }
     },
@@ -1601,6 +1601,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Remove Highlights\"; ObjectID = \"5is-7G-OVT\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Премахване на акцентите"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1702,12 +1708,6 @@
             "state" : "translated",
             "value" : "移除重點標示"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Премахване на акцентите"
-          }
         }
       }
     },
@@ -1715,6 +1715,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Orientation\"; ObjectID = \"6eV-nI-heo\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ориентация"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1816,12 +1822,6 @@
             "state" : "translated",
             "value" : "方向"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ориентация"
-          }
         }
       }
     },
@@ -1829,6 +1829,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select\"; ObjectID = \"6fK-Zl-wdN\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1930,12 +1936,6 @@
             "state" : "translated",
             "value" : "選擇"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете"
-          }
         }
       }
     },
@@ -1943,6 +1943,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Replace Quotes\"; ObjectID = \"7NX-1r-Wq7\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замени кавички"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2044,12 +2050,6 @@
             "state" : "translated",
             "value" : "取代引號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замяна на кавички"
-          }
         }
       }
     },
@@ -2057,6 +2057,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Left to Right\"; ObjectID = \"7pw-5S-ekC\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отляво надясно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2158,12 +2164,6 @@
             "state" : "translated",
             "value" : "由左至右"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отляво надясно"
-          }
         }
       }
     },
@@ -2171,6 +2171,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Quick Actions…\"; ObjectID = \"7Su-OV-TgR\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи бързи действия…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2272,12 +2278,6 @@
             "state" : "translated",
             "value" : "顯示快速動作⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи бързи действия…"
-          }
         }
       }
     },
@@ -2285,6 +2285,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Theme\"; ObjectID = \"8z7-Jc-agP\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2386,12 +2392,6 @@
             "state" : "translated",
             "value" : "主題"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тема"
-          }
         }
       }
     },
@@ -2399,6 +2399,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Surround Selection With\"; ObjectID = \"9dv-Zb-W60\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Съраунд избор с"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2500,12 +2506,6 @@
             "state" : "translated",
             "value" : "環繞所選範圍"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Съраунд избор с"
-          }
         }
       }
     },
@@ -2513,6 +2513,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"8\"; ObjectID = \"9e0-Q5-Oqh\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2614,12 +2620,6 @@
             "state" : "translated",
             "value" : "8"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "8"
-          }
         }
       }
     },
@@ -2627,6 +2627,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Straighten Quotes\"; ObjectID = \"9gl-1h-Yit\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изправяне на кавички"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2728,12 +2734,6 @@
             "state" : "translated",
             "value" : "直引號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изправяне на кавички"
-          }
         }
       }
     },
@@ -2741,6 +2741,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Previous Outline Item\"; ObjectID = \"9Lf-39-x5S\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете Предишен елемент от структурата"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2842,12 +2848,6 @@
             "state" : "translated",
             "value" : "選擇上個大綱條目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете Предишен елемент от структурата"
-          }
         }
       }
     },
@@ -2855,6 +2855,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Check Spelling While Typing\"; ObjectID = \"9ny-sN-pmO\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка на правопис по време на въвеждане на текст"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2956,12 +2962,6 @@
             "state" : "translated",
             "value" : "在輸入時同時檢查串字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверете правописа, докато пишете"
-          }
         }
       }
     },
@@ -2969,6 +2969,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Copy File Path\"; ObjectID = \"9sv-l5-xwG\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копирай път към файл"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3070,12 +3076,6 @@
             "state" : "translated",
             "value" : "複製檔案路徑"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Копирай пътя на файла"
-          }
         }
       }
     },
@@ -3083,6 +3083,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Inspector\"; ObjectID = \"10j-rd-fWr\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инспектор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3184,12 +3190,6 @@
             "state" : "translated",
             "value" : "檢閲器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Инспектор"
-          }
         }
       }
     },
@@ -3197,6 +3197,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Insert Snippet\"; ObjectID = \"15m-xz-4oB\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вмъкване на фрагмент"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3298,12 +3304,6 @@
             "state" : "translated",
             "value" : "插入摘錄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вмъкване на фрагмент"
-          }
         }
       }
     },
@@ -3311,6 +3311,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Window\"; ObjectID = \"19\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прозорец"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3412,12 +3418,6 @@
             "state" : "translated",
             "value" : "視窗"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Прозорец"
-          }
         }
       }
     },
@@ -3425,6 +3425,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Minimize\"; ObjectID = \"23\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Минимизирай"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3526,12 +3532,6 @@
             "state" : "translated",
             "value" : "縮到最細"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Минимизиране"
-          }
         }
       }
     },
@@ -3539,6 +3539,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Window\"; ObjectID = \"24\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прозорец"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3640,12 +3646,6 @@
             "state" : "translated",
             "value" : "視窗"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Прозорец"
-          }
         }
       }
     },
@@ -3653,6 +3653,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Main Menu\"; ObjectID = \"29\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Главно меню"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3754,12 +3760,6 @@
             "state" : "translated",
             "value" : "主選單"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Главно меню"
-          }
         }
       }
     },
@@ -3767,6 +3767,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"CotEditor\"; ObjectID = \"56\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3864,12 +3870,6 @@
           }
         },
         "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor"
-          }
-        },
-        "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor"
@@ -3881,6 +3881,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"CotEditor\"; ObjectID = \"57\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3982,12 +3988,6 @@
             "state" : "translated",
             "value" : "CotEditor"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor"
-          }
         }
       }
     },
@@ -3995,6 +3995,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"About CotEditor\"; ObjectID = \"58\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Относно CotEditor"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4096,12 +4102,6 @@
             "state" : "translated",
             "value" : "關於CotEditor"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Относно CotEditor"
-          }
         }
       }
     },
@@ -4109,6 +4109,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Open…\"; ObjectID = \"72\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4210,12 +4216,6 @@
             "state" : "translated",
             "value" : "開啟󠄁⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори…"
-          }
         }
       }
     },
@@ -4223,6 +4223,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Close\"; ObjectID = \"73\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Затвори"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4324,12 +4330,6 @@
             "state" : "translated",
             "value" : "關閉"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Затвори"
-          }
         }
       }
     },
@@ -4337,6 +4337,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Save\"; ObjectID = \"75\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запази"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4438,12 +4444,6 @@
             "state" : "translated",
             "value" : "儲存"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запази"
-          }
         }
       }
     },
@@ -4451,6 +4451,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Page Setup…\"; ObjectID = \"77\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройване на страница…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4552,12 +4558,6 @@
             "state" : "translated",
             "value" : "頁面設定⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Настройка на страницата…"
-          }
         }
       }
     },
@@ -4565,6 +4565,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Print…\"; ObjectID = \"78\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Принтиране…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4666,12 +4672,6 @@
             "state" : "translated",
             "value" : "列印⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Печат…"
-          }
         }
       }
     },
@@ -4679,6 +4679,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Save As…\"; ObjectID = \"80\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запази като…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4780,12 +4786,6 @@
             "state" : "translated",
             "value" : "儲存為⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запази като…"
-          }
         }
       }
     },
@@ -4793,6 +4793,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"File\"; ObjectID = \"81\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4894,12 +4900,6 @@
             "state" : "translated",
             "value" : "檔案"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файл"
-          }
         }
       }
     },
@@ -4907,6 +4907,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"New\"; ObjectID = \"82\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нов"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5008,12 +5014,6 @@
             "state" : "translated",
             "value" : "新增"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нов"
-          }
         }
       }
     },
@@ -5021,6 +5021,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"File\"; ObjectID = \"83\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5122,12 +5128,6 @@
             "state" : "translated",
             "value" : "檔案"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файл"
-          }
         }
       }
     },
@@ -5135,6 +5135,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Help\"; ObjectID = \"103\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Помощ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5235,12 +5241,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "輔助說明"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Помощ"
           }
         }
       }
@@ -5249,6 +5249,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Help\"; ObjectID = \"106\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Помощ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5350,12 +5356,6 @@
             "state" : "translated",
             "value" : "輔助說明"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Помощ"
-          }
         }
       }
     },
@@ -5363,6 +5363,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"CotEditor Help\"; ObjectID = \"111\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Помощ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5464,12 +5470,6 @@
             "state" : "translated",
             "value" : "CotEditor輔助說明"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor Помощ"
-          }
         }
       }
     },
@@ -5477,6 +5477,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Revert to Saved\"; ObjectID = \"112\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Връщане към Запазени"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5578,12 +5584,6 @@
             "state" : "translated",
             "value" : "回復到已儲存的版本"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Връщане към Запазени"
-          }
         }
       }
     },
@@ -5591,6 +5591,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Open Recent\"; ObjectID = \"124\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори скорошни"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5692,12 +5698,6 @@
             "state" : "translated",
             "value" : "開啟最近項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори последните"
-          }
         }
       }
     },
@@ -5705,6 +5705,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Open Recent\"; ObjectID = \"125\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори скорошни"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5806,12 +5812,6 @@
             "state" : "translated",
             "value" : "開啟最近項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори последните"
-          }
         }
       }
     },
@@ -5819,6 +5819,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Clear Menu\"; ObjectID = \"126\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изчистване на менюто"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5920,12 +5926,6 @@
             "state" : "translated",
             "value" : "清除選單"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изчистване на менюто"
-          }
         }
       }
     },
@@ -5933,6 +5933,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Settings…\"; ObjectID = \"129\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6034,12 +6040,6 @@
             "state" : "translated",
             "value" : "設定⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Настройки…"
-          }
         }
       }
     },
@@ -6047,6 +6047,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Services\"; ObjectID = \"130\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Услуги"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6147,12 +6153,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "服務"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Услуги"
           }
         }
       }
@@ -6161,6 +6161,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Services\"; ObjectID = \"131\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Услуги"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6262,12 +6268,6 @@
             "state" : "translated",
             "value" : "服務"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Услуги"
-          }
         }
       }
     },
@@ -6275,6 +6275,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Hide CotEditor\"; ObjectID = \"134\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрий CotEditor"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6376,12 +6382,6 @@
             "state" : "translated",
             "value" : "隱藏CotEditor"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скрий CotEditor"
-          }
         }
       }
     },
@@ -6389,6 +6389,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Quit CotEditor\"; ObjectID = \"136\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Излезте от CotEditor"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6490,12 +6496,6 @@
             "state" : "translated",
             "value" : "結束CotEditor"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Излезте от CotEditor"
-          }
         }
       }
     },
@@ -6503,6 +6503,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Hide Others\"; ObjectID = \"145\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрий другите"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6604,12 +6610,6 @@
             "state" : "translated",
             "value" : "隱藏其他"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скрий другите"
-          }
         }
       }
     },
@@ -6617,6 +6617,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show All\"; ObjectID = \"150\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи всички"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6718,12 +6724,6 @@
             "state" : "translated",
             "value" : "顯示全部"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи всички"
-          }
         }
       }
     },
@@ -6731,6 +6731,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Copy\"; ObjectID = \"157\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копие"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6832,12 +6838,6 @@
             "state" : "translated",
             "value" : "複製"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Копие"
-          }
         }
       }
     },
@@ -6845,6 +6845,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Undo\"; ObjectID = \"158\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмяна"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6946,12 +6952,6 @@
             "state" : "translated",
             "value" : "還原"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отмяна"
-          }
         }
       }
     },
@@ -6959,6 +6959,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Cut\"; ObjectID = \"160\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изрежете"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7060,12 +7066,6 @@
             "state" : "translated",
             "value" : "剪下"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изрежете"
-          }
         }
       }
     },
@@ -7073,6 +7073,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Edit\"; ObjectID = \"163\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7174,12 +7180,6 @@
             "state" : "translated",
             "value" : "編輯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактиране"
-          }
         }
       }
     },
@@ -7187,6 +7187,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Delete\"; ObjectID = \"164\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изтрий"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7288,12 +7294,6 @@
             "state" : "translated",
             "value" : "刪除"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изтрий"
-          }
         }
       }
     },
@@ -7301,6 +7301,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Theme\"; ObjectID = \"165-HJ-Xty\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7402,12 +7408,6 @@
             "state" : "translated",
             "value" : "主題"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тема"
-          }
         }
       }
     },
@@ -7415,6 +7415,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Edit\"; ObjectID = \"169\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7516,12 +7522,6 @@
             "state" : "translated",
             "value" : "編輯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактиране"
-          }
         }
       }
     },
@@ -7529,6 +7529,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Paste\"; ObjectID = \"171\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Залепете"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7630,12 +7636,6 @@
             "state" : "translated",
             "value" : "貼上"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Залепете"
-          }
         }
       }
     },
@@ -7643,6 +7643,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select All\"; ObjectID = \"172\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избери всички"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7744,12 +7750,6 @@
             "state" : "translated",
             "value" : "全選"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Избери всичко"
-          }
         }
       }
     },
@@ -7757,6 +7757,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Redo\"; ObjectID = \"173\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторете"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7858,12 +7864,6 @@
             "state" : "translated",
             "value" : "重做"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Повторете"
-          }
         }
       }
     },
@@ -7871,6 +7871,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Zoom\"; ObjectID = \"203\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мащабиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7972,12 +7978,6 @@
             "state" : "translated",
             "value" : "縮放"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мащабиране"
-          }
         }
       }
     },
@@ -7985,6 +7985,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Format\"; ObjectID = \"246\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Форматиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8085,12 +8091,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "格式"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Форматиране"
           }
         }
       }
@@ -8099,6 +8099,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Format\"; ObjectID = \"247\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Форматиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8200,12 +8206,6 @@
             "state" : "translated",
             "value" : "格式"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Форматиране"
-          }
         }
       }
     },
@@ -8213,6 +8213,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Wrap Lines\"; ObjectID = \"286\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Опаковане на линии"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8314,12 +8320,6 @@
             "state" : "translated",
             "value" : "換行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Опаковане на линии"
-          }
         }
       }
     },
@@ -8327,6 +8327,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Line Endings\"; ObjectID = \"294\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Краища на редове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8427,12 +8433,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "每行結尾"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Краища на редове"
           }
         }
       }
@@ -8441,6 +8441,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Line Endings\"; ObjectID = \"296\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Краища на редове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8542,12 +8548,6 @@
             "state" : "translated",
             "value" : "每行結尾"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Краища на редове"
-          }
         }
       }
     },
@@ -8555,6 +8555,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Text Encoding\"; ObjectID = \"299\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодиране на текст"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8655,12 +8661,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字編碼"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодиране на текст"
           }
         }
       }
@@ -8669,6 +8669,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Text Encoding\"; ObjectID = \"300\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодиране на текст"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8770,12 +8776,6 @@
             "state" : "translated",
             "value" : "文字編碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодиране на текст"
-          }
         }
       }
     },
@@ -8783,6 +8783,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Syntax\"; ObjectID = \"302\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8883,12 +8889,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "語法"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксис"
           }
         }
       }
@@ -8897,6 +8897,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Syntax\"; ObjectID = \"304\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8998,12 +9004,6 @@
             "state" : "translated",
             "value" : "語法"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксис"
-          }
         }
       }
     },
@@ -9011,6 +9011,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"View\"; ObjectID = \"322\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изглед"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9112,12 +9118,6 @@
             "state" : "translated",
             "value" : "顯示方式"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изглед"
-          }
         }
       }
     },
@@ -9125,6 +9125,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Line Numbers\"; ObjectID = \"323\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи номерата на редовете"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9226,12 +9232,6 @@
             "state" : "translated",
             "value" : "顯示行號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи номерата на редовете"
-          }
         }
       }
     },
@@ -9239,6 +9239,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"View\"; ObjectID = \"324\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изглед"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9340,12 +9346,6 @@
             "state" : "translated",
             "value" : "顯示方式"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изглед"
-          }
         }
       }
     },
@@ -9353,6 +9353,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Status Bar\"; ObjectID = \"325\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи лентата на състоянието"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9454,12 +9460,6 @@
             "state" : "translated",
             "value" : "顯示狀態列"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи лентата на състоянието"
-          }
         }
       }
     },
@@ -9467,6 +9467,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Smaller\"; ObjectID = \"404\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По-малък"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9568,12 +9574,6 @@
             "state" : "translated",
             "value" : "縮小"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "По-малък"
-          }
         }
       }
     },
@@ -9581,6 +9581,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Bigger\"; ObjectID = \"405\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Най-голям"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9682,12 +9688,6 @@
             "state" : "translated",
             "value" : "放大"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "По-голям"
-          }
         }
       }
     },
@@ -9695,6 +9695,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Font\"; ObjectID = \"410\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шрифт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9795,12 +9801,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "字體"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шрифт"
           }
         }
       }
@@ -9809,6 +9809,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Font\"; ObjectID = \"418\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шрифт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9910,12 +9916,6 @@
             "state" : "translated",
             "value" : "字體"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шрифт"
-          }
         }
       }
     },
@@ -9923,6 +9923,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Fonts\"; ObjectID = \"424\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи шрифтове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10024,12 +10030,6 @@
             "state" : "translated",
             "value" : "顯示字體"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи шрифтовете"
-          }
         }
       }
     },
@@ -10037,6 +10037,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Shift Right\"; ObjectID = \"454\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Измести надясно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10138,12 +10144,6 @@
             "state" : "translated",
             "value" : "右移"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Измести надясно"
-          }
         }
       }
     },
@@ -10151,6 +10151,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Shift Left\"; ObjectID = \"455\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преместване наляво"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10252,12 +10258,6 @@
             "state" : "translated",
             "value" : "左移"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преместване наляво"
-          }
         }
       }
     },
@@ -10265,6 +10265,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Reset Syntax Analysis\"; ObjectID = \"458\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нулирайте синтактичния анализ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -10366,12 +10372,6 @@
             "state" : "translated",
             "value" : "重設語法分析"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нулирайте синтактичния анализ"
-          }
         }
       }
     },
@@ -10379,6 +10379,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Find\"; ObjectID = \"538\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Търсене"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10480,12 +10486,6 @@
             "state" : "translated",
             "value" : "尋找"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Търсене"
-          }
         }
       }
     },
@@ -10493,6 +10493,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Document Inspector\"; ObjectID = \"564\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инспектор по документи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10594,12 +10600,6 @@
             "state" : "translated",
             "value" : "文件檢閲器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Инспектор по документи"
-          }
         }
       }
     },
@@ -10607,6 +10607,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Reset to Default\"; ObjectID = \"574\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Възстановяване на настройките по подразбиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10708,12 +10714,6 @@
             "state" : "translated",
             "value" : "重設為預設值"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Възстановяване на настройките по подразбиране"
-          }
         }
       }
     },
@@ -10721,6 +10721,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Text\"; ObjectID = \"578\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10821,12 +10827,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текст"
           }
         }
       }
@@ -10835,6 +10835,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Text\"; ObjectID = \"579\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10936,12 +10942,6 @@
             "state" : "translated",
             "value" : "文字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текст"
-          }
         }
       }
     },
@@ -10949,6 +10949,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Convert Alphanumeric Text to Full Width\"; ObjectID = \"586\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразуване на буквено-цифров текст в пълна ширина"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11050,12 +11056,6 @@
             "state" : "translated",
             "value" : "將英數字元轉換成全形"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преобразуване на буквено-цифров текст в пълна ширина"
-          }
         }
       }
     },
@@ -11063,6 +11063,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Convert Alphanumeric Text to Half Width\"; ObjectID = \"588\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразуване на буквено-цифров текст в половин ширина"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11164,12 +11170,6 @@
             "state" : "translated",
             "value" : "將英數字元轉換成半形"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преобразуване на буквено-цифров текст в половин ширина"
-          }
         }
       }
     },
@@ -11177,6 +11177,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Unicode Normalizations\"; ObjectID = \"599\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode нормализации"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11277,12 +11283,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicode標準化"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unicode нормализации"
           }
         }
       }
@@ -11291,6 +11291,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Unicode Normalizations\"; ObjectID = \"600\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode нормализации"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11392,12 +11398,6 @@
             "state" : "translated",
             "value" : "Unicode標準化"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unicode нормализации"
-          }
         }
       }
     },
@@ -11405,6 +11405,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Hide Toolbar\"; ObjectID = \"612\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрий лентата с инструменти"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11506,12 +11512,6 @@
             "state" : "translated",
             "value" : "隱藏工具列"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скрий лентата с инструменти"
-          }
         }
       }
     },
@@ -11519,6 +11519,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Customize Toolbar…\"; ObjectID = \"613\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Персонализиране на лентата с инструменти…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11620,12 +11626,6 @@
             "state" : "translated",
             "value" : "自訂工具列⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Персонализиране на лентата с инструменти…"
-          }
         }
       }
     },
@@ -11633,6 +11633,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Script\"; ObjectID = \"616\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11733,12 +11739,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "程式碼"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скрипт"
           }
         }
       }
@@ -11747,6 +11747,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Script\"; ObjectID = \"617\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11848,12 +11854,6 @@
             "state" : "translated",
             "value" : "程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скрипт"
-          }
         }
       }
     },
@@ -11861,6 +11861,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"AppleScript Dictionary\"; ObjectID = \"620\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Речник на AppleScript"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11962,12 +11968,6 @@
             "state" : "translated",
             "value" : "AppleScript辭典"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Речник на AppleScript"
-          }
         }
       }
     },
@@ -11975,6 +11975,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Insert Backslash\"; ObjectID = \"631\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поставете обратна наклонена черта"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12076,12 +12082,6 @@
             "state" : "translated",
             "value" : "插入反斜線"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Поставете обратна наклонена черта"
-          }
         }
       }
     },
@@ -12089,6 +12089,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Insert Yen Mark\"; ObjectID = \"633\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вмъкни знак за йена"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12190,12 +12196,6 @@
             "state" : "translated",
             "value" : "插入日圓符號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вмъкни знак за йена"
-          }
         }
       }
     },
@@ -12203,6 +12203,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Edit Color Code…\"; ObjectID = \"641\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактиране на цветовия код…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12304,12 +12310,6 @@
             "state" : "translated",
             "value" : "編輯顏色碼⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактиране на цветовия код…"
-          }
         }
       }
     },
@@ -12317,6 +12317,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Console\"; ObjectID = \"653\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конзола"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12418,12 +12424,6 @@
             "state" : "translated",
             "value" : "主控台"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Конзола"
-          }
         }
       }
     },
@@ -12431,6 +12431,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Warnings\"; ObjectID = \"679\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предупреждения"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12532,12 +12538,6 @@
             "state" : "translated",
             "value" : "警告"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Предупреждения"
-          }
         }
       }
     },
@@ -12545,6 +12545,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Navigation Bar\"; ObjectID = \"681\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи навигационната лента"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12646,12 +12652,6 @@
             "state" : "translated",
             "value" : "顯示導覽列"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи навигационната лента"
-          }
         }
       }
     },
@@ -12659,6 +12659,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Antialias\"; ObjectID = \"745\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Антиалиас"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12760,12 +12766,6 @@
             "state" : "translated",
             "value" : "柔邊處理"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Антиалиас"
-          }
         }
       }
     },
@@ -12773,6 +12773,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Page Guide\"; ObjectID = \"749\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи водача на страницата"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12874,12 +12880,6 @@
             "state" : "translated",
             "value" : "顯示頁面指引"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи водача на страницата"
-          }
         }
       }
     },
@@ -12887,6 +12887,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Invisibles\"; ObjectID = \"788\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи невидимите знаци"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12988,12 +12994,6 @@
             "state" : "translated",
             "value" : "顯示隱形符號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи невидимите знаци"
-          }
         }
       }
     },
@@ -13001,6 +13001,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Split Editor\"; ObjectID = \"793\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделен редактор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13102,12 +13108,6 @@
             "state" : "translated",
             "value" : "分割編輯器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разделен редактор"
-          }
         }
       }
     },
@@ -13115,6 +13115,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Move Focus to Next Editor\"; ObjectID = \"794\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преместване на фокуса към следващия редактор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13216,12 +13222,6 @@
             "state" : "translated",
             "value" : "將焦點移至下一個編輯器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преместване на фокуса към следващия редактор"
-          }
         }
       }
     },
@@ -13229,6 +13229,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Move Focus to Previous Editor\"; ObjectID = \"795\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преместване на фокуса към предишния редактор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13330,12 +13336,6 @@
             "state" : "translated",
             "value" : "將焦點移至上一個編輯器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преместване на фокуса към предишния редактор"
-          }
         }
       }
     },
@@ -13343,6 +13343,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Close Split Editor\"; ObjectID = \"796\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Затвори разделения редактор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13444,12 +13450,6 @@
             "state" : "translated",
             "value" : "關閉分割編輯器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Затвори разделения редактор"
-          }
         }
       }
     },
@@ -13457,6 +13457,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Release Notes\"; ObjectID = \"822\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бележки по изданието"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13558,12 +13564,6 @@
             "state" : "translated",
             "value" : "版本備註"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бележки по изданието"
-          }
         }
       }
     },
@@ -13571,6 +13571,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Surround Selection With\"; ObjectID = \"AUq-CT-rPl\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Съраунд избор с"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13672,12 +13678,6 @@
             "state" : "translated",
             "value" : "環繞所選範圍"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Съраунд избор с"
-          }
         }
       }
     },
@@ -13685,6 +13685,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Transformations\"; ObjectID = \"b36-nH-7po\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Трансформации"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13786,12 +13792,6 @@
             "state" : "translated",
             "value" : "轉換"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Трансформации"
-          }
         }
       }
     },
@@ -13799,6 +13799,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Delete Duplicates\"; ObjectID = \"bjv-m0-tZq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изтриване на дубликати"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13900,12 +13906,6 @@
             "state" : "translated",
             "value" : "刪除重複"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изтриване на дубликати"
-          }
         }
       }
     },
@@ -13913,6 +13913,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Report Issue\"; ObjectID = \"Bk3-xx-uft\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Докладване на проблем"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14014,12 +14020,6 @@
             "state" : "translated",
             "value" : "報告問題"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Докладване на проблем"
-          }
         }
       }
     },
@@ -14027,6 +14027,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Select\"; ObjectID = \"Bm6-Jh-1mk\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14128,12 +14134,6 @@
             "state" : "translated",
             "value" : "選擇"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете"
-          }
         }
       }
     },
@@ -14141,6 +14141,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Replace\"; ObjectID = \"bnD-BP-sPi\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замени"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14242,12 +14248,6 @@
             "state" : "translated",
             "value" : "取代"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замени"
-          }
         }
       }
     },
@@ -14255,6 +14255,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Lines\"; ObjectID = \"BSD-be-CV9\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Линии"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14356,12 +14362,6 @@
             "state" : "translated",
             "value" : "行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Линии"
-          }
         }
       }
     },
@@ -14369,6 +14369,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Vertical\"; ObjectID = \"bTd-nG-jjc\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вертикална"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14470,12 +14476,6 @@
             "state" : "translated",
             "value" : "直書"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вертикална"
-          }
         }
       }
     },
@@ -14483,6 +14483,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Keep on Top\"; ObjectID = \"caZ-qh-5JE\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Винаги отпред"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14584,12 +14590,6 @@
             "state" : "translated",
             "value" : "保持在最上方"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Винаги отпред"
-          }
         }
       }
     },
@@ -14597,6 +14597,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Smart Dashes\"; ObjectID = \"cIp-rb-QPk\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интелигентни тирета"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14698,12 +14704,6 @@
             "state" : "translated",
             "value" : "智慧型破折號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Интелигентни тирета"
-          }
         }
       }
     },
@@ -14711,6 +14711,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Right to Left\"; ObjectID = \"clG-Ph-Iyz\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "От дясно на ляво"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14812,12 +14818,6 @@
             "state" : "translated",
             "value" : "由右至左"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "От дясно на ляво"
-          }
         }
       }
     },
@@ -14825,6 +14825,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Brackets\"; ObjectID = \"cTU-2P-7Tp\"; Note = \"[]\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скоби"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14926,12 +14932,6 @@
             "state" : "translated",
             "value" : "方括號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скоби"
-          }
         }
       }
     },
@@ -14939,6 +14939,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"New Window\"; ObjectID = \"cTV-Rh-597\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нов прозорец"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15040,12 +15046,6 @@
             "state" : "translated",
             "value" : "新增視窗"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нов прозорец"
-          }
         }
       }
     },
@@ -15053,6 +15053,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Line\"; ObjectID = \"Cwp-ys-LJc\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете линия"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15154,12 +15160,6 @@
             "state" : "translated",
             "value" : "選擇行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете линия"
-          }
         }
       }
     },
@@ -15167,6 +15167,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"What’s New in CotEditor\"; ObjectID = \"DCW-Ij-540\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Какво е новото в CotEditor"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15268,12 +15274,6 @@
             "state" : "translated",
             "value" : "CotEditor的新功能"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Какво е новото в CotEditor"
-          }
         }
       }
     },
@@ -15281,6 +15281,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Tab Width\"; ObjectID = \"djM-fI-MkN\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ширина на раздела"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15382,12 +15388,6 @@
             "state" : "translated",
             "value" : "定位符號間隔闊度"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ширина на раздела"
-          }
         }
       }
     },
@@ -15395,6 +15395,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Uncomment\"; ObjectID = \"dob-yj-jf3\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разкоментирайте"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15496,12 +15502,6 @@
             "state" : "translated",
             "value" : "取消加入註解"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разкоментирайте"
-          }
         }
       }
     },
@@ -15509,6 +15509,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Import Settings…\"; ObjectID = \"dP6-KD-0D7\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортиране на настройки…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15610,12 +15616,6 @@
             "state" : "translated",
             "value" : "輸入設定⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Импортиране на настройки…"
-          }
         }
       }
     },
@@ -15623,6 +15623,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Convert to Full Width\"; ObjectID = \"dVK-1s-xJq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразуване в пълна ширина"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15724,12 +15730,6 @@
             "state" : "translated",
             "value" : "轉換成全形"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преобразуване в пълна ширина"
-          }
         }
       }
     },
@@ -15737,6 +15737,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Insert Snippet\"; ObjectID = \"dZy-7n-iCq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вмъкване на фрагмент"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15838,12 +15844,6 @@
             "state" : "translated",
             "value" : "插入摘錄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вмъкване на фрагмент"
-          }
         }
       }
     },
@@ -15851,6 +15851,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Go to Line…\"; ObjectID = \"eIc-Sj-2mO\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отидете на линия…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15952,12 +15958,6 @@
             "state" : "translated",
             "value" : "前往行⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отидете на линия…"
-          }
         }
       }
     },
@@ -15965,6 +15965,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Convert Indentation to Spaces\"; ObjectID = \"EOT-3u-f0a\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразуване на отстъп в интервали"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16066,12 +16072,6 @@
             "state" : "translated",
             "value" : "將縮排轉換成空格"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преобразуване на отстъп в интервали"
-          }
         }
       }
     },
@@ -16079,6 +16079,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Find…\"; ObjectID = \"eP6-ss-sUG\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намери…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16180,12 +16186,6 @@
             "state" : "translated",
             "value" : "尋找⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Намери…"
-          }
         }
       }
     },
@@ -16193,6 +16193,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Comment\"; ObjectID = \"EYa-d3-sUR\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коментирайте"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16294,12 +16300,6 @@
             "state" : "translated",
             "value" : "註解"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Коментирайте"
-          }
         }
       }
     },
@@ -16307,6 +16307,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Prevent Editing\"; ObjectID = \"EzX-9S-WvS\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предотвратяване на редактиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16408,12 +16414,6 @@
             "state" : "translated",
             "value" : "不允許編輯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Предотвратяване на редактиране"
-          }
         }
       }
     },
@@ -16421,6 +16421,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Inline Comment\"; ObjectID = \"F6P-7N-LSf\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вграден коментар"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16522,12 +16528,6 @@
             "state" : "translated",
             "value" : "內文註解"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вграден коментар"
-          }
         }
       }
     },
@@ -16535,6 +16535,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"4\"; ObjectID = \"fwb-zD-hBp\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16636,12 +16642,6 @@
             "state" : "translated",
             "value" : "4"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4"
-          }
         }
       }
     },
@@ -16649,6 +16649,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Parentheses\"; ObjectID = \"G3o-1h-GwR\"; Note = \"()\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скоби"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16750,12 +16756,6 @@
             "state" : "translated",
             "value" : "圓括號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скоби"
-          }
         }
       }
     },
@@ -16763,6 +16763,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"CotEditor Web Site\"; ObjectID = \"g34-YV-E6o\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Уеб сайт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16864,12 +16870,6 @@
             "state" : "translated",
             "value" : "CotEditor網站"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor Уеб сайт"
-          }
         }
       }
     },
@@ -16877,6 +16877,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Speech\"; ObjectID = \"gBe-fO-wVv\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Реч"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16978,12 +16984,6 @@
             "state" : "translated",
             "value" : "語音"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Реч"
-          }
         }
       }
     },
@@ -16991,6 +16991,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Outline\"; ObjectID = \"Gch-XD-tRl\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Структура"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17092,12 +17098,6 @@
             "state" : "translated",
             "value" : "大綱"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Структура"
-          }
         }
       }
     },
@@ -17105,6 +17105,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Custom…\"; ObjectID = \"gMO-5n-fiJ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Персонализирано…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17206,12 +17212,6 @@
             "state" : "translated",
             "value" : "自訂⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Персонализирано…"
-          }
         }
       }
     },
@@ -17219,6 +17219,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Substitutions\"; ObjectID = \"gqI-2M-XIx\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи замествания"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17320,12 +17326,6 @@
             "state" : "translated",
             "value" : "顯示替代項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи заместванията"
-          }
         }
       }
     },
@@ -17333,6 +17333,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Transformations\"; ObjectID = \"GXo-ds-ygp\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Трансформации"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17434,12 +17440,6 @@
             "state" : "translated",
             "value" : "轉換"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Трансформации"
-          }
         }
       }
     },
@@ -17447,6 +17447,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Multiple Replace\"; ObjectID = \"h4w-vU-ArK\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Множествена замяна"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17548,12 +17554,6 @@
             "state" : "translated",
             "value" : "多重取代"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Множествена замяна"
-          }
         }
       }
     },
@@ -17561,6 +17561,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Trim Trailing Whitespace\"; ObjectID = \"hBJ-Ge-278\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изрязване на крайния интервал"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17662,12 +17668,6 @@
             "state" : "translated",
             "value" : "裁剪後端空白字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изрязване на крайния интервал"
-          }
         }
       }
     },
@@ -17675,6 +17675,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Sidebar\"; ObjectID = \"hEz-VA-6G5\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи страничния панел"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17776,12 +17782,6 @@
             "state" : "translated",
             "value" : "顯示側邊欄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи страничния панел"
-          }
         }
       }
     },
@@ -17789,6 +17789,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Find All\"; ObjectID = \"HgR-ke-6gq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намери всички"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17890,12 +17896,6 @@
             "state" : "translated",
             "value" : "尋找全部"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Намери всички"
-          }
         }
       }
     },
@@ -17903,6 +17903,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Check Document Now\"; ObjectID = \"hIk-Nu-0X3\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверете документа сега"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18004,12 +18010,6 @@
             "state" : "translated",
             "value" : "立即檢查文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверете документа сега"
-          }
         }
       }
     },
@@ -18017,6 +18017,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Replace Dashes\"; ObjectID = \"hMS-qd-BCS\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замени тирета"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18118,12 +18124,6 @@
             "state" : "translated",
             "value" : "取代破折號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замяна на тирета"
-          }
         }
       }
     },
@@ -18131,6 +18131,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Use Spaces for Indentation\"; ObjectID = \"hsG-8k-OKX\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай интервали за отстъп"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18232,12 +18238,6 @@
             "state" : "translated",
             "value" : "使用空格進行縮排"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Използвай интервали за отстъп"
-          }
         }
       }
     },
@@ -18245,6 +18245,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Use Selection for Find\"; ObjectID = \"hTx-ef-3T2\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай селекцията за търсене"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18346,12 +18352,6 @@
             "state" : "translated",
             "value" : "使用所選範圍進行尋找"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Използвай селекцията за търсене"
-          }
         }
       }
     },
@@ -18359,6 +18359,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Writing Direction\"; ObjectID = \"hxr-2A-KYT\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Посока на писане"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18460,12 +18466,6 @@
             "state" : "translated",
             "value" : "書寫方向"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Посока на писане"
-          }
         }
       }
     },
@@ -18473,6 +18473,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Enclosing Symbols\"; ObjectID = \"hYd-RY-2dc\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избери ограждащите знаци"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18574,12 +18580,6 @@
             "state" : "translated",
             "value" : "選擇包圍符號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Избери ограждащите знаци"
-          }
         }
       }
     },
@@ -18587,6 +18587,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Speech\"; ObjectID = \"HZ8-G2-f8d\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Реч"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18688,12 +18694,6 @@
             "state" : "translated",
             "value" : "語音"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Реч"
-          }
         }
       }
     },
@@ -18701,6 +18701,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Inspector\"; ObjectID = \"I2p-KB-gxR\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи инспектор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18802,12 +18808,6 @@
             "state" : "translated",
             "value" : "顯示檢閲器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи инспектор"
-          }
         }
       }
     },
@@ -18815,6 +18815,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Direction\"; ObjectID = \"ICu-yD-nVi\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Посока"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18916,12 +18922,6 @@
             "state" : "translated",
             "value" : "方向"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Посока"
-          }
         }
       }
     },
@@ -18929,6 +18929,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Create Issue Report\"; ObjectID = \"iHn-Ed-A8u\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създаване на отчет за проблем"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19030,12 +19036,6 @@
             "state" : "translated",
             "value" : "製作問題回報"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Създаване на отчет за проблем"
-          }
         }
       }
     },
@@ -19043,6 +19043,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Copy as Rich Text\"; ObjectID = \"j3t-7l-xSy\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копиране като форматиран текст"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19144,12 +19150,6 @@
             "state" : "translated",
             "value" : "以帶格式文字複製"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Копиране като форматиран текст"
-          }
         }
       }
     },
@@ -19157,6 +19157,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Export Settings…\"; ObjectID = \"j05-hW-y8z\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Експортиране на настройки…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19258,12 +19264,6 @@
             "state" : "translated",
             "value" : "輸出設定⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Експортиране на настройки…"
-          }
         }
       }
     },
@@ -19271,6 +19271,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Move Down\"; ObjectID = \"J59-OR-kzC\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преместване надолу"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19372,12 +19378,6 @@
             "state" : "translated",
             "value" : "向下移動"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преместване надолу"
-          }
         }
       }
     },
@@ -19385,6 +19385,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Highlight All\"; ObjectID = \"JAO-3o-fRo\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Маркирай всички"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19486,12 +19492,6 @@
             "state" : "translated",
             "value" : "全部重點標示"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Маркирай всички"
-          }
         }
       }
     },
@@ -19499,6 +19499,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Split Selection by Lines\"; ObjectID = \"jkL-Tg-nug\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделете селекцията по линии"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19600,12 +19606,6 @@
             "state" : "translated",
             "value" : "按行分開所選範圍"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разделете селекцията по линии"
-          }
         }
       }
     },
@@ -19613,6 +19613,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Horizontal\"; ObjectID = \"jQ7-hG-AjA\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хоризонтална"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19714,12 +19720,6 @@
             "state" : "translated",
             "value" : "橫書"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хоризонтална"
-          }
         }
       }
     },
@@ -19727,6 +19727,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Lines\"; ObjectID = \"Kb8-QD-tYZ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Линии"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19828,12 +19834,6 @@
             "state" : "translated",
             "value" : "行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Линии"
-          }
         }
       }
     },
@@ -19841,6 +19841,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Find\"; ObjectID = \"kGA-vM-cdL\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Търсене"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19942,12 +19948,6 @@
             "state" : "translated",
             "value" : "尋找"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Търсене"
-          }
         }
       }
     },
@@ -19955,6 +19955,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Correct Spelling Automatically\"; ObjectID = \"kQ8-FM-Cgx\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматична поправка на правопис"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20056,12 +20062,6 @@
             "state" : "translated",
             "value" : "自動更正串字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Правилно изписване автоматично"
-          }
         }
       }
     },
@@ -20069,6 +20069,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Replace and Find Next\"; ObjectID = \"KrV-3z-r5B\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замяна и намиране на следващия"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20170,12 +20176,6 @@
             "state" : "translated",
             "value" : "取代並尋找下一個"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замяна и намиране на следващия"
-          }
         }
       }
     },
@@ -20183,6 +20183,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Use Selection for Replace\"; ObjectID = \"kwa-lu-0Fz\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай селекцията за замяна"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20284,12 +20290,6 @@
             "state" : "translated",
             "value" : "使用所選範圍進行取代"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Използвай селекцията за замяна"
-          }
         }
       }
     },
@@ -20297,6 +20297,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Capitalize\"; ObjectID = \"LC4-lg-eO0\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С главни букви"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20398,12 +20404,6 @@
             "state" : "translated",
             "value" : "首字母大寫"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "С главни букви"
-          }
         }
       }
     },
@@ -20411,6 +20411,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Toggle Comment\"; ObjectID = \"LLy-Yx-tXI\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Превключване на коментара"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20512,12 +20518,6 @@
             "state" : "translated",
             "value" : "切換註解"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Превключване на коментара"
-          }
         }
       }
     },
@@ -20525,6 +20525,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Sort by Pattern…\"; ObjectID = \"lNH-Mh-pIE\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортиране по модел…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20626,12 +20632,6 @@
             "state" : "translated",
             "value" : "按模式排序⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сортиране по модел…"
-          }
         }
       }
     },
@@ -20639,6 +20639,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Column Down\"; ObjectID = \"m1A-zz-piF\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете Колона надолу"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20740,12 +20746,6 @@
             "state" : "translated",
             "value" : "選擇下方欄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете Колона надолу"
-          }
         }
       }
     },
@@ -20753,6 +20753,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"CotEditor Scripting Guide\"; ObjectID = \"M1N-Fg-Bo4\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Ръководство за скриптове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20854,12 +20860,6 @@
             "state" : "translated",
             "value" : "CotEditor程式碼指南"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor Ръководство за скриптове"
-          }
         }
       }
     },
@@ -20867,6 +20867,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Shuffle\"; ObjectID = \"M8V-zi-g4l\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разбъркайте"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20968,12 +20974,6 @@
             "state" : "translated",
             "value" : "隨機排序"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разбъркайте"
-          }
         }
       }
     },
@@ -20981,6 +20981,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Duplicate Line\"; ObjectID = \"m48-5E-yia\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дублирай реда"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21082,12 +21088,6 @@
             "state" : "translated",
             "value" : "重複行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дублирай реда"
-          }
         }
       }
     },
@@ -21095,6 +21095,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Writing Direction\"; ObjectID = \"mEh-BD-ZlV\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Посока на писане"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21196,12 +21202,6 @@
             "state" : "translated",
             "value" : "書寫方向"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Посока на писане"
-          }
         }
       }
     },
@@ -21209,6 +21209,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Tab Bar\"; ObjectID = \"MRo-QR-whQ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи лентата с раздели"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21310,12 +21316,6 @@
             "state" : "translated",
             "value" : "顯示分頁列"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи лентата с раздели"
-          }
         }
       }
     },
@@ -21323,6 +21323,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Paste Exactly\"; ObjectID = \"MTm-Qg-WjY\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поставете точно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21424,12 +21430,6 @@
             "state" : "translated",
             "value" : "貼上完全符合的項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Поставете точно"
-          }
         }
       }
     },
@@ -21437,6 +21437,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Font Type\"; ObjectID = \"Nfx-qA-gK4\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тип на шрифта"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21538,12 +21544,6 @@
             "state" : "translated",
             "value" : "字體類型"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тип на шрифта"
-          }
         }
       }
     },
@@ -21551,6 +21551,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Find Next\"; ObjectID = \"NwE-Cf-L9F\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намиране на следващия"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21652,12 +21658,6 @@
             "state" : "translated",
             "value" : "尋找下一個"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Намиране на следващия"
-          }
         }
       }
     },
@@ -21665,6 +21665,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Manage Multiple Replace…\"; ObjectID = \"o7K-sI-KJA\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управление на множество замени…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21766,12 +21772,6 @@
             "state" : "translated",
             "value" : "管理多重取代⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Управление на множество замени…"
-          }
         }
       }
     },
@@ -21779,6 +21779,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Double Quotes\"; ObjectID = \"O8z-C9-ECD\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Двойни кавички"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21880,12 +21886,6 @@
             "state" : "translated",
             "value" : "雙引號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Двойни кавички"
-          }
         }
       }
     },
@@ -21893,6 +21893,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Multiple Replace\"; ObjectID = \"OaT-5c-bMY\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Множествена замяна"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21994,12 +22000,6 @@
             "state" : "translated",
             "value" : "多重取代"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Множествена замяна"
-          }
         }
       }
     },
@@ -22007,6 +22007,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Sidebar\"; ObjectID = \"OgF-mf-7xU\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Странична лента"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22108,12 +22114,6 @@
             "state" : "translated",
             "value" : "側邊欄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Странична лента"
-          }
         }
       }
     },
@@ -22121,6 +22121,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"CotEditor Scripting Guide\"; ObjectID = \"OLa-Mb-rXS\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Ръководство за скриптове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22222,12 +22228,6 @@
             "state" : "translated",
             "value" : "CotEditor程式碼指南"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor Ръководство за скриптове"
-          }
         }
       }
     },
@@ -22235,6 +22235,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Edit Snippets…\"; ObjectID = \"OmB-Ve-DEy\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактиране на фрагменти…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22336,12 +22342,6 @@
             "state" : "translated",
             "value" : "編輯程式碼摘錄⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактиране на фрагменти…"
-          }
         }
       }
     },
@@ -22349,6 +22349,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Sort\"; ObjectID = \"OQl-Uo-yfn\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22450,12 +22456,6 @@
             "state" : "translated",
             "value" : "排序"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сортиране"
-          }
         }
       }
     },
@@ -22463,6 +22463,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Jump to Selection\"; ObjectID = \"p4A-mE-Ve3\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прескочи до избраното"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22564,12 +22570,6 @@
             "state" : "translated",
             "value" : "跳去所選範圍"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Към селекцията"
-          }
         }
       }
     },
@@ -22577,6 +22577,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Open Outline Menu\"; ObjectID = \"PmT-ho-UU7\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори менюто „Структура“"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22678,12 +22684,6 @@
             "state" : "translated",
             "value" : "開啟「大綱」選單"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори менюто „Структура“"
-          }
         }
       }
     },
@@ -22691,6 +22691,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Text Replacement\"; ObjectID = \"PSn-PG-o9k\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замяна на текст"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22792,12 +22798,6 @@
             "state" : "translated",
             "value" : "文字替代"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замяна на текст"
-          }
         }
       }
     },
@@ -22805,6 +22805,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Next Outline Item\"; ObjectID = \"PWZ-Om-OhX\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете следващ елемент от структурата"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22906,12 +22912,6 @@
             "state" : "translated",
             "value" : "選擇下個大綱條目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете следващ елемент от структурата"
-          }
         }
       }
     },
@@ -22919,6 +22919,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Convert Indentation to Tabs\"; ObjectID = \"q32-Jm-eR3\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразуване на отстъп в раздели"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23020,12 +23026,6 @@
             "state" : "translated",
             "value" : "將縮排轉換成定位符號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преобразуване на отстъп в раздели"
-          }
         }
       }
     },
@@ -23033,6 +23033,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Complete\"; ObjectID = \"Qa9-dA-CF1\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завършено"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23134,12 +23140,6 @@
             "state" : "translated",
             "value" : "完成"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Завършено"
-          }
         }
       }
     },
@@ -23147,6 +23147,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Smart Copy/Paste\"; ObjectID = \"QKD-ue-EQp\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интелигентно Копиране/Поставяне"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23248,12 +23254,6 @@
             "state" : "translated",
             "value" : "智慧複製/貼上"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Интелигентно копиране/поставяне"
-          }
         }
       }
     },
@@ -23261,6 +23261,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show in Finder\"; ObjectID = \"qOo-dc-1LZ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи във Finder"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23362,12 +23368,6 @@
             "state" : "translated",
             "value" : "在Finder顯示"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи във Finder"
-          }
         }
       }
     },
@@ -23375,6 +23375,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Indent Guides\"; ObjectID = \"Qqu-pI-Xz6\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи водачите за отстъп"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23476,12 +23482,6 @@
             "state" : "translated",
             "value" : "顯示縮排指引"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи водачите за отстъп"
-          }
         }
       }
     },
@@ -23489,6 +23489,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"2\"; ObjectID = \"qs3-we-YzU\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23590,12 +23596,6 @@
             "state" : "translated",
             "value" : "2"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "2"
-          }
         }
       }
     },
@@ -23603,6 +23603,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"New Document\"; ObjectID = \"qTb-gl-0V3\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нов документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23704,12 +23710,6 @@
             "state" : "translated",
             "value" : "新增文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нов документ"
-          }
         }
       }
     },
@@ -23717,6 +23717,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Standard\"; ObjectID = \"qTY-rj-A3z\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартен"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23818,12 +23824,6 @@
             "state" : "translated",
             "value" : "標準"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стандартен"
-          }
         }
       }
     },
@@ -23831,6 +23831,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Spelling\"; ObjectID = \"rKZ-vK-0OH\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правопис"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23932,12 +23938,6 @@
             "state" : "translated",
             "value" : "串字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Правопис"
-          }
         }
       }
     },
@@ -23945,6 +23945,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Sidebar\"; ObjectID = \"rQb-cr-Q3F\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Странична лента"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24046,12 +24052,6 @@
             "state" : "translated",
             "value" : "側邊欄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Странична лента"
-          }
         }
       }
     },
@@ -24059,6 +24059,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Make Upper Case\"; ObjectID = \"RX2-gg-n33\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С главни букви"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24160,12 +24166,6 @@
             "state" : "translated",
             "value" : "大寫"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Направете главни букви"
-          }
         }
       }
     },
@@ -24173,6 +24173,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Delete Line\"; ObjectID = \"sFn-3j-pY5\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изтриване на линия"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24274,12 +24280,6 @@
             "state" : "translated",
             "value" : "刪除行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изтриване на линия"
-          }
         }
       }
     },
@@ -24287,6 +24287,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Convert to Half Width\"; ObjectID = \"Skr-vI-7VN\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преобразуване в половин ширина"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24388,12 +24394,6 @@
             "state" : "translated",
             "value" : "轉換成半形"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преобразуване в половин ширина"
-          }
         }
       }
     },
@@ -24401,6 +24401,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Advanced Character Count…\"; ObjectID = \"SPF-Mw-eZP\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширен брой знаци…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24502,12 +24508,6 @@
             "state" : "translated",
             "value" : "進階字元量計數⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширен брой знаци…"
-          }
         }
       }
     },
@@ -24515,6 +24515,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Insert from iPhone or iPad\"; ObjectID = \"srI-0X-faq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вмъкни от iPhone или iPad"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24616,12 +24622,6 @@
             "state" : "translated",
             "value" : "從iPhone或iPad插入"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вмъкни от iPhone или iPad"
-          }
         }
       }
     },
@@ -24629,6 +24629,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Single Quotes\"; ObjectID = \"Srp-eD-10Q\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Единични кавички"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24730,12 +24736,6 @@
             "state" : "translated",
             "value" : "單引號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Единични кавички"
-          }
         }
       }
     },
@@ -24743,6 +24743,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Inspector\"; ObjectID = \"sYa-2o-iPk\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Инспектор"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24844,12 +24850,6 @@
             "state" : "translated",
             "value" : "檢閲器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Инспектор"
-          }
         }
       }
     },
@@ -24857,6 +24857,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Smart Quotes\"; ObjectID = \"sza-9T-f4h\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интелигентни кавички"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24958,12 +24964,6 @@
             "state" : "translated",
             "value" : "智慧型引號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Интелигентни цитати"
-          }
         }
       }
     },
@@ -24971,6 +24971,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Join Lines\"; ObjectID = \"te2-4F-YwD\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Присъединете се към линии"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25072,12 +25078,6 @@
             "state" : "translated",
             "value" : "加入文字行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Присъединете се към линии"
-          }
         }
       }
     },
@@ -25085,6 +25085,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Share…\"; ObjectID = \"TNF-pL-CAZ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сподели…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25186,12 +25192,6 @@
             "state" : "translated",
             "value" : "分享⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Споделяне…"
-          }
         }
       }
     },
@@ -25199,6 +25199,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Inspect Character\"; ObjectID = \"ToR-yH-ahH\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверете характера"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25300,12 +25306,6 @@
             "state" : "translated",
             "value" : "檢閲字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверете характера"
-          }
         }
       }
     },
@@ -25313,6 +25313,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Insert by Unicode Code Point…\"; ObjectID = \"tWx-pj-3PL\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вмъкване от Unicode кодова точка…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25414,12 +25420,6 @@
             "state" : "translated",
             "value" : "透過Unicode代碼位插入⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вмъкване от Unicode кодова точка…"
-          }
         }
       }
     },
@@ -25427,6 +25427,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"About Scripting\"; ObjectID = \"u2o-8v-WPL\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Относно скриптовете"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25528,12 +25534,6 @@
             "state" : "translated",
             "value" : "關於程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Относно скриптовете"
-          }
         }
       }
     },
@@ -25541,6 +25541,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Block Comment\"; ObjectID = \"U5v-4k-2tq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блокиране на коментар"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25642,12 +25648,6 @@
             "state" : "translated",
             "value" : "區塊註解"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Блокиране на коментар"
-          }
         }
       }
     },
@@ -25655,6 +25655,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Stack Editors Vertically\"; ObjectID = \"u46-te-4c4\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стек редактори вертикално"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25756,12 +25762,6 @@
             "state" : "translated",
             "value" : "垂直疊放編輯器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стек редактори вертикално"
-          }
         }
       }
     },
@@ -25769,6 +25769,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Replace Text\"; ObjectID = \"ue7-85-H8l\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замени текст"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25870,12 +25876,6 @@
             "state" : "translated",
             "value" : "取代文字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замяна на текст"
-          }
         }
       }
     },
@@ -25883,6 +25883,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select All Find Matches\"; ObjectID = \"ULf-cT-Xvb\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете Всички намерени съвпадения"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25984,12 +25990,6 @@
             "state" : "translated",
             "value" : "選擇全部尋找符合的項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете Всички намерени съвпадения"
-          }
         }
       }
     },
@@ -25997,6 +25997,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Spelling and Grammar\"; ObjectID = \"uXu-vF-RqZ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи Правопис и граматика"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26098,12 +26104,6 @@
             "state" : "translated",
             "value" : "顯示串字與文法檢查"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи правопис и граматика"
-          }
         }
       }
     },
@@ -26111,6 +26111,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"File Browser\"; ObjectID = \"VdN-vm-gXF\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлов браузър"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26212,12 +26218,6 @@
             "state" : "translated",
             "value" : "檔案瀏覽器"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файлов браузър"
-          }
         }
       }
     },
@@ -26225,6 +26225,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Ligatures\"; ObjectID = \"viH-Eo-wKz\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лигатури"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26326,12 +26332,6 @@
             "state" : "translated",
             "value" : "連字"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лигатури"
-          }
         }
       }
     },
@@ -26339,6 +26339,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"New Tab\"; ObjectID = \"WCp-4v-OPR\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нов раздел"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26440,12 +26446,6 @@
             "state" : "translated",
             "value" : "新增分頁"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нов раздел"
-          }
         }
       }
     },
@@ -26453,6 +26453,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Find Previous\"; ObjectID = \"wiV-Hh-7xU\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Намери предишното"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26554,12 +26560,6 @@
             "state" : "translated",
             "value" : "尋找上一個"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Намери предишното"
-          }
         }
       }
     },
@@ -26567,6 +26567,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Tab Width\"; ObjectID = \"xAm-b4-9CY\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ширина на раздела"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26668,12 +26674,6 @@
             "state" : "translated",
             "value" : "定位符號間隔闊度"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ширина на раздела"
-          }
         }
       }
     },
@@ -26681,6 +26681,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Reverse\"; ObjectID = \"xhf-NR-D2Q\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обратно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26782,12 +26788,6 @@
             "state" : "translated",
             "value" : "反向"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Обратно"
-          }
         }
       }
     },
@@ -26795,6 +26795,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Braces\"; ObjectID = \"Xoq-43-C1z\"; Note = \"{}\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скоби"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26896,12 +26902,6 @@
             "state" : "translated",
             "value" : "大括號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скоби"
-          }
         }
       }
     },
@@ -26909,6 +26909,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"URL Encode\"; ObjectID = \"xxp-UD-STx\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL кодиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27010,12 +27016,6 @@
             "state" : "translated",
             "value" : "URL編碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "URL кодиране"
-          }
         }
       }
     },
@@ -27023,6 +27023,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Substitutions\"; ObjectID = \"yN3-iT-4Lq\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замествания"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27124,12 +27130,6 @@
             "state" : "translated",
             "value" : "替代項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замени"
-          }
         }
       }
     },
@@ -27137,6 +27137,12 @@
       "comment" : "Class = \"NSMenu\"; title = \"Indentation\"; ObjectID = \"YOd-Hk-eIa\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вдлъбнатина"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27238,12 +27244,6 @@
             "state" : "translated",
             "value" : "縮排"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вдлъбнатина"
-          }
         }
       }
     },
@@ -27251,6 +27251,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Comment\"; ObjectID = \"yph-qH-qNE\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коментирайте"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27352,12 +27358,6 @@
             "state" : "translated",
             "value" : "註解"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Коментирайте"
-          }
         }
       }
     },
@@ -27365,6 +27365,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Select Column Up\"; ObjectID = \"yVo-uW-dls\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изберете Колона нагоре"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27466,12 +27472,6 @@
             "state" : "translated",
             "value" : "選擇上方欄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете Колона нагоре"
-          }
         }
       }
     },
@@ -27479,6 +27479,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Make Lower Case\"; ObjectID = \"ZrR-aL-1eB\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С малки букви"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27579,12 +27585,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "小寫"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Направете малки букви"
           }
         }
       }

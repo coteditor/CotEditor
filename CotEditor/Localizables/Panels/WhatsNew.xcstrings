@@ -4,6 +4,12 @@
     "Beta" : {
       "comment" : "label for when the app is a prerelease version",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бета"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,17 +105,17 @@
             "state" : "translated",
             "value" : "Beta"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бета"
-          }
         }
       }
     },
     "Continue" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продължи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -205,28 +211,22 @@
             "state" : "translated",
             "value" : "繼續"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Продължи"
-          }
         }
       }
     },
     "NewFeature.outline.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Icons make structure easier to scan, and tree-sitter–based syntaxes now support collapsible outlines that reflect hierarchy."
-          }
-        },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Иконите улесняват прегледа на структурата, а синтаксисите с tree-sitter вече поддържат сгъваеми нива според йерархията."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Icons make structure easier to scan, and tree-sitter–based syntaxes now support collapsible outlines that reflect hierarchy."
           }
         }
       }
@@ -234,16 +234,16 @@
     "NewFeature.outline.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Outline with depth"
-          }
-        },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Структура по нива"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Outline with depth"
           }
         }
       }
@@ -251,16 +251,16 @@
     "NewFeature.syntax.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "More accurate highlighting, smarter commenting, and improved indentation behavior — powered by a redesigned syntax engine and definition format."
-          }
-        },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "По-точно подчертаване, по-интелигентно коментиране и подобрено поведение на отстъпа — задвижвани от преработен механизъм за синтаксис и формат на дефиниция."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "More accurate highlighting, smarter commenting, and improved indentation behavior — powered by a redesigned syntax engine and definition format."
           }
         }
       }
@@ -268,16 +268,16 @@
     "NewFeature.syntax.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Smarter syntax, sharper editing"
-          }
-        },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "По-интелигентен синтаксис, по-ясно редактиране"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Smarter syntax, sharper editing"
           }
         }
       }
@@ -285,6 +285,24 @@
     "NewFeature.syntax.supplementalView.message" : {
       "comment" : "%lld is the number of syntaxes",
       "localizations" : {
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Мигриран %lld потребителски синтаксис към новия формат."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Мигриран %lld потребителски синтаксис към новия формат."
+                }
+              }
+            }
+          }
+        },
         "de" : {
           "variations" : {
             "plural" : {
@@ -404,40 +422,22 @@
               }
             }
           }
-        },
-        "bg" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Мигриран %lld потребителски синтаксис към новия формат."
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Мигриран %lld потребителски синтаксис към новия формат."
-                }
-              }
-            }
-          }
         }
       }
     },
     "NewFeature.treeSitter.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Several built-in syntaxes now use tree-sitter — a modern, structure-based parser — enabling deeper and more reliable language awareness."
-          }
-        },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Няколко вградени синтаксиса вече използват tree-sitter, модерен анализатор на синтаксис, за по-дълбоко и по-надеждно разбиране на езика."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Several built-in syntaxes now use tree-sitter — a modern, structure-based parser — enabling deeper and more reliable language awareness."
           }
         }
       }
@@ -445,22 +445,28 @@
     "NewFeature.treeSitter.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Powered by tree-sitter, where it matters most"
-          }
-        },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "С tree-sitter там, където е най-важно"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Powered by tree-sitter, where it matters most"
           }
         }
       }
     },
     "Release Notes" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бележки по изданието"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -562,18 +568,18 @@
             "state" : "translated",
             "value" : "版本備註"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бележки по изданието"
-          }
         }
       }
     },
     "What’s New in CotEditor %@" : {
       "comment" : "%@ is version number",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Какво е новото в CotEditor %@"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -668,12 +674,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor %@的新功能"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Какво е новото в CotEditor %@"
           }
         }
       }

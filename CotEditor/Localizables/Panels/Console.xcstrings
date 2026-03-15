@@ -4,6 +4,12 @@
     "Clear Log" : {
       "comment" : "toolbar item label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изчистване на дневника"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,18 +105,18 @@
             "state" : "translated",
             "value" : "清除記錄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изчистване на дневника"
-          }
         }
       }
     },
     "Console" : {
       "comment" : "window title",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конзола"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -205,12 +211,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "主控台"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Конзола"
           }
         }
       }

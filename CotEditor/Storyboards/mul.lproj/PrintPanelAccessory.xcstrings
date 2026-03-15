@@ -5,6 +5,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Print Backgrounds\"; ObjectID = \"5eL-Aw-LdI\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Печат на фонове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -106,12 +112,6 @@
             "state" : "translated",
             "value" : "列印背景"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Печат на фонове"
-          }
         }
       }
     },
@@ -119,6 +119,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Font Size\"; ObjectID = \"fSa-V2-D11\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер на шрифта"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -220,12 +226,6 @@
             "state" : "translated",
             "value" : "文字大小"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Размер на шрифта"
-          }
         }
       }
     },
@@ -233,6 +233,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Header\"; ObjectID = \"JlJ-Fc-tes\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заглавка"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -334,12 +340,6 @@
             "state" : "translated",
             "value" : "標頭"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Заглавка"
-          }
         }
       }
     },
@@ -347,6 +347,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Print Headers and Footers\"; ObjectID = \"l4b-D2-DDX\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Печат на горни и долни колонтитули"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -448,12 +454,6 @@
             "state" : "translated",
             "value" : "列印標頭與註腳"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Печат на горни и долни колонтитули"
-          }
         }
       }
     },
@@ -461,6 +461,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Print Line Numbers\"; ObjectID = \"L7u-ng-jC7\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отпечатайте номера на редове"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -562,12 +568,6 @@
             "state" : "translated",
             "value" : "列印行號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отпечатайте номера на редове"
-          }
         }
       }
     },
@@ -575,6 +575,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Print Invisibles\"; ObjectID = \"M5e-Tg-MlQ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Печат на невидимки"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -676,12 +682,6 @@
             "state" : "translated",
             "value" : "列印隱形符號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Печат на невидимки"
-          }
         }
       }
     },
@@ -689,16 +689,16 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"DUMMY\"; ObjectID = \"M42-Kl-i11\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "DUMMY"
-          }
-        },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "манекен"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "DUMMY"
           }
         }
       },
@@ -708,6 +708,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Footer\"; ObjectID = \"mY6-Zh-2Uc\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Долен колонтитул"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -809,12 +815,6 @@
             "state" : "translated",
             "value" : "註腳"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Долен колонтитул"
-          }
         }
       }
     },
@@ -822,6 +822,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Black and White\"; ObjectID = \"nUs-hp-672\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Черно и Бяло"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -923,12 +929,6 @@
             "state" : "translated",
             "value" : "黑白"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Черно и Бяло"
-          }
         }
       }
     },
@@ -936,16 +936,16 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"DUMMY\"; ObjectID = \"qXf-Q9-bwe\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "DUMMY"
-          }
-        },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "манекен"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "DUMMY"
           }
         }
       },
@@ -955,6 +955,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"pt\"; ObjectID = \"U13-G4-pKV\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pt"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1056,12 +1062,6 @@
             "state" : "translated",
             "value" : "點"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "pt"
-          }
         }
       }
     },
@@ -1069,16 +1069,16 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"DUMMY\"; ObjectID = \"VyN-kq-VID\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "DUMMY"
-          }
-        },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "манекен"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "DUMMY"
           }
         }
       },
@@ -1088,16 +1088,16 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"DUMMY\"; ObjectID = \"Y5Z-M5-b2b\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "DUMMY"
-          }
-        },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "манекен"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "DUMMY"
           }
         }
       },
@@ -1107,6 +1107,12 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Color\"; ObjectID = \"yQ7-YE-ZK9\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвят"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1207,12 +1213,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顏色"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Цвят"
           }
         }
       }

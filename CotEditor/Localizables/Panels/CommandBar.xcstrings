@@ -4,6 +4,30 @@
     "%lld commands found" : {
       "comment" : "VoiceOver announcement for when incrementally updating the command search result.",
       "localizations" : {
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерена е %lld команда"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Намерени са %lld команди"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Няма намерени команди"
+                }
+              }
+            }
+          }
+        },
         "cs" : {
           "variations" : {
             "plural" : {
@@ -417,36 +441,18 @@
               }
             }
           }
-        },
-        "bg" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Намерена е %lld команда"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Намерени са %lld команди"
-                }
-              },
-              "zero" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Няма намерени команди"
-                }
-              }
-            }
-          }
         }
       }
     },
     "Command" : {
       "comment" : "command type",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "командване"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -542,17 +548,17 @@
             "state" : "translated",
             "value" : "指令"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "командване"
-          }
         }
       }
     },
     "Quick Actions" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бързи действия"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -648,18 +654,18 @@
             "state" : "translated",
             "value" : "快速動作"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бързи действия"
-          }
         }
       }
     },
     "Script" : {
       "comment" : "command type",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -754,12 +760,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "程式碼"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скрипт"
           }
         }
       }

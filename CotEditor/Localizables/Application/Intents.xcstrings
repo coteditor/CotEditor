@@ -4,6 +4,12 @@
     "CreateDocumentIntent.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създайте нов документ с посочения текст в CotEditor."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -105,18 +111,18 @@
             "state" : "translated",
             "value" : "在CotEditor中製作包括指定文字的新文件。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Създайте нов документ с посочения текст в CotEditor."
-          }
         }
       }
     },
     "CreateDocumentIntent.Parameter.content" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Съдържание"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -218,18 +224,18 @@
             "state" : "translated",
             "value" : "内容"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Съдържание"
-          }
         }
       }
     },
     "CreateDocumentIntent.shortTitle" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създаване на документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -330,12 +336,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "製作文件"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Създаване на документ"
           }
         }
       }
@@ -343,6 +343,12 @@
     "CreateDocumentIntent.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Създаване на документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -443,12 +449,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "製作文件"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Създаване на документ"
           }
         }
       }

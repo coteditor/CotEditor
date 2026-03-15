@@ -4,6 +4,12 @@
     "Go" : {
       "comment" : "button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Напред"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,18 +105,18 @@
             "state" : "translated",
             "value" : "前往"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Напред"
-          }
         }
       }
     },
     "Line Number" : {
       "comment" : "placeholder",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номер на ред"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -206,17 +212,17 @@
             "state" : "translated",
             "value" : "行號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Номер на ред"
-          }
         }
       }
     },
     "Line:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ред:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -311,12 +317,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "行："
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ред:"
           }
         }
       }

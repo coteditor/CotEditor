@@ -3,6 +3,12 @@
   "strings" : {
     "Clear Recents" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изчисти последните"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98,18 +104,18 @@
             "state" : "translated",
             "value" : "清除最近項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изчисти последните"
-          }
         }
       }
     },
     "Column" : {
       "comment" : "pattern sort key option",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Колона"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -205,17 +211,17 @@
             "state" : "translated",
             "value" : "欄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Колона"
-          }
         }
       }
     },
     "Delimiter:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделител:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -311,18 +317,18 @@
             "state" : "translated",
             "value" : "分隔符號："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разделител:"
-          }
         }
       }
     },
     "Empty pattern" : {
       "comment" : "error message (“pattern” is a regular expression pattern)",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Празен модел"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -418,18 +424,18 @@
             "state" : "translated",
             "value" : "模式為空"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Празен модел"
-          }
         }
       }
     },
     "Entire line" : {
       "comment" : "pattern sort key option",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Целият ред"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -525,17 +531,17 @@
             "state" : "translated",
             "value" : "整個行"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Целият ред"
-          }
         }
       }
     },
     "Ignore case" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорирай главни букви"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -631,17 +637,17 @@
             "state" : "translated",
             "value" : "忽略大小寫"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Без значение на главни и малки букви"
-          }
         }
       }
     },
     "In descending order" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В низходящ ред"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -737,18 +743,18 @@
             "state" : "translated",
             "value" : "降序"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "В низходящ ред"
-          }
         }
       }
     },
     "Invalid pattern" : {
       "comment" : "error message (“pattern” is a regular expression pattern)",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невалиден шаблон"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -844,17 +850,17 @@
             "state" : "translated",
             "value" : "無效的模式"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невалиден шаблон"
-          }
         }
       }
     },
     "Keep the first line at the top" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запазете първия ред отгоре"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -950,17 +956,17 @@
             "state" : "translated",
             "value" : "保持第一行顯示在最上方"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запазете първия ред отгоре"
-          }
         }
       }
     },
     "Pattern:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шаблон:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1056,17 +1062,17 @@
             "state" : "translated",
             "value" : "模式："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шаблон:"
-          }
         }
       }
     },
     "Position:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позиция:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1162,18 +1168,18 @@
             "state" : "translated",
             "value" : "位置："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Позиция:"
-          }
         }
       }
     },
     "Recents" : {
       "comment" : "menu header",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последни"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1269,18 +1275,18 @@
             "state" : "translated",
             "value" : "最近"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Последни"
-          }
         }
       }
     },
     "Regular expression" : {
       "comment" : "pattern sort key option",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярен израз"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1376,18 +1382,18 @@
             "state" : "translated",
             "value" : "常規表示式"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Регулярен израз"
-          }
         }
       }
     },
     "Regular Expression" : {
       "comment" : "placeholder for regular expression pattern field",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярен израз"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1483,17 +1489,17 @@
             "state" : "translated",
             "value" : "常規表示式"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Регулярен израз"
-          }
         }
       }
     },
     "Respect language rules" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уважавайте езиковите правила"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1589,18 +1595,18 @@
             "state" : "translated",
             "value" : "遵循語言規則"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Уважавайте езиковите правила"
-          }
         }
       }
     },
     "Sample line to check which part in a line will be used for sort comparison." : {
       "comment" : "tooltip",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Примерен ред, за да проверите коя част от ред ще се използва за сравнение на сортиране."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1696,17 +1702,17 @@
             "state" : "translated",
             "value" : "範例行，用來檢查行中的甚麼部分將用於排序比較。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Примерен ред, за да проверите коя част от ред ще се използва за сравнение на сортиране."
-          }
         }
       }
     },
     "Sample:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пример:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1802,18 +1808,18 @@
             "state" : "translated",
             "value" : "範例："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пример:"
-          }
         }
       }
     },
     "Sort" : {
       "comment" : "button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортиране"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1909,17 +1915,17 @@
             "state" : "translated",
             "value" : "排序"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сортиране"
-          }
         }
       }
     },
     "Sort key:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ за сортиране:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2015,17 +2021,17 @@
             "state" : "translated",
             "value" : "排序關鍵字："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ключ за сортиране:"
-          }
         }
       }
     },
     "Sort option:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Опция за сортиране:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2121,17 +2127,17 @@
             "state" : "translated",
             "value" : "排序選項："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Опция за сортиране:"
-          }
         }
       }
     },
     "Treat numbers as numeric values" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Третирайте числата като числови стойности"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2227,17 +2233,17 @@
             "state" : "translated",
             "value" : "將數字視為數值"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Третирайте числата като числови стойности"
-          }
         }
       }
     },
     "Use captured group:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Използвай прихваната група:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2332,12 +2338,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "使用捕捉組："
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Използвай прихваната група:"
           }
         }
       }

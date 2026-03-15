@@ -3,6 +3,12 @@
   "strings" : {
     "Tab width:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ширина на табулацията:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -97,12 +103,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "定位符號間隔闊度："
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ширина на табулацията:"
           }
         }
       }

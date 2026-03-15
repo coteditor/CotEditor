@@ -3,6 +3,12 @@
   "strings" : {
     "AWK script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AWK скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98,17 +104,17 @@
             "state" : "translated",
             "value" : "AWK程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "AWK скрипт"
-          }
         }
       }
     },
     "BibTeX bibliography" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BibTeX библиография"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -204,17 +210,17 @@
             "state" : "translated",
             "value" : "BibTeX文獻目錄"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BibTeX библиография"
-          }
         }
       }
     },
     "C header" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C заглавка"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -310,17 +316,17 @@
             "state" : "translated",
             "value" : "C標題碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C заглавка"
-          }
         }
       }
     },
     "C source" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C източник"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -416,17 +422,17 @@
             "state" : "translated",
             "value" : "C原始碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C източник"
-          }
         }
       }
     },
     "C# source" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C# източник"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -522,17 +528,17 @@
             "state" : "translated",
             "value" : "C#原始碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C# източник"
-          }
         }
       }
     },
     "C++ header" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C++ заглавка"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -628,17 +634,17 @@
             "state" : "translated",
             "value" : "C++標題碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C++ заглавка"
-          }
         }
       }
     },
     "C++ source" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "C++ източник"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -734,17 +740,17 @@
             "state" : "translated",
             "value" : "C++原始碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C++ източник"
-          }
         }
       }
     },
     "Cascading Style Sheet" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каскаден стилов лист"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -840,12 +846,6 @@
             "state" : "translated",
             "value" : "CSS樣式表"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каскаден стилов лист"
-          }
         }
       }
     },
@@ -853,6 +853,12 @@
       "comment" : "Bundle name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -936,12 +942,6 @@
             "state" : "new",
             "value" : "CotEditor"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor"
-          }
         }
       },
       "shouldTranslate" : false
@@ -950,6 +950,12 @@
       "comment" : "Accessibility Bundle Name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактор на детско легло"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1051,17 +1057,17 @@
             "state" : "translated",
             "value" : "Cot editor"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактор на детско легло"
-          }
         }
       }
     },
     "Configuration" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конфигурация"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1157,17 +1163,17 @@
             "state" : "translated",
             "value" : "設定檔"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Конфигурация"
-          }
         }
       }
     },
     "CotEditor Replace Definition" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Замени дефиницията"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1263,17 +1269,17 @@
             "state" : "translated",
             "value" : "CotEditor取代定義檔"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor Замени дефиницията"
-          }
         }
       }
     },
     "CotEditor Settings Archive" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Архив на настройките"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1369,17 +1375,17 @@
             "state" : "translated",
             "value" : "CotEditor設定封存檔"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor Архив на настройките"
-          }
         }
       }
     },
     "CotEditor Syntax" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Синтаксис"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1421,17 +1427,17 @@
             "state" : "translated",
             "value" : "CotEditor語法"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor Синтаксис"
-          }
         }
       }
     },
     "CotEditor Theme" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Тема"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1527,17 +1533,17 @@
             "state" : "translated",
             "value" : "CotEditor主題"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor Тема"
-          }
         }
       }
     },
     "D source" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D източник"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1633,17 +1639,17 @@
             "state" : "translated",
             "value" : "D原始碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "D източник"
-          }
         }
       }
     },
     "Dart script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дартс скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1739,17 +1745,17 @@
             "state" : "translated",
             "value" : "Dart程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дартс скрипт"
-          }
         }
       }
     },
     "Diff" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "разл"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1845,17 +1851,17 @@
             "state" : "translated",
             "value" : "Diff"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "разл"
-          }
         }
       }
     },
     "Fortran source" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Източник на Fortran"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1951,17 +1957,17 @@
             "state" : "translated",
             "value" : "Fortran原始碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Източник на Fortran"
-          }
         }
       }
     },
     "Go script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2057,17 +2063,17 @@
             "state" : "translated",
             "value" : "Go程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Go скрипт"
-          }
         }
       }
     },
     "Haskell script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хаскел скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2163,17 +2169,17 @@
             "state" : "translated",
             "value" : "Haskell程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хаскел скрипт"
-          }
         }
       }
     },
     "HTML document" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTML документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2269,17 +2275,17 @@
             "state" : "translated",
             "value" : "HTML文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HTML документ"
-          }
         }
       }
     },
     "INI" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "INI"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2375,17 +2381,17 @@
             "state" : "translated",
             "value" : "INI"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "INI"
-          }
         }
       }
     },
     "Java source" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Източник на Java"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2481,17 +2487,17 @@
             "state" : "translated",
             "value" : "Java原始碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Източник на Java"
-          }
         }
       }
     },
     "JavaScript" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JavaScript"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2587,17 +2593,17 @@
             "state" : "translated",
             "value" : "JavaScript"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "JavaScript"
-          }
         }
       }
     },
     "JSON document" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JSON документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2693,17 +2699,17 @@
             "state" : "translated",
             "value" : "JSON文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "JSON документ"
-          }
         }
       }
     },
     "Julia script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сценарият на Джулия"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2799,17 +2805,17 @@
             "state" : "translated",
             "value" : "Julia程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сценарият на Джулия"
-          }
         }
       }
     },
     "Kotlin script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Котлин скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2905,17 +2911,17 @@
             "state" : "translated",
             "value" : "Kotlin程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Котлин скрипт"
-          }
         }
       }
     },
     "Lisp script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisp скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3011,17 +3017,17 @@
             "state" : "translated",
             "value" : "Lisp程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lisp скрипт"
-          }
         }
       }
     },
     "Lua script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lua скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3117,17 +3123,17 @@
             "state" : "translated",
             "value" : "Lua程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lua скрипт"
-          }
         }
       }
     },
     "Markdown document" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markdown документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3223,17 +3229,17 @@
             "state" : "translated",
             "value" : "Markdown文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Markdown документ"
-          }
         }
       }
     },
     "Mojo script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mojo скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3329,12 +3335,6 @@
             "state" : "translated",
             "value" : "Mojo程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mojo скрипт"
-          }
         }
       }
     },
@@ -3342,6 +3342,12 @@
       "comment" : "Privacy - AppleEvents Sending Usage Description",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor се нуждае от вашето одобрение, за да контролира други приложения с AppleScript."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3443,12 +3449,6 @@
             "state" : "translated",
             "value" : "CotEditor需要你的批准才能使用AppleScript控制其他應用程式。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor се нуждае от вашето одобрение, за да контролира други приложения с AppleScript."
-          }
         }
       }
     },
@@ -3456,15 +3456,15 @@
       "comment" : "Copyright (human-readable)",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "© 2005-2009 nakamuxu\n© 2011, 2014 usami-k\n© 2013-2026 1024jp"
-          }
-        },
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "© 2005-2009 nakamuxu\n© 2011, 2014 usami-k\n© 2013-2026 1024jp"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "© 2005-2009 nakamuxu\n© 2011, 2014 usami-k\n© 2013-2026 1024jp"
           }
         }
@@ -3473,6 +3473,12 @@
     },
     "Perl script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perl скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3568,17 +3574,17 @@
             "state" : "translated",
             "value" : "Perl程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Perl скрипт"
-          }
         }
       }
     },
     "PHP script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PHP скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3674,17 +3680,17 @@
             "state" : "translated",
             "value" : "PHP程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PHP скрипт"
-          }
         }
       }
     },
     "Plain text document" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обикновен текстов документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3780,17 +3786,17 @@
             "state" : "translated",
             "value" : "純文字文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Обикновен текстов документ"
-          }
         }
       }
     },
     "Python script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Python скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3886,17 +3892,17 @@
             "state" : "translated",
             "value" : "Python程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Python скрипт"
-          }
         }
       }
     },
     "reStructured Text document" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Реструктуриран текстов документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3992,17 +3998,17 @@
             "state" : "translated",
             "value" : "reStructured文字文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Реструктуриран текстов документ"
-          }
         }
       }
     },
     "Ruby script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ruby скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4098,17 +4104,17 @@
             "state" : "translated",
             "value" : "Ruby程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ruby скрипт"
-          }
         }
       }
     },
     "Rust script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rust скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4204,17 +4210,17 @@
             "state" : "translated",
             "value" : "Rust程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rust скрипт"
-          }
         }
       }
     },
     "Scala source" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Източник на Scala"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4310,17 +4316,17 @@
             "state" : "translated",
             "value" : "Scala原始碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Източник на Scala"
-          }
         }
       }
     },
     "Scalable Vector Graphics" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мащабируема векторна графика"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4416,17 +4422,17 @@
             "state" : "translated",
             "value" : "可變式向量圖形"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мащабируема векторна графика"
-          }
         }
       }
     },
     "Scheme script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт на схема"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4522,17 +4528,17 @@
             "state" : "translated",
             "value" : "Scheme程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скрипт на схема"
-          }
         }
       }
     },
     "Shell script" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shell скрипт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4628,17 +4634,17 @@
             "state" : "translated",
             "value" : "Shell程式碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shell скрипт"
-          }
         }
       }
     },
     "SQL source" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SQL източник"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4734,17 +4740,17 @@
             "state" : "translated",
             "value" : "SQL原始碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "SQL източник"
-          }
         }
       }
     },
     "Swift source" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бърз източник"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4840,17 +4846,17 @@
             "state" : "translated",
             "value" : "Swift原始碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бърз източник"
-          }
         }
       }
     },
     "TeX document" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TeX документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4946,17 +4952,17 @@
             "state" : "translated",
             "value" : "TeX文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "TeX документ"
-          }
         }
       }
     },
     "Textile document" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текстилен документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5052,17 +5058,17 @@
             "state" : "translated",
             "value" : "Textile文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текстилен документ"
-          }
         }
       }
     },
     "TOML document" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TOML документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5158,17 +5164,17 @@
             "state" : "translated",
             "value" : "TOML文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "TOML документ"
-          }
         }
       }
     },
     "UUID" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UUID"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5264,17 +5270,17 @@
             "state" : "translated",
             "value" : "UUID"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "UUID"
-          }
         }
       }
     },
     "Verilog source" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Източник на Verilog"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5370,17 +5376,17 @@
             "state" : "translated",
             "value" : "Verilog原始碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Източник на Verilog"
-          }
         }
       }
     },
     "VHDL source" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VHDL източник"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5476,17 +5482,17 @@
             "state" : "translated",
             "value" : "VHDL原始碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "VHDL източник"
-          }
         }
       }
     },
     "XML document" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XML документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5582,17 +5588,17 @@
             "state" : "translated",
             "value" : "XML文件"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "XML документ"
-          }
         }
       }
     },
     "YAML document" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "YAML документ"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5687,12 +5693,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "YAML文件"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "YAML документ"
           }
         }
       }

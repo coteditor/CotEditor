@@ -4,6 +4,24 @@
     "*%lld* character(s)" : {
       "comment" : "counter for advanced character count",
       "localizations" : {
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* знак"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* знака"
+                }
+              }
+            }
+          }
+        },
         "cs" : {
           "variations" : {
             "plural" : {
@@ -315,30 +333,18 @@
               }
             }
           }
-        },
-        "bg" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "*%lld* знак"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "*%lld* знака"
-                }
-              }
-            }
-          }
         }
       }
     },
     "Advanced Character Count…" : {
       "comment" : "menu item",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разширен брой знаци…"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -434,12 +440,6 @@
             "state" : "translated",
             "value" : "進階字元量計數⋯"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширен брой знаци…"
-          }
         }
       }
     },
@@ -447,6 +447,12 @@
       "comment" : "description for byte",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преброяване на байтове от текста, кодиран с посоченото кодиране."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -548,12 +554,6 @@
             "state" : "translated",
             "value" : "計算使用指定編碼方式編碼的文字的Byte數。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преброяване на байтове от текста, кодиран с посоченото кодиране."
-          }
         }
       }
     },
@@ -561,6 +561,12 @@
       "comment" : "count unit",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Байт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -662,12 +668,6 @@
             "state" : "translated",
             "value" : "Byte"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Байт"
-          }
         }
       }
     },
@@ -675,6 +675,12 @@
       "comment" : "description for grapheme cluster",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бройте по интуитивния начин, дефиниран в Unicode. Символ, състоящ се от множество Unicode кодови точки, като емотикони, се брои като един знак."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -776,12 +782,6 @@
             "state" : "translated",
             "value" : "以Unicode中定義的直覺方式計數。由多個Unicode代碼位（如表情符號）組成的字元以一個字元計算。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бройте по интуитивния начин, дефиниран в Unicode. Символ, състоящ се от множество Unicode кодови точки, като емотикони, се брои като един знак."
-          }
         }
       }
     },
@@ -789,6 +789,12 @@
       "comment" : "count unit (technical term defined in Unicode)",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Графемен клъстер"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -890,12 +896,6 @@
             "state" : "translated",
             "value" : "字位聚類"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Графемен клъстер"
-          }
         }
       }
     },
@@ -903,6 +903,12 @@
       "comment" : "description for unicode scalar",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Преброяване на Unicode кодови точки. Същото като броенето на UTF-32."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1004,12 +1010,6 @@
             "state" : "translated",
             "value" : "計數Unicode代碼位（與計數UTF-32相同）。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преброяване на Unicode кодови точки. Същото като броенето на UTF-32."
-          }
         }
       }
     },
@@ -1017,6 +1017,12 @@
       "comment" : "count unit",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уникод скалар"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1118,12 +1124,6 @@
             "state" : "translated",
             "value" : "Unicode純量"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Уникод скалар"
-          }
         }
       }
     },
@@ -1131,6 +1131,12 @@
       "comment" : "description for UTF-16",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бройте Unicode кодови точки, но сурогатна двойка като два знака."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1232,12 +1238,6 @@
             "state" : "translated",
             "value" : "計數Unicode代碼位，但將代理配對計算為兩個字元。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бройте Unicode кодови точки, но сурогатна двойка като два знака."
-          }
         }
       }
     },
@@ -1245,6 +1245,12 @@
       "comment" : "count unit",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1346,18 +1352,18 @@
             "state" : "translated",
             "value" : "UTF-16"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "UTF-16"
-          }
         }
       }
     },
     "Copy" : {
       "comment" : "menu item",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копирай"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1453,18 +1459,18 @@
             "state" : "translated",
             "value" : "複製"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Копирай"
-          }
         }
       }
     },
     "Encoding:" : {
       "comment" : "label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодиране:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1560,18 +1566,18 @@
             "state" : "translated",
             "value" : "編碼："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодиране:"
-          }
         }
       }
     },
     "failed" : {
       "comment" : "error message when count failed",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "неуспешно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1667,18 +1673,18 @@
             "state" : "translated",
             "value" : "失敗"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "неуспешно"
-          }
         }
       }
     },
     "Ignore line endings" : {
       "comment" : "setting option",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорирай краищата на редовете"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1774,18 +1780,18 @@
             "state" : "translated",
             "value" : "忽略每行結尾"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Игнорирай краищата на редовете"
-          }
         }
       }
     },
     "Ignore whitespace" : {
       "comment" : "setting option",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игнорирай интервалите"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1881,18 +1887,18 @@
             "state" : "translated",
             "value" : "忽略空白字元"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Игнорирай интервалите"
-          }
         }
       }
     },
     "Normalization:" : {
       "comment" : "label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нормализация:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1988,18 +1994,18 @@
             "state" : "translated",
             "value" : "標準化："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нормализация:"
-          }
         }
       }
     },
     "Show options" : {
       "comment" : "tooltip",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Покажи опциите"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2095,18 +2101,18 @@
             "state" : "translated",
             "value" : "顯示選項"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи опциите"
-          }
         }
       }
     },
     "Start" : {
       "comment" : "button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старт"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2202,18 +2208,18 @@
             "state" : "translated",
             "value" : "開始"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Старт"
-          }
         }
       }
     },
     "Stop Advanced Character Count" : {
       "comment" : "menu item",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спиране на разширеното броене на символи"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2309,18 +2315,18 @@
             "state" : "translated",
             "value" : "停止進階字元量計數"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Спиране на разширеното броене на символи"
-          }
         }
       }
     },
     "Stop Count" : {
       "comment" : "menu item (This “Stop” should be translated the same as it is in the “Stop Advanced Character Count” menu label.)",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спрете броенето"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2416,18 +2422,18 @@
             "state" : "translated",
             "value" : "停止計數"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Спрете броенето"
-          }
         }
       }
     },
     "Treat consecutive whitespace as one space" : {
       "comment" : "setting option",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Третирайте последователните интервали като един интервал"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2523,18 +2529,18 @@
             "state" : "translated",
             "value" : "將連續的空格視為一個空格"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Третирайте последователните интервали като един интервал"
-          }
         }
       }
     },
     "Unit:" : {
       "comment" : "label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Единица:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2630,18 +2636,18 @@
             "state" : "translated",
             "value" : "單位："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Единица:"
-          }
         }
       }
     },
     "Whitespace:" : {
       "comment" : "label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интервали:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2736,12 +2742,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "空白字元："
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Интервали:"
           }
         }
       }

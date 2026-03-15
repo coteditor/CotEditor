@@ -4,6 +4,12 @@
     "%@ with BOM" : {
       "comment" : "encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ с BOM"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98,12 +104,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ with BOM"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ с BOM"
           }
         }
       }

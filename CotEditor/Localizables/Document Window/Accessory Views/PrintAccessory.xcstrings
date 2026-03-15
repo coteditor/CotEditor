@@ -4,6 +4,12 @@
     "%@ pt" : {
       "comment" : "font size with unit",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ т"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,18 +105,18 @@
             "state" : "translated",
             "value" : "%@點"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ т"
-          }
         }
       }
     },
     "AlignmentType.center.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Център"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -212,18 +218,18 @@
             "state" : "translated",
             "value" : "置中"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Център"
-          }
         }
       }
     },
     "AlignmentType.left.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подравняване вляво"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -325,18 +331,18 @@
             "state" : "translated",
             "value" : "靠左對齊"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подравняване вляво"
-          }
         }
       }
     },
     "AlignmentType.right.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подравняване вдясно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -438,18 +444,18 @@
             "state" : "translated",
             "value" : "靠右對齊"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подравняване вдясно"
-          }
         }
       }
     },
     "Black and White" : {
       "comment" : "coloring option",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Черно и бяло"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -545,18 +551,18 @@
             "state" : "translated",
             "value" : "黑白"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Черно и бяло"
-          }
         }
       }
     },
     "Color" : {
       "comment" : "summary item name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвят"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -652,18 +658,18 @@
             "state" : "translated",
             "value" : "顏色"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Цвят"
-          }
         }
       }
     },
     "Font Size" : {
       "comment" : "summary item name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер на шрифта"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -759,18 +765,18 @@
             "state" : "translated",
             "value" : "字體大小"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Размер на шрифта"
-          }
         }
       }
     },
     "Footer" : {
       "comment" : "summary item name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Долен колонтитул"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -866,18 +872,18 @@
             "state" : "translated",
             "value" : "註腳"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Долен колонтитул"
-          }
         }
       }
     },
     "Header" : {
       "comment" : "summary item name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Горен колонтитул"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -973,18 +979,18 @@
             "state" : "translated",
             "value" : "標頭"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Горен колонтитул"
-          }
         }
       }
     },
     "Invisibles" : {
       "comment" : "summary item name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидими"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1080,18 +1086,18 @@
             "state" : "translated",
             "value" : "隱形符號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невидими"
-          }
         }
       }
     },
     "Line Number" : {
       "comment" : "summary item name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номер на ред"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1187,17 +1193,17 @@
             "state" : "translated",
             "value" : "行號"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Номер на ред"
-          }
         }
       }
     },
     "On" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вкл."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1293,18 +1299,18 @@
             "state" : "translated",
             "value" : "開"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вкл."
-          }
         }
       }
     },
     "Print Backgrounds" : {
       "comment" : "summary item name",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Печатай фона"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1400,18 +1406,18 @@
             "state" : "translated",
             "value" : "列印背景"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Печатай фона"
-          }
         }
       }
     },
     "PrintInfoType.documentName.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Име на документа"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1513,18 +1519,18 @@
             "state" : "translated",
             "value" : "文件名稱"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Име на документа"
-          }
         }
       }
     },
     "PrintInfoType.filePath.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Път на файла"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1626,18 +1632,18 @@
             "state" : "translated",
             "value" : "檔案路徑"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Път на файла"
-          }
         }
       }
     },
     "PrintInfoType.lastModifiedDate.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата на последна промяна"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1739,18 +1745,18 @@
             "state" : "translated",
             "value" : "上次修改日期"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дата на последна промяна"
-          }
         }
       }
     },
     "PrintInfoType.none.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1852,18 +1858,18 @@
             "state" : "translated",
             "value" : "無"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Няма"
-          }
         }
       }
     },
     "PrintInfoType.pageNumber.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номер на страницата"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1965,18 +1971,18 @@
             "state" : "translated",
             "value" : "頁碼"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Номер на страницата"
-          }
         }
       }
     },
     "PrintInfoType.printDate.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отпечатайте дата"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2078,18 +2084,18 @@
             "state" : "translated",
             "value" : "列印日期"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отпечатайте дата"
-          }
         }
       }
     },
     "PrintInfoType.syntaxName.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Име на синтаксиса"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2191,18 +2197,18 @@
             "state" : "translated",
             "value" : "語法名稱"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Име на синтаксиса"
-          }
         }
       }
     },
     "Theme" : {
       "comment" : "menu header",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2297,12 +2303,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "主題"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тема"
           }
         }
       }

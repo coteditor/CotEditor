@@ -4,6 +4,24 @@
     "%lld cups" : {
       "comment" : "accessibility label for item quantity",
       "localizations" : {
+        "bg" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld чаша"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld чаши"
+                }
+              }
+            }
+          }
+        },
         "cs" : {
           "variations" : {
             "plural" : {
@@ -315,30 +333,18 @@
               }
             }
           }
-        },
-        "bg" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld чаша"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld чаши"
-                }
-              }
-            }
-          }
         }
       }
     },
     "× %lld" : {
       "comment" : "multiple sign for the quantity of items to purchase",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -434,18 +440,18 @@
             "state" : "translated",
             "value" : "× %lld"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "× %lld"
-          }
         }
       }
     },
     "An internet connection is required to donate." : {
       "comment" : "error message",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изисква се интернет връзка за дарение."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -541,17 +547,17 @@
             "state" : "translated",
             "value" : "需要網絡連線才能捐贈。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изисква се интернет връзка за дарение."
-          }
         }
       }
     },
     "As proof of your kind support, a coffee badge appears on the status bar during continuous support." : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Като доказателство за вашата любезна подкрепа, значка за кафе се появява в лентата на състоянието по време на непрекъсната поддръжка."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -647,17 +653,17 @@
             "state" : "translated",
             "value" : "作為你有心支持的證明，在持續支持期間，狀態列上會顯示一個咖啡標記。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Като доказателство за вашата любезна подкрепа, значка за кафе се появява в лентата на състоянието по време на непрекъсната поддръжка."
-          }
         }
       }
     },
     "Badge type:" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тип значка:"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -753,17 +759,17 @@
             "state" : "translated",
             "value" : "標記種類："
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тип значка:"
-          }
         }
       }
     },
     "Continuous support" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непрекъсната поддръжка"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -859,17 +865,17 @@
             "state" : "translated",
             "value" : "持續支持"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Непрекъсната поддръжка"
-          }
         }
       }
     },
     "CotEditor provides all features for free to everyone. You can support this project by offering coffee." : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor предоставя всички функции безплатно на всички. Можете да подкрепите този проект, като предложите кафе."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -965,17 +971,17 @@
             "state" : "translated",
             "value" : "CotEditor向所有人免費提供全部功能。你可以透過提供咖啡來支持這個項目。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor предоставя всички функции безплатно на всички. Можете да подкрепите този проект, като предложите кафе."
-          }
         }
       }
     },
     "Donation is currently not available." : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дарение в момента не е налично."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1071,17 +1077,17 @@
             "state" : "translated",
             "value" : "現時無法使用捐贈。"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дарение в момента не е налично."
-          }
         }
       }
     },
     "Manage Subscriptions" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управление на абонаменти"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1177,17 +1183,17 @@
             "state" : "translated",
             "value" : "管理訂閲項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Управление на абонаменти"
-          }
         }
       }
     },
     "One-time donation" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Еднократно дарение"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1283,18 +1289,18 @@
             "state" : "translated",
             "value" : "一次性捐贈"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Еднократно дарение"
-          }
         }
       }
     },
     "Open GitHub Sponsors" : {
       "comment" : "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization.",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори GitHub Sponsors"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1390,17 +1396,17 @@
             "state" : "translated",
             "value" : "開啟「GitHub Sponsors」"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори GitHub Sponsors"
-          }
         }
       }
     },
     "Open in App Store" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори в App Store"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1496,17 +1502,17 @@
             "state" : "translated",
             "value" : "在App Store開啟"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори в App Store"
-          }
         }
       }
     },
     "Privacy Policy" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Политика за поверителност"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1602,18 +1608,18 @@
             "state" : "translated",
             "value" : "私隱政策"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Политика за поверителност"
-          }
         }
       }
     },
     "Quantity" : {
       "comment" : "accessibility label for item quantity stepper",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Количество"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1709,17 +1715,17 @@
             "state" : "translated",
             "value" : "數量"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Количество"
-          }
         }
       }
     },
     "Restore Subscription" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Възстановяване на абонамента"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1815,17 +1821,17 @@
             "state" : "translated",
             "value" : "還原訂閲項目"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Възстановяване на абонамента"
-          }
         }
       }
     },
     "Terms of Service" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Условия за ползване"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1921,17 +1927,17 @@
             "state" : "translated",
             "value" : "服務條款"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Условия за ползване"
-          }
         }
       }
     },
     "The In-App donation feature is available only in CotEditor distributed in the App Store." : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Функцията за дарение в приложението е достъпна само в CotEditor, разпространяван в App Store."
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2026,12 +2032,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "只有App Store發佈的CotEditor才能使用App內捐贈功能。"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Функцията за дарение в приложението е достъпна само в CotEditor, разпространяван в App Store."
           }
         }
       }

@@ -4,6 +4,12 @@
     "Close" : {
       "comment" : "button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Затвори"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -99,17 +105,17 @@
             "state" : "translated",
             "value" : "關閉"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Затвори"
-          }
         }
       }
     },
     "Detection failed" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разпознаването е неуспешно"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -205,18 +211,18 @@
             "state" : "translated",
             "value" : "偵測失敗"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разпознаването е неуспешно"
-          }
         }
       }
     },
     "Insert" : {
       "comment" : "button label",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вмъкни"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -312,17 +318,17 @@
             "state" : "translated",
             "value" : "插入"
           }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вмъкни"
-          }
         }
       }
     },
     "No text detected" : {
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма открит текст"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -417,12 +423,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未偵測到文字"
-          }
-        },
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Няма открит текст"
           }
         }
       }
