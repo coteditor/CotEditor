@@ -3,6 +3,10 @@
 6.2.6 (unreleased)
 --------------------------
 
+### Fixes
+
+- Address a potential crash when editing a keyboard shortcut in the snippets settings.
+
 
 
 6.2.5 (796)
