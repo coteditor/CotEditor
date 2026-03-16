@@ -41,7 +41,8 @@ struct StringSmartIndentingTests {
     @Test func indentTokenInit() {
         
         let symbols: [Character] = ["{", "[", "(", ":"]
-        #expect(try symbols.allSatisfy(\.isPunctuation))
+        let arePunctuations = symbols.allSatisfy(\.isPunctuation)
+        #expect(arePunctuations)
         
         #expect(IndentToken(begin: "", end: "") == nil)
         #expect(IndentToken(begin: "", end: "}") == nil)
