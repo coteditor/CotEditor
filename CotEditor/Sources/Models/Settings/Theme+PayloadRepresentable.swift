@@ -32,7 +32,7 @@ extension UTType {
 }
 
 
-extension Theme: PayloadRepresentable, @unchecked Sendable {
+extension Theme: PayloadRepresentable {
     
     nonisolated static let fileType: UTType = .cotTheme
     
