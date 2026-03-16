@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 import AppKit.NSTextStorage
 
-// declare Sendable to NSAttributedString instead of NSTextView to suppress the warning
+// declare Sendable to NSAttributedString instead of NSTextStorage to suppress the warning
 // when sending NSTextStorage as a notification object (2025-10, Xcode 26.1).
 extension NSAttributedString: @retroactive @unchecked Sendable { }
 
