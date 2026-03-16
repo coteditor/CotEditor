@@ -335,9 +335,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 },
             ]
         } else {
-            for observer in self.keyStateObservers {
-                NotificationCenter.default.removeObserver(observer)
-            }
+            self.keyStateObservers.forEach(NotificationCenter.default.removeObserver)
             self.keyStateObservers.removeAll()
             self.windowOpacityObserver = nil
             self.instanceHighlightTask?.cancel()

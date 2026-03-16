@@ -277,9 +277,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         ]
         
         let scrollView = self.outlineView.enclosingScrollView!
-        for observer in self.scrollObservers {
-            NotificationCenter.default.removeObserver(observer)
-        }
+        self.scrollObservers.forEach(NotificationCenter.default.removeObserver)
         self.scrollObservers = [
             NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: scrollView.contentView, queue: .main) { [weak self] _ in
                 MainActor.assumeIsolated {
@@ -301,9 +299,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         self.defaultObservers.removeAll()
         
-        for observer in self.scrollObservers {
-            NotificationCenter.default.removeObserver(observer)
-        }
+        self.scrollObservers.forEach(NotificationCenter.default.removeObserver)
         self.scrollObservers.removeAll()
     }
     
