@@ -525,16 +525,17 @@ struct FindAllMatch: Identifiable {
                     let matchedRange = matches[0]
                     
                     // build a highlighted line string for result table
-                    let lineRange = lineCounter.lineContentsRange(for: matchedRange)
-                    let lineString = (textFind.string as NSString).substring(with: lineRange)
+                    let lineFragmentRange = lineCounter.lineContentsRange(for: matchedRange)
+                        .clamped(around: matchedRange, maxLength: 1024)  // -> limit to avoid out of memory with very long lines
+                    let lineString = (textFind.string as NSString).substring(with: lineFragmentRange)
                     let attrLineString = NSMutableAttributedString(string: lineString)
                     for (color, range) in zip(highlightColors, matches) where !range.isEmpty {
-                        guard let inlineRange = range.shifted(by: -lineRange.location).intersection(attrLineString.range) else { continue }
+                        guard let inlineRange = range.shifted(by: -lineFragmentRange.location).intersection(attrLineString.range) else { continue }
                         attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
                     }
                     
                     let lineNumber = lineCounter.lineNumber(at: matchedRange.location)
-                    let inlineLocation = matchedRange.location - lineRange.location
+                    let inlineLocation = matchedRange.location - lineFragmentRange.location
                     
                     resultMatches.append(.init(range: matchedRange, lineNumber: lineNumber, inlineLocation: inlineLocation, attributedLineString: attrLineString))
                 }
