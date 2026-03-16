@@ -55,6 +55,7 @@
 ### Fixes
 
 - Fix issues with incorrect syntax analysis in some built-in syntaxes.
+- Fix an issue where the default file extension in the save dialog was .txt for syntaxes with a file extension not registered in the system.
 
 
 ### TODO

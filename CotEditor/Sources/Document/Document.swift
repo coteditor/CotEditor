@@ -154,7 +154,7 @@ extension NSTextView: EditorCounter.Source { }
         
         super.init()
         
-        if let fileExtension, let type = UTType(filenameExtension: fileExtension) {
+        if let fileExtension, let type = UTType(filenameExtension: fileExtension, conformingTo: .data) {
             self.fileType = type.identifier
         }
         
@@ -589,12 +589,21 @@ extension NSTextView: EditorCounter.Source { }
         if #unavailable(macOS 26.2) {
             savePanel.allowedContentTypes = self.fileType
                 .flatMap { self.fileNameExtension(forType: $0, saveOperation: .saveOperation) }
-                .flatMap { UTType(filenameExtension: $0) }
+                .flatMap { UTType(filenameExtension: $0, conformingTo: .data) }
                 .map { [$0] } ?? []
             
             // avoid the Hide Extension option removes actual filename extension (2024-05, macOS 14)
             savePanel.canSelectHiddenExtension = false
             savePanel.isExtensionHidden = false
+        }
+        
+        // workaround the issue that NSDocument cannot resolve the file extension
+        // from a dynamic UTType, falling back to .txt (2026-03, macOS 26)
+        if let fileType, let type = UTType(fileType), type.isDynamic,
+           let fileExtension = self.syntaxFileExtension.withLock(\.self)
+        {
+            let basename = savePanel.nameFieldStringValue.deletingPathExtension
+            savePanel.nameFieldStringValue = "\(basename).\(fileExtension)"
         }
         
         // set accessory view
@@ -1130,7 +1139,7 @@ extension NSTextView: EditorCounter.Source { }
         
         // keep fileType in sync with the selected syntax so the Save panel suggests the right extension
         // (2026-02, macOS 26.2)
-        let type = fileExtension.flatMap { UTType(filenameExtension: $0) } ?? .plainText
+        let type = fileExtension.flatMap { UTType(filenameExtension: $0, conformingTo: .data) } ?? .plainText
         self.fileType = type.identifier
         
         self.invalidateMode()
