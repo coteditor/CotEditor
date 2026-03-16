@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2025 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,8 +25,9 @@
 
 public import Observation
 import Foundation
+import Synchronization
 
-@Observable public final class FindProgress: @unchecked Sendable {
+@Observable public final class FindProgress: Sendable {
     
     public enum State: Equatable, Sendable {
         
@@ -47,12 +48,15 @@ import Foundation
     }
     
     
-    public private(set) var state: State = .ready
-    @ObservationIgnored public private(set) var count = 0
+    // MARK: Private Properties
     
+    private let _state: Mutex<State> = .init(.ready)
+    private let _count: Mutex<Int> = .init(0)
+    private let completedUnit: Mutex<Int> = .init(0)
     private let scope: Range<Int>
-    private var completedUnit = 0
     
+    
+    // MARK: Lifecycle
     
     /// Instantiates a progress.
     ///
@@ -63,13 +67,30 @@ import Foundation
     }
     
     
+    // MARK: Public Methods
+    
+    /// The current progress state.
+    public var state: State {
+        
+        access(keyPath: \.state)
+        return self._state.withLock(\.self)
+    }
+    
+    
+    /// The number of items completed.
+    public var count: Int  {
+        
+        self._count.withLock(\.self)
+    }
+    
+    
     /// The fraction of task completed in between 0...1.0.
     public var fractionCompleted: Double {
         
         if self.state == .finished || self.scope.isEmpty {
-            return 1
+            1
         } else {
-            return Double(self.completedUnit) / Double(self.scope.count)
+            Double(self.completedUnit.withLock(\.self)) / Double(self.scope.count)
         }
     }
     
@@ -77,14 +98,18 @@ import Foundation
     /// Changes the state to `.cancelled`.
     public func cancel() {
         
-        self.state = .cancelled
+        withMutation(keyPath: \.state) {
+            self._state.withLock { $0 = .cancelled }
+        }
     }
     
     
     /// Changes the state to `.finished`.
     public func finish() {
         
-        self.state = .finished
+        withMutation(keyPath: \.state) {
+            self._state.withLock { $0 = .finished }
+        }
     }
     
     
@@ -93,7 +118,7 @@ import Foundation
     /// - Parameter count: The amount to increment.
     public func incrementCount(by count: Int = 1) {
         
-        self.count += count
+        self._count.withLock { $0 += count }
     }
     
     
@@ -102,13 +127,15 @@ import Foundation
     /// - Parameter unit: The new completed unit.
     public func updateCompletedUnit(to unit: Int) {
         
-        self.completedUnit = unit
+        self.completedUnit.withLock { $0 = unit }
     }
     
+    
+    // MARK: Internal Methods
     
     /// Increments the `completedUnit` by one.
     func incrementCompletedUnit() {
         
-        self.completedUnit += 1
+        self.completedUnit.withLock { $0 += 1 }
     }
 }
