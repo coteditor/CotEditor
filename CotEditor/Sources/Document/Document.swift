@@ -86,13 +86,12 @@ extension NSTextView: EditorCounter.Source { }
     
     let textStorage = NSTextStorage()
     let syntaxController: SyntaxController
+    let lineEndingScanner: LineEndingScanner
+    let counter: EditorCounter
     @ObservationIgnored @Published private(set) var fileEncoding: FileEncoding
     @ObservationIgnored @Published private(set) var lineEnding: LineEnding  { didSet { self.lineEndingScanner.baseLineEnding = lineEnding } }
     @ObservationIgnored @Published private(set) var syntaxName: String
     @ObservationIgnored @Published private(set) var mode: Mode
-    
-    let lineEndingScanner: LineEndingScanner
-    let counter: EditorCounter
     
     
     // MARK: Private Properties
