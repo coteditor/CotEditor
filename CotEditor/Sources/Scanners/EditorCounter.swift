@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@
 //
 
 import Foundation
-import Observation
 import StringUtils
 
 struct EditorCount: Equatable {
@@ -46,7 +45,7 @@ struct EditorCount: Equatable {
 
 @MainActor final class EditorCounter {
     
-    @Observable final class Result {
+    @MainActor @Observable final class Result {
         
         var characters = EditorCount()
         var lines = EditorCount()
