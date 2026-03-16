@@ -64,6 +64,16 @@
 
 
 
+6.2.6 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix a potential crash in Find All when a matched line is extremely long.
+- Address a potential crash when editing a keyboard shortcut in the snippets settings.
+
+
+
 6.2.5 (796)
 --------------------------
 

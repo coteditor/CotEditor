@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -85,6 +85,31 @@ public extension NSRange {
     func shifted(by offset: Int) -> NSRange {
         
         NSRange(location: self.location + offset, length: self.length)
+    }
+    
+    
+    /// Returns a subrange clamped to `maxLength` around the given `target` range.
+    ///
+    /// The returned range is always a subrange of `self` and includes `target` as much as possible,
+    /// with up to `headPadding` characters preserved before `target`.
+    ///
+    /// - Parameters:
+    ///   - target: The range to keep visible.
+    ///   - maxLength: The maximum length of the returned range.
+    ///   - headPadding: The preferred number of characters to keep before `target`.
+    /// - Returns: A clamped subrange, or `self` if already within `maxLength`.
+    func clamped(around target: NSRange, maxLength: Int, headPadding: Int = 64) -> NSRange {
+
+        assert(maxLength > 0)
+        assert(headPadding >= 0)
+
+        guard self.length > maxLength else { return self }
+
+        let effectiveHead = min(headPadding, target.location - self.location)
+        let fragmentStart = max(self.location, target.location - effectiveHead)
+        let fragmentEnd = min(self.upperBound, fragmentStart + maxLength)
+
+        return NSRange(fragmentStart..<fragmentEnd)
     }
 }
 

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,6 +56,7 @@ struct ShortcutField: NSViewRepresentable {
     
     func updateNSView(_ nsView: NSTextField, context: Context) {
         
+        context.coordinator.updateBinding(shortcut: $value)
         nsView.objectValue = self.value
     }
     
@@ -68,14 +69,27 @@ struct ShortcutField: NSViewRepresentable {
     
     @MainActor final class Coordinator: NSObject, NSTextFieldDelegate {
         
-        @Binding private var shortcut: Shortcut?
+        private var shortcut: Binding<Shortcut?>
+        private var cachedShortcut: Shortcut?
+        
         @Binding private var error: (any Error)?
         
         
         init(shortcut: Binding<Shortcut?>, error: Binding<(any Error)?>) {
             
-            self._shortcut = shortcut
+            self.shortcut = shortcut
+            self.cachedShortcut = shortcut.wrappedValue
             self._error = error
+        }
+        
+        
+        /// Updates the binding to keep it in sync with the current view state.
+        ///
+        /// - Parameter shortcut: The binding to update.
+        func updateBinding(shortcut: Binding<Shortcut?>) {
+            
+            self.shortcut = shortcut
+            self.cachedShortcut = shortcut.wrappedValue
         }
         
         
@@ -88,14 +102,14 @@ struct ShortcutField: NSViewRepresentable {
             self.error = nil
             
             // not edited
-            guard shortcut != self.shortcut else { return }
+            guard shortcut != self.cachedShortcut else { return }
             
             if let shortcut {
                 do {
                     try shortcut.checkCustomizationAvailability(for: NSApp.mainMenu)
                 } catch {
                     self.error = error
-                    sender.objectValue = self.shortcut  // reset text field
+                    sender.objectValue = self.cachedShortcut  // reset text field
                     NSSound.beep()
                     
                     // make text field edit mode again
@@ -108,7 +122,8 @@ struct ShortcutField: NSViewRepresentable {
             }
             
             // successfully update data
-            self.shortcut = shortcut
+            self.shortcut.wrappedValue = shortcut
+            self.cachedShortcut = shortcut
         }
     }
 }
