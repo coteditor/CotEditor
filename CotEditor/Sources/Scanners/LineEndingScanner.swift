@@ -25,7 +25,6 @@
 
 import Combine
 import Foundation
-import Observation
 import AppKit.NSTextStorage
 import LineEnding
 import StringUtils
@@ -50,7 +49,7 @@ import ValueRange
     
     // MARK: Lifecycle
     
-    required init(textStorage: NSTextStorage, lineEnding: LineEnding) {
+    init(textStorage: NSTextStorage, lineEnding: LineEnding) {
         
         self.textStorage = textStorage
         self.baseLineEnding = lineEnding
