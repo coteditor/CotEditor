@@ -149,6 +149,7 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
     // MARK: Private Properties
     
     private let model: KeyBindingModel
+    private var restorabilityObserver: Task<Void, Never>?
     
     @IBOutlet private weak var listView: NSTableView?
     @IBOutlet private weak var outlineView: NSOutlineView?
@@ -186,7 +187,20 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
         self.listView?.reloadData()
         self.outlineView?.reloadData()
         
-        self.observe()
+        self.restorabilityObserver = Task { [unowned self] in
+            for await isRestorable in Observations({ self.model.isRestorable }) where !isRestorable {
+                self.outlineView?.reloadData()
+            }
+        }
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.restorabilityObserver?.cancel()
+        self.restorabilityObserver = nil
     }
     
     
@@ -298,23 +312,6 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
         item.shortcut = shortcut
         self.model.save()
         outlineView.reloadData(forRowIndexes: [row], columnIndexes: [column])
-    }
-    
-    
-    // MARK: Private Methods
-    
-    /// Recursively observes the `.isRestorable` flag.
-    private func observe() {
-        
-        withObservationTracking {
-            if self.model.isRestorable == false {
-                self.outlineView?.reloadData()
-            }
-        } onChange: { [weak self] in
-            Task { @MainActor in
-                self?.observe()
-            }
-        }
     }
 }
 
