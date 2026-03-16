@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
 //
 
 import Foundation
-import AppKit.NSImageRep
+import ImageIO
 import URLUtils
 
 struct FileDropItem: Equatable, Identifiable {
@@ -197,16 +197,21 @@ extension FileDropItem {
             .replacing(Variable.directory.token, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
         
         // get image dimension if needed
-        // -> Use NSImageRep because NSImage's `size` returns a DPI applied size.
         if self.format.contains(Variable.imageWidth.token) || self.format.contains(Variable.imageHeight.token) {
-            var imageRep: NSImageRep?
+            var pixelWidth: Int?
+            var pixelHeight: Int?
             NSFileCoordinator().coordinate(readingItemAt: droppedFileURL, options: [.withoutChanges, .resolvesSymbolicLink], error: nil) { newURL in
-                imageRep = NSImageRep(contentsOf: newURL)
+                guard
+                    let source = CGImageSourceCreateWithURL(newURL as CFURL, nil),
+                    let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any]
+                else { return }
+                
+                pixelWidth = properties[kCGImagePropertyPixelWidth] as? Int
+                pixelHeight = properties[kCGImagePropertyPixelHeight] as? Int
             }
-            if let imageRep {
-                dropText = dropText
-                    .replacing(Variable.imageWidth.token, with: String(imageRep.pixelsWide))
-                    .replacing(Variable.imageHeight.token, with: String(imageRep.pixelsHigh))
+            if let pixelWidth, let pixelHeight {
+                dropText.replace(Variable.imageWidth.token, with: String(pixelWidth))
+                dropText.replace(Variable.imageHeight.token, with: String(pixelHeight))
             }
         }
         
@@ -214,7 +219,7 @@ extension FileDropItem {
         // -> Replace this at last because the file content can contain other tokens.
         if self.format.contains(Variable.fileContent.token) {
             let content = try? String(contentsOf: droppedFileURL, encoding: .utf8)
-            dropText = dropText.replacing(Variable.fileContent.token, with: content ?? "")
+            dropText.replace(Variable.fileContent.token, with: content ?? "")
         }
         
         return dropText
