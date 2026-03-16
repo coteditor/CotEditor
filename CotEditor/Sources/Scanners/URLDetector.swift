@@ -65,6 +65,7 @@ import ValueRange
         self.task = nil
         
         self.textStorage.removeAttribute(.link, range: self.textStorage.range)
+        self.editedRanges.clear()
     }
     
     
@@ -148,7 +149,9 @@ extension NSTextStorage {
         
         try Task.checkCancellation()
         
-        assert(self.string.length == string.length, "textStorage was edited after starting URL detection")
+        guard self.string.length == string.length else {
+            return assertionFailure("textStorage was edited after starting URL detection")
+        }
         
         guard !links.isEmpty || self.hasAttribute(.link) else { return }
         
