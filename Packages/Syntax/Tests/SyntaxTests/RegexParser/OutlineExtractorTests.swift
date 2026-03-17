@@ -33,13 +33,13 @@ struct OutlineExtractorTests {
     
     @Test func buildsRegexWithOptions() throws {
         
-        let definition = Syntax.Outline(pattern: "^foo$", template: "$0", ignoreCase: true, kind: .heading)
+        let definition = Syntax.Outline(pattern: "^foo$", template: "$0", ignoreCase: true, kind: .heading(nil))
         let extractor = try OutlineExtractor(definition: definition)
         
         let items = try extractor.items(in: "FOO\nfoo\n", range: NSRange(0..<7))
         
         #expect(items.count == 2)
-        #expect(items.allSatisfy { $0.kind == .heading })
+        #expect(items.allSatisfy { $0.kind == .heading(nil) })
         #expect(items[0].title == "FOO")
         #expect(items[1].title == "foo")
     }
@@ -79,6 +79,43 @@ struct OutlineExtractorTests {
         #expect(items.count == 2)
         #expect(items[0].kind == .separator)
         #expect(items[1].kind == .separator)
+    }
+    
+    
+    @Test func leveledHeadingKindUsesNumericIndentAndSemanticKind() throws {
+        
+        let definition = Syntax.Outline(pattern: #"^###\s+(.+)$"#, template: "$1", kind: .heading(3))
+        let extractor = try OutlineExtractor(definition: definition)
+        
+        let source = "### Third Level\n"
+        let items = try extractor.items(in: source, range: source.nsRange)
+        
+        #expect(items.count == 1)
+        #expect(items[0].kind == .heading(nil))
+        #expect(items[0].indent == .level(3))
+        #expect(items[0].title == "Third Level")
+    }
+    
+    
+    @Test func parserNormalizesLeveledHeadings() async throws {
+        
+        let syntax = Syntax(outlines: [
+            .init(pattern: #"^#\s+(.+)$"#, template: "$1", kind: .heading(1)),
+            .init(pattern: #"^##\s+(.+)$"#, template: "$1", kind: .heading(2)),
+            .init(pattern: #"^###\s+(.+)$"#, template: "$1", kind: .heading(3)),
+        ])
+        let parser = try #require(syntax.outlineParser)
+        
+        let source = """
+                     # Top
+                     ## Section
+                     ### Detail
+                     """
+        let items = try await parser.parseOutline(in: source)
+        
+        #expect(items.map(\.title) == ["Top", "Section", "Detail"])
+        #expect(items.map(\.kind) == [.heading(nil), .heading(nil), .heading(nil)])
+        #expect(items.map(\.indent.level) == [0, 1, 2])
     }
     
     

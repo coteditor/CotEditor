@@ -115,7 +115,11 @@ public extension Syntax.Outline.Kind {
                 String(localized: "Syntax.Outline.Kind.title.label",
                        defaultValue: "Title",
                        bundle: .module)
-            case .heading:
+            case .heading(let level?):
+                String(localized: "Syntax.Outline.Kind.heading.level.label",
+                       defaultValue: "Heading \(level)",
+                       bundle: .module)
+            case .heading(nil):
                 String(localized: "Syntax.Outline.Kind.heading.label",
                        defaultValue: "Heading",
                        bundle: .module)

@@ -82,13 +82,13 @@ public struct Syntax: Equatable, Sendable {
     
     public struct Outline: Equatable, Sendable {
         
-        public enum Kind: String, Sendable, CaseIterable, Codable {
+        public enum Kind: RawRepresentable, Sendable, Hashable, CaseIterable {
             
             case container
             case value
             case function
             case title
-            case heading
+            case heading(Int?)
             case mark
             case reference
             
@@ -96,6 +96,17 @@ public struct Syntax: Equatable, Sendable {
             
             
             public static let levelRange = 1...7
+            
+            public static let allCases: [Self] = [
+                .container,
+                .value,
+                .function,
+                .title,
+                .heading(nil),
+                .mark,
+                .reference,
+                .separator,
+            ]
         }
         
         

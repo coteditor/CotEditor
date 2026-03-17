@@ -120,6 +120,48 @@ extension Syntax.Outline: Codable {
 }
 
 
+extension Syntax.Outline.Kind: Codable {
+    
+    public init?(rawValue: String) {
+        
+        let components = rawValue.split(separator: ".", maxSplits: 1, omittingEmptySubsequences: false)
+        
+        guard
+            let token = components.first,
+            let kind = Self.allCases.first(where: { $0.rawValue == token })
+        else { return nil }
+        
+        switch kind {
+            case .heading where components.count == 2:
+                guard
+                    let level = Int(components[1]),
+                    Self.levelRange.contains(level)
+                else { return nil }
+                self = .heading(level)
+                
+            default:
+                self = kind
+        }
+    }
+    
+    
+    public var rawValue: String {
+        
+        switch self {
+            case .container: "container"
+            case .value: "value"
+            case .function: "function"
+            case .title: "title"
+            case .heading(nil): "heading"
+            case .heading(let level?): "heading.\(level)"
+            case .mark: "mark"
+            case .reference: "reference"
+            case .separator: "separator"
+        }
+    }
+}
+
+
 extension Syntax.Comment.Inline: Codable {
     
     private enum CodingKeys: String, CodingKey {
