@@ -4,7 +4,7 @@
     "description" : "id",
     "ignoreCase" : true,
     "template" : "#$1",
-    "kind" : "reference"
+    "kind" : "value"
   },
   {
     "pattern" : "<title[^>]*>([^<]*)</title[^>]*>",
