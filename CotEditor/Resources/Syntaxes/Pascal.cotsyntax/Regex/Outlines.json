@@ -49,13 +49,6 @@
     "kind" : "container"
   },
   {
-    "pattern" : "^\\s*(uses)",
-    "description" : "Uses",
-    "ignoreCase" : true,
-    "template" : "---- $1",
-    "kind" : "reference"
-  },
-  {
     "pattern" : "unit\\W(.*)(?:\\;)$",
     "description" : "Unit",
     "ignoreCase" : true,
