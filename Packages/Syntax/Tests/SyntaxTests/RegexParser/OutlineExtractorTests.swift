@@ -134,6 +134,21 @@ struct OutlineExtractorTests {
     }
     
     
+    @Test func titleKindUsesLevelBasedIndent() throws {
+        
+        let definition = Syntax.Outline(pattern: #"^<title>(.+)</title>$"#, template: "$1", kind: .title)
+        let extractor = try OutlineExtractor(definition: definition)
+        
+        let source = "<title>My Page</title>\n"
+        let items = try extractor.items(in: source, range: source.nsRange)
+        
+        #expect(items.count == 1)
+        #expect(items[0].kind == .title)
+        #expect(items[0].indent == .level(0))
+        #expect(items[0].title == "My Page")
+    }
+    
+    
     /// Ensure that the template that could produce empty title should be filtered out.
     @Test func ignoresEmptyTitlesAfterTemplate() throws {
         

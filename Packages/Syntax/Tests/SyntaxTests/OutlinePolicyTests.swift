@@ -103,6 +103,56 @@ struct OutlinePolicyTests {
     }
     
     
+    @Test func normalizeTitleLevels() {
+        
+        let items: [OutlineItem] = [
+            OutlineItem(title: "h1", range: NSRange(location: 0, length: 1), kind: .heading(nil), indent: .level(1)),
+            OutlineItem(title: "title-a", range: NSRange(location: 1, length: 1), kind: .title, indent: .level(0)),
+            OutlineItem(title: "title-b", range: NSRange(location: 2, length: 1), kind: .title, indent: .level(0)),
+            OutlineItem(title: "h2", range: NSRange(location: 3, length: 1), kind: .heading(nil), indent: .level(2)),
+            OutlineItem(title: "title-c", range: NSRange(location: 4, length: 1), kind: .title, indent: .level(0)),
+            OutlineItem(title: "func", range: NSRange(location: 5, length: 1), kind: .function, indent: .level(3)),
+            OutlineItem(title: "title-d", range: NSRange(location: 6, length: 1), kind: .title, indent: .level(0)),
+            OutlineItem(title: "h1-b", range: NSRange(location: 7, length: 1), kind: .heading(nil), indent: .level(1)),
+        ]
+        
+        let normalizedLevels = OutlinePolicy().normalize(items).map(\.indent.level)
+        
+        // title after heading → one level below; title after title/function → same level
+        #expect(normalizedLevels == [0, 1, 1, 1, 2, 2, 2, 0])
+    }
+    
+    
+    @Test func normalizeTitleAtStart() {
+        
+        let items: [OutlineItem] = [
+            OutlineItem(title: "title-first", range: NSRange(location: 0, length: 1), kind: .title, indent: .level(0)),
+            OutlineItem(title: "h1", range: NSRange(location: 1, length: 1), kind: .heading(nil), indent: .level(1)),
+        ]
+        
+        let normalizedLevels = OutlinePolicy().normalize(items).map(\.indent.level)
+        
+        // title at start → level 0; heading after title → normal normalization
+        #expect(normalizedLevels == [0, 0])
+    }
+    
+    
+    @Test func titleDoesNotAffectDepthStack() {
+        
+        let items: [OutlineItem] = [
+            OutlineItem(title: "h1", range: NSRange(location: 0, length: 1), kind: .heading(nil), indent: .level(1)),
+            OutlineItem(title: "h2", range: NSRange(location: 1, length: 1), kind: .heading(nil), indent: .level(2)),
+            OutlineItem(title: "title", range: NSRange(location: 2, length: 1), kind: .title, indent: .level(0)),
+            OutlineItem(title: "h2-b", range: NSRange(location: 3, length: 1), kind: .heading(nil), indent: .level(2)),
+        ]
+        
+        let normalizedLevels = OutlinePolicy().normalize(items).map(\.indent.level)
+        
+        // title should not change the depth stack; h2-b should remain at level 1
+        #expect(normalizedLevels == [0, 1, 2, 1])
+    }
+    
+    
     @Test func normalizeFlattenLevels() {
         
         let policy = OutlinePolicy(normalization: .init(flattenLevels: true))

@@ -138,27 +138,46 @@ extension [OutlineItem] {
         var normalizedItems: [OutlineItem] = []
         normalizedItems.reserveCapacity(self.count)
         
+        var lastNormalizedLevel: Int = 0
+        var lastKind: Syntax.Outline.Kind?
+        
         for (item, nextNonSectionDepth) in zip(self, nextNonSectionDepths) {
             guard let depth = item.indent.level else {
+                if !item.isSeparator {
+                    lastKind = item.kind
+                }
                 normalizedItems.append(item)
                 continue
             }
             
-            let isSectionMarker = policy.isSectionMarker(kind: item.kind)
-            
-            let effectiveDepth = if isSectionMarker, policy.adjustSectionMarkerDepth {
-                Swift.max(depthStack.last ?? depth, depth, nextNonSectionDepth ?? depth)
-            } else {
-                depth
-            }
-            
             var normalizedItem = item
-            if isSectionMarker {
+            if item.kind == .title {
+                // -> Title items are placed relative to the previous item:
+                //    one level below headings, same level as anything else.
+                let titleLevel = if let lastKind, case .heading = lastKind {
+                    lastNormalizedLevel + 1
+                } else {
+                    lastNormalizedLevel
+                }
+                normalizedItem.indent = .level(titleLevel)
+                
+            } else if policy.isSectionMarker(kind: item.kind) {
+                let effectiveDepth = if policy.adjustSectionMarkerDepth {
+                    Swift.max(depthStack.last ?? depth, depth, nextNonSectionDepth ?? depth)
+                } else {
+                    depth
+                }
                 // -> Section markers should not change the active nesting context.
                 var temporaryDepthStack = depthStack
                 normalizedItem.indent = .level(Self.normalizeDepth(effectiveDepth, with: &temporaryDepthStack))
+                
             } else {
-                normalizedItem.indent = .level(Self.normalizeDepth(effectiveDepth, with: &depthStack))
+                normalizedItem.indent = .level(Self.normalizeDepth(depth, with: &depthStack))
+            }
+            
+            if !item.isSeparator {
+                lastNormalizedLevel = normalizedItem.indent.level ?? 0
+                lastKind = item.kind
             }
             normalizedItems.append(normalizedItem)
         }

@@ -80,6 +80,7 @@ public struct OutlineExtractor: Sendable {
                     default: self.kind
                 }
                 let indent: OutlineItem.Indent = switch self.kind {
+                    case .title: .level(0)
                     case .heading(let level?): .level(level)
                     default: .string(String(match.indent))
                 }
