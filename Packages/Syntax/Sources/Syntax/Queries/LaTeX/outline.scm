@@ -8,10 +8,16 @@
 ;  © 2026 1024jp
 ;
 
+; Titles
 (title_declaration
   text: (curly_group
-    (_) @outline.heading.1))
+    (_) @outline.title))
 
+(caption
+  long: (curly_group
+    (_) @outline.title))
+
+; Headings
 (part
   text: (curly_group
     (_) @outline.heading.1))
@@ -40,6 +46,7 @@
   text: (curly_group
     (_) @outline.heading.7))
 
+; Conainers
 (environment_definition
   name: (curly_group_text
     (_) @outline.container))

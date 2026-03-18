@@ -8,7 +8,23 @@
 ;  © 2026 1024jp
 ;
 
-; headings (title + h1-h6)
+; Titles
+((element
+   (start_tag (tag_name) @tag)
+   (text) @outline.title)
+  (#eq? @tag "title"))
+
+((element
+   (start_tag (tag_name) @tag)
+   (text) @outline.title)
+  (#eq? @tag "figcaption"))
+
+((element
+   (start_tag (tag_name) @tag)
+   (text) @outline.title)
+  (#eq? @tag "caption"))
+
+; Headings
 ((element
    (start_tag (tag_name) @tag)
    (text) @outline.heading.1)
@@ -39,12 +55,7 @@
    (text) @outline.heading.6)
   (#eq? @tag "h6"))
 
-((element
-   (start_tag (tag_name) @tag)
-   (text) @outline.title)
-  (#eq? @tag "title"))
-
-; hr separator
+; Separators
 ((self_closing_tag (tag_name) @outline.separator)
   (#eq? @outline.separator "hr"))
 
