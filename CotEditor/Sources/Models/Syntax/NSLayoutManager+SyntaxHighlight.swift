@@ -76,8 +76,6 @@ extension NSLayoutManager {
     ///   - range: The range to update syntax highlight.
     @MainActor final func apply(highlights: [Highlight], theme: Theme?, in range: NSRange) {
         
-        assert(highlights.sorted(using: KeyPathComparator(\.range.location)) == highlights)
-        
         // skip if never colorized yet to avoid heavy `self.invalidateDisplay(forCharacterRange:)`
         guard !highlights.isEmpty || self.hasTemporaryAttribute(.syntaxType, in: range) else { return }
         
