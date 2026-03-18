@@ -127,10 +127,6 @@ public extension Syntax.Outline.Kind {
                 String(localized: "Syntax.Outline.Kind.mark.label",
                        defaultValue: "Mark",
                        bundle: .module)
-            case .reference:
-                String(localized: "Syntax.Outline.Kind.reference.label",
-                       defaultValue: "Reference",
-                       bundle: .module)
             case .separator:
                 String(localized: "Syntax.Outline.Kind.separator.label",
                        defaultValue: "Separator",

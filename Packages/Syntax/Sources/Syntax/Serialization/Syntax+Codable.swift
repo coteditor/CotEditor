@@ -155,7 +155,6 @@ extension Syntax.Outline.Kind: Codable {
             case .heading(nil): "heading"
             case .heading(let level?): "heading.\(level)"
             case .mark: "mark"
-            case .reference: "reference"
             case .separator: "separator"
         }
     }

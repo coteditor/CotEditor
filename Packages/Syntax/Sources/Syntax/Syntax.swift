@@ -90,7 +90,6 @@ public struct Syntax: Equatable, Sendable {
             case title
             case heading(Int?)
             case mark
-            case reference
             
             case separator
             
@@ -104,7 +103,6 @@ public struct Syntax: Equatable, Sendable {
                 .title,
                 .heading(nil),
                 .mark,
-                .reference,
                 .separator,
             ]
         }

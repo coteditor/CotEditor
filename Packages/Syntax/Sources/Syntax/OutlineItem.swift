@@ -99,7 +99,6 @@ extension Syntax.Outline.Kind {
             case .title: []
             case .heading: []
             case .mark: [.bold]
-            case .reference: []
             case .separator: []
         }
     }

@@ -65,7 +65,6 @@ private extension Syntax.Outline.Kind {
             case .title: .systemIndigo
             case .heading: .systemBrown
             case .mark: .systemRed
-            case .reference: .systemPurple
             case .separator: .systemGray
         }
     }
@@ -82,7 +81,6 @@ private extension Syntax.Outline.Kind {
             case .heading(nil): .resource(.listBulletSquareFill)
             case .heading(let level?): .system("\(level)")
             case .mark: .system("flag")
-            case .reference: .system("arrow.uturn.backward")
             case .separator: .system("minus")
         }
     }
