@@ -5,56 +5,36 @@
 
 ### New Features
 
-- Introduce a new parser, tree-sitter, for syntax highlighting and outline extraction in multiple built-in syntaxes:
-    - C
-    - C#
-    - CSS
-    - Go
-    - HTML
-    - Java
-    - JavaScript
-    - LaTeX
-    - Lua
-    - Makefile
-    - Markdown (only for outline extraction)
-    - PHP
-    - Python
-    - Ruby
-    - Rust
-    - Scala
-    - Shell Script
-    - SQL
-    - Swift
-    - TypeScript
-- Add a symbolic icon before extracted outline items.
-- Make outline items in the Outline inspector collapsible when using a tree-sitter-based syntax.
-- Introduce syntax-based smart indentation.
+- Adopt tree-sitter, a new parser, for syntax highlighting and outline extraction in multiple built-in syntaxes: C, C#, CSS, Go, HTML, Java, JavaScript, LaTeX, Lua, Makefile, Markdown (only for outline extraction), PHP, Python, Ruby, Rust, Scala, Shell Script, SQL, Swift, and TypeScript.
+- Display a symbolic icon next to outline items.
+- Make outline items in the Outline inspector collapsible when using a tree-sitter-based or structured document syntax.
+- Make smart indentation syntax-aware.
 - Allow defining multiple comment delimiters in a syntax definition.
 - Add the Multiline option to syntax highlighting rules.
 - Add a Delimiters pane to the syntax editor for customizing parsing rules.
-- Show your current position in search results in the Find field while navigating between matches (for example, “2/5”).
+- Show the current position in search results in the Find field while navigating between matches (for example, “2/5”).
 - Add Bulgarian localization (thanks to Miroslav Dragoev!).
 
 
 ### Compatibility Changes
 
-- Introduce the CotEditor Syntax format, a new syntax definition format.
+- Introduce CotEditor Syntax, a new syntax definition format (the legacy YAML-based syntax definition format is now deprecated; user-created syntaxes are automatically migrated on first launch).
 
 
 ### Improvements
 
-- Improve the syntax-highlighting algorithm in the legacy regex-based highlighting engine.
+- Improve the syntax-highlighting algorithm in the legacy regex-based engine.
 - Update built-in syntaxes.
 - Improve general text-editing performance.
 - [trivial] Adjust the About CotEditor window.
-- [trivial] Rename the Recolor All command to “Reset Syntax Analysis” and move to the Format menu.
+- [trivial] Rename the Recolor All command to “Reset Syntax Analysis” and move it to the Format menu.
 - [trivial] Remove the Restore Defaults button in the syntax editor.
 - [trivial] Tweak colors of the default Anura theme.
 
 
 ### Fixes
 
-- Fix issues with incorrect syntax analysis in some built-in syntaxes.
+- Fix incorrect syntax parsing in some built-in syntaxes.
 - Fix an issue where the default file extension in the save dialog was .txt for syntaxes with a file extension not registered in the system.
 
 
