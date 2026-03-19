@@ -42,6 +42,7 @@
 
 - Localize updated strings.
 - Update the migration directories for user syntax definitions.
+- Remove the prerelease notice from the user guide (specification_changes_on_7.0.html).
 
 
 
