@@ -216,7 +216,7 @@ private extension NewFeature {
                        table: "WhatsNew")
             case .treeSitter:
                 String(localized: "NewFeature.treeSitter.description",
-                       defaultValue: "Several built-in syntaxes now use tree-sitter — a modern, structure-based parser — enabling deeper and more reliable language awareness.",
+                       defaultValue: "Many major built-in syntaxes now use tree-sitter — a modern, structure-based parser — enabling deeper and more reliable language awareness.",
                        table: "WhatsNew")
             case .outline:
                 String(localized: "NewFeature.outline.description",

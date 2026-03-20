@@ -223,10 +223,46 @@
             "value" : "Иконите улесняват прегледа на структурата, а синтаксисите с tree-sitter вече поддържат сгъваеми нива според йерархията."
           }
         },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Symbole erleichtern das Erfassen der Struktur, und tree-sitter-basierte Syntaxen unterstützen jetzt einklappbare Gliederungen, die die Hierarchie widerspiegeln."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Icons make structure easier to scan, and tree-sitter–based syntaxes now support collapsible outlines that reflect hierarchy."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Icons make structure easier to scan, and tree-sitter–based syntaxes now support collapsible outlines that reflect hierarchy."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Los iconos facilitan la lectura de la estructura, y las sintaxis basadas en tree-sitter ahora admiten esquemas plegables que reflejan la jerarquía."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Les icônes facilitent la lecture de la structure, et les syntaxes basées sur tree-sitter prennent désormais en charge les plans repliables reflétant la hiérarchie."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アイコンが構造の把握を容易にし、tree-sitterベースのシンタックスでは階層を反映した折りたたみ可能なアウトラインをサポートします。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Symbolen maken de structuur overzichtelijker, en op tree-sitter gebaseerde syntaxisdefinities ondersteunen nu inklapbare overzichten die de hiërarchie weerspiegelen."
           }
         }
       }
@@ -240,10 +276,46 @@
             "value" : "Структура по нива"
           }
         },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gliederung mit Tiefe"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Outline with depth"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outline with depth"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Esquema con profundidad"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Un plan en profondeur"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "奥行きのあるアウトライン"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Overzicht met diepte"
           }
         }
       }
@@ -257,10 +329,46 @@
             "value" : "По-точно подчертаване, по-интелигентно коментиране и подобрено поведение на отстъпа — задвижвани от преработен механизъм за синтаксис и формат на дефиниция."
           }
         },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genauere Hervorhebung, intelligentere Kommentierung und verbessertes Einrückungsverhalten – ermöglicht durch eine überarbeitete Syntax-Engine und ein neues Definitionsformat."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "More accurate highlighting, smarter commenting, and improved indentation behavior — powered by a redesigned syntax engine and definition format."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More accurate highlighting, smarter commenting, and improved indentation behaviour — powered by a redesigned syntax engine and definition format."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Resaltado más preciso, comentarios más inteligentes y mejor comportamiento de sangría, impulsados por un motor de sintaxis y un formato de definición rediseñados."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Une coloration plus précise, des commentaires plus intelligents et un comportement d'indentation amélioré, grâce à un moteur de syntaxe et un format de définition repensés."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刷新されたシンタックスエンジンと定義フォーマットにより、より正確なハイライト、よりスマートなコメント機能、そして改善されたインデント動作を実現しました。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nauwkeurigere accentuering, slimmer commentaar en verbeterd inspringgedrag, mogelijk gemaakt door een vernieuwde syntaxisengine en definitie-indeling."
           }
         }
       }
@@ -274,10 +382,46 @@
             "value" : "По-интелигентен синтаксис, по-ясно редактиране"
           }
         },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intelligentere Syntax, schärfere Bearbeitung"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Smarter syntax, sharper editing"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smarter syntax, sharper editing"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sintaxis más inteligente, edición más precisa"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Syntaxe plus intelligente, édition plus précise"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "よりスマートなシンタックス、より快適な編集"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Slimmere syntaxis, scherpere bewerking"
           }
         }
       }
@@ -387,7 +531,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "%lld yntaxes personnalisées ont été migrées vers le nouveau format."
+                  "value" : "%lld syntaxes personnalisées ont été migrées vers le nouveau format."
                 }
               }
             }
@@ -431,13 +575,49 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Няколко вградени синтаксиса вече използват tree-sitter, модерен анализатор на синтаксис, за по-дълбоко и по-надеждно разбиране на езика."
+            "value" : "Много от основните вградени синтаксиси вече използват tree-sitter — модерен анализатор, базиран на структура — за по-дълбоко и по-надеждно разбиране на езика."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viele wichtige integrierte Syntaxen verwenden jetzt tree-sitter – einen modernen, strukturbasierten Parser – für tiefere und zuverlässigere Spracherkennung."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Several built-in syntaxes now use tree-sitter — a modern, structure-based parser — enabling deeper and more reliable language awareness."
+            "value" : "Many major built-in syntaxes now use tree-sitter — a modern, structure-based parser — enabling deeper and more reliable language awareness."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Many major built-in syntaxes now use tree-sitter — a modern, structure-based parser — enabling deeper and more reliable language awareness."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Muchas de las principales sintaxis integradas ahora utilizan tree-sitter — un analizador moderno basado en la estructura — lo que permite un reconocimiento del lenguaje más profundo y fiable."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De nombreuses syntaxes intégrées majeures utilisent désormais tree-sitter — un analyseur moderne basé sur la structure — permettant une reconnaissance du langage plus profonde et plus fiable."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主要な組み込みシンタックスが、構造ベースのモダンなパーサであるtree-sitterを採用。より深く確かな言語認識を可能にします。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Veel belangrijke ingebouwde syntaxisdefinities gebruiken nu tree-sitter — een moderne, op structuur gebaseerde parser — voor diepere en betrouwbaardere taalherkenning."
           }
         }
       }
@@ -451,10 +631,46 @@
             "value" : "С tree-sitter там, където е най-важно"
           }
         },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unterstützt von tree-sitter, wo es am meisten zählt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Powered by tree-sitter, where it matters most"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powered by tree-sitter, where it matters most"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Impulsado por tree-sitter, donde más importa"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Propulsé par tree-sitter, là où ça compte le plus"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tree-sitterで、もっと深く"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Aangedreven door tree-sitter, waar het het meest telt"
           }
         }
       }
