@@ -859,6 +859,12 @@
             "value" : "CotEditor"
           }
         },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
