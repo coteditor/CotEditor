@@ -79,22 +79,20 @@ struct WhatsNewView: View {
                                 .font(.system(size: 14, weight: .semibold))
                                 .accessibilityHeading(.h2)
                             
-                            Text(feature.description)
-                                .font(.body)
-                                .lineSpacing(1.2)
-                                .fixedSize(horizontal: false, vertical: true)
-                                .foregroundStyle(.secondary)
+                            HStack(alignment: .bottom) {
+                                Text(feature.description)
+                                    .font(.body)
+                                    .lineSpacing(1.2)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .foregroundStyle(.secondary)
+                                
+                                if let anchor = feature.helpAnchor {
+                                    HelpLink(anchor: anchor)
+                                        .controlSize(.small)
+                                }
+                            }
                             
                             feature.supplementalView
-                        }
-                        
-                        if let anchor = feature.helpAnchor {
-                            Spacer()
-                            VStack {
-                                Spacer()
-                                HelpLink(anchor: anchor)
-                                    .controlSize(.small)
-                            }
                         }
                     }
                 }
@@ -230,7 +228,7 @@ private extension NewFeature {
         
         switch self {
             case .syntax:
-                "syntax_definition"
+                "specification_changes_on_7.0"
             default:
                 nil
         }
