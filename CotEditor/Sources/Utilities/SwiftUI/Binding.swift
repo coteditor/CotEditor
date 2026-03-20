@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -64,6 +64,15 @@ func ?? <T: Sendable>(lhs: Binding<T?>, rhs: T) -> Binding<T> {
 
 func ?? (lhs: Binding<String?>, rhs: String) -> Binding<String> {
     
+    Binding(
+        get: { lhs.wrappedValue ?? rhs },
+        set: { lhs.wrappedValue = $0.isEmpty ? nil : $0 }
+    )
+}
+
+
+func ?? <T: Sendable>(lhs: Binding<[T]?>, rhs: [T]) -> Binding<[T]> {
+
     Binding(
         get: { lhs.wrappedValue ?? rhs },
         set: { lhs.wrappedValue = $0.isEmpty ? nil : $0 }

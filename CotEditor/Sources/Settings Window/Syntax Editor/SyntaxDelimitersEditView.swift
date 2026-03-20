@@ -223,6 +223,9 @@ private struct StringDelimitersEditView: View {
             TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.end, label: EmptyView.init)
             }
+            TableColumn(String(localized: "Prefixes", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TextField(value: $item.value.prefixes ?? [], format: .csv(omittingEmptyItems: true), label: EmptyView.init)
+            }
             TableColumn(String(localized: "Multiline", table: "SyntaxEditor", comment: "table column header, keep short")) { $item in
                 Toggle(isOn: $item.value.isMultiline, label: EmptyView.init)
                     .onChange(of: item.value.isMultiline) { _, newValue in

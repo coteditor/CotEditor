@@ -196,5 +196,68 @@ struct NestableTests {
             
             #expect(matches == ["/* a /* b */"])
         }
+        
+        
+        @Test func prefixedSameDelimiter() throws {
+            
+            let source = #"r"hello" "world""#
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("\"", "\""), prefixes: ["r"], isMultiline: false, isNestable: true): .strings
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let ranges = try #require(dict[.strings])
+            let matches = ranges.map((source as NSString).substring(with:))
+            
+            #expect(matches.count == 1)
+            #expect(matches[0] == #"r"hello""#)
+        }
+        
+        
+        @Test func prefixedSameDelimiterMultiplePrefixes() throws {
+            
+            let source = #"f"a" rb"b" "c""#
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("\"", "\""), prefixes: ["f", "rb"], isMultiline: false, isNestable: true): .strings
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let ranges = try #require(dict[.strings])
+            let matches = ranges.map((source as NSString).substring(with:))
+            
+            #expect(matches.count == 2)
+            #expect(matches[0] == #"f"a""#)
+            #expect(matches[1] == #"rb"b""#)
+        }
+        
+        
+        @Test func prefixedLongestMatch() throws {
+            
+            let source = #"rb"x""#
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("\"", "\""), prefixes: ["r", "rb"], isMultiline: false, isNestable: true): .strings
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let ranges = try #require(dict[.strings])
+            let matches = ranges.map((source as NSString).substring(with:))
+            
+            #expect(matches.count == 1)
+            #expect(matches[0] == #"rb"x""#)
+        }
+        
+        
+        @Test func unprefixedAndPrefixedCoexistence() throws {
+            
+            let source = #"r"raw" "plain""#
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("\"", "\""), isMultiline: false, isNestable: true, escapeCharacter: "\\"): .strings,
+                .pair(Pair("\"", "\""), prefixes: ["r"], isMultiline: false, isNestable: true): .characters,
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            
+            let prefixedMatches = (dict[.characters] ?? []).map((source as NSString).substring(with:))
+            #expect(prefixedMatches == [#"r"raw""#])
+            
+            let plainMatches = (dict[.strings] ?? []).map((source as NSString).substring(with:))
+            #expect(plainMatches == [#""plain""#])
+        }
     }
 }

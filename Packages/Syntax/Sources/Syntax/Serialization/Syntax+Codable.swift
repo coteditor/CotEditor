@@ -231,6 +231,7 @@ extension Syntax.PairDelimiter: Codable {
         
         case begin
         case end
+        case prefixes
         case isMultiline
         case escapeCharacter
         case description
@@ -243,6 +244,7 @@ extension Syntax.PairDelimiter: Codable {
         
         self.begin = try container.decode(String.self, forKey: .begin)
         self.end = try container.decode(String.self, forKey: .end)
+        self.prefixes = try container.decodeIfPresent([String].self, forKey: .prefixes)
         self.isMultiline = try container.decodeIfPresent(Bool.self, forKey: .isMultiline) ?? false
         if let rawValue = try container.decodeIfPresent(String.self, forKey: .escapeCharacter),
            rawValue.utf16.count == 1
@@ -259,6 +261,9 @@ extension Syntax.PairDelimiter: Codable {
         
         try container.encode(self.begin, forKey: .begin)
         try container.encode(self.end, forKey: .end)
+        if let prefixes, !prefixes.isEmpty {
+            try container.encode(prefixes, forKey: .prefixes)
+        }
         if self.isMultiline {
             try container.encode(true, forKey: .isMultiline)
         }
