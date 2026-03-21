@@ -61,7 +61,7 @@ struct WhatsNewView: View {
                 ForEach(NewFeature.allCases, id: \.self) { feature in
                     HStack(alignment: .top) {
                         feature.image
-                            .font(.system(size: 32, weight: .light))
+                            .font(.system(size: 28))
                             .foregroundStyle(.tint)
                             .modifier { content in
                                 if #available(macOS 26, *) {
@@ -87,6 +87,7 @@ struct WhatsNewView: View {
                                     .foregroundStyle(.secondary)
                                 
                                 if let anchor = feature.helpAnchor {
+                                    Spacer(minLength: 0)
                                     HelpLink(anchor: anchor)
                                         .controlSize(.small)
                                 }
@@ -104,7 +105,7 @@ struct WhatsNewView: View {
                     NSHelpManager.shared.openHelpAnchor("releasenotes", inBook: Bundle.main.helpBookName)
                 } label: {
                     Text("Release Notes", tableName: "WhatsNew")
-                        .frame(minWidth: 120)
+                        .frame(minWidth: 100)
                 }
                 .modifier { content in
                     if #available(macOS 26, *) {
@@ -120,7 +121,7 @@ struct WhatsNewView: View {
                     self.dismiss()
                 } label: {
                     Text("Continue", tableName: "WhatsNew")
-                        .frame(minWidth: 120)
+                        .frame(minWidth: 100)
                 }
                 .focused($isContinueButtonFocused)  // workaround: .prefersDefaultFocus(in:) doesn't work (2026-01, macOS 26).
                 .prefersDefaultFocus(true, in: self.namespace)
@@ -210,11 +211,11 @@ private extension NewFeature {
         switch self {
             case .syntax:
                 String(localized: "NewFeature.syntax.description",
-                       defaultValue: "More accurate highlighting, smarter commenting, and improved indentation behavior — powered by a redesigned syntax engine and definition format.",
+                       defaultValue: "More accurate highlighting, smarter commenting, and improved editor behavior, all powered by a redesigned syntax engine and definition format.",
                        table: "WhatsNew")
             case .treeSitter:
                 String(localized: "NewFeature.treeSitter.description",
-                       defaultValue: "Many major built-in syntaxes now use tree-sitter — a modern, structure-based parser — enabling deeper and more reliable language awareness.",
+                       defaultValue: "Many major built-in syntaxes now use tree-sitter, a modern structure-based parser that enables deeper and more reliable language awareness.",
                        table: "WhatsNew")
             case .outline:
                 String(localized: "NewFeature.outline.description",

@@ -325,50 +325,50 @@
       "localizations" : {
         "bg" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "По-точно подчертаване, по-интелигентно коментиране и подобрено поведение на отстъпа — задвижвани от преработен механизъм за синтаксис и формат на дефиниция."
+            "state" : "needs_review",
+            "value" : "По-точно подчертаване, по-интелигентно коментиране и подобрено поведение на редактора, задвижвани от преработен механизъм за синтаксис и формат на дефиниция."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Genauere Hervorhebung, intelligentere Kommentierung und verbessertes Einrückungsverhalten – ermöglicht durch eine überarbeitete Syntax-Engine und ein neues Definitionsformat."
+            "value" : "Genauere Hervorhebung, intelligentere Kommentierung und verbessertes Editorverhalten, alles ermöglicht durch eine überarbeitete Syntax-Engine und ein neues Definitionsformat."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "More accurate highlighting, smarter commenting, and improved indentation behavior — powered by a redesigned syntax engine and definition format."
+            "value" : "More accurate highlighting, smarter commenting, and improved editor behavior, all powered by a redesigned syntax engine and definition format."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "More accurate highlighting, smarter commenting, and improved indentation behaviour — powered by a redesigned syntax engine and definition format."
+            "value" : "More accurate highlighting, smarter commenting, and improved editor behaviour, all powered by a redesigned syntax engine and definition format."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Resaltado más preciso, comentarios más inteligentes y mejor comportamiento de sangría, impulsados por un motor de sintaxis y un formato de definición rediseñados."
+            "value" : "Resaltado más preciso, comentarios más inteligentes y mejor comportamiento del editor, todo ello gracias a un motor de sintaxis y un formato de definición rediseñados."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Une coloration plus précise, des commentaires plus intelligents et un comportement d'indentation amélioré, grâce à un moteur de syntaxe et un format de définition repensés."
+            "value" : "Une coloration plus précise, des commentaires plus intelligents et un meilleur comportement de l'éditeur, le tout grâce à un moteur de syntaxe et un format de définition repensés."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "刷新されたシンタックスエンジンと定義フォーマットにより、より正確なハイライト、よりスマートなコメント機能、そして改善されたインデント動作を実現しました。"
+            "value" : "刷新されたシンタックスエンジンと定義フォーマットにより、より正確なハイライト、よりスマートなコメント機能、そして改善されたエディタの動作を実現しました。"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Nauwkeurigere accentuering, slimmer commentaar en verbeterd inspringgedrag, mogelijk gemaakt door een vernieuwde syntaxisengine en definitie-indeling."
+            "value" : "Nauwkeurigere accentuering, slimmer commentaar en verbeterd editorgedrag, mogelijk gemaakt door een vernieuwde syntaxisengine en definitie-indeling."
           }
         }
       }
@@ -574,38 +574,38 @@
       "localizations" : {
         "bg" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Много от основните вградени синтаксиси вече използват tree-sitter — модерен анализатор, базиран на структура — за по-дълбоко и по-надеждно разбиране на езика."
+            "state" : "needs_review",
+            "value" : "Много от основните вградени синтаксиси вече използват tree-sitter, модерен анализатор, базиран на структура, който позволява по-дълбоко и по-надеждно разбиране на езика."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Viele wichtige integrierte Syntaxen verwenden jetzt tree-sitter – einen modernen, strukturbasierten Parser – für tiefere und zuverlässigere Spracherkennung."
+            "value" : "Viele wichtige integrierte Syntaxen verwenden jetzt tree-sitter, einen modernen strukturbasierten Parser, der tiefere und zuverlässigere Spracherkennung ermöglicht."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Many major built-in syntaxes now use tree-sitter — a modern, structure-based parser — enabling deeper and more reliable language awareness."
+            "value" : "Many major built-in syntaxes now use tree-sitter, a modern structure-based parser that enables deeper and more reliable language awareness."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Many major built-in syntaxes now use tree-sitter — a modern, structure-based parser — enabling deeper and more reliable language awareness."
+            "value" : "Many major built-in syntaxes now use tree-sitter, a modern structure-based parser that enables deeper and more reliable language awareness."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Muchas de las principales sintaxis integradas ahora utilizan tree-sitter — un analizador moderno basado en la estructura — lo que permite un reconocimiento del lenguaje más profundo y fiable."
+            "value" : "Muchas de las principales sintaxis integradas ahora utilizan tree-sitter, un analizador moderno basado en la estructura que permite un reconocimiento del lenguaje más profundo y fiable."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "De nombreuses syntaxes intégrées majeures utilisent désormais tree-sitter — un analyseur moderne basé sur la structure — permettant une reconnaissance du langage plus profonde et plus fiable."
+            "value" : "De nombreuses syntaxes intégrées majeures utilisent désormais tree-sitter, un analyseur moderne basé sur la structure, permettant une reconnaissance du langage plus profonde et plus fiable."
           }
         },
         "ja" : {
@@ -617,7 +617,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Veel belangrijke ingebouwde syntaxisdefinities gebruiken nu tree-sitter — een moderne, op structuur gebaseerde parser — voor diepere en betrouwbaardere taalherkenning."
+            "value" : "Veel belangrijke ingebouwde syntaxisdefinities gebruiken nu tree-sitter, een moderne op structuur gebaseerde parser die zorgt voor diepere en betrouwbaardere taalherkenning."
           }
         }
       }
