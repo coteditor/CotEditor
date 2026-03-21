@@ -10,6 +10,7 @@
 
 ### Fixes
 
+- Fix a crash on exporting settings when some setting values are not customized.
 - Fix a potential crash in Find All when a matched line is extremely long.
 - Address a potential crash when editing a keyboard shortcut in the snippets settings.
 
