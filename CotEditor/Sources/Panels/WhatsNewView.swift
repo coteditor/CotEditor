@@ -59,7 +59,7 @@ struct WhatsNewView: View {
                 .padding(.vertical, 8)
                 
                 ForEach(NewFeature.allCases, id: \.self) { feature in
-                    HStack(alignment: .top) {
+                    HStack(alignment: .top, spacing: 20) {
                         feature.image
                             .font(.system(size: 28))
                             .foregroundStyle(.tint)
@@ -71,7 +71,7 @@ struct WhatsNewView: View {
                                     content
                                 }
                             }
-                            .frame(width: 52, alignment: .center)
+                            .frame(width: 40, alignment: .center)
                             .accessibilityHidden(true)
                         
                         VStack(alignment: .leading, spacing: 4) {
