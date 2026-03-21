@@ -134,6 +134,7 @@ private struct InlineCommentsEditView: View {
         Table($items, selection: $selection) {
             TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.begin, label: EmptyView.init)
+                    .focused($focusedField, equals: item.id)
             }
             TableColumn(String(localized: "Line Start Only", table: "SyntaxEditor", comment: "table column header, keep short")) { $item in
                 Toggle(isOn: $item.value.leadingOnly, label: EmptyView.init)
@@ -148,10 +149,7 @@ private struct InlineCommentsEditView: View {
             AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
                 self.focusedField = item.id
             }
-            Text("\(self.items.count) items", tableName: "SyntaxEditor")
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
-                .controlSize(.small)
+            ItemCountView(count: self.items.count)
         }
     }
 }
@@ -172,6 +170,7 @@ private struct BlockCommentsEditView: View {
         Table($items, selection: $selection) {
             TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.begin, label: EmptyView.init)
+                    .focused($focusedField, equals: item.id)
             }
             TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.end, label: EmptyView.init)
@@ -196,10 +195,7 @@ private struct BlockCommentsEditView: View {
             AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
                 self.focusedField = item.id
             }
-            Text("\(self.items.count) items", tableName: "SyntaxEditor")
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
-                .controlSize(.small)
+            ItemCountView(count: self.items.count)
         }
     }
 }
@@ -258,10 +254,7 @@ private struct StringDelimitersEditView: View {
             AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
                 self.focusedField = item.id
             }
-            Text("\(self.items.count) items", tableName: "SyntaxEditor")
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
-                .controlSize(.small)
+            ItemCountView(count: self.items.count)
         }
     }
 }
@@ -308,10 +301,7 @@ private struct CharacterDelimitersEditView: View {
             AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
                 self.focusedField = item.id
             }
-            Text("\(self.items.count) items", tableName: "SyntaxEditor")
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
-                .controlSize(.small)
+            ItemCountView(count: self.items.count)
         }
     }
 }
@@ -347,6 +337,7 @@ private struct BlockEditView: View {
             .alignment(.center)
             TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.begin, label: EmptyView.init)
+                    .focused($focusedField, equals: item.id)
             }
             TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.end ?? "", label: EmptyView.init)
@@ -363,10 +354,7 @@ private struct BlockEditView: View {
             AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
                 self.focusedField = item.id
             }
-            Text("\(self.items.count) items", tableName: "SyntaxEditor")
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
-                .controlSize(.small)
+            ItemCountView(count: self.items.count)
         }
     }
 }

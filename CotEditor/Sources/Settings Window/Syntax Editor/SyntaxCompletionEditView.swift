@@ -90,10 +90,7 @@ struct SyntaxCompletionEditView: View {
                 AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
                     self.focusedField = item.id
                 }
-                Text("\(self.items.count) items", tableName: "SyntaxEditor")
-                    .monospacedDigit()
-                    .foregroundStyle(.secondary)
-                    .controlSize(.small)
+                ItemCountView(count: self.items.count)
             }
             
             if self.canCustomizeHighlight {
