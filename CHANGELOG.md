@@ -49,6 +49,11 @@
 6.2.6 (unreleased)
 --------------------------
 
+### Improvements
+
+- [dev] Update the build environment to Xcode 26.4.
+
+
 ### Fixes
 
 - Fix a potential crash in Find All when a matched line is extremely long.
