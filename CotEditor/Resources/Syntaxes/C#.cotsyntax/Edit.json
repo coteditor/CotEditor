@@ -22,6 +22,21 @@
       "begin" : "\"\"\"",
       "end" : "\"\"\"",
       "isMultiline" : true
+    },
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "prefixes" : ["$"],
+      "escapeCharacter" : "\\",
+      "description" : "Interpolated string literal"
+    },
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "prefixes" : ["@", "$@", "@$"],
+      "isMultiline" : true,
+      "escapeCharacter" : "\"",
+      "description" : "Verbatim string literal"
     }
   ],
   "characterDelimiters" : [

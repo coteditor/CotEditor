@@ -1125,13 +1125,6 @@
       "regularExpression" : true
     }
   ],
-  "strings" : [
-    {
-      "begin" : "\\b(r|u|f|fr|rf|ur|b|br|rb)['\"]",
-      "ignoreCase" : true,
-      "regularExpression" : true
-    }
-  ],
   "values" : [
     {
       "begin" : "__all__"

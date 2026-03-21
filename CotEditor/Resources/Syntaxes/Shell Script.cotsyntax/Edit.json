@@ -20,8 +20,9 @@
       "end" : "'"
     },
     {
-      "begin" : "$'",
+      "begin" : "'",
       "end" : "'",
+      "prefixes" : ["$"],
       "escapeCharacter" : "\\",
       "description" : "ANSI-C quoted string literal"
     }

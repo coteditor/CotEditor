@@ -19,58 +19,18 @@
       "escapeCharacter" : "\\"
     },
     {
-      "begin" : "L\"",
+      "begin" : "\"",
       "end" : "\"",
+      "prefixes" : ["L", "u8", "u", "U"],
       "escapeCharacter" : "\\",
-      "description" : "Wide string literal"
+      "description" : "Encoded string literal"
     },
     {
-      "begin" : "u8\"",
+      "begin" : "\"",
       "end" : "\"",
-      "escapeCharacter" : "\\",
-      "description" : "UTF-8 string literal"
-    },
-    {
-      "begin" : "u\"",
-      "end" : "\"",
-      "escapeCharacter" : "\\",
-      "description" : "UTF-16 string literal"
-    },
-    {
-      "begin" : "U\"",
-      "end" : "\"",
-      "escapeCharacter" : "\\",
-      "description" : "UTF-32 string literal"
-    },
-    {
-      "begin" : "R\"",
-      "end" : "\"",
+      "prefixes" : ["R", "LR", "u8R", "uR", "UR"],
       "isMultiline" : true,
       "description" : "Raw string literal (simplified delimiter handling)"
-    },
-    {
-      "begin" : "LR\"",
-      "end" : "\"",
-      "isMultiline" : true,
-      "description" : "Wide raw string literal (simplified delimiter handling)"
-    },
-    {
-      "begin" : "u8R\"",
-      "end" : "\"",
-      "isMultiline" : true,
-      "description" : "UTF-8 raw string literal (simplified delimiter handling)"
-    },
-    {
-      "begin" : "uR\"",
-      "end" : "\"",
-      "isMultiline" : true,
-      "description" : "UTF-16 raw string literal (simplified delimiter handling)"
-    },
-    {
-      "begin" : "UR\"",
-      "end" : "\"",
-      "isMultiline" : true,
-      "description" : "UTF-32 raw string literal (simplified delimiter handling)"
     }
   ],
   "characterDelimiters" : [

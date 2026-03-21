@@ -27,22 +27,11 @@
       "escapeCharacter" : "\\"
     },
     {
-      "begin" : "b\"",
+      "begin" : "\"",
       "end" : "\"",
+      "prefixes" : ["b", "r", "v"],
       "escapeCharacter" : "\\",
-      "description" : "Byte string literal"
-    },
-    {
-      "begin" : "r\"",
-      "end" : "\"",
-      "escapeCharacter" : "\\",
-      "description" : "Regular expression literal"
-    },
-    {
-      "begin" : "v\"",
-      "end" : "\"",
-      "escapeCharacter" : "\\",
-      "description" : "Version number literal"
+      "description" : "Prefixed string literal"
     }
   ],
   "characterDelimiters" : [

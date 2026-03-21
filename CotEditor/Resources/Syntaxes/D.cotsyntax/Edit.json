@@ -37,16 +37,11 @@
       "description" : "Token string literal with { } delimiter"
     },
     {
-      "begin" : "r\"",
+      "begin" : "\"",
       "end" : "\"",
+      "prefixes" : ["r", "x"],
       "isMultiline" : true,
-      "description" : "WYSIWYG string literal with r-prefix"
-    },
-    {
-      "begin" : "x\"",
-      "end" : "\"",
-      "isMultiline" : true,
-      "description" : "Hex string literal"
+      "description" : "WYSIWYG/hex string literal"
     }
   ],
   "characterDelimiters" : [
