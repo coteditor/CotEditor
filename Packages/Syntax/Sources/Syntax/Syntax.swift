@@ -183,6 +183,7 @@ public struct Syntax: Equatable, Sendable {
         
         public var begin: String
         public var end: String
+        public var prefixes: [String]?
         public var isMultiline: Bool
         public var escapeCharacter: Character?
         public var description: String?
@@ -190,10 +191,11 @@ public struct Syntax: Equatable, Sendable {
         public var isEmpty: Bool { self.begin.isEmpty || self.end.isEmpty }
         
         
-        public init(begin: String = "", end: String = "", isMultiline: Bool = false, escapeCharacter: Character? = nil, description: String? = nil) {
+        public init(begin: String = "", end: String = "", prefixes: [String]? = nil, isMultiline: Bool = false, escapeCharacter: Character? = nil, description: String? = nil) {
             
             self.begin = begin
             self.end = end
+            self.prefixes = prefixes
             self.isMultiline = isMultiline
             self.escapeCharacter = escapeCharacter
             self.description = description

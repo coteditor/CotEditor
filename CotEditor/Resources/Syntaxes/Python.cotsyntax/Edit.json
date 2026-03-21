@@ -31,6 +31,62 @@
       "end" : "'''",
       "isMultiline" : true,
       "escapeCharacter" : "\\"
+    },
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "prefixes" : ["f", "F", "b", "B", "u", "U", "fb", "fB", "Fb", "FB", "bf", "bF", "Bf", "BF"],
+      "escapeCharacter" : "\\",
+      "description" : "Prefixed string literal"
+    },
+    {
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
+      "prefixes" : ["f", "F", "b", "B", "u", "U", "fb", "fB", "Fb", "FB", "bf", "bF", "Bf", "BF"],
+      "isMultiline" : true,
+      "escapeCharacter" : "\\",
+      "description" : "Prefixed string literal"
+    },
+    {
+      "begin" : "'",
+      "end" : "'",
+      "prefixes" : ["f", "F", "b", "B", "u", "U", "fb", "fB", "Fb", "FB", "bf", "bF", "Bf", "BF"],
+      "escapeCharacter" : "\\",
+      "description" : "Prefixed string literal"
+    },
+    {
+      "begin" : "'''",
+      "end" : "'''",
+      "prefixes" : ["f", "F", "b", "B", "u", "U", "fb", "fB", "Fb", "FB", "bf", "bF", "Bf", "BF"],
+      "isMultiline" : true,
+      "escapeCharacter" : "\\",
+      "description" : "Prefixed string literal"
+    },
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "prefixes" : ["r", "R", "rb", "rB", "Rb", "RB", "br", "bR", "Br", "BR", "rf", "rF", "Rf", "RF", "fr", "fR", "Fr", "FR"],
+      "description" : "Raw string literal"
+    },
+    {
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
+      "prefixes" : ["r", "R", "rb", "rB", "Rb", "RB", "br", "bR", "Br", "BR", "rf", "rF", "Rf", "RF", "fr", "fR", "Fr", "FR"],
+      "isMultiline" : true,
+      "description" : "Raw string literal"
+    },
+    {
+      "begin" : "'",
+      "end" : "'",
+      "prefixes" : ["r", "R", "rb", "rB", "Rb", "RB", "br", "bR", "Br", "BR", "rf", "rF", "Rf", "RF", "fr", "fR", "Fr", "FR"],
+      "description" : "Raw string literal"
+    },
+    {
+      "begin" : "'''",
+      "end" : "'''",
+      "prefixes" : ["r", "R", "rb", "rB", "Rb", "RB", "br", "bR", "Br", "BR", "rf", "rF", "Rf", "RF", "fr", "fR", "Fr", "FR"],
+      "isMultiline" : true,
+      "description" : "Raw string literal"
     }
   ],
   "indentation" : {

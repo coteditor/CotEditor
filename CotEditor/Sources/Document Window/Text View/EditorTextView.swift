@@ -67,7 +67,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    // MARK: Enums
+    // MARK: Private Types
     
     private enum SerializationKey {
         
@@ -75,6 +75,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         static let scale = "scale"
         static let tabWidth = "tabWidth"
         static let insertionLocations = "insertionLocations"
+    }
+    
+    
+    private struct QuotePairEntry {
+        
+        var pair: SymbolPair
+        var escapeCharacter: Character?
+        var prefixes: [String]
     }
     
     
@@ -145,7 +153,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     private var spaceWidth: Double = 0
     
-    private var quotePairs: [(pair: SymbolPair, escapeCharacter: Character?)] = []
+    private var quotePairs: [QuotePairEntry] = []
     private var matchingSymbolPairs: [SymbolPair]  { SymbolPair.braces + self.quotePairs.map(\.pair) }
     private var isTypingPairedQuotes = false
     
@@ -1381,8 +1389,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     /// Updates single-character quote pairs from syntax delimiters.
     private func invalidateQuotePairs() {
         
-        let delimiters = self.quoteDelimiters
-            .compactMap { delimiter -> (pair: SymbolPair, escapeCharacter: Character?)? in
+        let delimiters: [QuotePairEntry] = self.quoteDelimiters
+            .compactMap { delimiter in
                 guard
                     delimiter.begin.count == 1,
                     delimiter.end.count == 1,
@@ -1390,26 +1398,39 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                     let end = delimiter.end.first
                 else { return nil }
                 
-                return (.init(begin, end), delimiter.escapeCharacter)
+                // sort prefixes by descending length for longest-match-first
+                let prefixes = delimiter.prefixes?.sorted { $0.count > $1.count }
+                
+                return QuotePairEntry(pair: .init(begin, end), escapeCharacter: delimiter.escapeCharacter, prefixes: prefixes ?? [])
             }
         
-        guard !delimiters.isEmpty else {
-            self.quotePairs = []
-            return
+        // keep distinct (pair, escapeCharacter) combinations
+        // so that entries with different escape rules (e.g. normal vs. raw strings) coexist
+        self.quotePairs = delimiters.reduce(into: []) { result, entry in
+            if !result.contains(where: { $0.pair == entry.pair && $0.escapeCharacter == entry.escapeCharacter }) {
+                result.append(entry)
+            }
         }
-        
-        // Keep the first appearance to preserve syntax-defined priority.
-        var seen: Set<SymbolPair> = []
-        self.quotePairs = delimiters.filter { seen.insert($0.pair).inserted }
     }
     
     
     /// Finds a quote pair range at the given index by applying each pair's own escaping rule.
+    ///
+    /// - Parameter index: The character index of a quote character.
+    /// - Returns: The range of the quote pair, or `nil` if not found.
     private func quoteRangeOfSymbolPair(at index: String.Index) -> ClosedRange<String.Index>? {
         
         self.quotePairs
             .filter { $0.pair.begin == self.string[index] || $0.pair.end == self.string[index] }
-            .compactMap { self.string.rangeOfSymbolPair(at: index, candidates: [$0.pair], escapeCharacter: $0.escapeCharacter) }
+            .compactMap { entry -> ClosedRange<String.Index>? in
+                guard let range = self.string.rangeOfSymbolPair(at: index, candidates: [entry.pair], escapeCharacter: entry.escapeCharacter) else { return nil }
+                
+                if !entry.prefixes.isEmpty,
+                   !entry.prefixes.contains(where: self.string[..<range.lowerBound].hasSuffix)
+                { return nil }
+                
+                return range
+            }
             .min { NSRange($0, in: self.string).length < NSRange($1, in: self.string).length }
     }
     

@@ -63,10 +63,14 @@ extension Syntax {
         var nestables: [NestableToken: SyntaxType] = [:]
         
         for delimiter in self.stringDelimiters {
-            nestables[.pair(.init(delimiter.begin, delimiter.end), isMultiline: delimiter.isMultiline, isNestable: true, escapeCharacter: delimiter.escapeCharacter)] = .strings
+            // -> sort prefixes by descending length so that longest-match-first is guaranteed
+            //    and the Hashable identity of NestableToken stays stable
+            let prefixes = (delimiter.prefixes ?? []).sorted { $0.count > $1.count }
+            nestables[.pair(.init(delimiter.begin, delimiter.end), prefixes: prefixes, isMultiline: delimiter.isMultiline, isNestable: true, escapeCharacter: delimiter.escapeCharacter)] = .strings
         }
         for delimiter in self.characterDelimiters {
-            nestables[.pair(.init(delimiter.begin, delimiter.end), isMultiline: false, isNestable: true, escapeCharacter: delimiter.escapeCharacter)] = .characters
+            let prefixes = (delimiter.prefixes ?? []).sorted { $0.count > $1.count }
+            nestables[.pair(.init(delimiter.begin, delimiter.end), prefixes: prefixes, isMultiline: false, isNestable: true, escapeCharacter: delimiter.escapeCharacter)] = .characters
         }
         for delimiter in self.commentDelimiters.blocks {
             nestables[.pair(delimiter.pair, isMultiline: true, isNestable: delimiter.isNestable)] = .comments

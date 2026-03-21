@@ -34,6 +34,32 @@
       "end" : "'''",
       "isMultiline" : true,
       "escapeCharacter" : "\\"
+    },
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "prefixes" : ["r"],
+      "description" : "Raw string literal"
+    },
+    {
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
+      "prefixes" : ["r"],
+      "isMultiline" : true,
+      "description" : "Raw string literal"
+    },
+    {
+      "begin" : "'",
+      "end" : "'",
+      "prefixes" : ["r"],
+      "description" : "Raw string literal"
+    },
+    {
+      "begin" : "'''",
+      "end" : "'''",
+      "prefixes" : ["r"],
+      "isMultiline" : true,
+      "description" : "Raw string literal"
     }
   ],
   "indentation" : {

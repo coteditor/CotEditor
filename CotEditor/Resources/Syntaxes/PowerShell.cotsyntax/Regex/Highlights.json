@@ -7877,11 +7877,6 @@
       "end" : "^'@$",
       "isMultiline" : true,
       "regularExpression" : true
-    },
-    {
-      "begin" : "\\b(r|u|f|fr|rf|ur|b|br|rb)['\"]",
-      "ignoreCase" : true,
-      "regularExpression" : true
     }
   ],
   "types" : [

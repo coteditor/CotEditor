@@ -167,6 +167,7 @@ struct SyntaxFileWrapperTests {
         
         #expect(delimiter.begin == "\"")
         #expect(delimiter.end == "\"")
+        #expect(delimiter.prefixes == nil)
         #expect(delimiter.escapeCharacter == nil)
         #expect(!delimiter.isMultiline)
         #expect(delimiter.description == nil)
@@ -181,9 +182,43 @@ struct SyntaxFileWrapperTests {
         
         #expect(object["begin"] as? String == "'")
         #expect(object["end"] as? String == "'")
+        #expect(object["prefixes"] == nil)
         #expect(object["isMultiline"] == nil)
         #expect(object["escapeCharacter"] == nil)
         #expect(object["description"] == nil)
+    }
+    
+    
+    @Test func stringDelimiterPrefixesRoundTrip() throws {
+        
+        let delimiter = Syntax.PairDelimiter(begin: "\"", end: "\"", prefixes: ["r", "f", "rb"])
+        let data = try JSONEncoder().encode(delimiter)
+        let object = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        
+        #expect(object["prefixes"] as? [String] == ["r", "f", "rb"])
+        
+        let decoded = try JSONDecoder().decode(Syntax.PairDelimiter.self, from: data)
+        #expect(decoded == delimiter)
+    }
+    
+    
+    @Test func stringDelimiterNilPrefixesOmitted() throws {
+        
+        let delimiter = Syntax.PairDelimiter(begin: "\"", end: "\"", prefixes: nil)
+        let data = try JSONEncoder().encode(delimiter)
+        let object = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        
+        #expect(object["prefixes"] == nil)
+    }
+    
+    
+    @Test func stringDelimiterEmptyPrefixesOmitted() throws {
+        
+        let delimiter = Syntax.PairDelimiter(begin: "\"", end: "\"", prefixes: [])
+        let data = try JSONEncoder().encode(delimiter)
+        let object = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        
+        #expect(object["prefixes"] == nil)
     }
     
     

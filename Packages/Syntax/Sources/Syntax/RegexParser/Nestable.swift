@@ -32,7 +32,7 @@ import StringUtils
 enum NestableToken: Equatable, Hashable, Sendable {
     
     case inline(String, leadingOnly: Bool = false)
-    case pair(Pair<String>, isMultiline: Bool, isNestable: Bool, escapeCharacter: Character? = nil)
+    case pair(Pair<String>, prefixes: [String] = [], isMultiline: Bool, isNestable: Bool, escapeCharacter: Character? = nil)
 }
 
 
@@ -71,7 +71,7 @@ extension [NestableToken: SyntaxType] {
             }
             .filter { item in
                 switch item.token {
-                    case .pair(let pair, _, _, let escapeCharacter?) where String(escapeCharacter) != pair.end:
+                    case .pair(let pair, _, _, _, let escapeCharacter?) where String(escapeCharacter) != pair.end:
                         // -> Double-delimiter style needs no positional escape check
                         !(string as NSString).isEscaped(at: item.range.location, by: escapeCharacter)
                     default:
@@ -115,7 +115,7 @@ extension [NestableToken: SyntaxType] {
             // search corresponding end delimiter
             let endIndex: Int? = {
                 let appliesDoubleDelimiter: Bool = switch beginPosition.token {
-                    case .pair(let pair, _, _, let escapeCharacter?): String(escapeCharacter) == pair.end
+                    case .pair(let pair, _, _, _, let escapeCharacter?): String(escapeCharacter) == pair.end
                     default: false
                 }
                 
@@ -178,7 +178,7 @@ private extension NestableToken {
         
         switch self {
             case .inline: false
-            case .pair(_, let isMultiline, _, _): isMultiline
+            case .pair(_, _, let isMultiline, _, _): isMultiline
         }
     }
     
@@ -188,11 +188,34 @@ private extension NestableToken {
         
         switch self {
             case .inline: false
-            case .pair(_, _, let isNestable, _): isNestable
+            case .pair(_, _, _, let isNestable, _): isNestable
         }
     }
     
     
+    /// Returns the length of the matching prefix immediately before the given location, or `nil` if no prefix matches.
+    ///
+    /// - Parameters:
+    ///   - location: The location of the delimiter in the string.
+    ///   - nsString: The source string as NSString.
+    ///   - prefixes: The prefix candidates sorted by descending length.
+    ///   - parseRange: The range where parsing is performed.
+    /// - Returns: The UTF-16 length of the matched prefix, or `nil`.
+    static func matchingPrefixLength(at location: Int, in nsString: NSString, prefixes: [String], parseRange: NSRange) -> Int? {
+
+        for prefix in prefixes {
+            let length = (prefix as NSString).length
+            let start = location - length
+            guard start >= parseRange.location else { continue }
+
+            if nsString.substring(with: NSRange(location: start, length: length)) == prefix {
+                return length
+            }
+        }
+        return nil
+    }
+
+
     /// Collects token positions for the nestable token in the given parse range.
     ///
     /// - Parameters:
@@ -223,15 +246,41 @@ private extension NestableToken {
                             NestableItem(type: type, token: self, role: .end, range: endRange)]
                 }
                 
-            case .pair(let pair, _, _, _):
+            case .pair(let pair, let prefixes, _, _, _):
+                // -> `prefixes` is pre-sorted by descending length at NestableToken creation
+                //    to ensure longest-match-first and stable Hashable identity.
+                let nsString = string as NSString
+
                 if pair.begin == pair.end {
-                    return string.ranges(of: pair.begin, range: parseRange)
-                        .map { NestableItem(type: type, token: self, role: [.begin, .end], range: $0) }
+                    let ranges = string.ranges(of: pair.begin, range: parseRange)
+                    if prefixes.isEmpty {
+                        return ranges
+                            .map { NestableItem(type: type, token: self, role: [.begin, .end], range: $0) }
+                    } else {
+                        return ranges.map { range in
+                            if let prefixLength = Self.matchingPrefixLength(at: range.location, in: nsString, prefixes: prefixes, parseRange: parseRange) {
+                                NestableItem(type: type, token: self, role: .begin,
+                                             range: NSRange(location: range.location - prefixLength, length: range.length + prefixLength))
+                            } else {
+                                NestableItem(type: type, token: self, role: .end, range: range)
+                            }
+                        }
+                    }
                 } else {
-                    return string.ranges(of: pair.begin, range: parseRange)
-                        .map { NestableItem(type: type, token: self, role: .begin, range: $0) }
-                    + string.ranges(of: pair.end, range: parseRange)
+                    let beginItems: [NestableItem] = if prefixes.isEmpty {
+                        string.ranges(of: pair.begin, range: parseRange)
+                            .map { NestableItem(type: type, token: self, role: .begin, range: $0) }
+                    } else {
+                        string.ranges(of: pair.begin, range: parseRange)
+                            .compactMap { range in
+                                guard let prefixLength = Self.matchingPrefixLength(at: range.location, in: nsString, prefixes: prefixes, parseRange: parseRange) else { return nil }
+                                return NestableItem(type: type, token: self, role: .begin,
+                                                    range: NSRange(location: range.location - prefixLength, length: range.length + prefixLength))
+                            }
+                    }
+                    let endItems = string.ranges(of: pair.end, range: parseRange)
                         .map { NestableItem(type: type, token: self, role: .end, range: $0) }
+                    return beginItems + endItems
                 }
         }
     }

@@ -20,46 +20,32 @@
       "escapeCharacter" : "\\"
     },
     {
-      "begin" : "b\"",
+      "begin" : "\"",
       "end" : "\"",
+      "prefixes" : ["b"],
       "escapeCharacter" : "\\",
       "description" : "Byte string literal"
     },
     {
-      "begin" : "r\"",
+      "begin" : "\"",
       "end" : "\"",
+      "prefixes" : ["r", "br"],
       "isMultiline" : true,
       "description" : "Raw string literal"
     },
     {
-      "begin" : "r#\"",
+      "begin" : "#\"",
       "end" : "\"#",
+      "prefixes" : ["r", "br"],
       "isMultiline" : true,
       "description" : "Raw string literal (1 hash)"
     },
     {
-      "begin" : "r##\"",
+      "begin" : "##\"",
       "end" : "\"##",
+      "prefixes" : ["r", "br"],
       "isMultiline" : true,
       "description" : "Raw string literal (2 hashes)"
-    },
-    {
-      "begin" : "br\"",
-      "end" : "\"",
-      "isMultiline" : true,
-      "description" : "Raw byte string literal"
-    },
-    {
-      "begin" : "br#\"",
-      "end" : "\"#",
-      "isMultiline" : true,
-      "description" : "Raw byte string literal (1 hash)"
-    },
-    {
-      "begin" : "br##\"",
-      "end" : "\"##",
-      "isMultiline" : true,
-      "description" : "Raw byte string literal (2 hashes)"
     }
   ],
   "characterDelimiters" : [
