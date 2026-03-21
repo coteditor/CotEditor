@@ -1,20 +1,20 @@
 [
   {
-    "pattern" : "^([\\t ]*)class[\\t ]+(.+?):?[\\t]*$",
     "description" : "class",
-    "template" : "$1$2",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^([\\t ]*)class[\\t ]+(.+?):?[\\t]*$",
+    "template" : "$1$2"
   },
   {
-    "pattern" : "^([\\t ]*)def[\\t ]+(.+?):?[\\t]*$",
     "description" : "function",
-    "template" : "$1$2",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)def[\\t ]+(.+?):?[\\t]*$",
+    "template" : "$1$2"
   },
   {
-    "pattern" : "^([\\t ]*)struct[\\t ]+(.+?):?[\\t]*$",
     "description" : "Mojo struct",
-    "template" : "$1$2",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^([\\t ]*)struct[\\t ]+(.+?):?[\\t]*$",
+    "template" : "$1$2"
   }
 ]

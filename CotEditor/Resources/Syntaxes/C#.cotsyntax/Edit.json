@@ -1,4 +1,11 @@
 {
+  "characterDelimiters" : [
+    {
+      "begin" : "'",
+      "end" : "'",
+      "escapeCharacter" : "\\"
+    }
+  ],
   "comment" : {
     "blocks" : [
       {
@@ -9,6 +16,14 @@
     "inlines" : [
       {
         "begin" : "//"
+      }
+    ]
+  },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "{",
+        "end" : "}"
       }
     ]
   },
@@ -25,33 +40,24 @@
     },
     {
       "begin" : "\"",
+      "description" : "Interpolated string literal",
       "end" : "\"",
-      "prefixes" : ["$"],
       "escapeCharacter" : "\\",
-      "description" : "Interpolated string literal"
+      "prefixes" : [
+        "$"
+      ]
     },
     {
       "begin" : "\"",
+      "description" : "Verbatim string literal",
       "end" : "\"",
-      "prefixes" : ["@", "$@", "@$"],
-      "isMultiline" : true,
       "escapeCharacter" : "\"",
-      "description" : "Verbatim string literal"
+      "isMultiline" : true,
+      "prefixes" : [
+        "@",
+        "$@",
+        "@$"
+      ]
     }
-  ],
-  "characterDelimiters" : [
-    {
-      "begin" : "'",
-      "end" : "'",
-      "escapeCharacter" : "\\"
-    }
-  ],
-  "indentation" : {
-    "blockDelimiters" : [
-      {
-        "begin" : "{",
-        "end" : "}"
-      }
-    ]
-  }
+  ]
 }

@@ -12,14 +12,6 @@
       }
     ]
   },
-  "stringDelimiters" : [
-    {
-      "begin" : "\"",
-      "end" : "\"",
-      "isMultiline" : true,
-      "escapeCharacter" : "\\"
-    }
-  ],
   "indentation" : {
     "blockDelimiters" : [
       {
@@ -33,5 +25,13 @@
         "ignoreCase" : true
       }
     ]
-  }
+  },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
+    }
+  ]
 }

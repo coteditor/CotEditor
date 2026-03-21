@@ -1,7 +1,7 @@
 [
   {
+    "kind" : "mark",
     "pattern" : "^/\\* Begin (.+) section \\*/$",
-    "template" : "$1",
-    "kind" : "mark"
+    "template" : "$1"
   }
 ]

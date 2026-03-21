@@ -1,20 +1,20 @@
 [
   {
-    "pattern" : "^([ \\t]*)(?:[a-z]+ ){0,3}(class|object) +([a-zA-Z0-9_]+)",
     "description" : "class or object",
-    "template" : "$1$2",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^([ \\t]*)(?:[a-z]+ ){0,3}(class|object) +([a-zA-Z0-9_]+)",
+    "template" : "$1$2"
   },
   {
-    "pattern" : "^([ \\t]*)(?:[a-z]+ ){0,3}fun +([a-zA-Z0-9_]+\\([^\\)]*\\))",
     "description" : "function",
-    "template" : "$1$2",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([ \\t]*)(?:[a-z]+ ){0,3}fun +([a-zA-Z0-9_]+\\([^\\)]*\\))",
+    "template" : "$1$2"
   },
   {
-    "pattern" : "^([ \\t]*)(?:[a-z]+ ){0,3}interface +([a-zA-Z0-9_]+)",
     "description" : "interface",
-    "template" : "$1$2",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^([ \\t]*)(?:[a-z]+ ){0,3}interface +([a-zA-Z0-9_]+)",
+    "template" : "$1$2"
   }
 ]

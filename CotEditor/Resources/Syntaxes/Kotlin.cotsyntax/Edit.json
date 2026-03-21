@@ -1,4 +1,11 @@
 {
+  "characterDelimiters" : [
+    {
+      "begin" : "'",
+      "end" : "'",
+      "escapeCharacter" : "\\"
+    }
+  ],
   "comment" : {
     "blocks" : [
       {
@@ -13,6 +20,14 @@
       }
     ]
   },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "{",
+        "end" : "}"
+      }
+    ]
+  },
   "stringDelimiters" : [
     {
       "begin" : "\"",
@@ -24,20 +39,5 @@
       "end" : "\"\"\"",
       "isMultiline" : true
     }
-  ],
-  "characterDelimiters" : [
-    {
-      "begin" : "'",
-      "end" : "'",
-      "escapeCharacter" : "\\"
-    }
-  ],
-  "indentation" : {
-    "blockDelimiters" : [
-      {
-        "begin" : "{",
-        "end" : "}"
-      }
-    ]
-  }
+  ]
 }

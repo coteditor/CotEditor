@@ -1,18 +1,18 @@
 [
   {
+    "kind" : "function",
     "pattern" : "BEGIN",
-    "template" : "",
-    "kind" : "function"
+    "template" : ""
   },
   {
+    "kind" : "function",
     "pattern" : "END",
-    "template" : "",
-    "kind" : "function"
+    "template" : ""
   },
   {
-    "pattern" : "function[ \\t]+(\\w+)[ \\t]*\\(([^\\)]*)\\)",
     "description" : "function",
-    "template" : "$1 ($2)",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "function[ \\t]+(\\w+)[ \\t]*\\(([^\\)]*)\\)",
+    "template" : "$1 ($2)"
   }
 ]

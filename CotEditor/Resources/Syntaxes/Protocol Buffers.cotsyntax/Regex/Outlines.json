@@ -1,17 +1,17 @@
 [
   {
+    "kind" : "container",
     "pattern" : "^([\\t ]*)(extended)[\\t ]+(\\w+)",
-    "template" : "$1$2 $3",
-    "kind" : "container"
+    "template" : "$1$2 $3"
   },
   {
+    "kind" : "container",
     "pattern" : "^([\\t ]*)(message|enum|service)[\\t ]+(\\w+)",
-    "template" : "$1$2 $3",
-    "kind" : "container"
+    "template" : "$1$2 $3"
   },
   {
+    "kind" : "container",
     "pattern" : "^([\\t ]*)(oneof)[\\t ]+(\\w+)",
-    "template" : "$1$2 $3",
-    "kind" : "container"
+    "template" : "$1$2 $3"
   }
 ]

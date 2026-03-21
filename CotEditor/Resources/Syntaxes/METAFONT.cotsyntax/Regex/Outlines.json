@@ -1,8 +1,8 @@
 [
   {
-    "pattern" : "beginchar\\((.*?),",
     "description" : "character",
-    "template" : "character: $1",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "beginchar\\((.*?),",
+    "template" : "character: $1"
   }
 ]

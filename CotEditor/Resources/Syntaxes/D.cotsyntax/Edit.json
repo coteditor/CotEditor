@@ -1,4 +1,11 @@
 {
+  "characterDelimiters" : [
+    {
+      "begin" : "'",
+      "end" : "'",
+      "escapeCharacter" : "\\"
+    }
+  ],
   "comment" : {
     "blocks" : [
       {
@@ -17,40 +24,6 @@
       }
     ]
   },
-  "stringDelimiters" : [
-    {
-      "begin" : "\"",
-      "end" : "\"",
-      "isMultiline" : true,
-      "escapeCharacter" : "\\"
-    },
-    {
-      "begin" : "`",
-      "end" : "`",
-      "isMultiline" : true,
-      "description" : "WYSIWYG string literal"
-    },
-    {
-      "begin" : "q{",
-      "end" : "}",
-      "isMultiline" : true,
-      "description" : "Token string literal with { } delimiter"
-    },
-    {
-      "begin" : "\"",
-      "end" : "\"",
-      "prefixes" : ["r", "x"],
-      "isMultiline" : true,
-      "description" : "WYSIWYG/hex string literal"
-    }
-  ],
-  "characterDelimiters" : [
-    {
-      "begin" : "'",
-      "end" : "'",
-      "escapeCharacter" : "\\"
-    }
-  ],
   "indentation" : {
     "blockDelimiters" : [
       {
@@ -58,5 +31,35 @@
         "end" : "}"
       }
     ]
-  }
+  },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "`",
+      "description" : "WYSIWYG string literal",
+      "end" : "`",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "q{",
+      "description" : "Token string literal with { } delimiter",
+      "end" : "}",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "\"",
+      "description" : "WYSIWYG/hex string literal",
+      "end" : "\"",
+      "isMultiline" : true,
+      "prefixes" : [
+        "r",
+        "x"
+      ]
+    }
+  ]
 }

@@ -1,12 +1,12 @@
 [
   {
+    "kind" : "container",
     "pattern" : "\\b(graph|digraph)\\s+([^\\s\\{]+)\\s*\\{",
-    "template" : "$2",
-    "kind" : "container"
+    "template" : "$2"
   },
   {
+    "kind" : "container",
     "pattern" : "\\bsubgraph\\s+([^\\s]+)",
-    "template" : "$1",
-    "kind" : "container"
+    "template" : "$1"
   }
 ]

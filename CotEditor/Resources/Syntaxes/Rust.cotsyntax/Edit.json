@@ -1,4 +1,11 @@
 {
+  "characterDelimiters" : [
+    {
+      "begin" : "'",
+      "end" : "'",
+      "escapeCharacter" : "\\"
+    }
+  ],
   "comment" : {
     "blocks" : [
       {
@@ -13,6 +20,14 @@
       }
     ]
   },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "{",
+        "end" : "}"
+      }
+    ]
+  },
   "stringDelimiters" : [
     {
       "begin" : "\"",
@@ -21,46 +36,42 @@
     },
     {
       "begin" : "\"",
+      "description" : "Byte string literal",
       "end" : "\"",
-      "prefixes" : ["b"],
       "escapeCharacter" : "\\",
-      "description" : "Byte string literal"
+      "prefixes" : [
+        "b"
+      ]
     },
     {
       "begin" : "\"",
+      "description" : "Raw string literal",
       "end" : "\"",
-      "prefixes" : ["r", "br"],
       "isMultiline" : true,
-      "description" : "Raw string literal"
+      "prefixes" : [
+        "r",
+        "br"
+      ]
     },
     {
       "begin" : "#\"",
+      "description" : "Raw string literal (1 hash)",
       "end" : "\"#",
-      "prefixes" : ["r", "br"],
       "isMultiline" : true,
-      "description" : "Raw string literal (1 hash)"
+      "prefixes" : [
+        "r",
+        "br"
+      ]
     },
     {
       "begin" : "##\"",
+      "description" : "Raw string literal (2 hashes)",
       "end" : "\"##",
-      "prefixes" : ["r", "br"],
       "isMultiline" : true,
-      "description" : "Raw string literal (2 hashes)"
+      "prefixes" : [
+        "r",
+        "br"
+      ]
     }
-  ],
-  "characterDelimiters" : [
-    {
-      "begin" : "'",
-      "end" : "'",
-      "escapeCharacter" : "\\"
-    }
-  ],
-  "indentation" : {
-    "blockDelimiters" : [
-      {
-        "begin" : "{",
-        "end" : "}"
-      }
-    ]
-  }
+  ]
 }

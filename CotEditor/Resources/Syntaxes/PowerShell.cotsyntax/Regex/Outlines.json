@@ -1,16 +1,16 @@
 [
   {
-    "pattern" : "^([\\t ]*)(function|filter|configuration|workflow)[\\t ]+((?:global|local|script|private):)?((?:\\p{L}|\\d|_|-|\\.)+)",
     "description" : "function",
     "ignoreCase" : true,
-    "template" : "$1$3$4",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)(function|filter|configuration|workflow)[\\t ]+((?:global|local|script|private):)?((?:\\p{L}|\\d|_|-|\\.)+)",
+    "template" : "$1$3$4"
   },
   {
-    "pattern" : "^([\\t ]*)class[\\t ]+((?:\\p{L}|\\d|_|-|\\.)+)\\b",
     "description" : "class",
     "ignoreCase" : true,
-    "template" : "$1$2",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^([\\t ]*)class[\\t ]+((?:\\p{L}|\\d|_|-|\\.)+)\\b",
+    "template" : "$1$2"
   }
 ]

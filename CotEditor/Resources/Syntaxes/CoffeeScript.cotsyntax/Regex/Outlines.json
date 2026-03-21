@@ -1,26 +1,26 @@
 [
   {
+    "description" : "function",
+    "kind" : "function",
     "pattern" : "^([\\t ]*\\w+): (.*)->",
-    "description" : "function",
-    "template" : "$1",
-    "kind" : "function"
+    "template" : "$1"
   },
   {
+    "description" : "function",
+    "kind" : "function",
     "pattern" : "^([\\t ]*\\w+)[\\t ]= (.*)->",
-    "description" : "function",
-    "template" : "$1",
-    "kind" : "function"
+    "template" : "$1"
   },
   {
+    "description" : "function",
+    "kind" : "function",
     "pattern" : "^(\\w*::\\w*) (.*)->",
-    "description" : "function",
-    "template" : "$1",
-    "kind" : "function"
+    "template" : "$1"
   },
   {
-    "pattern" : "^class (.*)",
     "description" : "class",
-    "template" : "$1",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^class (.*)",
+    "template" : "$1"
   }
 ]

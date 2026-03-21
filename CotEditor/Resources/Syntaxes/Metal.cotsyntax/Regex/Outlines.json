@@ -1,12 +1,12 @@
 [
   {
+    "kind" : "function",
     "pattern" : "\\b(kernel|vertex|fragment|compute)\\s+\\w+\\s+(\\w+)\\s*\\(",
-    "template" : "$1 function: $2",
-    "kind" : "function"
+    "template" : "$1 function: $2"
   },
   {
+    "kind" : "container",
     "pattern" : "\\bstruct\\s+(\\w+)",
-    "template" : "struct: $1",
-    "kind" : "container"
+    "template" : "struct: $1"
   }
 ]

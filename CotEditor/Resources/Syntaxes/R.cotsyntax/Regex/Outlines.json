@@ -1,14 +1,14 @@
 [
   {
-    "pattern" : "^#+[\\t ]*(.*?)[\\t ]*(-|=|#){4,}",
     "description" : "section",
-    "template" : "$1",
-    "kind" : "mark"
+    "kind" : "mark",
+    "pattern" : "^#+[\\t ]*(.*?)[\\t ]*(-|=|#){4,}",
+    "template" : "$1"
   },
   {
-    "pattern" : "^[\\t ]*(\\S+)[\\t ]*<-[\\t ]*function",
     "description" : "function",
-    "template" : "function: $1",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^[\\t ]*(\\S+)[\\t ]*<-[\\t ]*function",
+    "template" : "function: $1"
   }
 ]

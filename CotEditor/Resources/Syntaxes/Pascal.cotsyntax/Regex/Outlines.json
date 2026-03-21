@@ -1,58 +1,58 @@
 [
   {
-    "pattern" : "(^\\s*)(?:\\T)(?:.*)(?<!\\:)\\=(?:.*)",
     "description" : "Types (start with T)",
     "ignoreCase" : true,
-    "template" : "type $0",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "(^\\s*)(?:\\T)(?:.*)(?<!\\:)\\=(?:.*)",
+    "template" : "type $0"
   },
   {
-    "pattern" : "\\{(?:.*)\\$(?:.*)(?:region)(?:.*)\\'(.*)\\'\\}",
     "description" : "Region",
     "ignoreCase" : true,
-    "template" : "($1)",
-    "kind" : "mark"
+    "kind" : "mark",
+    "pattern" : "\\{(?:.*)\\$(?:.*)(?:region)(?:.*)\\'(.*)\\'\\}",
+    "template" : "($1)"
   },
   {
-    "pattern" : "^([ \\t]*)(?:[a-z]* )*function(.*)(?:\\;|\\()",
     "description" : "Function",
     "ignoreCase" : true,
-    "template" : "$2",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([ \\t]*)(?:[a-z]* )*function(.*)(?:\\;|\\()",
+    "template" : "$2"
   },
   {
-    "pattern" : "^([ \\t]*)(?:[a-z]* )*procedure(.*)(?:\\;|\\()",
     "description" : "Procedure",
     "ignoreCase" : true,
-    "template" : "$2",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([ \\t]*)(?:[a-z]* )*procedure(.*)(?:\\;|\\()",
+    "template" : "$2"
   },
   {
-    "pattern" : "^\\s*(implementation)",
     "description" : "Implementation",
     "ignoreCase" : true,
-    "template" : "---- $1",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^\\s*(implementation)",
+    "template" : "---- $1"
   },
   {
-    "pattern" : "^\\s*(interface)",
     "description" : "Interface",
     "ignoreCase" : true,
-    "template" : "---- $1",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^\\s*(interface)",
+    "template" : "---- $1"
   },
   {
-    "pattern" : "^\\s*(type)",
     "description" : "Type",
     "ignoreCase" : true,
-    "template" : "---- $1",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^\\s*(type)",
+    "template" : "---- $1"
   },
   {
-    "pattern" : "unit\\W(.*)(?:\\;)$",
     "description" : "Unit",
     "ignoreCase" : true,
-    "template" : "$1",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "unit\\W(.*)(?:\\;)$",
+    "template" : "$1"
   }
 ]

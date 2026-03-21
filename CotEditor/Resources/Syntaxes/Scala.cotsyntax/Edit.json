@@ -1,4 +1,11 @@
 {
+  "characterDelimiters" : [
+    {
+      "begin" : "'",
+      "end" : "'",
+      "escapeCharacter" : "\\"
+    }
+  ],
   "comment" : {
     "blocks" : [
       {
@@ -10,6 +17,14 @@
     "inlines" : [
       {
         "begin" : "//"
+      }
+    ]
+  },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "{",
+        "end" : "}"
       }
     ]
   },
@@ -53,20 +68,5 @@
         "raw"
       ]
     }
-  ],
-  "characterDelimiters" : [
-    {
-      "begin" : "'",
-      "end" : "'",
-      "escapeCharacter" : "\\"
-    }
-  ],
-  "indentation" : {
-    "blockDelimiters" : [
-      {
-        "begin" : "{",
-        "end" : "}"
-      }
-    ]
-  }
+  ]
 }

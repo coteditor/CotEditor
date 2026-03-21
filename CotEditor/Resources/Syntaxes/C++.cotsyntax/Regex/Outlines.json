@@ -1,50 +1,50 @@
 [
   {
-    "pattern" : "^([\\t ]*)(\\w+::\\w+)\\s*\\(([\\s\\w*&,\\[\\]]*)\\)",
     "description" : "constructor",
-    "template" : "$1$2($3)",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)(\\w+::\\w+)\\s*\\(([\\s\\w*&,\\[\\]]*)\\)",
+    "template" : "$1$2($3)"
   },
   {
-    "pattern" : "^([\\t ]*)(\\w+::~\\w+)\\s*\\(\\)",
     "description" : "deconstructor",
-    "template" : "$1$2()",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)(\\w+::~\\w+)\\s*\\(\\)",
+    "template" : "$1$2()"
   },
   {
-    "pattern" : "^([\\t ]*)(\\w[\\w\\s]*)\\s+(\\**\\w+)\\(([\\s\\w*&,\\[\\]]*)\\)[\\t ]*(?=\\{|//|$)",
     "description" : "function",
-    "template" : "$1 $3($4)",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)(\\w[\\w\\s]*)\\s+(\\**\\w+)\\(([\\s\\w*&,\\[\\]]*)\\)[\\t ]*(?=\\{|//|$)",
+    "template" : "$1 $3($4)"
   },
   {
-    "pattern" : "^([\\t ]*)(\\w[\\w\\s]*)\\s+(\\**\\w+::\\w+)\\(([\\s\\w*&,]*)\\)[\\t ]*(?=\\{|//|$)",
     "description" : "method",
-    "template" : "$1 $3($4)",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)(\\w[\\w\\s]*)\\s+(\\**\\w+::\\w+)\\(([\\s\\w*&,]*)\\)[\\t ]*(?=\\{|//|$)",
+    "template" : "$1 $3($4)"
   },
   {
-    "pattern" : "^class[\\t ]+(\\w+)",
     "description" : "class",
-    "template" : "$1",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^class[\\t ]+(\\w+)",
+    "template" : "$1"
   },
   {
-    "pattern" : "^enum[\\t ]+(\\w+)",
     "description" : "enum",
-    "template" : "enum $1",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^enum[\\t ]+(\\w+)",
+    "template" : "enum $1"
   },
   {
-    "pattern" : "^struct[\\t ]+(\\w+)",
     "description" : "struct",
-    "template" : "struct $1",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^struct[\\t ]+(\\w+)",
+    "template" : "struct $1"
   },
   {
-    "pattern" : "^union[\\t ]+(\\w+)",
     "description" : "union",
-    "template" : "union $1",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^union[\\t ]+(\\w+)",
+    "template" : "union $1"
   }
 ]

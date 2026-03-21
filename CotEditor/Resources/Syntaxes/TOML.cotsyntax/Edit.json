@@ -18,8 +18,8 @@
     {
       "begin" : "\"\"\"",
       "end" : "\"\"\"",
-      "isMultiline" : true,
-      "escapeCharacter" : "\\"
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
     },
     {
       "begin" : "'",

@@ -1,14 +1,14 @@
 [
   {
-    "pattern" : "^([\\t ]*)on[\\t ]+(\\S+\\(.*\\))",
     "description" : "handler",
-    "template" : "$1on $2",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)on[\\t ]+(\\S+\\(.*\\))",
+    "template" : "$1on $2"
   },
   {
-    "pattern" : "^([\\t ]*)script[\\t ]+(\\S+)",
     "description" : "script",
-    "template" : "$1script $2",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^([\\t ]*)script[\\t ]+(\\S+)",
+    "template" : "$1script $2"
   }
 ]

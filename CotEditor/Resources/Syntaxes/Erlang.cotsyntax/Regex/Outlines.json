@@ -1,8 +1,8 @@
 [
   {
-    "pattern" : "^([\\t ]*)(\\w+)\\s*\\(.*\\)\\s+->",
     "description" : "function",
-    "template" : "$1$2",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)(\\w+)\\s*\\(.*\\)\\s+->",
+    "template" : "$1$2"
   }
 ]

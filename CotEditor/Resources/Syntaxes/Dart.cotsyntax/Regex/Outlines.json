@@ -1,14 +1,14 @@
 [
   {
-    "pattern" : "^([\\t ]*)([a-zA-Z]+) (\\w+[\\t ]*\\(.*\\))\\s\\{",
     "description" : "function",
-    "template" : "$1$2 $3",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)([a-zA-Z]+) (\\w+[\\t ]*\\(.*\\))\\s\\{",
+    "template" : "$1$2 $3"
   },
   {
-    "pattern" : "^([\\t ]*)class (.+)\\s\\{",
     "description" : "class",
-    "template" : "$1class $2",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^([\\t ]*)class (.+)\\s\\{",
+    "template" : "$1class $2"
   }
 ]

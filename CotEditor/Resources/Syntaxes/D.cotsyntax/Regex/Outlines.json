@@ -1,16 +1,16 @@
 [
   {
-    "pattern" : "^([\\t ]*)((const|immutable|shared|static) )?struct +([a-z][a-z0-9_]*)",
     "description" : "struct",
     "ignoreCase" : true,
-    "template" : "$1$2struct $4",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^([\\t ]*)((const|immutable|shared|static) )?struct +([a-z][a-z0-9_]*)",
+    "template" : "$1$2struct $4"
   },
   {
-    "pattern" : "^([\\t ]*)((scope|final) )?class +([a-z][a-z0-9_]*)",
     "description" : "class",
     "ignoreCase" : true,
-    "template" : "$1$2class $4",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "^([\\t ]*)((scope|final) )?class +([a-z][a-z0-9_]*)",
+    "template" : "$1$2class $4"
   }
 ]

@@ -12,6 +12,14 @@
       }
     ]
   },
+  "indentation" : {
+    "blockDelimiters" : [
+      {
+        "begin" : "{",
+        "end" : "}"
+      }
+    ]
+  },
   "stringDelimiters" : [
     {
       "begin" : "\"",
@@ -21,23 +29,15 @@
     {
       "begin" : "'",
       "end" : "'",
-      "isMultiline" : true,
-      "escapeCharacter" : "\\"
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
     },
     {
       "begin" : "qq/",
+      "description" : "Interpolated string with / delimiter (qq)",
       "end" : "/",
-      "isMultiline" : true,
       "escapeCharacter" : "\\",
-      "description" : "Interpolated string with / delimiter (qq)"
+      "isMultiline" : true
     }
-  ],
-  "indentation" : {
-    "blockDelimiters" : [
-      {
-        "begin" : "{",
-        "end" : "}"
-      }
-    ]
-  }
+  ]
 }

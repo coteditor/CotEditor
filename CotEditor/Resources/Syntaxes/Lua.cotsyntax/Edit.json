@@ -24,42 +24,6 @@
       }
     ]
   },
-  "stringDelimiters" : [
-    {
-      "begin" : "\"",
-      "end" : "\"",
-      "escapeCharacter" : "\\"
-    },
-    {
-      "begin" : "'",
-      "end" : "'",
-      "escapeCharacter" : "\\"
-    },
-    {
-      "begin" : "[[",
-      "end" : "]]",
-      "isMultiline" : true,
-      "description" : "Long bracket string (level 0)"
-    },
-    {
-      "begin" : "[=[",
-      "end" : "]=]",
-      "isMultiline" : true,
-      "description" : "Long bracket string (level 1)"
-    },
-    {
-      "begin" : "[==[",
-      "end" : "]==]",
-      "isMultiline" : true,
-      "description" : "Long bracket string (level 2)"
-    },
-    {
-      "begin" : "[===[",
-      "end" : "]===]",
-      "isMultiline" : true,
-      "description" : "Long bracket string (level 3)"
-    }
-  ],
   "indentation" : {
     "blockDelimiters" : [
       {
@@ -79,5 +43,41 @@
         "end" : "until"
       }
     ]
-  }
+  },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "escapeCharacter" : "\\"
+    },
+    {
+      "begin" : "'",
+      "end" : "'",
+      "escapeCharacter" : "\\"
+    },
+    {
+      "begin" : "[[",
+      "description" : "Long bracket string (level 0)",
+      "end" : "]]",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "[=[",
+      "description" : "Long bracket string (level 1)",
+      "end" : "]=]",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "[==[",
+      "description" : "Long bracket string (level 2)",
+      "end" : "]==]",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "[===[",
+      "description" : "Long bracket string (level 3)",
+      "end" : "]===]",
+      "isMultiline" : true
+    }
+  ]
 }

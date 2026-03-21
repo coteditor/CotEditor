@@ -1,8 +1,8 @@
 [
   {
-    "pattern" : "@(\\w+)\\s*\\{\\s*([^,=]+)",
     "description" : "entry",
-    "template" : "@$1 $2",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "@(\\w+)\\s*\\{\\s*([^,=]+)",
+    "template" : "@$1 $2"
   }
 ]

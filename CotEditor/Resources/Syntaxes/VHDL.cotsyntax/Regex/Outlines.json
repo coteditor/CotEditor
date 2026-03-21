@@ -1,23 +1,23 @@
 [
   {
-    "pattern" : "\\b(\\s*)architecture\\s+(\\S+)",
     "description" : "architecture",
     "ignoreCase" : true,
-    "template" : "$1$2",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "\\b(\\s*)architecture\\s+(\\S+)",
+    "template" : "$1$2"
   },
   {
-    "pattern" : "\\b(\\s*)component\\s+(\\S+)",
     "description" : "component",
     "ignoreCase" : true,
-    "template" : "$1$2",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "\\b(\\s*)component\\s+(\\S+)",
+    "template" : "$1$2"
   },
   {
-    "pattern" : "\\b(\\s*)entity\\s+(\\S+)",
     "description" : "entity",
     "ignoreCase" : true,
-    "template" : "$1$2",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "\\b(\\s*)entity\\s+(\\S+)",
+    "template" : "$1$2"
   }
 ]

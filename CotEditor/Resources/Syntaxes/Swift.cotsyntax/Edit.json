@@ -13,41 +13,6 @@
       }
     ]
   },
-  "stringDelimiters" : [
-    {
-      "begin" : "\"",
-      "end" : "\"",
-      "escapeCharacter" : "\\"
-    },
-    {
-      "begin" : "\"\"\"",
-      "end" : "\"\"\"",
-      "isMultiline" : true,
-      "escapeCharacter" : "\\"
-    },
-    {
-      "begin" : "#\"",
-      "end" : "\"#",
-      "description" : "Raw string literal (1 #)"
-    },
-    {
-      "begin" : "##\"",
-      "end" : "\"##",
-      "description" : "Raw string literal (2 #)"
-    },
-    {
-      "begin" : "#\"\"\"",
-      "end" : "\"\"\"#",
-      "isMultiline" : true,
-      "description" : "Raw multiline string literal (1 #)"
-    },
-    {
-      "begin" : "##\"\"\"",
-      "end" : "\"\"\"##",
-      "isMultiline" : true,
-      "description" : "Raw multiline string literal (2 #)"
-    }
-  ],
   "indentation" : {
     "blockDelimiters" : [
       {
@@ -58,5 +23,40 @@
         "begin" : ":"
       }
     ]
-  }
+  },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "escapeCharacter" : "\\"
+    },
+    {
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "#\"",
+      "description" : "Raw string literal (1 #)",
+      "end" : "\"#"
+    },
+    {
+      "begin" : "##\"",
+      "description" : "Raw string literal (2 #)",
+      "end" : "\"##"
+    },
+    {
+      "begin" : "#\"\"\"",
+      "description" : "Raw multiline string literal (1 #)",
+      "end" : "\"\"\"#",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "##\"\"\"",
+      "description" : "Raw multiline string literal (2 #)",
+      "end" : "\"\"\"##",
+      "isMultiline" : true
+    }
+  ]
 }

@@ -1,8 +1,8 @@
 [
   {
-    "pattern" : "^SUMMARY:(.*)$",
     "description" : "summary",
-    "template" : "",
-    "kind" : "title"
+    "kind" : "title",
+    "pattern" : "^SUMMARY:(.*)$",
+    "template" : ""
   }
 ]

@@ -1,32 +1,32 @@
 [
   {
-    "pattern" : "^([\\t ]*)(constructor|destructor)",
     "description" : "constructor/deconstructor",
-    "template" : "$1$2",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)(constructor|destructor)",
+    "template" : "$1$2"
   },
   {
-    "pattern" : "^([\\t ]*)method\\s+(\\w+)",
     "description" : "method",
-    "template" : "$1$2",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)method\\s+(\\w+)",
+    "template" : "$1$2"
   },
   {
-    "pattern" : "^([\\t ]*)proc\\s+(\\S+)",
     "description" : "procedure",
-    "template" : "$1$2",
-    "kind" : "function"
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)proc\\s+(\\S+)",
+    "template" : "$1$2"
   },
   {
-    "pattern" : "class\\s+create\\s+(\\w+)",
     "description" : "class",
-    "template" : "$1",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "class\\s+create\\s+(\\w+)",
+    "template" : "$1"
   },
   {
-    "pattern" : "package\\s+provide\\s+(\\w+)",
     "description" : "package",
-    "template" : "$1",
-    "kind" : "container"
+    "kind" : "container",
+    "pattern" : "package\\s+provide\\s+(\\w+)",
+    "template" : "$1"
   }
 ]

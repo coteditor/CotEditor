@@ -1,4 +1,11 @@
 {
+  "characterDelimiters" : [
+    {
+      "begin" : "'",
+      "end" : "'",
+      "escapeCharacter" : "\\"
+    }
+  ],
   "comment" : {
     "blocks" : [
       {
@@ -13,34 +20,6 @@
       }
     ]
   },
-  "stringDelimiters" : [
-    {
-      "begin" : "\"",
-      "end" : "\"",
-      "isMultiline" : true,
-      "escapeCharacter" : "\\"
-    },
-    {
-      "begin" : "\"\"\"",
-      "end" : "\"\"\"",
-      "isMultiline" : true,
-      "escapeCharacter" : "\\"
-    },
-    {
-      "begin" : "\"",
-      "end" : "\"",
-      "prefixes" : ["b", "r", "v"],
-      "escapeCharacter" : "\\",
-      "description" : "Prefixed string literal"
-    }
-  ],
-  "characterDelimiters" : [
-    {
-      "begin" : "'",
-      "end" : "'",
-      "escapeCharacter" : "\\"
-    }
-  ],
   "indentation" : {
     "blockDelimiters" : [
       {
@@ -52,5 +31,30 @@
         "end" : "end"
       }
     ]
-  }
+  },
+  "stringDelimiters" : [
+    {
+      "begin" : "\"",
+      "end" : "\"",
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "\"\"\"",
+      "end" : "\"\"\"",
+      "escapeCharacter" : "\\",
+      "isMultiline" : true
+    },
+    {
+      "begin" : "\"",
+      "description" : "Prefixed string literal",
+      "end" : "\"",
+      "escapeCharacter" : "\\",
+      "prefixes" : [
+        "b",
+        "r",
+        "v"
+      ]
+    }
+  ]
 }
