@@ -35,6 +35,7 @@ import LineEnding
 import StringUtils
 import Syntax
 import TextClipping
+import ValueRange
 
 final class EditorTextViewController: NSViewController, NSServicesMenuRequestor, NSTextViewDelegate {
     

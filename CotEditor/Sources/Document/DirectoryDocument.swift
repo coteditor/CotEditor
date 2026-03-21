@@ -118,7 +118,7 @@ final class DirectoryDocument: NSDocument {
         // observe document updates for the edited marker in the close button
         if self.documentObserver == nil {
             self.documentObserver = NotificationCenter.default.addObserver(forName: Document.DidUpdateChangeMessage.name, object: nil, queue: .main) { [unowned self] _ in
-                MainActor.assumeIsolated {
+                MainActor.assumeIsolated { [unowned self] in
                     let hasEditedDocuments = self.documents.contains(where: \.isDocumentEdited)
                     self.windowController?.setDocumentEdited(hasEditedDocuments)
                 }

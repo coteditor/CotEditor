@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import SyntaxMap
 
 private struct FileMappingConflict: Identifiable {
     

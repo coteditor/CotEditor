@@ -312,7 +312,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             // apply window opacity
             self.windowOpacityObserver = window.observe(\.isOpaque, options: [.initial, .new]) { [unowned self] _, change in
                 guard let new = change.newValue else { return }
-                MainActor.assumeIsolated {
+                MainActor.assumeIsolated { [unowned self] in
                     self.drawsBackground = new
                     self.enclosingScrollView?.drawsBackground = new
                 }
@@ -321,13 +321,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             // observe key window state for insertion points drawing and automatic period substitution
             self.keyStateObservers = [
                 NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: window, queue: .main) { [unowned self] _ in
-                    MainActor.assumeIsolated {
+                    MainActor.assumeIsolated { [unowned self] in
                         self.invalidateInsertionIndicatorDisplayMode()
                         self.invalidateAutomaticPeriodSubstitution()
                     }
                 },
                 NotificationCenter.default.addObserver(forName: NSWindow.didResignKeyNotification, object: window, queue: .main) { [unowned self] _ in
-                    MainActor.assumeIsolated {
+                    MainActor.assumeIsolated { [unowned self] in
                         self.invalidateInsertionIndicatorDisplayMode()
                         self.invalidateAutomaticPeriodSubstitution()
                     }
