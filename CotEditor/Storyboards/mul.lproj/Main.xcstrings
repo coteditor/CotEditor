@@ -10351,8 +10351,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Tümünü Yeniden Renklendir"
+            "state" : "translated",
+            "value" : "Sözdizim Analizini Sıfırla"
           }
         },
         "zh-Hans" : {

@@ -2528,6 +2528,12 @@
             "value" : "Resultaat %1$lld van %2$lld."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld eşleşme bulundu."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

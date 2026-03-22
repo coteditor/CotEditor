@@ -265,6 +265,12 @@
             "value" : "Symbolen maken de structuur overzichtelijker, en op tree-sitter gebaseerde syntaxisdefinities ondersteunen nu inklapbare overzichten die de hiërarchie weerspiegelen."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simgeler, yapıyı taramayı kolaylaştırır ve tree-sitter tabanlı sözdizimler artık hiyerarşiyi yansıtan daraltılabilir ana hatları destekler."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -328,6 +334,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Overzicht met diepte"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daha derinlikli ana hatlar"
           }
         },
         "zh-Hans" : {
@@ -395,6 +407,12 @@
             "value" : "Nauwkeurigere accentuering, slimmer commentaar en verbeterd editorgedrag, mogelijk gemaakt door een vernieuwde syntaxisengine en definitie-indeling."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daha doğru vurgulama, daha akıllı yoruma çevirme ve iyileştirilmiş düzenleyici davranışı; hepsi yeniden tasarlanmış bir sözdizim işletkesi ve tanım biçimleri sayesinde olanaklı kılındı."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -458,6 +476,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Slimmere syntaxis, scherpere bewerking"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daha akıllı sözdizim, daha keskin düzenleme"
           }
         },
         "zh-Hans" : {
@@ -615,6 +639,24 @@
             }
           }
         },
+        "tr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld özel sözdizim yeni biçime aktarıldı."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld özel sözdizim yeni biçime aktarıldı."
+                }
+              }
+            }
+          }
+        },
         "zh-Hans" : {
           "variations" : {
             "plural" : {
@@ -692,6 +734,12 @@
             "value" : "Veel belangrijke ingebouwde syntaxisdefinities gebruiken nu tree-sitter, een moderne op structuur gebaseerde parser die zorgt voor diepere en betrouwbaardere taalherkenning."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pek çok öne çıkan sözdizim, artık daha derin ve dile duyarlı, yapı tabanlı çağdaş bir ayrıştırıcı olan tree-sitter tarafından sağlanıyor."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -755,6 +803,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Aangedreven door tree-sitter, waar het het meest telt"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gücünü tree-sitter’dan alır"
           }
         },
         "zh-Hans" : {

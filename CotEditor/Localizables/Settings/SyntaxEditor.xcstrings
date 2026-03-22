@@ -1251,6 +1251,12 @@
             "value" : "Blokscheidingstekens:"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blok sınırlayıcılar:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1308,6 +1314,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ingebouwd"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yerleşik"
           }
         },
         "zh-Hans" : {
@@ -1480,6 +1492,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Teken-scheidingstekens:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karakter sınırlayıcılar:"
           }
         },
         "zh-Hans" : {
@@ -1755,6 +1773,12 @@
             "value" : "Scheidingstekens"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sınırlayıcılar"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2026,6 +2050,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Weergavepatroon"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görüntüleme Dizgisi"
           }
         },
         "zh-Hans" : {
@@ -2412,6 +2442,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Escape-teken"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaçış Karakteri"
           }
         },
         "zh-Hans" : {
@@ -4183,6 +4219,12 @@
             "value" : "Alleen regelbegin"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yalnızca Satır Başı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4245,6 +4287,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beheerd door de app\n"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulama tarafından yönetilir"
           }
         },
         "zh-Hans" : {
@@ -4312,6 +4360,12 @@
             "value" : "Meerregelig"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çok Satırlı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4375,6 +4429,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Nesting"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İç İçe"
           }
         },
         "zh-Hans" : {
@@ -4647,6 +4707,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Prefixen"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Önekler"
           }
         },
         "zh-Hans" : {
@@ -5027,6 +5093,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Tekenreeks-scheidingstekens:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dizi sınırlayıcılar:"
           }
         },
         "zh-Hans" : {
@@ -5426,6 +5498,12 @@
             "value" : "Het escape-teken moet een enkel teken in UTF-16 code-eenheid zijn."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaçış karakteri, UTF-16 kod biriminde tek bir karakter olmalıdır."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5489,6 +5567,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Geneste blokcommentaren moeten verschillende begin- en eindtekens gebruiken."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İç içe geçebilen blok yorumlarda farklı başlangıç ​​ve bitiş sınırlayıcıları kullanılmalıdır."
           }
         },
         "zh-Hans" : {
@@ -5897,6 +5981,12 @@
             "value" : "Deze taal gebruikt een structuur­gebaseerde parser voor algemeen gebruik, genaamd tree-sitter, voor syntaxisanalyse.\\nOmdat de extractieregels door de app worden beheerd, kun je ze niet aanpassen."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu dil, sözdizim analizi için tree-sitter adı verilen yapı tabanlı, genel amaçlı bir ayrıştırıcı kullanır.\nÇıkarma kuralları uygulama tarafından yönetildiğinden, bunları özelleştiremezsiniz."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5961,6 +6051,12 @@
             "value" : "De blokscheidingstekens worden tijdens het typen gebruikt voor automatische inspringing."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blok sınırlayıcılar, yazarken otomatik girintileme için kullanılır."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6017,6 +6113,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De scheidingstekens die hier zijn gedefinieerd, worden ook gebruikt voor syntaxmarkering."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Burada tanımlanan ayırıcılar, sözdizim vurgulaması için de kullanılır."
           }
         },
         "zh-Hans" : {
@@ -6189,6 +6291,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Type"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tip"
           }
         },
         "zh-Hans" : {

@@ -1428,6 +1428,12 @@
             "value" : "CotEditor-syntaxis"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Sözdizimi"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
