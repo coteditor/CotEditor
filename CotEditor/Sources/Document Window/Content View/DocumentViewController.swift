@@ -793,9 +793,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         guard let currentEditorViewController = self.baseEditorViewController(for: sender) else { return assertionFailure() }
         
-        // end current editing
-        NSTextInputContext.current?.discardMarkedText()
-        
         let newEditorViewController = self.addEditorView(below: currentEditorViewController)
         
         // adjust visible areas
@@ -808,7 +805,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         self.splitState.canClose = true
         
         // move focus to the new editor
-        self.view.window?.makeFirstResponder(newEditorViewController.textView)
+        self.view.window?.makeFirstResponderDiscardingMarkedText(newEditorViewController.textView)
     }
     
     
@@ -934,7 +931,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 : children[safe: focusIndex + 1] ?? children.first
         else { return assertionFailure() }
         
-        self.view.window?.makeFirstResponder(nextChild.textView)
+        self.view.window?.makeFirstResponderDiscardingMarkedText(nextChild.textView)
     }
     
     

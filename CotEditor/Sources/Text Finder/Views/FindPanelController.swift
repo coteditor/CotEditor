@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2024 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -67,12 +67,16 @@ final class FindPanelController: NSWindowController, NSWindowDelegate {
         
         super.showWindow(sender)
         
+        guard let window else { return }
+        
+        window.discardMarkedTextIfNeeded()
+        
         // select text in find text field
-        if self.window?.firstResponder == self.window?.initialFirstResponder {
+        if window.firstResponder == window.initialFirstResponder {
             // forcibly reset firstResponder to invoke becomeFirstResponder in FindPanelTextView every time
             // -> `becomeFirstResponder` will not be called on `makeFirstResponder:` if it given object is already set as first responder.
-            self.window?.makeFirstResponder(nil)
+            window.makeFirstResponder(nil)
         }
-        self.window?.makeFirstResponder(self.window?.initialFirstResponder)
+        window.makeFirstResponder(self.window?.initialFirstResponder)
     }
 }

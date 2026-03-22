@@ -373,7 +373,7 @@ final class DocumentController: NSDocumentController {
         transientDocument.close()
         
         // move focus on editor
-        document.windowControllers.first?.window?.makeFirstResponder(document.textView)
+        document.windowControllers.first?.window?.makeFirstResponderDiscardingMarkedText(document.textView)
     }
     
     

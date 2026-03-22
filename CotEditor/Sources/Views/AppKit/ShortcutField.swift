@@ -185,7 +185,7 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
                 self.objectValue = shortcut
             }
             
-            self.window?.makeFirstResponder(nil)
+            self.window?.makeFirstResponderDiscardingMarkedText(nil)
             
             return nil
         }
@@ -194,7 +194,7 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
         if let window = self.window {
             self.windowObservationTask = Task {
                 for await _ in NotificationCenter.default.notifications(named: NSWindow.didResignKeyNotification, object: window).map(\.name) {
-                    window.makeFirstResponder(nil)
+                    window.makeFirstResponderDiscardingMarkedText(nil)
                 }
             }
         }

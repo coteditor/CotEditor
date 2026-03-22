@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -173,9 +173,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         // move focus to the editor
         // -> The editor doesn’t automatically receive focus
         //    when keyboard navigation is enabled in system settings. (2025-11, macOS 26)
-        if let textView = self.documentViewController?.focusedTextView {
-            self.view.window?.makeFirstResponder(textView)
-        }
+        self.focusEditor()
         
         // observe user defaults for status bar
         if #available(macOS 26, *) {
@@ -325,7 +323,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         else { return assertionFailure() }
         
         sidebarViewItem.animator().isCollapsed = false
-        self.view.window?.makeFirstResponder(viewController.outlineView)
+        self.view.window?.makeFirstResponderDiscardingMarkedText(viewController.outlineView)
     }
     
     
@@ -386,9 +384,12 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     /// Moves the focus to the editor.
     private func focusEditor() {
         
-        guard let textView = self.documentViewController?.focusedTextView else { return }
+        guard
+            let window = self.viewIfLoaded?.window,
+            let textView = self.documentViewController?.focusedTextView
+        else { return }
         
-        self.view.window?.makeFirstResponder(textView)
+        window.makeFirstResponderDiscardingMarkedText(textView)
     }
     
     

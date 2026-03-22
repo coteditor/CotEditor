@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -338,7 +338,7 @@ extension KeyBindingTreeViewController: NSTableViewDataSource, NSTableViewDelega
         
         guard let tableView = notification.object as? NSTableView else { return }
         
-        tableView.window?.makeFirstResponder(nil)
+        tableView.window?.makeFirstResponderDiscardingMarkedText(nil)
         self.model.rootIndex = tableView.selectedRow
         self.outlineView?.reloadData()
     }

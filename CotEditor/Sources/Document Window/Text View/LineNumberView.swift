@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -451,7 +451,7 @@ extension LineNumberView {
         textView.scrollToVisible(NSRect(origin: point, size: .zero))
         
         // move focus to textView
-        window.makeFirstResponder(textView)
+        window.makeFirstResponderDiscardingMarkedText(textView)
         
         // select lines
         let pointInScreen = window.convertPoint(toScreen: event.locationInWindow)

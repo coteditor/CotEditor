@@ -77,7 +77,7 @@ extension NSTextView {
         
         self.selectedRange = range
         self.scrollRangeToVisible(range)
-        self.window?.makeFirstResponder(self)
+        self.window?.makeFirstResponderDiscardingMarkedText(self)
     }
 }
 
