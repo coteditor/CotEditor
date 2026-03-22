@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 90;
+	objectVersion = 100;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -333,7 +333,7 @@
 				2AB756AF2C25BBA4005E04C3 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 				2ABB27CC2C3824DE00AFCD0B /* XCRemoteSwiftPackageReference "swift-numerics" */,
 			);
-			preferredProjectObjectVersion = 90;
+			preferredProjectObjectVersion = 100;
 			productRefGroup = 2A7380232CAD911F00E870E5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
