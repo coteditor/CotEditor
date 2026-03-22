@@ -77,11 +77,10 @@ public extension StringProtocol {
         return candidates
             .filter { $0.pair.begin == character || $0.pair.end == character }
             .compactMap { candidate -> (range: ClosedRange<Index>, distance: Int)? in
-                guard let range = self.rangeOfSymbolPair(at: index, candidates: [candidate.pair], escapeCharacter: candidate.escapeCharacter) else { return nil }
-                
-                if !candidate.prefixes.isEmpty,
-                   !candidate.prefixes.contains(where: self[..<range.lowerBound].hasSuffix)
-                { return nil }
+                guard
+                    let range = self.rangeOfSymbolPair(at: index, candidates: [candidate.pair], escapeCharacter: candidate.escapeCharacter),
+                    candidate.prefixes.isEmpty || candidate.prefixes.contains(where: self[..<range.lowerBound].hasSuffix)
+                else { return nil }
                 
                 return (range, self.distance(from: range.lowerBound, to: range.upperBound))
             }
