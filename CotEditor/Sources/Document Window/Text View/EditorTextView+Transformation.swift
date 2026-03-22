@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@
 
 import AppKit
 import StringUtils
+import TextEditing
 
 extension EditorTextView {
     
@@ -144,5 +145,29 @@ extension EditorTextView {
     @IBAction func straightenQuotesInSelection(_ sender: Any?) {
         
         self.transformSelection(to: \.straighteningQuotes)
+    }
+}
+
+
+private extension NSTextView {
+    
+    /// Transforms all selected strings and register to undo manager.
+    ///
+    /// When nothing is selected, this method performs the transformation to the word where the cursor exists.
+    ///
+    /// - Parameter block: The text transformation.
+    /// - Returns: `true` if the text is processed.
+    @discardableResult final func transformSelection(to block: (_ substring: String) -> String) -> Bool {
+        
+        guard self.isEditable else { return false }
+        
+        // transform the word that contains the cursor if nothing is selected
+        if self.selectedRange.isEmpty {
+            self.selectWord(self)
+        }
+        
+        guard let context = self.string.transformSelections(in: self.selectedRanges.map(\.rangeValue), with: block) else { return false }
+        
+        return self.edit(with: context)
     }
 }

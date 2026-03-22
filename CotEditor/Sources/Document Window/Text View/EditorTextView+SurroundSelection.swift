@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@
 import AppKit
 import SwiftUI
 import StringUtils
+import TextEditing
 
 extension EditorTextView {
     
@@ -86,15 +87,11 @@ extension NSTextView {
     /// Inserts strings around selections.
     @discardableResult final func surroundSelections(begin: String, end: String) -> Bool {
         
-        guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return false }
+        guard
+            let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue),
+            let context = self.string.surround(in: selectedRanges, begin: begin, end: end)
+        else { return false }
         
-        let string = self.string as NSString
-        
-        let replacementStrings = selectedRanges.map { begin + string.substring(with: $0) + end }
-        let newSelectedRanges = selectedRanges.enumerated().map { offset, range in
-            range.shifted(by: (offset + 1) * begin.length + offset * end.length)
-        }
-        
-        return self.replace(with: replacementStrings, ranges: selectedRanges, selectedRanges: newSelectedRanges)
+        return self.edit(with: context)
     }
 }

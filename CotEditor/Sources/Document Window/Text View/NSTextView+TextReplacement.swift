@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -127,44 +127,6 @@ extension NSTextView {
         self.undoManager?.registerUndo(withTarget: self) { target in
             target.setSelectedRangesWithUndo(ranges)
         }
-    }
-    
-    
-    /// Transforms all selected strings and register to undo manager.
-    ///
-    /// When nothing is selected, this method performs the transformation to the word where the cursor exists.
-    ///
-    /// - Parameter block: The text transformation.
-    /// - Returns: `true` if the text is processed.
-    @discardableResult final func transformSelection(to block: (_ substring: String) -> String) -> Bool {
-        
-        guard self.isEditable else { return false }
-        
-        // transform the word that contains the cursor if nothing is selected
-        if self.selectedRange.isEmpty {
-            self.selectWord(self)
-        }
-        
-        let selectedRanges = self.selectedRanges.map(\.rangeValue)
-        var strings: [String] = []
-        var appliedRanges: [NSRange] = []
-        var newSelectedRanges: [NSRange] = []
-        var deltaLocation = 0
-        
-        for range in selectedRanges where !range.isEmpty {
-            let substring = (self.string as NSString).substring(with: range)
-            let string = block(substring)
-            let newRange = NSRange(location: range.location - deltaLocation, length: string.length)
-            
-            strings.append(string)
-            appliedRanges.append(range)
-            newSelectedRanges.append(newRange)
-            deltaLocation += range.length - newRange.length
-        }
-        
-        guard !strings.isEmpty else { return false }
-        
-        return self.replace(with: strings, ranges: appliedRanges, selectedRanges: newSelectedRanges)
     }
     
     
