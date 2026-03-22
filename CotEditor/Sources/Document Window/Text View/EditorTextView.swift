@@ -78,14 +78,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    private struct QuotePairEntry {
-        
-        var pair: SymbolPair
-        var escapeCharacter: Character?
-        var prefixes: [String]
-    }
-    
-    
     // MARK: Public Properties
     
     var lineEnding: LineEnding = .lf
@@ -153,8 +145,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     private var spaceWidth: Double = 0
     
-    private var quotePairs: [QuotePairEntry] = []
-    private var matchingSymbolPairs: [SymbolPair]  { SymbolPair.braces + self.quotePairs.map(\.pair) }
+    private var quotePairRules: [QuotePairRule] = []
+    private var matchingSymbolPairs: [SymbolPair]  { SymbolPair.braces + self.quotePairRules.map(\.pair) }
     private var isTypingPairedQuotes = false
     
     private var mouseDownPoint: NSPoint = .zero
@@ -777,7 +769,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 return syntaxRange
             }
         }
-        if let quoteRange = self.quoteRangeOfSymbolPair(at: characterIndex) {
+        if let quoteRange = self.string.rangeOfQuotePair(at: characterIndex, candidates: self.quotePairRules) {
             return NSRange(quoteRange, in: self.string)
         }
         
@@ -1392,7 +1384,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     /// Updates single-character quote pairs from syntax delimiters.
     private func invalidateQuotePairs() {
         
-        let delimiters: [QuotePairEntry] = self.quoteDelimiters
+        self.quotePairRules = self.quoteDelimiters
             .compactMap { delimiter in
                 guard
                     delimiter.begin.count == 1,
@@ -1404,37 +1396,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 // sort prefixes by descending length for longest-match-first
                 let prefixes = delimiter.prefixes?.sorted { $0.count > $1.count }
                 
-                return QuotePairEntry(pair: .init(begin, end), escapeCharacter: delimiter.escapeCharacter, prefixes: prefixes ?? [])
+                return QuotePairRule(pair: .init(begin, end), escapeCharacter: delimiter.escapeCharacter, prefixes: prefixes ?? [])
             }
-        
-        // keep distinct (pair, escapeCharacter) combinations
-        // so that entries with different escape rules (e.g. normal vs. raw strings) coexist
-        self.quotePairs = delimiters.reduce(into: []) { result, entry in
-            if !result.contains(where: { $0.pair == entry.pair && $0.escapeCharacter == entry.escapeCharacter }) {
-                result.append(entry)
-            }
-        }
-    }
-    
-    
-    /// Finds a quote pair range at the given index by applying each pair's own escaping rule.
-    ///
-    /// - Parameter index: The character index of a quote character.
-    /// - Returns: The range of the quote pair, or `nil` if not found.
-    private func quoteRangeOfSymbolPair(at index: String.Index) -> ClosedRange<String.Index>? {
-        
-        self.quotePairs
-            .filter { $0.pair.begin == self.string[index] || $0.pair.end == self.string[index] }
-            .compactMap { entry -> ClosedRange<String.Index>? in
-                guard let range = self.string.rangeOfSymbolPair(at: index, candidates: [entry.pair], escapeCharacter: entry.escapeCharacter) else { return nil }
-                
-                if !entry.prefixes.isEmpty,
-                   !entry.prefixes.contains(where: self.string[..<range.lowerBound].hasSuffix)
-                { return nil }
-                
-                return range
-            }
-            .min { NSRange($0, in: self.string).length < NSRange($1, in: self.string).length }
+            .distinctForMatching
     }
     
     
