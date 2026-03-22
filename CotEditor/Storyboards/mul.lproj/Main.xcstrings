@@ -10357,14 +10357,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "全部重新着色"
+            "state" : "translated",
+            "value" : "重置语法分析"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "全部重新著色"
+            "state" : "translated",
+            "value" : "重設語法分析"
           }
         },
         "zh-HK" : {

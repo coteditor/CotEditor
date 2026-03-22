@@ -1250,6 +1250,18 @@
             "state" : "needs_review",
             "value" : "Blokscheidingstekens:"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "块分隔符："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "區塊分隔符號："
+          }
         }
       }
     },
@@ -1296,6 +1308,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ingebouwd"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内置"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內建"
           }
         },
         "zh-HK" : {
@@ -1456,6 +1480,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Teken-scheidingstekens:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字符分隔符："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字元分隔符號："
           }
         }
       }
@@ -1718,6 +1754,18 @@
             "state" : "needs_review",
             "value" : "Scheidingstekens"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分隔符"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分隔符號"
+          }
         }
       }
     },
@@ -1978,6 +2026,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Weergavepatroon"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示模式"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顯示模式"
           }
         },
         "zh-HK" : {
@@ -2352,6 +2412,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Escape-teken"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "转义字符"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "逸出字元"
           }
         }
       }
@@ -4111,6 +4183,18 @@
             "value" : "Alleen regelbegin"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "仅行首"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "僅行首"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4161,6 +4245,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beheerd door de app\n"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "由App管理"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "由應用程式管理"
           }
         },
         "zh-HK" : {
@@ -4279,6 +4375,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Nesting"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "嵌套"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巢狀"
           }
         }
       }
@@ -4539,6 +4647,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Prefixen"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前缀"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前綴"
           }
         }
       }
@@ -4907,6 +5027,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Tekenreeks-scheidingstekens:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字符串分隔符："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字串分隔符號："
           }
         }
       }
@@ -5293,6 +5425,18 @@
             "state" : "needs_review",
             "value" : "Het escape-teken moet een enkel teken in UTF-16 code-eenheid zijn."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "转义字符必须是一个UTF-16码元字符。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "逸出字元必須是UTF-16碼元中的單一字元。"
+          }
         }
       }
     },
@@ -5345,6 +5489,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Geneste blokcommentaren moeten verschillende begin- en eindtekens gebruiken."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可嵌套块注释必须使用不同的起始和结束分隔符。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可巢狀區塊註解必須使用不同的開始與結束分隔符號。"
           }
         }
       }
@@ -5741,6 +5897,18 @@
             "value" : "Deze taal gebruikt een structuur­gebaseerde parser voor algemeen gebruik, genaamd tree-sitter, voor syntaxisanalyse.\\nOmdat de extractieregels door de app worden beheerd, kun je ze niet aanpassen."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此语言使用名为tree-sitter的结构化通用解析器进行语法分析。\n由于提取规则由App管理，因此无法自定义。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此語言使用名為 tree-sitter 的基於結構的通用剖析器進行語法分析。\n因為擷取規則由應用程式管理，您無法自訂它們。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5792,6 +5960,18 @@
             "state" : "needs_review",
             "value" : "De blokscheidingstekens worden tijdens het typen gebruikt voor automatische inspringing."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "块分隔符用于输入时的自动缩进。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "區塊分隔符號用於輸入時的自動縮排。"
+          }
         }
       }
     },
@@ -5837,6 +6017,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De scheidingstekens die hier zijn gedefinieerd, worden ook gebruikt voor syntaxmarkering."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这里定义的分隔符也会用于语法高亮。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此處定義的分隔符號也用於語法醒目顯示。"
           }
         },
         "zh-HK" : {
@@ -5997,6 +6189,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Type"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "类型"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "類型"
           }
         },
         "zh-HK" : {

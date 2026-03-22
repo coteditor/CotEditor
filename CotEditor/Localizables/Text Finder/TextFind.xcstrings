@@ -2527,6 +2527,18 @@
             "state" : "needs_review",
             "value" : "Resultaat %1$lld van %2$lld."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第%1$lld个匹配（共%2$lld个）。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "第%1$lld個符合項目（共%2$lld個）。"
+          }
         }
       }
     },

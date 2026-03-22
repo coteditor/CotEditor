@@ -1428,6 +1428,18 @@
             "value" : "CotEditor-syntaxis"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor语法"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor語法"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
