@@ -28,9 +28,9 @@ import Foundation
 
 public struct QuotePairRule: Equatable, Sendable {
     
-    public let pair: SymbolPair
-    public let escapeCharacter: Character?
-    public let prefixes: [String]
+    public var pair: SymbolPair
+    public var escapeCharacter: Character?
+    public var prefixes: [String]
     
     
     public init(pair: SymbolPair, escapeCharacter: Character? = nil, prefixes: [String] = []) {
