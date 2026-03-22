@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Improve stability on MacBook Pro models with Touch Bar.
 - [dev] Update the build environment to Xcode 26.4.
 
 

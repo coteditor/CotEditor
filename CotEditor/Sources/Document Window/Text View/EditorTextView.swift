@@ -367,15 +367,17 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         super.viewDidEndLiveResize()
         
         self.overscrollResizingDebouncer.schedule()
+        self.updateTextTouchBarItems()
     }
     
     
     override func updateTextTouchBarItems() {
         
-        // silly workaround for the issue #971, where `updateTextTouchBarItems()` is invoked repeatedly when resizing frame
-        // -> This workaround must be applicable to EditorTextView because this method
-        //    seems updating only RichText-related Touch Bar items. (2019-06, macOS 10.14, FB7399413)
-//        super.updateTextTouchBarItems()
+        // skip updates during live resize to avoid the performance issue in #971,
+        // then perform a single update in `viewDidEndLiveResize()` (2026-03, macOS 26.3, FB7399413)
+        guard !self.inLiveResize else { return }
+        
+        super.updateTextTouchBarItems()
     }
     
     
