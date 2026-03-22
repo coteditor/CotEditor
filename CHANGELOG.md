@@ -3,27 +3,27 @@
 7.0.0 (unreleased)
 --------------------------
 
-### New Features
-
-- Adopt tree-sitter, a new parser, for syntax highlighting and outline extraction in multiple built-in syntaxes: C, C#, CSS, Go, HTML, Java, JavaScript, LaTeX, Lua, Makefile, Markdown (only for outline extraction), PHP, Python, Ruby, Rust, Scala, Shell Script, SQL, Swift, and TypeScript.
-- Display a symbolic icon next to outline items.
-- Make outline items in the Outline inspector collapsible when using a tree-sitter-based or structured document syntax.
-- Make smart indentation syntax-aware.
-- Allow defining multiple comment delimiters in a syntax definition.
-- Add the Multiline option to syntax highlighting rules.
-- Add a Delimiters pane to the syntax editor for customizing parsing rules.
-- Show the current position in search results in the Find field while navigating between matches (for example, “2/5”).
-- Add Bulgarian localization (thanks to Miroslav Dragoev!).
-
-
 ### Compatibility Changes
 
 - Introduce CotEditor Syntax, a new syntax definition format (the legacy YAML-based syntax definition format is now deprecated; user-created syntaxes are automatically migrated on first launch).
 
 
+### New Features
+
+- Adopt smarter syntax parsing powered by tree-sitter for multiple built-in syntaxes, improving syntax highlighting and outline extraction in C, C#, CSS, Go, HTML, Java, JavaScript, LaTeX, Lua, Makefile, Markdown (outline extraction only), PHP, Python, Ruby, Rust, Scala, Shell Script, SQL, Swift, and TypeScript.
+- Display symbolic icons next to outline items.
+- Allow collapsing outline items in the Outline inspector for tree-sitter-based and structured document syntaxes.
+- Make smart indentation aware of the current syntax.
+- Expand comment delimiter settings in syntax definitions, allowing multiple delimiters and related options.
+- Add detailed delimiter settings for strings, characters, and indentation to syntax definitions.
+- Add the Multiline option to highlighting rules in syntax definitions so matches can span multiple lines.
+- Show the current position in search results in the Find field while navigating between matches (for example, “2/5”).
+- Add Bulgarian localization (thanks to Miroslav Dragoev!).
+
+
 ### Improvements
 
-- Improve the syntax-highlighting algorithm in the legacy regex-based engine.
+- Improve the syntax-highlighting algorithm for legacy regex-based parsing.
 - Update built-in syntaxes.
 - Improve general text-editing performance.
 - [trivial] Adjust the About CotEditor window.
@@ -38,11 +38,15 @@
 - Fix an issue where the default file extension in the save dialog was .txt for syntaxes with a file extension not registered in the system.
 
 
+### Known Issues
+
+- The text added to CotEditor 7.0.0 are not localized yet in Chinese (Hong Kong), Czech, Italian, Korean, Polish, Portuguese, and Russian yet.
+
+
 ### TODO
 
-- Localize updated strings.
 - Update the migration directories for user syntax definitions.
-- Remove the prerelease notice from the user guide (specification_changes_on_7.0.html).
+- Remove the prerelease notice from the user guide (in specification_changes_on_7.0.html and releasenotes.html).
 
 
 

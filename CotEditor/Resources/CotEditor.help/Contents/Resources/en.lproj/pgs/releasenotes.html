@@ -21,6 +21,67 @@
 
 <article headingoffset="1">
 	<header>
+		<h1>CotEditor 7.0.0</h1>
+		<p>release: <time>2026-04</time></p>
+	</header>
+
+	<p class="addition"><span class="note">Note:</span> This content is based on a prerelease version of CotEditor 7.0.0.</p>
+
+
+	<section>
+		<h2>Compatibility Changes</h2>
+
+		<ul>
+			<li>Introduce CotEditor Syntax, a new syntax definition format. The legacy YAML-based syntax definition format is now deprecated, and user-created syntaxes are automatically migrated on first launch.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>New Features</h2>
+
+		<ul>
+			<li>Adopt smarter syntax parsing powered by tree-sitter for multiple built-in syntaxes, improving syntax highlighting and outline extraction in C, C#, CSS, Go, HTML, Java, JavaScript, LaTeX, Lua, Makefile, Markdown (outline extraction only), PHP, Python, Ruby, Rust, Scala, Shell Script, SQL, Swift, and TypeScript.</li>
+			<li>Display symbolic icons next to outline items.</li>
+			<li>Allow collapsing outline items in the Outline inspector for tree-sitter-based and structured document syntaxes.</li>
+			<li>Make smart indentation aware of the current syntax.</li>
+			<li>Expand comment delimiter settings in syntax definitions, allowing multiple delimiters and related options.</li>
+			<li>Add detailed delimiter settings for strings, characters, and indentation to syntax definitions.</li>
+			<li>Add the Multiline option to highlighting rules in syntax definitions so matches can span multiple lines.</li>
+			<li>Show the current position in search results in the Find field while navigating between matches, for example, “2/5”.</li>
+			<li>Add Bulgarian localization (thanks to Miroslav Dragoev!).</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Improve the syntax-highlighting algorithm for legacy regex-based parsing.</li>
+			<li>Update built-in syntaxes.</li>
+			<li>Improve general text-editing performance.</li>
+			<li><span class="trivial">trivial</span>: Adjust the About CotEditor window.</li>
+			<li><span class="trivial">trivial</span>: Rename the Recolor All command to “Reset Syntax Analysis” and move it to the Format menu.</li>
+			<li><span class="trivial">trivial</span>: Remove the Restore Defaults button in the syntax editor.</li>
+			<li><span class="trivial">trivial</span>: Tweak colors of the default Anura theme.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix incorrect syntax parsing in some built-in syntaxes.</li>
+			<li>Fix an issue where the default file extension in the Save dialog was .txt for syntaxes with a file extension not registered in the system.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article headingoffset="1">
+	<header>
 		<h1>CotEditor 6.2.5</h1>
 		<p>release: <time>2026-03-14</time></p>
 	</header>

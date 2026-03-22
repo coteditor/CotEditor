@@ -21,6 +21,67 @@
 
 <article headingoffset="1">
 	<header>
+		<h1>CotEditor 7.0.0</h1>
+		<p>リリース: <time>2026-04</time></p>
+	</header>
+
+	<p class="addition"><span class="note">注記:</span> この内容は、CotEditor 7.0.0のプレリリース版を元に作成されています。</p>
+
+
+	<section>
+		<h2>互換性の変更</h2>
+
+		<ul>
+			<li>新しいシンタックス定義フォーマット「CotEditorシンタックス」を導入（従来のYAMLベースのシンタックス定義フォーマットは非推奨になり、カスタムシンタックスは初回起動時に自動で移行されます。）</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>新機能</h2>
+
+		<ul>
+			<li>複数の内蔵シンタックスで、tree-sitterによるよりスマートなシンタックス解析を採用し、シンタックスハイライトとアウトライン抽出を改良、対応シンタックスはC、C#、CSS、Go、HTML、Java、JavaScript、LaTeX、Lua、Makefile、Markdown（アウトライン抽出のみ）、PHP、Python、Ruby、Rust、Scala、Shell Script、SQL、Swift、TypeScript</li>
+			<li>アウトライン項目の横に種類を表すアイコンを表示</li>
+			<li>tree-sitterベースおよび構造化文書向けシンタックスで、「アウトライン」インスペクタの項目を折りたたみ可能に</li>
+			<li>現在のシンタックスに応じたスマートインデント</li>
+			<li>シンタックス定義のコメント記号設定を拡張し、複数のコメント記号と関連オプションに対応</li>
+			<li>シンタックス定義に、文字列・文字・インデント用の詳細な区切り文字設定を追加</li>
+			<li>シンタックス定義で、ハイライトルールに「複数行」オプションを追加し、複数行にまたがる一致に対応</li>
+			<li>検索結果間の移動中、検索フィールドに現在位置を「2/5」のように表示</li>
+			<li>ブルガリア語ローカリゼーションを追加（Miroslav Dragoevさんに感謝!）</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>改良</h2>
+
+		<ul>
+			<li>従来の正規表現ベースの解析方式でのシンタックスハイライトのアルゴリズムを改良</li>
+			<li>内蔵シンタックスを更新</li>
+			<li>全体的なテキスト編集パフォーマンスを向上</li>
+			<li><span class="trivial">trivial</span>: 「CotEditorについて」ウインドウを調整</li>
+			<li><span class="trivial">trivial</span>: 「再カラーリング」コマンドの名称を「シンタックス解析をリセット」に変更し、「フォーマット」メニューに移動</li>
+			<li><span class="trivial">trivial</span>: シンタックスエディタの「デフォルトに戻す」ボタンを削除</li>
+			<li><span class="trivial">trivial</span>: デフォルトテーマAnuraの色味を調整</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>修正</h2>
+
+		<ul>
+			<li>一部の内蔵シンタックスで誤ったシンタックス解析が行われる不具合を修正</li>
+			<li>システムに登録されていないファイル拡張子を持つシンタックスで、保存ダイアログの初期拡張子が.txtになる不具合を修正</li>
+		</ul>
+	</section>
+</article>
+
+
+<article headingoffset="1">
+	<header>
 		<h1>CotEditor 6.2.5</h1>
 		<p>リリース: <time>2026-03-14</time></p>
 	</header>
