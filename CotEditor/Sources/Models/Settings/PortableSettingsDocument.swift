@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2025−2026 1024jp
+//  © 2025-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -210,7 +210,7 @@ struct PortableSettingsDocument: FileDocument {
         if types.contains(.settings) {
             let keys = DefaultSettings.portableKeys.map(\.rawValue)
             self.defaults = UserDefaults.standard.dictionaryWithValues(forKeys: keys)
-                .mapValues(PropertyListValue.init)
+                .compactMapValues { ($0 is NSNull) ? nil : PropertyListValue($0) }
             self.keyBindings = try KeyBindingManager.shared.userSettingsData()
         } else {
             self.defaults = [:]
