@@ -196,6 +196,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.isRichText = false
         self.allowedWritingToolsResultOptions = .plainText
         self.linkTextAttributes?.removeValue(forKey: .foregroundColor)
+        
+        // avoid AppKit falling back to Last Resort while fixing attributes during the initial setup
+        self.typingAttributes[.font] = self.font ?? .systemFont(ofSize: 0)
     }
     
     
@@ -942,6 +945,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             // to avoid the strange issue that letters change into undefined after specific characters.
             // Change the font in characters.md to reproduce this issue (2022-05, macOS 12)
             super.font = font
+            self.typingAttributes[.font] = font
         }
     }
     
