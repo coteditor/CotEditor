@@ -776,7 +776,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             {
                 return syntaxRange
             }
-        } else if let quoteRange = self.quoteRangeOfSymbolPair(at: characterIndex) {
+        }
+        if let quoteRange = self.quoteRangeOfSymbolPair(at: characterIndex) {
             return NSRange(quoteRange, in: self.string)
         }
         
