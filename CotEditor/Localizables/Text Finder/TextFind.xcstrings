@@ -2531,13 +2531,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "第%1$lld个匹配（共%2$lld个）。"
+            "value" : "%2$lld个匹配中的第%1$lld个。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "第%1$lld個符合項目（共%2$lld個）。"
+            "value" : "在%2$lld項配對結果中的第 %1$lld 項。"
           }
         }
       }
