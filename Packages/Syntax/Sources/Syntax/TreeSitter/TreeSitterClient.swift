@@ -134,10 +134,11 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
         try Task.checkCancellation()
         
         let policy = self.syntax.outlinePolicy
+        let formatter = self.syntax.outlineFormatter
         let source = string as NSString
         let items: [OutlineItem] = try self.queryMatches(.outline, in: string.range, string: source).lazy
             .filter { $0.treeDepth == 0 }  // ignore injection
-            .compactMap { self.syntax.outlineItem(for: $0, source: source, policy: policy) }
+            .compactMap { formatter.item(for: $0, source: source, policy: policy) }
         let normalizedItems = policy.normalize(items)
         
         try Task.checkCancellation()

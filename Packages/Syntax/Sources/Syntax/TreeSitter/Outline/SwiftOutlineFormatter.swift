@@ -29,6 +29,29 @@ import SwiftTreeSitter
 
 enum SwiftOutlineFormatter: TreeSitterOutlineFormatting {
     
+    /// Formats a Swift outline title with MARK comment handling.
+    ///
+    /// - Parameters:
+    ///   - title: The raw title text.
+    ///   - kind: The outline item kind.
+    /// - Returns: The formatted title, or `nil` to exclude the item.
+    static func formatTitle(_ title: String, kind: Syntax.Outline.Kind) -> String? {
+
+        guard kind == .mark else { return title }
+
+        let trimmed = if let match = title.wholeMatch(of: /\/\/ +(.+)/)  // inline comment
+                            ?? title.wholeMatch(of: /\/\* +(.+) +\*\//)  // block comment
+        {
+            String(match.output.1)
+        } else {
+            title
+        }
+        let comment = trimmed.replacing(/^MARK:\s*-?\s*/, with: "")
+
+        return comment.isEmpty ? nil : comment
+    }
+    
+    
     /// Builds an outline item from a resolved Swift outline match.
     ///
     /// - Parameters:
@@ -41,13 +64,13 @@ enum SwiftOutlineFormatter: TreeSitterOutlineFormatting {
         guard let capture = match.outlineCapture(policy: policy) else { return nil }
         
         guard capture.kind == .function else {
-            return DefaultTreeSitterOutlineFormatter.item(for: match, source: source, policy: policy)
+            return Self.defaultItem(for: match, source: source, policy: policy)
         }
         
         let title = source.substring(with: capture.range)
         let formattedTitle = Self.functionTitle(for: match, title: title, source: source)
         
-        guard let displayTitle = policy.titleFormatter(capture.kind, formattedTitle) else { return nil }
+        guard let displayTitle = Self.formatTitle(formattedTitle, kind: capture.kind) else { return nil }
         
         return OutlineItem(title: displayTitle, range: match.range ?? capture.range, kind: capture.kind, indent: .level(capture.depth))
     }

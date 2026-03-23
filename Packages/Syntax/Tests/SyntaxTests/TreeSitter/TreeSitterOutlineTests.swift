@@ -35,22 +35,18 @@ actor TreeSitterOutlineTests {
     
     @Test func formatCSS() {
         
-        let policy = TreeSitterSyntax.css.outlinePolicy
-        
-        #expect(policy.titleFormatter(.container, "@media (prefers-color-scheme: dark) { .item { color: white; } }") == "@media (prefers-color-scheme: dark)")
-        #expect(policy.titleFormatter(.container, "@layer utilities { .m-1 { margin: 1rem; } }") == "@layer utilities")
-        #expect(policy.titleFormatter(.container, "@import url(\"theme.css\");") == "@import url(\"theme.css\")")
-        #expect(policy.titleFormatter(.container, "   ;") == nil)
+        #expect(CSSOutlineFormatter.formatTitle("@media (prefers-color-scheme: dark) { .item { color: white; } }", kind: .container) == "@media (prefers-color-scheme: dark)")
+        #expect(CSSOutlineFormatter.formatTitle("@layer utilities { .m-1 { margin: 1rem; } }", kind: .container) == "@layer utilities")
+        #expect(CSSOutlineFormatter.formatTitle("@import url(\"theme.css\");", kind: .container) == "@import url(\"theme.css\")")
+        #expect(CSSOutlineFormatter.formatTitle("   ;", kind: .container) == nil)
     }
     
     
     @Test func formatMarkdown() {
         
-        let policy = TreeSitterSyntax.markdown.outlinePolicy
-        
-        #expect(policy.titleFormatter(.heading(nil), "Setext H1\n========") == "Setext H1")
-        #expect(policy.titleFormatter(.heading(nil), "Setext H2\n--------") == "Setext H2")
-        #expect(policy.titleFormatter(.heading(nil), "ATX H1") == "ATX H1")
+        #expect(MarkdownOutlineFormatter.formatTitle("Setext H1\n========", kind: .heading(nil)) == "Setext H1")
+        #expect(MarkdownOutlineFormatter.formatTitle("Setext H2\n--------", kind: .heading(nil)) == "Setext H2")
+        #expect(MarkdownOutlineFormatter.formatTitle("ATX H1", kind: .heading(nil)) == "ATX H1")
     }
     
     

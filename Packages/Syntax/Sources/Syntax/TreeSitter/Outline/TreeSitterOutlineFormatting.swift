@@ -37,19 +37,39 @@ protocol TreeSitterOutlineFormatting {
     ///   - policy: The outline policy for the syntax.
     /// - Returns: An outline item for the match, or `nil` if the match should be ignored.
     static func item(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem?
+    
+    /// Formats the display title for an outline item.
+    ///
+    /// - Parameters:
+    ///   - title: The raw title text.
+    ///   - kind: The outline item kind.
+    /// - Returns: The formatted title, or `nil` to exclude the item.
+    static func formatTitle(_ title: String, kind: Syntax.Outline.Kind) -> String?
 }
 
 
-enum DefaultTreeSitterOutlineFormatter: TreeSitterOutlineFormatting {
+extension TreeSitterOutlineFormatting {
     
-    /// Builds an outline item from a resolved query match using the primary outline capture.
+    static func formatTitle(_ title: String, kind: Syntax.Outline.Kind) -> String? { title }
+    
+    
+    static func item(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem? {
+        
+        Self.defaultItem(for: match, source: source, policy: policy)
+    }
+    
+    
+    /// Builds an outline item using the default formatting logic.
+    ///
+    /// Language-specific formatters that override `item(for:source:policy:)` can call
+    /// this method as a fallback for non-customized kinds.
     ///
     /// - Parameters:
     ///   - match: The resolved query match.
     ///   - source: The source text as `NSString`.
     ///   - policy: The outline policy for the syntax.
     /// - Returns: An outline item for the match, or `nil` if the match should be ignored.
-    static func item(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem? {
+    static func defaultItem(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem? {
         
         guard let capture = match.outlineCapture(policy: policy) else { return nil }
         
@@ -59,11 +79,15 @@ enum DefaultTreeSitterOutlineFormatter: TreeSitterOutlineFormatting {
         
         let title = source.substring(with: capture.range)
         
-        guard let formattedTitle = policy.titleFormatter(capture.kind, title) else { return nil }
+        guard let formattedTitle = Self.formatTitle(title, kind: capture.kind) else { return nil }
         
         return OutlineItem(title: formattedTitle, range: capture.range, kind: capture.kind, indent: .level(capture.depth))
     }
 }
+
+
+/// The default outline formatter with no language-specific customization.
+enum DefaultOutlineFormatter: TreeSitterOutlineFormatting { }
 
 
 struct OutlineCapture {

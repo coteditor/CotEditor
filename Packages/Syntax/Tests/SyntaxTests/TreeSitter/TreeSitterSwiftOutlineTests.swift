@@ -35,13 +35,11 @@ actor TreeSitterSwiftOutlineTests {
     
     @Test func formatSwift() {
         
-        let policy = TreeSitterSyntax.swift.outlinePolicy
-        
-        #expect(policy.titleFormatter(.function, "SomeFunction") == "SomeFunction")
-        #expect(policy.titleFormatter(.mark, "// MARK: Swift") == "Swift")
-        #expect(policy.titleFormatter(.mark, "// MARK: - Swift") == "Swift")
-        #expect(policy.titleFormatter(.mark, "/* MARK: Swift */") == "Swift")
-        #expect(policy.titleFormatter(.mark, "// MARK:") == nil)
+        #expect(SwiftOutlineFormatter.formatTitle("SomeFunction", kind: .function) == "SomeFunction")
+        #expect(SwiftOutlineFormatter.formatTitle("// MARK: Swift", kind: .mark) == "Swift")
+        #expect(SwiftOutlineFormatter.formatTitle("// MARK: - Swift", kind: .mark) == "Swift")
+        #expect(SwiftOutlineFormatter.formatTitle("/* MARK: Swift */", kind: .mark) == "Swift")
+        #expect(SwiftOutlineFormatter.formatTitle("// MARK:", kind: .mark) == nil)
     }
     
     
