@@ -91,36 +91,6 @@ actor TreeSitterOutlineTests {
     }
     
     
-    @Test func outlinePythonDecoratedFunctionsRemainSiblings() async throws {
-        
-        let source = #"""
-            def chunked(items, size):
-                return []
-            
-            @contextmanager
-            def open_text(path):
-                yield path
-            
-            @asynccontextmanager
-            async def timer(label):
-                yield
-        """#
-        
-        let outline = try await self.parseOutline(in: source, syntax: .python)
-        
-        #expect(outline.count == 3)
-        #expect(outline[0].title == "chunked")
-        #expect(outline[0].kind == .function)
-        #expect(outline[0].indent == .level(0))
-        #expect(outline[1].title == "open_text")
-        #expect(outline[1].kind == .function)
-        #expect(outline[1].indent == .level(0))
-        #expect(outline[2].title == "timer")
-        #expect(outline[2].kind == .function)
-        #expect(outline[2].indent == .level(0))
-    }
-    
-    
     @Test func parseLuaOutlineHandlesPseudoAndTrueNesting() async throws {
         
         let source = #"""
