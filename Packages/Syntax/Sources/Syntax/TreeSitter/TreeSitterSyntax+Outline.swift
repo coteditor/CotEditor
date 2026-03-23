@@ -71,6 +71,8 @@ extension TreeSitterSyntax {
                 GoOutlineFormatter.self
             case .markdown:
                 MarkdownOutlineFormatter.self
+            case .rust:
+                RustOutlineFormatter.self
             case .scala:
                 ScalaOutlineFormatter.self
             case .sql:
