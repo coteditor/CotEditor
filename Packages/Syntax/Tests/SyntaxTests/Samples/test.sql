@@ -16,11 +16,41 @@ SELECT id, name, email
 FROM app.users
 WHERE email IS NOT NULL;
 
+CREATE TYPE app.user_state AS ENUM ('active', 'disabled');
+
 CREATE OR REPLACE FUNCTION app.user_count()
 RETURNS BIGINT
 LANGUAGE sql
 AS $$
     SELECT COUNT(*) FROM app.users;
+$$;
+
+CREATE OR REPLACE FUNCTION app.find_user(
+    user_id INTEGER,
+    state app.user_state,
+    display_name TEXT DEFAULT 'guest',
+    VARIADIC tags TEXT[]
+)
+RETURNS BIGINT
+LANGUAGE sql
+AS $$
+    SELECT user_id;
+$$;
+
+CREATE OR REPLACE PROCEDURE app.sync_users(
+    INOUT count INTEGER,
+    threshold DOUBLE PRECISION
+)
+LANGUAGE sql
+AS $$
+    SELECT count;
+$$;
+
+CREATE OR REPLACE PROCEDURE app.reset_scores()
+LANGUAGE sql
+AS $$
+    UPDATE app.users
+    SET score = 0;
 $$;
 
 ALTER TABLE app.users

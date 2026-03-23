@@ -29,7 +29,24 @@
 
 ; Functions
 (function_definition
-  name: (identifier) @outline.function)
+  name: [
+    (identifier)
+    (operator_identifier)
+  ] @outline.function
+  [
+    (type_parameters) @outline.signature.type_parameters
+    (parameters) @outline.signature.parameters
+  ]*)
+
+(function_declaration
+  name: [
+    (identifier)
+    (operator_identifier)
+  ] @outline.function
+  [
+    (type_parameters) @outline.signature.type_parameters
+    (parameters) @outline.signature.parameters
+  ]*)
 
 ; Values
 (val_definition

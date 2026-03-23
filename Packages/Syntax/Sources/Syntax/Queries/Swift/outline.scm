@@ -34,16 +34,60 @@
 
 ; Functions
 (function_declaration
-  (simple_identifier) @outline.function)
+  name: (simple_identifier) @outline.function
+  "("
+  .
+  ")" @outline.signature.end)
+
+(function_declaration
+  name: (simple_identifier) @outline.function
+  "("
+  (parameter) @outline.signature.parameter
+  ("," (parameter) @outline.signature.parameter)*
+  ","?
+  ")" @outline.signature.end)
 
 (protocol_function_declaration
-  name: (simple_identifier) @outline.function)
+  name: (simple_identifier) @outline.function
+  "("
+  .
+  ")" @outline.signature.end)
+
+(protocol_function_declaration
+  name: (simple_identifier) @outline.function
+  "("
+  (parameter) @outline.signature.parameter
+  ("," (parameter) @outline.signature.parameter)*
+  ","?
+  ")" @outline.signature.end)
 
 (subscript_declaration
-  "subscript" @outline.function)
+  "subscript" @outline.function
+  "("
+  .
+  ")" @outline.signature.end)
+
+(subscript_declaration
+  "subscript" @outline.function
+  "("
+  (parameter) @outline.signature.parameter
+  ("," (parameter) @outline.signature.parameter)*
+  ","?
+  ")" @outline.signature.end)
 
 (init_declaration
-  "init" @outline.function)
+  "init" @outline.function
+  "("
+  .
+  ")" @outline.signature.end)
+
+(init_declaration
+  "init" @outline.function
+  "("
+  (parameter) @outline.signature.parameter
+  ("," (parameter) @outline.signature.parameter)*
+  ","?
+  ")" @outline.signature.end)
 
 (deinit_declaration
   "deinit" @outline.function)

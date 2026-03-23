@@ -23,7 +23,9 @@
 
 ; Functions
 (method_declaration
-  name: (identifier) @outline.function)
+  name: (identifier) @outline.function
+  parameters: (formal_parameters) @outline.signature.parameters)
 
 (constructor_declaration
-  name: (identifier) @outline.function)
+  name: (identifier) @outline.function
+  parameters: (formal_parameters) @outline.signature.parameters)

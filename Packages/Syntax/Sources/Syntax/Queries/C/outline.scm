@@ -23,8 +23,7 @@
 
 ; Functions
 (function_definition
-  declarator: (function_declarator) @outline.function)
-
-(function_definition
-  declarator: (pointer_declarator
-    declarator: (function_declarator) @outline.function))
+  declarator: [
+    (function_declarator)
+    (pointer_declarator)
+  ] @outline.function)

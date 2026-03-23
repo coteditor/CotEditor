@@ -26,7 +26,9 @@
 
 ; Functions
 (function_item
-  name: (identifier) @outline.function)
+  name: (identifier) @outline.function
+  parameters: (parameters) @outline.signature.parameters)
 
 (function_signature_item
-  name: (identifier) @outline.function)
+  name: (identifier) @outline.function
+  parameters: (parameters) @outline.signature.parameters)
