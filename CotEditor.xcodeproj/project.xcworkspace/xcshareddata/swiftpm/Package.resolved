@@ -1,5 +1,5 @@
 {
-  "originHash" : "a54498b7735c5946b5e31a087387d1239aba67f433aea56d82484340757ce73f",
+  "originHash" : "fbd1a28600bda623153a2c0474086a93269103fec5345bcd71a189478ac5409c",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -80,6 +80,15 @@
       "state" : {
         "revision" : "362a8a41b265056592a0c3771664a21d23a71392",
         "version" : "0.23.1"
+      }
+    },
+    {
+      "identity" : "tree-sitter-cpp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tree-sitter/tree-sitter-cpp",
+      "state" : {
+        "revision" : "f41e1a044c8a84ea9fa8577fdd2eab92ec96de02",
+        "version" : "0.23.4"
       }
     },
     {

@@ -69,6 +69,8 @@ extension TreeSitterSyntax {
                 BashOutlineFormatter.self
             case .c:
                 COutlineFormatter.self
+            case .cpp:
+                CPPOutlineFormatter.self
             case .cSharp:
                 CSharpOutlineFormatter.self
             case .css:

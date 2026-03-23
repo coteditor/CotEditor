@@ -88,6 +88,7 @@ private extension TreeSitterSyntax {
         switch self {
             case .bash: "test.sh"
             case .c: "test.c"
+            case .cpp: "test.cpp"
             case .cSharp: "test.cs"
             case .css: "test.css"
             case .go: "test.go"

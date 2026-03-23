@@ -28,6 +28,7 @@ public enum TreeSitterSyntax: String, CaseIterable, Sendable {
     
     case bash = "Bash"
     case c = "C"
+    case cpp = "C++"
     case cSharp = "C#"
     case css = "CSS"
     case go = "Go"
