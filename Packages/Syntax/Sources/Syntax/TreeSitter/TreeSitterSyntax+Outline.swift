@@ -65,6 +65,8 @@ extension TreeSitterSyntax {
     var outlineFormatter: any TreeSitterOutlineFormatting.Type {
         
         switch self {
+            case .bash:
+                BashOutlineFormatter.self
             case .c:
                 COutlineFormatter.self
             case .cSharp:
