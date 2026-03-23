@@ -25,32 +25,15 @@
 //
 
 import Foundation
+import StringUtils
 import SwiftTreeSitter
 
 enum RubyOutlineFormatter: TreeSitterOutlineFormatting {
     
-    /// Builds an outline item from a resolved Ruby outline match.
-    ///
-    /// - Parameters:
-    ///   - match: The resolved query match.
-    ///   - source: The source text as `NSString`.
-    ///   - policy: The outline policy for the syntax.
-    /// - Returns: An outline item for the match, or `nil` if the match should be ignored.
-    static func item(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem? {
+    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
-        guard let capture = match.outlineCapture(policy: policy) else { return nil }
-        
-        guard capture.kind == .function else {
-            return Self.defaultItem(for: match, source: source, policy: policy)
-        }
-        
-        let title = Self.functionTitle(for: match, title: source.substring(with: capture.range), source: source)
-        guard let displayTitle = Self.formatTitle(title, kind: capture.kind) else { return nil }
-        
-        return OutlineItem(title: displayTitle,
-                           range: Self.signatureRange(for: match, nameRange: capture.range),
-                           kind: capture.kind,
-                           indent: .level(capture.depth))
+        (title: Self.functionTitle(for: match, title: source.substring(with: capture.range), source: source),
+         range: Self.signatureRange(for: match, nameRange: capture.range))
     }
 }
 
@@ -84,10 +67,10 @@ private extension RubyOutlineFormatter {
     /// - Returns: The signature range.
     static func signatureRange(for match: QueryMatch, nameRange: NSRange) -> NSRange {
         
-        [Self.receiverRange(for: match),
-         Self.parametersRange(for: match)]
-            .compactMap(\.self)
-            .reduce(nameRange) { $0.union($1) }
+        nameRange.union(with: [
+            Self.receiverRange(for: match),
+            Self.parametersRange(for: match),
+        ])
     }
     
     
@@ -109,7 +92,7 @@ private extension RubyOutlineFormatter {
     /// - Returns: The receiver range, or `nil` for instance methods.
     private static func receiverRange(for match: QueryMatch) -> NSRange? {
         
-        Self.declarationNode(for: match)?.child(byFieldName: "object")?.range
+        match.outlineNode?.parent?.child(byFieldName: "object")?.range
     }
     
     
@@ -119,17 +102,7 @@ private extension RubyOutlineFormatter {
     /// - Returns: The parameters range, or `nil` if omitted.
     private static func parametersRange(for match: QueryMatch) -> NSRange? {
         
-        Self.declarationNode(for: match)?.child(byFieldName: "parameters")?.range
-    }
-    
-    
-    /// Returns the parent declaration node for the current outline match.
-    ///
-    /// - Parameter match: The resolved query match.
-    /// - Returns: The declaration node, or `nil` if it cannot be resolved.
-    private static func declarationNode(for match: QueryMatch) -> Node? {
-        
-        match.captures.first { $0.nameComponents.first == "outline" }?.node.parent
+        match.outlineNode?.parent?.child(byFieldName: "parameters")?.range
     }
     
     

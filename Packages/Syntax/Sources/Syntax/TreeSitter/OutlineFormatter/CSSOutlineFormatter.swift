@@ -25,15 +25,11 @@
 //
 
 import Foundation
+import SwiftTreeSitter
 
 enum CSSOutlineFormatter: TreeSitterOutlineFormatting {
     
     /// Formats a CSS outline title by keeping only the at-rule header.
-    ///
-    /// - Parameters:
-    ///   - title: The raw title text.
-    ///   - kind: The outline item kind.
-    /// - Returns: The formatted title, or `nil` to exclude the item.
     static func formatTitle(_ title: String, kind: Syntax.Outline.Kind) -> String? {
         
         let header = if let index = title.firstIndex(of: "{") ?? title.firstIndex(of: ";") {

@@ -29,14 +29,18 @@ import SwiftTreeSitter
 
 protocol TreeSitterOutlineFormatting {
     
-    /// Builds an outline item from a resolved query match.
+    /// Returns the display title and source range for a function outline signature.
+    ///
+    /// The default `item(for:source:policy:)` calls this method when the capture kind is `.function`.
+    /// The default implementation returns the raw capture text and range.
     ///
     /// - Parameters:
     ///   - match: The resolved query match.
+    ///   - capture: The primary outline capture for the match.
     ///   - source: The source text as `NSString`.
-    ///   - policy: The outline policy for the syntax.
-    /// - Returns: An outline item for the match, or `nil` if the match should be ignored.
-    static func item(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem?
+    /// - Returns: The display title and source range for the function signature.
+    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)
+    
     
     /// Formats the display title for an outline item.
     ///
@@ -50,38 +54,58 @@ protocol TreeSitterOutlineFormatting {
 
 extension TreeSitterOutlineFormatting {
     
-    static func formatTitle(_ title: String, kind: Syntax.Outline.Kind) -> String? { title }
-    
-    
-    static func item(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem? {
-        
-        Self.defaultItem(for: match, source: source, policy: policy)
-    }
-    
-    
-    /// Builds an outline item using the default formatting logic.
-    ///
-    /// Language-specific formatters that override `item(for:source:policy:)` can call
-    /// this method as a fallback for non-customized kinds.
+    /// Builds an outline item from a resolved tree-sitter query match.
     ///
     /// - Parameters:
     ///   - match: The resolved query match.
     ///   - source: The source text as `NSString`.
     ///   - policy: The outline policy for the syntax.
     /// - Returns: An outline item for the match, or `nil` if the match should be ignored.
-    static func defaultItem(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem? {
+    static func item(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem? {
         
-        guard let capture = match.outlineCapture(policy: policy) else { return nil }
+        guard
+            let capture = match.captures.lazy
+                .compactMap({ OutlineCapture(capture: $0, policy: policy) })
+                .first
+        else { return nil }
         
         if capture.kind == .separator {
             return OutlineItem.separator(range: capture.range, indent: .level(capture.depth))
         }
         
-        let title = source.substring(with: capture.range)
+        let (title, range) = if capture.kind == .function {
+            Self.functionSignature(for: match, capture: capture, source: source)
+        } else {
+            Self.defaultTitle(capture: capture, source: source)
+        }
         
-        guard let formattedTitle = Self.formatTitle(title, kind: capture.kind) else { return nil }
+        guard let displayTitle = Self.formatTitle(title, kind: capture.kind) else { return nil }
         
-        return OutlineItem(title: formattedTitle, range: capture.range, kind: capture.kind, indent: .level(capture.depth))
+        return OutlineItem(title: displayTitle, range: range, kind: capture.kind, indent: .level(capture.depth))
+    }
+    
+    
+    // MARK: Default Implementation
+    
+    /// Returns the raw capture text and range as a fallback function signature.
+    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
+        
+        Self.defaultTitle(capture: capture, source: source)
+    }
+    
+    
+    /// Returns the title as-is.
+    static func formatTitle(_ title: String, kind: Syntax.Outline.Kind) -> String? {
+        
+        title
+    }
+    
+    
+    /// Returns the default title and its range.
+    private static func defaultTitle(capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
+        
+        (title: source.substring(with: capture.range),
+         range: capture.range)
     }
 }
 
@@ -126,14 +150,15 @@ extension QueryMatch {
     }
     
     
-    /// Returns the primary outline capture for the match.
-    ///
-    /// - Parameter policy: The outline policy for the syntax.
-    /// - Returns: The primary outline capture, or `nil` if none exists.
-    func outlineCapture(policy: OutlinePolicy) -> OutlineCapture? {
+    /// The primary outline node for the match.
+    var outlineNode: Node? {
         
-        self.captures.lazy
-            .compactMap { OutlineCapture(capture: $0, policy: policy) }
-            .first
+        self.captures.first {
+            let components = $0.nameComponents
+            
+            return components.first == "outline"
+                && components.count > 1
+                && Syntax.Outline.Kind(rawValue: components[1]) != nil
+        }?.node
     }
 }

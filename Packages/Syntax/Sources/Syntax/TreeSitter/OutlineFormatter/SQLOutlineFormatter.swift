@@ -29,27 +29,10 @@ import SwiftTreeSitter
 
 enum SQLOutlineFormatter: TreeSitterOutlineFormatting {
     
-    /// Builds an outline item from a resolved SQL outline match.
-    ///
-    /// - Parameters:
-    ///   - match: The resolved query match.
-    ///   - source: The source text as `NSString`.
-    ///   - policy: The outline policy for the syntax.
-    /// - Returns: An outline item for the match, or `nil` if the match should be ignored.
-    static func item(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem? {
+    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
-        guard let capture = match.outlineCapture(policy: policy) else { return nil }
-        
-        guard capture.kind == .function else {
-            return Self.defaultItem(for: match, source: source, policy: policy)
-        }
-        
-        let title = source.substring(with: capture.range)
-        let formattedTitle = Self.functionTitle(for: match, title: title, source: source)
-        
-        guard let displayTitle = Self.formatTitle(formattedTitle, kind: capture.kind) else { return nil }
-        
-        return OutlineItem(title: displayTitle, range: match.range ?? capture.range, kind: capture.kind, indent: .level(capture.depth))
+        (title: Self.functionTitle(for: match, title: source.substring(with: capture.range), source: source),
+         range: match.range ?? capture.range)
     }
 }
 

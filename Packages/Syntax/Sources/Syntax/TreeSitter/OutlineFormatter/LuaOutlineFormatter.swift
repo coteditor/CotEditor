@@ -1,5 +1,5 @@
 //
-//  PHPOutlineFormatter.swift
+//  LuaOutlineFormatter.swift
 //  Syntax
 //
 //  CotEditor
@@ -25,49 +25,32 @@
 //
 
 import Foundation
+import StringUtils
 import SwiftTreeSitter
 
-enum PHPOutlineFormatter: TreeSitterOutlineFormatting {
+enum LuaOutlineFormatter: TreeSitterOutlineFormatting {
     
-    /// Builds an outline item from a resolved PHP outline match.
-    ///
-    /// - Parameters:
-    ///   - match: The resolved query match.
-    ///   - source: The source text as `NSString`.
-    ///   - policy: The outline policy for the syntax.
-    /// - Returns: An outline item for the match, or `nil` if the match should be ignored.
-    static func item(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem? {
+    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
-        guard let capture = match.outlineCapture(policy: policy) else { return nil }
-        
-        guard capture.kind == .function else {
-            return Self.defaultItem(for: match, source: source, policy: policy)
-        }
-        
-        let title = Self.functionTitle(for: match, title: source.substring(with: capture.range), source: source)
-        guard let displayTitle = Self.formatTitle(title, kind: capture.kind) else { return nil }
-        
-        return OutlineItem(title: displayTitle,
-                           range: Self.signatureRange(for: match, nameRange: capture.range),
-                           kind: capture.kind,
-                           indent: .level(capture.depth))
+        (title: Self.functionTitle(for: match, title: source.substring(with: capture.range), source: source),
+         range: Self.signatureRange(for: match, nameRange: capture.range))
     }
 }
 
 
-private extension PHPOutlineFormatter {
+private extension LuaOutlineFormatter {
     
-    /// Builds the displayed PHP function title from a query match.
+    /// Builds the displayed Lua function title from a query match.
     ///
     /// - Parameters:
     ///   - match: The resolved query match.
     ///   - title: The raw title capture text.
     ///   - source: The source text as `NSString`.
-    /// - Returns: The displayed PHP function title.
+    /// - Returns: The displayed Lua function title.
     static func functionTitle(for match: QueryMatch, title: String, source: NSString) -> String {
         
-        let parameters = match.captures(named: "outline.signature.parameters")
-            .first.map(\.range)
+        let parametersRange = match.captures(named: "outline.signature.parameters").first?.range
+        let parameters = parametersRange
             .map(source.substring(with:))
             .map(Self.normalizedClause)
             ?? "()"
@@ -76,21 +59,19 @@ private extension PHPOutlineFormatter {
     }
     
     
-    /// Returns the signature range spanning the PHP function name through its parameter list.
+    /// Returns the signature range spanning the Lua function name through its parameter list.
     ///
     /// - Parameters:
     ///   - match: The resolved query match.
-    ///   - nameRange: The captured function or method name range.
+    ///   - nameRange: The captured function name range.
     /// - Returns: The signature range.
     static func signatureRange(for match: QueryMatch, nameRange: NSRange) -> NSRange {
         
-        let parametersRange = match.captures(named: "outline.signature.parameters").first?.range
-        
-        return parametersRange.map(nameRange.union) ?? nameRange
+        nameRange.union(with: [match.captures(named: "outline.signature.parameters").first?.range])
     }
     
     
-    /// Returns a whitespace-normalized PHP parameter clause.
+    /// Returns a whitespace-normalized Lua parameter clause.
     ///
     /// - Parameter clause: The raw parameter clause text.
     /// - Returns: The clause with normalized spacing.
@@ -101,7 +82,6 @@ private extension PHPOutlineFormatter {
             .replacing(/\(\s+/, with: "(")
             .replacing(/\s+\)/, with: ")")
             .replacing(/\s*,\s*/, with: ", ")
-            .replacing(/,\s*\)/, with: ")")
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

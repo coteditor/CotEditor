@@ -25,34 +25,17 @@
 //
 
 import Foundation
+import StringUtils
 import SwiftTreeSitter
 
 enum CSharpOutlineFormatter: TreeSitterOutlineFormatting {
     
-    /// Builds an outline item from a resolved C# outline match.
-    ///
-    /// - Parameters:
-    ///   - match: The resolved query match.
-    ///   - source: The source text as `NSString`.
-    ///   - policy: The outline policy for the syntax.
-    /// - Returns: An outline item for the match, or `nil` if the match should be ignored.
-    static func item(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem? {
-        
-        guard let capture = match.outlineCapture(policy: policy) else { return nil }
-        
-        guard capture.kind == .function else {
-            return Self.defaultItem(for: match, source: source, policy: policy)
-        }
+    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
         let range = Self.signatureRange(for: match, source: source, nameRange: capture.range)
         let title = Self.normalizedSignature(source.substring(with: range))
         
-        guard let displayTitle = Self.formatTitle(title, kind: capture.kind) else { return nil }
-        
-        return OutlineItem(title: displayTitle,
-                           range: range,
-                           kind: capture.kind,
-                           indent: .level(capture.depth))
+        return (title, range)
     }
 }
 
@@ -70,13 +53,11 @@ private extension CSharpOutlineFormatter {
         
         let adjustedNameRange = Self.adjustedNameRange(for: match, source: source, nameRange: nameRange)
         
-        return [
+        return adjustedNameRange.union(with: [
             Self.explicitInterfaceRange(for: match),
             Self.typeParametersRange(for: match),
             match.captures(named: "outline.signature.parameters").first?.range,
-        ]
-        .compactMap(\.self)
-        .reduce(adjustedNameRange) { $0.union($1) }
+        ])
     }
     
     
@@ -90,7 +71,7 @@ private extension CSharpOutlineFormatter {
     private static func adjustedNameRange(for match: QueryMatch, source: NSString, nameRange: NSRange) -> NSRange {
         
         guard
-            Self.declarationNode(for: match)?.nodeType == "destructor_declaration",
+            match.outlineNode?.parent?.nodeType == "destructor_declaration",
             nameRange.location > 0,
             source.substring(with: NSRange(location: nameRange.location - 1, length: 1)) == "~"
         else {
@@ -107,7 +88,7 @@ private extension CSharpOutlineFormatter {
     /// - Returns: The explicit interface specifier range, or `nil` if none exists.
     private static func explicitInterfaceRange(for match: QueryMatch) -> NSRange? {
         
-        guard let declaration = Self.declarationNode(for: match) else { return nil }
+        guard let declaration = match.outlineNode?.parent else { return nil }
         
         return (0..<declaration.namedChildCount)
             .compactMap(declaration.namedChild(at:))
@@ -122,17 +103,7 @@ private extension CSharpOutlineFormatter {
     /// - Returns: The type parameter list range, or `nil` if none exists.
     private static func typeParametersRange(for match: QueryMatch) -> NSRange? {
         
-        Self.declarationNode(for: match)?.child(byFieldName: "type_parameters")?.range
-    }
-    
-    
-    /// Returns the parent declaration node for the current outline match.
-    ///
-    /// - Parameter match: The resolved query match.
-    /// - Returns: The declaration node, or `nil` if it cannot be resolved.
-    private static func declarationNode(for match: QueryMatch) -> Node? {
-        
-        match.captures.first { $0.nameComponents.first == "outline" }?.node.parent
+        match.outlineNode?.parent?.child(byFieldName: "type_parameters")?.range
     }
     
     

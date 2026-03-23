@@ -25,34 +25,17 @@
 //
 
 import Foundation
+import StringUtils
 import SwiftTreeSitter
 
 enum TypeScriptOutlineFormatter: TreeSitterOutlineFormatting {
     
-    /// Builds an outline item from a resolved TypeScript outline match.
-    ///
-    /// - Parameters:
-    ///   - match: The resolved query match.
-    ///   - source: The source text as `NSString`.
-    ///   - policy: The outline policy for the syntax.
-    /// - Returns: An outline item for the match, or `nil` if the match should be ignored.
-    static func item(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem? {
-        
-        guard let capture = match.outlineCapture(policy: policy) else { return nil }
-        
-        guard capture.kind == .function else {
-            return Self.defaultItem(for: match, source: source, policy: policy)
-        }
+    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
         let range = Self.signatureRange(for: match, nameRange: capture.range)
         let title = Self.normalizedClause(source.substring(with: range))
         
-        guard let displayTitle = Self.formatTitle(title, kind: capture.kind) else { return nil }
-        
-        return OutlineItem(title: displayTitle,
-                           range: range,
-                           kind: capture.kind,
-                           indent: .level(capture.depth))
+        return (title, range)
     }
 }
 
@@ -67,10 +50,10 @@ private extension TypeScriptOutlineFormatter {
     /// - Returns: The signature range.
     static func signatureRange(for match: QueryMatch, nameRange: NSRange) -> NSRange {
         
-        [Self.typeParametersRange(for: match),
-         match.captures(named: "outline.signature.parameters").first?.range]
-            .compactMap(\.self)
-            .reduce(nameRange) { $0.union($1) }
+        nameRange.union(with: [
+            Self.typeParametersRange(for: match),
+            match.captures(named: "outline.signature.parameters").first?.range,
+        ])
     }
     
     
@@ -80,11 +63,7 @@ private extension TypeScriptOutlineFormatter {
     /// - Returns: The type parameter list range, or `nil` if none exists.
     private static func typeParametersRange(for match: QueryMatch) -> NSRange? {
         
-        guard let nameNode = match.captures.first(where: { $0.nameComponents.first == "outline" })?.node else {
-            return nil
-        }
-        
-        return nameNode.parent?.child(byFieldName: "type_parameters")?.range
+        match.outlineNode?.parent?.child(byFieldName: "type_parameters")?.range
     }
     
     

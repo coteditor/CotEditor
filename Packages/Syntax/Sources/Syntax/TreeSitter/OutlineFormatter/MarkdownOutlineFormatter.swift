@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import SwiftTreeSitter
 
 enum MarkdownOutlineFormatter: TreeSitterOutlineFormatting {
     

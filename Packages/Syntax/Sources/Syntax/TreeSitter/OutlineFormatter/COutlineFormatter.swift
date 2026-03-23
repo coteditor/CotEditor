@@ -29,30 +29,14 @@ import SwiftTreeSitter
 
 enum COutlineFormatter: TreeSitterOutlineFormatting {
     
-    /// Builds an outline item from a resolved C outline match.
-    ///
-    /// - Parameters:
-    ///   - match: The resolved query match.
-    ///   - source: The source text as `NSString`.
-    ///   - policy: The outline policy for the syntax.
-    /// - Returns: An outline item for the match, or `nil` if the match should be ignored.
-    static func item(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem? {
+    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
-        guard let capture = match.outlineCapture(policy: policy) else { return nil }
-        
-        guard capture.kind == .function else {
-            return Self.defaultItem(for: match, source: source, policy: policy)
-        }
-        
-        let node = match.captures.first { $0.range == capture.range }?.node
-        let formattedTitle = node.flatMap { Self.functionTitle(for: $0, source: source) }
+        let node = match.outlineNode
+        let title = node.flatMap { Self.functionTitle(for: $0, source: source) }
             ?? source.substring(with: capture.range)
-        
-        guard let displayTitle = Self.formatTitle(formattedTitle, kind: capture.kind) else { return nil }
-        
         let range = node.flatMap(Self.functionSignatureRange(in:)) ?? capture.range
         
-        return OutlineItem(title: displayTitle, range: range, kind: capture.kind, indent: .level(capture.depth))
+        return (title, range)
     }
 }
 

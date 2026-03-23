@@ -111,6 +111,18 @@ public extension NSRange {
 
         return NSRange(fragmentStart..<fragmentEnd)
     }
+    
+    
+    /// Returns the union of this range with the given optional ranges.
+    ///
+    /// - Parameter ranges: Optional ranges to union onto this range.
+    /// - Returns: The combined range.
+    func union(with ranges: [NSRange?]) -> NSRange {
+
+        ranges
+            .compactMap(\.self)
+            .reduce(self) { $0.union($1) }
+    }
 }
 
 
