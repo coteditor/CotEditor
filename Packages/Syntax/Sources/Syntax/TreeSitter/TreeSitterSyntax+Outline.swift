@@ -87,6 +87,8 @@ extension TreeSitterSyntax {
                 PHPOutlineFormatter.self
             case .python:
                 PythonOutlineFormatter.self
+            case .ruby:
+                RubyOutlineFormatter.self
             case .rust:
                 RustOutlineFormatter.self
             case .scala:
