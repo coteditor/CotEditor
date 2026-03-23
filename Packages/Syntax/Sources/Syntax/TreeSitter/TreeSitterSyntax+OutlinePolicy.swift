@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import SwiftTreeSitter
 
 extension TreeSitterSyntax {
     
@@ -57,6 +58,24 @@ extension TreeSitterSyntax {
                       normalization: .init(sectionMarkerKinds: [.separator, .mark], adjustSectionMarkerDepth: true))
             default:
                 .init()
+        }
+    }
+    
+    
+    /// Builds an outline item for a resolved tree-sitter outline match.
+    ///
+    /// - Parameters:
+    ///   - match: The resolved query match.
+    ///   - source: The source text as `NSString`.
+    ///   - policy: The outline policy for the syntax.
+    /// - Returns: An outline item for the match, or `nil` if the match should be ignored.
+    func outlineItem(for match: QueryMatch, source: NSString, policy: OutlinePolicy) -> OutlineItem? {
+        
+        switch self {
+            case .swift:
+                SwiftOutlineFormatter.item(for: match, source: source, policy: policy)
+            default:
+                DefaultTreeSitterOutlineFormatter.item(for: match, source: source, policy: policy)
         }
     }
     

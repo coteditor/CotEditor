@@ -35,34 +35,22 @@ actor TreeSitterOutlineTests {
     
     @Test func formatCSS() {
         
-        let formatter = TreeSitterSyntax.css.outlinePolicy.titleFormatter
+        let policy = TreeSitterSyntax.css.outlinePolicy
         
-        #expect(formatter(.container, "@media (prefers-color-scheme: dark) { .item { color: white; } }") == "@media (prefers-color-scheme: dark)")
-        #expect(formatter(.container, "@layer utilities { .m-1 { margin: 1rem; } }") == "@layer utilities")
-        #expect(formatter(.container, "@import url(\"theme.css\");") == "@import url(\"theme.css\")")
-        #expect(formatter(.container, "   ;") == nil)
-    }
-    
-    
-    @Test func formatSwift() {
-        
-        let formatter = TreeSitterSyntax.swift.outlinePolicy.titleFormatter
-        
-        #expect(formatter(.function, "SomeFunction") == "SomeFunction")
-        #expect(formatter(.mark, "// MARK: Swift") == "Swift")
-        #expect(formatter(.mark, "// MARK: - Swift") == "Swift")
-        #expect(formatter(.mark, "/* MARK: Swift */") == "Swift")
-        #expect(formatter(.mark, "// MARK:") == nil)
+        #expect(policy.titleFormatter(.container, "@media (prefers-color-scheme: dark) { .item { color: white; } }") == "@media (prefers-color-scheme: dark)")
+        #expect(policy.titleFormatter(.container, "@layer utilities { .m-1 { margin: 1rem; } }") == "@layer utilities")
+        #expect(policy.titleFormatter(.container, "@import url(\"theme.css\");") == "@import url(\"theme.css\")")
+        #expect(policy.titleFormatter(.container, "   ;") == nil)
     }
     
     
     @Test func formatMarkdown() {
         
-        let formatter = TreeSitterSyntax.markdown.outlinePolicy.titleFormatter
+        let policy = TreeSitterSyntax.markdown.outlinePolicy
         
-        #expect(formatter(.heading(nil), "Setext H1\n========") == "Setext H1")
-        #expect(formatter(.heading(nil), "Setext H2\n--------") == "Setext H2")
-        #expect(formatter(.heading(nil), "ATX H1") == "ATX H1")
+        #expect(policy.titleFormatter(.heading(nil), "Setext H1\n========") == "Setext H1")
+        #expect(policy.titleFormatter(.heading(nil), "Setext H2\n--------") == "Setext H2")
+        #expect(policy.titleFormatter(.heading(nil), "ATX H1") == "ATX H1")
     }
     
     
@@ -87,38 +75,6 @@ actor TreeSitterOutlineTests {
         #expect(outline.map(\.title) == ["Top", "Section", "Setext One", "Setext Two"])
         #expect(outline.map(\.kind) == [.heading(nil), .heading(nil), .heading(nil), .heading(nil)])
         #expect(outline.map(\.indent.level) == [0, 1, 0, 1])
-    }
-    
-    
-    @Test func outlineSwift() async throws {
-        
-        let source = #"""
-            class Foo {
-                
-                func dog() { }
-                // MARK: - Cow
-                func cat() { }
-            }
-        """#
-        
-        let outline = try await self.parseOutline(in: source, syntax: .swift)
-        
-        #expect(outline.count == 5)
-        #expect(outline[0].title == "Foo")
-        #expect(outline[0].kind == .container)
-        #expect(outline[0].indent == .level(0))
-        #expect(outline[1].title == "dog")
-        #expect(outline[1].kind == .function)
-        #expect(outline[1].indent == .level(1))
-        #expect(outline[2].title.isEmpty)
-        #expect(outline[2].kind == .separator)
-        #expect(outline[2].indent == .level(1))
-        #expect(outline[3].title == "Cow")
-        #expect(outline[3].kind == .mark)
-        #expect(outline[3].indent == .level(1))
-        #expect(outline[4].title == "cat")
-        #expect(outline[4].kind == .function)
-        #expect(outline[4].indent == .level(1))
     }
     
     

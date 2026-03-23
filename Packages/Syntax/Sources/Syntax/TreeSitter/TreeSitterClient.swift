@@ -106,7 +106,8 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
         try Task.checkCancellation()
         
         let updateRange = invalidations.unionRange()?.union(range) ?? range
-        let highlights = try self.queryCaptures(.highlights, in: updateRange, string: string as NSString)
+        let highlights = try self.queryMatches(.highlights, in: updateRange, string: string as NSString)
+            .flatMap(\.captures)
             .sorted()
             .compactMap(Highlight.init(capture:))
         
@@ -133,21 +134,10 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
         try Task.checkCancellation()
         
         let policy = self.syntax.outlinePolicy
-        let items: [OutlineItem] = try self.queryCaptures(.outline, in: string.range, string: string as NSString)
-            .filter { $0.depth == 0 }  // ignore injection
-            .compactMap { OutlineCapture(capture: $0, policy: policy) }
-            .compactMap { capture in
-                if capture.kind == .separator {
-                    return OutlineItem.separator(range: capture.range, indent: .level(capture.depth))
-                }
-                
-                let title = (string as NSString).substring(with: capture.range)
-                
-                guard let formattedTitle = policy.titleFormatter(capture.kind, title) else { return nil }
-                
-                return OutlineItem(title: formattedTitle, range: capture.range, kind: capture.kind, indent: .level(capture.depth))
-            }
-        
+        let source = string as NSString
+        let items: [OutlineItem] = try self.queryMatches(.outline, in: string.range, string: source).lazy
+            .filter { $0.treeDepth == 0 }  // ignore injection
+            .compactMap { self.syntax.outlineItem(for: $0, source: source, policy: policy) }
         let normalizedItems = policy.normalize(items)
         
         try Task.checkCancellation()
@@ -171,26 +161,26 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
     }
     
     
-    /// Executes a tree-sitter query and collects all captures.
+    /// Executes a tree-sitter query and collects all resolved matches.
     ///
     /// - Parameters:
     ///   - definition: The query definition to execute.
     ///   - range: The UTF-16 range in which the query should run.
     ///   - string: The full source text used to resolve query predicates.
-    /// - Returns: The captures produced by the query in cursor order.
-    private func queryCaptures(_ definition: Query.Definition, in range: NSRange, string: NSString) throws -> [QueryCapture] {
+    /// - Returns: The resolved matches produced by the query in cursor order.
+    private func queryMatches(_ definition: Query.Definition, in range: NSRange, string: NSString) throws -> [QueryMatch] {
         
         let cursor = try self.layer.executeQuery(definition, in: range)
         let context = Predicate.Context { nsRange, _ in string.substring(with: nsRange) }
         var matchSequence = cursor.resolve(with: context)
         
-        var captures: [QueryCapture] = []
+        var matches: [QueryMatch] = []
         while let match = matchSequence.next() {
             try Task.checkCancellation()
-            captures.append(contentsOf: match.captures)
+            matches.append(match)
         }
         
-        return captures
+        return matches
     }
 }
 
@@ -207,33 +197,6 @@ private extension Highlight {
         else { return nil }
         
         self.init(value: type, range: capture.range)
-    }
-}
-
-
-private struct OutlineCapture {
-    
-    var kind: Syntax.Outline.Kind
-    var range: NSRange
-    var depth: Int
-    
-    
-    init?(capture: QueryCapture, policy: OutlinePolicy) {
-        
-        let components = capture.nameComponents
-        
-        guard
-            components.first == "outline",
-            components.count > 1,
-            let kind = Syntax.Outline.Kind(rawValue: components[1])
-        else { return nil }
-        
-        let ancestorNodeTypes = sequence(first: capture.node, next: \.parent)
-            .map { $0.nodeType ?? "" }
-        
-        self.kind = kind
-        self.range = capture.range
-        self.depth = policy.depth(captureNameComponents: components, ancestorNodeTypes: ancestorNodeTypes)
     }
 }
 
