@@ -85,7 +85,7 @@ actor TreeSitterOutlineTests {
         
         let outline = try await self.parseOutline(in: source, syntax: .sql)
         
-        #expect(outline.map(\.title) == ["users", "twice"])
+        #expect(outline.map(\.title) == ["users", "twice(INTEGER)"])
         #expect(outline.map(\.kind) == [.container, .function])
         #expect(outline.map(\.indent.level) == [0, 0])
     }

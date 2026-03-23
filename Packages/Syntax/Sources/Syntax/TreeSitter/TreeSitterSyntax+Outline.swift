@@ -67,6 +67,8 @@ extension TreeSitterSyntax {
                 MarkdownOutlineFormatter.self
             case .scala:
                 ScalaOutlineFormatter.self
+            case .sql:
+                SQLOutlineFormatter.self
             case .swift:
                 SwiftOutlineFormatter.self
             default:
