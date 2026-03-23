@@ -61,6 +61,8 @@ extension TreeSitterSyntax {
     var outlineFormatter: any TreeSitterOutlineFormatting.Type {
         
         switch self {
+            case .c:
+                COutlineFormatter.self
             case .css:
                 CSSOutlineFormatter.self
             case .markdown:
