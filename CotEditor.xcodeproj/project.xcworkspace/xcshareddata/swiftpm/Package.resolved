@@ -1,5 +1,5 @@
 {
-  "originHash" : "efb1c5e410190bf1d55ef7515ee014328f3ecd6d9cc2bcfd9f899b5deddf172b",
+  "originHash" : "a54498b7735c5946b5e31a087387d1239aba67f433aea56d82484340757ce73f",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -125,6 +125,15 @@
       "state" : {
         "branch" : "swiftPackage",
         "revision" : "0f459c8e007c8ab6488577e0877ee27df0ddcdfc"
+      }
+    },
+    {
+      "identity" : "tree-sitter-kotlin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fwcd/tree-sitter-kotlin",
+      "state" : {
+        "revision" : "e1a2d5ad1f61f5740677183cd4125bb071cd2f30",
+        "version" : "0.3.8"
       }
     },
     {

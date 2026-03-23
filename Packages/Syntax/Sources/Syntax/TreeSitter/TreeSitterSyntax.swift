@@ -34,6 +34,7 @@ public enum TreeSitterSyntax: String, CaseIterable, Sendable {
     case html = "HTML"
     case java = "Java"
     case javaScript = "JavaScript"
+    case kotlin = "Kotlin"
     case latex = "LaTeX"
     case lua = "Lua"
     case makefile = "Makefile"

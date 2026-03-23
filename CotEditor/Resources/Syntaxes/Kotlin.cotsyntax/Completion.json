@@ -1,0 +1,634 @@
+[
+  {
+    "text" : "!in",
+    "type" : "keywords"
+  },
+  {
+    "text" : "!is",
+    "type" : "keywords"
+  },
+  {
+    "text" : "@delegate",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@field",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@file",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@get",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@MustBeDocumented",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@param",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@property",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@receiver",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Repeatable",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Retention",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@set",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@setparam",
+    "type" : "attributes"
+  },
+  {
+    "text" : "@Target",
+    "type" : "attributes"
+  },
+  {
+    "text" : "abstract",
+    "type" : "keywords"
+  },
+  {
+    "text" : "actual",
+    "type" : "keywords"
+  },
+  {
+    "text" : "annotation",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Annotation",
+    "type" : "types"
+  },
+  {
+    "text" : "Any",
+    "type" : "types"
+  },
+  {
+    "text" : "ArithmeticException",
+    "type" : "types"
+  },
+  {
+    "text" : "Array",
+    "type" : "types"
+  },
+  {
+    "text" : "ArrayIndexOutOfBoundsException",
+    "type" : "types"
+  },
+  {
+    "text" : "as",
+    "type" : "keywords"
+  },
+  {
+    "text" : "as?",
+    "type" : "keywords"
+  },
+  {
+    "text" : "AssertionError",
+    "type" : "types"
+  },
+  {
+    "text" : "Boolean",
+    "type" : "types"
+  },
+  {
+    "text" : "BooleanArray",
+    "type" : "types"
+  },
+  {
+    "text" : "braek",
+    "type" : "keywords"
+  },
+  {
+    "text" : "by",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Byte",
+    "type" : "types"
+  },
+  {
+    "text" : "ByteArray",
+    "type" : "types"
+  },
+  {
+    "text" : "catch",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Char",
+    "type" : "types"
+  },
+  {
+    "text" : "CharArray",
+    "type" : "types"
+  },
+  {
+    "text" : "CharSequence",
+    "type" : "types"
+  },
+  {
+    "text" : "class",
+    "type" : "keywords"
+  },
+  {
+    "text" : "ClassCastException",
+    "type" : "types"
+  },
+  {
+    "text" : "Comparable",
+    "type" : "types"
+  },
+  {
+    "text" : "Comparator",
+    "type" : "types"
+  },
+  {
+    "text" : "ConcurrentModificationException",
+    "type" : "types"
+  },
+  {
+    "text" : "const",
+    "type" : "keywords"
+  },
+  {
+    "text" : "constructor",
+    "type" : "keywords"
+  },
+  {
+    "text" : "continue",
+    "type" : "keywords"
+  },
+  {
+    "text" : "crossinline",
+    "type" : "keywords"
+  },
+  {
+    "text" : "data",
+    "type" : "keywords"
+  },
+  {
+    "text" : "delegate",
+    "type" : "keywords"
+  },
+  {
+    "text" : "DeprecationLevel",
+    "type" : "types"
+  },
+  {
+    "text" : "do",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Double",
+    "type" : "types"
+  },
+  {
+    "text" : "DoubleArray",
+    "type" : "types"
+  },
+  {
+    "text" : "dynamic",
+    "type" : "keywords"
+  },
+  {
+    "text" : "else",
+    "type" : "keywords"
+  },
+  {
+    "text" : "enum",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Enum",
+    "type" : "types"
+  },
+  {
+    "text" : "Error",
+    "type" : "types"
+  },
+  {
+    "text" : "Exception",
+    "type" : "types"
+  },
+  {
+    "text" : "expect",
+    "type" : "keywords"
+  },
+  {
+    "text" : "external",
+    "type" : "keywords"
+  },
+  {
+    "text" : "false",
+    "type" : "keywords"
+  },
+  {
+    "text" : "false",
+    "type" : "values"
+  },
+  {
+    "text" : "field",
+    "type" : "keywords"
+  },
+  {
+    "text" : "final",
+    "type" : "keywords"
+  },
+  {
+    "text" : "finally",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Float",
+    "type" : "types"
+  },
+  {
+    "text" : "FloatArray",
+    "type" : "types"
+  },
+  {
+    "text" : "for",
+    "type" : "keywords"
+  },
+  {
+    "text" : "fun",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Function",
+    "type" : "types"
+  },
+  {
+    "text" : "get",
+    "type" : "keywords"
+  },
+  {
+    "text" : "if",
+    "type" : "keywords"
+  },
+  {
+    "text" : "IllegalArgumentException",
+    "type" : "types"
+  },
+  {
+    "text" : "IllegalCharacterConversionException",
+    "type" : "types"
+  },
+  {
+    "text" : "IllegalStateException",
+    "type" : "types"
+  },
+  {
+    "text" : "import",
+    "type" : "keywords"
+  },
+  {
+    "text" : "in",
+    "type" : "keywords"
+  },
+  {
+    "text" : "IndexOutOfBoundsException",
+    "type" : "types"
+  },
+  {
+    "text" : "infix",
+    "type" : "keywords"
+  },
+  {
+    "text" : "init",
+    "type" : "keywords"
+  },
+  {
+    "text" : "inline",
+    "type" : "keywords"
+  },
+  {
+    "text" : "inner",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Int",
+    "type" : "types"
+  },
+  {
+    "text" : "IntArray",
+    "type" : "types"
+  },
+  {
+    "text" : "interface",
+    "type" : "keywords"
+  },
+  {
+    "text" : "internal",
+    "type" : "keywords"
+  },
+  {
+    "text" : "is",
+    "type" : "keywords"
+  },
+  {
+    "text" : "it",
+    "type" : "keywords"
+  },
+  {
+    "text" : "KotlinNullPointerException",
+    "type" : "types"
+  },
+  {
+    "text" : "KotlinVersion",
+    "type" : "types"
+  },
+  {
+    "text" : "lateinit",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Lazy",
+    "type" : "types"
+  },
+  {
+    "text" : "LazyThreadSafetyMode",
+    "type" : "types"
+  },
+  {
+    "text" : "Long",
+    "type" : "types"
+  },
+  {
+    "text" : "LongArray",
+    "type" : "types"
+  },
+  {
+    "text" : "noinline",
+    "type" : "keywords"
+  },
+  {
+    "text" : "NoSuchElementException",
+    "type" : "types"
+  },
+  {
+    "text" : "Nothing",
+    "type" : "types"
+  },
+  {
+    "text" : "NotImplementedError",
+    "type" : "types"
+  },
+  {
+    "text" : "NoWhenBranchMatchedException",
+    "type" : "types"
+  },
+  {
+    "text" : "null",
+    "type" : "values"
+  },
+  {
+    "text" : "NullPointerException",
+    "type" : "types"
+  },
+  {
+    "text" : "Number",
+    "type" : "types"
+  },
+  {
+    "text" : "NumberFormatException",
+    "type" : "types"
+  },
+  {
+    "text" : "object",
+    "type" : "keywords"
+  },
+  {
+    "text" : "ompanion",
+    "type" : "keywords"
+  },
+  {
+    "text" : "open",
+    "type" : "keywords"
+  },
+  {
+    "text" : "operator",
+    "type" : "keywords"
+  },
+  {
+    "text" : "out",
+    "type" : "keywords"
+  },
+  {
+    "text" : "OutOfMemoryError",
+    "type" : "types"
+  },
+  {
+    "text" : "override",
+    "type" : "keywords"
+  },
+  {
+    "text" : "package",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Pair",
+    "type" : "types"
+  },
+  {
+    "text" : "param",
+    "type" : "keywords"
+  },
+  {
+    "text" : "private",
+    "type" : "keywords"
+  },
+  {
+    "text" : "property",
+    "type" : "keywords"
+  },
+  {
+    "text" : "protected",
+    "type" : "keywords"
+  },
+  {
+    "text" : "public",
+    "type" : "keywords"
+  },
+  {
+    "text" : "receiver",
+    "type" : "keywords"
+  },
+  {
+    "text" : "reified",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Result",
+    "type" : "types"
+  },
+  {
+    "text" : "return",
+    "type" : "keywords"
+  },
+  {
+    "text" : "RuntimeException",
+    "type" : "types"
+  },
+  {
+    "text" : "sealed",
+    "type" : "keywords"
+  },
+  {
+    "text" : "set",
+    "type" : "keywords"
+  },
+  {
+    "text" : "setparam",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Short",
+    "type" : "types"
+  },
+  {
+    "text" : "ShortArray",
+    "type" : "types"
+  },
+  {
+    "text" : "String",
+    "type" : "types"
+  },
+  {
+    "text" : "super",
+    "type" : "variables"
+  },
+  {
+    "text" : "suspend",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Synchronized",
+    "type" : "types"
+  },
+  {
+    "text" : "tailrec",
+    "type" : "keywords"
+  },
+  {
+    "text" : "this",
+    "type" : "variables"
+  },
+  {
+    "text" : "throw",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Throwable",
+    "type" : "types"
+  },
+  {
+    "text" : "Triple",
+    "type" : "types"
+  },
+  {
+    "text" : "true",
+    "type" : "values"
+  },
+  {
+    "text" : "try",
+    "type" : "keywords"
+  },
+  {
+    "text" : "typealias",
+    "type" : "keywords"
+  },
+  {
+    "text" : "TypeCastException",
+    "type" : "types"
+  },
+  {
+    "text" : "UByte",
+    "type" : "types"
+  },
+  {
+    "text" : "UByteArray",
+    "type" : "types"
+  },
+  {
+    "text" : "UInt",
+    "type" : "types"
+  },
+  {
+    "text" : "UIntArray",
+    "type" : "types"
+  },
+  {
+    "text" : "ULong",
+    "type" : "types"
+  },
+  {
+    "text" : "ULongArray",
+    "type" : "types"
+  },
+  {
+    "text" : "UninitializedPropertyAccessException",
+    "type" : "types"
+  },
+  {
+    "text" : "Unit",
+    "type" : "types"
+  },
+  {
+    "text" : "UnsupportedOperationException",
+    "type" : "types"
+  },
+  {
+    "text" : "UShort",
+    "type" : "types"
+  },
+  {
+    "text" : "UShortArray",
+    "type" : "types"
+  },
+  {
+    "text" : "val",
+    "type" : "keywords"
+  },
+  {
+    "text" : "var",
+    "type" : "keywords"
+  },
+  {
+    "text" : "vararg",
+    "type" : "keywords"
+  },
+  {
+    "text" : "Volatile",
+    "type" : "types"
+  },
+  {
+    "text" : "when",
+    "type" : "keywords"
+  },
+  {
+    "text" : "where",
+    "type" : "keywords"
+  },
+  {
+    "text" : "while",
+    "type" : "keywords"
+  }
+]
