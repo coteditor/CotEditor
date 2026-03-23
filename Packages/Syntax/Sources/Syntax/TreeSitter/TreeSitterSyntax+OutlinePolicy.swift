@@ -60,6 +60,7 @@ extension TreeSitterSyntax {
         }
     }
     
+    
     /// Formats CSS outline titles to keep only the at-rule header.
     private static let cssOutlineTitleFormatter: OutlinePolicy.TitleFormatter = { _, title in
         
