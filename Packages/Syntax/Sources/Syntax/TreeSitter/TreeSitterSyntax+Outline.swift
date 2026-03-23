@@ -67,6 +67,8 @@ extension TreeSitterSyntax {
         switch self {
             case .c:
                 COutlineFormatter.self
+            case .cSharp:
+                CSharpOutlineFormatter.self
             case .css:
                 CSSOutlineFormatter.self
             case .go:
