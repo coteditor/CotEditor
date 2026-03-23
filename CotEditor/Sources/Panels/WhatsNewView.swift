@@ -240,7 +240,7 @@ private extension NewFeature {
         
         switch self {
             case .syntax:
-                let count = 4
+                let count = SyntaxManager.shared.migratedSyntaxCount
                 if count > 0 {
                     MigrationReportView(count: count)
                         .padding(.top, 6)
