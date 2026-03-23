@@ -79,6 +79,8 @@ extension TreeSitterSyntax {
                 JavaOutlineFormatter.self
             case .javaScript:
                 JavaScriptOutlineFormatter.self
+            case .lua:
+                LuaOutlineFormatter.self
             case .markdown:
                 MarkdownOutlineFormatter.self
             case .php:

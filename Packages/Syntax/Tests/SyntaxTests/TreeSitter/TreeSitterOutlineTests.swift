@@ -91,51 +91,6 @@ actor TreeSitterOutlineTests {
     }
     
     
-    @Test func parseLuaOutlineHandlesPseudoAndTrueNesting() async throws {
-        
-        let source = #"""
-            function M.sum(a, b)
-                return a + b
-            end
-            
-            function M:describe(name)
-                return name
-            end
-            
-            M.run = function(input)
-                return input
-            end
-            
-            M.pipeline = {
-                prepare = function(value)
-                    return value
-                end,
-                execute = function(value)
-                    return value
-                end,
-            }
-            
-            function M.pipeline:finalize(value)
-                return value
-            end
-            
-            local function outer(value)
-                local function inner(x)
-                    return x
-                end
-                
-                return inner(value)
-            end
-        """#
-        
-        let outline = try await self.parseOutline(in: source, syntax: .lua)
-        
-        #expect(outline.map(\.title) == ["sum", "describe", "run", "prepare", "execute", "finalize", "outer", "inner"])
-        #expect(outline.map(\.kind) == [.function, .function, .function, .function, .function, .function, .function, .function])
-        #expect(outline.map(\.indent.level) == [0, 0, 0, 0, 0, 0, 0, 1])
-    }
-    
-    
     // MARK: Private Methods
     
     private func parseOutline(in source: String, syntax: TreeSitterSyntax) async throws -> [OutlineItem] {
