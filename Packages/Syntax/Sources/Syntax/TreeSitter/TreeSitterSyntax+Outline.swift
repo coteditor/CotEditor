@@ -53,6 +53,8 @@ extension TreeSitterSyntax {
                 .init(normalization: .init(flattenLevels: true))
             case .swift:
                 .init(normalization: .init(sectionMarkerKinds: [.separator, .mark], adjustSectionMarkerDepth: true))
+            case .typeScript:
+                .init(ignoredDepthNodeTypes: ["ambient_declaration"])
             default:
                 .init()
         }
@@ -81,6 +83,8 @@ extension TreeSitterSyntax {
                 SQLOutlineFormatter.self
             case .swift:
                 SwiftOutlineFormatter.self
+            case .typeScript:
+                TypeScriptOutlineFormatter.self
             default:
                 DefaultOutlineFormatter.self
         }
