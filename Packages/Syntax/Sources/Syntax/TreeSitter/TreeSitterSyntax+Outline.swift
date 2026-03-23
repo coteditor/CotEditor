@@ -69,6 +69,8 @@ extension TreeSitterSyntax {
                 CSSOutlineFormatter.self
             case .go:
                 GoOutlineFormatter.self
+            case .javaScript:
+                JavaScriptOutlineFormatter.self
             case .markdown:
                 MarkdownOutlineFormatter.self
             case .rust:
