@@ -19,7 +19,13 @@
 
 ; Functions
 (function_declaration
-  name: (identifier) @outline.function)
+  name: (identifier) @outline.function
+  parameters: (parameter_list) @outline.signature.parameters)
 
 (method_declaration
-  name: (field_identifier) @outline.function)
+  name: (field_identifier) @outline.function
+  parameters: (parameter_list) @outline.signature.parameters)
+
+(method_elem
+  name: (field_identifier) @outline.function
+  parameters: (parameter_list) @outline.signature.parameters)

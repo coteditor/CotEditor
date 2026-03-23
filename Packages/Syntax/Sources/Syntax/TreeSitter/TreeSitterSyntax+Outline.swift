@@ -33,6 +33,8 @@ extension TreeSitterSyntax {
     var outlinePolicy: OutlinePolicy {
         
         switch self {
+            case .go:
+                .init(ignoredDepthNodeTypes: ["type_spec"])
             case .lua:
                 .init(ignoredDepthNodeTypes: [
                     "identifier",
@@ -65,6 +67,8 @@ extension TreeSitterSyntax {
                 COutlineFormatter.self
             case .css:
                 CSSOutlineFormatter.self
+            case .go:
+                GoOutlineFormatter.self
             case .markdown:
                 MarkdownOutlineFormatter.self
             case .scala:
