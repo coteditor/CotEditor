@@ -81,6 +81,8 @@ extension TreeSitterSyntax {
                 JavaScriptOutlineFormatter.self
             case .markdown:
                 MarkdownOutlineFormatter.self
+            case .php:
+                PHPOutlineFormatter.self
             case .rust:
                 RustOutlineFormatter.self
             case .scala:
