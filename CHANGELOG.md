@@ -40,7 +40,7 @@
 
 ### Known Issues
 
-- The text added to CotEditor 7.0.0 are not localized yet in Chinese (Hong Kong), Czech, Italian, Korean, Polish, Portuguese, and Russian yet.
+- The text added to CotEditor 7.0.0 are not localized yet in Chinese (Hong Kong), Czech, Korean, and Polish yet.
 
 
 ### TODO

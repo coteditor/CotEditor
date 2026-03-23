@@ -1239,6 +1239,12 @@
             "value" : "Délimiteurs de bloc :"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delimitatori di blocco:"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1249,6 +1255,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Blokscheidingstekens:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delimitadores de bloco:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделители блоков:"
           }
         },
         "tr" : {
@@ -1304,6 +1322,12 @@
             "value" : "Intégré"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incorporato"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1314,6 +1338,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ingebouwd"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Integrado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Встроенные"
           }
         },
         "tr" : {
@@ -1482,6 +1518,12 @@
             "value" : "Délimiteurs de caractère :"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delimitatori di carattere:"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1492,6 +1534,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Teken-scheidingstekens:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delimitadores de caractere:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделители символов:"
           }
         },
         "tr" : {
@@ -1761,6 +1815,12 @@
             "value" : "Délimiteurs"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delimitatori"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1771,6 +1831,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Scheidingstekens"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delimitadores"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделители"
           }
         },
         "tr" : {
@@ -2040,6 +2112,12 @@
             "value" : "Modèle d’affichage"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostra pattern"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2050,6 +2128,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Weergavepatroon"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Padrão de Exibição"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шаблон отображения"
           }
         },
         "tr" : {
@@ -2432,6 +2522,12 @@
             "value" : "Caractère d'échappement"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carattere di Escape"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2442,6 +2538,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Escape-teken"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caractere de Escape"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символ отмены"
           }
         },
         "tr" : {
@@ -4207,6 +4315,12 @@
             "value" : "Uniquement début"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo avvio linea"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4217,6 +4331,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Alleen regelbegin"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apenas no Início da Linha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Только первая строка"
           }
         },
         "tr" : {
@@ -4277,6 +4403,12 @@
             "value" : "Géré par l’app\n"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestito dall'app"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4287,6 +4419,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beheerd door de app\n"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerenciado pelo app"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управляются приложением"
           }
         },
         "tr" : {
@@ -4348,6 +4492,12 @@
             "value" : "Multiligne"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Multilinea"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4358,6 +4508,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Meerregelig"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Multilinha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мультистрочный"
           }
         },
         "tr" : {
@@ -4419,6 +4581,12 @@
             "value" : "Imbrication"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nido"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4429,6 +4597,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Nesting"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aninhar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вложенный"
           }
         },
         "tr" : {
@@ -4697,6 +4877,12 @@
             "value" : "Préfixes"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prefissi"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4707,6 +4893,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Prefixen"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prefixos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Префикс"
           }
         },
         "tr" : {
@@ -5083,6 +5281,12 @@
             "value" : "Délimiteurs de chaîne :"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delimitatori di stringa:"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5093,6 +5297,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Tekenreeks-scheidingstekens:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delimitadores de string:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделители текста:"
           }
         },
         "tr" : {
@@ -5486,6 +5702,12 @@
             "value" : "Le caractère d'échappement doit être un seul caractère en unité de code UTF-16."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il carattere di escape deve essere un carattere singolo in codifica UTF-16."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5496,6 +5718,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het escape-teken moet een enkel teken in UTF-16 code-eenheid zijn."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O caractere de escape deve ser um único caractere em unidade de código UTF-16."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символ экранирования должен представлять собой один символ в кодовой единице UTF-16."
           }
         },
         "tr" : {
@@ -5557,6 +5791,12 @@
             "value" : "Les commentaires de bloc imbriqués doivent utiliser des délimiteurs de début et de fin différents."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I commenti di blocco multilivello devono usare delimitatori di inizio e fine differenti."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5567,6 +5807,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Geneste blokcommentaren moeten verschillende begin- en eindtekens gebruiken."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comentários de bloco aninháveis devem usar delimitadores de início e fim diferentes."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для вложенных блочных комментариев необходимо использовать разные разделители начала и конца."
           }
         },
         "tr" : {
@@ -5969,6 +6221,12 @@
             "value" : "Ce langage utilise un analyseur générique basé sur la structure, appelé tree-sitter, pour l’analyse syntaxique.\\nLes règles d’extraction étant gérées par l’app, vous ne pouvez pas les personnaliser."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per l'analisi della sintassi di questo linguaggio si usa un parser basato su strutture e di utilizzo generale chiamato tree-sitter.\nDato che le regole di estrazione sono gestite dall'app, non si possono personalizzare."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5979,6 +6237,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Deze taal gebruikt een structuur­gebaseerde parser voor algemeen gebruik, genaamd tree-sitter, voor syntaxisanalyse.\\nOmdat de extractieregels door de app worden beheerd, kun je ze niet aanpassen."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta linguagem usa um analisador de propósito geral baseado em estrutura chamado tree-sitter para análise de sintaxe.\nComo as regras de extração são gerenciadas pelo app, não é possível personalizá-las."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В этом языке для синтаксического анализа используется структурный универсальный парсер под названием tree-sitter.\nПоскольку правила управляются приложением, вы не можете их настраивать."
           }
         },
         "tr" : {
@@ -6039,6 +6309,12 @@
             "value" : "Les délimiteurs de bloc sont utilisés pour l’indentation automatique lors de la frappe."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I delimitatori di blocco sono usati per l'indentazione automatica durante la digitazione."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6049,6 +6325,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "De blokscheidingstekens worden tijdens het typen gebruikt voor automatische inspringing."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Os delimitadores de bloco são usados para indentação automática durante a digitação."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделители блоков используются для автоматического отступа при наборе текста."
           }
         },
         "tr" : {
@@ -6103,6 +6391,12 @@
             "value" : "Les symboles définis ici sont également utilisés pour le surlignage syntaxique."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I delimitatori qui definiti sono usati anche per l'evidenziazione della sintassi."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6113,6 +6407,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De scheidingstekens die hier zijn gedefinieerd, worden ook gebruikt voor syntaxmarkering."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Os delimitadores definidos aqui também são usados para realce de sintaxe."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разделители указанные здесь также используются для подсветки синтаксиса."
           }
         },
         "tr" : {
@@ -6281,6 +6587,12 @@
             "value" : "Type"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6291,6 +6603,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Type"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тип"
           }
         },
         "tr" : {

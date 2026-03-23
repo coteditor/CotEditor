@@ -253,6 +253,12 @@
             "value" : "Les icônes facilitent la lecture de la structure, et les syntaxes basées sur tree-sitter prennent désormais en charge les plans repliables reflétant la hiérarchie."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le icone rendono la struttura più semplice da analizzare, e la sintassi basata su tree-sitter supporta outline espandibili che ricalcano la gerarchia."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -263,6 +269,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Symbolen maken de structuur overzichtelijker, en op tree-sitter gebaseerde syntaxisdefinities ondersteunen nu inklapbare overzichten die de hiërarchie weerspiegelen."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ícones facilitam a leitura da estrutura, e as sintaxes baseadas em tree-sitter agora suportam esboços recolhíveis que refletem a hierarquia."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Иконки упрощают понимание структуры, а синтаксис теперь поддерживает сворачиваемые контуры, отражающие иерархию в документе."
           }
         },
         "tr" : {
@@ -324,6 +342,12 @@
             "value" : "Un plan en profondeur"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outline multilivello"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -334,6 +358,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Overzicht met diepte"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esboço com profundidade"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Контуры с глубиной"
           }
         },
         "tr" : {
@@ -395,6 +431,12 @@
             "value" : "Une coloration plus précise, des commentaires plus intelligents et un meilleur comportement de l'éditeur, le tout grâce à un moteur de syntaxe et un format de définition repensés."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Evidenziazioni più accurate, commenti più precisi, comportamento dell'editor migliorato: tutto grazie ad un motore sintattico ed un formato delle definizioni riprogettati."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -405,6 +447,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Nauwkeurigere accentuering, slimmer commentaar en verbeterd editorgedrag, mogelijk gemaakt door een vernieuwde syntaxisengine en definitie-indeling."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Realce mais preciso, comentários mais inteligentes e comportamento aprimorado do editor, tudo impulsionado por um motor de sintaxe e formato de definição redesenhados."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Более точная подсветка синтаксиса, интеллектуальные комментарии и улучшенное поведение редактора — все это благодаря переработанному синтаксическому механизму и формату определений."
           }
         },
         "tr" : {
@@ -466,6 +520,12 @@
             "value" : "Syntaxe plus intelligente, édition plus précise"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintassi più efficiente, editing più preciso"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -476,6 +536,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Slimmere syntaxis, scherpere bewerking"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintaxe mais inteligente, edição mais precisa"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Умный синтаксис и улучшенное редактирование"
           }
         },
         "tr" : {
@@ -609,6 +681,24 @@
             }
           }
         },
+        "it" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Migrata %lld sintassi\ncustom al nuovo formato."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Migrate %lld\nsintassi custom al nuovo formato."
+                }
+              }
+            }
+          }
+        },
         "ja" : {
           "variations" : {
             "plural" : {
@@ -634,6 +724,54 @@
                 "stringUnit" : {
                   "state" : "needs_review",
                   "value" : "%lld aangepaste syntaxisdefinities zijn gemigreerd naar de nieuwe indeling."
+                }
+              }
+            }
+          }
+        },
+        "pt" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sintaxe personalizada migrada para o novo formato."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sintaxes personalizadas migradas para o novo formato."
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Обновлено %lld пользоватьских синтаксисов в новый формат."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Обновлено %lld пользоватьских синтаксисов в новый формат."
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Обновлен %lld пользоватьский синтаксис в новый формат."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Обновлено %lld пользоватьских синтаксисов в новый формат."
                 }
               }
             }
@@ -722,6 +860,12 @@
             "value" : "De nombreuses syntaxes intégrées majeures utilisent désormais tree-sitter, un analyseur moderne basé sur la structure, permettant une reconnaissance du langage plus profonde et plus fiable."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Molte delle principali sintassi incorporate adesso si appoggiano a tree-sitter, un parser di moderna concezione che offre una consapevolezza del linguaggio più profonda ed affidabile."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -732,6 +876,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Veel belangrijke ingebouwde syntaxisdefinities gebruiken nu tree-sitter, een moderne op structuur gebaseerde parser die zorgt voor diepere en betrouwbaardere taalherkenning."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muitas das principais sintaxes integradas agora usam o tree-sitter, um analisador moderno baseado em estrutura que permite um reconhecimento de linguagem mais profundo e confiável."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Основные встроенные синтаксические конструкции теперь используют tree-sitter — современный структурный парсер, обеспечивающий более глубокое и надежное понимание языков программирования."
           }
         },
         "tr" : {
@@ -793,6 +949,12 @@
             "value" : "Propulsé par tree-sitter, là où ça compte le plus"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powered by tree-sitter, where it matters most"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -803,6 +965,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Aangedreven door tree-sitter, waar het het meest telt"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Com tree-sitter, onde mais importa"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мы перешли на формат tree-sitter, инкрементальный парсер"
           }
         },
         "tr" : {
