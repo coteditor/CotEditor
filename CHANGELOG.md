@@ -45,7 +45,7 @@
 
 ### TODO
 
-- Update the migration directories for user syntax definitions.
+- Update the migration directories for user syntax definitions (read the comment in `migrateUserSettings()`).
 - Remove the prerelease notice from the user guide (in specification_changes_on_7.0.html).
 
 

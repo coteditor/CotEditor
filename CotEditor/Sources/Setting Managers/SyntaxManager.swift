@@ -56,7 +56,7 @@ enum SyntaxName {
     // MARK: Setting File Managing Properties
     
     static let directoryName: String = "Syntaxes"
-    static let userDirectoryName: String? = "Syntaxes (Upcoming)"
+    static let userDirectoryName: String? = "Syntaxes (Upcoming 7.0)"
     static let constantSettings: [String: Setting] = [SyntaxName.none: .none]
     let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"] + TreeSitterSyntax.aliasedSyntaxes.map(\.rawValue)
     
