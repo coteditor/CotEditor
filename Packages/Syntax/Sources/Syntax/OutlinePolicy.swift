@@ -28,9 +28,6 @@ import Foundation
 
 struct OutlinePolicy: Sendable {
     
-    typealias TitleFormatter = @Sendable (Syntax.Outline.Kind, String) -> String?
-    
-    
     struct Normalization: Sendable {
         
         var sectionMarkerKinds: Set<Syntax.Outline.Kind> = [.separator]
@@ -52,7 +49,6 @@ struct OutlinePolicy: Sendable {
     }
     
     
-    var titleFormatter: TitleFormatter = { _, title in title }
     var normalization: Normalization = .standard
     var ignoredDepthNodeTypes: Set<String> = []
     

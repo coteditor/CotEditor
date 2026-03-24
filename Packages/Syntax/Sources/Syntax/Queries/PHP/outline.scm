@@ -23,7 +23,9 @@
 
 ; Functions
 (function_definition
-  name: (name) @outline.function)
+  name: (name) @outline.function
+  parameters: (formal_parameters) @outline.signature.parameters)
 
 (method_declaration
-  name: (name) @outline.function)
+  name: (name) @outline.function
+  parameters: (formal_parameters) @outline.signature.parameters)

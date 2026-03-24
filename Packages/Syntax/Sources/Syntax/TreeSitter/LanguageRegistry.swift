@@ -30,12 +30,14 @@ import SwiftTreeSitter
 
 import TreeSitterBash
 import TreeSitterC
+import TreeSitterCPP
 import TreeSitterCSharp
 import TreeSitterCSS
 import TreeSitterGo
 import TreeSitterHTML
 import TreeSitterJava
 import TreeSitterJavaScript
+import TreeSitterKotlin
 import TreeSitterLatex
 import TreeSitterLua
 import TreeSitterMake
@@ -170,12 +172,14 @@ private extension TreeSitterSyntax {
         switch self {
             case .bash: unsafe tree_sitter_bash()
             case .c: unsafe tree_sitter_c()
+            case .cpp: unsafe tree_sitter_cpp()
             case .cSharp: unsafe tree_sitter_c_sharp()
             case .css: unsafe tree_sitter_css()
             case .go: unsafe tree_sitter_go()
             case .html: unsafe tree_sitter_html()
             case .java: unsafe tree_sitter_java()
             case .javaScript: unsafe tree_sitter_javascript()
+            case .kotlin: unsafe tree_sitter_kotlin()
             case .latex: unsafe tree_sitter_latex()
             case .lua: unsafe tree_sitter_lua()
             case .makefile: unsafe tree_sitter_make()

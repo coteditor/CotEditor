@@ -14,4 +14,5 @@
 
 ; Functions
 (function_definition
-  name: (identifier) @outline.function)
+  name: (identifier) @outline.function
+  parameters: (parameters) @outline.signature.parameters)

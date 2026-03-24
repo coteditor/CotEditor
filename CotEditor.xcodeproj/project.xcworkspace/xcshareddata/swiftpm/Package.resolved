@@ -1,5 +1,5 @@
 {
-  "originHash" : "efb1c5e410190bf1d55ef7515ee014328f3ecd6d9cc2bcfd9f899b5deddf172b",
+  "originHash" : "fbd1a28600bda623153a2c0474086a93269103fec5345bcd71a189478ac5409c",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -83,6 +83,15 @@
       }
     },
     {
+      "identity" : "tree-sitter-cpp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tree-sitter/tree-sitter-cpp",
+      "state" : {
+        "revision" : "f41e1a044c8a84ea9fa8577fdd2eab92ec96de02",
+        "version" : "0.23.4"
+      }
+    },
+    {
       "identity" : "tree-sitter-css",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/1024jp/tree-sitter-css",
@@ -125,6 +134,15 @@
       "state" : {
         "branch" : "swiftPackage",
         "revision" : "0f459c8e007c8ab6488577e0877ee27df0ddcdfc"
+      }
+    },
+    {
+      "identity" : "tree-sitter-kotlin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fwcd/tree-sitter-kotlin",
+      "state" : {
+        "revision" : "e1a2d5ad1f61f5740677183cd4125bb071cd2f30",
+        "version" : "0.3.8"
       }
     },
     {

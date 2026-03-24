@@ -10,7 +10,7 @@
 
 ### New Features
 
-- Adopt smarter syntax parsing powered by tree-sitter for multiple built-in syntaxes, improving syntax highlighting and outline extraction in C, C#, CSS, Go, HTML, Java, JavaScript, LaTeX, Lua, Makefile, Markdown (outline extraction only), PHP, Python, Ruby, Rust, Scala, Shell Script, SQL, Swift, and TypeScript.
+- Adopt smarter syntax parsing powered by tree-sitter for multiple built-in syntaxes, improving syntax highlighting and outline extraction in C, C#, C++, CSS, Go, HTML, Java, JavaScript, Kotlin, LaTeX, Lua, Makefile, Markdown (outline extraction only), PHP, Python, Ruby, Rust, Scala, Shell Script, SQL, Swift, and TypeScript.
 - Display symbolic icons next to outline items.
 - Allow collapsing outline items in the Outline inspector for tree-sitter-based and structured document syntaxes.
 - Make smart indentation aware of the current syntax.
@@ -40,7 +40,7 @@
 
 ### Known Issues
 
-- The text added to CotEditor 7.0.0 are not localized yet in Chinese (Hong Kong), Czech, Italian, Korean, Polish, Portuguese, and Russian yet.
+- The text added to CotEditor 7.0.0 are not localized yet in Chinese (Hong Kong), Czech, Korean, and Polish yet.
 
 
 ### TODO

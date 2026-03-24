@@ -10,11 +10,13 @@ The following languages are currently supported by tree-sitter in this package:
 - Bash
 - C
 - C#
+- C++
 - CSS
 - Go
 - HTML
 - Java
 - JavaScript
+- Kotlin
 - LaTeX
 - Lua
 - Makefile

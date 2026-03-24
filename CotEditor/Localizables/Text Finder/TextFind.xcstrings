@@ -2516,6 +2516,12 @@
             "value" : "Résultat %1$lld sur %2$lld."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trovato %1$lld su %2$lld."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2526,6 +2532,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Resultaat %1$lld van %2$lld."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correspondência %1$lld de %2$lld."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найдено %1$lld из %2$lld."
           }
         },
         "tr" : {

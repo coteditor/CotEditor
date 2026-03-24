@@ -266,6 +266,12 @@
             "value" : "Conteneur"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contenitore"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -276,6 +282,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Container"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contêiner"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блок"
           }
         },
         "tr" : {
@@ -343,6 +361,12 @@
             "value" : "Fonction"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funzione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -353,6 +377,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Functie"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Função"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Функция"
           }
         },
         "tr" : {
@@ -646,6 +682,12 @@
             "value" : "Marqueur"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Segno"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -656,6 +698,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Markering"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marca"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Маркер"
           }
         },
         "tr" : {
@@ -949,6 +1003,12 @@
             "value" : "Valeur"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valore"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -959,6 +1019,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Waarde"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valor"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Значение"
           }
         },
         "tr" : {

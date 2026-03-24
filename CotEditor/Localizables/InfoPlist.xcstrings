@@ -1416,6 +1416,12 @@
             "value" : "Syntaxe CotEditor"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintassi CotEditor"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1426,6 +1432,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "CotEditor-syntaxis"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sintaxe do CotEditor"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor Синтаксис"
           }
         },
         "tr" : {

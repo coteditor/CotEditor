@@ -10309,8 +10309,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ricolora tutto"
+            "state" : "translated",
+            "value" : "Ripristina l'analisi della sintassi"
           }
         },
         "ja" : {
@@ -10339,14 +10339,14 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Recolorir Tudo"
+            "state" : "translated",
+            "value" : "Redefinir Análise de Sintaxe"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Изменить цвета"
+            "state" : "translated",
+            "value" : "Сбросить синтаксис"
           }
         },
         "tr" : {

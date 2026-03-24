@@ -1,0 +1,510 @@
+[
+  {
+    "text" : "#define",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#elif",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#elifdef",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#elifndef",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#else",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#endif",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#error",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#if",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#ifdef",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#ifndef",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#include",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#line",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#pragma",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#undef",
+    "type" : "attributes"
+  },
+  {
+    "text" : "#warning",
+    "type" : "attributes"
+  },
+  {
+    "text" : "0",
+    "type" : "numbers"
+  },
+  {
+    "text" : "alignas",
+    "type" : "keywords"
+  },
+  {
+    "text" : "alignof",
+    "type" : "keywords"
+  },
+  {
+    "text" : "and",
+    "type" : "keywords"
+  },
+  {
+    "text" : "and_eq",
+    "type" : "keywords"
+  },
+  {
+    "text" : "asm",
+    "type" : "keywords"
+  },
+  {
+    "text" : "auto",
+    "type" : "keywords"
+  },
+  {
+    "text" : "bitand",
+    "type" : "keywords"
+  },
+  {
+    "text" : "bitor",
+    "type" : "keywords"
+  },
+  {
+    "text" : "bool",
+    "type" : "keywords"
+  },
+  {
+    "text" : "bool",
+    "type" : "types"
+  },
+  {
+    "text" : "break",
+    "type" : "keywords"
+  },
+  {
+    "text" : "case",
+    "type" : "keywords"
+  },
+  {
+    "text" : "catch",
+    "type" : "keywords"
+  },
+  {
+    "text" : "char",
+    "type" : "keywords"
+  },
+  {
+    "text" : "char",
+    "type" : "types"
+  },
+  {
+    "text" : "char16_t",
+    "type" : "keywords"
+  },
+  {
+    "text" : "char16_t",
+    "type" : "types"
+  },
+  {
+    "text" : "char32_t",
+    "type" : "keywords"
+  },
+  {
+    "text" : "char32_t",
+    "type" : "types"
+  },
+  {
+    "text" : "char8_t",
+    "type" : "keywords"
+  },
+  {
+    "text" : "class",
+    "type" : "keywords"
+  },
+  {
+    "text" : "co_await",
+    "type" : "keywords"
+  },
+  {
+    "text" : "co_return",
+    "type" : "keywords"
+  },
+  {
+    "text" : "co_yield",
+    "type" : "keywords"
+  },
+  {
+    "text" : "compl",
+    "type" : "keywords"
+  },
+  {
+    "text" : "concept",
+    "type" : "keywords"
+  },
+  {
+    "text" : "const",
+    "type" : "keywords"
+  },
+  {
+    "text" : "const_cast",
+    "type" : "keywords"
+  },
+  {
+    "text" : "consteval",
+    "type" : "keywords"
+  },
+  {
+    "text" : "constexpr",
+    "type" : "keywords"
+  },
+  {
+    "text" : "constinit",
+    "type" : "keywords"
+  },
+  {
+    "text" : "continue",
+    "type" : "keywords"
+  },
+  {
+    "text" : "decltype",
+    "type" : "keywords"
+  },
+  {
+    "text" : "default",
+    "type" : "keywords"
+  },
+  {
+    "text" : "delete",
+    "type" : "keywords"
+  },
+  {
+    "text" : "do",
+    "type" : "keywords"
+  },
+  {
+    "text" : "double",
+    "type" : "keywords"
+  },
+  {
+    "text" : "double",
+    "type" : "types"
+  },
+  {
+    "text" : "dynamic_cast",
+    "type" : "keywords"
+  },
+  {
+    "text" : "else",
+    "type" : "keywords"
+  },
+  {
+    "text" : "enum",
+    "type" : "keywords"
+  },
+  {
+    "text" : "explicit",
+    "type" : "keywords"
+  },
+  {
+    "text" : "export",
+    "type" : "keywords"
+  },
+  {
+    "text" : "extern",
+    "type" : "keywords"
+  },
+  {
+    "text" : "false",
+    "type" : "keywords"
+  },
+  {
+    "text" : "false",
+    "type" : "values"
+  },
+  {
+    "text" : "float",
+    "type" : "keywords"
+  },
+  {
+    "text" : "float",
+    "type" : "types"
+  },
+  {
+    "text" : "for",
+    "type" : "keywords"
+  },
+  {
+    "text" : "friend",
+    "type" : "keywords"
+  },
+  {
+    "text" : "goto",
+    "type" : "keywords"
+  },
+  {
+    "text" : "if",
+    "type" : "keywords"
+  },
+  {
+    "text" : "inline",
+    "type" : "keywords"
+  },
+  {
+    "text" : "int",
+    "type" : "keywords"
+  },
+  {
+    "text" : "int",
+    "type" : "types"
+  },
+  {
+    "text" : "likely",
+    "type" : "keywords"
+  },
+  {
+    "text" : "long",
+    "type" : "keywords"
+  },
+  {
+    "text" : "long",
+    "type" : "types"
+  },
+  {
+    "text" : "mutable",
+    "type" : "keywords"
+  },
+  {
+    "text" : "namespace",
+    "type" : "keywords"
+  },
+  {
+    "text" : "new",
+    "type" : "keywords"
+  },
+  {
+    "text" : "no_unique_address",
+    "type" : "keywords"
+  },
+  {
+    "text" : "noexcept",
+    "type" : "keywords"
+  },
+  {
+    "text" : "not",
+    "type" : "keywords"
+  },
+  {
+    "text" : "not_eq",
+    "type" : "keywords"
+  },
+  {
+    "text" : "NULL",
+    "type" : "values"
+  },
+  {
+    "text" : "nullptr",
+    "type" : "keywords"
+  },
+  {
+    "text" : "operator",
+    "type" : "keywords"
+  },
+  {
+    "text" : "or",
+    "type" : "keywords"
+  },
+  {
+    "text" : "or_eq",
+    "type" : "keywords"
+  },
+  {
+    "text" : "private",
+    "type" : "keywords"
+  },
+  {
+    "text" : "protected",
+    "type" : "keywords"
+  },
+  {
+    "text" : "public",
+    "type" : "keywords"
+  },
+  {
+    "text" : "register",
+    "type" : "keywords"
+  },
+  {
+    "text" : "reinterpret_cast",
+    "type" : "keywords"
+  },
+  {
+    "text" : "requires",
+    "type" : "keywords"
+  },
+  {
+    "text" : "return",
+    "type" : "keywords"
+  },
+  {
+    "text" : "short",
+    "type" : "keywords"
+  },
+  {
+    "text" : "short",
+    "type" : "types"
+  },
+  {
+    "text" : "signed",
+    "type" : "keywords"
+  },
+  {
+    "text" : "signed",
+    "type" : "types"
+  },
+  {
+    "text" : "sizeof",
+    "type" : "keywords"
+  },
+  {
+    "text" : "static",
+    "type" : "keywords"
+  },
+  {
+    "text" : "static_assert",
+    "type" : "keywords"
+  },
+  {
+    "text" : "static_cast",
+    "type" : "keywords"
+  },
+  {
+    "text" : "struct",
+    "type" : "keywords"
+  },
+  {
+    "text" : "switch",
+    "type" : "keywords"
+  },
+  {
+    "text" : "template",
+    "type" : "keywords"
+  },
+  {
+    "text" : "this",
+    "type" : "keywords"
+  },
+  {
+    "text" : "this",
+    "type" : "variables"
+  },
+  {
+    "text" : "thread_local",
+    "type" : "keywords"
+  },
+  {
+    "text" : "throw",
+    "type" : "keywords"
+  },
+  {
+    "text" : "true",
+    "type" : "keywords"
+  },
+  {
+    "text" : "true",
+    "type" : "values"
+  },
+  {
+    "text" : "try",
+    "type" : "keywords"
+  },
+  {
+    "text" : "typedef",
+    "type" : "keywords"
+  },
+  {
+    "text" : "typeid",
+    "type" : "keywords"
+  },
+  {
+    "text" : "typename",
+    "type" : "keywords"
+  },
+  {
+    "text" : "union",
+    "type" : "keywords"
+  },
+  {
+    "text" : "unlikely",
+    "type" : "keywords"
+  },
+  {
+    "text" : "unsigned",
+    "type" : "keywords"
+  },
+  {
+    "text" : "unsigned",
+    "type" : "types"
+  },
+  {
+    "text" : "using",
+    "type" : "keywords"
+  },
+  {
+    "text" : "virtual",
+    "type" : "keywords"
+  },
+  {
+    "text" : "void",
+    "type" : "keywords"
+  },
+  {
+    "text" : "volatile",
+    "type" : "keywords"
+  },
+  {
+    "text" : "wchar_t",
+    "type" : "keywords"
+  },
+  {
+    "text" : "wchar_t",
+    "type" : "types"
+  },
+  {
+    "text" : "while",
+    "type" : "keywords"
+  },
+  {
+    "text" : "xor",
+    "type" : "keywords"
+  },
+  {
+    "text" : "xor_eq",
+    "type" : "keywords"
+  }
+]
