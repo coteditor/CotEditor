@@ -40,13 +40,13 @@
 
 ### Known Issues
 
-- The text added to CotEditor 7.0.0 are not localized yet in Czech, Korean, and Polish yet.
+- The text added to CotEditor 7.0.0 are not localized yet in Czech, Korean, and Polish.
 
 
 ### TODO
 
 - Update the migration directories for user syntax definitions.
-- Remove the prerelease notice from the user guide (in specification_changes_on_7.0.html and releasenotes.html).
+- Remove the prerelease notice from the user guide (in specification_changes_on_7.0.html).
 
 
 
