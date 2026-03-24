@@ -1268,6 +1268,12 @@
             "state" : "translated",
             "value" : "區塊分隔符號："
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "區塊分隔符號："
+          }
         }
       }
     },
@@ -1507,6 +1513,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字元分隔符號："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "字元分隔符號："
@@ -1786,6 +1798,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分隔符號"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "分隔符號"
@@ -2460,6 +2478,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "逸出字元"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跳脫字元"
           }
         }
       }
@@ -4448,6 +4472,12 @@
             "state" : "translated",
             "value" : "巢狀"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "巢狀"
+          }
         }
       }
     },
@@ -4722,6 +4752,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前綴"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "前綴"
@@ -5108,6 +5144,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "字串分隔符號："
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "字串分隔符號："
@@ -5515,6 +5557,12 @@
             "state" : "translated",
             "value" : "逸出字元必須是UTF-16碼元中的單一字元。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跳脫字元必須是UTF-16碼元當中的單一字元。"
+          }
         }
       }
     },
@@ -5585,6 +5633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "可巢狀區塊註解必須使用不同的開始與結束分隔符號。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可巢狀的區塊註解必須使用不同的開頭與結尾分隔符號。"
           }
         }
       }
@@ -6068,6 +6122,12 @@
             "state" : "translated",
             "value" : "區塊分隔符號用於輸入時的自動縮排。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "區塊分隔符號用於輸入時自動縮排。"
+          }
         }
       }
     },
@@ -6135,8 +6195,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "此處定義的註解分隔符號亦會用於語法重點標示。"
+            "state" : "translated",
+            "value" : "此處定義的分隔符號亦會用於語法重點標示。"
           }
         }
       }
