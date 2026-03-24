@@ -300,6 +300,12 @@
             "state" : "translated",
             "value" : "圖示讓結構更容易掃描，而且基於tree-sitter的語法現在支援可收合的大綱，能反映階層。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "圖示使結構更易掃描；基於tree-sitter的語法現已支援可摺疊大綱，可呈現代碼階層。"
+          }
         }
       }
     },
@@ -388,6 +394,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "深度大綱"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "大綱結構，層次分明"
           }
         }
       }
@@ -478,6 +490,12 @@
             "state" : "translated",
             "value" : "更準確的醒目顯示、更智慧的註解，以及改善的編輯器行為，全由重新設計的語法引擎與定義格式提供支援。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透過重新設計的語法引擎與定義格式，提供更準確的重點標示、更智能的註解功能，以及更流暢的編輯器反應。"
+          }
         }
       }
     },
@@ -566,6 +584,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "更智慧的語法，更精準的編輯"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "語法分析更精明，編輯體驗更俐落"
           }
         }
       }
@@ -818,6 +842,18 @@
               }
             }
           }
+        },
+        "zh-HK" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "已將%lld個自訂語法轉移至新格式。"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -907,6 +943,12 @@
             "state" : "translated",
             "value" : "許多主要內建語法現在使用tree-sitter，這是一種現代的基於結構的剖析器，能夠實現更深入且更可靠的語言感知。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "多款主要內置語法現已採用tree-sitter。這款現代化的結構化解析器，令編輯器能更深入、更可靠地辨識程式語言。"
+          }
         }
       }
     },
@@ -995,6 +1037,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在最需要之處由tree-sitter提供支援"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "於關鍵位置，由tree-sitter全力驅動"
           }
         }
       }

@@ -2563,6 +2563,12 @@
             "state" : "translated",
             "value" : "在%2$lld項配對結果中的第 %1$lld 項。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在%2$lld個符合項目中的第%1$lld個。"
+          }
         }
       }
     },
