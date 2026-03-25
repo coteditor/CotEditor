@@ -1,5 +1,5 @@
 //
-//  HighlightQueryValidationTests.swift
+//  TreeSitterQueriesTests.swift
 //  SyntaxTests
 //
 //  CotEditor
@@ -28,7 +28,7 @@ import Foundation
 import Testing
 @testable import Syntax
 
-struct HighlightQueryValidationTests {
+struct TreeSitterQueriesTests {
     
     @Test(arguments: TreeSitterSyntax.allCases)
     func highlightsCaptureRootsAreAllowed(syntax: TreeSitterSyntax) throws {
