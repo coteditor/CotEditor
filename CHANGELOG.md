@@ -25,6 +25,7 @@
 
 - Improve the syntax-highlighting algorithm for legacy regex-based parsing.
 - Update built-in syntaxes.
+- Use the user’s window size setting for the Zoom action, if available.
 - Improve general text-editing performance.
 - Hide line numbers in the window titlebar area when hiding the navigation bar on macOS Tahoe 26.
 - [trivial] Adjust the About CotEditor window.

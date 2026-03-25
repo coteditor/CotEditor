@@ -220,6 +220,29 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Window Delegate
     
+    func windowWillUseStandardFrame(_ window: NSWindow, defaultFrame newFrame: NSRect) -> NSRect {
+        
+        let width = UserDefaults.standard[.windowWidth]
+            .flatMap { $0 >= max(window.minSize.width, 1) ? $0 : nil }
+        let height = UserDefaults.standard[.windowHeight]
+            .flatMap { $0 >= max(window.minSize.height, 1) ? $0 : nil }
+        
+        guard width != nil || height != nil else { return newFrame }
+        
+        var frame = window.frame
+        if let width {
+            frame.size.width = width
+        }
+        
+        if let height {
+            frame.origin.y = frame.minY - (height - frame.height)
+            frame.size.height = height
+        }
+        
+        return (frame.size != newFrame.size) ? frame : newFrame
+    }
+    
+    
     func windowDidResize(_ notification: Notification) {
         
         self.saveWindowFrame()
