@@ -1428,6 +1428,12 @@
             "value" : "CotEditorシンタックス"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor 구문"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",

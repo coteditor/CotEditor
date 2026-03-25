@@ -10321,8 +10321,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "다시 칠하기"
+            "state" : "translated",
+            "value" : "구문 분석 재설정"
           }
         },
         "nl" : {

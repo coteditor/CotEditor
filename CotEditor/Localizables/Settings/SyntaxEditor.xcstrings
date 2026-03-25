@@ -1251,6 +1251,12 @@
             "value" : "ブロック区切り:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "블록 구분자:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1338,6 +1344,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "内蔵"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "내장"
           }
         },
         "nl" : {
@@ -1534,6 +1546,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字区切り:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문자 구분자:"
           }
         },
         "nl" : {
@@ -1839,6 +1857,12 @@
             "value" : "区切り文字"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구분자"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -2140,6 +2164,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "表示パターン"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "표시 패턴"
           }
         },
         "nl" : {
@@ -2550,6 +2580,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "エスケープ文字"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이스케이프 문자"
           }
         },
         "nl" : {
@@ -4351,6 +4387,12 @@
             "value" : "行頭のみ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "줄 시작만"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4437,6 +4479,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "アプリによる管理"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앱에서 관리"
           }
         },
         "nl" : {
@@ -4528,6 +4576,12 @@
             "value" : "複数行"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여러 줄"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4615,6 +4669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ネスト"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "중첩"
           }
         },
         "nl" : {
@@ -4917,6 +4977,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "プレフィックス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "접두사"
           }
         },
         "nl" : {
@@ -5327,6 +5393,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文字列区切り:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문자열 구분자:"
           }
         },
         "nl" : {
@@ -5756,6 +5828,12 @@
             "value" : "エスケープ文字はUTF-16コード単位で1文字である必要があります。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이스케이프 문자는 UTF-16 코드 유닛 기준 단일 문자여야 합니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5849,6 +5927,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ネスト可能なブロックコメントは開始と終了に異なる文字列が必要です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "중첩 가능한 블록 주석은 시작과 끝 구분자가 달라야 합니다."
           }
         },
         "nl" : {
@@ -6287,6 +6371,12 @@
             "value" : "この言語のシンタックス解析には、tree-sitterという構造ベースの汎用パーサを使っています。\\n抽出ルールはアプリによって管理されているため、カスタマイズはできません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 언어는 구문 분석을 위해 tree-sitter라는 구조 기반의 범용 파서를 사용합니다.\n추출 규칙은 앱에서 관리하므로 사용자가 직접 변경할 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -6375,6 +6465,12 @@
             "value" : "ブロック区切りは入力中の自動インデントに使用されます。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "블록 구분자는 입력 중 자동 들여쓰기에 사용됩니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -6461,6 +6557,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ここで定義した区切り記号はシンタックスハイライトにも使用されます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여기서 정의한 구분자는 구문 하이라이트에도 사용됩니다."
           }
         },
         "nl" : {
@@ -6657,6 +6759,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "タイプ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유형"
           }
         },
         "nl" : {

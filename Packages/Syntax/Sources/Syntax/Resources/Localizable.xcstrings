@@ -278,6 +278,12 @@
             "value" : "コンテナ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "컨테이너"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -371,6 +377,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "関数"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "함수"
           }
         },
         "nl" : {
@@ -694,6 +706,12 @@
             "value" : "マーク"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "표시"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1013,6 +1031,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "値"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "값"
           }
         },
         "nl" : {

@@ -2528,6 +2528,12 @@
             "value" : "\\(%2$lld)件中\\(%1$lld)件目"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%2$lld개 중 %1$lld번째 일치 항목."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",

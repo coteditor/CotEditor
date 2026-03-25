@@ -42,7 +42,7 @@
 
 ### Known Issues
 
-- The text added to CotEditor 7.0.0 are not localized yet in Czech, Korean, and Polish.
+- The text added to CotEditor 7.0.0 are not localized yet in Czech and Polish.
 
 
 ### TODO

@@ -265,6 +265,12 @@
             "value" : "アイコンが構造の把握を容易にし、tree-sitterベースのシンタックスでは階層を反映した折りたたみ可能なアウトラインをサポートします。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이콘으로 구조를 한눈에 파악하고, tree-sitter 기반 구문은 계층 구조를 반영한 접을 수 있는 개요를 지원합니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -358,6 +364,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "奥行きのあるアウトライン"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "깊이 있는 개요"
           }
         },
         "nl" : {
@@ -455,6 +467,12 @@
             "value" : "刷新されたシンタックスエンジンと定義フォーマットにより、より正確なハイライト、よりスマートなコメント機能、そして改善されたエディタの動作を実現しました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "재설계된 구문 엔진과 정의 형식을 기반으로, 더욱 정확한 하이라이트, 스마트한 주석 처리, 향상된 편집기 동작을 경험하세요."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -548,6 +566,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "よりスマートなシンタックス、より快適な編集"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "더 스마트한 구문, 더 정확한 편집"
           }
         },
         "nl" : {
@@ -735,6 +759,18 @@
             }
           }
         },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "사용자 정의 구문 %lld개를 새 형식으로 마이그레이션했습니다."
+                }
+              }
+            }
+          }
+        },
         "nl" : {
           "variations" : {
             "plural" : {
@@ -908,6 +944,12 @@
             "value" : "主要な組み込みシンタックスが、構造ベースのモダンなパーサであるtree-sitterを採用。より深く確かな言語認識を可能にします。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이제 주요 내장 구문의 상당수가 tree-sitter를 사용합니다. tree-sitter는 더 깊고 신뢰할 수 있는 언어 인식을 제공하는 현대적인 구조 기반 파서입니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1001,6 +1043,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "tree-sitterで、もっと深く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "중요한 곳에서 tree-sitter를 활용"
           }
         },
         "nl" : {
