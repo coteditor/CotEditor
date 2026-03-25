@@ -26,6 +26,7 @@
 - Improve the syntax-highlighting algorithm for legacy regex-based parsing.
 - Update built-in syntaxes.
 - Improve general text-editing performance.
+- Hide line numbers in the window titlebar area when hiding the navigation bar on macOS Tahoe 26.
 - [trivial] Adjust the About CotEditor window.
 - [trivial] Rename the Recolor All command to “Reset Syntax Analysis” and move it to the Format menu.
 - [trivial] Remove the Restore Defaults button in the syntax editor.

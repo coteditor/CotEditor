@@ -218,6 +218,9 @@ final class LineNumberView: NSView {
         context.setFillColor(self.foregroundColor().cgColor)
         context.setStrokeColor(self.foregroundColor(.stroke).cgColor)
         
+        // workaround issue #1938 that numbers don't get the soft edge effect (2026-03, macOS 26.4)
+        context.clip(to: self.safeAreaRect)
+        
         let isVerticalText = textView.layoutOrientation == .vertical
         let scale = textView.scale
         
