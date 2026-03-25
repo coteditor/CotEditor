@@ -102,11 +102,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         }
         
         // set window size
-        let width = UserDefaults.standard[.windowWidth] ?? 0
-        let height = UserDefaults.standard[.windowHeight] ?? 0
-        if width > 0 || height > 0 {
-            let frameSize = NSSize(width: width > window.minSize.width ? width : window.frame.width,
-                                   height: height > window.minSize.height ? height : window.frame.height)
+        if let frameSize = Self.userFrameSize(for: window) {
             window.setFrame(NSRect(origin: window.frame.origin, size: frameSize), display: false)
         }
         
@@ -222,21 +218,16 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     func windowWillUseStandardFrame(_ window: NSWindow, defaultFrame newFrame: NSRect) -> NSRect {
         
-        let width = UserDefaults.standard[.windowWidth]
-            .flatMap { $0 >= max(window.minSize.width, 1) ? $0 : nil }
-        let height = UserDefaults.standard[.windowHeight]
-            .flatMap { $0 >= max(window.minSize.height, 1) ? $0 : nil }
-        
-        guard width != nil || height != nil else { return newFrame }
+        guard let frameSize = Self.userFrameSize(for: window) else { return newFrame }
         
         var frame = window.frame
-        if let width {
-            frame.size.width = width
+        if frameSize.width != frame.width {
+            frame.size.width = frameSize.width
         }
         
-        if let height {
-            frame.origin.y = frame.minY - (height - frame.height)
-            frame.size.height = height
+        if frameSize.height != frame.height {
+            frame.origin.y = frame.minY - (frameSize.height - frame.height)
+            frame.size.height = frameSize.height
         }
         
         return (frame.size != newFrame.size) ? frame : newFrame
@@ -299,6 +290,27 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     
     // MARK: Private Methods
+    
+    /// Returns the user-defined frame size for the given window, if set.
+    ///
+    /// - Parameter window: The window to calculate the user-defined frame size for.
+    /// - Returns: The user-defined frame size, or `nil` if no size is set.
+    private static func userFrameSize(for window: NSWindow) -> NSSize? {
+        
+        let minSize = NSSize(width: max(window.minSize.width, 1),
+                             height: max(window.minSize.height, 1))
+        
+        let width = UserDefaults.standard[.windowWidth]
+            .flatMap { $0 > 0 ? max($0, minSize.width) : nil }
+        let height = UserDefaults.standard[.windowHeight]
+            .flatMap { $0 > 0 ? max($0, minSize.height) : nil }
+        
+        guard width != nil || height != nil else { return nil }
+        
+        return NSSize(width: width ?? window.frame.width,
+                      height: height ?? window.frame.height)
+    }
+    
     
     /// Updates document by passing it to the content view controller and updating the observation.
     ///
