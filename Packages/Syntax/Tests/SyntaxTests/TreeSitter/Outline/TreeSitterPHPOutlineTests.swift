@@ -28,12 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterPHPOutlineTests {
+struct TreeSitterPHPOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlinePHPIncludesParameterClauses() async throws {
+    @Test func outlineIncludesParameterClauses() async throws {
         
         let source = #"""
             <?php

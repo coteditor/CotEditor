@@ -28,12 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterRubyOutlineTests {
+struct TreeSitterRubyOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlineRubyIncludesMethodParameters() async throws {
+    @Test func outlineIncludesMethodParameters() async throws {
         
         let source = #"""
             def foo a, **b

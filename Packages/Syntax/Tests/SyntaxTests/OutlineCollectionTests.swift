@@ -1,5 +1,5 @@
 //
-//  OutlineTests.swift
+//  OutlineCollectionTests.swift
 //  SyntaxTests
 //
 //  CotEditor
@@ -29,7 +29,7 @@ import StringUtils
 import Testing
 @testable import Syntax
 
-struct OutlineTests {
+struct OutlineCollectionTests {
     
     private let items: [OutlineItem] = [
         OutlineItem(title: "dog", range: NSRange(location: 10, length: 5)),         // 0
@@ -88,31 +88,5 @@ struct OutlineTests {
         #expect(self.items.compactMap { $0.filter("cat", keyPath: \.title) }.count == 0)
         #expect(self.items.compactMap { $0.filter("dog", keyPath: \.title) }.count == 2)
         #expect(self.items.compactMap { $0.filter("dow", keyPath: \.title) }.count == 1)
-    }
-    
-    
-    @Test func removingDuplicateIDs() throws {
-        
-        struct TestItem: Identifiable, Equatable {
-            
-            var id: Int
-            var value: String
-        }
-        
-        let items: [TestItem] = [
-            TestItem(id: 1, value: "a"),
-            TestItem(id: 1, value: "b"),
-            TestItem(id: 2, value: "c"),
-            TestItem(id: 3, value: "d"),
-            TestItem(id: 3, value: "e"),
-        ]
-        
-        let uniqueItems = items.removingDuplicateIDs
-        
-        #expect(uniqueItems == [
-            TestItem(id: 1, value: "a"),
-            TestItem(id: 2, value: "c"),
-            TestItem(id: 3, value: "d"),
-        ])
     }
 }

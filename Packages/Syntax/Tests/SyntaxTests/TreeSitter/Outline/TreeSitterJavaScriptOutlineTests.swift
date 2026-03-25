@@ -28,12 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterJavaScriptOutlineTests {
+struct TreeSitterJavaScriptOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlineJavaScriptIncludesParameterClauses() async throws {
+    @Test func outlineIncludesParameterClauses() async throws {
         
         let source = #"""
             class User {

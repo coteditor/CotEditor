@@ -28,12 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterKotlinOutlineTests {
+struct TreeSitterKotlinOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlineKotlinIncludesFunctionParameters() async throws {
+    @Test func outlineIncludesFunctionParameters() async throws {
         
         let source = #"""
             interface Formatter {

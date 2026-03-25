@@ -28,12 +28,29 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterSQLOutlineTests {
+struct TreeSitterSQLOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlineSQLIncludesSchemaAndArgumentTypes() async throws {
+    @Test func outlineFlattensTopLevelEntries() async throws {
+        
+        let source = #"""
+            CREATE TABLE users (id INTEGER);
+            CREATE FUNCTION twice(i INTEGER) RETURNS INTEGER AS $$
+              SELECT i * 2;
+            $$ LANGUAGE SQL;
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["users", "twice(INTEGER)"])
+        #expect(outline.map(\.kind) == [.container, .function])
+        #expect(outline.map(\.indent.level) == [0, 0])
+    }
+    
+    
+    @Test func outlineIncludesSchemaAndArgumentTypes() async throws {
         
         let source = #"""
             CREATE FUNCTION public.twice(i integer) RETURNS integer AS $$

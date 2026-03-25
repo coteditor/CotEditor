@@ -28,12 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterScalaOutlineTests {
+struct TreeSitterScalaOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlineScalaIncludesParameterClauses() async throws {
+    @Test func outlineIncludesParameterClauses() async throws {
         
         let source = #"""
             trait Foldable {

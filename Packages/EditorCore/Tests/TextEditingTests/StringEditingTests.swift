@@ -5,7 +5,7 @@
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by OpenAI Codex on 2026-03-23.
+//  Created by 1024jp on 2026-03-23.
 //
 //  ---------------------------------------------------------------------------
 //

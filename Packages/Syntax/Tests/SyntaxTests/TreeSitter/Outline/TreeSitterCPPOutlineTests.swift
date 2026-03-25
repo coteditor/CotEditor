@@ -28,12 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterCPPOutlineTests {
+struct TreeSitterCPPOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlineCppClassAndMethods() async throws {
+    @Test func outlineClassAndMethods() async throws {
         
         let source = #"""
             namespace demo {

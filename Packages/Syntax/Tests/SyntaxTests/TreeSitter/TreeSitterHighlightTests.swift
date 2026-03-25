@@ -30,7 +30,7 @@ import StringUtils
 import ValueRange
 @testable import Syntax
 
-actor TreeSitterHighlightTests {
+struct TreeSitterHighlightTests {
     
     private let registry: LanguageRegistry = .shared
     

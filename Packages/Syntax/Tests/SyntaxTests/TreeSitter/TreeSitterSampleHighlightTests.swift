@@ -1,11 +1,11 @@
 //
-//  HighlightCategoryConstraintTests.swift
+//  TreeSitterSampleHighlightTests.swift
 //  SyntaxTests
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2026-02-16.
+//  Created by 1024jp on 2026-03-25.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -28,29 +28,9 @@ import Foundation
 import Testing
 @testable import Syntax
 
-struct HighlightQueriesTests {
+struct TreeSitterSampleHighlightTests {
     
-    @Test(arguments: TreeSitterSyntax.allCases)
-    func highlightsCaptureRootsAreAllowed(syntax: TreeSitterSyntax) throws {
-        
-        guard syntax.features.contains(.highlight) else { return }
-        
-        let highlightsURL = LanguageRegistry.shared.queriesURL(for: syntax)
-            .appending(component: "highlights.scm")
-        let lines = try String(contentsOf: highlightsURL, encoding: .utf8)
-            .components(separatedBy: .newlines)
-        
-        let allowedRoots = Set(SyntaxType.allCases.map(\.rawValue))
-        for (index, line) in lines.enumerated() {
-            let code = line.prefix { $0 != ";" }
-            
-            for capture in Self.captures(in: code) {
-                let root = capture.split(separator: ".", maxSplits: 1).first.map(String.init) ?? capture
-                
-                #expect(allowedRoots.contains(root), "\(highlightsURL.path):\(index + 1): @\(capture)")
-            }
-        }
-    }
+    private let registry: LanguageRegistry = .shared
     
     
     @Test(arguments: TreeSitterSyntax.allCases)
@@ -58,13 +38,11 @@ struct HighlightQueriesTests {
         
         guard syntax.features.contains(.highlight) else { return }
         
-        let samplesDirectoryURL = try #require(Bundle.module.url(forResource: "Samples", withExtension: nil))
-        let sampleURL = samplesDirectoryURL
-            .appending(component: syntax.sampleFilename, directoryHint: .notDirectory)
+        let sampleURL = try self.sampleURL(for: syntax)
         let source = try String(contentsOf: sampleURL, encoding: .utf8)
-        
-        let parser = try LanguageRegistry.shared.parser(syntax: syntax)
-        let result = try #require(await parser.parseHighlights(in: source, range: NSRange(..<source.utf16.count)))
+        let config = try self.registry.configuration(for: syntax)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: syntax)
+        let result = try #require(await client.parseHighlights(in: source, range: NSRange(location: 0, length: source.utf16.count)))
         
         #expect(result.highlights.count > 10)
     }
@@ -72,20 +50,19 @@ struct HighlightQueriesTests {
     
     // MARK: Private Methods
     
-    /// Extracts highlight capture names while ignoring non-capture `@` in strings and identifiers.
-    private static func captures(in line: Substring) -> [String] {
+    private func sampleURL(for syntax: TreeSitterSyntax) throws -> URL {
         
-        line.matches(of: /(?:^|[^"A-Za-z0-9_])@([A-Za-z][A-Za-z0-9_.]*)/)
-            .map { String($0.output.1) }
+        guard let samplesURL = Bundle.module.url(forResource: "Samples", withExtension: nil) else {
+            throw CocoaError(.fileReadNoSuchFile)
+        }
+        
+        return samplesURL.appending(component: self.sampleFilename(for: syntax), directoryHint: .notDirectory)
     }
-}
-
-
-private extension TreeSitterSyntax {
     
-    var sampleFilename: String {
+    
+    private func sampleFilename(for syntax: TreeSitterSyntax) -> String {
         
-        switch self {
+        switch syntax {
             case .bash: "test.sh"
             case .c: "test.c"
             case .cpp: "test.cpp"

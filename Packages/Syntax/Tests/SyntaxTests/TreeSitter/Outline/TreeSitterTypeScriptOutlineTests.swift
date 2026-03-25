@@ -28,12 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterTypeScriptOutlineTests {
+struct TreeSitterTypeScriptOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlineTypeScriptIncludesTypeParametersAndAnnotations() async throws {
+    @Test func outlineIncludesTypeParametersAndAnnotations() async throws {
         
         let source = #"""
             interface Loader {

@@ -28,12 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterCOutlineTests {
+struct TreeSitterCOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlineCIncludesFunctionSignatures() async throws {
+    @Test func outlineIncludesFunctionSignatures() async throws {
         
         let source = #"""
             typedef struct User {

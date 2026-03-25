@@ -28,12 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterBashOutlineTests {
+struct TreeSitterBashOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlineBashShowsFunctionNotation() async throws {
+    @Test func outlineShowsFunctionNotation() async throws {
         
         let source = #"""
             readonly APP_NAME="coteditor"

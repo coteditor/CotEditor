@@ -28,12 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterLuaOutlineTests {
+struct TreeSitterLuaOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlineLuaIncludesParameterClausesWhileKeepingPseudoNestingFlat() async throws {
+    @Test func outlineIncludesParameterClausesWhileKeepingPseudoNestingFlat() async throws {
         
         let source = #"""
             function M.sum(a, b)

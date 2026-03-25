@@ -28,12 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterPythonOutlineTests {
+struct TreeSitterPythonOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlinePythonIncludesParameterClauses() async throws {
+    @Test func outlineIncludesParameterClauses() async throws {
         
         let source = #"""
             class Token:

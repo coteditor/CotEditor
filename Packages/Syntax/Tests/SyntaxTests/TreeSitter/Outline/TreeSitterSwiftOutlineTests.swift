@@ -28,22 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterSwiftOutlineTests {
+struct TreeSitterSwiftOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func formatSwift() {
-        
-        #expect(SwiftOutlineFormatter.formatTitle("SomeFunction", kind: .function) == "SomeFunction")
-        #expect(SwiftOutlineFormatter.formatTitle("// MARK: Swift", kind: .mark) == "Swift")
-        #expect(SwiftOutlineFormatter.formatTitle("// MARK: - Swift", kind: .mark) == "Swift")
-        #expect(SwiftOutlineFormatter.formatTitle("/* MARK: Swift */", kind: .mark) == "Swift")
-        #expect(SwiftOutlineFormatter.formatTitle("// MARK:", kind: .mark) == nil)
-    }
-    
-    
-    @Test func outlineSwift() async throws {
+    @Test func outline() async throws {
         
         let source = #"""
             class Foo {
@@ -78,7 +68,7 @@ actor TreeSitterSwiftOutlineTests {
     }
     
     
-    @Test func outlineSwiftIncludesParameterLabels() async throws {
+    @Test func outlineIncludesParameterLabels() async throws {
         
         let source = #"""
             class Foo {
@@ -130,6 +120,31 @@ actor TreeSitterSwiftOutlineTests {
         #expect(nsSource.substring(with: outline[5].range) == "subscript(_ index: Int, named name: String)")
         #expect(nsSource.substring(with: outline[6].range) == "deinit")
         #expect(nsSource.substring(with: outline[8].range) == "protocolMethod(value: Int, at index: Int)")
+    }
+    
+    
+    @Test func outlinePreservesFailableInitializerSuffixes() async throws {
+        
+        let source = #"""
+            struct Cache {
+                
+                init?(path: String) { }
+                init!(named name: String) { }
+            }
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "Cache",
+            "init?(path:)",
+            "init!(named:)",
+        ])
+        #expect(outline.map(\.kind) == [
+            .container,
+            .function,
+            .function,
+        ])
     }
     
     

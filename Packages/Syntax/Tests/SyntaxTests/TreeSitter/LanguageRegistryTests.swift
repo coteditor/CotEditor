@@ -40,4 +40,26 @@ actor LanguageRegistryTests {
         
         #expect(throws: Never.self) { try self.registry.configuration(for: syntax) }
     }
+    
+    
+    @Test func parserBuildsWorkingSwiftParser() async throws {
+        
+        let source = #"""
+            class Foo {
+                
+                func bar() { }
+            }
+        """#
+        let nsSource = source as NSString
+        
+        let parser = try self.registry.parser(syntax: .swift)
+        let highlights = try #require(await parser.parseHighlights(in: source, range: source.nsRange))
+        let outline = try await parser.parseOutline(in: source)
+        
+        #expect(highlights.highlights.contains {
+            $0.value == .keywords && nsSource.substring(with: $0.range) == "func"
+        })
+        #expect(outline.map(\.title) == ["Foo", "bar()"])
+        #expect(outline.map(\.kind) == [.container, .function])
+    }
 }

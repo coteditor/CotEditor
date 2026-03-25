@@ -28,12 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterCSharpOutlineTests {
+struct TreeSitterCSharpOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlineCSharpIncludesMethodSignatures() async throws {
+    @Test func outlineIncludesMethodSignatures() async throws {
         
         let source = #"""
             namespace Demo.Core;

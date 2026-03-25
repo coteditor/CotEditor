@@ -28,12 +28,12 @@ import Foundation
 import Testing
 @testable import Syntax
 
-actor TreeSitterJavaOutlineTests {
+struct TreeSitterJavaOutlineTests {
     
     private let registry: LanguageRegistry = .shared
     
     
-    @Test func outlineJavaIncludesMethodParameters() async throws {
+    @Test func outlineIncludesMethodParameters() async throws {
         
         let source = #"""
             interface Formatter {
