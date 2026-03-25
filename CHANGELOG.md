@@ -3,6 +3,17 @@
 7.0.0 (unreleased)
 --------------------------
 
+### TODO
+
+- Localize the text added to CotEditor 7.0.0 in Czech and Polish.
+- Update the migration directories for user syntax definitions (read the comment in `migrateUserSettings()`).
+- Remove the prerelease notice from the user guide (in specification_changes_on_7.0.html).
+
+
+
+7.0.0-beta (unreleased)
+--------------------------
+
 ### Compatibility Changes
 
 - Introduce CotEditor Syntax, a new syntax definition format (the legacy YAML-based syntax definition format is now deprecated; user-created syntaxes are automatically migrated on first launch).
@@ -43,12 +54,6 @@
 ### Known Issues
 
 - The text added to CotEditor 7.0.0 are not localized yet in Czech and Polish.
-
-
-### TODO
-
-- Update the migration directories for user syntax definitions (read the comment in `migrateUserSettings()`).
-- Remove the prerelease notice from the user guide (in specification_changes_on_7.0.html).
 
 
 
