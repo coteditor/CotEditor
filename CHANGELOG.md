@@ -27,7 +27,7 @@
 - Update built-in syntaxes.
 - Use the user’s window size setting for the Zoom action, if available.
 - Improve general text-editing performance.
-- Hide line numbers in the window titlebar area when hiding the navigation bar on macOS Tahoe 26.
+- Hide line numbers in the window titlebar area when the navigation bar is hidden on macOS Tahoe 26.
 - [trivial] Adjust the About CotEditor window.
 - [trivial] Rename the Recolor All command to “Reset Syntax Analysis” and move it to the Format menu.
 - [trivial] Remove the Restore Defaults button in the syntax editor.
