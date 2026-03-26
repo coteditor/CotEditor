@@ -29,7 +29,7 @@ import SwiftUI
 import FileEncoding
 
 extension UnicodeNormalizationForm: @retroactive DefaultInitializable {
-
+    
     public static let defaultValue: Self = .nfc
 }
 
