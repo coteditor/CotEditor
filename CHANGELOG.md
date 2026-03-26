@@ -29,6 +29,7 @@
 - Add detailed delimiter settings for strings, characters, and indentation to syntax definitions.
 - Add the Multiline option to highlighting rules in syntax definitions so matches can span multiple lines.
 - Show the current position in search results in the Find field while navigating between matches (for example, “2/5”).
+- Add `CurrentLine` and `ReplaceCurrentLine` to the UNIX script input/output keywords for editing the current line in the editor.
 - Add Bulgarian localization (thanks to Miroslav Dragoev!).
 
 

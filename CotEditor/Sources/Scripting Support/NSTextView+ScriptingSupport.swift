@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ enum InsertionLocation {
     
     case replaceSelection
     case afterSelection
+    case replaceCurrentLine
     case replaceAll
     case afterAll
 }
@@ -46,6 +47,8 @@ extension NSTextView {
                 self.selectedRange
             case .afterSelection:
                 NSRange(location: self.selectedRange.upperBound, length: 0)
+            case .replaceCurrentLine:
+                (self.string as NSString).lineRange(for: self.selectedRange)
             case .replaceAll:
                 self.string.range
             case .afterAll:

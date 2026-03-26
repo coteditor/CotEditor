@@ -53,6 +53,7 @@ struct UnixScript: Script {
     private enum OutputType: String, ScriptToken {
         
         case replaceSelection = "ReplaceSelection"
+        case replaceCurrentLine = "ReplaceCurrentLine"
         case replaceAllText = "ReplaceAllText"
         case insertAfterSelection = "InsertAfterSelection"
         case appendToAllText = "AppendToAllText"
@@ -66,6 +67,7 @@ struct UnixScript: Script {
     private enum InputType: String, ScriptToken {
         
         case selection = "Selection"
+        case currentLine = "CurrentLine"
         case allText = "AllText"
         
         static let token = "CotEditorXInput"
@@ -132,6 +134,9 @@ struct UnixScript: Script {
         switch type {
             case .selection:
                 return editor.selectedString
+            case .currentLine:
+                let string = editor.string as NSString
+                return string.substring(with: string.lineRange(for: editor.selectedRange))
             case .allText:
                 return editor.string
         }
@@ -152,6 +157,11 @@ struct UnixScript: Script {
                 guard let editor else { throw ScriptError.noOutputTarget }
                 guard editor.isEditable else { throw ScriptError.notEditable }
                 editor.insert(string: output, at: .replaceSelection)
+                
+            case .replaceCurrentLine:
+                guard let editor else { throw ScriptError.noOutputTarget }
+                guard editor.isEditable else { throw ScriptError.notEditable }
+                editor.insert(string: output, at: .replaceCurrentLine)
                 
             case .replaceAllText:
                 guard let editor else { throw ScriptError.noOutputTarget }
