@@ -109,6 +109,7 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
         let highlights = try self.queryMatches(.highlights, in: updateRange, string: string as NSString)
             .flatMap(\.captures)
             .sorted()
+            .resolvingCaptureConflicts()
             .compactMap(Highlight.init(capture:))
         
         return (highlights, updateRange)
@@ -187,6 +188,49 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
 
 
 // MARK: -
+
+private extension [QueryCapture] {
+    
+    /// A key identifying a unique tree-sitter node for capture conflict resolution.
+    private struct CaptureNodeKey: Hashable {
+        
+        var depth: Int
+        var location: Int
+        var length: Int
+    }
+    
+    
+    /// Resolves multiple captures on the same node by keeping only the one with the highest pattern index,
+    /// implementing tree-sitter's standard "last pattern wins" precedence.
+    ///
+    /// This enables query authors to write a broad default rule first (e.g. `(identifier) @variables`)
+    /// and override it with more specific patterns later. A later pattern whose capture name does not map
+    /// to any `SyntaxType` (e.g. `@_skip`) effectively cancels the highlight for that node.
+    ///
+    /// - Returns: A filtered array retaining the original sort order.
+    func resolvingCaptureConflicts() -> [QueryCapture] {
+        
+        // find the winning (highest patternIndex) array index for each node
+        var bestForNode: [CaptureNodeKey: (arrayIndex: Int, patternIndex: Int)] = [:]
+        for (index, capture) in self.enumerated() {
+            let key = CaptureNodeKey(depth: capture.depth, location: capture.range.location, length: capture.range.length)
+            if let existing = bestForNode[key] {
+                if capture.patternIndex > existing.patternIndex {
+                    bestForNode[key] = (index, capture.patternIndex)
+                }
+            } else {
+                bestForNode[key] = (index, capture.patternIndex)
+            }
+        }
+        
+        let winningIndices = Set(bestForNode.values.lazy.map(\.arrayIndex))
+        
+        return self.enumerated()
+            .filter { winningIndices.contains($0.offset) }
+            .map(\.element)
+    }
+}
+
 
 private extension Highlight {
     
