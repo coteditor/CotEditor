@@ -310,6 +310,13 @@
 ] @keywords
 
 
+; MARK: Types (default)
+; ----------------------------
+
+(object_reference
+  name: (identifier) @types)
+
+
 ; MARK: Commands
 ; ----------------------------
 
@@ -336,9 +343,6 @@
 
 ; MARK: Types
 ; ----------------------------
-
-(object_reference
-  name: (identifier) @types)
 
 [
   (keyword_int)

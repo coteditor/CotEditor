@@ -8,6 +8,10 @@
 ;  © 2026 1024jp
 ;
 
+; set defaults at first
+(field_identifier) @variables
+
+
 ; MARK: Keywords
 ; ----------------------------
 
@@ -135,7 +139,6 @@
 ; MARK: Variables
 ; ----------------------------
 
-(field_identifier) @variables
 (parameter (identifier) @variables)
 
 (self) @variables.builtin

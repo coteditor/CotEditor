@@ -13,6 +13,7 @@
 
 [
   "abstract"
+  "as"
   "case"
   "catch"
   "class"
@@ -25,12 +26,14 @@
   "export"
   "extends"
   "extension"
+  "final"
   "finally"
   "for"
   "given"
   "if"
   "implicit"
   "import"
+  "lazy"
   "match"
   "new"
   "object"

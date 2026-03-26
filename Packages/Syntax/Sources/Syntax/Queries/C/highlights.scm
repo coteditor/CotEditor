@@ -8,8 +8,9 @@
 ;  © 2026 1024jp
 ;
 
-; set variables at first
+; set defaults at first
 (identifier) @variables
+(field_identifier) @attributes
 
 
 ; MARK: Keywords
@@ -114,12 +115,6 @@
   (string_literal)
   (system_lib_string)
 ] @strings
-
-
-; MARK: Attributes
-; ----------------------------
-
-(field_identifier) @attributes
 
 
 ; MARK: Characters

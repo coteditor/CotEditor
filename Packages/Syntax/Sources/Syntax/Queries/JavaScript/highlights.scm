@@ -8,8 +8,9 @@
 ;  © 2026 1024jp
 ;
 
-; set variables at first
+; set defaults at first
 (identifier) @variables
+(property_identifier) @attributes
 
 
 ; MARK: Keywords
@@ -109,15 +110,7 @@
 ; MARK: Attributes
 ; ----------------------------
 
-; dot-accessed properties
-(member_expression
-  property: (property_identifier) @attributes)
-
-; keys for object literal
-(pair
-  key: (property_identifier) @attributes)
-; Commands: method-like keys (function-valued properties)
-; -> Needs to be placed *after* the definition above.
+; method-like keys (function-valued properties)
 (pair
   key: (property_identifier) @commands.method
   value: [(function_expression) (arrow_function)])

@@ -34,10 +34,13 @@
   "in"
   "module"
   "next"
+  "not"
   "or"
+  "redo"
   "rescue"
   "retry"
   "return"
+  "undef"
   "then"
   "unless"
   "until"
@@ -45,9 +48,6 @@
   "while"
   "yield"
 ] @keywords
-
-((identifier) @keywords
- (#match? @keywords "^(private|protected|public)$"))
 
 
 ; MARK: Commands
@@ -58,6 +58,10 @@
   method: [(identifier) (constant)] @commands.method)
 (call method: (identifier) @commands.method
   (#any-of? @commands.method "require"))
+
+; override method-call capture for access modifiers
+((identifier) @keywords
+ (#match? @keywords "^(private|protected|public)$"))
 
 ; function definitions
 (alias (identifier) @commands.method)

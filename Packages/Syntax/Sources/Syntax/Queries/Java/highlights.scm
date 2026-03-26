@@ -98,6 +98,9 @@
 (enum_declaration
   name: (identifier) @types)
 
+(record_declaration
+  name: (identifier) @types)
+
 ((field_access
   object: (identifier) @types)
  (#match? @types "^[A-Z]"))
@@ -163,6 +166,7 @@
   (hex_integer_literal)
   (decimal_integer_literal)
   (octal_integer_literal)
+  (binary_integer_literal)
   (decimal_floating_point_literal)
   (hex_floating_point_literal)
 ] @numbers

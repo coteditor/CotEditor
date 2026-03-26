@@ -8,6 +8,11 @@
 ;  © 2026 1024jp
 ;
 
+; set defaults at first
+(identifier) @variables
+(field_identifier) @attributes
+
+
 ; MARK: Keywords
 ; ----------------------------
 
@@ -138,12 +143,6 @@
   declarator: (type_identifier) @types)
 
 (namespace_identifier) @types
-
-
-; MARK: Attributes
-; ----------------------------
-
-(field_identifier) @attributes
 
 
 ; MARK: Values

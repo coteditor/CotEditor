@@ -73,6 +73,8 @@
 ; MARK: Variables
 ; ----------------------------
 
+(plain_value) @values
+
 [
   (class_name)
   (id_name)
@@ -82,12 +84,6 @@
  (#match? @variables "^--"))
 ((plain_value) @variables
  (#match? @variables "^--"))
-
-
-; MARK: Values
-; ----------------------------
-
-(plain_value) @values
 
 
 ; MARK: Numbers

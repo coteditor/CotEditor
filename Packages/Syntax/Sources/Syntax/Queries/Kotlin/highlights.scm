@@ -37,6 +37,9 @@
   "package"
   "return"
   "set"
+  "super"
+  "suspend"
+  "this"
   "throw"
   "try"
   "typealias"
@@ -54,7 +57,9 @@
   (property_modifier)
   (inheritance_modifier)
   (parameter_modifier)
+  (platform_modifier)
   (reification_modifier)
+  (variance_modifier)
   (visibility_modifier)
 ] @keywords
 

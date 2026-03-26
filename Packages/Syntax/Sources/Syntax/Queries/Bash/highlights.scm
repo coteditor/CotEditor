@@ -13,6 +13,7 @@
 
 [
   "case"
+  "declare"
   "do"
   "done"
   "elif"
@@ -24,8 +25,11 @@
   "function"
   "if"
   "in"
+  "local"
+  "readonly"
   "select"
   "then"
+  "typeset"
   "unset"
   "until"
   "while"

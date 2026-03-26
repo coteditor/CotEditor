@@ -8,8 +8,12 @@
 ;  © 2026 1024jp
 ;
 
-; set variables at first
+; set defaults at first
 (identifier) @variables
+(dot_index_expression
+  field: (identifier) @attributes)
+(field
+  name: (identifier) @attributes)
 
 
 ; MARK: Keywords
@@ -178,12 +182,6 @@
 
 ; MARK: Attributes
 ; ----------------------------
-
-(field
-  name: (identifier) @attributes)
-
-(dot_index_expression
-  field: (identifier) @attributes)
 
 (variable_list
   (attribute

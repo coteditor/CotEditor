@@ -28,6 +28,10 @@
 (namespace_definition
   name: (namespace_identifier) @outline.container)
 
+; Concepts
+(concept_definition
+  name: (identifier) @outline.value)
+
 ; Functions
 (function_definition
   declarator: [

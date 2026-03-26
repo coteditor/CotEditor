@@ -132,6 +132,9 @@
 ; MARK: Values
 ; ----------------------------
 
+((identifier) @values
+  (#match? @values "^[A-Z][A-Z\\d_]*$"))
+
 (enum_member_declaration (identifier) @values)
 
 [

@@ -12,6 +12,8 @@
 ; ----------------------------
 
 [
+  "actor"
+  "associatedtype"
   "protocol"
   "extension"
   "indirect"
