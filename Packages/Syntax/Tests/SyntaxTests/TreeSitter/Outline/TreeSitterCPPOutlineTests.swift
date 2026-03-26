@@ -67,7 +67,7 @@ struct TreeSitterCPPOutlineTests {
             T clamp(T value, T low, T high) {
                 return value;
             }
-
+        
             int main() {
                 return 0;
             }
@@ -97,7 +97,7 @@ struct TreeSitterCPPOutlineTests {
             .function,
             .function,
         ])
-
+        
         // Verify range covers the function signature (name through parameters)
         let nsSource = source as NSString
         #expect(nsSource.substring(with: outline[3].range) == "name()")

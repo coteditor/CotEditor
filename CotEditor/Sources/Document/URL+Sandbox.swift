@@ -90,7 +90,7 @@ private final class GrantAccessDelegate: NSObject, NSOpenSavePanelDelegate {
     // MARK: Open Save Panel Delegate
     
     func panel(_ sender: Any, shouldEnable url: URL) -> Bool {
-    
+        
         url == self.validURL
     }
 }

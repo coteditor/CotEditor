@@ -144,7 +144,7 @@ extension SettingFileManaging {
     
     /// The names of settings customized by the user.
     nonisolated var userSettingNames: [String] {
-    
+        
         self.userSettingFileURLs.map(Self.settingName(from:))
     }
     

@@ -59,7 +59,7 @@ extension Shortcut {
         }
     }
     
-
+    
     /// Validates whether the shortcut is available for user customization.
     ///
     /// - Parameter menu: The menu tree for duplication check.

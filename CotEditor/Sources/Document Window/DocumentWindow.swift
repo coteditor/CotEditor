@@ -75,7 +75,7 @@ final class DocumentWindow: NSWindow {
     
     
     override static func allowedClasses(forRestorableStateKeyPath keyPath: String) -> [AnyClass] {
-    
+        
         switch keyPath {
             case #keyPath(backgroundAlpha), #keyPath(level):
                 [NSNumber.self]

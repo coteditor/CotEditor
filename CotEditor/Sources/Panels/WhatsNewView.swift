@@ -170,7 +170,7 @@ enum NewFeature: CaseIterable {
     case treeSitter
     case outline
 }
-    
+
 
 private extension NewFeature {
     

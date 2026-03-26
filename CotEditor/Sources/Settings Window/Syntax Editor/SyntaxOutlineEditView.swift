@@ -113,12 +113,12 @@ struct SyntaxOutlineEditView: View {
 // MARK: - Outline Kind Menu
 
 private struct OutlineKindMenu: View {
-
+    
     @Binding var kind: Syntax.Outline.Kind?
-
-
+    
+    
     var body: some View {
-
+        
         Menu {
             Button {
                 self.kind = nil
@@ -131,7 +131,7 @@ private struct OutlineKindMenu: View {
                         .foregroundStyle(.tertiary)
                 }
             }
-
+            
             Divider()
             
             ForEach(Syntax.Outline.Kind.allCases, id: \.self) { kind in

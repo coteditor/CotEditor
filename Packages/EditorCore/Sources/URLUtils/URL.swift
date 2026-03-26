@@ -72,7 +72,7 @@ public extension URL {
         let parentComponents = [String](repeating: "..", count: parentCount)
         let diffComponents = pathComponents[sameCount...]
         let components = parentComponents + diffComponents + [filename]
-            
+        
         return components.joined(separator: "/")
     }
     

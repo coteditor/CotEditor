@@ -42,7 +42,7 @@ import FileEncoding
     // MARK: Private Properties
     
     private let defaults: UserDefaults
-
+    
     private var defaultObserver: AnyCancellable?
     
     

@@ -117,7 +117,7 @@ import Syntax
         
         // setting for syntax kind can't be removed
         guard case .syntax = mode else { return }
-
+        
         self.defaults[.modes].removeValue(forKey: mode.rawValue)
     }
     

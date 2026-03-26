@@ -202,20 +202,20 @@ private extension NestableToken {
     ///   - parseRange: The range where parsing is performed.
     /// - Returns: The UTF-16 length of the matched prefix, or `nil`.
     static func matchingPrefixLength(at location: Int, in nsString: NSString, prefixes: [String], parseRange: NSRange) -> Int? {
-
+        
         for prefix in prefixes {
             let length = (prefix as NSString).length
             let start = location - length
             guard start >= parseRange.location else { continue }
-
+            
             if nsString.substring(with: NSRange(location: start, length: length)) == prefix {
                 return length
             }
         }
         return nil
     }
-
-
+    
+    
     /// Collects token positions for the nestable token in the given parse range.
     ///
     /// - Parameters:
@@ -250,7 +250,7 @@ private extension NestableToken {
                 // -> `prefixes` is pre-sorted by descending length at NestableToken creation
                 //    to ensure longest-match-first and stable Hashable identity.
                 let nsString = string as NSString
-
+                
                 if pair.begin == pair.end {
                     let ranges = string.ranges(of: pair.begin, range: parseRange)
                     if prefixes.isEmpty {

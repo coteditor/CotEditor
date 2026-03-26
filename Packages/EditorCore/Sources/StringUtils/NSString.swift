@@ -251,7 +251,7 @@ public extension NSString {
             self.character(at: range.upperBound - 1) == 0xD,  // CR
             self.character(at: range.upperBound) == 0xA       // LF
         else { return range }
-
+        
         return range.isEmpty
             ? NSRange(location: range.location - 1, length: 0)
             : NSRange(location: range.location, length: range.length - 1)

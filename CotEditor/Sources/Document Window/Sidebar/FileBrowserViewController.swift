@@ -1016,7 +1016,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     
     
     func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
-       
+        
         guard
             let rootURL = self.document.fileURL,
             let path = object as? String

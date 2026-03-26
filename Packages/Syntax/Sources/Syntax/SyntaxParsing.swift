@@ -31,7 +31,7 @@ public typealias Highlight = ValueRange<SyntaxType>
 
 
 public protocol IncrementalParsing: Actor {
-
+    
     /// Updates the entire content and resets the parser state.
     ///
     /// Call this when the whole document changes or the parser falls out of sync.
@@ -54,10 +54,10 @@ public protocol IncrementalParsing: Actor {
 
 
 public protocol HighlightParsing: Actor {
-
+    
     nonisolated var highlightBuffer: Int { get }
-
-
+    
+    
     /// Parses and returns syntax highlighting for a substring of the given source string.
     ///
     /// - Parameters:

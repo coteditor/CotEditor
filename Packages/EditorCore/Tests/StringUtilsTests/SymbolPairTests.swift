@@ -76,13 +76,13 @@ struct SymbolPairTests {
         
         let string1 = #"foo (\() )"#
         #expect(string1.rangeOfEnclosingSymbolPair(at: string1.range(7..<7), candidates: pairs, escapeCharacter: "\\") == string1.range(4..<8))
-
+        
         let string2 = #"foo (\\() )"#
         #expect(string2.rangeOfEnclosingSymbolPair(at: string2.range(8..<8), candidates: pairs, escapeCharacter: "\\") == string2.range(7..<9))
-
+        
         let string3 = #"foo (\\\() )"#
         #expect(string3.rangeOfEnclosingSymbolPair(at: string3.range(9..<9), candidates: pairs, escapeCharacter: "\\") == string3.range(4..<10))
-
+        
         let string4 = #"foo \(\) (bar)"#
         #expect(string4.rangeOfEnclosingSymbolPair(at: string4.range(10..<10), candidates: pairs, escapeCharacter: "\\") == string4.range(9..<14))
     }

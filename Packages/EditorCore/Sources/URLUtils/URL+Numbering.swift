@@ -41,7 +41,7 @@ public struct NumberingFormat: Sendable {
 
 
 public extension URL {
-     
+    
     /// Creates an URL with a unique filename at the same directory by appending a unique number.
     ///
     /// - Parameters:

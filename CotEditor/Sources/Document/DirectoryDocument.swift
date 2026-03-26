@@ -606,7 +606,7 @@ final class DirectoryDocument: NSDocument {
             } catch is CancellationError {
                 return
             } catch {
-               // let NSDocumentController handle the error
+                // let NSDocumentController handle the error
             }
         }
         

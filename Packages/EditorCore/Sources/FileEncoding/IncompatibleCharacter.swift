@@ -91,8 +91,8 @@ public extension NSString {
         return results
     }
 }
-    
- 
+
+
 private extension NSString {
     
     /// Recursively searches the given subrange for incompatible characters.

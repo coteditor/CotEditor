@@ -266,10 +266,10 @@ extension Syntax: Decodable {
     /// - Parameter highlights: The highlight array to partition.
     /// - Returns: A tuple of remaining highlights and extracted pair delimiters.
     private static func extractDelimiters(from highlights: [Highlight]) -> ([Highlight], [PairDelimiter]) {
-
+        
         var remainingHighlights: [Highlight] = []
         var delimiters: [PairDelimiter] = []
-
+        
         for highlight in highlights {
             if !highlight.isRegularExpression,
                let end = highlight.end, !end.isEmpty,
@@ -281,7 +281,7 @@ extension Syntax: Decodable {
                 remainingHighlights.append(highlight)
             }
         }
-
+        
         return (remainingHighlights, delimiters)
     }
 }

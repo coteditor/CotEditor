@@ -236,7 +236,7 @@ private extension NSFont {
     
     /// Returns the font name and size to display.
     var displayNameAndSize: String {
-     
+        
         "\(self.displayName ?? self.fontName)  \(self.pointSize.formatted())"
     }
 }

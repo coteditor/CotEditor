@@ -119,7 +119,7 @@ public extension String {
     /// - Parameter range: The range to divide or `nil`.
     /// - Returns: Logical line ranges.
     func lineContentsRanges(for range: NSRange? = nil) -> [NSRange] {
-       
+        
         // prefer using NSRegularExpression over `enumerateSubstrings(in:...)` for performance
         let range = range ?? NSRange(..<self.utf16.count)
         let regex = try! NSRegularExpression(pattern: "^.*", options: [.anchorsMatchLines])

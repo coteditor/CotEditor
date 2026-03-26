@@ -37,7 +37,7 @@ public extension NSAttributedString {
     
     /// A mutable copy of the receiver.
     final var mutable: NSMutableAttributedString {
-     
+        
         self.mutableCopy() as! NSMutableAttributedString
     }
     

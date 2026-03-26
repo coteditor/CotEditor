@@ -274,8 +274,8 @@ public extension String {
         return EditingContext(strings: replacementStrings, ranges: replacementRanges)
     }
 }
-    
-    
+
+
 public extension String {
     
     /// Sorts the lines in the given range in ascending order.
@@ -368,7 +368,7 @@ public extension String {
     }
 }
 
-    
+
 extension String {
     
     /// Returns the ranges of trailing whitespace at the ends of lines.

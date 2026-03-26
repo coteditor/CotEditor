@@ -68,7 +68,7 @@ struct SyntaxEditView: View {
     private var customizableFeatures: ParserFeatures = .all
     private var saveAction: SaveAction
     private var validationAction: NameValidationAction
-
+    
     @State private var syntax: SyntaxObject
     @State private var name: String = ""
     @State private var message: String?

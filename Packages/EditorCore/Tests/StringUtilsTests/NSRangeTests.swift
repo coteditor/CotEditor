@@ -105,15 +105,15 @@ struct NSRangeTests {
     
     
     @Test func unionWithOptionalRanges() {
-
+        
         #expect(NSRange(1..<3).union(with: []) == NSRange(1..<3))
         #expect(NSRange(1..<3).union(with: [nil]) == NSRange(1..<3))
         #expect(NSRange(1..<3).union(with: [NSRange(5..<9)]) == NSRange(1..<9))
         #expect(NSRange(1..<3).union(with: [nil, NSRange(5..<9)]) == NSRange(1..<9))
         #expect(NSRange(1..<3).union(with: [NSRange(0..<2), nil, NSRange(5..<9)]) == NSRange(0..<9))
     }
-
-
+    
+    
     @Test func merge() {
         
         #expect([NSRange(1..<2), NSRange(2..<3)].merged == [NSRange(1..<3)])

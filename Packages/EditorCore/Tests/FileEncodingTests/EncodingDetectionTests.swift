@@ -266,7 +266,7 @@ private extension String.Encoding {
         self.init(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(cfEncodings.rawValue)))
     }
 }
-   
+
 
 private extension EncodingDetectionTests {
     

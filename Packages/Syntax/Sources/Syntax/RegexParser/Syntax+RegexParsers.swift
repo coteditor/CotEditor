@@ -85,7 +85,7 @@ extension Syntax {
 
 
 extension Collection where Element == Syntax.Highlight {
-
+    
     /// Returns highlights by consolidating simple word definitions into single regex patterns for performance.
     var consolidatingSimpleWords: [Syntax.Highlight] {
         

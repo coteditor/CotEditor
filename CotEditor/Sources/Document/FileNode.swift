@@ -29,7 +29,7 @@ import StringUtils
 import URLUtils
 
 final class FileNode {
-
+    
     struct FilterState {
         
         var matchedRange: NSRange?
@@ -273,7 +273,7 @@ extension FileNode {
             }
         }
     }
-
+    
     
     /// Updates the related properties by assuming the receiver is moved to the given `fileURL`.
     ///
@@ -355,7 +355,7 @@ extension FileNode {
     /// Updates this node’s filter state based on a search string and whether any descendant matched.
     ///
     /// - Parameters:
-    ///   - searchString: The text to search for within the file name. 
+    ///   - searchString: The text to search for within the file name.
     ///   - hasMatchedDescendant: `true` if any descendant of this node matched the search string; otherwise, `false`.
     /// - Returns: `true` if this node’s name directly matches `searchString`; otherwise, `false`.
     @discardableResult func updateFilter(with searchString: String, hasMatchedDescendant: Bool) -> Bool {

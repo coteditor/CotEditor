@@ -99,16 +99,16 @@ public extension NSRange {
     ///   - headPadding: The preferred number of characters to keep before `target`.
     /// - Returns: A clamped subrange, or `self` if already within `maxLength`.
     func clamped(around target: NSRange, maxLength: Int, headPadding: Int = 64) -> NSRange {
-
+        
         assert(maxLength > 0)
         assert(headPadding >= 0)
-
+        
         guard self.length > maxLength else { return self }
-
+        
         let effectiveHead = min(headPadding, target.location - self.location)
         let fragmentStart = max(self.location, target.location - effectiveHead)
         let fragmentEnd = min(self.upperBound, fragmentStart + maxLength)
-
+        
         return NSRange(fragmentStart..<fragmentEnd)
     }
     
@@ -118,7 +118,7 @@ public extension NSRange {
     /// - Parameter ranges: Optional ranges to union onto this range.
     /// - Returns: The combined range.
     func union(with ranges: [NSRange?]) -> NSRange {
-
+        
         ranges
             .compactMap(\.self)
             .reduce(self) { $0.union($1) }

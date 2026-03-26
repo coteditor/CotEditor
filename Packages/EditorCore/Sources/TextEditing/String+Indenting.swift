@@ -166,7 +166,7 @@ public extension String {
     }
 }
 
-    
+
 public extension String {
     
     /// The predominant indentation style used in the string.

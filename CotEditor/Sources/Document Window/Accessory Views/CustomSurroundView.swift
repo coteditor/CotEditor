@@ -116,7 +116,7 @@ struct CustomSurroundView: View {
         self.resetFocus(in: self.namespace)
         
         guard !self.pair.begin.isEmpty else { return NSSound.beep() }
-            
+        
         // use beginString also for end delimiter if endString is empty
         let endString = self.pair.end.isEmpty ? self.pair.begin : self.pair.end
         

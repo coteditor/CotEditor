@@ -45,7 +45,7 @@ struct RegexHighlightExtractorsTests {
         
         #expect(matches == ["Foo", "food", "FOOX"])
     }
-
+    
     
     @Test func beginEndRegexExtractor() throws {
         
@@ -64,7 +64,7 @@ struct RegexHighlightExtractorsTests {
         
         #expect(matches == ["BEGINxEND", "BEGINEND"])
     }
-
+    
     
     @Test func beginEndStringExtractor() throws {
         
@@ -83,7 +83,7 @@ struct RegexHighlightExtractorsTests {
         
         #expect(matches == ["/* a */"])
     }
-
+    
     
     @Test func beginEndStringExtractorMultiline() throws {
         
@@ -100,7 +100,7 @@ struct RegexHighlightExtractorsTests {
         
         #expect(matches == ["/* a */", "/* b\n c */"])
     }
-
+    
     
     @Test func cancellation() async throws {
         
@@ -122,84 +122,84 @@ struct RegexHighlightExtractorsTests {
     
     
     @Suite struct ConsolidatingSimpleWords {
-
+        
         @Test func empty() {
-
+            
             let highlights: [Syntax.Highlight] = []
-
+            
             #expect(highlights.consolidatingSimpleWords.isEmpty)
         }
-
-
+        
+        
         @Test func wordsOnly() {
-
+            
             let highlights: [Syntax.Highlight] = [
                 Syntax.Highlight(begin: "for"),
                 Syntax.Highlight(begin: "if"),
             ]
             let result = highlights.consolidatingSimpleWords
-
+            
             #expect(result.count == 1)
             #expect(result[0].isRegularExpression)
             #expect(!result[0].ignoreCase)
         }
-
-
+        
+        
         @Test func caseInsensitiveWordsOnly() {
-
+            
             let highlights: [Syntax.Highlight] = [
                 Syntax.Highlight(begin: "let", ignoreCase: true),
                 Syntax.Highlight(begin: "var", ignoreCase: true),
             ]
             let result = highlights.consolidatingSimpleWords
-
+            
             #expect(result.count == 1)
             #expect(result[0].isRegularExpression)
             #expect(result[0].ignoreCase)
         }
-
-
+        
+        
         @Test func mixedCaseSensitivity() {
-
+            
             let highlights: [Syntax.Highlight] = [
                 Syntax.Highlight(begin: "for"),
                 Syntax.Highlight(begin: "let", ignoreCase: true),
             ]
             let result = highlights.consolidatingSimpleWords
-
+            
             #expect(result.count == 2)
         }
-
-
+        
+        
         @Test func regexPassedThrough() {
-
+            
             let highlights: [Syntax.Highlight] = [
                 Syntax.Highlight(begin: #"\bfoo\b"#, isRegularExpression: true),
             ]
             let result = highlights.consolidatingSimpleWords
-
+            
             #expect(result.count == 1)
             #expect(result[0].begin == #"\bfoo\b"#)
             #expect(result[0].isRegularExpression)
         }
-
-
+        
+        
         @Test func beginEndPassedThrough() {
-
+            
             let highlights: [Syntax.Highlight] = [
                 Syntax.Highlight(begin: "/*", end: "*/"),
             ]
             let result = highlights.consolidatingSimpleWords
-
+            
             #expect(result.count == 1)
             #expect(result[0].begin == "/*")
             #expect(result[0].end == "*/")
             #expect(!result[0].isRegularExpression)
         }
-
-
+        
+        
         @Test func mixed() {
-
+            
             let highlights: [Syntax.Highlight] = [
                 Syntax.Highlight(begin: "for"),
                 Syntax.Highlight(begin: #"\bfoo\b"#, isRegularExpression: true),
@@ -208,7 +208,7 @@ struct RegexHighlightExtractorsTests {
                 Syntax.Highlight(begin: "let", ignoreCase: true),
             ]
             let result = highlights.consolidatingSimpleWords
-
+            
             // regex + begin-end are passed through, words are compacted (1 case-sensitive + 1 case-insensitive)
             #expect(result.count == 4)
             #expect(!result[0].ignoreCase)  // regex
@@ -220,8 +220,8 @@ struct RegexHighlightExtractorsTests {
             #expect(result[3].ignoreCase)
         }
     }
-
-
+    
+    
     @Suite struct WordInitializer {
         
         let source = """

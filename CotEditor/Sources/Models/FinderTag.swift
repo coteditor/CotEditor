@@ -48,7 +48,7 @@ struct FinderTag: Equatable {
     var color: Color = .none
 }
 
- 
+
 extension FinderTag {
     
     /// Parses tags from the extended attribute data.

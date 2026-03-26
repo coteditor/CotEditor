@@ -137,7 +137,7 @@ public extension String {
     }
 }
 
-    
+
 public extension String {
     
     /// Returns word-instance ranges that match the word at the given range.
