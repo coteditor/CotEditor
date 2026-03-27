@@ -24,6 +24,7 @@
 - Adopt smarter syntax parsing powered by tree-sitter for multiple built-in syntaxes, improving syntax highlighting and outline extraction in C, C#, C++, CSS, Go, HTML, Java, JavaScript, Kotlin, LaTeX, Lua, Makefile, Markdown (outline extraction only), PHP, Python, Ruby, Rust, Scala, Shell Script, SQL, Swift, and TypeScript.
 - Display symbolic icons next to outline items.
 - Allow collapsing outline items in the Outline inspector for tree-sitter-based and structured document syntaxes.
+- Add the “Wrap Lines” option to the Outline inspector.
 - Make smart indentation aware of the current syntax.
 - Expand comment delimiter settings in syntax definitions, allowing multiple delimiters and related options.
 - Add detailed delimiter settings for strings, characters, and indentation to syntax definitions.

@@ -161,6 +161,7 @@ struct OutlineInspectorView: View, HostedPaneView {
     
     @State var model: any ModelProtocol = OutlineInspectorViewModel()
     
+    @AppStorage(.outlineViewWrapsLines) private var wrapsLines: Bool
     @AppStorage(.outlineViewFontSize) private var fontSize: Double
     
     @State private var expandedNodeIDs: Set<OutlineItem.ID> = []
@@ -171,13 +172,30 @@ struct OutlineInspectorView: View, HostedPaneView {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("Outline", tableName: "Document", comment: "section title in inspector")
-                .font(.system(size: 12, weight: .bold))
-                .foregroundStyle(.secondary)
-                .accessibilityRemoveTraits(.isHeader)
+            HStack(alignment: .firstTextBaseline) {
+                Text("Outline", tableName: "Document", comment: "section title in inspector")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundStyle(.secondary)
+                    .accessibilityRemoveTraits(.isHeader)
+                
+                Spacer()
+                Menu(String(localized: "Options", table: "Document"), systemImage: "ellipsis.circle") {
+                    Toggle(String(localized: "Wrap Lines", table: "MainMenu"), isOn: $wrapsLines)
+                    
+                    Section(String(localized: "Text Size", table: "MainMenu")) {
+                        Button(String(localized: "Bigger", table: "MainMenu"), systemImage: "textformat.size.larger", action: self.biggerFont)
+                        Button(String(localized: "Smaller", table: "MainMenu"), systemImage: "textformat.size.smaller", action: self.smallerFont)
+                        Button(String(localized: "Reset to Default", table: "MainMenu"), systemImage: "textformat.size", action: self.resetFont)
+                    }
+                }
+                .menuStyle(.borderlessButton)
+                .menuIndicator(.hidden)
+                .labelStyle(.iconOnly)
+            }
             
             List(selection: $model.selection) {
                 OutlineTreeView(nodes: self.model.outlineNodes, expandedNodeIDs: $expandedNodeIDs)
+                    .lineLimit(self.wrapsLines ? nil : 1)
                     .font(.system(size: self.fontSize))
                     .listRowSeparator(.hidden)
             }
@@ -201,13 +219,6 @@ struct OutlineInspectorView: View, HostedPaneView {
                     Text("No Filter Results", tableName: "Document", comment: "filtering result message")
                         .foregroundStyle(.secondary)
                         .controlSize(.regular)
-                }
-            }
-            .contextMenu {
-                Menu(String(localized: "Text Size", table: "MainMenu")) {
-                    Button(String(localized: "Bigger", table: "MainMenu"), systemImage: "textformat.size.larger", action: self.biggerFont)
-                    Button(String(localized: "Smaller", table: "MainMenu"), systemImage: "textformat.size.smaller", action: self.smallerFont)
-                    Button(String(localized: "Reset to Default", table: "MainMenu"), systemImage: "textformat.size", action: self.resetFont)
                 }
             }
             .onCommand(#selector((any TextSizeChanging).biggerFont), perform: self.biggerFont)
@@ -289,7 +300,6 @@ private struct OutlineRowView: View {
                 )
                 .fontWeight(self.item.value.style.contains(.bold) ? .semibold : .regular)
                 .italic(self.item.value.style.contains(.italic))
-                .lineLimit(1)
             }
         }
     }

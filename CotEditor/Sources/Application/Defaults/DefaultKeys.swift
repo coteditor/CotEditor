@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -155,6 +155,10 @@ extension DefaultKeys {
     // file browser
     static let fileBrowserShowsHiddenFiles = DefaultKey<Bool>("fileBrowserShowsHiddenFiles")
     
+    // Outlline inspector
+    static let outlineViewWrapsLines = DefaultKey<Bool>("outlineViewWrapsLines")
+    static let outlineViewFontSize = DefaultKey<Double>("outlineViewFontSize")
+    
     // settings that are not in the Settings window
     static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
@@ -163,7 +167,6 @@ extension DefaultKeys {
     static let showNavigationBar = DefaultKey<Bool>("showNavigationBar")
     static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
     static let consoleFontSize = DefaultKey<Double>("consoleFontSize")
-    static let outlineViewFontSize = DefaultKey<Double>("outlineViewFontSize")
     static let findResultViewFontSize = DefaultKey<Double>("findResultViewFontSize")
     static let selectedMultipleReplaceSettingName = DefaultKey<String?>("selectedMultipleReplaceSettingName")
     static let unicodeHistory = DefaultKey<[String]>("unicodeHistory")
