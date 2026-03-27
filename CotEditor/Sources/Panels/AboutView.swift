@@ -350,7 +350,7 @@ private struct LicenseView: View {
     
     var body: some View {
         
-        LazyVStack(alignment: .leading, spacing: 16) {
+        LazyVStack(alignment: .leading, spacing: 12) {
             Text("CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work.", tableName: "About")
                 .lineSpacing(2)
             
