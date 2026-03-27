@@ -239,6 +239,7 @@ enum SyntaxName {
         // before releasing the stable CotEditor 7.0.0:
         // - Remove `userDirectoryName` in SettingFileMapping and SyntaxManager.
         // - Prepend `private` to SettingFileMapping.userSettingDirectoryURL.
+        // - Move legacy settings to `Syntaxes (Legacy, before 7.0)`
         
         let legacyURL = self.userSettingDirectoryURL.deletingLastPathComponent().appending(path: Self.directoryName)
         
