@@ -94,7 +94,7 @@ struct UnixScript: Script {
         weak let document = await (DocumentController.shared as! DocumentController).currentPlainTextDocument
         
         let input: String? = if let inputType = InputType(scanning: script) {
-            try await self.readInput(type: inputType, editor: document?.textView)
+            try await Self.readInput(type: inputType, editor: document?.textView)
         } else {
             nil
         }
@@ -110,16 +110,19 @@ struct UnixScript: Script {
         try await task.execute(arguments: arguments)
         
         if let outputType, let output = await task.output {
-            try await self.applyOutput(output, type: outputType, editor: document?.textView)
+            try await Self.applyOutput(output, type: outputType, editor: document?.textView)
         }
         
         if let error = await task.error {
             throw ScriptError.standardError(error)
         }
     }
-    
-    
-    // MARK: Private Methods
+}
+
+
+// MARK: Private Methods
+
+@MainActor extension UnixScript {
     
     /// Reads the document content.
     ///
@@ -127,7 +130,7 @@ struct UnixScript: Script {
     ///   - type: The type of input target.
     ///   - editor: The editor to read the input.
     /// - Returns: The read string.
-    @MainActor private func readInput(type: InputType, editor: NSTextView?) throws(ScriptError) -> String {
+    private static func readInput(type: InputType, editor: NSTextView?) throws(ScriptError) -> String {
         
         guard let editor else { throw .noInputTarget }
         
@@ -150,33 +153,23 @@ struct UnixScript: Script {
     ///   - type: The type of output target.
     ///   - editor: The textView to write the output.
     /// - Throws: `ScriptError`, or error by NSDocumentController
-    @MainActor private func applyOutput(_ output: String, type: OutputType, editor: NSTextView?) throws {
+    private static func applyOutput(_ output: String, type: OutputType, editor: NSTextView?) throws {
         
         switch type {
             case .replaceSelection:
-                guard let editor else { throw ScriptError.noOutputTarget }
-                guard editor.isEditable else { throw ScriptError.notEditable }
-                editor.insert(string: output, at: .replaceSelection)
+                try self.insert(output, to: editor, at: .replaceSelection)
                 
             case .replaceCurrentLine:
-                guard let editor else { throw ScriptError.noOutputTarget }
-                guard editor.isEditable else { throw ScriptError.notEditable }
-                editor.insert(string: output, at: .replaceCurrentLine)
+                try self.insert(output, to: editor, at: .replaceCurrentLine)
                 
             case .replaceAllText:
-                guard let editor else { throw ScriptError.noOutputTarget }
-                guard editor.isEditable else { throw ScriptError.notEditable }
-                editor.insert(string: output, at: .replaceAll)
+                try self.insert(output, to: editor, at: .replaceAll)
                 
             case .insertAfterSelection:
-                guard let editor else { throw ScriptError.noOutputTarget }
-                guard editor.isEditable else { throw ScriptError.notEditable }
-                editor.insert(string: output, at: .afterSelection)
+                try self.insert(output, to: editor, at: .afterSelection)
                 
             case .appendToAllText:
-                guard let editor else { throw ScriptError.noOutputTarget }
-                guard editor.isEditable else { throw ScriptError.notEditable }
-                editor.insert(string: output, at: .afterAll)
+                try self.insert(output, to: editor, at: .afterAll)
                 
             case .newDocument:
                 guard !output.isEmpty else { return }  // create document only when output is available
@@ -186,6 +179,22 @@ struct UnixScript: Script {
                 NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(output, forType: .string)
         }
+    }
+    
+    
+    /// Inserts the string into the editor at the desired location.
+    ///
+    /// - Parameters:
+    ///   - string: The string to insert.
+    ///   - editor: The editor to insert the string into.
+    ///   - location: The insertion location.
+    /// - Throws: `ScriptError` if the target is not valid.
+    private static func insert(_ string: String, to editor: NSTextView?, at location: InsertionLocation) throws(ScriptError) {
+        
+        guard let editor else { throw .noOutputTarget }
+        guard editor.isEditable else { throw .notEditable }
+        
+        editor.insert(string: string, at: location)
     }
 }
 

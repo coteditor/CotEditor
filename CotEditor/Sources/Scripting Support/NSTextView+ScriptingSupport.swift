@@ -30,27 +30,32 @@ import StringUtils
 enum InsertionLocation {
     
     case replaceSelection
-    case afterSelection
     case replaceCurrentLine
     case replaceAll
+    case afterSelection
     case afterAll
 }
 
 
 extension NSTextView {
     
-    /// Inserts string at desired location and select inserted range.
+    /// Inserts the string at the desired location and selects the inserted range.
+    ///
+    /// - Parameters:
+    ///   - string: The string to insert.
+    ///   - location: The insertion location.
+    /// - Returns: `true` if the insertion succeeds; otherwise, `false`.
     @discardableResult final func insert(string: String, at location: InsertionLocation) -> Bool {
         
         let replacementRange: NSRange = switch location {
             case .replaceSelection:
                 self.selectedRange
-            case .afterSelection:
-                NSRange(location: self.selectedRange.upperBound, length: 0)
             case .replaceCurrentLine:
                 (self.string as NSString).lineRange(for: self.selectedRange)
             case .replaceAll:
                 self.string.range
+            case .afterSelection:
+                NSRange(location: self.selectedRange.location, length: 0)
             case .afterAll:
                 NSRange(location: (self.string as NSString).length, length: 0)
         }
