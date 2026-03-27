@@ -39,6 +39,7 @@ extension Syntax.Outline.Kind {
         self.symbol.image
             .symbolVariant(self == .separator ? .none : .square.fill)
             .symbolRenderingMode(mode)
+            .fontWeight(.medium)
             .foregroundStyle(Color(nsColor: self.color))
     }
     
@@ -74,9 +75,9 @@ private extension Syntax.Outline.Kind {
     var symbol: SymbolResource {
         
         switch self {
-            case .container: .system("chevron.forward")
+            case .container: .resource(.cubeSquareFill)
             case .value: .system("v")
-            case .function: .system("f")
+            case .function: .resource(.fCursiveSquareFill)
             case .title: .system("tag")
             case .heading(nil): .resource(.listBulletSquareFill)
             case .heading(let level?): .system("\(level)")

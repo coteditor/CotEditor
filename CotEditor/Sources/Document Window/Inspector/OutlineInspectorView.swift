@@ -277,6 +277,7 @@ private struct OutlineRowView: View {
                 
                 if let kind = self.item.value.kind {
                     kind.icon()
+                        .imageScale(.large)
                         .accessibilityLabel(kind.label)
                         .padding(.trailing, 4)
                 }
