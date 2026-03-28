@@ -111,8 +111,8 @@ private extension OutlineItem.IdentityResolver {
             // -> Skip move inference for large outlines to keep diff computation cheaper.
         
         var assignmentState = AssignmentState(items: items)
-        self.assignIDsForMoves(in: difference, assignmentState: &assignmentState)
-        self.assignIDsForStableSequence(in: difference, assignmentState: &assignmentState)
+        let changedOffsets = self.assignIDsForMoves(in: difference, assignmentState: &assignmentState)
+        self.assignIDsForStableSequence(changedOffsets: changedOffsets, assignmentState: &assignmentState)
         self.assignRemainingIDsByKey(assignmentState: &assignmentState)
         
         return assignmentState.resolvedItems
@@ -133,42 +133,52 @@ private extension OutlineItem.IdentityResolver {
     }
     
     
-    /// Applies IDs for move-associated changes detected by `CollectionDifference`.
+    /// Applies IDs for move-associated changes and collects changed offsets in a single pass.
     ///
     /// - Parameters:
     ///   - difference: The difference from previous keys to current keys.
     ///   - assignmentState: The state that tracks assignments while resolving IDs.
-    private func assignIDsForMoves(in difference: CollectionDifference<IdentityKey>, assignmentState: inout AssignmentState) {
+    /// - Returns: Removed old offsets and inserted new offsets.
+    private func assignIDsForMoves(in difference: CollectionDifference<IdentityKey>, assignmentState: inout AssignmentState) -> (removed: IndexSet, inserted: IndexSet) {
+        
+        var removedOldOffsets = IndexSet()
+        var insertedNewOffsets = IndexSet()
         
         for change in difference {
-            guard
-                case let .insert(newOffset, _, oldOffset?) = change,
-                newOffset < assignmentState.resolvedItems.count,
-                oldOffset < self.previousItems.count
-            else { continue }
-            
-            self.assignID(from: oldOffset, to: newOffset, assignmentState: &assignmentState)
+            switch change {
+                case let .remove(oldOffset, _, _):
+                    removedOldOffsets.insert(oldOffset)
+                case let .insert(newOffset, _, oldOffset?):
+                    insertedNewOffsets.insert(newOffset)
+                    if newOffset < assignmentState.resolvedItems.count,
+                       oldOffset < self.previousItems.count
+                    {
+                        self.assignID(from: oldOffset, to: newOffset, assignmentState: &assignmentState)
+                    }
+                case let .insert(newOffset, _, nil):
+                    insertedNewOffsets.insert(newOffset)
+            }
         }
+        
+        return (removedOldOffsets, insertedNewOffsets)
     }
     
     
     /// Applies IDs for the stable subsequence shared between old and new outlines.
     ///
     /// - Parameters:
-    ///   - difference: The difference from previous keys to current keys.
+    ///   - changedOffsets: Removed old offsets and inserted new offsets.
     ///   - assignmentState: The state that tracks assignments while resolving IDs.
-    private func assignIDsForStableSequence(in difference: CollectionDifference<IdentityKey>, assignmentState: inout AssignmentState) {
-        
-        let offsets = self.changedOffsets(in: difference)
+    private func assignIDsForStableSequence(changedOffsets: (removed: IndexSet, inserted: IndexSet), assignmentState: inout AssignmentState) {
         
         var oldOffset = 0
         var newOffset = 0
         while oldOffset < self.previousItems.count, newOffset < assignmentState.resolvedItems.count {
-            if offsets.removed.contains(oldOffset) {
+            if changedOffsets.removed.contains(oldOffset) {
                 oldOffset += 1
                 continue
             }
-            if offsets.inserted.contains(newOffset) {
+            if changedOffsets.inserted.contains(newOffset) {
                 newOffset += 1
                 continue
             }
@@ -179,28 +189,6 @@ private extension OutlineItem.IdentityResolver {
             oldOffset += 1
             newOffset += 1
         }
-    }
-    
-    
-    /// Returns removed/inserted offsets contained in a difference.
-    ///
-    /// - Parameter difference: The difference from previous keys to current keys.
-    /// - Returns: Removed old offsets and inserted new offsets.
-    private func changedOffsets(in difference: CollectionDifference<IdentityKey>) -> (removed: IndexSet, inserted: IndexSet) {
-        
-        var removedOldOffsets = IndexSet()
-        var insertedNewOffsets = IndexSet()
-        
-        for change in difference {
-            switch change {
-                case let .remove(oldOffset, _, _):
-                    removedOldOffsets.insert(oldOffset)
-                case let .insert(newOffset, _, _):
-                    insertedNewOffsets.insert(newOffset)
-            }
-        }
-        
-        return (removedOldOffsets, insertedNewOffsets)
     }
     
     
@@ -219,19 +207,18 @@ private extension OutlineItem.IdentityResolver {
         for newOffset in assignmentState.resolvedItems.indices where assignmentState.assignedOldOffsets[newOffset] == nil {
             let key = IdentityKey(assignmentState.resolvedItems[newOffset])
             
-            guard var candidateOffsets = remainingOffsetsByKey[key], !candidateOffsets.isEmpty else { continue }
+            guard
+                var candidateOffsets = remainingOffsetsByKey[key],
+                !candidateOffsets.isEmpty,
+                let oldOffset = candidateOffsets.integerGreaterThan(lastUsedOldOffset) ?? candidateOffsets.first
+            else { continue }
             
-            guard let oldOffset = candidateOffsets.integerGreaterThan(lastUsedOldOffset) ?? candidateOffsets.first else { continue }
             candidateOffsets.remove(oldOffset)
             
             self.assignID(from: oldOffset, to: newOffset, assignmentState: &assignmentState)
             lastUsedOldOffset = oldOffset
             
-            if candidateOffsets.isEmpty {
-                remainingOffsetsByKey[key] = nil
-            } else {
-                remainingOffsetsByKey[key] = candidateOffsets
-            }
+            remainingOffsetsByKey[key] = candidateOffsets.isEmpty ? nil : candidateOffsets
         }
     }
 }
