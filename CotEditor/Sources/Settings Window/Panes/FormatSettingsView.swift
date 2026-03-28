@@ -323,8 +323,9 @@ private struct SyntaxListView: View {
                         }
                         
                         let name = url.deletingPathExtension().lastPathComponent
+                        let type = UTType(filenameExtension: url.pathExtension)
                         do {
-                            try self.manager.importSetting(.url(url), name: name, overwrite: false)
+                            try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
                         } catch let error as ImportDuplicationError {
                             self.importingError = error
                             self.isImportConfirmationPresented = true
@@ -347,7 +348,7 @@ private struct SyntaxListView: View {
             Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
                 self.importingError = nil
                 do {
-                    try self.manager.importSetting(item.item, name: item.name, overwrite: true)
+                    try self.manager.importSetting(item.item, name: item.name, type: item.type, overwrite: true)
                 } catch {
                     self.error = error
                 }

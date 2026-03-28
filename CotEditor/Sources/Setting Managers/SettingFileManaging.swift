@@ -368,7 +368,7 @@ extension SettingFileManaging {
                 guard existingName.caseInsensitiveCompare(name) == .orderedSame else { continue }
                 
                 guard self.urlForUserSetting(name: existingName) == nil else {  // duplicated
-                    throw ImportDuplicationError(name: existingName, item: item)
+                    throw ImportDuplicationError(name: existingName, item: item, type: type)
                 }
             }
         }
@@ -386,7 +386,12 @@ extension SettingFileManaging {
             try FileManager.default.createIntermediateDirectories(to: destURL)
             switch item {
                 case .url(let url) where type.conforms(to: Setting.fileType):
-                    try FileManager.default.copyItem(at: url, to: destURL)
+                    if url.standardizedFileURL != destURL.standardizedFileURL {
+                        if overwrite, destURL.isReachable {
+                            try FileManager.default.removeItem(at: destURL)
+                        }
+                        try FileManager.default.copyItem(at: url, to: destURL)
+                    }
                     
                 case .url:
                     let payload = try setting.makePayload()  // transform to native format
@@ -642,6 +647,7 @@ struct ImportDuplicationError: LocalizedError {
     
     var name: String
     var item: ImportingItem
+    var type: UTType?
     
     
     var errorDescription: String {

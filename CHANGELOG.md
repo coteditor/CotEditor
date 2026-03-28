@@ -11,6 +11,7 @@
 
 ### Fixes
 
+- Fix an issue where re-importing a TSV file to overwrite an existing multiple replace definition could fail.
 - [beta] Fix outline item nesting in the Swift syntax.
 
 

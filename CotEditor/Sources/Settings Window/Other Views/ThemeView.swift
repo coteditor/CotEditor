@@ -193,7 +193,7 @@ private struct ThemeListView: View {
             for item in items {
                 guard let url = item.url else { continue }
                 do {
-                    try self.manager.importSetting(.url(url), name: item.name, overwrite: false)
+                    try self.manager.importSetting(.url(url), name: item.name, type: .cotTheme, overwrite: false)
                     succeed = true
                 } catch let error as ImportDuplicationError {
                     self.importingError = error
@@ -221,7 +221,7 @@ private struct ThemeListView: View {
                         
                         let name = url.deletingPathExtension().lastPathComponent
                         do {
-                            try self.manager.importSetting(.url(url), name: name, overwrite: false)
+                            try self.manager.importSetting(.url(url), name: name, type: .cotTheme, overwrite: false)
                         } catch let error as ImportDuplicationError {
                             self.importingError = error
                             self.isImportConfirmationPresented = true
@@ -244,7 +244,7 @@ private struct ThemeListView: View {
             Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
                 self.importingError = nil
                 do {
-                    try self.manager.importSetting(item.item, name: item.name, overwrite: true)
+                    try self.manager.importSetting(item.item, name: item.name, type: item.type, overwrite: true)
                 } catch {
                     self.error = error
                 }
