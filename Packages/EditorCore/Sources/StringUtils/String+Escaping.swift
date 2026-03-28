@@ -33,19 +33,20 @@ public extension String {
     /// This method does not support Unicode scalar escape (`\u{n}`).
     var unescaped: String {
         
-        // -> According to the Swift documentation, these are the all combinations with backslash.
-        //    cf. https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID295
-        let entities = [
-            #"0"#: "\0",  // null character
-            #"t"#: "\t",  // horizontal tab
-            #"n"#: "\n",  // line feed
-            #"r"#: "\r",  // carriage return
-            #"""#: "\"",  // double quotation mark
-            #"'"#: "\'",  // single quotation mark
-            #"\"#: "\\",  // backslash
-        ]
-        
-        return self.replacing(/\\([0tnr"'\\])/) { entities[String($0.1)]! }
+        self.replacing(/\\([0tnr"'\\])/) { match in
+            // -> According to the Swift documentation, these are the all combinations with backslash.
+            //    cf. https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID295
+            switch match.1 {
+                case "0": "\0"  // null character
+                case "t": "\t"  // horizontal tab
+                case "n": "\n"  // line feed
+                case "r": "\r"  // carriage return
+                case "\"": "\""  // double quotation mark
+                case "'": "'"  // single quotation mark
+                case "\\": "\\"  // backslash
+                default: fatalError()
+            }
+        }
     }
 }
 
