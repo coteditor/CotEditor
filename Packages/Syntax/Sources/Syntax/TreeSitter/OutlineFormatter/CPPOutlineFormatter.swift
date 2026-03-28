@@ -31,42 +31,27 @@ enum CPPOutlineFormatter: TreeSitterOutlineFormatting {
     
     static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
-        let node = match.outlineNode
-        let title = node.flatMap { Self.functionTitle(for: $0, source: source) } ?? source.substring(with: capture.range)
-        let range = node.flatMap(Self.signatureRange(in:)) ?? capture.range
+        guard
+            let node = match.outlineNode,
+            let resolved = Self.resolvedSignature(for: node, source: source)
+        else {
+            return (source.substring(with: capture.range), capture.range)
+        }
         
-        return (title, range)
+        return resolved
     }
 }
 
 
 private extension CPPOutlineFormatter {
     
-    /// Builds the displayed C++ function title from a declarator node.
+    /// Resolves the display title and signature range for a C++ function declarator in a single tree traversal.
     ///
     /// - Parameters:
     ///   - declarator: The captured top-level declarator node.
     ///   - source: The source text as `NSString`.
-    /// - Returns: The displayed C++ function title.
-    static func functionTitle(for declarator: Node, source: NSString) -> String? {
-        
-        guard
-            let functionDeclarator = Self.functionDeclarator(in: declarator),
-            let name = Self.functionName(in: functionDeclarator, source: source),
-            let parameters = functionDeclarator.child(byFieldName: "parameters")
-        else { return nil }
-        
-        let parameterList = Self.normalizedClause(source.substring(with: parameters.range))
-        
-        return name + parameterList
-    }
-    
-    
-    /// Returns the signature range spanning the C++ function name through its parameter list.
-    ///
-    /// - Parameter declarator: The captured top-level declarator node.
-    /// - Returns: The signature range, or `nil` if it cannot be derived.
-    static func signatureRange(in declarator: Node) -> NSRange? {
+    /// - Returns: The display title and signature range, or `nil` if the node is not a function declarator.
+    static func resolvedSignature(for declarator: Node, source: NSString) -> (title: String, range: NSRange)? {
         
         guard
             let functionDeclarator = Self.functionDeclarator(in: declarator),
@@ -74,7 +59,11 @@ private extension CPPOutlineFormatter {
             let parameters = functionDeclarator.child(byFieldName: "parameters")
         else { return nil }
         
-        return nameNode.range.union(parameters.range)
+        let parameterList = Self.normalizedClause(source.substring(with: parameters.range))
+        let title = source.substring(with: nameNode.range) + parameterList
+        let range = nameNode.range.union(parameters.range)
+        
+        return (title, range)
     }
     
     
@@ -92,23 +81,6 @@ private extension CPPOutlineFormatter {
         }
         
         return nil
-    }
-    
-    
-    /// Returns the display name string for a C++ function.
-    ///
-    /// Handles plain identifiers, field identifiers, qualified identifiers,
-    /// operator overloads, and destructors.
-    ///
-    /// - Parameters:
-    ///   - functionDeclarator: The function declarator to inspect.
-    ///   - source: The source text as `NSString`.
-    /// - Returns: The function name string, or `nil` if it cannot be resolved.
-    static func functionName(in functionDeclarator: Node, source: NSString) -> String? {
-        
-        guard let nameNode = Self.functionNameNode(in: functionDeclarator) else { return nil }
-        
-        return source.substring(with: nameNode.range)
     }
     
     

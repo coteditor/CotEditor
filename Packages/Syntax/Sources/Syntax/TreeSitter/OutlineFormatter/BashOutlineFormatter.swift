@@ -47,15 +47,16 @@ private extension BashOutlineFormatter {
     /// - Returns: The signature range.
     static func signatureRange(for nameRange: NSRange, source: NSString) -> NSRange {
         
-        guard nameRange.upperBound < source.length else { return nameRange }
+        // -> `32` is a generous upper bound for whitespace before "()" in a Bash function definition.
+        let searchEnd = min(source.length, nameRange.upperBound + 32)
         
-        let suffixRange = NSRange(location: nameRange.upperBound, length: source.length - nameRange.upperBound)
-        let suffix = source.substring(with: suffixRange)
+        guard nameRange.upperBound < searchEnd else { return nameRange }
         
-        guard let match = suffix.firstMatch(of: /^\s*\(\)/) else { return nameRange }
+        let searchRange = NSRange(location: nameRange.upperBound, length: searchEnd - nameRange.upperBound)
+        let matchRange = source.range(of: #"^\s*\(\)"#, options: .regularExpression, range: searchRange)
         
-        let matchedLength = match.output.utf16.count
+        guard matchRange.location != NSNotFound else { return nameRange }
         
-        return NSRange(location: nameRange.location, length: nameRange.length + matchedLength)
+        return NSRange(location: nameRange.location, length: nameRange.length + matchRange.length)
     }
 }

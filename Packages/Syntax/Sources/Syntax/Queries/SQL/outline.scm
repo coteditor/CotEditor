@@ -77,8 +77,8 @@
 ; Functions
 (create_function
   (object_reference) @outline.function
-  (function_arguments) @outline.signature.arguments)
+  (function_arguments) @outline.signature.parameters)
 
 (create_procedure
   (object_reference) @outline.function
-  ((function_arguments) @outline.signature.arguments)?)
+  ((function_arguments) @outline.signature.parameters)?)

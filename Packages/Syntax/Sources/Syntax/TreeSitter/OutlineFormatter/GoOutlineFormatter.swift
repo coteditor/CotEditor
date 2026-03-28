@@ -53,8 +53,7 @@ private extension GoOutlineFormatter {
             .map(source.substring(with:))
             .map(Self.normalizedClause)
             ?? ""
-        let parametersRange = match.captures(named: "outline.signature.parameters").first?.range
-        let parameters = parametersRange
+        let parameters = Self.parametersRange(for: match)
             .map(source.substring(with:))
             .map(Self.normalizedClause)
             ?? "()"
@@ -79,7 +78,7 @@ private extension GoOutlineFormatter {
         
         nameRange.union(with: [
             Self.typeParametersRange(for: match),
-            match.captures(named: "outline.signature.parameters").first?.range,
+            Self.parametersRange(for: match),
         ])
     }
     

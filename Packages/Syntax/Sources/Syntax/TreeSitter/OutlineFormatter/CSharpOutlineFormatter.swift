@@ -56,7 +56,7 @@ private extension CSharpOutlineFormatter {
         return adjustedNameRange.union(with: [
             Self.explicitInterfaceRange(for: match),
             Self.typeParametersRange(for: match),
-            match.captures(named: "outline.signature.parameters").first?.range,
+            Self.parametersRange(for: match),
         ])
     }
     

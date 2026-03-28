@@ -105,7 +105,7 @@ private extension SQLOutlineFormatter {
     /// - Returns: The displayed SQL function title.
     static func functionTitle(for match: QueryMatch, title: String, source: NSString) -> String {
         
-        guard let arguments = match.captures(named: "outline.signature.arguments").first?.node else {
+        guard let arguments = match.captures(named: "outline.signature.parameters").first?.node else {
             return title
         }
         

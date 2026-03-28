@@ -101,6 +101,16 @@ extension TreeSitterOutlineFormatting {
     }
     
     
+    /// Returns the range of the first `outline.signature.parameters` capture in the match.
+    ///
+    /// - Parameter match: The resolved query match.
+    /// - Returns: The parameters range, or `nil` if the match has no parameter capture.
+    static func parametersRange(for match: QueryMatch) -> NSRange? {
+        
+        match.captures(named: "outline.signature.parameters").first?.range
+    }
+    
+    
     /// Returns the default title and its range.
     private static func defaultTitle(capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         

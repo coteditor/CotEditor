@@ -52,7 +52,7 @@ private extension TypeScriptOutlineFormatter {
         
         nameRange.union(with: [
             Self.typeParametersRange(for: match),
-            match.captures(named: "outline.signature.parameters").first?.range,
+            Self.parametersRange(for: match),
         ])
     }
     

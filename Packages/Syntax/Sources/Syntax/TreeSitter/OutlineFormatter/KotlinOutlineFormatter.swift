@@ -49,8 +49,7 @@ private extension KotlinOutlineFormatter {
     /// - Returns: The displayed Kotlin function title.
     static func functionTitle(for match: QueryMatch, title: String, source: NSString) -> String {
         
-        let parametersRange = match.captures(named: "outline.signature.parameters").first?.range
-        let parameters = parametersRange
+        let parameters = Self.parametersRange(for: match)
             .map(source.substring(with:))
             .map(Self.normalizedClause)
             ?? "()"
@@ -67,7 +66,7 @@ private extension KotlinOutlineFormatter {
     /// - Returns: The signature range.
     static func signatureRange(for match: QueryMatch, nameRange: NSRange) -> NSRange {
         
-        nameRange.union(with: [match.captures(named: "outline.signature.parameters").first?.range])
+        nameRange.union(with: [Self.parametersRange(for: match)])
     }
     
     

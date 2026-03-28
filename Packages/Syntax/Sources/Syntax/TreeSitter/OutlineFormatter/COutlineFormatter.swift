@@ -31,25 +31,27 @@ enum COutlineFormatter: TreeSitterOutlineFormatting {
     
     static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
-        let node = match.outlineNode
-        let title = node.flatMap { Self.functionTitle(for: $0, source: source) }
-            ?? source.substring(with: capture.range)
-        let range = node.flatMap(Self.functionSignatureRange(in:)) ?? capture.range
+        guard
+            let node = match.outlineNode,
+            let resolved = Self.resolvedSignature(for: node, source: source)
+        else {
+            return (source.substring(with: capture.range), capture.range)
+        }
         
-        return (title, range)
+        return resolved
     }
 }
 
 
 private extension COutlineFormatter {
     
-    /// Builds the displayed C function title from a declarator node.
+    /// Resolves the display title and signature range for a C function declarator in a single tree traversal.
     ///
     /// - Parameters:
     ///   - declarator: The captured top-level declarator node.
     ///   - source: The source text as `NSString`.
-    /// - Returns: The displayed C function title.
-    static func functionTitle(for declarator: Node, source: NSString) -> String? {
+    /// - Returns: The display title and signature range, or `nil` if the node is not a function declarator.
+    static func resolvedSignature(for declarator: Node, source: NSString) -> (title: String, range: NSRange)? {
         
         guard
             let functionDeclarator = Self.functionDeclarator(in: declarator),
@@ -59,24 +61,10 @@ private extension COutlineFormatter {
         
         let parameterList = source.substring(with: parameters.range)
             .replacing(/\s+/, with: " ")
+        let title = source.substring(with: name.range) + parameterList
+        let range = name.range.union(parameters.range)
         
-        return source.substring(with: name.range) + parameterList
-    }
-    
-    
-    /// Returns the signature range spanning the function name through its parameter list.
-    ///
-    /// - Parameter declarator: The captured top-level declarator node.
-    /// - Returns: The signature range, or `nil` if it cannot be derived.
-    private static func functionSignatureRange(in declarator: Node) -> NSRange? {
-        
-        guard
-            let functionDeclarator = Self.functionDeclarator(in: declarator),
-            let name = Self.functionName(in: functionDeclarator),
-            let parameters = functionDeclarator.child(byFieldName: "parameters")
-        else { return nil }
-        
-        return name.range.union(parameters.range)
+        return (title, range)
     }
     
     
