@@ -1651,7 +1651,7 @@ extension EditorTextView {
         
         guard !self.string.isEmpty else { return range }
         
-        let firstSyntaxLetters = self.syntaxCompletionWords.map(\.text).compactMap(\.unicodeScalars.first)
+        let firstSyntaxLetters = self.syntaxCompletionWords.compactMap(\.text.unicodeScalars.first)
         let firstLetterSet = CharacterSet(firstSyntaxLetters).union(.letters).union(.init(["_"]))
         
         // expand range until hitting a character that isn't in the word completion candidates
