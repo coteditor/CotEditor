@@ -185,8 +185,7 @@ public extension Sequence<NSRange> {
     var merged: [NSRange] {
         
         self
-            .sorted(using: [KeyPathComparator(\.location),
-                            KeyPathComparator(\.length)])
+            .sorted(using: KeyPathComparator(\.location))
             .reduce(into: []) { ranges, range in
                 if let last = ranges.last, last.touches(range) {
                     ranges[ranges.count - 1] = last.union(range)
