@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -114,7 +114,7 @@ public extension URL {
             .first { index, component in
                 !components
                     .filter { $0.indices.contains(index) }
-                    .compactMap { $0[index] }
+                    .map { $0[index] }
                     .contains(component)
             }?
             .offset
