@@ -90,6 +90,7 @@ extension [NestableToken: SyntaxType] {
         var seekLocation = parseRange.location
         var index = 0
         var lastLineEnd: Int?
+        var failedUpperBounds: [NestableToken: Int] = [:]
         
         while index < positions.endIndex {
             let beginPosition = positions[index]
@@ -111,6 +112,8 @@ extension [NestableToken: SyntaxType] {
                 searchUpperBound = string.lineContentsEndIndex(at: beginPosition.range.upperBound)
                 lastLineEnd = searchUpperBound
             }
+            
+            guard failedUpperBounds[beginPosition.token] != searchUpperBound else { continue }
             
             // search corresponding end delimiter
             let endIndex: Int? = {
@@ -155,7 +158,12 @@ extension [NestableToken: SyntaxType] {
                 return nil
             }()
             
-            guard let endIndex else { continue }  // give up if no end delimiter found
+            guard let endIndex else {
+                if !beginPosition.token.allowsMultiline {
+                    failedUpperBounds[beginPosition.token] = searchUpperBound
+                }
+                continue
+            }
             
             let endPosition = positions[endIndex]
             let range = NSRange(beginPosition.range.lowerBound..<endPosition.range.upperBound)

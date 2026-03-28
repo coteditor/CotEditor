@@ -167,6 +167,23 @@ struct NestableTests {
         }
         
         
+        @Test func unterminatedPairDoesNotBlockLaterLinePair() throws {
+            
+            let source = """
+                         'unterminated
+                         'ok'
+                         """
+            let tokens: [NestableToken: SyntaxType] = [
+                .pair(Pair("'", "'"), isMultiline: false, isNestable: true, escapeCharacter: "\\"): .strings
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            let ranges = try #require(dict[.strings])
+            let matches = ranges.map((source as NSString).substring(with:))
+            
+            #expect(matches == ["'ok'"])
+        }
+        
+        
         @Test func pairDifferentDelimiters() throws {
             
             let source = "/* a /* b */ c */ d */"  // last '*/' unmatched should be ignored
