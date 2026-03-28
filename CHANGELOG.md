@@ -11,7 +11,7 @@
 
 
 
-7.0.0-beta (unreleased)
+7.0.0-beta (802)
 --------------------------
 
 ### Compatibility Changes

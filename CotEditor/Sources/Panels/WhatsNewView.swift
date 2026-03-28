@@ -164,7 +164,7 @@ struct WhatsNewView: View {
 enum NewFeature: CaseIterable {
     
     static let version = Version(7, 0, 0)
-    static let buildNumber = 801
+    static let buildNumber = 802
     
     case syntax
     case treeSitter
