@@ -201,29 +201,6 @@ private extension NestableToken {
     }
     
     
-    /// Returns the length of the matching prefix immediately before the given location, or `nil` if no prefix matches.
-    ///
-    /// - Parameters:
-    ///   - location: The location of the delimiter in the string.
-    ///   - nsString: The source string as NSString.
-    ///   - prefixes: The prefix candidates sorted by descending length.
-    ///   - parseRange: The range where parsing is performed.
-    /// - Returns: The UTF-16 length of the matched prefix, or `nil`.
-    static func matchingPrefixLength(at location: Int, in nsString: NSString, prefixes: [String], parseRange: NSRange) -> Int? {
-        
-        for prefix in prefixes {
-            let length = (prefix as NSString).length
-            let start = location - length
-            guard start >= parseRange.location else { continue }
-            
-            if nsString.substring(with: NSRange(location: start, length: length)) == prefix {
-                return length
-            }
-        }
-        return nil
-    }
-    
-    
     /// Collects token positions for the nestable token in the given parse range.
     ///
     /// - Parameters:
@@ -291,5 +268,28 @@ private extension NestableToken {
                     return beginItems + endItems
                 }
         }
+    }
+    
+    
+    /// Returns the length of the matching prefix immediately before the given location, or `nil` if no prefix matches.
+    ///
+    /// - Parameters:
+    ///   - location: The location of the delimiter in the string.
+    ///   - nsString: The source string as NSString.
+    ///   - prefixes: The prefix candidates sorted by descending length.
+    ///   - parseRange: The range where parsing is performed.
+    /// - Returns: The UTF-16 length of the matched prefix, or `nil`.
+    private static func matchingPrefixLength(at location: Int, in nsString: NSString, prefixes: [String], parseRange: NSRange) -> Int? {
+        
+        for prefix in prefixes {
+            let length = (prefix as NSString).length
+            let start = location - length
+            guard start >= parseRange.location else { continue }
+            
+            if nsString.substring(with: NSRange(location: start, length: length)) == prefix {
+                return length
+            }
+        }
+        return nil
     }
 }
