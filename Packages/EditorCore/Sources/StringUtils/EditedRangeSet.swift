@@ -77,7 +77,6 @@ public struct EditedRangeSet: Sendable {
     /// - Parameter editedRange: The new range.
     public mutating func update(editedRange: NSRange) {
         
-        self.clear()
         self.ranges = [editedRange]
     }
     
