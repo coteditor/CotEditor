@@ -128,8 +128,13 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
         
         let content = LanguageLayer.Content(string: string)
         if !self.pendingAffectedRanges.isEmpty {
-            // -> Outline parsing should not consume pending ranges; highlights are expected to run first.
+            // -> Outline parsing should preserve pending ranges when highlights are available,
+            //    because highlight parsing uses them to compute the next update range.
             _ = self.layer.parse(with: content, affecting: self.pendingAffectedRanges.indexSet, resolveSublayers: true)
+            
+            if !self.syntax.features.contains(.highlight) {
+                self.pendingAffectedRanges.clear()
+            }
         }
         
         try Task.checkCancellation()
