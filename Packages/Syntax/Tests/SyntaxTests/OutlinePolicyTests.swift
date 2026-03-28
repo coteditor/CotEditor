@@ -119,7 +119,7 @@ struct OutlinePolicyTests {
 
         let normalizedLevels = policy.normalize(items).map(\.indent.level)
 
-        // MARK and separator at root depth should return to level 0 after deep nesting.
+        // `MARK` and separator at root depth should return to level 0 after deep nesting.
         #expect(normalizedLevels == [0, 1, 2, 0, 0, 0])
     }
 

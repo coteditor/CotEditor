@@ -62,14 +62,12 @@ struct OutlinePolicy: Sendable {
     func depth(captureNameComponents components: [String], ancestorNodeTypes nodeTypes: [String]) -> Int {
         
         if components.count > 2, components[1] == "heading" {
-            return Self.headingLevel(from: components[2])
+            Self.headingLevel(from: components[2])
+        } else {
+            self.ignoredDepthNodeTypes.isEmpty
+                ? nodeTypes.count
+                : nodeTypes.count { !self.ignoredDepthNodeTypes.contains($0) }
         }
-        
-        return nodeTypes
-            .reduce(into: 0) { depth, nodeType in
-                guard !self.ignoredDepthNodeTypes.contains(nodeType) else { return }
-                depth += 1
-            }
     }
     
     
@@ -113,9 +111,9 @@ extension [OutlineItem] {
             return self.map { item in
                 guard item.indent.level != nil else { return item }
                 
-                var normalizedItem = item
-                normalizedItem.indent = .level(0)
-                return normalizedItem
+                var item = item
+                item.indent = .level(0)
+                return item
             }
         }
         
@@ -190,9 +188,7 @@ extension [OutlineItem] {
     /// - Returns: The normalized 0-based indentation level.
     private static func normalizeDepth(_ depth: Int, with depthStack: inout [Int]) -> Int {
         
-        if depthStack.isEmpty {
-            depthStack.append(depth)
-        } else if let lastDepth = depthStack.last {
+        if let lastDepth = depthStack.last {
             if depth > lastDepth {
                 depthStack.append(depth)
             } else if depth < lastDepth {
@@ -205,6 +201,8 @@ extension [OutlineItem] {
                     depthStack[depthStack.endIndex - 1] = depth
                 }
             }
+        } else {
+            depthStack.append(depth)
         }
         
         return depthStack.count - 1
