@@ -340,18 +340,24 @@ extension Document {
         
         guard !string.isEmpty else { return 0 }
         
+        let regex: NSRegularExpression?
+        if options.contains(.regularExpression) {
+            let regexOptions: NSRegularExpression.Options = options.contains(.caseInsensitive) ? .caseInsensitive : []
+            guard let compiled = try? NSRegularExpression(pattern: searchString, options: regexOptions.union(.anchorsMatchLines)) else {
+                command.scriptErrorNumber = errOSAGeneralError
+                command.scriptErrorString = "Invalid regular expression."
+                return 0
+            }
+            regex = compiled
+        } else {
+            regex = nil
+        }
+        
         // perform replacement
         if isAll {
             let mutableString = NSMutableString(string: string)
             let count: Int
-            if options.contains(.regularExpression) {
-                let regexOptions: NSRegularExpression.Options = options.contains(.caseInsensitive) ? [.caseInsensitive] : []
-                guard let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions.union(.anchorsMatchLines)) else {
-                    command.scriptErrorNumber = errOSAGeneralError
-                    command.scriptErrorString = "Invalid regular expression."
-                    return 0
-                }
-                
+            if let regex {
                 count = regex.replaceMatches(in: mutableString, range: string.nsRange, withTemplate: replacementString)
             } else {
                 count = mutableString.replaceOccurrences(of: searchString, with: replacementString, options: options, range: string.nsRange)
@@ -370,14 +376,7 @@ extension Document {
             else { return 0 }
             
             let replacedString: String
-            if options.contains(.regularExpression) {
-                let regexOptions: NSRegularExpression.Options = options.contains(.caseInsensitive) ? .caseInsensitive : []
-                guard let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions.union(.anchorsMatchLines)) else {
-                    command.scriptErrorNumber = errOSAGeneralError
-                    command.scriptErrorString = "Invalid regular expression."
-                    return 0
-                }
-                
+            if let regex {
                 guard let match = regex.firstMatch(in: string, options: .withoutAnchoringBounds, range: foundRange) else { return 0 }
                 
                 replacedString = regex.replacementString(for: match, in: string, offset: 0, template: replacementString)
