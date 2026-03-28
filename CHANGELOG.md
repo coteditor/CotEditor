@@ -3,6 +3,11 @@
 7.0.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Update tree-sitter-rust to 0.24.2.
+
+
 ### TODO
 
 - Localize the text added to CotEditor 7.0.0 in Czech and Polish.
