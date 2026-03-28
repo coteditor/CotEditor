@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -102,19 +102,19 @@ public extension StringProtocol {
         }
         
         // evaluate line ranges to avoid double-count lines holding multiple ranges
-        var lineRanges: [Range<String.Index>] = []
+        var lineRanges: Set<Range<String.Index>> = []
         for range in ranges {
             let lineRange = self.lineRange(for: range)
             self.enumerateSubstrings(in: lineRange, options: [.byLines, .substringNotRequired]) { _, substringRange, _, _ in
-                lineRanges.append(substringRange)
+                lineRanges.insert(substringRange)
             }
             
             if includesLastBreak, self[range].last?.isNewline == true {
-                lineRanges.append(self.lineRange(at: range.upperBound))
+                lineRanges.insert(self.lineRange(at: range.upperBound))
             }
         }
         
-        return lineRanges.uniqued.count
+        return lineRanges.count
     }
     
     
