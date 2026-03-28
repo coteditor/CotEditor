@@ -54,8 +54,8 @@ struct Theme: Equatable, Sendable {
         var description: String?
         
         var isEmpty: Bool {
-            
-            [self.author, self.distributionURL, self.license, self.description].compactMap(\.self).isEmpty
+
+            self.author == nil && self.distributionURL == nil && self.license == nil && self.description == nil
         }
     }
     
