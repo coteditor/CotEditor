@@ -213,8 +213,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tree-sitter/tree-sitter-rust",
       "state" : {
-        "revision" : "4b8106750a2865e4548459d18c797c9f468c440e",
-        "version" : "0.24.1"
+        "revision" : "77a3747266f4d621d0757825e6b11edcbf991ca5",
+        "version" : "0.24.2"
       }
     },
     {
