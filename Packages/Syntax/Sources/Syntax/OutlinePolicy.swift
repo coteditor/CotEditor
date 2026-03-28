@@ -53,24 +53,6 @@ struct OutlinePolicy: Sendable {
     var ignoredDepthNodeTypes: Set<String> = []
     
     
-    /// Computes the raw outline depth for a capture.
-    ///
-    /// - Parameters:
-    ///   - components: The capture name components.
-    ///   - nodeTypes: The capture node and ancestor node types from leaf to root.
-    /// - Returns: The raw depth before normalization.
-    func depth(captureNameComponents components: [String], ancestorNodeTypes nodeTypes: [String]) -> Int {
-        
-        if components.count > 2, components[1] == "heading" {
-            Self.headingLevel(from: components[2])
-        } else {
-            self.ignoredDepthNodeTypes.isEmpty
-                ? nodeTypes.count
-                : nodeTypes.count { !self.ignoredDepthNodeTypes.contains($0) }
-        }
-    }
-    
-    
     /// Normalizes outline item indentation levels according to this policy.
     ///
     /// - Parameters:
@@ -79,21 +61,6 @@ struct OutlinePolicy: Sendable {
     func normalize(_ items: [OutlineItem]) -> [OutlineItem] {
         
         items.normalizedLevels(policy: self.normalization)
-    }
-    
-    
-    /// Returns the semantic heading depth for a heading capture component.
-    ///
-    /// - Parameters:
-    ///   - component: The heading component suffix such as `1`.
-    /// - Returns: The 1-based heading depth.
-    private static func headingLevel(from component: String) -> Int {
-        
-        if let level = Int(component), Syntax.Outline.Kind.levelRange.contains(level) {
-            level
-        } else {
-            1
-        }
     }
 }
 

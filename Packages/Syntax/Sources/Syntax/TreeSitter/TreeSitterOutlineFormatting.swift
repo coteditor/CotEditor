@@ -141,12 +141,53 @@ struct OutlineCapture {
             let kind = Syntax.Outline.Kind(rawValue: components[1])
         else { return nil }
         
-        let ancestorNodeTypes = sequence(first: capture.node, next: \.parent)
-            .map { $0.nodeType ?? "" }
-        
         self.kind = kind
         self.range = capture.range
-        self.depth = policy.depth(captureNameComponents: components, ancestorNodeTypes: ancestorNodeTypes)
+        self.depth = policy.depth(captureNameComponents: components, captureNode: capture.node)
+    }
+}
+
+
+extension OutlinePolicy {
+    
+    /// Computes the raw outline depth for a capture.
+    ///
+    /// - Parameters:
+    ///   - components: The capture name components.
+    ///   - node: The capture node used to derive the raw depth.
+    /// - Returns: The raw depth before normalization.
+    func depth(captureNameComponents components: [String], captureNode node: Node?) -> Int {
+        
+        if components.count > 2, components[1] == "heading" {
+            return Self.headingLevel(from: components[2])
+        }
+        
+        var depth = 0
+        var node = node
+        
+        while let currentNode = node {
+            if self.ignoredDepthNodeTypes.isEmpty || !self.ignoredDepthNodeTypes.contains(currentNode.nodeType ?? "") {
+                depth += 1
+            }
+            node = currentNode.parent
+        }
+        
+        return depth
+    }
+    
+    
+    /// Returns the semantic heading depth for a heading capture component.
+    ///
+    /// - Parameters:
+    ///   - component: The heading component suffix such as `1`.
+    /// - Returns: The 1-based heading depth.
+    private static func headingLevel(from component: String) -> Int {
+        
+        if let level = Int(component), Syntax.Outline.Kind.levelRange.contains(level) {
+            level
+        } else {
+            1
+        }
     }
 }
 
