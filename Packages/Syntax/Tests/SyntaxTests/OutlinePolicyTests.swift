@@ -99,10 +99,31 @@ struct OutlinePolicyTests {
         
         let normalizedLevels = policy.normalize(items).map(\.indent.level)
         
-        #expect(normalizedLevels == [0, 0, 0, 1, 1, 1, 1, 1, 1])
+        #expect(normalizedLevels == [0, 0, 0, 1, 1, 1, 1, 0, 0])
     }
     
     
+    @Test func normalizeSectionMarkerAtRootAfterDeepNesting() {
+
+        let policy = OutlinePolicy(
+            normalization: .init(sectionMarkerKinds: [.separator, .mark], adjustSectionMarkerDepth: true)
+        )
+        let items: [OutlineItem] = [
+            OutlineItem(title: "Struct", range: NSRange(location: 0, length: 1), kind: .container, indent: .level(2)),
+            OutlineItem(title: "func", range: NSRange(location: 1, length: 1), kind: .function, indent: .level(5)),
+            OutlineItem(title: "prop", range: NSRange(location: 2, length: 1), kind: .value, indent: .level(7)),
+            OutlineItem(title: "MARK", range: NSRange(location: 3, length: 1), kind: .mark, indent: .level(2)),
+            OutlineItem.separator(range: NSRange(location: 4, length: 1), indent: .level(2)),
+            OutlineItem(title: "Preview", range: NSRange(location: 5, length: 1), kind: .function, indent: .level(2)),
+        ]
+
+        let normalizedLevels = policy.normalize(items).map(\.indent.level)
+
+        // MARK and separator at root depth should return to level 0 after deep nesting.
+        #expect(normalizedLevels == [0, 1, 2, 0, 0, 0])
+    }
+
+
     @Test func normalizeTitleLevels() {
         
         let items: [OutlineItem] = [

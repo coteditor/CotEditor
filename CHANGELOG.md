@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- [beta] Improve outline extraction algorithm for the Swift syntax.
 - [beta] Update tree-sitter-rust to 0.24.2.
 
 

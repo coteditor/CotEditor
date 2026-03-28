@@ -159,7 +159,7 @@ extension [OutlineItem] {
                 
             } else if policy.isSectionMarker(kind: item.kind) {
                 let effectiveDepth = if policy.adjustSectionMarkerDepth {
-                    Swift.max(depthStack.last ?? depth, depth, nextNonSectionDepth ?? depth)
+                    Swift.max(depth, nextNonSectionDepth ?? depth)
                 } else {
                     depth
                 }
