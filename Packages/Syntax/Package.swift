@@ -53,6 +53,12 @@ let package = Package(
             dependencies: ["EditorCore", "Yams"],
             resources: [.process("Resources")]
         ),
+        .testTarget(
+            name: "SyntaxFormatTests",
+            dependencies: ["SyntaxFormat", "EditorCore"],
+            resources: [.copy("Syntaxes")]
+        ),
+        
         .target(
             name: "SyntaxParsers",
             dependencies: [
@@ -85,9 +91,9 @@ let package = Package(
             resources: [.copy("Queries")]
         ),
         .testTarget(
-            name: "SyntaxTests",
-            dependencies: ["SyntaxFormat", "SyntaxParsers", "EditorCore"],
-            resources: [.copy("Syntaxes"), .copy("Samples")]
+            name: "SyntaxParsersTests",
+            dependencies: ["SyntaxParsers", "EditorCore"],
+            resources: [.copy("Samples")]
         ),
         
         .executableTarget(

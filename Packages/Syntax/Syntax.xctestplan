@@ -15,8 +15,15 @@
     {
       "target" : {
         "containerPath" : "container:",
-        "identifier" : "SyntaxTests",
-        "name" : "SyntaxTests"
+        "identifier" : "SyntaxFormatTests",
+        "name" : "SyntaxFormatTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "SyntaxParsersTests",
+        "name" : "SyntaxParsersTests"
       }
     }
   ],
