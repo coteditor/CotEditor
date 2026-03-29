@@ -9,7 +9,12 @@ let package = Package(
         .macOS(.v15),
     ],
     products: [
-        .library(name: "Syntax", targets: ["Syntax"]),
+        .library(name: "Syntax", targets: [
+            "SyntaxFormat",
+            "SyntaxParsers",
+        ]),
+        .library(name: "SyntaxFormat", targets: ["SyntaxFormat"]),
+        .library(name: "SyntaxParsers", targets: ["SyntaxParsers"]),
     ],
     dependencies: [
         .package(name: "EditorCore", path: "../EditorCore"),
@@ -44,10 +49,21 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Syntax",
+            name: "SyntaxFormat",
+            dependencies: ["EditorCore", "Yams"],
+            resources: [.process("Resources")]
+        ),
+        .testTarget(
+            name: "SyntaxFormatTests",
+            dependencies: ["SyntaxFormat", "EditorCore"],
+            resources: [.copy("Syntaxes")]
+        ),
+        
+        .target(
+            name: "SyntaxParsers",
             dependencies: [
                 "EditorCore",
-                "Yams",
+                "SyntaxFormat",
                 .product(name: "SwiftTreeSitterLayer", package: "swift-tree-sitter"),
                 .product(name: "TreeSitterBash", package: "tree-sitter-bash"),
                 .product(name: "TreeSitterC", package: "tree-sitter-c"),
@@ -72,24 +88,25 @@ let package = Package(
                 .product(name: "TreeSitterSwift", package: "tree-sitter-swift"),
                 .product(name: "TreeSitterTypeScript", package: "tree-sitter-typescript"),
             ],
-            resources: [.process("Resources"), .copy("Queries")]),
+            resources: [.copy("Queries")]
+        ),
         .testTarget(
-            name: "SyntaxTests",
-            dependencies: ["Syntax", "EditorCore"],
-            resources: [.copy("Syntaxes"), .copy("Samples")]
+            name: "SyntaxParsersTests",
+            dependencies: ["SyntaxParsers", "EditorCore"],
+            resources: [.copy("Samples")]
         ),
         
         .executableTarget(
             name: "SyntaxMapBuilder",
             dependencies: [
-                "Syntax",
+                "SyntaxFormat",
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]),
     
         .executableTarget(
             name: "SyntaxMigrator",
             dependencies: [
-                "Syntax",
+                "SyntaxFormat",
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]),
     ],

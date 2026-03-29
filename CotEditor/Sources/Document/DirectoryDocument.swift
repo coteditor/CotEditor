@@ -27,7 +27,7 @@ import AppKit
 import UniformTypeIdentifiers
 import OSLog
 import Defaults
-import Syntax
+import SyntaxFormat
 import URLUtils
 
 final class DirectoryDocument: NSDocument {

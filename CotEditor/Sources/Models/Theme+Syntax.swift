@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021-2024 1024jp
+//  © 2021-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Syntax
+import SyntaxFormat
 
 extension Theme {
     

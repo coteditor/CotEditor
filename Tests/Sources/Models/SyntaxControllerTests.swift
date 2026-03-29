@@ -25,8 +25,9 @@
 
 import AppKit
 import Testing
+import SyntaxFormat
+import SyntaxParsers
 import ValueRange
-import Syntax
 @testable import CotEditor
 
 @MainActor struct SyntaxControllerTests {

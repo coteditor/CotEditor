@@ -26,7 +26,7 @@
 
 import Foundation
 import ArgumentParser
-import Syntax
+import SyntaxFormat
 
 @main
 struct Command: ParsableCommand {

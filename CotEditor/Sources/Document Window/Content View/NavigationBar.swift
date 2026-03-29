@@ -25,7 +25,7 @@
 
 import SwiftUI
 import StringUtils
-import Syntax
+import SyntaxParsers
 
 struct NavigationBar: View {
     

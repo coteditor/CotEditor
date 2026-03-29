@@ -29,7 +29,7 @@ import Combine
 import Defaults
 import Invisible
 import LineEnding
-import Syntax
+import SyntaxFormat
 import StringUtils
 import TextEditing
 

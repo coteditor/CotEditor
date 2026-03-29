@@ -24,7 +24,7 @@
 //
 
 import AppKit
-import Syntax
+import SyntaxFormat
 import StringUtils
 public import TextEditing
 

@@ -1,0 +1,178 @@
+//
+//  OutlinePolicy.swift
+//  Syntax
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2026-02-16.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2026 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+import Foundation
+import SyntaxFormat
+
+struct OutlinePolicy: Sendable {
+    
+    struct Normalization: Sendable {
+        
+        var sectionMarkerKinds: Set<Syntax.Outline.Kind> = [.separator]
+        var adjustSectionMarkerDepth: Bool = false
+        var flattenLevels: Bool = false
+        
+        static let standard = Self()
+        
+        
+        /// Returns whether the given outline kind should be treated as a section marker.
+        ///
+        /// - Parameters:
+        ///   - kind: The outline kind to evaluate.
+        /// - Returns: `true` if `kind` is configured as a section marker.
+        func isSectionMarker(kind: Syntax.Outline.Kind?) -> Bool {
+            
+            kind.map(self.sectionMarkerKinds.contains) ?? false
+        }
+    }
+    
+    
+    var normalization: Normalization = .standard
+    var ignoredDepthNodeTypes: Set<String> = []
+    
+    
+    /// Normalizes outline item indentation levels according to this policy.
+    ///
+    /// - Parameters:
+    ///   - items: The extracted outline items.
+    /// - Returns: Outline items with normalized indentation levels.
+    func normalize(_ items: [OutlineItem]) -> [OutlineItem] {
+        
+        items.normalizedLevels(policy: self.normalization)
+    }
+}
+
+
+extension [OutlineItem] {
+    
+    /// Normalizes outline levels to a stepwise hierarchy without skipped levels.
+    ///
+    /// - Complexity: O(n), where n is the number of outline items.
+    ///
+    /// - Parameter policy: The normalization policy to apply.
+    func normalizedLevels(policy: OutlinePolicy.Normalization = .standard) -> [OutlineItem] {
+        
+        if policy.flattenLevels {
+            return self.map { item in
+                guard item.indent.level != nil else { return item }
+                
+                var item = item
+                item.indent = .level(0)
+                return item
+            }
+        }
+        
+        var nextNonSectionDepths = [Int?](repeating: nil, count: self.count)
+        if policy.adjustSectionMarkerDepth {
+            var nearestDepth: Int?
+            for (index, item) in self.enumerated().reversed() {
+                nextNonSectionDepths[index] = nearestDepth
+                if !policy.isSectionMarker(kind: item.kind) {
+                    nearestDepth = item.indent.level
+                }
+            }
+        }
+        
+        var depthStack: [Int] = []
+        var normalizedItems: [OutlineItem] = []
+        normalizedItems.reserveCapacity(self.count)
+        
+        var lastNormalizedLevel: Int = 0
+        var lastKind: Syntax.Outline.Kind?
+        
+        for (item, nextNonSectionDepth) in zip(self, nextNonSectionDepths) {
+            guard let depth = item.indent.level else {
+                if !item.isSeparator {
+                    lastKind = item.kind
+                }
+                normalizedItems.append(item)
+                continue
+            }
+            
+            var normalizedItem = item
+            if item.kind == .title {
+                // -> Title items are placed relative to the previous item:
+                //    one level below headings, same level as anything else.
+                let titleLevel = if let lastKind, case .heading = lastKind {
+                    lastNormalizedLevel + 1
+                } else {
+                    lastNormalizedLevel
+                }
+                normalizedItem.indent = .level(titleLevel)
+                
+            } else if policy.isSectionMarker(kind: item.kind) {
+                let effectiveDepth = if policy.adjustSectionMarkerDepth {
+                    Swift.max(depth, nextNonSectionDepth ?? depth)
+                } else {
+                    depth
+                }
+                // -> Section markers should not change the active nesting context.
+                var temporaryDepthStack = depthStack
+                normalizedItem.indent = .level(Self.normalizeDepth(effectiveDepth, with: &temporaryDepthStack))
+                
+            } else {
+                normalizedItem.indent = .level(Self.normalizeDepth(depth, with: &depthStack))
+            }
+            
+            if !item.isSeparator {
+                lastNormalizedLevel = normalizedItem.indent.level ?? 0
+                lastKind = item.kind
+            }
+            normalizedItems.append(normalizedItem)
+        }
+        
+        return normalizedItems
+    }
+    
+    
+    /// Normalizes a raw indentation depth into a compact 0-based level using the current depth stack.
+    ///
+    /// - Parameters:
+    ///   - depth: The raw depth to normalize.
+    ///   - depthStack: The mutable stack that tracks active raw depths.
+    /// - Returns: The normalized 0-based indentation level.
+    private static func normalizeDepth(_ depth: Int, with depthStack: inout [Int]) -> Int {
+        
+        if let lastDepth = depthStack.last {
+            if depth > lastDepth {
+                depthStack.append(depth)
+            } else if depth < lastDepth {
+                while let last = depthStack.last, last > depth {
+                    depthStack.removeLast()
+                }
+                if depthStack.isEmpty {
+                    depthStack.append(depth)
+                } else {
+                    depthStack[depthStack.endIndex - 1] = depth
+                }
+            }
+        } else {
+            depthStack.append(depth)
+        }
+        
+        return depthStack.count - 1
+    }
+}

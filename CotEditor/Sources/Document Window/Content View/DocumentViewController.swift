@@ -30,7 +30,7 @@ import SwiftUI
 import ControlUI
 import Defaults
 import StringUtils
-import Syntax
+import SyntaxFormat
 import TextEditing
 
 @Observable final class SplitState {

@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Syntax
+import SyntaxParsers
 
 extension TreeSitterSyntax {
     

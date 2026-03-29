@@ -26,7 +26,8 @@
 import SwiftUI
 import Combine
 import Defaults
-import Syntax
+import SyntaxFormat
+import SyntaxParsers
 import StringUtils
 
 @MainActor @Observable private final class OutlineInspectorViewModel: OutlineInspectorView.ModelProtocol {

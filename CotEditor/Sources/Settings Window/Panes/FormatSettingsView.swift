@@ -28,7 +28,7 @@ import UniformTypeIdentifiers
 import Defaults
 import FileEncoding
 import LineEnding
-import Syntax
+import SyntaxFormat
 
 @MainActor @objc protocol EncodingsListHolder: AnyObject {
     

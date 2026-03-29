@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import CharacterInfo
 import FileEncoding
 import FilePermissions
 import LineEnding
-import Syntax
+import SyntaxFormat
 
 @MainActor @Observable private final class DocumentInspectorViewModel: DocumentInspectorView.ModelProtocol {
     

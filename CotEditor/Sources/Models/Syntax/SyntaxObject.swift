@@ -24,7 +24,7 @@
 //
 
 import Foundation
-import Syntax
+import SyntaxFormat
 
 @Observable final class SyntaxObject {
     

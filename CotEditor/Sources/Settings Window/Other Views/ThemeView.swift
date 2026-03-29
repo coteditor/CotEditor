@@ -27,7 +27,7 @@ import SwiftUI
 import AppKit.NSColor
 import Combine
 import Defaults
-import Syntax
+import SyntaxFormat
 import UniformTypeIdentifiers
 
 struct ThemeView: View {

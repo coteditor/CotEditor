@@ -24,7 +24,7 @@
 //
 
 import SwiftUI
-import Syntax
+import SyntaxFormat
 
 struct SyntaxHighlightEditView: View {
     
