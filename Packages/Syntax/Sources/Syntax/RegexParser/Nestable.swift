@@ -115,6 +115,17 @@ extension [NestableToken: SyntaxType] {
             
             guard failedUpperBounds[beginPosition.token] != searchUpperBound else { continue }
             
+            // use pre-found line end
+            if case .inline = beginPosition.token {
+                let range = NSRange(beginPosition.range.lowerBound..<searchUpperBound)
+                highlights[beginPosition.type, default: []].append(range)
+                
+                seekLocation = range.upperBound
+                index += positions[index...].prefix { $0.range.location < searchUpperBound }.count
+                
+                continue
+            }
+            
             // search corresponding end delimiter
             let endIndex: Int? = {
                 let appliesDoubleDelimiter: Bool = switch beginPosition.token {
@@ -223,13 +234,7 @@ private extension NestableToken {
                     range.lowerBound == 0 ||
                     Unicode.Scalar((string as NSString).character(at: range.lowerBound - 1))?.properties.isWhitespace == true
                 }
-                .flatMap { range -> [NestableItem] in
-                    let lineEnd = string.lineContentsEndIndex(at: range.upperBound)
-                    let endRange = NSRange(location: lineEnd, length: 0)
-                    
-                    return [NestableItem(type: type, token: self, role: .begin, range: range),
-                            NestableItem(type: type, token: self, role: .end, range: endRange)]
-                }
+                .map { NestableItem(type: type, token: self, role: .begin, range: $0) }
                 
             case .pair(let pair, let prefixes, _, _, _):
                 // -> `prefixes` is pre-sorted by descending length at NestableToken creation

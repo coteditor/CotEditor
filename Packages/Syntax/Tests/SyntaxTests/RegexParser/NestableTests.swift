@@ -75,6 +75,26 @@ struct NestableTests {
         }
         
         
+        @Test func inlineCommentsIgnoreLaterTokensOnSameLine() throws {
+            
+            let source = """
+                         # "x"
+                         "y"
+                         """
+            let tokens: [NestableToken: SyntaxType] = [
+                .inline("#", leadingOnly: false): .comments,
+                .pair(Pair("\"", "\""), isMultiline: false, isNestable: true, escapeCharacter: "\\"): .strings,
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            
+            let commentMatches = try #require(dict[.comments]).map((source as NSString).substring(with:))
+            let stringMatches = try #require(dict[.strings]).map((source as NSString).substring(with:))
+            
+            #expect(commentMatches == [#"# "x""#])
+            #expect(stringMatches == [#""y""#])
+        }
+        
+        
         @Test func pairSameDelimiter() throws {
             
             let source = "a 'x' 'y'"
