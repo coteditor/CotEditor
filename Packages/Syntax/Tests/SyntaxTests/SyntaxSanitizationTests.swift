@@ -26,7 +26,7 @@
 
 import Testing
 import StringUtils
-@testable import Syntax
+@testable import SyntaxFormat
 
 struct SyntaxSanitizationTests {
     

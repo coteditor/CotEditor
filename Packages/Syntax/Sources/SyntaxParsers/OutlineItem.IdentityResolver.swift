@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import SyntaxFormat
 
 extension OutlineItem {
     

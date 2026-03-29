@@ -28,7 +28,7 @@ import AppKit
 import UniformTypeIdentifiers
 import Testing
 import Numerics
-import Syntax
+import SyntaxFormat
 @testable import CotEditor
 
 actor ThemeTests {

@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import SyntaxFormat
 import StringUtils
 
 public struct OutlineExtractor: Sendable {

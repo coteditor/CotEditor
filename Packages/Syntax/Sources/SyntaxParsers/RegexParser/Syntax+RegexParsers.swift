@@ -25,6 +25,7 @@
 //  limitations under the License.
 
 import Foundation
+public import SyntaxFormat
 import StringUtils
 
 extension Syntax {
@@ -136,10 +137,12 @@ extension Syntax.Highlight {
             .reversed()  // reverse to precede longer words
             .map(NSRegularExpression.escapedPattern(for:))
         
-        self.begin = "(?<![\(boundary)])(?:\(escapedWords.joined(separator: "|")))(?![\(boundary)])"
-        self.end = nil
-        self.isRegularExpression = true
-        self.ignoreCase = ignoreCase
-        self.isMultiline = false
+        self.init(
+            begin: "(?<![\(boundary)])(?:\(escapedWords.joined(separator: "|")))(?![\(boundary)])",
+            end: nil,
+            isRegularExpression: true,
+            ignoreCase: ignoreCase,
+            isMultiline: false
+        )
     }
 }

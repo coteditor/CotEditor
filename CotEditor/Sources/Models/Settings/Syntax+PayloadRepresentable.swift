@@ -25,7 +25,7 @@
 
 import Foundation
 import UniformTypeIdentifiers
-import Syntax
+import SyntaxFormat
 
 extension UTType {
     

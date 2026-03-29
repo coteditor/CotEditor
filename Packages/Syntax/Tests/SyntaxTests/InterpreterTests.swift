@@ -25,7 +25,7 @@
 //
 
 import Testing
-@testable import Syntax
+@testable import SyntaxFormat
 
 struct InterpreterTests {
     

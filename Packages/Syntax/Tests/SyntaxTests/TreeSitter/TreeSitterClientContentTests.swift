@@ -27,7 +27,8 @@
 import Foundation
 import Testing
 import SwiftTreeSitter
-@testable import Syntax
+import SyntaxFormat
+@testable import SyntaxParsers
 
 struct TreeSitterClientContentTests {
     

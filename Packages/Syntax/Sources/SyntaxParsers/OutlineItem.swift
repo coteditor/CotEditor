@@ -25,6 +25,7 @@
 //
 
 public import Foundation
+public import SyntaxFormat
 
 public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
     

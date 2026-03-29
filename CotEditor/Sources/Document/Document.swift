@@ -36,7 +36,7 @@ import FileEncoding
 import FilePermissions
 import LineEnding
 import StringUtils
-import Syntax
+import SyntaxFormat
 import URLUtils
 
 extension NSTextView: EditorCounter.Source { }

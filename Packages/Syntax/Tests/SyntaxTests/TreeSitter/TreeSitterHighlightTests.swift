@@ -28,7 +28,8 @@ import Foundation
 import Testing
 import StringUtils
 import ValueRange
-@testable import Syntax
+import SyntaxFormat
+@testable import SyntaxParsers
 
 struct TreeSitterHighlightTests {
     

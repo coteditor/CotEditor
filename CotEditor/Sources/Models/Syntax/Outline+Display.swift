@@ -24,7 +24,7 @@
 //
 
 import AppKit.NSFont
-import Syntax
+import SyntaxParsers
 
 extension OutlineItem.Style {
     

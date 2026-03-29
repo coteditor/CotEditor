@@ -26,7 +26,8 @@
 
 import Foundation
 import Testing
-@testable import Syntax
+import SyntaxFormat
+@testable import SyntaxParsers
 
 struct TreeSitterRubyOutlineTests {
     

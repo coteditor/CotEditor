@@ -26,7 +26,8 @@
 import Foundation
 import AppKit
 import StringUtils
-import Syntax
+import SyntaxFormat
+import SyntaxParsers
 import ValueRange
 
 extension NSTextStorage {

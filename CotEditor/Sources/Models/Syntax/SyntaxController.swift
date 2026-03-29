@@ -29,7 +29,8 @@ import Combine
 import AppKit.NSTextStorage
 import OSLog
 import StringUtils
-import Syntax
+import SyntaxFormat
+import SyntaxParsers
 
 extension NSAttributedString.Key {
     

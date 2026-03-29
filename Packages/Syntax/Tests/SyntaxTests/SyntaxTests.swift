@@ -25,7 +25,8 @@
 //
 
 import Testing
-@testable import Syntax
+import SyntaxParsers
+@testable import SyntaxFormat
 
 struct SyntaxTests {
     

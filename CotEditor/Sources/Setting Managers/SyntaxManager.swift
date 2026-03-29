@@ -29,7 +29,8 @@ import Combine
 import Synchronization
 import UniformTypeIdentifiers
 import Defaults
-import Syntax
+import SyntaxFormat
+import SyntaxParsers
 import URLUtils
 
 enum SyntaxName {

@@ -24,6 +24,8 @@
 //  limitations under the License.
 //
 
+public import SyntaxFormat
+
 public enum TreeSitterSyntax: String, CaseIterable, Sendable {
     
     case bash = "Bash"

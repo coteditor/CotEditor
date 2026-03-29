@@ -27,7 +27,8 @@
 import Foundation
 import StringUtils
 import Testing
-@testable import Syntax
+import SyntaxFormat
+@testable import SyntaxParsers
 
 struct OutlineCollectionTests {
     

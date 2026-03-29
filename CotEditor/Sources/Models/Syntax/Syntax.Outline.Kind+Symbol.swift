@@ -25,7 +25,8 @@
 
 import SwiftUI
 import AppKit
-import Syntax
+import SyntaxFormat
+import SyntaxParsers
 
 extension Syntax.Outline.Kind {
     

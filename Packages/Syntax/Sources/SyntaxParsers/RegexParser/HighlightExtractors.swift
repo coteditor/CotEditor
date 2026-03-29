@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import SyntaxFormat
 import StringUtils
 
 protocol HighlightExtractable: Sendable, Equatable {

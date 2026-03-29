@@ -26,6 +26,7 @@
 //
 
 import Foundation
+import SyntaxFormat
 import ValueRange
 import StringUtils
 

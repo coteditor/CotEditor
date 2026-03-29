@@ -26,7 +26,8 @@
 import AppKit
 import SwiftUI
 import StringUtils
-import Syntax
+import SyntaxFormat
+import SyntaxParsers
 
 struct OutlinePicker: NSViewRepresentable {
     

@@ -33,7 +33,7 @@ import Defaults
 import Invisible
 import LineEnding
 import StringUtils
-import Syntax
+import SyntaxFormat
 import TextClipping
 import TextEditing
 import ValueRange

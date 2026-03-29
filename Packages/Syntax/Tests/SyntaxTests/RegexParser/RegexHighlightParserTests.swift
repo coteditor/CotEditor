@@ -28,7 +28,8 @@ import Testing
 import Foundation
 import ValueRange
 import StringUtils
-@testable import Syntax
+import SyntaxFormat
+@testable import SyntaxParsers
 
 struct RegexHighlightParserTests {
     

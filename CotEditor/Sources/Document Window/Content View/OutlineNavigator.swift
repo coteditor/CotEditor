@@ -26,7 +26,7 @@
 import AppKit
 import Combine
 import StringUtils
-import Syntax
+import SyntaxParsers
 
 @MainActor @Observable final class OutlineNavigator {
     

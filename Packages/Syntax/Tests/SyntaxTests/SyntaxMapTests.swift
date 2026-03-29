@@ -26,7 +26,7 @@
 
 import Testing
 import Foundation
-@testable import Syntax
+@testable import SyntaxFormat
 
 struct SyntaxMapTests {
     

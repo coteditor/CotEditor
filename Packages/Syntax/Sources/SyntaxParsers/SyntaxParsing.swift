@@ -25,6 +25,7 @@
 //
 
 public import Foundation
+public import SyntaxFormat
 public import ValueRange
 
 public typealias Highlight = ValueRange<SyntaxType>

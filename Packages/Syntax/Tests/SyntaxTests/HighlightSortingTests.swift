@@ -27,7 +27,8 @@
 import Testing
 import Foundation
 import ValueRange
-@testable import Syntax
+import SyntaxFormat
+@testable import SyntaxParsers
 
 struct HighlightSortingTests {
     

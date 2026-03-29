@@ -1,5 +1,5 @@
 //
-//  MarkdownOutlineFormatter.swift
+//  CSSOutlineFormatter.swift
 //  Syntax
 //
 //  CotEditor
@@ -25,27 +25,21 @@
 //
 
 import Foundation
+import SyntaxFormat
 import SwiftTreeSitter
 
-enum MarkdownOutlineFormatter: TreeSitterOutlineFormatting {
+enum CSSOutlineFormatter: TreeSitterOutlineFormatting {
     
-    /// Formats a Markdown outline title by stripping ATX prefixes and setext underlines.
-    ///
-    /// - Parameters:
-    ///   - title: The raw title text.
-    ///   - kind: The outline item kind.
-    /// - Returns: The formatted title, or `nil` to exclude the item.
+    /// Formats a CSS outline title by keeping only the at-rule header.
     static func formatTitle(_ title: String, kind: Syntax.Outline.Kind) -> String? {
         
-        guard case .heading = kind else { return title }
+        let header = if let index = title.firstIndex(of: "{") ?? title.firstIndex(of: ";") {
+            title[..<index]
+        } else {
+            title[...]
+        }
         
-        // Setext headings include the underline on following lines.
-        let firstLine = title.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: false)
-            .first.map(String.init) ?? title
-        
-        let normalized = firstLine
-            .replacing(/^#{1,6}[ \t]*/, with: "")  // ATX prefix
-            .replacing(/[ \t]*#+[ \t]*$/, with: "")  // optional ATX closing
+        let normalized = header.replacing(/\s+/, with: " ")
             .trimmingCharacters(in: .whitespacesAndNewlines)
         
         return normalized.isEmpty ? nil : normalized

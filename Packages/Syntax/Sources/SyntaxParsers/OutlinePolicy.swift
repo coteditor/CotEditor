@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import SyntaxFormat
 
 struct OutlinePolicy: Sendable {
     

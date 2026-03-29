@@ -26,7 +26,8 @@
 
 import Testing
 import StringUtils
-@testable import Syntax
+import SyntaxFormat
+@testable import SyntaxParsers
 
 struct TreeSitterClientPendingRangeTests {
     
