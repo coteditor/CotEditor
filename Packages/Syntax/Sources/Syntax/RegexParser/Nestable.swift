@@ -126,50 +126,7 @@ extension [NestableToken: SyntaxType] {
                 continue
             }
             
-            // search corresponding end delimiter
-            let endIndex: Int? = {
-                let appliesDoubleDelimiter: Bool = switch beginPosition.token {
-                    case .pair(let pair, _, _, _, let escapeCharacter?): String(escapeCharacter) == pair.end
-                    default: false
-                }
-                
-                var nestDepth = 0
-                var skipCount = 0
-                for (offset, position) in positions[index...].enumerated() where position.token == beginPosition.token {
-                    guard position.range.location <= searchUpperBound else { return nil }
-                    
-                    guard skipCount == 0 else {
-                        skipCount -= 1
-                        continue
-                    }
-                    
-                    if position.role.contains(.end) {
-                        // -> Single character pairs cannot be nested.
-                        if appliesDoubleDelimiter, index < positions.count {
-                            skipCount = positions[(index + offset + 1)...].prefix { next in
-                                next.token == position.token &&
-                                next.role.contains(.end) &&
-                                next.range.location <= searchUpperBound &&
-                                next.range.location == position.range.location + 1 + skipCount
-                            }.count
-                            
-                            if skipCount.isMultiple(of: 2) {
-                                return index + offset + skipCount  // found
-                            } else {
-                                continue
-                            }
-                        }
-                        if nestDepth == 0 { return index + offset }  // found
-                        nestDepth -= 1
-                        
-                    } else if beginPosition.token.allowsNesting {
-                        nestDepth += 1
-                    }
-                }
-                return nil
-            }()
-            
-            guard let endIndex else {
+            guard let endIndex = beginPosition.token.matchingEndIndex(in: positions, from: index, upperBound: searchUpperBound) else {
                 if !beginPosition.token.allowsMultiline {
                     failedUpperBounds[beginPosition.token] = searchUpperBound
                 }
@@ -273,6 +230,57 @@ private extension NestableToken {
                     return beginItems + endItems
                 }
         }
+    }
+    
+    
+    /// Returns the index of the first end token that matches the begin token within the search bound.
+    ///
+    /// - Parameters:
+    ///   - positions: The ordered token positions in the parse range.
+    ///   - startIndex: The index in `positions` where the search starts.
+    ///   - searchUpperBound: The upper bound where the search should stop.
+    /// - Returns: The index of the matching end token in `positions`, or `nil` if not found.
+    func matchingEndIndex(in positions: [NestableItem], from startIndex: Int, upperBound searchUpperBound: Int) -> Int? {
+        
+        let isDoubleEscape: Bool = switch self {
+            case .pair(let pair, _, _, _, let escapeCharacter?): String(escapeCharacter) == pair.end
+            default: false
+        }
+        
+        var nestDepth = 0
+        var skipCount = 0
+        for (offset, position) in positions[startIndex...].enumerated() where position.token == self {
+            guard position.range.location <= searchUpperBound else { return nil }
+            
+            guard skipCount == 0 else {
+                skipCount -= 1
+                continue
+            }
+            
+            if position.role.contains(.end) {
+                // -> Single character pairs cannot be nested.
+                if isDoubleEscape, startIndex < positions.count {
+                    skipCount = positions[(startIndex + offset + 1)...].prefix { next in
+                        next.token == position.token &&
+                        next.role.contains(.end) &&
+                        next.range.location <= searchUpperBound &&
+                        next.range.location == position.range.location + 1 + skipCount
+                    }.count
+                    
+                    if skipCount.isMultiple(of: 2) {
+                        return startIndex + offset + skipCount  // found
+                    } else {
+                        continue
+                    }
+                }
+                if nestDepth == 0 { return startIndex + offset }  // found
+                nestDepth -= 1
+                
+            } else if self.allowsNesting {
+                nestDepth += 1
+            }
+        }
+        return nil
     }
     
     
