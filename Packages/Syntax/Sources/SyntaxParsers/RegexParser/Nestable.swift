@@ -73,7 +73,7 @@ extension [NestableToken: SyntaxType] {
             .filter { item in
                 switch item.token {
                     case .pair(let pair, _, _, _, let escapeCharacter?) where String(escapeCharacter) != pair.end:
-                        // -> Double-delimiter style needs no positional escape check
+                        // -> Double-delimiter style needs no positional escape check.
                         !(string as NSString).isEscaped(at: item.range.location, by: escapeCharacter)
                     default:
                         true
@@ -281,6 +281,7 @@ private extension NestableToken {
                 nestDepth += 1
             }
         }
+        
         return nil
     }
     
