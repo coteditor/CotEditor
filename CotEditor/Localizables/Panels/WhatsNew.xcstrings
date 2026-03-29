@@ -941,7 +941,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "主要な内蔵シンタックスで、構造ベースのモダンなパーサであるtree-sitterを採用しました。より深く確かな言語認識を可能にします。"
+            "value" : "主要な内蔵シンタックスで構造ベースのモダンなパーサであるtree-sitterを採用しました。より深く確かな言語認識を可能にします。"
           }
         },
         "ko" : {
@@ -1042,7 +1042,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重要なところはtree-sitterで"
+            "value" : "よく使われるやつはtree-sitterで"
           }
         },
         "ko" : {
