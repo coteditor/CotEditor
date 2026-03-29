@@ -161,9 +161,9 @@ extension Syntax {
 }
 
 
-public extension Syntax.FileMap {
+extension Syntax.FileMap {
     
-    struct InvalidError: Error {
+    private struct InvalidError: Error {
         
         var filename: String
         var underlyingError: any Error
@@ -193,7 +193,7 @@ public extension Syntax.FileMap {
     ///   - urls: File URLs of CotEditor's syntax definition files to load.
     ///   - ignoresInvalidData: If `true`, just ignores invalid files and continues scanning, otherwise throws an `InvalidError`.
     /// - Returns: Valid Syntax.FileMaps.
-    static func load(at urls: [URL], ignoresInvalidData: Bool = false) throws -> [String: Syntax.FileMap] {
+    public static func load(at urls: [URL], ignoresInvalidData: Bool = false) throws -> [String: Syntax.FileMap] {
         
         try urls.reduce(into: [:]) { maps, url in
             let map: Syntax.FileMap

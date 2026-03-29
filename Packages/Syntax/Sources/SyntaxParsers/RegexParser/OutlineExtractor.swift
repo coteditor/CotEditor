@@ -28,7 +28,7 @@ import Foundation
 import SyntaxFormat
 import StringUtils
 
-public struct OutlineExtractor: Sendable {
+struct OutlineExtractor: Sendable {
     
     var regex: NSRegularExpression
     var template: String
