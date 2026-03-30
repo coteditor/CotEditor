@@ -19,7 +19,7 @@
 
 ### TODO
 
-- Localize the text added to CotEditor 7.0.0 in Czech and Polish.
+- Localize the text added to CotEditor 7.0.0 in Czech.
 - Update the migration directories for user syntax definitions (read the comment in `migrateUserSettings()`).
 - Remove the prerelease notice from the user guide (in specification_changes_on_7.0.html).
 
