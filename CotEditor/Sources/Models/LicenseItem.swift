@@ -34,7 +34,13 @@ struct LicenseItem {
     var description: String?
     
     
-    static let items = [
+#if SPARKLE
+    static let items = Self.commonItems + [.sparkle]
+#else
+    static let items = Self.commonItems
+#endif
+    
+    private static let commonItems = [
         Self(name: "swift-tree-sitter",
              url: "https://github.com/tree-sitter/swift-tree-sitter",
              copyright: "© 2021, Chime\nAll rights reserved.",
@@ -144,7 +150,7 @@ struct LicenseItem {
              license: .mit),
     ]
     
-    static let sparkle = Self(
+    private static let sparkle = Self(
         name: "Sparkle",
         url: "https://sparkle-project.org",
         copyright: """

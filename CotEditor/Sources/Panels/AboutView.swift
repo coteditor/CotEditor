@@ -342,12 +342,6 @@ private struct CreditsView: View {
 
 private struct LicenseView: View {
     
-#if SPARKLE
-    private let hasSparkle = true
-#else
-    private let hasSparkle = false
-#endif
-    
     var body: some View {
         
         LazyVStack(alignment: .leading, spacing: 12) {
@@ -355,9 +349,6 @@ private struct LicenseView: View {
                 .lineSpacing(2)
             
             ForEach(LicenseItem.items, content: ItemView.init(item:))
-            if self.hasSparkle {
-                ItemView(item: .sparkle)
-            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
