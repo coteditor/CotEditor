@@ -354,130 +354,9 @@ private struct LicenseView: View {
             Text("CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work.", tableName: "About")
                 .lineSpacing(2)
             
-            ItemView(name: "swift-tree-sitter",
-                     url: "https://github.com/tree-sitter/swift-tree-sitter",
-                     copyright: "© 2021, Chime\nAll rights reserved.",
-                     license: .bsd3Clause)
-            ItemView(name: "tree-sitter",
-                     url: "https://github.com/tree-sitter/tree-sitter",
-                     copyright: "© 2018-2024 Max Brunsfeld",
-                     license: .mit)
-            ItemView(name: "tree-sitter-bash",
-                     url: "https://github.com/tree-sitter/tree-sitter-bash",
-                     copyright: "© 2017 Max Brunsfeld",
-                     license: .mit)
-            ItemView(name: "tree-sitter-c",
-                     url: "https://github.com/tree-sitter/tree-sitter-c",
-                     copyright: "© 2014 Max Brunsfeld",
-                     license: .mit)
-            ItemView(name: "tree-sitter-c-sharp",
-                     url: "https://github.com/tree-sitter/tree-sitter-c-sharp",
-                     copyright: "© 2014-2023 Max Brunsfeld, Damien Guard, Amaan Qureshi, and contributors",
-                     license: .mit)
-            ItemView(name: "tree-sitter-css",
-                     url: "https://github.com/tree-sitter/tree-sitter-css",
-                     copyright: "© 2018 Max Brunsfeld",
-                     license: .mit)
-            ItemView(name: "tree-sitter-cpp",
-                     url: "https://github.com/tree-sitter/tree-sitter-cpp",
-                     copyright: "© 2014 Max Brunsfeld",
-                     license: .mit)
-            ItemView(name: "tree-sitter-go",
-                     url: "https://github.com/tree-sitter/tree-sitter-go",
-                     copyright: "© 2014 Max Brunsfeld",
-                     license: .mit)
-            ItemView(name: "tree-sitter-html",
-                     url: "https://github.com/tree-sitter/tree-sitter-html",
-                     copyright: "© 2014 Max Brunsfeld",
-                     license: .mit)
-            ItemView(name: "tree-sitter-java",
-                     url: "https://github.com/tree-sitter/tree-sitter-java",
-                     copyright: "© 2017 Ayman Nadeem",
-                     license: .mit)
-            ItemView(name: "tree-sitter-javascript",
-                     url: "https://github.com/tree-sitter/tree-sitter-javascript",
-                     copyright: "© 2014 Max Brunsfeld",
-                     license: .mit)
-            ItemView(name: "tree-sitter-kotlin",
-                     url: "https://github.com/fwcd/tree-sitter-kotlin",
-                     copyright: "© 2019 fwcd",
-                     license: .mit)
-            ItemView(name: "tree-sitter-latex",
-                     url: "https://github.com/latex-lsp/tree-sitter-latex",
-                     copyright: "© 2021 Patrick Förster",
-                     license: .mit)
-            ItemView(name: "tree-sitter-lua",
-                     url: "https://github.com/tree-sitter-grammars/tree-sitter-lua",
-                     copyright: "© 2021 Munif Tanjim",
-                     license: .mit)
-            ItemView(name: "tree-sitter-make",
-                     url: "https://github.com/tree-sitter-grammars/tree-sitter-make",
-                     copyright: "© 2021 Alexandre A. Muller",
-                     license: .mit)
-            ItemView(name: "tree-sitter-php",
-                     url: "https://github.com/tree-sitter/tree-sitter-php",
-                     copyright: """
-                                © 2017 Josh Vera, GitHub
-                                © 2019 Max Brunsfeld, Amaan Qureshi, Christian Frøystad, Caleb White
-                                """,
-                     license: .mit)
-            ItemView(name: "tree-sitter-markdown",
-                     url: "https://github.com/tree-sitter-grammars/tree-sitter-markdown",
-                     copyright: "© 2021 2021 Matthias Deiml",
-                     license: .mit)
-            ItemView(name: "tree-sitter-python",
-                     url: "https://github.com/tree-sitter/tree-sitter-python",
-                     copyright: "© 2016 Max Brunsfeld",
-                     license: .mit)
-            ItemView(name: "tree-sitter-ruby",
-                     url: "https://github.com/tree-sitter/tree-sitter-ruby",
-                     copyright: "© 2016 Rob Rix",
-                     license: .mit)
-            ItemView(name: "tree-sitter-rust",
-                     url: "https://github.com/tree-sitter/tree-sitter-rust",
-                     copyright: "© 2017 Maxim Sokolov",
-                     license: .mit)
-            ItemView(name: "tree-sitter-scala",
-                     url: "https://github.com/alex-pinkus/tree-sitter-scala",
-                     copyright: "© 2018 Max Brunsfeld and GitHub",
-                     license: .mit)
-            ItemView(name: "tree-sitter-sql",
-                     url: "https://github.com/DerekStride/tree-sitter-sql",
-                     copyright: "© 2021 Derek Stride",
-                     license: .mit)
-            ItemView(name: "tree-sitter-swift",
-                     url: "https://github.com/alex-pinkus/tree-sitter-swift",
-                     copyright: "© 2021 alex-pinkus",
-                     license: .mit)
-            ItemView(name: "tree-sitter-typescript",
-                     url: "https://github.com/tree-sitter/tree-sitter-typescript",
-                     copyright: "© 2017 Max Brunsfeld",
-                     license: .mit)
-            ItemView(name: "Yams",
-                     url: "https://github.com/jpsim/Yams",
-                     copyright: "© 2016 JP Simard",
-                     license: .mit)
-            ItemView(name: "WFColorCode",
-                     url: "https://github.com/1024jp/WFColorCode",
-                     copyright: "© 2014-2024 1024jp",
-                     license: .mit)
-            
+            ForEach(LicenseItem.items, content: ItemView.init(item:))
             if self.hasSparkle {
-                ItemView(name: "Sparkle",
-                         url: "https://sparkle-project.org",
-                         copyright: """
-                                    © 2006-2013 Andy Matuschak.
-                                    © 2009-2013 Elgato Systems GmbH.
-                                    © 2011-2014 Kornel Lesiński.
-                                    © 2015-2017 Mayur Pawashe.
-                                    © 2014 C.W. Betts.
-                                    © 2014 Petroules Corporation.
-                                    © 2014 Big Nerd Ranch.
-                                    All rights reserved.
-                                    """,
-                         license: .custom("Sparkle"),
-                         description: String(localized: "only on non-AppStore version", table: "About",
-                                             comment: "annotation for the Sparkle framework license"))
+                ItemView(item: .sparkle)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -487,11 +366,7 @@ private struct LicenseView: View {
     
     private struct ItemView: View {
         
-        var name: String
-        var url: String
-        var copyright: String
-        var license: License
-        var description: String?
+        var item: LicenseItem
         
         @State private var content: String = ""
         
@@ -500,35 +375,41 @@ private struct LicenseView: View {
             
             VStack(alignment: .leading, spacing: 2) {
                 HStack(alignment: .center, spacing: 4) {
-                    Text(self.name)
+                    Text(self.item.name)
                         .fontWeight(.semibold)
                     
-                    LinkButton(url: self.url)
+                    LinkButton(url: self.item.url)
                         .foregroundStyle(.tint)
                     
-                    if let description {
+                    if let description = self.item.description {
                         Text(" (\(description))")
                             .foregroundStyle(.secondary)
                     }
                 }
                 
-                Text(self.copyright)
+                Text(self.item.copyright)
                 
-                DisclosureGroup(self.license.name ?? String(localized: "License", table: "About")) {
+                DisclosureGroup(self.item.license.name ?? String(localized: "License", table: "About")) {
                     Text(self.content)
+                        .onAppear {
+                            guard self.content.isEmpty else { return }
+                            guard let content = try? self.item.license.content else { return assertionFailure() }
+                            
+                            self.content = content
+                        }
                         .environment(\.locale, Locale(languageCode: .english))
                         .environment(\.layoutDirection, .leftToRight)
                 }
                 .foregroundStyle(.secondary)
             }
-            .onAppear {
-                guard self.content.isEmpty else { return }
-                guard let content = try? self.license.content else { return assertionFailure() }
-                
-                self.content = content
-            }
         }
     }
+}
+
+
+extension LicenseItem: Identifiable {
+    
+    var id: String  { self.url }
 }
 
 
