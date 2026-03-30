@@ -223,6 +223,12 @@
             "value" : "Иконите улесняват прегледа на структурата, а синтаксисите с tree-sitter вече поддържат сгъваеми нива според йерархията."
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikony usnadňují orientaci v osnově a syntaxe založené na tree-sitteru nyní podporují sbalitelné osnovy odrážející hierarchii."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -328,6 +334,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Структура по нива"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hierarchická osnova"
           }
         },
         "de" : {
@@ -437,6 +449,12 @@
             "value" : "По-точно подчертаване, по-интелигентно коментиране и подобрено поведение на редактора, задвижвани от преработен механизъм за синтаксис и формат на дефиниция."
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přesnější zvýrazňování, chytřejší komentování a vylepšené chování editoru — to vše díky přepracovanému syntaktickému enginu a formátu definic."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -542,6 +560,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "По-интелигентен синтаксис, по-ясно редактиране"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chytřejší syntaxe, přesnější úpravy"
           }
         },
         "de" : {
@@ -658,6 +682,36 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "Мигриран %lld потребителски синтаксис към новия формат."
+                }
+              }
+            }
+          }
+        },
+        "cs" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Přeneseny %lld vlastní syntaxe do nového formátu."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Přeneseno %lld vlastních syntaxí do nového formátu."
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Přenesena %lld vlastní syntaxe do nového formátu."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Přeneseno %lld vlastních syntaxí do nového formátu."
                 }
               }
             }
@@ -956,6 +1010,12 @@
             "value" : "Много от основните вградени синтаксиси вече използват tree-sitter, модерен анализатор, базиран на структура, който позволява по-дълбоко и по-надеждно разбиране на езика."
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mnoho hlavních vestavěných syntaxí nyní používá tree-sitter, moderní strukturovaný parser, který umožňuje hlubší a spolehlivější porozumění jazyku."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1061,6 +1121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "С tree-sitter там, където е най-важно"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poháněno tree-sitterem tam, kde na tom záleží nejvíc"
           }
         },
         "de" : {

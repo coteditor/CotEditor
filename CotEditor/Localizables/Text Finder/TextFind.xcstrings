@@ -2486,6 +2486,12 @@
             "value" : "Съвпадение %1$lld от %2$lld."
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nalezeno %1$lld z %2$lld."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

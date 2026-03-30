@@ -236,6 +236,12 @@
             "value" : "Контейнер"
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontejner"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -341,6 +347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Функция"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funkce"
           }
         },
         "de" : {
@@ -676,6 +688,12 @@
             "value" : "Маркер"
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Značka"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1007,6 +1025,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Стойност"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hodnota"
           }
         },
         "de" : {

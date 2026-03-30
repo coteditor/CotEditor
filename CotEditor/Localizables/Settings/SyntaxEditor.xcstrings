@@ -1215,6 +1215,12 @@
             "value" : "Блокови разделители:"
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oddělovače bloků:"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1314,6 +1320,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вградена"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vestavěné"
           }
         },
         "de" : {
@@ -1522,6 +1534,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Разделители на знаци:"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oddělovače znaků:"
           }
         },
         "de" : {
@@ -1839,6 +1857,12 @@
             "value" : "Разделители"
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oddělovače"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2152,6 +2176,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Покажи режима"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit vzor"
           }
         },
         "de" : {
@@ -2574,6 +2604,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ескейп персонаж"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escape znak"
           }
         },
         "de" : {
@@ -4387,6 +4423,12 @@
             "value" : "Само начало на линията"
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pouze na začátku řádku"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4485,6 +4527,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Управлява се от приложението"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spravováno aplikací"
           }
         },
         "de" : {
@@ -4588,6 +4636,12 @@
             "value" : "Многоредов"
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Víceřádkový"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4687,6 +4741,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Гнездо"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vnořování"
           }
         },
         "de" : {
@@ -5003,6 +5063,12 @@
     "Prefixes" : {
       "comment" : "table column header",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prefixy"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5423,6 +5489,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Разделители на низове:"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oddělovače řetězců:"
           }
         },
         "de" : {
@@ -5858,6 +5930,12 @@
             "value" : "Символът за екраниране трябва да бъде един знак в UTF-16 кодова единица."
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escape znak musí být jeden znak kódovaný jednou UTF-16 jednotkou."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5963,6 +6041,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нестабилният блоков коментар трябва да използва различни начални и крайни разделители."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vnořený blokový komentář musí používat odlišné počáteční a koncové oddělovače."
           }
         },
         "de" : {
@@ -6413,6 +6497,12 @@
             "value" : "Този език използва tree-sitter, анализатор с общо предназначение и структурен подход към синтаксиса.\nТъй като правилата за извличане се управляват от приложението, те не могат да се персонализират."
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tento jazyk používá pro analýzu syntaxe strukturovaný univerzální parser tree-sitter.\nProtože pravidla extrakce spravuje aplikace, nelze je upravovat."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6519,6 +6609,12 @@
             "value" : "Блоковите разделители се използват за автоматичен отстъп при въвеждане."
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oddělovače bloků se používají pro automatické odsazování při psaní."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6617,6 +6713,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Дефинираните тук разделители се използват и за подчертаване на синтаксиса."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zde definované oddělovače se používají i pro zvýrazňování syntaxe."
           }
         },
         "de" : {
@@ -6825,6 +6927,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тип"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typ"
           }
         },
         "de" : {

@@ -1392,6 +1392,12 @@
             "value" : "CotEditor Синтаксис"
           }
         },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxe CotEditoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

@@ -10273,8 +10273,8 @@
         },
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Přebarvit vše"
+            "state" : "translated",
+            "value" : "Resetovat analýzu syntaxe"
           }
         },
         "de" : {
