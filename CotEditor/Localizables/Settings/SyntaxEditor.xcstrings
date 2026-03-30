@@ -1263,6 +1263,12 @@
             "value" : "Blokscheidingstekens:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ograniczniki bloku:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1356,6 +1362,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ingebouwd"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wbudowane"
           }
         },
         "pt" : {
@@ -1558,6 +1570,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Teken-scheidingstekens:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ograniczniki znaku:"
           }
         },
         "pt" : {
@@ -1869,6 +1887,12 @@
             "value" : "Scheidingstekens"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ograniczniki"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2176,6 +2200,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Weergavepatroon"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wzorzec wyświetlania"
           }
         },
         "pt" : {
@@ -2592,6 +2622,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Escape-teken"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znak ucieczki"
           }
         },
         "pt" : {
@@ -3553,7 +3589,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wcięcia:"
+            "value" : "Wcięcia"
           }
         },
         "pt" : {
@@ -4399,6 +4435,12 @@
             "value" : "Alleen regelbegin"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tylko początek wiersza"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4491,6 +4533,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beheerd door de app\n"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zarządzany przez aplikację"
           }
         },
         "pt" : {
@@ -4588,6 +4636,12 @@
             "value" : "Meerregelig"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wielowierszowy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4681,6 +4735,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Nesting"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zagnieżdżaj"
           }
         },
         "pt" : {
@@ -4989,6 +5049,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Prefixen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prefiksy"
           }
         },
         "pt" : {
@@ -5407,6 +5473,12 @@
             "value" : "Tekenreeks-scheidingstekens:"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ograniczniki łańcucha znaków:"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5623,7 +5695,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Komentarz blokowy wymaga ograniczników początku i końca."
+            "value" : "Komentarz blokowy wymaga zarówno ogranicznika otwierającego, jak i zamykającego."
           }
         },
         "pt" : {
@@ -5840,6 +5912,12 @@
             "value" : "Het escape-teken moet een enkel teken in UTF-16 code-eenheid zijn."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znak ucieczki musi być pojedynczym znakiem w jednostce kodowej UTF-16."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5939,6 +6017,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Geneste blokcommentaren moeten verschillende begin- en eindtekens gebruiken."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zagnieżdżalny komentarz blokowy musi używać różnych ograniczników otwierającego i zamykającego."
           }
         },
         "pt" : {
@@ -6383,6 +6467,12 @@
             "value" : "Deze taal gebruikt een structuur­gebaseerde parser voor algemeen gebruik, genaamd tree-sitter, voor syntaxisanalyse.\\nOmdat de extractieregels door de app worden beheerd, kun je ze niet aanpassen."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten język używa do analizy składni strukturalnego parsera ogólnego przeznaczenia o nazwie tree-sitter.\nPonieważ reguły ekstrakcji są zarządzane przez aplikację, nie możesz ich dostosować."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6477,6 +6567,12 @@
             "value" : "De blokscheidingstekens worden tijdens het typen gebruikt voor automatische inspringing."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ograniczniki blokowe wykorzystywane są do automatycznych wcięć w trakcie pisania."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6569,6 +6665,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De scheidingstekens die hier zijn gedefinieerd, worden ook gebruikt voor syntaxmarkering."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdefiniowane tutaj ograniczniki służą również do wyróżniania składni."
           }
         },
         "pt" : {
@@ -6771,6 +6873,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Type"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategoria"
           }
         },
         "pt" : {

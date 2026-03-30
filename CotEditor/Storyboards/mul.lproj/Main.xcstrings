@@ -10333,8 +10333,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ponownie pokoloruj wszystko"
+            "state" : "translated",
+            "value" : "Zresetuj analizę składni"
           }
         },
         "pt" : {

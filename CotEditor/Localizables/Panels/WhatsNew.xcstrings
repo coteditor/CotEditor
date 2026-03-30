@@ -277,6 +277,12 @@
             "value" : "Symbolen maken de structuur overzichtelijker, en op tree-sitter gebaseerde syntaxisdefinities ondersteunen nu inklapbare overzichten die de hiërarchie weerspiegelen."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikony ułatwiają przeglądanie struktury, a składnie oparte na tree-sitter obsługują teraz zwijalne konspekty odzwierciedlające hierarchię."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -376,6 +382,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Overzicht met diepte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konspekt z głębią"
           }
         },
         "pt" : {
@@ -479,6 +491,12 @@
             "value" : "Nauwkeurigere accentuering, slimmer commentaar en verbeterd editorgedrag, mogelijk gemaakt door een vernieuwde syntaxisengine en definitie-indeling."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokładniejsze wyróżnianie, inteligentniejsze komentowanie i udoskonalone działanie edytora — wszystko dzięki przeprojektowanemu silnikowi i formatowi definicji składni."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -578,6 +596,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Slimmere syntaxis, scherpere bewerking"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inteligentniejsza składnia, precyzyjna edycja"
           }
         },
         "pt" : {
@@ -789,6 +813,36 @@
             }
           }
         },
+        "pl" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Zmigrowano %lld własne składnie do nowego formatu."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Zmigrowano %lld własnych składni do nowego formatu."
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Zmigrowano %lld własną składnię do nowego formatu."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Zmigrowano %lld własnej składni do nowego formatu."
+                }
+              }
+            }
+          }
+        },
         "pt" : {
           "variations" : {
             "plural" : {
@@ -956,6 +1010,12 @@
             "value" : "Veel belangrijke ingebouwde syntaxisdefinities gebruiken nu tree-sitter, een moderne op structuur gebaseerde parser die zorgt voor diepere en betrouwbaardere taalherkenning."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiele wbudowanych składni używa teraz nowoczesnego parsera strukturalnego tree-sitter, który umożliwia głębszą i bardziej niezawodną analizę języka."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1055,6 +1115,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Aangedreven door tree-sitter, waar het het meest telt"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Składnie napędzane przez tree-sitter"
           }
         },
         "pt" : {

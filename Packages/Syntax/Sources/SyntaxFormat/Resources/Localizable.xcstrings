@@ -290,6 +290,12 @@
             "value" : "Container"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontener"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -389,6 +395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Functie"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funkcja"
           }
         },
         "pt" : {
@@ -718,6 +730,12 @@
             "value" : "Markering"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znacznik"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1043,6 +1061,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Waarde"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wartość"
           }
         },
         "pt" : {
@@ -1833,7 +1857,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Łańcuchy"
+            "value" : "Łańcuchy znakowe"
           }
         },
         "pt" : {
