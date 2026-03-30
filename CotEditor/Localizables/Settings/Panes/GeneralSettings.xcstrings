@@ -3431,7 +3431,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Za pomocą narzędzia wiersza poleceń `cot` możesz uruchomić CotEditora i pozwolić mu otwierać pliki z poziomu wiersza poleceń."
+            "value" : "Za pomocą narzędzia wiersza poleceń `cot` możesz uruchomić CotEditora i pozwolić mu otwierać pliki z poziomu wiersza poleceń."
           }
         },
         "pt" : {

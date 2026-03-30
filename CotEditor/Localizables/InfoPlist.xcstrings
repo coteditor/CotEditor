@@ -1440,6 +1440,12 @@
             "value" : "CotEditor-syntaxis"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "składnia CotEditora"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

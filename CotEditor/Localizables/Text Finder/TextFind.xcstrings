@@ -2540,6 +2540,12 @@
             "value" : "Resultaat %1$lld van %2$lld."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopasowanie %1$lld z %2$lld."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
