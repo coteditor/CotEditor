@@ -247,7 +247,7 @@
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Bylo nalezeno %lld chyby."
+                  "value" : "Bylo nalezeno %lld chyb."
                 }
               },
               "one" : {
@@ -583,13 +583,13 @@
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld položky"
+                  "value" : "%lld položek"
                 }
               },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld položku"
+                  "value" : "%lld položka"
                 }
               },
               "other" : {
