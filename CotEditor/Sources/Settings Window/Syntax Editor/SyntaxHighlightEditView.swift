@@ -122,7 +122,6 @@ struct SyntaxHighlightEditView: View {
                             }
                     }
                 }
-                .width(56)
                 .alignment(.center)
                 
                 TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.value.description)) { wrappedItem in

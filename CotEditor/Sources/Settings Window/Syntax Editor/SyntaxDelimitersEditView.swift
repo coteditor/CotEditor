@@ -61,7 +61,7 @@ struct SyntaxDelimitersEditView: View {
                     }.accessibilityElement(children: .contain)
                 }
             }
-            .padding(.bottom)
+            .padding(.bottom, 20)
             
             VStack(alignment: .leading) {
                 Text(SyntaxType.strings.label)
@@ -72,7 +72,7 @@ struct SyntaxDelimitersEditView: View {
                     .accessibilityAddTraits(.isHeader)
                 StringDelimitersEditView(items: $stringDelimiters)
             }
-            .padding(.bottom)
+            .padding(.bottom, 20)
             
             VStack(alignment: .leading) {
                 Text(SyntaxType.characters.label)
@@ -83,7 +83,7 @@ struct SyntaxDelimitersEditView: View {
                     .accessibilityAddTraits(.isHeader)
                 CharacterDelimitersEditView(items: $characterDelimiters)
             }
-            .padding(.bottom)
+            .padding(.bottom, 20)
             
             VStack(alignment: .leading) {
                 Text("Indentation", tableName: "SyntaxEditor")
@@ -236,7 +236,6 @@ private struct StringDelimitersEditView: View {
                             .forEach { $0.value.isMultiline.wrappedValue = newValue }
                     }
             }
-            .width(56)
             .alignment(.center)
             TableColumn(String(localized: "Escape Character", defaultValue: "Escape Character", table: "SyntaxEditor", comment: "table column header")) { $item in
                 let binding = Binding<String>(
