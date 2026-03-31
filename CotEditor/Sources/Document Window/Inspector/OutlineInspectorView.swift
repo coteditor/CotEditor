@@ -189,7 +189,8 @@ struct OutlineInspectorView: View, HostedPaneView {
                         Button(String(localized: "Reset to Default", table: "MainMenu"), systemImage: "textformat.size", action: self.resetFont)
                     }
                 }
-                .menuStyle(.borderlessButton)
+                .menuStyle(.button)
+                .buttonStyle(.borderless)
                 .menuIndicator(.hidden)
                 .labelStyle(.iconOnly)
             }

@@ -85,7 +85,8 @@ struct UnicodeInputView: View {
                     } label: {
                         EmptyView()
                     }
-                    .menuStyle(.borderlessButton)
+                    .menuStyle(.button)
+                    .buttonStyle(.borderless)
                     .frame(width: 16)
                     .padding(.leading, 4)
                 }

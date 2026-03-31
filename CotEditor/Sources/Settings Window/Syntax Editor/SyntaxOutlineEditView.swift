@@ -181,7 +181,8 @@ private struct OutlineKindMenu: View {
                     .foregroundStyle(.tertiary)
             }
         }
-        .menuStyle(.borderlessButton)
+        .menuStyle(.button)
+        .buttonStyle(.borderless)
     }
 }
 
