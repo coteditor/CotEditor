@@ -50,16 +50,15 @@ extension SymbolResource {
     /// Creates an `NSImage` for AppKit from the underlying resource or system symbol.
     ///
     /// - Parameters:
-    ///   - variant: An optional SF Symbol variant suffix appended to the system name (e.g., ".fill").
     ///   - accessibilityDescription: A description for accessibility.
     /// - Returns: An `NSImage` instance, or `nil` if the system symbol cannot be created.
-    func nsImage(variant: String = "", accessibilityDescription: String? = nil) -> NSImage! {
+    func nsImage(accessibilityDescription: String? = nil) -> NSImage! {
         
         switch self {
             case .resource(let resource):
                 NSImage(resource: resource)
             case .system(let name):
-                NSImage(systemSymbolName: name + variant, accessibilityDescription: accessibilityDescription)
+                NSImage(systemSymbolName: name, accessibilityDescription: accessibilityDescription)
         }
     }
 }

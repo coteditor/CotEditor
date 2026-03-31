@@ -38,7 +38,6 @@ extension Syntax.Outline.Kind {
     func icon(mode: SymbolRenderingMode = .hierarchical) -> some View {
         
         self.symbol.image
-            .symbolVariant(self == .separator ? .none : .square.fill)
             .symbolRenderingMode(mode)
             .fontWeight(.medium)
             .foregroundStyle(Color(nsColor: self.color))
@@ -48,8 +47,7 @@ extension Syntax.Outline.Kind {
     /// Produces an AppKit `NSImage` for the kind symbol.
     var iconImage: NSImage {
         
-        self.symbol.nsImage(variant: self == .separator ? "" : ".square.fill",
-                            accessibilityDescription: self.label)!
+        self.symbol.nsImage(accessibilityDescription: self.label)!
             .withSymbolConfiguration(.init(hierarchicalColor: self.color))!
     }
 }
@@ -77,12 +75,12 @@ private extension Syntax.Outline.Kind {
         
         switch self {
             case .container: .resource(.cubeSquareFill)
-            case .value: .system("v")
+            case .value: .system("v.square.fill")
             case .function: .resource(.fCursiveSquareFill)
-            case .title: .system("tag")
+            case .title: .system("tag.square.fill")
             case .heading(nil): .resource(.listBulletSquareFill)
-            case .heading(let level?): .system("\(level)")
-            case .mark: .system("flag")
+            case .heading(let level?): .system("\(level).square.fill")
+            case .mark: .system("flag.square.fill")
             case .separator: .system("minus")
         }
     }
