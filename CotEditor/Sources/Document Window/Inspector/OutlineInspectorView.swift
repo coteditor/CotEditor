@@ -287,20 +287,31 @@ private struct OutlineRowView: View {
                     Text(indent)
                 }
                 
-                if let kind = self.item.value.kind {
-                    kind.icon()
-                        .imageScale(.large)
-                        .accessibilityLabel(kind.label)
-                        .padding(.trailing, 4)
+                Label {
+                    Text(self.item.attributedString
+                        .replacingAttributes(AttributeContainer.inlinePresentationIntent(.stronglyEmphasized),
+                                             with: AttributeContainer
+                            .backgroundColor(.findHighlightColor)
+                            .foregroundColor(.black.withAlphaComponent(0.9)))  // for legibility in Dark Mode
+                    )
+                    .fontWeight(self.item.value.style.contains(.bold) ? .semibold : .regular)
+                    .italic(self.item.value.style.contains(.italic))
+                } icon: {
+                    if let kind = self.item.value.kind {
+                        kind.icon()
+                            .imageScale(kind == .mark ? .medium : .large)
+                            .accessibilityLabel(kind.label)
+                            .padding(.trailing, 4)
+                    }
                 }
-                Text(self.item.attributedString
-                    .replacingAttributes(AttributeContainer.inlinePresentationIntent(.stronglyEmphasized),
-                                         with: AttributeContainer
-                        .backgroundColor(.findHighlightColor)
-                        .foregroundColor(.black.withAlphaComponent(0.9)))  // for legibility in Dark Mode
-                )
-                .fontWeight(self.item.value.style.contains(.bold) ? .semibold : .regular)
-                .italic(self.item.value.style.contains(.italic))
+                .modifier { content in
+                    if #available(macOS 26, *) {
+                        content
+                            .labelIconToTitleSpacing(4)
+                    } else {
+                        content
+                    }
+                }
             }
         }
     }

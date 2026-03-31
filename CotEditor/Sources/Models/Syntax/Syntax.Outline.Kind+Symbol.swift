@@ -80,7 +80,7 @@ private extension Syntax.Outline.Kind {
             case .title: .system("tag.square.fill")
             case .heading(nil): .resource(.listBulletSquareFill)
             case .heading(let level?): .system("\(level).square.fill")
-            case .mark: .system("flag.square.fill")
+            case .mark: .system("flag.fill")
             case .separator: .system("minus")
         }
     }
