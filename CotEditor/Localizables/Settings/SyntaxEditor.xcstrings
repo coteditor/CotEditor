@@ -5063,6 +5063,12 @@
     "Prefixes" : {
       "comment" : "table column header",
       "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Префикси"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
