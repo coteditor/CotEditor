@@ -6,6 +6,7 @@
 ### Improvements
 
 - [non-AppStore ver.] Update Sparkle from 2.9.0 to 2.9.1.
+- [beta] Tweak outline item icons.
 - [beta] Optimize the outline extraction algorithm.
 - [beta] Optimize the regex-based syntax highlighting algorithm.
 - [beta] Add missing localizations.
