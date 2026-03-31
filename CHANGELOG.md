@@ -7,7 +7,8 @@
 
 - [non-AppStore ver.] Update Sparkle from 2.9.0 to 2.9.1.
 - [beta] Optimize the outline extraction algorithm.
-- [beta] Optimize the syntax highlighting algorithm for the regex-based parsing.
+- [beta] Optimize the regex-based syntax highlighting algorithm.
+- [beta] Add missing localizations.
 - [beta] Update tree-sitter-rust to 0.24.2.
 
 
