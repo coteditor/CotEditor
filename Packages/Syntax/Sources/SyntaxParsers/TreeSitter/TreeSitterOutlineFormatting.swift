@@ -29,6 +29,18 @@ import SyntaxFormat
 import SwiftTreeSitter
 
 protocol TreeSitterOutlineFormatting {
+
+    /// Returns the display title and source range for an outline item.
+    ///
+    /// The default implementation uses `functionSignature(for:capture:source:)` for functions and
+    /// falls back to the raw capture text for all other kinds.
+    ///
+    /// - Parameters:
+    ///   - match: The resolved query match.
+    ///   - capture: The primary outline capture for the match.
+    ///   - source: The source text as `NSString`.
+    /// - Returns: The display title and source range.
+    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)
     
     /// Returns the display title and source range for a function outline signature.
     ///
@@ -74,11 +86,7 @@ extension TreeSitterOutlineFormatting {
             return OutlineItem.separator(range: capture.range, indent: .level(capture.depth))
         }
         
-        let (title, range) = if capture.kind == .function {
-            Self.functionSignature(for: match, capture: capture, source: source)
-        } else {
-            Self.defaultTitle(capture: capture, source: source)
-        }
+        let (title, range) = Self.title(for: match, capture: capture, source: source)
         
         guard let displayTitle = Self.formatTitle(title, kind: capture.kind) else { return nil }
         
@@ -87,6 +95,17 @@ extension TreeSitterOutlineFormatting {
     
     
     // MARK: Default Implementation
+    
+    /// Returns the display title and source range for an outline item.
+    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
+        
+        if capture.kind == .function {
+            Self.functionSignature(for: match, capture: capture, source: source)
+        } else {
+            Self.defaultTitle(capture: capture, source: source)
+        }
+    }
+    
     
     /// Returns the raw capture text and range as a fallback function signature.
     static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
