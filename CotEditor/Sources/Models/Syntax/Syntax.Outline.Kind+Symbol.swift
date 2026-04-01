@@ -62,8 +62,8 @@ private extension Syntax.Outline.Kind {
             case .container: .systemBlue
             case .value: .systemGreen
             case .function: .systemOrange
-            case .title: .systemIndigo
-            case .heading: .systemBrown
+            case .title: .systemTeal
+            case .heading: .systemIndigo
             case .mark: .systemRed
             case .separator: .systemGray
         }
