@@ -10,43 +10,33 @@
 
 ; Titles
 (title_declaration
-  text: (curly_group
-    (_) @outline.title))
+  text: (curly_group)) @outline.title
 
 (caption
-  long: (curly_group
-    (_) @outline.title))
+  long: (curly_group)) @outline.title
 
 ; Headings
 (part
-  text: (curly_group
-    (_) @outline.heading.1))
+  text: (curly_group)) @outline.heading.1
 
 (chapter
-  text: (curly_group
-    (_) @outline.heading.2))
+  text: (curly_group)) @outline.heading.2
 
 (section
-  text: (curly_group
-    (_) @outline.heading.3))
+  text: (curly_group)) @outline.heading.3
 
 (subsection
-  text: (curly_group
-    (_) @outline.heading.4))
+  text: (curly_group)) @outline.heading.4
 
 (subsubsection
-  text: (curly_group
-    (_) @outline.heading.5))
+  text: (curly_group)) @outline.heading.5
 
 (paragraph
-  text: (curly_group
-    (_) @outline.heading.6))
+  text: (curly_group)) @outline.heading.6
 
 (subparagraph
-  text: (curly_group
-    (_) @outline.heading.7))
+  text: (curly_group)) @outline.heading.7
 
 ; Conainers
 (environment_definition
-  name: (curly_group_text
-    (_) @outline.container))
+  name: (curly_group_text)) @outline.container
