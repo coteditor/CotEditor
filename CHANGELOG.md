@@ -3,6 +3,16 @@
 7.0.0 (unreleased)
 --------------------------
 
+### TODO
+
+- Update the migration directories for user syntax definitions (read the comment in `migrateUserSettings()`).
+- Remove the prerelease notice from the user guide (in specification_changes_on_7.0.html).
+
+
+
+7.0.0-beta.2 (804)
+--------------------------
+
 ### Improvements
 
 - [non-AppStore ver.] Update Sparkle from 2.9.0 to 2.9.1.
@@ -18,12 +28,6 @@
 
 - Fix an issue where re-importing a TSV file to overwrite an existing multiple replace definition could fail.
 - [beta] Fix outline extraction in the LaTeX and Swift syntaxes.
-
-
-### TODO
-
-- Update the migration directories for user syntax definitions (read the comment in `migrateUserSettings()`).
-- Remove the prerelease notice from the user guide (in specification_changes_on_7.0.html).
 
 
 
