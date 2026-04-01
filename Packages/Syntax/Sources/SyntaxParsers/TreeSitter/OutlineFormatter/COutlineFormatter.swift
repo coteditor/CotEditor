@@ -25,20 +25,24 @@
 //
 
 import Foundation
+import SyntaxFormat
 import SwiftTreeSitter
 
 enum COutlineFormatter: TreeSitterOutlineFormatting {
     
-    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
+    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
-        guard
-            let node = match.outlineNode,
-            let resolved = Self.resolvedSignature(for: node, source: source)
-        else {
-            return (source.substring(with: capture.range), capture.range)
+        switch capture.kind {
+            case .function:
+                guard
+                    let node = match.outlineNode,
+                    let resolved = Self.resolvedSignature(for: node, source: source)
+                else { return Self.defaultTitle(capture: capture, source: source) }
+                
+                return resolved
+            default:
+                return Self.defaultTitle(capture: capture, source: source)
         }
-        
-        return resolved
     }
 }
 

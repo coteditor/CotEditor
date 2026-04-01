@@ -25,15 +25,21 @@
 //
 
 import Foundation
+import SyntaxFormat
 import StringUtils
 import SwiftTreeSitter
 
 enum RubyOutlineFormatter: TreeSitterOutlineFormatting {
     
-    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
+    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
-        (title: Self.functionTitle(for: match, title: source.substring(with: capture.range), source: source),
-         range: Self.signatureRange(for: match, nameRange: capture.range))
+        switch capture.kind {
+            case .function:
+                return (title: Self.functionTitle(for: match, title: source.substring(with: capture.range), source: source),
+                        range: Self.signatureRange(for: match, nameRange: capture.range))
+            default:
+                return Self.defaultTitle(capture: capture, source: source)
+        }
     }
 }
 

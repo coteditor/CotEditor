@@ -25,17 +25,22 @@
 //
 
 import Foundation
+import SyntaxFormat
 import StringUtils
 import SwiftTreeSitter
 
 enum TypeScriptOutlineFormatter: TreeSitterOutlineFormatting {
     
-    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
+    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
-        let range = Self.signatureRange(for: match, nameRange: capture.range)
-        let title = Self.normalizedClause(source.substring(with: range))
-        
-        return (title, range)
+        switch capture.kind {
+            case .function:
+                let range = Self.signatureRange(for: match, nameRange: capture.range)
+                let title = Self.normalizedClause(source.substring(with: range))
+                return (title, range)
+            default:
+                return Self.defaultTitle(capture: capture, source: source)
+        }
     }
 }
 

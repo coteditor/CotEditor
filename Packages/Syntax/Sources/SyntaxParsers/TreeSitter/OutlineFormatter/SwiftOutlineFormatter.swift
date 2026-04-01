@@ -32,14 +32,16 @@ enum SwiftOutlineFormatter: TreeSitterOutlineFormatting {
     
     static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
-        if capture.kind == .value, let propertyName = Self.propertyName(for: match, source: source) {
-            return propertyName
-        }
-        
-        return if capture.kind == .function {
-            Self.functionSignature(for: match, capture: capture, source: source)
-        } else {
-            (title: source.substring(with: capture.range), range: capture.range)
+        switch capture.kind {
+            case .value:
+                return Self.propertyName(for: match, source: source)
+                    ?? Self.defaultTitle(capture: capture, source: source)
+            case .function:
+                let title = source.substring(with: capture.range)
+                return (title: Self.functionTitle(for: match, title: title, source: source),
+                        range: match.range ?? capture.range)
+            default:
+                return Self.defaultTitle(capture: capture, source: source)
         }
     }
     
@@ -59,13 +61,6 @@ enum SwiftOutlineFormatter: TreeSitterOutlineFormatting {
         let comment = trimmed.replacing(/^MARK:\s*-?\s*/, with: "")
 
         return comment.isEmpty ? nil : comment
-    }
-    
-    
-    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
-        
-        (title: Self.functionTitle(for: match, title: source.substring(with: capture.range), source: source),
-         range: match.range ?? capture.range)
     }
 }
 

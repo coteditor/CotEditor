@@ -32,27 +32,12 @@ protocol TreeSitterOutlineFormatting {
 
     /// Returns the display title and source range for an outline item.
     ///
-    /// The default implementation uses `functionSignature(for:capture:source:)` for functions and
-    /// falls back to the raw capture text for all other kinds.
-    ///
     /// - Parameters:
     ///   - match: The resolved query match.
     ///   - capture: The primary outline capture for the match.
     ///   - source: The source text as `NSString`.
     /// - Returns: The display title and source range.
     static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)
-    
-    /// Returns the display title and source range for a function outline signature.
-    ///
-    /// The default `item(for:source:policy:)` calls this method when the capture kind is `.function`.
-    /// The default implementation returns the raw capture text and range.
-    ///
-    /// - Parameters:
-    ///   - match: The resolved query match.
-    ///   - capture: The primary outline capture for the match.
-    ///   - source: The source text as `NSString`.
-    /// - Returns: The display title and source range for the function signature.
-    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)
     
     
     /// Formats the display title for an outline item.
@@ -66,6 +51,24 @@ protocol TreeSitterOutlineFormatting {
 
 
 extension TreeSitterOutlineFormatting {
+    
+    // MARK: Default Implementation
+    
+    /// Returns the display title and source range for an outline item.
+    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
+        
+        Self.defaultTitle(capture: capture, source: source)
+    }
+    
+    
+    /// Returns the title as-is.
+    static func formatTitle(_ title: String, kind: Syntax.Outline.Kind) -> String? {
+        
+        title
+    }
+    
+    
+    // MARK: Internal Methods
     
     /// Builds an outline item from a resolved tree-sitter query match.
     ///
@@ -94,30 +97,10 @@ extension TreeSitterOutlineFormatting {
     }
     
     
-    // MARK: Default Implementation
-    
-    /// Returns the display title and source range for an outline item.
-    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
+    /// Returns the raw capture text and range.
+    static func defaultTitle(capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
-        if capture.kind == .function {
-            Self.functionSignature(for: match, capture: capture, source: source)
-        } else {
-            Self.defaultTitle(capture: capture, source: source)
-        }
-    }
-    
-    
-    /// Returns the raw capture text and range as a fallback function signature.
-    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
-        
-        Self.defaultTitle(capture: capture, source: source)
-    }
-    
-    
-    /// Returns the title as-is.
-    static func formatTitle(_ title: String, kind: Syntax.Outline.Kind) -> String? {
-        
-        title
+        (title: source.substring(with: capture.range), range: capture.range)
     }
     
     
@@ -128,14 +111,6 @@ extension TreeSitterOutlineFormatting {
     static func parametersRange(for match: QueryMatch) -> NSRange? {
         
         match.captures(named: "outline.signature.parameters").first?.range
-    }
-    
-    
-    /// Returns the default title and its range.
-    private static func defaultTitle(capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
-        
-        (title: source.substring(with: capture.range),
-         range: capture.range)
     }
 }
 

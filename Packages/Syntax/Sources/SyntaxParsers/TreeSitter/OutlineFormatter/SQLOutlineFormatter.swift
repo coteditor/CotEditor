@@ -25,14 +25,20 @@
 //
 
 import Foundation
+import SyntaxFormat
 import SwiftTreeSitter
 
 enum SQLOutlineFormatter: TreeSitterOutlineFormatting {
     
-    static func functionSignature(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
+    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
-        (title: Self.functionTitle(for: match, title: source.substring(with: capture.range), source: source),
-         range: match.range ?? capture.range)
+        switch capture.kind {
+            case .function:
+                return (title: Self.functionTitle(for: match, title: source.substring(with: capture.range), source: source),
+                        range: match.range ?? capture.range)
+            default:
+                return Self.defaultTitle(capture: capture, source: source)
+        }
     }
 }
 
