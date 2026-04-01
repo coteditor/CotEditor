@@ -30,6 +30,20 @@ import SwiftTreeSitter
 
 enum SwiftOutlineFormatter: TreeSitterOutlineFormatting {
     
+    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
+        
+        if capture.kind == .value, let propertyName = Self.propertyName(for: match, source: source) {
+            return propertyName
+        }
+        
+        return if capture.kind == .function {
+            Self.functionSignature(for: match, capture: capture, source: source)
+        } else {
+            (title: source.substring(with: capture.range), range: capture.range)
+        }
+    }
+    
+    
     /// Formats a Swift outline title with MARK comment handling.
     static func formatTitle(_ title: String, kind: Syntax.Outline.Kind) -> String? {
 
@@ -57,6 +71,15 @@ enum SwiftOutlineFormatter: TreeSitterOutlineFormatting {
 
 
 private extension SwiftOutlineFormatter {
+    
+    /// Returns the property name capture used for Swift outline items.
+    static func propertyName(for match: QueryMatch, source: NSString) -> (title: String, range: NSRange)? {
+        
+        match.captures
+            .first { $0.name == "outline.name" }
+            .map { (title: source.substring(with: $0.range), range: $0.range) }
+    }
+    
     
     /// Builds the displayed Swift function title from a query match.
     ///

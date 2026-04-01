@@ -93,12 +93,19 @@
   "deinit" @outline.function)
 
 ; Values
-(property_declaration
-  (pattern) @outline.value
-  (computed_property))
+(class_body
+  (property_declaration
+    name: (pattern
+      (simple_identifier) @outline.name) @outline.value))
+
+(enum_class_body
+  (property_declaration
+    name: (pattern
+      (simple_identifier) @outline.name) @outline.value))
 
 (protocol_property_declaration
-  (pattern (simple_identifier) @outline.value))
+  name: (pattern
+    (simple_identifier) @outline.name) @outline.value)
 
 ; Comment marks
 ((comment) @outline.separator

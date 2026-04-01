@@ -149,6 +149,76 @@ struct TreeSitterSwiftOutlineTests {
     }
     
     
+    @Test func outlineIncludesProperties() async throws {
+        
+        let source = #"""
+            struct Config {
+        
+                let host: String
+                var port: Int { 8080 }
+                static var shared: Int { 0 }
+        
+                func connect() {
+                    let local = host
+                }
+            }
+        
+            enum Cache {
+        
+                static var size: Int { 0 }
+            }
+        
+            protocol Service {
+        
+                var name: String { get }
+            }
+        
+            extension Config {
+        
+                var url: String { host }
+            }
+        """#
+        let nsSource = source as NSString
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "Config",
+            "host",
+            "port",
+            "shared",
+            "connect()",
+            "Cache",
+            "size",
+            "Service",
+            "name",
+            "Config",
+            "url",
+        ])
+        #expect(outline.map(\.kind) == [
+            .container,
+            .value,
+            .value,
+            .value,
+            .function,
+            .container,
+            .value,
+            .container,
+            .value,
+            .container,
+            .value,
+        ])
+        #expect(outline.map(\.indent.level) == [0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1])
+        #expect(!outline.map(\.title).contains("local"))
+        #expect(nsSource.substring(with: outline[1].range) == "host")
+        #expect(nsSource.substring(with: outline[2].range) == "port")
+        #expect(nsSource.substring(with: outline[3].range) == "shared")
+        #expect(nsSource.substring(with: outline[6].range) == "size")
+        #expect(nsSource.substring(with: outline[8].range) == "name")
+        #expect(nsSource.substring(with: outline[10].range) == "url")
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {
