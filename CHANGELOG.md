@@ -9,6 +9,7 @@
 - [beta] Tweak outline item icons.
 - [beta] Optimize the outline extraction algorithm.
 - [beta] Optimize the regex-based syntax highlighting algorithm.
+- [beta] Improve the Python outline to exract class variables.
 - [beta] Add missing localizations.
 - [beta] Update tree-sitter-rust to 0.24.2.
 

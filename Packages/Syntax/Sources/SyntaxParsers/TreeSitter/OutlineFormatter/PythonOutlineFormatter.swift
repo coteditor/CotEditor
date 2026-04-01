@@ -34,6 +34,10 @@ enum PythonOutlineFormatter: TreeSitterOutlineFormatting {
     static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)? {
         
         switch capture.kind {
+            case .value:
+                guard Self.isClassVariable(match: match) else { return nil }
+                
+                return Self.defaultTitle(capture: capture, source: source)
             case .function:
                 return (title: Self.functionTitle(for: match, title: source.substring(with: capture.range), source: source),
                         range: Self.signatureRange(for: match, nameRange: capture.range))
@@ -73,6 +77,36 @@ private extension PythonOutlineFormatter {
     static func signatureRange(for match: QueryMatch, nameRange: NSRange) -> NSRange {
         
         nameRange.union(with: [Self.parametersRange(for: match)])
+    }
+    
+    
+    /// Returns whether the capture belongs to a direct class-body variable assignment.
+    ///
+    /// - Parameter match: The resolved query match.
+    /// - Returns: `true` when the assignment lives directly in a class body.
+    private static func isClassVariable(match: QueryMatch) -> Bool {
+        
+        guard
+            let assignment = Self.ancestor(ofType: "assignment", from: match.outlineNode),
+            let block = Self.ancestor(ofType: "block", from: assignment),
+            block.parent?.nodeType == "class_definition"
+        else { return false }
+        
+        return true
+    }
+    
+    
+    /// Returns the nearest ancestor with the given node type.
+    ///
+    /// - Parameters:
+    ///   - nodeType: The desired ancestor node type.
+    ///   - node: The starting node.
+    /// - Returns: The first matching ancestor, or `nil`.
+    private static func ancestor(ofType nodeType: String, from node: Node?) -> Node? {
+        
+        guard let node else { return nil }
+        
+        return sequence(first: node, next: \.parent).first { $0.nodeType == nodeType }
     }
     
     

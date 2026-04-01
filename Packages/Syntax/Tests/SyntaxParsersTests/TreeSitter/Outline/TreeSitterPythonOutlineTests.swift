@@ -84,6 +84,39 @@ struct TreeSitterPythonOutlineTests {
     }
     
     
+    @Test func outlineIncludesClassVariables() async throws {
+        
+        let source = #"""
+            class Cache:
+                initial_position = None
+                fps: int = 60
+                
+                def resolve(self, key: str) -> str:
+                    return key
+        """#
+        let nsSource = source as NSString
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "Cache",
+            "initial_position",
+            "fps",
+            "resolve(self, key: str)",
+        ])
+        #expect(outline.map(\.kind) == [
+            .container,
+            .value,
+            .value,
+            .function,
+        ])
+        #expect(outline.map(\.indent.level) == [0, 1, 1, 1])
+        #expect(nsSource.substring(with: outline[1].range) == "initial_position")
+        #expect(nsSource.substring(with: outline[2].range) == "fps")
+        #expect(nsSource.substring(with: outline[3].range) == "resolve(self, key: str)")
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {
