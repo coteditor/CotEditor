@@ -159,17 +159,11 @@ extension OutlinePolicy {
             return Self.headingLevel(from: components[2])
         }
         
-        var depth = 0
-        var node = node
+        guard let node else { return 0 }
         
-        while let currentNode = node {
-            if self.ignoredDepthNodeTypes.isEmpty || !self.ignoredDepthNodeTypes.contains(currentNode.nodeType ?? "") {
-                depth += 1
-            }
-            node = currentNode.parent
+        return sequence(first: node, next: \.parent).count { node in
+            self.ignoredDepthNodeTypes.isEmpty || !self.ignoredDepthNodeTypes.contains(node.nodeType ?? "")
         }
-        
-        return depth
     }
     
     
