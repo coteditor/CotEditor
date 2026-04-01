@@ -91,7 +91,10 @@ extension TreeSitterOutlineFormatting {
         
         let (title, range) = Self.title(for: match, capture: capture, source: source)
         
-        guard let displayTitle = Self.formatTitle(title, kind: capture.kind) else { return nil }
+        guard
+            !title.isEmpty,
+            let displayTitle = Self.formatTitle(title, kind: capture.kind)
+        else { return nil }
         
         return OutlineItem(title: displayTitle, range: range, kind: capture.kind, indent: .level(capture.depth))
     }
