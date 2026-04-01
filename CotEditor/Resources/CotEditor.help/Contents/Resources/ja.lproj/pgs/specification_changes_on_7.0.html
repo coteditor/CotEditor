@@ -15,8 +15,6 @@
 
 <h1>MacのCotEditor 7.0での重要な変更</h1>
 
-<p class="addition"><span class="note">注記:</span> ここに記載の内容は、CotEditor 7.0.0のプレリリース版を元に作成されています。正式版のCotEditor 7では内容が変更される場合があります。</p>
-
 <p>2026年リリースのCotEditor 7.0.0で、シンタックス定義の仕様が改訂されました。従来は.yml拡張子を持つYAMLフォーマットでしたが、新しいフォーマットは独自の.cotsyntax拡張子を持つパッケージ方式のファイルになりました。</p>
 
 <p>CotEditorに内蔵されている70種類のシンタックスは、すべてこの新しいフォーマットに移行しています。また、過去にユーザが作成したカスタムシンタックスについても新しいフォーマットへ自動的に移行されるので、基本的にはユーザは何も気にせずにすぐにCotEditor 7を使い始められます。</p>
@@ -32,8 +30,6 @@
 <p>ユーザが作成したカスタムシンタックスは、CotEditor 7の初回起動時に新しいフォーマットへ自動的に移行されます。それに対して、CotEditorに内蔵されているシンタックスのカスタマイズについては、その内容は一度クリアされCotEditor 7には引き継がれません。必要に応じて再度設定してください。</p>
 
 <p><em class="tip">ヒント:</em> 今までのカスタムシンタックスは、<span style="word-break:break-all">「~/Library/Containers/com.coteditor.CotEditor/Data/Library/Application Support/CotEditor/Syntaxes (Legacy, before 7.0)</span>」フォルダに残されます。CotEditor 7以降はこれらのファイルは使わないので、必要がなければ削除しても構いません。</p>
-
-<p class="addition"><span class="note">注記:</span> ベータ期間中は、移行されたシンタックスは通常のSyntaxesフォルダではなく、仮の「Syntaxes (Upcoming 7.0)」フォルダに保存されます。このフォルダは正式版のリリース時に削除され、移行されたシンタックスは通常のSyntaxesフォルダに配置されます。</p>
 </section>
 
 

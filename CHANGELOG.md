@@ -3,10 +3,6 @@
 7.0.0 (unreleased)
 --------------------------
 
-### TODO
-
-- Remove the prerelease notice from the user guide (in specification_changes_on_7.0.html).
-
 
 
 7.0.0-beta.2 (804)
