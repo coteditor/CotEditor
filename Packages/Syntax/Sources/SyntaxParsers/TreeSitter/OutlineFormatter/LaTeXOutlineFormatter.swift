@@ -30,7 +30,7 @@ import SwiftTreeSitter
 
 enum LaTeXOutlineFormatter: TreeSitterOutlineFormatting {
     
-    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
+    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)? {
         
         guard let range = Self.titleRange(for: match) else {
             return Self.defaultTitle(capture: capture, source: source)

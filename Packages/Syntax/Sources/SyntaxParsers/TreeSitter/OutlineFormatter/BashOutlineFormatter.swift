@@ -30,7 +30,7 @@ import SwiftTreeSitter
 
 enum BashOutlineFormatter: TreeSitterOutlineFormatting {
     
-    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
+    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)? {
         
         switch capture.kind {
             case .function:

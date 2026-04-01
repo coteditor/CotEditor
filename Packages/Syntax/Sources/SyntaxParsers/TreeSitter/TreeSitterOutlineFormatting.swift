@@ -36,8 +36,8 @@ protocol TreeSitterOutlineFormatting {
     ///   - match: The resolved query match.
     ///   - capture: The primary outline capture for the match.
     ///   - source: The source text as `NSString`.
-    /// - Returns: The display title and source range.
-    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)
+    /// - Returns: The display title and source range, or `nil` to exclude the match.
+    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)?
     
     
     /// Formats the display title for an outline item.
@@ -55,7 +55,7 @@ extension TreeSitterOutlineFormatting {
     // MARK: Default Implementation
     
     /// Returns the display title and source range for an outline item.
-    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
+    static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)? {
         
         Self.defaultTitle(capture: capture, source: source)
     }
@@ -89,11 +89,10 @@ extension TreeSitterOutlineFormatting {
             return OutlineItem.separator(range: capture.range, indent: .level(capture.depth))
         }
         
-        let (title, range) = Self.title(for: match, capture: capture, source: source)
-        
         guard
-            !title.isEmpty,
-            let displayTitle = Self.formatTitle(title, kind: capture.kind)
+            let (title, range) = Self.title(for: match, capture: capture, source: source),
+            let displayTitle = Self.formatTitle(title, kind: capture.kind),
+            !displayTitle.isEmpty
         else { return nil }
         
         return OutlineItem(title: displayTitle, range: range, kind: capture.kind, indent: .level(capture.depth))
