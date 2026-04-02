@@ -106,7 +106,7 @@ Although CotEditor is not yet localized in any bidirectional languages, the proj
 
 #### Localization for the App Store
 
-The CotEditor project is also asking for localization of descriptions on the Mac App Store. We have a separate repository for it at [coteditor/Documents-for-AppStore](https://github.com/coteditor/Documents-for-AppStore).
+The CotEditor project is also asking for localization of descriptions on the Mac App Store. We have a separate repository for it at [coteditor/Documents-for-AppStore](https://github.com/coteditor/Documents-for-AppStore). If the Mac App Store supports your language, We’d appreciate it if you could localize this text as well.
 
 #### Hints on localization
 
