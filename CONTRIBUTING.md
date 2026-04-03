@@ -6,6 +6,7 @@ Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/i
 
 Instead of listing multiple features or issues in a single post, create an issue for each topic.
 
+
 ### Issue reports
 
 Create a new post using the “Bug report” template.
@@ -22,13 +23,12 @@ If possible, attach screenshots or screen recordings that show the issue clearly
 ### Feature requests
 
 Create a new post using the “Feature request” template.
- 
+
 Before submitting a request, please make sure of the following:
 
 - Search for existing feature requests. If your idea is already posted, comment on that thread instead of creating a new issue.
 
 Please refrain from simply adding “+1” or similar comments to existing requests; it serves no purpose and contributes to unnecessary clutter.
-
 
 
 ## Pull Requests
@@ -65,7 +65,7 @@ You have two options for adding a new localization to CotEditor. Choose one of t
         - Packages/EditorCore/Sources/LineEnding/Resources/
         - Packages/EditorCore/Sources/StringUtils/Resources/
         - Packages/Syntax/Sources/SyntaxFormat/Resources/
-    - Note that you don't need to localize the UnicodeBlock.xcstrings file in Packages/Libraries/Sources/CharacterInfo/. This will be handled by @1024jp based on Apple's localization data.
+    - Note that you don't need to localize the UnicodeBlock.xcstrings file in Packages/EditorCore/Sources/CharacterInfo/. This will be handled by @1024jp based on Apple's localization data.
 - Option 2: Communicate with the maintainer personally and work with a provided localization template (.xcloc file):
     - Send a message to the maintainer (@1024jp) either by creating a new issue on GitHub or by e-mail to ask for the localization template (.xcloc file) for your language. Upon receiving the .xcloc file, open it in Xcode and fill each cell of your language column in the tables. Once completed, send the template file back to the maintainer.
 
@@ -106,7 +106,7 @@ Although CotEditor is not yet localized in any bidirectional languages, the proj
 
 #### Localization for the App Store
 
-The CotEditor project is also asking for localization of descriptions on the Mac App Store. We have a separate repository for it at [coteditor/Documents-for-AppStore](https://github.com/coteditor/Documents-for-AppStore). If the Mac App Store supports your language, We’d appreciate it if you could localize this text as well.
+The CotEditor project is also asking for localization of descriptions on the Mac App Store. We have a separate repository for it at [coteditor/Documents-for-AppStore](https://github.com/coteditor/Documents-for-AppStore). If the Mac App Store supports your language, we’d appreciate it if you could localize this text as well.
 
 #### Hints on localization
 
@@ -141,7 +141,6 @@ We don't accept pull requests adding bundled themes at the moment. You can distr
 ### Graphic Resources
 
 We don't accept pull requests for image resources. @1024jp enjoys creating and brushing up on the graphics ;). If you find a graphic resource having some issue to be fixed, please just point it out on the Issues page.
-
 
 
 ## Coding Style Guide
