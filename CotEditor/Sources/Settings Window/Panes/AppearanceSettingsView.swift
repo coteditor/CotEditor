@@ -102,7 +102,7 @@ struct AppearanceSettingsView: View {
                     .accessibilityLabeledPair(role: .label, id: "lineHeight", in: self.accessibility)
                 
                 HStack(alignment: .firstTextBaseline) {
-                    Stepper(value: $lineHeight, in: 0.1...10, step: 0.1, format: .number.precision(.fractionLength(1...2)), label: EmptyView.init)
+                    Stepper(value: $lineHeight, in: 0.1...10, step: 0.1, format: .number.precision(.fractionLength(1...2)).locale(Locale(languageCode: Locale.current.language.languageCode, languageRegion: Locale.current.region)), label: EmptyView.init)
                         .monospacedDigit()
                         .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
                         .accessibilityValue(String(localized: "\(self.lineHeight, format: .number) times", table: "AppearanceSettings",
