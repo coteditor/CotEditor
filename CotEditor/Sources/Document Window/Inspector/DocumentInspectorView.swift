@@ -255,7 +255,6 @@ private struct DocumentFileView: View {
                     }
                 }
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
@@ -282,7 +281,6 @@ private struct TextSettingsView: View {
                                       comment: "label in document inspector"),
                                value: self.value.mode.label)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
@@ -324,7 +322,6 @@ private struct EditorCountView: View {
                 }
             }
             .monospacedDigit()
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
@@ -377,7 +374,6 @@ private struct CharacterPaneView: View {
                         .help(String(localized: "Select a single character to show Unicode information.", table: "Document", comment: "tooltip"))
                 }
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
@@ -447,6 +443,7 @@ private struct LegacyInspectorDisclosureGroupStyle: DisclosureGroupStyle {
         
         DisclosureGroup(isExpanded: configuration.$isExpanded) {
             configuration.content
+                .frame(maxWidth: .infinity, alignment: .leading)
         } label: {
             configuration.label
                 .font(.system(size: 12, weight: .bold))
