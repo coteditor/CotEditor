@@ -142,21 +142,31 @@ struct DocumentInspectorView: View, HostedPaneView {
                 DocumentFileView(attributes: self.model.attributes, fileURL: self.model.fileURL)
                 
                 if let textSettings = self.model.textSettings {
-                    Divider()
+                    if !isLiquidGlass { Divider() }
                     TextSettingsView(value: textSettings)
                 }
                 
                 if let countResult = self.model.countResult {
-                    Divider()
+                    if !isLiquidGlass { Divider() }
                     EditorCountView(result: countResult)
                     
-                    Divider()
+                    if !isLiquidGlass { Divider() }
                     CharacterPaneView(character: countResult.character)
                 }
             }
             .padding(EdgeInsets(top: isLiquidGlass ? 12 : 4, leading: 12, bottom: 12, trailing: 12))
-            .disclosureGroupStyle(InspectorDisclosureGroupStyle())
-            .labeledContentStyle(InspectorLabeledContentStyle())
+            .modifier { content in
+                if #available(macOS 26, *) {
+                    content
+                        .disclosureGroupStyle(InspectorDisclosureGroupStyle())
+                        .labeledContentStyle(InspectorLabeledContentStyle())
+                        .formStyle(.grouped)
+                } else {
+                    content
+                        .disclosureGroupStyle(LegacyInspectorDisclosureGroupStyle())
+                        .labeledContentStyle(LegacyInspectorLabeledContentStyle())
+                }
+            }
         }
         .onChange(of: self.document, initial: true) { _, newValue in
             self.model.document = newValue
@@ -195,7 +205,7 @@ private struct DocumentFileView: View {
                 
                 LabeledContent(String(localized: "Tags", table: "Document", comment: "label in document inspector")) {
                     if let tags = self.attributes?.tags, !tags.isEmpty {
-                        WrappingHStack(horizontalSpacing: 7) {
+                        WrappingHStack(alignment: isLiquidGlass ? .trailing : .leading, horizontalSpacing: 7) {
                             ForEach(Array(tags.enumerated()), id: \.offset) { _, tag in
                                 HStack(spacing: 4) {
                                     TagColorView(color: tag.color)
@@ -217,12 +227,19 @@ private struct DocumentFileView: View {
                 
                 LabeledContent(String(localized: "Full Path", table: "Document", comment: "label in document inspector")) {
                     if let fileURL = self.fileURL {
-                        HStack(alignment: .lastTextBaseline, spacing: 0) {
+                        HStack(alignment: .lastTextBaseline, spacing: 4) {
                             Text(fileURL, format: .url.scheme(.never))
                                 .lineLimit(5)
                                 .truncationMode(.middle)
                                 .textSelection(.enabled)
-                                .foregroundStyle(.primary)
+                                .modifier { content in
+                                    if #available(macOS 26, *) {
+                                        content
+                                    } else {
+                                        content
+                                            .foregroundStyle(.primary)
+                                    }
+                                }
                                 .help(fileURL.formatted(.url.scheme(.never)))
                             Button(String(localized: "Show in Finder", table: "Document"), systemImage: "arrow.forward") {
                                 NSWorkspace.shared.activateFileViewerSelecting([fileURL])
@@ -282,26 +299,29 @@ private struct EditorCountView: View {
         
         DisclosureGroup(String(localized: "Count", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                LabeledContent(String(localized: "CountType.lines.label", defaultValue: "Lines", table: "Document"),
-                               optional: self.result.lines.formatted)
-                .accessibilityAddTraits(.updatesFrequently)
-                LabeledContent(String(localized: "CountType.characters.label", defaultValue: "Characters", table: "Document"),
-                               optional: self.result.characters.formatted)
-                .accessibilityAddTraits(.updatesFrequently)
-                LabeledContent(String(localized: "CountType.words.label", defaultValue: "Words", table: "Document"),
-                               optional: self.result.words.formatted)
-                .accessibilityAddTraits(.updatesFrequently)
-                .padding(.bottom, 8)
-                
-                LabeledContent(String(localized: "CountType.location.label", defaultValue: "Location", table: "Document"),
-                               optional: self.result.location?.formatted())
-                .accessibilityAddTraits(.updatesFrequently)
-                LabeledContent(String(localized: "CountType.line.label", defaultValue: "Line", table: "Document"),
-                               optional: self.result.line?.formatted())
-                .accessibilityAddTraits(.updatesFrequently)
-                LabeledContent(String(localized: "CountType.column.label", defaultValue: "Column", table: "Document"),
-                               optional: self.result.column?.formatted())
-                .accessibilityAddTraits(.updatesFrequently)
+                Section {
+                    LabeledContent(String(localized: "CountType.lines.label", defaultValue: "Lines", table: "Document"),
+                                   optional: self.result.lines.formatted)
+                    .accessibilityAddTraits(.updatesFrequently)
+                    LabeledContent(String(localized: "CountType.characters.label", defaultValue: "Characters", table: "Document"),
+                                   optional: self.result.characters.formatted)
+                    .accessibilityAddTraits(.updatesFrequently)
+                    LabeledContent(String(localized: "CountType.words.label", defaultValue: "Words", table: "Document"),
+                                   optional: self.result.words.formatted)
+                    .accessibilityAddTraits(.updatesFrequently)
+                    .padding(.bottom, isLiquidGlass ? 0 : 8)
+                }
+                Section {
+                    LabeledContent(String(localized: "CountType.location.label", defaultValue: "Location", table: "Document"),
+                                   optional: self.result.location?.formatted())
+                    .accessibilityAddTraits(.updatesFrequently)
+                    LabeledContent(String(localized: "CountType.line.label", defaultValue: "Line", table: "Document"),
+                                   optional: self.result.line?.formatted())
+                    .accessibilityAddTraits(.updatesFrequently)
+                    LabeledContent(String(localized: "CountType.column.label", defaultValue: "Column", table: "Document"),
+                                   optional: self.result.column?.formatted())
+                    .accessibilityAddTraits(.updatesFrequently)
+                }
             }
             .monospacedDigit()
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -328,7 +348,7 @@ private struct CharacterPaneView: View {
                         : String(localized: "Code Points", table: "Document",
                                  comment: "label in document inspector")
                     LabeledContent(label) {
-                        WrappingHStack {
+                        WrappingHStack(alignment: isLiquidGlass ? .trailing : .leading) {
                             ForEach(Array(scalars.enumerated()), id: \.offset) { _, scalar in
                                 Text(scalar.codePoint)
                                     .monospacedDigit()
@@ -363,15 +383,20 @@ private struct CharacterPaneView: View {
 }
 
 
+@available(macOS 26, *)
 private struct InspectorDisclosureGroupStyle: DisclosureGroupStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         
         DisclosureGroup(isExpanded: configuration.$isExpanded) {
+            // specify negative paddings to cancel paddings implicitly added to Form.formStyle(.grouped)
+            // (2026-04, macOS 26.4)
             configuration.content
+                .padding(.top, -6)
+                .padding(.horizontal, -12)
         } label: {
             configuration.label
-                .font(.system(size: 12, weight: isLiquidGlass ? .semibold : .bold))
+                .font(.system(size: 12, weight: .semibold))
                 .foregroundStyle(.secondary)
                 .fixedSize()
         }
@@ -379,7 +404,61 @@ private struct InspectorDisclosureGroupStyle: DisclosureGroupStyle {
 }
 
 
+@available(macOS 26, *)
 private struct InspectorLabeledContentStyle: LabeledContentStyle {
+    
+    @Environment(\.controlSize) private var controlSize
+    
+    
+    func makeBody(configuration: Configuration) -> some View {
+        
+        LabeledContent {
+            configuration.content
+        } label: {
+            configuration.label
+                // forcibly set font size since the label in grouped form ignores the controlSize (2026-04, macOS 26.4)
+                .font(.system(size: NSFont.systemFontSize(for: self.controlSize.nsControlSize)))
+        }
+    }
+}
+
+
+@available(macOS 26, *)
+private extension ControlSize {
+    
+    var nsControlSize: NSControl.ControlSize {
+        
+        switch self {
+            case .mini: .mini
+            case .small: .small
+            case .regular: .regular
+            case .large: .large
+            case .extraLarge: .extraLarge
+            @unknown default: .regular
+        }
+    }
+}
+
+
+@available(macOS, deprecated: 26)
+private struct LegacyInspectorDisclosureGroupStyle: DisclosureGroupStyle {
+    
+    func makeBody(configuration: Configuration) -> some View {
+        
+        DisclosureGroup(isExpanded: configuration.$isExpanded) {
+            configuration.content
+        } label: {
+            configuration.label
+                .font(.system(size: 12, weight: .bold))
+                .foregroundStyle(.secondary)
+                .fixedSize()
+        }
+    }
+}
+
+
+@available(macOS, deprecated: 26)
+private struct LegacyInspectorLabeledContentStyle: LabeledContentStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         

@@ -3,6 +3,11 @@
 7.0.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the inspector’s appearance on macOS Tahoe 26.
+
+
 ### TODO
 
 - Update the migration directories for user syntax definitions (read the comment in `migrateUserSettings()`).
