@@ -70,7 +70,7 @@ struct IncompatibleCharactersView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Incompatible Characters", tableName: "Document",
                  comment: "section title in inspector")
-                .font(.system(size: 12, weight: isLiquidGlass ? .semibold : .bold))
+                .font(.system(size: 12, weight: .semibold))
                 .foregroundStyle(.secondary)
                 .accessibilityRemoveTraits(.isHeader)
             

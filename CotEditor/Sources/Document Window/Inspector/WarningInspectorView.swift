@@ -39,7 +39,7 @@ struct WarningInspectorView: View, HostedPaneView {
             InconsistentLineEndingsView(document: self.isPresented ? self.document as? Document : nil)
                 .padding(.top, 8)
         }
-        .padding(EdgeInsets(top: isLiquidGlass ? 16 : 8, leading: 12, bottom: 12, trailing: 12))
+        .padding(EdgeInsets(top: 16, leading: 12, bottom: 12, trailing: 12))
         .accessibilityLabel(String(localized: "InspectorPane.warnings.label",
                                    defaultValue: "Warnings", table: "Document"))
     }

@@ -175,7 +175,7 @@ struct OutlineInspectorView: View, HostedPaneView {
         VStack(alignment: .leading) {
             HStack(alignment: .firstTextBaseline) {
                 Text("Outline", tableName: "Document", comment: "section title in inspector")
-                    .font(.system(size: 12, weight: isLiquidGlass ? .semibold : .bold))
+                    .font(.system(size: 12, weight: .semibold))
                     .foregroundStyle(.secondary)
                     .accessibilityRemoveTraits(.isHeader)
                 
@@ -244,7 +244,7 @@ struct OutlineInspectorView: View, HostedPaneView {
         .accessibilityLabel(String(localized: "InspectorPane.outline.label",
                                    defaultValue: "Outline", table: "Document"))
         .controlSize(.small)
-        .padding(EdgeInsets(top: isLiquidGlass ? 16 : 8, leading: 12, bottom: 12, trailing: 12))
+        .padding(EdgeInsets(top: 16, leading: 12, bottom: 12, trailing: 12))
     }
     
     
