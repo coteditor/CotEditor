@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import SwiftUI
 
 struct WrappingHStack<Content: View>: View {
     
+    var alignment: HorizontalAlignment = .leading
     var horizontalSpacing: Double = 4
     var verticalSpacing: Double = 4
     @ViewBuilder var content: Content
@@ -34,7 +35,7 @@ struct WrappingHStack<Content: View>: View {
     
     var body: some View {
         
-        WrappingHStackLayout(horizontalSpacing: self.horizontalSpacing, verticalSpacing: self.verticalSpacing) {
+        WrappingHStackLayout(alignment: self.alignment, horizontalSpacing: self.horizontalSpacing, verticalSpacing: self.verticalSpacing) {
             self.content
         }
     }
@@ -43,16 +44,25 @@ struct WrappingHStack<Content: View>: View {
 
 private struct WrappingHStackLayout: Layout {
     
+    private struct Row {
+        
+        var indices: [Int] = []
+        var width: Double = 0
+    }
+    
+    
+    var alignment: HorizontalAlignment
     var horizontalSpacing: Double
     var verticalSpacing: Double
     
     
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
         
-        let width = proposal.replacingUnspecifiedDimensions().width
-        let rowCount = Double(self.countRows(for: subviews, in: width))
-        let minHeight = subviews.map { $0.sizeThatFits(proposal).height }.max()?.rounded(.up) ?? 0
-        let height = rowCount * minHeight + max(rowCount - 1, 0) * self.verticalSpacing
+        let rows = self.rows(for: subviews, in: proposal.width ?? .infinity)
+        let width = proposal.width ?? rows.map(\.width).max() ?? 0
+        let rowCount = Double(rows.count)
+        let rowHeight = subviews.map { $0.sizeThatFits(.unspecified).height }.max()?.rounded(.up) ?? 0
+        let height = rowCount * rowHeight + max(rowCount - 1, 0) * self.verticalSpacing
         
         return CGSize(width: width, height: height)
     }
@@ -60,49 +70,76 @@ private struct WrappingHStackLayout: Layout {
     
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
         
-        let minHeight = subviews.map { $0.sizeThatFits(proposal).height }.max()?.rounded(.up) ?? 0
-        var point = bounds.origin
+        let rows = self.rows(for: subviews, in: bounds.width)
+        let rowHeight = subviews.map { $0.sizeThatFits(.unspecified).height }.max()?.rounded(.up) ?? 0
+        var y = bounds.minY
         
-        for subview in subviews {
-            let width = subview.sizeThatFits(proposal).width
+        for row in rows {
+            var x = bounds.minX + self.xOffset(for: row.width, in: bounds.width)
             
-            if point.x + width > bounds.maxX {
-                point.x = bounds.minX
-                point.y += minHeight + self.verticalSpacing
+            for index in row.indices {
+                let subview = subviews[index]
+                let size = subview.sizeThatFits(.unspecified)
+                
+                subview.place(at: CGPoint(x: x, y: y), anchor: .topLeading, proposal: ProposedViewSize(size))
+                x += size.width + self.horizontalSpacing
             }
             
-            subview.place(at: point, anchor: .topLeading, proposal: proposal)
-            point.x += width + self.horizontalSpacing
+            y += rowHeight + self.verticalSpacing
         }
     }
     
     
-    /// Calculates the number of rows when the subviews are laid out within the given `containerWidth`.
+    /// Calculates the horizontal offset for a row within the given container width.
+    ///
+    /// - Note:
+    ///   Only `.leading`, `.center`, and `.trailing` are supported.
+    ///   Any other `HorizontalAlignment` value falls back to leading alignment.
+    ///
+    /// - Parameters:
+    ///   - rowWidth: The total width of the row.
+    ///   - containerWidth: The available width of the container.
+    /// - Returns: The leading offset for placing the row.
+    private func xOffset(for rowWidth: Double, in containerWidth: Double) -> Double {
+        
+        switch self.alignment {
+            case .leading: 0
+            case .center: max(containerWidth - rowWidth, 0) / 2
+            case .trailing: max(containerWidth - rowWidth, 0)
+            default: 0
+        }
+    }
+    
+    
+    /// Groups subviews into rows that fit within the given container width.
     ///
     /// - Parameters:
     ///   - subviews: The subviews to lay out.
-    ///   - containerWidth: The width of the view to fit in.
-    /// - Returns: The number of rows.
-    private func countRows(for subviews: Subviews, in containerWidth: Double) -> Int {
+    ///   - containerWidth: The available width of the container.
+    /// - Returns: The rows with their indices and measured widths.
+    private func rows(for subviews: Subviews, in containerWidth: Double) -> [Row] {
         
-        var count = 0
-        var x: Double = 0
+        var rows: [Row] = []
+        var row = Row()
         
-        for subview in subviews {
-            let width = subview.sizeThatFits(.unspecified).width
+        for index in subviews.indices {
+            let width = subviews[index].sizeThatFits(.unspecified).width
+            let rowWidth = row.indices.isEmpty ? width : row.width + self.horizontalSpacing + width
             
-            if x + width > containerWidth {
-                x = 0
-                count += 1
+            if !row.indices.isEmpty, rowWidth > containerWidth {
+                rows.append(row)
+                row = Row(indices: [index], width: width)
+            } else {
+                row.indices.append(index)
+                row.width = rowWidth
             }
-            x += width + self.horizontalSpacing
         }
         
-        if x > 0 {
-            count += 1
+        if !row.indices.isEmpty {
+            rows.append(row)
         }
         
-        return count
+        return rows
     }
 }
 
