@@ -154,7 +154,7 @@ struct DocumentInspectorView: View, HostedPaneView {
                     CharacterPaneView(character: countResult.character)
                 }
             }
-            .padding(EdgeInsets(top: 4, leading: 12, bottom: 12, trailing: 12))
+            .padding(EdgeInsets(top: isLiquidGlass ? 12 : 4, leading: 12, bottom: 12, trailing: 12))
             .disclosureGroupStyle(InspectorDisclosureGroupStyle())
             .labeledContentStyle(InspectorLabeledContentStyle())
         }
@@ -371,7 +371,7 @@ private struct InspectorDisclosureGroupStyle: DisclosureGroupStyle {
             configuration.content
         } label: {
             configuration.label
-                .font(.system(size: 12, weight: .bold))
+                .font(.system(size: 12, weight: isLiquidGlass ? .semibold : .bold))
                 .foregroundStyle(.secondary)
                 .fixedSize()
         }
