@@ -155,7 +155,7 @@ extension DefaultKeys {
     // file browser
     static let fileBrowserShowsHiddenFiles = DefaultKey<Bool>("fileBrowserShowsHiddenFiles")
     
-    // Outlline inspector
+    // Outline inspector
     static let outlineViewWrapsLines = DefaultKey<Bool>("outlineViewWrapsLines")
     static let outlineViewFontSize = DefaultKey<Double>("outlineViewFontSize")
     
