@@ -1156,7 +1156,8 @@
     },
     {
       "begin" : "<![CDATA[",
-      "end" : "]]>"
+      "end" : "]]>",
+      "isMultiline" : true
     }
   ],
   "commands" : [

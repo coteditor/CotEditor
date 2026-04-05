@@ -6,6 +6,7 @@
 ### Improvements
 
 - Update the inspector’s appearance on macOS Tahoe 26.
+- [beta] Update the SVG syntax for syntax highlighting.
 
 
 ### TODO
