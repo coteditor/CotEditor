@@ -7,6 +7,7 @@
 
 - Update the inspector’s appearance on macOS Tahoe 26.
 - [beta] Update the SVG syntax for syntax highlighting.
+- [beta] Update the Python syntax highlighting parsing.
 
 
 ### TODO

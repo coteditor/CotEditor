@@ -125,6 +125,37 @@ struct TreeSitterHighlightTests {
         #expect(captures[29] == Capture(type: .keywords, text: "self"))
         #expect(captures[30] == Capture(type: .commands, text: "replace"))
     }
+    
+    
+    @Test func highlightPythonAllCapsConstantsAndConstructorCalls() async throws {
+        
+        let source = #"""
+            from typing import IO
+            from pathlib import Path
+            
+            MAX_SIZE = 10
+            TOKEN_RE = Path("demo.txt")
+            custom = UUID()
+            namespaced = pkg.UUID()
+            
+            def load(stream: IO, path: Path) -> IO:
+                return TOKEN_RE
+            """#
+        
+        let config = try self.registry.configuration(for: .python)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .python)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        #expect(captures.contains { $0.type == .values && $0.text == "MAX_SIZE" })
+        #expect(captures.contains { $0.type == .values && $0.text == "TOKEN_RE" })
+        #expect(!captures.contains { $0.type == .types && $0.text == "MAX_SIZE" })
+        #expect(!captures.contains { $0.type == .types && $0.text == "TOKEN_RE" })
+        #expect(captures.filter { $0.type == .types && $0.text == "UUID" }.count == 2)
+        #expect(captures.filter { $0.type == .types && $0.text == "IO" }.count == 2)
+        #expect(captures.contains { $0.type == .types && $0.text == "Path" })
+    }
 }
 
 

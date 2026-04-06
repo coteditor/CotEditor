@@ -95,13 +95,26 @@
 ; MARK: Types
 ; ----------------------------
 
+; Prefer UPPER_SNAKE_CASE / ALL_CAPS as values by default.
+; More specific type contexts below override this via "last pattern wins".
+((identifier) @values
+ (#match? @values "^[A-Z][A-Z0-9_]*$"))
+
+(class_definition
+  name: (identifier) @types)
+
 (type (identifier) @types)
 
-((identifier) @types.constant
- (#match? @types.constant "^[A-Z][A-Z_]*$"))
-
 ((identifier) @types.constructor
- (#match? @types.constructor "^[A-Z]"))
+ (#match? @types.constructor "^[A-Z].*[a-z]"))
+
+((call
+  function: (identifier) @types.constructor)
+ (#match? @types.constructor "^[A-Z][A-Z0-9_]*$"))
+
+((call
+  function: (attribute attribute: (identifier) @types.constructor))
+ (#match? @types.constructor "^[A-Z][A-Z0-9_]*$"))
 
 
 ; MARK: Attributes (decorators)
