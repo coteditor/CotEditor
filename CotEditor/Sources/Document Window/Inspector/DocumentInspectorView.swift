@@ -193,14 +193,11 @@ private struct DocumentFileView: View {
         
         DisclosureGroup(String(localized: "File", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                LabeledContent(String(localized: "Created", table: "Document",
-                                      comment: "label in document inspector"),
+                LabeledContent(String(localized: "Created", table: "Document", comment: "label in document inspector"),
                                optional: self.attributes?.creationDate?.formatted(date: .abbreviated, time: .shortened))
-                LabeledContent(String(localized: "Modified", table: "Document",
-                                      comment: "label in document inspector"),
+                LabeledContent(String(localized: "Modified", table: "Document", comment: "label in document inspector"),
                                optional: self.attributes?.modificationDate?.formatted(date: .abbreviated, time: .shortened))
-                LabeledContent(String(localized: "Size", table: "Document",
-                                      comment: "label in document inspector"),
+                LabeledContent(String(localized: "Size", table: "Document", comment: "label in document inspector"),
                                optional: self.attributes?.size.formatted(.byteCount(style: .file, includesActualByteCount: true)))
                 
                 LabeledContent(String(localized: "Tags", table: "Document", comment: "label in document inspector")) {
@@ -218,11 +215,9 @@ private struct DocumentFileView: View {
                         Text.none
                     }
                 }
-                LabeledContent(String(localized: "Permissions", table: "Document",
-                                      comment: "label in document inspector"),
+                LabeledContent(String(localized: "Permissions", table: "Document", comment: "label in document inspector"),
                                optional: self.attributes?.permissions.formatted())
-                LabeledContent(String(localized: "Owner", table: "Document",
-                                      comment: "label in document inspector"),
+                LabeledContent(String(localized: "Owner", table: "Document", comment: "label in document inspector"),
                                optional: self.attributes?.owner)
                 
                 LabeledContent(String(localized: "Full Path", table: "Document", comment: "label in document inspector")) {
@@ -271,14 +266,11 @@ private struct TextSettingsView: View {
         
         DisclosureGroup(String(localized: "Text Settings", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                LabeledContent(String(localized: "Encoding", table: "Document",
-                                      comment: "label in document inspector"),
+                LabeledContent(String(localized: "Encoding", table: "Document", comment: "label in document inspector"),
                                value: self.value.encoding.localizedName)
-                LabeledContent(String(localized: "Line Endings", table: "Document",
-                                      comment: "label in document inspector"),
+                LabeledContent(String(localized: "Line Endings", table: "Document", comment: "label in document inspector"),
                                value: self.value.lineEnding.label)
-                LabeledContent(String(localized: "Mode", table: "Document",
-                                      comment: "label in document inspector"),
+                LabeledContent(String(localized: "Mode", table: "Document", comment: "label in document inspector"),
                                value: self.value.mode.label)
             }
         }
@@ -340,10 +332,8 @@ private struct CharacterPaneView: View {
             Form {
                 if let scalars = self.character?.unicodeScalars {
                     let label = (scalars.count == 1)
-                        ? String(localized: "Code Point", table: "Document",
-                                 comment: "label in document inspector")
-                        : String(localized: "Code Points", table: "Document",
-                                 comment: "label in document inspector")
+                        ? String(localized: "Code Point", table: "Document", comment: "label in document inspector")
+                        : String(localized: "Code Points", table: "Document", comment: "label in document inspector")
                     LabeledContent(label) {
                         WrappingHStack(alignment: isLiquidGlass ? .trailing : .leading) {
                             ForEach(Array(scalars.enumerated()), id: \.offset) { _, scalar in
@@ -357,15 +347,12 @@ private struct CharacterPaneView: View {
                         }
                     }
                     if scalars.count == 1, let scalar = scalars.first {
-                        LabeledContent(String(localized: "Name", table: "Document",
-                                              comment: "label in document inspector"),
+                        LabeledContent(String(localized: "Name", table: "Document", comment: "label in document inspector"),
                                        optional: scalar.name)
-                        LabeledContent(String(localized: "Block", table: "Document",
-                                              comment: "label in document inspector"),
+                        LabeledContent(String(localized: "Block", table: "Document", comment: "label in document inspector"),
                                        optional: scalar.localizedBlockName)
                         let category = scalar.properties.generalCategory
-                        LabeledContent(String(localized: "Category", table: "Document",
-                                              comment: "label in document inspector"),
+                        LabeledContent(String(localized: "Category", table: "Document", comment: "label in document inspector"),
                                        value: "\(category.longName) (\(category.shortName))")
                     }
                 } else {
