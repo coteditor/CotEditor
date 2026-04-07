@@ -35,7 +35,7 @@ from typing import Optional
 
 
 # meta data
-__version__ = '6.2.2'
+__version__ = '7.0.0'
 __description__ = 'command-line utility for CotEditor.'
 
 
@@ -240,7 +240,10 @@ def parse_args() -> argparse.Namespace:
         Parsed args object.
     """
     # create parser instance
-    parser = argparse.ArgumentParser(description=__description__)
+    parser = argparse.ArgumentParser(
+        description=__description__,
+        formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=32),
+    )
 
     # set positional arguments
     parser.add_argument(
@@ -300,7 +303,7 @@ def parse_args() -> argparse.Namespace:
         '--goto',  # no short form
         metavar='FILE[:LINE[:COLUMN]]',
         type=parse_goto,
-        help="open FILE and move the insertion point to LINE and COLUMN"
+        help="open FILE and jump to LINE and COLUMN"
     )
 
     args = parser.parse_args()
