@@ -542,14 +542,14 @@ end tell</code></pre>
 	<dt>パラメータ</dt>
 	<dd><ul>
 		<li><p><em><code>in</code> (list):</em>
-		範囲</p></li>
+		範囲（{location, length}の型、<code>length</code>は<code>0</code>以上）</p></li>
 	</ul></dd>
 	
 	<dt>返り値</dt>
 	<dd>text型</dd>
 	
 	<dt>対象</dt>
-	<dd><code>selection</code>オブジェクト</dd>
+	<dd><code>document</code>オブジェクト</dd>
 </dl>
 
 <h3>例</h3>
@@ -561,7 +561,7 @@ end tell</code></pre>
 
 <h3>詳細</h3>
 
-<p>無効な範囲を指定した場合などは、空のテキストを返します。</p>
+<p>無効な範囲を指定した場合は、エラーを返します。</p>
 <p>このコマンドは指定された選択範囲を変更しません。</p>
 </section>
 

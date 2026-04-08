@@ -555,14 +555,14 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 	<dt>Parameters</dt>
 	<dd><ul>
 		<li><p><em><code>in</code> (list):</em>
-		The range.</p></li>
+		The range in the format '{location, length}'. <code>length</code> must be <code>0</code> or greater.</p></li>
 	</ul></dd>
 	
 	<dt>Return value</dt>
 	<dd>text</dd>
 	
 	<dt>Target</dt>
-	<dd><code>selection</code> object</dd>
+	<dd><code>document</code> object</dd>
 </dl>
 
 
@@ -576,7 +576,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <h3>Discussion</h3>
 
-<p>Returns empty text if the specified range was invalid.</p>
+<p>Returns an error if the specified range was invalid.</p>
 <p>This command doesn’t change the specified range.</p>
 </section>
 

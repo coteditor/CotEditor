@@ -115,7 +115,7 @@
             <cocoa class="CotEditor.TextSelection"/>
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <contents code="PCnt" type="attribute run" name="contents" access="rw" description="The contents of the selection."/>
-            <property name="line range" code="lRng" access="rw" description="The range of lines of the selection. The format is “{location, length}”.">
+            <property name="line range" code="lRng" access="rw" description="The range of lines of the selection. The format is “{location, length}”. The length can be omitted, and one line is selected when the length is 0 or 1.">
                 <cocoa key="lineRange"/>
                 <type type="integer" list="yes"/>
             </property>

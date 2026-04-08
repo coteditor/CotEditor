@@ -13,6 +13,7 @@
 ### Fixes
 
 - Fix an issue where AppleScript could return an unclear error when a folder document had no current document.
+- Fix an issue where requesting a zero-length text range via AppleScript could return an unintended character.
 
 
 ### TODO

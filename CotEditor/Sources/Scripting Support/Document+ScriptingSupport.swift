@@ -440,7 +440,13 @@ extension Document {
             return nil
         }
         
-        let fuzzyRange = FuzzyRange(location: rangeArray[0], length: max(rangeArray[1], 1))
+        guard rangeArray[1] >= 0 else {
+            command.scriptErrorNumber = OSAParameterMismatch
+            command.scriptErrorString = "The length in the range parameter must be 0 or greater."
+            return nil
+        }
+        
+        let fuzzyRange = FuzzyRange(location: rangeArray[0], length: rangeArray[1])
         
         guard let range = self.textStorage.string.range(in: fuzzyRange) else {
             command.scriptErrorNumber = OSAParameterMismatch
