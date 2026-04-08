@@ -78,6 +78,8 @@ extension TreeSitterSyntax {
                 CSSOutlineFormatter.self
             case .go:
                 GoOutlineFormatter.self
+            case .html:
+                HTMLOutlineFormatter.self
             case .java:
                 JavaOutlineFormatter.self
             case .javaScript:

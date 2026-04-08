@@ -10,49 +10,40 @@
 
 ; Titles
 ((element
-   (start_tag (tag_name) @tag)
-   (text) @outline.title)
+   (start_tag (tag_name) @tag)) @outline.title
   (#eq? @tag "title"))
 
 ((element
-   (start_tag (tag_name) @tag)
-   (text) @outline.title)
+   (start_tag (tag_name) @tag)) @outline.title
   (#eq? @tag "figcaption"))
 
 ((element
-   (start_tag (tag_name) @tag)
-   (text) @outline.title)
+   (start_tag (tag_name) @tag)) @outline.title
   (#eq? @tag "caption"))
 
 ; Headings
 ((element
-   (start_tag (tag_name) @tag)
-   (text) @outline.heading.1)
+   (start_tag (tag_name) @tag)) @outline.heading.1
   (#eq? @tag "h1"))
 
 ((element
-   (start_tag (tag_name) @tag)
-   (text) @outline.heading.2)
+   (start_tag (tag_name) @tag)) @outline.heading.2
   (#eq? @tag "h2"))
 
 ((element
-   (start_tag (tag_name) @tag)
-   (text) @outline.heading.3)
+   (start_tag (tag_name) @tag)) @outline.heading.3
   (#eq? @tag "h3"))
 
 ((element
-   (start_tag (tag_name) @tag)
-   (text) @outline.heading.4)
+   (start_tag (tag_name) @tag)) @outline.heading.4
   (#eq? @tag "h4"))
 
 ((element
-   (start_tag (tag_name) @tag)
-   (text) @outline.heading.5)
+   (start_tag (tag_name) @tag)) @outline.heading.5
   (#eq? @tag "h5"))
 
 ((element
-   (start_tag (tag_name) @tag)
-   (text) @outline.heading.6)
+   (start_tag (tag_name) @tag)) @outline.heading.6
   (#eq? @tag "h6"))
 
 ; Separators
