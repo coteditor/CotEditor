@@ -3,6 +3,16 @@
 7.0.0 (unreleased)
 --------------------------
 
+### TODO
+
+- Update the migration directories for user syntax definitions (read the comment in `migrateUserSettings()`).
+- Remove the prerelease notice from the user guide (in specification_changes_on_7.0.html).
+
+
+
+7.0.0-beta.3 (unreleased)
+--------------------------
+
 ### Improvements
 
 - Update the inspector’s appearance on macOS Tahoe 26.
@@ -15,12 +25,6 @@
 - Fix an issue where AppleScript could return an unclear error when a folder document had no current document.
 - Fix an issue where requesting a zero-length text range via AppleScript could return an unintended character.
 - [beta] Fix the HTML outline extraction to include headings with nested elements.
-
-
-### TODO
-
-- Update the migration directories for user syntax definitions (read the comment in `migrateUserSettings()`).
-- Remove the prerelease notice from the user guide (in specification_changes_on_7.0.html).
 
 
 
