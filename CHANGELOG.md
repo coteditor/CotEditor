@@ -10,6 +10,11 @@
 - [beta] Update the Python syntax highlighting parsing.
 
 
+### Fixes
+
+- Fix an issue where AppleScript could return an unclear error when a folder document had no current document.
+
+
 ### TODO
 
 - Update the migration directories for user syntax definitions (read the comment in `migrateUserSettings()`).

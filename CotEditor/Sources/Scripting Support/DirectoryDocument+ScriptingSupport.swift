@@ -304,9 +304,9 @@ extension DirectoryDocument {
 }
 
 
-private extension DirectoryDocument.ScriptError {
+extension DirectoryDocument.ScriptError: LocalizedError {
     
-    var description: String {
+    var errorDescription: String? {
         
         switch self {
             case .noCurrentDocumentError: "No current document."
