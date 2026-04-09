@@ -10,7 +10,7 @@
 
 
 
-7.0.0-beta.3 (unreleased)
+7.0.0-beta.3 (807)
 --------------------------
 
 ### Improvements
