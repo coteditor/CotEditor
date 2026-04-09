@@ -24,6 +24,7 @@
 
 - Fix an issue where AppleScript could return an unclear error when a folder document had no current document.
 - Fix an issue where requesting a zero-length text range via AppleScript could return an unintended character.
+- Fix an issue where some decimal setting values could use the wrong number format and be reset unexpectedly in certain locale configurations.
 - [beta] Fix the HTML outline extraction to include headings with nested elements.
 
 
