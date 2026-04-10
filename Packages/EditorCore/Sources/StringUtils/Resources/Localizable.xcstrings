@@ -486,7 +486,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Décomposition canonique"
+            "value" : "Décomposition canonique, suivie d'une composition canonique"
           }
         },
         "it" : {
@@ -928,7 +928,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Décomposition de compatibilité"
+            "value" : "Décomposition de compatibilité, suivie d'une composition canonique"
           }
         },
         "it" : {

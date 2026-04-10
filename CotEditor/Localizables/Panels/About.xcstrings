@@ -251,7 +251,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ainsi que tous ceux supportant CotEditor !"
+            "value" : "ainsi que tous ceux qui soutiennent CotEditor !"
           }
         },
         "it" : {
@@ -1317,7 +1317,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Merci spécial"
+            "value" : "Un grand merci"
           }
         },
         "it" : {

@@ -4343,7 +4343,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "License :"
+            "value" : "Licence :"
           }
         },
         "it" : {
@@ -6855,7 +6855,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Les interpréteurs sont utilisés pour déterminer la syntaxe à partir du en-tête `#!` du document."
+            "value" : "Les interpréteurs sont utilisés pour déterminer la syntaxe à partir de l'en-tête `#!` du document."
           }
         },
         "it" : {

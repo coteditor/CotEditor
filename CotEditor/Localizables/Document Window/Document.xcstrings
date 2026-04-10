@@ -2209,7 +2209,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Crée le"
+            "value" : "Créé le"
           }
         },
         "it" : {
@@ -5051,7 +5051,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fins de ligne inconsistantes"
+            "value" : "Fins de ligne incohérentes"
           }
         },
         "it" : {
@@ -7066,7 +7066,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Voulez-vous placer %lld éléments sélectionnés à la corbeille ?"
+                  "value" : "Voulez-vous placer %lld éléments sélectionnés dans la corbeille ?"
                 }
               }
             }
@@ -13710,7 +13710,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guides d’indendation"
+            "value" : "Guides d’indentation"
           }
         },
         "it" : {
@@ -14614,7 +14614,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gardar au premier plan"
+            "value" : "Garder au premier plan"
           }
         },
         "it" : {
@@ -15293,7 +15293,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vérier l’orthographe et la grammaire"
+            "value" : "Vérifier l’orthographe et la grammaire"
           }
         },
         "it" : {

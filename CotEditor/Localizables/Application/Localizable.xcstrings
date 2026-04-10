@@ -1048,7 +1048,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editer"
+            "value" : "Modifier"
           }
         },
         "it" : {
@@ -1952,7 +1952,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Restaurer…"
+            "value" : "Restaurer"
           }
         },
         "it" : {
@@ -4106,7 +4106,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le ficher semble être %@.\n\nVoulez-vous vraiment ouvrir le fichier ?"
+            "value" : "Le fichier semble être %@.\n\nVoulez-vous vraiment ouvrir le fichier ?"
           }
         },
         "it" : {
@@ -7051,7 +7051,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Filter"
+            "value" : "Filtre"
           }
         },
         "it" : {
@@ -8410,7 +8410,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ce document a des fins de ligne inconsistantes."
+            "value" : "Ce document a des fins de ligne incohérentes."
           }
         },
         "it" : {
@@ -13040,7 +13040,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le script « %@ » n’a pas pu être éxécuté car vous ne disposez pas des permissions d’éxécution."
+            "value" : "Le script « %@ » n’a pas pu être exécuté car vous ne disposez pas des permissions d’exécution."
           }
         },
         "it" : {
@@ -13718,7 +13718,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "« %@ » n’a pas pu être charger."
+            "value" : "« %@ » n’a pas pu être chargé."
           }
         },
         "it" : {
@@ -14057,7 +14057,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "« %@ » est déjà associé à la commande « %@ »."
+            "value" : "« %1$@ » est déjà associé à la commande « %2$@ »."
           }
         },
         "it" : {
@@ -14170,7 +14170,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La touche Maj ne peut être utilisée que avec une autre touche de modification."
+            "value" : "La touche Maj ne peut être utilisée qu'avec une autre touche de modification."
           }
         },
         "it" : {
@@ -15968,7 +15968,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le fichier a été modifié par une autre application. Il y a des modifcations non sauvegardées dans CotEditor."
+            "value" : "Le fichier a été modifié par une autre application. Il y a des modifications non sauvegardées dans CotEditor."
           }
         },
         "it" : {

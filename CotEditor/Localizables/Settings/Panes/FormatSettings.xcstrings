@@ -354,7 +354,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Syntaxes par défaut :"
+            "value" : "Syntaxe par défaut :"
           }
         },
         "it" : {
@@ -566,7 +566,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editer la liste…"
+            "value" : "Modifier la liste…"
           }
         },
         "it" : {
@@ -784,7 +784,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editer…"
+            "value" : "Modifier…"
           }
         },
         "it" : {
@@ -1439,7 +1439,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cette syntaxe est personalisée."
+            "value" : "Cette syntaxe est personnalisée."
           }
         },
         "it" : {

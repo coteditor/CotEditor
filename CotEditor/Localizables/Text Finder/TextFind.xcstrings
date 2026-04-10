@@ -4407,7 +4407,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Equivalence stricte des caractères"
+            "value" : "Équivalence stricte des caractères"
           }
         },
         "it" : {
@@ -5547,7 +5547,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utiliser les Word Boundaries Unicode"
+            "value" : "Utiliser les limites de mots Unicode"
           }
         },
         "it" : {

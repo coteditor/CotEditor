@@ -778,7 +778,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "License :"
+            "value" : "Licence :"
           }
         },
         "it" : {
@@ -1633,7 +1633,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editeur de thème"
+            "value" : "Éditeur de thème"
           }
         },
         "it" : {

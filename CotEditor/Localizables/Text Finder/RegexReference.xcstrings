@@ -779,7 +779,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Au moins 0 fois mais plus de n fois"
+            "value" : "Au moins 0 fois mais pas plus de n fois"
           }
         },
         "it" : {

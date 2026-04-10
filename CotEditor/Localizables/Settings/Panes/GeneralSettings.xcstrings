@@ -361,7 +361,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le lien symbolique `cot` actuel ne pointe pas vers la version de CotEditor en cours d’éxécution."
+            "value" : "Le lien symbolique `cot` actuel ne pointe pas vers la version de CotEditor en cours d’exécution."
           }
         },
         "it" : {
@@ -1237,7 +1237,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fins de ligne inconsistantes"
+            "value" : "Fins de ligne incohérentes"
           }
         },
         "it" : {

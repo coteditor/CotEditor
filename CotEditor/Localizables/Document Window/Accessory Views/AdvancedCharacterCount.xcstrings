@@ -714,7 +714,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comptage intuitif tel que défini par Unicode. Un caractère comprenant plusieurs points de code Unicode, par exemple un emoji, sont comptés comme un seul caractère."
+            "value" : "Comptage intuitif tel que défini par Unicode. Un caractère comprenant plusieurs points de code Unicode, par exemple un emoji, est compté comme un seul caractère."
           }
         },
         "it" : {
@@ -942,7 +942,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Count Unicode code points. Same as counting UTF-32."
+            "value" : "Compter les points de code Unicode. Identique au comptage UTF-32."
           }
         },
         "it" : {
