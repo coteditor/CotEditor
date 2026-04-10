@@ -1152,7 +1152,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Cet archive de réglages a été créé par une autre version de CotEditor (%@)."
+            "value" : "Cette archive de réglages a été créée par une autre version de CotEditor (%@)."
           }
         },
         "it" : {

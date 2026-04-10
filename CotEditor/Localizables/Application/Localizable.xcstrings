@@ -9543,7 +9543,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Remplis le modèle ci-dessous, puis publie-le sur %1$@ ou envoie-le à %2$@. Note que le contenu de ton e-mail peut être partagé sur la page des issues. Rédige ton message en anglais ou en japonais."
+            "value" : "Remplissez le modèle ci-dessous, puis publiez-le sur %1$@ ou envoyez-le à %2$@. Veuillez noter que le contenu de votre e-mail peut être partagé sur la page des issues. Rédigez votre message en anglais ou en japonais."
           }
         },
         "it" : {

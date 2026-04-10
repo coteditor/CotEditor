@@ -166,19 +166,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "%lld commande trouvé"
+                  "value" : "%lld commande trouvée"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "%lld ccommandes trouvées"
+                  "value" : "%lld commandes trouvées"
                 }
               },
               "zero" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Aucune commande trouvé"
+                  "value" : "Aucune commande trouvée"
                 }
               }
             }

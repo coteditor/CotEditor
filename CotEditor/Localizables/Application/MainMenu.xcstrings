@@ -3444,7 +3444,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Sélectionner la colonne haut"
+            "value" : "Sélectionner la colonne en bas"
           }
         },
         "it" : {
@@ -3551,7 +3551,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Sélectionner la colonne gauche"
+            "value" : "Sélectionner la colonne à gauche"
           }
         },
         "it" : {
@@ -3658,7 +3658,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Sélectionner la colonne de droite"
+            "value" : "Sélectionner la colonne à droite"
           }
         },
         "it" : {
@@ -3764,7 +3764,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Sélectionner la colonne en bas"
+            "value" : "Sélectionner la colonne en haut"
           }
         },
         "it" : {
