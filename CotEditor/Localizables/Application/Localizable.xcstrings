@@ -14045,7 +14045,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” is already taken by the “%@” command."
+            "value" : "“%1$@” is already taken by the “%2$@” command."
           }
         },
         "es" : {
