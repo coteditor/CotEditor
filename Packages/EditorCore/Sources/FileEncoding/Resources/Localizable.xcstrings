@@ -49,7 +49,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@BOM付き"
+            "value" : "%@（BOM付き）"
           }
         },
         "ko" : {
