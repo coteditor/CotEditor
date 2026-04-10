@@ -48,11 +48,17 @@ import Synchronization
     }
     
     
+    private struct Storage {
+        
+        var state: State = .ready
+        var count: Int = 0
+        var completedUnit: Int = 0
+    }
+    
+    
     // MARK: Private Properties
     
-    private let _state: Mutex<State> = .init(.ready)
-    private let _count: Mutex<Int> = .init(0)
-    private let completedUnit: Mutex<Int> = .init(0)
+    private let storage: Mutex<Storage> = .init(.init())
     private let scope: Range<Int>
     
     
@@ -73,24 +79,26 @@ import Synchronization
     public var state: State {
         
         access(keyPath: \.state)
-        return self._state.withLock(\.self)
+        return self.storage.withLock(\.state)
     }
     
     
     /// The number of items completed.
-    public var count: Int  {
+    public var count: Int {
         
-        self._count.withLock(\.self)
+        self.storage.withLock(\.count)
     }
     
     
     /// The fraction of task completed in between 0...1.0.
     public var fractionCompleted: Double {
         
-        if self.state == .finished || self.scope.isEmpty {
-            1
-        } else {
-            Double(self.completedUnit.withLock(\.self)) / Double(self.scope.count)
+        self.storage.withLock { storage in
+            if storage.state == .finished || self.scope.isEmpty {
+                1
+            } else {
+                Double(storage.completedUnit) / Double(self.scope.count)
+            }
         }
     }
     
@@ -99,7 +107,7 @@ import Synchronization
     public func cancel() {
         
         withMutation(keyPath: \.state) {
-            self._state.withLock { $0 = .cancelled }
+            self.storage.withLock { $0.state = .cancelled }
         }
     }
     
@@ -108,7 +116,7 @@ import Synchronization
     public func finish() {
         
         withMutation(keyPath: \.state) {
-            self._state.withLock { $0 = .finished }
+            self.storage.withLock { $0.state = .finished }
         }
     }
     
@@ -118,7 +126,7 @@ import Synchronization
     /// - Parameter count: The amount to increment.
     public func incrementCount(by count: Int = 1) {
         
-        self._count.withLock { $0 += count }
+        self.storage.withLock { $0.count += count }
     }
     
     
@@ -127,7 +135,7 @@ import Synchronization
     /// - Parameter unit: The new completed unit.
     public func updateCompletedUnit(to unit: Int) {
         
-        self.completedUnit.withLock { $0 = unit }
+        self.storage.withLock { $0.completedUnit = unit }
     }
     
     
@@ -136,6 +144,6 @@ import Synchronization
     /// Increments the `completedUnit` by one.
     func incrementCompletedUnit() {
         
-        self.completedUnit.withLock { $0 += 1 }
+        self.storage.withLock { $0.completedUnit += 1 }
     }
 }
