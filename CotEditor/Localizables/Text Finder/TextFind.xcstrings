@@ -5199,7 +5199,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Desvíe los meta caracteres con barra invertida en la cadena de reemplazo."
+            "value" : "Desescapar metacaracteres con barra invertida en el texto de reemplazo."
           }
         },
         "fr" : {
@@ -5313,7 +5313,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Cadena de reemplazo de Unescape"
+            "value" : "Desescapar texto de reemplazo"
           }
         },
         "fr" : {
@@ -5753,19 +5753,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Encontré una cadena en “%2$@”."
+                  "value" : "Se encontró una coincidencia en “%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Encontré %1$lld cadenas en “%2$@”."
+                  "value" : "Se encontraron %1$lld coincidencias en “%2$@”."
                 }
               },
               "zero" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "No se encuentran cadenas en “%2$@”."
+                  "value" : "No se encontraron coincidencias en “%2$@”."
                 }
               }
             }

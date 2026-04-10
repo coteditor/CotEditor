@@ -7054,7 +7054,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "¿ Quieres trasladar %lld elementos seleccionados a la papelera?"
+                  "value" : "¿Quieres trasladar %lld elementos seleccionados a la papelera?"
                 }
               }
             }
