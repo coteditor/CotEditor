@@ -7756,7 +7756,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Er bestaat al een aangepaste instelling met dezelfde naam. Als je het bestand of de map vervangt, wordt de inhoud ervan overschreven."
+            "value" : "Er bestaat al een aangepaste instelling met dezelfde naam. Als je deze vervangt, wordt de huidige inhoud overschreven."
           }
         },
         "pl" : {
@@ -8321,7 +8321,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "De meest voorkomende regeleinden in dit document zijn %@."
+            "value" : "De meest voorkomende regeleinde in dit document is %@."
           }
         },
         "pl" : {
