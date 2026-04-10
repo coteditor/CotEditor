@@ -239,7 +239,7 @@ extension String {
                     .map(self.lineContentsRange(for:))
                     .map {
                         let range = (self as NSString).range(of: "[ \\t]*", options: [.regularExpression, .anchored], range: $0)
-                        return range.isNotFound ? range : NSRange(range.upperBound..<$0.upperBound)
+                        return NSRange(range.upperBound..<$0.upperBound)
                     }
                     .merged
         }
