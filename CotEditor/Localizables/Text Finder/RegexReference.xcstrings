@@ -2781,7 +2781,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Syntax entspricht den Spezifikationen von der %@."
+            "value" : "Die Syntax entspricht den Spezifikationen der %@."
           }
         },
         "en-GB" : {

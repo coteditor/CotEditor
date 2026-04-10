@@ -3855,7 +3855,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Um Änderungen am Dokuments vorzunehmen, lass es zunächst die Bearbeitung zu."
+            "value" : "Um Änderungen am Dokument vorzunehmen, lass es zunächst die Bearbeitung zu."
           }
         },
         "en" : {
@@ -6010,7 +6010,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(nur wenn die abgelegte Datei eine Textdatai ist) Der Inhalt."
+            "value" : "(nur wenn die abgelegte Datei eine Textdatei ist) Der Inhalt."
           }
         },
         "en" : {

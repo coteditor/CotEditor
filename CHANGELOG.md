@@ -3,6 +3,11 @@
 7.0.0 (unreleased)
 --------------------------
 
+### Fixes
+
+- [trivial] Fix some typos in localizations.
+
+
 ### TODO
 
 - Update the migration directories for user syntax definitions (read the comment in `migrateUserSettings()`).
