@@ -90,8 +90,8 @@ public extension NSTouchBar {
             
             if isEnabled {
                 self.applicationObserver = NotificationCenter.default.addObserver(forName: NSApplication.didUpdateNotification, object: NSApp, queue: .main) { [unowned self] _ in
-                    MainActor.assumeIsolated {
-                        self.validateTouchBarIfNeeded()
+                    Task { @MainActor [weak self] in
+                        self?.validateTouchBarIfNeeded()
                     }
                 }
             }
@@ -119,8 +119,17 @@ public extension NSTouchBar {
     
     // MARK: Private Methods
     
-    /// Validates the current touch bar from a timer.
-    @objc private func validateTouchBar(timer: Timer?) {
+    /// Bridges the Objective-C timer callback to the main actor.
+    @objc nonisolated private func validateTouchBar(timer: Timer?) {
+        
+        Task { @MainActor [weak self] in
+            self?.validateTouchBarNow()
+        }
+    }
+    
+    
+    /// Validates the current touch bar.
+    private func validateTouchBarNow() {
         
         self.validationTimer?.invalidate()
         self.validationTimer = nil
