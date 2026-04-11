@@ -1008,7 +1008,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "書類中のエンコーディング宣言を参照"
+            "value" : "書類内のエンコーディング宣言を参照"
           }
         },
         "ko" : {
