@@ -35,16 +35,14 @@ import URLUtils
 
 enum SyntaxName {
     
-    static let none: SyntaxManager.SettingName = "None"
-    static let markdown: SyntaxManager.SettingName = "Markdown"
+    static let none = "None"
+    static let markdown = "Markdown"
 }
 
 
 @MainActor final class SyntaxManager: SettingFileManaging {
     
     typealias Setting = Syntax
-    
-    typealias SettingName = String
     
     
     // MARK: Public Properties
@@ -57,23 +55,23 @@ enum SyntaxName {
     
     static let directoryName: String = "Syntaxes"
     static let constantSettings: [String: Setting] = [SyntaxName.none: .none]
-    let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"] + TreeSitterSyntax.aliasedSyntaxes.map(\.rawValue)
+    let reservedNames: [String] = [SyntaxName.none, "General", "Code"] + TreeSitterSyntax.aliasedSyntaxes.map(\.rawValue)
     
-    let bundledSettingNames: [SettingName]
-    @Published var settingNames: [SettingName] = []
+    let bundledSettingNames: [String]
+    @Published var settingNames: [String] = []
     
-    var cachedSettings: [SettingName: Setting] {
+    var cachedSettings: [String: Setting] {
         
         // protect with Mutex since SyntaxManager's cached settings can be accessed from a background thread
         get { self._cachedSettings.withLock(\.self) }
         set { self._cachedSettings.withLock { $0 = newValue } }
     }
-    private let _cachedSettings: Mutex<[SettingName: Setting]> = .init([:])
+    private let _cachedSettings: Mutex<[String: Setting]> = .init([:])
     
     
     // MARK: Private Properties
     
-    private let bundledMaps: [SettingName: Syntax.FileMap]
+    private let bundledMaps: [String: Syntax.FileMap]
     private let mappingTable: Mutex<SyntaxMappingTable> = .init(.init())
     
     
@@ -84,7 +82,7 @@ enum SyntaxName {
         // load bundled syntax list
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
         let data = try! Data(contentsOf: url)
-        self.bundledMaps = try! JSONDecoder().decode([SettingName: Syntax.FileMap].self, from: data)
+        self.bundledMaps = try! JSONDecoder().decode([String: Syntax.FileMap].self, from: data)
         self.bundledSettingNames = self.bundledMaps.keys.sorted(using: .localizedStandard)
         
         // cache user syntaxes
@@ -114,7 +112,7 @@ enum SyntaxName {
     ///   - filename: The filename of the document used to detect the corresponding syntax.
     ///   - content: The content of the document.
     /// - Returns: A setting name, or `nil` if no match is found.
-    nonisolated func settingName(documentName filename: String, content: String) -> SettingName? {
+    nonisolated func settingName(documentName filename: String, content: String) -> String? {
         
         let table = self.mappingTable.withLock(\.self)
         return table.syntaxName(forFilename: filename) ?? table.syntaxName(forContent: content)
@@ -126,7 +124,7 @@ enum SyntaxName {
     /// - Parameters:
     ///   - filename: The filename used to detect the corresponding syntax.
     /// - Returns: A setting name, or `nil` if no match is found.
-    nonisolated func settingName(documentName filename: String) -> SettingName? {
+    nonisolated func settingName(documentName filename: String) -> String? {
         
         self.mappingTable.withLock(\.self).syntaxName(forFilename: filename)
     }
@@ -137,7 +135,7 @@ enum SyntaxName {
     /// - Parameters:
     ///   - name: The setting name to check.
     /// - Returns: A set of customizable features.
-    func customizableFeatures(name: SettingName) -> ParserFeatures {
+    func customizableFeatures(name: String) -> ParserFeatures {
         
         .all.subtracting(TreeSitterSyntax(name: name)?.features ?? [])
     }
@@ -149,7 +147,7 @@ enum SyntaxName {
     ///   - setting: The setting to save.
     ///   - name: The name under which to save the setting.
     ///   - oldName: The previous setting name, if any.
-    func save(setting: Setting, name: SettingName, oldName: SettingName?) throws {
+    func save(setting: Setting, name: String, oldName: String?) throws {
         
         // move old file to new place to overwrite when syntax name is also changed
         if let oldName, name != oldName {
@@ -222,7 +220,7 @@ enum SyntaxName {
     // MARK: Setting File Managing
     
     /// Builds the list of available settings by considering both user and bundled settings.
-    nonisolated func listAvailableSettings() -> [SettingName] {
+    nonisolated func listAvailableSettings() -> [String] {
         
         let userSettingNames = self.userSettingFileURLs
             .map(Self.settingName(from:))

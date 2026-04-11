@@ -146,7 +146,7 @@ import SyntaxFormat
     ///
     /// - Parameter name: The name of the syntax.
     /// - Returns: Syntax.Kind.
-    private func syntaxKind(name: SyntaxManager.SettingName) throws -> Syntax.Kind {
+    private func syntaxKind(name: String) throws -> Syntax.Kind {
         
         try SyntaxManager.shared.setting(name: name).kind
     }
