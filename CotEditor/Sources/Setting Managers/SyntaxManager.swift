@@ -36,7 +36,6 @@ import URLUtils
 enum SyntaxName {
     
     static let none: SyntaxManager.SettingName = "None"
-    static let xml: SyntaxManager.SettingName = "XML"
     static let markdown: SyntaxManager.SettingName = "Markdown"
 }
 
@@ -48,23 +47,10 @@ enum SyntaxName {
     typealias SettingName = String
     
     
-    struct MappingTable: Sendable {
-        
-        var extensions: [String: [SettingName]] = [:]
-        var filenames: [String: [SettingName]] = [:]
-        var interpreters: [String: [SettingName]] = [:]
-        
-        /// Whether all mapping categories are empty.
-        var isEmpty: Bool {
-            
-            self.extensions.isEmpty && self.filenames.isEmpty && self.interpreters.isEmpty
-        }
-    }
-    
-    
     // MARK: Public Properties
     
     static let shared = SyntaxManager()
+    private(set) var migratedSyntaxCount = 0
     
     
     // MARK: Setting File Managing Properties
@@ -86,15 +72,10 @@ enum SyntaxName {
     private let _cachedSettings: Mutex<[SettingName: Setting]> = .init([:])
     
     
-    // MARK: Public Properties
-    
-    private(set) var migratedSyntaxCount = 0
-    
-    
     // MARK: Private Properties
     
     private let bundledMaps: [SettingName: Syntax.FileMap]
-    private let mappingTable: Mutex<MappingTable> = .init(.init())
+    private let mappingTable: Mutex<SyntaxMappingTable> = .init(.init())
     
     
     // MARK: Lifecycle
@@ -116,11 +97,11 @@ enum SyntaxName {
     // MARK: Public Methods
     
     /// A map of items that are associated with more than one syntax setting.
-    var mappingConflicts: MappingTable {
+    var mappingConflicts: SyntaxMappingTable {
         
         let table = self.mappingTable.withLock(\.self)
         
-        return MappingTable(
+        return SyntaxMappingTable(
             extensions: table.extensions.filter { $0.value.count > 1 },
             filenames: table.filenames.filter { $0.value.count > 1 },
             interpreters: table.interpreters.filter { $0.value.count > 1 }
@@ -136,7 +117,8 @@ enum SyntaxName {
     /// - Returns: A setting name, or `nil` if no match is found.
     nonisolated func settingName(documentName filename: String, content: String) -> SettingName? {
         
-        self.settingName(documentName: filename) ?? self.settingName(documentContent: content)
+        let table = self.mappingTable.withLock(\.self)
+        return table.syntaxName(forFilename: filename) ?? table.syntaxName(forContent: content)
     }
     
     
@@ -147,30 +129,7 @@ enum SyntaxName {
     /// - Returns: A setting name, or `nil` if no match is found.
     nonisolated func settingName(documentName filename: String) -> SettingName? {
         
-        let mappingTable = self.mappingTable.withLock(\.self)
-        
-        if let settingName = mappingTable.filenames[filename]?.first {
-            return settingName
-        }
-        
-        if let pathExtension = filename.split(separator: ".").last {
-            let extensionTable = mappingTable.extensions
-            
-            if let settingName = extensionTable[String(pathExtension)]?.first {
-                return settingName
-            }
-            
-            // check case-insensitively
-            let lowerPathExtension = pathExtension.lowercased()
-            if let settingName = extensionTable
-                .first(where: { $0.key.lowercased() == lowerPathExtension })?
-                .value.first
-            {
-                return settingName
-            }
-        }
-        
-        return nil
+        self.mappingTable.withLock(\.self).syntaxName(forFilename: filename)
     }
     
     
@@ -181,18 +140,7 @@ enum SyntaxName {
     /// - Returns: A setting name, or `nil` if no match is found.
     nonisolated func settingName(documentContent content: String) -> SettingName? {
         
-        if let interpreter = Syntax.FileMap.scanInterpreterInShebang(content),
-           let settingName = self.mappingTable.withLock(\.self).interpreters[interpreter]?.first
-        {
-            return settingName
-        }
-        
-        // check XML declaration
-        if content.hasPrefix("<?xml ") {
-            return SyntaxName.xml
-        }
-        
-        return nil
+        self.mappingTable.withLock(\.self).syntaxName(forContent: content)
     }
     
     
@@ -299,35 +247,13 @@ enum SyntaxName {
     private func updateMappingTable() {
         
         // defer bundled syntaxes so user syntaxes take precedence
-        let sortedSettingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames
+        let settingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames
         
         // load mapping definitions from syntax files in the user domain
         let userMaps = try! Syntax.FileMap.load(at: self.userSettingFileURLs, ignoresInvalidData: true)
         let maps = self.bundledMaps.merging(userMaps) { _, new in new }
         
-        // update the file mapping table
-        let mappingTable = MappingTable(
-            extensions: Self.buildMapping(for: \.extensions, sortedSettingNames: sortedSettingNames, maps: maps),
-            filenames: Self.buildMapping(for: \.filenames, sortedSettingNames: sortedSettingNames, maps: maps),
-            interpreters: Self.buildMapping(for: \.interpreters, sortedSettingNames: sortedSettingNames, maps: maps)
-        )
+        let mappingTable = SyntaxMappingTable(syntaxNames: settingNames, maps: maps)
         self.mappingTable.withLock { $0 = mappingTable }
-    }
-    
-    
-    /// Builds a single mapping dictionary for the given file map key path.
-    ///
-    /// - Parameters:
-    ///   - keyPath: The key path into `Syntax.FileMap` to build the mapping for.
-    ///   - sortedSettingNames: The setting names sorted by priority.
-    ///   - maps: The file maps for each setting.
-    /// - Returns: A dictionary mapping file-mapping items to their associated setting names.
-    private static func buildMapping(for keyPath: KeyPath<Syntax.FileMap, [String]?>, sortedSettingNames: [SettingName], maps: [SettingName: Syntax.FileMap]) -> [String: [SettingName]] {
-        
-        sortedSettingNames.reduce(into: [String: [SettingName]]()) { table, settingName in
-            for item in maps[settingName]?[keyPath: keyPath] ?? [] {
-                table[item, default: []].append(settingName)
-            }
-        }
     }
 }

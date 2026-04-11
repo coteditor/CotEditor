@@ -53,7 +53,7 @@ struct SyntaxMappingConflictView: View {
     private var interpreterConflicts: [FileMappingConflict]
     
     
-    init(table: SyntaxManager.MappingTable) {
+    init(table: SyntaxMappingTable) {
         
         self.extensionConflicts = table.extensions.map { .init(name: $0.key, syntaxes: $0.value) }
         self.filenameConflicts = table.filenames.map { .init(name: $0.key, syntaxes: $0.value) }
