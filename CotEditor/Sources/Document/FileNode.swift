@@ -194,7 +194,7 @@ extension FileNode {
     
     /// Finds the node at the given `fileURL` in the node tree.
     ///
-    ///  - Note: This method recursively reads child directories on storage during fining the node if the `inCache` flag is `false`.
+    ///  - Note: This method recursively reads child directories on storage during finding the node if the `inCache` flag is `false`.
     ///
     /// - Parameters:
     ///   - fileURL: The file URL to find.

@@ -69,7 +69,7 @@ extension NSAttributedString.Key {
     /// - Parameters:
     ///   - textStorage: The text storage to modify with highlight attributes.
     ///   - syntax: The syntax definition that provides parsers.
-    ///   - name: The of the syntax.
+    ///   - name: The name of the syntax.
     init(textStorage: NSTextStorage, syntax: Syntax, name: String) {
         
         self.textStorage = textStorage
@@ -128,7 +128,7 @@ extension NSAttributedString.Key {
     ///
     /// - Parameters:
     ///   - syntax: The new syntax.
-    ///   - name: The of the syntax.
+    ///   - name: The name of the syntax.
     func update(syntax: Syntax, name: String) {
         
         self.cancel()

@@ -105,7 +105,7 @@ public extension String {
     /// Converts Yen signs (`U+00A5`) in consideration of the encoding.
     ///
     /// - Parameter encoding: The text encoding to keep compatibility.
-    /// - Returns: A new string converted all Yen signs.
+    /// - Returns: A new string with all Yen signs converted.
     func convertYenSign(for encoding: String.Encoding) -> String {
         
         "¥".canBeConverted(to: encoding) ? self : self.replacing("¥", with: "\\")

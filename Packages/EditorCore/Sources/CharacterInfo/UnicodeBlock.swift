@@ -28,7 +28,7 @@ import Foundation
 /// Returns localized Unicode block name.
 ///
 /// - Parameter block: The Unicode block name determined in Blocks.txt.
-/// - Returns: A localizad name.
+/// - Returns: A localized name.
 func localizeBlockName(_ block: String) -> String? {
     
     switch block {

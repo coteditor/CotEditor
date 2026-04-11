@@ -75,7 +75,7 @@ public extension FilePermissions {
     
     /// Converts `self` to its textual representation.
     ///
-    /// - Returns: String
+    /// - Returns: A string.
     func formatted() -> String {
         
         Self.FormatStyle().format(self)
@@ -85,7 +85,7 @@ public extension FilePermissions {
     /// Converts `self` to another representation.
     ///
     /// - Parameter style: The format for formatting `self`.
-    /// - Returns: A representations of `self` using the given `style`.
+    /// - Returns: A representation of `self` using the given `style`.
     func formatted<F: Foundation.FormatStyle>(_ style: F) -> F.FormatOutput where F.FormatInput == Self {
         
         style.format(self)

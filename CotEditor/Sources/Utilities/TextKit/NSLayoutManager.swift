@@ -82,7 +82,7 @@ extension NSLayoutManager {
     ///   - attrName: The name of a temporary attribute.
     ///   - location: The index for which to check attributes. This value must not exceed the bounds of the receiver.
     ///   - range: The range over which to search for continuous presence of attrName. This value must not exceed the bounds of the receiver.
-    /// - Returns: A range contains the maximum range over which the named attribute’s value applies, clipped to rangeLimit. Or `nil` if no attribute value exists.
+    /// - Returns: A range containing the maximum range over which the named attribute’s value applies, clipped to rangeLimit. Or `nil` if no attribute value exists.
     final func effectiveRange(of attrName: NSAttributedString.Key, at location: Int, in range: NSRange? = nil) -> NSRange? {
         
         let range = range ?? self.attributedString().range
@@ -259,7 +259,7 @@ extension NSLayoutManager {
     /// Returns the character indexes for the insertion points in the same line fragment of the given character index in display order.
     ///
     /// - Parameter characterIndex: The character index of one character within the line fragment.
-    /// - Returns: An array contains character indexes in display order.
+    /// - Returns: An array containing character indexes in display order.
     private func lineFragmentInsertionPointIndexes(forCharacterAt characterIndex: Int) -> [Int] {
         
         let count = self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: false, inDisplayOrder: true, positions: nil, characterIndexes: nil)

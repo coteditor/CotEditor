@@ -152,7 +152,7 @@ struct UnixScript: Script {
     ///   - output: The output string.
     ///   - type: The type of output target.
     ///   - editor: The textView to write the output.
-    /// - Throws: `ScriptError`, or error by NSDocumentController
+    /// - Throws: `ScriptError`, or error by NSDocumentController.
     private static func applyOutput(_ output: String, type: OutputType, editor: NSTextView?) throws {
         
         switch type {

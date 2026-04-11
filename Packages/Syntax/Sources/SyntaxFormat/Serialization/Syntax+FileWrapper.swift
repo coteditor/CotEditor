@@ -173,7 +173,7 @@ extension Syntax.FileMap {
     /// Creates a `Syntax.FileMap` by reading a `.cotsyntax` package on disk.
     ///
     /// - Parameters:
-    ///   - fileURL: The file URL pointing to the root directory of a .cotsynta package.
+    ///   - fileURL: The file URL pointing to the root directory of a .cotsyntax package.
     /// - Throws: A `CocoaError` or decoding error if the file cannot be read or the JSON is invalid.
     init?(contentsOf fileURL: URL) throws {
         

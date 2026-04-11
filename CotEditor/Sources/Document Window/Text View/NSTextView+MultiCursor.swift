@@ -457,7 +457,7 @@ extension MultiCursorEditing {
     
     /// Workarounds the issue that indicators display even the editor is inactive. (2023-08, macOS 14, FB12964703 and FB12968177)
     ///
-    /// This method should be Invoked when changing the state whether the receiver is the key editor receiving text input in the system.
+    /// This method should be invoked when changing the state whether the receiver is the key editor receiving text input in the system.
     func invalidateInsertionIndicatorDisplayMode() {
         
         guard !self.insertionIndicators.isEmpty else { return }
@@ -628,7 +628,7 @@ private extension NSLayoutManager {
     ///
     /// - Parameters:
     ///   - glyphRanges: The glyph ranges where to return line fragment rectangles.
-    /// - Returns: An array of the portions of the line fragment rectangles that actually contains glyphs or other marks that are drawn.
+    /// - Returns: An array of the portions of the line fragment rectangles that actually contain glyphs or other marks that are drawn.
     func lineFragmentUsedRects(inSelectedGlyphRanges glyphRanges: [NSRange]) -> [NSRect] {
         
         assert(!glyphRanges.isEmpty)

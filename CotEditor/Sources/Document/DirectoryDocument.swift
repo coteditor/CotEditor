@@ -349,7 +349,7 @@ final class DirectoryDocument: NSDocument {
     }
     
     
-    /// Creates a empty file in the given file node.
+    /// Creates an empty file in the given file node.
     ///
     /// - Parameter parentNode: The file node where creates a new file.
     /// - Returns: The file node created.

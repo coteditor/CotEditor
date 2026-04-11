@@ -121,7 +121,7 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
     
     // MARK: Private Methods
     
-    /// The area the receiver located in the superview.
+    /// The area in which the receiver is located in the superview.
     private var preferredEdge: Edge? {
         
         self.superview.map { superview in

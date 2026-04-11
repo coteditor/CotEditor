@@ -51,7 +51,7 @@ struct FileDropItem: Equatable, Identifiable {
     /// - Parameters:
     ///   - pathExtension: The file extension.
     ///   - scope: The syntax scope.
-    /// - Returns: `True` if the given values supported.
+    /// - Returns: `true` if the given values are supported.
     func supports(extension pathExtension: String?, scope: String?) -> Bool {
         
         guard self.scope == nil || self.scope == scope else { return false }

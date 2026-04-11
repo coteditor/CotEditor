@@ -37,7 +37,7 @@ extension ValueRange<SyntaxType> {
     ///
     /// - Parameter dictionary: The syntax highlight dictionary.
     /// - Returns: An array of sorted Highlight structs.
-    /// - Throws: CancellationError
+    /// - Throws: CancellationError.
     static func highlights(dictionary: [SyntaxType: [NSRange]]) throws -> [ValueRange<SyntaxType>] {
         
         var occupied = IndexSet()

@@ -151,7 +151,7 @@ public extension String {
     /// Returns whether the selected ranges can be uncommented.
     ///
     /// - Parameters:
-    ///   - partly: If `true`, returns `true` when any part of the selection can be uncommented.;
+    ///   - partly: If `true`, returns `true` when any part of the selection can be uncommented;
     ///             otherwise, returns `true` only when the entire selection can be uncommented.
     ///   - delimiters: The comment delimiters to detect.
     ///   - selectedRanges: The current selected ranges in the editor.
