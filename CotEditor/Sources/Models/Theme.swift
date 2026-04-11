@@ -52,11 +52,6 @@ struct Theme: Equatable, Sendable {
         var distributionURL: String?
         var license: String?
         var description: String?
-        
-        var isEmpty: Bool {
-
-            self.author == nil && self.distributionURL == nil && self.license == nil && self.description == nil
-        }
     }
     
     

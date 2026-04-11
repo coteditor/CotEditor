@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -99,12 +99,6 @@ extension CGSize {
     
     static let unit = CGSize(width: 1, height: 1)
     static let infinite = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
-    
-    
-    var aspectRatio: CGFloat {
-        
-        self.width / self.height
-    }
 }
 
 
@@ -131,12 +125,6 @@ extension CGRect {
     func offset(by size: CGSize) -> CGRect {
         
         self.offsetBy(dx: size.width, dy: size.height)
-    }
-    
-    
-    func inset(by point: CGPoint) -> CGRect {
-        
-        self.insetBy(dx: point.x, dy: point.y)
     }
     
     
