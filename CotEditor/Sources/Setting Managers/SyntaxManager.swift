@@ -132,17 +132,6 @@ enum SyntaxName {
     }
     
     
-    /// Returns the syntax name by scanning the shebang in the content.
-    ///
-    /// - Parameters:
-    ///   - content: The content of the document.
-    /// - Returns: A setting name, or `nil` if no match is found.
-    nonisolated func settingName(documentContent content: String) -> SettingName? {
-        
-        self.mappingTable.withLock(\.self).syntaxName(forContent: content)
-    }
-    
-    
     /// Returns syntax features that are user-customizable for the given setting.
     ///
     /// - Parameters:
