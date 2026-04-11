@@ -46,7 +46,20 @@ enum SyntaxName {
     typealias Setting = Syntax
     
     typealias SettingName = String
-    typealias MappingTable = [KeyPath<Syntax.FileMap, [String]?>: [String: [SettingName]]]
+    
+    
+    struct MappingTable: Sendable {
+        
+        var extensions: [String: [SettingName]] = [:]
+        var filenames: [String: [SettingName]] = [:]
+        var interpreters: [String: [SettingName]] = [:]
+        
+        /// Whether all mapping categories are empty.
+        var isEmpty: Bool {
+            
+            self.extensions.isEmpty && self.filenames.isEmpty && self.interpreters.isEmpty
+        }
+    }
     
     
     // MARK: Public Properties
@@ -81,9 +94,7 @@ enum SyntaxName {
     // MARK: Private Properties
     
     private let bundledMaps: [SettingName: Syntax.FileMap]
-    private var mappingTable: MappingTable = [\.extensions: [:],
-                                              \.filenames: [:],
-                                              \.interpreters: [:]]
+    private let mappingTable: Mutex<MappingTable> = .init(.init())
     
     
     // MARK: Lifecycle
@@ -107,9 +118,13 @@ enum SyntaxName {
     /// A map of items that are associated with more than one syntax setting.
     var mappingConflicts: MappingTable {
         
-        self.mappingTable
-            .mapValues { $0.filter { $0.value.count > 1 } }
-            .filter { !$0.value.isEmpty }
+        let table = self.mappingTable.withLock(\.self)
+        
+        return MappingTable(
+            extensions: table.extensions.filter { $0.value.count > 1 },
+            filenames: table.filenames.filter { $0.value.count > 1 },
+            interpreters: table.interpreters.filter { $0.value.count > 1 }
+        )
     }
     
     
@@ -119,7 +134,7 @@ enum SyntaxName {
     ///   - filename: The filename of the document used to detect the corresponding syntax.
     ///   - content: The content of the document.
     /// - Returns: A setting name, or `nil` if no match is found.
-    func settingName(documentName filename: String, content: String) -> SettingName? {
+    nonisolated func settingName(documentName filename: String, content: String) -> SettingName? {
         
         self.settingName(documentName: filename) ?? self.settingName(documentContent: content)
     }
@@ -127,23 +142,20 @@ enum SyntaxName {
     
     /// Returns the syntax name that corresponds to the given filename.
     ///
-    /// - Note: Despite being @MainActor, this method can be invoked from a background thread
-    ///         in `DocumentController.checkOpeningSafetyOfDocument(at:type:)`.
-    ///
     /// - Parameters:
     ///   - filename: The filename used to detect the corresponding syntax.
     /// - Returns: A setting name, or `nil` if no match is found.
-    func settingName(documentName filename: String) -> SettingName? {
+    nonisolated func settingName(documentName filename: String) -> SettingName? {
         
-        let mappingTable = self.mappingTable
+        let mappingTable = self.mappingTable.withLock(\.self)
         
-        if let settingName = mappingTable[\.filenames]?[filename]?.first {
+        if let settingName = mappingTable.filenames[filename]?.first {
             return settingName
         }
         
-        if let pathExtension = filename.split(separator: ".").last,
-           let extensionTable = mappingTable[\.extensions]
-        {
+        if let pathExtension = filename.split(separator: ".").last {
+            let extensionTable = mappingTable.extensions
+            
             if let settingName = extensionTable[String(pathExtension)]?.first {
                 return settingName
             }
@@ -167,10 +179,10 @@ enum SyntaxName {
     /// - Parameters:
     ///   - content: The content of the document.
     /// - Returns: A setting name, or `nil` if no match is found.
-    func settingName(documentContent content: String) -> SettingName? {
+    nonisolated func settingName(documentContent content: String) -> SettingName? {
         
         if let interpreter = Syntax.FileMap.scanInterpreterInShebang(content),
-           let settingName = self.mappingTable[\.interpreters]?[interpreter]?.first
+           let settingName = self.mappingTable.withLock(\.self).interpreters[interpreter]?.first
         {
             return settingName
         }
@@ -294,11 +306,27 @@ enum SyntaxName {
         let maps = self.bundledMaps.merging(userMaps) { _, new in new }
         
         // update the file mapping table
-        self.mappingTable = self.mappingTable.keys.reduce(into: [:]) { tables, keyPath in
-            tables[keyPath] = sortedSettingNames.reduce(into: [String: [SettingName]]()) { table, settingName in
-                for item in maps[settingName]?[keyPath: keyPath] ?? [] {
-                    table[item, default: []].append(settingName)
-                }
+        let mappingTable = MappingTable(
+            extensions: Self.buildMapping(for: \.extensions, sortedSettingNames: sortedSettingNames, maps: maps),
+            filenames: Self.buildMapping(for: \.filenames, sortedSettingNames: sortedSettingNames, maps: maps),
+            interpreters: Self.buildMapping(for: \.interpreters, sortedSettingNames: sortedSettingNames, maps: maps)
+        )
+        self.mappingTable.withLock { $0 = mappingTable }
+    }
+    
+    
+    /// Builds a single mapping dictionary for the given file map key path.
+    ///
+    /// - Parameters:
+    ///   - keyPath: The key path into `Syntax.FileMap` to build the mapping for.
+    ///   - sortedSettingNames: The setting names sorted by priority.
+    ///   - maps: The file maps for each setting.
+    /// - Returns: A dictionary mapping file-mapping items to their associated setting names.
+    private static func buildMapping(for keyPath: KeyPath<Syntax.FileMap, [String]?>, sortedSettingNames: [SettingName], maps: [SettingName: Syntax.FileMap]) -> [String: [SettingName]] {
+        
+        sortedSettingNames.reduce(into: [String: [SettingName]]()) { table, settingName in
+            for item in maps[settingName]?[keyPath: keyPath] ?? [] {
+                table[item, default: []].append(settingName)
             }
         }
     }
