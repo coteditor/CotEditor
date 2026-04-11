@@ -633,7 +633,7 @@ final class DirectoryDocument: NSDocument {
     
     // MARK: Private Methods
     
-    /// Returns whether the receiver should open a file tat the given URL as a text-plain file.
+    /// Returns whether the receiver should open a file at the given URL as a text-plain file.
     ///
     /// - Parameters:
     ///   - url: The file URL.

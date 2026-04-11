@@ -32,8 +32,6 @@ public final class SettingsWindowController<Pane: SettingsPane>: NSWindowControl
     // MARK: Lifecycle
     
     /// Instantiates a SettingsWindowController.
-    ///
-    /// - Parameter lastPaneIdentifier: The user default key to store the last opened pane.
     public init() {
         
         let viewController = SettingsTabViewController()

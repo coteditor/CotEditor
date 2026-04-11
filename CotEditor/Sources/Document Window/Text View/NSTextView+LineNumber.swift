@@ -118,14 +118,14 @@ extension NSTextView {
     }
     
     
-    /// Returns the 1-based line number at the given character index.
+    /// Returns the character range of the line at the given character index.
     ///
     /// This method has a performance advantage if the receiver has any LineRangeCalculating.
     ///
     /// - Note: This API requires TextKit 1.
     ///
     /// - Parameter location: NSRange-based character index.
-    /// - Returns: The number of lines (1-based).
+    /// - Returns: The character range of the line.
     private func lineRange(at location: Int) -> NSRange {
         
         self.lineRangeCalculating?.lineRange(at: location) ?? (self.string as NSString).lineRange(at: location)

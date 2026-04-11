@@ -48,7 +48,7 @@ public extension StringProtocol {
     }
     
     
-    /// Returns the range of the line containing a given index.
+    /// Returns the range of the contents of the line containing a given index.
     ///
     /// - Parameter index: The character index within the receiver.
     /// - Returns: The character range of the line contents.

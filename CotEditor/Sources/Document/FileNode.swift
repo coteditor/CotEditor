@@ -117,10 +117,10 @@ final class FileNode {
     ]
     
     
-    /// Determines whether a filename should be ignored.
+    /// Determines whether a filename should be accepted.
     ///
     /// - Parameter filename: The name of the file to evaluate.
-    /// - Returns: `true` if the file should be skipped.
+    /// - Returns: `true` if the file should be accepted.
     private nonisolated static func accepts(filename: String) -> Bool {
         
         ![".DS_Store", ".git"].contains(filename)

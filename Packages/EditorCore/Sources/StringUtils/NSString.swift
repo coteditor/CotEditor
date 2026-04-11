@@ -81,7 +81,7 @@ public extension NSString {
     /// Returns the NSRange-based character index just after the given character index by taking grapheme clusters into account.
     ///
     /// - Parameter location: The NSRange-based character index to reference.
-    /// - Returns: The NSRange-based character index just after the given `location`, or `location` when `location` is the last index.
+    /// - Returns: The NSRange-based character index just after the given `location`, or `length` when `location` is the last index.
     final func index(after location: Int) -> Int {
         
         guard location < self.length - 1 else { return self.length }

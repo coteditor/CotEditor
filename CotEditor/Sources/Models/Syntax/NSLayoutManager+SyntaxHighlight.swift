@@ -51,7 +51,7 @@ extension NSTextStorage {
 
 extension NSLayoutManager {
     
-    /// Extracts all syntax highlights in the given range.
+    /// Extracts all syntax highlights.
     ///
     /// - Returns: An array of Highlights in order.
     @MainActor final func syntaxHighlights() -> [Highlight] {

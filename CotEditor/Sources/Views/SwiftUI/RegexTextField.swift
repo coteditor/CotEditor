@@ -90,9 +90,9 @@ struct RegexTextField: NSViewRepresentable {
     }
     
     
-    /// Adds a condition that controls whether enabled syntax highlighting.
+    /// Adds a condition that controls whether syntax highlighting is enabled.
     ///
-    /// - Parameter highlighted: A Boolean value that determines whether enabled syntax highlighting.
+    /// - Parameter highlighted: A Boolean value that determines whether syntax highlighting is enabled.
     func regexHighlighted(_ highlighted: Bool) -> Self {
         
         var view = self
