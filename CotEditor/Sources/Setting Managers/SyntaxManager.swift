@@ -56,7 +56,6 @@ enum SyntaxName {
     // MARK: Setting File Managing Properties
     
     static let directoryName: String = "Syntaxes"
-    static let userDirectoryName: String? = "Syntaxes (Upcoming 7.0)"
     static let constantSettings: [String: Setting] = [SyntaxName.none: .none]
     let reservedNames: [SettingName] = [SyntaxName.none, "General", "Code"] + TreeSitterSyntax.aliasedSyntaxes.map(\.rawValue)
     
@@ -195,21 +194,42 @@ enum SyntaxName {
     
     
     /// Migrates user syntax setting files from legacy format (YAML) to the current CotEditor Syntax format (CotEditor 7.0.0, 2026).
+    ///
+    /// - Throws: `CocoaError` if file operations fail during migration.
     func migrateUserSettings() throws {
         
-        // before releasing the stable CotEditor 7.0.0:
-        // - Remove `userDirectoryName` in SettingFileMapping and SyntaxManager.
-        // - Prepend `private` to SettingFileMapping.userSettingDirectoryURL.
-        // - Move legacy settings to `Syntaxes (Legacy, before 7.0)`
+        let applicationURL = URL.applicationSupportDirectory.appending(component: "CotEditor", directoryHint: .isDirectory)
+        let syntaxURL = applicationURL.appending(component: Self.directoryName)
+        let legacyURL = applicationURL.appending(component: "Syntaxes (Legacy, before 7.0)")
+        let prereleaseURL = applicationURL.appending(component: "Syntaxes (Upcoming 7.0)")
         
-        let legacyURL = self.userSettingDirectoryURL.deletingLastPathComponent().appending(path: Self.directoryName)
-        
-        guard legacyURL.isReachable else { return }
-        
-        self.migratedSyntaxCount = try Syntax.migrateFormat(in: legacyURL, to: self.userSettingDirectoryURL, deletingOriginal: false, shouldMigrate: { !self.bundledSettingNames.contains($0) })
+        let hasLegacySettings = if syntaxURL.isReachable {
+            try FileManager.default.contentsOfDirectory(at: syntaxURL, includingPropertiesForKeys: [.contentTypeKey])
+                .contains { try $0.resourceValues(forKeys: [.contentTypeKey]).contentType == .yaml }
+        } else {
+            false
+        }
+
+        // archive legacy settings if present
+        if hasLegacySettings {
+            if legacyURL.isReachable {
+                try FileManager.default.removeItem(at: legacyURL)
+            }
+            try FileManager.default.moveItem(at: syntaxURL, to: legacyURL)
+        }
+
+        if prereleaseURL.isReachable {
+            if syntaxURL.isReachable {
+                try FileManager.default.removeItem(at: syntaxURL)
+            }
+            try FileManager.default.moveItem(at: prereleaseURL, to: syntaxURL)
+
+        } else if hasLegacySettings {
+            self.migratedSyntaxCount = try Syntax.migrateFormat(in: legacyURL, to: syntaxURL, deletingOriginal: false, shouldMigrate: { !self.bundledSettingNames.contains($0) })
+        }
     }
-    
-    
+
+
     // MARK: Setting File Managing
     
     /// Builds the list of available settings by considering both user and bundled settings.

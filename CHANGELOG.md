@@ -1,17 +1,16 @@
 # Change Log
 
-7.0.0 (unreleased)
+7.0.0-rc (unreleased)
 --------------------------
+
+### Compatibility Changes
+
+- [beta] Change the location to save custom syntaxes.
+
 
 ### Fixes
 
 - [trivial] Fix some typos in localizations and user guides.
-
-
-### TODO
-
-- Update the migration directories for user syntax definitions (read the comment in `migrateUserSettings()`).
-- Remove the prerelease notice from the user guide (in specification_changes_on_7.0.html).
 
 
 
