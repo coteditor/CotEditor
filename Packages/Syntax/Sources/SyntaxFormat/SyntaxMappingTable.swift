@@ -27,17 +27,14 @@
 /// A reverse-lookup table that maps file-mapping items (extensions, filenames, interpreters) to syntax setting names.
 public struct SyntaxMappingTable: Equatable, Sendable {
     
-    enum SyntaxName {
-        
-        static let xml = "XML"
-    }
+    public typealias SyntaxName = String
     
     
     // MARK: Public Properties
     
-    public private(set) var extensions: [String: [String]]
-    public private(set) var filenames: [String: [String]]
-    public private(set) var interpreters: [String: [String]]
+    public private(set) var extensions: [String: [SyntaxName]]
+    public private(set) var filenames: [String: [SyntaxName]]
+    public private(set) var interpreters: [String: [SyntaxName]]
     
     public var isEmpty: Bool {
         
@@ -47,7 +44,7 @@ public struct SyntaxMappingTable: Equatable, Sendable {
     
     // MARK: Lifecycle
     
-    public init(extensions: [String: [String]] = [:], filenames: [String: [String]] = [:], interpreters: [String: [String]] = [:]) {
+    public init(extensions: [String: [SyntaxName]] = [:], filenames: [String: [SyntaxName]] = [:], interpreters: [String: [SyntaxName]] = [:]) {
         
         self.extensions = extensions
         self.filenames = filenames
@@ -60,7 +57,7 @@ public struct SyntaxMappingTable: Equatable, Sendable {
     /// - Parameters:
     ///   - syntaxNames: The syntax names sorted by priority (earlier names take precedence).
     ///   - maps: The file maps for each setting.
-    public init(syntaxNames: [String], maps: [String: Syntax.FileMap]) {
+    public init(syntaxNames: [SyntaxName], maps: [SyntaxName: Syntax.FileMap]) {
         
         self.extensions = Self.buildMapping(for: \.extensions, syntaxNames: syntaxNames, maps: maps)
         self.filenames = Self.buildMapping(for: \.filenames, syntaxNames: syntaxNames, maps: maps)
@@ -74,7 +71,7 @@ public struct SyntaxMappingTable: Equatable, Sendable {
     ///
     /// - Parameter filename: The filename to look up.
     /// - Returns: A setting name, or `nil` if no match is found.
-    public func syntaxName(forFilename filename: String) -> String? {
+    public func syntaxName(forFilename filename: String) -> SyntaxName? {
         
         if let name = self.filenames[filename]?.first {
             return name
@@ -98,7 +95,7 @@ public struct SyntaxMappingTable: Equatable, Sendable {
     ///
     /// - Parameter content: The document content to inspect.
     /// - Returns: A setting name, or `nil` if no match is found.
-    public func syntaxName(forContent content: String) -> String? {
+    public func syntaxName(forContent content: String) -> SyntaxName? {
         
         if let interpreter = Self.scanInterpreterInShebang(content),
            let name = self.interpreters[interpreter]?.first
@@ -108,7 +105,7 @@ public struct SyntaxMappingTable: Equatable, Sendable {
         
         // check XML declaration
         if content.hasPrefix("<?xml ") {
-            return SyntaxName.xml
+            return "XML"
         }
         
         return nil
@@ -121,7 +118,7 @@ public struct SyntaxMappingTable: Equatable, Sendable {
     ///
     /// - Parameter source: The source text to scan.
     /// - Returns: The interpreter name if found; otherwise `nil`.
-    static func scanInterpreterInShebang(_ source: String) -> String? {
+    static func scanInterpreterInShebang(_ source: String) -> SyntaxName? {
         
         guard
             let shebang = source.firstMatch(of: /^#!\s*(?<first>\S+)\s*(?<second>\S+)?/),
@@ -144,7 +141,7 @@ public struct SyntaxMappingTable: Equatable, Sendable {
     ///   - syntaxNames: The syntax names sorted by priority.
     ///   - maps: The file maps for each setting.
     /// - Returns: A dictionary mapping file-mapping items to their associated syntax names.
-    private static func buildMapping(for keyPath: KeyPath<Syntax.FileMap, [String]?>, syntaxNames: [String], maps: [String: Syntax.FileMap]) -> [String: [String]] {
+    private static func buildMapping(for keyPath: KeyPath<Syntax.FileMap, [String]?>, syntaxNames: [SyntaxName], maps: [SyntaxName: Syntax.FileMap]) -> [String: [String]] {
         
         syntaxNames.reduce(into: [String: [String]]()) { table, name in
             for item in maps[name]?[keyPath: keyPath] ?? [] {
