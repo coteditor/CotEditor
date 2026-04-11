@@ -5,7 +5,7 @@
 
 ### Fixes
 
-- [trivial] Fix some typos in localizations.
+- [trivial] Fix some typos in localizations and user guides.
 
 
 ### TODO
