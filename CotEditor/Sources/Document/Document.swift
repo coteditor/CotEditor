@@ -1329,7 +1329,7 @@ extension NSTextView: EditorCounter.Source { }
         }
         
         // change encoding interactively
-        self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
+        self.performActivity(withSynchronousWaiting: false) { [unowned self] activityCompletionHandler in
             let completionHandler = { [weak self] didChange in
                 if !didChange, let self {
                     // reset status bar selection for in case when the operation was invoked from the pop-up button in the status bar
@@ -1419,7 +1419,7 @@ extension NSTextView: EditorCounter.Source { }
             !self.suppressesInconsistentLineEndingAlert
         else { return }
         
-        self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
+        self.performActivity(withSynchronousWaiting: false) { [unowned self] activityCompletionHandler in
             guard let documentWindow = self.windowForSheet else {
                 activityCompletionHandler()
                 assertionFailure()
@@ -1492,7 +1492,7 @@ extension NSTextView: EditorCounter.Source { }
         // do nothing if alert is already shown
         guard !self.isExternalUpdateAlertShown else { return }
         
-        self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
+        self.performActivity(withSynchronousWaiting: false) { [unowned self] activityCompletionHandler in
             guard let documentWindow = self.windowForSheet else {
                 activityCompletionHandler()
                 assertionFailure()
