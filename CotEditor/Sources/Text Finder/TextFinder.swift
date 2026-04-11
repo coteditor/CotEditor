@@ -55,7 +55,7 @@ struct FindAllMatch: Identifiable {
     var range: NSRange
     var lineNumber: Int
     var inlineLocation: Int
-    nonisolated(unsafe) var attributedLineString: NSAttributedString
+    var attributedLineString: NSAttributedString
 }
 
 
