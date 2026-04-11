@@ -946,7 +946,7 @@ extension DocumentWindowController: NSToolbarDelegate {
 
 extension DocumentWindowController: NSSharingServicePickerToolbarItemDelegate {
     
-    public func items(for pickerToolbarItem: NSSharingServicePickerToolbarItem) -> [Any] {
+    func items(for pickerToolbarItem: NSSharingServicePickerToolbarItem) -> [Any] {
         
         guard let document = self.fileDocument else { return [] }
         
