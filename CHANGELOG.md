@@ -8,6 +8,11 @@
 - [beta] Change the location to save custom syntaxes.
 
 
+### Improvements
+
+- [trivial] Improve stability when handling file change conflicts.
+
+
 ### Fixes
 
 - [trivial] Fix some typos in localizations and user guides.

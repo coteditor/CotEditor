@@ -870,26 +870,28 @@ extension NSTextView: EditorCounter.Source { }
         
         let strategy = UserDefaults.standard[.documentConflictOption]
         
-        guard strategy != .ignore else { return }  // don't check twice if already notified
+        guard strategy != .ignore else { return }
         
         // check if the file content were changed from the stored file data
-        let didChange: Bool
-        let modificationDate: Date?
-        do {
-            (didChange, modificationDate) = try self.checkFileContentsDidChange()
-        } catch {
-            Logger.app.error("Error on checking document file change: \(error.localizedDescription)")
-            return
-        }
-        
-        guard didChange else {
-            // update the document's fileModificationDate for a workaround (2014-03)
-            // -> Otherwise, an alert shows up when the user saves the file.
-            if let modificationDate, self.fileModificationDate?.compare(modificationDate) == .orderedAscending {
+        var didChange = false
+        self.performSynchronousFileAccess {
+            var modificationDate: Date?
+            do {
+                (didChange, modificationDate) = try self.checkFileContentsDidChange()
+            } catch {
+                Logger.app.error("Error on checking document file change: \(error.localizedDescription)")
+            }
+            
+            if !didChange, let modificationDate,
+               self.fileModificationDate?.compare(modificationDate) == .orderedAscending
+            {
+                // update the document's fileModificationDate for a workaround (2014-03)
+                // -> Otherwise, an alert shows up when the user saves the file.
                 self.fileModificationDate = modificationDate
             }
-            return
         }
+        
+        guard didChange else { return }
         
         // notify about external file update
         switch strategy {
@@ -1274,10 +1276,15 @@ extension NSTextView: EditorCounter.Source { }
     
     /// Checks whether the on-disk file content has changed since last read.
     ///
+    /// - Note: This method must be invoked from within the document's serialized file access.
+    ///
     /// - Returns: A boolean whether the file did change and the content modification date if available.
     private nonisolated func checkFileContentsDidChange() throws -> (Bool, Date?) {
         
         guard var fileURL = self.fileURL else { throw CocoaError(.fileReadNoSuchFile) }
+        
+        let fileModificationDate = self.fileModificationDate
+        let fileData = self.fileData.withLock(\.self)
         
         fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
         
@@ -1290,11 +1297,11 @@ extension NSTextView: EditorCounter.Source { }
             do {
                 // ignore if file's modificationDate is the same as document's modificationDate
                 modificationDate = try newURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
-                guard modificationDate != self.fileModificationDate else { return }
+                guard modificationDate != fileModificationDate else { return }
                 
                 // check if file content was changed from the stored file data
                 let data = try Data(contentsOf: newURL)
-                didChange = (data != self.fileData.withLock(\.self))
+                didChange = (data != fileData)
             } catch {
                 readingError = error
             }
