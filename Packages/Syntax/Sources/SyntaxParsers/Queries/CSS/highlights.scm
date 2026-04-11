@@ -70,10 +70,14 @@
 (attribute_name) @attributes
 
 
-; MARK: Variables
+; MARK: Values
 ; ----------------------------
 
 (plain_value) @values
+
+
+; MARK: Variables
+; ----------------------------
 
 [
   (class_name)

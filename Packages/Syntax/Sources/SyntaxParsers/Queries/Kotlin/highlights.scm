@@ -158,7 +158,7 @@
 
 [
   (character_literal)
-(character_escape_seq)
+  (character_escape_seq)
 ] @characters
 
 
