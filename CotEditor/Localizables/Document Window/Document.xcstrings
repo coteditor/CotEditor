@@ -356,7 +356,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sous-ensemble"
+            "value" : "Bloc"
           }
         },
         "it" : {
@@ -410,13 +410,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "区块"
+            "value" : "字区"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "區段"
+            "value" : "字區"
           }
         },
         "zh-HK" : {

@@ -143,7 +143,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sous-ensemble :"
+            "value" : "Bloc :"
           }
         },
         "it" : {
@@ -197,19 +197,19 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "区块："
+            "value" : "字区："
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "區段:"
+            "value" : "字區:"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "區塊："
+            "value" : "字區："
           }
         }
       }
@@ -622,19 +622,19 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无区块"
+            "value" : "无字区"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無區段"
+            "value" : "無字區"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無區塊"
+            "value" : "無字區"
           }
         }
       }
