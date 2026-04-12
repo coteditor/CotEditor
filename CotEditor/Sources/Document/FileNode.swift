@@ -309,6 +309,7 @@ extension FileNode {
         if !keepsHidden {
             self.file.isHidden = newName.starts(with: ".")
         }
+        self.moveChildren(to: self.file.fileURL)
         
         self.parent?.cachedChildren?.sort(using: Self.sortOrder)
     }
@@ -435,7 +436,7 @@ extension FileNode {
         
         for child in children {
             child.file.fileURL = fileURL.appending(component: child.file.name)
-            child.moveChildren(to: self.file.fileURL)
+            child.moveChildren(to: child.file.fileURL)
         }
     }
 }
