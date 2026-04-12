@@ -191,6 +191,15 @@ struct MultipleReplaceTests {
         }
         
         
+        @Test func emptyReplacementValue() throws {
+            
+            let definition = try MultipleReplace(tabSeparatedText: "dog\t")
+            
+            #expect(definition.replacements.count == 1)
+            #expect(definition.replacements[0] == .init(findString: "dog", replacementString: ""))
+        }
+        
+        
         @Test func multipleLines() throws {
             
             let tsv = """

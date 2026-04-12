@@ -83,7 +83,7 @@ extension MultipleReplace.Replacement {
     /// - Throws: `TSVParseError.invalidFormat`.
     init(line: any StringProtocol) throws(TSVParseError) {
         
-        let items = line.split(separator: "\t")
+        let items = line.split(separator: "\t", omittingEmptySubsequences: false)
         
         guard
             items.count >= 2,

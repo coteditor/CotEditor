@@ -19,6 +19,7 @@
 - Fix an issue in the file browser where replacing a file with a folder, or vice versa, could leave the displayed state outdated.
 - Fix an issue in the file browser where newly created or duplicated items could fail to become selected immediately in some folders.
 - Fix an issue where line reordering commands could insert extra blank lines in documents using CRLF line endings.
+- Fix an issue where TSV multiple replace definitions could not import empty replacement strings.
 - [trivial] Fix some typos in localizations and user guides.
 
 
@@ -58,7 +59,7 @@
 
 ### Fixes
 
-- Fix an issue where re-importing a TSV file to overwrite an existing multiple replace definition could fail.
+- Fix an issue where TSV multiple replace definitions could fail to overwrite an existing definition when re-imported.
 - [beta] Fix outline extraction in the LaTeX and Swift syntaxes.
 
 
