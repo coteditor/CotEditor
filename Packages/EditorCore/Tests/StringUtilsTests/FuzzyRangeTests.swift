@@ -167,6 +167,9 @@ struct FuzzyRangeTests {
         #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("") }
         #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("abc") }
         #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("1:a") }
+        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("1:") }
+        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse(":2") }
+        #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("1::2") }
         #expect(throws: FuzzyRange.ParseStrategy.ParseError.invalidValue) { try parser.parse("1:1:1") }
     }
 }

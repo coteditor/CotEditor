@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2025 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -87,12 +87,12 @@ extension FuzzyRange {
         /// - Returns: A `FuzzyRange` instance.
         public func parse(_ value: String) throws(ParseError) -> FuzzyRange {
             
-            let components = value.split(separator: ":").map(String.init).map(Int.init)
+            let components = value.split(separator: ":", omittingEmptySubsequences: false)
             
             guard
                 (1...2).contains(components.count),
-                let location = components[0],
-                let length = (components.count > 1) ? components[1] : 0
+                let location = Int(components[0]),
+                let length = (components.count > 1) ? Int(components[1]) : 0
             else { throw .invalidValue }
             
             return FuzzyRange(location: location, length: length)
