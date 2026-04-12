@@ -66,6 +66,7 @@
 			<li>Use the user’s window size setting for the Zoom action, if available.</li>
 			<li>Improve general text-editing performance.</li>
 			<li>Hide line numbers in the window titlebar area when the navigation bar is hidden on macOS Tahoe 26.</li>
+			<li><span class="trivial">trivial</span>: Improve stability when handling file change conflicts.</li>
 			<li><span class="trivial">trivial</span>: Adjust the About CotEditor window.</li>
 			<li><span class="trivial">trivial</span>: Rename the Recolor All command to “Reset Syntax Analysis” and move it to the Format menu.</li>
 			<li><span class="trivial">trivial</span>: Remove the Restore Defaults button in the syntax editor.</li>
@@ -82,6 +83,9 @@
 			<li>Fix incorrect syntax parsing in some built-in syntaxes.</li>
 			<li>Fix an issue where the default file extension in the Save dialog was .txt for syntaxes with a file extension not registered in the system.</li>
 			<li>Fix an issue where re-importing a TSV file to overwrite an existing multiple replace definition could fail.</li>
+			<li>Fix issues in the file browser where items could point to the wrong location after being moved or renamed.</li>
+			<li>Fix an issue in the file browser where replacing a file with a folder, or vice versa, could leave the displayed state outdated.</li>
+			<li>Fix an issue in the file browser where newly created or duplicated items could fail to become selected immediately in some folders.</li>
 			<li>Fix an issue where AppleScript could return an unclear error when a folder document had no current document.</li>
 			<li>Fix an issue where requesting a zero-length text range via AppleScript could return an unintended character.</li>
 			<li>Fix an issue where some decimal setting values could use the wrong number format and be reset unexpectedly in certain locale configurations.</li>
