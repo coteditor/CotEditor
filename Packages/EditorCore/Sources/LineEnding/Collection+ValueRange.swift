@@ -26,8 +26,9 @@
 
 public import Foundation
 public import ValueRange
+import StringUtils
 
-public extension RangeReplaceableCollection {
+public extension RangeReplaceableCollection where Self: RandomAccessCollection {
     
     /// Replace the elements in the specified range with the given items.
     ///
@@ -39,12 +40,15 @@ public extension RangeReplaceableCollection {
     ///   - delta: The change in length.
     mutating func replace<Value>(items: [Element], in editedRange: NSRange, changeInLength delta: Int = 0) where Element == ValueRange<Value> {
         
-        guard let lowerEditedIndex = self.binarySearchedFirstIndex(where: { $0.lowerBound >= editedRange.lowerBound }) else {
+        let lowerEditedIndex = self.partitioningIndex { $0.lowerBound >= editedRange.lowerBound }
+        
+        guard lowerEditedIndex < self.endIndex else {
             self += items
             return
         }
         
-        if let upperEditedIndex = self.binarySearchedFirstIndex(in: lowerEditedIndex..<self.endIndex, where: { $0.lowerBound >= editedRange.upperBound - delta }) {
+        let upperEditedIndex = self.partitioningIndex(in: lowerEditedIndex..<self.endIndex) { $0.lowerBound >= editedRange.upperBound - delta }
+        if upperEditedIndex < self.endIndex {
             let shiftedElements = self[upperEditedIndex...].map { $0.shifted(by: delta) }
             self.replaceSubrange(lowerEditedIndex..., with: shiftedElements)
         } else {
@@ -63,7 +67,9 @@ public extension RangeReplaceableCollection {
     /// - Returns: `true` if an element starts at `location`; otherwise `false`.
     func contains<Value>(rangeStartingAt location: Int) -> Bool where Element == ValueRange<Value> {
         
-        guard let index = self.binarySearchedFirstIndex(where: { $0.lowerBound >= location }) else { return false }
+        let index = self.partitioningIndex { $0.lowerBound >= location }
+        
+        guard index < self.endIndex else { return false }
         
         return self[index].lowerBound == location
     }

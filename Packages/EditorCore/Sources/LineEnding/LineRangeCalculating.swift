@@ -26,6 +26,7 @@
 
 public import Foundation
 public import ValueRange
+import StringUtils
 
 public protocol LineRangeCalculating {
     
@@ -102,7 +103,7 @@ public extension LineRangeCalculating {
 }
 
 
-extension BidirectionalCollection where Element == ValueRange<LineEnding>, Index == Int {
+extension RandomAccessCollection where Element == ValueRange<LineEnding>, Index == Int {
     
     /// Returns the 0-based line number at the given character index.
     ///
@@ -114,10 +115,8 @@ extension BidirectionalCollection where Element == ValueRange<LineEnding>, Index
         
         if let last = self.last, last.upperBound <= characterIndex {
             self.endIndex
-        } else if let index = self.binarySearchedFirstIndex(where: { $0.upperBound > characterIndex }) {
-            index
         } else {
-            0
+            self.partitioningIndex { $0.upperBound > characterIndex }
         }
     }
     
@@ -135,18 +134,19 @@ extension BidirectionalCollection where Element == ValueRange<LineEnding>, Index
         let startPassedIndex = if let lastBound = self.last?.upperBound, lastBound <= range.lowerBound {
             self.endIndex
         } else {
-            self.binarySearchedFirstIndex { range.lowerBound < $0.upperBound } ?? self.startIndex
+            self.partitioningIndex { range.lowerBound < $0.upperBound }
         }
         let start = (startPassedIndex > self.startIndex) ? self[self.index(before: startPassedIndex)].upperBound : 0
         
         let startPassed = self.indices.contains(startPassedIndex) ? self[startPassedIndex] : nil
-        let end: ValueRange<LineEnding>? = if let startPassed, range.upperBound <= startPassed.upperBound {
-            startPassed
+        let end: ValueRange<LineEnding>?
+        if let startPassed, range.upperBound <= startPassed.upperBound {
+            end = startPassed
         } else if range.length > 0 {
-            self.binarySearchedFirstIndex(in: startPassedIndex..<self.endIndex) { range.upperBound <= $0.upperBound }
-                .flatMap { self[$0] }
+            let index = self.partitioningIndex(in: startPassedIndex..<self.endIndex) { range.upperBound <= $0.upperBound }
+            end = self.indices.contains(index) ? self[index] : nil
         } else {
-            nil
+            end = nil
         }
         
         return (start, end)

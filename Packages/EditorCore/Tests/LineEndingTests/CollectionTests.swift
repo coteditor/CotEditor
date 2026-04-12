@@ -29,19 +29,6 @@ import Testing
 
 struct CollectionTests {
     
-    @Test(arguments: 0..<10)
-    func binarySearch(_: Int) {
-        
-        let array = (0..<20).map { _ in Int.random(in: 0..<100) }.sorted()
-        
-        for _ in 0..<10 {
-            let index = Int.random(in: 0..<100)
-            #expect(array.binarySearchedFirstIndex(where: { $0 > index }) ==
-                    array.firstIndex(where: { $0 > index }))
-        }
-    }
-    
-    
     @Test func majorValue() {
         
         #expect("".lineEndingRanges().majorValue() == nil)
