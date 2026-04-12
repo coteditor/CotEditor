@@ -473,7 +473,7 @@ final class DirectoryDocument: NSDocument {
             .appendingUniqueNumber()
         try self.moveFile(from: node.file.fileURL, to: destinationURL)
         
-        node.move(to: destinationNode)
+        node.move(to: destinationNode, fileURL: destinationURL)
     }
     
     

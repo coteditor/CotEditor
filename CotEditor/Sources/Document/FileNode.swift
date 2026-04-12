@@ -336,16 +336,26 @@ extension FileNode {
     ///   - parent: The new parent node.
     func move(to parent: FileNode) {
         
+        let fileURL = parent.file.fileURL.appending(component: self.file.name).standardizedFileURL
+        
+        self.move(to: parent, fileURL: fileURL)
+    }
+    
+    
+    /// Moves to a new node.
+    ///
+    /// - Parameters:
+    ///   - parent: The new parent node.
+    ///   - fileURL: The destination file URL after moving.
+    func move(to parent: FileNode, fileURL: URL) {
+        
         assert(parent.file.isDirectory)
         
         self.parent?.cachedChildren?.removeFirst(self)
         
-        parent.addNode(self)
         self.parent = parent
-        
-        self.file.fileURL = parent.file.fileURL.appending(component: self.file.name).standardizedFileURL
-        
-        self.moveChildren(to: self.file.fileURL)
+        self.move(to: fileURL)
+        parent.addNode(self)
     }
     
     

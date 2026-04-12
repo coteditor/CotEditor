@@ -18,6 +18,7 @@
 - Fix an issue in the file browser where items inside a renamed or moved folder could stop pointing to the correct location.
 - Fix an issue in the file browser where replacing a file with a folder, or vice versa, could leave the displayed state outdated.
 - Fix an issue in the file browser where newly created or duplicated items could fail to become selected immediately in some folders.
+- Fix an issue in the file browser where moving an item into a folder that already contained an item with the same name could leave it pointing to the wrong location.
 - [trivial] Fix some typos in localizations and user guides.
 
 
