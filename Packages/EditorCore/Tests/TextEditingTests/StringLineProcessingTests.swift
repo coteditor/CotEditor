@@ -114,6 +114,17 @@ struct StringLineProcessingTests {
     }
     
     
+    @Test func sortLinesAscendingWithCRLF() throws {
+        
+        let string = "ccc\r\naa\r\nbbbb"
+        let context = try #require(string.sortLinesAscending(in: string.range))
+        
+        #expect(context.strings == ["aa\r\nbbbb\r\nccc"])
+        #expect(context.ranges == [NSRange(0, 13)])
+        #expect(context.selectedRanges == [NSRange(0, 13)])
+    }
+    
+    
     @Test func reverseLines() throws {
         
         let string = """
@@ -137,6 +148,17 @@ struct StringLineProcessingTests {
     }
     
     
+    @Test func reverseLinesWithCRLF() throws {
+        
+        let string = "aa\r\nbbbb\r\nccc"
+        let context = try #require(string.reverseLines(in: string.range))
+        
+        #expect(context.strings == ["ccc\r\nbbbb\r\naa"])
+        #expect(context.ranges == [NSRange(0, 13)])
+        #expect(context.selectedRanges == [NSRange(0, 13)])
+    }
+    
+    
     @Test func shuffleLines() throws {
         
         let string = """
@@ -154,6 +176,20 @@ struct StringLineProcessingTests {
         #expect(shuffledLines.sorted() == originalLines.sorted())
         #expect(context.ranges == [NSRange(0, 11)])
         #expect(context.selectedRanges == [NSRange(0, 11)])
+    }
+    
+    
+    @Test func shuffleLinesWithCRLF() throws {
+        
+        let string = "aa\r\nbbbb\r\nccc"
+        let context = try #require(string.shuffleLines(in: string.range))
+        let shuffledString = context.strings[0]
+        let shuffledLines = shuffledString.lineContentsRanges()
+            .map { (shuffledString as NSString).substring(with: $0) }
+        
+        #expect(shuffledLines.sorted() == ["aa", "bbbb", "ccc"])
+        #expect(context.ranges == [NSRange(0, 13)])
+        #expect(context.selectedRanges == [NSRange(0, 13)])
     }
     
     

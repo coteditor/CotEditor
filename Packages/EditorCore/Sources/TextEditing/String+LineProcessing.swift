@@ -326,9 +326,8 @@ public extension String {
         
         let lineEnding = string.substring(with: lineEndingRange)
         let lineRange = string.lineContentsRange(for: range)
-        let lines = string
-            .substring(with: lineRange)
-            .components(separatedBy: .newlines)
+        let lines = self.lineContentsRanges(for: lineRange)
+            .map(string.substring(with:))
         let newString = predicate(lines)
             .joined(separator: lineEnding)
         
