@@ -142,6 +142,8 @@ public extension String {
     
     /// Returns word-instance ranges that match the word at the given range.
     ///
+    /// - Note: Single-letter words are not treated as a match target.
+    ///
     /// - Parameter range: The word range in the receiver's UTF-16 based `NSRange`.
     /// - Returns: The ranges of word instances in the receiver, or an empty array if the range is not a word.
     /// - Throws: A cancellation error if the underlying match operation is cancelled.
