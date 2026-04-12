@@ -148,6 +148,7 @@ public struct TextFind: Equatable, Sendable {
                     }
                     ranges.append(matchedRange)
                 }
+                try Task.checkCancellation()
             }
             return ranges
         }
