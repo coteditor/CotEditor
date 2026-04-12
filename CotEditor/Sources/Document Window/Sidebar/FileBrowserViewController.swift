@@ -819,6 +819,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     ///   - edit: If `true`, the text field will be in the editing mode.
     private func select(node: FileNode, edit: Bool = false) {
         
+        let node = self.document.fileNode?.node(at: node.file.fileURL) ?? node
+        
         self.outlineView.reloadItem(node)
         
         node.parents.reversed().forEach { self.outlineView.expandItem($0) }
