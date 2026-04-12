@@ -16,6 +16,7 @@
 ### Fixes
 
 - Fix an issue in the file browser where items inside a renamed or moved folder could stop pointing to the correct location.
+- Fix an issue in the file browser where replacing a file with a folder, or vice versa, could leave the displayed state outdated.
 - [trivial] Fix some typos in localizations and user guides.
 
 

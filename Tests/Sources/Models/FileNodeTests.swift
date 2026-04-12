@@ -71,6 +71,48 @@ struct FileNodeTests {
     }
     
     
+    @Test func invalidatingChildrenDropsParentCacheWhenFileBecomesFolder() throws {
+        
+        let urls = try self.makeTypeChangeTree(itemIsDirectory: false)
+        defer { try? FileManager.default.removeItem(at: urls.rootURL) }
+        
+        let rootNode = FileNode(file: try File(at: urls.rootURL))
+        let originalNode = try #require(rootNode.node(at: urls.itemURL))
+        
+        let replacementLeafURL = try self.replaceItem(at: urls.itemURL, withDirectory: true)
+        let updatedNode = rootNode.invalidateChildren(at: urls.itemURL)
+        
+        #expect(updatedNode === rootNode)
+        
+        let reloadedNode = try #require(rootNode.node(at: urls.itemURL))
+        #expect(reloadedNode !== originalNode)
+        #expect(reloadedNode.file.isDirectory)
+        #expect(rootNode.node(at: replacementLeafURL) != nil)
+    }
+    
+    
+    @Test func invalidatingChildrenDropsParentCacheWhenFolderBecomesFile() throws {
+        
+        let urls = try self.makeTypeChangeTree(itemIsDirectory: true)
+        defer { try? FileManager.default.removeItem(at: urls.rootURL) }
+        
+        let rootNode = FileNode(file: try File(at: urls.rootURL))
+        let originalNode = try #require(rootNode.node(at: urls.itemURL))
+        let originalLeafURL = try #require(urls.leafURL)
+        #expect(rootNode.node(at: originalLeafURL) != nil)
+        
+        try self.replaceItem(at: urls.itemURL, withDirectory: false)
+        let updatedNode = rootNode.invalidateChildren(at: urls.itemURL)
+        
+        #expect(updatedNode === rootNode)
+        
+        let reloadedNode = try #require(rootNode.node(at: urls.itemURL))
+        #expect(reloadedNode !== originalNode)
+        #expect(!reloadedNode.file.isDirectory)
+        #expect(rootNode.node(at: originalLeafURL) == nil)
+    }
+    
+    
     // MARK: Private Methods
     
     private struct DirectoryTree {
@@ -97,6 +139,43 @@ struct FileNodeTests {
         try Data().write(to: leafURL)
         
         return DirectoryTree(rootURL: rootURL, folderURL: folderURL, childFolderURL: childFolderURL, leafURL: leafURL, destinationURL: destinationURL)
+    }
+    
+    
+    private func makeTypeChangeTree(itemIsDirectory: Bool) throws -> (rootURL: URL, itemURL: URL, leafURL: URL?) {
+        
+        let rootURL = FileManager.default.temporaryDirectory
+            .appending(path: UUID().uuidString, directoryHint: .isDirectory)
+        let itemURL = rootURL.appending(path: "item", directoryHint: itemIsDirectory ? .isDirectory : .notDirectory)
+        
+        try FileManager.default.createDirectory(at: rootURL, withIntermediateDirectories: true)
+        
+        if itemIsDirectory {
+            let leafURL = itemURL.appending(path: "leaf.txt", directoryHint: .notDirectory)
+            try FileManager.default.createDirectory(at: itemURL, withIntermediateDirectories: true)
+            try Data().write(to: leafURL)
+            return (rootURL, itemURL, leafURL)
+        } else {
+            try Data().write(to: itemURL)
+            return (rootURL, itemURL, nil)
+        }
+    }
+    
+    
+    @discardableResult
+    private func replaceItem(at itemURL: URL, withDirectory isDirectory: Bool) throws -> URL {
+        
+        try FileManager.default.removeItem(at: itemURL)
+        
+        if isDirectory {
+            let leafURL = itemURL.appending(path: "leaf.txt", directoryHint: .notDirectory)
+            try FileManager.default.createDirectory(at: itemURL, withIntermediateDirectories: true)
+            try Data().write(to: leafURL)
+            return leafURL
+        } else {
+            try Data().write(to: itemURL)
+            return itemURL
+        }
     }
     
     

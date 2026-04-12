@@ -244,7 +244,22 @@ extension FileNode {
         
         if fileURL.isReachable {
             if let child = children.first(where: { $0.file.fileURL == fileURL }) {
-                guard (try? child.file.invalidateResources()) == true else { return nil }
+                let file: File
+                do {
+                    file = try File(at: fileURL)
+                } catch {
+                    Logger.app.error("Failed reading file metadata: \(error)")
+                    return self
+                }
+                
+                if child.file.isDirectory != file.isDirectory || child.file.isAlias != file.isAlias || child.file.kind != file.kind {
+                    self.cachedChildren = nil
+                    return self
+                }
+                
+                guard child.file != file else { return nil }
+                
+                child.file = file
                 return child
                 
             } else {
