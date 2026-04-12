@@ -158,7 +158,7 @@ public struct TextFind: Equatable, Sendable {
     /// Returns the nearest match in `matches` from the insertion point.
     ///
     /// - Parameters:
-    ///   - matches: The matched ranges to find in.
+    ///   - matches: The matched ranges to find in, sorted in ascending order by range location so that both lower and upper bounds are nondecreasing.
     ///   - forward: Whether searches forward.
     ///   - includingSelection: Whether includes the current selection to search.
     ///   - wraps: Whether the search wraps around.
@@ -180,12 +180,16 @@ public struct TextFind: Equatable, Sendable {
             ? (includingSelection ? selectedRange.lowerBound : selectedRange.upperBound)
             : (includingSelection ? selectedRange.upperBound : selectedRange.lowerBound)
         
-        let foundRange = forward
-            ? matches.first { $0.lowerBound >= startLocation }
-            : matches.last { $0.upperBound <= startLocation }
-        
-        if let foundRange {
-            return (range: foundRange, wrapped: false)
+        if forward {
+            let index = matches.partitioningIndex { $0.lowerBound >= startLocation }
+            if index < matches.endIndex {
+                return (range: matches[index], wrapped: false)
+            }
+        } else {
+            let index = matches.partitioningIndex { $0.upperBound > startLocation }
+            if index > matches.startIndex {
+                return (range: matches[matches.index(before: index)], wrapped: false)
+            }
         }
         
         guard wraps,

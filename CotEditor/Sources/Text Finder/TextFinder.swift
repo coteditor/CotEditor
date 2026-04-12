@@ -533,9 +533,14 @@ struct FindMatchesCache {
         let matches = try await self.findMatches(for: textFind)
         let result = textFind.find(in: matches, forward: forward, includingSelection: isIncremental, wraps: wraps)
         let matchedRange = isIncremental ? nil : result?.range
-        let currentMatchIndex = matchedRange
-            .flatMap(matches.firstIndex(of:))
-            .map { $0 + 1 }
+        
+        let currentMatchIndex: Int?
+        if let matchedRange {
+            let index = matches.partitioningIndex { $0.lowerBound >= matchedRange.lowerBound }
+            currentMatchIndex = (index < matches.endIndex && matches[index] == matchedRange) ? index + 1 : nil
+        } else {
+            currentMatchIndex = nil
+        }
         
         // mark all matches
         if isIncremental {
