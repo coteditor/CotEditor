@@ -873,34 +873,34 @@ extension NSTextView: EditorCounter.Source { }
         guard strategy != .ignore else { return }
         
         // check if the file content were changed from the stored file data
-        var didChange = false
-        self.performSynchronousFileAccess {
-            var modificationDate: Date?
-            do {
-                (didChange, modificationDate) = try self.checkFileContentsDidChange()
-            } catch {
-                Logger.app.error("Error on checking document file change: \(error.localizedDescription)")
-            }
-            
-            if !didChange, let modificationDate,
-               self.fileModificationDate?.compare(modificationDate) == .orderedAscending
-            {
-                // update the document's fileModificationDate for a workaround (2014-03)
-                // -> Otherwise, an alert shows up when the user saves the file.
-                self.fileModificationDate = modificationDate
-            }
+        let didChange: Bool
+        let modificationDate: Date?
+        do {
+            (didChange, modificationDate) = try self.checkFileContentsDidChange()
+        } catch {
+            Logger.app.error("Error on checking document file change: \(error.localizedDescription)")
+            return
         }
         
-        guard didChange else { return }
+        guard didChange else {
+            // update the document's fileModificationDate for a workaround (2014-03)
+            // -> Otherwise, an alert shows up when the user saves the file.
+            if let modificationDate, self.fileModificationDate?.compare(modificationDate) == .orderedAscending {
+                self.fileModificationDate = modificationDate
+            }
+            return
+        }
         
         // notify about external file update
-        switch strategy {
-            case .ignore:
-                assertionFailure()
-            case .notify:
-                Task { await self.showUpdatedByExternalProcessAlert() }
-            case .revert:
-                Task { await self.revert() }
+        self.continueAsynchronousWorkOnMainActor {
+            switch strategy {
+                case .ignore:
+                    fatalError()
+                case .notify:
+                    self.showUpdatedByExternalProcessAlert()
+                case .revert:
+                    self.revert()
+            }
         }
     }
     
