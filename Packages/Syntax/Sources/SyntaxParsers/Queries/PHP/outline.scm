@@ -21,6 +21,16 @@
 (enum_declaration
   name: (name) @outline.container)
 
+; Properties
+(property_declaration
+  (property_element
+    (variable_name) @outline.value))
+
+(method_declaration
+  parameters: (formal_parameters
+    (property_promotion_parameter
+      name: (variable_name) @outline.value)))
+
 ; Functions
 (function_definition
   name: (name) @outline.function

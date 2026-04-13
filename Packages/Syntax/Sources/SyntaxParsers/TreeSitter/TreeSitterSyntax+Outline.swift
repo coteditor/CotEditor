@@ -50,6 +50,12 @@ extension TreeSitterSyntax {
                 ])
             case .python:
                 .init(ignoredDepthNodeTypes: ["decorated_definition"])
+            case .php:
+                .init(ignoredDepthNodeTypes: [
+                    "formal_parameters",
+                    "property_element",
+                    "property_promotion_parameter",
+                ])
             case .sql:
                 .init(normalization: .init(flattenLevels: true))
             case .swift:

@@ -70,6 +70,8 @@ struct TreeSitterPHPOutlineTests {
             "format(string $input)",
             "User",
             "__construct(public int $id, public string $name)",
+            "$id",
+            "$name",
             "label(string $prefix = 'user')",
             "export(array &$target, string|int ...$values)",
         ])
@@ -78,14 +80,59 @@ struct TreeSitterPHPOutlineTests {
             .function,
             .container,
             .function,
+            .value,
+            .value,
             .function,
             .function,
         ])
-        #expect(outline.map(\.indent.level) == [0, 1, 0, 1, 1, 0])
+        #expect(outline.map(\.indent.level) == [0, 1, 0, 1, 1, 1, 1, 0])
         #expect(nsSource.substring(with: outline[1].range) == "format(string $input)")
         #expect(nsSource.substring(with: outline[3].range) == "__construct(\n            public int $id,\n            public string $name,\n        )")
-        #expect(nsSource.substring(with: outline[4].range) == "label(string $prefix = 'user')")
-        #expect(nsSource.substring(with: outline[5].range) == "export(array &$target, string|int ...$values)")
+        #expect(nsSource.substring(with: outline[4].range) == "$id")
+        #expect(nsSource.substring(with: outline[5].range) == "$name")
+        #expect(nsSource.substring(with: outline[6].range) == "label(string $prefix = 'user')")
+        #expect(nsSource.substring(with: outline[7].range) == "export(array &$target, string|int ...$values)")
+    }
+
+
+    @Test func outlineIncludesDeclaredAndPromotedProperties() async throws {
+        
+        let source = #"""
+            <?php
+            
+            final class User
+            {
+                private string $email;
+                
+                public function __construct(
+                    public int $id,
+                    protected readonly string $name,
+                ) {}
+            }
+        """#
+        let nsSource = source as NSString
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "User",
+            "$email",
+            "__construct(public int $id, protected readonly string $name)",
+            "$id",
+            "$name",
+        ])
+        #expect(outline.map(\.kind) == [
+            .container,
+            .value,
+            .function,
+            .value,
+            .value,
+        ])
+        #expect(outline.map(\.indent.level) == [0, 1, 1, 1, 1])
+        #expect(nsSource.substring(with: outline[1].range) == "$email")
+        #expect(nsSource.substring(with: outline[2].range) == "__construct(\n            public int $id,\n            protected readonly string $name,\n        )")
+        #expect(nsSource.substring(with: outline[3].range) == "$id")
+        #expect(nsSource.substring(with: outline[4].range) == "$name")
     }
     
     
