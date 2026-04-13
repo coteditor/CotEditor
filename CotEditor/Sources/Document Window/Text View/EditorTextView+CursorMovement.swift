@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2025 1024jp
+//  © 2019-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -709,7 +709,7 @@ extension EditorTextView {
 
 extension EditorTextView {
     
-    private static let additionalWordSeparators = CharacterSet(charactersIn: ".;")
+    private static let additionalWordSeparators = CharacterSet(charactersIn: ".,:")
     
     
     /// Returns the word range that includes the given location.
@@ -722,7 +722,7 @@ extension EditorTextView {
         
         guard proposedWordRange.contains(location) else { return proposedWordRange }
         
-        // treat `.` and `:` as word delimiters
+        // treat some additional punctuation, such as `.` and `:`, as word delimiters
         return (self.string as NSString).rangeOfCharacter(until: Self.additionalWordSeparators, at: location, range: proposedWordRange)
     }
     
