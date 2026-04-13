@@ -21,6 +21,28 @@
 (enum_declaration
   name: (identifier) @outline.container)
 
+; Properties
+(method_definition
+  parameters: (formal_parameters
+    (required_parameter
+      (accessibility_modifier)
+      (identifier) @outline.value)))
+
+(method_definition
+  parameters: (formal_parameters
+    (optional_parameter
+      (accessibility_modifier)
+      (identifier) @outline.value)))
+
+(public_field_definition
+  name: (property_identifier) @outline.value)
+
+(public_field_definition
+  name: (private_property_identifier) @outline.value)
+
+(property_signature
+  name: (property_identifier) @outline.value)
+
 ; Functions
 (function_declaration
   name: (identifier) @outline.function

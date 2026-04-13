@@ -83,6 +83,7 @@ private extension TypeScriptOutlineFormatter {
             .replacing(/\(\s+/, with: "(")
             .replacing(/\s+\)/, with: ")")
             .replacing(/\s+\(/, with: "(")
+            .replacing(/,\s*\)/, with: ")")
             .replacing(/\s+</, with: "<")
             .replacing(/<\s+/, with: "<")
             .replacing(/\s+>/, with: ">")
