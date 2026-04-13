@@ -11,6 +11,7 @@
 ### Improvements
 
 - [trivial] Improve stability when handling file change conflicts.
+- [beta][trivial] Update the document icon for the CotEditor Syntax document.
 
 
 ### Fixes
