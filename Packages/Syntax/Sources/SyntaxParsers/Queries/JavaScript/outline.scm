@@ -12,6 +12,13 @@
 (class_declaration
   name: (identifier) @outline.container)
 
+; Properties
+(field_definition
+  property: (property_identifier) @outline.value)
+
+(field_definition
+  property: (private_property_identifier) @outline.value)
+
 ; Functions
 (function_declaration
   name: (identifier) @outline.function
