@@ -34,6 +34,10 @@ enum CSharpOutlineFormatter: TreeSitterOutlineFormatting {
     static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)? {
         
         switch capture.kind {
+            case .value:
+                let range = capture.range.union(with: [Self.explicitInterfaceRange(for: match)])
+                let title = Self.normalizedSignature(source.substring(with: range))
+                return (title, range)
             case .function:
                 let range = Self.signatureRange(for: match, source: source, nameRange: capture.range)
                 let title = Self.normalizedSignature(source.substring(with: range))
@@ -87,7 +91,7 @@ private extension CSharpOutlineFormatter {
     }
     
     
-    /// Returns the explicit interface specifier range for a C# method declaration.
+    /// Returns the explicit interface specifier range for a C# member declaration.
     ///
     /// - Parameter match: The resolved query match.
     /// - Returns: The explicit interface specifier range, or `nil` if none exists.

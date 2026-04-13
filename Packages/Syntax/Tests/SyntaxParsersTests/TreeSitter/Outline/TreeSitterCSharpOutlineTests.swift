@@ -93,6 +93,43 @@ struct TreeSitterCSharpOutlineTests {
         #expect(nsSource.substring(with: outline[7].range) == "Add<TValue>(TValue left, int right)")
         #expect(nsSource.substring(with: outline[8].range) == "IDisposable.Dispose()")
     }
+
+
+    @Test func outlineIncludesProperties() async throws {
+        
+        let source = #"""
+            interface IRepository {
+                string Name { get; }
+            }
+            
+            sealed class Service : IRepository {
+                public string Value { get; set; }
+                string IRepository.Name { get; } = "";
+            }
+        """#
+        let nsSource = source as NSString
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "IRepository",
+            "Name",
+            "Service",
+            "Value",
+            "IRepository.Name",
+        ])
+        #expect(outline.map(\.kind) == [
+            .container,
+            .value,
+            .container,
+            .value,
+            .value,
+        ])
+        #expect(outline.map(\.indent.level) == [0, 1, 0, 1, 1])
+        #expect(nsSource.substring(with: outline[1].range) == "Name")
+        #expect(nsSource.substring(with: outline[3].range) == "Value")
+        #expect(nsSource.substring(with: outline[4].range) == "IRepository.Name")
+    }
     
     
     // MARK: Private Methods
