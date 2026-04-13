@@ -30,6 +30,10 @@
 (enum_declaration
   name: (identifier) @outline.container)
 
+; Properties
+(property_declaration
+  name: (identifier) @outline.value)
+
 ; Functions
 (method_declaration
   name: (identifier) @outline.function

@@ -12,6 +12,7 @@
 
 - Improve word selection and related editing actions to treat commas as word delimiters.
 - [trivial] Improve stability when handling file change conflicts.
+- [beta] Update the outline extraction for C#.
 - [beta][trivial] Update the document icon for the CotEditor Syntax document.
 
 
