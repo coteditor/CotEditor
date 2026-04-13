@@ -21,6 +21,11 @@
 (record_declaration
   name: (identifier) @outline.container)
 
+; Properties
+(field_declaration
+  declarator: (variable_declarator
+    name: (identifier) @outline.value))
+
 ; Functions
 (method_declaration
   name: (identifier) @outline.function
