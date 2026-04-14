@@ -55,22 +55,13 @@ extension TreeSitterSyntax {
             case .python:
                 .init(ignoredDepthNodeTypes: ["decorated_definition"])
             case .php:
-                .init(ignoredDepthNodeTypes: [
-                    "formal_parameters",
-                    "property_element",
-                    "property_promotion_parameter",
-                ])
+                .init(ignoredDepthNodeTypes: ["property_element"])
             case .sql:
                 .init(normalization: .init(flattenLevels: true))
             case .swift:
                 .init(normalization: .init(sectionMarkerKinds: [.separator, .mark], adjustSectionMarkerDepth: true))
             case .typeScript:
-                .init(ignoredDepthNodeTypes: [
-                    "ambient_declaration",
-                    "formal_parameters",
-                    "required_parameter",
-                    "optional_parameter",
-                ])
+                .init(ignoredDepthNodeTypes: ["ambient_declaration"])
             default:
                 .init()
         }
