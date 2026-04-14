@@ -75,7 +75,7 @@ private extension Syntax.Outline.Kind {
         
         switch self {
             case .container: .resource(.cubeSquareFill)
-            case .value: .system("v.square.fill")
+            case .value: .system("dot.square.fill")
             case .function: .resource(.fCursiveSquareFill)
             case .title: .system("tag.square.fill")
             case .heading(nil): .resource(.listBulletSquareFill)
