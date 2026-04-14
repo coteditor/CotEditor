@@ -84,6 +84,41 @@ struct TreeSitterKotlinOutlineTests {
     }
     
     
+    @Test func outlineNestsCompanionObjectMembersUnderClass() async throws {
+
+        let source = #"""
+            class Service(val name: String) {
+                companion object {
+                    val DEFAULT_NAME = "default"
+                    fun create(): Service = Service(DEFAULT_NAME)
+                }
+
+                val version: String = "1.0"
+
+                fun process(items: List<Int>): String {
+                    return items.toString()
+                }
+
+                val tag: String = "svc"
+            }
+
+            fun topLevel(): Int = 0
+        """#
+        let outline = try await self.parseOutline(in: source)
+
+        #expect(outline.map(\.title) == [
+            "Service",
+            "DEFAULT_NAME",
+            "create()",
+            "version",
+            "process(items: List<Int>)",
+            "tag",
+            "topLevel()",
+        ])
+        #expect(outline.map(\.indent.level) == [0, 1, 1, 1, 1, 1, 0])
+    }
+
+
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {
