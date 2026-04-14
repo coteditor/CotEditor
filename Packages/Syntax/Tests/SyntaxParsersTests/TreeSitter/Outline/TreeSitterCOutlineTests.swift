@@ -62,17 +62,38 @@ struct TreeSitterCOutlineTests {
         
         #expect(outline.map(\.title) == [
             "User",
+            "id",
             "add(int a, int b)",
             "find_name(int id)",
             "alloc_names(size_t count)",
             "print_user(const User *user, ...)",
         ])
-        #expect(outline.map(\.kind) == [.container, .function, .function, .function, .function])
-        #expect(outline.map(\.indent.level) == [0, 0, 0, 0, 0])
-        #expect(nsSource.substring(with: outline[1].range) == "add(int a, int b)")
-        #expect(nsSource.substring(with: outline[2].range) == "find_name(int id)")
-        #expect(nsSource.substring(with: outline[3].range) == "alloc_names(size_t count)")
-        #expect(nsSource.substring(with: outline[4].range) == "print_user(const User *user, ...)")
+        #expect(outline.map(\.kind) == [.container, .value, .function, .function, .function, .function])
+        #expect(outline.map(\.indent.level) == [0, 1, 0, 0, 0, 0])
+        #expect(nsSource.substring(with: outline[2].range) == "add(int a, int b)")
+        #expect(nsSource.substring(with: outline[3].range) == "find_name(int id)")
+        #expect(nsSource.substring(with: outline[4].range) == "alloc_names(size_t count)")
+        #expect(nsSource.substring(with: outline[5].range) == "print_user(const User *user, ...)")
+    }
+    
+    
+    @Test func outlineFlattensPointerAndArrayFields() async throws {
+        
+        let source = #"""
+            struct Box {
+                int flag;
+                const char *label;
+                int values[4];
+                char **names;
+                int *pointers[4];
+            };
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["Box", "flag", "label", "values", "names", "pointers"])
+        #expect(outline.map(\.kind) == [.container, .value, .value, .value, .value, .value])
+        #expect(outline.map(\.indent.level) == [0, 1, 1, 1, 1, 1])
     }
     
     

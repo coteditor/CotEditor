@@ -34,9 +34,15 @@ extension TreeSitterSyntax {
     var outlinePolicy: OutlinePolicy {
         
         switch self {
+            case .c:
+                .init(ignoredDepthNodeTypes: [
+                    "pointer_declarator",
+                    "array_declarator",
+                ])
             case .cpp:
                 .init(ignoredDepthNodeTypes: [
                     "template_declaration",
+                    "function_declarator",
                     "pointer_declarator",
                     "reference_declarator",
                     "array_declarator",
