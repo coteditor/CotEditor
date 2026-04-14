@@ -12,7 +12,7 @@
 
 - Improve word selection and related editing actions to treat commas as word delimiters.
 - [trivial] Improve stability when handling file change conflicts.
-- [beta] Update outline extraction algorithms for C# and JavaScript.
+- [beta] Update outline extraction algorithms for C, C#, C++, and JavaScript.
 - [beta][trivial] Update the document icon for the CotEditor Syntax document.
 
 
