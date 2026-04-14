@@ -86,6 +86,48 @@ struct TreeSitterJavaOutlineTests {
     }
     
     
+    @Test func outlineKeepsFieldsFlatAroundMethods() async throws {
+        
+        let source = #"""
+            public final class Service {
+                private final String host = "example.com";
+                
+                public Service(String name) {
+                }
+                
+                private static String join(String delimiter, String... parts) {
+                    return String.join(delimiter, parts);
+                }
+                
+                private final int port = 8080;
+            }
+        """#
+        let nsSource = source as NSString
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "Service",
+            "host",
+            "Service(String name)",
+            "join(String delimiter, String... parts)",
+            "port",
+        ])
+        #expect(outline.map(\.kind) == [
+            .container,
+            .value,
+            .function,
+            .function,
+            .value,
+        ])
+        #expect(outline.map(\.indent.level) == [0, 1, 1, 1, 1])
+        #expect(nsSource.substring(with: outline[1].range) == "host")
+        #expect(nsSource.substring(with: outline[2].range) == "Service(String name)")
+        #expect(nsSource.substring(with: outline[3].range) == "join(String delimiter, String... parts)")
+        #expect(nsSource.substring(with: outline[4].range) == "port")
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {

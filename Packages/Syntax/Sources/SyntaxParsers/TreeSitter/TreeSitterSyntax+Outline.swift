@@ -36,6 +36,8 @@ extension TreeSitterSyntax {
         switch self {
             case .go:
                 .init(ignoredDepthNodeTypes: ["type_spec"])
+            case .java:
+                .init(ignoredDepthNodeTypes: ["variable_declarator"])
             case .lua:
                 .init(ignoredDepthNodeTypes: [
                     "identifier",
