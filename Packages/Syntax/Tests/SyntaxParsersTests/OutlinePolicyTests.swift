@@ -58,7 +58,7 @@ struct OutlinePolicyTests {
         
         let normalizedLevels = OutlinePolicy().normalize(items).map(\.indent.level)
         
-        #expect(normalizedLevels == [0, 1, 2, 0, 0, 0, 1, 0, nil])
+        #expect(normalizedLevels == [0, 1, 2, 1, 0, 0, 1, 0, nil])
     }
     
     

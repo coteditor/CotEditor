@@ -163,10 +163,8 @@ extension [OutlineItem] {
                 while let last = depthStack.last, last > depth {
                     depthStack.removeLast()
                 }
-                if depthStack.isEmpty {
+                if depthStack.last != depth {
                     depthStack.append(depth)
-                } else {
-                    depthStack[depthStack.endIndex - 1] = depth
                 }
             }
         } else {
