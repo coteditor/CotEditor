@@ -77,6 +77,14 @@ class UserRepository extends BaseRepository<User> {
   protected table = "users";
   static readonly defaultRole = "guest" as const;
 
+  constructor(
+    root: string,
+    private readonly maxResults: number = 100,
+    protected verbose?: boolean,
+  ) {
+    super(root);
+  }
+
   override async findById(id: ID): Promise<User | undefined> {
     const user = await super.findById(id);
     return user?.role === "guest" ? { ...user, tags: [...user.tags, "new"] } : user;

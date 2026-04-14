@@ -22,18 +22,6 @@
   name: (identifier) @outline.container)
 
 ; Properties
-(method_definition
-  parameters: (formal_parameters
-    (required_parameter
-      (accessibility_modifier)
-      (identifier) @outline.value)))
-
-(method_definition
-  parameters: (formal_parameters
-    (optional_parameter
-      (accessibility_modifier)
-      (identifier) @outline.value)))
-
 (public_field_definition
   name: (property_identifier) @outline.value)
 

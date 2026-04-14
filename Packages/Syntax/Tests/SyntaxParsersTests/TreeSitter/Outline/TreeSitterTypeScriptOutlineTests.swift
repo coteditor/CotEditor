@@ -75,7 +75,6 @@ struct TreeSitterTypeScriptOutlineTests {
             "fetch<T>(id: string)",
             "UserService",
             "constructor(private readonly baseURL: string)",
-            "baseURL",
             "#load<T>(path: string)",
             "log<T>(value: T, label?: string)",
             "entries<T>(items: readonly T[])",
@@ -88,21 +87,19 @@ struct TreeSitterTypeScriptOutlineTests {
             .function,
             .container,
             .function,
-            .value,
             .function,
             .function,
             .function,
             .function,
         ])
-        #expect(outline.map(\.indent.level) == [0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0])
+        #expect(outline.map(\.indent.level) == [0, 1, 0, 1, 0, 1, 1, 0, 0, 0])
         #expect(nsSource.substring(with: outline[1].range) == "find?<T>(id: string)")
         #expect(nsSource.substring(with: outline[3].range) == "fetch<T>(id: string)")
         #expect(nsSource.substring(with: outline[5].range) == "constructor(private readonly baseURL: string)")
-        #expect(nsSource.substring(with: outline[6].range) == "baseURL")
-        #expect(nsSource.substring(with: outline[7].range) == "#load<T>(path: string)")
-        #expect(nsSource.substring(with: outline[8].range) == "log<T>(value: T, label?: string)")
-        #expect(nsSource.substring(with: outline[9].range) == "entries<T>(items: readonly T[])")
-        #expect(nsSource.substring(with: outline[10].range) == "parse<T>(input: string)")
+        #expect(nsSource.substring(with: outline[6].range) == "#load<T>(path: string)")
+        #expect(nsSource.substring(with: outline[7].range) == "log<T>(value: T, label?: string)")
+        #expect(nsSource.substring(with: outline[8].range) == "entries<T>(items: readonly T[])")
+        #expect(nsSource.substring(with: outline[9].range) == "parse<T>(input: string)")
     }
 
 
@@ -134,8 +131,6 @@ struct TreeSitterTypeScriptOutlineTests {
             "UserService",
             "host",
             "constructor(private readonly baseURL: string, protected cacheKey?: string, timeout: number)",
-            "baseURL",
-            "cacheKey",
         ])
         #expect(outline.map(\.kind) == [
             .container,
@@ -143,19 +138,14 @@ struct TreeSitterTypeScriptOutlineTests {
             .container,
             .value,
             .function,
-            .value,
-            .value,
         ])
-        #expect(outline.map(\.indent.level) == [0, 1, 0, 1, 1, 1, 1])
-        #expect(!outline.map(\.title).contains("timeout"))
+        #expect(outline.map(\.indent.level) == [0, 1, 0, 1, 1])
         #expect(nsSource.substring(with: outline[1].range) == "baseURL")
         #expect(nsSource.substring(with: outline[3].range) == "host")
         #expect(nsSource.substring(with: outline[4].range) == "constructor(\n            private readonly baseURL: string,\n            protected cacheKey?: string,\n            timeout: number,\n        )")
-        #expect(nsSource.substring(with: outline[5].range) == "baseURL")
-        #expect(nsSource.substring(with: outline[6].range) == "cacheKey")
     }
-    
-    
+
+
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {
