@@ -24,7 +24,7 @@
 - Fix an issue where line reordering commands could insert extra blank lines in documents using CRLF line endings.
 - Fix an issue where TSV multiple replace definitions could not import empty replacement strings.
 - [trivial] Fix some typos in localizations and user guides.
-- [beta] Fix the outline extraction algorithms for Java, Kotlin, PHP, and TypeScript.
+- [beta] Fix the outline extraction algorithms for Java, Kotlin, PHP, Python, and TypeScript.
 
 
 

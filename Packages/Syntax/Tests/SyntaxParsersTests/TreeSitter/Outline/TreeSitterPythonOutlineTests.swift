@@ -117,6 +117,41 @@ struct TreeSitterPythonOutlineTests {
     }
     
     
+    @Test func outlineKeepsVariablesFlatAroundMethods() async throws {
+        
+        let source = #"""
+            class Service:
+                def process(self, item: str) -> bool:
+                    return True
+                
+                name: str = "default"
+                
+                def reset(self) -> None:
+                    pass
+                
+                version: int = 1
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "Service",
+            "process(self, item: str)",
+            "name",
+            "reset(self)",
+            "version",
+        ])
+        #expect(outline.map(\.kind) == [
+            .container,
+            .function,
+            .value,
+            .function,
+            .value,
+        ])
+        #expect(outline.map(\.indent.level) == [0, 1, 1, 1, 1])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {

@@ -53,7 +53,10 @@ extension TreeSitterSyntax {
                     "field",
                 ])
             case .python:
-                .init(ignoredDepthNodeTypes: ["decorated_definition"])
+                .init(ignoredDepthNodeTypes: [
+                    "decorated_definition",
+                    "expression_statement",
+                ])
             case .php:
                 .init(ignoredDepthNodeTypes: ["property_element"])
             case .sql:
