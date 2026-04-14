@@ -819,6 +819,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         if let textView = currentEditorViewController.textView {
             NotificationCenter.default.removeObserver(self, name: EditorTextView.DidLiveChangeSelectionMessage.name, object: textView)
+            textView.undoManager?.removeAllActions(withTarget: textView)
         }
         
         // end current editing
