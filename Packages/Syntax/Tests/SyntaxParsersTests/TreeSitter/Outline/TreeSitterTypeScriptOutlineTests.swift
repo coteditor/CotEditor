@@ -144,6 +144,108 @@ struct TreeSitterTypeScriptOutlineTests {
         #expect(nsSource.substring(with: outline[3].range) == "host")
         #expect(nsSource.substring(with: outline[4].range) == "constructor(\n            private readonly baseURL: string,\n            protected cacheKey?: string,\n            timeout: number,\n        )")
     }
+    
+    
+    @Test func outlineIncludesAssignedCallablesAndComputedMethods() async throws {
+        
+        let source = #"""
+            const replacer: (key: string, value: unknown) => unknown = function (key, value) {
+                return value
+            }
+            
+            const asyncTask = async <T>(value: T): Promise<T> => value
+            const identity = value => value
+            
+            class Service {
+                [Symbol.asyncIterator](): AsyncIterator<string> {
+                    throw new Error()
+                }
+            }
+        """#
+        let nsSource = source as NSString
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "replacer",
+            "asyncTask",
+            "identity",
+            "Service",
+            "[Symbol.asyncIterator]()",
+        ])
+        #expect(outline.map(\.kind) == [
+            .function,
+            .function,
+            .function,
+            .container,
+            .function,
+        ])
+        #expect(outline.map(\.indent.level) == [0, 0, 0, 0, 1])
+        #expect(nsSource.substring(with: outline[3].range) == "Service")
+    }
+    
+    
+    @Test func outlineIncludesModulesAndTypeAliases() async throws {
+        
+        let source = #"""
+            const enum Flag {
+                Read = 1
+            }
+            
+            namespace Legacy {
+                export type LegacyID = string
+                
+                export function parse(input: string): string {
+                    return input
+                }
+            }
+            
+            module Compat {
+                export function migrate(): void {
+                }
+            }
+            
+            type ID = string | number | bigint
+            type ReadonlyRecord<K extends PropertyKey, V> = {
+                readonly [P in K]?: V
+            }
+            export type PublicID = ID
+        """#
+        let nsSource = source as NSString
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "Flag",
+            "Legacy",
+            "LegacyID",
+            "parse(input: string)",
+            "Compat",
+            "migrate()",
+            "ID",
+            "ReadonlyRecord",
+            "PublicID",
+        ])
+        #expect(outline.map(\.kind) == [
+            .container,
+            .container,
+            .value,
+            .function,
+            .container,
+            .function,
+            .value,
+            .value,
+            .value,
+        ])
+        #expect(outline.map(\.indent.level) == [0, 0, 1, 1, 0, 1, 0, 0, 0])
+        #expect(nsSource.substring(with: outline[0].range) == "Flag")
+        #expect(nsSource.substring(with: outline[1].range) == "Legacy")
+        #expect(nsSource.substring(with: outline[2].range) == "LegacyID")
+        #expect(nsSource.substring(with: outline[4].range) == "Compat")
+        #expect(nsSource.substring(with: outline[6].range) == "ID")
+        #expect(nsSource.substring(with: outline[7].range) == "ReadonlyRecord")
+        #expect(nsSource.substring(with: outline[8].range) == "PublicID")
+    }
 
 
     // MARK: Private Methods

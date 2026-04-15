@@ -83,7 +83,11 @@ extension TreeSitterSyntax {
             case .swift:
                 .init(normalization: .init(sectionMarkerKinds: [.separator, .mark], adjustSectionMarkerDepth: true))
             case .typeScript:
-                .init(ignoredDepthNodeTypes: ["ambient_declaration"])
+                .init(ignoredDepthNodeTypes: [
+                    "ambient_declaration",
+                    "export_statement",
+                    "variable_declarator",
+                ])
             default:
                 .init()
         }

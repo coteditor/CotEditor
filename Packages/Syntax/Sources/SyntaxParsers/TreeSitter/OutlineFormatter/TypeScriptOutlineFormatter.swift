@@ -34,7 +34,17 @@ enum TypeScriptOutlineFormatter: TreeSitterOutlineFormatting {
     static func title(for match: QueryMatch, capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange)? {
         
         switch capture.kind {
+            case .value:
+                return Self.defaultTitle(capture: capture, source: source)
+            case .container:
+                if let title = Self.moduleTitle(for: match, source: source) {
+                    return title
+                }
+                return Self.defaultTitle(capture: capture, source: source)
             case .function:
+                if Self.isAssignedFunction(match) {
+                    return Self.defaultTitle(capture: capture, source: source)
+                }
                 let range = Self.signatureRange(for: match, nameRange: capture.range)
                 let title = Self.normalizedClause(source.substring(with: range))
                 return (title, range)
@@ -46,6 +56,23 @@ enum TypeScriptOutlineFormatter: TreeSitterOutlineFormatting {
 
 
 private extension TypeScriptOutlineFormatter {
+    
+    /// Returns the display title for a TypeScript module or namespace declaration.
+    ///
+    /// - Parameters:
+    ///   - match: The resolved query match.
+    ///   - source: The source text as `NSString`.
+    /// - Returns: The declaration name and range, or `nil` if the match is not a module-like container.
+    static func moduleTitle(for match: QueryMatch, source: NSString) -> (title: String, range: NSRange)? {
+        
+        guard
+            ["internal_module", "module"].contains(match.outlineNode?.nodeType ?? ""),
+            let nameRange = match.outlineNode?.child(byFieldName: "name")?.range
+        else { return nil }
+        
+        return (source.substring(with: nameRange), nameRange)
+    }
+    
     
     /// Returns the signature range spanning the TypeScript function name through its parameter list.
     ///
@@ -69,6 +96,16 @@ private extension TypeScriptOutlineFormatter {
     private static func typeParametersRange(for match: QueryMatch) -> NSRange? {
         
         match.outlineNode?.parent?.child(byFieldName: "type_parameters")?.range
+    }
+    
+    
+    /// Returns whether the match represents a variable-assigned callable.
+    ///
+    /// - Parameter match: The resolved query match.
+    /// - Returns: `true` when the callable is assigned through a variable declarator.
+    private static func isAssignedFunction(_ match: QueryMatch) -> Bool {
+        
+        match.outlineNode?.parent?.nodeType == "variable_declarator"
     }
     
     

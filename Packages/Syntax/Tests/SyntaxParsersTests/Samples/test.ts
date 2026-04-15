@@ -164,6 +164,10 @@ class Service {
   run(...args: unknown[]): string {
     return `${this.name}:${args.join(",")}`;
   }
+
+  [Symbol.asyncIterator](): AsyncIterator<string> {
+    throw new Error("not implemented");
+  }
 }
 
 function sealed<T extends new (...args: any[]) => object>(ctor: T): T {
