@@ -158,6 +158,52 @@ struct TreeSitterHighlightTests {
     }
     
     
+    @Test func highlightJavaScriptShadowedRequireOnlyAtCallSite() async throws {
+        
+        let source = #"""
+            const load = () => {}
+            const require = load
+            
+            function demo() {
+              return require
+            }
+            
+            require("./demo.js")
+            """#
+        
+        let config = try self.registry.configuration(for: .javaScript)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .javaScript)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        #expect(captures.filter { $0.type == .commands && $0.text == "require" }.count == 1)
+    }
+    
+    
+    @Test func highlightTypeScriptShadowedRequireOnlyAtCallSite() async throws {
+        
+        let source = #"""
+            const load = (path: string): string => path
+            const require = load
+            
+            function demo(require: string): string {
+              return require
+            }
+            
+            require("./demo.ts")
+            """#
+        
+        let config = try self.registry.configuration(for: .typeScript)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .typeScript)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        #expect(captures.filter { $0.type == .commands && $0.text == "require" }.count == 1)
+    }
+    
+    
     @Test func highlightRubyBareMethodCalls() async throws {
         
         let source = #"""

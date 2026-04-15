@@ -91,10 +91,6 @@
   left: (identifier) @commands
   right: [(function_expression) (arrow_function)])
 
-; built-in functions
-((identifier) @commands
- (#eq? @commands "require"))
-
 
 ; MARK: Types
 ; ----------------------------
