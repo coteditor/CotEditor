@@ -1,0 +1,51 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "30 18 * * 0"
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    runs-on: macos-26
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.4.app
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: swift
+          build-mode: manual
+          dependency-caching: true
+
+      - name: Build CotEditor app
+        run: |
+          xcodebuild \
+            -project CotEditor.xcodeproj \
+            -scheme CotEditor \
+            -configuration Debug \
+            ARCH=arm64 \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            -skipPackagePluginValidation \
+            build
+
+      - name: Build Swift packages
+        run: |
+          swift build --package-path Packages/EditorCore --arch arm64
+          swift build --package-path Packages/MacUI --arch arm64
+          swift build --package-path Packages/Syntax --arch arm64
+
+      - name: Analyze
+        uses: github/codeql-action/analyze@v4
