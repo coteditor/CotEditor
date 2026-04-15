@@ -26,6 +26,7 @@ jobs:
         with:
           languages: swift
           build-mode: manual
+          dependency-caching: true
 
       - name: Build CotEditor app
         run: |
@@ -40,7 +41,7 @@ jobs:
             -skipPackagePluginValidation \
             build
 
-      - name: Build standalone Swift packages
+      - name: Build Swift packages
         run: |
           swift build --package-path Packages/EditorCore --arch arm64
           swift build --package-path Packages/MacUI --arch arm64
