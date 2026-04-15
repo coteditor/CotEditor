@@ -1,6 +1,6 @@
 # Change Log
 
-7.0.0-rc (unreleased)
+7.0.0-rc (809)
 --------------------------
 
 ### Compatibility Changes

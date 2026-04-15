@@ -142,7 +142,7 @@ extension Logger {
         }
         
         // migrate syntax definitions to the format in CotEditor 7.0.0 (2026)
-        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion < 801 {
+        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion < 809 {
             do {
                 try SyntaxManager.shared.migrateUserSettings()
             } catch {
