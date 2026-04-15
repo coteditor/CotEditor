@@ -26,7 +26,6 @@ jobs:
         with:
           languages: swift
           build-mode: manual
-          dependency-caching: true
 
       - name: Build CotEditor app
         run: |
