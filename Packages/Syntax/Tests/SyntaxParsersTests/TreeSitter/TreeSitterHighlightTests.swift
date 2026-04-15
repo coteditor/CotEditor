@@ -156,6 +156,30 @@ struct TreeSitterHighlightTests {
         #expect(captures.filter { $0.type == .types && $0.text == "IO" }.count == 2)
         #expect(captures.contains { $0.type == .types && $0.text == "Path" })
     }
+    
+    
+    @Test func highlightRubyBareMethodCalls() async throws {
+        
+        let source = #"""
+            module Demo
+              module_function
+            
+              def helper
+              end
+            
+              helper
+            end
+            """#
+        
+        let config = try self.registry.configuration(for: .ruby)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .ruby)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        #expect(captures.contains { $0.type == .commands && $0.text == "module_function" })
+        #expect(captures.filter { $0.type == .commands && $0.text == "helper" }.count == 2)
+    }
 }
 
 

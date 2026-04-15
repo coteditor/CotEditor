@@ -12,6 +12,7 @@
 
 - Improve word selection and related editing actions to treat commas as word delimiters.
 - [trivial] Improve stability when handling file change conflicts.
+- [beta] Improve syntax highlighting for Ruby.
 - [beta] Update outline extraction algorithms for C, C#, C++, and JavaScript.
 - [beta] Update tree-sitter-c-sharp to 0.23.5.
 - [beta][trivial] Update the document icon for the CotEditor Syntax document.

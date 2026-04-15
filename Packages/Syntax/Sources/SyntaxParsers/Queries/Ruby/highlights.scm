@@ -58,6 +58,9 @@
   method: [(identifier) (constant)] @commands.method)
 (call method: (identifier) @commands.method
   (#any-of? @commands.method "require"))
+; bare method calls and DSL-style sends without parentheses
+(body_statement
+  (identifier) @commands.method)
 
 ; override method-call capture for access modifiers
 ((identifier) @keywords
