@@ -92,6 +92,8 @@ private extension JavaScriptOutlineFormatter {
             .replacing(/\s*,\s*/, with: ", ")
             .trimmingCharacters(in: .whitespacesAndNewlines)
     }
+    
+    
     /// Returns whether the match represents a variable-assigned callable.
     ///
     /// - Parameter match: The resolved query match.
