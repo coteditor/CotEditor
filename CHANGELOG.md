@@ -1,5 +1,14 @@
 # Change Log
 
+7.0.0 (unreleased)
+--------------------------
+
+### Improvements
+
+- [beta] Tweak the user guide.
+
+
+
 7.0.0-rc (809)
 --------------------------
 

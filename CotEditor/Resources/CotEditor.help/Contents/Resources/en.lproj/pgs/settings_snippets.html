@@ -29,7 +29,7 @@
 <tbody>
 	<tr>
 		<th>Command definitions</th>
-		<td><p>Define commands for inserting snippets. These commands appear in the Text &gt; Insert Snippet menu.</p><ul>
+		<td><p>Define commands for inserting snippets. These commands appear in the Text &gt; Insert Snippet menu. Use the Add (+) and Delete (-) buttons below the list to manage definitions.</p><ul>
 			<li><em>Syntax</em>: The snippet is available only in documents using this syntax. If this field is empty (All), the snippet can be used in any document.</li>
 			<li><em>Name</em>: The name of the command as it appears in the menu.</li>
 			<li><em>Key</em>: A keyboard shortcut to insert this snippet. A shortcut is optional and can be left blank.</li>
@@ -54,7 +54,7 @@
 <tbody>
 	<tr>
 		<th>File drop definitions</th>
-		<td><p>Define how File Drop inserts text when files are dropped into the editor. When files are dropped into the editor and the defined conditions are met, CotEditor inserts the corresponding text at the drop location.</p><ul>
+		<td><p>Define how File Drop inserts text when files are dropped into the editor. When files are dropped into the editor and the defined conditions are met, CotEditor inserts the corresponding text at the drop location. Use the Add (+) and Delete (-) buttons below the list to manage definitions.</p><ul>
 			<li><em>Syntax</em>: The rule applies only when a file is dropped into a document using this syntax. Leave this field empty (All) to apply the rule to all documents.</li>
 			<li><em>Extensions</em>: The rule applies only to files with the listed extensions. Leave this field empty (All) to apply the rule to all files. Enter extensions without a leading period, separated by commas.</li>
 			<li><em>Description</em>: Optional field for leaving a note about the rule. This field doesn’t affect File Drop behavior.</li>
@@ -66,6 +66,11 @@
 		<td><p>Set the text to insert when the selected File Drop rule is applied.</p>
 			<p>You can use variables in the insertion format. These variables are replaced with information from the dropped file. See <a href="about_filedrop.html">Create insertion formats for File Drop</a> for details about each variable.</p>
 		</td>
+	</tr>
+
+	<tr>
+		<th>Restore Defaults</th>
+		<td><p>Restore the File Drop definitions list to its default settings.</p></td>
 	</tr>
 </tbody>
 </table>

@@ -24,22 +24,22 @@
 
 <ol>
 	<li>
+		<p><em>Filename</em>:</p>
+		<p>CotEditor first tries to determine the syntax from the entire filename. Case is generally ignored; however, case-matching filenames are prioritized when multiple syntaxes are found.</p>
+		<ul>
+			<li><p>.htaccess → Apache</p></li>
+			<li><p>Makefile → Makefile</p></li>
+		</ul>
+	</li>
+
+	<li>
 		<p><em>File extension</em>:</p>
-		<p>CotEditor first tries to determine the syntax from the file extension. Case is generally ignored; however, case-matching extensions are prioritized when multiple syntaxes are found.</p>
+		<p>If no syntax is found from the filename, CotEditor then tries to determine the syntax from the file extension. Case is generally ignored; however, case-matching extensions are prioritized when multiple syntaxes are found.</p>
 		<p>For example:</p>
 		<ul>
 			<li><p>.html → HTML</p></li>
 			<li><p>.hTmL → HTML</p></li>
 			<li><p>.py → Python</p></li>
-		</ul>
-	</li>
-	
-	<li>
-		<p><em>Filename</em>:</p>
-		<p>If no syntax is defined for the file extension, or if the filename doesn’t have an extension, CotEditor then tries to determine the syntax from the entire filename.</p>
-		<ul>
-			<li><p>.htaccess → Apache</p></li>
-			<li><p>makefile → Makefile</p></li>
 		</ul>
 	</li>
 	
@@ -69,7 +69,7 @@
 	</li>
 </ol>
 
-<p>If multiple syntaxes match at the same level, custom syntaxes take precedence over built-in syntaxes. If multiple matches still remain, CotEditor uses the first matching syntax.</p>
+<p>If multiple syntaxes match at the same level, custom syntaxes take precedence over built-in syntaxes. If multiple matches still remain, CotEditor uses the syntax that appears first at that priority.</p>
 
 
 <section>
@@ -82,7 +82,7 @@
 <section>
 <h2>Solve file mapping conflicts</h2>
 
-<p>There are no conflicts among the built-in syntaxes. However, if you add custom syntaxes or modify built-in syntaxes, file mappings can conflict. You can check for mapping conflicts by choosing Show File Mapping Conflict from the Action pop-up menu in the available syntaxes list in Format settings. If the menu item is dimmed, there are no conflicts.</p>
+<p>There are no conflicts among the built-in syntaxes. However, if you add custom syntaxes or modify built-in syntaxes, file mappings can conflict. You can check for mapping conflicts by choosing Show File Mapping Conflicts from the Action pop-up menu in the available syntaxes list in Format settings. If the menu item is dimmed, there are no conflicts.</p>
 
 <p>You can leave file mapping conflicts unresolved as long as documents open with the expected syntax. This doesn’t cause any issues.</p>
 </section>

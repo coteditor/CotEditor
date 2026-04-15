@@ -53,7 +53,7 @@
 
 	<tr>
 		<th>Available syntaxes</th>
-		<td><p>The list of all available syntaxes. A dot before the syntax name indicates that the syntax has been customized. See <a href="syntax_definition.html">Define a syntax</a> for editing syntax definitions.</p>
+		<td><p>The list of all available syntaxes, including both built-in syntaxes and custom syntaxes you added. A dot before the syntax name indicates that the syntax has been customized. See <a href="syntax_definition.html">Define a syntax</a> for editing syntax definitions.</p>
 
 		<ul>
 			<li><p><em>Add +:</em> Create a new syntax.</p></li>
@@ -62,22 +62,13 @@
 
 			<li><p><em>Edit (pencil icon):</em> Edit the selected syntax.</p></li>
 
-			<li><p><em>Action pop-up menu <object type="image/svg+xml" class="symbol" data="../../Shared/gfx/ellipsis.circle.svg">with the ellipsis symbol</object>:</em></p>
-			<ul>
-				<li><em>Duplicate</em>:
-				Duplicate the selected syntax to create your own version.</li>
-
-				<li><em>Export</em>:
-				Export a syntax definition file created from the selected syntax. You can use this exported file to use it on another computer. To use an exported file, choose Import.</li>
-
-				<li><em>Share</em>:
-				Share the syntax definition file created from the selected syntax.</li>
-
-				<li><em>Import</em>:
-				Import a syntax created on another  computer. After choosing Import, select the syntax file you want to add.</li>
-
-				<li><em>Show File Mapping Conflicts</em>:
-				Check whether multiple syntaxes are associated with the same extension or filename. This command is unavailable when no conflicts exist.</li>
+			<li><p><em>Action pop-up menu <object type="image/svg+xml" class="symbol" data="../../Shared/gfx/ellipsis.circle.svg">with the ellipsis symbol</object>:</em></p><ul>
+				<li><p><em>Duplicate</em>: Duplicate the selected syntax to create your own version.</p></li>
+				<li><p><em>Restore</em>: Remove customizations from the selected built-in syntax and restore its original definition.</p></li>
+				<li><p><em>Export</em>: Export a custom syntax, or a built-in syntax you have customized, to a file. With exported files, custom syntaxes can be used on another computer. To use an exported file, choose Import.</p></li>
+				<li><p><em>Share</em>: Share a custom syntax, or a built-in syntax you have customized.</p></li>
+				<li><p><em>Import</em>: Import a syntax created on another computer. After choosing Import, select the syntax file you want to add.</p></li>
+				<li><p><em>Show File Mapping Conflicts</em>: Check whether multiple syntaxes are associated with the same extension or filename. This command is unavailable when no conflicts exist.</p></li>
 			</ul></li>
 		</ul></td>
 	</tr>
