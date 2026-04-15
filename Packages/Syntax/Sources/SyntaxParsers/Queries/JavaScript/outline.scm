@@ -29,9 +29,46 @@
   parameters: (formal_parameters) @outline.signature.parameters)
 
 (method_definition
-  name: (property_identifier) @outline.function
+  name: (_) @outline.function
   parameters: (formal_parameters) @outline.signature.parameters)
 
-(method_definition
-  name: (private_property_identifier) @outline.function
-  parameters: (formal_parameters) @outline.signature.parameters)
+; Top-level assigned callables
+(program
+  [
+    (lexical_declaration
+      (variable_declarator
+        name: (identifier) @outline.function
+        value: [
+          (arrow_function)
+          (function_expression)
+          (generator_function)
+        ]))
+    (variable_declaration
+      (variable_declarator
+        name: (identifier) @outline.function
+        value: [
+          (arrow_function)
+          (function_expression)
+          (generator_function)
+        ]))
+  ])
+
+(export_statement
+  declaration: [
+    (lexical_declaration
+      (variable_declarator
+        name: (identifier) @outline.function
+        value: [
+          (arrow_function)
+          (function_expression)
+          (generator_function)
+        ]))
+    (variable_declaration
+      (variable_declarator
+        name: (identifier) @outline.function
+        value: [
+          (arrow_function)
+          (function_expression)
+          (generator_function)
+        ]))
+  ])

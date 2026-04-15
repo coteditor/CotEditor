@@ -52,6 +52,11 @@ extension TreeSitterSyntax {
                 .init(ignoredDepthNodeTypes: ["type_spec"])
             case .java:
                 .init(ignoredDepthNodeTypes: ["variable_declarator"])
+            case .javaScript:
+                .init(ignoredDepthNodeTypes: [
+                    "export_statement",
+                    "variable_declarator",
+                ])
             case .kotlin:
                 .init(ignoredDepthNodeTypes: ["variable_declaration"])
             case .lua:

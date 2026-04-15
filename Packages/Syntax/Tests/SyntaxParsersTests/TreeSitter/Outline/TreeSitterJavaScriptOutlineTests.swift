@@ -89,6 +89,59 @@ struct TreeSitterJavaScriptOutlineTests {
     }
     
     
+    @Test func outlineIncludesAssignedFunctionsAndComputedMethods() async throws {
+        
+        let source = #"""
+            const TAG = Symbol("tag")
+            
+            class User {
+              [TAG]() {
+                return "user"
+              }
+            }
+            
+            class Collection {
+              *[Symbol.iterator]() {
+                yield 1
+              }
+            }
+            
+            const summarize = (users) => users.length
+            var delay = ms => Promise.resolve(ms)
+            const clone = function (value) {
+              return value
+            }
+            const entries = function* (items) {
+              yield* items
+            }
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "User",
+            "[TAG]()",
+            "Collection",
+            "[Symbol.iterator]()",
+            "summarize",
+            "delay",
+            "clone",
+            "entries",
+        ])
+        #expect(outline.map(\.kind) == [
+            .container,
+            .function,
+            .container,
+            .function,
+            .function,
+            .function,
+            .function,
+            .function,
+        ])
+        #expect(outline.map(\.indent.level) == [0, 1, 0, 1, 0, 0, 0, 0])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {

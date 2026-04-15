@@ -35,6 +35,9 @@ enum JavaScriptOutlineFormatter: TreeSitterOutlineFormatting {
         
         switch capture.kind {
             case .function:
+                if Self.isAssignedFunction(match) {
+                    return Self.defaultTitle(capture: capture, source: source)
+                }
                 return (title: Self.functionTitle(for: match, title: source.substring(with: capture.range), source: source),
                         range: Self.signatureRange(for: match, nameRange: capture.range))
             default:
@@ -88,5 +91,13 @@ private extension JavaScriptOutlineFormatter {
             .replacing(/\s+\)/, with: ")")
             .replacing(/\s*,\s*/, with: ", ")
             .trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    /// Returns whether the match represents a variable-assigned callable.
+    ///
+    /// - Parameter match: The resolved query match.
+    /// - Returns: `true` when the callable is assigned through a variable declarator.
+    private static func isAssignedFunction(_ match: QueryMatch) -> Bool {
+        
+        match.outlineNode?.parent?.nodeType == "variable_declarator"
     }
 }
