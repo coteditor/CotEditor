@@ -42,6 +42,7 @@ extension TreeSitterSyntax {
             case .cpp:
                 .init(ignoredDepthNodeTypes: [
                     "template_declaration",
+                    "field_declaration",
                     "function_declarator",
                     "pointer_declarator",
                     "reference_declarator",
