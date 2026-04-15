@@ -1,6 +1,6 @@
 # CotEditor
 
-CotEditor is a lightweight plain-text editor designed for macOS. The project aims to provide a general plain-text editor for everyone with an intuitive macOS-native user interface.
+CotEditor is a lightweight plain text editor designed for macOS. The project aims to provide a general plain text editor for everyone with an intuitive macOS-native user interface.
 
 - __Requirement__: macOS Sequoia 15 or later
 - __Web Site__: <https://coteditor.com>
@@ -24,7 +24,7 @@ Its design emphasizes the following principles:
 - __Less is more.__
   CotEditor avoids unnecessary complexity, as minor options accumulate and ultimately place unnecessary decision-making burdens on users.
 
-- __Handle a wide range of plain-text formats accurately.__
+- __Handle a wide range of plain text formats accurately.__
   From everyday notes to niche or legacy formats, CotEditor prioritizes correct text handling, encoding support, and predictable editing behavior.
 
 - __Respect a diverse user base through localization and accessibility.__
