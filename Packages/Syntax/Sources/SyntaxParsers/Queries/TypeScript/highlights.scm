@@ -9,6 +9,7 @@
 ;
 
 ; set defaults at first
+(identifier) @variables
 (property_identifier) @attributes
 
 

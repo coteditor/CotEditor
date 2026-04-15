@@ -204,6 +204,31 @@ struct TreeSitterHighlightTests {
     }
     
     
+    @Test func highlightTypeScriptOrdinaryVariables() async throws {
+        
+        let source = #"""
+            type User = { name: string }
+            
+            function greet(user: User) {
+              let message = user.name
+              const items = [message]
+              return items
+            }
+            """#
+        
+        let config = try self.registry.configuration(for: .typeScript)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .typeScript)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        #expect(captures.contains { $0.type == .variables && $0.text == "message" })
+        #expect(captures.contains { $0.type == .variables && $0.text == "items" })
+        #expect(captures.contains { $0.type == .variables && $0.text == "user" })
+        #expect(captures.contains { $0.type == .types && $0.text == "User" })
+    }
+    
+    
     @Test func highlightRubyBareMethodCalls() async throws {
         
         let source = #"""
