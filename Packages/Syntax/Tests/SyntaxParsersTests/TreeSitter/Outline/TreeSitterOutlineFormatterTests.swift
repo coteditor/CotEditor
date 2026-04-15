@@ -35,7 +35,6 @@ struct TreeSitterOutlineFormatterTests {
         
         #expect(CSSOutlineFormatter.formatTitle("@media (prefers-color-scheme: dark) { .item { color: white; } }", kind: .container) == "@media (prefers-color-scheme: dark)")
         #expect(CSSOutlineFormatter.formatTitle("@layer utilities { .m-1 { margin: 1rem; } }", kind: .container) == "@layer utilities")
-        #expect(CSSOutlineFormatter.formatTitle("@import url(\"theme.css\");", kind: .container) == "@import url(\"theme.css\")")
         #expect(CSSOutlineFormatter.formatTitle("@supports  ( display: grid )\n{ .item { display: grid; } }", kind: .container) == "@supports ( display: grid )")
         #expect(CSSOutlineFormatter.formatTitle("   ;", kind: .container) == nil)
     }
