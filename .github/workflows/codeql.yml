@@ -26,6 +26,13 @@ jobs:
         with:
           languages: swift
           build-mode: manual
+          dependency-caching: true
+
+      - name: Build Swift packages
+        run: |
+          swift build --package-path Packages/EditorCore --arch arm64
+          swift build --package-path Packages/MacUI --arch arm64
+          swift build --package-path Packages/Syntax --arch arm64
 
       - name: Build CotEditor app
         run: |
@@ -39,12 +46,6 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             -skipPackagePluginValidation \
             build
-
-      - name: Build Swift packages
-        run: |
-          swift build --package-path Packages/EditorCore --arch arm64
-          swift build --package-path Packages/MacUI --arch arm64
-          swift build --package-path Packages/Syntax --arch arm64
 
       - name: Analyze
         uses: github/codeql-action/analyze@v4
