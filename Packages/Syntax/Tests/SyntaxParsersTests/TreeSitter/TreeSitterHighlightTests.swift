@@ -44,7 +44,7 @@ struct TreeSitterHighlightTests {
                 
                 guard #available(macOS 26, *) else { return }
                 
-                let item = Registry.items.first { $0.name = "with \(string)" }
+                let item = Registry.items.first { $0.name == "with \(string)" }
                 
                 return try self.storage.replace(item, in: range)
             }
@@ -80,7 +80,7 @@ struct TreeSitterHighlightTests {
                 
                 guard #available(macOS 26, *) else { return }
                 
-                let item = Registry.items.first { $0.name = "with \(string)" }
+                let item = Registry.items.first { $0.name == "with \(string)" }
                 
                 return try self.storage.replace(item, in: range)
             }
