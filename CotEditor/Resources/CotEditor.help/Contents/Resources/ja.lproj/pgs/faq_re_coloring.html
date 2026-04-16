@@ -7,23 +7,26 @@
 	<link rel="stylesheet" href="../../Shared/sty/standard.css">
 	<script defer src="../../Shared/js/toc.js"></script>
 	
-	<title>MacのCotEditorでカラーリングがおかしくなった場合</title>
+	<title>MacのCotEditorでシンタックスハイライトがおかしくなった場合</title>
 </head>
 
 <body>
 
 <h1>MacのCotEditorでシンタックスハイライトがおかしくなった場合</h1>
 
-<p>シンタックスハイライトがおかしくなったときは、次の手順を試してみてください。</p>
+<p>シンタックスハイライトの表示がおかしいときは、まず次の手順を試してください。</p>
 <ol>
 	<li><p>MacのCotEditorアプリ<img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt="">で、「フォーマット」＞「シンタックス解析をリセット」と選択します。</p></li>
 </ol>
+
 <p>解決しないときは、次のような原因が考えられます。</p>
 <ul>
-	<li><p>テキストの記述に不備がある（プログラム言語の場合、文法が間違っているなど）。</p></li>
+	<li><p>テキストの記述に問題がある。たとえば、プログラム言語で文法が崩れている。</p></li>
 	<li><p>シンタックス定義に不具合がある。</p></li>
-	<li><p>CotEditorのシンタックスハイライト抽出アルゴリズムでは正しくハイライト箇所の同定ができない。</p></li>
+	<li><p>CotEditorのシンタックス解析アルゴリズムでは、その箇所を正しく判定できない。</p></li>
 </ul>
+
+<p>テキストの文法が正しいにもかかわらず期待どおりにハイライトされない場合は、開発チームへ報告してください。問い合わせ方法については、<a href="faq_not_find_solution.html">解決方法が見つからない場合</a>を参照してください。</p>
 
 
 <section id="cf">
