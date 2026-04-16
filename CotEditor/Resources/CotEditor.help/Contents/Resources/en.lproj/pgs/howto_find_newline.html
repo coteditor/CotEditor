@@ -24,12 +24,12 @@
 
 <h3>Textual search</h3>
 
-<p>On the normal textual search, the line endings contained in the search text are assumed to be the line ending code used in the document being searched for. That is, it doesn’t match the line endings that differ from the document line ending type.</p>
+<p>In normal textual search, line endings typed into the search field are treated as the current line ending of the document being searched. They therefore don’t match line endings in the document that use a different line ending character.</p>
 
 
 <h3>Regular expression search</h3>
 
-<p>As with the textual search, the line endings contained in the search text are assumed to be the line ending code used in the document being searched for. On the other hand, the line endings specified as a metacharacter or a Unicode code point in the regular expression pattern are treated as-is regardless of the line endings type of the target document.</p>
+<p>As in textual search, regular newline characters typed directly into the pattern are treated as the current line ending of the document being searched. By contrast, line endings specified with metacharacters or Unicode code points in the regular expression pattern are interpreted exactly as written, regardless of the document’s line ending type.</p>
 
 <p>The following metacharacters indicate a line ending in regular expression patterns:</p>
 <table>
@@ -49,7 +49,7 @@
 <section>
 <h2>Replace with line endings</h2>
 
-<p>As for the text replacing with, all line endings, even ones defined as a metacharacter like<code>\n</code> or captured, are assumed to be the document line ending.</p>
+<p>In replacement text, every line ending inserted by the replacement is normalized to the document’s line ending, even when it comes from a metacharacter such as <code>\n</code> or from captured text.</p>
 
 <p>For example, when replacing the find text “dog\Rcow” with the replacement text “$0\r” using regular expressions in a document whose line ending type is LF (<code>\n</code>), the text “dog<span class="invisible">\r\n</span>cow” in the document also matches. Theoretically, the regular expression would replace it with “dog<span class="invisible">\r\n</span>cow<span class="invisible">\r</span>”. However, CotEditor actually replaces it with “dog<span class="invisible">\n</span>cow<span class="invisible">\n</span>”.</p>
 

@@ -14,14 +14,14 @@
 
 <h1>Paste text in CotEditor on Mac</h1>
 
-<p>You can paste the text in the clipboard to the insertion points in the current editor by choosing Edit &gt; Paste or pressing <kbd>Command</kbd>-<kbd>V</kbd>.</p>
-<p>When the text is pasted, CotEditor implicitly converts the line endings in the text to paste to the line endings in the document to be pasted so that you don’t need to care about the difference in the line endings types.</p>
+<p>You can paste text from the clipboard into the current editor by choosing Edit &gt; Paste or pressing <kbd>Command</kbd>-<kbd>V</kbd>.</p>
+<p>When pasting, CotEditor automatically normalizes the line endings in the pasted text to match the current document’s line endings so that you don’t need to care about the difference in the line endings types.</p>
 
 
 <section>
 <h2>Paste exactly</h2>
 
-<p>In contrast to the normal Paste, the Paste Exactly command inserts the text data in the Clipboard to the insertion point without any implicit normalization.</p>
+<p>Unlike the normal Paste command, Paste Exactly inserts the text from the clipboard without any implicit normalization.</p>
 
 <ol>
 	<li><p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac, open a document.</p></li>
@@ -31,7 +31,7 @@
 	</ul></li>
 </ol>
 
-<p><em class="note">Note:</em> The Paste Exactly command can make the line endings in the document inconsistent.</p>
+<p><em class="note">Note:</em> Paste Exactly can introduce inconsistent line endings into the document.</p>
 </section>
 
 </body>
