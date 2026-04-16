@@ -15,27 +15,27 @@
 
 <h1>MacのCotEditorで<code>cot</code>コマンドと連携する</h1>
 
-<p>CotEditorにはコマンドラインからの操作を可能にする<code>cot</code>コマンドラインツールがあります。<code>cot</code>コマンドを使うためには、まずコマンドをインストールしてください。</p>
+<p>CotEditorには、コマンドラインから書類を開いたり、標準入力からテキストを受け取ったりできる<code>cot</code>コマンドラインツールがあります。<code>cot</code>コマンドを使うには、まずコマンドをインストールしてください。</p>
 
 
 <section>
 <h2><code>cot</code>コマンドをインストールする</h2>
 
-<p><code>cot</code>コマンドはCotEditor.app内の<code>Contents/SharedSupport/bin/cot</code>に内蔵されています。</p>
-<p>Terminalからシンボリックリンクを作成して、任意の場所にコマンドをインストールできます。特にこだわりがない場合は<code>/usr/local/bin/</code>にシンボリックリンクを作成することをお勧めします。</p>
+<p><code>cot</code>コマンドはCotEditor.app内の<code>Contents/SharedSupport/bin/cot</code>に同梱されています。</p>
+<p>ターミナルでシンボリックリンクを作成すると、<code>PATH</code>が通っている任意の場所にインストールできます。特にこだわりがない場合は、<code>/usr/local/bin/</code>にシンボリックリンクを作成するのがお勧めです。</p>
 
-<p>推奨する場所にシンボリックリンクを作成するには、Terminalで以下のコマンドを実行します。</p>
-<pre class="shell"><code>mkdir /usr/local/bin/
+<p>推奨する場所にシンボリックリンクを作成するには、ターミナルで以下のコマンドを実行します。</p>
+<pre class="shell"><code>mkdir -p /usr/local/bin/
 ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
 
 
 <h3>セキュリティ認証</h3>
-<p>macOSで別のアプリから<code>cot</code>コマンドでCotEditorを操作するために、ユーザによる認証が必要です。この認証は通常<code>cot</code>コマンドを初めて使用したときに表示されるダイアログから行えますが、なんらかの理由でそれがされなかった場合は、手動での設定が必要です。「システム設定」＞「プライバシーとセキュリティー」＞「オートメーション」で、ターミナルなど利用するクライアントの下にある「CotEditor」のチェックボックスを有効にします。さらに、<code>--wait</code>オプションのためには「System Events」も有効にします。</p>
+<p>macOSで別のアプリから<code>cot</code>コマンド経由でCotEditorを操作するには、ユーザの認証が必要です。この認証は通常、<code>cot</code>コマンドを初めて使ったときのダイアログから行えます。認証されなかった場合は、「システム設定」＞「プライバシーとセキュリティ」＞「プライバシー」＞「オートメーション」で、ターミナルなど利用するクライアントアプリの下にある「CotEditor」を有効にしてください。さらに、<code>--wait</code>オプションを使うときは「System Events」も有効にします。</p>
 
 
 <h3>Python 3のインストール</h3>
-<p>cotコマンドはPython 3で実装されています。PythonはmacOS 12.3からシステムには同梱されなくなったため、cotコマンドを使うには自身で<code>python3</code>をインストールする必要があります。</p>
-<p>Appleが提供する開発ツールには<code>python3</code>が同梱されています。下記のコマンドをTerminalで実行するとAppleのコマンドラインデベロッパツールをインストールできます。もちろん他の方法で<code>python3</code>をインストールしてもかまいません。</p>
+<p><code>cot</code>コマンドはPython 3で実装されています。macOS 12.3以降ではPythonが標準では付属しないため、<code>cot</code>コマンドを使うには<code>python3</code>コマンドを自身で用意する必要があります。</p>
+<p>Appleが提供するコマンドラインデベロッパツールには<code>python3</code>が含まれます。下記のコマンドをターミナルで実行するとインストールできます。もちろん、ほかの方法で<code>python3</code>をインストールしてもかまいません。</p>
 
 <pre class="shell"><code>xcode-select --install</code></pre>
 </section>
@@ -44,7 +44,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <section>
 <h2><code>cot</code>コマンドをアンインストールする</h2>
 
-<p>上記推奨場所にインストールした<code>cot</code>コマンドをアンインストールするときは、Terminalで以下のコマンドを実行します。</p>
+<p>上記推奨場所にインストールした<code>cot</code>コマンドをアンインストールするときは、ターミナルで以下のコマンドを実行します。</p>
 <pre class="shell"><code>unlink /usr/local/bin/cot</code></pre>
 </section>
 
@@ -69,7 +69,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 		</tr>
 		<tr>
 			<th><code>-n</code>, <code>--new</code></th>
-			<td><p>空の新規書類を開きます。</p></td>
+			<td><p>空の新規書類を開きます。存在しないファイルを指定した場合は、新規作成して開きます。</p></td>
 		</tr>
 		<tr>
 			<th><code>-s</code>, <code>--syntax</code></th>
@@ -88,8 +88,8 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 			<td><p><code><var>FILE</var></code>にある書類を開き、<code><var>LINE</var></code>と<code><var>COLUMN</var></code>で指定した箇所に移動します（<code>--line</code>と<code>--column</code>オプションのシンタックスシュガー）。</p></td>
 		</tr>
 		<tr>
-			<th><code>-b</code>, <code>--background</code></th>
-			<td><p>CotEditorをバックグラウンドで開きます。</p></td>
+			<th><code>-g</code>, <code>--background</code></th>
+			<td><p>CotEditorを前面に出さずに開きます。</p></td>
 		</tr>
 		<tr>
 			<th><code>-h</code>, <code>--help</code></th>
@@ -113,7 +113,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 <pre class="shell"><code>cot</code></pre>
 
-<p>以下のコマンドは、foo.txtファイルをCotEditorで開き、200行目に挿入ポイントを移動します。もしfoo.txtファイルが存在しないときは、<code>cot</code>コマンドは何も行いません。</p>
+<p>以下のコマンドは、foo.txtファイルをCotEditorで開き、200行目に挿入ポイントを移動します。foo.txtファイルが存在しないときは、<code>cot</code>コマンドはエラーを返します。</p>
 
 <pre class="shell"><code>cot --line 200 foo.txt</code></pre>
 

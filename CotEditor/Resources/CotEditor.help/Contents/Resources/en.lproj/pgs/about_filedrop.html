@@ -14,8 +14,9 @@
 
 <h1>Create insertion formats for File Drop in CotEditor on Mac</h1>
 
-<p>By using variables in File Drop insertion formats, you can insert text that reflects information about the dropped file.</p>
+<p>You can edit File Drop insertion formats in the File Drop tab of Snippets settings. By using variables in an insertion format, you can insert text that reflects information about the dropped file.</p>
 
+<p>File Drop settings are checked from top to bottom, and the first item whose syntax and extension conditions match is used. An item with no extensions specified matches all files.</p>
 
 <p>The following variables are available in File Drop insertion formats:</p>
 
@@ -26,14 +27,14 @@
 	</thead>
 	<tbody>
 		<tr><td><code>&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;</code></td><td><p>The absolute path of the dropped file.</p></td></tr>
-		<tr><td><code>&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;</code></td><td><p>The relative path from your document to the dropped file.</p></td></tr>
+		<tr><td><code>&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;</code></td><td><p>The relative path from the current document to the dropped file (If the document has not been saved yet, the absolute path is used instead).</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;FILENAME&gt;&gt;&gt;</code></td><td><p>The name of the dropped file including its extension.</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;</code></td><td><p>The name of the dropped file without its extension.</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;</code></td><td><p>The file extension of the dropped file.</p></td></tr>
-		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;</code></td><td>The file extension of the dropped file in lowercase.</td></tr>
+		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;</code></td><td><p>The file extension of the dropped file in lowercase.</p></td></tr>
 		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;</code></td><td><p>The file extension of the dropped file in uppercase.</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;DIRECTORY&gt;&gt;&gt;</code></td><td><p>The name of the directory containing the dropped file.</p></td></tr>
-		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILECONTENT&gt;&gt;&gt;</code></td><td><p>The text contents of the dropped file (available only when the dropped file is a text file).</p></td></tr>
+		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILECONTENT&gt;&gt;&gt;</code></td><td><p>The text contents of the dropped file (available only when the dropped file is a UTF-8 text file).</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;</code></td><td><p>The width of the image (available only when the dropped file is an image file).</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;</code></td><td><p>The height of the image (available only when the dropped file is an image file).</p></td></tr>
 	</tbody>
@@ -43,7 +44,7 @@
 <section>
 <h2>Create an insertion format</h2>
 
-<p>You can create snippets for different purposes, such as the following examples. The inserted text varies depending on the dropped file.</p>
+<p>You can create insertion formats for different purposes, such as the following examples. These examples assume that the dropped file is in the same folder as the current document.</p>
 
 <p>When a file named “example.html” is dropped:</p>
 

@@ -15,27 +15,27 @@
 
 <h1>Work with cot command in CotEditor on Mac</h1>
 
-<p>CotEditor provides the <code>cot</code> command-line tool, which lets you open documents, receive text through standard input, and control CotEditor directly from the command line. To use the <code>cot</code> command, install it on your computer first.</p>
+<p>CotEditor provides the <code>cot</code> command-line tool, which lets you open documents and receive text through standard input from the command line. To use the <code>cot</code> command, install it on your computer first.</p>
 
 
 <section>
 <h2>Install the <code>cot</code> command</h2>
 
-<p>You can install the <code>cot</code> command-line tool by creating a symbolic link in Terminal. The actual executable is built in CotEditor at <code>Contents/SharedSupport/bin/cot</code>. If you don’t have a preferred location, placing the symbolic link in <code>/usr/local/bin/</code> is recommended.</p>
+<p>The <code>cot</code> command is bundled inside CotEditor at <code>Contents/SharedSupport/bin/cot</code>. You can install it anywhere in your <code>PATH</code> by creating a symbolic link in Terminal. If you don’t have a preferred location, placing the symbolic link in <code>/usr/local/bin/</code> is recommended.</p>
 
 <p>To create the symbolic link at the recommended location, run the following commands in Terminal:</p>
 
-<pre class="shell"><code>mkdir /usr/local/bin/
+<pre class="shell"><code>mkdir -p /usr/local/bin/
 ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
 
 
 <h3>Security authorization</h3>
-<p>macOS requires user authorization when an external app invokes CotEditor through the <code>cot</code> command. Normally, authorization is requested the first time you run the <code>cot</code> command. In some cases, however, you may need to authorize it manually in System Settings &gt; Privacy &amp; Security &gt; Automation. Turn on CotEditor under your client app, such as Terminal. For the <code>--wait</code> option, you may also need to turn on System Events.</p>
+<p>macOS requires your permission when another app controls CotEditor through the <code>cot</code> command. Normally, authorization is requested the first time you run <code>cot</code>. If it isn’t, authorize it manually in System Settings &gt; Privacy &amp; Security &gt; Privacy &gt; Automation. Turn on CotEditor under your client app, such as Terminal. If you use the <code>--wait</code> option, you may also need to turn on System Events.</p>
 
 
 <h3>Install Python 3</h3>
-<p>The <code>cot</code> command is implemented in Python 3. Since macOS 12.3, Python is no longer bundled with macOS, so you need to install <code>python3</code> manually for the cot command.</p>
-<p>Installing Apple’s Command Line Developer Tools provides <code>python3</code>. Run the following command in Terminal to install the tools. You can also install <code>python3</code> using any other method.</p>
+<p>The <code>cot</code> command is implemented in Python 3. Since macOS 12.3, Python is no longer included by default, so you need to provide a <code>python3</code> command to use <code>cot</code>.</p>
+<p>Installing Apple’s Command Line Developer Tools provides <code>python3</code>. Run the following command in Terminal to install the tools. You can also install <code>python3</code> in any other way.</p>
 
 <pre class="shell"><code>xcode-select --install</code></pre>
 </section>
@@ -70,7 +70,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 		</tr>
 		<tr>
 			<th><code>-n</code>, <code>--new</code></th>
-			<td><p>Create a new blank document.</p></td>
+			<td><p>Create a new blank document. If you specify a file that does not exist, create it and open it.</p></td>
 		</tr>
 		<tr>
 			<th><code>-s</code>, <code>--syntax</code></th>
@@ -89,8 +89,8 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 			<td><p>Open <code><var>FILE</var></code> and move the insertion point to <code><var>LINE</var></code> and <code><var>COLUMN</var></code> (a syntactic sugar of the <code>--line</code> and <code>--column</code> options).</p></td>
 		</tr>
 		<tr>
-			<th><code>-b</code>, <code>--background</code></th>
-			<td><p>Do not bring the app to the foreground.</p></td>
+			<th><code>-g</code>, <code>--background</code></th>
+			<td><p>Open CotEditor without bringing it to the foreground.</p></td>
 		</tr>
 		<tr>
 			<th><code>-h</code>, <code>--help</code></th>
@@ -114,7 +114,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 <pre class="shell"><code>cot</code></pre>
 
-<p>The following command opens the foo.txt file in CotEditor and moves the insertion point to line 200. The <code>cot</code> command does nothing if foo.txt doesn’t exist.</p>
+<p>The following command opens the foo.txt file in CotEditor and moves the insertion point to line 200. If foo.txt doesn’t exist, the <code>cot</code> command returns an error.</p>
 
 <pre class="shell"><code>cot --line 200 foo.txt</code></pre>
 

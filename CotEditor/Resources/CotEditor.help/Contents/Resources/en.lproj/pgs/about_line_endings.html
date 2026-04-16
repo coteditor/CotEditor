@@ -14,7 +14,7 @@
 
 <h1>Handle various types of line endings in CotEditor on Mac</h1>
 
-<p>CotEditor can handle various types of line endings. In general, it uses a single line-ending type consistently throughout a document.</p>
+<p>CotEditor can handle multiple types of line endings. In normal editing, it uses one line-ending type consistently for each document.</p>
 
 
 <p>CotEditor treats the following characters as line ending delimiters:</p>
@@ -50,7 +50,7 @@
 			<td>Next Line</td>
 			<td><code>U+0085</code></td>
 			<td></td>
-			<td><p>A legacy line ending character used mainly in EBCDIC, a kind of character encoding by IBM. Hidden by default.</p></td>
+			<td><p>A legacy line ending character used mainly in EBCDIC, a family of character encodings by IBM. Hidden by default.</p></td>
 		</tr>
 		
 		<tr><td>LS</td>
@@ -69,9 +69,9 @@
 	</tbody>
 </table>
 
-<p>The latter three types, NEL, LS, and PS, are hardly used in the real world as line ending delimiters. Therefore, CotEditor hides them by default in the line ending choices.</p>
+<p>The latter three types, NEL, LS, and PS, are rarely used as line endings in practice. Therefore, CotEditor hides them by default in the line ending choices.</p>
 
-<p><em class="note">Note:</em> Although VT (<code>U+000B</code>) and FF (<code>U+000C</code>) also visually break lines in CotEditor, they aren’t regarded as line endings characters.</p>
+<p><em class="note">Note:</em> Although VT (<code>U+000B</code>) and FF (<code>U+000C</code>) also break lines visually in CotEditor, they aren’t treated as line ending characters.</p>
 
 
 <section>
@@ -83,24 +83,24 @@
 	<li><p>Select the “Default line endings.”</p></li>
 </ol>
 
-<p>The default line endings setting is used for new documents and when the existing document doesn’t have any line endings.</p>
+<p>The default line endings setting is used for new documents and when an opened document doesn’t contain any line endings.</p>
 </section>
 
 
 <section>
 <h2>Detect line endings in a document</h2>
 
-<p>CotEditor detects the line ending used in a document automatically. When you open an existing document, the app sets the detected line ending as the line ending for further editing.</p>
+<p>CotEditor detects the line endings used in a document automatically. When you open an existing document, the app uses the most common line ending in that document as the line ending for further editing.</p>
 
 
-<p>You can inspect the type of line endings used in the document either in the following area:</p>
+<p>You can check the line ending used in the document in the following places:</p>
 <ul>
 	<li><p>The label of the Line Endings pop-up menu on the right side of the status bar</p></li>
-	<li><p>The Document Inspector by choosing View &gt; Inspectors &gt; Document</p></li>
+	<li><p>The Text Settings section in the Document Inspector, which you can open by choosing View &gt; Inspectors &gt; Document</p></li>
 	<li><p>The selection of the Line Endings submenu in the Format menu</p></li>
 </ul>
 
-<p>If a document has inconsistent line endings, CotEditor automatically alerts and highlights them. For details, see <a href="howto_find_inconsistent_line_endings.html">Find inconsistent line endings</a>.</p>
+<p>If a document has inconsistent line endings, CotEditor alerts you and highlights them. For details, see <a href="howto_find_inconsistent_line_endings.html">Find inconsistent line endings</a>.</p>
 </section>
 
 
@@ -110,8 +110,8 @@
 <ol>
 	<li><p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac, open a document.</p></li>
 	<li><p>Open the Line Endings menu either in the status bar or in the Format menu.</p></li>
-	<li><p>Select a line ending.</p>
-		<p>To convert the document line endings to a hidden one, such as NEL, LS, or PS, open the Line Endings menu by pressing the <kbd>Option</kbd> key.</p>
+	<li><p>Select the line ending.</p>
+		<p>To convert the document line endings to a hidden one, such as NEL, LS, or PS, open the Line Endings menu while holding the <kbd>Option</kbd> key.</p>
 	</li>
 </ol>
 
@@ -120,9 +120,9 @@
 
 
 <section>
-<h2>Insert line endings different from document line ending</h2>
+<h2>Insert line endings different from the document’s line ending</h2>
 
-<p>In general, CotEditor uses only the document line ending when breaking lines so that you don’t need to care about the difference in the line endings types. Even if you insert text with different line endings in some way, such as by CotEditor script or text replacement using regular expressions, CotEditor implicitly converts all line endings in the text to insert to the line ending in the document.</p>
+<p>In general, CotEditor uses only the document’s line ending so that you don’t need to care about differences among line-ending types. Even if you insert text containing different line endings, such as through a CotEditor script or a regular-expression replacement, CotEditor implicitly converts all line endings in the inserted text to the document’s line ending.</p>
 
 <p>CotEditor provides the following two ways to insert line endings different from the document’s line ending:</p>
 

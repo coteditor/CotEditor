@@ -14,7 +14,7 @@
 
 <h1>Use four kinds of Shift JIS properly in CotEditor on Mac</h1>
 
-<p>There are multiple variants of the Japanese Shift JIS encoding. Using the appropriate variant helps prevent unintended character corruption.</p>
+<p>There are multiple variants of Japanese Shift JIS-based encodings. Choosing the appropriate one helps prevent unintended character corruption.</p>
 
 
 <p>CotEditor distinguishes among the following four Shift JIS–based encodings.</p>
@@ -24,10 +24,10 @@
 		<tr><th>Encoding name</th><th>IANA charset name</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><th>Japanese (Shift JIS)</th><td>shift_jis</td><td><p>The most basic Shift JIS supporting JIS level 1 and 2 kanji characters.</p></td></tr>
-		<tr><th>Japanese (Shift JIS X0213)</th><td>Shift_JIS</td><td><p>Support JIS X0213 character set, which includes JIS level 1 through 4 kanji characters.</p></td></tr>
-		<tr><th>Japanese (Mac OS)</th><td>(x-mac-japanese)</td><td><p>Based on Shift JIS, with extended support for such as Mac-dependent characters. Being used in Mac OS 9 and earlier.</p></td></tr>
-		<tr><th>Japanese (Windows, DOS)</th><td>cp932</td><td><p>Based on Shift JIS, with extended support for such as Windows-dependent characters.</p></td></tr>
+		<tr><th>Japanese (Shift JIS)</th><td>shift_jis</td><td><p>The most basic Shift JIS variant. It supports JIS level 1 and 2 kanji characters.</p></td></tr>
+		<tr><th>Japanese (Shift JIS X0213)</th><td>Shift_JIS</td><td><p>Supports the JIS X0213 character set, including JIS levels 1 through 4 kanji characters.</p></td></tr>
+		<tr><th>Japanese (Mac OS)</th><td>x-mac-japanese</td><td><p>An extension of Shift JIS with Mac-specific characters, used in Mac OS 9 and earlier.</p></td></tr>
+		<tr><th>Japanese (Windows, DOS)</th><td>cp932</td><td><p>An extension of Shift JIS with Windows-specific characters.</p></td></tr>
 	</tbody>
 </table>
 
@@ -38,7 +38,7 @@
 
 <h3>Handling of certain characters in Shift JIS–based encodings</h3>
 
-<p>Even within the same Shift JIS family, some characters are treated differently, as shown in the table below:</p>
+<p>Even within the same Shift JIS family, some characters are handled differently, as shown in the table below:</p>
 
 <table>
 	<thead>

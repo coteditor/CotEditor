@@ -14,10 +14,11 @@
 
 <h1>MacのCotEditorでファイルドロップの挿入フォーマットを作成する</h1>
 
-<p>ファイルドロップの挿入フォーマットに変数を使うと、ドロップされたファイルの情報を反映したテキストを挿入できます。</p>
+<p>ファイルドロップの挿入フォーマットは、「スニペット」設定の「ファイルドロップ」タブで編集できます。挿入フォーマットに変数を使うと、ドロップしたファイルの情報を反映したテキストを挿入できます。</p>
 
+<p>ファイルドロップ設定は、シンタックスと拡張子の条件に合う項目のうち、一覧の上から最初に一致したものが使われます。拡張子を空欄にした項目は、すべてのファイルに一致します。</p>
 
-<p>ファイルドロップの「挿入フォーマット」で使用できる変数は以下のとおりです。</p>
+<p>ファイルドロップの挿入フォーマットで使用できる変数は以下のとおりです。</p>
 
 <table>
 	<thead>
@@ -25,14 +26,14 @@
 	</thead>
 	<tbody>
 		<tr><td><code>&lt;&lt;&lt;ABSOLUTE-PATH&gt;&gt;&gt;</code></td><td><p>ドロップ元ファイルの絶対パス</p></td></tr>
-		<tr><td><code>&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;</code></td><td><p>ドロップ先書類のファイルからドロップ元ファイルへの相対パス</p></td></tr>
+		<tr><td><code>&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;</code></td><td><p>ドロップ先書類のファイルからドロップ元ファイルへの相対パス（書類が未保存のときは絶対パス）</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;FILENAME&gt;&gt;&gt;</code></td><td><p>ドロップ元ファイルの、拡張子を含むファイル名</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;FILENAME-NOSUFFIX&gt;&gt;&gt;</code></td><td><p>ドロップ元ファイルの名前から拡張子を削除したテキスト</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;FILEEXTENSION&gt;&gt;&gt;</code></td><td><p>ドロップ元ファイルの拡張子</p></td></tr>
 		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILEEXTENSION-LOWER&gt;&gt;&gt;</code></td><td><p>ドロップ元ファイルの拡張子（小文字）</p></td></tr>
 		<tr><td style="white-space: nowrap"><code>&lt;&lt;&lt;FILEEXTENSION-UPPER&gt;&gt;&gt;</code></td><td><p>ドロップ元ファイルの拡張子（大文字）</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;DIRECTORY&gt;&gt;&gt;</code></td><td><p>ドロップ元ファイルのあるディレクトリ名</p></td></tr>
-		<tr><td><code>&lt;&lt;&lt;FILECONTENT&gt;&gt;&gt;</code></td><td><p>ファイル内容（ドロップ元ファイルがテキストファイルのときのみ有効）</p></td></tr>
+		<tr><td><code>&lt;&lt;&lt;FILECONTENT&gt;&gt;&gt;</code></td><td><p>ファイル内容（ドロップ元ファイルがUTF-8テキストファイルのときのみ有効）</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;IMAGEWIDTH&gt;&gt;&gt;</code></td><td><p>画像の幅（ドロップ元ファイルが画像ファイルのときのみ有効）</p></td></tr>
 		<tr><td><code>&lt;&lt;&lt;IMAGEHEIGHT&gt;&gt;&gt;</code></td><td><p>画像の高さ（ドロップ元ファイルが画像ファイルのときのみ有効）</p></td></tr>
 	</tbody>
@@ -42,7 +43,7 @@
 <section>
 <h2>挿入フォーマットを作成する</h2>
 
-<p>目的に合わせて、例えば以下のようなスニペットを作成できます。また、作成した挿入フォーマットに対して、具体的にこのようなテキストが挿入されます。</p>
+<p>目的に応じて、たとえば以下のような挿入フォーマットを作成できます。ここでは、現在の書類と同じフォルダにあるファイルをドロップした例を示します。</p>
 
 <p>「example.html」という名前のファイルをドロップした場合:</p>
 <table>
