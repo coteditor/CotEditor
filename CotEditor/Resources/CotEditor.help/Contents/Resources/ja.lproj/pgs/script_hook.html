@@ -14,11 +14,11 @@
 
 <h1>MacのCotEditorで特定のイベントでスクリプトを実行する</h1>
 
-<p>スクリプトフックを使うと、特定のイベント発生時にスクリプトを自動で実行することができます。</p>
+<p>スクリプトフックを使うと、特定のイベントが発生したときにスクリプトを自動的に実行できます。</p>
 
 <p>フックに対応したスクリプトを作成するには、AppleScriptまたはJavaScript for Automation（JXA）で記述して、スクリプトバンドル形式（.scptd）で保存する必要があります。</p>
 
-<p>CotEditorは以下のイベントでのフックをサポートしています:</p>
+<p>CotEditorは、次のイベントに対するフックをサポートしています:</p>
 
 <table>
 	<thead>
@@ -37,13 +37,13 @@
 	</tbody>
 </table>
 
-<p>この仕様は、スクリプトエディタで、CotEditorのAppleScript辞書の「CotEditor Event Handler Suite」のセクションで確認することができます。</p>
+<p>macOSに内蔵されているスクリプトエディタでは、これらのイベントの定義を、CotEditorのAppleScript辞書の「CotEditor Event Handler Suite」セクションで確認できます。</p>
 
 
 <section>
 <h2>スクリプトバンドルでフックを宣言する</h2>
 
-<p>スクリプトバンドルは、以下のファイル構造を持つパッケージ型のファイルです:</p>
+<p>スクリプトバンドルは、次のファイル構造を持つパッケージ形式のファイルです:</p>
 
 <figure>
     <object type="image/svg+xml" data="../../Shared/gfx/topic_script_hook.svg">
@@ -60,8 +60,7 @@ HookingScript.scptd
 
 <p><em class="tip">ヒント:</em> Macに標準で内蔵されているスクリプトエディタで、スクリプトをスクリプトバンドル形式で保存することができます。</p>
 
-<p>CotEditorのスクリプトフックに対応させるためには、まず、Contents/Info.plistにフックしたいイベントの一覧を記載する必要があります。
-plistファイルはプロパティリストと呼ばれ、その内容は以下に示すようなXML形式で記述されたバンドルのメタデータです。</p>
+<p>CotEditorのスクリプトフックに対応させるには、まずContents/Info.plistにフックしたいイベントの一覧を記載する必要があります。plistファイルはプロパティリストと呼ばれ、その内容は以下のようなXML形式で記述されたバンドルのメタデータです。</p>
 
 <pre class="source">
 <code><span class="type">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
@@ -78,7 +77,7 @@ plistファイルはプロパティリストと呼ばれ、その内容は以下
 <span class="tag">&lt;/plist&gt;</span>
 </code></pre>
 
-<p>フックしたいイベントの一覧は、キー<code>CotEditorHandlers</code>に文字列の配列として記載します。例えば、書類を開いたときと保存したときにスクリプトを自動的に実行したいときは、以下のように記述します:</p>
+<p>フックしたいイベントの一覧は、<code>CotEditorHandlers</code>キーに文字列の配列として記載します。例えば、書類を開いたときと保存したときにスクリプトを自動的に実行したいときは、以下のように記述します:</p>
 
 <pre class="source">
 <code><span class="tag">&lt;key&gt;</span>CotEditorHandlers<span class="tag">&lt;/key&gt;</span>
@@ -93,7 +92,7 @@ plistファイルはプロパティリストと呼ばれ、その内容は以下
 <section>
 <h2>イベントの処理を記述する</h2>
 
-<p>イベントハンドラは、アプリが発生させたイベントを受信し、処理をするスクリプトを指します。ここでは、ファイルを読み込んだ後と書き込んだ後にダイアログを表示するスクリプトを例に採り上げ、イベントハンドラの記述方法について説明します。</p>
+<p>イベントハンドラは、アプリが発生させたイベントを受信し、処理をするスクリプトを指します。ここでは、ファイルを読み込んだ後と書き込んだ後にコンソールへメッセージを表示するスクリプトを例に採り上げ、イベントハンドラの記述方法について説明します。</p>
 
 <h3>AppleScript</h3>
 

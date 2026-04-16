@@ -14,7 +14,7 @@
 
 <h1>Automate tasks using UNIX scripts in CotEditor on Mac</h1>
 
-<p>From CotEditor’s Script menu, you can run UNIX scripts to pass information and text from the document you’re editing to the script, and apply the script’s output to the document.</p>
+<p>From CotEditor’s Script menu, you can run UNIX scripts that receive information and text from the document you’re editing and send their output back into CotEditor.</p>
 
 
 
@@ -23,30 +23,30 @@
 
 <p>You can write UNIX scripts for CotEditor in any scripting language, as long as the execution environment is available on your Mac. However, script files must have one of the following file extensions: .sh, .pl, .php, .rb, .py, .js, .awk, or .swift.</p>
 
-<p>To run a script properly, include a <code>#!</code> (shebang) line that specifies the interpreter, and make sure the script file is executable. For example, you can <a href="https://support.apple.com/guide/terminal/APDD100908F-06B3-4E63-8A87-32E71241BAB4/" rel="external">make a script executable in Terminal on Mac</a>.</p>
+<p>To run a script properly, include a <code>#!</code> (shebang) line that specifies the interpreter, and make sure the script file is executable. For example, you can <a href="https://support.apple.com/guide/terminal/APDD100908F-06B3-4E63-8A87-32E71241BAB4/" rel="external">make a file executable in Terminal on Mac</a>.</p>
 </section>
 
 
 <section>
 <h2>Get the document’s file path</h2>
 
-<p>If the current document has been saved, its absolute file path is passed to the script as an argument.</p>
+<p>If the current document has been saved, its absolute file path is passed to the script as an argument (<code>argv</code>).</p>
 </section>
 
 
 <section>
 <h2>Pass text data to a script</h2>
 
-<p>A script can receive the content of the current document through standard input (STDIN). To specify what CotEditor passes to your script, add a comment at the top of the script that contains: “<code>%%%{CotEditorXInput=<var>xxxx</var>}%%%</code>”. Replace “<code><var>xxxx</var></code>” with one of the parameters below. If you don’t specify a parameter, CotEditor passes no data. This is the same as using “<code>None</code>.”</p>
+<p>A script can receive the content of the current document through standard input (STDIN). To specify what CotEditor passes to your script, add a comment at the top of the script that contains “<code>%%%{CotEditorXInput=<var>xxxx</var>}%%%</code>”. Replace “<code><var>xxxx</var></code>” with one of the values below. If you don’t specify a value, CotEditor passes no data. This is the same as using “<code>None</code>.”</p>
 
-<p>For “<code><var>xxxx</var></code>,” you can specify one of the following input source:</p>
+<p>For “<code><var>xxxx</var></code>,” you can specify one of the following input sources:</p>
 <table>
 	<thead>
 		<tr><th>Keyword</th><th>Description</th></tr>
 	</thead>
 	<tbody>
 		<tr><th><code>Selection</code></th><td><p>Pass the currently selected text.</p></td></tr>
-		<tr><th><code>CurrentLine</code></th><td><p>The text on the line containing the insertion point</p></td></tr>
+		<tr><th><code>CurrentLine</code></th><td><p>The text on the line containing the insertion point.</p></td></tr>
 		<tr><th><code>AllText</code></th><td><p>Pass the entire content of the document.</p></td></tr>
 		<tr><th><code>None</code></th><td><p>Pass nothing (default).</p></td></tr>
 	</tbody>
@@ -59,9 +59,9 @@
 <section>
 <h2>Receive output data from a script</h2>
 
-<p>CotEditor can receive output from the script through standard output (STDOUT) and apply it to the document. To define how CotEditor handles the output, add a comment at the top of the script that contains: “<code>%%%{CotEditorXOutput=<var>xxxx</var>}%%%</code>”. Replace <code><var>xxxx</var></code> with one of the parameters below. If you don’t specify a parameter, CotEditor performs no action. This is the same as using “<code>Discard</code>.”</p>
+<p>CotEditor can receive output from the script through standard output (STDOUT) and apply it within the app. To define how CotEditor handles the output, add a comment at the top of the script that contains “<code>%%%{CotEditorXOutput=<var>xxxx</var>}%%%</code>”. Replace <code><var>xxxx</var></code> with one of the values below. If you don’t specify a value, CotEditor performs no action. This is the same as using “<code>Discard</code>.”</p>
 
-<p>For “<code><var>xxxx</var></code>,” you can specify one of the following output target:</p>
+<p>For “<code><var>xxxx</var></code>,” you can specify one of the following output targets:</p>
 <table>
 	<thead>
 		<tr><th>Keyword</th><th>Description</th></tr>
@@ -70,7 +70,7 @@
 		<tr><th><code>ReplaceSelection</code></th><td><p>Replace the current selection with the output text.</p></td></tr>
 		<tr><th><code>ReplaceCurrentLine</code></th><td><p>Replace the entire line containing the insertion point with the output.</p></td></tr>
 		<tr><th><code>ReplaceAllText</code></th><td><p>Replace the entire content of the document with the output text.</p></td></tr>
-        <tr><th><code>InsertAfterSelection</code></th><td><p>Insert the output text immediately after the current selection.</p></td></tr>
+		<tr><th><code>InsertAfterSelection</code></th><td><p>Insert the output text immediately after the current selection.</p></td></tr>
 		<tr><th><code>AppendToAllText</code></th><td><p>Insert the output text at the end of the document.</p></td></tr>
 		<tr><th><code>NewDocument</code></th><td><p>Create a new document and insert the output text into it.</p></td></tr>
 		<tr><th><code>Pasteboard</code></th><td><p>Place the output text on the Clipboard.</p></td></tr>
@@ -107,7 +107,7 @@ count = 0
 sys.stderr.<span class="command">write</span>(<span class="string">&quot;Processed {} lines.&quot;</span>.<span class="command">format</span>(count))
 </code></pre>
 
-<p>The following message appears when running the script from the Script menu in CotEditor:</p>
+<p>The following message appears in the Console when you run the script from CotEditor’s Script menu:</p>
 
 <figure>
 	<img src="../gfx/console@2x.png" srcset="../gfx/console@2x.png 2x" alt="[2022-05-06 18:35:00] Example Code&#x0A;Processed 5 lines.">

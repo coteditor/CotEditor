@@ -18,7 +18,7 @@
 
 <p>To support the scripting hooks, the script must be written in AppleScript or JavaScript for Automation (JXA), and stored in the form of a script bundle (.scptd).</p>
 
-<p>The following events are available in CotEditor:</p>
+<p>CotEditor supports hooks for the following events:</p>
 
 <table>
 	<thead>
@@ -37,13 +37,13 @@
 	</tbody>
 </table>
 
-<p>You can find the specifications under the CotEditor Event Handler Suite section in the CotEditor AppleScript dictionary in Script Editor.</p>
+<p>You can find this specification in Script Editor, which is built into macOS, under the CotEditor Event Handler Suite section of CotEditor’s AppleScript dictionary.</p>
 
 
 <section>
 <h2>Declare hooks in the script bundle</h2>
 
-<p>A script bundle is a package-type file format that has the following folder structure:</p>
+<p>A script bundle is a package with the following folder structure:</p>
 
 <figure>
     <object type="image/svg+xml" data="../../Shared/gfx/topic_script_hook.svg">
@@ -60,7 +60,7 @@ HookingScript.scptd
 
 <p><em class="tip">Tip:</em> You can use Script Editor, which is built into macOS, to create scripts in the script bundle format.</p>
 
-<p>To support scripting hooks, the list of events to subscribe to must be written in Contents/Info.plist. Info.plist is a property list containing the metadata of the bundle and formatted in XML like the following example:</p>
+<p>To support scripting hooks, list the events to subscribe to in Contents/Info.plist. Info.plist is a property list that stores bundle metadata in XML, like the following example:</p>
 
 <pre class="source">
 <code><span class="type">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
@@ -77,7 +77,7 @@ HookingScript.scptd
 <span class="tag">&lt;/plist&gt;</span>
 </code></pre>
 
-<p>The events to subscribe must be stored at the key <code>CotEditorHandlers</code> and in the form of <code>array</code> of <code>string</code>. For example, to run a script automatically when opening and saving a document, write as follows:</p>
+<p>Store the events to subscribe to in the <code>CotEditorHandlers</code> key as an array of strings. For example, to run a script automatically when a document is opened or saved, write:</p>
 
 <pre class="source">
 <code><span class="tag">&lt;key&gt;</span>CotEditorHandlers<span class="tag">&lt;/key&gt;</span>
@@ -92,11 +92,11 @@ HookingScript.scptd
 <section>
 <h2>Describe event handling</h2>
 
-<p>An event handler is a block of code that receives specific events triggered by the app and performs actions in response. In this section, the ways to write an event handler are described using a simple example that shows a dialog when opening and saving a document.</p>
+<p>An event handler is a block of code that receives specific events triggered by the app and performs actions in response. This section shows how to write event handlers using a simple example that writes messages to the console when a document is opened or saved.</p>
 
 <h3>AppleScript</h3>
 
-<p>In AppleScript, handlers are written with a <code>using terms from</code> block and <code>on</code> blocks.</p>
+<p>In AppleScript, handlers are written by combining a <code>using terms from</code> block with <code>on</code> handlers.</p>
 
 <pre class="source">
 <code><span class="keyword">using terms from</span> <span class="type">application</span> <span class="string">&quot;CotEditor&quot;</span>
@@ -112,7 +112,7 @@ HookingScript.scptd
 
 <h3>JavaScript for Automation (JXA)</h3>
 
-<p>In JavaScript for Automation, <code>function</code> statements on the global object create handlers.</p>
+<p>In JavaScript for Automation, use global <code>function</code> declarations to create handlers.</p>
 
 <pre class="source">
 <code><span class="variable">CotEditor</span> = <span class="variable">Application</span>.<span class="command">currentApplication</span>()

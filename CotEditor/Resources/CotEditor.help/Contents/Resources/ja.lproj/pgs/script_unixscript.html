@@ -14,7 +14,7 @@
 
 <h1>MacのCotEditorでUNIXスクリプトを使って作業を自動化する</h1>
 
-<p>CotEditorのスクリプトメニューからUNIXスクリプトを実行して、CotEditorで編集中の書類の情報やテキストをスクリプトに渡したり、スクリプトの実行結果をその書類に反映したりできます。</p>
+<p>CotEditorのスクリプトメニューからUNIXスクリプトを実行すると、編集中の書類の情報やテキストをスクリプトに渡したり、スクリプトの出力をCotEditor内に反映したりできます。</p>
 
 
 <section>
@@ -22,23 +22,23 @@
 
 <p>CotEditor用のUNIXスクリプトは、実行環境がMacに用意されていればどんなスクリプト言語でも作成できます。ただし、スクリプトファイルは、.sh、.pl、.php、.rb、.py、.js、.awk、または.swiftのいずれかの拡張子を付ける必要があります。</p>
 
-<p>スクリプトを正しく実行するには、使用するインタープリタを指定する<code>#!</code>（shebang）行をスクリプトに含め、スクリプトファイルが実行可能である必要があります。例えば、<a href="https://support.apple.com/guide/terminal/APDD100908F-06B3-4E63-8A87-32E71241BAB4/" rel="external">Macの「ターミナル」でファイルを実行可能ファイルにする</a>ことができます。</p>
+<p>スクリプトを正しく実行するには、使用するインタープリタを指定する<code>#!</code>（shebang）行をスクリプトに含め、スクリプトファイルを実行可能にしておく必要があります。例えば、<a href="https://support.apple.com/guide/terminal/APDD100908F-06B3-4E63-8A87-32E71241BAB4/" rel="external">Macの「ターミナル」でファイルを実行可能ファイルにする</a>ことができます。</p>
 </section>
 
 
 <section>
 <h2>ファイルパスを参照する</h2>
 
-<p>現在の書類が保存済みのときは、その書類の絶対ファイルパスが引数 (argv) としてスクリプトに渡されます。</p>
+<p>現在の書類が保存済みのときは、その書類の絶対ファイルパスが引数（argv）としてスクリプトに渡されます。</p>
 </section>
 
 
 <section>
 <h2>スクリプトにテキストを渡す</h2>
 
-<p>現在の書類の内容を標準入力としてスクリプトに渡すことができます。スクリプトにCotEditorからデータを渡すには、スクリプトの冒頭にコメントを置き、固定テキスト「<code>%%%{CotEditorXInput=<var>xxxx</var>}%%%</code>」を埋め込みます。「<code><var>xxxx</var></code>」で、受け渡すデータを指定します。このコメントを記述しなかった場合は「<code>None</code>」と同等の処理となり何もスクリプトに渡されません。</p>
+<p>現在の書類の内容を標準入力としてスクリプトに渡せます。CotEditorからデータを渡すには、スクリプトの冒頭にコメントとして固定テキスト「<code>%%%{CotEditorXInput=<var>xxxx</var>}%%%</code>」を記述し、「<code><var>xxxx</var></code>」で受け渡すデータを指定します。このコメントを記述しない場合は「<code>None</code>」と同じで、何も渡されません。</p>
 
-<p>「<code><var>xxxx</var></code>」には以下のいずれかの入力元を指定することができます:</p>
+<p>「<code><var>xxxx</var></code>」には、以下のいずれかの入力元を指定できます:</p>
 <table>
 	<thead>
 		<tr><th>キーワード</th><th>説明</th></tr>
@@ -58,10 +58,10 @@
 <section>
 <h2>スクリプトの出力を受け取る</h2>
 
-<p>スクリプトから標準出力に送ったテキストはCotEditorで受け取り書類などに反映できます。CotEditorでスクリプトの出力を受け取るには、スクリプトの冒頭にコメントとして固定テキスト「<code>%%%{CotEditorXOutput=<var>xxxx</var>}%%%</code>」を埋め込み、「<code><var>xxxx</var></code>」で受け取ったあとの処理を指定します。このコメントを記述しなかった場合は「<code>Discard</code>」と同等の処理となり出力は無視されます。</p>
+<p>スクリプトが標準出力に書き出したテキストは、CotEditorが受け取り、書類などに反映できます。CotEditorで出力を受け取るには、スクリプトの冒頭にコメントとして固定テキスト「<code>%%%{CotEditorXOutput=<var>xxxx</var>}%%%</code>」を記述し、「<code><var>xxxx</var></code>」で受け取ったあとの処理を指定します。このコメントを記述しない場合は「<code>Discard</code>」と同じで、出力は無視されます。</p>
 
 
-<p>「<code><var>xxxx</var></code>」には以下のいずれかの出力先を指定することができます:</p>
+<p>「<code><var>xxxx</var></code>」には、以下のいずれかの出力先を指定できます:</p>
 <table>
 	<thead>
 		<tr><th>キーワード</th><th>説明</th></tr>
@@ -85,7 +85,7 @@
 <section>
 <h2>コンソールにテキストを表示する</h2>
 
-<p>標準エラー出力に投げられたテキストはコンソールウインドウに出力されます。</p>
+<p>標準エラー出力に書き出されたテキストは、コンソールウインドウに表示されます。</p>
 </section>
 
 
@@ -107,7 +107,7 @@ count = 0
 sys.stderr.<span class="command">write</span>(<span class="string">&quot;Processed {} lines.&quot;</span>.<span class="command">format</span>(count))
 </code></pre>
 
-<p>このスクリプトをCotEditorのスクリプトメニューから実行すると、以下のメッセージがコンソールに表示されます:</p>
+<p>このスクリプトをCotEditorのスクリプトメニューから実行すると、次のメッセージがコンソールに表示されます:</p>
 <figure>
 	<img src="../gfx/console@2x.png" srcset="../gfx/console@2x.png 2x" alt="[2022-05-06 18:35:00] Example Code&#x0A;Processed 3 lines.">
 </figure>
