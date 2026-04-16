@@ -15,11 +15,11 @@
 
 <h1>Important changes on CotEditor 7.0</h1>
 
-<p>CotEditor 7.0.0, released in 2026, introduces a revised syntax definition format. The previous format used YAML files with the .yml extension; the new format uses a package-based file with a dedicated .cotsyntax extension.</p>
+<p>CotEditor 7.0.0, released in 2026, introduces a revised syntax definition format. Previously, syntax definitions were YAML files with the .yml extension. The new format uses package files with a dedicated .cotsyntax extension.</p>
 
-<p>All 70 built-in syntaxes have been migrated to this new format. Custom syntaxes created by users are also automatically migrated, so you can start using CotEditor 7 right away without any manual intervention.</p>
+<p>All 70 built-in syntaxes have been migrated to this new format. Custom syntaxes you created in earlier versions are also migrated automatically, so in most cases you can start using CotEditor 7 right away.</p>
 
-<p>However, CotEditor 7 includes not only the format revision but also many feature improvements. To take full advantage of CotEditor 7's capabilities in your custom syntaxes, you may need to adjust your syntax definitions. This page explains the changes to syntax definitions in CotEditor 7 for users who have created custom syntaxes before.</p>
+<p>At the same time, CotEditor 7 includes more than a format revision. It also brings substantial improvements to syntax parsing. To take full advantage of CotEditor 7 in your custom syntaxes, you may need to adjust your syntax definitions. This page explains the main changes to syntax definition in CotEditor 7 for users who have created custom syntaxes before.</p>
 
 <p>For complete details on the latest syntax definition format, see <a href="syntax_definition.html">Define a syntax</a>.</p>
 
@@ -27,7 +27,7 @@
 <section>
 <h2>Migration to the new format</h2>
 
-<p>Custom syntaxes created by users are automatically migrated to the new format on the first launch of CotEditor 7. However, any customizations you made to built-in syntaxes will be cleared and not carried over to CotEditor 7. Reconfigure them as needed.</p>
+<p>Custom syntaxes created by users are automatically migrated to the new format on the first launch of CotEditor 7. However, any customizations you made to built-in syntaxes are reset and not carried over to CotEditor 7. Reconfigure them as needed.</p>
 
 <p><em class="tip">Tip:</em> Your previous custom syntaxes are preserved in the “<span style="word-break:break-all">~/Library/Containers/com.coteditor.CotEditor/Data/Library/Application Support/CotEditor/Syntaxes (Legacy, before 7.0)</span>” folder. CotEditor 7 and later no longer use these files, so you can safely delete them if they are no longer needed.</p>
 </section>
@@ -36,64 +36,64 @@
 <section>
 <h2>Regular-expression-based and tree-sitter-based parsing</h2>
 
-<p>CotEditor 7 uses tree-sitter, a general-purpose parser, for the following 22 of the built-in syntaxes:</p>
+<p>CotEditor 7 uses tree-sitter, a general-purpose parser, for syntax parsing in the following 22 built-in syntaxes:</p>
 
 <dl>
 	<dt>Tree-sitter-supported syntaxes</dt>
-	<dd>C, C#, C++, CSS, Go, HTML, Java, JavaScript, LaTeX, Kotlin, Lua, Makefile, Markdown (outline extraction only), PHP, Python, Ruby, Rust, Scala, Shell Script, SQL, Swift, TypeScript.</dd>
+	<dd>C, C#, C++, CSS, Go, HTML, Java, JavaScript, Kotlin, LaTeX, Lua, Makefile, Markdown (outline extraction only), PHP, Python, Ruby, Rust, Scala, Shell Script, SQL, Swift, TypeScript.</dd>
 </dl>
 
-<p>All other built-in syntaxes and user-created custom syntaxes continue to use the conventional regular-expression-based parsing method with pattern matching.</p>
+<p>The remaining built-in syntaxes, as well as user-created custom syntaxes, continue to use the existing regular-expression-based pattern-matching method.</p>
 
-<p>Because tree-sitter-based highlighting and outline extraction rules are managed by the app, you cannot customize these features or add tree-sitter support for additional syntaxes. By contrast, regular-expression-based syntaxes allow customization of highlighting rules and outline extraction patterns. In the syntax editor, you can adjust built-in syntaxes or create entirely new syntax definitions from scratch.</p>
+<p>The rules for tree-sitter-based highlighting and outline extraction are managed by the app, so you can’t customize them or add tree-sitter support to additional syntaxes. By contrast, regular-expression-based syntaxes let you customize highlighting rules and outline extraction patterns. In the syntax editor, you can adjust built-in syntaxes or create entirely new ones from scratch.</p>
 </section>
 
 
 <section>
 <h2>Delimiter definitions</h2>
 
-<p>CotEditor parses comment and string delimiters (such as <code>&quot;…&quot;</code>) using a method separate from regular pattern matching, enabling correct highlighting even in nested situations where a comment-start symbol appears inside a string. CotEditor 7 further strengthens this mechanism by introducing dedicated delimiter definitions, achieving more robust parsing.</p>
+<p>CotEditor parses comment and string delimiters (such as <code>&quot;…&quot;</code>) using a mechanism separate from ordinary pattern matching so that it can still highlight correctly in nested situations, such as when a comment opener appears inside a string. CotEditor 7 strengthens this mechanism by introducing dedicated delimiter definitions for more robust parsing.</p>
 
-<p>These delimiter definitions are also referenced for editor behaviors during text editing, such as the Comment Out command and automatic indentation.</p>
+<p>These delimiter definitions are used not only for syntax highlighting but also for editor behaviors during text editing, such as the Comment Out command and automatic indentation.</p>
 
-<p>You can edit these definitions in the new Delimiters pane in the syntax editor.</p>
+<p>You can edit these definitions in the new Delimiters pane of the syntax editor.</p>
 
 <h3>Comment delimiters</h3>
 
-<p>Previously, CotEditor allowed only one inline comment delimiter and one block comment delimiter per syntax. CotEditor 7 now lets you add multiple comment delimiters.</p>
+<p>Previously, CotEditor allowed only one inline comment delimiter and one block comment delimiter for each syntax. CotEditor 7 now lets you define multiple comment delimiters.</p>
 
-<p>New options have also been added: Line Start Only for inline comments, and Nest for block comments. By configuring these options to match the syntax's grammar, you can achieve more robust highlighting.</p>
+<p>New options have also been added: Line Start Only for inline comments, and Nest for block comments. Setting these options to match the language grammar helps produce more robust highlighting.</p>
 
 <h3>Indentation</h3>
 
-<p>CotEditor has an “Automatically indent while typing” option that adjusts the indentation of the next line when you press Return. Previously, this feature automatically increased the indentation level after specific characters, such as “<code>:</code>” and “<code>{</code>“, regardless of the syntax. In CotEditor 7, you can configure Block Delimiters for indentation, allowing you to set the tokens that change the indentation level on a per-syntax basis.</p>
+<p>CotEditor has an “Automatically indent while typing” option that adjusts the indentation of the next line when you press Return. Previously, regardless of the syntax, this feature automatically increased the indentation level when a line break followed tokens such as “<code>:</code>” or “<code>{</code>”. In CotEditor 7, you can configure Block Delimiters for indentation to define, for each syntax, which tokens change the indentation level.</p>
 
 <h3>Removal of implicit delimiter handling</h3>
 
-<p>Previously, CotEditor automatically identified delimiter-like definitions from syntax highlighting rules and used them for highlighting. Under the new system, this implicit delimiter extraction is no longer performed. Additionally, CotEditor previously treated “<code>\</code>” (backslash) as an escape character universally across all syntaxes, but this implicit escaping has also been removed. Only escape characters explicitly specified for each string or character delimiter are now used.</p>
-<p>Therefore, if you want highlighting that accounts for nested structures of strings, characters, and comment symbols, use the delimiter definitions. Note that during the migration of custom syntaxes to CotEditor 7, definitions that were previously identified as “delimiter-like” are automatically moved to the new delimiter definitions.</p>
+<p>Previously, CotEditor automatically identified delimiter-like definitions from syntax highlighting rules and used them for highlighting. In the new system, this implicit delimiter extraction no longer occurs. In addition, CotEditor used to treat “<code>\</code>” (backslash) as an escape character universally across all syntaxes, but this implicit escaping has also been removed. Now only escape characters explicitly specified for each string or character delimiter are used.</p>
+<p>Therefore, if you want highlighting that accounts for nested structures of strings, characters, and comment symbols, use the delimiter definitions. During migration to CotEditor 7, definitions that were previously identified as “delimiter-like” are automatically moved to the new delimiter definitions.</p>
 </section>
 
 
 <section>
 <h2>Outline extraction</h2>
 
-<p>A Kind option has been added to outline extraction rules. Extracted outline items can now display an icon corresponding to their kind, and some item kinds enable collapsible outlines.</p>
+<p>A Kind option has been added to outline extraction rules. Extracted outline items can now display an icon corresponding to their kind, and some kinds also make the outline collapsible.</p>
 
 <h3>Hierarchical outlines</h3>
 
-<p>In CotEditor 7, tree-sitter-based syntaxes display hierarchical outlines with collapsible sections in the Outline menu. For regular-expression-based syntaxes, which users can customize, this feature is available only when the outline item's kind is set to Heading with a level. Outline items defined as leveled headings have indentation automatically added by the parser, so you do not need to include indentation in the Display Pattern of your extraction rules.</p>
+<p>In CotEditor 7, tree-sitter-based syntaxes can show hierarchical outlines with collapsible sections in the Outline menu. For customizable regular-expression-based syntaxes, this feature is available only when the outline item’s Kind is a leveled Heading. The parser automatically adds indentation to outline items defined as leveled headings, so you do not need to include indentation in the Display Pattern of your extraction rules.</p>
 
 <h3>Removal of outline item style options</h3>
 
-<p>Previously, CotEditor allowed you to set display styles such as bold and underline for individual outline items. This feature has been removed in CotEditor 7. Only items with a Kind of Container or Mark are automatically displayed in bold.</p>
+<p>Previously, CotEditor allowed you to set display styles such as bold and underline for individual outline items. This feature has been removed in CotEditor 7. Only items whose Kind is Container or Mark are shown in bold automatically.</p>
 </section>
 
 
 <section>
 <h2>Regular-expression-based highlighting rules</h2>
 
-<p>A new Multiline option has been added to pattern matching rules. When enabled, it allows highlighting of matches that span multiple lines including line breaks. This option is off by default.</p>
+<p>A new Multiline option has been added to pattern matching rules. When enabled, it allows highlights to span multiple lines, including line breaks. This option is off by default.</p>
 </section>
 
 
