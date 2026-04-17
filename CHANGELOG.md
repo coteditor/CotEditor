@@ -13,6 +13,7 @@
 - [beta] Fix an issue where importing legacy YAML syntax definitions from the Format settings could fail.
 
 
+
 7.0.0-rc (809)
 --------------------------
 

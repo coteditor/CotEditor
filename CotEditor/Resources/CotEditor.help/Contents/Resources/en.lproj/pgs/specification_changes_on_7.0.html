@@ -7,13 +7,13 @@
 	<link rel="stylesheet" href="../../Shared/sty/standard.css">
 	<script defer src="../../Shared/js/toc.js"></script>
 	
-	<title>Important changes on CotEditor 7.0</title>
+	<title>Important changes on CotEditor 7.0 on Mac</title>
 </head>
 
 <body>
 <a name="specification_changes_on_7.0"></a>
 
-<h1>Important changes on CotEditor 7.0</h1>
+<h1>Important changes on CotEditor 7.0 on Mac</h1>
 
 <p>CotEditor 7.0.0, released in 2026, introduces a revised syntax definition format. Previously, syntax definitions were YAML files with the .yml extension. The new format uses package files with a dedicated .cotsyntax extension.</p>
 
@@ -28,6 +28,8 @@
 <h2>Migration to the new format</h2>
 
 <p>Custom syntaxes created by users are automatically migrated to the new format on the first launch of CotEditor 7. However, any customizations you made to built-in syntaxes are reset and not carried over to CotEditor 7. Reconfigure them as needed.</p>
+
+<p>If you later want to convert a legacy YAML-based syntax definition, you can import it from Format settings. The imported definition is automatically converted to the new format (this compatibility feature is planned to be removed in the future).</p>
 
 <p><em class="tip">Tip:</em> Your previous custom syntaxes are preserved in the “<span style="word-break:break-all">~/Library/Containers/com.coteditor.CotEditor/Data/Library/Application Support/CotEditor/Syntaxes (Legacy, before 7.0)</span>” folder. CotEditor 7 and later no longer use these files, so you can safely delete them if they are no longer needed.</p>
 </section>
