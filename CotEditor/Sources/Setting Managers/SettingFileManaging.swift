@@ -370,8 +370,10 @@ extension SettingFileManaging {
         // test if the setting file can be read correctly
         let type = type ?? Setting.fileType
         let setting: Setting = switch item {
-            case .url(let url): try Setting(contentsOf: url)
-            case .payload(let payload): try Setting(payload: payload, type: type)
+            case .url(let url) where type.conforms(to: Setting.fileType):
+                try Setting(contentsOf: url)
+            case .payload(let payload):
+                try Setting(payload: payload, type: type)
         }
         
         // write file
