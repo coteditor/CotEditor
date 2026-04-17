@@ -27,6 +27,7 @@ import Foundation
 import UniformTypeIdentifiers
 import Testing
 import TextFind
+import SyntaxFormat
 @testable import CotEditor
 
 @MainActor struct SettingFileManagingTests {
@@ -80,35 +81,73 @@ import TextFind
     }
     
     
+    @Test func importLegacyYAMLSyntaxConvertsAndSavesInNativeFormat() throws {
+        
+        let manager = TestSyntaxManager()
+        let name = "Legacy YAML \(UUID().uuidString)"
+        
+        try self.cleanUp(name: name, manager: manager)
+        defer { try? self.cleanUp(name: name, manager: manager) }
+        
+        let url = try self.createYAMLFile(text: """
+            kind: code
+            extensions:
+              - keyString: legacy
+            keywords:
+              - beginString: foo
+            """)
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        
+        try manager.importSetting(.url(url), name: name, type: .yaml, overwrite: true)
+        
+        manager.cachedSettings.removeAll()
+        
+        let setting = try manager.setting(name: name)
+        let savedURL = try #require(manager.urlForUserSetting(name: name))
+        
+        #expect(setting.kind == .code)
+        #expect(setting.fileMap.extensions == ["legacy"])
+        #expect(setting.highlights[.keywords] == [.init(begin: "foo")])
+        #expect(savedURL.pathExtension == UTType.cotSyntax.preferredFilenameExtension)
+    }
+    
+    
     // MARK: Private Methods
     
     private func createReplacementFile(setting: MultipleReplace, type: UTType) throws -> URL {
         
-        let directoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
-        try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
-        
-        let fileURL = directoryURL.appendingPathComponent("Imported", conformingTo: type)
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
-        try encoder.encode(setting).write(to: fileURL)
         
-        return fileURL
+        return try self.createTemporaryFile(type: type, data: encoder.encode(setting))
     }
     
     
     private func createTSVFile(text: String) throws -> URL {
         
+        try self.createTemporaryFile(type: .tabSeparatedText, data: Data(text.utf8))
+    }
+    
+    
+    private func createYAMLFile(text: String) throws -> URL {
+        
+        try self.createTemporaryFile(type: .yaml, data: Data(text.utf8))
+    }
+    
+    
+    private func createTemporaryFile(type: UTType, data: Data) throws -> URL {
+        
         let directoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
         try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
         
-        let fileURL = directoryURL.appendingPathComponent("Imported", conformingTo: UTType.tabSeparatedText)
-        try Data(text.utf8).write(to: fileURL)
+        let fileURL = directoryURL.appendingPathComponent("Imported", conformingTo: type)
+        try data.write(to: fileURL)
         
         return fileURL
     }
     
     
-    private func cleanUp(name: String, manager: TestReplacementManager) throws {
+    private func cleanUp<Manager: SettingFileManaging>(name: String, manager: Manager) throws {
         
         if manager.settingNames.contains(name) {
             try manager.removeSetting(name: name)
@@ -121,8 +160,7 @@ import TextFind
     
     typealias Setting = MultipleReplace
     
-    static let directoryName = "Replacements"
-    static let userDirectoryName: String? = "Tests/Replacements-\(UUID().uuidString)"
+    static let directoryName = "TestReplacements-\(UUID().uuidString)"
     static let constantSettings: [String: Setting] = [:]
     
     let reservedNames: [String] = []
@@ -147,6 +185,34 @@ import TextFind
             ? .updated(from: name, to: name)
             : .added(name)
         self.updateSettingList(change: change)
+    }
+    
+    
+    nonisolated func listAvailableSettings() -> [String] {
+        
+        self.userSettingFileURLs
+            .map(Self.settingName(from:))
+            .sorted(using: .localizedStandard)
+    }
+}
+
+
+@MainActor private final class TestSyntaxManager: SettingFileManaging {
+    
+    typealias Setting = Syntax
+    
+    static let directoryName = "TestSyntaxes-\(UUID().uuidString)"
+    static let constantSettings: [String: Setting] = [:]
+    
+    let reservedNames: [String] = []
+    let bundledSettingNames: [String] = []
+    var settingNames: [String] = []
+    var cachedSettings: [String: Setting] = [:]
+    
+    
+    init() {
+        
+        self.settingNames = self.listAvailableSettings()
     }
     
     

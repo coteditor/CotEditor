@@ -372,6 +372,8 @@ extension SettingFileManaging {
         let setting: Setting = switch item {
             case .url(let url) where type.conforms(to: Setting.fileType):
                 try Setting(contentsOf: url)
+            case .url(let url):
+                try Setting(payload: Data(contentsOf: url), type: type)
             case .payload(let payload):
                 try Setting(payload: payload, type: type)
         }
