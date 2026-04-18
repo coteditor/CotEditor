@@ -45,7 +45,7 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
         
         didSet {
             self.menuUpdateTask?.cancel()
-            self.menuUpdateTask = Task { await self.updateMenu() }
+            self.menuUpdateTask = Task { try? await self.updateMenu() }
         }
     }
     private(set) var currentScriptName: String?
@@ -107,9 +107,9 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
                     for await _ in NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
                         break
                     }
-                    guard !Task.isCancelled else { return }
+                    try Task.checkCancellation()
                 }
-                await self.updateMenu()
+                try await self.updateMenu()
             }
         }
     }
@@ -187,14 +187,15 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     // MARK: Private Methods
     
     /// Builds the Script menu and scan script handlers.
-    private func updateMenu() async {
+    ///
+    /// - Throws: `CancellationError`.
+    private func updateMenu() async throws {
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
         
-        let scriptMenuItems = await Task.detached { Self.scriptMenuItems(at: directoryURL) }.value
+        let scriptMenuItems = try await Self.scriptMenuItems(at: directoryURL)
         
-        // bail out if a newer change has cancelled this task during the scan.
-        guard !Task.isCancelled else { return }
+        try Task.checkCancellation()
         
         self.scriptHandlersTable.removeAll()
         
@@ -260,32 +261,46 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     /// - Parameters:
     ///   - directoryURL: The directory where to find files recursively.
     /// - Returns: An array of `ScriptMenuItem` that represents scripts.
-    private nonisolated static func scriptMenuItems(at directoryURL: URL) -> [ScriptMenuItem] {
+    /// - Throws: `CancellationError`.
+    @concurrent private static func scriptMenuItems(at directoryURL: URL) async throws -> [ScriptMenuItem] {
         
-        guard let urls = try? FileManager.default
+        try Task.checkCancellation()
+        
+        guard let directoryContents = try? FileManager.default
             .contentsOfDirectory(at: directoryURL,
                                  includingPropertiesForKeys: [.contentTypeKey, .isExecutableKey],
                                  options: [.skipsHiddenFiles])
         else { return [] }
         
-        return urls
+        let urls = directoryContents
             .filter { !$0.lastPathComponent.hasPrefix("_") }  // ignore files/folders of which name starts with "_"
             .sorted(using: KeyPathComparator(\.lastPathComponent))
-            .compactMap { url in
-                let name = url.deletingPathExtension().lastPathComponent
-                    .replacing(/^\d+\)/.asciiOnlyDigits(), with: "", maxReplacements: 1)  // remove ordering prefix
-                
-                return if name == Self.separator {
-                    .separator
-                } else if let script = try? ScriptDescriptor(contentsOf: url, name: name)?.makeScript() {
-                    // -> Check script possibility before folder because a script can be a directory, e.g. .scptd.
-                    .script(script.name, script)
-                } else if url.hasDirectoryPath {
-                    .folder(name, Self.scriptMenuItems(at: url))
-                } else {
-                    nil
-                }
+        
+        var items: [ScriptMenuItem] = []
+        
+        for url in urls {
+            try Task.checkCancellation()
+            
+            let name = url.deletingPathExtension().lastPathComponent
+                .replacing(/^\d+\)/.asciiOnlyDigits(), with: "", maxReplacements: 1)  // remove ordering prefix
+            
+            let item: ScriptMenuItem? = if name == Self.separator {
+                .separator
+            } else if let script = try? ScriptDescriptor(contentsOf: url, name: name)?.makeScript() {
+                // -> Check script possibility before folder because a script can be a directory, e.g. .scptd.
+                .script(script.name, script)
+            } else if url.hasDirectoryPath {
+                .folder(name, try await Self.scriptMenuItems(at: url))
+            } else {
+                nil
             }
+            
+            guard let item else { continue }
+            
+            items.append(item)
+        }
+        
+        return items
     }
     
     
