@@ -122,9 +122,9 @@ struct PortableSettingsDocument: FileDocument {
         self.defaults = plist.mapValues(PropertyListValue.init)
         
         self.keyBindings = fileWrappers[WrapperKey.keyBindings]?.fileWrappers?[WrapperKey.shortcuts]?.regularFileContents
-        self.replacements = fileWrappers[WrapperKey.replacements]?.fileWrappers?.compactMapValues(\.regularFileContents) ?? [:]
-        self.syntaxes = fileWrappers[WrapperKey.syntaxes]?.fileWrappers?.compactMapValues(\.regularFileContents) ?? [:]
-        self.themes = fileWrappers[WrapperKey.themes]?.fileWrappers?.compactMapValues(\.regularFileContents) ?? [:]
+        self.replacements = fileWrappers[WrapperKey.replacements]?.fileWrappers?.compactMapValues(\.persistable) ?? [:]
+        self.syntaxes = fileWrappers[WrapperKey.syntaxes]?.fileWrappers?.compactMapValues(\.persistable) ?? [:]
+        self.themes = fileWrappers[WrapperKey.themes]?.fileWrappers?.compactMapValues(\.persistable) ?? [:]
     }
     
     
@@ -248,6 +248,22 @@ struct PortableSettingsDocument: FileDocument {
             for (name, payload) in self.themes {
                 try ThemeManager.shared.importSetting(.payload(payload), name: name.deletingPathExtension, overwrite: true)
             }
+        }
+    }
+}
+
+
+private extension FileWrapper {
+    
+    /// The persisted representation of the receiver, if supported for settings archives.
+    var persistable: (any Persistable)? {
+        
+        if self.isDirectory {
+            self
+        } else if self.isRegularFile {
+            self.regularFileContents
+        } else {
+            nil
         }
     }
 }
