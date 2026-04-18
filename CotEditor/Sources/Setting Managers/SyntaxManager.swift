@@ -216,6 +216,11 @@ enum SyntaxName {
         } else if hasLegacySettings {
             self.migratedSyntaxCount = try Syntax.migrateFormat(in: legacyURL, to: syntaxURL, deletingOriginal: false, shouldMigrate: { !self.bundledSettingNames.contains($0) })
         }
+
+        // update cache
+        self.cachedSettings.removeAll()
+        self.settingNames = self.listAvailableSettings()
+        self.updateMappingTable()
     }
 
 
