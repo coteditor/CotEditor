@@ -5,7 +5,7 @@
 
 ### Fixes
 
-- Fix issues where updates to the Script menu could fail to reflect changes in the Scripts folder after rapid modifications or while CotEditor was inactive.
+- Fix issues where the Script menu could become outdated after changes in the Scripts folder.
 
 
 
