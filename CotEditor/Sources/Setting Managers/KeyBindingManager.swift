@@ -133,9 +133,10 @@ import URLUtils
     /// - Throws: An error if decoding the data fails.
     func importSetting(data: Data) throws {
         
-        self.userKeyBindings = try PropertyListDecoder().decode([KeyBinding].self, from: data)
+        let keyBindings = try PropertyListDecoder().decode([KeyBinding].self, from: data)
             .filter { $0.shortcut?.isValid ?? true }
-        self.modifiedKeyBindings.formUnion(self.userKeyBindings)
+        
+        try self.save(keyBindings: keyBindings)
         
         // apply new settings to the menu
         self.applyShortcutsToMainMenu()
