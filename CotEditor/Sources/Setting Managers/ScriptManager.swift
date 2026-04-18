@@ -105,8 +105,9 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
                     try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.1))
                 } else {
                     for await _ in NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
-                        return
+                        break
                     }
+                    guard !Task.isCancelled else { return }
                 }
                 await self.updateMenu()
             }
