@@ -1,5 +1,14 @@
 # Change Log
 
+7.0.0 (unreleased)
+--------------------------
+
+### Fixes
+
+- [trivial] Fix an issue where rapid changes in the Scripts folder could leave the Script menu in an outdated state.
+
+
+
 7.0.0-rc.2 (810)
 --------------------------
 

@@ -41,7 +41,13 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     
     static let shared = ScriptManager()
     
-    var menu: NSMenu?  { didSet { Task { await self.updateMenu() } } }
+    var menu: NSMenu? {
+        
+        didSet {
+            self.menuUpdateTask?.cancel()
+            self.menuUpdateTask = Task { await self.updateMenu() }
+        }
+    }
     private(set) var currentScriptName: String?
     
     
@@ -182,13 +188,14 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     /// Builds the Script menu and scan script handlers.
     private func updateMenu() async {
         
-        self.menuUpdateTask?.cancel()
-        self.menuUpdateTask = nil
-        self.scriptHandlersTable.removeAll()
-        
         guard let directoryURL = self.scriptsDirectoryURL else { return }
         
         let scriptMenuItems = await Task.detached { Self.scriptMenuItems(at: directoryURL) }.value
+        
+        // bail out if a newer change has cancelled this task during the scan.
+        guard !Task.isCancelled else { return }
+        
+        self.scriptHandlersTable.removeAll()
         
         let eventScripts = scriptMenuItems.flatMap(\.scripts)
             .compactMap { $0 as? any EventScript }
