@@ -5,8 +5,8 @@
 
 ### Fixes
 
-- Fix issues where the Script menu could become outdated after changes in the Scripts folder.
 - Fix an issue where key bindings imported from a settings archive could be lost after relaunching the app.
+- Fix issues where the Script menu could become outdated after changes in the Scripts folder.
 - [trivial] Fix an issue where a renamed setting could become deselected if surrounding whitespace in the new name is trimmed.
 - [beta] Fix an issue where custom syntaxes in a settings archive were not imported.
 - [beta] Fix an issue where migrated syntax definitions were not available until the next launch.
