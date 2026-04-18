@@ -198,7 +198,7 @@ enum SyntaxName {
         } else {
             false
         }
-
+        
         // archive legacy settings if present
         if hasLegacySettings {
             if legacyURL.isReachable {
@@ -206,13 +206,13 @@ enum SyntaxName {
             }
             try FileManager.default.moveItem(at: syntaxURL, to: legacyURL)
         }
-
+        
         if prereleaseURL.isReachable {
             if syntaxURL.isReachable {
                 try FileManager.default.removeItem(at: syntaxURL)
             }
             try FileManager.default.moveItem(at: prereleaseURL, to: syntaxURL)
-
+            
         } else if hasLegacySettings {
             self.migratedSyntaxCount = try Syntax.migrateFormat(in: legacyURL, to: syntaxURL, deletingOriginal: false, shouldMigrate: { !self.bundledSettingNames.contains($0) })
         }
