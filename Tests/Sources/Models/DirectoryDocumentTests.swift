@@ -56,7 +56,16 @@ struct DirectoryDocumentTests {
     
     // MARK: Private Methods
     
-    private func makeMoveConflictTree() throws -> (rootURL: URL, folderURL: URL, destinationURL: URL, leafURL: URL) {
+    private struct MoveConflictTreeURLs {
+        
+        let rootURL: URL
+        let folderURL: URL
+        let destinationURL: URL
+        let leafURL: URL
+    }
+    
+    
+    private func makeMoveConflictTree() throws -> MoveConflictTreeURLs {
         
         let rootURL = FileManager.default.temporaryDirectory
             .appending(path: UUID().uuidString, directoryHint: .isDirectory)
@@ -71,7 +80,7 @@ struct DirectoryDocumentTests {
         try FileManager.default.createDirectory(at: conflictingURL, withIntermediateDirectories: true)
         try Data().write(to: leafURL)
         
-        return (rootURL, folderURL, destinationURL, leafURL)
+        return MoveConflictTreeURLs(rootURL: rootURL, folderURL: folderURL, destinationURL: destinationURL, leafURL: leafURL)
     }
     
     
