@@ -154,6 +154,8 @@ struct BeginEndRegularExpressionExtractor: HighlightExtractable {
         var location = range.lowerBound
         
         while location < range.upperBound {
+            try Task.checkCancellation()
+            
             // find start pattern
             let beginRange = self.beginRegex.rangeOfFirstMatch(in: string, options: options, range: NSRange(location..<range.upperBound))
             
@@ -177,8 +179,6 @@ struct BeginEndRegularExpressionExtractor: HighlightExtractable {
             location = max(endRange.upperBound, endRange.location + 1)
             
             ranges.append(beginRange.union(endRange))
-            
-            try Task.checkCancellation()
         }
         
         return ranges
