@@ -238,13 +238,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Icons make structure easier to scan, and tree-sitter–based syntaxes now support collapsible outlines that reflect hierarchy."
+            "value" : "Icons make structure easier to scan, and tree-sitter-based syntaxes now support collapsible outlines that reflect hierarchy."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Icons make structure easier to scan, and tree-sitter–based syntaxes now support collapsible outlines that reflect hierarchy."
+            "value" : "Icons make structure easier to scan, and tree-sitter-based syntaxes now support collapsible outlines that reflect hierarchy."
           }
         },
         "es" : {
@@ -268,7 +268,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "アイコンが構造の把握を容易にし、tree-sitterベースのシンタックスでは階層を反映した折りたたみ可能なアウトラインをサポートします。"
+            "value" : "アイコンが構造の把握を容易にし、tree-sitterベースのシンタックスでは階層を反映した折りたためるアウトラインをサポートします。"
           }
         },
         "ko" : {
