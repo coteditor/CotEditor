@@ -391,7 +391,7 @@
 
 - Fix an issue where the editor doesn’t receive focus by document opening when the system keyboard navigation feature is enabled.
 - Fix an issue where a focus ring appears in an empty area in the navigation bar by document opening when the system keyboard navigation feature is enabled.
-- Fix an issue in the file browser where the the items are not sorted when a top-level item was renamed.
+- Fix an issue in the file browser where the items are not sorted when a top-level item was renamed.
 - Fix an issue in the Quick Action bar where the last input remains.
 - Fix an issue in editors where the word selection doesn’t expand properly when dragging the mouse.
 
