@@ -6,6 +6,7 @@
 ### Fixes
 
 - Fix issues where the Script menu could become outdated after changes in the Scripts folder.
+- [trivial] Fix an issue where a renamed setting could become deselected if surrounding whitespace in the new name is trimmed.
 
 
 

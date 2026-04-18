@@ -112,6 +112,33 @@ import SyntaxFormat
     }
     
     
+    @Test func renamingWithSurroundingWhitespaceInvalidatesSanitizedCacheEntry() throws {
+        
+        let manager = TestReplacementManager()
+        let sourceName = "Rename Source \(UUID().uuidString)"
+        let destinationName = "Rename Destination \(UUID().uuidString)"
+        let originalSetting = MultipleReplace(replacements: [.init(findString: "old", replacementString: "new")])
+        let staleSetting = MultipleReplace(replacements: [.init(findString: "stale", replacementString: "value")])
+        
+        try self.cleanUp(name: sourceName, manager: manager)
+        try self.cleanUp(name: destinationName, manager: manager)
+        defer {
+            try? self.cleanUp(name: sourceName, manager: manager)
+            try? self.cleanUp(name: destinationName, manager: manager)
+        }
+        
+        try manager.save(setting: originalSetting, name: sourceName)
+        manager.cachedSettings[destinationName] = staleSetting
+        
+        let renamedName = try manager.renameSetting(name: sourceName, to: "  \(destinationName)  ")
+        
+        #expect(renamedName == destinationName)
+        #expect(manager.settingNames.contains(destinationName))
+        #expect(!manager.settingNames.contains("  \(destinationName)  "))
+        #expect(try manager.setting(name: destinationName) == originalSetting)
+    }
+    
+    
     // MARK: Private Methods
     
     private func createReplacementFile(setting: MultipleReplace, type: UTType) throws -> URL {

@@ -328,8 +328,9 @@ extension SettingFileManaging {
     /// - Parameters:
     ///   - name: The current setting name.
     ///   - newName: The new setting name.
+    /// - Returns: The sanitized setting name that was actually adopted.
     /// - Throws: An `InvalidNameError` or file operation error.
-    func renameSetting(name: String, to newName: String) throws {
+    @discardableResult func renameSetting(name: String, to newName: String) throws -> String {
         
         let sanitizedNewName = newName.trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -339,10 +340,12 @@ extension SettingFileManaging {
                                          to: self.preparedURLForUserSetting(name: sanitizedNewName))
         
         self.cachedSettings[name] = nil
-        self.cachedSettings[newName] = nil
+        self.cachedSettings[sanitizedNewName] = nil
         
         let change: SettingChange = .updated(from: name, to: sanitizedNewName)
         self.updateSettingList(change: change)
+        
+        return sanitizedNewName
     }
     
     

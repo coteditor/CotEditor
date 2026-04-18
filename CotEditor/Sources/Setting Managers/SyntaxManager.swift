@@ -150,20 +150,22 @@ enum SyntaxName {
     func save(setting: Setting, name: String, oldName: String?) throws {
         
         // move old file to new place to overwrite when syntax name is also changed
-        if let oldName, name != oldName {
+        let finalizedName: String = if let oldName, name != oldName {
             try self.renameSetting(name: oldName, to: name)
+        } else {
+            name
         }
         
-        try self.write(setting: setting, name: name)
+        try self.write(setting: setting, name: finalizedName)
         
         // invalidate current cache
         if let oldName {
             self.cachedSettings[oldName] = nil
         }
-        self.cachedSettings[name] = setting
+        self.cachedSettings[finalizedName] = setting
         
         // update internal cache
-        let change: SettingChange = oldName.map { .updated(from: $0, to: name) } ?? .added(name)
+        let change: SettingChange = oldName.map { .updated(from: $0, to: finalizedName) } ?? .added(finalizedName)
         self.updateSettingList(change: change)
     }
     

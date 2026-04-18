@@ -145,12 +145,11 @@ private struct ThemeListView: View {
                     
                     SettingNameField(text: name) { newName in
                         do {
-                            try self.manager.renameSetting(name: name, to: newName)
+                            self.selection = try self.manager.renameSetting(name: name, to: newName)
                         } catch {
                             self.error = error
                             return false
                         }
-                        self.selection = newName
                         return true
                     }
                     .editDisabled(state?.isBundled == true)
