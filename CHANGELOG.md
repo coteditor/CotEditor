@@ -3,6 +3,11 @@
 7.0.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Update tree-sitter-scala to 0.26.0.
+
+
 ### Fixes
 
 - Fix an issue where key bindings imported from a settings archive could be lost after relaunching the app.

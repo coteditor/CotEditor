@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tree-sitter/tree-sitter-scala",
       "state" : {
-        "revision" : "14c5cfd2b8e0f057ba0f4f72ee4812b0ae6cdce3",
-        "version" : "0.25.0"
+        "revision" : "38950b525c9dfc44c8b60d44bdd6e54217286ca8",
+        "version" : "0.26.0"
       }
     },
     {
