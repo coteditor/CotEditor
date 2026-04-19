@@ -219,7 +219,7 @@ private extension NewFeature {
                        table: "WhatsNew")
             case .outline:
                 String(localized: "NewFeature.outline.description",
-                       defaultValue: "Icons make structure easier to scan, and tree-sitter–based syntaxes now support collapsible outlines that reflect hierarchy.",
+                       defaultValue: "Icons make structure easier to scan, and tree-sitter-based syntaxes now support collapsible outlines that reflect hierarchy.",
                        table: "WhatsNew")
         }
     }
