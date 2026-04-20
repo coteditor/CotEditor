@@ -6512,7 +6512,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Sprache verwendet für die Syntaxanalyse einen struktur­basierten, allgemeinen Parser namens tree-sitter.\\nDa die Extraktionsregeln von der App verwaltet werden, kannst du sie nicht anpassen."
+            "value" : "Diese Sprache verwendet für die Syntaxanalyse einen struktur­basierten, allgemeinen Parser namens tree-sitter.\nDa die Extraktionsregeln von der App verwaltet werden, kannst du sie nicht anpassen."
           }
         },
         "en" : {
@@ -6524,19 +6524,19 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This language uses a structure-based, general-purpose parser called tree-sitter for syntax analysis.\\nBecause the extraction rules are managed by the app, you can’t customise them."
+            "value" : "This language uses a structure-based, general-purpose parser called tree-sitter for syntax analysis.\nBecause the extraction rules are managed by the app, you can’t customise them."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Este lenguaje utiliza un analizador de propósito general basado en la estructura, llamado tree-sitter, para el análisis sintáctico.\\nDado que las reglas de extracción están gestionadas por la app, no puedes personalizarlas."
+            "value" : "Este lenguaje utiliza un analizador de propósito general basado en la estructura, llamado tree-sitter, para el análisis sintáctico.\nDado que las reglas de extracción están gestionadas por la app, no puedes personalizarlas."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Ce langage utilise un analyseur générique basé sur la structure, appelé tree-sitter, pour l’analyse syntaxique.\\nLes règles d’extraction étant gérées par l’app, vous ne pouvez pas les personnaliser."
+            "value" : "Ce langage utilise un analyseur générique basé sur la structure, appelé tree-sitter, pour l’analyse syntaxique.\nLes règles d’extraction étant gérées par l’app, vous ne pouvez pas les personnaliser."
           }
         },
         "it" : {
@@ -6548,7 +6548,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "この言語のシンタックス解析には、tree-sitterという構造ベースの汎用パーサを使っています。\\n抽出ルールはアプリによって管理されているため、カスタマイズはできません。"
+            "value" : "この言語のシンタックス解析には、tree-sitterという構造ベースの汎用パーサを使っています。\n抽出ルールはアプリによって管理されているため、カスタマイズはできません。"
           }
         },
         "ko" : {
@@ -6560,7 +6560,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Deze taal gebruikt een structuur­gebaseerde parser voor algemeen gebruik, genaamd tree-sitter, voor syntaxisanalyse.\\nOmdat de extractieregels door de app worden beheerd, kun je ze niet aanpassen."
+            "value" : "Deze taal gebruikt een structuur­gebaseerde parser voor algemeen gebruik, genaamd tree-sitter, voor syntaxisanalyse.\nOmdat de extractieregels door de app worden beheerd, kun je ze niet aanpassen."
           }
         },
         "pl" : {

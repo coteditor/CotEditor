@@ -8,6 +8,11 @@
 - Improve outline extraction algorithm for the Swift syntax.
 
 
+### Fixes
+
+- [trivial] Fix typos in localized labels.
+
+
 
 7.0.0 (813)
 --------------------------
