@@ -46,19 +46,13 @@ enum SwiftOutlineFormatter: TreeSitterOutlineFormatting {
     }
     
     
-    /// Formats a Swift outline title with MARK comment handling.
+    /// Formats a Swift outline title with comment marker handling.
     static func formatTitle(_ title: String, kind: Syntax.Outline.Kind) -> String? {
 
         guard kind == .mark else { return title }
 
-        let trimmed = if let match = title.wholeMatch(of: /\/\/ +(.+)/)  // inline comment
-                            ?? title.wholeMatch(of: /\/\* +(.+) +\*\//)  // block comment
-        {
-            String(match.output.1)
-        } else {
-            title
-        }
-        let comment = trimmed.replacing(/^MARK:\s*-?\s*/, with: "")
+        let comment = Self.commentContent(in: title)
+            .replacing(/^MARK:\s*-?\s*/, with: "")
 
         return comment.isEmpty ? nil : comment
     }
@@ -66,6 +60,19 @@ enum SwiftOutlineFormatter: TreeSitterOutlineFormatting {
 
 
 private extension SwiftOutlineFormatter {
+    
+    /// Returns the title text with surrounding comment delimiters removed.
+    static func commentContent(in title: String) -> String {
+        
+        if let match = title.wholeMatch(of: /\/\/\s*(.+)/) {  // inline comment
+            String(match.output.1).trimmingCharacters(in: .whitespacesAndNewlines)
+        } else if let match = title.wholeMatch(of: /\/\*+\s*(.+)\s*\*\//) {  // block comment
+            String(match.output.1).trimmingCharacters(in: .whitespacesAndNewlines)
+        } else {
+            title
+        }
+    }
+    
     
     /// Returns the property name capture used for Swift outline items.
     static func propertyName(for match: QueryMatch, source: NSString) -> (title: String, range: NSRange)? {

@@ -69,6 +69,43 @@ struct TreeSitterSwiftOutlineTests {
     }
     
     
+    @Test func outlineAcceptsCommentMarkersWithoutSpaceAfterCommentPrefix() async throws {
+        
+        let source = #"""
+            struct Farm {
+                
+                //MARK: Cow
+                //MARK: - Sheep
+                //TODO: Horse
+                /*FIXME: Duck */
+                func goat() { }
+            }
+        """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "Farm",
+            "Cow",
+            "",
+            "Sheep",
+            "TODO: Horse",
+            "FIXME: Duck",
+            "goat()",
+        ])
+        #expect(outline.map(\.kind) == [
+            .container,
+            .mark,
+            .separator,
+            .mark,
+            .mark,
+            .mark,
+            .function,
+        ])
+        #expect(outline.map(\.indent.level) == [0, 1, 1, 1, 1, 1, 1])
+    }
+    
+    
     @Test func outlineIncludesParameterLabels() async throws {
         
         let source = #"""

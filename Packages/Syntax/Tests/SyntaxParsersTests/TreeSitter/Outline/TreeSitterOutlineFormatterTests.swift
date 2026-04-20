@@ -54,8 +54,20 @@ struct TreeSitterOutlineFormatterTests {
         
         #expect(SwiftOutlineFormatter.formatTitle("SomeFunction", kind: .function) == "SomeFunction")
         #expect(SwiftOutlineFormatter.formatTitle("// MARK: Swift", kind: .mark) == "Swift")
+        #expect(SwiftOutlineFormatter.formatTitle("//MARK: Swift", kind: .mark) == "Swift")
         #expect(SwiftOutlineFormatter.formatTitle("// MARK: - Swift", kind: .mark) == "Swift")
+        #expect(SwiftOutlineFormatter.formatTitle("//MARK: - Swift", kind: .mark) == "Swift")
         #expect(SwiftOutlineFormatter.formatTitle("/* MARK: Swift */", kind: .mark) == "Swift")
+        #expect(SwiftOutlineFormatter.formatTitle("/*MARK: Swift */", kind: .mark) == "Swift")
         #expect(SwiftOutlineFormatter.formatTitle("// MARK:", kind: .mark) == nil)
+    }
+    
+    
+    @Test func formatSwiftCommentMarkersWithoutSpaceAfterDelimiter() {
+        
+        #expect(SwiftOutlineFormatter.formatTitle("//TODO: Swift", kind: .mark) == "TODO: Swift")
+        #expect(SwiftOutlineFormatter.formatTitle("//FIXME: Swift", kind: .mark) == "FIXME: Swift")
+        #expect(SwiftOutlineFormatter.formatTitle("/*TODO: Swift */", kind: .mark) == "TODO: Swift")
+        #expect(SwiftOutlineFormatter.formatTitle("/*FIXME: Swift */", kind: .mark) == "FIXME: Swift")
     }
 }

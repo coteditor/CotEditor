@@ -3,6 +3,10 @@
 7.0.1 (unreleased)
 --------------------------
 
+### Improvements
+
+- Improve outline extraction algorithm for the Swift syntax.
+
 
 
 7.0.0 (813)
