@@ -12,18 +12,6 @@
   },
   "stringDelimiters" : [
     {
-      "begin" : "+++",
-      "description" : "FrontMatter (YAML)",
-      "end" : "+++",
-      "isMultiline" : true
-    },
-    {
-      "begin" : "---",
-      "description" : "FrontMatter (TOML)",
-      "end" : "---",
-      "isMultiline" : true
-    },
-    {
       "begin" : "`",
       "description" : "code",
       "end" : "`"
