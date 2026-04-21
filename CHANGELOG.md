@@ -6,6 +6,7 @@
 ### Improvements
 
 - Improve outline extraction algorithm for the Swift syntax.
+- Update the Markdown syntax to highlight some FrontMatter format.
 
 
 ### Fixes
