@@ -12,8 +12,13 @@
 (title_declaration
   text: (curly_group)) @outline.title
 
-(caption
-  long: (curly_group)) @outline.title
+(generic_environment
+  begin: (begin
+    name: (curly_group_text
+      (text) @_env))
+  (caption
+    long: (curly_group)) @outline.title
+  (#not-match? @_env "^sub(figure|table)\\*?$"))
 
 ; Headings
 (part

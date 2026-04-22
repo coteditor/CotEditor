@@ -60,6 +60,64 @@ struct TreeSitterLaTeXOutlineTests {
     }
     
     
+    @Test func outlineSkipsSubfigureCaptions() async throws {
+        
+        let source = #"""
+            \section{Gallery}
+            \begin{figure}
+              \caption{Overview}
+              \begin{subfigure}{.45\textwidth}
+                \caption{Left}
+              \end{subfigure}
+              \begin{subfigure}{.45\textwidth}
+                \caption{Right}
+              \end{subfigure}
+            \end{figure}
+            """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "Gallery",
+            "Overview",
+        ])
+        #expect(outline.map(\.kind) == [
+            .heading(nil),
+            .title,
+        ])
+        #expect(outline.map(\.indent.level) == [0, 1])
+    }
+    
+    
+    @Test func outlineSkipsSubtableCaptions() async throws {
+        
+        let source = #"""
+            \section{Results}
+            \begin{table}
+              \caption{Summary}
+              \begin{subtable}{.45\textwidth}
+                \caption{Group A}
+              \end{subtable}
+              \begin{subtable}{.45\textwidth}
+                \caption{Group B}
+              \end{subtable}
+            \end{table}
+            """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "Results",
+            "Summary",
+        ])
+        #expect(outline.map(\.kind) == [
+            .heading(nil),
+            .title,
+        ])
+        #expect(outline.map(\.indent.level) == [0, 1])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {
