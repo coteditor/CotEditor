@@ -112,6 +112,61 @@ import SyntaxFormat
     }
     
     
+    @Test func importNativeSyntaxPackageSucceedsWithContentType() throws {
+        
+        let manager = TestSyntaxManager()
+        let name = "Native Syntax \(UUID().uuidString)"
+        
+        try self.cleanUp(name: name, manager: manager)
+        defer { try? self.cleanUp(name: name, manager: manager) }
+        
+        let importedSetting = Syntax(
+            kind: .code,
+            fileMap: .init(extensions: ["native"]),
+            highlights: [.keywords: [.init(begin: "foo")]]
+        )
+        let url = try self.createNativeSyntaxFile(setting: importedSetting)
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        
+        let type = try url.resourceValues(forKeys: [.contentTypeKey]).contentType
+        
+        try manager.importSetting(.url(url), name: name, type: type, overwrite: true)
+        
+        manager.cachedSettings.removeAll()
+        
+        let setting = try manager.setting(name: name)
+        let savedURL = try #require(manager.urlForUserSetting(name: name))
+        
+        #expect(setting == importedSetting)
+        #expect(savedURL.pathExtension == UTType.cotSyntax.preferredFilenameExtension)
+    }
+    
+    
+    @Test func importThemeSucceedsWithContentType() throws {
+        
+        let manager = TestThemeManager()
+        let name = "Theme Import \(UUID().uuidString)"
+        
+        try self.cleanUp(name: name, manager: manager)
+        defer { try? self.cleanUp(name: name, manager: manager) }
+        
+        let url = try self.createThemeFile(named: "Dendrobates")
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        
+        let type = try url.resourceValues(forKeys: [.contentTypeKey]).contentType
+        
+        try manager.importSetting(.url(url), name: name, type: type, overwrite: true)
+        
+        manager.cachedSettings.removeAll()
+        
+        let setting = try manager.setting(name: name)
+        let savedURL = try #require(manager.urlForUserSetting(name: name))
+        
+        #expect(setting.metadata?.author == "1024jp")
+        #expect(savedURL.pathExtension == UTType.cotTheme.preferredFilenameExtension)
+    }
+    
+    
     @Test func renamingWithSurroundingWhitespaceInvalidatesSanitizedCacheEntry() throws {
         
         let manager = TestReplacementManager()
@@ -159,6 +214,30 @@ import SyntaxFormat
     private func createYAMLFile(text: String) throws -> URL {
         
         try self.createTemporaryFile(type: .yaml, data: Data(text.utf8))
+    }
+    
+    
+    private func createNativeSyntaxFile(setting: Syntax) throws -> URL {
+        
+        let directoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
+        
+        let fileURL = directoryURL.appendingPathComponent("Imported", conformingTo: .cotSyntax)
+        try setting.fileWrapper.write(to: fileURL, options: .atomic, originalContentsURL: nil)
+        
+        return fileURL
+    }
+    
+    
+    private func createThemeFile(named name: String) throws -> URL {
+        
+        guard let sourceURL = Bundle.main.url(forResource: name, withExtension: UTType.cotTheme.preferredFilenameExtension, subdirectory: "Themes") else {
+            throw CocoaError(.fileNoSuchFile)
+        }
+        
+        let data = try Data(contentsOf: sourceURL)
+        
+        return try self.createTemporaryFile(type: .cotTheme, data: data)
     }
     
     
@@ -212,6 +291,34 @@ import SyntaxFormat
             ? .updated(from: name, to: name)
             : .added(name)
         self.updateSettingList(change: change)
+    }
+    
+    
+    nonisolated func listAvailableSettings() -> [String] {
+        
+        self.userSettingFileURLs
+            .map(Self.settingName(from:))
+            .sorted(using: .localizedStandard)
+    }
+}
+
+
+@MainActor private final class TestThemeManager: SettingFileManaging {
+    
+    typealias Setting = Theme
+    
+    static let directoryName = "TestThemes-\(UUID().uuidString)"
+    static let constantSettings: [String: Setting] = [:]
+    
+    let reservedNames: [String] = []
+    let bundledSettingNames: [String] = []
+    var settingNames: [String] = []
+    var cachedSettings: [String: Setting] = [:]
+    
+    
+    init() {
+        
+        self.settingNames = self.listAvailableSettings()
     }
     
     

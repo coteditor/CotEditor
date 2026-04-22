@@ -220,7 +220,8 @@ private struct ThemeListView: View {
                         
                         let name = url.deletingPathExtension().lastPathComponent
                         do {
-                            try self.manager.importSetting(.url(url), name: name, type: .cotTheme, overwrite: false)
+                            let type = try url.resourceValues(forKeys: [.contentTypeKey]).contentType
+                            try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
                         } catch let error as ImportDuplicationError {
                             self.importingError = error
                             self.isImportConfirmationPresented = true

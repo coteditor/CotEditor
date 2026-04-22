@@ -11,6 +11,7 @@
 
 ### Fixes
 
+- Fix an issue where CotEditor Syntax (.cotsyntax) files could not be imported from the Format settings.
 - [trivial] Fix typos in localized labels.
 
 
