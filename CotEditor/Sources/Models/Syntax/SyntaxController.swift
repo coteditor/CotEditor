@@ -362,7 +362,7 @@ private extension NSTextStorage {
         if range.upperBound < self.length,
            let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: range.upperBound)
         {
-            range = NSRange(range.lowerBound..<effectiveRange.upperBound)
+            range = NSRange(range.lowerBound..<min(effectiveRange.upperBound, self.length))
         }
         
         return range
