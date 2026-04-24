@@ -412,8 +412,9 @@ extension NSTextView: EditorCounter.Source { }
             
             // determine syntax (only on the first file open)
             if !isInitialized {
-                let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string)
-                self.setSyntax(name: syntaxName ?? SyntaxName.none)
+                if let syntaxName = SyntaxManager.shared.settingName(documentName: url.lastPathComponent, content: string) {
+                    self.setSyntax(name: syntaxName)
+                }
                 self.isInitialized.withLock { $0 = true }
             }
             
@@ -1101,9 +1102,7 @@ extension NSTextView: EditorCounter.Source { }
         do {
             syntax = try SyntaxManager.shared.setting(name: name)
         } catch {
-            // present error dialog if failed
-            self.presentErrorAsSheet(error)
-            return
+            return self.presentErrorAsSheet(error)
         }
         
         guard syntax != self.syntaxController.syntax else { return }
