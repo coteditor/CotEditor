@@ -35,7 +35,7 @@ from typing import Optional
 
 
 # meta data
-__version__ = '7.0.0'
+__version__ = '7.0.1'
 __description__ = 'command-line utility for CotEditor.'
 
 
@@ -107,6 +107,21 @@ def run_osascript(script: str, is_async: bool = False) -> str:
         result = result[:-1]
 
     return result
+
+
+def osa_literal(value: str) -> str:
+    """Return AppleScript literal for a value returned by OSA script.
+
+    Args:
+        value (str): Value returned by OSA script.
+    Returns:
+        literal (str): AppleScript literal for the value.
+    """
+    try:
+        int(value)
+        return value
+    except ValueError:
+        return '"{}"'.format(value.replace('\\', '\\\\').replace('"', '\\"'))
 
 
 class ScriptableApplication(object):
@@ -200,7 +215,8 @@ class ScriptableApplication(object):
         """
         if window_id is None:
             return False
-        script = '(first window whose id is {}) is visible'.format(window_id)
+        script = '(first window whose id is {}) is visible'.format(
+            osa_literal(window_id))
         result = None
         try:
             result = self.tell(script)
@@ -455,8 +471,12 @@ def main(args: argparse.Namespace, stdin: Optional[str]) -> None:
 
         # raise client window to the front
         if client_window_id:
-            client.tell('set index of window id {} to 1'.format(
-                client_window_id))
+            try:
+                client.tell('try\n'
+                            'set index of window id {} to 1\n'
+                            'end try'.format(osa_literal(client_window_id)))
+            except CalledProcessError:
+                pass
         try:
             client.tell('activate')
         except Exception:

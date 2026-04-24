@@ -13,6 +13,7 @@
 
 - Fix an issue where the default filename extension in the Save dialog didn’t reflect the current syntax.
 - Fix an issue where CotEditor Syntax (.cotsyntax) files could not be imported from the Format settings.
+- Fix an issue in the `cot` command where the `--wait` option could fail to return focus to the client terminal in some terminal apps.
 - [trivial] Fix typos in localized labels.
 
 
