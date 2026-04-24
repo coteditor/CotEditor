@@ -28,7 +28,7 @@
 				<string>public.fortran-source</string>
 				<string>public.html</string>
 				<string>public.json</string>
-				<string>public.markdown</string>
+				<string>net.daringfireball.markdown</string>
 				<string>public.patch-file</string>
 				<string>public.perl-script</string>
 				<string>public.php-script</string>
@@ -723,7 +723,7 @@
 				<string>md</string>
 			</dict>
 			<key>UTTypeIdentifier</key>
-			<string>public.markdown</string>
+			<string>net.daringfireball.markdown</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.mime-type</key>
