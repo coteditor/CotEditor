@@ -147,6 +147,11 @@ final class DocumentController: NSDocumentController {
         
         let document = try super.openUntitledDocumentAndDisplay(displayDocument)
         
+        // set default syntax
+        if let document = document as? Document {
+            document.setSyntax(name: UserDefaults.standard[.syntax])
+        }
+        
         // make document transient when it is an open or reopen event
         if self.documents.count == 1, NSAppleEventManager.shared().isOpenEvent {
             (document as? Document)?.isTransient = true

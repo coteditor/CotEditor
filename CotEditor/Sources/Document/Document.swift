@@ -99,7 +99,7 @@ extension NSTextView: EditorCounter.Source { }
     private let isInitialized: Mutex<Bool> = .init(false)
     private let readingEncoding: Mutex<String.Encoding?>  // encoding to read document file
     private let fileData: Mutex<Data?> = .init(nil)
-    private let syntaxFileExtension: Mutex<String?>
+    private let syntaxFileExtension: Mutex<String?> = .init(nil)
     private var shouldSaveEncodingXattr = true
     private var isExecutable = false
     private var isExternalUpdateAlertShown = false
@@ -132,13 +132,8 @@ extension NSTextView: EditorCounter.Source { }
         let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
         self.lineEnding = lineEnding
         
-        var syntaxName = UserDefaults.standard[.syntax]
-        let syntax = try? SyntaxManager.shared.setting(name: syntaxName)
-        syntaxName = (syntax == nil) ? SyntaxName.none : syntaxName
-        let fileExtension = syntax?.fileMap.extensions?.first
-        self.syntaxController = SyntaxController(textStorage: self.textStorage, syntax: syntax ?? Syntax.none, name: syntaxName)
-        self.syntaxFileExtension = .init(fileExtension)
-        self.syntaxName = syntaxName
+        self.syntaxController = SyntaxController(textStorage: self.textStorage, syntax: Syntax.none, name: SyntaxName.none)
+        self.syntaxName = SyntaxName.none
         
         // use the encoding selected by the user in the open panel, if exists
         self.fileEncoding = EncodingManager.shared.defaultEncoding
@@ -152,10 +147,6 @@ extension NSTextView: EditorCounter.Source { }
         self.mode = .kind(.general)
         
         super.init()
-        
-        if let fileExtension, let type = UTType(filenameExtension: fileExtension, conformingTo: .data) {
-            self.fileType = type.identifier
-        }
         
         self.counter.source = { [weak self] in self?.textView }
         
@@ -599,10 +590,10 @@ extension NSTextView: EditorCounter.Source { }
         // workaround the issue that NSDocument cannot resolve the file extension
         // from a dynamic UTType, falling back to .txt (2026-03, macOS 26)
         if let fileType, let type = UTType(fileType), type.isDynamic,
-           let fileExtension = self.syntaxFileExtension.withLock(\.self)
+           let fileExtension = type.preferredFilenameExtension
         {
-            let basename = savePanel.nameFieldStringValue.deletingPathExtension
-            savePanel.nameFieldStringValue = "\(basename).\(fileExtension)"
+            savePanel.allowedContentTypes.append(type)
+            savePanel.nameFieldStringValue = savePanel.nameFieldStringValue.deletingPathExtension + ".\(fileExtension)"
         }
         
         // set accessory view
@@ -1140,7 +1131,7 @@ extension NSTextView: EditorCounter.Source { }
         
         // keep fileType in sync with the selected syntax so the Save panel suggests the right extension
         // (2026-02, macOS 26.2)
-        let type = fileExtension.flatMap { UTType(filenameExtension: $0, conformingTo: .data) } ?? .plainText
+        let type = fileExtension.flatMap { UTType(filenameExtension: $0) } ?? .plainText
         self.fileType = type.identifier
         
         self.invalidateMode()

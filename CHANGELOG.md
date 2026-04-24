@@ -11,6 +11,7 @@
 
 ### Fixes
 
+- Fix an issue where the default filename extension in the Save dialog didn’t reflect the current syntax.
 - Fix an issue where CotEditor Syntax (.cotsyntax) files could not be imported from the Format settings.
 - [trivial] Fix typos in localized labels.
 
