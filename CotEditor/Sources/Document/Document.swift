@@ -99,7 +99,6 @@ extension NSTextView: EditorCounter.Source { }
     private let isInitialized: Mutex<Bool> = .init(false)
     private let readingEncoding: Mutex<String.Encoding?>  // encoding to read document file
     private let fileData: Mutex<Data?> = .init(nil)
-    private let syntaxFileExtension: Mutex<String?> = .init(nil)
     private var shouldSaveEncodingXattr = true
     private var isExecutable = false
     private var isExternalUpdateAlertShown = false
@@ -311,18 +310,6 @@ extension NSTextView: EditorCounter.Source { }
     override var windowForSheet: NSWindow? {
         
         super.windowForSheet ?? self.windowController?.window
-    }
-    
-    
-    override nonisolated func fileNameExtension(forType typeName: String, saveOperation: NSDocument.SaveOperationType) -> String? {
-        
-        // -> This API is currently used only for autosave and saving via script (2026-02, macOS 26.2)
-        
-        if !self.isDraft, let pathExtension = self.fileURL?.pathExtension {
-            return pathExtension
-        }
-        
-        return self.syntaxFileExtension.withLock(\.self)
     }
     
     
@@ -1123,15 +1110,11 @@ extension NSTextView: EditorCounter.Source { }
         
         SyntaxManager.shared.noteRecentSetting(name: name)
         
+        let type = syntax.fileMap.extensions?.first.flatMap { UTType(filenameExtension: $0) } ?? .plainText
+        
         // update
-        let fileExtension = syntax.fileMap.extensions?.first
-        self.syntaxFileExtension.withLock { $0 = fileExtension }
         self.syntaxController.update(syntax: syntax, name: name)
         self.syntaxName = name
-        
-        // keep fileType in sync with the selected syntax so the Save panel suggests the right extension
-        // (2026-02, macOS 26.2)
-        let type = fileExtension.flatMap { UTType(filenameExtension: $0) } ?? .plainText
         self.fileType = type.identifier
         
         self.invalidateMode()
