@@ -125,19 +125,15 @@ extension NSTextView: EditorCounter.Source { }
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
         let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
-        self.lineEnding = lineEnding
-        
-        self.syntaxController = SyntaxController(textStorage: self.textStorage, syntax: Syntax.none, name: SyntaxName.none)
-        self.syntaxName = SyntaxName.none
         
         self.fileEncoding = EncodingManager.shared.defaultEncoding
-        
-        // observe for inconsistent line endings
-        self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
-        
-        self.counter = EditorCounter()
-        
+        self.lineEnding = lineEnding
+        self.syntaxName = SyntaxName.none
         self.mode = .kind(.general)
+        
+        self.syntaxController = SyntaxController(textStorage: self.textStorage, syntax: Syntax.none, name: SyntaxName.none)
+        self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
+        self.counter = EditorCounter()
         
         super.init()
         
@@ -154,7 +150,6 @@ extension NSTextView: EditorCounter.Source { }
                 .sink { [weak self] _ in self?.invalidateMode() },
         ]
         
-        // observe syntax update
         self.syntaxUpdateObserver = NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: SyntaxManager.shared)
             .map { $0.userInfo!["change"] as! SettingChange }
             .filter { [weak self] change in change.old == self?.syntaxName }
