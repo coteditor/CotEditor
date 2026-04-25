@@ -26,9 +26,9 @@
 import Testing
 @testable import CotEditor
 
-struct DebouncerTests {
+@MainActor struct DebouncerTests {
     
-    @MainActor @Test func debounce() async throws {
+    @Test func debounce() async throws {
         
         let delay: ContinuousClock.Duration = .seconds(0.2)
         try await confirmation("Debouncer executed", expectedCount: 1) { confirm in
@@ -45,7 +45,35 @@ struct DebouncerTests {
     }
     
     
-    @MainActor @Test func immediateFire() async throws {
+    @Test func rescheduleFromAction() async throws {
+        
+        let delay: ContinuousClock.Duration = .seconds(0.2)
+        var count = 0
+        var didReschedule = false
+        let box = DebouncerBox()
+        let debouncer = Debouncer(delay: delay) {
+            count += 1
+            if count == 1 {
+                guard let debouncer = box.debouncer else { return }
+                
+                debouncer.schedule()
+                didReschedule = true
+            }
+        }
+        box.debouncer = debouncer
+        
+        debouncer.schedule()
+        try await Task.sleep(for: delay + .seconds(0.1))
+        #expect(didReschedule, "The action must reschedule itself.")
+        #expect(count == 1, "The action can reschedule itself.")
+        
+        debouncer.cancel()
+        try await Task.sleep(for: delay + .seconds(0.1))
+        #expect(count == 1, "The rescheduled action must remain cancellable.")
+    }
+    
+    
+    @Test func immediateFire() async throws {
         
         let delay: ContinuousClock.Duration = .seconds(1)
         var value = 0
@@ -69,7 +97,7 @@ struct DebouncerTests {
     }
     
     
-    @MainActor @Test func cancel() async throws {
+    @Test func cancel() async throws {
         
         let delay: ContinuousClock.Duration = .seconds(0.2)
         try await confirmation("Debouncer cancelled", expectedCount: 0) { confirm in
@@ -83,4 +111,10 @@ struct DebouncerTests {
             try await Task.sleep(for: delay + .seconds(0.2))
         }
     }
+}
+
+
+@MainActor private final class DebouncerBox {
+    
+    weak var debouncer: Debouncer?
 }

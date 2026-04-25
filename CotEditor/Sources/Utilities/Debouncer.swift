@@ -48,9 +48,14 @@
     }
     
     
+    isolated deinit {
+        self.task?.cancel()
+    }
+    
+    
     // MARK: Public Methods
     
-    /// Invokes the action after when the `delay` time has passed since the last call.
+    /// Invokes the action after the `delay` time has passed since the last call.
     ///
     /// - Parameters:
     ///   - delay: The time to wait for fire. If nil, the receiver's default delay is used.
@@ -63,8 +68,10 @@
             try await Task.sleep(for: delay)
             try Task.checkCancellation()
             
-            self?.action()
-            self?.task = nil
+            guard let self else { return }
+            
+            self.task = nil
+            self.action()
         }
     }
     
