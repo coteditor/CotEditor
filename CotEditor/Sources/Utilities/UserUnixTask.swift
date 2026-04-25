@@ -27,6 +27,16 @@ import Foundation
 
 actor UserUnixTask {
     
+    // MARK: Private Types
+    
+    private enum State: Equatable {
+        
+        case ready
+        case executing
+        case finished
+    }
+    
+    
     // MARK: Private Properties
     
     private let task: NSUserUnixTask
@@ -35,8 +45,8 @@ actor UserUnixTask {
     private let errorPipe = Pipe()
     private var outputBuffer: AsyncStream<Data>?
     private var errorBuffer: AsyncStream<Data>?
+    private var state: State = .ready
     private var hasInput = false
-    private var isExecuting = false
     
     
     // MARK: Public Methods
@@ -60,11 +70,11 @@ actor UserUnixTask {
     ///   - capturesOutput: Whether to capture the standard output.
     func execute(arguments: [String] = [], capturesOutput: Bool = true) async throws {
         
-        guard !self.isExecuting else { return assertionFailure() }
+        guard self.state == .ready else { return assertionFailure("The task can be executed only once.") }
         
-        self.isExecuting = true
-        defer { self.isExecuting = false }
-
+        self.state = .executing
+        defer { self.state = .finished }
+        
         // read output and error asynchronously to safely handle huge output
         if capturesOutput {
             self.outputBuffer = self.outputPipe.readingStream
@@ -94,6 +104,11 @@ actor UserUnixTask {
     /// - Parameter input: The string to input.
     func pipe(input: String) {
         
+        guard
+            self.state == .ready,
+            !self.hasInput
+        else { return assertionFailure("Input must be piped only once before executing the task.") }
+        
         self.hasInput = true
         let data = Data(input.utf8)
         
@@ -113,6 +128,11 @@ actor UserUnixTask {
     var output: String? {
         
         get async {
+            guard self.state == .finished else {
+                assertionFailure("Output must be read after executing the task.")
+                return nil
+            }
+            
             guard let outputBuffer else { return nil }
             
             // clear output buffer so it is consumed only once
@@ -129,6 +149,11 @@ actor UserUnixTask {
     var error: String? {
         
         get async {
+            guard self.state == .finished else {
+                assertionFailure("Error output must be read after executing the task.")
+                return nil
+            }
+            
             guard let errorBuffer else { return nil }
             
             // clear error buffer so it is consumed only once
