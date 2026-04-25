@@ -73,13 +73,13 @@ import StringUtils
                 .sink { [unowned self] _ in self.countEntire() },
             NotificationCenter.default.publisher(for: EditorTextView.DidLiveChangeSelectionMessage.name, object: textView)
                 .sink { [unowned self] _ in self.countSelection() },
-            Publishers.Merge7(UserDefaults.standard.publisher(for: .countUnit).eraseToVoid(),
-                              UserDefaults.standard.publisher(for: .countNormalizationForm).eraseToVoid(),
-                              UserDefaults.standard.publisher(for: .countNormalizes).eraseToVoid(),
-                              UserDefaults.standard.publisher(for: .countIgnoresNewlines).eraseToVoid(),
-                              UserDefaults.standard.publisher(for: .countIgnoresWhitespaces).eraseToVoid(),
-                              UserDefaults.standard.publisher(for: .countTreatsConsecutiveWhitespaceAsSingle).eraseToVoid(),
-                              UserDefaults.standard.publisher(for: .countEncoding).eraseToVoid())
+            Publishers.Merge7(UserDefaults.standard.publisher(for: .countUnit).map { _ in },
+                              UserDefaults.standard.publisher(for: .countNormalizationForm).map { _ in },
+                              UserDefaults.standard.publisher(for: .countNormalizes).map { _ in },
+                              UserDefaults.standard.publisher(for: .countIgnoresNewlines).map { _ in },
+                              UserDefaults.standard.publisher(for: .countIgnoresWhitespaces).map { _ in },
+                              UserDefaults.standard.publisher(for: .countTreatsConsecutiveWhitespaceAsSingle).map { _ in },
+                              UserDefaults.standard.publisher(for: .countEncoding).map { _ in })
             .debounce(for: 0, scheduler: RunLoop.main)
             .sink { [unowned self] _ in
                 self.countEntire()
