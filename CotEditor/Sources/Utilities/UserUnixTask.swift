@@ -35,6 +35,7 @@ actor UserUnixTask {
     private let errorPipe = Pipe()
     private var outputBuffer: AsyncStream<Data>?
     private var errorBuffer: AsyncStream<Data>?
+    private var hasInput = false
     private var isExecuting = false
     
     
@@ -66,6 +67,11 @@ actor UserUnixTask {
         self.outputBuffer = self.outputPipe.readingStream
         self.errorBuffer = self.errorPipe.readingStream
         
+        // close the writing end so that scripts reading stdin receive EOF
+        if !self.hasInput {
+            try self.inputPipe.fileHandleForWriting.close()
+        }
+        
         do {
             try await self.task.execute(withArguments: arguments)
         } catch let error as POSIXError where error.code == .ENOTBLK {  // on user cancellation
@@ -81,6 +87,7 @@ actor UserUnixTask {
     /// - Parameter input: The string to input.
     func pipe(input: String) {
         
+        self.hasInput = true
         let data = Data(input.utf8)
         
         self.inputPipe.fileHandleForWriting.writeabilityHandler = { handle in
