@@ -563,25 +563,15 @@ extension NSTextView: EditorCounter.Source { }
         
         savePanel.allowsOtherFileTypes = true
         
-        // -> At least in macOS 26.2, the default filename is already set
-        if #unavailable(macOS 26.2) {
-            savePanel.allowedContentTypes = self.fileType
-                .flatMap { self.fileNameExtension(forType: $0, saveOperation: .saveOperation) }
-                .flatMap { UTType(filenameExtension: $0, conformingTo: .data) }
-                .map { [$0] } ?? []
-            
-            // avoid the Hide Extension option removes actual filename extension (2024-05, macOS 14)
-            savePanel.canSelectHiddenExtension = false
-            savePanel.isExtensionHidden = false
-        }
-        
         // workaround the issue that NSDocument cannot resolve the file extension
         // from a dynamic UTType, falling back to .txt (2026-03, macOS 26)
-        if let fileType, let type = UTType(fileType), type.isDynamic,
-           let fileExtension = type.preferredFilenameExtension
-        {
+        if let type = self.fileType.flatMap(UTType.init) {
             savePanel.allowedContentTypes.append(type)
-            savePanel.nameFieldStringValue = savePanel.nameFieldStringValue.deletingPathExtension + ".\(fileExtension)"
+            
+            // prioritize the user's preferred extension
+            if self.fileURL == nil, let fileExtension = self.syntaxController.syntax.fileMap.extensions?.first {
+                savePanel.nameFieldStringValue = savePanel.nameFieldStringValue.deletingPathExtension + ".\(fileExtension)"
+            }
         }
         
         // set accessory view
@@ -591,15 +581,6 @@ extension NSTextView: EditorCounter.Source { }
         let accessoryView = NSHostingView(rootView: accessory)
         accessoryView.sizingOptions = .intrinsicContentSize
         savePanel.accessoryView = accessoryView
-        
-        // let save panel accept any file extension
-        // -> Otherwise, the file extension for `.allowedContentTypes` is automatically added
-        //    even when the user specifies another one (2023-09, macOS 14).
-        if #unavailable(macOS 26.2) {
-            DispatchQueue.main.async { [weak savePanel] in
-                savePanel?.allowedContentTypes = []
-            }
-        }
         
         return true
     }
