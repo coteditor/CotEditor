@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,7 +33,8 @@ actor UserUnixTask {
     private let inputPipe = Pipe()
     private let outputPipe = Pipe()
     private let errorPipe = Pipe()
-    private var buffer: AsyncStream<Data>?
+    private var outputBuffer: AsyncStream<Data>?
+    private var errorBuffer: AsyncStream<Data>?
     private var isExecuting = false
     
     
@@ -61,8 +62,9 @@ actor UserUnixTask {
         self.isExecuting = true
         defer { self.isExecuting = false }
 
-        // read output asynchronously for safe with huge output
-        self.buffer = self.outputPipe.readingStream
+        // read output and error asynchronously to safely handle huge output
+        self.outputBuffer = self.outputPipe.readingStream
+        self.errorBuffer = self.errorPipe.readingStream
         
         do {
             try await self.task.execute(withArguments: arguments)
@@ -97,14 +99,14 @@ actor UserUnixTask {
     var output: String? {
         
         get async {
-            guard let buffer else { return nil }
+            guard let outputBuffer else { return nil }
             
-            // clear buffer so it is consumed only once
-            self.buffer = nil
+            // clear output buffer so it is consumed only once
+            self.outputBuffer = nil
             
-            async let data = buffer.reduce(into: Data()) { $0 += $1 }
+            let data = await outputBuffer.reduce(into: Data()) { $0 += $1 }
             
-            return String(data: await data, encoding: .utf8)
+            return String(data: data, encoding: .utf8)
         }
     }
     
@@ -112,13 +114,18 @@ actor UserUnixTask {
     /// The standard error.
     var error: String? {
         
-        guard
-            let data = try? self.errorPipe.fileHandleForReading.readToEnd(),
-            let string = String(data: data, encoding: .utf8),
-            !string.isEmpty
-        else { return nil }
-        
-        return string
+        get async {
+            guard let errorBuffer else { return nil }
+            
+            // clear error buffer so it is consumed only once
+            self.errorBuffer = nil
+            
+            let data = await errorBuffer.reduce(into: Data()) { $0 += $1 }
+            
+            guard !data.isEmpty else { return nil }
+            
+            return String(data: data, encoding: .utf8)
+        }
     }
 }
 
