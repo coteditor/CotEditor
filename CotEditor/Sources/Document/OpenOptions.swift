@@ -26,8 +26,7 @@
 import Foundation
 import Synchronization
 
-
-struct OpenOptions: Sendable {
+struct OpenOptions {
     
     var encoding: String.Encoding?
     var isReadOnly = false
@@ -40,6 +39,9 @@ enum PendingOpenOptions {
     
     
     /// Returns the options selected in the open panel for the given document URL.
+    ///
+    /// - Parameter url: The document URL.
+    /// - Returns: The options registered for the document URL, or `nil` if the document was not selected in the open panel.
     static func options(for url: URL) -> OpenOptions? {
         
         self.optionsByURL.withLock {
@@ -49,6 +51,10 @@ enum PendingOpenOptions {
     
     
     /// Registers the options selected in the open panel for the URLs selected in that panel.
+    ///
+    /// - Parameters:
+    ///   - options: The open panel options.
+    ///   - urls: The document URLs selected in the open panel.
     static func register(_ options: OpenOptions, for urls: [URL]) {
         
         self.optionsByURL.withLock {
@@ -60,6 +66,8 @@ enum PendingOpenOptions {
     
     
     /// Removes the options registered for the given document URL after its opening flow finishes.
+    ///
+    /// - Parameter url: The document URL.
     static func remove(for url: URL) {
         
         self.optionsByURL.withLock {
