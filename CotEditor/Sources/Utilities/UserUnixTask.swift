@@ -115,11 +115,11 @@ actor UserUnixTask {
         self.inputPipe.fileHandleForWriting.writeabilityHandler = { handle in
             do {
                 try handle.write(contentsOf: data)
-                try handle.close()
             } catch {
                 assertionFailure(error.localizedDescription)
             }
             handle.writeabilityHandler = nil
+            try? handle.close()
         }
     }
     
