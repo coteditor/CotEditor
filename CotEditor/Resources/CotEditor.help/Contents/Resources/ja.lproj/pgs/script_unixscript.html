@@ -18,18 +18,29 @@
 
 
 <section>
-<h2>スクリプトメニュー用のUNIXスクリプトを作成する</h2>
+<h2>UNIXスクリプトを準備する</h2>
 
-<p>CotEditor用のUNIXスクリプトは、実行環境がMacに用意されていればどんなスクリプト言語でも作成できます。ただし、スクリプトファイルは、.sh、.pl、.php、.rb、.py、.js、.awk、または.swiftのいずれかの拡張子を付ける必要があります。</p>
+<p>CotEditorのスクリプトフォルダにスクリプトファイルを作成します。CotEditor用のUNIXスクリプトは、実行環境がMacに用意されていればどんなスクリプト言語でも作成できます。ただし、スクリプトファイルは、.sh、.pl、.php、.rb、.py、.js、.awk、または.swiftのいずれかの拡張子を付ける必要があります。</p>
 
-<p>スクリプトを正しく実行するには、使用するインタープリタを指定する<code>#!</code>（shebang）行をスクリプトに含め、スクリプトファイルを実行可能にしておく必要があります。例えば、<a href="https://support.apple.com/guide/terminal/APDD100908F-06B3-4E63-8A87-32E71241BAB4/" rel="external">Macの「ターミナル」でファイルを実行可能ファイルにする</a>ことができます。</p>
+<p>スクリプトファイルには実行権限を付けておく必要があります。実行権限は、<a href="https://support.apple.com/guide/terminal/APDD100908F-06B3-4E63-8A87-32E71241BAB4/" rel="external">Macの「ターミナル」でファイルを実行可能ファイルにする</a>ことで付けられます。</p>
+
+<p>スクリプトフォルダを開く方法やスクリプトの追加/削除について詳しくは、<a href="script_overview.html">スクリプトで作業を自動化する</a>を参照してください。</p>
+</section>
+
+
+<section>
+<h2>スクリプト言語を指定する</h2>
+
+<p>UNIXスクリプトの先頭行に<code>#!</code>（shebang）を記述することで、スクリプトを実行するインタープリタを指定します。<code>#!/usr/bin/env python3</code>のように記述すると、<code>PATH</code>から見つかったPython 3インタープリタでスクリプトを実行します。</p>
+
+<p><em class="note">注記:</em> shebangで<code>/usr/bin/env</code>を使うと、CotEditorはスクリプトの実行時に利用できる<code>PATH</code>環境変数を使ってインタープリタを探します。この<code>PATH</code>は「ターミナル」のシェルでの<code>PATH</code>と異なる場合があります。Pythonなど特定のインタープリタが必要な場合は、<code>#!/path/to/python3</code>のようにインタープリタの絶対パスを指定してください。</p>
 </section>
 
 
 <section>
 <h2>ファイルパスを参照する</h2>
 
-<p>現在の書類が保存済みのときは、その書類の絶対ファイルパスが引数（argv）としてスクリプトに渡されます。</p>
+<p>現在の書類が保存済みのときは、その書類の絶対ファイルパスが最初のコマンドライン引数としてスクリプトに渡されます。例えば、シェルスクリプトでは<code>$1</code>、Pythonでは<code>sys.argv[1]</code>で参照できます。</p>
 </section>
 
 

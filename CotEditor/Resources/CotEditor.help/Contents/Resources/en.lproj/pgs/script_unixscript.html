@@ -19,18 +19,29 @@
 
 
 <section>
-<h2>Create a UNIX script for the Script menu</h2>
+<h2>Prepare a UNIX script</h2>
 
-<p>You can write UNIX scripts for CotEditor in any scripting language, as long as the execution environment is available on your Mac. However, script files must have one of the following file extensions: .sh, .pl, .php, .rb, .py, .js, .awk, or .swift.</p>
+<p>Create a script file in CotEditor’s scripts folder. You can write UNIX scripts for CotEditor in any scripting language, as long as the execution environment is available on your Mac. However, script files must have one of the following file extensions: .sh, .pl, .php, .rb, .py, .js, .awk, or .swift.</p>
 
-<p>To run a script properly, include a <code>#!</code> (shebang) line that specifies the interpreter, and make sure the script file is executable. For example, you can <a href="https://support.apple.com/guide/terminal/APDD100908F-06B3-4E63-8A87-32E71241BAB4/" rel="external">make a file executable in Terminal on Mac</a>.</p>
+<p>The script file must be executable. You can <a href="https://support.apple.com/guide/terminal/APDD100908F-06B3-4E63-8A87-32E71241BAB4/" rel="external">make a file executable in Terminal on Mac</a>.</p>
+
+<p>For details about opening the scripts folder and adding or removing scripts, see <a href="script_overview.html">Automate tasks with scripting</a>.</p>
+</section>
+
+
+<section>
+<h2>Specify the script language</h2>
+
+<p>Specify the interpreter for a UNIX script with a <code>#!</code> (shebang) line at the beginning of the file. A shebang such as <code>#!/usr/bin/env python3</code> runs the script with the Python 3 interpreter found using <code>PATH</code>.</p>
+
+<p><em class="note">Note:</em> When using <code>/usr/bin/env</code> in a shebang, CotEditor uses the <code>PATH</code> environment variable available when it runs the script to find the interpreter. This <code>PATH</code> can differ from the one your shell uses in Terminal. If your script requires a specific version of Python or another interpreter, specify its absolute path, such as <code>#!/path/to/python3</code>.</p>
 </section>
 
 
 <section>
 <h2>Get the document’s file path</h2>
 
-<p>If the current document has been saved, its absolute file path is passed to the script as an argument (<code>argv</code>).</p>
+<p>If the current document has been saved, its absolute file path is passed to the script as the first command-line argument, such as <code>$1</code> in a shell script or <code>sys.argv[1]</code> in Python.</p>
 </section>
 
 
