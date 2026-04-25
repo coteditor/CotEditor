@@ -165,6 +165,8 @@ actor UserUnixTask {
     
     
     /// The standard output.
+    ///
+    /// - Note: Available only after `execute()` finishes; consumed on first read.
     var output: String? {
         
         get async {
@@ -186,6 +188,8 @@ actor UserUnixTask {
     
     
     /// The standard error.
+    ///
+    /// - Note: Available only after `execute()` finishes; consumed on first read.
     var error: String? {
         
         get async {
@@ -211,7 +215,7 @@ actor UserUnixTask {
 
 private extension Pipe {
     
-    /// Creates asynchronous stream for the pipe output.
+    /// An asynchronous stream of data read from the pipe.
     var readingStream: AsyncStream<Data> {
         
         AsyncStream { continuation in
