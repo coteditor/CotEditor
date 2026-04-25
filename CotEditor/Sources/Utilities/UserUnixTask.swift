@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import Synchronization
 
 actor UserUnixTask {
     
@@ -36,8 +37,17 @@ actor UserUnixTask {
         case finished
     }
     
+    private struct InputState: Sendable {
+        
+        var offset: Data.Index = 0
+        var isFinished = false
+    }
+    
     
     // MARK: Private Properties
+    
+    /// Chunk size for piping input; matches a typical macOS pipe buffer.
+    private static let inputChunkSize = 64 * 1024
     
     private let task: NSUserUnixTask
     private let inputPipe = Pipe()
@@ -112,14 +122,44 @@ actor UserUnixTask {
         self.hasInput = true
         let data = Data(input.utf8)
         
-        self.inputPipe.fileHandleForWriting.writeabilityHandler = { handle in
+        guard !data.isEmpty else {
             do {
-                try handle.write(contentsOf: data)
+                try self.inputPipe.fileHandleForWriting.close()
             } catch {
                 assertionFailure(error.localizedDescription)
             }
-            handle.writeabilityHandler = nil
-            try? handle.close()
+            return
+        }
+        
+        // write input in chunks so the pipe buffer doesn’t block on large input
+        let chunkSize = Self.inputChunkSize
+        let inputState = Mutex(InputState())
+        self.inputPipe.fileHandleForWriting.writeabilityHandler = { handle in
+            let shouldClose = inputState.withLock { state in
+                guard !state.isFinished else { return false }
+                
+                let endIndex = min(state.offset + chunkSize, data.endIndex)
+                
+                do {
+                    try handle.write(contentsOf: data[state.offset..<endIndex])
+                    state.offset = endIndex
+                } catch {
+                    assertionFailure(error.localizedDescription)
+                    state.offset = data.endIndex
+                }
+                
+                if state.offset == data.endIndex {
+                    state.isFinished = true
+                    return true
+                }
+                
+                return false
+            }
+            
+            if shouldClose {
+                handle.writeabilityHandler = nil
+                try? handle.close()
+            }
         }
     }
     
