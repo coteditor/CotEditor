@@ -85,7 +85,7 @@
     
     
     /// Performs the action immediately if scheduled.
-    func fireNow() {
+    func fire() {
         
         guard self.task != nil else { return }
         

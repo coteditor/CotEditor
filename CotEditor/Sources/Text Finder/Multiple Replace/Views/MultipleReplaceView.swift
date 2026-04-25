@@ -105,7 +105,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         
         super.viewDidDisappear()
         
-        self.updateNotificationDebouncer.fireNow()
+        self.updateNotificationDebouncer.fire()
         self.resultMessage = nil
     }
     
@@ -116,7 +116,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         
         // commit unsaved changes
         self.endEditing()
-        self.updateNotificationDebouncer.fireNow()
+        self.updateNotificationDebouncer.fire()
         
         return true
     }
@@ -652,7 +652,7 @@ private extension NSPasteboard {
     
     var rows: IndexSet? {
         
-         self.pasteboardItems?
+        self.pasteboardItems?
             .compactMap { $0.propertyList(forType: .row) as? Int }
             .reduce(into: IndexSet()) { $0.insert($1) }
     }

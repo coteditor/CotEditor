@@ -83,13 +83,13 @@ import Testing
         
         #expect(0 == value)
         
-        debouncer.fireNow()
+        debouncer.fire()
         #expect(value == 0, "The action is performed only when scheduled.")
         
         debouncer.schedule()
         #expect(value == 0)
         
-        debouncer.fireNow()
+        debouncer.fire()
         #expect(value == 1, "The scheduled action must be performed immediately.")
         
         try await Task.sleep(for: .seconds(0.1))
