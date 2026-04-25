@@ -3,6 +3,10 @@
 7.0.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- Improve UNIX script pipe handling.
+
 
 
 7.0.1 (815)

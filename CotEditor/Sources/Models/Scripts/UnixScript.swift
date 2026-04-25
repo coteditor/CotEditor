@@ -107,7 +107,7 @@ struct UnixScript: Script {
             await task.pipe(input: input)
         }
         
-        try await task.execute(arguments: arguments)
+        try await task.execute(arguments: arguments, capturesOutput: outputType != nil)
         
         if let outputType, let output = await task.output {
             try await Self.applyOutput(output, type: outputType, editor: document?.textView)

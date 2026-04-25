@@ -55,8 +55,10 @@ actor UserUnixTask {
     
     /// Executes the user script.
     ///
-    /// - Parameter arguments: An array of Strings containing the script arguments.
-    func execute(arguments: [String] = []) async throws {
+    /// - Parameters:
+    ///   - arguments: An array of Strings containing the script arguments.
+    ///   - capturesOutput: Whether to capture the standard output.
+    func execute(arguments: [String] = [], capturesOutput: Bool = true) async throws {
         
         guard !self.isExecuting else { return assertionFailure() }
         
@@ -64,7 +66,12 @@ actor UserUnixTask {
         defer { self.isExecuting = false }
 
         // read output and error asynchronously to safely handle huge output
-        self.outputBuffer = self.outputPipe.readingStream
+        if capturesOutput {
+            self.outputBuffer = self.outputPipe.readingStream
+        } else {
+            self.outputBuffer = nil
+            self.outputPipe.drain()
+        }
         self.errorBuffer = self.errorPipe.readingStream
         
         // close the writing end so that scripts reading stdin receive EOF
@@ -139,7 +146,7 @@ actor UserUnixTask {
 
 private extension Pipe {
     
-    /// Creates asynchronous stream for the standard output.
+    /// Creates asynchronous stream for the pipe output.
     var readingStream: AsyncStream<Data> {
         
         AsyncStream { continuation in
@@ -151,6 +158,18 @@ private extension Pipe {
                 } else {
                     continuation.yield(data)
                 }
+            }
+        }
+    }
+    
+    
+    /// Reads and discards the pipe output.
+    func drain() {
+        
+        self.fileHandleForReading.readabilityHandler = { handle in
+            // read and discard available data; finish on EOF
+            if handle.availableData.isEmpty {
+                handle.readabilityHandler = nil
             }
         }
     }
