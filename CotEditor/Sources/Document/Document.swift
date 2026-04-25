@@ -502,7 +502,7 @@ extension NSTextView: EditorCounter.Source { }
             if error != nil { return }
             
             // store file data in order to check the file content identity in `presentedItemDidChange()`
-            if saveOperation != .autosaveElsewhereOperation {
+            if saveOperation.updatesDocumentFile {
                 assert(self.lastSavedData != nil)
                 self.fileData.withLock { $0 = self.lastSavedData }
             }
@@ -537,6 +537,8 @@ extension NSTextView: EditorCounter.Source { }
             if UserDefaults.standard[.savesTextOrientation] {
                 try? url.setExtendedAttribute(data: self.isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
             }
+            
+            guard saveOperation.updatesDocumentFile else { return }
             
             // get the latest file attributes
             do {

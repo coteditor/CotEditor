@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -70,6 +70,20 @@ extension NSDocument.SaveOperationType {
             case .autosaveElsewhereOperation, .autosaveAsOperation:
                 true
             case .autosaveInPlaceOperation, .saveOperation, .saveAsOperation, .saveToOperation:
+                false
+            @unknown default:
+                fatalError()
+        }
+    }
+    
+    
+    /// The save operation writes to the current document file.
+    var updatesDocumentFile: Bool {
+        
+        switch self {
+            case .saveOperation, .saveAsOperation, .autosaveInPlaceOperation, .autosaveAsOperation:
+                true
+            case .saveToOperation, .autosaveElsewhereOperation:
                 false
             @unknown default:
                 fatalError()
