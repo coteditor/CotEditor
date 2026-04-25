@@ -97,7 +97,7 @@ extension NSTextView: EditorCounter.Source { }
     // MARK: Private Properties
     
     private let isInitialized: Mutex<Bool> = .init(false)
-    private let readingEncoding: Mutex<String.Encoding?>  // encoding to read document file
+    private let readingEncoding: Mutex<String.Encoding?> = .init(nil)  // encoding to read document file
     private let fileData: Mutex<Data?> = .init(nil)
     private var shouldSaveEncodingXattr = true
     private var isExecutable = false
@@ -124,19 +124,13 @@ extension NSTextView: EditorCounter.Source { }
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let openOptions = (DocumentController.shared as! DocumentController).openOptions
-        
-        self.isEditable = openOptions?.isReadOnly != true
-        
         let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
         self.lineEnding = lineEnding
         
         self.syntaxController = SyntaxController(textStorage: self.textStorage, syntax: Syntax.none, name: SyntaxName.none)
         self.syntaxName = SyntaxName.none
         
-        // use the encoding selected by the user in the open panel, if exists
         self.fileEncoding = EncodingManager.shared.defaultEncoding
-        self.readingEncoding = .init(openOptions?.encoding)
         
         // observe for inconsistent line endings
         self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
@@ -349,9 +343,10 @@ extension NSTextView: EditorCounter.Source { }
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path(percentEncoded: false))  // FILE_READ
         let extendedAttributes = ExtendedFileAttributes(dictionary: attributes)
         let isInitialized = self.isInitialized.withLock(\.self)
+        let openOptions = PendingOpenOptions.options(for: url)
         
         let strategy: String.DecodingStrategy = {
-            if let encoding = self.readingEncoding.withLock(\.self) {
+            if let encoding = self.readingEncoding.withLock(\.self) ?? openOptions?.encoding {
                 return .specific(encoding)
             }
             
@@ -384,6 +379,9 @@ extension NSTextView: EditorCounter.Source { }
             if let fileAttributes {
                 self.fileAttributes = fileAttributes
                 self.isExecutable = fileAttributes.permissions.user.contains(.execute)
+            }
+            if let openOptions {
+                self.isEditable = !openOptions.isReadOnly
             }
             
             // do not save `com.apple.TextEncoding` extended attribute if it doesn't exists

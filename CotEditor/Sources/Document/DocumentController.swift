@@ -38,19 +38,11 @@ protocol AdditionalDocumentPreparing: NSDocument {
 }
 
 
-struct OpenOptions {
-    
-    var encoding: String.Encoding?
-    var isReadOnly = false
-}
-
-
 final class DocumentController: NSDocumentController {
     
     // MARK: Public Properties
     
     @Published private(set) var currentSyntaxName: String?
-    private(set) var openOptions: OpenOptions?
     
     
     // MARK: Private Properties
@@ -92,6 +84,11 @@ final class DocumentController: NSDocumentController {
     
     override func openDocument(withContentsOf url: URL, display displayDocument: Bool) async throws -> (NSDocument, Bool) {
         
+        defer {
+            // remove options selected in the open panel after the document opening flow finishes
+            PendingOpenOptions.remove(for: url)
+        }
+        
         // do nothing for DirectoryDocument
         if try url.isDirectory {
             return try await super.openDocument(withContentsOf: url, display: displayDocument)
@@ -110,9 +107,6 @@ final class DocumentController: NSDocumentController {
         }
         
         let (document, documentWasAlreadyOpen) = try await super.openDocument(withContentsOf: url, display: false)
-        
-        // invalidate encoding that was set in the open panel
-        self.openOptions = nil
         
         if let transientDocument, let document = document as? Document {
             self.replaceTransientDocument(transientDocument, with: document)
@@ -207,7 +201,7 @@ final class DocumentController: NSDocumentController {
         let result = await super.beginOpenPanel(openPanel, forTypes: inTypes)
         
         if result == NSApplication.ModalResponse.OK.rawValue {
-            self.openOptions = model.options
+            PendingOpenOptions.register(model.options, for: openPanel.urls)
         }
         
         return result
