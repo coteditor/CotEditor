@@ -217,6 +217,53 @@ import Testing
     }
     
     
+    @Test func selectAllUsesFindMatchesCache() async throws {
+        
+        do {
+            let textView = TestTextView(string: "foo bar foo")
+            textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
+            
+            let finder = TextFinder()
+            finder.client = textView
+            finder.settings.findString = "foo"
+            finder.settings.usesRegularExpression = false
+            
+            let result = try await self.performFindAction(.selectAll, with: finder)
+            let selectedRanges = textView.selectedRanges.map(\.rangeValue)
+            let cache = try #require(finder.findMatchesCache)
+            
+            #expect(result.count == 2)
+            #expect(selectedRanges == [NSRange(0..<3), NSRange(8..<11)])
+            #expect(cache.matches == selectedRanges)
+        }
+        
+        do {
+            let textView = TestTextView(string: "foo bar foo")
+            textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
+            
+            let finder = TextFinder()
+            finder.client = textView
+            finder.settings.findString = "foo"
+            finder.settings.usesRegularExpression = false
+            
+            try await confirmation("No stale find result", expectedCount: 0) { confirm in
+                let notifications = NotificationCenter.default.notifications(named: TextFinder.DidFindMessage.name, object: finder)
+                let observationTask = Task { @MainActor in
+                    for await _ in notifications {
+                        confirm()
+                    }
+                }
+                
+                finder.performAction(.selectAll)
+                textView.textStorage?.replaceCharacters(in: NSRange(0..<3), with: "bar")
+                
+                try await Task.sleep(for: .seconds(0.1))
+                observationTask.cancel()
+            }
+        }
+    }
+    
+    
     // MARK: Private Methods
     
     private func performFindAction(_ action: TextFinder.Action, with finder: TextFinder) async throws -> FindResult {

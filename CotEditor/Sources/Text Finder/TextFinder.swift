@@ -300,15 +300,10 @@ struct FindMatchesCache {
     /// Selects all matched strings.
     private func selectAll() {
         
-        guard
-            let (textFind, client) = self.prepareTextFind(),
-            let matchedRanges = try? textFind.matches
-        else { return }
-        
-        client.selectedRanges = matchedRanges as [NSValue]
-        
-        self.notify(FindResult(action: .find, count: matchedRanges.count), for: client)
-        self.settings.noteFindHistory()
+        self.findTask?.cancel()
+        self.findTask = Task(priority: .userInitiated) {
+            try await self.selectAllMatches()
+        }
     }
     
     
@@ -417,6 +412,7 @@ struct FindMatchesCache {
             guard textStorage.editedMask.contains(.editedCharacters) else { return }
             
             MainActor.assumeIsolated {
+                self?.findTask?.cancel()
                 self?.invalidateFindMatchesCache()
             }
         }
@@ -443,16 +439,14 @@ struct FindMatchesCache {
     
     /// Returns cached matches or creates a new cache from the current find state.
     ///
-    /// - Parameter textFind: The current find state.
+    /// - Parameters:
+    ///   - textFind: The current find state.
+    ///   - client: The text view used to create the find state.
     /// - Returns: Matched ranges.
     /// - Throws: `CancellationError`
-    private func findMatches(for textFind: TextFind) async throws -> [NSRange] {
+    private func findMatches(for textFind: TextFind, in client: NSTextView) async throws -> [NSRange] {
         
-        let options = FindMatchesCache.FindOptions(textVersion: self.textVersion,
-                                                   findString: textFind.findString,
-                                                   mode: textFind.mode,
-                                                   inSelection: textFind.inSelection,
-                                                   selectedRanges: textFind.inSelection ? textFind.selectedRanges : [])
+        let options = self.findOptions(for: textFind)
         
         if let cache = self.findMatchesCache, cache.options == options {
             return cache.matches
@@ -466,6 +460,14 @@ struct FindMatchesCache {
         } onCancel: {
             task.cancel()
         }
+        
+        try Task.checkCancellation()
+        
+        guard
+            let currentClient = self.client,
+            currentClient === client,
+            self.currentFindOptions(for: client) == options
+        else { throw CancellationError() }
         
         self.findMatchesCache = FindMatchesCache(options: options, matches: matches)
         
@@ -484,11 +486,7 @@ struct FindMatchesCache {
         // close previous error dialog if any exists
         FindPanelController.shared.window?.attachedSheet?.close()
         
-        // apply the client's line ending to the find string
-        let lineEnding = (client as? EditorTextView)?.lineEnding ?? .lf
-        let findString = self.settings.findString
-            .replacingLineEndings(with: lineEnding)
-        
+        let findString = self.findString(for: client)
         let string = client.string.immutable
         let mode = self.settings.mode
         let inSelection = self.settings.inSelection
@@ -516,6 +514,48 @@ struct FindMatchesCache {
     }
     
     
+    /// Returns the current find options for the given text view.
+    ///
+    /// - Parameter client: The text view to evaluate.
+    /// - Returns: The find options representing the current settings and text state.
+    private func currentFindOptions(for client: NSTextView) -> FindMatchesCache.FindOptions {
+        
+        let inSelection = self.settings.inSelection
+        
+        return FindMatchesCache.FindOptions(textVersion: self.textVersion,
+                                            findString: self.findString(for: client),
+                                            mode: self.settings.mode,
+                                            inSelection: inSelection,
+                                            selectedRanges: inSelection ? client.selectedRanges.map(\.rangeValue) : [])
+    }
+    
+    
+    /// Returns the cache options for the given text find state.
+    ///
+    /// - Parameter textFind: The find state used to create matches.
+    /// - Returns: The find options representing the given find state.
+    private func findOptions(for textFind: TextFind) -> FindMatchesCache.FindOptions {
+        
+        FindMatchesCache.FindOptions(textVersion: self.textVersion,
+                                     findString: textFind.findString,
+                                     mode: textFind.mode,
+                                     inSelection: textFind.inSelection,
+                                     selectedRanges: textFind.inSelection ? textFind.selectedRanges : [])
+    }
+    
+    
+    /// Returns the find string normalized to the given text view's line endings.
+    ///
+    /// - Parameter client: The text view whose line endings are used for normalization.
+    /// - Returns: The normalized find string.
+    private func findString(for client: NSTextView) -> String {
+        
+        let lineEnding = (client as? EditorTextView)?.lineEnding ?? .lf
+        
+        return self.settings.findString.replacingLineEndings(with: lineEnding)
+    }
+    
+    
     /// Performs a single find.
     ///
     /// - Parameters:
@@ -530,7 +570,7 @@ struct FindMatchesCache {
         
         let wraps = self.settings.isWrap
         
-        let matches = try await self.findMatches(for: textFind)
+        let matches = try await self.findMatches(for: textFind, in: client)
         let result = textFind.find(in: matches, forward: forward, includingSelection: isIncremental, wraps: wraps)
         let matchedRange = isIncremental ? nil : result?.range
         
@@ -575,6 +615,19 @@ struct FindMatchesCache {
         if !isIncremental {
             self.settings.noteFindHistory()
         }
+    }
+    
+    
+    /// Selects all matched strings asynchronously.
+    private func selectAllMatches() async throws {
+        
+        guard let (textFind, client) = self.prepareTextFind() else { return }
+        
+        let matchedRanges = try await self.findMatches(for: textFind, in: client)
+        client.selectedRanges = matchedRanges as [NSValue]
+        
+        self.notify(FindResult(action: .find, count: matchedRanges.count), for: client)
+        self.settings.noteFindHistory()
     }
     
     

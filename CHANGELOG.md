@@ -6,6 +6,7 @@
 ### Improvements
 
 - Improve UNIX script pipe handling.
+- Improve responsiveness when performing the Select All Find Matches command in large documents.
 
 
 ### Fixes
