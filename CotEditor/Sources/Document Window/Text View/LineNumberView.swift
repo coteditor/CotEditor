@@ -136,6 +136,16 @@ final class LineNumberView: NSView {
     }
     
     
+    override var isHidden: Bool {
+        
+        didSet {
+            if !self.isHidden {
+                self.invalidateThickness()
+            }
+        }
+    }
+    
+    
     override var intrinsicContentSize: NSSize {
         
         switch self.orientation {
