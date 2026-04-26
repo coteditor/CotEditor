@@ -8,6 +8,11 @@
 - Improve UNIX script pipe handling.
 
 
+### Fixes
+
+- Fix an issue where a failed script could leave its name in subsequent console messages.
+
+
 
 7.0.1 (815)
 --------------------------

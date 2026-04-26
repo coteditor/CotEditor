@@ -163,10 +163,12 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
                         
                     default:  // execute
                         self.currentScriptName = script.name
-                        try await script.run()
-                        if self.currentScriptName == script.name {
-                            self.currentScriptName = nil
+                        defer {
+                            if self.currentScriptName == script.name {
+                                self.currentScriptName = nil
+                            }
                         }
+                        try await script.run()
                 }
             } catch {
                 Self.presentError(error, scriptName: script.name)
