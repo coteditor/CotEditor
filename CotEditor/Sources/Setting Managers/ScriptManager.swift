@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,13 +41,7 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     
     static let shared = ScriptManager()
     
-    var menu: NSMenu? {
-        
-        didSet {
-            self.menuUpdateTask?.cancel()
-            self.menuUpdateTask = Task { try? await self.updateMenu() }
-        }
-    }
+    var menu: NSMenu?  { didSet { self.scheduleMenuUpdate() } }
     private(set) var currentScriptName: String?
     
     
@@ -59,6 +53,7 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     private var scope: String?
     private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
     
+    private var isUpdatingMenu = false
     private var menuUpdateTask: Task<Void, any Error>?
     
     
@@ -99,18 +94,7 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     nonisolated func presentedItemDidChange() {
         
         Task { @MainActor in
-            self.menuUpdateTask?.cancel()
-            self.menuUpdateTask = Task {
-                if NSApp.isActive {
-                    try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.1))
-                } else {
-                    for await _ in NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
-                        break
-                    }
-                    try Task.checkCancellation()
-                }
-                try await self.updateMenu()
-            }
+            self.scheduleMenuUpdate(afterFileChange: true)
         }
     }
     
@@ -124,6 +108,11 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     ///   - documentSpecifier: The script object specifier of the target document.
     func dispatch(event eventType: ScriptingEventType, document documentSpecifier: NSScriptObjectSpecifier) async {
         
+        // wait for the ongoing script scan before reading scriptHandlersTable
+        while self.isUpdatingMenu, let menuUpdateTask = self.menuUpdateTask {
+            try? await menuUpdateTask.value
+        }
+
         guard let scripts = self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
         
         let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"),
@@ -188,6 +177,38 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     
     // MARK: Private Methods
     
+    /// Schedules building the Script menu.
+    ///
+    /// - Parameters:
+    ///   - afterFileChange: Whether the update is triggered by a change in the script folder.
+    private func scheduleMenuUpdate(afterFileChange: Bool = false) {
+
+        let waitsForActivation = afterFileChange && !NSApp.isActive
+        self.isUpdatingMenu = !waitsForActivation
+        
+        self.menuUpdateTask?.cancel()
+        self.menuUpdateTask = Task {
+            if waitsForActivation {
+                for await _ in NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
+                    break
+                }
+                try Task.checkCancellation()
+                self.isUpdatingMenu = true
+            } else if afterFileChange {
+                try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.1))
+            }
+
+            defer {
+                if !Task.isCancelled {
+                    self.isUpdatingMenu = false
+                }
+            }
+
+            try await self.updateMenu()
+        }
+    }
+
+
     /// Builds the Script menu and scan script handlers.
     ///
     /// - Throws: `CancellationError`.

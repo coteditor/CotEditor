@@ -11,6 +11,7 @@
 ### Fixes
 
 - Fix an issue where a failed script could leave its name in subsequent console messages.
+- Fix an issue where document open/save scripts could fail to run immediately after launch or script folder changes.
 
 
 
