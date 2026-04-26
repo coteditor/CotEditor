@@ -30,6 +30,13 @@ jobs:
         swift --version
     - name: Checkout
       uses: actions/checkout@v5
+    - name: Cache SwiftPM build products
+      uses: actions/cache@v4
+      with:
+        path: Packages/${{ matrix.package }}/.build
+        key: ${{ runner.os }}-${{ runner.arch }}-xcode-${{ env.XCODE_VERSION }}-spm-${{ matrix.package }}-${{ hashFiles(format('Packages/{0}/Package.swift', matrix.package), format('Packages/{0}/Package.resolved', matrix.package)) }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-xcode-${{ env.XCODE_VERSION }}-spm-${{ matrix.package }}-
     - name: Unit Test for ${{ matrix.package }}
       run: |
         swift test --package-path "Packages/${{ matrix.package }}"
