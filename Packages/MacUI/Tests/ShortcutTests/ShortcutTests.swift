@@ -43,7 +43,7 @@ struct ShortcutTests {
     }
     
     
-    @Test func createKeySpecChars() {
+    @Test func createKeySpecChars() throws {
         
         #expect(Shortcut("", modifiers: []) == nil)
         #expect(Shortcut("a", modifiers: [.control, .shift])?.keySpecChars == "^$a")
@@ -57,7 +57,32 @@ struct ShortcutTests {
         #expect(Shortcut("a", modifiers: [.control, .shift])?.isValid == true)
         #expect(Shortcut("ab", modifiers: [.control, .shift])?.isValid == false)
         
-        #expect(Shortcut(.backspace, modifiers: []).keyEquivalent == String(NSEvent.SpecialKey.backspace.unicodeScalar))
+        let backspace = try #require(UnicodeScalar(NSBackspaceCharacter).map(String.init))
+        let delete = try #require(UnicodeScalar(NSDeleteCharacter).map(String.init))
+        let deleteForward = try #require(UnicodeScalar(NSDeleteFunctionKey).map(String.init))
+        
+        #expect(Shortcut(.backspace, modifiers: []).keyEquivalent == backspace)
+        #expect(Shortcut(.delete, modifiers: []).keyEquivalent == backspace)
+        #expect(Shortcut(.deleteForward, modifiers: []).keyEquivalent == delete)
+        #expect(Shortcut(deleteForward, modifiers: .command)?.keyEquivalent == delete)
+    }
+    
+    
+    @Test func keyDownEventDeletionKeys() throws {
+        
+        let backspace = try #require(UnicodeScalar(NSBackspaceCharacter).map(String.init))
+        let delete = try #require(UnicodeScalar(NSDeleteCharacter).map(String.init))
+        let deleteForward = try #require(UnicodeScalar(NSDeleteFunctionKey).map(String.init))
+        
+        let backspaceEvent = try #require(NSEvent.keyEvent(with: .keyDown, location: .zero, modifierFlags: .command,
+                                                           timestamp: 0, windowNumber: 0, context: nil, characters: delete,
+                                                           charactersIgnoringModifiers: delete, isARepeat: false, keyCode: 51))
+        let deleteForwardEvent = try #require(NSEvent.keyEvent(with: .keyDown, location: .zero, modifierFlags: .command,
+                                                               timestamp: 0, windowNumber: 0, context: nil, characters: deleteForward,
+                                                               charactersIgnoringModifiers: deleteForward, isARepeat: false, keyCode: 117))
+        
+        #expect(Shortcut(keyDownEvent: backspaceEvent)?.keyEquivalent == backspace)
+        #expect(Shortcut(keyDownEvent: deleteForwardEvent)?.keyEquivalent == delete)
     }
     
     
@@ -114,6 +139,11 @@ struct ShortcutTests {
         menuItem.shortcut = Shortcut("C", modifiers: .option)
         #expect(menuItem.keyEquivalent == "C")
         #expect(menuItem.keyEquivalentModifierMask == .option)
+        
+        let delete = try #require(UnicodeScalar(NSDeleteCharacter).map(String.init))
+        menuItem.shortcut = Shortcut(.deleteForward, modifiers: .command)
+        #expect(menuItem.keyEquivalent == delete)
+        #expect(menuItem.shortcut?.symbol == "⌘ ⌦")
     }
     
     
@@ -142,16 +172,22 @@ struct ShortcutTests {
         let f10 = String(NSEvent.SpecialKey.f10.unicodeScalar)
         #expect(Shortcut(keySpecChars: "@" + f10)?.symbol == "⌘ F10")
         
+        let backspace = try #require(UnicodeScalar(NSBackspaceCharacter).map(String.init))
+        #expect(Shortcut(keySpecChars: "@" + backspace)?.symbol == "⌘ ⌫")
+        
         let delete = try #require(UnicodeScalar(NSDeleteCharacter).map(String.init))
-        #expect(Shortcut(keySpecChars: "@" + delete)?.symbol == "⌘ ⌫")
+        #expect(Shortcut(keySpecChars: "@" + delete)?.symbol == "⌘ ⌦")
+        
+        let deleteForward = String(NSEvent.SpecialKey.deleteForward.unicodeScalar)
+        #expect(Shortcut(keySpecChars: "@" + deleteForward)?.keySpecChars == "@" + delete)
+        #expect(Shortcut(keySpecChars: "@" + deleteForward)?.symbol == "⌘ ⌦")
         
         // test creation
-        let deleteForward = String(NSEvent.SpecialKey.deleteForward.unicodeScalar)
         #expect(Shortcut(symbolRepresentation: "") == nil)
         #expect(Shortcut(symbolRepresentation: "^ ⇧ A")?.keySpecChars == "^$a")
         #expect(Shortcut(symbolRepresentation: "⌥ ⌘ B")?.keySpecChars == "~@b")
         #expect(Shortcut(symbolRepresentation: "⌘ F10")?.keySpecChars == "@" + f10)
-        #expect(Shortcut(symbolRepresentation: "⌘ ⌦")?.keySpecChars == "@" + deleteForward)
+        #expect(Shortcut(symbolRepresentation: "⌘ ⌦")?.keySpecChars == "@" + delete)
     }
     
     

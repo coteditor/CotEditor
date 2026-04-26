@@ -47,14 +47,14 @@ public struct Shortcut: Sendable {
         
         guard !keyEquivalent.isEmpty else { return nil }
         
-        self.keyEquivalent = keyEquivalent
+        self.keyEquivalent = Self.menuKeyEquivalent(for: keyEquivalent)
         self.modifiers = modifiers
     }
     
     
     public init(_ specialKey: NSEvent.SpecialKey, modifiers: NSEvent.ModifierFlags) {
         
-        self.keyEquivalent = String(specialKey.unicodeScalar)
+        self.keyEquivalent = Self.menuKeyEquivalent(for: specialKey)
         self.modifiers = modifiers
     }
     
@@ -71,7 +71,7 @@ public struct Shortcut: Sendable {
             .filter { modifierCharacters.contains($0.keySpecChar) }
             .mask
         
-        self.keyEquivalent = String(keyEquivalent)
+        self.keyEquivalent = Self.menuKeyEquivalent(for: String(keyEquivalent))
         self.modifiers = modifiers
     }
     
@@ -85,10 +85,7 @@ public struct Shortcut: Sendable {
         
         guard let lastSymbol = components.last, !lastSymbol.isEmpty else { return nil }
         
-        let keyEquivalent = Self.keyEquivalentSymbols
-            .first { $0.value == lastSymbol }
-            .map(\.key)
-            .map(String.init) ?? lastSymbol.lowercased()
+        let keyEquivalent = Self.menuKeyEquivalent(forSymbol: String(lastSymbol)) ?? lastSymbol.lowercased()
         
         let modifierCharacters = components.dropLast().joined()
         let modifiers = ModifierKey.validCases
@@ -112,14 +109,8 @@ public struct Shortcut: Sendable {
             charactersIgnoringModifiers.count == 1
         else { return nil }
         
-        // correct the Backspace key
-        // -> Backspace:      The key above the Return.
-        //    Forward Delete: The key with printed "Delete" where next to the ten key pad.
-        // cf. https://developer.apple.com/documentation/appkit/nsmenuitem/1514842-keyequivalent
-        let keyEquivalent: String = switch event.specialKey {
-            case NSEvent.SpecialKey.delete: String(NSEvent.SpecialKey.backspace.unicodeScalar)
-            default: charactersIgnoringModifiers
-        }
+        // correct deletion keys for the NSMenuItem key equivalent
+        let keyEquivalent = event.specialKey.map(Self.menuKeyEquivalent(for:)) ?? charactersIgnoringModifiers
         
         // remove unwanted Shift
         let ignoresShift = "`~!@#$%^&()_{}|\":<>?=/*-+.'".contains(keyEquivalent)
@@ -270,6 +261,68 @@ public struct Shortcut: Sendable {
     ]
     
     
+    /// Returns the key equivalent character for an `NSMenuItem` from a special key.
+    ///
+    /// `NSMenuItem` uses different characters from `NSEvent` key-down events for deletion keys:
+    /// Backspace uses `NSBackspaceCharacter` (0x08), while Forward Delete uses `NSDeleteCharacter` (0x7F).
+    /// On the event side, Backspace arrives as `.delete`, and Forward Delete arrives as `.deleteForward`.
+    ///
+    /// The location of keys:
+    /// - Backspace: The key above the Return.
+    /// - Forward Delete: The key labeled Delete near the numeric keypad.
+    /// cf. https://developer.apple.com/documentation/appkit/nsmenuitem/1514842-keyequivalent
+    ///
+    /// - Parameter specialKey: The special key to convert.
+    /// - Returns: The corresponding key equivalent character.
+    private static func menuKeyEquivalent(for specialKey: NSEvent.SpecialKey) -> String {
+        
+        switch specialKey {
+            case .delete, .backspace:
+                String(NSEvent.SpecialKey.backspace.unicodeScalar)
+            case .deleteForward:
+                String(NSEvent.SpecialKey.delete.unicodeScalar)
+            default:
+                String(specialKey.unicodeScalar)
+        }
+    }
+    
+    
+    /// Returns the canonical key equivalent character for an `NSMenuItem`.
+    ///
+    /// This normalizes key equivalents that still contain the `NSEvent` Forward Delete character
+    /// (`NSDeleteFunctionKey`, 0xF728) to the `NSMenuItem` key equivalent character
+    /// (`NSDeleteCharacter`, 0x7F).
+    ///
+    /// - Parameter keyEquivalent: The key equivalent character to normalize.
+    /// - Returns: The corresponding key equivalent character.
+    private static func menuKeyEquivalent(for keyEquivalent: String) -> String {
+        
+        (keyEquivalent == String(NSEvent.SpecialKey.deleteForward.unicodeScalar))
+            ? String(NSEvent.SpecialKey.delete.unicodeScalar)
+            : keyEquivalent
+    }
+    
+    
+    /// Returns the key equivalent character for the given display symbol.
+    ///
+    /// The Forward Delete symbol is displayed as "⌦", but its `NSMenuItem` key equivalent must be
+    /// `NSDeleteCharacter` (0x7F), not the `NSEvent` Forward Delete character.
+    ///
+    /// - Parameter symbol: The key equivalent symbol.
+    /// - Returns: The corresponding key equivalent character.
+    private static func menuKeyEquivalent(forSymbol symbol: String) -> String? {
+        
+        if symbol == "⌦" {
+            return String(NSEvent.SpecialKey.delete.unicodeScalar)
+        }
+        
+        return Self.keyEquivalentSymbols
+            .first { $0.value == symbol }
+            .map(\.key)
+            .map(String.init)
+    }
+    
+    
     /// The table for key equivalents that have special symbols to display.
     private static let keyEquivalentSymbols: [Unicode.Scalar: String] = [
         NSEvent.SpecialKey
@@ -277,7 +330,7 @@ public struct Shortcut: Sendable {
         .carriageReturn: "↩",
         .newline: "↩",
         .enter: "⌅",
-        .delete: "⌫",
+        .delete: "⌦",
         .deleteForward: "⌦",
         .tab: "⇥",
         .backTab: "⇤",
@@ -340,7 +393,7 @@ public struct Shortcut: Sendable {
         .carriageReturn: "return",
         .newline: "return",
         .enter: "projective",
-        .delete: "delete.backward",
+        .delete: "delete.forward",
         .deleteForward: "delete.forward",
         .tab: "arrow.right.to.line.compact",
         .backTab: "arrow.left.to.line.compact",
