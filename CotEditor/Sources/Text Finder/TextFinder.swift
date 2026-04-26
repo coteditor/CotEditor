@@ -328,6 +328,9 @@ struct FindMatchesCache {
     /// Removes all of current highlights in the frontmost textView.
     private func unhighlight() {
         
+        self.highlightObservationTask?.cancel()
+        self.highlightObservationTask = nil
+        
         self.client.unhighlight(nil)
     }
     
@@ -723,6 +726,9 @@ struct FindMatchesCache {
         let (highlights, matches) = await task.value
         
         guard progress.state != .cancelled else { return }
+        
+        self.highlightObservationTask?.cancel()
+        self.highlightObservationTask = nil
         
         client.updateBackgroundColors(highlights)
         
