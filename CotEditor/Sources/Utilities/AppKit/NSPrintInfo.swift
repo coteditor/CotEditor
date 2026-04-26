@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2023 1024jp
+//  © 2019-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -43,5 +43,18 @@ extension NSPrintInfo {
         
         get { self.dictionary().value(forKey: key.rawValue) as? Value }
         set { self.dictionary().setValue(newValue, forKey: key.rawValue) }
+    }
+    
+    
+    /// Sets a print setting only when the value is not already defined.
+    ///
+    /// - Parameters:
+    ///   - value: The value to assign when the setting is missing.
+    ///   - key: The print setting key.
+    func setDefault<Value>(_ value: @autoclosure () -> Value, for key: NSPrintInfo.AttributeKey) {
+        
+        guard self.dictionary().value(forKey: key.rawValue) == nil else { return }
+        
+        self[key] = value()
     }
 }

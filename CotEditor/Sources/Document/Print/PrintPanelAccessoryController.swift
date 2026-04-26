@@ -54,6 +54,26 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     // MARK: Private Properties
     
+    private static let settingKeyPaths = [
+        #keyPath(fontSize),
+        #keyPath(theme),
+        #keyPath(printsBackground),
+        #keyPath(printsLineNumbers),
+        #keyPath(printsInvisibles),
+        
+        #keyPath(printsHeaderAndFooter),
+        
+        #keyPath(primaryHeaderContent),
+        #keyPath(primaryHeaderAlignment),
+        #keyPath(secondaryHeaderContent),
+        #keyPath(secondaryHeaderAlignment),
+        
+        #keyPath(primaryFooterContent),
+        #keyPath(primaryFooterAlignment),
+        #keyPath(secondaryFooterContent),
+        #keyPath(secondaryFooterAlignment),
+    ]
+    
     @IBOutlet private weak var colorPopUpButton: NSPopUpButton?
     
     @IBOutlet private weak var primaryHeaderPopUpButton: NSPopUpButton?
@@ -88,35 +108,22 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// PrintInfo did set (new print sheet will be displayed).
     override var representedObject: Any? {
         
+        willSet {
+            guard newValue != nil else { return }
+            
+            for keyPath in Self.settingKeyPaths {
+                self.willChangeValue(forKey: keyPath)
+            }
+        }
+        
         didSet {
             guard representedObject != nil else { return }
             
-            // -> Property initialization must be done after setting representedObject, namely NSPrintInfo,
-            //    because these values need to be set also to printInfo through the computed setters.
             assert(representedObject is NSPrintInfo)
             
-            let defaults = UserDefaults.standard
-            
-            self.fontSize = defaults[.printFontSize]
-            
-            self.theme = defaults[.printTheme] ?? ThemeManager.shared.userDefaultSettingName(inDarkMode: NSApp.effectiveAppearance.isDark)
-            self.printsBackground = defaults[.printBackground]
-            
-            // reset for KVO to the view
-            self.printsInvisibles = self.printsInvisibles
-            self.printsLineNumbers = self.printsLineNumbers
-            
-            self.printsHeaderAndFooter = defaults[.printHeaderAndFooter]
-            
-            self.primaryHeaderContent = defaults[.primaryHeaderContent]
-            self.primaryHeaderAlignment = defaults[.primaryHeaderAlignment]
-            self.secondaryHeaderContent = defaults[.secondaryHeaderContent]
-            self.secondaryHeaderAlignment = defaults[.secondaryHeaderAlignment]
-            
-            self.primaryFooterContent = defaults[.primaryFooterContent]
-            self.primaryFooterAlignment = defaults[.primaryFooterAlignment]
-            self.secondaryFooterContent = defaults[.secondaryFooterContent]
-            self.secondaryFooterAlignment = defaults[.secondaryFooterAlignment]
+            for keyPath in Self.settingKeyPaths {
+                self.didChangeValue(forKey: keyPath)
+            }
         }
     }
     
@@ -134,25 +141,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// Returns a set of key paths that might affect the built-in print preview.
     func keyPathsForValuesAffectingPreview() -> Set<String> {
         
-        [
-            #keyPath(fontSize),
-            #keyPath(theme),
-            #keyPath(printsBackground),
-            #keyPath(printsLineNumbers),
-            #keyPath(printsInvisibles),
-            
-            #keyPath(printsHeaderAndFooter),
-            
-            #keyPath(primaryHeaderContent),
-            #keyPath(primaryHeaderAlignment),
-            #keyPath(secondaryHeaderContent),
-            #keyPath(secondaryHeaderAlignment),
-            
-            #keyPath(primaryFooterContent),
-            #keyPath(primaryFooterAlignment),
-            #keyPath(secondaryFooterContent),
-            #keyPath(secondaryFooterAlignment),
-        ]
+        Set(Self.settingKeyPaths)
     }
     
     
@@ -194,6 +183,34 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         }
         
         return items
+    }
+    
+    
+    // MARK: Public Methods
+    
+    /// Applies default print settings to undefined keys in the print info.
+    ///
+    /// - Parameters:
+    ///   - printInfo: The print info to update.
+    static func applyDefaultSettings(to printInfo: NSPrintInfo) {
+        
+        let defaults = UserDefaults.standard
+        let defaultThemeName = defaults[.printTheme] ?? ThemeManager.shared.userDefaultSettingName(inDarkMode: NSApp.effectiveAppearance.isDark)
+        
+        printInfo.setDefault(defaults[.printFontSize], for: .fontSize)
+        printInfo.setDefault(defaultThemeName, for: .theme)
+        printInfo.setDefault(defaults[.printBackground], for: .printsBackground)
+        printInfo.setDefault(defaults[.printHeaderAndFooter], for: .headerAndFooter)
+        
+        printInfo.setDefault(defaults[.primaryHeaderContent].rawValue, for: .primaryHeaderContent)
+        printInfo.setDefault(defaults[.primaryHeaderAlignment].rawValue, for: .primaryHeaderAlignment)
+        printInfo.setDefault(defaults[.secondaryHeaderContent].rawValue, for: .secondaryHeaderContent)
+        printInfo.setDefault(defaults[.secondaryHeaderAlignment].rawValue, for: .secondaryHeaderAlignment)
+        
+        printInfo.setDefault(defaults[.primaryFooterContent].rawValue, for: .primaryFooterContent)
+        printInfo.setDefault(defaults[.primaryFooterAlignment].rawValue, for: .primaryFooterAlignment)
+        printInfo.setDefault(defaults[.secondaryFooterContent].rawValue, for: .secondaryFooterContent)
+        printInfo.setDefault(defaults[.secondaryFooterAlignment].rawValue, for: .secondaryFooterAlignment)
     }
     
     

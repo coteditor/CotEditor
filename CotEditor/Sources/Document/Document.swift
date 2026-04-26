@@ -699,6 +699,7 @@ extension NSTextView: EditorCounter.Source { }
         
         // create print operation
         let printInfo = self.printInfo.copy() as! NSPrintInfo
+        PrintPanelAccessoryController.applyDefaultSettings(to: printInfo)
         printInfo[.printsInvisibles] = viewController.showsInvisibles
         printInfo[.printsLineNumbers] = viewController.showsLineNumber
         printInfo.dictionary().addEntries(from: printSettings)
