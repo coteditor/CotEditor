@@ -37,6 +37,7 @@ actor UserUnixTask {
         case finished
     }
     
+    
     private struct InputState: Sendable {
         
         var offset: Data.Index = 0
