@@ -79,6 +79,38 @@ struct TextFindTests {
     }
     
     
+    @Test func findZeroLengthMatch() throws {
+        
+        let mode: TextFind.Mode = .regularExpression(options: [], unescapesReplacement: false)
+        let matches = try TextFind(for: "aa", findString: "(?=a)", mode: mode).matches
+        
+        #expect(matches == [NSRange(location: 0, length: 0), NSRange(location: 1, length: 0)])
+        
+        var textFind = try TextFind(for: "aa", findString: "(?=a)", mode: mode,
+                                    selectedRanges: [NSRange(location: 0, length: 0)])
+        
+        let included = try #require(textFind.find(in: matches, forward: true, includingSelection: true, wraps: false))
+        #expect(included.range == NSRange(location: 0, length: 0))
+        
+        let next = try #require(textFind.find(in: matches, forward: true, wraps: false))
+        #expect(next.range == NSRange(location: 1, length: 0))
+        
+        let wrappedPrevious = try #require(textFind.find(in: matches, forward: false, wraps: true))
+        #expect(wrappedPrevious.range == NSRange(location: 1, length: 0))
+        #expect(wrappedPrevious.wrapped)
+        
+        textFind = try TextFind(for: "aa", findString: "(?=a)", mode: mode,
+                                selectedRanges: [NSRange(location: 1, length: 0)])
+        
+        let previous = try #require(textFind.find(in: matches, forward: false, wraps: false))
+        #expect(previous.range == NSRange(location: 0, length: 0))
+        
+        let wrappedNext = try #require(textFind.find(in: matches, forward: true, wraps: true))
+        #expect(wrappedNext.range == NSRange(location: 0, length: 0))
+        #expect(wrappedNext.wrapped)
+    }
+    
+    
     @Test func matchesCancellation() async throws {
         
         let string = String(repeating: "aa ", count: 50_000_000)

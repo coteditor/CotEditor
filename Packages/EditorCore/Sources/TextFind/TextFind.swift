@@ -181,14 +181,27 @@ public struct TextFind: Equatable, Sendable {
             : (includingSelection ? selectedRange.upperBound : selectedRange.lowerBound)
         
         if forward {
-            let index = matches.partitioningIndex { $0.lowerBound >= startLocation }
+            var index = matches.partitioningIndex { $0.lowerBound >= startLocation }
+            if !includingSelection, index < matches.endIndex, matches[index] == selectedRange {
+                matches.formIndex(after: &index)
+            }
             if index < matches.endIndex {
                 return (range: matches[index], wrapped: false)
             }
         } else {
             let index = matches.partitioningIndex { $0.upperBound > startLocation }
             if index > matches.startIndex {
-                return (range: matches[matches.index(before: index)], wrapped: false)
+                var foundIndex = matches.index(before: index)
+                if matches[foundIndex] == selectedRange {
+                    if foundIndex > matches.startIndex {
+                        matches.formIndex(before: &foundIndex)
+                    } else {
+                        foundIndex = matches.endIndex
+                    }
+                }
+                if foundIndex < matches.endIndex {
+                    return (range: matches[foundIndex], wrapped: false)
+                }
             }
         }
         
