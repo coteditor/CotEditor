@@ -6,6 +6,31 @@ permissions:
   contents: read
 
 jobs:
+  packages:
+    name: Unit Test for ${{ matrix.package }}
+    runs-on: macos-26
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.4.app
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - EditorCore
+          - MacUI
+          - Syntax
+
+    steps:
+    - name: Show environments
+      run: |
+        sw_vers
+        xcodebuild -version
+        swift --version
+    - name: Checkout
+      uses: actions/checkout@v5
+    - name: Unit Test for ${{ matrix.package }}
+      run: |
+        swift test --package-path "Packages/${{ matrix.package }}"
+
   macOS:
     runs-on: macos-26
     env:
@@ -19,15 +44,6 @@ jobs:
         swift --version
     - name: Checkout
       uses: actions/checkout@v5
-    - name: Unit Test for EditorCore
-      run: |
-        swift test --package-path Packages/EditorCore
-    - name: Unit Test for MacUI
-      run: |
-        swift test --package-path Packages/MacUI
-    - name: Unit Test for Syntax
-      run: |
-        swift test --package-path Packages/Syntax
     - name: Unit Test for CotEditor
       run: |
         xcodebuild test -scheme CotEditor CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -skipPackagePluginValidation
