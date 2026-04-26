@@ -118,4 +118,22 @@ struct RegexSyntaxTests {
         #expect(RegexSyntaxType.backReference.ranges(in: string) == [NSRange(location: 0, length: 5),
                                                                      NSRange(location: 6, length: 6)])
     }
+    
+    
+    @Test func highlightUnicodePropertyName() {
+        
+        let properties = ["\\p{gc=L}", "\\P{Lowercase_Letter}", "\\p{White-Space}"]
+        
+        for property in properties {
+            #expect(RegexSyntaxType.character.ranges(in: property).contains(NSRange(..<property.utf16.count)))
+        }
+    }
+    
+    
+    @Test func highlightUnicodeCharacterName() {
+        
+        let character = "\\N{CJK UNIFIED IDEOGRAPH-4E00}"
+        
+        #expect(RegexSyntaxType.character.ranges(in: character).contains(NSRange(..<character.utf16.count)))
+    }
 }
