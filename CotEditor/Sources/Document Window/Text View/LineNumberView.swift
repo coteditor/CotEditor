@@ -90,9 +90,9 @@ final class LineNumberView: NSView {
     
     private let minimumNumberOfDigits = 3
     
-    private weak var textView: NSTextView?
+    private weak let textView: NSTextView?
     
-    private var drawingInfo: DrawingInfo?
+    private var drawingInfo: DrawingInfo
     @Invalidating(.display, .intrinsicContentSize) private var thickness: Double = 32
     
     @Invalidating(.display) private var textColor: NSColor = .textColor
@@ -107,10 +107,10 @@ final class LineNumberView: NSView {
     
     init(textView: NSTextView) {
         
-        super.init(frame: .zero)
-        
         self.textView = textView
         self.drawingInfo = DrawingInfo(font: self.lineNumberFont, fontSize: textView.font!.pointSize, scale: textView.scale)
+        
+        super.init(frame: .zero)
         
         self.observeTextView(textView)
     }
@@ -204,14 +204,15 @@ final class LineNumberView: NSView {
         
         guard
             let textView = self.textView,
-            let layoutManager = textView.layoutManager as? LayoutManager,
-            let drawingInfo = self.drawingInfo
+            let layoutManager = textView.layoutManager as? LayoutManager
         else { return }
         
         guard
             let range = textView.range(for: textView.visibleRect, withoutAdditionalLayout: true),
             let context = NSGraphicsContext.current?.cgContext
         else { return assertionFailure() }
+        
+        let drawingInfo = self.drawingInfo
         
         context.setFont(self.lineNumberFont)
         context.setFontSize(drawingInfo.fontSize)
@@ -313,19 +314,16 @@ final class LineNumberView: NSView {
     /// Updates receiver's thickness based on drawingInfo and textView's status.
     private func invalidateThickness() {
         
-        var thickness: Double = 0
-        if let drawingInfo = self.drawingInfo {
-            switch self.orientation {
-                case .horizontal:
-                    let numberOfDigits = max(self.numberOfLines.digits.count, self.minimumNumberOfDigits)
-                    thickness = max(Double(numberOfDigits + 2) * drawingInfo.charWidth, 32)
-                    
-                case .vertical:
-                    thickness = max(2 * drawingInfo.fontSize + drawingInfo.tickLength, 20)
-                    
-                @unknown default:
-                    fatalError()
-            }
+        let thickness: Double
+        let drawingInfo = self.drawingInfo
+        switch self.orientation {
+            case .horizontal:
+                let numberOfDigits = max(self.numberOfLines.digits.count, self.minimumNumberOfDigits)
+                thickness = max(Double(numberOfDigits + 2) * drawingInfo.charWidth, 32)
+            case .vertical:
+                thickness = max(2 * drawingInfo.fontSize + drawingInfo.tickLength, 20)
+            @unknown default:
+                fatalError()
         }
         
         self.thickness = thickness.rounded(.up)
