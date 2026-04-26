@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -305,6 +305,18 @@ import URLUtils
     }
     
     
+    /// Returns whether the shortcut for the given menu item should be rewritten.
+    ///
+    /// - Parameter menuItem: The menu item to check.
+    /// - Returns: Whether the given menu item's shortcut should be rewritten while applying custom shortcuts.
+    private func needsShortcutUpdate(_ menuItem: NSMenuItem) -> Bool {
+        
+        guard let action = menuItem.action else { return false }
+        
+        return self.isModified(menuItem) || menuItem.shortcut != self.shortcut(for: action, tag: menuItem.tag)
+    }
+    
+    
     /// Scans all keyboard shortcuts as well as selector names in passed-in menu.
     ///
     /// - Parameter menu: The menu where to collect key bindings.
@@ -337,7 +349,7 @@ import URLUtils
                     return self.clearShortcuts(in: submenu)
                 }
                 
-                guard self.isModified(menuItem) else { return }
+                guard self.needsShortcutUpdate(menuItem) else { return }
                 
                 menuItem.shortcut = nil
             }
@@ -357,7 +369,7 @@ import URLUtils
                 }
                 
                 guard
-                    self.isModified(menuItem),
+                    self.needsShortcutUpdate(menuItem),
                     let action = menuItem.action
                 else { return }
                 
