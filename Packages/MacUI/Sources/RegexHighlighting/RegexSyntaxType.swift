@@ -97,7 +97,7 @@ enum RegexSyntaxType: CaseIterable {
                         [
                             #"\$[0-9]+"#,  // $0
                             #"\\[1-9]+"#,  // \1
-                            #"\\k<[a-zA-Z][a-zA-Z0-9]+>"#,  // \k<name>
+                            #"\\k<[a-zA-Z][a-zA-Z0-9]*>"#,  // \k<name>
                         ]
                     case .symbol:
                         // -> [abc] will be extracted in ranges(in:) since regex cannot parse nested []

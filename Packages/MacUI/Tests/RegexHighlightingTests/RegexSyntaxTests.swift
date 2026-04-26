@@ -109,4 +109,13 @@ struct RegexSyntaxTests {
                                                               NSRange(location: 6, length: 2)])
         #expect(RegexSyntaxType.character.ranges(in: string) == [])
     }
+    
+    
+    @Test func highlightNamedBackReference() {
+        
+        let string = "\\k<a> \\k<ab>"
+        
+        #expect(RegexSyntaxType.backReference.ranges(in: string) == [NSRange(location: 0, length: 5),
+                                                                     NSRange(location: 6, length: 6)])
+    }
 }
