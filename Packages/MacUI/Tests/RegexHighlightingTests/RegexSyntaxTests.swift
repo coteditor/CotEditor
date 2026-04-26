@@ -136,4 +136,26 @@ struct RegexSyntaxTests {
         
         #expect(RegexSyntaxType.character.ranges(in: character).contains(NSRange(..<character.utf16.count)))
     }
+    
+    
+    @Test func ignoreSyntaxInQuote() {
+        
+        let string = #"\Q.*+?()[]\E+"#
+        
+        #expect(RegexSyntaxType.symbol.ranges(in: string) == [NSRange(location: 0, length: 2),
+                                                              NSRange(location: 10, length: 2)])
+        #expect(RegexSyntaxType.quantifier.ranges(in: string) == [NSRange(location: 12, length: 1)])
+        #expect(RegexSyntaxType.character.ranges(in: string) == [])
+    }
+    
+    
+    @Test func ignoreQuotedBracket() {
+        
+        let string = #"\Q[\E] [a]"#
+        
+        #expect(RegexSyntaxType.symbol.ranges(in: string) == [NSRange(location: 0, length: 2),
+                                                              NSRange(location: 3, length: 2),
+                                                              NSRange(location: 7, length: 3)])
+        #expect(RegexSyntaxType.character.ranges(in: string) == [NSRange(location: 8, length: 1)])
+    }
 }

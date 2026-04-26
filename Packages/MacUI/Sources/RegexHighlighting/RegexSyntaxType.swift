@@ -52,12 +52,22 @@ enum RegexSyntaxType: CaseIterable {
             .map(\.range)
         
         if case .search = mode {
+            let quotedRanges = string.rangesForRegularExpressionQuotes()
+            
             switch self {
                 case .character:
-                    ranges += string.rangesForRegularExpressionBrackets(includingSymbols: false)
+                    ranges += string.rangesForRegularExpressionBrackets(includingSymbols: false, excluding: quotedRanges)
                 case .symbol:
-                    ranges += string.rangesForRegularExpressionBrackets(includingSymbols: true)
+                    ranges += string.rangesForRegularExpressionBrackets(includingSymbols: true, excluding: quotedRanges)
                 default: break
+            }
+            
+            if !quotedRanges.isEmpty {
+                ranges.removeAll { range in
+                    quotedRanges.contains { quotedRange in
+                        quotedRange.location <= range.location && NSMaxRange(range) <= NSMaxRange(quotedRange)
+                    }
+                }
             }
         }
         
@@ -137,17 +147,56 @@ enum RegexSyntaxType: CaseIterable {
 
 private extension StringProtocol {
     
+    /// Finds the ranges quoted by `\Q...\E` pattern in the regular expression.
+    ///
+    /// - Returns: The matched ranges, excluding the surrounding `\Q` and `\E`.
+    func rangesForRegularExpressionQuotes() -> [NSRange] {
+        
+        var quoteStartIndex: Index?
+        var quoteRanges: [Range<Index>] = []
+        var lastIndex: Index?
+        var lastCharacter: Character?
+        var backslashCount = 0
+        
+        for (index, character) in zip(self.indices, self) {
+            if lastCharacter == "\\", !backslashCount.isMultiple(of: 2), let lastIndex {
+                switch (character, quoteStartIndex) {
+                    case ("Q", .none):
+                        quoteStartIndex = self.index(after: index)
+                    case ("E", .some(let startIndex)):
+                        quoteRanges.append(startIndex..<lastIndex)
+                        quoteStartIndex = nil
+                    default:
+                        break
+                }
+            }
+            
+            backslashCount = (character == "\\") ? (backslashCount + 1) : 0
+            lastIndex = index
+            lastCharacter = character
+        }
+        
+        if let quoteStartIndex {
+            quoteRanges.append(quoteStartIndex..<self.endIndex)
+        }
+        
+        return quoteRanges.map { NSRange($0, in: self) }
+    }
+    
+    
     /// Finds the ranges of `[^abc]` pattern in the regular expression.
     ///
-    /// - Parameter includingSymbols: Whether the result ranges including `[]` and `^`.
+    /// - Parameters:
+    ///   - includingSymbols: Whether the result ranges including `[]` and `^`.
+    ///   - excludedRanges: The ranges to ignore.
     /// - Returns: The matched ranges.
-    func rangesForRegularExpressionBrackets(includingSymbols: Bool) -> [NSRange] {
+    func rangesForRegularExpressionBrackets(includingSymbols: Bool, excluding excludedRanges: [NSRange] = []) -> [NSRange] {
         
         var index = self.startIndex
         var braceRanges: [Range<Index>] = []
         
         while index != self.endIndex {
-            guard let (range, isNegative) = self.rangeForRegularExpressionBrackets(starting: index) else { break }
+            guard let (range, isNegative) = self.rangeForRegularExpressionBrackets(starting: index, excluding: excludedRanges) else { break }
             
             if includingSymbols {
                 braceRanges.append(range)
@@ -166,9 +215,11 @@ private extension StringProtocol {
     
     /// Finds the range of the first `[^abc]` pattern in the regular expression after the given index.
     ///
-    /// - Parameter searchIndex: The character index to start finding.
+    /// - Parameters:
+    ///   - searchIndex: The character index to start finding.
+    ///   - excludedRanges: The ranges to ignore.
     /// - Returns: The found range and if the found pattern is a negative pattern (not `[abc]` but `[^abc]`), or `nil` if not found.
-    private func rangeForRegularExpressionBrackets(starting searchIndex: Index) -> (range: Range<Index>, isNegative: Bool)? {
+    private func rangeForRegularExpressionBrackets(starting searchIndex: Index, excluding excludedRanges: [NSRange] = []) -> (range: Range<Index>, isNegative: Bool)? {
         
         assert(searchIndex == self.startIndex || self[self.index(before: searchIndex)] != "\\")
         
@@ -178,6 +229,12 @@ private extension StringProtocol {
         var isEscaped = false
         
         for index in self[searchIndex...].indices {
+            if !excludedRanges.isEmpty {
+                let location = index.utf16Offset(in: self)
+                
+                guard !excludedRanges.contains(where: { $0.contains(location) }) else { continue }
+            }
+            
             switch (self[index], startIndex) {
                 case ("\\", _):
                     isFirst = false
