@@ -698,7 +698,7 @@ extension NSTextView: EditorCounter.Source { }
         Task { try? await textStorage.linkURLs() }
         
         // create print operation
-        let printInfo = self.printInfo
+        let printInfo = self.printInfo.copy() as! NSPrintInfo
         printInfo[.printsInvisibles] = viewController.showsInvisibles
         printInfo[.printsLineNumbers] = viewController.showsLineNumber
         printInfo.dictionary().addEntries(from: printSettings)
