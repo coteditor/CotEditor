@@ -116,13 +116,7 @@ import URLUtils
     /// - Returns: The encoded user key binding data in XML property list format, or `nil` if there are no user key bindings.
     func userSettingsData() throws -> Data? {
         
-        guard !self.userKeyBindings.isEmpty else { return nil }
-        
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .xml
-        let descriptions = self.userKeyBindings.sorted(using: KeyPathComparator(\.action.description))
-        
-        return try encoder.encode(descriptions)
+        try self.userSettingsData(for: self.userKeyBindings)
     }
     
     
@@ -188,9 +182,26 @@ import URLUtils
         
         // remove also the parent directory
         let parent = self.settingFileURL.deletingLastPathComponent()
-        if try FileManager.default.contentsOfDirectory(at: parent, includingPropertiesForKeys: [], options: .skipsHiddenFiles).isEmpty {
-            try FileManager.default.removeItem(at: parent)
+        if (try? FileManager.default.contentsOfDirectory(at: parent, includingPropertiesForKeys: [], options: .skipsHiddenFiles).isEmpty) == true {
+            try? FileManager.default.removeItem(at: parent)
         }
+    }
+    
+    
+    /// Returns the encoded key binding settings as an XML property list, or `nil` if there are no user-defined key bindings.
+    ///
+    /// - Parameter keyBindings: The user key bindings to encode.
+    /// - Throws: An error if encoding the key bindings fails.
+    /// - Returns: The encoded user key binding data in XML property list format, or `nil` if there are no user key bindings.
+    private func userSettingsData(for keyBindings: [KeyBinding]) throws -> Data? {
+        
+        guard !keyBindings.isEmpty else { return nil }
+        
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .xml
+        let descriptions = keyBindings.sorted(using: KeyPathComparator(\.action.description))
+        
+        return try encoder.encode(descriptions)
     }
     
     
@@ -200,14 +211,11 @@ import URLUtils
     private func save(keyBindings: [KeyBinding]) throws {
         
         let defaultExistsActions = self.defaultKeyBindings.map(\.action)
-        
-        // store new values
-        self.userKeyBindings = Set(keyBindings).subtracting(self.defaultKeyBindings)
+        let userKeyBindings: [KeyBinding] = Set(keyBindings).subtracting(self.defaultKeyBindings)
             .filter { $0.shortcut != nil || defaultExistsActions.contains($0.action) }
-        self.modifiedKeyBindings.formUnion(self.userKeyBindings)
         
         // write to file
-        if let data = try self.userSettingsData() {
+        if let data = try self.userSettingsData(for: userKeyBindings) {
             let fileURL = self.settingFileURL
             try FileManager.default.createIntermediateDirectories(to: fileURL)
             try data.write(to: fileURL)
@@ -215,6 +223,10 @@ import URLUtils
         } else {
             try self.removeSettingFile()
         }
+        
+        // store new values
+        self.userKeyBindings = userKeyBindings
+        self.modifiedKeyBindings.formUnion(userKeyBindings)
     }
     
     
