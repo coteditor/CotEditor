@@ -15,6 +15,7 @@
 - Fix an issue where print settings specified by AppleScript could be ignored.
 - Fix an issue where performing Find All or Highlight All in a read-only document could make the document editable.
 - Fix an issue where regular expression search could get stuck at the same position when matching zero-length text.
+- Fix an issue where word boundary anchors in regular expression fields could be highlighted incorrectly.
 - Fix an issue where document open/save scripts could fail to run immediately after launch or script folder changes.
 
 

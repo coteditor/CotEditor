@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -80,7 +80,7 @@ enum RegexSyntaxType: CaseIterable {
                         // -> [abc] will be extracted in ranges(in:) since regex cannot parse nested []
                         [
                             #"\."#,  // .
-                            #"\\[^AbGkZzQE1-9]"#,  // all escaped characters
+                            #"\\[^ABbGkZzQE1-9]"#,  // all escaped characters
                             #"\\[sdDefnrsStwWX]"#,  // \s, \d, ...
                             #"\\v"#,  // \v
                             #"\\\\"#,  // \\
@@ -117,7 +117,7 @@ enum RegexSyntaxType: CaseIterable {
                         // -> `$` is also used for .backReference.
                         [
                             #"[$^]"#,  // ^ $
-                            #"\\[AbGZz]"#,  // \A, \b, ...
+                            #"\\[ABbGZz]"#,  // \A, \b, ...
                         ]
                 }
                 

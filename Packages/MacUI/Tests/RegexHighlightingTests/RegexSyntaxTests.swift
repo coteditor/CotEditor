@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -98,5 +98,15 @@ struct RegexSyntaxTests {
         #expect(symbol.ranges(in: "(?<=\\[)a]") == [NSRange(location: 0, length: 4),
                                                     NSRange(location: 0, length: 1),
                                                     NSRange(location: 6, length: 1)])
+    }
+    
+    
+    @Test func highlightWordBoundaryAsAnchor() {
+        
+        let string = "\\bword\\B"
+        
+        #expect(RegexSyntaxType.anchor.ranges(in: string) == [NSRange(location: 0, length: 2),
+                                                              NSRange(location: 6, length: 2)])
+        #expect(RegexSyntaxType.character.ranges(in: string) == [])
     }
 }
