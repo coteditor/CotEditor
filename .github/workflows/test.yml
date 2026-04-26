@@ -5,12 +5,13 @@ on: [push, pull_request]
 permissions:
   contents: read
 
+env:
+  XCODE_VERSION: "26.4"
+
 jobs:
   packages:
     name: Unit Test for ${{ matrix.package }}
     runs-on: macos-26
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_26.4.app
     strategy:
       fail-fast: false
       matrix:
@@ -20,6 +21,8 @@ jobs:
           - Syntax
 
     steps:
+    - name: Set Xcode version
+      run: echo "DEVELOPER_DIR=/Applications/Xcode_${XCODE_VERSION}.app" >> "$GITHUB_ENV"
     - name: Show environments
       run: |
         sw_vers
@@ -32,11 +35,12 @@ jobs:
         swift test --package-path "Packages/${{ matrix.package }}"
 
   macOS:
+    name: Tests for CotEditor
     runs-on: macos-26
-    env:
-      DEVELOPER_DIR: /Applications/Xcode_26.4.app
 
     steps:
+    - name: Set Xcode version
+      run: echo "DEVELOPER_DIR=/Applications/Xcode_${XCODE_VERSION}.app" >> "$GITHUB_ENV"
     - name: Show environments
       run: |
         sw_vers
