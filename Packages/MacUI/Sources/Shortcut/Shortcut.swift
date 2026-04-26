@@ -10,7 +10,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -395,8 +395,10 @@ extension Shortcut: Hashable {
     
     public func hash(into hasher: inout Hasher) {
         
-        hasher.combine(self.keyEquivalent)
-        hasher.combine(self.modifiers.rawValue)
+        let shortcut = self.normalized
+        
+        hasher.combine(shortcut.keyEquivalent)
+        hasher.combine(shortcut.modifiers.rawValue)
     }
 }
 

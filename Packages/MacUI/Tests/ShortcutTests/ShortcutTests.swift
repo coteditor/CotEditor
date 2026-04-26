@@ -30,10 +30,13 @@ import Testing
 
 struct ShortcutTests {
     
-    @Test func equivalent() {
+    @Test func equivalent() throws {
         
-        #expect(Shortcut("A", modifiers: [.control]) ==
-                Shortcut("a", modifiers: [.control, .shift]))
+        let uppercase = try #require(Shortcut("A", modifiers: [.control]))
+        let shifted = try #require(Shortcut("a", modifiers: [.control, .shift]))
+        
+        #expect(uppercase == shifted)
+        #expect(Set([uppercase, shifted]).count == 1)
         
         #expect(Shortcut(keySpecChars: "^A") ==
                 Shortcut(keySpecChars: "^$a"))

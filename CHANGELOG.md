@@ -17,6 +17,7 @@
 - Fix an issue where regular expression search could get stuck at the same position when matching zero-length text.
 - Fix an issue where regular expression syntax highlighting could be applied incorrectly.
 - Fix an issue where document open/save scripts could fail to run immediately after launch or script folder changes.
+- [trivial] Fix an issue where key bindings equivalent to the default shortcuts could remain stored as custom settings.
 
 
 
