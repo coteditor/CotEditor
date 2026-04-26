@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,8 +45,8 @@ struct DelegateContext {
         guard
             let delegate = self.delegate as? AnyObject,
             let selector = self.selector,
-            let objcClass = objc_getClass(delegate.className) as? AnyClass,
-            let method = class_getMethodImplementation(objcClass, selector)
+            delegate.responds(to: selector),
+            let method = delegate.method(for: selector)
         else { return assertionFailure() }
         
         typealias Signature = @convention(c) (AnyObject, Selector, AnyObject, Bool, UnsafeMutableRawPointer?) -> Void
@@ -68,8 +68,8 @@ struct DelegateContext {
         guard
             let delegate = self.delegate as? AnyObject,
             let selector = self.selector,
-            let objcClass = objc_getClass(delegate.className) as? AnyClass,
-            let method = class_getMethodImplementation(objcClass, selector)
+            delegate.responds(to: selector),
+            let method = delegate.method(for: selector)
         else { return assertionFailure() }
         
         typealias Signature = @convention(c) (AnyObject, Selector, Bool, UnsafeMutableRawPointer?) -> Void
