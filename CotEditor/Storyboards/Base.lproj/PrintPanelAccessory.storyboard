@@ -270,7 +270,7 @@
                                         <connections>
                                             <accessibilityConnection property="title" destination="BMN-9W-V2O" id="E46-uW-adf"/>
                                             <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeaderAndFooter" id="znG-su-4aa"/>
-                                            <binding destination="bU7-R8-ocO" name="selectedIndex" keyPath="secondaryFooterAlignment" id="4vD-ax-KUb"/>
+                                            <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="secondaryFooterAlignment" id="4vD-ax-KUb"/>
                                             <binding destination="bU7-R8-ocO" name="enabled2" keyPath="secondaryFooterContent" previousBinding="znG-su-4aa" id="jbK-db-qyV">
                                                 <dictionary key="options">
                                                     <integer key="NSMultipleValuesPlaceholder" value="-1"/>
