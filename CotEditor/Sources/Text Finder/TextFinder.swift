@@ -610,8 +610,9 @@ struct FindMatchesCache {
         
         guard let (textFind, client) = self.prepareTextFind() else { return }
         
+        let wasEditable = client.isEditable
         client.isEditable = false
-        defer { client.isEditable = true }
+        defer { client.isEditable = wasEditable }
         
         let progress = FindProgress(scope: textFind.scopeRange)
         let task = Task.detached(priority: .userInitiated) {
@@ -667,8 +668,6 @@ struct FindMatchesCache {
         
         // perform
         let (highlights, matches) = await task.value
-        
-        client.isEditable = true
         
         guard progress.state != .cancelled else { return }
         

@@ -199,6 +199,24 @@ import Testing
     }
     
     
+    @Test(arguments: [TextFinder.Action.findAll, .highlight])
+    func findAllPreservesReadOnlyState(action: TextFinder.Action) async throws {
+        
+        let textView = TestTextView(string: "foo bar foo")
+        textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
+        textView.isEditable = false
+        
+        let finder = TextFinder()
+        finder.client = textView
+        finder.settings.findString = "foo"
+        finder.settings.usesRegularExpression = false
+        
+        _ = try await self.performFindAction(action, with: finder)
+        
+        #expect(!textView.isEditable)
+    }
+    
+    
     // MARK: Private Methods
     
     private func performFindAction(_ action: TextFinder.Action, with finder: TextFinder) async throws -> FindResult {
@@ -221,7 +239,7 @@ import Testing
     init(string: String) {
         
         let textStorage = NSTextStorage(string: string)
-        let layoutManager = NSLayoutManager()
+        let layoutManager = TestLayoutManager()
         let textContainer = NSTextContainer()
         
         layoutManager.addTextContainer(textContainer)
@@ -242,4 +260,10 @@ import Testing
     
     
     override func showFindIndicator(for charRange: NSRange) { }
+}
+
+
+private final class TestLayoutManager: NSLayoutManager, ValidationIgnorable {
+    
+    var ignoresDisplayValidation = false
 }
