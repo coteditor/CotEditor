@@ -235,7 +235,8 @@ extension NSTextView: EditorCounter.Source { }
     @ObservationIgnored override nonisolated var fileURL: URL? {
         
         didSet {
-            Task { @MainActor in
+            Task { @MainActor [fileURL = self.fileURL] in
+                self.synchronizeFileType(documentName: fileURL?.lastPathComponent)
                 NotificationCenter.default.post(name: NSDocument.DidChangeFileURLMessage.name, object: self)
             }
         }
@@ -507,7 +508,7 @@ extension NSTextView: EditorCounter.Source { }
             {
                 // -> Due to the async-saving, self.textStorage can be changed from the actual saved content.
                 //    But we don't care about that.
-                self.setSyntax(name: syntaxName)
+                self.setSyntax(name: syntaxName, documentName: url.lastPathComponent)
             }
             
             if !saveOperation.isAutosave {
@@ -1073,7 +1074,8 @@ extension NSTextView: EditorCounter.Source { }
     ///
     /// - Parameters:
     ///   - name: The name of the syntax to change with.
-    func setSyntax(name: String) {
+    ///   - documentName: The document filename used to resolve the file type, or `nil` to use `fileURL`.
+    func setSyntax(name: String, documentName: String? = nil) {
         
         let syntax: Syntax
         do {
@@ -1082,16 +1084,17 @@ extension NSTextView: EditorCounter.Source { }
             return self.presentErrorAsSheet(error)
         }
         
-        guard syntax != self.syntaxController.syntax else { return }
+        guard syntax != self.syntaxController.syntax else {
+            self.synchronizeFileType(syntax: syntax, documentName: documentName)
+            return
+        }
         
         SyntaxManager.shared.noteRecentSetting(name: name)
-        
-        let type = syntax.fileMap.extensions?.first.flatMap { UTType(filenameExtension: $0) } ?? .plainText
         
         // update
         self.syntaxController.update(syntax: syntax, name: name)
         self.syntaxName = name
-        self.fileType = type.identifier
+        self.synchronizeFileType(syntax: syntax, documentName: documentName)
         
         self.invalidateMode()
         self.invalidateRestorableState()
@@ -1104,12 +1107,12 @@ extension NSTextView: EditorCounter.Source { }
     ///   - filename: The new filename.
     func invalidateSyntax(filename: String) {
         
-        guard
-            let syntaxName = SyntaxManager.shared.settingName(documentName: filename, content: self.textStorage.string),
-            syntaxName != self.syntaxName
-        else { return }
+        guard let syntaxName = SyntaxManager.shared.settingName(documentName: filename, content: self.textStorage.string) else {
+            self.synchronizeFileType(documentName: filename)
+            return
+        }
         
-        self.setSyntax(name: syntaxName)
+        self.setSyntax(name: syntaxName, documentName: filename)
     }
     
     
@@ -1150,6 +1153,27 @@ extension NSTextView: EditorCounter.Source { }
     
     
     // MARK: Private Methods
+    
+    /// Updates `fileType` to follow the actual filename for saved documents, or the syntax for unsaved ones.
+    ///
+    /// - Parameters:
+    ///   - syntax: The syntax to derive the file type from, or `nil` to use the current syntax.
+    ///   - documentName: The document filename, or `nil` to use the current file URL.
+    private func synchronizeFileType(syntax: Syntax? = nil, documentName: String? = nil) {
+        
+        let documentName = documentName ?? self.fileURL?.lastPathComponent
+        let fileExtension: String? = if let documentName {
+            documentName.pathExtension
+        } else {
+            (syntax ?? self.syntaxController.syntax).fileMap.extensions?.first
+        }
+        let type = fileExtension.flatMap { UTType(filenameExtension: $0) } ?? .plainText
+        
+        guard self.fileType != type.identifier else { return }
+        
+        self.fileType = type.identifier
+    }
+    
     
     /// Creates a unique file URL for `autosavedContentsFileURL` to use in Autosave Elsewhere.
     ///

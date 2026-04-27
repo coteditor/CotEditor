@@ -12,6 +12,7 @@
 
 ### Fixes
 
+- Fix an issue where saving an extensionless document could automatically attach the `com.apple.provenance` extended attribute, causing the file to be treated as locked by the system and preventing later overwrites.
 - Fix an issue where a failed script could leave its name in subsequent console messages.
 - Fix an issue where print settings specified by AppleScript could be ignored.
 - Fix an issue where performing Find All or Highlight All in a read-only document could make the document editable.
