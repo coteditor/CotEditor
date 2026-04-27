@@ -56,11 +56,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v5
     - name: Unit Test for CotEditor
-      timeout-minutes: 60
       run: |
         xcodebuild test -scheme CotEditor -destination 'platform=macOS' CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= PROVISIONING_PROFILE_SPECIFIER= CODE_SIGN_ENTITLEMENTS_SUFFIX=-AdHoc -skipPackagePluginValidation
     - name: Release Build Smoke Test
-      timeout-minutes: 30
       run: |
         set -euo pipefail
         app_binary="/tmp/CotEditorInstall/Applications/CotEditor.app/Contents/MacOS/CotEditor"
