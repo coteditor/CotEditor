@@ -39,8 +39,9 @@ extension NSTextView {
     /// - Throws: `CancellationError`
     final func highlight(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
         
+        let wasEditable = self.isEditable
         self.isEditable = false
-        defer { self.isEditable = true }
+        defer { self.isEditable = wasEditable }
         
         let string = self.string.immutable
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
@@ -64,7 +65,7 @@ extension NSTextView {
             task.cancel()
         }
         
-        self.isEditable = true
+        self.isEditable = wasEditable
         
         if progress.count > 0 {
             // apply to the text view
@@ -92,8 +93,9 @@ extension NSTextView {
     /// - Throws: `CancellationError`
     @discardableResult final func replaceAll(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
         
+        let wasEditable = self.isEditable
         self.isEditable = false
-        defer { self.isEditable = true }
+        defer { self.isEditable = wasEditable }
         
         let string = self.string.immutable
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
@@ -116,7 +118,7 @@ extension NSTextView {
             task.cancel()
         }
         
-        self.isEditable = true
+        self.isEditable = wasEditable
         
         if progress.count > 0 {
             // apply to the text view
