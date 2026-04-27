@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2024 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -96,11 +96,9 @@ import FileEncoding
     ///
     /// - Parameter encodingName: The name of the encoding to find.
     /// - Returns: A string encoding or nil.
-    func encoding(name encodingName: String) -> String.Encoding? {
+    static func encoding(name encodingName: String) -> String.Encoding? {
         
-        self.fileEncodings.lazy
-            .compactMap(\.self)
-            .map(\.encoding)
+        String.availableStringEncodings.lazy
             .first { encodingName == String.localizedName(of: $0) }
     }
     
@@ -109,11 +107,9 @@ import FileEncoding
     ///
     /// - Parameter ianaCharSetName: The IANA charset name of the encoding to find.
     /// - Returns: A string encoding or nil.
-    func encoding(ianaCharSetName: String) -> String.Encoding? {
+    static func encoding(ianaCharSetName: String) -> String.Encoding? {
         
-        self.fileEncodings.lazy
-            .compactMap(\.self)
-            .map(\.encoding)
+        String.availableStringEncodings.lazy
             .first { $0.ianaCharSetName?.caseInsensitiveCompare(ianaCharSetName) == .orderedSame }
     }
     

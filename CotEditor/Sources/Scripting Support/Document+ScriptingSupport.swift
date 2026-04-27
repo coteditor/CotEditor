@@ -236,7 +236,7 @@ extension Document {
         guard
             let arguments = command.evaluatedArguments,
             let encodingName = arguments["newEncoding"] as? String,
-            let encoding = EncodingManager.shared.encoding(name: encodingName) ?? EncodingManager.shared.encoding(ianaCharSetName: encodingName)
+            let encoding = EncodingManager.encoding(name: encodingName) ?? EncodingManager.encoding(ianaCharSetName: encodingName)
         else {
             command.scriptErrorNumber = OSAParameterMismatch
             command.scriptErrorString = "Invalid encoding name."
@@ -273,7 +273,7 @@ extension Document {
         guard
             let arguments = command.evaluatedArguments,
             let encodingName = arguments["newEncoding"] as? String,
-            let encoding = EncodingManager.shared.encoding(name: encodingName) ?? EncodingManager.shared.encoding(ianaCharSetName: encodingName)
+            let encoding = EncodingManager.encoding(name: encodingName) ?? EncodingManager.encoding(ianaCharSetName: encodingName)
         else {
             command.scriptErrorNumber = OSAParameterMismatch
             command.scriptErrorString = "Invalid encoding name."
