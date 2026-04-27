@@ -33,6 +33,7 @@ struct MultipleReplaceSplitView: View {
     private let manager: ReplacementManager = .shared
     
     @AppStorage(.selectedMultipleReplaceSettingName) private var selection: String?
+    @State private var settingName: String?
     @State private var setting: MultipleReplace = .init()
     @State private var error: (any Error)?
     
@@ -44,15 +45,19 @@ struct MultipleReplaceSplitView: View {
                 .environment(\.sidebarRowSize, .medium)
                 .navigationSplitViewColumnWidth(min: 80, ideal: 200)
         } detail: {
-            MultipleReplaceView(settingName: self.selection, setting: $setting) { name, setting in
-                if name == self.selection {
+            MultipleReplaceView(settingName: self.settingName, setting: $setting) { name, setting in
+                if name == self.settingName {
                     self.setting = setting
                 }
                 self.save(setting: setting, name: name)
             }
         }
         .onChange(of: self.selection, initial: true) { _, newValue in
-            guard let newValue else { return }
+            guard let newValue else {
+                self.settingName = nil
+                self.setting = .init()
+                return
+            }
             self.changeSetting(to: newValue)
         }
         .task {
@@ -65,6 +70,7 @@ struct MultipleReplaceSplitView: View {
                 self.changeSetting(to: name)
             }
         }
+        .alert(error: $error)
     }
     
     
@@ -90,12 +96,20 @@ struct MultipleReplaceSplitView: View {
     /// - Parameter name: The name of the setting.
     private func changeSetting(to name: String) {
         
+        let setting: MultipleReplace
         do {
-            let setting = try self.manager.setting(name: name)
-            guard setting != self.setting else { return }
-            self.setting = setting
+            setting = try self.manager.setting(name: name)
         } catch {
+            self.settingName = nil
+            self.setting = .init()
             self.error = error
+            return
         }
+        
+        guard name != self.settingName || setting != self.setting else { return }
+        
+        self.settingName = name
+        self.setting = setting
+        self.error = nil
     }
 }
