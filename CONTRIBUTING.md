@@ -124,18 +124,18 @@ You also need to take care of how Apple treats punctuation characters and symbol
 
 ### Syntaxes
 
-#### Adding a new bundled syntax
+#### Adding a new built-in syntax
 
-Put just your new syntax into the `/CotEditor/Resources/syntaxes/` directory. You don't need to modify the `SyntaxMap.json` file because it will be automatically generated in the build phase.
+Rather than opening a pull request directly, please create an issue first and get agreement from the maintainers on whether the language is worth including as a built-in syntax in CotEditor. Please note that pull requests for new tree-sitter-based syntaxes are not accepted because of the maintenance cost. If the syntax language is relatively minor, we recommend you not to add it to CotEditor as a built-in syntax but to distribute it as an additional syntax in your way, and just add a link to our [wiki page](https://github.com/coteditor/CotEditor/wiki/Additional-Syntax-Styles).
 
-The license for the bundled syntaxes must be “Same as CotEditor.”
+When adding a new built-in syntax, put just your new syntax into the `/CotEditor/Resources/syntaxes/` directory. You don't need to modify the `SyntaxMap.json` file because it will be automatically generated in the build phase.
 
-If the syntax language is relatively minor, we recommend you not to bundle it to CotEditor but to distribute it as an additional syntax in your way, and just add a link to our [wiki page](https://github.com/coteditor/CotEditor/wiki/Additional-Syntax-Styles).
+The license for the built-in syntaxes must be “Same as CotEditor.”
 
 
 ### Themes
 
-We don't accept pull requests adding bundled themes at the moment. You can distribute yours as an additional theme in your way and add a link to our [wiki page](https://github.com/coteditor/CotEditor/wiki/Additional-Themes).
+We don't accept pull requests adding built-in themes at the moment. You can distribute yours as an additional theme in your way and add a link to our [wiki page](https://github.com/coteditor/CotEditor/wiki/Additional-Themes).
 
 
 ### Graphic Resources
