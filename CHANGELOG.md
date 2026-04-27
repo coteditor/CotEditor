@@ -7,6 +7,7 @@
 
 - Improve UNIX script pipe handling.
 - Improve responsiveness when performing the Select All Find Matches command in large documents.
+- [dev] Update the build environment to Xcode 26.4.1.
 
 
 ### Fixes
