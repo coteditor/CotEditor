@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,9 +44,11 @@ struct MultipleReplaceSplitView: View {
                 .environment(\.sidebarRowSize, .medium)
                 .navigationSplitViewColumnWidth(min: 80, ideal: 200)
         } detail: {
-            MultipleReplaceView(setting: $setting) {
-                self.setting = $0
-                self.saveSetting()
+            MultipleReplaceView(settingName: self.selection, setting: $setting) { name, setting in
+                if name == self.selection {
+                    self.setting = setting
+                }
+                self.save(setting: setting, name: name)
             }
         }
         .onChange(of: self.selection, initial: true) { _, newValue in
@@ -68,13 +70,15 @@ struct MultipleReplaceSplitView: View {
     
     // MARK: Private Methods
     
-    /// Saves the current setting as the current selected name.
-    private func saveSetting() {
-        
-        guard let name = self.selection else { return }
+    /// Saves the given setting as the passed-in name.
+    ///
+    /// - Parameters:
+    ///   - setting: The setting to save.
+    ///   - name: The name under which to save the setting.
+    private func save(setting: MultipleReplace, name: String) {
         
         do {
-            try self.manager.save(setting: self.setting, name: name)
+            try self.manager.save(setting: setting, name: name)
         } catch {
             Logger.app.error("\(error.localizedDescription)")
         }
@@ -87,7 +91,9 @@ struct MultipleReplaceSplitView: View {
     private func changeSetting(to name: String) {
         
         do {
-            self.setting = try self.manager.setting(name: name)
+            let setting = try self.manager.setting(name: name)
+            guard setting != self.setting else { return }
+            self.setting = setting
         } catch {
             self.error = error
         }
