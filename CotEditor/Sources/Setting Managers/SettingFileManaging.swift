@@ -190,42 +190,10 @@ extension SettingFileManaging {
     /// - Throws: `InvalidNameError` if the name is invalid.
     func validate(settingName: String, originalName: String?) throws(InvalidNameError) {
         
-        if settingName.isEmpty {
-            throw .empty
-        }
-        
         // just case difference is allowed
-        if originalName?.caseInsensitiveCompare(settingName) == .orderedSame {
-            return
-        }
+        let checksDuplicate = originalName?.caseInsensitiveCompare(settingName) != .orderedSame
         
-        if (settingName + (Setting.fileType.preferredFilenameExtension.map({ "." + $0 }) ?? "")).utf16.count > Int(NAME_MAX) {
-            throw .tooLong
-        }
-        
-        if settingName.contains("/") {  // invalid for filename
-            throw .invalidCharacter("/")
-        }
-        
-        if settingName.contains(":") {  // invalid for filename
-            throw .invalidCharacter(":")
-        }
-        
-        if settingName.contains(where: \.isNewline) {  // invalid for filename
-            throw .newLine
-        }
-        
-        if settingName.hasPrefix(".") {  // invalid for filename
-            throw .startWithDot
-        }
-        
-        if let duplicateName = self.settingNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
-            throw .duplicated(name: duplicateName)
-        }
-        
-        if let reservedName = self.reservedNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
-            throw .reserved(name: reservedName)
-        }
+        try self.validate(settingName: settingName, checksDuplicate: checksDuplicate)
     }
     
     
@@ -358,6 +326,8 @@ extension SettingFileManaging {
     ///   - overwrite: Whether to overwrite an existing setting if one exists.
     /// - Throws: `ImportDuplicationError` (only when `overwrite` is `false` and a duplicate exists), or any other error that occurs.
     func importSetting(_ item: ImportingItem, name: String, type: UTType? = nil, overwrite: Bool) throws {
+        
+        try self.validate(settingName: name, checksDuplicate: false)
         
         // check duplication
         if !overwrite {
@@ -497,6 +467,48 @@ extension SettingFileManaging {
     
     
     // MARK: Private Methods
+    
+    /// Validates whether the setting name is valid.
+    ///
+    /// - Parameters:
+    ///   - settingName: The setting name to validate.
+    ///   - checksDuplicate: Whether to reject names already in use.
+    /// - Throws: `InvalidNameError` if the name is invalid.
+    private func validate(settingName: String, checksDuplicate: Bool) throws(InvalidNameError) {
+        
+        if settingName.isEmpty {
+            throw .empty
+        }
+        
+        if (settingName + (Setting.fileType.preferredFilenameExtension.map({ "." + $0 }) ?? "")).utf16.count > Int(NAME_MAX) {
+            throw .tooLong
+        }
+        
+        if settingName.contains("/") {  // invalid for filename
+            throw .invalidCharacter("/")
+        }
+        
+        if settingName.contains(":") {  // invalid for filename
+            throw .invalidCharacter(":")
+        }
+        
+        if settingName.contains(where: \.isNewline) {  // invalid for filename
+            throw .newLine
+        }
+        
+        if settingName.hasPrefix(".") {  // invalid for filename
+            throw .startWithDot
+        }
+        
+        if checksDuplicate, let duplicateName = self.settingNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
+            throw .duplicated(name: duplicateName)
+        }
+        
+        if let reservedName = self.reservedNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
+            throw .reserved(name: reservedName)
+        }
+    }
+    
     
     /// The user setting directory URL in Application Support.
     private nonisolated var userSettingDirectoryURL: URL {

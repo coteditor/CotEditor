@@ -167,6 +167,31 @@ import SyntaxFormat
     }
     
     
+    @Test func importReservedSyntaxNameThrowsInvalidNameError() throws {
+        
+        let manager = TestSyntaxManager()
+        let url = try self.createYAMLFile(text: """
+            kind: code
+            extensions:
+              - keyString: reserved
+            """)
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        
+        let error = #expect(throws: InvalidNameError.self) {
+            try manager.importSetting(.url(url), name: SyntaxName.none, type: .yaml, overwrite: true)
+        }
+        
+        let invalidNameError = try #require(error)
+        guard case .reserved(let name) = invalidNameError else {
+            Issue.record("Expected reserved name error, but got \(invalidNameError).")
+            return
+        }
+        
+        #expect(name == SyntaxName.none)
+        #expect(!manager.settingNames.contains(SyntaxName.none))
+    }
+    
+    
     @Test func renamingWithSurroundingWhitespaceInvalidatesSanitizedCacheEntry() throws {
         
         let manager = TestReplacementManager()
@@ -336,9 +361,9 @@ import SyntaxFormat
     typealias Setting = Syntax
     
     static let directoryName = "TestSyntaxes-\(UUID().uuidString)"
-    static let constantSettings: [String: Setting] = [:]
+    static let constantSettings: [String: Setting] = [SyntaxName.none: .none]
     
-    let reservedNames: [String] = []
+    let reservedNames: [String] = [SyntaxName.none]
     let bundledSettingNames: [String] = []
     var settingNames: [String] = []
     var cachedSettings: [String: Setting] = [:]
