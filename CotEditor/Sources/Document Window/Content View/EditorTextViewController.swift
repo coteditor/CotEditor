@@ -176,7 +176,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             self.document.$lineEnding
                 .assign(to: \.lineEnding, on: self.textView),
             self.document.$mode
-                .removeDuplicates()
                 .map(ModeManager.shared.setting(for:))
                 .sink { [weak self] in self?.textView.applyMode($0) },
             

@@ -44,7 +44,7 @@ import SyntaxFormat
     
     // MARK: Lifecycle
     
-    private init(defaults: UserDefaults) {
+    init(defaults: UserDefaults) {
         
         self.defaults = defaults
     }
@@ -104,8 +104,9 @@ import SyntaxFormat
     func addSetting(for syntaxName: String) throws {
         
         let kind = try self.syntaxKind(name: syntaxName)
+        let setting = self.setting(for: .kind(kind))
         
-        self.save(setting: kind.defaultOptions, mode: .syntax(syntaxName))
+        self.save(setting: setting, mode: .syntax(syntaxName))
     }
     
     

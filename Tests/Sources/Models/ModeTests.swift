@@ -23,6 +23,8 @@
 //  limitations under the License.
 //
 
+import Foundation
+import SyntaxFormat
 import Testing
 @testable import CotEditor
 
@@ -52,5 +54,25 @@ struct ModeTests {
             "completionWordTypes": mode.completionWordTypes.rawValue,
         ])
         #expect(ModeOptions(dictionary: mode.dictionary) == mode)
+    }
+    
+    
+    @MainActor @Test func addingSyntaxSettingCopiesInheritedKindSetting() throws {
+        
+        let suiteName = "ModeTests-\(UUID().uuidString)"
+        let defaults = try #require(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        
+        let manager = ModeManager(defaults: defaults)
+        var setting = ModeOptions()
+        setting.fontType = .monospaced
+        setting.automaticSymbolBalancing = true
+        setting.completionWordTypes = [.document, .syntax]
+        setting.automaticCompletion = true
+        
+        manager.save(setting: setting, mode: .kind(.code))
+        try manager.addSetting(for: "Swift")
+        
+        #expect(manager.setting(for: .syntax("Swift")) == setting)
     }
 }

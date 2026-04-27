@@ -23,6 +23,7 @@
 - Fix an issue where document open/save scripts could fail to run immediately after launch or script folder changes.
 - Fix an issue where the default text encoding could be removed from the Encoding List.
 - Fix an issue where syntax definition files with reserved names could be imported and appear as unusable custom syntaxes.
+- Fix issues where Mode settings might not apply immediately to open documents or to newly added syntax-specific modes.
 - [trivial] Fix an issue where key bindings equivalent to the default shortcuts could remain stored as custom settings.
 
 

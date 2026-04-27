@@ -346,7 +346,7 @@ extension NSTextView: EditorCounter.Source { }
                 return .specific(encoding)
             }
             
-            var encodingCandidates = EncodingManager.shared.fileEncodings.compactMap(\.self?.encoding)
+            var encodingCandidates = EncodingManager.shared.fileEncodingCandidates
             if isInitialized {  // prioritize the current encoding
                 let currentEncoding = DispatchQueue.syncOnMain { self.fileEncoding.encoding }
                 encodingCandidates.insert(currentEncoding, at: 0)
