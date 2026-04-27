@@ -108,7 +108,7 @@ struct ImportSettingsView: View {
                 HelpLink(anchor: "howto_port_settings")
                 Spacer()
                 
-                SubmitButtonGroup(String(localized: "Action.import.label", defaultValue: "Import…")) {
+                SubmitButtonGroup(String(localized: "Action.import.ellipsis.label", defaultValue: "Import…")) {
                     do {
                         try self.document.applySettings(types: self.types)
                     } catch {
