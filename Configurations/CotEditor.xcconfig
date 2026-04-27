@@ -26,7 +26,7 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-CODE_SIGN_ENTITLEMENTS = CotEditor/$(PRODUCT_NAME).entitlements
+CODE_SIGN_ENTITLEMENTS = CotEditor/$(PRODUCT_NAME)$(CODE_SIGN_ENTITLEMENTS_SUFFIX).entitlements
 
 // Code signing may need to override any predefined values.
 // Therefore, it should be included at the end.
