@@ -21,6 +21,7 @@
 - Fix an issue where regular expression syntax highlighting could be applied incorrectly.
 - Fix an issue where custom keyboard shortcuts using the Forward Delete key could not work.
 - Fix an issue where document open/save scripts could fail to run immediately after launch or script folder changes.
+- Fix an issue where the default text encoding could be removed from the Encoding List.
 - Fix an issue where syntax definition files with reserved names could be imported and appear as unusable custom syntaxes.
 - [trivial] Fix an issue where key bindings equivalent to the default shortcuts could remain stored as custom settings.
 

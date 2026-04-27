@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2025 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,21 +51,29 @@ struct EncodingListView: View {
         @ObservationIgnored var undoManager: UndoManager?
         
         private let defaults: UserDefaults
+        private let defaultEncoding: CFStringEncoding
         
         
-        init(defaults: UserDefaults = .standard) {
+        init(defaultEncoding: CFStringEncoding, defaults: UserDefaults = .standard) {
             
             self.items = defaults[.encodingList].map(Item.init(encoding:))
             self.defaults = defaults
+            self.defaultEncoding = defaultEncoding
         }
     }
     
     
-    @State private var model = Model()
+    @State private var model: Model
     @State private var selection: Set<Model.Item.ID> = []
     
     @Environment(\.undoManager) private var undoManager
     @Environment(\.dismiss) private var dismiss
+    
+    
+    init(defaultEncoding: FileEncoding, defaults: UserDefaults = .standard) {
+        
+        self.model = Model(defaultEncoding: defaultEncoding.encoding.cfEncoding, defaults: defaults)
+    }
     
     
     var body: some View {
@@ -328,7 +336,7 @@ private extension EncodingListView.Model {
         switch item.encoding {
             case .utf8:
                 .encoding(.utf8)
-            case UInt32(self.defaults[.encoding]):
+            case let encoding where encoding == self.defaultEncoding:
                 .defaultEncoding
             default:
                 nil
@@ -390,5 +398,5 @@ private extension CFStringEncoding {
 // MARK: - Preview
 
 #Preview(traits: .fixedLayout(width: 400, height: 400)) {
-    EncodingListView()
+    EncodingListView(defaultEncoding: .utf8)
 }

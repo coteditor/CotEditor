@@ -139,7 +139,9 @@ struct FormatSettingsView: View {
                         Button(String(localized: "Edit List…", table: "FormatSettings")) {
                             self.isEncodingListPresented.toggle()
                         }
-                        .sheet(isPresented: $isEncodingListPresented, content: EncodingListView.init)
+                        .sheet(isPresented: $isEncodingListPresented) {
+                            EncodingListView(defaultEncoding: self.encodingManager.defaultEncoding)
+                        }
                         
                         Toggle(String(localized: "Refer to encoding declaration in document", table: "FormatSettings"), isOn: $referToEncodingTag)
                             .fixedSize(horizontal: false, vertical: true)
