@@ -78,7 +78,7 @@ import URLUtils
     /// - Returns: the snippet created.
     func createUntitledSetting() -> Snippet {
         
-        let name = String(localized: "Untitled", comment: "initial setting filename")
+        let name = String(localized: "Untitled", comment: "default name")
             .appendingUniqueNumber(in: self.snippets.map(\.name))
         
         return Snippet(name: name)

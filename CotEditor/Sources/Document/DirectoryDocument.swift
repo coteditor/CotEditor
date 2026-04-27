@@ -357,7 +357,7 @@ final class DirectoryDocument: NSDocument {
         
         assert(parentNode.file.isDirectory)
         
-        let name = String(localized: "Untitled", comment: "default filename for new creation")
+        let name = String(localized: "Untitled", comment: "default name")
         let pathExtension = (try? SyntaxManager.shared.setting(name: UserDefaults.standard[.syntax]))?.fileMap.extensions?.first
         let fileURL = parentNode.file.fileURL.appending(component: name).appendingPathExtension(pathExtension ?? "").appendingUniqueNumber()
         
