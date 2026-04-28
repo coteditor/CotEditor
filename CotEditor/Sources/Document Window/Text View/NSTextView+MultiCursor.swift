@@ -106,8 +106,10 @@ extension MultiCursorEditing {
         
         let deletionRanges: [NSRange] = ranges
             .map { range -> NSRange in
-                guard range.location > 0 else { return range }
-                guard range.isEmpty else { return range }
+                guard
+                    range.isEmpty,
+                    forward ? range.location < self.string.length : range.location > 0
+                else { return range }
                 
                 if !forward,
                    let self = self as? any Indenting,
