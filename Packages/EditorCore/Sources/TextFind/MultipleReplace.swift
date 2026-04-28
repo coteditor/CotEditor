@@ -85,6 +85,47 @@ public struct MultipleReplace: Equatable, Sendable, Codable {
 }
 
 
+public extension MultipleReplace.Replacement {
+    
+    /// Returns whether two replacement definitions are literally identical.
+    ///
+    /// - Parameters:
+    ///   - lhs: The left-hand replacement definition.
+    ///   - rhs: The right-hand replacement definition.
+    /// - Returns: `true` if both definitions have the same literal values.
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        
+        (lhs.findString as NSString).isEqual(to: rhs.findString) &&
+        (lhs.replacementString as NSString).isEqual(to: rhs.replacementString) &&
+        lhs.usesRegularExpression == rhs.usesRegularExpression &&
+        lhs.ignoresCase == rhs.ignoresCase &&
+        Self.isLiteralEqual(lhs.description, to: rhs.description) &&
+        lhs.isEnabled == rhs.isEnabled
+    }
+    
+    
+    /// Returns whether two optional strings are literally identical.
+    ///
+    /// - Parameters:
+    ///   - lhs: The left-hand string.
+    ///   - rhs: The right-hand string.
+    /// - Returns: `true` if both strings have the same literal value.
+    private static func isLiteralEqual(_ lhs: String?, to rhs: String?) -> Bool {
+        
+        switch (lhs, rhs) {
+            case (let lhs?, let rhs?):
+                (lhs as NSString).isEqual(to: rhs)
+                
+            case (nil, nil):
+                true
+                
+            default:
+                false
+        }
+    }
+}
+
+
 // MARK: - Replacement
 
 extension MultipleReplace {

@@ -47,6 +47,28 @@ struct MultipleReplaceTests {
     }
     
     
+    @Test func equalityDistinguishesUnicodeEquivalentReplacementStrings() {
+        
+        let findString = MultipleReplace(replacements: [
+            .init(findString: "\u{00B7}"),
+        ])
+        let unicodeEquivalentFindString = MultipleReplace(replacements: [
+            .init(findString: "\u{0387}"),
+        ])
+        
+        #expect(findString != unicodeEquivalentFindString)
+        
+        let replacementString = MultipleReplace(replacements: [
+            .init(findString: "x", replacementString: "\u{00B7}"),
+        ])
+        let unicodeEquivalentReplacementString = MultipleReplace(replacements: [
+            .init(findString: "x", replacementString: "\u{0387}"),
+        ])
+        
+        #expect(replacementString != unicodeEquivalentReplacementString)
+    }
+    
+    
     @Test func replacementValidateThrows() {
         
         #expect(throws: TextFind.Error.emptyFindString) {
