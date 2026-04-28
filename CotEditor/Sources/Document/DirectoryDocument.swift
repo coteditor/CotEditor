@@ -556,14 +556,10 @@ final class DirectoryDocument: NSDocument {
     ///   - node: The file node to move to the Trash.
     func trashItem(_ node: FileNode) throws {
         
-        // close if the item to the Trash is opened as a document
-        if let document = self.documents.first(where: { $0.fileURL == node.file.fileURL }) {
-            if document == self.currentDocument {
-                self.windowController?.fileDocument = nil
-            }
-            self.documents.removeFirst(document)
-            document.close()
-            self.invalidateRestorableState()
+        let documentsToClose = self.documents.filter { document in
+            guard let fileURL = document.fileURL else { return false }
+            
+            return fileURL == node.file.fileURL || node.file.fileURL.isAncestor(of: fileURL)
         }
         
         var trashedURL: NSURL?
@@ -584,6 +580,19 @@ final class DirectoryDocument: NSDocument {
         guard trashedURL != nil else {
             assertionFailure("This guard should success.")
             throw CocoaError(.fileWriteUnknown)
+        }
+        
+        if !documentsToClose.isEmpty {
+            if let currentDocument, documentsToClose.contains(where: { $0 === currentDocument }) {
+                self.windowController?.fileDocument = nil
+                self.currentDocument = nil
+            }
+            
+            for document in documentsToClose {
+                self.documents.removeFirst(document)
+                document.close()
+            }
+            self.invalidateRestorableState()
         }
         
         node.delete()

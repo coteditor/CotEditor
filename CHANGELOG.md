@@ -8,6 +8,7 @@
 - Improve UNIX script pipe handling.
 - Allow AppleScript encoding conversion to use encodings outside the customized encoding list.
 - Improve responsiveness when performing the Select All Find Matches command in large documents.
+- Close open documents in the file browser when their containing folder is moved to the Trash.
 - [dev] Update the build environment to Xcode 26.4.1.
 
 
