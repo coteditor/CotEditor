@@ -31,6 +31,7 @@
 - Fix an issue where syntax definition files with reserved names could be imported and appear as unusable custom syntaxes.
 - Fix issues where Mode settings might not apply immediately to open documents or to newly added syntax-specific modes.
 - Fix an issue where changing the document appearance or deleting a custom theme could leave the Theme settings pane showing an outdated theme.
+- Fix an issue in the file browser where moving both a folder and its contained items to the Trash at the same time could show an unnecessary error.
 - [trivial] Fix an issue where the Multiple Replace window could keep showing the previous definition after failing to load another definition.
 - [trivial] Fix an issue where key bindings equivalent to the default shortcuts could remain stored as custom settings.
 

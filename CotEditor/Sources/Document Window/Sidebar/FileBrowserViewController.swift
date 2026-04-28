@@ -842,6 +842,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     /// - Parameter nodes: The file nodes to move to the Trash.
     private func trashNodes(_ nodes: [FileNode]) {
         
+        let nodes = self.topLevelNodes(in: nodes)
+        
         guard !nodes.isEmpty else { return }
         
         self.outlineView.beginUpdates()
@@ -862,6 +864,20 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         self.outlineView.endUpdates()
         AudioServicesPlaySystemSound(.moveToTrash)
+    }
+    
+    
+    /// Returns nodes excluding descendants of another node in the collection.
+    ///
+    /// - Parameter nodes: The nodes to filter.
+    /// - Returns: The nodes that do not have an ancestor in the given collection.
+    private func topLevelNodes(in nodes: [FileNode]) -> [FileNode] {
+        
+        let nodesSet = Set(nodes)
+        
+        return nodes.filter { node in
+            !node.parents.contains { nodesSet.contains($0) }
+        }
     }
     
     
