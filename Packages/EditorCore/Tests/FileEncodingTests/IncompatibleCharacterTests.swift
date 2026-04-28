@@ -141,6 +141,17 @@ struct IncompatibleCharacterTests {
     }
     
     
+    @Test func scanNormalizationChangingConversion() throws {
+        
+        let string = "e" + "\u{0301}"  // decomposed é
+        let incompatibles = try string.charactersIncompatible(with: .isoLatin1)
+        
+        #expect(incompatibles.count == 1)
+        #expect(incompatibles[0].lowerBound == 0)
+        #expect(incompatibles[0].value.converted?.unicodeScalars.map(\.value) == [0x00E9])
+    }
+    
+    
     @Test func scanWithNilConverted() throws {
         
         let string = "\u{E000}" // Unicode Private Use Area (unrepresentable in ISO Latin 1)

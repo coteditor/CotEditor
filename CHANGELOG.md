@@ -30,6 +30,7 @@
 - Fix an issue where custom keyboard shortcuts using the Forward Delete key could not work.
 - Fix an issue where document open/save scripts could fail to run immediately after launch or script folder changes.
 - Fix an issue where the default text encoding could be removed from the Encoding List.
+- Fix an issue where detecting encoding-incompatible characters could miss Unicode-normalized text changes.
 - Fix an issue where syntax definition files with reserved names could be imported and appear as unusable custom syntaxes.
 - Fix issues where Mode settings might not apply immediately to open documents or to newly added syntax-specific modes.
 - Fix an issue where changing the document appearance or deleting a custom theme could leave the Theme settings pane showing an outdated theme.

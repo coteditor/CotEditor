@@ -113,7 +113,11 @@ private extension NSString {
         
         if let converted {
             let originalChunk = self.substring(with: range)
-            guard converted != originalChunk else { return [] }
+            
+            // -> Use strict comparison instead of `==` to detect Unicode-normalized conversions.
+            // -> `String.compare(_:options: .literal)` is significantly slower here than
+            //    `NSString.isEqual(to:)`, which provides the same strict equality.
+            guard !(converted as NSString).isEqual(to: originalChunk) else { return [] }
             
             if self.isSingleComposedCharacter(in: range) {
                 let incompatible = IncompatibleCharacter(character: originalChunk.first, converted: converted)
