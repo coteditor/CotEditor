@@ -1246,6 +1246,13 @@ extension FileBrowserViewController: NSTextFieldDelegate {
             return false
         }
         
+        if self.isFiltering {
+            node.updateFilter(with: self.filterQuery, hasMatchedDescendant: node.filterState?.hasMatchedDescendant ?? false)
+            self.filterTask?.cancel()
+            self.filterTask = Task { try await self.updateFilter(updatesExpansion: false) }
+            return true
+        }
+        
         // sort
         let parent = self.outlineView.parent(forItem: node)
         let oldIndex = self.outlineView.childIndex(forItem: node)
