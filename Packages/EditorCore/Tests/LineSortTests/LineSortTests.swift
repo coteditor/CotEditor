@@ -129,6 +129,18 @@ struct LineSortTests {
     }
     
     
+    @Test func sortCRLF() {
+        
+        let pattern = EntireLineSortPattern()
+        
+        #expect(pattern.sort("b\r\na") == "a\r\nb")
+        
+        var options = SortOptions()
+        options.keepsFirstLine = true
+        #expect(pattern.sort("header\r\nb\r\na", options: options) == "header\r\na\r\nb")
+    }
+    
+    
     @Test func targetRange() throws {
         
         let string = "dog"

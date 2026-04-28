@@ -54,7 +54,7 @@ extension SortPattern {
         
         guard let lineEnding = string.firstLineEnding else { return string }
         
-        var lines = string.components(separatedBy: .newlines)
+        var lines = string.split(omittingEmptySubsequences: false, whereSeparator: \.isNewline).map(String.init)
         let firstLine = options.keepsFirstLine ? lines.removeFirst() : nil
         
         lines = lines

@@ -16,6 +16,7 @@
 - Fix an issue where saving an extensionless document could automatically attach the `com.apple.provenance` extended attribute, causing the file to be treated as locked by the system and preventing later overwrites.
 - Fix an issue where deleting forward with multiple cursors could crash when a cursor was at the end of the document.
 - Fix an issue where pasting text copied from multiple selections in a CRLF document could insert incorrect text.
+- Fix an issue where Pattern Sort could insert extra blank lines in CRLF documents.
 - Fix an issue where highlights for instances of selected text could reappear after turning the option off.
 - Fix an issue where a failed script could leave its name in subsequent console messages.
 - Fix an issue where print settings specified by AppleScript could be ignored.
