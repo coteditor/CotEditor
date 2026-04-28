@@ -46,6 +46,7 @@ struct AppearanceSettingsView: View {
     
     @State private var selectingFont: Data?
     @State private var isMonospacedFontAlertPresented = false
+    @State private var isRestoringMonospacedFont = false
     
     
     var body: some View {
@@ -67,6 +68,10 @@ struct AppearanceSettingsView: View {
                 
                 FontSettingView(data: $monospacedFont, fallback: FontType.monospaced.systemFont(), antialias: $monospacedShouldAntialias, ligature: $monospacedLigature)
                     .onChange(of: self.monospacedFont) { oldValue, newValue in
+                        if self.isRestoringMonospacedFont {
+                            self.isRestoringMonospacedFont = false
+                            return
+                        }
                         guard
                             let newValue,
                             let font = NSFont(archivedData: newValue),
@@ -89,6 +94,7 @@ struct AppearanceSettingsView: View {
                         }
                         Button(.cancel, role: .cancel) {
                             self.selectingFont = nil
+                            self.isRestoringMonospacedFont = true
                             self.monospacedFont = font
                         }
                     } message: { _ in
