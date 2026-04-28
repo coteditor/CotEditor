@@ -1036,7 +1036,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
            ranges.count > 1
         {
             let lines = string.split(omittingEmptySubsequences: false, whereSeparator: \.isNewline)
-            let multipleTexts: [String] = groupCounts
+            
+            // ignore malformed multiple-selection metadata from the pasteboard
+            guard groupCounts.allSatisfy({ 0 < $0 && $0 <= lines.count }) else {
+                return super.readSelection(from: pboard, type: type)
+            }
+            
+            let groupRanges: [Range<Int>] = groupCounts
                 .reduce(into: [Range<Int>]()) { groupRanges, groupCount in
                     let location = groupRanges.last?.upperBound ?? 0
                     if groupRanges.count >= ranges.count, let last = groupRanges.last {
@@ -1045,6 +1051,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                         groupRanges.append(location..<(location + groupCount))
                     }
                 }
+            
+            guard groupRanges.last?.upperBound == lines.endIndex else {
+                return super.readSelection(from: pboard, type: type)
+            }
+            
+            let multipleTexts: [String] = groupRanges
                 .map { lines[$0].joined(separator: self.lineEnding.string) }
             let blanks = [String](repeating: "", count: ranges.count - multipleTexts.count)
             let strings = multipleTexts + blanks
