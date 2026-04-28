@@ -29,6 +29,8 @@ import SyntaxFormat
 
 struct AppearanceSettingsView: View {
     
+    private static let windowAlphaRange = 0.2...1.0
+    
     @Namespace private var accessibility
     
     @Environment(\.layoutDirection) private var layoutDirection
@@ -145,10 +147,10 @@ struct AppearanceSettingsView: View {
                 
                 HStack {
                     if #available(macOS 26, *) {
-                        Slider(value: $windowAlpha, in: 0.2...1) {
+                        Slider(value: self.windowAlphaBinding, in: Self.windowAlphaRange) {
                             EmptyView()
                         } currentValueLabel: {
-                            Text(self.windowAlpha, format: .percent)
+                            Text(self.windowAlphaBinding.wrappedValue, format: .percent)
                         } minimumValueLabel: {
                             OpacitySample(opacity: 0.2)
                                 .help(String(localized: "OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
@@ -163,7 +165,7 @@ struct AppearanceSettingsView: View {
                         .sensoryFeedback(.levelChange, trigger: self.windowAlpha == 1)
                         .frame(width: 240)
                     } else {
-                        Slider(value: $windowAlpha, in: 0.2...1) {
+                        Slider(value: self.windowAlphaBinding, in: Self.windowAlphaRange) {
                             EmptyView()
                         } minimumValueLabel: {
                             OpacitySample(opacity: 0.2)
@@ -176,7 +178,7 @@ struct AppearanceSettingsView: View {
                         .frame(width: 240)
                     }
                     
-                    TextField(value: $windowAlpha, format: .percent.precision(.fractionLength(0)), prompt: Text(1, format: .percent), label: EmptyView.init)
+                    TextField(value: self.windowAlphaBinding, format: .percent.precision(.fractionLength(0)), prompt: Text(1, format: .percent), label: EmptyView.init)
                         .monospacedDigit()
                         .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
                         .frame(width: isLiquidGlass ? 64 : 48)
@@ -195,6 +197,14 @@ struct AppearanceSettingsView: View {
         }
         .scenePadding()
         .frame(width: 620)
+    }
+    
+    
+    /// A binding for the editor opacity clamped to the supported range.
+    private var windowAlphaBinding: Binding<Double> {
+        
+        Binding(get: { self.windowAlpha.clamped(to: Self.windowAlphaRange) },
+                set: { self.windowAlpha = $0.clamped(to: Self.windowAlphaRange) })
     }
 }
 
