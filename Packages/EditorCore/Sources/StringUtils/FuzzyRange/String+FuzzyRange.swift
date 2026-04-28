@@ -87,7 +87,11 @@ public extension String {
             default: lineRange.length - 1
         }
         
-        guard lineRanges.indices.contains(newLocation + newLength) else { return nil }
+        guard
+            newLength >= 0,
+            lineRanges.indices.contains(newLocation),
+            lineRanges.indices.contains(newLocation + newLength)
+        else { return nil }
         
         let firstLineRange = lineRanges[newLocation]
         let lastLineRange = lineRanges[newLocation + newLength]
