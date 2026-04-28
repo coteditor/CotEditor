@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -76,7 +76,9 @@ extension InvisibleDrawing {
         
         // draw invisibles glyph by glyph
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
-        var lastCodeUnit: unichar?
+        var lastCodeUnit: unichar? = (characterRange.lowerBound > 0)
+            ? string.character(at: characterRange.lowerBound - 1)
+            : nil
         for charIndex in characterRange.lowerBound..<characterRange.upperBound {
             let codeUnit = string.character(at: charIndex)
             defer { lastCodeUnit = codeUnit }
