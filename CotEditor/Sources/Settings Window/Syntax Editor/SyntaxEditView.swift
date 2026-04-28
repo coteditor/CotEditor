@@ -188,7 +188,7 @@ struct SyntaxEditView: View {
             Image(systemName: "pencil.slash")
                 .foregroundStyle(.secondary)
         }
-        .id(pane)
+        .tag(pane)
     }
     
     
