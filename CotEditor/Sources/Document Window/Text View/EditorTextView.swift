@@ -1550,6 +1550,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private func highlightInstances() async throws {
         
         guard
+            self.highlightsSelectionInstance,
             !self.string.isEmpty,  // important to avoid crash after closing editor
             !self.selectedRange.isEmpty,
             !self.hasMarkedText(),
@@ -1569,7 +1570,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             task.cancel()
         }
         
+        try Task.checkCancellation()
+        
         guard
+            self.highlightsSelectionInstance,
+            self.selectedRange == selectedRange,
+            !self.hasMarkedText(),
+            self.insertionLocations.isEmpty,
+            self.selectedRanges.count == 1,
             let lower = ranges.first?.lowerBound,
             let upper = ranges.last?.upperBound
         else { return }
@@ -1589,6 +1597,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private func invalidateInstanceHighlights() {
         
         if !self.highlightsSelectionInstance {
+            self.instanceHighlightTask?.cancel()
+            self.instanceHighlightTask = nil
             self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.range)
         }
     }
