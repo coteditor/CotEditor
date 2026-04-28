@@ -37,6 +37,7 @@
 - Fix an issue in the file browser where renaming an item while filtering could show stale results or crash.
 - [trivial] Fix an issue where the Multiple Replace window could keep showing the previous definition after failing to load another definition.
 - [trivial] Fix an issue where key bindings equivalent to the default shortcuts could remain stored as custom settings.
+- [trivial] Fix an issue in the syntax editor where incomplete block comment delimiters could be saved.
 
 
 

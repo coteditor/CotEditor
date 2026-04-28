@@ -267,7 +267,7 @@ struct SyntaxEditView: View {
             return
         }
         
-        let syntax = self.syntax.value.sanitized
+        let syntax = self.syntax.value
         
         // syntax validation
         self.errors = syntax.validate()
@@ -278,7 +278,7 @@ struct SyntaxEditView: View {
         }
         
         do {
-            try self.saveAction(syntax, self.name)
+            try self.saveAction(syntax.sanitized, self.name)
         } catch {
             self.error = error
             return
