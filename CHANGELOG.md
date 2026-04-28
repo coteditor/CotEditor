@@ -23,6 +23,7 @@
 - Fix an issue where a failed script could leave its name in subsequent console messages.
 - Fix an issue where print settings specified by AppleScript could be ignored.
 - Fix an issue where edits in the Multiple Replace window could be lost after immediately selecting, renaming, or deleting definitions.
+- Fix an issue where Replace All and Multiple Replace could fail to apply replacements between Unicode-equivalent strings, such as `·` (U+00B7) and `·` (U+0387).
 - Fix an issue where performing Find All or Highlight All in a read-only document could make the document editable.
 - Fix an issue where regular expression search could get stuck at the same position when matching zero-length text.
 - Fix an issue where regular expression syntax highlighting could be applied incorrectly.

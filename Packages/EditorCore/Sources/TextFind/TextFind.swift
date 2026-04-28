@@ -314,7 +314,9 @@ public struct TextFind: Equatable, Sendable {
             guard !ioStop else { break }
             
             // append only when actually modified
-            if (self.string as NSString).substring(with: scopeRange) != scopeString as String {
+            // -> Use literal comparison to detect normalization-equivalent scalar changes.
+            let originalString = (self.string as NSString).substring(with: scopeRange)
+            if scopeString.compare(originalString, options: .literal) != .orderedSame {
                 replacementItems.append(ReplacementItem(value: scopeString.copy() as! String, range: scopeRange))
             }
             

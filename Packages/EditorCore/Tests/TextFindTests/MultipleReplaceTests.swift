@@ -100,6 +100,18 @@ struct MultipleReplaceTests {
     }
     
     
+    @Test func replaceTextualCanonicallyEquivalentCharacter() throws {
+        
+        let definition = MultipleReplace(replacements: [
+            .init(findString: "\u{00B7}", replacementString: "\u{0387}"),
+        ])
+        
+        let result = try definition.replace(string: "\u{00B7}", ranges: [NSRange(0..<0)], inSelection: false)
+        
+        #expect(result.string.unicodeScalars.map(\.value) == [0x0387])
+    }
+    
+    
     @Test func replaceRegex() throws {
         
         // uses regex, ignore case, and unescape replacement (\t -> tab)

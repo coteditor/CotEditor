@@ -362,4 +362,18 @@ struct TextFindTests {
         #expect(selectedRanges?[0] == NSRange(location: 0, length: 2))
         #expect(selectedRanges?[1] == NSRange(location: 5, length: 3))
     }
+    
+    
+    @Test func replaceAllTextualCanonicallyEquivalentCharacter() throws {
+        
+        let textFind = try TextFind(for: "\u{00B7}", findString: "\u{00B7}",
+                                    mode: .textual(options: [], fullWord: false))
+        
+        let (replacementItems, selectedRanges) = textFind.replaceAll(with: "\u{0387}") { _, _, _ in }
+        
+        #expect(replacementItems.count == 1)
+        #expect(replacementItems[0].value.unicodeScalars.map(\.value) == [0x0387])
+        #expect(replacementItems[0].range == NSRange(location: 0, length: 1))
+        #expect(selectedRanges == nil)
+    }
 }
