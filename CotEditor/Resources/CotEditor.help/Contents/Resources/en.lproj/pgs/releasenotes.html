@@ -21,6 +21,60 @@
 
 <article headingoffset="1">
 	<header>
+		<h1>CotEditor 7.0.2</h1>
+		<p>release: <time>2026-04-29</time></p>
+	</header>
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Improve reliability when UNIX scripts process large input or output through pipes.</li>
+			<li>Allow AppleScript encoding conversion to use encodings outside the customized encoding list.</li>
+			<li>Improve responsiveness when performing the Select All Find Matches command in large documents.</li>
+			<li>Close open documents in the file browser when their containing folder is moved to the Trash.</li>
+			<li><span class="trivial">dev</span>: Update the build environment to Xcode 26.4.1.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue in CotEditor 7.0.1 where saving an extensionless document could leave it treated as locked by the system (“<code>com.apple.provenance</code>” extended attribute), preventing later overwrites.</li>
+			<li>Fix an issue where deleting forward with multiple cursors could crash when an insertion point was at the end of the document.</li>
+			<li>Fix an issue where pasting text copied from multiple selections in a CRLF document could insert incorrect text.</li>
+			<li>Fix an issue where the Sort by Pattern command could insert extra blank lines in CRLF documents.</li>
+			<li>Fix an issue where specifying an out-of-range negative line range could crash.</li>
+			<li>Fix an issue where highlights for instances of selected text could reappear after turning the option off.</li>
+			<li>Fix an issue where a failed script could leave its name in subsequent console messages.</li>
+			<li>Fix an issue where print settings specified by AppleScript could be ignored.</li>
+			<li>Fix an issue where edits in the Multiple Replace window could be lost after immediately selecting, renaming, or deleting definitions.</li>
+			<li>Fix an issue where Replace All and Multiple Replace could fail to apply replacements between Unicode-equivalent strings, such as “·” (<code>U+00B7</code>) and “·” (<code>U+0387</code>).</li>
+			<li>Fix an issue where performing Find All or Highlight All in a read-only document could make the document editable.</li>
+			<li>Fix an issue where regular expression search could get stuck at the same position when matching zero-length text.</li>
+			<li>Fix an issue where regular expression syntax highlighting could be applied incorrectly.</li>
+			<li>Fix an issue where custom keyboard shortcuts using the <kbd>Forward Delete</kbd> key could not work.</li>
+			<li>Fix an issue where document open/save scripts could fail to run immediately after launch or script folder changes.</li>
+			<li>Fix an issue where the default text encoding could be removed from the Encoding List.</li>
+			<li>Fix an issue where detecting encoding-incompatible characters could miss Unicode-normalized text changes.</li>
+			<li>Fix an issue where syntax definition files with reserved names could be imported and appear as unusable custom syntaxes.</li>
+			<li>Fix an issue where changes to Mode settings might not take effect immediately.</li>
+			<li>Fix an issue where changing the document appearance or deleting a custom theme could leave the theme editor in the Appearance settings pane showing an outdated theme.</li>
+			<li>Fix an issue in the file browser where renaming an item while filtering could show stale results or crash.</li>
+			<li>Fix an issue in the file browser where moving both a folder and its contained items to the Trash at the same time could show an incorrect confirmation or unnecessary error.</li>
+			<li>Fix an issue in the file browser where old filter results could be shown after changing the filter text quickly.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where the Multiple Replace window could keep showing the previous definition after failing to load another definition.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where key bindings equivalent to the default shortcuts could remain stored as custom settings.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue in the syntax editor where incomplete block comment delimiters could be saved.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article headingoffset="1">
+	<header>
 		<h1>CotEditor 7.0.1</h1>
 		<p>release: <time>2026-04-26</time></p>
 	</header>

@@ -5,7 +5,7 @@
 
 ### Improvements
 
-- Improve UNIX script pipe handling.
+- Improve reliability when UNIX scripts process large input or output through pipes.
 - Allow AppleScript encoding conversion to use encodings outside the customized encoding list.
 - Improve responsiveness when performing the Select All Find Matches command in large documents.
 - Close open documents in the file browser when their containing folder is moved to the Trash.
@@ -14,10 +14,10 @@
 
 ### Fixes
 
-- Fix an issue where saving an extensionless document could automatically attach the `com.apple.provenance` extended attribute, causing the file to be treated as locked by the system and preventing later overwrites.
-- Fix an issue where deleting forward with multiple cursors could crash when a cursor was at the end of the document.
+- Fix an issue in CotEditor 7.0.1 where saving an extensionless document could leave it treated as locked by the system (`com.apple.provenance` extended attribute), preventing later overwrites.
+- Fix an issue where deleting forward with multiple cursors could crash when an insertion point was at the end of the document.
 - Fix an issue where pasting text copied from multiple selections in a CRLF document could insert incorrect text.
-- Fix an issue where Pattern Sort could insert extra blank lines in CRLF documents.
+- Fix an issue where the Sort by Pattern command could insert extra blank lines in CRLF documents.
 - Fix an issue where specifying an out-of-range negative line range could crash.
 - Fix an issue where highlights for instances of selected text could reappear after turning the option off.
 - Fix an issue where a failed script could leave its name in subsequent console messages.
@@ -32,11 +32,11 @@
 - Fix an issue where the default text encoding could be removed from the Encoding List.
 - Fix an issue where detecting encoding-incompatible characters could miss Unicode-normalized text changes.
 - Fix an issue where syntax definition files with reserved names could be imported and appear as unusable custom syntaxes.
-- Fix issues where Mode settings might not apply immediately to open documents or to newly added syntax-specific modes.
-- Fix an issue where changing the document appearance or deleting a custom theme could leave the Theme settings pane showing an outdated theme.
+- Fix an issue where changes to Mode settings might not take effect immediately.
+- Fix an issue where changing the document appearance or deleting a custom theme could leave the theme editor in the Appearance settings pane showing an outdated theme.
+- Fix an issue in the file browser where renaming an item while filtering could show stale results or crash.
 - Fix an issue in the file browser where moving both a folder and its contained items to the Trash at the same time could show an incorrect confirmation or unnecessary error.
 - Fix an issue in the file browser where old filter results could be shown after changing the filter text quickly.
-- Fix an issue in the file browser where renaming an item while filtering could show stale results or crash.
 - [trivial] Fix an issue where the Multiple Replace window could keep showing the previous definition after failing to load another definition.
 - [trivial] Fix an issue where key bindings equivalent to the default shortcuts could remain stored as custom settings.
 - [trivial] Fix an issue in the syntax editor where incomplete block comment delimiters could be saved.
