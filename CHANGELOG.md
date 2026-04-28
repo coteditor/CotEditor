@@ -1,6 +1,6 @@
 # Change Log
 
-7.0.2 (unreleased)
+7.0.2 (817)
 --------------------------
 
 ### Improvements
