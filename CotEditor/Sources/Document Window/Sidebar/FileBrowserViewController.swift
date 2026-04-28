@@ -434,7 +434,8 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     /// Prompts for confirmation and deletes the target items.
     @IBAction func delete(_ sender: Any?) {
         
-        let filenames = self.targetNodes(for: sender).map(\.file.fileURL.lastPathComponent)
+        let nodes = self.topLevelNodes(in: self.targetNodes(for: sender))
+        let filenames = nodes.map(\.file.fileURL.lastPathComponent)
         
         guard !filenames.isEmpty else { return }
         
@@ -457,7 +458,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         Task {
             let returnCode = await alert.beginSheetModal(for: self.document.windowForSheet!)
             if returnCode == .alertFirstButtonReturn {  // == Move to Trash
-                self.moveToTrash(nil)
+                self.trashNodes(nodes)
             }
         }
     }
