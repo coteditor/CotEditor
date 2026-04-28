@@ -475,7 +475,8 @@ private struct ThemeEditorView: View {
                                 selection: $theme.invisibles.binding)
                     SystemColorPicker(String(localized: "Cursor:", table: "ThemeEditor"),
                                       selection: $theme.insertionPoint,
-                                      systemColor: Color(nsColor: .textInsertionPointColor))
+                                      systemColor: Color(nsColor: .textInsertionPointColor),
+                                      supportsOpacity: false)
                 }.accessibilityElement(children: .contain)
                 
                 VStack(alignment: .trailing, spacing: 3) {
