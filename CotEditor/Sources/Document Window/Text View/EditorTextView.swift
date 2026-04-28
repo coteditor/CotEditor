@@ -1035,13 +1035,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
            let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
            ranges.count > 1
         {
-            let lines = string.components(separatedBy: .newlines)
+            let lines = string.split(omittingEmptySubsequences: false, whereSeparator: \.isNewline)
             let multipleTexts: [String] = groupCounts
                 .reduce(into: [Range<Int>]()) { groupRanges, groupCount in
+                    let location = groupRanges.last?.upperBound ?? 0
                     if groupRanges.count >= ranges.count, let last = groupRanges.last {
                         groupRanges[groupRanges.endIndex - 1] = last.lowerBound..<(last.upperBound + groupCount)
                     } else {
-                        groupRanges.append(groupRanges.count..<(groupRanges.count + groupCount))
+                        groupRanges.append(location..<(location + groupCount))
                     }
                 }
                 .map { lines[$0].joined(separator: self.lineEnding.string) }

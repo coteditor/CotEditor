@@ -15,6 +15,7 @@
 
 - Fix an issue where saving an extensionless document could automatically attach the `com.apple.provenance` extended attribute, causing the file to be treated as locked by the system and preventing later overwrites.
 - Fix an issue where deleting forward with multiple cursors could crash when a cursor was at the end of the document.
+- Fix an issue where pasting text copied from multiple selections in a CRLF document could insert incorrect text.
 - Fix an issue where a failed script could leave its name in subsequent console messages.
 - Fix an issue where print settings specified by AppleScript could be ignored.
 - Fix an issue where edits in the Multiple Replace window could be lost after immediately selecting, renaming, or deleting definitions.
