@@ -679,6 +679,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         assert(self.isFiltering)
         
+        let filterQuery = self.filterQuery
+        let showsHiddenFiles = self.showsHiddenFiles
+        
         guard let rootNode = self.document.fileNode else { return assertionFailure() }
         
         let selectedItem = self.outlineView.item(atRow: self.outlineView.selectedRow)
@@ -695,8 +698,22 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         }
         
         // filter
-        let matchedNodes = try await rootNode.filter(with: self.filterQuery, includesHiddenFiles: self.showsHiddenFiles)
-            .filter { $0 != rootNode }
+        let matchedNodes: [FileNode]
+        do {
+            matchedNodes = try await rootNode.filter(with: filterQuery, includesHiddenFiles: showsHiddenFiles)
+                .filter { $0 != rootNode }
+            try Task.checkCancellation()
+        } catch is CancellationError {
+            if !self.isFiltering {
+                rootNode.removeFilterStates()
+            }
+            throw CancellationError()
+        }
+        
+        guard
+            self.filterQuery == filterQuery,
+            self.showsHiddenFiles == showsHiddenFiles
+        else { return }
         
         // update UI
         self.outlineView.reloadData()
