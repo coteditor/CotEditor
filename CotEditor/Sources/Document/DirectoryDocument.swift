@@ -323,7 +323,7 @@ final class DirectoryDocument: NSDocument {
            (try? resolvedURL.isReadable) == true
         {
             if let currentDocument,
-               fileURL == currentDocument.fileURL,
+               resolvedURL == currentDocument.fileURL,
                !asPlainText || currentDocument is Document
             {
                 return true  // already open
