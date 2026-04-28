@@ -1144,7 +1144,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                             if menuItem.keyEquivalent == NSEvent.SpecialKey.leftArrow.string {
                                 menuItem.keyEquivalent = NSEvent.SpecialKey.downArrow.string
                             }
-                            menuItem.title = String(localized: "Select Column down", table: "MainMenu")
+                            menuItem.title = String(localized: "Select Column Down", table: "MainMenu")
                         case .vertical:
                             if menuItem.keyEquivalent == NSEvent.SpecialKey.downArrow.string {
                                 menuItem.keyEquivalent = NSEvent.SpecialKey.leftArrow.string

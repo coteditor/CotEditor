@@ -3409,7 +3409,7 @@
         }
       }
     },
-    "Select Column down" : {
+    "Select Column Down" : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -3432,7 +3432,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select Column down"
+            "value" : "Select Column Down"
           }
         },
         "es" : {
