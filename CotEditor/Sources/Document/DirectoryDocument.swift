@@ -35,6 +35,7 @@ final class DirectoryDocument: NSDocument {
     private enum SerializationKey {
         
         static let documents = "documents"
+        static let currentDocument = "currentDocument"
     }
     
     
@@ -79,7 +80,17 @@ final class DirectoryDocument: NSDocument {
         let fileData = self.documents
             .compactMap(\.fileURL)
             .compactMap { try? $0.bookmarkData(options: .withSecurityScope) }
-        coder.encode(fileData, forKey: SerializationKey.documents)
+        if !fileData.isEmpty {
+            coder.encode(fileData, forKey: SerializationKey.documents)
+        }
+        
+        if let currentDocument,
+           self.documents.contains(where: { $0 === currentDocument }),
+           let fileURL = currentDocument.fileURL,
+           let bookmarkData = try? fileURL.bookmarkData(options: .withSecurityScope)
+        {
+            coder.encode(bookmarkData, forKey: SerializationKey.currentDocument)
+        }
     }
     
     
@@ -89,18 +100,30 @@ final class DirectoryDocument: NSDocument {
         
         // restore opened documents
         if let fileURL, let fileData = coder.decodeArrayOfObjects(ofClass: NSData.self, forKey: SerializationKey.documents) as? [Data] {
+            let resolveURL: (Data) -> URL? = { data in
+                var isStale = false
+                return try? URL(resolvingBookmarkData: data, options: .withSecurityScope, bookmarkDataIsStale: &isStale)
+            }
             let urls = fileData
-                .compactMap { data in
-                    var isStale = false
-                    return try? URL(resolvingBookmarkData: data, options: .withSecurityScope, bookmarkDataIsStale: &isStale)
-                }
+                .compactMap(resolveURL)
                 .filter(fileURL.isAncestor(of:))
                 .filter(\.isReachable)
             
             if !urls.isEmpty {
+                let currentDocumentURL = (coder.decodeObject(of: NSData.self, forKey: SerializationKey.currentDocument) as? Data)
+                    .flatMap(resolveURL)
+                    .flatMap { (fileURL.isAncestor(of: $0) && $0.isReachable) ? $0 : nil }
+                
                 Task {
                     for url in urls {
                         await self.openDocument(at: url)
+                    }
+                    if let currentDocumentURL, self.currentDocument?.fileURL != currentDocumentURL {
+                        if let currentDocument = self.documents.first(where: { $0.fileURL == currentDocumentURL }) {
+                            self.changeFrontmostDocument(to: currentDocument)
+                        } else {
+                            await self.openDocument(at: currentDocumentURL)
+                        }
                     }
                     self.fileBrowserViewController?.selectCurrentDocument()
                 }
