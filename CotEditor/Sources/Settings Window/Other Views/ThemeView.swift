@@ -65,10 +65,13 @@ struct ThemeView: View {
                 }
         }
         .onAppear {
-            self.selection = self.themeName
+            self.selectDefaultTheme()
         }
         .onChange(of: self.documentAppearance) {
-            self.themeName = self.manager.userDefaultSettingName(inDarkMode: self.colorScheme == .dark)
+            self.selectDefaultTheme()
+        }
+        .onChange(of: self.themeName) {
+            self.selectDefaultTheme()
         }
         .onChange(of: self.selection) { _, newValue in
             self.setTheme(name: newValue)
@@ -88,6 +91,26 @@ struct ThemeView: View {
         .alert(error: $error)
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Theme", table: "ThemeEditor"))
+    }
+    
+    
+    /// Selects the effective default theme.
+    private func selectDefaultTheme() {
+        
+        self.selectTheme(name: self.manager.userDefaultSettingName(inDarkMode: self.colorScheme == .dark))
+    }
+    
+    
+    /// Selects the given theme.
+    ///
+    /// - Parameter name: The theme name.
+    private func selectTheme(name: String) {
+        
+        if self.selection == name {
+            self.setTheme(name: name)
+        } else {
+            self.selection = name
+        }
     }
     
     
