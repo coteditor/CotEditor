@@ -179,7 +179,10 @@ extension InvisibleDrawing {
     }
     
     
-    /// Bounding box for the invisible control character symbol.
+    /// Returns the bounding box for the invisible control character symbol.
+    ///
+    /// - Parameter font: The font to use for sizing the symbol.
+    /// - Returns: The bounding box for the symbol.
     func boundingBoxForControlGlyph(for font: NSFont) -> NSRect {
         
         // -> Use `0` to represent the standard glyph size of the font.
