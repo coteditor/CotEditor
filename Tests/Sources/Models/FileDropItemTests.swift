@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Foundation
 import Testing
 @testable import CotEditor
 
@@ -86,5 +87,16 @@ struct FileDropItemTests {
         
         #expect(item.description == nil)
         #expect(item.dictionary == dictionary)
+    }
+    
+    
+    @Test func dropTextWithWebURL() throws {
+        
+        let item = FileDropItem(format: "[<<<FILENAME-NOSUFFIX>>>](<<<RELATIVE-PATH>>>) <<<ABSOLUTE-PATH>>>")
+        let droppedURL = try #require(URL(string: "https://example.com/assets/image.png"))
+        let documentURL = URL(filePath: "/Documents/index.md")
+        let expected = "[image](https://example.com/assets/image.png) https://example.com/assets/image.png"
+        
+        #expect(item.dropText(forFileURL: droppedURL, documentURL: documentURL) == expected)
     }
 }

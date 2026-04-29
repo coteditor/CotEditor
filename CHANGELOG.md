@@ -7,6 +7,7 @@
 
 - Fix an issue where opening multiple documents at once could open them in separate windows even when window tabbing was set to Automatically.
 - Fix an issue where Advanced Character Count could show outdated or incorrect results.
+- Fix an issue where File Drop snippets could omit the domain from dropped web URLs.
 - Fix an issue where Sort by Pattern could reorder lines that do not contain the specified sort key.
 
 

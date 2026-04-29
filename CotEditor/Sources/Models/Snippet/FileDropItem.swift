@@ -182,15 +182,24 @@ extension FileDropItem {
     /// Creates file drop text.
     ///
     /// - Parameters:
-    ///   - droppedFileURL: The file URL of dropped file to insert.
+    ///   - droppedFileURL: The URL of the dropped item to insert.
     ///   - documentURL: The file URL of the document or nil if it's not yet saved.
     /// - Returns: The text to insert.
     func dropText(forFileURL droppedFileURL: URL, documentURL: URL?) -> String {
         
+        let absolutePath = droppedFileURL.isFileURL
+            ? droppedFileURL.path(percentEncoded: false)
+            : droppedFileURL.absoluteString
+        let relativePath = if let documentURL, droppedFileURL.isFileURL {
+            droppedFileURL.path(relativeTo: documentURL)
+        } else {
+            absolutePath
+        }
+        
         // replace template
         var dropText = self.format
-            .replacing(Variable.absolutePath.token, with: droppedFileURL.path(percentEncoded: false))
-            .replacing(Variable.relativePath.token, with: documentURL.map(droppedFileURL.path(relativeTo:)) ?? droppedFileURL.path(percentEncoded: false))
+            .replacing(Variable.absolutePath.token, with: absolutePath)
+            .replacing(Variable.relativePath.token, with: relativePath)
             .replacing(Variable.filename.token, with: droppedFileURL.lastPathComponent)
             .replacing(Variable.filenameWithoutExtension.token, with: droppedFileURL.deletingPathExtension().lastPathComponent)
             .replacing(Variable.fileExtension.token, with: droppedFileURL.pathExtension)
