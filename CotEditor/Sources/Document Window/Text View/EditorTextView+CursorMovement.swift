@@ -643,6 +643,10 @@ extension EditorTextView {
         // -> Do not invoke super, even with a single selection, because the behavior of
         //    `moveToBeginningOfLineAndModifySelection` differs from the default implementation.
         
+        if self.rangesForUserTextChange?.contains(where: { !$0.rangeValue.isEmpty }) == true {
+            return self.deleteBackward(sender)
+        }
+        
         self.moveToBeginningOfLineAndModifySelection(sender)
         self.deleteBackward(sender)
     }
@@ -655,6 +659,10 @@ extension EditorTextView {
         //    to take `additionalWordSeparators` into account.
         //    (2025-12, macOS 26)
         
+        if self.rangesForUserTextChange?.contains(where: { !$0.rangeValue.isEmpty }) == true {
+            return self.deleteBackward(sender)
+        }
+        
         self.moveWordBackwardAndModifySelection(sender)
         self.deleteBackward(sender)
     }
@@ -666,6 +674,10 @@ extension EditorTextView {
         // -> Do not invoke super, even with a single selection,
         //    to take `additionalWordSeparators` into account.
         //    (2025-12, macOS 26)
+        
+        if self.rangesForUserTextChange?.contains(where: { !$0.rangeValue.isEmpty }) == true {
+            return self.deleteForward(sender)
+        }
         
         self.moveWordForwardAndModifySelection(sender)
         self.deleteForward(sender)

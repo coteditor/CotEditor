@@ -6,6 +6,7 @@
 ### Fixes
 
 - Fix an issue where opening multiple documents at once could open them in separate windows even when window tabbing was set to Automatically.
+- Fix an issue where deleting by word or to the beginning of a line could delete text outside the selection.
 - Fix an issue where Advanced Character Count could show outdated or incorrect results.
 - Fix an issue where File Drop snippets could omit the domain from dropped web URLs.
 - Fix an issue where the Restore Defaults button in File Drop settings could remain disabled even when the current settings differed from the defaults.
