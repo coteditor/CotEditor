@@ -30,13 +30,23 @@ import FileEncoding
 import LineEnding
 import SyntaxFormat
 
-@MainActor @objc protocol EncodingsListHolder: AnyObject {
-    
-    func showEncodingsListView(_ sender: Any?)
-}
-
 
 struct FormatSettingsView: View {
+    
+    @MainActor @Observable final class Presentation {
+        
+        static let shared = Presentation()
+        
+        private(set) var encodingListRequestID: UUID?
+        
+        
+        /// Requests the encoding list sheet to be presented.
+        func requestEncodingList() {
+            
+            self.encodingListRequestID = UUID()
+        }
+    }
+    
     
     @Namespace private var accessibility
     
@@ -51,7 +61,9 @@ struct FormatSettingsView: View {
     private var syntaxManager: SyntaxManager = .shared
     
     @State private var encodingManager: EncodingManager = .shared
+    @State private var presentation: Presentation = .shared
     @State private var syntaxNames: [String] = []
+    @State private var handledEncodingListRequestID: UUID?
     
     
     private var fileEncoding: Binding<FileEncoding> {
@@ -205,7 +217,13 @@ struct FormatSettingsView: View {
             }
         }
         .onReceive(self.syntaxManager.$settingNames) { self.syntaxNames = $0 }
-        .onCommand(#selector((any EncodingsListHolder).showEncodingsListView)) {
+        .onChange(of: self.presentation.encodingListRequestID, initial: true) { _, requestID in
+            guard
+                let requestID,
+                requestID != self.handledEncodingListRequestID
+            else { return }
+            
+            self.handledEncodingListRequestID = requestID
             self.isEncodingListPresented = true
         }
         .scenePadding()

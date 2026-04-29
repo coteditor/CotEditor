@@ -400,10 +400,7 @@ extension Logger {
     @IBAction func showEncodingsListEditor(_ sender: Any?) {
         
         self.settingsWindowController.openPane(.format)
-        Task {
-            try await Task.sleep(for: .seconds(0.3))
-            NSApp.sendAction(#selector((any EncodingsListHolder).showEncodingsListView), to: nil, from: nil)
-        }
+        FormatSettingsView.Presentation.shared.requestEncodingList()
     }
     
     
