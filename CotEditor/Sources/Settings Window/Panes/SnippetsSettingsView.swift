@@ -250,7 +250,7 @@ private struct FileDropView: View {
         let array = UserDefaults.standard[.fileDropArray]
         
         self.items = array.compactMap(FileDropItem.init(dictionary:))
-        self.canRestore = array == UserDefaults.standard[initial: .fileDropArray]
+        self.canRestore = array != UserDefaults.standard[initial: .fileDropArray]
         if let item = self.items.first {
             self.selection = [item.id]
         }
