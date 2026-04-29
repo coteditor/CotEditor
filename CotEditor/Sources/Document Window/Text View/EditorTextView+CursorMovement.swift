@@ -744,11 +744,18 @@ extension EditorTextView {
     func wordRange(at location: Int) -> NSRange {
         
         let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location: location, length: 0), granularity: .selectByWord)
+        let delimiterSearchLocation: Int
         
-        guard proposedWordRange.contains(location) else { return proposedWordRange }
+        if proposedWordRange.contains(location) {
+            delimiterSearchLocation = location
+        } else if location == proposedWordRange.upperBound, !proposedWordRange.isEmpty {
+            delimiterSearchLocation = (self.string as NSString).index(before: location)
+        } else {
+            return proposedWordRange
+        }
         
         // treat some additional punctuation, such as `.` and `:`, as word delimiters
-        return (self.string as NSString).rangeOfCharacter(until: Self.additionalWordSeparators, at: location, range: proposedWordRange)
+        return (self.string as NSString).rangeOfCharacter(until: Self.additionalWordSeparators, at: delimiterSearchLocation, range: proposedWordRange)
     }
     
     
