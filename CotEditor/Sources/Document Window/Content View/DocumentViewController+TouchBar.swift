@@ -105,7 +105,7 @@ extension DocumentViewController: NSTouchBarDelegate {
     }
     
     
-    /// Toggles the visibility of invisible characters in the text views.
+    /// Toggles the visibility of indent guides in the text views.
     @IBAction private func toggleIndentGuidesViaTouchBar(_ sender: NSButton) {
         
         self.toggleIndentGuides(sender)
@@ -139,6 +139,10 @@ extension DocumentViewController: TouchBarItemValidations {
     func validateTouchBarItem(_ item: NSTouchBarItem) -> Bool {
         
         guard let button = item.view as? NSButton else { return true }
+        
+        if item.identifier == .invisibles, UserDefaults.standard.shownInvisible.isEmpty {
+            return false
+        }
         
         guard let isEnabled: Bool = switch item.identifier {
             case .invisibles: self.showsInvisibles
