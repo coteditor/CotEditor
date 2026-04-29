@@ -690,7 +690,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auf intuitive Weise, die in Unicode definiert ist, zahlen. Das aus mehreren Unicode-Codepunkten bestehende Zeichen, wie Emojis, wird als ein Zeichen gezählt."
+            "value" : "Auf intuitive Weise, die in Unicode definiert ist, zählen. Das aus mehreren Unicode-Codepunkten bestehende Zeichen, wie Emojis, wird als ein Zeichen gezählt."
           }
         },
         "en" : {
@@ -918,7 +918,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode-Codepunkte zahlen. Das gleiche wie UTF-32 zu zählen."
+            "value" : "Unicode-Codepunkte zählen. Entspricht der UTF-32-Zählung."
           }
         },
         "en" : {
@@ -1146,7 +1146,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode-Codepunkte aber Surrogate-Paaren als zwei Zeichen zahlen."
+            "value" : "Unicode-Codepunkte aber Surrogate-Paare als zwei Zeichen zählen."
           }
         },
         "en" : {
