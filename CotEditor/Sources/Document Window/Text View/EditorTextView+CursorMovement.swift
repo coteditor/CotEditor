@@ -641,7 +641,7 @@ extension EditorTextView {
     /// Deletes to the end of the logical line (^K).
     override func deleteToEndOfParagraph(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions else {
+        guard self.isEditable, self.hasMultipleInsertions else {
             return super.deleteToEndOfParagraph(sender)
         }
         
@@ -652,6 +652,10 @@ extension EditorTextView {
     
     /// Deletes to the beginning of the visual line (⌘-Delete).
     override func deleteToBeginningOfLine(_ sender: Any?) {
+        
+        guard self.isEditable else {
+            return super.deleteToBeginningOfLine(sender)
+        }
         
         // -> Do not invoke super, even with a single selection, because the behavior of
         //    `moveToBeginningOfLineAndModifySelection` differs from the default implementation.
@@ -668,6 +672,10 @@ extension EditorTextView {
     /// Deletes to the beginning of the word (⌥-Delete).
     override func deleteWordBackward(_ sender: Any?) {
         
+        guard self.isEditable else {
+            return super.deleteWordBackward(sender)
+        }
+        
         // -> Do not invoke super, even with a single selection,
         //    to take `additionalWordSeparators` into account.
         //    (2025-12, macOS 26)
@@ -683,6 +691,10 @@ extension EditorTextView {
     
     /// Deletes to the end of the word (⌥⌦).
     override func deleteWordForward(_ sender: Any?) {
+        
+        guard self.isEditable else {
+            return super.deleteWordForward(sender)
+        }
         
         // -> Do not invoke super, even with a single selection,
         //    to take `additionalWordSeparators` into account.
