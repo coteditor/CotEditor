@@ -106,7 +106,15 @@ final class DocumentController: NSDocumentController {
             return document
         }
         
-        let (document, documentWasAlreadyOpen) = try await super.openDocument(withContentsOf: url, display: false)
+        let document: NSDocument
+        let documentWasAlreadyOpen: Bool
+        do {
+            (document, documentWasAlreadyOpen) = try await super.openDocument(withContentsOf: url, display: false)
+        } catch {
+            // restore the reserved transient document when the opening flow failed
+            transientDocument?.isTransient = true
+            throw error
+        }
         
         if let transientDocument, let document = document as? Document {
             self.replaceTransientDocument(transientDocument, with: document)

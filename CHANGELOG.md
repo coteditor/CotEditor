@@ -6,6 +6,7 @@
 ### Fixes
 
 - Fix an issue where opening multiple documents at once could open them in separate windows even when window tabbing was set to Automatically.
+- Fix an issue where canceling or failing to open a document could leave an empty untitled document behind.
 - Fix an issue where deleting by word or to the beginning of a line could delete text outside the selection.
 - Fix an issue where selecting a word could select an incorrect range.
 - Fix an issue where Advanced Character Count could show outdated or incorrect results.
