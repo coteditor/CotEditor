@@ -1809,6 +1809,8 @@ extension EditorTextView {
         
         // abort if:
         guard
+            self.isAutomaticCompletionEnabled,
+            self.rangeForUserCompletion.length >= self.minimumAutomaticCompletionLength,
             !self.hasMarkedText(),  // input is not specified (for Japanese input)
             self.selectedRange.isEmpty,  // selected
             let lastCharacter = self.string.character(before: self.selectedRange), !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
