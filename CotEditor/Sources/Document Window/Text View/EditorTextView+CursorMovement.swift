@@ -168,7 +168,9 @@ extension EditorTextView {
     override func moveWordLeftAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
-            return self.moveWordAndModifySelection(sender, left: true)
+            return self.moveWordAndModifySelection(sender, forward: false) { sender in
+                super.moveWordLeftAndModifySelection(sender)
+            }
         }
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { cursor, _ in
@@ -192,7 +194,9 @@ extension EditorTextView {
     override func moveWordRightAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
-            return self.moveWordAndModifySelection(sender, left: false)
+            return self.moveWordAndModifySelection(sender, forward: true) { sender in
+                super.moveWordRightAndModifySelection(sender)
+            }
         }
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { cursor, _ in
@@ -229,24 +233,21 @@ extension EditorTextView {
     
     /// Expands or reduces a single selection to the next word boundary, considering additional word separators.
     ///
-    /// - Parameters:
-    ///   - sender: The sender of the action.
-    ///   - isLeft: Pass `true` when invoked from `moveWordLeftAndModifySelection(_:)`; otherwise, `false`.
-    ///
     /// - Note:
     ///   This method modifies the selection using only super's selection-modification methods so that
     ///   the text view retains the correct cursor origin for subsequent single-selection changes.
-    private func moveWordAndModifySelection(_ sender: Any?, left isLeft: Bool) {
+    ///
+    /// - Parameters:
+    ///   - sender: The sender of the action.
+    ///   - isForward: Whether to move the selection forward.
+    ///   - defaultAction: The default selection modification action to use before adjusting additional word separators.
+    private func moveWordAndModifySelection(_ sender: Any?, forward isForward: Bool, using defaultAction: (_ sender: Any?) -> Void) {
         
         assert(!self.hasMultipleInsertions)
         
         // let the super change the selection to figure out the direction to expand (or reduce)
         let currentRange = self.selectedRange
-        if isLeft {
-            super.moveWordLeftAndModifySelection(sender)
-        } else {
-            super.moveWordRightAndModifySelection(sender)
-        }
+        defaultAction(sender)
         let superRange = self.selectedRange
         
         // do nothing if the cursor has already reached the beginning/end
@@ -268,7 +269,7 @@ extension EditorTextView {
         guard !self.layoutManager!.isRTL(at: cursor) else { return }
         
         // calculate original selected range by taking additional word separators into consideration
-        let newCursor = self.nextWord(from: cursor, forward: !isLeft)
+        let newCursor = self.nextWord(from: cursor, forward: isForward)
         let newRange: NSRange = if (newCursor < origin && origin < cursor) || (cursor < origin && origin < newCursor) {
             NSRange(origin..<origin)
         } else if origin < newCursor {
@@ -484,7 +485,13 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the word and modifies the selection (^⌥⇧B).
     override func moveWordBackwardAndModifySelection(_ sender: Any?) {
         
-        // -> Do not invoke super, even with a single selection,
+        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+            return self.moveWordAndModifySelection(sender, forward: false) { sender in
+                super.moveWordBackwardAndModifySelection(sender)
+            }
+        }
+        
+        // -> Do not invoke super with multiple selections or CRLF line endings
         //    to take `additionalWordSeparators` and CRLF into account.
         //    (2025-12, macOS 26)
         
@@ -510,7 +517,13 @@ extension EditorTextView {
     /// Moves the cursor to the end of the word and modifies the selection (^⌥⇧F).
     override func moveWordForwardAndModifySelection(_ sender: Any?) {
         
-        // -> Do not invoke super, even with a single selection,
+        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+            return self.moveWordAndModifySelection(sender, forward: true) { sender in
+                super.moveWordForwardAndModifySelection(sender)
+            }
+        }
+        
+        // -> Do not invoke super with multiple selections or CRLF line endings
         //    to take `additionalWordSeparators` and CRLF into account.
         //    (2025-12, macOS 26)
         
