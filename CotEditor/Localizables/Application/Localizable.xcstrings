@@ -3855,7 +3855,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Um Änderungen am Dokument vorzunehmen, lass es zunächst die Bearbeitung zu."
+            "value" : "Um Änderungen am Dokument vorzunehmen, aktiviere zunächst die Bearbeitung."
           }
         },
         "en" : {
@@ -10645,7 +10645,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Dokument enthält Zeichen, die mit „%@“ inkompatible sind."
+            "value" : "Das Dokument enthält Zeichen, die mit „%@“ inkompatibel sind."
           }
         },
         "en" : {
@@ -12451,7 +12451,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kein Dokument, die Eingabe zu erhalten."
+            "value" : "Kein Dokument, um die Eingabe zu erhalten."
           }
         },
         "en" : {
@@ -12564,7 +12564,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kein Dokument, die Ausgabe zu setzen."
+            "value" : "Kein Dokument, um die Ausgabe zu setzen."
           }
         },
         "en" : {
