@@ -45,7 +45,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
-    weak var fileDocument: DataDocument? {
+    @objc dynamic weak var fileDocument: DataDocument? {
         
         didSet {
             if fileDocument != oldValue {

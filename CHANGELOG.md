@@ -6,6 +6,7 @@
 ### Fixes
 
 - Fix an issue where opening multiple documents at once could open them in separate windows even when window tabbing was set to Automatically.
+- Fix an issue where syntax-specific snippets and scripts could remain scoped to the previous document after switching documents in the file browser.
 - Fix an issue where opening multiple documents while an empty untitled document was open could show some documents before replacing the empty document.
 - Fix an issue where canceling or failing to open a document could leave an empty untitled document behind.
 - Fix an issue where deleting by word or to the beginning of a line could delete text outside the selection.

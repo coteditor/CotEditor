@@ -50,6 +50,7 @@ final class DocumentController: NSDocumentController {
     private var deferredDocuments: [Document]?  // non-nil while replacing a transient document
     
     private var mainWindowObserver: AnyCancellable?
+    private var fileDocumentObserver: AnyCancellable?
     private var syntaxObserver: AnyCancellable?
     
     
@@ -65,10 +66,16 @@ final class DocumentController: NSDocumentController {
         self.mainWindowObserver = NSApp.publisher(for: \.mainWindow)
             .debounce(for: .seconds(0.1), scheduler: RunLoop.main)
             .map { $0?.windowController as? DocumentWindowController }
-            .map { $0?.fileDocument as? Document }
-            .sink { [unowned self] document in
-                self.syntaxObserver = document?.$syntaxName
-                    .sink { self.currentSyntaxName = $0 }
+            .sink { [unowned self] windowController in
+                guard let windowController else {
+                    self.fileDocumentObserver = nil
+                    self.observeSyntax(of: nil)
+                    return
+                }
+                
+                self.fileDocumentObserver = windowController.publisher(for: \.fileDocument, options: .initial)
+                    .debounce(for: .seconds(0.1), scheduler: RunLoop.main)
+                    .sink { [unowned self] in self.observeSyntax(of: $0 as? Document) }
             }
     }
     
@@ -400,16 +407,18 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// Displays all documents deferred while replacing a transient document.
-    private func displayDeferredDocuments() {
+    /// Observes the given document's syntax as the current syntax.
+    ///
+    /// - Parameter document: The document to observe.
+    private func observeSyntax(of document: Document?) {
         
-        guard let deferredDocuments else { return }
-        
-        for deferredDocument in deferredDocuments {
-            deferredDocument.makeWindowControllers()
-            deferredDocument.showWindows()
+        if let document {
+            self.syntaxObserver = document.$syntaxName
+                .sink { [unowned self] in self.currentSyntaxName = $0 }
+        } else {
+            self.syntaxObserver = nil
+            self.currentSyntaxName = nil
         }
-        self.deferredDocuments = nil
     }
     
     
@@ -457,6 +466,19 @@ final class DocumentController: NSDocumentController {
         guard let context: DelegateContext = bridgeUnwrapped(contextInfo) else { return assertionFailure() }
         
         context.perform(from: self, flag: didCloseAll)
+    }
+    
+    
+    /// Displays all documents deferred while replacing a transient document.
+    private func displayDeferredDocuments() {
+        
+        guard let deferredDocuments else { return }
+        
+        for deferredDocument in deferredDocuments {
+            deferredDocument.makeWindowControllers()
+            deferredDocument.showWindows()
+        }
+        self.deferredDocuments = nil
     }
 }
 
