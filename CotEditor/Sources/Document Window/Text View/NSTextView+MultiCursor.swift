@@ -161,7 +161,8 @@ extension MultiCursorEditing {
         guard let layoutManager = self.layoutManager else { assertionFailure(); return nil }
         
         let startIndex = self.characterIndexForInsertion(at: startPoint)
-        let numberOfRows = layoutManager.numberOfWrappedRows(at: startIndex, affinity: affinity)
+        let startGlyphIndex = layoutManager.glyphIndexForCharacter(at: startIndex)
+        let numberOfRows = layoutManager.numberOfWrappedRows(at: startGlyphIndex, affinity: affinity)
         
         // possibility of the very last insertion point in the extra line fragment
         var containsLastLine = {
