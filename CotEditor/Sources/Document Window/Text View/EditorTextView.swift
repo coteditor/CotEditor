@@ -1675,11 +1675,11 @@ extension EditorTextView {
         guard !self.string.isEmpty else { return range }
         
         let firstSyntaxLetters = self.syntaxCompletionWords.compactMap(\.text.unicodeScalars.first)
-        let firstLetterSet = CharacterSet(firstSyntaxLetters).union(.letters).union(.init(["_"]))
+        let wordCompletionSet = CharacterSet(firstSyntaxLetters).union(.alphanumerics).union(.init(["_"]))
         
         // expand range until hitting a character that isn't in the word completion candidates
         let searchRange = NSRange(location: 0, length: range.upperBound)
-        let invalidRange = (self.string as NSString).rangeOfCharacter(from: firstLetterSet.inverted, options: .backwards, range: searchRange)
+        let invalidRange = (self.string as NSString).rangeOfCharacter(from: wordCompletionSet.inverted, options: .backwards, range: searchRange)
         
         guard !invalidRange.isNotFound else { return range }
         
