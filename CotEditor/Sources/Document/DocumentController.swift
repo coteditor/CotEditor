@@ -47,7 +47,6 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Private Properties
     
-    private let transientDocumentLock = NSLock()
     private var deferredDocuments: [Document]?  // non-nil while replacing a transient document
     
     private var mainWindowObserver: AnyCancellable?
@@ -95,15 +94,15 @@ final class DocumentController: NSDocumentController {
         }
         
         // obtain transient document if exists
-        let transientDocument: Document? = self.transientDocumentLock.withLock { [unowned self] in
-            guard
-                let document = self.transientDocument,
-                document.windowForSheet?.attachedSheet == nil
-            else { return nil }
-            
+        let transientDocument: Document?
+        if let document = self.transientDocument,
+           document.windowForSheet?.attachedSheet == nil
+        {
             document.isTransient = false
             self.deferredDocuments = []
-            return document
+            transientDocument = document
+        } else {
+            transientDocument = nil
         }
         
         let document: NSDocument
