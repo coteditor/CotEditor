@@ -48,7 +48,7 @@ final class DocumentController: NSDocumentController {
     // MARK: Private Properties
     
     private let transientDocumentLock = NSLock()
-    private var deferredDocuments: [NSDocument] = []
+    private var deferredDocuments: [Document]?  // non-nil while replacing a transient document
     
     private var mainWindowObserver: AnyCancellable?
     private var syntaxObserver: AnyCancellable?
@@ -102,7 +102,7 @@ final class DocumentController: NSDocumentController {
             else { return nil }
             
             document.isTransient = false
-            self.deferredDocuments.removeAll()
+            self.deferredDocuments = []
             return document
         }
         
@@ -111,33 +111,50 @@ final class DocumentController: NSDocumentController {
         do {
             (document, documentWasAlreadyOpen) = try await super.openDocument(withContentsOf: url, display: false)
         } catch {
-            // restore the reserved transient document when the opening flow failed
-            transientDocument?.isTransient = true
+            if let transientDocument {
+                if let document = self.deferredDocuments?.first {
+                    self.deferredDocuments?.removeFirst()
+                    self.replaceTransientDocument(transientDocument, with: document)
+                    document.makeWindowControllers()
+                    document.showWindows()
+                } else {
+                    // restore the reserved transient document when the opening flow failed
+                    transientDocument.isTransient = true
+                }
+                self.displayDeferredDocuments()
+            }
             throw error
         }
         
-        if let transientDocument, let document = document as? Document {
-            self.replaceTransientDocument(transientDocument, with: document)
+        if let document = document as? Document {
+            if let transientDocument {
+                self.replaceTransientDocument(transientDocument, with: document)
+                if displayDocument {
+                    document.makeWindowControllers()
+                    document.showWindows()
+                }
+                
+                self.displayDeferredDocuments()
+                
+            } else if displayDocument {
+                if self.deferredDocuments != nil {
+                    // defer displaying this document, because the transient document has not yet been replaced
+                    self.deferredDocuments?.append(document)
+                } else {
+                    // display the document immediately, because the transient document has been replaced
+                    document.makeWindowControllers()
+                    document.showWindows()
+                }
+            }
+            
+        } else {
+            assertionFailure("The opened document should be Document.")
+            
+            transientDocument?.isTransient = true
+            self.displayDeferredDocuments()
             if displayDocument {
                 document.makeWindowControllers()
                 document.showWindows()
-            }
-            
-            // display all deferred documents since the transient document has been replaced
-            for deferredDocument in self.deferredDocuments {
-                deferredDocument.makeWindowControllers()
-                deferredDocument.showWindows()
-            }
-            self.deferredDocuments.removeAll()
-            
-        } else if displayDocument {
-            if self.deferredDocuments.isEmpty {
-                // display the document immediately, because the transient document has been replaced
-                document.makeWindowControllers()
-                document.showWindows()
-            } else {
-                // defer displaying this document, because the transient document has not yet been replaced
-                self.deferredDocuments.append(document)
             }
         }
         
@@ -381,6 +398,19 @@ final class DocumentController: NSDocumentController {
         
         // move focus on editor
         document.windowControllers.first?.window?.makeFirstResponderDiscardingMarkedText(document.textView)
+    }
+    
+    
+    /// Displays all documents deferred while replacing a transient document.
+    private func displayDeferredDocuments() {
+        
+        guard let deferredDocuments else { return }
+        
+        for deferredDocument in deferredDocuments {
+            deferredDocument.makeWindowControllers()
+            deferredDocument.showWindows()
+        }
+        self.deferredDocuments = nil
     }
     
     
