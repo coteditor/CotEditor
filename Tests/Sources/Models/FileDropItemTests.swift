@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -71,5 +71,20 @@ struct FileDropItemTests {
         #expect(!item.supports(extension: nil, scope: "bar"))
         #expect(!item.supports(extension: "JPG", scope: nil))
         #expect(!item.supports(extension: nil, scope: nil))
+    }
+    
+    
+    @Test func dictionaryRoundTripWithoutDescription() {
+        
+        let dictionary = [
+            "formatString": "![<<<FILENAME-NOSUFFIX>>>](<<<RELATIVE-PATH>>>)",
+            "extensions": "jpg, jpeg",
+            "scope": "Markdown",
+        ]
+        
+        let item = FileDropItem(dictionary: dictionary)
+        
+        #expect(item.description == nil)
+        #expect(item.dictionary == dictionary)
     }
 }

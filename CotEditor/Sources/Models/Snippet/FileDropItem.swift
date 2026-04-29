@@ -89,7 +89,9 @@ extension FileDropItem {
         if let scope = dictionary[CodingKeys.scope], !scope.isEmpty {
             self.scope = scope
         }
-        self.description = dictionary[CodingKeys.description] ?? ""
+        if let description = dictionary[CodingKeys.description], !description.isEmpty {
+            self.description = description
+        }
     }
     
     
