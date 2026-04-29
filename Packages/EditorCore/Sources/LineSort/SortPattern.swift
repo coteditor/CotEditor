@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -75,8 +75,11 @@ extension SortPattern {
                     case (.none, .some):
                         return false
                         
-                    case (.some, .none), (.none, .none):
+                    case (.some, .none):
                         return true
+                        
+                    case (.none, .none):
+                        return false
                 }
             }
             .map(\.line)

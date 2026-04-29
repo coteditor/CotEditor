@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -52,6 +52,21 @@ struct LineSortTests {
         #expect(pattern.sort("").isEmpty)
         #expect(throws: Never.self) { try pattern.validate() }
         #expect(pattern.range(for: "dog, 🐕,   , イヌ") == nil)
+    }
+    
+    
+    @Test func sortLinesWithoutKeys() {
+        
+        var pattern = RegularExpressionSortPattern()
+        pattern.searchPattern = "^x"
+        
+        let lines = """
+            b
+            a
+            c
+            """
+        
+        #expect(pattern.sort(lines) == lines)
     }
     
     
