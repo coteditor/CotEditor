@@ -39,6 +39,8 @@ import StringUtils
     // MARK: Private Properties
     
     private weak var textView: NSTextView?
+    private var hasSelection = false
+    
     private var observers: Set<AnyCancellable> = []
     private var entireCountTask: Task<Void, any Error>?
     private var selectionCountTask: Task<Void, any Error>?
@@ -49,7 +51,7 @@ import StringUtils
     /// If there is a selection returns the count of the selection; otherwise, the entire count.
     var count: Int? {
         
-        ((self.selectionCount ?? 0) > 0) ? self.selectionCount : self.entireCount
+        self.hasSelection ? self.selectionCount : self.entireCount
     }
     
     
@@ -123,11 +125,14 @@ import StringUtils
         
         self.selectionCountTask?.cancel()
         
-        guard let strings = self.textView?.selectedStrings else {
+        guard let textView = self.textView else {
             self.selectionCountTask = nil
             return
         }
         
+        self.hasSelection = textView.selectedRanges.contains { $0.rangeValue.length > 0 }
+        
+        let strings = textView.selectedStrings
         let options = UserDefaults.standard.characterCountOptions
         self.selectionCountTask = Task { [weak self] in
             try Task.checkCancellation()
@@ -159,9 +164,14 @@ import StringUtils
     /// - Returns: The total count, or `nil` if counting failed.
     @concurrent private static func calculateCount(in strings: [String], options: CharacterCountOptions) async -> Int? {
         
-        strings
-            .compactMap { $0.count(options: options) }
-            .reduce(0, +)
+        var count = 0
+        for string in strings {
+            guard let stringCount = string.count(options: options) else { return nil }
+            
+            count += stringCount
+        }
+        
+        return count
     }
 }
 

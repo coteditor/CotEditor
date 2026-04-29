@@ -6,6 +6,7 @@
 ### Fixes
 
 - Fix an issue where opening multiple documents at once could open them in separate windows even when window tabbing was set to Automatically.
+- Fix an issue where Advanced Character Count could show outdated or incorrect results.
 
 
 
