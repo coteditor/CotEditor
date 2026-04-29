@@ -95,6 +95,15 @@ struct LineSortTests {
         pattern.searchPattern = "(a)(b)c"
         try pattern.validate()
         #expect(pattern.numberOfCaptureGroups == 2)
+        
+        pattern.usesCaptureGroup = true
+        pattern.group = -1
+        #expect(pattern.range(for: "abc") == nil)
+        #expect(throws: SortPatternError.invalidRegularExpressionPattern) { try pattern.validate() }
+        
+        pattern.group = 3
+        #expect(pattern.range(for: "abc") == nil)
+        #expect(throws: SortPatternError.invalidRegularExpressionPattern) { try pattern.validate() }
     }
     
     

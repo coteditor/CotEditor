@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ public struct RegularExpressionSortPattern: SortPattern, Equatable, Sendable {
         else { return nil }
         
         if self.usesCaptureGroup {
-            guard match.numberOfRanges > self.group else { return nil }
+            guard (0..<match.numberOfRanges).contains(self.group) else { return nil }
             return Range(match.range(at: self.group), in: line)
         } else {
             return Range(match.range, in: line)
@@ -79,9 +79,14 @@ public struct RegularExpressionSortPattern: SortPattern, Equatable, Sendable {
             throw .emptyPattern
         }
         
+        let regex: NSRegularExpression
         do {
-            _ = try self.regex
+            regex = try self.regex
         } catch {
+            throw .invalidRegularExpressionPattern
+        }
+        
+        guard !self.usesCaptureGroup || (0...regex.numberOfCaptureGroups).contains(self.group) else {
             throw .invalidRegularExpressionPattern
         }
     }
@@ -89,7 +94,7 @@ public struct RegularExpressionSortPattern: SortPattern, Equatable, Sendable {
     
     // MARK: Private Methods
     
-    private var regex: NSRegularExpression? {
+    private var regex: NSRegularExpression {
         
         get throws {
             try NSRegularExpression(pattern: self.searchPattern, options: self.ignoresCase ? [.caseInsensitive] : [])
