@@ -3,6 +3,10 @@
 7.0.3 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue where opening multiple documents at once could open them in separate windows even when window tabbing was set to Automatically.
+
 
 
 7.0.2 (817)

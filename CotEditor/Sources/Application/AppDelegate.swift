@@ -227,36 +227,49 @@ extension Logger {
         let isAutomaticTabbing = (DocumentWindow.userTabbingPreference == .inFullScreen) && (urls.count > 1)
         
         Task {
-            let reply: NSApplication.DelegateReply = await withThrowingTaskGroup { group in
-                for url in urls {
+            var remainingURLs = urls[...]
+            var reply: NSApplication.DelegateReply = .failure
+            
+            @MainActor func handleOpeningError(_ error: any Error) {
+                
+                if (error as? CocoaError)?.code == .userCancelled {
+                    reply = (reply == .failure) ? .cancel : reply
+                } else {
+                    // ask user for opening file
+                    NSApp.presentError(error)
+                }
+            }
+            
+            if isAutomaticTabbing {
+                // open the first new window before forcing the rest into tabs
+                while let url = remainingURLs.popFirst() {
+                    do {
+                        let (_, documentWasAlreadyOpen) = try await NSDocumentController.shared.openDocument(withContentsOf: url, display: true)
+                        reply = .success
+                        
+                        if !documentWasAlreadyOpen {
+                            DocumentWindow.tabbingPreference = .always
+                            break
+                        }
+                    } catch {
+                        handleOpeningError(error)
+                    }
+                }
+            }
+            
+            await withThrowingTaskGroup { group in
+                for url in remainingURLs {
                     group.addTask { try await NSDocumentController.shared.openDocument(withContentsOf: url, display: true) }
                 }
                 
-                var firstWindowOpened = false
-                var reply: NSApplication.DelegateReply = .failure
-                
                 while let result = await group.nextResult() {
                     switch result {
-                        case .success(let (_, documentWasAlreadyOpen)):
+                        case .success:
                             reply = .success
-                            // on first window opened
-                            // -> The first document needs to open a new window.
-                            if isAutomaticTabbing, !documentWasAlreadyOpen, !firstWindowOpened {
-                                DocumentWindow.tabbingPreference = .always
-                                firstWindowOpened = true
-                            }
                         case .failure(let error):
-                            let cancelled = (error as? CocoaError)?.code == .userCancelled
-                            if cancelled {
-                                reply = (reply == .failure) ? .cancel : reply
-                            } else {
-                                // ask user for opening file
-                                NSApp.presentError(error)
-                            }
+                            handleOpeningError(error)
                     }
                 }
-                
-                return reply
             }
             
             if isAutomaticTabbing {
