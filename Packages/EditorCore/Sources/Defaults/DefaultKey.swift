@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -86,10 +86,18 @@ public final class RawRepresentableDefaultKey<Value>: DefaultKey<Value>, @unchec
     
     public override func newValue(from value: Any?) throws(DefaultKeyError) -> Value {
         
-        guard let newValue = (value as? Value.RawValue).flatMap(Value.init) else {
-            throw .invalidValue
+        if let newValue = (value as? Value.RawValue).flatMap(Value.init) {
+            return newValue
         }
         
-        return newValue
+        // fall back for broken external values, matching the integer subscript behavior
+        if Value.RawValue.self == Int.self,
+           let rawValue = 0 as? Value.RawValue,
+           let newValue = Value(rawValue: rawValue)
+        {
+            return newValue
+        }
+        
+        throw .invalidValue
     }
 }

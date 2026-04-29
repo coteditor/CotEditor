@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2024 1024jp
+//  © 2019-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -122,6 +122,27 @@ struct UserDefaultsObservationTests {
             observer.cancel()
             UserDefaults.standard[key] = .dog
             #expect(UserDefaults.standard[key] == .dog)
+        }
+    }
+    
+    
+    @Test func invalidRawRepresentableInitialEmit() async {
+        
+        enum Clarus: Int  { case dog, cow }
+        
+        let key = RawRepresentableDefaultKey<Clarus>("Invalid Raw Representable Test Key")
+        defer { UserDefaults.standard.restore(key: key) }
+        
+        UserDefaults.standard.set(99, forKey: key.rawValue)
+        
+        await confirmation("UserDefaults observation for invalid raw representable") { confirm in
+            let observer = UserDefaults.standard.publisher(for: key, initial: true)
+                .sink { value in
+                    #expect(value == .dog)
+                    confirm()
+                }
+            
+            observer.cancel()
         }
     }
 }

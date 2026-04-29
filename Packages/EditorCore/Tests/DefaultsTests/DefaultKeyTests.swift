@@ -81,6 +81,17 @@ struct DefaultKeyTests {
     }
     
     
+    @Test func rawRepresentableNewValueFallback() throws {
+        
+        enum Animal: Int { case cat, dog }
+        
+        let key = RawRepresentableDefaultKey<Animal>("Animal Key")
+        let value = try key.newValue(from: 99)
+        
+        #expect(value == .cat)
+    }
+    
+    
     @Test func rawRepresentableInvalid() {
         
         enum Animal: Int { case cat = 1, dog = 2 }
