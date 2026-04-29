@@ -8320,7 +8320,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Als reiner Text öffnen"
+            "value" : "Als reinen Text öffnen"
           }
         },
         "en-GB" : {
@@ -8534,7 +8534,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Original öffenen"
+            "value" : "Original öffnen"
           }
         },
         "en-GB" : {
@@ -8641,7 +8641,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mit externem Editor öffenen"
+            "value" : "Mit externem Editor öffnen"
           }
         },
         "en-GB" : {
@@ -13234,7 +13234,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeilen nach Links verschieben"
+            "value" : "Zeilen nach links verschieben"
           }
         },
         "en" : {
@@ -13460,7 +13460,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeilen nach Rechts verschieben"
+            "value" : "Zeilen nach rechts verschieben"
           }
         },
         "en" : {
@@ -15043,7 +15043,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokumentdatei teillen"
+            "value" : "Dokumentdatei teilen"
           }
         },
         "en" : {
