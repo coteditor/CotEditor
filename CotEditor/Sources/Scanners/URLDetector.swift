@@ -153,7 +153,7 @@ extension NSTextStorage {
             return assertionFailure("textStorage was edited after starting URL detection")
         }
         
-        guard !links.isEmpty || self.hasAttribute(.link) else { return }
+        guard !links.isEmpty || self.hasAttribute(.link, in: range) else { return }
         
         self.beginEditing()
         self.removeAttribute(.link, range: range)
