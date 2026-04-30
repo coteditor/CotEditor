@@ -6,7 +6,7 @@
 ### Improvements
 
 - Update the Markdown syntax to fix highlighting block quotes.
-
+- Improve overall stability.
 
 ### Fixes
 
