@@ -47,6 +47,9 @@ struct NavigationBar: View {
             .help(String(localized: "Close split editor", table: "Document", comment: "tooltip for button"))
             .symbolEffect(.disappear, isActive: !self.splitState.canClose)
             .opacity(self.splitState.canClose ? 1 : 0)
+            .disabled(!self.splitState.canClose)
+            .allowsHitTesting(self.splitState.canClose)
+            .accessibilityHidden(!self.splitState.canClose)
             
             Divider()
                 .padding(.vertical, 4)
