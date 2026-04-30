@@ -292,9 +292,16 @@ extension NSAttributedString.Key {
         let string = self.textStorage.string.immutable
         let result = try await parser.parseHighlights(in: string, range: highlightRange)
         
-        if let result {
-            self.textStorage.apply(highlights: result.highlights, theme: self.theme, in: result.updateRange)
+        try Task.checkCancellation()
+        
+        guard let result else { return }
+        
+        guard result.updateRange.upperBound <= self.textStorage.length else {
+            Logger.app.debug("Invalid range \(result.updateRange.description) for \(self.textStorage.length) length textStorage is passed to \(#function)")
+            return
         }
+        
+        self.textStorage.apply(highlights: result.highlights, theme: self.theme, in: result.updateRange)
     }
     
     
