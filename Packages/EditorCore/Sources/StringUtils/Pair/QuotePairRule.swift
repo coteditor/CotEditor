@@ -58,7 +58,7 @@ public extension Sequence where Element == QuotePairRule {
 }
 
 
-public extension StringProtocol {
+public extension String {
     
     /// Finds a quote-pair range at the given index that matches one of the given candidates.
     ///

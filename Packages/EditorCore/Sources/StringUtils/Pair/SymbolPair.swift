@@ -59,7 +59,7 @@ public extension Pair.PairIndex {
 }
 
 
-public extension StringProtocol {
+public extension String {
     
     /// Finds the range enclosed by one of given symbol pairs.
     ///
@@ -70,7 +70,7 @@ public extension StringProtocol {
     /// - Returns: The range of the enclosing symbol pair, or `nil` if not found.
     func rangeOfEnclosingSymbolPair(at range: Range<Index>, candidates: [SymbolPair], escapeCharacter: Character? = nil) -> Range<Index>? {
         
-        SymbolPairScanner(string: String(self), candidates: candidates, baseRange: range, escapeCharacter: escapeCharacter)
+        SymbolPairScanner(string: self, candidates: candidates, baseRange: range, escapeCharacter: escapeCharacter)
             .scan()
     }
     
