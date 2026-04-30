@@ -13,6 +13,7 @@
 - Fix an issue where deleting by word or to the beginning of a line could delete text outside the selection.
 - Fix an issue where selecting a word could select an incorrect range.
 - Fix an issue where Advanced Character Count could show outdated or incorrect results.
+- Fix an issue where Unicode input could reject or show some valid Unicode code points as invalid.
 - Fix an issue where File Drop snippets could omit the domain from dropped web URLs.
 - Fix an issue where the Restore Defaults button in File Drop settings could remain disabled even when the current settings differed from the defaults.
 - Fix an issue where Sort by Pattern could reorder lines that do not contain the specified sort key.

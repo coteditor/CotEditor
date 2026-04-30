@@ -41,17 +41,17 @@ struct UnicodeInputView: View {
             HStack(alignment: .center) {
                 Text(self.pictureString ?? "⬚")
                     .font(.system(size: 26))
-                    .accessibilityHidden(self.unicodeName == nil)
+                    .accessibilityHidden(self.character == nil)
                     .frame(minWidth: 30, minHeight: 30)
                 
-                Text(self.unicodeName ?? String(localized: "Invalid code", table: "UnicodeInput"))
-                    .help(self.unicodeName ?? "")
+                Text(self.characterInformation ?? String(localized: "Invalid code", table: "UnicodeInput"))
+                    .help(self.characterInformation ?? "")
                     .controlSize(.small)
                     .textSelection(.enabled)
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            .foregroundStyle(self.unicodeName != nil ? .primary : .secondary)
+            .foregroundStyle(self.character != nil ? .primary : .secondary)
             
             InsetTextField(text: $codePoint, prompt: "U+1F600")
                 .onSubmit(self.submit)
@@ -98,6 +98,7 @@ struct UnicodeInputView: View {
     
     // MARK: Private Methods
     
+    /// The input Unicode character.
     private var character: Character? {
         
         UTF32.CodeUnit(codePoint: self.codePoint)
@@ -106,15 +107,19 @@ struct UnicodeInputView: View {
     }
     
     
+    /// The string to preview the input character.
     private var pictureString: String? {
         
         (self.character?.isNewline == true) ? " " : self.character.map(String.init)
     }
     
     
-    private var unicodeName: String? {
+    /// The information of the character to display.
+    private var characterInformation: String? {
         
-        UTF32.CodeUnit(codePoint: self.codePoint)?.unicodeName
+        guard let scalar = self.character?.unicodeScalars.first else { return nil }
+        
+        return scalar.name ?? scalar.codePoint
     }
     
     
@@ -147,7 +152,7 @@ private extension UTF32.CodeUnit {
     /// Initializes from a possible Unicode code point representation, such as `U+1F600`, `1f600`, and `0x1F600`.
     init?(codePoint: String) {
         
-        guard let hexString = codePoint.wholeMatch(of: /(U\+|0x|\\u)?(?<number>[0-9a-f]{1,5})/.ignoresCase())?.number else { return nil }
+        guard let hexString = codePoint.wholeMatch(of: /(U\+|0x|\\u)?(?<number>[0-9a-f]{1,6})/.ignoresCase())?.number else { return nil }
         
         self.init(hexString, radix: 16)
     }
