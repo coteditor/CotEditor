@@ -43,6 +43,7 @@ struct IncompatibleCharactersView: View {
         private(set) var isScanning = false
         
         private var document: Document?
+        private var scanRevision = 0
         
         private(set) var task: Task<Void, any Error>?
         private var observers: Set<AnyCancellable> = []
@@ -204,23 +205,41 @@ private extension IncompatibleCharactersView.Model {
     private func invalidateIncompatibleCharacters() {
         
         self.task?.cancel()
+        self.scanRevision += 1
+        let scanRevision = self.scanRevision
+        
+        guard let document else {
+            self.items.removeAll()
+            self.isScanning = false
+            return
+        }
+        
         self.task = Task {
-            let items = try await self.scan()
+            defer {
+                if self.scanRevision == scanRevision {
+                    self.isScanning = false
+                }
+            }
+            
+            let items = try await self.scan(document: document)
+            try Task.checkCancellation()
+            
+            guard self.scanRevision == scanRevision, self.document === document else { return }
+            
             self.items = items
-            self.document?.textView?.updateBackgroundColor(.unemphasizedSelectedTextBackgroundColor, ranges: items.map(\.range))
+            document.textView?.updateBackgroundColor(.unemphasizedSelectedTextBackgroundColor, ranges: items.map(\.range))
         }
     }
     
     
     /// Scans the characters incompatible with the current encoding in the document content.
     ///
+    /// - Parameter document: The document to scan.
     /// - Returns: An array of Item.
     /// - Throws: `CancellationError`
-    private func scan() async throws -> [Item] {
+    private func scan(document: Document) async throws -> [Item] {
         
         assert(Thread.isMainThread)
-        
-        guard let document else { return [] }
         
         let string = document.textStorage.string
         let encoding = document.fileEncoding.encoding
@@ -228,7 +247,6 @@ private extension IncompatibleCharactersView.Model {
         guard !string.canBeConverted(to: encoding) else { return [] }
         
         self.isScanning = true
-        defer { self.isScanning = false }
         
         let task: Task<[Item], any Error> = .detached { [string = string.immutable] in
             try string.charactersIncompatible(with: encoding)
