@@ -126,7 +126,7 @@ extension String {
         
         // check BOMs
         for bom in Unicode.BOM.allCases {
-            if options.candidates.contains(bom.encoding),
+            if options.candidates.contains(where: bom.candidateEncodings.contains),
                data.starts(with: bom.sequence),
                let string = String(bomCapableData: data, encoding: bom.encoding)
             {

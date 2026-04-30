@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,6 +58,19 @@ public extension Unicode {
                 case .utf8: .utf8
                 case .utf32BigEndian, .utf32LittleEndian: .utf32
                 case .utf16BigEndian, .utf16LittleEndian: .utf16
+            }
+        }
+        
+        
+        /// The string encodings that allow the byte order mark in encoding detection.
+        var candidateEncodings: [String.Encoding] {
+            
+            switch self {
+                case .utf8: [.utf8]
+                case .utf32BigEndian: [.utf32, .utf32BigEndian]
+                case .utf32LittleEndian: [.utf32, .utf32LittleEndian]
+                case .utf16BigEndian: [.utf16, .utf16BigEndian]
+                case .utf16LittleEndian: [.utf16, .utf16LittleEndian]
             }
         }
     }

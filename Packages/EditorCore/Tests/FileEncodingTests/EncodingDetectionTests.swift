@@ -76,6 +76,24 @@ struct EncodingDetectionTests {
     }
     
     
+    @Test func unicodeBOMWithEndianSpecificCandidate() throws {
+        
+        let testCases: [(data: Data, candidate: String.Encoding, detected: String.Encoding)] = [
+            (Data([0xFE, 0xFF, 0x00, 0x30]), .utf16BigEndian, .utf16),
+            (Data([0xFF, 0xFE, 0x30, 0x00]), .utf16LittleEndian, .utf16),
+            (Data([0x00, 0x00, 0xFE, 0xFF, 0x00, 0x00, 0x00, 0x30]), .utf32BigEndian, .utf32),
+            (Data([0xFF, 0xFE, 0x00, 0x00, 0x30, 0x00, 0x00, 0x00]), .utf32LittleEndian, .utf32),
+        ]
+        
+        for testCase in testCases {
+            let (string, encoding) = try String.string(data: testCase.data, options: .init(candidates: [testCase.candidate]))
+            
+            #expect(string == "0")
+            #expect(encoding == testCase.detected)
+        }
+    }
+    
+    
     @Test func iso2022() throws {
         
         let data = try self.dataForFileName("ISO 2022-JP")
