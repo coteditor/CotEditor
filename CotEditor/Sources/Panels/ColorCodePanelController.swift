@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -193,11 +193,14 @@ private struct ColorCodePanelAccessory: View {
     private func apply(type rawValue: Int) {
         
         guard
-            let type = ColorCodeType(rawValue: rawValue),
+            var type = ColorCodeType(rawValue: rawValue),
             let color = self.panel.color.usingColorSpace(.genericRGB),
-            let colorCode = color.colorCode(type: type)
+            let colorCode = self.colorCode(for: color, type: &type)
         else { return }
         
+        if self.type != type.rawValue {
+            self.type = type.rawValue
+        }
         self.colorCode = colorCode
     }
     
@@ -207,17 +210,39 @@ private struct ColorCodePanelAccessory: View {
     /// - Parameter color: The color.
     private func apply(color: NSColor) {
         
-        let type = ColorCodeType(rawValue: self.type) ?? .hex
+        var type = ColorCodeType(rawValue: self.type) ?? .hex
         let color = color.usingColorSpace(.genericRGB)
         
-        guard var colorCode = color?.colorCode(type: type) else { return assertionFailure() }
+        guard let color, let colorCode = self.colorCode(for: color, type: &type) else { return assertionFailure() }
+        
+        if self.type != type.rawValue {
+            self.type = type.rawValue
+        }
+        self.colorCode = colorCode
+    }
+    
+    
+    /// Returns the color code for a color.
+    ///
+    /// - Parameters:
+    ///   - color: The color.
+    ///   - type: The color code type to use. When the value is `.cssKeyword`, it falls back to `.hex` if the color has no CSS keyword.
+    /// - Returns: The color code in the given type.
+    private func colorCode(for color: NSColor, type: inout ColorCodeType) -> String? {
+        
+        var colorCode = color.colorCode(type: type)
+        
+        if colorCode == nil, type == .cssKeyword {
+            type = .hex
+            colorCode = color.colorCode(type: type)
+        }
         
         // keep letter case
         if ColorCodeType.hexTypes.contains(type), self.colorCode.contains(where: \.isUppercase) {
-            colorCode = colorCode.uppercased()
+            colorCode = colorCode?.uppercased()
         }
         
-        self.colorCode = colorCode
+        return colorCode
     }
 }
 
