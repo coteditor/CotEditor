@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2025 1024jp
+//  © 2025-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,6 +31,8 @@ struct TruncatingHStack: Layout {
     
     
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        
+        guard !subviews.isEmpty else { return .zero }
         
         let maxWidth = proposal.replacingUnspecifiedDimensions().width
         let sizes = subviews.map { $0.sizeThatFits(.unspecified) }
