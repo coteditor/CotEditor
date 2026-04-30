@@ -20,6 +20,7 @@
 - Fix an issue where Advanced Character Count could show outdated or incorrect results.
 - Fix an issue where Unicode input could reject or show some valid Unicode code points as invalid.
 - Fix an issue where File Drop snippets could omit the domain from dropped web URLs.
+- Fix an issue where dropping text clippings or File Drop snippets could insert extra text when their line endings differed from the document’s.
 - Fix an issue where the Restore Defaults button in File Drop settings could remain disabled even when the current settings differed from the defaults.
 - Fix an issue where Sort by Pattern could reorder lines that do not contain the specified sort key.
 - Fix typos in the German localization (Thanks to Rush Ali!).

@@ -555,10 +555,12 @@ extension EditorTextViewController: EditorTextView.Delegate {
         
         guard !replacementString.isEmpty else { return true }
         
-        // insert snippets to view
-        guard textView.shouldChangeText(in: textView.rangeForUserTextChange, replacementString: replacementString) else { return false }
+        let standardizedReplacementString = replacementString.replacingLineEndings(with: textView.lineEnding)
         
-        textView.replaceCharacters(in: textView.rangeForUserTextChange, with: replacementString)
+        // insert snippets to view
+        guard textView.shouldChangeText(in: textView.rangeForUserTextChange, replacementString: standardizedReplacementString) else { return false }
+        
+        textView.replaceCharacters(in: textView.rangeForUserTextChange, with: standardizedReplacementString)
         textView.didChangeText()
         
         return true
