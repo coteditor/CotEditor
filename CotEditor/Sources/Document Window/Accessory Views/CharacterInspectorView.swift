@@ -71,10 +71,14 @@ private struct CharacterDetailView: View {
                     ForEach(Array(self.info.character.unicodeScalars.enumerated()), id: \.offset) { _, scalar in
                         DisclosureGroup {
                             HStack(alignment: .top) {
-                                Text(String(scalar))
+                                let character = Character(scalar)
+                                let pictureCharacter = CharacterInfo(character: character).pictureCharacter
+                                
+                                Text(String(pictureCharacter ?? character))
                                     .font(.system(size: 28, design: .serif))
                                     .frame(minWidth: 30, idealWidth: 30)
                                     .border(.separator)
+                                    .foregroundStyle((pictureCharacter != nil) ? .tertiary : .primary)
                                 ScalarDetailView(scalar: scalar, items: [.block, .category])
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
