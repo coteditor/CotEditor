@@ -327,12 +327,16 @@ extension NSAttributedString.Key {
             }
             // Highlight parsing is expected to run first to provide accurate invalidation ranges.
             try? await self?.highlightParseTask?.value
+            try Task.checkCancellation()
             
             guard let self else { return }
             
             self.outlineItems = nil
             let string = self.textStorage.string.immutable
-            self.outlineItems = try await parser.parseOutline(in: string)
+            let outlineItems = try await parser.parseOutline(in: string)
+            try Task.checkCancellation()
+            
+            self.outlineItems = outlineItems
         }
     }
 }
