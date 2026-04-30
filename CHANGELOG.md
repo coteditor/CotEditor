@@ -24,6 +24,7 @@
 - Fix an issue where the Restore Defaults button in File Drop settings could remain disabled even when the current settings differed from the defaults.
 - Fix an issue where the hidden Close Split Editor button in the navigation bar could remain available when the editor was not split.
 - Fix an issue where Sort by Pattern could reorder lines that do not contain the specified sort key.
+- Fix an issue where the Document inspector could keep showing the previous document path after closing a document in the file browser.
 - Fix typos in the German localization (Thanks to Rush Ali!).
 
 

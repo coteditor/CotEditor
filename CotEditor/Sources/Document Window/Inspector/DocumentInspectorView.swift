@@ -50,6 +50,8 @@ import SyntaxFormat
     /// Updates observations.
     private func didUpdateDocument() {
         
+        self.fileURL = self.document?.fileURL
+        
         self.textSettings = if let document = self.document as? Document {
             TextSettings(encoding: document.fileEncoding, lineEnding: document.lineEnding, mode: document.mode)
         } else {
