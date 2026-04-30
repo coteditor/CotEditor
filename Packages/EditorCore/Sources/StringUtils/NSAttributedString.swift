@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -106,11 +106,11 @@ public extension NSAttributedString {
     /// - Returns: `true` if an attribute with the given key exists; otherwise, `false`.
     final func hasAttribute(_ attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
         
-        guard self.length > 0 else { return false }
+        guard self.length > 0, range?.isEmpty != true else { return false }
         
         let range = range ?? self.range
         
-        assert(range.upperBound <= self.length)
+        guard range.upperBound <= self.length else { assertionFailure(); return false }
         
         var effectiveRange: NSRange = .notFound
         let value = unsafe self.attribute(attrName, at: range.location, longestEffectiveRange: &effectiveRange, in: range)

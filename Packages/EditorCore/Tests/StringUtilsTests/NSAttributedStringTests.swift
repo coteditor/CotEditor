@@ -166,6 +166,8 @@ struct NSAttributedStringTests {
         #expect(string.hasAttribute(.test))
         #expect(!string.hasAttribute(.test, in: NSRange(0..<1)))
         #expect(string.hasAttribute(.test, in: NSRange(2..<3)))
+        #expect(!string.hasAttribute(.test, in: NSRange(2..<2)))
+        #expect(!string.hasAttribute(.test, in: NSRange(5..<5)))
         
         let empty = NSAttributedString(string: "")
         #expect(!empty.hasAttribute(.test))
