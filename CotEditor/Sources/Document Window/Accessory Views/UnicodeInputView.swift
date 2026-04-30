@@ -85,6 +85,7 @@ struct UnicodeInputView: View {
                     } label: {
                         EmptyView()
                     }
+                    .accessibilityLabel(String(localized: "Recents", table: "UnicodeInput"))
                     .menuStyle(.button)
                     .buttonStyle(.borderless)
                     .frame(width: 16)
