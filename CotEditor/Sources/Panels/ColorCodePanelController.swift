@@ -162,10 +162,8 @@ private struct ColorCodePanelAccessory: View {
     /// Inserts the color code to the selection of the frontmost document.
     private func submit() {
         
-        self.apply(colorCode: self.colorCode)
-        
         guard
-            !self.colorCode.isEmpty,
+            self.apply(colorCode: self.colorCode),
             NSApp.sendAction(#selector((any ColorCodeReceiver).insertColorCode), to: nil, from: self.colorCode)
         else { return NSSound.beep() }
     }
@@ -173,17 +171,21 @@ private struct ColorCodePanelAccessory: View {
     
     /// Sets the color representing the given code to the color panel and selects the corresponding color code type.
     ///
-    /// - Parameter colorCode: The color code of the color to set.
-    private func apply(colorCode: String) {
+    /// - Parameters:
+    ///   - colorCode: The color code of the color to set.
+    /// - Returns: `true` if the given code represents a color; otherwise, `false`.
+    @discardableResult private func apply(colorCode: String) -> Bool {
         
         var type: ColorCodeType?
         guard
             let color = NSColor(colorCode: colorCode, type: &type),
             let type
-        else { return }
+        else { return false }
         
         self.panel.color = color
         self.type = type.rawValue
+        
+        return true
     }
     
     
