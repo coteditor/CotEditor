@@ -210,20 +210,43 @@ extension Data {
     /// - Returns: The detected string encoding, or `nil` if none is found.
     func scanEncodingDeclaration() -> String.Encoding? {
         
+        struct EncodingDeclaration {
+            
+            var range: Range<String.Index>
+            var encodingName: Substring
+        }
+        
         guard
             !self.isEmpty,
             // scan only the first 1024 bytes to fulfill the largest spec (HTML)
-            let string = String(data: self.prefix(1024), encoding: .isoLatin1),
-            let match = string.prefixMatch(of: /@charset "(?<encoding>[-_.a-zA-Z0-9]+)";/)
-                ?? string
-                    .split(separator: /\R/, maxSplits: 3, omittingEmptySubsequences: false)
-                    .prefix(2)  // first 2 lines
-                    .lazy
-                    .compactMap({ $0.firstMatch(of: /coding[:=] *["']? *(?<encoding>[-_.a-zA-Z0-9]+)/) }).first
-                ?? string.firstMatch(of: /^[\x00-\x7F]*\scharset\s*= *["'](?<encoding>[-_.a-zA-Z0-9]+)["']/.ignoresCase())
+            let string = String(data: self.prefix(1024), encoding: .isoLatin1)
         else { return nil }
         
-        let encodingName = match.encoding
+        let cssDeclaration = string.prefixMatch(of: /@charset "(?<encoding>[-_.a-zA-Z0-9]+)";/)
+            .map { EncodingDeclaration(range: $0.range, encodingName: $0.encoding) }
+        
+        let commentDeclaration = string
+            .split(separator: /\R/, maxSplits: 3, omittingEmptySubsequences: false)
+            .prefix(2)  // first 2 lines
+            .lazy
+            .compactMap { line in
+                line.firstMatch(of: /(?:(?:file)?encoding|coding)[:=] *["']? *(?<encoding>[-_.a-zA-Z0-9]+)/)
+                    .map { EncodingDeclaration(range: $0.range, encodingName: $0.encoding) }
+            }
+            .first
+        
+        let htmlDeclaration = string.firstMatch(of: /\scharset\s*= *["'](?<encoding>[-_.a-zA-Z0-9]+)["']/.ignoresCase())
+            .flatMap { match in
+                string[..<match.range.lowerBound].unicodeScalars.allSatisfy(\.isASCII)
+                    ? EncodingDeclaration(range: match.range, encodingName: match.encoding)
+                    : nil
+            }
+        
+        guard let encodingName = [cssDeclaration, commentDeclaration, htmlDeclaration]
+            .compactMap(\.self)
+            .min(by: { $0.range.lowerBound < $1.range.lowerBound })?
+            .encodingName
+        else { return nil }
         
         let cfEncoding = CFStringConvertIANACharSetNameToEncoding(encodingName as CFString)
         if cfEncoding != kCFStringEncodingInvalidId {
