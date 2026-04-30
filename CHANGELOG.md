@@ -3,6 +3,11 @@
 7.0.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the Markdown syntax to fix highlighting block quotes.
+
+
 ### Fixes
 
 - Fix an issue where customized built-in syntaxes could be ignored when their file mappings conflicted with other built-in syntaxes.

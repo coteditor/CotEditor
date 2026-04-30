@@ -87,6 +87,7 @@
       "begin" : "^([ ]{4}|\\t)?>[\\t ]",
       "description" : "blockquote",
       "end" : "(\\R[ \\t]*\\R)|\\z",
+      "isMultiline" : true,
       "regularExpression" : true
     },
     {
