@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,10 +40,7 @@ final class DocumentWindow: NSWindow {
                 contentBackgroundColor != oldValue
             else { return }
             
-            self.backgroundColor = contentBackgroundColor.withAlphaComponent(self.backgroundAlpha)
-            
-            self.invalidateShadow()
-            self.contentView?.needsDisplay = true
+            self.applyBackgroundOpacity()
         }
     }
     
@@ -57,12 +54,25 @@ final class DocumentWindow: NSWindow {
                 backgroundAlpha != oldValue
             else { return }
             
-            self.isOpaque = (backgroundAlpha == 1.0)
-            self.backgroundColor = self.isOpaque ? nil : self.contentBackgroundColor.withAlphaComponent(backgroundAlpha)
-            
-            self.invalidateShadow()
-            self.contentView?.needsDisplay = true
+            self.applyBackgroundOpacity()
         }
+    }
+    
+    
+    // MARK: Public Methods
+    
+    /// Applies the current background opacity to the window.
+    func applyBackgroundOpacity() {
+        
+        let shouldBeOpaque = (self.backgroundAlpha == 1.0)
+        
+        if self.isOpaque != shouldBeOpaque {
+            self.isOpaque = shouldBeOpaque
+        }
+        self.backgroundColor = shouldBeOpaque ? nil : self.contentBackgroundColor.withAlphaComponent(self.backgroundAlpha)
+        
+        self.invalidateShadow()
+        self.contentView?.needsDisplay = true
     }
     
     

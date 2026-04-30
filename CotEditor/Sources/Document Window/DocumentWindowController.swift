@@ -349,7 +349,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     /// Restores the window opacity.
     private func restoreWindowOpacity() {
         
-        self.window?.isOpaque = (self.window as? DocumentWindow)?.backgroundAlpha == 1
+        (self.window as? DocumentWindow)?.applyBackgroundOpacity()
     }
     
     
