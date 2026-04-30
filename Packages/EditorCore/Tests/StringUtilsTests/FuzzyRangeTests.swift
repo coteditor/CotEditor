@@ -51,6 +51,8 @@ struct FuzzyRangeTests {
         
         #expect(string.range(in: FuzzyRange(location: 5, length: 1)) == nil)
         #expect(string.range(in: FuzzyRange(location: -6, length: 1)) == nil)
+        #expect(string.range(in: FuzzyRange(location: 2, length: 10)) == nil)
+        #expect(string.range(in: FuzzyRange(location: -2, length: 2)) == nil)
         #expect(string.range(in: FuzzyRange(location: 2, length: -10)) == nil)
     }
     

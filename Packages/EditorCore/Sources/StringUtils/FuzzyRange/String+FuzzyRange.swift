@@ -49,11 +49,12 @@ public extension String {
         guard
             newLocation >= 0,
             newLength >= 0,
-            newLocation <= wholeLength
+            newLocation <= wholeLength,
+            newLength <= wholeLength - newLocation
         else { return nil }
         
         let lowerBound = self.index(self.startIndex, offsetBy: newLocation)
-        let upperBound = self.index(lowerBound, offsetBy: newLength, limitedBy: self.endIndex) ?? self.endIndex
+        let upperBound = self.index(lowerBound, offsetBy: newLength)
         
         return NSRange(lowerBound..<upperBound, in: self)
     }
