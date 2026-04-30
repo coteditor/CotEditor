@@ -260,11 +260,15 @@ enum SyntaxName {
     /// Updates the file mapping table used for syntax detection.
     private func updateMappingTable() {
         
-        // defer bundled syntaxes so user syntaxes take precedence
-        let settingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames
+        let userSettingFileURLs = self.userSettingFileURLs
+        let userSettingNames = Set(userSettingFileURLs.map(Self.settingName(from:)))
+        
+        // defer bundled syntaxes so user-customized syntaxes take precedence
+        let settingNames = self.settingNames.filter(userSettingNames.contains)
+            + self.bundledSettingNames.filter { !userSettingNames.contains($0) }
         
         // load mapping definitions from syntax files in the user domain
-        let userMaps = try! Syntax.FileMap.load(at: self.userSettingFileURLs, ignoresInvalidData: true)
+        let userMaps = try! Syntax.FileMap.load(at: userSettingFileURLs, ignoresInvalidData: true)
         let maps = self.bundledMaps.merging(userMaps) { _, new in new }
         
         let mappingTable = SyntaxMappingTable(syntaxNames: settingNames, maps: maps)

@@ -5,6 +5,7 @@
 
 ### Fixes
 
+- Fix an issue where customized built-in syntaxes could be ignored when their file mappings conflicted with other built-in syntaxes.
 - Fix an issue where opening multiple documents at once could open them in separate windows even when window tabbing was set to Automatically.
 - Fix an issue where syntax-specific snippets and scripts could remain scoped to the previous document after switching documents in the file browser.
 - Fix an issue where opening multiple documents while an empty untitled document was open could show some documents before replacing the empty document.
