@@ -133,6 +133,16 @@ struct FuzzyRangeTests {
     }
     
     
+    @Test func fuzzyLocationErrorDescription() {
+        
+        let lineError: any Error = FuzzyLocationError.invalidLine(-6)
+        let columnError: any Error = FuzzyLocationError.invalidColumn(4)
+        
+        #expect(lineError.localizedDescription == "The line number -6 is out of the range.")
+        #expect(columnError.localizedDescription == "The column number 4 is out of the range.")
+    }
+    
+    
     // MARK: Format Style Tests
     
     @Test func formatFuzzyRange() {
