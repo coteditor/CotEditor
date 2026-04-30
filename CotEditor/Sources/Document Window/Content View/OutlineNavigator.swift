@@ -34,7 +34,7 @@ import SyntaxParsers
     
     weak var textView: NSTextView?  { didSet { self.observeTextView() } }
     
-    var items: [OutlineItem]?
+    var items: [OutlineItem]?  { didSet { self.updateSelectionFromTextView() } }
     var selection: OutlineItem.ID?
     var isOutlinePickerPresented = false
     
@@ -88,7 +88,7 @@ import SyntaxParsers
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        self.selectedRange = textView.selectedRange
+        self.updateSelectionFromTextView()
         self.viewObservers = [
             textView.publisher(for: \.layoutOrientation, options: .initial)
                 .sink { [weak self] in self?.isVerticalOrientation = $0 == .vertical },
@@ -103,6 +103,18 @@ import SyntaxParsers
                 .debounce(for: .seconds(0.05), scheduler: RunLoop.main)
                 .sink { [weak self] in self?.select(range: $0.selectedRange) },
         ]
+    }
+    
+    
+    /// Updates the outline selection from the current text view selection.
+    private func updateSelectionFromTextView() {
+        
+        guard
+            let textView = self.textView,
+            !textView.hasMarkedText()
+        else { return }
+        
+        self.select(range: textView.selectedRange)
     }
     
     
