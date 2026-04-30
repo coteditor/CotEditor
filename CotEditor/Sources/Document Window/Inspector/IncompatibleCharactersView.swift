@@ -125,9 +125,11 @@ struct IncompatibleCharactersView: View {
             }
         }
         .onDisappear {
-            self.model.task?.cancel()
+            self.selection = nil
+            self.model.updateDocument(nil)
         }
         .onChange(of: self.document, initial: true) { _, newValue in
+            self.selection = nil
             self.model.updateDocument(newValue)
         }
         .accessibilityElement(children: .contain)
@@ -171,6 +173,9 @@ private extension IncompatibleCharactersView.Model {
     /// - Parameter document: The new document.
     func updateDocument(_ document: Document?) {
         
+        guard self.document !== document else { return }
+        
+        self.clearScanResult()
         self.document = document
         self.invalidateObservation()
     }
@@ -199,10 +204,24 @@ private extension IncompatibleCharactersView.Model {
                 .store(in: &self.observers)
             
         } else {
-            self.task?.cancel()
-            self.items.removeAll()
-            self.isScanning = false
+            self.clearScanResult()
         }
+    }
+    
+    
+    /// Clears current scan result and editor highlights.
+    private func clearScanResult() {
+        
+        self.task?.cancel()
+        self.scanRevision += 1
+        
+        if !self.items.isEmpty {
+            // clear the incompatible-character highlights
+            self.document?.textView?.updateBackgroundColor(.unemphasizedSelectedTextBackgroundColor, ranges: [])
+        }
+        
+        self.items.removeAll()
+        self.isScanning = false
     }
     
     
