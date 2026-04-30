@@ -243,7 +243,7 @@ extension Document {
             return false
         }
         
-        let withBOM = arguments["BOM"] as? Bool ?? false
+        let withBOM = (encoding == .utf8) && (arguments["BOM"] as? Bool ?? false)
         let fileEncoding = FileEncoding(encoding: encoding, withUTF8BOM: withBOM)
         
         guard fileEncoding != self.fileEncoding else { return true }

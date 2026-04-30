@@ -16,6 +16,7 @@
 - Fix an issue where opening multiple documents while an empty untitled document was open could show some documents before replacing the empty document.
 - Fix an issue where canceling or failing to open a document could leave an empty untitled document behind.
 - Fix an issue where opening a UTF-16 or UTF-32 document with a BOM using a byte-order-specific encoding could leave the BOM in the document text.
+- Fix an issue where converting a document to a non-UTF-8 encoding with AppleScript’s BOM option could add an invalid UTF-8 BOM.
 - Fix an issue where deleting by word or to the beginning of a line could delete text outside the selection.
 - Fix an issue where selecting a word could select an incorrect range.
 - Fix an issue where Advanced Character Count could show outdated or incorrect results.
