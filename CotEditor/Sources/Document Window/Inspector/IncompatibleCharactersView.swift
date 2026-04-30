@@ -90,7 +90,12 @@ struct IncompatibleCharactersView: View {
                     
                     TableColumn(String(localized: "Character", table: "Document", comment: "table column header"), value: \.value.character) {
                         let character = $0.value.character
-                        let invisibleCategories: Set<Unicode.GeneralCategory> = [.control, .spaceSeparator, .lineSeparator]
+                        let invisibleCategories: Set<Unicode.GeneralCategory> = [
+                            .control,
+                            .spaceSeparator,
+                            .lineSeparator,
+                            .paragraphSeparator,
+                        ]
                         
                         if let unicode = character.unicodeScalars.first,
                            invisibleCategories.contains(unicode.properties.generalCategory) {
