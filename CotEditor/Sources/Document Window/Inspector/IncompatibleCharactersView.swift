@@ -40,6 +40,7 @@ struct IncompatibleCharactersView: View {
         
         
         var items: [Item] = []
+        var sortOrder: [KeyPathComparator<Item>] = []  { didSet { self.items.sort(using: self.sortOrder) } }
         private(set) var isScanning = false
         
         private var document: Document?
@@ -117,7 +118,7 @@ struct IncompatibleCharactersView: View {
                 }
                 .onChange(of: self.sortOrder) { _, newValue in
                     withAnimation {
-                        self.model.items.sort(using: newValue)
+                        self.model.sortOrder = newValue
                     }
                 }
                 .tableStyle(.bordered)
@@ -250,7 +251,7 @@ private extension IncompatibleCharactersView.Model {
             
             guard self.scanRevision == scanRevision, self.document === document else { return }
             
-            self.items = items
+            self.items = items.sorted(using: self.sortOrder)
             document.textView?.updateBackgroundColor(.unemphasizedSelectedTextBackgroundColor, ranges: items.map(\.range))
         }
     }

@@ -25,6 +25,7 @@
 - Fix an issue where the hidden Close Split Editor button in the navigation bar could remain available when the editor was not split.
 - Fix an issue where Sort by Pattern could reorder lines that do not contain the specified sort key.
 - Fix an issue where the Document inspector could keep showing the previous document path after closing a document in the file browser.
+- Fix an issue where the incompatible character list in the Warnings inspector could lose its sort order after rescanning the document.
 - Fix typos in the German localization (Thanks to Rush Ali!).
 
 
