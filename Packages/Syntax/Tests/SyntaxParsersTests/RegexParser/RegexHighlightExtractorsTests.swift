@@ -97,6 +97,21 @@ struct RegexHighlightExtractorsTests {
     }
     
     
+    @Test func beginEndStringExtractorSkipsUnterminatedMatch() throws {
+        
+        let extractor = BeginEndStringExtractor(begin: "/*", end: "*/", ignoresCase: false, isMultiline: false)
+        
+        let source = """
+                     /* a
+                     /* b */
+                     """
+        let ranges = try extractor.ranges(in: source, range: source.nsRange)
+        let matches = ranges.map((source as NSString).substring(with:))
+        
+        #expect(matches == ["/* b */"])
+    }
+    
+    
     @Test func beginEndStringExtractorMultiline() throws {
         
         let definition = Syntax.Highlight(begin: "/*", end: "*/", isMultiline: true)

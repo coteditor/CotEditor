@@ -32,6 +32,7 @@
 - Fix an issue where the incompatible character list in the Warnings inspector could lose its sort order after rescanning the document.
 - Fix issues in the Color Code window where it could stop updating or insert invalid color codes.
 - Fix an issue where custom syntax highlighting could crash when a begin/end regular expression matched zero-length text at the end of the document.
+- Fix an issue where custom syntax highlighting could stop after an unterminated begin/end string pattern.
 - Fix typos in the German localization (Thanks to Rush Ali!).
 
 

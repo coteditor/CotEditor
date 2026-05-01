@@ -79,7 +79,7 @@ struct BeginEndStringExtractor: HighlightExtractable {
         var ranges: [NSRange] = []
         
         var location = range.lowerBound
-        while location != NSNotFound {
+        while location < range.upperBound {
             // find start string
             let beginRange = (string as NSString).range(of: self.begin, options: self.options, range: NSRange(location..<range.upperBound))
             location = beginRange.upperBound
@@ -93,7 +93,10 @@ struct BeginEndStringExtractor: HighlightExtractable {
             let endRange = (string as NSString).range(of: self.end, options: self.options, range: NSRange(location..<upperBound))
             location = endRange.upperBound
             
-            guard endRange.location != NSNotFound else { continue }
+            guard endRange.location != NSNotFound else {
+                location = upperBound
+                continue
+            }
             
             ranges.append(NSRange(beginRange.lowerBound..<endRange.upperBound))
             
