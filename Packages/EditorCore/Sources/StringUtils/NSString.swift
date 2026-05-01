@@ -84,7 +84,7 @@ public extension NSString {
     /// - Returns: The NSRange-based character index just after the given `location`, or `length` when `location` is the last index.
     final func index(after location: Int) -> Int {
         
-        guard location < self.length - 1 else { return self.length }
+        guard location + 1 < self.length else { return self.length }
         
         // avoid returning index between CRLF
         let index = location
