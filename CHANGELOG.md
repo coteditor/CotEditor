@@ -6,6 +6,7 @@
 ### Improvements
 
 - Update the Markdown syntax to fix highlighting block quotes.
+- Support shebangs with options for syntax detection.
 - Improve overall stability.
 
 ### Fixes

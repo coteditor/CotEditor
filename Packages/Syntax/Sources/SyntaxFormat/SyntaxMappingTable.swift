@@ -117,13 +117,15 @@ public struct SyntaxMappingTable: Equatable, Sendable {
     static func scanInterpreterInShebang(_ source: String) -> SyntaxName? {
         
         guard
-            let shebang = source.firstMatch(of: /^#!\s*(?<first>\S+)\s*(?<second>\S+)?/),
+            let shebang = source.firstMatch(of: /^#!\s*(?<first>\S+)(?<rest>[^\n]*)/),
             let interpreter = shebang.first.split(separator: "/").last
         else { return nil }
         
-        // use first arg if the path targets env
-        if interpreter == "env", let second = shebang.second {
-            return String(second)
+        if interpreter == "env" {
+            return shebang.rest
+                .split(whereSeparator: \.isWhitespace)
+                .first { !$0.hasPrefix("-") }
+                .map(String.init)
         }
         
         return String(interpreter)
