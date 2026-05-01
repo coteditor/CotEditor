@@ -49,4 +49,25 @@ struct LegacyYAMLTests {
         #expect(syntax.highlights[.keywords] == [.init(begin: "foo", end: "bar", isRegularExpression: true)])
         #expect(syntax.outlines == [.init(pattern: "^func\\s+(.+)", template: "$1")])
     }
+    
+    
+    @Test func migrateFormatSkipsInvalidSyntax() throws {
+        
+        let directoryURL = FileManager.default.temporaryDirectory.appending(component: UUID().uuidString, directoryHint: .isDirectory)
+        let destinationURL = FileManager.default.temporaryDirectory.appending(component: UUID().uuidString, directoryHint: .isDirectory)
+        try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
+        defer {
+            try? FileManager.default.removeItem(at: directoryURL)
+            try? FileManager.default.removeItem(at: destinationURL)
+        }
+        
+        try "kind: code".write(to: directoryURL.appending(component: "Valid.yaml"), atomically: true, encoding: .utf8)
+        try "keywords: [".write(to: directoryURL.appending(component: "Broken.yaml"), atomically: true, encoding: .utf8)
+        
+        let count = try Syntax.migrateFormat(in: directoryURL, to: destinationURL, deletingOriginal: false)
+        
+        #expect(count == 1)
+        #expect(FileManager.default.fileExists(atPath: destinationURL.appending(component: "Valid.cotsyntax").path))
+        #expect(!FileManager.default.fileExists(atPath: destinationURL.appending(component: "Broken.cotsyntax").path))
+    }
 }
