@@ -162,7 +162,7 @@ public extension String {
             count += 1
         }
         
-        if includesLastBreak, (self as NSString).character(at: range.upperBound - 1).isNewline == true {
+        if includesLastBreak, (self as NSString).character(at: range.upperBound - 1).isNewline {
             count += 1
         }
         
