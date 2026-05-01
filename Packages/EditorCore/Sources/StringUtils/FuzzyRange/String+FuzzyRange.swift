@@ -63,13 +63,13 @@ public extension String {
     /// Returns the character range for a line range that allows negative values.
     ///
     /// - Note:
-    ///   The `location` of the passed-in range is 1-based. Passing a fuzzy range whose location is `0` returns `nil`.
-    ///   The last line ending is included in the return value.
+    ///   The `location` of the passed-in range is 1-based. A location of `0` or beyond the last line returns an empty range.
+    ///   The final line ending is included in the return value when `includingLineEnding` is `true`.
     ///
     /// - Parameters:
     ///   - lineRange: The line range that allows also negative values.
     ///   - includingLineEnding: Whether to include the final line ending in the return value.
-    /// - Returns: A character range, or `nil` if the given value is out of bounds.
+    /// - Returns: A character range, or `nil` if the given line range cannot be resolved.
     func rangeForLine(in lineRange: FuzzyRange, includingLineEnding: Bool = true) -> NSRange? {
         
         let length = (self as NSString).length
