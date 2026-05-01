@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,18 +35,8 @@ protocol LazyLineEndingCaching: AnyObject, LineRangeCalculating {
     /// Line Endings sorted by location.
     var lineEndings: [ValueRange<LineEnding>] { get set }
     
-    /// The parsing state.
-    var cache: LineParseCache { get set }
-}
-
-
-struct LineParseCache {
-    
-    /// The character indexes already parsed.
-    var parsedIndexes = IndexSet()
-    
     /// The first character index not yet parsed.
-    var firstUnparsedIndex = 0
+    var firstUnparsedIndex: Int { get set }
 }
 
 
@@ -68,16 +58,11 @@ extension LazyLineEndingCaching {
         
         assert(characterIndex <= self.string.utf16.count)
         
-        guard characterIndex >= self.cache.firstUnparsedIndex else { return }
+        guard characterIndex >= self.firstUnparsedIndex else { return }
         
         guard self.length > 0 else { return }
         
-        let lowerParseBound = self.cache.firstUnparsedIndex
-        let upperParseBound = self.cache.parsedIndexes.contains(characterIndex)
-            ? self.cache.parsedIndexes.rangeView(of: lowerParseBound...characterIndex).last?.first ?? characterIndex
-            : characterIndex
-        let parseRange = NSRange(lowerParseBound..<upperParseBound)
-        
+        let parseRange = NSRange(self.firstUnparsedIndex..<characterIndex)
         var parsedRange = NSRange(location: NSNotFound, length: 0)
         var lineEndings = self.string.lineEndingRanges(in: parseRange, effectiveRange: &parsedRange)
         
@@ -93,8 +78,6 @@ extension LazyLineEndingCaching {
         }
         
         self.lineEndings.replace(items: lineEndings, in: parsedRange)
-        
-        self.cache.parsedIndexes.insert(integersIn: parsedRange.lowerBound..<parsedRange.upperBound)
-        self.cache.firstUnparsedIndex = parsedRange.upperBound
+        self.firstUnparsedIndex = parsedRange.upperBound
     }
 }
