@@ -102,6 +102,7 @@ public extension NSRange {
         
         assert(maxLength > 0)
         assert(headPadding >= 0)
+        assert(self.lowerBound <= target.lowerBound && target.upperBound <= self.upperBound)
         
         guard self.length > maxLength else { return self }
         
@@ -146,9 +147,11 @@ public extension NSRange {
     
     /// Returns a new range by assuming the indices of the given items are inserted.
     ///
-    /// - Parameter items: Insertion items to be inserted.
+    /// - Parameter items: Insertion items to be inserted, sorted by `location` in ascending order.
     /// - Returns: A new range that the receiver moved.
     func inserted(items: [Self.InsertionItem]) -> NSRange {
+        
+        assert(items == items.sorted(using: KeyPathComparator(\.location)))
         
         let location = items
             .prefix { (self.isEmpty && $0.forward) ? $0.location <= self.lowerBound : $0.location < self.lowerBound }
