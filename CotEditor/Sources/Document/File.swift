@@ -4,11 +4,11 @@
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 2025 on 2025-10-17.
+//  Created by 1024jp on 2025-10-17.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ struct File: Equatable {
     }
     
     
-    nonisolated static let resourceValues: Set<URLResourceKey> = [.isDirectoryKey, .isHiddenKey, .isWritableKey, .isAliasFileKey, .contentTypeKey]
+    nonisolated static let resourceKeys: Set<URLResourceKey> = [.isDirectoryKey, .isHiddenKey, .isWritableKey, .isAliasFileKey, .contentTypeKey]
     
     var name: String
     var fileURL: URL
@@ -82,7 +82,7 @@ struct File: Equatable {
     /// - Throws: An error if the file's resource values cannot be loaded.
     init(at fileURL: URL) throws {
         
-        let resourceValues = try fileURL.resourceValues(forKeys: Self.resourceValues)
+        let resourceValues = try fileURL.resourceValues(forKeys: Self.resourceKeys)
         
         self.name = fileURL.lastPathComponent
         self.fileURL = fileURL.standardizedFileURL
@@ -118,37 +118,6 @@ struct File: Equatable {
         
         self.kind = Kind(pathExtension: self.fileURL.pathExtension, isDirectory: self.isDirectory)
     }
-    
-    
-    /// Updates resource values by reading the file.
-    ///
-    /// - Returns: Whether the related file resources actually changed.
-    @discardableResult mutating func invalidateResources() throws -> Bool {
-        
-        let resourceValues = try self.fileURL.resourceValues(forKeys: [.isHiddenKey, .isAliasFileKey, .isWritableKey])
-        
-        let isHidden = resourceValues.isHidden ?? false
-        let isWritable = resourceValues.isWritable ?? true
-        let tags = (try? self.fileURL.extendedAttribute(for: FileExtendedAttributeName.userTags))
-            .map(FinderTag.tags(data:)) ?? []
-        
-        var didChange = false
-        
-        if self.isHidden != isHidden {
-            self.isHidden = isHidden
-            didChange = true
-        }
-        if self.isWritable != isWritable {
-            self.isWritable = isWritable
-            didChange = true
-        }
-        if self.tags != tags {
-            self.tags = tags
-            didChange = true
-        }
-        
-        return didChange
-    }
 }
 
 
@@ -156,6 +125,11 @@ struct File: Equatable {
 
 extension File.Kind {
     
+    /// Initializes a kind by inferring the type from the path extension.
+    ///
+    /// - Parameters:
+    ///   - pathExtension: The path extension of the file.
+    ///   - isDirectory: Whether the corresponding file is a directory.
     init(pathExtension: String, isDirectory: Bool) {
         
         if isDirectory {
@@ -167,6 +141,11 @@ extension File.Kind {
     }
     
     
+    /// Initializes a kind from a content type.
+    ///
+    /// - Parameters:
+    ///   - type: The content type of the file, or `nil` if undetermined.
+    ///   - isDirectory: Whether the corresponding file is a directory.
     init(type: UTType?, isDirectory: Bool) {
         
         if isDirectory {

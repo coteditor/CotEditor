@@ -136,7 +136,7 @@ final class FileNode {
     private nonisolated static func readChildFiles(at fileURL: URL) throws -> [File] {
         
         try FileManager.default
-            .contentsOfDirectory(at: fileURL, includingPropertiesForKeys: Array(File.resourceValues))
+            .contentsOfDirectory(at: fileURL, includingPropertiesForKeys: Array(File.resourceKeys))
             .filter { Self.accepts(filename: $0.lastPathComponent) }
             .map { try File(at: $0) }
             .sorted(using: Self.fileSortOrder)
