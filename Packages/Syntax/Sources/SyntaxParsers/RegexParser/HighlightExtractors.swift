@@ -168,6 +168,11 @@ struct BeginEndRegularExpressionExtractor: HighlightExtractable {
                 ? range.upperBound
                 : min(range.upperBound, (string as NSString).lineContentsEndIndex(at: beginRange.upperBound))
             
+            guard searchStartIndex <= upperBound else {
+                location = searchStartIndex
+                continue
+            }
+            
             // find end pattern
             let endRange = self.endRegex.rangeOfFirstMatch(in: string, options: options, range: NSRange(searchStartIndex..<upperBound))
             

@@ -67,6 +67,17 @@ struct RegexHighlightExtractorsTests {
     }
     
     
+    @Test func beginEndRegexExtractorSkipsTerminalZeroLengthBegin() throws {
+        
+        let extractor = try BeginEndRegularExpressionExtractor(beginPattern: "$", endPattern: "END", ignoresCase: false, isMultiline: true)
+        
+        let source = "abc"
+        let ranges = try extractor.ranges(in: source, range: source.nsRange)
+        
+        #expect(ranges.isEmpty)
+    }
+    
+    
     @Test func beginEndStringExtractor() throws {
         
         let definition = Syntax.Highlight(begin: "/*", end: "*/")
