@@ -24,6 +24,8 @@
 //  limitations under the License.
 //
 
+import URLUtils
+
 /// A reverse-lookup table that maps file-mapping items (extensions, filenames, interpreters) to syntax setting names.
 public struct SyntaxMappingTable: Equatable, Sendable {
     
@@ -46,7 +48,9 @@ public struct SyntaxMappingTable: Equatable, Sendable {
     
     public init(extensions: [String: [SyntaxName]] = [:], filenames: [String: [SyntaxName]] = [:], interpreters: [String: [SyntaxName]] = [:]) {
         
-        self.extensions = extensions
+        self.extensions = extensions.reduce(into: [:]) { table, item in
+            table[item.key.lowercased(), default: []].append(contentsOf: item.value)
+        }
         self.filenames = filenames
         self.interpreters = interpreters
     }
@@ -59,7 +63,7 @@ public struct SyntaxMappingTable: Equatable, Sendable {
     ///   - maps: The file maps for each setting.
     public init(syntaxNames: [SyntaxName], maps: [SyntaxName: Syntax.FileMap]) {
         
-        self.extensions = Self.buildMapping(for: \.extensions, syntaxNames: syntaxNames, maps: maps)
+        self.extensions = Self.buildMapping(for: \.extensions, syntaxNames: syntaxNames, maps: maps, normalizesKeys: true)
         self.filenames = Self.buildMapping(for: \.filenames, syntaxNames: syntaxNames, maps: maps)
         self.interpreters = Self.buildMapping(for: \.interpreters, syntaxNames: syntaxNames, maps: maps)
     }
@@ -77,17 +81,9 @@ public struct SyntaxMappingTable: Equatable, Sendable {
             return name
         }
         
-        guard let pathExtension = filename.split(separator: ".").last else { return nil }
+        guard let pathExtension = filename.pathExtension else { return nil }
         
-        if let name = self.extensions[String(pathExtension)]?.first {
-            return name
-        }
-        
-        // check case-insensitively
-        let lowerPathExtension = pathExtension.lowercased()
-        return self.extensions
-            .first { $0.key.lowercased() == lowerPathExtension }?
-            .value.first
+        return self.extensions[pathExtension.lowercased()]?.first
     }
     
     
@@ -140,12 +136,14 @@ public struct SyntaxMappingTable: Equatable, Sendable {
     ///   - keyPath: The key path into `Syntax.FileMap` to build the mapping for.
     ///   - syntaxNames: The syntax names sorted by priority.
     ///   - maps: The file maps for each setting.
+    ///   - normalizesKeys: Whether to lowercase mapping keys while building the table.
     /// - Returns: A dictionary mapping file-mapping items to their associated syntax names.
-    private static func buildMapping(for keyPath: KeyPath<Syntax.FileMap, [String]?>, syntaxNames: [SyntaxName], maps: [SyntaxName: Syntax.FileMap]) -> [String: [String]] {
+    private static func buildMapping(for keyPath: KeyPath<Syntax.FileMap, [String]?>, syntaxNames: [SyntaxName], maps: [SyntaxName: Syntax.FileMap], normalizesKeys: Bool = false) -> [String: [String]] {
         
         syntaxNames.reduce(into: [String: [String]]()) { table, name in
             for item in maps[name]?[keyPath: keyPath] ?? [] {
-                table[item, default: []].append(name)
+                let key = normalizesKeys ? item.lowercased() : item
+                table[key, default: []].append(name)
             }
         }
     }

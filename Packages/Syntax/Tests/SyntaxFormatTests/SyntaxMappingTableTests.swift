@@ -52,6 +52,8 @@ struct SyntaxMappingTableTests {
         #expect(table.syntaxName(forFilename: "main.swift") == "Swift")
         #expect(table.syntaxName(forFilename: "script.py") == "Python")
         #expect(table.syntaxName(forFilename: "noext") == nil)
+        #expect(table.syntaxName(forFilename: "test.") == nil)
+        #expect(table.syntaxName(forFilename: ".swift") == nil)
     }
     
     
@@ -114,7 +116,7 @@ struct SyntaxMappingTableTests {
     @Test func buildPriority() {
         
         let maps: [String: Syntax.FileMap] = [
-            "UserSyntax": .init(extensions: ["txt"]),
+            "UserSyntax": .init(extensions: ["TXT"]),
             "BundledSyntax": .init(extensions: ["txt"]),
         ]
         
@@ -123,6 +125,7 @@ struct SyntaxMappingTableTests {
         
         #expect(table.extensions["txt"]?.first == "UserSyntax")
         #expect(table.extensions["txt"]?.count == 2)
+        #expect(table.syntaxName(forFilename: "document.txt") == "UserSyntax")
     }
     
     
