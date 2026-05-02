@@ -96,12 +96,16 @@ public extension NSString {
     
     /// Finds and returns ranges of passed-in substring with the given range of receiver.
     ///
+    /// If `searchString` is empty, this method returns an empty array.
+    ///
     /// - Parameters:
     ///   - searchString: The string for which to search.
     ///   - options: A mask specifying search options.
     ///   - searchRange: The range within the receiver for which to search for aString.
     /// - Returns: An array of ranges where `searchString` occurs within `searchRange`.
     final func ranges(of searchString: String, options: NSString.CompareOptions = .literal, range searchRange: NSRange? = nil) -> [NSRange] {
+        
+        guard !searchString.isEmpty else { return [] }
         
         let searchRange = searchRange ?? self.range
         var ranges: [NSRange] = []

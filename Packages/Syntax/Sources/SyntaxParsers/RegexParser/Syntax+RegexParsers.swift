@@ -63,20 +63,20 @@ extension Syntax {
         
         var nestables: [NestableToken: SyntaxType] = [:]
         
-        for delimiter in self.stringDelimiters {
+        for delimiter in self.stringDelimiters where !delimiter.isEmpty {
             // -> sort prefixes by descending length so that longest-match-first is guaranteed
             //    and the Hashable identity of NestableToken stays stable
             let prefixes = (delimiter.prefixes ?? []).sorted { $0.count > $1.count }
             nestables[.pair(.init(delimiter.begin, delimiter.end), prefixes: prefixes, isMultiline: delimiter.isMultiline, isNestable: true, escapeCharacter: delimiter.escapeCharacter)] = .strings
         }
-        for delimiter in self.characterDelimiters {
+        for delimiter in self.characterDelimiters where !delimiter.isEmpty {
             let prefixes = (delimiter.prefixes ?? []).sorted { $0.count > $1.count }
             nestables[.pair(.init(delimiter.begin, delimiter.end), prefixes: prefixes, isMultiline: false, isNestable: true, escapeCharacter: delimiter.escapeCharacter)] = .characters
         }
-        for delimiter in self.commentDelimiters.blocks {
+        for delimiter in self.commentDelimiters.blocks where !delimiter.begin.isEmpty && !delimiter.end.isEmpty {
             nestables[.pair(delimiter.pair, isMultiline: true, isNestable: delimiter.isNestable)] = .comments
         }
-        for delimiter in self.commentDelimiters.inlines {
+        for delimiter in self.commentDelimiters.inlines where !delimiter.begin.isEmpty {
             nestables[.inline(delimiter.begin, leadingOnly: delimiter.leadingOnly)] = .comments
         }
         
@@ -94,7 +94,13 @@ extension Collection where Element == Syntax.Highlight {
         var words: [String] = []
         var caseInsensitiveWords: [String] = []
         
-        for highlight in self {
+        for var highlight in self {
+            guard !highlight.begin.isEmpty else { continue }
+            
+            if highlight.end?.isEmpty == true {
+                highlight.end = nil
+            }
+            
             if !highlight.isRegularExpression, highlight.end == nil {
                 // extract simple words
                 if highlight.ignoreCase {

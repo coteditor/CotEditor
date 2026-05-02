@@ -181,6 +181,8 @@ struct NSStringTests {
         let string2 = "aAaA" as NSString
         #expect(string2.ranges(of: "aa", options: .caseInsensitive) == [NSRange(0..<2), NSRange(2..<4)])
         #expect(string2.ranges(of: "aa", options: .caseInsensitive, range: NSRange(1..<4)) == [NSRange(1..<3)])
+        
+        #expect(string.ranges(of: "").isEmpty)
     }
     
     

@@ -160,6 +160,68 @@ struct RegexHighlightParserTests {
         
         #expect(matches == ["'x''y'", "'z'"])
     }
+    
+    
+    @Test func emptyDelimitersAreIgnored() {
+        
+        let syntax = Syntax(
+            commentDelimiters: .init(
+                inlines: [.init()],
+                blocks: [
+                    .init(begin: "", end: "*/"),
+                    .init(begin: "/*", end: ""),
+                ]
+            ),
+            stringDelimiters: [
+                .init(begin: "", end: "\""),
+                .init(begin: "\"", end: ""),
+            ],
+            characterDelimiters: [
+                .init(begin: "", end: "'"),
+                .init(begin: "'", end: ""),
+            ]
+        )
+        
+        #expect(syntax.highlightParser == nil)
+    }
+    
+    
+    @Test func emptyHighlightsAreIgnored() {
+        
+        let syntax = Syntax(
+            highlights: [
+                .comments: [
+                    .init(begin: "", end: "", description: "empty pair"),
+                    .init(begin: "", description: "empty word"),
+                    .init(begin: "", isRegularExpression: true, description: "empty regex"),
+                ],
+            ]
+        )
+        
+        #expect(syntax.highlightParser == nil)
+    }
+    
+    
+    @Test func emptyHighlightEndsAreTreatedAsSinglePatterns() async throws {
+        
+        let syntax = Syntax(
+            highlights: [
+                .keywords: [
+                    .init(begin: "foo", end: ""),
+                ],
+                .values: [
+                    .init(begin: #"\d+"#, end: "", isRegularExpression: true),
+                ],
+            ]
+        )
+        let parser = try #require(syntax.highlightParser)
+        let source = "foo 123"
+        
+        let result = try #require(await parser.parseHighlights(in: source, range: source.nsRange))
+        
+        #expect(result.highlights.contains { $0.value == .keywords && (source as NSString).substring(with: $0.range) == "foo" })
+        #expect(result.highlights.contains { $0.value == .values && (source as NSString).substring(with: $0.range) == "123" })
+    }
 }
 
 
