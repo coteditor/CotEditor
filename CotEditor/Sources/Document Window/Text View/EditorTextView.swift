@@ -175,6 +175,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         let textContainer = TextContainer()
         textContainer.widthTracksTextView = true
+        // -> Avoid the default finite container height clipping large wrapped layouts (2026-05, macOS 26.4).
+        textContainer.size.height = .greatestFiniteMagnitude
+        
         let layoutManager = LayoutManager(lineEndingScanner: lineEndingScanner)
         textStorage.addLayoutManager(layoutManager)
         layoutManager.addTextContainer(textContainer)
