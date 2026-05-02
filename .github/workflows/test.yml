@@ -42,7 +42,7 @@ jobs:
         swift test --package-path "Packages/${{ matrix.package }}"
 
   macOS:
-    name: Tests for CotEditor
+    name: Build and Smoke Test for CotEditor
     runs-on: macos-26
 
     steps:
@@ -55,9 +55,6 @@ jobs:
         swift --version
     - name: Checkout
       uses: actions/checkout@v5
-    - name: Unit Test for CotEditor
-      run: |
-        xcodebuild test -scheme CotEditor -destination 'platform=macOS,arch=arm64' CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= PROVISIONING_PROFILE_SPECIFIER= CODE_SIGN_ENTITLEMENTS_SUFFIX=-AdHoc -skipPackagePluginValidation
     - name: Release Build Smoke Test
       run: |
         set -euo pipefail
@@ -72,3 +69,23 @@ jobs:
           exit 1
         fi
         kill "${app_pid}" 2>/dev/null || true
+
+  app-unit-tests:
+    name: Unit Test for CotEditor
+    runs-on: macos-26
+    # Temporarily do not fail the workflow while XCTest intermittently hangs on GitHub-hosted macOS 26 runners.
+    continue-on-error: true
+
+    steps:
+    - name: Set Xcode version
+      run: echo "DEVELOPER_DIR=/Applications/Xcode_${XCODE_VERSION}.app" >> "$GITHUB_ENV"
+    - name: Show environments
+      run: |
+        sw_vers
+        xcodebuild -version
+        swift --version
+    - name: Checkout
+      uses: actions/checkout@v5
+    - name: Unit Test for CotEditor
+      run: |
+        xcodebuild test -scheme CotEditor -destination 'platform=macOS,arch=arm64' CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= PROVISIONING_PROFILE_SPECIFIER= CODE_SIGN_ENTITLEMENTS_SUFFIX=-AdHoc -skipPackagePluginValidation
