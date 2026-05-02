@@ -102,7 +102,7 @@ public extension String {
     
     /// Computes auto-indentation strings and insertion positions for newline insertion.
     ///
-    /// - Note: Ranges without a line ending immediately before them are ignored.
+    /// - Precondition: Each location in `selectedRanges` must be immediately after a line ending.
     ///
     /// - Parameters:
     ///   - style: The indentation style to apply.

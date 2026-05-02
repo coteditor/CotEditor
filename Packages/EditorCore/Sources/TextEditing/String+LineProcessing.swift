@@ -171,7 +171,7 @@ public extension String {
     /// - Parameters:
     ///   - ranges: The selection ranges whose intersecting lines should be duplicated.
     ///   - lineEnding: The line ending character to use when appending a missing newline.
-    /// - Returns: An `EditingContext`, or `nil` if nothing to duplicate.
+    /// - Returns: An `EditingContext`, or `nil` if `ranges` is empty.
     func duplicateLine(in ranges: [NSRange], lineEnding: Character) -> EditingContext? {
         
         let string = self as NSString

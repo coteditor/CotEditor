@@ -93,6 +93,7 @@ public extension String {
     ///   - appendsSpacer: Whether to insert a single space between delimiter and string.
     ///   - selectedRanges: The current selected ranges in the editor.
     ///   - location: The location type to insert comment delimiters.
+    /// - Returns: An `EditingContext`, or `nil` if no delimiter could be inserted.
     func commentOut(types: CommentTypes, delimiters: any CommentDelimiters, appendsSpacer: Bool, in selectedRanges: [NSRange], at location: CommentOutLocation) -> EditingContext? {
         
         guard !delimiters.isEmpty else { return nil }
@@ -123,6 +124,7 @@ public extension String {
     ///   - delimiters: The comment delimiters to remove.
     ///   - appendsSpacer: Whether a single space is expected between delimiter and string.
     ///   - selectedRanges: The current selected ranges in the editor.
+    /// - Returns: An `EditingContext`, or `nil` if no delimiter was found to remove.
     func uncomment(delimiters: any CommentDelimiters, appendsSpacer: Bool, in selectedRanges: [NSRange]) -> EditingContext? {
         
         guard !delimiters.isEmpty else { return nil }
