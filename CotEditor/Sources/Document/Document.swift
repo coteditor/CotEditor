@@ -1326,7 +1326,12 @@ extension NSTextView: EditorCounter.Source { }
             alert.helpAnchor = "howto_change_encoding"
             alert.showsHelp = true
             
-            let documentWindow = self.windowForSheet!
+            guard let documentWindow = self.windowForSheet else {
+                completionHandler(false)
+                assertionFailure()
+                return
+            }
+            
             Task {
                 let returnCode = await alert.beginSheetModal(for: documentWindow)
                 switch returnCode {

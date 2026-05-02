@@ -455,8 +455,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         alert.addButton(withTitle: String(localized: .cancel))
         alert.buttons.first?.keyEquivalent = ""
         
+        guard let window = self.document.windowForSheet else { return }
+        
         Task {
-            let returnCode = await alert.beginSheetModal(for: self.document.windowForSheet!)
+            let returnCode = await alert.beginSheetModal(for: window)
             if returnCode == .alertFirstButtonReturn {  // == Move to Trash
                 self.trashNodes(nodes)
             }
