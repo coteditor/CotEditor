@@ -96,6 +96,30 @@ struct StringCommentingTests {
     }
     
     
+    @Test func inlineCommentOutAfterIndentWithTabsOnly() {
+        
+        // tabs-only indentation: charOffset advances per tab regardless of tabWidth
+        let text = "\tfoo\n\t\tbar"
+        #expect(text.inlineCommentOut(delimiter: "//", ranges: [text.nsRange], at: .afterIndent(tabWidth: 4)) == [
+            .init(string: "//", location: 1, forward: true),
+            .init(string: "//", location: 6, forward: true),
+        ])
+    }
+    
+    
+    @Test func inlineCommentOutAfterIndentSkipsBlankLine() {
+        
+        // whitespace-only line is excluded from the minimum indentation calculation,
+        // and an unindented line forces the minimum to 0
+        let text = "  foo\n  \nbar"
+        #expect(text.inlineCommentOut(delimiter: "//", ranges: [text.nsRange], at: .afterIndent(tabWidth: 2)) == [
+            .init(string: "//", location: 0, forward: true),
+            .init(string: "//", location: 6, forward: true),
+            .init(string: "//", location: 9, forward: true),
+        ])
+    }
+    
+    
     @Test func blockCommentOut() {
         
         #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), appendsSpacer: false, ranges: [], at: .selection).isEmpty)

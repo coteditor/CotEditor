@@ -91,6 +91,46 @@ struct StringLineProcessingTests {
     }
     
     
+    @Test func moveLineUpWithCRLF() throws {
+        
+        // CR+LF is treated as a single Character; offsets must use UTF-16 lengths.
+        let string = "aa\r\nbbbb\r\nccc\r\nd\r\neee"
+        var context: EditingContext
+        
+        context = try #require(string.moveLineUp(in: [NSRange(5, 1)]))
+        #expect(context.strings == ["bbbb\r\naa\r\n"])
+        #expect(context.ranges == [NSRange(0, 10)])
+        #expect(context.selectedRanges == [NSRange(1, 1)])
+        
+        // last line without trailing line break
+        let trailingString = "aa\r\nbbbb"
+        context = try #require(trailingString.moveLineUp(in: [NSRange(5, 1)]))
+        #expect(context.strings == ["bbbb\r\naa"])
+        #expect(context.ranges == [NSRange(0, 8)])
+        #expect(context.selectedRanges == [NSRange(1, 1)])
+    }
+    
+    
+    @Test func moveLineDownWithCRLF() throws {
+        
+        let string = "aa\r\nbbbb\r\nccc\r\nd\r\neee"
+        var context: EditingContext
+        
+        // replacementRange unions from NSRange() so it grows from location 0
+        context = try #require(string.moveLineDown(in: [NSRange(5, 1)]))
+        #expect(context.strings == ["aa\r\nccc\r\nbbbb\r\n"])
+        #expect(context.ranges == [NSRange(0, 15)])
+        #expect(context.selectedRanges == [NSRange(10, 1)])
+        
+        // last line without trailing line break — needs to account for CRLF utf16 length (2)
+        let trailingString = "aa\r\nbbbb"
+        context = try #require(trailingString.moveLineDown(in: [NSRange(0, 1)]))
+        #expect(context.strings == ["bbbb\r\naa"])
+        #expect(context.ranges == [NSRange(0, 8)])
+        #expect(context.selectedRanges == [NSRange(6, 1)])
+    }
+    
+    
     @Test func sortLinesAscending() throws {
         
         let string = """

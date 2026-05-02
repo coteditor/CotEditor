@@ -64,6 +64,36 @@ struct StringEditingTests {
         
         #expect("foo".transformSelections(in: [NSRange(0..<0), NSRange(3..<3)]) { $0.uppercased() } == nil)
     }
+    
+    
+    @Test func transformSelectionsShrinking() throws {
+        
+        // shrinking transforms: new selection locations must compensate for accumulated length loss
+        let string = "<<a>> <<b>>"
+        let context = try #require(string.transformSelections(in: [NSRange(0..<5), NSRange(6..<11)]) {
+            String($0.dropFirst(2).dropLast(2))
+        })
+        
+        #expect(context.strings == ["a", "b"])
+        #expect(context.ranges == [NSRange(0..<5), NSRange(6..<11)])
+        #expect(context.selectedRanges == [NSRange(0..<1), NSRange(2..<3)])
+        #expect(string.applying(context) == "a b")
+    }
+    
+    
+    @Test func transformSelectionsMixedShrinkExpand() throws {
+        
+        // first range shrinks, second expands — delta should net to zero by the end
+        let string = "<<a>> b"
+        let context = try #require(string.transformSelections(in: [NSRange(0..<5), NSRange(6..<7)]) { substring in
+            substring.count > 1 ? String(substring.dropFirst(2).dropLast(2)) : "<<\(substring)>>"
+        })
+        
+        #expect(context.strings == ["a", "<<b>>"])
+        #expect(context.ranges == [NSRange(0..<5), NSRange(6..<7)])
+        #expect(context.selectedRanges == [NSRange(0..<1), NSRange(2..<7)])
+        #expect(string.applying(context) == "a <<b>>")
+    }
 }
 
 
