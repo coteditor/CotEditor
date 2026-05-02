@@ -9,6 +9,7 @@
 - Support shebangs with options for syntax detection.
 - Improve overall stability.
 
+
 ### Fixes
 
 - Fix an issue where customized built-in syntaxes could be ignored when their file mappings conflicted with other built-in syntaxes.
