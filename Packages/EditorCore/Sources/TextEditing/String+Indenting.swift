@@ -295,12 +295,12 @@ public extension String {
         
         let column = self.column(of: range.location, tabWidth: tabWidth)
         let targetLength = tabWidth - (column % tabWidth)
+        
+        guard range.location >= targetLength else { return nil }
+        
         let targetRange = NSRange(location: range.location - targetLength, length: targetLength)
         
-        guard
-            range.location >= targetLength,
-            (self as NSString).substring(with: targetRange).allSatisfy({ $0 == " " })
-        else { return nil }
+        guard (self as NSString).substring(with: targetRange).allSatisfy({ $0 == " " }) else { return nil }
         
         return targetRange
     }
