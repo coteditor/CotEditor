@@ -42,7 +42,6 @@ struct FindPanelFieldView: View {
     @State private var settings: TextFinderSettings = .shared
     @State private var result: FindResult?
     @State private var resultClientIdentifier: ObjectIdentifier?
-    @State private var isFindStringValid = true
     @State private var isPressingShift = false
     @State private var isRegexReferencePresented = false
     @State private var isSettingsPresented = false

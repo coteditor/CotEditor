@@ -54,18 +54,6 @@ struct RegexTextField: NSViewRepresentable {
     }
     
     
-    /// Sets the regular expression parse mode.
-    ///
-    /// - Parameter mode: The mode how to parse the value as a regular expression pattern.
-    func regexParseMode(_ mode: RegexParseMode) -> Self {
-        
-        var view = self
-        view.mode = mode
-        
-        return view
-    }
-    
-    
     /// Sets the inset value inside the field.
     ///
     /// - Parameter inset: An amount, given in points, to inset this view on the specified edges.

@@ -68,7 +68,6 @@ struct PortableSettingsDocument: FileDocument {
         static let info = "Info.plist"
         static let defaults = "Defaults.plist"
         static let shortcuts = "Shortcuts.plist"
-        static let applicationSupport = "Application Support"
         static let keyBindings = "KeyBindings"
         static let replacements = "Replacements"
         static let syntaxes = "Syntaxes"
