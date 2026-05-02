@@ -36,13 +36,18 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
     
     // MARK: Internal Properties
     
+    nonisolated static let maximumParseLength = 100_000_000
+    
     nonisolated let highlightBuffer = 0
     
     
     // MARK: Private Properties
     
-    private let layer: LanguageLayer
+    private var layer: LanguageLayer
+    private let languageConfig: LanguageConfiguration
+    private let layerConfiguration: LanguageLayer.Configuration
     private let syntax: TreeSitterSyntax
+    private let maximumParseLength: Int
     
     /// The current mirrored document content.
     private var content: Content = .init()
@@ -56,11 +61,17 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
     
     // MARK: Lifecycle
     
-    init(languageConfig: LanguageConfiguration, languageProvider: @escaping LanguageLayer.LanguageProvider, syntax: TreeSitterSyntax) throws {
+    init(languageConfig: LanguageConfiguration, languageProvider: @escaping LanguageLayer.LanguageProvider, syntax: TreeSitterSyntax, maximumParseLength: Int = TreeSitterClient.maximumParseLength) throws {
         
-        self.layer = try LanguageLayer(languageConfig: languageConfig,
-                                       configuration: .init(languageProvider: languageProvider))
+        precondition(maximumParseLength > 0)
+        
+        let configuration = LanguageLayer.Configuration(languageProvider: languageProvider)
+        
+        self.layer = try LanguageLayer(languageConfig: languageConfig, configuration: configuration)
+        self.languageConfig = languageConfig
+        self.layerConfiguration = configuration
         self.syntax = syntax
+        self.maximumParseLength = maximumParseLength
     }
     
     
@@ -81,7 +92,22 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
     
     func noteEdit(editedRange: NSRange, delta: Int, insertedText: String) throws {
         
+        let oldParseRange = self.parseRange
+        let wasCapped = self.content.string.length > self.maximumParseLength
         let edit = try self.content.applyEdit(editedRange: editedRange, delta: delta, insertedText: insertedText)
+        
+        if wasCapped || self.content.string.length > self.maximumParseLength {
+            let parseRange = self.parseRange
+            if editedRange.location >= oldParseRange.upperBound,
+               editedRange.location >= parseRange.upperBound,
+               oldParseRange.length == parseRange.length
+            {
+                return
+            }
+            
+            self.resetLayer()
+            return
+        }
         
         self.layer.applyEdit(edit)
         self.pendingAffectedRanges.append(editedRange: editedRange, changeInLength: delta)
@@ -96,9 +122,13 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
             self.resetContent(string)
         }
         
+        let parseRange = self.parseRange
+        
+        guard parseRange.length > 0 else { return nil }
+        
         try Task.checkCancellation()
         
-        let content = LanguageLayer.Content(string: string)
+        let content = LanguageLayer.Content(string: string, limit: parseRange.length)
         let invalidations = !self.pendingAffectedRanges.isEmpty
             ? self.layer.parse(with: content, affecting: self.pendingAffectedRanges.indexSet, resolveSublayers: true)
             : []
@@ -106,7 +136,10 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
         
         try Task.checkCancellation()
         
-        let updateRange = invalidations.unionRange()?.union(range) ?? range
+        guard
+            let updateRange = (invalidations.unionRange()?.union(range) ?? range).intersection(parseRange)
+        else { return nil }
+        
         let highlights = try self.queryMatches(.highlights, in: updateRange, string: string as NSString)
             .flatMap(\.captures)
             .sorted()
@@ -125,9 +158,14 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
             self.resetContent(string)
         }
         
+        let parseRange = self.parseRange
+        
+        guard parseRange.length > 0 else { return [] }
+        
         try Task.checkCancellation()
         
-        let content = LanguageLayer.Content(string: string)
+        let content = LanguageLayer.Content(string: string, limit: parseRange.length)
+        
         if !self.pendingAffectedRanges.isEmpty {
             // -> Outline parsing should preserve pending ranges when highlights are available,
             //    because highlight parsing uses them to compute the next update range.
@@ -143,7 +181,7 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
         let policy = self.syntax.outlinePolicy
         let formatter = self.syntax.outlineFormatter
         let source = string as NSString
-        let items: [OutlineItem] = try self.queryMatches(.outline, in: string.range, string: source).lazy
+        let items: [OutlineItem] = try self.queryMatches(.outline, in: parseRange, string: source).lazy
             .filter { $0.treeDepth == 0 }  // ignore injection
             .compactMap { formatter.item(for: $0, source: source, policy: policy) }
         let normalizedItems = policy.normalize(items)
@@ -157,6 +195,13 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
     
     // MARK: Private Methods
     
+    /// The current parse range capped by `maximumParseLength`.
+    private var parseRange: NSRange {
+        
+        NSRange(0..<min(self.content.string.length, self.maximumParseLength))
+    }
+    
+    
     /// Resets the stored content and the tree-sitter layer when incremental edits cannot be applied.
     ///
     /// - Parameters:
@@ -164,8 +209,20 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
     private func resetContent(_ content: String) {
         
         self.content.reset(content)
-        self.layer.replaceContent(with: content)
-        self.pendingAffectedRanges.update(editedRange: content.nsRange)
+        self.resetLayer()
+    }
+    
+    
+    /// Recreates the tree-sitter layer and marks the capped parse range as pending.
+    private func resetLayer() {
+        
+        self.layer = try! LanguageLayer(languageConfig: self.languageConfig, configuration: self.layerConfiguration)
+        self.pendingAffectedRanges.clear()
+        
+        let parseRange = self.parseRange
+        if parseRange.length > 0 {
+            self.pendingAffectedRanges.update(editedRange: parseRange)
+        }
     }
     
     
