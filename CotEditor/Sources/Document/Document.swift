@@ -285,6 +285,7 @@ extension NSTextView: EditorCounter.Source { }
         
         if windowController == self.windowController {
             self.windowController = nil
+            self.textStorageObserver = nil
         }
     }
     
