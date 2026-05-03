@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -49,8 +49,7 @@ public extension String {
             
             guard
                 lineEndingRange.length > 0,
-                let lastCharacter = string.substring(with: lineEndingRange).first,  // line ending must be a single character
-                let lineEnding = LineEnding(rawValue: lastCharacter)
+                let lineEnding = LineEnding(codeUnitsIn: lineEndingRange, of: string)
             else { return }
             
             lineEndingRanges.append(.init(value: lineEnding, range: lineEndingRange))
@@ -103,8 +102,7 @@ public extension String {
         
         guard
             range.length > 0,
-            let lastCharacter = nsString.substring(with: range).first,  // line ending must be a single character
-            let lineEnding = LineEnding(rawValue: lastCharacter)
+            let lineEnding = LineEnding(codeUnitsIn: range, of: nsString)
         else { return nil }
         
         return ValueRange(value: lineEnding, range: range)
@@ -129,4 +127,32 @@ public extension StringProtocol {
 private extension LineEnding {
     
     static let allRegexPattern = "\r\n|[\r\n\u{0085}\u{2028}\u{2029}]"
+    
+    
+    /// Creates a line ending from UTF-16 code units in the given range.
+    ///
+    /// - Parameters:
+    ///   - range: The range of line ending code units.
+    ///   - string: The string that contains the line ending.
+    init?(codeUnitsIn range: NSRange, of string: NSString) {
+        
+        assert(range.upperBound <= string.length)
+        
+        guard range.length > 0 else { return nil }
+        
+        switch string.character(at: range.location) {
+            case 0x000A:
+                self = .lf
+            case 0x000D:
+                self = (range.length > 1 && string.character(at: range.location + 1) == 0x000A) ? .crlf : .cr
+            case 0x0085:
+                self = .nel
+            case 0x2028:
+                self = .lineSeparator
+            case 0x2029:
+                self = .paragraphSeparator
+            default:
+                return nil
+        }
+    }
 }

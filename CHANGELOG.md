@@ -10,7 +10,7 @@
 - Support spaces between menu path components in Quick Actions search.
 - Update the Unicode block name list for the character inspector from Unicode 16.0.0 to Unicode 17.0.0.
 - Limit tree-sitter-based syntax highlighting to 100,000,000 characters to avoid unexpected crashes.
-- Improve overall stability.
+- Improve overall stability and performance.
 
 
 ### Fixes
