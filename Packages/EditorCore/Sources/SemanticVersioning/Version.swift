@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -68,16 +68,22 @@ public struct Version: Sendable {
     public init?(_ string: String) {
         
         guard
-            let match = string.wholeMatch(of: /(?<major>[0-9]+)\.(?<minor>[0-9]+)\.(?<patch>[0-9]+)(-(?<prerelease>[a-z.0-9]+))?/),
+            let match = string.wholeMatch(of: /(?<major>0|[1-9][0-9]*)\.(?<minor>0|[1-9][0-9]*)\.(?<patch>0|[1-9][0-9]*)(-(?<prerelease>.+))?/),
             let major = Int(match.major),
             let minor = Int(match.minor),
             let patch = Int(match.patch)
         else { return nil }
         
+        let prerelease = match.prerelease.map(String.init)
+        
+        if let prerelease, prerelease.prereleaseIdentifiers == nil {
+            return nil
+        }
+        
         self.major = major
         self.minor = minor
         self.patch = patch
-        self.prereleaseIdentifier = match.prerelease.map(String.init)
+        self.prereleaseIdentifier = prerelease
     }
 }
 
@@ -87,7 +93,14 @@ extension Version.Prerelease {
     init(rawValue: String) {
         
         if let match = rawValue.wholeMatch(of: /(?<token>[a-z]+)(\.(?<number>[0-9]+))?/) {
-            let number = match.number.map(String.init).flatMap(Int.init)
+            let rawNumber = match.number.map(String.init)
+            
+            if let rawNumber, rawNumber.count > 1, rawNumber.first == "0" {
+                self = .other(rawValue)
+                return
+            }
+            
+            let number = rawNumber.flatMap(Int.init)
             
             self = switch match.token {
                 case "alpha": .alpha(number)
@@ -134,7 +147,8 @@ extension Version: Comparable {
                 case (.none, .none): false
                 case (.some, .none): true
                 case (.none, .some): false
-                case (.some(let lPrerelease), .some(let rPrerelease)): lPrerelease < rPrerelease
+                case (.some(let lPrerelease), .some(let rPrerelease)):
+                    Self.comparePrerelease(lPrerelease, rPrerelease)
             }
         }
     }
@@ -145,6 +159,99 @@ extension Version.Prerelease: Comparable {
     
     public static func < (lhs: Self, rhs: Self) -> Bool {
         
-        lhs.rawValue < rhs.rawValue
+        Version.comparePrerelease(lhs.rawValue, rhs.rawValue)
+    }
+}
+
+
+private extension Version {
+    
+    /// Compares two prerelease identifiers.
+    ///
+    /// - Parameters:
+    ///   - lhs: The left prerelease identifier.
+    ///   - rhs: The right prerelease identifier.
+    /// - Returns: Whether `lhs` has lower precedence than `rhs`.
+    static func comparePrerelease(_ lhs: String, _ rhs: String) -> Bool {
+        
+        guard
+            let lhsIdentifiers = lhs.prereleaseIdentifiers,
+            let rhsIdentifiers = rhs.prereleaseIdentifiers
+        else { return lhs < rhs }
+        
+        for (lhsIdentifier, rhsIdentifier) in zip(lhsIdentifiers, rhsIdentifiers) where lhsIdentifier != rhsIdentifier {
+            return lhsIdentifier.precedesPrereleaseIdentifier(rhsIdentifier)
+        }
+        
+        return lhsIdentifiers.count < rhsIdentifiers.count
+    }
+}
+
+
+private extension String {
+    
+    /// The SemVer prerelease identifiers.
+    var prereleaseIdentifiers: [Substring]? {
+        
+        let identifiers = self.split(separator: ".", omittingEmptySubsequences: false)
+        
+        guard
+            !identifiers.isEmpty,
+            identifiers.allSatisfy(\.isPrereleaseIdentifier)
+        else { return nil }
+        
+        return identifiers
+    }
+}
+
+
+private extension Substring {
+    
+    /// Whether the string is a SemVer prerelease identifier.
+    var isPrereleaseIdentifier: Bool {
+        
+        guard !self.isEmpty else { return false }
+        
+        var isNumeric = true
+        for scalar in self.unicodeScalars {
+            switch scalar {
+                case "0"..."9":
+                    break
+                case "-", "A"..."Z", "a"..."z":
+                    isNumeric = false
+                default:
+                    return false
+            }
+        }
+        
+        return !(isNumeric && self.count > 1 && self.first == "0")
+    }
+    
+    
+    /// The numeric value of the SemVer prerelease identifier.
+    var numericPrereleaseIdentifier: Int? {
+        
+        guard self.unicodeScalars.allSatisfy({ "0"..."9" ~= $0 }) else { return nil }
+        
+        return Int(self)
+    }
+    
+    
+    /// Returns whether the receiver has lower precedence than another prerelease identifier.
+    ///
+    /// - Parameter other: The other prerelease identifier.
+    /// - Returns: Whether the receiver has lower precedence than `other`.
+    func precedesPrereleaseIdentifier(_ other: Self) -> Bool {
+        
+        switch (self.numericPrereleaseIdentifier, other.numericPrereleaseIdentifier) {
+            case (.some(let lhs), .some(let rhs)):
+                lhs < rhs
+            case (.some, .none):
+                true
+            case (.none, .some):
+                false
+            case (.none, .none):
+                self.unicodeScalars.lexicographicallyPrecedes(other.unicodeScalars)
+        }
     }
 }

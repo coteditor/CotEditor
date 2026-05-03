@@ -37,6 +37,8 @@ struct VersionTests {
         #expect(Version("5.0.1-beta") == Version(5, 0, 1, prereleaseIdentifier: "beta"))
         #expect(Version("5.0.1-beta.1") == Version(5, 0, 1, prereleaseIdentifier: "beta.1"))
         #expect(Version("5.0.1-abc") == Version(5, 0, 1, prereleaseIdentifier: "abc"))
+        #expect(Version("5.0.1-alpha-beta") == Version(5, 0, 1, prereleaseIdentifier: "alpha-beta"))
+        #expect(Version("5.0.1-ABC") == Version(5, 0, 1, prereleaseIdentifier: "ABC"))
         #expect(Version("5.0.1-beta") == Version(5, 0, 1, prerelease: .beta))
         #expect(Version("5.0.1-beta.1") != Version(5, 0, 1, prerelease: .beta))
         #expect(Version("5.0.1-alpha") == Version(5, 0, 1, prerelease: .alpha))
@@ -59,11 +61,13 @@ struct VersionTests {
         #expect(Version(5, 0, 1, prereleaseIdentifier: "beta") < Version(5, 0, 1, prereleaseIdentifier: "beta.1"))
         #expect(Version(5, 0, 1, prereleaseIdentifier: "beta.1") < Version(5, 0, 1, prereleaseIdentifier: "beta.2"))
         #expect(Version(5, 0, 1, prereleaseIdentifier: "beta.1") < Version(5, 0, 1, prereleaseIdentifier: "rc"))
-        #expect(Version(5, 0, 1, prereleaseIdentifier: "beta.10") < Version(5, 0, 1, prereleaseIdentifier: "beta.2"))
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "beta.2") < Version(5, 0, 1, prereleaseIdentifier: "beta.10"))
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "alpha.1") < Version(5, 0, 1, prereleaseIdentifier: "alpha.beta"))
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "0") < Version(5, 0, 1, prereleaseIdentifier: "-0"))
         
         #expect(Version(5, 0, 1, prerelease: .beta) < Version(5, 0, 1))
         #expect(Version(5, 0, 1, prerelease: .alpha) < Version(5, 0, 1, prerelease: .beta))
-        #expect(Version(5, 0, 1, prerelease: .alpha) < Version(5, 0, 1, prerelease: .beta))
+        #expect(Version(5, 0, 1, prerelease: .beta(2)) < Version(5, 0, 1, prerelease: .beta(10)))
     }
     
     
@@ -89,6 +93,7 @@ struct VersionTests {
         
         #expect(Version.Prerelease(rawValue: "alpha.2") == .alpha(2))
         #expect(Version.Prerelease(rawValue: "beta.0") == .beta(0))
+        #expect(Version.Prerelease(rawValue: "beta.01") == .other("beta.01"))
         #expect(Version.Prerelease(rawValue: "rc.3") == .rc(3))
         #expect(Version.Prerelease(rawValue: "alpha.beta") == .other("alpha.beta"))
     }
@@ -136,7 +141,16 @@ struct VersionTests {
         #expect(Version("5.0.1") != nil)
         #expect(Version("") == nil)
         #expect(Version("5.0") == nil)
-        #expect(Version("5.0.1-ABC") == nil)
+        #expect(Version("05.0.1") == nil)
+        #expect(Version("5.00.1") == nil)
+        #expect(Version("5.0.01") == nil)
+        #expect(Version("5.0.1-") == nil)
+        #expect(Version("5.0.1-.") == nil)
+        #expect(Version("5.0.1-.beta") == nil)
+        #expect(Version("5.0.1-beta.") == nil)
+        #expect(Version("5.0.1-beta..1") == nil)
+        #expect(Version("5.0.1-01") == nil)
+        #expect(Version("5.0.1-beta.01") == nil)
         #expect(Version("5.0.1+build") == nil)
     }
     
