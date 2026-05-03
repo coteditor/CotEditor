@@ -83,6 +83,12 @@ struct CommandBarView: View {
                                 .focused($focus, equals: candidate.id)
                                 .accessibilityFocused($accessibilityFocus, equals: candidate.id)
                                 .id(candidate.id)
+                                .accessibilityElement(children: .combine)
+                                .accessibilityAddTraits(.isButton)
+                                .accessibilityAction {
+                                    self.selection = candidate.id
+                                    self.perform()
+                                }
                                 .onMouseDown {
                                     self.selection = candidate.id
                                 } onMouseUp: { translation in
