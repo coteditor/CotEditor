@@ -53,7 +53,6 @@ extension TreeSitterClient.Content {
     enum EditError: Error {
         
         case invalidRange
-        case pointCalculationFailed
     }
     
     
@@ -100,18 +99,12 @@ extension TreeSitterClient.Content {
         self.string = preEditString.replacingCharacters(in: preEditRange, with: insertedText)
         self.updateLineStartIndexes(preEditRange: preEditRange, editedRange: editedRange, delta: delta, insertedText: insertedText, editsCRLFBoundary: editsCRLFBoundary)
         
-        guard
-            let startPoint = Self.point(at: preEditRange.lowerBound, in: preEditLineStarts),
-            let oldEndPoint = Self.point(at: preEditRange.upperBound, in: preEditLineStarts),
-            let newEndPoint = Self.point(at: editedRange.upperBound, in: self.lineStarts)
-        else { throw .pointCalculationFailed }
-        
         return InputEdit(startByte: preEditRange.lowerBound * 2,
                          oldEndByte: preEditRange.upperBound * 2,
                          newEndByte: editedRange.upperBound * 2,
-                         startPoint: startPoint,
-                         oldEndPoint: oldEndPoint,
-                         newEndPoint: newEndPoint)
+                         startPoint: Self.point(at: preEditRange.lowerBound, in: preEditLineStarts),
+                         oldEndPoint: Self.point(at: preEditRange.upperBound, in: preEditLineStarts),
+                         newEndPoint: Self.point(at: editedRange.upperBound, in: self.lineStarts))
     }
     
     
@@ -120,22 +113,19 @@ extension TreeSitterClient.Content {
     /// Returns the tree-sitter point (row/column) at the given UTF-16 location.
     ///
     /// - Parameters:
-    ///   - location: The UTF-16 offset in the string.
-    ///   - lineStarts: The cached line start locations.
-    /// - Returns: The corresponding point, or `nil` if the location is out of bounds.
-    private static func point(at location: Int, in lineStarts: [Int]) -> Point? {
+    ///   - location: A non-negative UTF-16 offset in the string.
+    ///   - lineStarts: The cached line start locations. Must be non-empty and start with `0`.
+    /// - Returns: The corresponding point.
+    private static func point(at location: Int, in lineStarts: [Int]) -> Point {
         
-        guard location >= 0 else { return nil }
+        assert(location >= 0)
+        assert(lineStarts.first == 0)
         
         let upperIndex = lineStarts.partitioningIndex { $0 > location }
-        
-        guard upperIndex > lineStarts.startIndex else { return nil }
-        
         let row = lineStarts.index(before: upperIndex)
         let lineStart = lineStarts[row]
-        let column = location - lineStart
         
-        return Point(row: row, column: column)
+        return Point(row: row, column: location - lineStart)
     }
     
     
@@ -158,15 +148,14 @@ extension TreeSitterClient.Content {
             return
         }
         
-        let removalStartIndex = self.lineStarts.partitioningIndex { $0 > preEditRange.location }
+        let removalStartIndex = self.lineStarts.partitioningIndex { $0 > preEditRange.lowerBound }
         let shiftStartIndex = self.lineStarts.partitioningIndex { $0 > preEditRange.upperBound }
-        var insertedLineStarts = insertedText.lineStartIndexes()
-        insertedLineStarts.removeFirst()
+        let insertedLineStarts = insertedText.lineStartIndexes().dropFirst()
         
         var lineStarts = Array(self.lineStarts[..<removalStartIndex])
         lineStarts.reserveCapacity(self.lineStarts.count - (shiftStartIndex - removalStartIndex) + insertedLineStarts.count)
-        lineStarts.append(contentsOf: insertedLineStarts.map { $0 + editedRange.location })
-        lineStarts.append(contentsOf: self.lineStarts[shiftStartIndex...].map { $0 + delta })
+        lineStarts.append(contentsOf: insertedLineStarts.lazy.map { $0 + editedRange.location })
+        lineStarts.append(contentsOf: self.lineStarts[shiftStartIndex...].lazy.map { $0 + delta })
         
         self.lineStarts = lineStarts
     }
@@ -191,10 +180,6 @@ private extension NSString {
             var lineEnd = 0
             var contentsEnd = 0
             unsafe self.getLineStart(nil, end: &lineEnd, contentsEnd: &contentsEnd, for: NSRange(location: location, length: 0))
-            
-            guard
-                lineEnd > location
-            else { break }
             
             if contentsEnd < lineEnd {
                 lineStarts.append(lineEnd)
