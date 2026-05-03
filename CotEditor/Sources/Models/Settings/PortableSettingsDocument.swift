@@ -224,13 +224,6 @@ struct PortableSettingsDocument: FileDocument {
     /// Applies settings to the current user environment.
     func applySettings(types: SettingTypes = .all) throws {
         
-        if types.contains(.settings), !self.defaults.isEmpty {
-            UserDefaults.standard.setValuesForKeys(self.defaults.mapValues(\.any))
-        }
-        if types.contains(.settings), let keyBindings {
-            try KeyBindingManager.shared.importSetting(data: keyBindings)
-        }
-        
         if types.contains(.replacements) {
             for (name, payload) in self.replacements {
                 try ReplacementManager.shared.importSetting(.payload(payload), name: name.deletingPathExtension, overwrite: true)
@@ -247,6 +240,13 @@ struct PortableSettingsDocument: FileDocument {
             for (name, payload) in self.themes {
                 try ThemeManager.shared.importSetting(.payload(payload), name: name.deletingPathExtension, overwrite: true)
             }
+        }
+        
+        if types.contains(.settings), !self.defaults.isEmpty {
+            UserDefaults.standard.setValuesForKeys(self.defaults.mapValues(\.any))
+        }
+        if types.contains(.settings), let keyBindings {
+            try KeyBindingManager.shared.importSetting(data: keyBindings)
         }
     }
 }
