@@ -28,7 +28,7 @@ extension Unicode.UTF32.CodeUnit {
     
     /// Unicode block name.
     ///
-    /// Based on Unicode 16.0.0 (2024-02-02)
+    /// Based on Unicode 17.0.0 (2025-08-01)
     /// cf. <https://www.unicode.org/Public/UNIDATA/Blocks.txt>
     var blockName: String? {
         
@@ -228,6 +228,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x108E0...0x108FF: "Hatran"
             case 0x10900...0x1091F: "Phoenician"
             case 0x10920...0x1093F: "Lydian"
+            case 0x10940...0x1095F: "Sidetic"
             case 0x10980...0x1099F: "Meroitic Hieroglyphs"
             case 0x109A0...0x109FF: "Meroitic Cursive"
             case 0x10A00...0x10A5F: "Kharoshthi"
@@ -279,11 +280,13 @@ extension Unicode.UTF32.CodeUnit {
             case 0x11AB0...0x11ABF: "Unified Canadian Aboriginal Syllabics Extended-A"
             case 0x11AC0...0x11AFF: "Pau Cin Hau"
             case 0x11B00...0x11B5F: "Devanagari Extended-A"
+            case 0x11B60...0x11B7F: "Sharada Supplement"
             case 0x11BC0...0x11BFF: "Sunuwar"
             case 0x11C00...0x11C6F: "Bhaiksuki"
             case 0x11C70...0x11CBF: "Marchen"
             case 0x11D00...0x11D5F: "Masaram Gondi"
             case 0x11D60...0x11DAF: "Gunjala Gondi"
+            case 0x11DB0...0x11DEF: "Tolong Siki"
             case 0x11EE0...0x11EFF: "Makasar"
             case 0x11F00...0x11F5F: "Kawi"
             case 0x11FB0...0x11FBF: "Lisu Supplement"
@@ -304,12 +307,14 @@ extension Unicode.UTF32.CodeUnit {
             case 0x16B00...0x16B8F: "Pahawh Hmong"
             case 0x16D40...0x16D7F: "Kirat Rai"
             case 0x16E40...0x16E9F: "Medefaidrin"
+            case 0x16EA0...0x16EDF: "Beria Erfe"
             case 0x16F00...0x16F9F: "Miao"
             case 0x16FE0...0x16FFF: "Ideographic Symbols and Punctuation"
             case 0x17000...0x187FF: "Tangut"
             case 0x18800...0x18AFF: "Tangut Components"
             case 0x18B00...0x18CFF: "Khitan Small Script"
             case 0x18D00...0x18D7F: "Tangut Supplement"
+            case 0x18D80...0x18DFF: "Tangut Components Supplement"
             case 0x1AFF0...0x1AFFF: "Kana Extended-B"
             case 0x1B000...0x1B0FF: "Kana Supplement"
             case 0x1B100...0x1B12F: "Kana Extended-A"
@@ -318,6 +323,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x1BC00...0x1BC9F: "Duployan"
             case 0x1BCA0...0x1BCAF: "Shorthand Format Controls"
             case 0x1CC00...0x1CEBF: "Symbols for Legacy Computing Supplement"
+            case 0x1CEC0...0x1CEFF: "Miscellaneous Symbols Supplement"
             case 0x1CF00...0x1CFCF: "Znamenny Musical Notation"
             case 0x1D000...0x1D0FF: "Byzantine Musical Symbols"
             case 0x1D100...0x1D1FF: "Musical Symbols"
@@ -336,6 +342,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x1E2C0...0x1E2FF: "Wancho"
             case 0x1E4D0...0x1E4FF: "Nag Mundari"
             case 0x1E5D0...0x1E5FF: "Ol Onal"
+            case 0x1E6C0...0x1E6FF: "Tai Yo"
             case 0x1E7E0...0x1E7FF: "Ethiopic Extended-B"
             case 0x1E800...0x1E8DF: "Mende Kikakui"
             case 0x1E900...0x1E95F: "Adlam"
@@ -367,6 +374,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x2F800...0x2FA1F: "CJK Compatibility Ideographs Supplement"
             case 0x30000...0x3134F: "CJK Unified Ideographs Extension G"
             case 0x31350...0x323AF: "CJK Unified Ideographs Extension H"
+            case 0x323B0...0x3347F: "CJK Unified Ideographs Extension J"
             case 0xE0000...0xE007F: "Tags"
             case 0xE0100...0xE01EF: "Variation Selectors Supplement"
             case 0xF0000...0xFFFFF: "Supplementary Private Use Area-A"

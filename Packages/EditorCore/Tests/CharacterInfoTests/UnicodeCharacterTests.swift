@@ -65,6 +65,26 @@ struct UnicodeCharacterTests {
     }
     
     
+    @Test func unicode17BlockNames() {
+        
+        let codeUnits: [(Unicode.UTF32.CodeUnit, String)] = [
+            (0x10940, "Sidetic"),
+            (0x11B60, "Sharada Supplement"),
+            (0x11DB0, "Tolong Siki"),
+            (0x16EA0, "Beria Erfe"),
+            (0x18D80, "Tangut Components Supplement"),
+            (0x1CEC0, "Miscellaneous Symbols Supplement"),
+            (0x1E6C0, "Tai Yo"),
+            (0x323B0, "CJK Unified Ideographs Extension J"),
+        ]
+        
+        for (codeUnit, blockName) in codeUnits {
+            #expect(codeUnit.blockName == blockName)
+            #expect(localizeBlockName(blockName) != nil)
+        }
+    }
+    
+    
     @Test func unicodeControlPictures() throws {
         
         // test NULL
@@ -293,6 +313,7 @@ struct UnicodeCharacterTests {
             0x108E0,
             0x10900,
             0x10920,
+            0x10940,
             0x10980,
             0x109A0,
             0x10A00,
@@ -344,11 +365,13 @@ struct UnicodeCharacterTests {
             0x11AB0,
             0x11AC0,
             0x11B00,
+            0x11B60,
             0x11BC0,
             0x11C00,
             0x11C70,
             0x11D00,
             0x11D60,
+            0x11DB0,
             0x11EE0,
             0x11F00,
             0x11FB0,
@@ -369,12 +392,14 @@ struct UnicodeCharacterTests {
             0x16B00,
             0x16D40,
             0x16E40,
+            0x16EA0,
             0x16F00,
             0x16FE0,
             0x17000,
             0x18800,
             0x18B00,
             0x18D00,
+            0x18D80,
             0x1AFF0,
             0x1B000,
             0x1B100,
@@ -383,6 +408,7 @@ struct UnicodeCharacterTests {
             0x1BC00,
             0x1BCA0,
             0x1CC00,
+            0x1CEC0,
             0x1CF00,
             0x1D000,
             0x1D100,
@@ -401,6 +427,7 @@ struct UnicodeCharacterTests {
             0x1E2C0,
             0x1E4D0,
             0x1E5D0,
+            0x1E6C0,
             0x1E7E0,
             0x1E800,
             0x1E900,
@@ -432,6 +459,7 @@ struct UnicodeCharacterTests {
             0x2F800,
             0x30000,
             0x31350,
+            0x323B0,
             0xE0000,
             0xE0100,
             0xF0000,

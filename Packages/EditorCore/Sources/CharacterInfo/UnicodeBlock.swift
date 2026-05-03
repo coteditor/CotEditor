@@ -59,6 +59,7 @@ func localizeBlockName(_ block: String) -> String? {
         case "Bassa Vah": String(localized: "Bassa Vah", table: "UnicodeBlock", bundle: .module)
         case "Batak": String(localized: "Batak", table: "UnicodeBlock", bundle: .module)
         case "Bengali": String(localized: "Bengali", table: "UnicodeBlock", bundle: .module)
+        case "Beria Erfe": String(localized: "Beria Erfe", table: "UnicodeBlock", bundle: .module)
         case "Bhaiksuki": String(localized: "Bhaiksuki", table: "UnicodeBlock", bundle: .module)
         case "Block Elements": String(localized: "Block Elements", table: "UnicodeBlock", bundle: .module)
         case "Bopomofo Extended": String(localized: "Bopomofo Extended", table: "UnicodeBlock", bundle: .module)
@@ -93,6 +94,7 @@ func localizeBlockName(_ block: String) -> String? {
         case "CJK Unified Ideographs Extension G": String(localized: "CJK Unified Ideographs Ext. G", table: "UnicodeBlock", bundle: .module)  // Extension -> Ext.
         case "CJK Unified Ideographs Extension H": String(localized: "CJK Unified Ideographs Ext. H", table: "UnicodeBlock", bundle: .module)  // Extension -> Ext.
         case "CJK Unified Ideographs Extension I": String(localized: "CJK Unified Ideographs Ext. I", table: "UnicodeBlock", bundle: .module)  // Extension -> Ext.
+        case "CJK Unified Ideographs Extension J": String(localized: "CJK Unified Ideographs Ext. J", table: "UnicodeBlock", bundle: .module)  // Extension -> Ext.
         case "CJK Unified Ideographs": String(localized: "CJK Unified Ideographs", table: "UnicodeBlock", bundle: .module)
         case "Combining Diacritical Marks Extended": String(localized: "Combining Diacritical Marks Extended", table: "UnicodeBlock", bundle: .module)
         case "Combining Diacritical Marks for Symbols": String(localized: "Combining Diacritical Marks for Symbols", table: "UnicodeBlock", bundle: .module)
@@ -240,6 +242,7 @@ func localizeBlockName(_ block: String) -> String? {
         case "Miscellaneous Mathematical Symbols-B": String(localized: "Miscellaneous Math Symbols-B", table: "UnicodeBlock", bundle: .module)  // Math -> Mathematical
         case "Miscellaneous Symbols and Arrows": String(localized: "Miscellaneous Symbols and Arrows", table: "UnicodeBlock", bundle: .module)
         case "Miscellaneous Symbols and Pictographs": String(localized: "Miscellaneous Symbols And Pictographs", table: "UnicodeBlock", bundle: .module)  // And -> and
+        case "Miscellaneous Symbols Supplement": String(localized: "Miscellaneous Symbols Supplement", table: "UnicodeBlock", bundle: .module)
         case "Miscellaneous Symbols": String(localized: "Miscellaneous Symbols", table: "UnicodeBlock", bundle: .module)
         case "Miscellaneous Technical": String(localized: "Miscellaneous Technical", table: "UnicodeBlock", bundle: .module)
         case "Modi": String(localized: "Modi", table: "UnicodeBlock", bundle: .module)
@@ -296,9 +299,11 @@ func localizeBlockName(_ block: String) -> String? {
         case "Runic": String(localized: "Runic", table: "UnicodeBlock", bundle: .module)
         case "Samaritan": String(localized: "Samaritan", table: "UnicodeBlock", bundle: .module)
         case "Saurashtra": String(localized: "Saurashtra", table: "UnicodeBlock", bundle: .module)
+        case "Sharada Supplement": String(localized: "Sharada Supplement", table: "UnicodeBlock", bundle: .module)
         case "Sharada": String(localized: "Sharada", table: "UnicodeBlock", bundle: .module)
         case "Shavian": String(localized: "Shavian", table: "UnicodeBlock", bundle: .module)
         case "Shorthand Format Controls": String(localized: "Shorthand Format Controls", table: "UnicodeBlock", bundle: .module)
+        case "Sidetic": String(localized: "Sidetic", table: "UnicodeBlock", bundle: .module)
         case "Siddham": String(localized: "Siddham", table: "UnicodeBlock", bundle: .module)
         case "Sinhala Archaic Numbers": String(localized: "Sinhala Archaic Numbers", table: "UnicodeBlock", bundle: .module)
         case "Sinhala": String(localized: "Sinhala", table: "UnicodeBlock", bundle: .module)
@@ -335,11 +340,13 @@ func localizeBlockName(_ block: String) -> String? {
         case "Tai Tham": String(localized: "Tai Tham", table: "UnicodeBlock", bundle: .module)
         case "Tai Viet": String(localized: "Tai Viet", table: "UnicodeBlock", bundle: .module)
         case "Tai Xuan Jing Symbols": String(localized: "Tai Xuan Jing Symbols", table: "UnicodeBlock", bundle: .module)
+        case "Tai Yo": String(localized: "Tai Yo", table: "UnicodeBlock", bundle: .module)
         case "Takri": String(localized: "Takri", table: "UnicodeBlock", bundle: .module)
         case "Tamil Supplement": String(localized: "Tamil Supplement", table: "UnicodeBlock", bundle: .module)
         case "Tamil": String(localized: "Tamil", table: "UnicodeBlock", bundle: .module)
         case "Tangsa": String(localized: "Tangsa", table: "UnicodeBlock", bundle: .module)
         case "Tangut Components": String(localized: "Tangut Components", table: "UnicodeBlock", bundle: .module)
+        case "Tangut Components Supplement": String(localized: "Tangut Components Supplement", table: "UnicodeBlock", bundle: .module)
         case "Tangut Supplement": String(localized: "Tangut Supplement", table: "UnicodeBlock", bundle: .module)
         case "Tangut": String(localized: "Tangut", table: "UnicodeBlock", bundle: .module)
         case "Telugu": String(localized: "Telugu", table: "UnicodeBlock", bundle: .module)
@@ -349,6 +356,7 @@ func localizeBlockName(_ block: String) -> String? {
         case "Tifinagh": String(localized: "Tifinagh", table: "UnicodeBlock", bundle: .module)
         case "Tirhuta": String(localized: "Tirhuta", table: "UnicodeBlock", bundle: .module)
         case "Todhri": String(localized: "Todhri", table: "UnicodeBlock", bundle: .module)
+        case "Tolong Siki": String(localized: "Tolong Siki", table: "UnicodeBlock", bundle: .module)
         case "Toto": String(localized: "Toto", table: "UnicodeBlock", bundle: .module)
         case "Transport and Map Symbols": String(localized: "Transport And Map Symbols", table: "UnicodeBlock", bundle: .module)  // And -> and
         case "Tulu-Tigalari": String(localized: "Tulu-Tigalari", table: "UnicodeBlock", bundle: .module)

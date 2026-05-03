@@ -1432,7 +1432,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "아랍 수학 알파벳 숫자 기호"
+            "value" : "아라비아 수학 알파벳 숫자 기호"
           }
         },
         "nl" : {
@@ -2859,6 +2859,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "孟加拉文"
+          }
+        }
+      }
+    },
+    "Beria Erfe" : {
+      "localizations" : {
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beria Erfe"
           }
         }
       }
@@ -4494,7 +4504,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cherokee Supplement"
+            "value" : "Supplemento Cherokee"
           }
         },
         "ja" : {
@@ -6573,6 +6583,112 @@
         }
       }
     },
+    "CJK Unified Ideographs Ext. J" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицирани идеограми CJK, разширение J"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sjednocené ideogramy CJK – rozšíření J"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK Ideografen (Unified Ext. J)"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK Unified Ideographs Ext. J"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ideogramas unificados CJK ext. J"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Idéogr. unifiés CJK d’ext. J"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ideogrammi unificati CJK est. J"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK統合漢字拡張J"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "한중일 통합 한자 확장 J"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK-ideogr. Alg. Uitgebr. J"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ujedn. ideogramy CJK (rozsz. J)"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ideogramas Unificados CJK Amp. J"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Унифицированные иероглифы, расширение J"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK Birleştirilmiş İdeogramları Ek J"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韩统一表意文字扩展J区"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓統一表意文字延伸J"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中日韓統一表意文字延伸J"
+          }
+        }
+      }
+    },
     "Combining Diacritical Marks" : {
       "localizations" : {
         "bg" : {
@@ -7462,7 +7578,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Coptic Epact Numbers"
+            "value" : "Numeri epatta copti"
           }
         },
         "ja" : {
@@ -9794,7 +9910,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Early Dynastic Cuneiform"
+            "value" : "Cuneiforme protodinastico"
           }
         },
         "ja" : {
@@ -22065,6 +22181,16 @@
         }
       }
     },
+    "Miscellaneous Symbols Supplement" : {
+      "localizations" : {
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Miscellaneous Symbols Supplement"
+          }
+        }
+      }
+    },
     "Miscellaneous Technical" : {
       "localizations" : {
         "bg" : {
@@ -27911,6 +28037,16 @@
         }
       }
     },
+    "Sharada Supplement" : {
+      "localizations" : {
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sharada Supplement"
+          }
+        }
+      }
+    },
     "Shavian" : {
       "localizations" : {
         "bg" : {
@@ -28229,6 +28365,16 @@
         }
       }
     },
+    "Sidetic" : {
+      "localizations" : {
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sidetic"
+          }
+        }
+      }
+    },
     "Sinhala" : {
       "localizations" : {
         "bg" : {
@@ -28376,7 +28522,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sinhala Archaic Numbers"
+            "value" : "Numeri arcaici sinhala"
           }
         },
         "ja" : {
@@ -31202,7 +31348,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "塔加拉文"
+            "value" : "他加祿文"
           }
         },
         "zh-HK" : {
@@ -31849,6 +31995,16 @@
         }
       }
     },
+    "Tai Yo" : {
+      "localizations" : {
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tai Yo"
+          }
+        }
+      }
+    },
     "Takri" : {
       "localizations" : {
         "bg" : {
@@ -32481,6 +32637,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "西夏文補充"
+          }
+        }
+      }
+    },
+    "Tangut Components Supplement" : {
+      "localizations" : {
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tangut Components Supplement"
           }
         }
       }
@@ -33329,6 +33495,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "托德里字母"
+          }
+        }
+      }
+    },
+    "Tolong Siki" : {
+      "localizations" : {
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tolong Siki"
           }
         }
       }
