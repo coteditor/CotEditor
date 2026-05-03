@@ -41,7 +41,7 @@ public extension Unicode.UTF32.CodeUnit {
                 return "<lead surrogate-\(codeUnit.codePoint)>"
             }
             if UTF16.isTrailSurrogate(codeUnit) {
-                return "<tail surrogate-\(codeUnit.codePoint)>"
+                return "<trail surrogate-\(codeUnit.codePoint)>"
             }
         }
         
