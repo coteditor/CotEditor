@@ -40,6 +40,13 @@ public protocol LineRangeCalculating {
 
 public extension LineRangeCalculating {
     
+    /// The number of lines excluding the last blank line.
+    var numberOfLines: Int {
+        
+        self.length > 0 ? self.lineNumber(at: self.length - 1) : 0
+    }
+    
+    
     /// Returns the 1-based line number at the given character index.
     ///
     /// - Note: If the LF-side index of a CRLF pair is passed, it is treated as part of the previous line.

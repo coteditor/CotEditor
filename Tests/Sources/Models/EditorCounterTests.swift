@@ -25,6 +25,7 @@
 
 import Foundation
 import Testing
+import LineEnding
 @testable import CotEditor
 
 @MainActor final class EditorCounterTests {
@@ -162,6 +163,58 @@ import Testing
         #expect(counter.result.location == 1)
         #expect(counter.result.column == 1)
         #expect(counter.result.line == 1)
+    }
+    
+    
+    @Test func entireLineCountUsesLineRangeCalculator() async throws {
+        
+        let string = "a\nb\n"
+        let lineCounter = LineCounter(string: string)
+        let source = Source(string: string, selectedRange: NSRange(location: string.utf16.count, length: 0))
+        
+        let counter = EditorCounter()
+        defer { counter.cancel() }
+        counter.source = { source }
+        counter.lineRangeCalculator = lineCounter
+        
+        await withCheckedContinuation { continuation in
+            withObservationTracking {
+                _ = counter.result.lines.entire
+            } onChange: {
+                continuation.resume()
+            }
+            
+            counter.statusBarRequirements = [.lines]
+        }
+        
+        #expect(counter.result.lines.entire == 2)
+        #expect(!lineCounter.lineEndings.isEmpty)
+    }
+    
+    
+    @Test func currentLineUsesLineRangeCalculator() async throws {
+        
+        let string = "a\n🐕b\nc"
+        let lineCounter = LineCounter(string: string)
+        let source = Source(string: string, selectedRange: (string as NSString).range(of: "b"))
+        
+        let counter = EditorCounter()
+        defer { counter.cancel() }
+        counter.source = { source }
+        counter.lineRangeCalculator = lineCounter
+        
+        await withCheckedContinuation { continuation in
+            withObservationTracking {
+                _ = counter.result.line
+            } onChange: {
+                continuation.resume()
+            }
+            
+            counter.statusBarRequirements = [.line]
+        }
+        
+        #expect(counter.result.line == 2)
+        #expect(!lineCounter.lineEndings.isEmpty)
     }
     
     

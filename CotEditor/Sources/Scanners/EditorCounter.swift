@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import LineEnding
 import StringUtils
 
 struct EditorCount: Equatable {
@@ -94,6 +95,7 @@ struct EditorCount: Equatable {
     let result: Result = .init()
     
     var source: () -> (any Source)? = { nil }
+    var lineRangeCalculator: (any LineRangeCalculating)?
     
     var updatesAll = false  { didSet { self.updateTypes() } }
     var statusBarRequirements: Types = []  { didSet { self.updateTypes() } }
@@ -140,7 +142,11 @@ struct EditorCount: Equatable {
             
             if self.types.contains(.lines) {
                 try Task.checkCancellation()
-                self.result.lines.entire = await Task.detached { string.numberOfLines }.value
+                self.result.lines.entire = if let lineRangeCalculator {
+                    lineRangeCalculator.numberOfLines
+                } else {
+                    await Task.detached { string.numberOfLines }.value
+                }
             }
             
             if self.types.contains(.words) {
@@ -164,9 +170,8 @@ struct EditorCount: Equatable {
             guard let source = self.source() else { return }
             
             let string = source.string.immutable
-            let selectedRanges = source.selectedRanges
-                .map(\.rangeValue)
-                .compactMap { Range($0, in: string) }
+            let selectedNSRanges = source.selectedRanges.map(\.rangeValue)
+            let selectedRanges = selectedNSRanges.compactMap { Range($0, in: string) }
             let selectedStrings = selectedRanges.map { string[$0] }
             let location = selectedRanges.first?.lowerBound ?? string.startIndex
             
@@ -198,7 +203,11 @@ struct EditorCount: Equatable {
             
             if self.types.contains(.line) {
                 try Task.checkCancellation()
-                self.result.line = await Task.detached { string.lineNumber(at: location) }.value
+                self.result.line = if let lineRangeCalculator, let nsLocation = selectedNSRanges.first?.location {
+                    lineRangeCalculator.lineNumber(at: nsLocation)
+                } else {
+                    await Task.detached { string.lineNumber(at: location) }.value
+                }
             }
             
             if self.types.contains(.column) {

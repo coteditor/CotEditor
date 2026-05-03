@@ -138,6 +138,7 @@ extension NSTextView: EditorCounter.Source { }
         super.init()
         
         self.counter.source = { [weak self] in self?.textView }
+        self.counter.lineRangeCalculator = self.lineEndingScanner
         
         self.defaultObservers = [
             UserDefaults.standard.publisher(for: .autoLinkDetection, initial: true)
