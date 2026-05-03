@@ -36,7 +36,9 @@ struct ExportSettingsView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var types: Types = .all
+    @State private var document: PortableSettingsDocument?
     @State private var isFileExporterPresented = false
+    @State private var error: (any Error)?
     
     
     var body: some View {
@@ -56,6 +58,12 @@ struct ExportSettingsView: View {
                 Spacer()
                 
                 SubmitButtonGroup(String(localized: "Action.export.label", defaultValue: "Export…")) {
+                    do {
+                        self.document = try PortableSettingsDocument(including: self.types)
+                    } catch {
+                        self.error = error
+                        return
+                    }
                     self.isFileExporterPresented = true
                 } cancelAction: {
                     self.dismiss()
@@ -64,11 +72,19 @@ struct ExportSettingsView: View {
             }
             .padding(.top)
         }
-        .fileExporter(isPresented: $isFileExporterPresented, document: try? PortableSettingsDocument(including: self.types), contentTypes: [.cotSettings], defaultFilename: nil) { _ in
-            self.dismiss()
+        .fileExporter(isPresented: $isFileExporterPresented, document: self.document, contentTypes: [.cotSettings], defaultFilename: nil) { result in
+            self.document = nil
+            switch result {
+                case .success:
+                    self.dismiss()
+                case .failure(let error):
+                    self.error = error
+            }
         } onCancellation: {
+            self.document = nil
             self.dismiss()
         }
+        .alert(error: $error)
         .scenePadding()
         .frame(width: 380)
     }
