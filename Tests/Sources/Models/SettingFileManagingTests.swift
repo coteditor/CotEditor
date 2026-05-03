@@ -192,6 +192,17 @@ import SyntaxFormat
     }
     
     
+    @Test func loadFailedRecoverySuggestionKeepsDecodingError() throws {
+        
+        let decodingError = DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "Broken setting"))
+        let error = SettingFileError(.loadFailed, name: "Broken", underlyingError: decodingError)
+        
+        let recoverySuggestion = try #require(error.recoverySuggestion)
+        
+        #expect(recoverySuggestion.hasPrefix("Decoding Error:"))
+    }
+    
+    
     @Test func renamingWithSurroundingWhitespaceInvalidatesSanitizedCacheEntry() throws {
         
         let manager = TestReplacementManager()

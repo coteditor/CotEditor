@@ -216,7 +216,7 @@ extension SettingFileManaging {
         do {
             setting = try Setting(contentsOf: url)
         } catch {
-            throw SettingFileError(.loadFailed, name: name, underlyingError: error as NSError)
+            throw SettingFileError(.loadFailed, name: name, underlyingError: error)
         }
         self.cachedSettings[name] = setting
         
@@ -236,7 +236,7 @@ extension SettingFileManaging {
         do {
             try FileManager.default.trashItem(at: url, resultingItemURL: nil)
         } catch {
-            throw SettingFileError(.deletionFailed, name: name, underlyingError: error as NSError)
+            throw SettingFileError(.deletionFailed, name: name, underlyingError: error)
         }
         
         self.cachedSettings[name] = nil
@@ -373,7 +373,7 @@ extension SettingFileManaging {
             }
             
         } catch {
-            throw SettingFileError(.importFailed, name: name, underlyingError: error as NSError)
+            throw SettingFileError(.importFailed, name: name, underlyingError: error)
         }
         
         self.cachedSettings[name] = setting
@@ -613,10 +613,10 @@ struct SettingFileError: LocalizedError {
     
     var code: Code
     var name: String
-    var underlyingError: NSError?
+    var underlyingError: (any Error)?
     
     
-    init(_ code: Code, name: String, underlyingError: NSError? = nil) {
+    init(_ code: Code, name: String, underlyingError: (any Error)? = nil) {
         
         self.code = code
         self.name = name
@@ -650,7 +650,7 @@ struct SettingFileError: LocalizedError {
                 String(localized: "SettingFileError.loadFailed.recoverySuggestion.decodingError",
                        defaultValue: "Decoding Error: \(error.localizedDescription)")
             default:
-                self.underlyingError?.localizedRecoverySuggestion
+                self.underlyingError.flatMap { ($0 as NSError).localizedRecoverySuggestion }
         }
     }
 }
