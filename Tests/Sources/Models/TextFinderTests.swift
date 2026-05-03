@@ -238,7 +238,9 @@ import Testing
         _ = try #require(await iterator.next())
         
         NotificationCenter.default.post(name: NSWindow.didResignKeyNotification, object: nil)
-        try await Task.sleep(for: .seconds(0.1))
+        for _ in 0..<3 {
+            await Task.yield()
+        }
         
         #expect(textView.hasTemporaryBackgroundColor)
     }
@@ -284,7 +286,7 @@ import Testing
                 finder.performAction(.selectAll)
                 textView.textStorage?.replaceCharacters(in: NSRange(0..<3), with: "bar")
                 
-                try await Task.sleep(for: .seconds(0.1))
+                try await Task.sleep(for: .milliseconds(50))
                 observationTask.cancel()
             }
         }

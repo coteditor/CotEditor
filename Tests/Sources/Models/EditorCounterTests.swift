@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -72,10 +72,8 @@ import Testing
         let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
         
         let counter = EditorCounter()
+        defer { counter.cancel() }
         counter.source = { source }
-        counter.updatesAll = true
-        counter.invalidateContent()
-        counter.invalidateSelection()
         
         await withCheckedContinuation { continuation in
             withObservationTracking {
@@ -83,6 +81,8 @@ import Testing
             } onChange: {
                 continuation.resume()
             }
+            
+            counter.updatesAll = true
         }
         
         #expect(counter.result.lines.entire == 3)
@@ -104,13 +104,10 @@ import Testing
         let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
         
         let counter = EditorCounter()
+        defer { counter.cancel() }
         counter.source = { source }
         counter.updatesAll = true
-        counter.invalidateSelection()
-        
-        #expect(counter.result.lines.entire == nil)
-        #expect(counter.result.characters.entire == nil)
-        #expect(counter.result.words.entire == nil)
+        counter.cancel()
         
         await withCheckedContinuation { continuation in
             withObservationTracking {
@@ -118,7 +115,13 @@ import Testing
             } onChange: {
                 continuation.resume()
             }
+            
+            counter.invalidateSelection()
         }
+        
+        #expect(counter.result.lines.entire == nil)
+        #expect(counter.result.characters.entire == nil)
+        #expect(counter.result.words.entire == nil)
         
         #expect(counter.result.lines.selected == 1)
         #expect(counter.result.characters.selected == 9)
@@ -135,10 +138,8 @@ import Testing
         let source = Source(string: "a\r\nb", selectedRange: NSRange(1..<4))
         
         let counter = EditorCounter()
+        defer { counter.cancel() }
         counter.source = { source }
-        counter.updatesAll = true
-        counter.invalidateContent()
-        counter.invalidateSelection()
         
         await withCheckedContinuation { continuation in
             withObservationTracking {
@@ -146,6 +147,8 @@ import Testing
             } onChange: {
                 continuation.resume()
             }
+            
+            counter.updatesAll = true
         }
         
         #expect(counter.result.lines.entire == 2)

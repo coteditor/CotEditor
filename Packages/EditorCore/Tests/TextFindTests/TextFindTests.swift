@@ -113,13 +113,16 @@ struct TextFindTests {
     
     @Test func matchesCancellation() async throws {
         
-        let string = String(repeating: "aa ", count: 50_000_000)
+        let string = "aa aa"
         let textFind = try TextFind(for: string, findString: "a", mode: .textual(options: [], fullWord: false))
         
         let task = Task {
+            while !Task.isCancelled {
+                await Task.yield()
+            }
+            
             _ = try textFind.matches
         }
-        await Task.yield()
         task.cancel()
         
         await #expect(throws: CancellationError.self) { try await task.value }

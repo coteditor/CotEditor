@@ -32,29 +32,13 @@ import SyntaxParsers
 
 actor BundledSyntaxTests {
     
-    private let syntaxes: [String: Syntax]
-    
-    
-    init() throws {
+    @Test func validateAllSyntaxes() throws {
         
-        let urls = try #require(Bundle.main.urls(forResourcesWithExtension: "cotsyntax", subdirectory: "Syntaxes"))
+        let syntaxes = try Self.loadSyntaxes()
         
-        // load syntaxes
-        self.syntaxes = urls.reduce(into: [:]) { dict, url in
-            let name = url.deletingPathExtension().lastPathComponent
-            
-            #expect(throws: Never.self, "The bundled \(name) syntax is invalid.") {
-                dict[name] = try Syntax(contentsOf: url)
-            }
-        }
-    }
-    
-    
-    @Test func validateAllSyntaxes() {
+        #expect(!syntaxes.isEmpty)
         
-        #expect(!self.syntaxes.isEmpty)
-        
-        for (name, syntax) in self.syntaxes {
+        for (name, syntax) in syntaxes {
             let errors = syntax.validate()
             
             #expect(errors.isEmpty)
@@ -65,9 +49,11 @@ actor BundledSyntaxTests {
     }
     
     
-    @Test func sanitize() {
+    @Test func sanitize() throws {
         
-        for (name, syntax) in self.syntaxes {
+        let syntaxes = try Self.loadSyntaxes()
+        
+        for (name, syntax) in syntaxes {
             let sanitized = syntax.sanitized
             
             #expect(syntax.kind == sanitized.kind)
@@ -97,7 +83,7 @@ actor BundledSyntaxTests {
     
     @Test func xmlSyntax() throws {
         
-        let syntax = try #require(self.syntaxes["XML"])
+        let syntax = try Self.loadSyntax(named: "XML")
         
         #expect(syntax.highlightParser != nil)
         #expect(syntax.outlineParser == nil)
@@ -108,7 +94,7 @@ actor BundledSyntaxTests {
     
     @Test func parseOutline() async throws {
         
-        let syntax = try #require(self.syntaxes["SVG"])
+        let syntax = try Self.loadSyntax(named: "SVG")
         
         // load test file
         let bundle = Bundle(for: type(of: self))
@@ -124,5 +110,38 @@ actor BundledSyntaxTests {
         #expect(item.title == "#dogcow")
         #expect(item.range == NSRange(location: 164, length: 11))
         #expect(item.style.isEmpty)
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Loads all bundled syntaxes.
+    ///
+    /// - Returns: The bundled syntaxes keyed by name.
+    /// - Throws: A bundle loading error.
+    private static func loadSyntaxes() throws -> [String: Syntax] {
+        
+        let urls = try #require(Bundle.main.urls(forResourcesWithExtension: "cotsyntax", subdirectory: "Syntaxes"))
+        
+        return urls.reduce(into: [:]) { dict, url in
+            let name = url.deletingPathExtension().lastPathComponent
+            
+            #expect(throws: Never.self, "The bundled \(name) syntax is invalid.") {
+                dict[name] = try Syntax(contentsOf: url)
+            }
+        }
+    }
+    
+    
+    /// Loads a bundled syntax.
+    ///
+    /// - Parameter name: The bundled syntax name.
+    /// - Returns: The loaded syntax.
+    /// - Throws: A bundle loading or syntax parsing error.
+    private static func loadSyntax(named name: String) throws -> Syntax {
+        
+        let url = try #require(Bundle.main.url(forResource: name, withExtension: "cotsyntax", subdirectory: "Syntaxes"))
+        
+        return try Syntax(contentsOf: url)
     }
 }

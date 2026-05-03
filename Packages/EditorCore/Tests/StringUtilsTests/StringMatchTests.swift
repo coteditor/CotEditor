@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -155,13 +155,16 @@ struct StringMatchTests {
     
     @Test func instanceRangesOfWordCancellation() async throws {
         
-        let string = String(repeating: "aa ", count: 50_000_000)
+        let string = "aa aa"
         let range = NSRange(location: 0, length: 2)
         
         let task = Task {
+            while !Task.isCancelled {
+                await Task.yield()
+            }
+            
             _ = try string.instanceRangesOfWord(at: range)
         }
-        await Task.yield()
         task.cancel()
         
         await #expect(throws: CancellationError.self) { try await task.value }
