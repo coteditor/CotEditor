@@ -68,6 +68,8 @@ public extension NSString {
     /// - Returns: The NSRange-based character index just before the given `location`, or `0` when `location` is the first index.
     final func index(before location: Int) -> Int {
         
+        assert((0...self.length).contains(location))
+        
         guard location > 0 else { return 0 }
         
         // avoid returning index between CRLF
@@ -83,6 +85,8 @@ public extension NSString {
     /// - Parameter location: The NSRange-based character index to reference.
     /// - Returns: The NSRange-based character index just after the given `location`, or `length` when `location` is the last index.
     final func index(after location: Int) -> Int {
+        
+        assert((0...self.length).contains(location))
         
         guard location + 1 < self.length else { return self.length }
         
