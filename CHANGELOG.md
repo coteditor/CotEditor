@@ -39,6 +39,7 @@
 - Fix an issue where custom syntax highlighting could crash when a begin/end regular expression matched zero-length text at the end of the document.
 - Fix an issue where custom syntax highlighting could stop after an unterminated begin/end string pattern.
 - Fix an issue where a malformed custom syntax definition with empty delimiters or empty highlight patterns could make syntax highlighting hang.
+- Fix an issue where tree-sitter-based syntax highlighting could become misaligned after editing around consecutive empty lines or a trailing line ending.
 - Fix an issue where importing settings could incorrectly show an error for a custom theme included in the same settings archive.
 - Fix typos in the German localization (Thanks to Rush Ali!).
 

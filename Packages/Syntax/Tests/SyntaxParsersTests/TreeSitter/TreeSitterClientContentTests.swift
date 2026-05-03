@@ -39,7 +39,7 @@ struct TreeSitterClientContentTests {
         content.reset("ab\ncd")
         
         #expect(content.string == "ab\ncd")
-        #expect(content.lineStarts == IndexSet([0, 3]))
+        #expect(content.lineStarts == [0, 3])
     }
     
     
@@ -52,7 +52,7 @@ struct TreeSitterClientContentTests {
                                          insertedText: "XYZ")
         
         #expect(content.string == "abXYZ\ndef")
-        #expect(content.lineStarts == IndexSet([0, 6]))
+        #expect(content.lineStarts == [0, 6])
         
         #expect(edit.startByte == 4)
         #expect(edit.oldEndByte == 6)
@@ -75,7 +75,7 @@ struct TreeSitterClientContentTests {
                                          insertedText: "")
         
         #expect(content.string == "abcd")
-        #expect(content.lineStarts == IndexSet([0]))
+        #expect(content.lineStarts == [0])
         
         #expect(edit.startByte == 4)
         #expect(edit.oldEndByte == 6)
@@ -85,6 +85,46 @@ struct TreeSitterClientContentTests {
         #expect(edit.oldEndPoint.row == 1)
         #expect(edit.oldEndPoint.column == 0)
         #expect(edit.newEndPoint.row == 0)
+        #expect(edit.newEndPoint.column == 2)
+    }
+    
+    
+    @Test func applyEditCalculatesPointAfterConsecutiveNewlines() throws {
+        
+        var content = TreeSitterClient.Content("\n\nx")
+        
+        let edit = try content.applyEdit(editedRange: NSRange(location: 1, length: 2),
+                                         delta: 1,
+                                         insertedText: "a\n")
+        
+        #expect(content.string == "\na\nx")
+        #expect(content.lineStarts == [0, 1, 3])
+        
+        #expect(edit.startPoint.row == 1)
+        #expect(edit.startPoint.column == 0)
+        #expect(edit.oldEndPoint.row == 2)
+        #expect(edit.oldEndPoint.column == 0)
+        #expect(edit.newEndPoint.row == 2)
+        #expect(edit.newEndPoint.column == 0)
+    }
+    
+    
+    @Test func applyEditCalculatesPointAfterTrailingNewline() throws {
+        
+        var content = TreeSitterClient.Content("a\n")
+        
+        let edit = try content.applyEdit(editedRange: NSRange(location: 2, length: 2),
+                                         delta: 2,
+                                         insertedText: "bc")
+        
+        #expect(content.string == "a\nbc")
+        #expect(content.lineStarts == [0, 2])
+        
+        #expect(edit.startPoint.row == 1)
+        #expect(edit.startPoint.column == 0)
+        #expect(edit.oldEndPoint.row == 1)
+        #expect(edit.oldEndPoint.column == 0)
+        #expect(edit.newEndPoint.row == 1)
         #expect(edit.newEndPoint.column == 2)
     }
     
@@ -107,6 +147,18 @@ struct TreeSitterClientContentTests {
         
         #expect(throws: TreeSitterClient.Content.EditError.invalidRange) {
             try content.applyEdit(editedRange: NSRange(location: 5, length: 0),
+                                  delta: 0,
+                                  insertedText: "")
+        }
+    }
+    
+    
+    @Test func applyEditThrowsForNegativeRangeLocation() {
+        
+        var content = TreeSitterClient.Content("abc")
+        
+        #expect(throws: TreeSitterClient.Content.EditError.invalidRange) {
+            try content.applyEdit(editedRange: NSRange(location: -1, length: 0),
                                   delta: 0,
                                   insertedText: "")
         }

@@ -33,7 +33,7 @@ extension TreeSitterClient {
     struct Content {
         
         private(set) var string: String
-        private(set) var lineStarts: IndexSet
+        private(set) var lineStarts: [Int]
         
         
         /// Creates a new content container.
@@ -79,7 +79,10 @@ extension TreeSitterClient.Content {
     /// - Returns: An `InputEdit` describing the change for tree-sitter.
     mutating func applyEdit(editedRange: NSRange, delta: Int, insertedText: String) throws(EditError) -> InputEdit {
         
-        guard insertedText.length == editedRange.length else { throw .invalidRange }
+        guard
+            editedRange.location >= 0,
+            insertedText.length == editedRange.length
+        else { throw .invalidRange }
         
         let oldLength = editedRange.length - delta
         
@@ -117,14 +120,16 @@ extension TreeSitterClient.Content {
     ///   - location: The UTF-16 offset in the string.
     ///   - lineStarts: The cached line start locations.
     /// - Returns: The corresponding point, or `nil` if the location is out of bounds.
-    private static func point(at location: Int, in lineStarts: IndexSet) -> Point? {
+    private static func point(at location: Int, in lineStarts: [Int]) -> Point? {
         
-        guard
-            location >= 0,
-            let lineStart = lineStarts.rangeView(of: 0...location).last?.lowerBound
-        else { return nil }
+        guard location >= 0 else { return nil }
         
-        let row = lineStarts.count(in: 0..<lineStart)
+        let upperIndex = lineStarts.partitioningIndex { $0 > location }
+        
+        guard upperIndex > lineStarts.startIndex else { return nil }
+        
+        let row = lineStarts.index(before: upperIndex)
+        let lineStart = lineStarts[row]
         let column = location - lineStart
         
         return Point(row: row, column: column)
@@ -140,26 +145,15 @@ extension TreeSitterClient.Content {
     ///   - insertedText: The inserted text that occupies `editedRange`.
     private mutating func updateLineStartIndexes(preEditRange: NSRange, editedRange: NSRange, delta: Int, insertedText: String) {
         
-        var lineStarts = self.lineStarts
-        
-        let removalLowerBound = preEditRange.location + 1
-        let removalUpperBound = preEditRange.upperBound + 1
-        if removalLowerBound < removalUpperBound {
-            lineStarts.remove(integersIn: removalLowerBound..<removalUpperBound)
-        }
-        
-        if delta != 0 {
-            lineStarts.shift(startingAt: preEditRange.upperBound, by: delta)
-        }
-        
+        let removalStartIndex = self.lineStarts.partitioningIndex { $0 > preEditRange.location }
+        let shiftStartIndex = self.lineStarts.partitioningIndex { $0 > preEditRange.upperBound }
         var insertedLineStarts = insertedText.lineStartIndexes()
-        insertedLineStarts.remove(0)
-        if !insertedLineStarts.isEmpty {
-            insertedLineStarts.shift(startingAt: 0, by: editedRange.location)
-            lineStarts.formUnion(insertedLineStarts)
-        }
+        insertedLineStarts.removeFirst()
         
-        lineStarts.insert(0)
+        var lineStarts = Array(self.lineStarts[..<removalStartIndex])
+        lineStarts.reserveCapacity(self.lineStarts.count - (shiftStartIndex - removalStartIndex) + insertedLineStarts.count)
+        lineStarts.append(contentsOf: insertedLineStarts.map { $0 + editedRange.location })
+        lineStarts.append(contentsOf: self.lineStarts[shiftStartIndex...].map { $0 + delta })
         
         self.lineStarts = lineStarts
     }
@@ -172,25 +166,26 @@ private extension NSString {
     
     /// Returns the line start locations (UTF-16) for the string.
     ///
-    /// - Returns: An index set containing all line start locations.
-    func lineStartIndexes() -> IndexSet {
+    /// - Returns: An array containing all line start locations.
+    func lineStartIndexes() -> [Int] {
         
-        var lineStarts = IndexSet()
-        lineStarts.insert(0)
+        var lineStarts = [0]
         
         guard self.length > 0 else { return lineStarts }
         
         var location = 0
         while location < self.length {
             var lineEnd = 0
-            unsafe self.getLineStart(nil, end: &lineEnd, contentsEnd: nil, for: NSRange(location: location, length: 0))
+            var contentsEnd = 0
+            unsafe self.getLineStart(nil, end: &lineEnd, contentsEnd: &contentsEnd, for: NSRange(location: location, length: 0))
             
             guard
-                lineEnd < self.length,
                 lineEnd > location
             else { break }
             
-            lineStarts.insert(lineEnd)
+            if contentsEnd < lineEnd {
+                lineStarts.append(lineEnd)
+            }
             location = lineEnd
         }
         
