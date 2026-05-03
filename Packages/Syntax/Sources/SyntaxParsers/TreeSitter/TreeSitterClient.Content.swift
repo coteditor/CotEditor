@@ -94,8 +94,11 @@ extension TreeSitterClient.Content {
         
         guard preEditRange.upperBound <= preEditString.length else { throw .invalidRange }
         
+        let editsCRLFBoundary = preEditString.hasCRLFBoundary(at: preEditRange.lowerBound) ||
+                                preEditString.hasCRLFBoundary(at: preEditRange.upperBound)
+        
         self.string = preEditString.replacingCharacters(in: preEditRange, with: insertedText)
-        self.updateLineStartIndexes(preEditRange: preEditRange, editedRange: editedRange, delta: delta, insertedText: insertedText)
+        self.updateLineStartIndexes(preEditRange: preEditRange, editedRange: editedRange, delta: delta, insertedText: insertedText, editsCRLFBoundary: editsCRLFBoundary)
         
         guard
             let startPoint = Self.point(at: preEditRange.lowerBound, in: preEditLineStarts),
@@ -143,7 +146,17 @@ extension TreeSitterClient.Content {
     ///   - editedRange: The edited range in the post-edit string.
     ///   - delta: The change in length between pre-edit and post-edit strings.
     ///   - insertedText: The inserted text that occupies `editedRange`.
-    private mutating func updateLineStartIndexes(preEditRange: NSRange, editedRange: NSRange, delta: Int, insertedText: String) {
+    ///   - editsCRLFBoundary: Whether the edit touches a CRLF sequence boundary.
+    private mutating func updateLineStartIndexes(preEditRange: NSRange, editedRange: NSRange, delta: Int, insertedText: String, editsCRLFBoundary: Bool) {
+        
+        let string = self.string as NSString
+        if editsCRLFBoundary ||
+            string.hasCRLFBoundary(at: editedRange.lowerBound) ||
+            string.hasCRLFBoundary(at: editedRange.upperBound)
+        {
+            self.lineStarts = string.lineStartIndexes()
+            return
+        }
         
         let removalStartIndex = self.lineStarts.partitioningIndex { $0 > preEditRange.location }
         let shiftStartIndex = self.lineStarts.partitioningIndex { $0 > preEditRange.upperBound }
@@ -190,5 +203,17 @@ private extension NSString {
         }
         
         return lineStarts
+    }
+    
+    
+    /// Returns whether the given location is between a CR and LF character.
+    ///
+    /// - Parameter location: The UTF-16 location to inspect.
+    /// - Returns: `true` if the location splits a CRLF sequence.
+    func hasCRLFBoundary(at location: Int) -> Bool {
+        
+        guard location > 0, location < self.length else { return false }
+        
+        return self.character(at: location - 1) == 0xD && self.character(at: location) == 0xA
     }
 }

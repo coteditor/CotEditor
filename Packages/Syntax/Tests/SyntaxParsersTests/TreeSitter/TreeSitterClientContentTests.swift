@@ -89,6 +89,58 @@ struct TreeSitterClientContentTests {
     }
     
     
+    @Test func applyEditJoinsCRLFWithInsertedLF() throws {
+        
+        var content = TreeSitterClient.Content("a\rb")
+        
+        _ = try content.applyEdit(editedRange: NSRange(location: 2, length: 1),
+                                  delta: 1,
+                                  insertedText: "\n")
+        
+        #expect(content.string == "a\r\nb")
+        #expect(content.lineStarts == [0, 3])
+    }
+    
+    
+    @Test func applyEditJoinsCRLFWithInsertedCR() throws {
+        
+        var content = TreeSitterClient.Content("a\nb")
+        
+        _ = try content.applyEdit(editedRange: NSRange(location: 1, length: 1),
+                                  delta: 1,
+                                  insertedText: "\r")
+        
+        #expect(content.string == "a\r\nb")
+        #expect(content.lineStarts == [0, 3])
+    }
+    
+    
+    @Test func applyEditBreaksCRLFByDeletingLF() throws {
+        
+        var content = TreeSitterClient.Content("a\r\nb")
+        
+        _ = try content.applyEdit(editedRange: NSRange(location: 2, length: 0),
+                                  delta: -1,
+                                  insertedText: "")
+        
+        #expect(content.string == "a\rb")
+        #expect(content.lineStarts == [0, 2])
+    }
+    
+    
+    @Test func applyEditJoinsCRLFByDeletingSeparator() throws {
+        
+        var content = TreeSitterClient.Content("a\rx\nb")
+        
+        _ = try content.applyEdit(editedRange: NSRange(location: 2, length: 0),
+                                  delta: -1,
+                                  insertedText: "")
+        
+        #expect(content.string == "a\r\nb")
+        #expect(content.lineStarts == [0, 3])
+    }
+    
+    
     @Test func applyEditCalculatesPointAfterConsecutiveNewlines() throws {
         
         var content = TreeSitterClient.Content("\n\nx")
