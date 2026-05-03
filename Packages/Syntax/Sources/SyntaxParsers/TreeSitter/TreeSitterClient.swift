@@ -81,12 +81,7 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
         
         guard content != self.content.string else { return }
         
-        do {
-            try self.noteEdit(editedRange: content.nsRange, delta: content.length - self.content.string.length, insertedText: content)
-        } catch {
-            assertionFailure()
-            self.resetContent(content)
-        }
+        self.resetContent(content)
     }
     
     
