@@ -165,6 +165,21 @@ struct LineSortTests {
     }
     
     
+    @Test func sortMixedLineEndings() {
+        
+        let pattern = EntireLineSortPattern()
+        
+        #expect(pattern.sort("b\r\na\nc") == "a\nb\r\nc")
+        #expect(pattern.sort("b\r\na\n") == "a\nb\r\n")
+        #expect(pattern.sort("c\r\nb\na", baseLineEnding: "\r") == "a\rb\nc")
+        
+        var options = SortOptions()
+        options.descending = true
+        #expect(pattern.sort("b\r\na\nc", options: options) == "c\r\nb\r\na")
+        #expect(pattern.sort("a\r\nb\n", options: options) == "b\na\r\n")
+    }
+    
+    
     @Test func targetRange() throws {
         
         let string = "dog"

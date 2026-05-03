@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -67,7 +67,10 @@ extension EditorTextView {
         // process whole document if no text selected
         let range = self.selectedRange.isEmpty ? self.string.range : self.selectedRange
         
-        guard let context = self.string.sortLinesAscending(in: range) else { return }
+        guard let context = self.string.sortLinesAscending(in: range, baseLineEnding: self.lineEnding.string) else { return }
+        
+        self.isApprovedTextChange = true
+        defer { self.isApprovedTextChange = false }
         
         self.edit(with: context, actionName: String(localized: "Sort Lines", table: "MainMenu"))
     }
@@ -79,7 +82,10 @@ extension EditorTextView {
         // process whole document if no text selected
         let range = self.selectedRange.isEmpty ? self.string.range : self.selectedRange
         
-        guard let context = self.string.reverseLines(in: range) else { return }
+        guard let context = self.string.reverseLines(in: range, baseLineEnding: self.lineEnding.string) else { return }
+        
+        self.isApprovedTextChange = true
+        defer { self.isApprovedTextChange = false }
         
         self.edit(with: context, actionName: String(localized: "Reverse Lines", table: "MainMenu"))
     }
@@ -91,7 +97,10 @@ extension EditorTextView {
         // process whole document if no text selected
         let range = self.selectedRange.isEmpty ? self.string.range : self.selectedRange
         
-        guard let context = self.string.shuffleLines(in: range) else { return }
+        guard let context = self.string.shuffleLines(in: range, baseLineEnding: self.lineEnding.string) else { return }
+        
+        self.isApprovedTextChange = true
+        defer { self.isApprovedTextChange = false }
         
         self.edit(with: context, actionName: String(localized: "Shuffle Lines", table: "MainMenu"))
     }
@@ -191,13 +200,19 @@ extension EditorTextView {
         let range = self.selectedRange.isEmpty ? self.string.range : self.selectedRange
         
         let string = self.string as NSString
-        let lineRange = string.lineContentsRange(for: range)
+        let lineRange = string.lineRange(for: range)
         
         guard !lineRange.isEmpty else { return }
         
-        let newString = pattern.sort(string.substring(with: lineRange), options: options)
+        let lineString = string.substring(with: lineRange)
+        let newString = pattern.sort(lineString, options: options, baseLineEnding: self.lineEnding.string)
+        let length = (newString as NSString).lineContentsRange(for: newString.range).length
+        let selectedRange = NSRange(location: lineRange.location, length: length)
         
-        self.replace(with: newString, range: lineRange, selectedRange: lineRange,
+        self.isApprovedTextChange = true
+        defer { self.isApprovedTextChange = false }
+        
+        self.replace(with: newString, range: lineRange, selectedRange: selectedRange,
                      actionName: String(localized: "Sort Lines", table: "MainMenu"))
     }
 }

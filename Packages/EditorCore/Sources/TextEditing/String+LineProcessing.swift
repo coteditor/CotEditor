@@ -280,31 +280,39 @@ public extension String {
     
     /// Sorts the lines in the given range in ascending order.
     ///
-    /// - Parameter range: The range in which to sort lines.
+    /// - Parameters:
+    ///   - range: The range in which to sort lines.
+    ///   - baseLineEnding: The line ending to add when a line without one moves before a line-ending slot.
     /// - Returns: An `EditingContext`, or `nil` if only a single line is present.
-    func sortLinesAscending(in range: NSRange) -> EditingContext? {
+    func sortLinesAscending(in range: NSRange, baseLineEnding: String? = nil) -> EditingContext? {
         
-        self.sortLines(in: range) { $0.sorted(using: .localized) }
+        self.sortLines(in: range, baseLineEnding: baseLineEnding) {
+            $0.sorted(using: KeyPathComparator(\.contents, comparator: .localized))
+        }
     }
     
     
     /// Reverses the order of lines in the given range.
     ///
-    /// - Parameter range: The range containing the lines to reverse.
+    /// - Parameters:
+    ///   - range: The range containing the lines to reverse.
+    ///   - baseLineEnding: The line ending to add when a line without one moves before a line-ending slot.
     /// - Returns: An `EditingContext`, or `nil` if only a single line is present.
-    func reverseLines(in range: NSRange) -> EditingContext? {
+    func reverseLines(in range: NSRange, baseLineEnding: String? = nil) -> EditingContext? {
         
-        self.sortLines(in: range) { $0.reversed() }
+        self.sortLines(in: range, baseLineEnding: baseLineEnding) { $0.reversed() }
     }
     
     
     /// Randomizes the order of lines in the given range.
     ///
-    /// - Parameter range: The range containing the lines to shuffle.
+    /// - Parameters:
+    ///   - range: The range containing the lines to shuffle.
+    ///   - baseLineEnding: The line ending to add when a line without one moves before a line-ending slot.
     /// - Returns: An `EditingContext`, or `nil` if only a single line is present.
-    func shuffleLines(in range: NSRange) -> EditingContext? {
+    func shuffleLines(in range: NSRange, baseLineEnding: String? = nil) -> EditingContext? {
         
-        self.sortLines(in: range) { $0.shuffled() }
+        self.sortLines(in: range, baseLineEnding: baseLineEnding) { $0.shuffled() }
     }
     
     
@@ -314,24 +322,27 @@ public extension String {
     ///
     /// - Parameters:
     ///   - range: The range in which to sort lines.
+    ///   - baseLineEnding: The line ending to add when a line without one moves before a line-ending slot.
     ///   - predicate: The predicate used to sort lines.
     /// - Returns: An `EditingContext`, or `nil` if no modification is required.
-    private func sortLines(in range: NSRange, predicate: ([String]) -> [String]) -> EditingContext? {
+    private func sortLines(in range: NSRange, baseLineEnding: String?, predicate: ([LogicalLine]) -> [LogicalLine]) -> EditingContext? {
         
-        let string = self as NSString
-        let lineEndingRange = string.range(of: "\\R", options: .regularExpression, range: range)
+        let lineRange = (self as NSString).lineRange(for: range)
+        let lines = self.logicalLines(in: lineRange)
+        let includesTrailingLineEnding = (lines.last?.lineEnding != nil)
         
         // do nothing with single line
-        guard !lineEndingRange.isNotFound else { return nil }
+        guard
+            lines.count > 1,
+            let baseLineEnding = baseLineEnding ?? lines.compactMap(\.lineEnding).first
+        else { return nil }
         
-        let lineEnding = string.substring(with: lineEndingRange)
-        let lineRange = string.lineContentsRange(for: range)
-        let lines = self.lineContentsRanges(for: lineRange)
-            .map(string.substring(with:))
         let newString = predicate(lines)
-            .joined(separator: lineEnding)
+            .joined(baseLineEnding: baseLineEnding, includingTrailingLineEnding: includesTrailingLineEnding)
+        let length = (newString as NSString).lineContentsRange(for: newString.range).length
+        let selectedRange = NSRange(location: lineRange.location, length: length)
         
-        return EditingContext(strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
+        return EditingContext(strings: [newString], ranges: [lineRange], selectedRanges: [selectedRange])
     }
 }
 
