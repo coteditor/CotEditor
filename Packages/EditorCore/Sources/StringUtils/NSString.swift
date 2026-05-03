@@ -237,7 +237,7 @@ public extension NSString {
             count += 1
         }
         
-        if self.character(at: location - 1).isNewline {
+        if self.character(at: location - 1).isNewline, !self.isInsideCRLF(at: location) {
             count += 1
         }
         
@@ -254,10 +254,7 @@ public extension NSString {
         
         guard
             !range.isNotFound,
-            range.upperBound < self.length,
-            range.upperBound > 0,
-            self.character(at: range.upperBound - 1) == 0xD,  // CR
-            self.character(at: range.upperBound) == 0xA       // LF
+            self.isInsideCRLF(at: range.upperBound)
         else { return range }
         
         return range.isEmpty
@@ -318,6 +315,22 @@ public extension NSString {
         }
         
         return boundary
+    }
+}
+
+
+extension NSString {
+    
+    /// Returns whether the given location is between CR and LF in a CRLF pair.
+    ///
+    /// - Parameter location: The UTF-16 location to test.
+    /// - Returns: `true` if the location is after CR and before LF.
+    final func isInsideCRLF(at location: Int) -> Bool {
+        
+        location > 0
+            && location < self.length
+            && self.character(at: location - 1) == 0xD  // CR
+            && self.character(at: location) == 0xA      // LF
     }
 }
 

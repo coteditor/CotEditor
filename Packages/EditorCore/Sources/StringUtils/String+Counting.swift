@@ -157,12 +157,16 @@ public extension String {
         
         if self.isEmpty || range.isEmpty { return 0 }
         
+        let string = self as NSString
         var count = 0
-        unsafe (self as NSString).enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { _, _, _, _ in
+        unsafe string.enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { _, _, _, _ in
             count += 1
         }
         
-        if includesLastBreak, (self as NSString).character(at: range.upperBound - 1).isNewline {
+        if includesLastBreak,
+           string.character(at: range.upperBound - 1).isNewline,
+           !string.isInsideCRLF(at: range.upperBound)
+        {
             count += 1
         }
         

@@ -96,6 +96,11 @@ struct StringCountingTests {
         #expect(testString.numberOfLines(in: NSRange(0..<2), includesLastBreak: true) == 2)   // "a\n"
         #expect(testString.numberOfLines(in: NSRange(0..<6), includesLastBreak: true) == 3)   // "a\nb c\n"
         #expect(testString.numberOfLines(in: NSRange(0..<7), includesLastBreak: true) == 4)   // "a\nb c\n\n"
+        
+        let crlfString = "a\r\nb"
+        
+        #expect(crlfString.numberOfLines(in: NSRange(0..<2), includesLastBreak: true) == 1)  // "a\r"
+        #expect(crlfString.numberOfLines(in: NSRange(0..<3), includesLastBreak: true) == 2)  // "a\r\n"
     }
     
     
@@ -110,6 +115,13 @@ struct StringCountingTests {
         #expect(testString.lineNumber(at: 6) == 3)
         #expect(testString.lineNumber(at: 7) == 4)
         
+        let crlfString = "a\r\nb"
+        #expect(crlfString.lineNumber(at: 0) == 1)
+        #expect(crlfString.lineNumber(at: 1) == 1)
+        #expect(crlfString.lineNumber(at: 2) == 1)  // LF-side index of CRLF
+        #expect(crlfString.lineNumber(at: 3) == 2)
+        #expect(crlfString.lineNumber(at: 4) == 2)
+        
         let nsString = testString as NSString
         #expect(nsString.lineNumber(at: 0) == testString.lineNumber(at: 0))
         #expect(nsString.lineNumber(at: 1) == testString.lineNumber(at: 1))
@@ -117,6 +129,13 @@ struct StringCountingTests {
         #expect(nsString.lineNumber(at: 5) == testString.lineNumber(at: 5))
         #expect(nsString.lineNumber(at: 6) == testString.lineNumber(at: 6))
         #expect(nsString.lineNumber(at: 7) == testString.lineNumber(at: 7))
+        
+        let nsCRLFString = crlfString as NSString
+        #expect(nsCRLFString.lineNumber(at: 0) == crlfString.lineNumber(at: 0))
+        #expect(nsCRLFString.lineNumber(at: 1) == crlfString.lineNumber(at: 1))
+        #expect(nsCRLFString.lineNumber(at: 2) == crlfString.lineNumber(at: 2))
+        #expect(nsCRLFString.lineNumber(at: 3) == crlfString.lineNumber(at: 3))
+        #expect(nsCRLFString.lineNumber(at: 4) == crlfString.lineNumber(at: 4))
     }
     
     
