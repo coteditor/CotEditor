@@ -77,4 +77,36 @@ struct NSRegularExpressionTests {
         
         await #expect(throws: CancellationError.self) { try await task.value }
     }
+    
+    
+    @Test func cancellableMatchRanges() throws {
+        
+        let regex = try NSRegularExpression(pattern: "ab")
+        let string = "abxxabxab"
+        let range = NSRange(location: 2, length: 5)
+        
+        let ranges = try regex.cancellableMatchRanges(in: string, range: range)
+        
+        #expect(ranges == [
+            NSRange(location: 4, length: 2),
+        ])
+    }
+    
+    
+    @Test func cancellableMatchRangesCancellation() async throws {
+        
+        let regex = try NSRegularExpression(pattern: "a")
+        let string = "a"
+        
+        let task = Task {
+            while !Task.isCancelled {
+                await Task.yield()
+            }
+            
+            _ = try regex.cancellableMatchRanges(in: string, range: string.nsRange)
+        }
+        task.cancel()
+        
+        await #expect(throws: CancellationError.self) { try await task.value }
+    }
 }

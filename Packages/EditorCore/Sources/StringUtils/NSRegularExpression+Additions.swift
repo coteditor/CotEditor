@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -53,5 +53,33 @@ public extension NSRegularExpression {
         try Task.checkCancellation()
         
         return matches
+    }
+    
+    
+    /// Returns an array of all the ranges matched by the regular expression in the string.
+    ///
+    /// - Parameters:
+    ///   - string: The string to search.
+    ///   - options: The matching options to use.
+    ///   - range: The range of the string to search.
+    /// - Throws: `CancellationError`
+    /// - Returns: An array of all the matched ranges.
+    final func cancellableMatchRanges(in string: String, options: MatchingOptions = [], range: NSRange) throws -> [NSRange] {
+        
+        var ranges: [NSRange] = []
+        unsafe self.enumerateMatches(in: string, options: options, range: range) { match, _, stopPointer in
+            if Task.isCancelled {
+                unsafe stopPointer.pointee = ObjCBool(true)
+                return
+            }
+            
+            if let match {
+                ranges.append(match.range)
+            }
+        }
+        
+        try Task.checkCancellation()
+        
+        return ranges
     }
 }

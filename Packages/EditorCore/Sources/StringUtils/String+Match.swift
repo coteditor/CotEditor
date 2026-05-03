@@ -158,6 +158,6 @@ public extension String {
         let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
         let regex = try! NSRegularExpression(pattern: pattern)
         
-        return try regex.cancellableMatches(in: self, range: self.range).map(\.range)
+        return try regex.cancellableMatchRanges(in: self, range: self.range)
     }
 }

@@ -125,8 +125,7 @@ struct RegularExpressionExtractor: HighlightExtractable {
     
     func ranges(in string: String, range: NSRange) throws -> [NSRange] {
         
-        try self.regex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range)
-            .map(\.range)
+        try self.regex.cancellableMatchRanges(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range)
     }
 }
 
