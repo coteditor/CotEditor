@@ -141,11 +141,11 @@ private extension LineEnding {
         guard range.length > 0 else { return nil }
         
         switch string.character(at: range.location) {
-            case 0x000A:
+            case 0xA:
                 self = .lf
-            case 0x000D:
-                self = (range.length > 1 && string.character(at: range.location + 1) == 0x000A) ? .crlf : .cr
-            case 0x0085:
+            case 0xD:
+                self = (range.length > 1 && string.character(at: range.location + 1) == 0xA) ? .crlf : .cr
+            case 0x85:
                 self = .nel
             case 0x2028:
                 self = .lineSeparator

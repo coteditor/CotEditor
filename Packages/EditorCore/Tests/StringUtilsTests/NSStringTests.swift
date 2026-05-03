@@ -196,7 +196,7 @@ struct NSStringTests {
     }
     
     
-    @Test(arguments: [0x000A, 0x000B, 0x000C, 0x000D, 0x0085, 0x2028, 0x2029])
+    @Test(arguments: [0xA, 0xB, 0xC, 0xD, 0x85, 0x2028, 0x2029])
     func unicharIsNewline(char: UInt16) throws {
         
         let scalar = try #require(Unicode.Scalar(char))

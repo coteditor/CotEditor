@@ -330,7 +330,7 @@ public extension unichar {
     var isNewline: Bool {
         
         switch self {
-            case 0x000A, 0x000B, 0x000C, 0x000D, 0x0085, 0x2028, 0x2029: true
+            case 0xA, 0xB, 0xC, 0xD, 0x85, 0x2028, 0x2029: true
             default: false
         }
     }
