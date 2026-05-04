@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,12 +24,12 @@
 //  limitations under the License.
 //
 
-public import AppKit
+import AppKit
 
-public protocol Validatable: AnyObject { }
+protocol Validatable: AnyObject { }
 
 
-public extension Validatable where Self: NSToolbarItem {
+extension Validatable where Self: NSToolbarItem {
     
     /// Validates the item.
     @MainActor func validate() -> Bool {

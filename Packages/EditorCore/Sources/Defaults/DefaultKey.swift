@@ -60,7 +60,7 @@ extension DefaultKeys: CustomStringConvertible {
 }
 
 
-public enum DefaultKeyError: Error, Sendable {
+enum DefaultKeyError: Error, Sendable {
         
         case invalidValue
 }
@@ -68,7 +68,7 @@ public enum DefaultKeyError: Error, Sendable {
 
 public class DefaultKey<Value>: DefaultKeys, @unchecked Sendable {
     
-    public func newValue(from value: Any?) throws(DefaultKeyError) -> Value {
+    func newValue(from value: Any?) throws(DefaultKeyError) -> Value {
         
         // -> The second Optional cast is important for in case if `Value` is already an optional type.
         guard let newValue = value as? Value ?? Optional<Any>.none as? Value else {
@@ -84,7 +84,7 @@ public class DefaultKey<Value>: DefaultKeys, @unchecked Sendable {
 // Otherwise, the type inference for RawRepresentable doesn't work unfortunately.
 public final class RawRepresentableDefaultKey<Value>: DefaultKey<Value>, @unchecked Sendable where Value: RawRepresentable {
     
-    public override func newValue(from value: Any?) throws(DefaultKeyError) -> Value {
+    override func newValue(from value: Any?) throws(DefaultKeyError) -> Value {
         
         if let newValue = (value as? Value.RawValue).flatMap(Value.init) {
             return newValue
