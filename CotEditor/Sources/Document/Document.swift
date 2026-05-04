@@ -531,7 +531,7 @@ extension NSTextView: EditorCounter.Source { }
             // -> Need to set it directly to the file instead of providing it in `additionalFileAttributes(for:)`
             //    to remove the existing attribute.
             if UserDefaults.standard[.savesTextOrientation] {
-                try? url.setExtendedAttribute(data: self.isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
+                try? url.setExtendedAttribute(data: self.isVerticalText ? Data([1]) : nil, for: ExtendedFileAttributeName.verticalText)
             }
             
             guard saveOperation.updatesDocumentFile else { return }
@@ -1216,14 +1216,14 @@ extension NSTextView: EditorCounter.Source { }
         }
         
         // save document state to the extended file attributes
-        // -> Save FileExtendedAttributeName.verticalText at `super.writeSafely(to:ofType:for:)`
+        // -> Save ExtendedFileAttributeName.verticalText at `super.writeSafely(to:ofType:for:)`
         //     since the xattr already set to the file cannot remove at this point. (2024-06)
         var xattrs: [String: Data] = [:]
         if self.shouldSaveEncodingXattr {
-            xattrs[FileExtendedAttributeName.encoding] = self.fileEncoding.encoding.xattrEncodingData
+            xattrs[ExtendedFileAttributeName.encoding] = self.fileEncoding.encoding.xattrEncodingData
         }
         if self.suppressesInconsistentLineEndingAlert {
-            xattrs[FileExtendedAttributeName.allowLineEndingInconsistency] = Data([1])
+            xattrs[ExtendedFileAttributeName.allowLineEndingInconsistency] = Data([1])
         }
         if !xattrs.isEmpty {
             attributes[FileAttributeKey.extendedAttributes] = xattrs
@@ -1443,7 +1443,7 @@ extension NSTextView: EditorCounter.Source { }
                     if let fileURL = self.fileURL {
                         var error: NSError?
                         NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .contentIndependentMetadataOnly, error: &error) { newURL in  // FILE_ACCESS
-                            try? newURL.setExtendedAttribute(data: Data([1]), for: FileExtendedAttributeName.allowLineEndingInconsistency)
+                            try? newURL.setExtendedAttribute(data: Data([1]), for: ExtendedFileAttributeName.allowLineEndingInconsistency)
                         }
                     }
                 }

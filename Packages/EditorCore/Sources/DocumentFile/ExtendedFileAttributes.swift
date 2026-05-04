@@ -33,7 +33,7 @@ public extension FileAttributeKey {
 }
 
 
-public enum FileExtendedAttributeName {
+public enum ExtendedFileAttributeName {
     
     public static let encoding = "com.apple.TextEncoding"
     public static let userTags = "com.apple.metadata:_kMDItemUserTags"
@@ -52,8 +52,8 @@ public struct ExtendedFileAttributes: Equatable, Sendable {
     public init(dictionary: [FileAttributeKey: Any]) {
         
         let extendedAttributes = dictionary[.extendedAttributes] as? [String: Data]
-        self.encoding = extendedAttributes?[FileExtendedAttributeName.encoding]?.decodingXattrEncoding
-        self.isVerticalText = (extendedAttributes?[FileExtendedAttributeName.verticalText] != nil)
-        self.allowsInconsistentLineEndings = (extendedAttributes?[FileExtendedAttributeName.allowLineEndingInconsistency] != nil)
+        self.encoding = extendedAttributes?[ExtendedFileAttributeName.encoding]?.decodingXattrEncoding
+        self.isVerticalText = (extendedAttributes?[ExtendedFileAttributeName.verticalText] != nil)
+        self.allowsInconsistentLineEndings = (extendedAttributes?[ExtendedFileAttributeName.allowLineEndingInconsistency] != nil)
     }
 }

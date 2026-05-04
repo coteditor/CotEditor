@@ -57,6 +57,6 @@ public extension FileAttributes {
         self.size = dictionary[.size] as? Int64 ?? 0
         self.permissions = FilePermissions(mask: dictionary[.posixPermissions] as? Int16 ?? 0)
         self.owner = dictionary[.ownerAccountName] as? String
-        self.tags = (dictionary[.extendedAttributes] as? [String: Data])?[FileExtendedAttributeName.userTags].flatMap(FinderTag.tags(data:)) ?? []
+        self.tags = (dictionary[.extendedAttributes] as? [String: Data])?[ExtendedFileAttributeName.userTags].flatMap(FinderTag.tags(data:)) ?? []
     }
 }

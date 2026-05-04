@@ -98,7 +98,7 @@ public struct File: Equatable, Sendable {
             Kind(type: resourceValues.contentType, isDirectory: self.isDirectory)
         }
         
-        self.tags = (try? fileURL.extendedAttribute(for: FileExtendedAttributeName.userTags))
+        self.tags = (try? fileURL.extendedAttribute(for: ExtendedFileAttributeName.userTags))
             .map(FinderTag.tags(data:)) ?? []
     }
     
