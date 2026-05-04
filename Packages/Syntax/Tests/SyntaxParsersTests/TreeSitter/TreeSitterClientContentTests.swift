@@ -215,4 +215,74 @@ struct TreeSitterClientContentTests {
                                   insertedText: "")
         }
     }
+    
+    
+    @Test func applyEditInsertsMultilineText() throws {
+        
+        var content = TreeSitterClient.Content("abc")
+        
+        let edit = try content.applyEdit(editedRange: NSRange(location: 1, length: 4),
+                                         delta: 4,
+                                         insertedText: "x\ny\n")
+        
+        #expect(content.string == "ax\ny\nbc")
+        #expect(content.lineStarts == [0, 3, 5])
+        
+        #expect(edit.startPoint.row == 0)
+        #expect(edit.startPoint.column == 1)
+        #expect(edit.newEndPoint.row == 2)
+        #expect(edit.newEndPoint.column == 0)
+    }
+    
+    
+    @Test func applyEditInsertsTextContainingCRLF() throws {
+        
+        var content = TreeSitterClient.Content("abc")
+        
+        _ = try content.applyEdit(editedRange: NSRange(location: 1, length: 4),
+                                  delta: 4,
+                                  insertedText: "x\r\ny")
+        
+        #expect(content.string == "ax\r\nybc")
+        #expect(content.lineStarts == [0, 4])
+    }
+    
+    
+    @Test func applyEditUpdatesLineStartsAcrossMixedLineEndings() throws {
+        
+        var content = TreeSitterClient.Content("a\nb\r\nc")
+        
+        _ = try content.applyEdit(editedRange: NSRange(location: 0, length: 2),
+                                  delta: 2,
+                                  insertedText: "XY")
+        
+        #expect(content.string == "XYa\nb\r\nc")
+        #expect(content.lineStarts == [0, 4, 7])
+    }
+    
+    
+    @Test func applyEditFormsCRLFAtTrailingEdgeOfInsertion() throws {
+        
+        var content = TreeSitterClient.Content("a\nb")
+        
+        _ = try content.applyEdit(editedRange: NSRange(location: 1, length: 2),
+                                  delta: 2,
+                                  insertedText: "x\r")
+        
+        #expect(content.string == "ax\r\nb")
+        #expect(content.lineStarts == [0, 4])
+    }
+    
+    
+    @Test func applyEditFormsCRLFAtLeadingEdgeOfInsertion() throws {
+        
+        var content = TreeSitterClient.Content("a\rb")
+        
+        _ = try content.applyEdit(editedRange: NSRange(location: 2, length: 2),
+                                  delta: 2,
+                                  insertedText: "\nx")
+        
+        #expect(content.string == "a\r\nxb")
+        #expect(content.lineStarts == [0, 3])
+    }
 }
