@@ -618,7 +618,7 @@ final class DirectoryDocument: NSDocument {
             self.invalidateRestorableState()
         }
         
-        node.delete()
+        node.removeFromParent()
     }
     
     

@@ -351,7 +351,7 @@ extension FileNode {
         
         assert(parent.file.isDirectory)
         
-        self.parent?.cachedChildren?.removeFirst(self)
+        self.removeFromParent()
         
         self.parent = parent
         self.move(to: fileURL)
@@ -371,8 +371,8 @@ extension FileNode {
     }
     
     
-    /// Deletes the receiver from the node tree.
-    func delete() {
+    /// Removes the receiver from the node tree.
+    func removeFromParent() {
         
         self.parent?.cachedChildren?.removeFirst(self)
     }
