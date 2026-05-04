@@ -25,6 +25,7 @@
 
 import Foundation
 import Testing
+import DocumentFile
 @testable import CotEditor
 
 struct FileNodeTests {
