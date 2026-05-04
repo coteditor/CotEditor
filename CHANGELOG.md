@@ -11,6 +11,7 @@
 - Improve line sorting commands to better preserve existing mixed line endings.
 - Limit tree-sitter-based syntax highlighting to 100,000,000 characters to avoid unexpected crashes.
 - Update the Unicode block name list for the character inspector from Unicode 16.0.0 to Unicode 17.0.0.
+- Update tree-sitter-c to 0.24.2.
 - Update tree-sitter-swift to 0.7.2.
 - Improve overall stability and performance.
 
