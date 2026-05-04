@@ -1,5 +1,6 @@
 //
 //  FinderTag.swift
+//  DocumentFile
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2025 1024jp
+//  © 2025-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,11 +24,11 @@
 //  limitations under the License.
 //
 
-import Foundation
+public import Foundation
 
-struct FinderTag: Equatable {
+public struct FinderTag: Equatable, Sendable {
     
-    enum Color: Int, CaseIterable {
+    public enum Color: Int, CaseIterable, Sendable {
         
         case none
         case gray
@@ -40,16 +41,23 @@ struct FinderTag: Equatable {
         
         
         /// The color list ordered like in the Finder (2025-02, macOS 15).
-        static let allCases: [Self] = [.none, .red, .orange, .yellow, .green, .blue, .purple, .gray]
+        public static let allCases: [Self] = [.none, .red, .orange, .yellow, .green, .blue, .purple, .gray]
     }
     
     
-    var name: String
-    var color: Color = .none
+    public var name: String
+    public var color: Color = .none
+    
+    
+    public init(name: String, color: Color = .none) {
+        
+        self.name = name
+        self.color = color
+    }
 }
 
 
-extension FinderTag {
+public extension FinderTag {
     
     /// Parses tags from the extended attribute data.
     ///

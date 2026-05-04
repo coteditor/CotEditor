@@ -32,8 +32,8 @@ import UniformTypeIdentifiers
 import OSLog
 import ControlUI
 import Defaults
+import DocumentFile
 import FileEncoding
-import FilePermissions
 import LineEnding
 import StringUtils
 import SyntaxFormat

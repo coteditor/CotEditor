@@ -26,6 +26,7 @@
 import AppKit
 import QuickLookUI
 import AVFoundation
+import DocumentFile
 import URLUtils
 
 protocol FileContentAttributes: Sendable, Equatable { }

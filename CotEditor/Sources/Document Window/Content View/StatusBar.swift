@@ -28,6 +28,7 @@ import StoreKit
 import Combine
 import ControlUI
 import Defaults
+import DocumentFile
 import FileEncoding
 import LineEnding
 

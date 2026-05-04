@@ -25,6 +25,7 @@
 
 import AppKit
 import QuickLookUI
+import DocumentFile
 
 extension FileBrowserViewController {
     

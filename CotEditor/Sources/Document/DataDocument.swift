@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import DocumentFile
 
 @Observable class DataDocument: NSDocument {
     

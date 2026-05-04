@@ -26,8 +26,8 @@
 import SwiftUI
 import Combine
 import CharacterInfo
+import DocumentFile
 import FileEncoding
-import FilePermissions
 import LineEnding
 import SyntaxFormat
 

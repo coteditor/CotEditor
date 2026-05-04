@@ -29,6 +29,7 @@ import QuickLookUI
 import Combine
 import AudioToolbox
 import Defaults
+import DocumentFile
 import ControlUI
 import URLUtils
 
@@ -1421,6 +1422,43 @@ private extension FinderTag.Color {
             case .yellow: .systemYellow
             case .red: .systemRed
             case .orange: .systemOrange
+        }
+    }
+}
+
+
+private extension File.Kind {
+    
+    /// The system symbol name for label image.
+    var symbolName: String {
+        
+        switch self {
+            case .folder: "folder"
+            case .general: "document"
+            case .archive: "zipper.page"
+            case .image: "photo"
+            case .movie: "film"
+            case .audio: "music.note"
+        }
+    }
+    
+    
+    /// The localized label.
+    var label: String {
+        
+        switch self {
+            case .folder:
+                String(localized: "File.Kind.folder.label", defaultValue: "Folder", table: "Document")
+            case .general:
+                String(localized: "File.Kind.general.label", defaultValue: "Document", table: "Document")
+            case .archive:
+                String(localized: "File.Kind.archive.label", defaultValue: "Archive", table: "Document")
+            case .image:
+                String(localized: "File.Kind.image.label", defaultValue: "Image", table: "Document")
+            case .movie:
+                String(localized: "File.Kind.movie.label", defaultValue: "Movie", table: "Document")
+            case .audio:
+                String(localized: "File.Kind.audio.label", defaultValue: "Audio", table: "Document")
         }
     }
 }

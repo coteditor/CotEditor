@@ -25,6 +25,7 @@
 
 import Foundation
 import OSLog
+import DocumentFile
 import StringUtils
 import URLUtils
 
@@ -136,7 +137,7 @@ final class FileNode {
     private nonisolated static func readChildFiles(at fileURL: URL) throws -> [File] {
         
         try FileManager.default
-            .contentsOfDirectory(at: fileURL, includingPropertiesForKeys: Array(File.resourceKeys))
+            .contentsOfDirectory(at: fileURL, includingPropertiesForKeys: Array(File.metadataResourceKeys))
             .filter { Self.accepts(filename: $0.lastPathComponent) }
             .map { try File(at: $0) }
             .sorted(using: Self.fileSortOrder)

@@ -1,5 +1,6 @@
 //
 //  File.swift
+//  DocumentFile
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,13 +24,13 @@
 //  limitations under the License.
 //
 
-import Foundation
+public import Foundation
 import UniformTypeIdentifiers
 import URLUtils
 
-struct File: Equatable {
+public struct File: Equatable, Sendable {
     
-    enum Kind {
+    public enum Kind: Sendable {
         
         case folder
         case general
@@ -40,27 +41,27 @@ struct File: Equatable {
     }
     
     
-    nonisolated static let resourceKeys: Set<URLResourceKey> = [.isDirectoryKey, .isHiddenKey, .isWritableKey, .isAliasFileKey, .contentTypeKey]
+    public nonisolated static let metadataResourceKeys: Set<URLResourceKey> = [.isDirectoryKey, .isHiddenKey, .isWritableKey, .isAliasFileKey, .contentTypeKey]
     
-    var name: String
-    var fileURL: URL
-    let isDirectory: Bool
-    var isHidden: Bool
-    var isWritable: Bool
-    var isAlias: Bool
-    var kind: Kind
-    var tags: [FinderTag]
+    public var name: String
+    public var fileURL: URL
+    public let isDirectory: Bool
+    public var isHidden: Bool
+    public var isWritable: Bool
+    public var isAlias: Bool
+    public var kind: Kind
+    public var tags: [FinderTag]
     
     
     /// Initializes a file instance with basic information.
     ///
-    /// This initializer creates a file node given a URL and directory flag, without reading from disk.
-    /// It is designed to add a new node upon a user request.
+    /// This initializer creates a file metadata instance from a URL and directory flag, without reading from disk.
+    /// It is designed for newly created items whose metadata is already known.
     ///
     /// - Parameters:
-    ///   - fileURL: The file URL for the node.
-    ///   - isDirectory: Whether the node represents a directory.
-    init(at fileURL: URL, isDirectory: Bool) {
+    ///   - fileURL: The file URL.
+    ///   - isDirectory: Whether the file represents a directory.
+    public init(at fileURL: URL, isDirectory: Bool) {
         
         self.name = fileURL.lastPathComponent
         self.fileURL = fileURL.standardizedFileURL
@@ -78,11 +79,11 @@ struct File: Equatable {
     /// This initializer loads and inspects the file or directory at the given URL, reading resource values and tags.
     ///
     /// - Parameters:
-    ///   - fileURL: The file URL for the node.
+    ///   - fileURL: The file URL.
     /// - Throws: An error if the file's resource values cannot be loaded.
-    init(at fileURL: URL) throws {
+    public init(at fileURL: URL) throws {
         
-        let resourceValues = try fileURL.resourceValues(forKeys: Self.resourceKeys)
+        let resourceValues = try fileURL.resourceValues(forKeys: Self.metadataResourceKeys)
         
         self.name = fileURL.lastPathComponent
         self.fileURL = fileURL.standardizedFileURL
@@ -105,14 +106,14 @@ struct File: Equatable {
     /// Whether the receiver's `kind` is `.folder`.
     ///
     /// Unlike `.isDirectory` property, this property also returns `true` when the receiver is an alias linking to a folder.
-    var isFolder: Bool {
+    public var isFolder: Bool {
         
         self.kind == .folder
     }
     
     
     /// Updates `.kind` with current filename.
-    mutating func invalidateKind() {
+    public mutating func invalidateKind() {
         
         guard !(self.isAlias && self.kind == .folder) else { return }
         
@@ -170,40 +171,6 @@ extension File.Kind {
             self = .archive
         } else {
             self = .general
-        }
-    }
-    
-    
-    /// The system symbol name for label image.
-    var symbolName: String {
-        
-        switch self {
-            case .folder: "folder"
-            case .general: "document"
-            case .archive: "zipper.page"
-            case .image: "photo"
-            case .movie: "film"
-            case .audio: "music.note"
-        }
-    }
-    
-    
-    /// The localized label.
-    var label: String {
-        
-        switch self {
-            case .folder:
-                String(localized: "File.Kind.folder.label", defaultValue: "Folder", table: "Document")
-            case .general:
-                String(localized: "File.Kind.general.label", defaultValue: "Document", table: "Document")
-            case .archive:
-                String(localized: "File.Kind.archive.label", defaultValue: "Archive", table: "Document")
-            case .image:
-                String(localized: "File.Kind.image.label", defaultValue: "Image", table: "Document")
-            case .movie:
-                String(localized: "File.Kind.movie.label", defaultValue: "Movie", table: "Document")
-            case .audio:
-                String(localized: "File.Kind.audio.label", defaultValue: "Audio", table: "Document")
         }
     }
 }

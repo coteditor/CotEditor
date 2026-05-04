@@ -12,8 +12,8 @@ let package = Package(
         .library(name: "EditorCore", targets: [
             "CharacterInfo",
             "Defaults",
+            "DocumentFile",
             "FileEncoding",
-            "FilePermissions",
             "Invisible",
             "LineEnding",
             "LineSort",
@@ -28,8 +28,8 @@ let package = Package(
         
         .library(name: "CharacterInfo", targets: ["CharacterInfo"]),
         .library(name: "Defaults", targets: ["Defaults"]),
+        .library(name: "DocumentFile", targets: ["DocumentFile"]),
         .library(name: "FileEncoding", targets: ["FileEncoding"]),
-        .library(name: "FilePermissions", targets: ["FilePermissions"]),
         .library(name: "Invisible", targets: ["Invisible"]),
         .library(name: "LineEnding", targets: ["LineEnding"]),
         .library(name: "LineSort", targets: ["LineSort"]),
@@ -50,11 +50,11 @@ let package = Package(
         .target(name: "Defaults"),
         .testTarget(name: "DefaultsTests", dependencies: ["Defaults"]),
         
+        .target(name: "DocumentFile", dependencies: ["FileEncoding", "URLUtils"]),
+        .testTarget(name: "DocumentFileTests", dependencies: ["DocumentFile"]),
+        
         .target(name: "FileEncoding", dependencies: ["ValueRange"], resources: [.process("Resources")]),
         .testTarget(name: "FileEncodingTests", dependencies: ["FileEncoding"], resources: [.process("Resources")]),
-        
-        .target(name: "FilePermissions"),
-        .testTarget(name: "FilePermissionsTests", dependencies: ["FilePermissions"]),
         
         .target(name: "Invisible"),
         
