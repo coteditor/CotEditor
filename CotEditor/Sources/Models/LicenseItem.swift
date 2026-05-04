@@ -146,7 +146,7 @@ struct LicenseItem {
              license: .mit),
         Self(name: "WFColorCode",
              url: "https://github.com/1024jp/WFColorCode",
-             copyright: "© 2014-2024 1024jp",
+             copyright: "© 2014-2026 1024jp",
              license: .mit),
     ]
     

@@ -251,10 +251,6 @@ private struct ColorCodePanelAccessory: View {
 
 private extension ColorCodeType {
     
-    static let hexTypes: [Self] = [.hex, .hexWithAlpha, .shortHex]
-    static let cssTypes: [Self] = [.cssRGB, .cssRGBa, .cssHSL, .cssHSLa, .cssKeyword]
-    
-    
     var label: String {
         
         switch self {
@@ -269,6 +265,10 @@ private extension ColorCodeType {
             case .shortHex:
                 String(localized: "ColorCodeType.shortHex.label",
                        defaultValue: "Hexadecimal (Short)",
+                       table: "ColorCode")
+            case .shortHexWithAlpha:
+                String(localized: "ColorCodeType.shortHexWithAlpha.label",
+                       defaultValue: "Hexadecimal with Alpha (Short)",
                        table: "ColorCode")
             case .cssRGB:
                 String(localized: "ColorCodeType.cssRGB.label",
@@ -285,6 +285,14 @@ private extension ColorCodeType {
             case .cssHSLa:
                 String(localized: "ColorCodeType.cssHSLa.label",
                        defaultValue: "CSS HSLa",
+                       table: "ColorCode")
+            case .cssHWB:
+                String(localized: "ColorCodeType.cssHWB.label",
+                       defaultValue: "CSS HWB",
+                       table: "ColorCode")
+            case .cssHWBWithAlpha:
+                String(localized: "ColorCodeType.cssHWBWithAlpha.label",
+                       defaultValue: "CSS HWB with Alpha",
                        table: "ColorCode")
             case .cssKeyword:
                 String(localized: "ColorCodeType.cssKeyword.label",

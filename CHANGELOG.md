@@ -7,6 +7,7 @@
 
 - Update the Markdown syntax to fix highlighting block quotes.
 - Support shebangs with options for syntax detection.
+- Add CSS HWB and 4-digit hexadecimal alpha formats to the Edit Color Code command, and allow it to read modern space-separated CSS RGB/HSL color codes.
 - Support spaces between menu path components in Quick Actions search.
 - Improve line sorting commands to better preserve existing mixed line endings.
 - Limit tree-sitter-based syntax highlighting to 100,000,000 characters to avoid unexpected crashes.
