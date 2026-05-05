@@ -5729,19 +5729,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Found one match in “%2$@.”"
+                  "value" : "Found one match in “%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Found %1$lld matches in “%2$@.”"
+                  "value" : "Found %1$lld matches in “%2$@”."
                 }
               },
               "zero" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Found no matches in “%2$@.”"
+                  "value" : "Found no matches in “%2$@”."
                 }
               }
             }
