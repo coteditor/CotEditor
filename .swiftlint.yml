@@ -94,7 +94,7 @@ type_body_length:
   warning: 1200
 
 function_body_length:
-  warning: 350
+  warning: 400
 
 large_tuple:
   warning: 3

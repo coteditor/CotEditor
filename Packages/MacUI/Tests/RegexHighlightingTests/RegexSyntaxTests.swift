@@ -107,7 +107,7 @@ struct RegexSyntaxTests {
         
         #expect(RegexSyntaxType.anchor.ranges(in: string) == [NSRange(location: 0, length: 2),
                                                               NSRange(location: 6, length: 2)])
-        #expect(RegexSyntaxType.character.ranges(in: string) == [])
+        #expect(RegexSyntaxType.character.ranges(in: string).isEmpty)
     }
     
     
@@ -145,7 +145,7 @@ struct RegexSyntaxTests {
         #expect(RegexSyntaxType.symbol.ranges(in: string) == [NSRange(location: 0, length: 2),
                                                               NSRange(location: 10, length: 2)])
         #expect(RegexSyntaxType.quantifier.ranges(in: string) == [NSRange(location: 12, length: 1)])
-        #expect(RegexSyntaxType.character.ranges(in: string) == [])
+        #expect(RegexSyntaxType.character.ranges(in: string).isEmpty)
     }
     
     
