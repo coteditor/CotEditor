@@ -768,7 +768,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld themes"
+                  "value" : "%lld definitions"
                 }
               }
             }
@@ -1140,7 +1140,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You can still import these items, but some settings may be incompatible."
+            "value" : "This settings archive was created by a different version of CotEditor (%@)."
           }
         },
         "es" : {

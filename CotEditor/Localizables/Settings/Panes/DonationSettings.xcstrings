@@ -94,7 +94,7 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : ""
+                  "value" : "%lld cup"
                 }
               },
               "other" : {

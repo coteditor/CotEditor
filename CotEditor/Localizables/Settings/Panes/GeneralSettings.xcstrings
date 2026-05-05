@@ -1544,7 +1544,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Learn More"
+            "value" : "Learn More…"
           }
         },
         "es" : {
@@ -1989,7 +1989,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "translated"
+            "value" : "The change will be applied first on the next launch."
           }
         },
         "es" : {

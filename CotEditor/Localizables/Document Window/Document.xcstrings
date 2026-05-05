@@ -3264,7 +3264,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "File Size"
+            "value" : "File size"
           }
         },
         "es" : {
@@ -6664,7 +6664,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move To Bin"
+            "value" : "Move to Bin"
           }
         },
         "es" : {

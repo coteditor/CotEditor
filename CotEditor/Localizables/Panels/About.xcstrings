@@ -452,7 +452,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor is an open source program\nlicenced under the Apache Licence, Version 2.0"
+            "value" : "CotEditor is an open source program\nlicensed under the Apache License, Version 2.0."
           }
         },
         "es" : {
