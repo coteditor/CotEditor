@@ -2543,7 +2543,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Resultaat %1$lld van %2$lld."
+            "value" : "Overeenkomst %1$lld van %2$lld."
           }
         },
         "pl" : {
@@ -5861,19 +5861,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Een gevonden in \"%2$@.\""
+                  "value" : "Eén overeenkomst gevonden in ‘%2$@’."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%1$lld gevonden in “%2$@.”"
+                  "value" : "%1$lld overeenkomsten gevonden in ‘%2$@’."
                 }
               },
               "zero" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Niet gevonden in ‘%2$@‘."
+                  "value" : "Geen overeenkomsten gevonden in ‘%2$@’."
                 }
               }
             }
@@ -6537,7 +6537,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Tekenreeks gevonden"
+            "value" : "Overeenkomende tekst"
           }
         },
         "pl" : {

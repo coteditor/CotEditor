@@ -1176,7 +1176,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Dit instellingenarchief is gemaakt door een andere versie van CotEditor (%@).\n"
+            "value" : "Dit instellingenarchief is gemaakt door een andere versie van CotEditor (%@)."
           }
         },
         "pl" : {

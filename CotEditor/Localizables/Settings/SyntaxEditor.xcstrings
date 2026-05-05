@@ -4580,7 +4580,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Beheerd door de app\n"
+            "value" : "Beheerd door de app"
           }
         },
         "pl" : {
@@ -5993,7 +5993,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Het escape-teken moet een enkel teken in UTF-16 code-eenheid zijn."
+            "value" : "Het escape-teken moet uit één UTF-16-code-eenheid bestaan."
           }
         },
         "pl" : {

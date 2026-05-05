@@ -4555,7 +4555,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Vond %1$lld andere regeleinden dan %2$@."
+                  "value" : "Er zijn %1$lld andere regeleinden gevonden dan %2$@."
                 }
               }
             }
@@ -6927,7 +6927,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Wil je “%@” naar de prullenmand verplaatsen?"
+            "value" : "Wil je ‘%@’ naar de prullenmand verplaatsen?"
           }
         },
         "pl" : {

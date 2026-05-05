@@ -4130,7 +4130,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het bestand is van het type %@.\n\nWeet je zeker dat je het bestand openen?"
+            "value" : "Het bestand is van het type %@.\n\nWeet je zeker dat je het bestand wilt openen?"
           }
         },
         "pl" : {
@@ -8208,7 +8208,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Wil je alle regeleinden converteren naar %@, de meest voorkomende regeleinden in dit document?"
+            "value" : "Wil je alle regeleinden converteren naar %@, het meest voorkomende regeleinde in dit document?"
           }
         },
         "pl" : {
@@ -8321,7 +8321,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "De meest voorkomende regeleinde in dit document is %@."
+            "value" : "Het meest voorkomende regeleinde in dit document is %@."
           }
         },
         "pl" : {

@@ -278,7 +278,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Snij automatisch witregels bij "
+            "value" : "Verwijder witruimte aan regeleinden automatisch"
           }
         },
         "pl" : {
