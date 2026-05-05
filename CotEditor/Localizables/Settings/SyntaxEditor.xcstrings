@@ -4841,7 +4841,7 @@
         }
       }
     },
-    "No error found." : {
+    "No errors found." : {
       "comment" : "message in the Validation pane",
       "localizations" : {
         "bg" : {
@@ -4859,19 +4859,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keinen Fehler gefunden."
+            "value" : "Keine Fehler gefunden."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No error found."
+            "value" : "No errors found."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se encontró ningún error."
+            "value" : "No se han encontrado errores."
           }
         },
         "fr" : {
@@ -4889,7 +4889,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "エラーは検出されませんでした。"
+            "value" : "エラーは見つかりませんでした。"
           }
         },
         "ko" : {

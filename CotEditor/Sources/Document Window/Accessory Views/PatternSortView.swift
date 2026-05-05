@@ -84,7 +84,7 @@ struct PatternSortView: View {
                         .font(.custom(self.sampleFontName ?? "", size: 0))
                         .truncationMode(.tail)
                         .lineLimit(1)
-                        .help(String(localized: "Sample line to check which part in a line will be used for sort comparison.", table: "PatternSort", comment: "tooltip"))
+                        .help(String(localized: "Sample line to check which part of a line will be used for sorting.", table: "PatternSort", comment: "tooltip"))
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }.padding(.bottom)
             }

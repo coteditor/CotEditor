@@ -546,7 +546,7 @@
         }
       }
     },
-    "This order is for the encoding menu and the encoding detection. The detection process only considers the items listed here, with higher items being prioritized." : {
+    "This order is used for the Encoding menu and for encoding detection. Only the encodings listed here are considered during detection, with higher items taking priority." : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -563,37 +563,37 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Reihenfolge gilt für das Codierungsmenü und die Codierungserkennung. Bei der Erkennung werden nur die hier aufgeführten Codierungen berücksichtigt, wobei höhere Codierungen Vorrang haben."
+            "value" : "Diese Reihenfolge wird für das Codierungsmenü und die Codierungserkennung verwendet. Bei der Erkennung werden nur die hier aufgeführten Codierungen berücksichtigt; weiter oben stehende Einträge haben Vorrang."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This order is for the encoding menu and the encoding detection. The detection process only considers the items listed here, with higher items being prioritized."
+            "value" : "This order is used for the Encoding menu and for encoding detection. Only the encodings listed here are considered during detection, with higher items taking priority."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Este orden se usa para el menú de codificación y para detectar la codificación al abrir un archivo. Durante la detección, los elementos situados más arriba tienen prioridad."
+            "value" : "Este orden se usa para el menú de codificación y para detectar la codificación. Durante la detección, solo se tienen en cuenta las codificaciones enumeradas aquí; los elementos situados más arriba tienen prioridad."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Cet ordre est utilisé par le menu Encodage et par la détection de l’encodage à l’ouverture d’un fichier. Pour la détection, les encodages en haut de liste sont prioritaires."
+            "value" : "Cet ordre est utilisé par le menu Encodage et pour la détection de l’encodage. Lors de la détection, seuls les encodages répertoriés ici sont pris en compte, et les éléments les plus hauts dans la liste sont prioritaires."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Questo ordine viene usato per il menu delle codifiche e per rilevare la codifica all’apertura di un file. Durante il rilevamento, gli elementi più in alto hanno priorità."
+            "value" : "Questo ordine viene usato per il menu delle codifiche e per il rilevamento della codifica. Durante il rilevamento vengono considerate solo le codifiche elencate qui; gli elementi più in alto hanno priorità."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "この順序はエンコーディングメニューやエンコーディング判別で使われます。自動判別ではこのリストにあるもののみが考慮され、上位のエンコーディングがより優先して適用されます。"
+            "value" : "この順序はエンコーディングメニューとエンコーディング判別で使われます。判別ではこのリストにあるエンコーディングだけが考慮され、リストの上位にある項目ほど優先されます。"
           }
         },
         "ko" : {
@@ -605,7 +605,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Deze volgorde is voor het coderingsmenu en de coderingsdetectie bij het openen van een bestand. Bij detectie krijgen de hogere items meer prioriteit."
+            "value" : "Deze volgorde wordt gebruikt voor het coderingsmenu en voor coderingsdetectie. Bij detectie worden alleen de hier vermelde coderingen meegenomen; items hoger in de lijst hebben voorrang."
           }
         },
         "pl" : {
@@ -617,7 +617,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Essa ordem é para o menu de codificação e a detecção de codificação. O processo de detecção considera apenas os itens listados aqui, com os itens mais ao topo sendo priorizados."
+            "value" : "Essa ordem é usada para o menu de codificação e para a detecção de codificação. Durante a detecção, apenas as codificações listadas aqui são consideradas; os itens mais acima têm prioridade."
           }
         },
         "ru" : {

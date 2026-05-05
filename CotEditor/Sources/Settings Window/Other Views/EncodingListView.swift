@@ -116,7 +116,7 @@ struct EncodingListView: View {
             .environment(\.defaultMinListRowHeight, 14)
             .frame(minHeight: 250, idealHeight: 250)
             
-            Text("This order is for the encoding menu and the encoding detection. The detection process only considers the items listed here, with higher items being prioritized.", tableName: "EncodingList")
+            Text("This order is used for the Encoding menu and for encoding detection. Only the encodings listed here are considered during detection, with higher items taking priority.", tableName: "EncodingList")
                 .controlSize(.small)
                 .fixedSize(horizontal: false, vertical: true)
             

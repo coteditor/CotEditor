@@ -1598,7 +1598,7 @@
         }
       }
     },
-    "Sample line to check which part in a line will be used for sort comparison." : {
+    "Sample line to check which part of a line will be used for sorting." : {
       "comment" : "tooltip",
       "localizations" : {
         "bg" : {
@@ -1622,7 +1622,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sample line to check which part in a line will be used for sort comparison."
+            "value" : "Sample line to check which part of a line will be used for sorting."
           }
         },
         "es" : {
