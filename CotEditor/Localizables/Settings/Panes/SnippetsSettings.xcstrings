@@ -535,7 +535,7 @@
         }
       }
     },
-    "File extensions of dropped file (comma separated)." : {
+    "File extensions of dropped file (comma-separated)." : {
       "comment" : "tooltip",
       "localizations" : {
         "bg" : {
@@ -553,19 +553,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dateisuffixe der abgelegte Datei (Komma-getrennt)."
+            "value" : "Dateisuffixe der abgelegten Datei (durch Kommas getrennt)."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "File extensions of dropped file (comma separated)."
+            "value" : "File extensions of dropped file (comma-separated)."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Extensiones de nombre de archivo del archivo eliminado (separado de comas)."
+            "value" : "Extensiones del archivo soltado (separadas por comas)."
           }
         },
         "fr" : {
@@ -589,7 +589,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "떨군 파일의 확장자 (반점으로 구문됨)."
+            "value" : "떨군 파일의 확장자(쉼표로 구분)."
           }
         },
         "nl" : {

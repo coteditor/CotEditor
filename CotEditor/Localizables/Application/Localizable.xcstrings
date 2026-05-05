@@ -9519,19 +9519,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fülle die folgende Vorlage aus und poste sie auf %1$@ oder sende sie an %2$@. Bitte beachte, dass der Inhalt deiner E-Mail auf der Issue-Seite geteilt werden kann. Bitte schreibe deine Nachricht auf Englisch oder Japanisch."
+            "value" : "Fülle die folgende Vorlage aus und poste sie auf %1$@ oder sende sie an %2$@. Beachte, dass der Inhalt deiner E-Mail auf der Issue-Seite geteilt werden kann. Bitte schreibe deine Nachricht auf Englisch oder Japanisch."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Fill in the following template, then post it on %1$@ or send it to %2$@. Please note that the content of your email may be shared on the Issue page. Please write your message in either English or Japanese."
+            "value" : "Fill in the following template, then post it on %1$@ or send it to %2$@. Note that the content of your email may be shared on the Issue page. Please write your message in either English or Japanese."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fill in the following template, then post it on %1$@ or send it to %2$@. Please note that the content of your email may be shared on the Issue page. Please write your message in either English or Japanese."
+            "value" : "Fill in the following template, then post it on %1$@ or send it to %2$@. Note that the content of your email may be shared on the Issue page. Please write your message in either English or Japanese."
           }
         },
         "es" : {
@@ -9543,13 +9543,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Remplissez le modèle ci-dessous, puis publiez-le sur %1$@ ou envoyez-le à %2$@. Veuillez noter que le contenu de votre e-mail peut être partagé sur la page des issues. Rédigez votre message en anglais ou en japonais."
+            "value" : "Remplissez le modèle ci-dessous, puis publiez-le sur %1$@ ou envoyez-le à %2$@. Notez que le contenu de votre e-mail peut être partagé sur la page des issues. Rédigez votre message en anglais ou en japonais."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Compilare il template che segue, e caricarlo su %1$@ oppure inviarlo a %2$@. Si prega di notare che i contenuti della email inviata potrebbero essere condivisi sulla pagina dedicata alla risoluzione dei problemi (Issues). Scrivere il contenuto in inglese o giapponese."
+            "value" : "Compilare il template che segue, e caricarlo su %1$@ oppure inviarlo a %2$@. Tieni presente che il contenuto dell’e-mail potrebbe essere condiviso sulla pagina dedicata alla risoluzione dei problemi (Issues). Scrivere il contenuto in inglese o giapponese."
           }
         },
         "ja" : {

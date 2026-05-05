@@ -345,7 +345,7 @@ private struct LicenseView: View {
     var body: some View {
         
         LazyVStack(alignment: .leading, spacing: 12) {
-            Text("CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work.", tableName: "About")
+            Text("CotEditor uses the following awesome technologies. We are deeply grateful to the people who make their valuable work available to us.", tableName: "About")
                 .lineSpacing(2)
             
             ForEach(LicenseItem.items, content: ItemView.init(item:))

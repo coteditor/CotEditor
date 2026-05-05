@@ -189,7 +189,7 @@ private struct FileDropView: View {
                 
                 TableColumn(String(localized: "Extensions", table: "SnippetsSettings", comment: "table column header")) { $item in
                     TextField(value: $item.extensions, format: .csv(omittingEmptyItems: true), prompt: Text("All", tableName: "SnippetsSettings"), label: EmptyView.init)
-                        .help(String(localized: "File extensions of dropped file (comma separated).", table: "SnippetsSettings", comment: "tooltip"))
+                        .help(String(localized: "File extensions of dropped file (comma-separated).", table: "SnippetsSettings", comment: "tooltip"))
                 }
                 
                 TableColumn(String(localized: "Description", table: "SnippetsSettings", comment: "table column header")) { $item in

@@ -535,7 +535,7 @@
         }
       }
     },
-    "CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work." : {
+    "CotEditor uses the following awesome technologies. We are deeply grateful to the people who make their valuable work available to us." : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -552,31 +552,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor verwendet die folgenden großartigen Technologien. Wir sind sehr dankbar für diejenigen, die uns ihre wertvolle Arbeit zur Verfügung stellen."
+            "value" : "CotEditor verwendet die folgenden großartigen Technologien. Wir sind den Menschen sehr dankbar, die uns ihre wertvolle Arbeit zur Verfügung stellen."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor uses the following awesome technologies. We are deeply grateful for those who let us use their valuable work."
+            "value" : "CotEditor uses the following awesome technologies. We are deeply grateful to the people who make their valuable work available to us."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor se desarrolla utilizando las siguientes tecnologías excepcionales. Agradecemos profundamente a quienes nos permiten usar su valioso trabajo."
+            "value" : "CotEditor se desarrolla utilizando las siguientes tecnologías excepcionales. Agradecemos profundamente a las personas que ponen su valioso trabajo a nuestra disposición."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor utilise les technologies géniales suivantes. Nous sommes très reconnaissants envers ceux nous permettant d’utiliser leurs précieux travaux."
+            "value" : "CotEditor utilise les technologies géniales suivantes. Nous sommes très reconnaissants envers les personnes qui mettent leur précieux travail à notre disposition."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor fa uso delle fantastiche seguenti tecnologie. Un enorme grazie a coloro che ci permettono di utilizzarle."
+            "value" : "CotEditor fa uso delle fantastiche seguenti tecnologie. Siamo profondamente grati alle persone che mettono a nostra disposizione il loro prezioso lavoro."
           }
         },
         "ja" : {
@@ -594,7 +594,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor gebruikt de volgende geweldige technologieën. We zijn degenen die ons hun waardevolle werk laten gebruiken zeer dankbaar."
+            "value" : "CotEditor gebruikt de volgende geweldige technologieën. We zijn de mensen die hun waardevolle werk aan ons beschikbaar stellen zeer dankbaar."
           }
         },
         "pl" : {
@@ -606,7 +606,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor usa as incríveis tecnologias a seguir. Somos profundamente gratos àqueles que nos permitem usar seu valioso trabalho."
+            "value" : "CotEditor usa as incríveis tecnologias a seguir. Somos profundamente gratos às pessoas que disponibilizam seu valioso trabalho para nós."
           }
         },
         "ru" : {
