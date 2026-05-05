@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,28 +26,31 @@
 import Foundation.NSRegularExpression
 import StringUtils
 
-protocol TokenRepresentable: RawRepresentable where Self.RawValue == String {
+protocol TokenRepresentable: RawRepresentable, Hashable, CaseIterable where Self.RawValue == String {
     
     static var prefix: String { get }
     static var suffix: String { get }
     
     var token: String { get }
     var localizedDescription: String { get }
-    static var listCases: [Self?] { get }
 }
 
 
 extension TokenRepresentable {
     
+    /// The token string represented by the value.
     var token: String {
         
         Self.prefix + self.rawValue + Self.suffix
     }
     
     
-    static var tokenizer: Tokenizer {
+    /// Creates a tokenizer for the token type.
+    ///
+    /// - Returns: A tokenizer configured with all token cases.
+    static func makeTokenizer() -> sending Tokenizer {
         
-        Tokenizer(tokens: Self.listCases.compactMap(\.self).map(\.rawValue), prefix: Self.prefix, suffix: Self.suffix)
+        Tokenizer(tokens: Self.allCases.map(\.rawValue), prefix: Self.prefix, suffix: Self.suffix)
     }
 }
 

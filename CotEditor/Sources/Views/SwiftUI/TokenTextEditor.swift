@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,12 +44,11 @@ extension NSTextView {
 }
 
 
-struct TokenTextEditor: NSViewRepresentable {
+struct TokenTextEditor<Variable: TokenRepresentable>: NSViewRepresentable {
     
     typealias NSViewType = NSScrollView
     
     @Binding var text: String?
-    var tokenizer: Tokenizer
     
     @Environment(\.isEnabled) private var isEnabled
     
@@ -78,14 +77,14 @@ struct TokenTextEditor: NSViewRepresentable {
         
         textView.string = self.text ?? ""
         if let storage = textView.textContentStorage {
-            self.tokenizer.invalidateTokens(in: storage)
+            context.coordinator.tokenizer.invalidateTokens(in: storage)
         }
     }
     
     
     func makeCoordinator() -> Coordinator {
         
-        Coordinator(tokenizer: self.tokenizer, text: $text)
+        Coordinator(text: $text)
     }
     
     
@@ -96,9 +95,9 @@ struct TokenTextEditor: NSViewRepresentable {
         @Binding private var text: String?
         
         
-        init(tokenizer: Tokenizer, text: Binding<String?>) {
+        init(text: Binding<String?>) {
             
-            self.tokenizer = tokenizer
+            self.tokenizer = Variable.makeTokenizer()
             self._text = text
         }
         
@@ -244,5 +243,5 @@ private extension NSColor {
 #Preview {
     @Previewable @State var text: String? = "abc<<<CURSOR>>><<<CURSOR>>>defg\n<<<SELECTION>>>abc"
     
-    TokenTextEditor(text: $text, tokenizer: Snippet.Variable.tokenizer)
+    TokenTextEditor<Snippet.Variable>(text: $text)
 }

@@ -5790,13 +5790,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "The dropped file absolute path."
+            "value" : "The absolute path of the dropped file."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The dropped file absolute path."
+            "value" : "The absolute path of the dropped file."
           }
         },
         "es" : {
@@ -5897,25 +5897,25 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der übergeordnete Ordnername der abgelegten Datei."
+            "value" : "Der Name des übergeordneten Ordners der abgelegten Datei."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "The parent directory name of dropped file."
+            "value" : "The parent directory name of the dropped file."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The parent directory name of dropped file."
+            "value" : "The parent directory name of the dropped file."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El nombre del directorio principal del archivo eliminado."
+            "value" : "El nombre del directorio padre del archivo soltado."
           }
         },
         "fr" : {
@@ -5945,7 +5945,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De bovenliggende mapnaam van het geplaatste bestand."
+            "value" : "De naam van de bovenliggende map van het geplaatste bestand."
           }
         },
         "pl" : {
@@ -5957,7 +5957,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O nome do diretório superior do arquivo solto."
+            "value" : "O nome do diretório pai do arquivo solto."
           }
         },
         "ru" : {
@@ -5998,109 +5998,109 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Ако изпуснатият файл е текстов файл) съдържанието на файла."
+            "value" : "Съдържанието на файла."
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obsah souboru (pokud je přetažený soubor textový soubor)."
+            "value" : "Obsah souboru."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(nur wenn die abgelegte Datei eine Textdatei ist) Der Inhalt."
+            "value" : "Der Dateiinhalt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "(If the dropped file is a text file) file content."
+            "value" : "The file content."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(If the dropped file is a text file) file content."
+            "value" : "The file content."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Si el archivo eliminado es un archivo de texto), contenuto del file."
+            "value" : "El contenido del archivo."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Contenu du fichier (si le fichier déposé est un fichier texte)"
+            "state" : "translated",
+            "value" : "Le contenu du fichier."
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "(Se il file rilasciato è di testo) contenuto del file."
+            "state" : "translated",
+            "value" : "Il contenuto del file."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ファイル内容（ドロップ元ファイルがテキストファイルのときのみ有効）"
+            "value" : "ファイル内容"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(떨군 파일이 텍스트인 경우) 파일 내용."
+            "value" : "파일 내용."
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "(Als het geplaatste bestand een tekstbestand is) bestandsinhoud."
+            "state" : "translated",
+            "value" : "De bestandsinhoud."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zawartość pliku (jeśli upuszczony plik jest plikiem tekstowym)."
+            "value" : "Zawartość pliku."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conteúdo do arquivo (se o arquivo solto for um arquivo de texto)."
+            "value" : "O conteúdo do arquivo."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Если удаленный файл является текстовым файлом) содержимое файла."
+            "value" : "Содержимое файла."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Bırakılan dosya metin dosyasıysa) dosya içeriği."
+            "value" : "Dosya içeriği."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文件内容（如果拖拽文件是文本文件）"
+            "value" : "文件内容"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檔案內容（如果拖拽檔案是文字檔案）"
+            "value" : "檔案內容"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檔案內容（如拖放檔案是文字檔案）。"
+            "value" : "檔案內容"
           }
         }
       }
@@ -6462,37 +6462,37 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Name der abgelegten Datei inklusive Suffix (falls es existiert)."
+            "value" : "Der Name der abgelegten Datei inklusive Suffix, falls vorhanden."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "The dropped file’s name including extension (if exists)."
+            "value" : "The dropped file’s name including the extension, if any."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The dropped file’s name including extension (if exists)."
+            "value" : "The dropped file’s name including the extension, if any."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El nombre del archivo eliminado, incluida la extensión (si existe)."
+            "value" : "El nombre del archivo soltado, incluida la extensión, si la hay."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le nom du fichier déposé avec l’extension (si présente)."
+            "value" : "Le nom du fichier déposé, extension comprise le cas échéant."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il nome del file trascinato include l’estensione (se presente)."
+            "value" : "Il nome del file trascinato, inclusa l’estensione, se presente."
           }
         },
         "ja" : {
@@ -6510,7 +6510,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De naam van het geplaatste bestand, inclusief extensie (indien bestaand)."
+            "value" : "De naam van het geplaatste bestand, inclusief de extensie, indien aanwezig."
           }
         },
         "pl" : {
@@ -6522,7 +6522,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O nome do arquivo solto, incluindo a extensão (se houver)."
+            "value" : "O nome do arquivo solto, incluindo a extensão, se houver."
           }
         },
         "ru" : {
@@ -6676,109 +6676,109 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Ако изпуснатият файл е изображение) височина на изображението."
+            "value" : "Височината на изображението."
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Výška obrázku (pokud je přetažený soubor obrázkem)."
+            "value" : "Výška obrázku."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Bildhöhe (nur wenn die abgelegte Datei ein Bild ist)."
+            "value" : "Die Bildhöhe."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "(If the dropped file is an image) image height."
+            "value" : "The image height."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(If the dropped file is an image) image height."
+            "value" : "The image height."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Si el archivo eliminado es una imagen) altura de la imagen."
+            "value" : "La altura de la imagen."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hauteur de l’image (si le fichier déposé est une image)"
+            "value" : "La hauteur de l’image."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Altezza dell’immagine (se il file trascinato è un’immagine)."
+            "value" : "L’altezza dell’immagine."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "画像の高さ（ドロップ元ファイルが画像ファイルのときのみ有効）"
+            "value" : "画像の高さ"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(떨군 파일이 이미지인 경우) 이미지 높이."
+            "value" : "이미지 높이."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Als het geplaatste bestand een afbeelding is) afbeeldingshoogte."
+            "value" : "De hoogte van de afbeelding."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wysokość obrazu (jeśli upuszczony plik jest obrazem)."
+            "value" : "Wysokość obrazu."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Altura da imagem (se o arquivo solto for uma imagem)."
+            "value" : "A altura da imagem."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Если удаленный файл является изображением) высота изображения."
+            "value" : "Высота изображения."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Bırakılan dosya resim dosyasıysa) resim boyu."
+            "value" : "Resim boyu."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "图片高度（如果拖拽文件是图像）"
+            "value" : "图片高度"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "圖片高度（如果拖拽檔案是圖像）"
+            "value" : "圖片高度"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "影像高度（如拖放檔案是影像）。"
+            "value" : "影像高度"
           }
         }
       }
@@ -6789,109 +6789,109 @@
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Ако изпуснатият файл е изображение) ширина на изображението."
+            "value" : "Ширината на изображението."
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Šířka obrázku (pokud je přetažený soubor obrázkem)."
+            "value" : "Šířka obrázku."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Bildbreite (nur wenn die abgelegte Datei ein Bild ist)."
+            "value" : "Die Bildbreite."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "(If the dropped file is an image) image width."
+            "value" : "The image width."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(If the dropped file is an image) image width."
+            "value" : "The image width."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Si el archivo eliminado es una imagen) ancho de la imagen."
+            "value" : "El ancho de la imagen."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Largeur de l’image (si le fichier déposé est une image)"
+            "value" : "La largeur de l’image."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Larghezza dell’immagine (se il file trascinato è un’immagine)."
+            "value" : "La larghezza dell’immagine."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "画像の幅（ドロップ元ファイルが画像ファイルのときのみ有効）"
+            "value" : "画像の幅"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(떨군 파일이 이미지인 경우) 이미지 너비."
+            "value" : "이미지 너비."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Als het geplaatste bestand een afbeelding is) beeldbreedte."
+            "value" : "De breedte van de afbeelding."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Szerokość obrazu (jeśli upuszczony plik jest obrazem)."
+            "value" : "Szerokość obrazu."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Largura da imagem (se o arquivo solto for uma imagem)."
+            "value" : "A largura da imagem."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Если удаленный файл является изображением) ширина изображения."
+            "value" : "Ширина изображения."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(Bırakılan dosya resim dosyasıysa) resim eni."
+            "value" : "Resim eni."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "图片宽度（如果拖拽文件是图像）"
+            "value" : "图片宽度"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "圖片寬度（如果拖拽檔案是圖像）"
+            "value" : "圖片寬度"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "影像闊度（如拖放檔案是影像）。"
+            "value" : "影像闊度"
           }
         }
       }

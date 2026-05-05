@@ -113,7 +113,7 @@ extension FileDropItem {
 
 extension FileDropItem {
     
-    enum Variable: String, TokenRepresentable {
+    enum Variable: String, CaseIterable, TokenRepresentable {
         
         static let prefix = "<<<"
         static let suffix = ">>>"
@@ -130,7 +130,6 @@ extension FileDropItem {
         case imageWidth = "IMAGEWIDTH"
         case imageHeight = "IMAGEHEIGHT"
         
-        static let listCases: [Self?] = Self.pathTokens + [nil] + Self.textTokens + [nil] + Self.imageTokens
         static let pathTokens: [Self] = [.absolutePath, .relativePath, .filename, .filenameWithoutExtension, .fileExtension, .fileExtensionLowercase, .fileExtensionUppercase, .directory]
         static let textTokens: [Self] = [.fileContent]
         static let imageTokens: [Self] = [.imageWidth, .imageHeight]
@@ -141,13 +140,13 @@ extension FileDropItem {
             switch self {
                 case .absolutePath:
                     String(localized: "FileDropItem.Variable.absolutePath.description",
-                           defaultValue: "The dropped file absolute path.")
+                           defaultValue: "The absolute path of the dropped file.")
                 case .relativePath:
                     String(localized: "FileDropItem.Variable.relativePath.description",
                            defaultValue: "The relative path between the dropped file and the document.")
                 case .filename:
                     String(localized: "FileDropItem.Variable.filename.description",
-                           defaultValue: "The dropped file’s name including extension (if exists).")
+                           defaultValue: "The dropped file’s name including the extension, if any.")
                 case .filenameWithoutExtension:
                     String(localized: "FileDropItem.Variable.filenameWithoutExtension.description",
                            defaultValue: "The dropped file’s name without extension.")
@@ -162,16 +161,16 @@ extension FileDropItem {
                            defaultValue: "The dropped file’s extension (converted to uppercase).")
                 case .directory:
                     String(localized: "FileDropItem.Variable.directory.description",
-                           defaultValue: "The parent directory name of dropped file.")
+                           defaultValue: "The parent directory name of the dropped file.")
                 case .fileContent:
                     String(localized: "FileDropItem.Variable.fileContent.description",
-                           defaultValue: "(If the dropped file is a text file) file content.")
+                           defaultValue: "The file content.")
                 case .imageWidth:
                     String(localized: "FileDropItem.Variable.imageWidth.description",
-                           defaultValue: "(If the dropped file is an image) image width.")
+                           defaultValue: "The image width.")
                 case .imageHeight:
                     String(localized: "FileDropItem.Variable.imageHeight.description",
-                           defaultValue: "(If the dropped file is an image) image height.")
+                           defaultValue: "The image height.")
             }
         }
     }

@@ -15,6 +15,7 @@
 - Update tree-sitter-c to 0.24.2.
 - Update tree-sitter-swift to 0.7.2.
 - Improve overall stability and performance.
+- [trivial] Improve insertion format editors in the Snippet settings pane.
 
 
 ### Fixes

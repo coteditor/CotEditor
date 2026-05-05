@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -75,26 +75,24 @@ extension Snippet: Codable {
 
 extension Snippet {
     
-    enum Variable: String, TokenRepresentable {
+    enum Variable: String, CaseIterable, TokenRepresentable {
         
         static let prefix = "<<<"
         static let suffix = ">>>"
         
-        case cursor = "CURSOR"
         case selection = "SELECTION"
-        
-        static let listCases: [Self?] = [.cursor, .selection]
+        case cursor = "CURSOR"
         
         
         var localizedDescription: String {
             
             switch self {
-                case .cursor:
-                    String(localized: "Snippet.Variable.cursor.description",
-                           defaultValue: "The insertion point after inserting the snippet.")
                 case .selection:
                     String(localized: "Snippet.Variable.selection.description",
                            defaultValue: "The selected text.")
+                case .cursor:
+                    String(localized: "Snippet.Variable.cursor.description",
+                           defaultValue: "The insertion point after inserting the snippet.")
             }
         }
     }

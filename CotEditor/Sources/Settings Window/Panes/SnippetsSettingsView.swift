@@ -145,7 +145,9 @@ private struct CommandSnippetsView: View {
             }
             .padding(.bottom)
             
-            InsertionFormatView<Snippet.Variable>(text: $format, count: self.selection.count)
+            InsertionFormatView<Snippet.Variable, _>(text: $format, count: self.selection.count) {
+                InsertionMenuContent(items: Snippet.Variable.allCases)
+            }
         }
         .onAppear {
             self.items = self.manager.snippets
@@ -232,7 +234,16 @@ private struct FileDropView: View {
             }
             .padding(.bottom)
             
-            InsertionFormatView<FileDropItem.Variable>(text: $format, count: self.selection.count)
+            InsertionFormatView<FileDropItem.Variable, _>(text: $format, count: self.selection.count) {
+                InsertionMenuContent(items: FileDropItem.Variable.pathTokens)
+                
+                Section(String(localized: "Text File", table: "SnippetsSettings", comment: "menu item header")) {
+                    InsertionMenuContent(items: FileDropItem.Variable.textTokens)
+                }
+                Section(String(localized: "Image File", table: "SnippetsSettings", comment: "menu item header")) {
+                    InsertionMenuContent(items: FileDropItem.Variable.imageTokens)
+                }
+            }
         }
         .onAppear {
             self.load()
@@ -311,10 +322,11 @@ private struct SyntaxPicker: View {
 }
 
 
-private struct InsertionFormatView<Variable: TokenRepresentable>: View {
+private struct InsertionFormatView<Variable: TokenRepresentable, MenuContent: View>: View {
     
     @Binding var text: String?
     var count: Int
+    @ViewBuilder var menuContent: MenuContent
     
     @Namespace private var accessibility
     
@@ -326,26 +338,14 @@ private struct InsertionFormatView<Variable: TokenRepresentable>: View {
                 Text("Insertion format:", tableName: "SnippetsSettings")
                     .accessibilityLabeledPair(role: .label, id: "insertionFormat", in: self.accessibility)
                 Spacer()
+                
                 Menu(String(localized: "Insert Variable", table: "SnippetsSettings", comment: "button label")) {
-                    ForEach(Array(Variable.listCases.enumerated()), id: \.offset) { _, variable in
-                        if let variable {
-                            Button {
-                                let menuItem = NSMenuItem()
-                                menuItem.representedObject = variable.token
-                                NSApp.sendAction(#selector(NSTextView.insertVariable), to: nil, from: menuItem)
-                            } label: {
-                                Text(variable.token)
-                                Text(variable.localizedDescription)
-                            }
-                        } else {
-                            Divider()
-                        }
-                    }
+                    self.menuContent
                 }
                 .fixedSize()
             }
             
-            TokenTextEditor(text: $text, tokenizer: Variable.tokenizer)
+            TokenTextEditor<Variable>(text: $text)
                 .accessibilityLabeledPair(role: .content, id: "insertionFormat", in: self.accessibility)
                 .frame(height: 100)
                 .overlay {
@@ -364,6 +364,27 @@ private struct InsertionFormatView<Variable: TokenRepresentable>: View {
             case 0: String(localized: "ItemSelection.zero.message", defaultValue: "No item selected")
             case 1: nil
             default: String(localized: "ItemSelection.multiple.message", defaultValue: "Multiple items selected")
+        }
+    }
+}
+
+
+private struct InsertionMenuContent<Item: TokenRepresentable>: View {
+    
+    var items: [Item]
+    
+    
+    var body: some View {
+        
+        ForEach(self.items, id: \.self) { item in
+            Button {
+                let menuItem = NSMenuItem()
+                menuItem.representedObject = item.token
+                NSApp.sendAction(#selector(NSTextView.insertVariable), to: nil, from: menuItem)
+            } label: {
+                Text(item.token)
+                Text(item.localizedDescription)
+            }
         }
     }
 }
