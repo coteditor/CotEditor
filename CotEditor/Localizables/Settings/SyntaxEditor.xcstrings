@@ -2633,7 +2633,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Caractère d'échappement"
+            "value" : "Caractère d’échappement"
           }
         },
         "it" : {
@@ -4556,7 +4556,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Géré par l’app\n"
+            "value" : "Géré par l’app"
           }
         },
         "it" : {
@@ -5969,7 +5969,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Le caractère d'échappement doit être un seul caractère en unité de code UTF-16."
+            "value" : "Le caractère d’échappement doit correspondre à une seule unité de code UTF-16."
           }
         },
         "it" : {
@@ -6855,7 +6855,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Les interpréteurs sont utilisés pour déterminer la syntaxe à partir de l'en-tête `#!` du document."
+            "value" : "Les interpréteurs sont utilisés pour déterminer la syntaxe à partir de l’en-tête `#!` du document."
           }
         },
         "it" : {

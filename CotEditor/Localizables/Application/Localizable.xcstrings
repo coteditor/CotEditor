@@ -3311,7 +3311,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Pour l'ouvrir dans cette fenêtre, il faut d'abord fermer la fenêtre existante."
+            "value" : "Pour l’ouvrir dans cette fenêtre, fermez d’abord la fenêtre existante."
           }
         },
         "it" : {
@@ -3879,7 +3879,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pour modifier le document, autoriser d'abord les modifications."
+            "value" : "Pour modifier le document, autorisez d’abord les modifications."
           }
         },
         "it" : {
@@ -7732,7 +7732,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Un réglage personnalisé du même nom se trouve déjà. Si vous le remplacez, le contenu d’origine sera perdu."
+            "value" : "Un réglage personnalisé du même nom existe déjà. Si vous le remplacez, son contenu actuel sera écrasé."
           }
         },
         "it" : {
@@ -8977,7 +8977,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Le nom ne peut pas contenir de nouvelles lignes."
+            "value" : "Le nom ne peut pas contenir de retours à la ligne."
           }
         },
         "it" : {

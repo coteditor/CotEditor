@@ -5777,19 +5777,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Une chaîne trouvée dans « %2$@ »."
+                  "value" : "Une occurrence trouvée dans « %2$@ »."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "%1$lld chaînes trouvées dans « %2$@ »."
+                  "value" : "%1$lld occurrences trouvées dans « %2$@ »."
                 }
               },
               "zero" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Aucune chaîne trouvée dans « %2$@ »."
+                  "value" : "Aucune occurrence trouvée dans « %2$@ »."
                 }
               }
             }
@@ -6513,7 +6513,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Chaîne trouvée"
+            "value" : "Texte correspondant"
           }
         },
         "it" : {

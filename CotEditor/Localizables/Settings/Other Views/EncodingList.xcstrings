@@ -149,7 +149,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "L'encodage défini par défaut ne peut pas être supprimé."
+            "value" : "L’encodage défini par défaut ne peut pas être supprimé."
           }
         },
         "it" : {
@@ -263,7 +263,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "%@ ne peut être supprimé."
+            "value" : "%@ ne peut pas être supprimé."
           }
         },
         "it" : {

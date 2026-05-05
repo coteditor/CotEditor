@@ -20678,7 +20678,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Sélectionner la colonne haut"
+            "value" : "Sélectionner la colonne en bas"
           }
         },
         "it" : {
@@ -27404,7 +27404,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Sélectionner la colonne en bas"
+            "value" : "Sélectionner la colonne en haut"
           }
         },
         "it" : {
