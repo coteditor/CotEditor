@@ -3968,7 +3968,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Datei „%@” entspricht keiner Textdatei."
+            "value" : "Die Datei „%@“ scheint keine Textdaten zu enthalten."
           }
         },
         "en" : {
@@ -4764,7 +4764,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " Verfügbaren Text speichern"
+            "value" : "Verfügbaren Text sichern"
           }
         },
         "en" : {
@@ -12451,7 +12451,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kein Dokument, um die Eingabe zu erhalten."
+            "value" : "Kein Dokument zum Abrufen der Eingabe."
           }
         },
         "en" : {
@@ -12564,7 +12564,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kein Dokument, um die Ausgabe zu setzen."
+            "value" : "Kein Dokument zum Einfügen der Ausgabe."
           }
         },
         "en" : {
@@ -14372,7 +14372,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Kombination „%@“ wird für die Anpassung des Kurzbefehles nicht unterstützt."
+            "value" : "Die Kombination „%@“ wird für die Anpassung des Kurzbefehls nicht unterstützt."
           }
         },
         "en" : {
@@ -15492,7 +15492,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditors Version behalten"
+            "value" : "CotEditor-Version behalten"
           }
         },
         "en" : {
@@ -15718,7 +15718,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Möchtest du die Version des CotEditors behalten oder auf die geänderte Version aktualisieren?"
+            "value" : "Möchtest du die CotEditor-Version behalten oder auf die geänderte Version aktualisieren?"
           }
         },
         "en" : {

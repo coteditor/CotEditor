@@ -82,7 +82,7 @@
               "zero" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Kinen Befehl gefunden"
+                  "value" : "Keinen Befehl gefunden"
                 }
               }
             }

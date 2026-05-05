@@ -18,7 +18,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eine Systemfunktion, die deine Dateien während der Bearbeitung automatisch überschreibt. Selbst wenn nicht aktiviert, erstellt CotEditor verdeckt Backups für unerwartete Beenden."
+            "value" : "Eine Systemfunktion, die deine Dateien während der Bearbeitung automatisch überschreibt. Auch wenn diese Funktion deaktiviert ist, erstellt CotEditor im Hintergrund Backups für den Fall, dass es unerwartet beendet wird."
           }
         },
         "en-GB" : {
@@ -775,7 +775,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditors Version behalten"
+            "value" : "CotEditor-Version behalten"
           }
         },
         "en" : {
@@ -2959,7 +2959,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Folgenden Warnungen ausschalten:"
+            "value" : "Folgende Warnungen ausschalten:"
           }
         },
         "en-GB" : {
@@ -3383,7 +3383,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mit dem „cot“-Kommandozeilenwerkzeug kannst du CotEditor von der Kommandozeile aus aktivieren und es Dateien öffnen lassen."
+            "value" : "Mit dem „cot“-Kommandozeilenwerkzeug kannst du CotEditor von der Kommandozeile aus starten und Dateien öffnen."
           }
         },
         "en-GB" : {

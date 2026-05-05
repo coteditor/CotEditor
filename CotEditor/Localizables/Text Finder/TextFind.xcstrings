@@ -5687,7 +5687,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%1$lld Treffer „%2$@” in gefunden."
+                  "value" : "%1$lld Treffer in „%2$@“ gefunden."
                 }
               },
               "zero" : {

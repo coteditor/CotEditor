@@ -6879,7 +6879,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Möchtest du “%@” in den Papierkorb bewegen?"
+            "value" : "Möchtest du „%@“ in den Papierkorb legen?"
           }
         },
         "en" : {
@@ -7018,7 +7018,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Möchtest du %lld ausgewählte Objekte in den Papierkorb bewegen?"
+                  "value" : "Möchtest du %lld ausgewählte Objekte in den Papierkorb legen?"
                 }
               }
             }
