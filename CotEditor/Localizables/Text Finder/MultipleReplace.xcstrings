@@ -264,7 +264,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scegliere una definizione sostiuzioni di\nCotEditor oppure file TSV (valori separati da tabulatore)."
+            "value" : "Scegliere una definizione di sostituzione di CotEditor oppure un file TSV (valori separati da tabulatore)."
           }
         },
         "ja" : {

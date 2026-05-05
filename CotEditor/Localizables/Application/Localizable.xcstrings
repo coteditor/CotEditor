@@ -4453,7 +4453,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il file “%1$@” è grande %2$@."
+            "value" : "Il file “%1$@” ha una dimensione di %2$@."
           }
         },
         "ja" : {
@@ -6944,7 +6944,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Percorso relativo tra il file trascinato ed il documento."
+            "value" : "Percorso relativo tra il file trascinato e il documento."
           }
         },
         "ja" : {
@@ -14063,7 +14063,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il tasto “%@” è giù utilizzato."
+            "value" : "“%1$@” è già utilizzato dal comando “%2$@”."
           }
         },
         "ja" : {
@@ -14176,7 +14176,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il tasto Maiuscolo va abbinato ad un altro tasto modificatore."
+            "value" : "Il tasto Maiuscolo va abbinato a un altro tasto modificatore."
           }
         },
         "ja" : {

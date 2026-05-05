@@ -262,7 +262,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le icone rendono la struttura più semplice da analizzare, e la sintassi basata su tree-sitter supporta outline espandibili che ricalcano la gerarchia."
+            "value" : "Le icone rendono la struttura più semplice da analizzare e la sintassi basata su tree-sitter supporta outline espandibili che ricalcano la gerarchia."
           }
         },
         "ja" : {
@@ -488,7 +488,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Evidenziazioni più accurate, commenti più precisi, comportamento dell'editor migliorato: tutto grazie ad un motore sintattico ed un formato delle definizioni riprogettati."
+            "value" : "Evidenziazione più accurata, commenti più precisi e comportamento dell’editor migliorato: tutto grazie a un motore di sintassi e a un formato delle definizioni riprogettati."
           }
         },
         "ja" : {
@@ -1049,7 +1049,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Molte delle principali sintassi incorporate adesso si appoggiano a tree-sitter, un parser di moderna concezione che offre una consapevolezza del linguaggio più profonda ed affidabile."
+            "value" : "Molte delle principali sintassi incorporate adesso si appoggiano a tree-sitter, un parser di moderna concezione che offre una consapevolezza del linguaggio più profonda e affidabile."
           }
         },
         "ja" : {
@@ -1162,7 +1162,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Powered by tree-sitter, where it matters most"
+            "value" : "Basato su tree-sitter, dove conta di più"
           }
         },
         "ja" : {

@@ -149,7 +149,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Invalid code"
+            "value" : "Codice non valido"
           }
         },
         "ja" : {

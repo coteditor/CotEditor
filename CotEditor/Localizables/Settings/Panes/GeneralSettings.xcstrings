@@ -42,7 +42,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Questa funzione sovrascrive automaticamente i tuoi file durante la lavorazione. Anche se disabilitata, CotEditor crea dei backup in caso di chiusura inaspettata."
+            "value" : "Funzione di sistema che sovrascrive automaticamente i file durante la modifica. Anche se disattivata, CotEditor crea di nascosto un backup in caso di chiusura imprevista."
           }
         },
         "ja" : {
@@ -480,7 +480,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il link simbolico `cot` attuale potrebbe puntare ad un percorso non valido."
+            "value" : "Il link simbolico `cot` attuale potrebbe puntare a un percorso non valido."
           }
         },
         "ja" : {

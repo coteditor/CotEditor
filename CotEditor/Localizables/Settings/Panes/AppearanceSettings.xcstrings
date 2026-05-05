@@ -913,7 +913,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dimensioni font"
+            "value" : "Dimensione font"
           }
         },
         "ja" : {
@@ -1345,7 +1345,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La vuoi usare come font a spaziatura fissa?"
+            "value" : "Vuoi usarlo come font a spaziatura fissa?"
           }
         },
         "ja" : {
@@ -1458,7 +1458,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La font selezionata non sembra a spaziatura fissa."
+            "value" : "Il font selezionato non sembra a spaziatura fissa."
           }
         },
         "ja" : {

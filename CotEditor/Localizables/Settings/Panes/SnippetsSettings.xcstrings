@@ -577,7 +577,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estensione dei file rilasciati (valori separati da virgola)."
+            "value" : "Estensioni dei file trascinati (separate da virgole)."
           }
         },
         "ja" : {
@@ -1336,7 +1336,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Testo da inserire con una abbreviazione o un comando da menu:"
+            "value" : "Testo da inserire con un comando di menu o una scorciatoia da tastiera:"
           }
         },
         "ja" : {

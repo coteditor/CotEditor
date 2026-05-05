@@ -42,7 +42,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " (default)"
+            "value" : " (predefinito)"
           }
         },
         "ja" : {
@@ -5720,7 +5720,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salta all’elemento Outline precedente"
+            "value" : "Salta all’elemento Outline successivo"
           }
         },
         "ja" : {
@@ -5827,7 +5827,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salta all’elemento Outline successivo"
+            "value" : "Salta all’elemento Outline precedente"
           }
         },
         "ja" : {
@@ -7706,7 +7706,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Elemento successivo della struttura"
+            "value" : "Elemento Outline successivo"
           }
         },
         "ja" : {
@@ -9198,7 +9198,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Menu Struttura"
+            "value" : "Menu Outline"
           }
         },
         "ja" : {
@@ -9519,7 +9519,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Elemento precedente della struttura"
+            "value" : "Elemento Outline precedente"
           }
         },
         "ja" : {
@@ -12473,7 +12473,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tipo Font"
+            "value" : "Tipo di font"
           }
         },
         "ja" : {

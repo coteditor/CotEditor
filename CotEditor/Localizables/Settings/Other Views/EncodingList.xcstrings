@@ -587,7 +587,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Questo elenco è per il menu delle codifiche e per il loro rilevamento. Il processo di rilevamento considera solo gli elementi elencati qui. Le codifiche elencate in cima hanno priorità."
+            "value" : "Questo ordine viene usato per il menu delle codifiche e per rilevare la codifica all’apertura di un file. Durante il rilevamento, gli elementi più in alto hanno priorità."
           }
         },
         "ja" : {

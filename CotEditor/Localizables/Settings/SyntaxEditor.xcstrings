@@ -6542,7 +6542,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Per l'analisi della sintassi di questo linguaggio si usa un parser basato su strutture e di utilizzo generale chiamato tree-sitter.\nDato che le regole di estrazione sono gestite dall'app, non si possono personalizzare."
+            "value" : "Questo linguaggio usa tree-sitter, un parser generico basato sulla struttura, per l’analisi della sintassi.\nDato che le regole di estrazione sono gestite dall’app, non si possono personalizzare."
           }
         },
         "ja" : {
@@ -6861,7 +6861,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gli interpreti sono usati per determinare la sintassi in base all'intestazione `#!` header del documento."
+            "value" : "Gli interpreti sono usati per determinare la sintassi in base all’intestazione `#!` del documento."
           }
         },
         "ja" : {
