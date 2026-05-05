@@ -112,13 +112,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Cadena %lld encontrada."
+                  "value" : "%lld coincidencia encontrada."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Cadenas %lld encontradas."
+                  "value" : "%lld coincidencias encontradas."
                 }
               }
             }
@@ -441,13 +441,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Cadena %lld reemplazada."
+                  "value" : "%lld coincidencia reemplazada."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Cadenas %lld reemplazadas."
+                  "value" : "%lld coincidencias reemplazadas."
                 }
               }
             }
@@ -1330,7 +1330,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Close find result."
+            "value" : "Cerrar resultado de búsqueda."
           }
         },
         "fr" : {
@@ -3264,19 +3264,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld reemplazo"
+                  "value" : "%lld reemplazada"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld reemplazos"
+                  "value" : "%lld reemplazadas"
                 }
               },
               "zero" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "No reemplazo"
+                  "value" : "Sin reemplazos"
                 }
               }
             }
@@ -6507,7 +6507,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Cadena encontrada"
+            "value" : "Texto coincidente"
           }
         },
         "fr" : {
@@ -8664,7 +8664,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La opción “in selection” está seleccionada, aunque no se selecciona nada."
+            "value" : "La opción “en la selección” está activada, aunque no hay nada seleccionado."
           }
         },
         "fr" : {
@@ -8777,7 +8777,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccione el ámbito de búsqueda en el documento o deshabilite la opción “in selection”."
+            "value" : "Selecciona el ámbito de búsqueda en el documento o desactiva la opción “en la selección”."
           }
         },
         "fr" : {

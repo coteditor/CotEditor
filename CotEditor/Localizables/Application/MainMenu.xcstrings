@@ -3226,7 +3226,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ivertir líneas"
+            "value" : "Invertir líneas"
           }
         },
         "fr" : {
@@ -5780,7 +5780,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Para mostrar caracteres invisibles, configúrelos en la configuración de Ventana"
+            "value" : "Para mostrar caracteres invisibles, configúralos en la configuración de Ventana"
           }
         },
         "fr" : {

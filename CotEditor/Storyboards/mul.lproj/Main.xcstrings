@@ -1748,7 +1748,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Orientation"
+            "value" : "Orientación"
           }
         },
         "fr" : {
@@ -8246,7 +8246,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajustar Linea"
+            "value" : "Ajustar línea"
           }
         },
         "fr" : {
@@ -14288,7 +14288,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lineas"
+            "value" : "Líneas"
           }
         },
         "fr" : {
@@ -15998,7 +15998,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Convertir sangria a espacios"
+            "value" : "Convertir sangría en espacios"
           }
         },
         "fr" : {
@@ -22952,7 +22952,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Convertir sangria en tabulaciones"
+            "value" : "Convertir sangría en tabulaciones"
           }
         },
         "fr" : {
@@ -23408,7 +23408,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostar guias de sangria"
+            "value" : "Mostrar guías de sangría"
           }
         },
         "fr" : {
@@ -24434,7 +24434,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuenta avanzada de carácteres…"
+            "value" : "Recuento avanzado de caracteres…"
           }
         },
         "fr" : {

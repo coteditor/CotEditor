@@ -1033,7 +1033,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Selecciona el archivo de configuración de CotEditor que quieras importar."
+            "value" : "Selecciona el archivo de ajustes de CotEditor que quieras importar."
           }
         },
         "fr" : {
@@ -1365,7 +1365,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Exportar los ajustes seleccionados como un archivo para poder importarlos a otros ordenadores."
+            "value" : "Exporta los ajustes seleccionados como un archivo para poder importarlos en otros ordenadores."
           }
         },
         "fr" : {
@@ -1796,7 +1796,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Definiciones de reemplazo múltiples"
+            "value" : "Definiciones de reemplazo múltiple"
           }
         },
         "fr" : {

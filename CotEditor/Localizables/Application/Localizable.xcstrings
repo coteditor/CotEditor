@@ -4441,7 +4441,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The file “%1$@” tiene un tamaño de %2$@."
+            "value" : "El archivo “%1$@” tiene un tamaño de %2$@."
           }
         },
         "fr" : {
@@ -8178,7 +8178,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¿Quieres convertir todos los finales de línea en %@, el final de línea más comunes en este documento?"
+            "value" : "¿Quieres convertir todos los finales de línea a %@, el final de línea más común en este documento?"
           }
         },
         "fr" : {
@@ -8971,7 +8971,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El nombre no puede tener más líneas."
+            "value" : "El nombre no puede contener saltos de línea."
           }
         },
         "fr" : {
@@ -9537,7 +9537,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rellena la siguiente plantilla y publícala en %1$@ o envíala a %2$@. Ten en cuenta que el contenido de tu correo puede compartirse en la página de issues. Escribe tu mensaje en inglés o en japonés."
+            "value" : "Rellena la siguiente plantilla y publícala en %1$@ o envíala a %2$@. Ten en cuenta que el contenido de tu correo puede compartirse en la página de incidencias. Escribe tu mensaje en inglés o en japonés."
           }
         },
         "fr" : {
@@ -12243,7 +12243,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El documento no se podía reinterpretar usando codificación de texto “%@”."
+            "value" : "No se pudo reinterpretar el documento usando la codificación de texto “%@”."
           }
         },
         "fr" : {
@@ -13938,7 +13938,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se encontró archivo original para “%@”"
+            "value" : "No se encontró ningún archivo original para “%@”."
           }
         },
         "fr" : {
@@ -15070,7 +15070,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¿Estas seguro que quieres descartar los cambios y volver a abrir el documento usando “%@”?"
+            "value" : "¿Estás seguro de que quieres descartar los cambios y volver a abrir el documento usando “%@”?"
           }
         },
         "fr" : {
@@ -15183,7 +15183,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The document has unsaved changes."
+            "value" : "El documento tiene cambios sin guardar."
           }
         },
         "fr" : {

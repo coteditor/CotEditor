@@ -4136,13 +4136,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Encontré un carácter incompatible."
+                  "value" : "Se encontró un carácter incompatible."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Encontré %lld caracteres incompatibles."
+                  "value" : "Se encontraron %lld caracteres incompatibles."
                 }
               }
             }
@@ -4471,13 +4471,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Encontré un final de línea distinto de %2$@."
+                  "value" : "Se encontró un final de línea distinto de %2$@."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Encontré %1$lld finales de línea distintos de %2$@."
+                  "value" : "Se encontraron %1$lld finales de línea distintos de %2$@."
                 }
               }
             }
@@ -9186,7 +9186,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Menu del esquema"
+            "value" : "Menú del esquema"
           }
         },
         "fr" : {
@@ -9613,7 +9613,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Escaneo de caracteres incompatibles…"
+            "value" : "Buscando caracteres incompatibles…"
           }
         },
         "fr" : {
@@ -11330,7 +11330,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comment"
+            "value" : "Comentario"
           }
         },
         "fr" : {
@@ -12121,7 +12121,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Find"
+            "value" : "Buscar"
           }
         },
         "fr" : {
@@ -13704,7 +13704,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sangrar guias"
+            "value" : "Guías de sangría"
           }
         },
         "fr" : {
@@ -13817,7 +13817,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar líneas guía de sangria"
+            "value" : "Mostrar guías de sangría"
           }
         },
         "fr" : {
@@ -13930,7 +13930,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ocultar línas guía de sangria"
+            "value" : "Ocultar guías de sangría"
           }
         },
         "fr" : {

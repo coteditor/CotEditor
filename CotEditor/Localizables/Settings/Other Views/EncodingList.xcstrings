@@ -575,7 +575,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Este orden es para el menú de codificación y la detección de codificación al abrir el archivo. Según la detección, los elementos más altos tienen más prioridad."
+            "value" : "Este orden se usa para el menú de codificación y para detectar la codificación al abrir un archivo. Durante la detección, los elementos situados más arriba tienen prioridad."
           }
         },
         "fr" : {

@@ -5963,7 +5963,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "El carácter de escape debe ser un único carácter en unidad de código UTF-16."
+            "value" : "El carácter de escape debe ocupar una sola unidad de código UTF-16."
           }
         },
         "fr" : {
@@ -6849,7 +6849,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Los intérpretes se utilizan para determinar la sintaxis a partir del encabezado `#!` en el documento."
+            "value" : "Los intérpretes se utilizan para determinar la sintaxis a partir del encabezado `#!` del documento."
           }
         },
         "fr" : {
