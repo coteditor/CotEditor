@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@
 //
 
 import SwiftUI
-import Combine
 import TextFind
 
 struct FindProgressView: View {
@@ -35,7 +34,6 @@ struct FindProgressView: View {
     private var action: TextFind.Action
     private var label: String
     
-    private let timer = Timer.publish(every: 0.1, tolerance: 0.1, on: .main, in: .common).autoconnect()
     @State private var description: String = ""
     
     
@@ -73,11 +71,12 @@ struct FindProgressView: View {
             .labelStyle(.iconOnly)
             .buttonStyle(.borderless)
         }
-        .onAppear {
-            self.updateDescription()
-        }
-        .onReceive(self.timer) { _ in
-            self.updateDescription()
+        .task {
+            // periodically updates the current value label
+            while !self.progress.state.isTerminated {
+                self.updateDescription()
+                try? await Task.sleep(for: .milliseconds(100), tolerance: .milliseconds(100))
+            }
         }
         .onChange(of: self.progress.state) { _, newValue in
             switch newValue {
