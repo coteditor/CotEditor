@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -92,7 +92,7 @@ struct DonationSettingsView: View {
                                         do {
                                             try await AppStore.sync()
                                         } catch {
-                                            self.presentError(error)
+                                            self.presentError(error, disablesDonation: false)
                                         }
                                     }
                                 }.buttonStyle(.link)
@@ -212,15 +212,17 @@ struct DonationSettingsView: View {
     
     // MARK: Private Methods
     
-    /// Presents an alert in the proper way.
+    /// Presents the given error.
     ///
-    /// - Parameter error: The error to present.
-    private func presentError(_ error: any Error) {
+    /// - Parameters:
+    ///   - error: The error to present.
+    ///   - disablesDonation: Whether the error means the donation products are unavailable.
+    private func presentError(_ error: any Error, disablesDonation: Bool = true) {
         
         switch error {
             case StoreKitError.userCancelled:
                 break
-            case let error as StoreKitError:
+            case let error as StoreKitError where disablesDonation:
                 self.storeKitError = error
             default:
                 self.error = error
