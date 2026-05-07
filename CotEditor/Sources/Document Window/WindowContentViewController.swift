@@ -164,7 +164,10 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
             self.versionBrowserObservers = [
                 NotificationCenter.default.addObserver(forName: NSWindow.willEnterVersionBrowserNotification, object: window, queue: .main) { [weak self] _ in
                     MainActor.assumeIsolated {
-                        guard let self, let sidebarViewItem = self.sidebarViewItem else { return }
+                        guard
+                            let self,
+                            let sidebarViewItem = self.sidebarViewItem
+                        else { return }
                         
                         self.sidebarStateCache = sidebarViewItem.isCollapsed
                         sidebarViewItem.isCollapsed = true
@@ -172,10 +175,14 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
                 },
                 NotificationCenter.default.addObserver(forName: NSWindow.didExitVersionBrowserNotification, object: window, queue: .main) { [weak self] _ in
                     MainActor.assumeIsolated {
-                        guard let self, let sidebarViewItem = self.sidebarViewItem else { return }
+                        guard
+                            let self,
+                            let sidebarViewItem = self.sidebarViewItem,
+                            let sidebarStateCache = self.sidebarStateCache
+                        else { return }
                         
+                        sidebarViewItem.isCollapsed = sidebarStateCache
                         self.sidebarStateCache = nil
-                        sidebarViewItem.isCollapsed = false
                     }
                 },
             ]
@@ -236,7 +243,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         switch item.action {
             case #selector(toggleSidebar):
                 // validation of `toggleSidebar` is implemented in `validateToolbarItem`
-                return self.sidebarStateCache == nil
+                return self.canToggleSidebar
             default:
                 break
         }
@@ -249,7 +256,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         switch item.action {
             case #selector(showFileBrowser):
-                (item as? NSMenuItem)?.state = (self.sidebarViewItem?.isCollapsed == true) ? .on : .off
+                (item as? NSMenuItem)?.state = (self.sidebarViewItem?.isCollapsed == false) ? .on : .off
                 (item as? NSMenuItem)?.toolTip = (self.sidebarViewItem == nil)
                     ? String(localized: "The sidebar is only available when a folder is opened as a document.",
                              table: "MainMenu", comment: "tooltip for the “Show Sidebar” menu item")
@@ -265,7 +272,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
                     ? String(localized: "The sidebar is only available when a folder is opened as a document.",
                              table: "MainMenu", comment: "tooltip for the “Show Sidebar” menu item")
                     : nil
-                return self.sidebarStateCache == nil
+                return self.canToggleSidebar
                 
             case #selector(toggleInspector):
                 (item as? NSMenuItem)?.title = self.inspectorViewItem.isCollapsed == false
@@ -367,6 +374,13 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     
     
     // MARK: Private Methods
+    
+    /// Whether the sidebar can currently be toggled.
+    private var canToggleSidebar: Bool {
+        
+        self.sidebarViewItem != nil && self.sidebarStateCache == nil
+    }
+    
     
     /// The view controller for the content view.
     private var contentViewController: ContentViewController {
