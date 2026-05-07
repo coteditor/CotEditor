@@ -1086,7 +1086,7 @@ extension NSTextView: EditorCounter.Source { }
             return self.presentErrorAsSheet(error)
         }
         
-        guard syntax != self.syntaxController.syntax else {
+        guard name != self.syntaxName || syntax != self.syntaxController.syntax else {
             self.synchronizeFileType(syntax: syntax, documentName: documentName)
             return
         }
