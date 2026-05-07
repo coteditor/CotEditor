@@ -21,6 +21,7 @@
 - Update tree-sitter-swift to 0.7.2.
 - Improve overall stability and performance.
 - [trivial] Improve insertion format editors in the Snippet settings pane.
+- [dev] Update the build environment to Xcode 26.5.0.
 
 
 ### Fixes
