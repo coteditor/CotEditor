@@ -347,7 +347,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     @IBAction func showUnicodeInputPanel(_ sender: Any?) {
         
         let textView = self.textView
-        let view = UnicodeInputView { [unowned textView] character in
+        let view = UnicodeInputView { character in
             // flag to skip line ending sanitization
             textView.isApprovedTextChange = true
             defer { textView.isApprovedTextChange = false }

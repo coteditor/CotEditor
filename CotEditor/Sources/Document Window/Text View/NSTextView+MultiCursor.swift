@@ -181,11 +181,11 @@ extension MultiCursorEditing {
         let lineStartRange = (self.string as NSString).lineStartIndex(at: range.location)
         
         var locations: [Int] = []
-        (self.string as NSString).enumerateSubstrings(in: NSRange(lineStartRange..<range.upperBound), options: [.byLines, .substringNotRequired]) { [unowned self] _, lineRange, _, _ in
+        (self.string as NSString).enumerateSubstrings(in: NSRange(lineStartRange..<range.upperBound), options: [.byLines, .substringNotRequired]) { _, lineRange, _, _ in
             let glyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
             
             var count = 0
-            layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { [unowned self] _, usedRect, _, lineGlyphRange, stop in
+            layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { _, usedRect, _, lineGlyphRange, stop in
                 guard count == numberOfRows else {
                     count += 1
                     return

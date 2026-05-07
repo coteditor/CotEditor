@@ -307,12 +307,12 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
     /// Recursively observes the `.isRestorable` flag.
     private func observe() {
         
-        withObservationTracking { [weak self] in
-            if self?.model.isRestorable == false {
-                self?.outlineView?.reloadData()
+        withObservationTracking {
+            if self.model.isRestorable == false {
+                self.outlineView?.reloadData()
             }
-        } onChange: {
-            Task { @MainActor [weak self] in
+        } onChange: { [weak self] in
+            Task { @MainActor in
                 self?.observe()
             }
         }
