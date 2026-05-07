@@ -326,6 +326,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             }
             
             // observe key window state for insertion points drawing and automatic period substitution
+            self.keyStateObservers.forEach(NotificationCenter.default.removeObserver)
             self.keyStateObservers = [
                 NotificationCenter.default.addObserver(forName: NSWindow.didBecomeKeyNotification, object: window, queue: .main) { [unowned self] _ in
                     MainActor.assumeIsolated { [unowned self] in

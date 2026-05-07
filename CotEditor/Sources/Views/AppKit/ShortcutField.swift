@@ -139,6 +139,15 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
     
     // MARK: Text Field Methods
     
+    isolated deinit {
+        
+        if let monitor = self.keyDownMonitor {
+            NSEvent.removeMonitor(monitor)
+        }
+        self.windowObservationTask?.cancel()
+    }
+    
+    
     override func viewWillMove(toSuperview newSuperview: NSView?) {
         
         super.viewWillMove(toSuperview: newSuperview)
