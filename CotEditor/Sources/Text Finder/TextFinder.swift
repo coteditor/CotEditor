@@ -719,7 +719,7 @@ struct FindMatchesCache {
         // setup progress sheet
         let indicatorView = FindProgressView(actionName, progress: progress, action: .find)
         let indicator = NSHostingController(rootView: indicatorView)
-        indicator.rootView.dismiss = { indicator.dismiss(nil) }
+        indicator.rootView.dismiss = { [weak indicator] in indicator?.dismiss(nil) }
         client.viewControllerForSheet?.presentAsSheet(indicator)
         
         // perform
@@ -775,7 +775,7 @@ struct FindMatchesCache {
         // setup progress sheet
         let indicatorView = FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, action: .replace)
         let indicator = NSHostingController(rootView: indicatorView)
-        indicator.rootView.dismiss = { indicator.dismiss(nil) }
+        indicator.rootView.dismiss = { [weak indicator] in indicator?.dismiss(nil) }
         client.viewControllerForSheet?.presentAsSheet(indicator)
         
         // perform

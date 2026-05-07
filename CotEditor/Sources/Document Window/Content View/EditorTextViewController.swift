@@ -337,7 +337,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             return true
         }
         let viewController = NSHostingController(rootView: view)
-        viewController.rootView.dismiss = { viewController.dismiss(nil) }
+        viewController.rootView.dismiss = { [weak viewController] in viewController?.dismiss(nil) }
         
         self.presentAsSheet(viewController)
     }
@@ -378,7 +378,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             self?.showAdvancedCharacterCounter()
         }
         let optionViewController = NSHostingController(rootView: sheetView)
-        optionViewController.rootView.dismiss = { optionViewController.dismiss(nil) }
+        optionViewController.rootView.dismiss = { [weak optionViewController] in optionViewController?.dismiss(nil) }
         
         self.presentAsSheet(optionViewController)
     }
@@ -443,7 +443,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         }
         let viewController = NSHostingController(rootView: rootView)
         viewController.sizingOptions = .preferredContentSize
-        viewController.rootView.dismiss = { viewController.dismiss(nil) }
+        viewController.rootView.dismiss = { [weak viewController] in viewController?.dismiss(nil) }
         
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
         

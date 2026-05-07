@@ -695,7 +695,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             self?.tabWidth = tabWidth
         }
         let viewController = NSHostingController(rootView: view)
-        viewController.rootView.dismiss = { viewController.dismiss(nil) }
+        viewController.rootView.dismiss = { [weak viewController] in viewController?.dismiss(nil) }
         
         self.presentAsSheet(viewController)
     }
