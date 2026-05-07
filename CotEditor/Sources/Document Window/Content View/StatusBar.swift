@@ -101,7 +101,8 @@ struct StatusBar: View {
             }
         }
         .subscriptionStatusTask(for: Donation.groupID) { taskState in
-            self.hasDonated = taskState.value?.map(\.state).contains(.subscribed) == true
+            self.hasDonated = taskState.value?.map(\.state)
+                .contains { [.subscribed, .inGracePeriod].contains($0) } == true
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Status Bar", table: "Document", comment: "accessibility label"))

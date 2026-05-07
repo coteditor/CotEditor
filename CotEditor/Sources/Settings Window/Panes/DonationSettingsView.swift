@@ -124,7 +124,8 @@ struct DonationSettingsView: View {
                     }
                     .accessibilityElement(children: .contain)
                     .subscriptionStatusTask(for: Donation.groupID) { taskState in
-                        self.hasDonated = taskState.value?.map(\.state).contains(.subscribed) == true
+                        self.hasDonated = taskState.value?.map(\.state)
+                            .contains { [.subscribed, .inGracePeriod].contains($0) } == true
                     }
                     
                     Divider()
