@@ -37,6 +37,8 @@ struct GeneralSettingsView: View {
     
     @Namespace private var accessibility
     
+    @Environment(\.locale) private var locale
+    
     @AppStorage(.quitAlwaysKeepsWindows) private var quitAlwaysKeepsWindows: Bool
     @AppStorage(.noDocumentOnLaunchOption) private var noDocumentOnLaunchOption: NoDocumentOnLaunchOption
     
@@ -90,7 +92,7 @@ struct GeneralSettingsView: View {
                     .modifier { content in
                         if #available(macOS 26, *) {
                             content
-                        } else if Locale.current.language.languageCode == .russian {
+                        } else if self.locale.language.languageCode == .russian {
                             content
                                 .frame(maxWidth: 200)
                         } else {
@@ -199,6 +201,7 @@ struct GeneralSettingsView: View {
                                 StatusImage(status: self.commandLineToolStatus.imageStatus)
                                     .imageScale(.small)
                                     .help(self.commandLineToolStatus.message ?? "")
+                                    .accessibilityHint(self.commandLineToolStatus.message ?? "")
                             }.foregroundStyle(.secondary)
                         }
                     }
