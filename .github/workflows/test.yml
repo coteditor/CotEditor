@@ -6,7 +6,7 @@ permissions:
   contents: read
 
 env:
-  XCODE_VERSION: "26.4"
+  XCODE_VERSION: "26.5"
 
 jobs:
   packages:
@@ -73,8 +73,7 @@ jobs:
   app-unit-tests:
     name: Unit Test for CotEditor
     runs-on: macos-26
-    # Temporarily do not fail the workflow while XCTest intermittently hangs on GitHub-hosted macOS 26 runners.
-    continue-on-error: true
+    timeout-minutes: 60
 
     steps:
     - name: Set Xcode version
@@ -88,4 +87,4 @@ jobs:
       uses: actions/checkout@v5
     - name: Unit Test for CotEditor
       run: |
-        xcodebuild test -scheme CotEditor -destination 'platform=macOS,arch=arm64' CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= PROVISIONING_PROFILE_SPECIFIER= CODE_SIGN_ENTITLEMENTS_SUFFIX=-AdHoc -skipPackagePluginValidation
+        xcodebuild test -scheme CotEditor CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= PROVISIONING_PROFILE_SPECIFIER= CODE_SIGN_ENTITLEMENTS_SUFFIX=-AdHoc -skipPackagePluginValidation

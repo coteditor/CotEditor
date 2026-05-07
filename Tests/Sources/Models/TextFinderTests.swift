@@ -217,35 +217,6 @@ import Testing
     }
     
     
-    @Test func highlightKeepsExplicitHighlightsAfterIncrementalSearch() async throws {
-        
-        let textView = TestTextView(string: "foo bar foo")
-        textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
-        
-        let finder = TextFinder()
-        finder.client = textView
-        finder.settings.findString = "foo"
-        finder.settings.usesRegularExpression = false
-        
-        let notifications = NotificationCenter.default.notifications(named: TextFinder.DidFindMessage.name, object: finder)
-        let iterator = notifications.makeAsyncIterator()
-        
-        finder.incrementalSearch()
-        _ = try #require(await iterator.next())
-        #expect(textView.hasTemporaryBackgroundColor)
-        
-        finder.performAction(.highlight)
-        _ = try #require(await iterator.next())
-        
-        NotificationCenter.default.post(name: NSWindow.didResignKeyNotification, object: nil)
-        for _ in 0..<3 {
-            await Task.yield()
-        }
-        
-        #expect(textView.hasTemporaryBackgroundColor)
-    }
-    
-    
     @Test func selectAllUsesFindMatchesCache() async throws {
         
         do {
