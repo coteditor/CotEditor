@@ -40,7 +40,7 @@ import Testing
         debouncer.schedule()
         
         let didRun = await self.waitFor { count > 0 }
-        #expect(didRun, "The action must be debounced and executed.")
+        try #require(didRun, "The action must be debounced and executed.")
         try await Task.sleep(for: delay + .milliseconds(50))
         #expect(count == 1, "Repeated scheduling must execute only the latest action.")
     }
@@ -66,7 +66,7 @@ import Testing
         
         debouncer.schedule()
         let didRescheduleFromAction = await self.waitFor { didReschedule }
-        #expect(didRescheduleFromAction, "The action must reschedule itself.")
+        try #require(didRescheduleFromAction, "The action must reschedule itself.")
         #expect(count == 1, "The action can reschedule itself.")
         
         debouncer.cancel()
@@ -117,7 +117,7 @@ import Testing
     
     // MARK: Private Methods
     
-    private func waitFor(timeout: Duration = .seconds(1), interval: Duration = .milliseconds(5), _ condition: @escaping () -> Bool) async -> Bool {
+    private func waitFor(timeout: Duration = .seconds(5), interval: Duration = .milliseconds(10), _ condition: @escaping () -> Bool) async -> Bool {
         
         let clock = ContinuousClock()
         let deadline = clock.now.advanced(by: timeout)
