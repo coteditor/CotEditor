@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import FileEncoding
     var options: OpenOptions
     let fileEncodings: [FileEncoding?]
     
-    fileprivate var isDirectory: Bool = false
+    fileprivate var selectsOnlyDirectories: Bool = false
     
     
     init(options: OpenOptions = .init(), fileEncodings: [FileEncoding?]) {
@@ -46,7 +46,8 @@ import FileEncoding
         
         guard let panel = sender as? NSOpenPanel else { return }
         
-        self.isDirectory = panel.url?.hasDirectoryPath == true
+        let urls = panel.urls
+        self.selectsOnlyDirectories = !urls.isEmpty && urls.allSatisfy(\.hasDirectoryPath)
     }
 }
 
@@ -79,11 +80,11 @@ struct OpenPanelAccessory: View {
                         }
                     }
                 }
-                .disabled(self.model.isDirectory)
+                .disabled(self.model.selectsOnlyDirectories)
                 
                 Toggle(String(localized: "Open as read-only", table: "OpenPanelAccessory", comment: "toggle button label"), isOn: $model.options.isReadOnly)
-                    .disabled(self.model.isDirectory)
-                    .onChange(of: self.model.isDirectory) { _, newValue in
+                    .disabled(self.model.selectsOnlyDirectories)
+                    .onChange(of: self.model.selectsOnlyDirectories) { _, newValue in
                         if newValue {
                             self.model.options.isReadOnly = false
                         }

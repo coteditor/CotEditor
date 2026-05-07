@@ -30,6 +30,7 @@
 - Fix an issue where syntax-specific snippets and scripts could remain scoped to the previous document after switching documents in the file browser.
 - Fix an issue where opening multiple documents while an empty untitled document was open could show some documents before replacing the empty document.
 - Fix an issue where canceling or failing to open a document could leave an empty untitled document behind.
+- Fix an issue where text encoding and read-only options in the Open dialog could be unavailable when selecting documents together with folders.
 - Fix an issue where opening a UTF-16 or UTF-32 document with a BOM using a byte-order-specific encoding could leave the BOM in the document text.
 - Fix an issue where converting a document to a non-UTF-8 encoding with AppleScript’s BOM option could add an invalid UTF-8 BOM.
 - Fix an issue where encoding detection could prioritize a later encoding declaration over the first one found in the document.
