@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,6 +45,10 @@ extension NSTextView {
     
     /// Returns the range of characters in the given rect.
     ///
+    /// - Parameters:
+    ///   - rect: The rectangle in text view coordinates.
+    ///   - withoutAdditionalLayout: Whether to avoid additional layout.
+    /// - Returns: The character range in the given rectangle.
     /// - Note: This API requires TextKit 1.
     final func range(for rect: NSRect, withoutAdditionalLayout: Bool = false) -> NSRange? {
         
@@ -64,6 +68,8 @@ extension NSTextView {
     
     /// Returns bounding rectangle (in text view coordinates) enclosing all the given character range.
     ///
+    /// - Parameter range: The character range to enclose.
+    /// - Returns: The bounding rectangle in text view coordinates.
     /// - Note: This API requires TextKit 1.
     final func boundingRect(for range: NSRange) -> NSRect? {
         
@@ -81,6 +87,8 @@ extension NSTextView {
     
     /// Returns bounding rectangles (in text view coordinates) enclosing all the given character range.
     ///
+    /// - Parameter range: The character range to enclose.
+    /// - Returns: The bounding rectangles in text view coordinates.
     /// - Note: This API requires TextKit 1.
     final func boundingRects(for range: NSRange) -> [NSRect] {
         
@@ -145,6 +153,9 @@ extension NSTextView {
     
     /// Zooms to the scale keeping passed-in point position in scroll view.
     ///
+    /// - Parameters:
+    ///   - scale: The scale to apply.
+    ///   - point: The center point to keep in text view coordinates.
     /// - Note: This API requires TextKit 1.
     final func setScale(_ scale: CGFloat, centeredAt point: NSPoint) {
         
@@ -179,6 +190,7 @@ extension NSTextView {
     
     /// Zooms to the scale keeping current visible rect position in scroll view.
     ///
+    /// - Parameter scale: The scale to apply.
     /// - Note: This API requires TextKit 1.
     final func setScaleKeepingVisibleArea(_ scale: CGFloat) {
         
