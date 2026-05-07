@@ -635,7 +635,7 @@ final class DirectoryDocument: NSDocument {
         if node.file.isAlias {
             do {
                 fileURL = try URL(resolvingAliasFileAt: fileURL)
-                try fileURL.grantAccess()
+                try fileURL.grantAccess(isDirectory: node.file.isFolder)
             } catch is CancellationError {
                 return
             } catch {

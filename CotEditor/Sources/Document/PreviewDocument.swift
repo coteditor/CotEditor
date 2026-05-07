@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -125,7 +125,7 @@ protocol FileContentAttributes: Sendable, Equatable { }
         var destinationURL: URL
         do {
             destinationURL = try URL(resolvingAliasFileAt: fileURL)
-            try destinationURL.grantAccess()
+            try destinationURL.grantAccess(isDirectory: self.isFolderAlias)
         } catch is CancellationError {
             return
         } catch {

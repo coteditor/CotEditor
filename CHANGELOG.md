@@ -51,6 +51,7 @@
 - Fix an issue where a malformed custom syntax definition with empty delimiters or empty highlight patterns could make syntax highlighting hang.
 - Fix an issue where tree-sitter-based syntax highlighting could become misaligned after editing around consecutive empty lines or a trailing line ending.
 - Fix an issue where importing settings could incorrectly show an error for a custom theme included in the same settings archive.
+- Fix an issue where opening the original folder of an alias from the file browser could fail after requesting file access permission.
 - Fix typos in German (Thanks to Rush Ali!) and some other localizations.
 
 

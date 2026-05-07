@@ -43,8 +43,9 @@ extension URL {
     ///   If the URL is already readable, the method returns immediately without showing any UI.
     ///   When the access permission is newly acquired, the URL will be updated to one holding the permission.
     ///
+    /// - Parameter isDirectory: Whether the URL points to a directory.
     /// - Throws: an error if the URL is not reachable, and `CancellationError` if the user cancels the Open panel without granting access.
-    @MainActor mutating func grantAccess() throws {
+    @MainActor mutating func grantAccess(isDirectory: Bool = false) throws {
         
         guard
             try self.checkResourceIsReachable()
@@ -53,6 +54,8 @@ extension URL {
         guard (try? self.isReadable) != true else { return }  // -> already has permission
         
         let openPanel = NSOpenPanel()
+        openPanel.canChooseFiles = !isDirectory
+        openPanel.canChooseDirectories = isDirectory
         openPanel.directoryURL = self
         openPanel.message = String(localized: "GrantAccessPanel.message",
                                    defaultValue: "Open the original location to grant CotEditor access.",
