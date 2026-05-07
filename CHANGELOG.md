@@ -10,12 +10,12 @@
 
 ### Improvements
 
-- Update the Markdown syntax to fix highlighting block quotes.
-- Support shebangs with options for syntax detection.
 - Add CSS HWB and 4-digit hexadecimal alpha formats to the Edit Color Code command, and allow it to read modern space-separated CSS RGB/HSL color codes.
 - Support spaces between menu path components in Quick Actions search.
+- Support shebangs with options for syntax detection.
 - Improve line sorting commands to better preserve existing mixed line endings.
 - Limit tree-sitter-based syntax highlighting to 100,000,000 characters to avoid unexpected crashes.
+- Update the Markdown syntax to fix highlighting block quotes.
 - Update the Unicode block name list for the character inspector from Unicode 16.0.0 to Unicode 17.0.0.
 - Update tree-sitter-c to 0.24.2.
 - Update tree-sitter-swift to 0.7.2.
@@ -27,33 +27,33 @@
 ### Fixes
 
 - Fix an issue where customized built-in syntaxes could be ignored when their file mappings conflicted with other built-in syntaxes.
-- Fix an issue where opening multiple documents at once could open them in separate windows even when window tabbing was set to Automatically.
-- Fix an issue where syntax-specific snippets and scripts could remain scoped to the previous document after switching documents in the file browser.
-- Fix an issue where opening multiple documents while an empty untitled document was open could show some documents before replacing the empty document.
-- Fix an issue where canceling or failing to open a document could leave an empty untitled document behind.
-- Fix an issue where text encoding and read-only options in the Open dialog could be unavailable when selecting documents together with folders.
-- Fix an issue where opening a UTF-16 or UTF-32 document with a BOM using a byte-order-specific encoding could leave the BOM in the document text.
-- Fix an issue where converting a document to a non-UTF-8 encoding with AppleScript’s BOM option could add an invalid UTF-8 BOM.
-- Fix an issue where encoding detection could prioritize a later encoding declaration over the first one found in the document.
 - Fix an issue where text near the end of a very large document could fail to appear when hanging indentation was enabled.
 - Fix an issue where deleting by word or to the beginning of a line could delete text outside the selection.
 - Fix an issue where selecting a word could select an incorrect range.
-- Fix an issue where Advanced Character Count could show outdated or incorrect results.
-- Fix an issue where Unicode input could reject or show some valid Unicode code points as invalid.
-- Fix an issue where File Drop snippets could omit the domain from dropped web URLs.
-- Fix an issue where dropping text clippings or File Drop snippets could insert extra text when their line endings differed from the document’s.
-- Fix an issue where the Restore Defaults button in File Drop settings could remain disabled even when the current settings differed from the defaults.
-- Fix an issue where the hidden Close Split Editor button in the navigation bar could remain available when the editor was not split.
 - Fix an issue where Sort by Pattern could reorder lines that do not contain the specified sort key.
+- Fix an issue where dropping text clippings or File Drop snippets could insert extra text when their line endings differed from the document’s.
+- Fix an issue where File Drop snippets could omit the domain from dropped web URLs.
+- Fix an issue where the Restore Defaults button in File Drop settings could remain disabled even when the current settings differed from the defaults.
+- Fix an issue where opening multiple documents at once could open them in separate windows even when window tabbing was set to Automatically.
+- Fix an issue where opening multiple documents while an empty untitled document was open could show some documents before replacing the empty document.
+- Fix an issue where canceling or failing to open a document could leave an empty untitled document behind.
+- Fix an issue where text encoding and read-only options in the Open dialog could be unavailable when selecting files together with folders.
+- Fix an issue where syntax-specific snippets and scripts could remain scoped to the previous document after switching documents in the file browser.
 - Fix an issue where the Document inspector could keep showing the previous document path after closing a document in the file browser.
-- Fix an issue where the incompatible character list in the Warnings inspector could lose its sort order after rescanning the document.
-- Fix issues in the Color Code window where it could stop updating or insert invalid color codes.
+- Fix an issue where opening the original folder of an alias from the file browser could fail after requesting file access permission.
+- Fix an issue where opening a UTF-16 or UTF-32 document with a BOM using a byte-order-specific encoding could leave the BOM in the document text.
+- Fix an issue where converting a document to a non-UTF-8 encoding with AppleScript’s BOM option could add an invalid UTF-8 BOM.
+- Fix an issue where encoding detection could prioritize a later encoding declaration over the first one found in the document.
 - Fix an issue where custom syntax highlighting could crash when a begin/end regular expression matched zero-length text at the end of the document.
-- Fix an issue where custom syntax highlighting could stop after an unterminated begin/end string pattern.
+- Fix an issue where an unterminated begin/end string pattern could prevent later custom syntax highlighting from being applied.
 - Fix an issue where a malformed custom syntax definition with empty delimiters or empty highlight patterns could make syntax highlighting hang.
 - Fix an issue where tree-sitter-based syntax highlighting could become misaligned after editing around consecutive empty lines or a trailing line ending.
 - Fix an issue where importing settings could incorrectly show an error for a custom theme included in the same settings archive.
-- Fix an issue where opening the original folder of an alias from the file browser could fail after requesting file access permission.
+- Fix issues in the Color Code window where it could stop updating or insert invalid color codes.
+- Fix an issue where Advanced Character Count could show outdated or incorrect results.
+- Fix an issue where Unicode input could reject or show some valid Unicode code points as invalid.
+- Fix an issue where the incompatible character list in the Warnings inspector could lose its sort order after rescanning the document.
+- Fix an issue where the hidden Close Split Editor button in the navigation bar could remain available when the editor was not split.
 - Fix an issue where sidebar commands could show incorrect states, and the sidebar could reappear after leaving Versions.
 - Fix typos in German (Thanks to Rush Ali!) and some other localizations.
 
