@@ -53,6 +53,7 @@ enum FontType: String, CaseIterable, Codable {
 
 extension Syntax.Kind {
     
+    /// The default font type for the syntax kind.
     var fontType: FontType {
         
         switch self {
