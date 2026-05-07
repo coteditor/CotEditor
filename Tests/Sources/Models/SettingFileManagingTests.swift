@@ -37,8 +37,8 @@ import SyntaxFormat
         let manager = TestReplacementManager()
         let name = "Native Import \(UUID().uuidString)"
         
-        try self.cleanUp(name: name, manager: manager)
-        defer { try? self.cleanUp(name: name, manager: manager) }
+        try self.cleanUp(manager)
+        defer { try? self.cleanUp(manager) }
         
         try manager.save(setting: MultipleReplace(replacements: [.init(findString: "before", replacementString: "old")]), name: name)
         
@@ -58,8 +58,8 @@ import SyntaxFormat
         let manager = TestReplacementManager()
         let name = "TSV Import 日本語 \(UUID().uuidString)"
         
-        try self.cleanUp(name: name, manager: manager)
-        defer { try? self.cleanUp(name: name, manager: manager) }
+        try self.cleanUp(manager)
+        defer { try? self.cleanUp(manager) }
         
         try manager.save(setting: MultipleReplace(replacements: [.init(findString: "cat", replacementString: "dog")]), name: name)
         
@@ -86,8 +86,8 @@ import SyntaxFormat
         let manager = TestSyntaxManager()
         let name = "Legacy YAML \(UUID().uuidString)"
         
-        try self.cleanUp(name: name, manager: manager)
-        defer { try? self.cleanUp(name: name, manager: manager) }
+        try self.cleanUp(manager)
+        defer { try? self.cleanUp(manager) }
         
         let url = try self.createYAMLFile(text: """
             kind: code
@@ -117,8 +117,8 @@ import SyntaxFormat
         let manager = TestSyntaxManager()
         let name = "Native Syntax \(UUID().uuidString)"
         
-        try self.cleanUp(name: name, manager: manager)
-        defer { try? self.cleanUp(name: name, manager: manager) }
+        try self.cleanUp(manager)
+        defer { try? self.cleanUp(manager) }
         
         let importedSetting = Syntax(
             kind: .code,
@@ -147,8 +147,8 @@ import SyntaxFormat
         let manager = TestThemeManager()
         let name = "Theme Import \(UUID().uuidString)"
         
-        try self.cleanUp(name: name, manager: manager)
-        defer { try? self.cleanUp(name: name, manager: manager) }
+        try self.cleanUp(manager)
+        defer { try? self.cleanUp(manager) }
         
         let url = try self.createThemeFile(named: "Dendrobates")
         defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
@@ -211,12 +211,8 @@ import SyntaxFormat
         let originalSetting = MultipleReplace(replacements: [.init(findString: "old", replacementString: "new")])
         let staleSetting = MultipleReplace(replacements: [.init(findString: "stale", replacementString: "value")])
         
-        try self.cleanUp(name: sourceName, manager: manager)
-        try self.cleanUp(name: destinationName, manager: manager)
-        defer {
-            try? self.cleanUp(name: sourceName, manager: manager)
-            try? self.cleanUp(name: destinationName, manager: manager)
-        }
+        try self.cleanUp(manager)
+        defer { try? self.cleanUp(manager) }
         
         try manager.save(setting: originalSetting, name: sourceName)
         manager.cachedSettings[destinationName] = staleSetting
@@ -289,11 +285,24 @@ import SyntaxFormat
     }
     
     
-    private func cleanUp<Manager: SettingFileManaging>(name: String, manager: Manager) throws {
+    /// Removes the test manager's temporary user-domain directory.
+    ///
+    /// - Parameter manager: The test manager that owns the temporary directory.
+    /// - Throws: An error if cleanup fails.
+    private func cleanUp<Manager: SettingFileManaging>(_ manager: Manager) throws {
         
-        if manager.settingNames.contains(name) {
-            try manager.removeSetting(name: name)
-        }
+        let directoryURL = URL.applicationSupportDirectory(component: Manager.directoryName)
+        var isDirectory: ObjCBool = false
+        
+        guard
+            FileManager.default.fileExists(atPath: directoryURL.path(percentEncoded: false), isDirectory: &isDirectory),
+            isDirectory.boolValue
+        else { return }
+        
+        try FileManager.default.removeItem(at: directoryURL)
+        
+        manager.cachedSettings.removeAll()
+        manager.settingNames = manager.listAvailableSettings()
     }
 }
 
