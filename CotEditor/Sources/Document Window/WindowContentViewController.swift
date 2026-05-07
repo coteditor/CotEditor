@@ -47,8 +47,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     @ViewLoading private var contentViewItem: NSSplitViewItem
     @ViewLoading private var inspectorViewItem: NSSplitViewItem
     
-    private var versionBrowserEnterObservationTask: Task<Void, Never>?
-    private var versionBrowserExitObservationTask: Task<Void, Never>?
+    private var versionBrowserObservers: [any NSObjectProtocol] = []
     
     private var defaultsObserver: AnyCancellable?
     
@@ -70,6 +69,11 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     required init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    isolated deinit {
+        self.versionBrowserObservers.forEach(NotificationCenter.default.removeObserver)
     }
     
     
@@ -155,19 +159,28 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         self.sidebarViewItem?.isCollapsed = false
         
         // forcibly collapse sidebar while version browse
-        if let sidebarViewItem, let window = self.view.window {
-            self.versionBrowserEnterObservationTask = Task {
-                for await _ in NotificationCenter.default.notifications(named: NSWindow.willEnterVersionBrowserNotification, object: window).map(\.name) {
-                    self.sidebarStateCache = sidebarViewItem.isCollapsed
-                    sidebarViewItem.isCollapsed = true
-                }
-            }
-            self.versionBrowserExitObservationTask = Task {
-                for await _ in NotificationCenter.default.notifications(named: NSWindow.didExitVersionBrowserNotification, object: window).map(\.name) {
-                    self.sidebarStateCache = nil
-                    sidebarViewItem.isCollapsed = false
-                }
-            }
+        self.versionBrowserObservers.forEach(NotificationCenter.default.removeObserver)
+        if self.sidebarViewItem != nil, let window = self.view.window {
+            self.versionBrowserObservers = [
+                NotificationCenter.default.addObserver(forName: NSWindow.willEnterVersionBrowserNotification, object: window, queue: .main) { [weak self] _ in
+                    MainActor.assumeIsolated {
+                        guard let self, let sidebarViewItem = self.sidebarViewItem else { return }
+                        
+                        self.sidebarStateCache = sidebarViewItem.isCollapsed
+                        sidebarViewItem.isCollapsed = true
+                    }
+                },
+                NotificationCenter.default.addObserver(forName: NSWindow.didExitVersionBrowserNotification, object: window, queue: .main) { [weak self] _ in
+                    MainActor.assumeIsolated {
+                        guard let self, let sidebarViewItem = self.sidebarViewItem else { return }
+                        
+                        self.sidebarStateCache = nil
+                        sidebarViewItem.isCollapsed = false
+                    }
+                },
+            ]
+        } else {
+            self.versionBrowserObservers.removeAll()
         }
         
         // move focus to the editor
@@ -192,10 +205,8 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         super.viewDidDisappear()
         
-        self.versionBrowserEnterObservationTask?.cancel()
-        self.versionBrowserEnterObservationTask = nil
-        self.versionBrowserExitObservationTask?.cancel()
-        self.versionBrowserExitObservationTask = nil
+        self.versionBrowserObservers.forEach(NotificationCenter.default.removeObserver)
+        self.versionBrowserObservers.removeAll()
         
         if let sidebarStateCache {
             self.sidebarViewItem?.isCollapsed = sidebarStateCache
