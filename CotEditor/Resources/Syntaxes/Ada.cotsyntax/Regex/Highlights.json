@@ -1,0 +1,1064 @@
+{
+  "attributes" : [
+    {
+      "begin" : "'Access(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Address(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Adjacent(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Aft(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Alignment(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Base(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Bit_Order(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Body_Version(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Callable(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Caller(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Ceiling(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Class(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Component_Size(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Compose(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Constrained(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Copy_Sign(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Count(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Definite(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Delta(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Denorm(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Digits(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Emax(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Enum_Rep(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Enum_Val(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Epsilon(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Exponent(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'External_Tag(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'First(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'First_Bit(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'First_Valid(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Floor(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Fore(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Fraction(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Has_Same_Storage(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Identity(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Image(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Index(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Input(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Large(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Last(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Last_Bit(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Last_Valid(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Leading_Part(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Length(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Loop_Entry(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Machine(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Machine_Emax(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Machine_Emin(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Machine_Mantissa(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Machine_Overflows(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Machine_Radix(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Machine_Rounding(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Machine_Rounds(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Mantissa(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Max(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Max_Alignment_For_Allocation(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Max_Size_In_Storage_Elements(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Min(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Mod(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Model(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Model_Emin(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Model_Epsilon(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Model_Mantissa(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Model_Small(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Modulus(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Object_Size(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Old(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Output(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Overlaps_Storage(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Parallel_Reduce(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Partition_ID(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Pos(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Position(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Pred(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Preelaborable_Initialization(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Priority(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Put_Image(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Range(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Read(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Reduce(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Relative_Deadline(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Remainder(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Result(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Round(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Rounding(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Safe_Emax(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Safe_First(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Safe_Large(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Safe_Last(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Safe_Small(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Scale(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Scaling(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Signed_Zeros(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Size(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Small(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Storage_Pool(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Storage_Size(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Stream_Size(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Succ(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Tag(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Terminated(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Truncation(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Unbiased_Rounding(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Unchecked_Access(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Val(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Valid(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Value(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Version(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Wide_Image(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Wide_Value(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Wide_Wide_Image(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Wide_Wide_Value(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Wide_Wide_Width(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Wide_Width(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Width(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "'Write(?![\\p{L}\\p{M}\\p{Nd}_])",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    }
+  ],
+  "characters" : [
+    {
+      "begin" : "'(?:[^'\\r\\n]|')'",
+      "regularExpression" : true
+    }
+  ],
+  "keywords" : [
+    {
+      "begin" : "abort",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "abs",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "abstract",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "accept",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "access",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "aliased",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "all",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "and",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "array",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "at",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "begin",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "body",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "case",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "constant",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "declare",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "delay",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "delta",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "digits",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "do",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "else",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "elsif",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "end",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "entry",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "exception",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "exit",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "for",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "function",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "generic",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "goto",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "if",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "in",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "interface",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "is",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "limited",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "loop",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "mod",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "new",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "not",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "null",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "of",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "or",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "others",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "out",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "overriding",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "package",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "parallel",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "pragma",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "private",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "procedure",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "protected",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "raise",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "range",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "record",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "rem",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "renames",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "requeue",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "return",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "reverse",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "select",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "separate",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "some",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "subtype",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "synchronized",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "tagged",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "task",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "terminate",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "then",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "type",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "until",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "use",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "when",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "while",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "with",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "xor",
+      "ignoreCase" : true
+    }
+  ],
+  "numbers" : [
+    {
+      "begin" : "(?<!#)\\b\\d(?:_?\\d)*(?:[Ee]\\+?\\d(?:_?\\d)*)?\\b(?!#)",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "(?<!#)\\b\\d(?:_?\\d)*\\.\\d(?:_?\\d)*(?:[Ee][+-]?\\d(?:_?\\d)*)?\\b",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "\\b0*(?:[2-9]|1[0-6])#[0-9A-F](?:_?[0-9A-F])*#(?:[Ee]\\+?\\d(?:_?\\d)*)?\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "\\b0*(?:[2-9]|1[0-6])#[0-9A-F](?:_?[0-9A-F])*\\.[0-9A-F](?:_?[0-9A-F])*#(?:[Ee][+-]?\\d(?:_?\\d)*)?\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    }
+  ],
+  "types" : [
+    {
+      "begin" : "Ada",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Address",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "ASCII",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Boolean",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Character",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Constraint_Error",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Duration",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Exception_Id",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Exception_Occurrence",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Float",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Integer",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Interfaces",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Long_Float",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Long_Integer",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Long_Long_Float",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Long_Long_Integer",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Natural",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Numeric_Error",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Positive",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Program_Error",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Root_Integer",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Root_Real",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Short_Float",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Short_Integer",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Standard",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Storage_Error",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "String",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "System",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Tasking_Error",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Universal_Fixed",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Universal_Integer",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Universal_Real",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Wide_Character",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Wide_String",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Wide_Wide_Character",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "Wide_Wide_String",
+      "ignoreCase" : true
+    }
+  ],
+  "values" : [
+    {
+      "begin" : "False",
+      "ignoreCase" : true
+    },
+    {
+      "begin" : "True",
+      "ignoreCase" : true
+    }
+  ]
+}

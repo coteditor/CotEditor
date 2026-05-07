@@ -1,0 +1,65 @@
+[
+  {
+    "description" : "Type or subtype",
+    "ignoreCase" : true,
+    "kind" : "container",
+    "pattern" : "^([\\t ]*)((?:sub)?type)[\\t ]+([\\p{L}][\\p{L}\\p{M}\\p{Nd}_]*)\\b",
+    "template" : "$1$2 $3"
+  },
+  {
+    "description" : "Function",
+    "ignoreCase" : true,
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)(?:(?:not[\\t ]+)?overriding[\\t ]+)?function[\\t ]+(\"[^\"]+\"|[\\p{L}][\\p{L}\\p{M}\\p{Nd}_]*(?:\\.[\\p{L}][\\p{L}\\p{M}\\p{Nd}_]*)*)",
+    "template" : "$1function $2"
+  },
+  {
+    "description" : "Procedure",
+    "ignoreCase" : true,
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)(?:(?:not[\\t ]+)?overriding[\\t ]+)?procedure[\\t ]+(\"[^\"]+\"|[\\p{L}][\\p{L}\\p{M}\\p{Nd}_]*(?:\\.[\\p{L}][\\p{L}\\p{M}\\p{Nd}_]*)*)",
+    "template" : "$1procedure $2"
+  },
+  {
+    "description" : "Package",
+    "ignoreCase" : true,
+    "kind" : "container",
+    "pattern" : "^([\\t ]*)(?:private[\\t ]+)?package[\\t ]+(?!body\\b)([\\p{L}][\\p{L}\\p{M}\\p{Nd}_]*(?:\\.[\\p{L}][\\p{L}\\p{M}\\p{Nd}_]*)*)\\b",
+    "template" : "$1package $2"
+  },
+  {
+    "description" : "Protected type, object, or body",
+    "ignoreCase" : true,
+    "kind" : "container",
+    "pattern" : "^([\\t ]*)(protected(?:[\\t ]+(?:body|type))?)[\\t ]+([\\p{L}][\\p{L}\\p{M}\\p{Nd}_]*)\\b",
+    "template" : "$1$2 $3"
+  },
+  {
+    "description" : "Task type, object, or body",
+    "ignoreCase" : true,
+    "kind" : "container",
+    "pattern" : "^([\\t ]*)(task(?:[\\t ]+(?:body|type))?)[\\t ]+([\\p{L}][\\p{L}\\p{M}\\p{Nd}_]*)\\b",
+    "template" : "$1$2 $3"
+  },
+  {
+    "description" : "Entry",
+    "ignoreCase" : true,
+    "kind" : "function",
+    "pattern" : "^([\\t ]*)entry[\\t ]+([\\p{L}][\\p{L}\\p{M}\\p{Nd}_]*)\\b",
+    "template" : "$1entry $2"
+  },
+  {
+    "description" : "Package body",
+    "ignoreCase" : true,
+    "kind" : "container",
+    "pattern" : "^([\\t ]*)package[\\t ]+body[\\t ]+([\\p{L}][\\p{L}\\p{M}\\p{Nd}_]*(?:\\.[\\p{L}][\\p{L}\\p{M}\\p{Nd}_]*)*)\\b",
+    "template" : "$1package body $2"
+  },
+  {
+    "description" : "Separate subunit",
+    "ignoreCase" : true,
+    "kind" : "container",
+    "pattern" : "^([\\t ]*)separate[\\t ]*\\(([^)]+)\\)",
+    "template" : "$1separate $2"
+  }
+]

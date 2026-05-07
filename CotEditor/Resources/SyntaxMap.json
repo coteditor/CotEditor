@@ -7,6 +7,13 @@
       "awk"
     ]
   },
+  "Ada" : {
+    "extensions" : [
+      "ada",
+      "adb",
+      "ads"
+    ]
+  },
   "Apache" : {
     "extensions" : [
       "conf"

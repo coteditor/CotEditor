@@ -3,6 +3,11 @@
 7.0.3 (unreleased)
 --------------------------
 
+### New Features
+
+- Add the Ada syntax.
+
+
 ### Improvements
 
 - Update the Markdown syntax to fix highlighting block quotes.
