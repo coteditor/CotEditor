@@ -68,6 +68,8 @@ public extension Syntax {
     // MARK: Public Methods
     
     /// Checks syntax and returns `Error`s.
+    ///
+    /// - Returns: The validation errors.
     func validate() -> [Error] {
         
         var errors: [Error] = []

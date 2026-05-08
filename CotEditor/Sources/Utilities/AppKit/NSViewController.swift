@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ import AppKit
 extension NSViewController {
     
     /// Presents an error alert to the user  as a window-modal sheet.
+    ///
+    /// - Parameter error: The error to present.
     final func presentErrorAsSheet(_ error: some Error) {
         
         if let window = self.viewIfLoaded?.window {

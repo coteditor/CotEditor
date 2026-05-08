@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2023 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ import struct Foundation.IndexSet
 extension RangeReplaceableCollection where Index == Int {
     
     /// Removes elements with IndexSet.
+    ///
+    /// - Parameter indexes: The indexes of the elements to remove.
     mutating func remove(in indexes: IndexSet) {
         
         for index in indexes.reversed() {
@@ -37,6 +39,9 @@ extension RangeReplaceableCollection where Index == Int {
     
     
     /// Returns subset at IndexSet.
+    ///
+    /// - Parameter indexes: The indexes of the elements to return.
+    /// - Returns: The elements at `indexes`.
     func elements(at indexes: IndexSet) -> [Element] {
         
         assert((indexes.max() ?? .max) <= self.endIndex)
@@ -48,6 +53,10 @@ extension RangeReplaceableCollection where Index == Int {
     
     
     /// Inserts elements at indexes.
+    ///
+    /// - Parameters:
+    ///   - elements: The elements to insert.
+    ///   - indexes: The indexes to insert at.
     mutating func insert(_ elements: [Element], at indexes: IndexSet) {
         
         assert(elements.count == indexes.count)

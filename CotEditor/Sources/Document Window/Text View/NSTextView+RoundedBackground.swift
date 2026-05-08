@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -75,6 +75,8 @@ extension NSTextView {
     
     /// Returns fragment bezier paths of which a rounded rect for given range consists.
     ///
+    /// - Parameter range: The range to draw the rounded background for.
+    /// - Returns: The Bezier paths that compose the rounded background.
     /// - Note: This API requires TextKit 1.
     private func roundedRectPaths(for range: NSRange) -> [NSBezierPath] {
         

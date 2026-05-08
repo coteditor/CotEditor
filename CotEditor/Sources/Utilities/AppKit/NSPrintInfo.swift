@@ -39,6 +39,9 @@ extension NSPrintInfo {
     
     
     /// KVO compatible accessor for Cocoa print setting.
+    ///
+    /// - Parameter key: The print info key.
+    /// - Returns: The value for `key`, or `nil` if unset.
     subscript<Value>(key: NSPrintInfo.AttributeKey) -> Value? {
         
         get { self.dictionary().value(forKey: key.rawValue) as? Value }

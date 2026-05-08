@@ -227,6 +227,8 @@ enum SyntaxName {
     // MARK: Setting File Managing
     
     /// Builds the list of available settings by considering both user and bundled settings.
+    ///
+    /// - Returns: Available setting names.
     nonisolated func listAvailableSettings() -> [String] {
         
         let userSettingNames = self.userSettingFileURLs

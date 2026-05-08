@@ -100,6 +100,11 @@ extension TreeSitterOutlineFormatting {
     
     
     /// Returns the raw capture text and range.
+    ///
+    /// - Parameters:
+    ///   - capture: The outline capture.
+    ///   - source: The source text as `NSString`.
+    /// - Returns: The raw capture text and range.
     static func defaultTitle(capture: OutlineCapture, source: NSString) -> (title: String, range: NSRange) {
         
         (title: source.substring(with: capture.range), range: capture.range)

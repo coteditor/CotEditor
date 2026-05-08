@@ -120,6 +120,8 @@ public final class LanguageRegistry: Sendable {
 private extension TreeSitterSyntax {
     
     /// Resolves from provider/injection name.
+    ///
+    /// - Parameter providerName: The provider name.
     init?(providerName: String) {
         
         let lowercased = providerName.lowercased()

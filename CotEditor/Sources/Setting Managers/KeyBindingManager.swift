@@ -160,6 +160,8 @@ import URLUtils
     
     
     /// Loads user settings.
+    ///
+    /// - Returns: The loaded key bindings.
     private func loadSettings() throws -> [KeyBinding] {
         
         let fileURL = self.settingFileURL

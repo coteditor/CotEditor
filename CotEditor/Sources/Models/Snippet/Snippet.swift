@@ -103,6 +103,7 @@ extension Snippet {
     /// - Parameters:
     ///   - string: The whole content string where to insert the snippet.
     ///   - ranges: The current selected ranges.
+    /// - Returns: An `EditingContext` containing strings to insert and selected ranges.
     func insertions(for string: String, ranges: [NSRange]) -> EditingContext {
         
         var offset = 0

@@ -101,6 +101,8 @@ extension Indenting {
     
     
     /// Increases indent level of the selected ranges.
+    ///
+    /// - Returns: `true` if the selection was indented; otherwise, `false`.
     @discardableResult func indent() -> Bool {
         
         guard
@@ -115,6 +117,8 @@ extension Indenting {
     
     
     /// Decreases indent level of the selected ranges.
+    ///
+    /// - Returns: `true` if the selection was outdented; otherwise, `false`.
     @discardableResult func outdent() -> Bool {
         
         guard
@@ -128,6 +132,8 @@ extension Indenting {
     
     
     /// Applies automatic indentation smartly.
+    ///
+    /// - Returns: `true` if the selection was indented; otherwise, `false`.
     @discardableResult func smartIndent() -> Bool {
         
         guard

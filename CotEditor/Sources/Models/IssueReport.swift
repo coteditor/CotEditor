@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -95,6 +95,8 @@ private extension IssueReport {
         
         
         /// Returns the markdown heading string.
+        ///
+        /// - Returns: The markdown heading string.
         func display() -> String {
             
             (Locale.current.language.languageCode == .english)

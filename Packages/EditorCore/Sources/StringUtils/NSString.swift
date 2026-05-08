@@ -129,6 +129,9 @@ public extension NSString {
     
     
     /// Returns the line range containing the given location.
+    ///
+    /// - Parameter location: The character location.
+    /// - Returns: The line range containing the given location.
     final func lineRange(at location: Int) -> NSRange {
         
         self.lineRange(for: NSRange(location: location, length: 0))
@@ -136,6 +139,9 @@ public extension NSString {
     
     
     /// Returns the line content range containing the given location.
+    ///
+    /// - Parameter location: The character location.
+    /// - Returns: The line contents range containing `location`.
     final func lineContentsRange(at location: Int) -> NSRange {
         
         self.lineContentsRange(for: NSRange(location: location, length: 0))

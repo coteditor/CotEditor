@@ -210,6 +210,8 @@ final class LineNumberView: NSView {
     
     
     /// Draws line numbers.
+    ///
+    /// - Parameter rect: The drawing rectangle.
     private func drawNumbers(in rect: NSRect) {
         
         guard
@@ -290,6 +292,9 @@ final class LineNumberView: NSView {
     
     
     /// Returns foreground color by considering the current accessibility setting.
+    ///
+    /// - Parameter strength: The color strength.
+    /// - Returns: The foreground color adjusted for the current accessibility setting.
     private func foregroundColor(_ strength: ColorStrength = .normal) -> NSColor {
         
         let fraction = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
@@ -341,6 +346,8 @@ final class LineNumberView: NSView {
     
     
     /// Observes textView's update to update line number drawing.
+    ///
+    /// - Parameter textView: The text view to observe.
     private func observeTextView(_ textView: NSTextView) {
         
         assert(textView.enclosingScrollView?.contentView != nil)
@@ -449,6 +456,8 @@ extension LineNumberView {
     // MARK: Private Methods
     
     /// Selects lines while dragging event.
+    ///
+    /// - Parameter event: The dragging event.
     private func selectLines(with event: NSEvent) {
         
         guard

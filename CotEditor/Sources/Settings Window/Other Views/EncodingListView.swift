@@ -282,6 +282,7 @@ private extension EncodingListView.Model {
     ///
     /// - Parameters:
     ///   - ids: The selection ids.
+    /// - Returns: The added item.
     func addSeparator(after ids: Set<Item.ID>) -> Item {
         
         self.registerUndo()
@@ -299,6 +300,7 @@ private extension EncodingListView.Model {
     /// - Parameters:
     ///   - encoding: The text encoding to add.
     ///   - ids: The selection ids.
+    /// - Returns: The added item.
     func addEncoding(_ encoding: CFStringEncoding, after ids: Set<Item.ID>) -> Item {
         
         assert(self.items.allSatisfy({ $0.encoding != encoding }))

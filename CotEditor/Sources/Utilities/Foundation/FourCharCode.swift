@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ import Foundation
 extension FourCharCode {
     
     /// Initializes from a string form of a four char code.
+    ///
+    /// - Parameter code: The four character code.
     init(code: any StringProtocol) {
         
         assert(code.utf16.count == 4, "FourCharCode must be made from 4 ASCII characters.")
@@ -41,6 +43,8 @@ extension FourCharCode {
 extension String {
     
     /// Initializes the string form four char code from the value.
+    ///
+    /// - Parameter code: The four character code.
     init(fourCharCode code: FourCharCode) {
         
         let utf16 = [24, 16, 8, 0]

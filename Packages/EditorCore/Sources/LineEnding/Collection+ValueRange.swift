@@ -79,6 +79,8 @@ public extension RangeReplaceableCollection where Self: RandomAccessCollection {
 public extension Sequence {
     
     /// Returns the Value mostly occurred in the collection.
+    ///
+    /// - Returns: The most frequent value, or `nil` if the sequence is empty.
     func majorValue<Value: Hashable>() -> Value? where Element == ValueRange<Value> {
         
         Dictionary(grouping: self, by: \.value)

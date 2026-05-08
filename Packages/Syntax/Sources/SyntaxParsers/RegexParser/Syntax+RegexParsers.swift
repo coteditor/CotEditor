@@ -129,6 +129,10 @@ extension Collection where Element == Syntax.Highlight {
 extension Syntax.Highlight {
     
     /// Creates a regex type definition from simple words by considering non-word characters around words.
+    ///
+    /// - Parameters:
+    ///   - words: The words to match.
+    ///   - ignoreCase: `true` to ignore character case.
     init(words: [String], ignoreCase: Bool) {
         
         assert(!words.isEmpty)

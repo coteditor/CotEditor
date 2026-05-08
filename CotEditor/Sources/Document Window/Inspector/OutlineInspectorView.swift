@@ -447,6 +447,7 @@ private final class OutlineBuildNode {
     /// Returns a filtered node tree based on the given search string.
     ///
     /// - Parameter filter: The search string to match against item titles.
+    /// - Returns: A filtered node tree based on the given search string.
     func filteredNode(filter: String) -> OutlineNode? {
         
         let filteredChildren = self.children.compactMap { $0.filteredNode(filter: filter) }

@@ -635,6 +635,8 @@ struct FindMatchesCache {
     
     
     /// Replaces a matched string in selection with replacementString.
+    ///
+    /// - Returns: `true` if replacement succeeded; otherwise, `false`.
     @discardableResult private func replaceSelected() -> Bool {
         
         guard let (textFind, client) = self.prepareTextFind() else { return false }

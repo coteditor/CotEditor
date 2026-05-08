@@ -164,6 +164,8 @@ private extension StatusBar.Model {
     
     
     /// Updates observations.
+    ///
+    /// - Parameter document: The document to observe.
     private func invalidateObservation(document: DataDocument?) {
         
         (self.document as? Document)?.counter.statusBarRequirements = []

@@ -949,6 +949,8 @@ extension NSTextView: EditorCounter.Source { }
     
     
     /// Updates the current selection ranges without touching AppKit views off the main thread.
+    ///
+    /// - Parameter ranges: The selected ranges.
     func updateSelectedRanges(_ ranges: [NSRange]) {
         
         self.selectedRanges.withLock { $0 = ranges }

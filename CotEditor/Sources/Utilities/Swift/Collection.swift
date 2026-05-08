@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -61,6 +61,7 @@ extension Collection {
     /// Returns the element at the specified index only if it is within bounds, otherwise nil.
     ///
     /// - Parameter index: The position of the element to obtain.
+    /// - Returns: The element at the specified index only if it is within bounds, otherwise nil.
     subscript(safe index: Index) -> Element? {
         
         self.indices.contains(index) ? self[index] : nil

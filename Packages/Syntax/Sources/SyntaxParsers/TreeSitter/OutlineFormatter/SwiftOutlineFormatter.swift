@@ -62,6 +62,9 @@ enum SwiftOutlineFormatter: TreeSitterOutlineFormatting {
 private extension SwiftOutlineFormatter {
     
     /// Returns the title text with surrounding comment delimiters removed.
+    ///
+    /// - Parameter title: The raw outline title.
+    /// - Returns: The title text without surrounding comment delimiters.
     static func commentContent(in title: String) -> String {
         
         if let match = title.wholeMatch(of: /\/\/\s*(.+)/) {  // inline comment
@@ -75,6 +78,11 @@ private extension SwiftOutlineFormatter {
     
     
     /// Returns the property name capture used for Swift outline items.
+    ///
+    /// - Parameters:
+    ///   - match: The query match.
+    ///   - source: The source text as `NSString`.
+    /// - Returns: The property title and range, or `nil` if no property name capture exists.
     static func propertyName(for match: QueryMatch, source: NSString) -> (title: String, range: NSRange)? {
         
         match.captures

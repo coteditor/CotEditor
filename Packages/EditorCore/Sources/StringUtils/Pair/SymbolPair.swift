@@ -82,6 +82,7 @@ public extension String {
     ///   - candidates: Symbol pairs to find.
     ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
     ///   - escapeCharacter: The escape character, or `nil` for no escape.
+    /// - Returns: The range enclosed by the symbol pair, or `nil` if not found.
     func rangeOfSymbolPair(at index: Index, candidates: [SymbolPair], ignoring pairToIgnore: SymbolPair? = nil, escapeCharacter: Character? = nil) -> ClosedRange<Index>? {
         
         guard let pairIndex = self.indexOfSymbolPair(at: index, candidates: candidates, ignoring: pairToIgnore, escapeCharacter: escapeCharacter) else { return nil }

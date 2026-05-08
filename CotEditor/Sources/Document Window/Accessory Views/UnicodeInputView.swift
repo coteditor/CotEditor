@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -151,6 +151,8 @@ struct UnicodeInputView: View {
 private extension UTF32.CodeUnit {
     
     /// Initializes from a possible Unicode code point representation, such as `U+1F600`, `1f600`, and `0x1F600`.
+    ///
+    /// - Parameter codePoint: The code point representation.
     init?(codePoint: String) {
         
         guard let hexString = codePoint.wholeMatch(of: /(U\+|0x|\\u)?(?<number>[0-9a-f]{1,6})/.ignoresCase())?.number else { return nil }

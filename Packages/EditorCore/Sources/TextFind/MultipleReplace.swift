@@ -286,6 +286,8 @@ extension MultipleReplace {
 extension MultipleReplace.Replacement {
     
     /// Checks if replacement rule is valid.
+    ///
+    /// - Parameter regexOptions: The regular expression options to validate with.
     public func validate(regexOptions: NSRegularExpression.Options = []) throws(TextFind.Error) {
         
         guard !self.findString.isEmpty else {

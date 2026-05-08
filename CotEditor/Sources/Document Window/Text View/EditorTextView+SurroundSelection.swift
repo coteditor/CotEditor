@@ -85,6 +85,11 @@ extension EditorTextView {
 extension NSTextView {
     
     /// Inserts strings around selections.
+    ///
+    /// - Parameters:
+    ///   - begin: The string to insert before each selection.
+    ///   - end: The string to insert after each selection.
+    /// - Returns: `true` if the selections were surrounded; otherwise, `false`.
     @discardableResult final func surroundSelections(begin: String, end: String) -> Bool {
         
         guard

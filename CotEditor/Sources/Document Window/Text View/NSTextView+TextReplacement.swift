@@ -32,6 +32,11 @@ extension NSTextView {
     // MARK: Public Methods
     
     /// Replaces the content according to EditingContext.
+    ///
+    /// - Parameters:
+    ///   - context: The editing context.
+    ///   - actionName: The action name for the undo manager.
+    /// - Returns: `true` if the edit was applied; otherwise, `false`.
     @discardableResult final func edit(with context: EditingContext, actionName: String? = nil) -> Bool {
         
         self.replace(with: context.strings, ranges: context.ranges, selectedRanges: context.selectedRanges, actionName: actionName)
@@ -39,6 +44,13 @@ extension NSTextView {
     
     
     /// Performs simple text replacement.
+    ///
+    /// - Parameters:
+    ///   - string: The replacement string.
+    ///   - range: The range to replace.
+    ///   - selectedRange: The selected range after replacement.
+    ///   - actionName: The action name for the undo manager.
+    /// - Returns: `true` if the replacement was applied; otherwise, `false`.
     @discardableResult final func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String? = nil) -> Bool {
         
         let selectedRanges: [NSRange]? = selectedRange.map { [$0] }
@@ -48,6 +60,13 @@ extension NSTextView {
     
     
     /// Performs multiple text replacements.
+    ///
+    /// - Parameters:
+    ///   - strings: The replacement strings.
+    ///   - ranges: The ranges to replace.
+    ///   - selectedRanges: The selected ranges after replacement.
+    ///   - actionName: The action name for the undo manager.
+    /// - Returns: `true` if the replacement was applied; otherwise, `false`.
     @discardableResult final func replace(with strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?, actionName: String? = nil) -> Bool {
         
         assert(Thread.isMainThread)
@@ -115,6 +134,8 @@ extension NSTextView {
     
     
     /// Performs undoable selection change.
+    ///
+    /// - Parameter ranges: The selected ranges.
     final func setSelectedRangesWithUndo(_ ranges: [NSRange]) {
         
         if let self = self as? any MultiCursorEditing,

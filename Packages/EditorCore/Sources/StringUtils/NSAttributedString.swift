@@ -124,6 +124,7 @@ public extension NSAttributedString {
     /// - Parameters:
     ///   - location: The character index at which truncation should start.
     ///   - offset: The maximum number of composed characters to leave to the left of `location`.
+    /// - Returns: The truncated attributed string.
     final func truncatedHead(until location: Int, offset: Int) -> NSAttributedString {
         
         let mutable = self.mutable

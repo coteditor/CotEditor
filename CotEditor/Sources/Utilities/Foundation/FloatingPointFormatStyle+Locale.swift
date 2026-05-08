@@ -43,6 +43,9 @@ extension FloatingPointFormatStyle {
     
     
     /// Returns a style applying the current language code and region from the given locale.
+    ///
+    /// - Parameter locale: The locale whose language code and region should be applied.
+    /// - Returns: A style with the locale's language code and region applied.
     func numberLocale(locale: Locale) -> FloatingPointFormatStyle<Value> {
         
         self.locale(Locale(languageCode: locale.language.languageCode,

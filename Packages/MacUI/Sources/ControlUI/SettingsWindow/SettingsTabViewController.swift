@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -112,6 +112,7 @@ private extension NSWindow {
     ///
     /// - Parameters:
     ///   - contentSize: The frame rectangle for the window content view.
+    /// - Returns: The window frame rectangle.
     func frameRect(forContentSize contentSize: NSSize) -> NSRect {
         
         let frameSize = self.frameRect(forContentRect: NSRect(origin: .zero, size: contentSize)).size

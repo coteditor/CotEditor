@@ -48,6 +48,7 @@ public extension NSRange {
     /// Checks if the given index is in the receiver or touches to one of the receiver's bounds.
     ///
     /// - Parameter index: The index to test.
+    /// - Returns: `true` if the receiver contains or touches `index`; otherwise, `false`.
     func touches(_ index: Int) -> Bool {
         
         self.lowerBound <= index && index <= self.upperBound
@@ -57,6 +58,7 @@ public extension NSRange {
     /// Returns a boolean indicating whether the specified range intersects the receiver’s range.
     ///
     /// - Parameter other: The other range.
+    /// - Returns: `true` if `other` intersects the receiver; otherwise, `false`.
     func intersects(_ other: NSRange) -> Bool {
         
         self.intersection(other) != nil
@@ -65,8 +67,10 @@ public extension NSRange {
     
     /// Checks if the two ranges overlap or touch each other.
     ///
-    /// - Parameter range: The range to test.
     /// - Note: Unlike Swift.Range's `overlaps(_:)`, this method returns `true` when a range length is 0.
+    /// 
+    /// - Parameter range: The range to test.
+    /// - Returns: `true` if the ranges overlap or touch each other; otherwise, `false`.
     func touches(_ range: NSRange) -> Bool {
         
         if self.location == NSNotFound { return false }

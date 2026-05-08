@@ -79,6 +79,7 @@ public extension String {
     /// - Parameters:
     ///   - data: The content file.
     ///   - decodingStrategy: The text encoding to read the file.
+    /// - Returns: The decoded string and detected file encoding.
     static func string(data: Data, decodingStrategy: String.DecodingStrategy) throws(CocoaError) -> (String, FileEncoding) {
         
         // decode Data to String

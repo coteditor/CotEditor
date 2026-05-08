@@ -164,6 +164,8 @@ struct TokenTextEditor<Variable: TokenRepresentable>: NSViewRepresentable {
 private extension Tokenizer {
     
     /// Updates token highlights in text storage.
+    ///
+    /// - Parameter storage: The text content storage.
     func invalidateTokens(in storage: NSTextContentStorage) {
         
         guard let textStorage = storage.textStorage else { return }

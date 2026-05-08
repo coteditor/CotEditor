@@ -54,6 +54,9 @@ enum LaTeXOutlineFormatter: TreeSitterOutlineFormatting {
 private extension LaTeXOutlineFormatter {
     
     /// Returns the content range for the node matched by the outline query.
+    ///
+    /// - Parameter match: The query match.
+    /// - Returns: The content range for the node matched by the outline query.
     static func titleRange(for match: QueryMatch) -> NSRange? {
         
         guard
@@ -89,6 +92,9 @@ private extension LaTeXOutlineFormatter {
     
     
     /// Strips the outer braces, `\{` and `}`, from a LaTeX group node range.
+    ///
+    /// - Parameter node: The tree-sitter node.
+    /// - Returns: The range inside the braces.
     static func innerRange(of node: Node) -> NSRange {
         
         guard node.range.length >= 2 else { return node.range }

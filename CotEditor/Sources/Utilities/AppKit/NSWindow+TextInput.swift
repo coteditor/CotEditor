@@ -41,6 +41,9 @@ extension NSWindow {
     
     
     /// Makes the given responder the first responder after ending the current IME composition.
+    ///
+    /// - Parameter responder: The responder to make first responder.
+    /// - Returns: `true` if the first responder was changed; otherwise, `false`.
     @discardableResult final func makeFirstResponderDiscardingMarkedText(_ responder: NSResponder?) -> Bool {
         
         self.discardMarkedTextIfNeeded()

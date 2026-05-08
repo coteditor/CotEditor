@@ -73,6 +73,7 @@ extension [OutlineItem] {
     /// - Complexity: O(n), where n is the number of outline items.
     ///
     /// - Parameter policy: The normalization policy to apply.
+    /// - Returns: Outline items with normalized levels.
     func normalizedLevels(policy: OutlinePolicy.Normalization = .standard) -> [OutlineItem] {
         
         if policy.flattenLevels {

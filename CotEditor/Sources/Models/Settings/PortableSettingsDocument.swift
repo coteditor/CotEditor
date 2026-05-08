@@ -222,6 +222,8 @@ struct PortableSettingsDocument: FileDocument {
     
     
     /// Applies settings to the current user environment.
+    ///
+    /// - Parameter types: The setting types to apply.
     func applySettings(types: SettingTypes = .all) throws {
         
         if types.contains(.replacements) {
