@@ -66,13 +66,14 @@ struct NSLayoutManagerTests {
     }
     
     
-    @Test func lineFragmentRangeAtExtraLineFragment() {
+    @Test(arguments: ["\u{000A}", "\u{000B}", "\u{000C}", "\u{000D}", "\u{0085}", "\u{2028}", "\u{2029}"])
+    func lineFragmentRangeAtTrailingNewline(lineEnding: String) {
         
         let layoutManager = NSLayoutManager()
         let textContainer = NSTextContainer()
         layoutManager.addTextContainer(textContainer)
         
-        let textStorage = NSTextStorage(string: "dog\n")
+        let textStorage = NSTextStorage(string: "dog" + lineEnding)
         textStorage.addLayoutManager(layoutManager)
         layoutManager.ensureLayout(for: textContainer)
         
@@ -90,20 +91,6 @@ struct NSLayoutManagerTests {
         textStorage.addLayoutManager(layoutManager)
         
         #expect(layoutManager.lineFragmentRange(at: textStorage.length) == NSRange(5..<5))
-    }
-    
-    
-    @Test func lineFragmentRangeAtTrailingVerticalTab() {
-        
-        let layoutManager = NSLayoutManager()
-        let textContainer = NSTextContainer()
-        layoutManager.addTextContainer(textContainer)
-        
-        let textStorage = NSTextStorage(string: "dog\u{000B}")
-        textStorage.addLayoutManager(layoutManager)
-        layoutManager.ensureLayout(for: textContainer)
-        
-        #expect(layoutManager.lineFragmentRange(at: textStorage.length) == NSRange(4..<4))
     }
     
     
