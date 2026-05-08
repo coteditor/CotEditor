@@ -372,6 +372,11 @@ extension MultiCursorEditing {
         // get number of wrapped lines where the base insertion point (the most opposite side of growing direction) is on
         let glyphRanges = insertionRanges.map { layoutManager.glyphRange(forCharacterRange: $0, actualCharacterRange: nil) }
         let baseIndex = (affinity == .downstream) ? glyphRanges.last!.lowerBound : glyphRanges.first!.upperBound
+        
+        guard layoutManager.isValidGlyphIndex(baseIndex) ||
+                (baseIndex == layoutManager.numberOfGlyphs && baseIndex > 0)
+        else { return }
+        
         let wrappedRow = layoutManager.numberOfWrappedRows(at: baseIndex, affinity: self.selectionAffinity)
         
         // filter existing selections to remove ones not in the same row
@@ -382,13 +387,18 @@ extension MultiCursorEditing {
         
         // get new visual line to append
         // -> Use line fragment to allow placing insertion points even when the line is shorter than the origin insertion columns.
-        let newLineRect: CGRect = switch affinity {
+        let newLineRect: CGRect
+        switch affinity {
             case .downstream:
-                layoutManager.lineFragmentRect(forGlyphAt: layoutManager.glyphIndexForCharacter(at: lastLineRange.lowerBound - 1), wrappedRow: wrappedRow)
-            case .upstream where layoutManager.isValidGlyphIndex(lastLineRange.upperBound):
-                layoutManager.lineFragmentRect(forGlyphAt: layoutManager.glyphIndexForCharacter(at: lastLineRange.upperBound), wrappedRow: wrappedRow)
+                let glyphIndex = layoutManager.glyphIndexForCharacter(at: lastLineRange.lowerBound - 1)
+                newLineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, wrappedRow: wrappedRow)
             case .upstream:
-                layoutManager.extraLineFragmentRect
+                let glyphIndex = layoutManager.glyphIndexForCharacter(at: lastLineRange.upperBound)
+                newLineRect = if layoutManager.isValidGlyphIndex(glyphIndex) {
+                    layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, wrappedRow: wrappedRow)
+                } else {
+                    layoutManager.extraLineFragmentRect
+                }
             @unknown default: fatalError()
         }
         
@@ -568,12 +578,19 @@ private extension NSLayoutManager {
     ///
     /// - Parameters:
     ///   - glyphIndex: The glyph index of the insertion point.
+    ///                 `numberOfGlyphs` is accepted for the insertion point at the end of the document.
     ///   - affinity: The current selection affinity.
     /// - Returns: The number of rows (0-based).
     func numberOfWrappedRows(at glyphIndex: Int, affinity: NSSelectionAffinity) -> Int {
         
-        let characterIndex = self.characterIndexForGlyph(at: glyphIndex)
-        let lineRange = (self.attributedString().string as NSString).lineRange(at: characterIndex)
+        guard self.isValidGlyphIndex(glyphIndex) || glyphIndex == self.numberOfGlyphs else {
+            assertionFailure()
+            return 0
+        }
+        
+        let string = self.attributedString().string as NSString
+        let characterIndex = (glyphIndex < self.numberOfGlyphs) ? self.characterIndexForGlyph(at: glyphIndex) : string.length
+        let lineRange = string.lineRange(at: characterIndex)
         let lineGlyphRange = self.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
         
         var count = 0
