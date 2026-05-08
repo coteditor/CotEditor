@@ -35,6 +35,7 @@ extension Bundle {
     }
     
     
+    /// The application version.
     final var version: Version? {
         
         Version(self.shortVersion)
