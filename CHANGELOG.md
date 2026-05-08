@@ -28,6 +28,7 @@
 
 - Fix an issue where customized built-in syntaxes could be ignored when their file mappings conflicted with other built-in syntaxes.
 - Fix an issue where text near the end of a very large document could fail to appear when hanging indentation was enabled.
+- Fix an issue where text following an emoji tag sequence could be rendered as missing glyphs.
 - Fix an issue where deleting by word or to the beginning of a line could delete text outside the selection.
 - Fix an issue where selecting a word could select an incorrect range.
 - Fix an issue where Sort by Pattern could reorder lines that do not contain the specified sort key.

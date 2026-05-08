@@ -1436,6 +1436,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         //    the color in the Color panel (2025-11, macOS 26.2)
         if self.textColor != theme.text.color {
             self.textColor = theme.text.color
+            
+            // -> Re-apply the full-range font attribute after `textColor` rewrites text storage attributes,
+            //    otherwise TextKit can keep LastResort fallback glyphs after emoji tag sequences (2026-05, macOS 26.4).
+            if let font {
+                self.textStorage?.addAttribute(.font, value: font, range: self.string.nsRange)
+            }
+            
         } else if self.typingAttributes[.foregroundColor] as? NSColor != theme.text.color {
             // for case when the textView was created for sub split editor
             self.typingAttributes[.foregroundColor] = theme.text.color
