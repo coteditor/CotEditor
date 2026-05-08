@@ -68,6 +68,7 @@ import LineEnding
     }
     
     
+    @available(macOS 26, *)
     @Test func allRequiredInfo() async throws {
         
         let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
@@ -76,15 +77,11 @@ import LineEnding
         defer { counter.cancel() }
         counter.source = { source }
         
-        await withCheckedContinuation { continuation in
-            withObservationTracking {
-                _ = counter.result.column
-            } onChange: {
-                continuation.resume()
-            }
-            
-            counter.updatesAll = true
-        }
+        counter.updatesAll = true
+        
+        let column = await Observations { counter.result.column }.first { @MainActor in $0 != nil }
+        
+        #expect(column == 0)
         
         #expect(counter.result.lines.entire == 3)
         #expect(counter.result.characters.entire == 31)
@@ -100,6 +97,7 @@ import LineEnding
     }
     
     
+    @available(macOS 26, *)
     @Test func skipWholeText() async throws {
         
         let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
@@ -110,15 +108,11 @@ import LineEnding
         counter.updatesAll = true
         counter.cancel()
         
-        await withCheckedContinuation { continuation in
-            withObservationTracking {
-                _ = counter.result.column
-            } onChange: {
-                continuation.resume()
-            }
-            
-            counter.invalidateSelection()
-        }
+        counter.invalidateSelection()
+        
+        let column = await Observations { counter.result.column }.first { @MainActor in $0 != nil }
+        
+        #expect(column == 0)
         
         #expect(counter.result.lines.entire == nil)
         #expect(counter.result.characters.entire == nil)
@@ -134,6 +128,7 @@ import LineEnding
     }
     
     
+    @available(macOS 26, *)
     @Test func crlf() async throws {
         
         let source = Source(string: "a\r\nb", selectedRange: NSRange(1..<4))
@@ -142,15 +137,11 @@ import LineEnding
         defer { counter.cancel() }
         counter.source = { source }
         
-        await withCheckedContinuation { continuation in
-            withObservationTracking {
-                _ = counter.result.column
-            } onChange: {
-                continuation.resume()
-            }
-            
-            counter.updatesAll = true
-        }
+        counter.updatesAll = true
+        
+        let column = await Observations { counter.result.column }.first { @MainActor in $0 != nil }
+        
+        #expect(column == 1)
         
         #expect(counter.result.lines.entire == 2)
         #expect(counter.result.characters.entire == 3)
@@ -166,6 +157,7 @@ import LineEnding
     }
     
     
+    @available(macOS 26, *)
     @Test func entireLineCountUsesLineRangeCalculator() async throws {
         
         let string = "a\nb\n"
@@ -177,21 +169,16 @@ import LineEnding
         counter.source = { source }
         counter.lineRangeCalculator = lineCounter
         
-        await withCheckedContinuation { continuation in
-            withObservationTracking {
-                _ = counter.result.lines.entire
-            } onChange: {
-                continuation.resume()
-            }
-            
-            counter.statusBarRequirements = [.lines]
-        }
+        counter.statusBarRequirements = [.lines]
+        
+        _ = await Observations { counter.result.lines.entire }.first { @MainActor in $0 != nil }
         
         #expect(counter.result.lines.entire == 2)
         #expect(!lineCounter.lineEndings.isEmpty)
     }
     
     
+    @available(macOS 26, *)
     @Test func currentLineUsesLineRangeCalculator() async throws {
         
         let string = "a\n🐕b\nc"
@@ -203,16 +190,11 @@ import LineEnding
         counter.source = { source }
         counter.lineRangeCalculator = lineCounter
         
-        await withCheckedContinuation { continuation in
-            withObservationTracking {
-                _ = counter.result.line
-            } onChange: {
-                continuation.resume()
-            }
-            
-            counter.statusBarRequirements = [.line]
-        }
+        counter.statusBarRequirements = [.line]
         
+        let line = await Observations { counter.result.line }.first { @MainActor in $0 != nil }
+        
+        #expect(line == 2)
         #expect(counter.result.line == 2)
         #expect(!lineCounter.lineEndings.isEmpty)
     }
