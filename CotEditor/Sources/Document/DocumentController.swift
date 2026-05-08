@@ -51,7 +51,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
     
     private var mainWindowObserver: AnyCancellable?
     private var fileDocumentObserver: AnyCancellable?
-    private var syntaxObserver: AnyCancellable?
+    private var syntaxObserver: Task<Void, Never>?
     
     
     // MARK: Lifecycle
@@ -412,9 +412,14 @@ protocol AdditionalDocumentPreparing: NSDocument {
     /// - Parameter document: The document to observe.
     private func observeSyntax(of document: Document?) {
         
+        self.syntaxObserver?.cancel()
+        
         if let document {
-            self.syntaxObserver = document.$syntaxName
-                .sink { [unowned self] in self.currentSyntaxName = $0 }
+            self.syntaxObserver = Task { [weak self, document] in
+                for await syntaxName in Observations({ document.syntaxName }) {
+                    self?.currentSyntaxName = syntaxName
+                }
+            }
         } else {
             self.syntaxObserver = nil
             self.currentSyntaxName = nil

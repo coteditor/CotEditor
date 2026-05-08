@@ -60,6 +60,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     @ViewLoading private var lineNumberView: LineNumberView
     private weak var advancedCounterView: NSView?
     
+    private var documentObservers: [Task<Void, Never>] = []
     private var observers: Set<AnyCancellable> = []
     
     
@@ -83,6 +84,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     
     isolated deinit {
+        self.documentObservers.forEach { $0.cancel() }
+        
         // detach layoutManager safely
         guard
             let textStorage = self.textView.textStorage,
@@ -170,15 +173,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             defaults.publisher(for: .selectionInstanceHighlightDelay, initial: true)
                 .assign(to: \.selectionInstanceHighlightDelay, on: self.textView),
             
-            // observe document setting changes
-            self.document.$syntaxName
-                .sink { [weak self] _ in self?.applySyntax() },
-            self.document.$lineEnding
-                .assign(to: \.lineEnding, on: self.textView),
-            self.document.$mode
-                .map(ModeManager.shared.setting(for:))
-                .sink { [weak self] in self?.textView.applyMode($0) },
-            
             // observe text orientation for line number view
             self.textView.publisher(for: \.layoutOrientation, options: .initial)
                 .sink { [weak self] orientation in
@@ -199,6 +193,30 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                     (self?.textView.enclosingScrollView as? BidiScrollView)?.contentDirection = direction
                     self?.lineNumberView.layoutDirection = direction
                 },
+        ]
+        
+        // workaround to apply font immediately (2026-05, macOS 26.4)
+        let mode = ModeManager.shared.setting(for: self.document.mode)
+        self.textView.setFont(type: mode.fontType)
+        
+        // observe document setting changes
+        self.documentObservers = [
+            Task { [weak self, document] in
+                for await _ in Observations({ document.syntaxName }) {
+                    self?.applySyntax()
+                }
+            },
+            Task { [weak self, document] in
+                for await lineEnding in Observations({ document.lineEnding }) {
+                    self?.textView.lineEnding = lineEnding
+                }
+            },
+            Task { [weak self, document] in
+                for await modeName in Observations({ document.mode }) {
+                    let mode = ModeManager.shared.setting(for: modeName)
+                    self?.textView.applyMode(mode)
+                }
+            },
         ]
     }
     

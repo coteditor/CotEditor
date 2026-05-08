@@ -282,8 +282,8 @@ private struct DocumentStatusBar: View {
             .accessibilityLabel(String(localized: "Line Endings", table: "Document"))
             .frame(width: 48)
         }
-        .onReceive(self.document.$lineEnding) { self.lineEnding = $0 }
-        .onReceive(self.document.$fileEncoding) { self.fileEncoding = $0 }
+        .onChange(of: self.document.lineEnding) { _, newValue in self.lineEnding = newValue }
+        .onChange(of: self.document.fileEncoding) { _, newValue in self.fileEncoding = newValue }
     }
 }
 

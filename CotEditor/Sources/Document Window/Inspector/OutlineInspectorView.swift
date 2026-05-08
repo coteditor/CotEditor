@@ -45,7 +45,7 @@ import StringUtils
     private var outlineRoots: [OutlineBuildNode] = []
     
     private var isOwnSelectionChange = false
-    private var documentObserver: AnyCancellable?
+    private var documentObserver: Task<Void, Never>?
     private var syntaxObserver: AnyCancellable?
     private var selectionObserver: AnyCancellable?
     
@@ -72,21 +72,22 @@ import StringUtils
     /// Updates observations.
     private func invalidateObservation() {
         
-        self.documentObserver = nil
+        self.documentObserver?.cancel()
         self.syntaxObserver = nil
         self.selectionObserver = nil
         self.items.removeAll()
         
         if let document, self.isPresented {
-            self.documentObserver = document.$syntaxName
-                .sink { [weak self] _ in
-                    self?.syntaxObserver = self?.document?.syntaxController.$outlineItems
+            self.documentObserver = Task { [weak self] in
+                for await _ in Observations({ document.syntaxName }) {
+                    self?.syntaxObserver = document.syntaxController.$outlineItems
                         .compactMap(\.self)
                         .sink { [weak self] in
                             self?.items = $0
                             self?.invalidateCurrentItem()
                         }
                 }
+            }
             
             self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)
                 .map { $0.object as! NSTextView }

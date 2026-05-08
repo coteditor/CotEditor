@@ -38,11 +38,21 @@ import SyntaxFormat
     
     var attributes: FileAttributes?  { self.document?.fileAttributes }
     var fileURL: URL?
-    var textSettings: TextSettings?
     var countResult: EditorCounter.Result?  { (self.document as? Document)?.counter.result }
     
     private var urlObserver: AnyCancellable?
-    private var observers: Set<AnyCancellable> = []
+    
+    
+    // MARK: Public Methods
+    
+    var textSettings: TextSettings? {
+        
+        if let document = self.document as? Document {
+            TextSettings(encoding: document.fileEncoding, lineEnding: document.lineEnding, mode: document.mode)
+        } else {
+            nil
+        }
+    }
     
     
     // MARK: Private Methods
@@ -51,12 +61,6 @@ import SyntaxFormat
     private func didUpdateDocument() {
         
         self.fileURL = self.document?.fileURL
-        
-        self.textSettings = if let document = self.document as? Document {
-            TextSettings(encoding: document.fileEncoding, lineEnding: document.lineEnding, mode: document.mode)
-        } else {
-            nil
-        }
         
         if self.isPresented {
             self.startObservation()
@@ -83,17 +87,6 @@ import SyntaxFormat
         self.urlObserver = document?.publisher(for: \.fileURL, options: .initial)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.fileURL = $0 }
-        
-        if let document = document as? Document {
-            self.observers = [
-                document.$fileEncoding
-                    .sink { [weak self] in self?.textSettings?.encoding = $0 },
-                document.$lineEnding
-                    .sink { [weak self] in self?.textSettings?.lineEnding = $0 },
-                document.$mode
-                    .sink { [weak self] in self?.textSettings?.mode = $0 },
-            ]
-        }
     }
     
     
@@ -102,7 +95,6 @@ import SyntaxFormat
         
         (self.document as? Document)?.counter.updatesAll = false
         self.urlObserver = nil
-        self.observers.removeAll()
     }
 }
 

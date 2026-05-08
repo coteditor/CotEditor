@@ -71,7 +71,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private var fileDocumentNameObserver: AnyCancellable?
     private var documentsObserver: AnyCancellable?
     
-    private var documentSyntaxObserver: AnyCancellable?
+    private var documentSyntaxObserver: Task<Void, Never>?
     private var syntaxListObserver: AnyCancellable?
     private weak var syntaxPopUpButton: NSPopUpButton?
     
@@ -168,6 +168,11 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     required init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    isolated deinit {
+        self.documentSyntaxObserver?.cancel()
     }
     
     
@@ -327,11 +332,18 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                 .sink { [weak self] _ in self?.synchronizeWindowTitleWithDocumentName() }
         }
         
-        self.syntaxPopUpButton?.isEnabled = (document is Document)
-        
         // observe document's syntax change for toolbar
-        self.documentSyntaxObserver = (document as? Document)?.$syntaxName
-            .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
+        self.documentSyntaxObserver?.cancel()
+        if let document = document as? Document {
+            self.syntaxPopUpButton?.isEnabled = true
+            self.documentSyntaxObserver = Task { [weak self] in
+                for await syntaxName in Observations({ document.syntaxName }) {
+                    self?.selectSyntaxPopUpItem(with: syntaxName)
+                }
+            }
+        } else {
+            self.syntaxPopUpButton?.isEnabled = false
+        }
     }
     
     

@@ -88,10 +88,10 @@ extension NSTextView: EditorCounter.Source { }
     let syntaxController: SyntaxController
     let lineEndingScanner: LineEndingScanner
     let counter: EditorCounter
-    @ObservationIgnored @Published private(set) var fileEncoding: FileEncoding
-    @ObservationIgnored @Published private(set) var lineEnding: LineEnding  { didSet { self.lineEndingScanner.baseLineEnding = lineEnding } }
-    @ObservationIgnored @Published private(set) var syntaxName: String
-    @ObservationIgnored @Published private(set) var mode: Mode
+    private(set) var fileEncoding: FileEncoding
+    private(set) var lineEnding: LineEnding  { didSet { self.lineEndingScanner.baseLineEnding = lineEnding } }
+    private(set) var syntaxName: String
+    private(set) var mode: Mode
     
     
     // MARK: Private Properties
