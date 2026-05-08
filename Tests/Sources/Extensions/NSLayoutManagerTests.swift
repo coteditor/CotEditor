@@ -51,6 +51,76 @@ struct NSLayoutManagerTests {
     }
     
     
+    @Test func lineFragmentRange() {
+        
+        let layoutManager = NSLayoutManager()
+        let textContainer = NSTextContainer()
+        layoutManager.addTextContainer(textContainer)
+        
+        let textStorage = NSTextStorage(string: "dog\ncat")
+        textStorage.addLayoutManager(layoutManager)
+        layoutManager.ensureLayout(for: textContainer)
+        
+        #expect(layoutManager.lineFragmentRange(at: 0) == NSRange(0..<3))
+        #expect(layoutManager.lineFragmentRange(at: textStorage.length) == NSRange(4..<7))
+    }
+    
+    
+    @Test func lineFragmentRangeAtExtraLineFragment() {
+        
+        let layoutManager = NSLayoutManager()
+        let textContainer = NSTextContainer()
+        layoutManager.addTextContainer(textContainer)
+        
+        let textStorage = NSTextStorage(string: "dog\n")
+        textStorage.addLayoutManager(layoutManager)
+        layoutManager.ensureLayout(for: textContainer)
+        
+        #expect(layoutManager.lineFragmentRange(at: textStorage.length) == NSRange(4..<4))
+    }
+    
+    
+    @Test func lineFragmentRangeAtTrailingNewlineWithoutLayout() {
+        
+        let layoutManager = NSLayoutManager()
+        let textContainer = NSTextContainer()
+        layoutManager.addTextContainer(textContainer)
+        
+        let textStorage = NSTextStorage(string: "dog\r\n")
+        textStorage.addLayoutManager(layoutManager)
+        
+        #expect(layoutManager.lineFragmentRange(at: textStorage.length) == NSRange(5..<5))
+    }
+    
+    
+    @Test func lineFragmentRangeAtTrailingVerticalTab() {
+        
+        let layoutManager = NSLayoutManager()
+        let textContainer = NSTextContainer()
+        layoutManager.addTextContainer(textContainer)
+        
+        let textStorage = NSTextStorage(string: "dog\u{000B}")
+        textStorage.addLayoutManager(layoutManager)
+        layoutManager.ensureLayout(for: textContainer)
+        
+        #expect(layoutManager.lineFragmentRange(at: textStorage.length) == NSRange(4..<4))
+    }
+    
+    
+    @Test func lineFragmentRangeInEmptyString() {
+        
+        let layoutManager = NSLayoutManager()
+        let textContainer = NSTextContainer()
+        layoutManager.addTextContainer(textContainer)
+        
+        let textStorage = NSTextStorage(string: "")
+        textStorage.addLayoutManager(layoutManager)
+        layoutManager.ensureLayout(for: textContainer)
+        
+        #expect(layoutManager.lineFragmentRange(at: 0) == NSRange(0..<0))
+    }
+    
+    
     @Test func characterIndex() {
         
         let layoutManager = NSLayoutManager()

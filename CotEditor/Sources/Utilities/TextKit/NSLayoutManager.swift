@@ -34,15 +34,34 @@ extension NSLayoutManager {
     /// - Returns: The range of characters that locate in the same line fragment of the given character.
     final func lineFragmentRange(at charIndex: Int) -> NSRange {
         
-        let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
-        var lineGlyphRange: NSRange = .notFound
+        let string = self.attributedString().string as NSString
         
+        guard (0...string.length).contains(charIndex) else {
+            assertionFailure()
+            return NSRange(location: string.length, length: 0)
+        }
+        
+        guard string.length > 0 else { return NSRange(location: 0, length: 0) }
+        
+        guard charIndex < string.length || !string.character(at: string.length - 1).isNewline else {
+            return NSRange(location: charIndex, length: 0)
+        }
+        
+        let effectiveCharIndex = (charIndex == string.length) ? string.index(before: charIndex) : charIndex
+        let glyphIndex = self.glyphIndexForCharacter(at: effectiveCharIndex)
+        
+        guard self.isValidGlyphIndex(glyphIndex) else {
+            assertionFailure()
+            return NSRange(location: charIndex, length: 0)
+        }
+        
+        var lineGlyphRange: NSRange = .notFound
         self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineGlyphRange, withoutAdditionalLayout: true)
         
         var range = self.characterRange(forGlyphRange: lineGlyphRange, actualGlyphRange: nil)
         
         // strip the last line ending character
-        let lineEndingRange = (self.attributedString().string as NSString).range(of: "\\R", options: [.regularExpression, .backwards], range: range)
+        let lineEndingRange = string.range(of: "\\R", options: [.regularExpression, .backwards], range: range)
         range.length -= lineEndingRange.length
         
         return range
