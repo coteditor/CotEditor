@@ -169,7 +169,7 @@ extension NSTextView {
         else { return assertionFailure() }
         
         // store current coordinate
-        let centerGlyphIndex = layoutManager.glyphIndex(for: point.offset(by: self.textContainerOrigin), in: textContainer)
+        let centerGlyphIndex = layoutManager.glyphIndex(for: point.offset(by: -self.textContainerOrigin), in: textContainer)
         let isVertical = (self.layoutOrientation == .vertical)
         let visibleRect = self.visibleRect
         let visibleOrigin = NSPoint(x: visibleRect.minX, y: isVertical ? visibleRect.maxY : visibleRect.minY)
