@@ -295,7 +295,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
             }
         }
         
-        return true
+        return charIndex == 0
     }
     
     
@@ -337,9 +337,9 @@ private extension NSLayoutManager {
                 let isIndentLevel = spaceCount.isMultiple(of: tabWidth) && spaceCount > 0
                 
                 switch string.character(at: characterIndex) {
-                    case 0x0020:  // space
+                    case 0x20:  // space
                         spaceCount += 1
-                    case 0x0009:  // tab
+                    case 0x9:  // tab
                         spaceCount += tabWidth - (spaceCount % tabWidth)
                     default:
                         break loop
