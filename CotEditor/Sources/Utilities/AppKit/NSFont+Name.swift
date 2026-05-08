@@ -47,7 +47,7 @@ extension NSFont {
     ///   - size: The font size.
     ///   - weight: The font weight.
     /// - Returns: The line number font.
-    static func lineNumberFont(ofSize size: CGFloat = 0, weight: NSFont.Weight = .regular) -> sending NSFont {
+    static func lineNumberFont(ofSize size: CGFloat = 0, weight: NSFont.Weight = .regular) -> NSFont {
         
         NSFont(named: .avenirNextCondensed, weight: weight, size: size)
             ?? .monospacedDigitSystemFont(ofSize: size, weight: weight)
