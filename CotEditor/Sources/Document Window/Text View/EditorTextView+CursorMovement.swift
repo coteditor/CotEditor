@@ -302,7 +302,7 @@ extension EditorTextView {
     override func moveToBeginningOfLine(_ sender: Any?) {
         
         self.moveCursors(affinity: .downstream) { range in
-            self.locationOfBeginningOfLine(for: range.location)
+            self.locationOfBeginningOfLine(for: range.location, affinity: .downstream)
         }
     }
     
@@ -311,7 +311,7 @@ extension EditorTextView {
     override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
-            let location = self.locationOfBeginningOfLine(for: self.selectedRange.location)
+            let location = self.locationOfBeginningOfLine(for: self.selectedRange.location, affinity: .downstream)
             
             // repeat `moveBackwardAndModifySelection(_:)` until reaching the goal location
             // instead of setting `selectedRange` directly.
@@ -324,7 +324,7 @@ extension EditorTextView {
         }
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { cursor, _ in
-            self.locationOfBeginningOfLine(for: cursor)
+            self.locationOfBeginningOfLine(for: cursor, affinity: .downstream)
         }
     }
     
