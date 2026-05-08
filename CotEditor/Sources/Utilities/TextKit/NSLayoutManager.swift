@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -134,6 +134,8 @@ extension NSLayoutManager {
         guard self.attributedString().length > 0 else { return false }
         
         let range = range ?? self.attributedString().range
+        
+        guard !range.isEmpty else { return false }
         
         assert(range.upperBound <= self.attributedString().length)
         

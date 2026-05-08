@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2024 1024jp
+//  © 2019-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,6 +45,7 @@ struct NSLayoutManagerTests {
         #expect(!layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(..<4)))
         #expect(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(3..<6)))
         #expect(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(6..<8)))
+        #expect(!layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(5..<5)))
         #expect(!layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(7..<7)))
         #expect(!layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(7..<textStorage.length)))
     }
