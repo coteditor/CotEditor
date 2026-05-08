@@ -1437,8 +1437,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if self.textColor != theme.text.color {
             self.textColor = theme.text.color
             
-            // -> Re-apply the full-range font attribute after `textColor` rewrites text storage attributes,
-            //    otherwise TextKit can keep LastResort fallback glyphs after emoji tag sequences (2026-05, macOS 26.4).
+            // workaround for a TextKit issue where textColor update can leave
+            // LastResort fallback glyphs after emoji tag sequences (2026-05, macOS 26.4).
             if let font {
                 self.textStorage?.addAttribute(.font, value: font, range: self.string.nsRange)
             }
