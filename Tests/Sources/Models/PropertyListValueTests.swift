@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2025 1024jp
+//  © 2025-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import Testing
 @testable import CotEditor
 
 struct PropertyListValueTests {
-
+    
     @Test func string() {
         
         let string = "Dogcow"
@@ -66,6 +66,14 @@ struct PropertyListValueTests {
         
         #expect(value == .double(double))
         #expect(value.any as? Double == double)
+    }
+    
+    
+    @Test func bridgedNumbers() {
+        
+        #expect(PropertyListValue(propertyList: NSNumber(value: true)) == .bool(true))
+        #expect(PropertyListValue(propertyList: NSNumber(value: 1)) == .int(1))
+        #expect(PropertyListValue(propertyList: NSNumber(value: 1.0)) == .double(1.0))
     }
     
     
@@ -139,6 +147,13 @@ struct PropertyListValueTests {
     }
     
     
+    @Test func invalidValue() {
+        
+        #expect(PropertyListValue(propertyList: NSObject()) == nil)
+        #expect(PropertyListValue(propertyList: ["invalid": NSObject()]) == nil)
+    }
+    
+    
     @Test func plist() throws {
         
         let dictionary: [String: Any] = [
@@ -150,9 +165,30 @@ struct PropertyListValueTests {
                 "double": 2.0,
             ],
         ]
-        let data = try PropertyListSerialization.data(fromPropertyList: dictionary, format: .xml, options: 0)
-        let plist = try #require(PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any])
         
-        #expect(plist as NSDictionary == dictionary as NSDictionary)
+        #expect(PropertyListSerialization.propertyList(dictionary, isValidFor: .xml))
+        
+        let data = try PropertyListSerialization.data(fromPropertyList: dictionary, format: .xml, options: 0)
+        
+        #expect(!data.isEmpty)
+    }
+    
+    
+    @Test func plistRoundTrip() throws {
+        
+        let value: PropertyListValue = .dictionary([
+            "title": .string("Dogcow"),
+            "name": .int(1024),
+            "enabled": .bool(true),
+            "options": .dictionary([
+                "data": .data(Data([0xDE])),
+                "double": .double(2.0),
+            ]),
+        ])
+        
+        let data = try PropertyListSerialization.data(fromPropertyList: value.any, format: .xml, options: 0)
+        let plist = try PropertyListSerialization.propertyList(from: data, format: nil)
+        
+        #expect(PropertyListValue(propertyList: plist) == value)
     }
 }
