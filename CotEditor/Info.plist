@@ -726,12 +726,6 @@
 			<string>net.daringfireball.markdown</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
-				<key>public.mime-type</key>
-				<array>
-					<string>text/markdown</string>
-					<string>text/x-markdown</string>
-					<string>text/x-web-markdown</string>
-				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>md</string>
@@ -739,6 +733,12 @@
 					<string>markdown</string>
 					<string>mdown</string>
 					<string>mkdn</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/markdown</string>
+					<string>text/x-markdown</string>
+					<string>text/x-web-markdown</string>
 				</array>
 			</dict>
 		</dict>
