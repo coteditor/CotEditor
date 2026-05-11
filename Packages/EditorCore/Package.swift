@@ -1,4 +1,4 @@
-// swift-tools-version: 6.2
+// swift-tools-version: 6.3
 
 import PackageDescription
 
@@ -90,16 +90,14 @@ let package = Package(
 
 
 for target in package.targets {
-    target.plugins = [
+    target.plugins = (target.plugins ?? []) + [
         .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
     ]
-    target.swiftSettings = [
+    target.swiftSettings = (target.swiftSettings ?? []) + [
         .strictMemorySafety(),
-        
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
-        
         .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
         .enableUpcomingFeature("InferIsolatedConformances"),
     ]
