@@ -3,6 +3,10 @@
 7.0.4 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue where the incompatible character list in the Warnings inspector could miss some characters that change after text encoding conversion.
+
 
 
 7.0.3 (2026-05-09)

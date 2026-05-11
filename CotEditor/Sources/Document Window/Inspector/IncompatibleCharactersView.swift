@@ -266,14 +266,17 @@ private extension IncompatibleCharactersView.Model {
         
         assert(Thread.isMainThread)
         
-        let string = document.textStorage.string
         let encoding = document.fileEncoding.encoding
         
-        guard !string.canBeConverted(to: encoding) else { return [] }
+        guard
+            !encoding.isUnicodeEncoding,
+            document.textStorage.length > 0
+        else { return [] }
         
         self.isScanning = true
         
-        let task: Task<[Item], any Error> = .detached { [string = string.immutable] in
+        let string = document.textStorage.string.immutable
+        let task: Task<[Item], any Error> = .detached {
             try string.charactersIncompatible(with: encoding)
         }
         

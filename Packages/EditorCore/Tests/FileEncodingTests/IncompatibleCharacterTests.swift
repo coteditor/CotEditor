@@ -70,6 +70,22 @@ struct IncompatibleCharacterTests {
     }
     
     
+    @Test func scanRoundTripChangingCharactersEvenWhenConvertible() throws {
+        
+        let string = "\\"
+        
+        #expect(string.canBeConverted(to: .plainShiftJIS))
+        
+        let incompatibles = try string.charactersIncompatible(with: .plainShiftJIS)
+        let backslash = try #require(incompatibles.first)
+        
+        #expect(incompatibles.count == 1)
+        #expect(backslash.value.character == "\\")
+        #expect(backslash.value.converted == "＼")
+        #expect(backslash.lowerBound == 0)
+    }
+    
+    
     @Test func scanOnlyIncompatibleCharacters() throws {
         
         let string = "👾🐱‍👓"
