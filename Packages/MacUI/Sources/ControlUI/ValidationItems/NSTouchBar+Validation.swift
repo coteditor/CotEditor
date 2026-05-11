@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,9 +26,9 @@
 
 public import AppKit
 
-public protocol TouchBarItemValidations: AnyObject {
+@MainActor public protocol TouchBarItemValidations: AnyObject {
     
-    @MainActor func validateTouchBarItem(_ item: NSTouchBarItem) -> Bool
+    func validateTouchBarItem(_ item: NSTouchBarItem) -> Bool
 }
 
 
@@ -105,7 +105,7 @@ public extension NSTouchBar {
     private var applicationObserver: (any NSObjectProtocol)?
     
     
-    private enum ValidationDelay: TimeInterval {
+    private nonisolated enum ValidationDelay: TimeInterval {
         
         case normal = 0.1
         case lazy = 0.85
