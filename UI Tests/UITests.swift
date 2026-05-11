@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,16 +25,18 @@
 
 import XCTest
 
-final class UITests: XCTestCase {
+@MainActor final class UITests: XCTestCase {
     
-    override func setUp() {
+    override func setUp() async throws {
+        
+        try await super.setUp()
         
         // In UI tests it is usually best to stop immediately when a failure occurs.
         self.continueAfterFailure = false
     }
     
     
-    @MainActor func testTyping() {
+    func testTyping() {
         
         let app = XCUIApplication()
         app.launch()
@@ -66,11 +68,11 @@ final class UITests: XCTestCase {
             documentWindow.sheets.firstMatch.children(matching: .button)["Delete"].click()
         }
         sleep(1)
-        XCTAssert(documentWindow.exists)
+        XCTAssert(!documentWindow.exists)
     }
     
     
-    @MainActor func testSettingsWindow() {
+    func testSettingsWindow() {
         
         let app = XCUIApplication()
         app.launch()
@@ -93,7 +95,7 @@ final class UITests: XCTestCase {
     }
     
     
-    @MainActor func testLaunchPerformance() throws {
+    func testLaunchPerformance() throws {
         
         // This measures how long it takes to launch your application.
         self.measure(metrics: [XCTApplicationLaunchMetric()]) {
