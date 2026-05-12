@@ -11,6 +11,7 @@
 ### Fixes
 
 - Fix an issue where saving a file could drop special POSIX permission bits, such as `setuid`, `setgid`, or `sticky`.
+- Fix an issue where NFKC Case-Fold normalization could leave default-ignorable Unicode characters in the text.
 
 
 

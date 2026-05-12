@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2025 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -76,8 +76,21 @@ extension StringProtocol {
     /// A string made by normalizing the receiver’s content using the Unicode Normalization Form KC with case-fold a.k.a. `NFKC_Casefold` or `NFKC_CF`.
     var precomposedStringWithCompatibilityMappingWithCaseFold: String {
         
-        self.precomposedStringWithCompatibilityMapping
+        self.removingDefaultIgnorableCodePoints
+            .precomposedStringWithCompatibilityMapping
             .folding(options: .caseInsensitive, locale: nil)
+            .precomposedStringWithCanonicalMapping
+            .removingDefaultIgnorableCodePoints
+    }
+    
+    
+    /// A string made by removing default-ignorable code points from the receiver’s content.
+    private var removingDefaultIgnorableCodePoints: String {
+        
+        let string = String(self)
+        
+        return try! NSRegularExpression(pattern: #"\p{Default_Ignorable_Code_Point}+"#)
+            .stringByReplacingMatches(in: string, range: NSRange(..<string.utf16.count), withTemplate: "")
     }
 }
 
