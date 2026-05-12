@@ -143,6 +143,16 @@ struct URLExtensionsTests {
         #expect(FileManager.default.fileExists(atPath: directoryURL.path))
         #expect(!FileManager.default.fileExists(atPath: fileURL.path))
     }
+    
+    
+    @Test func pathAbbreviatingWithTilde() {
+        
+        let homeDirectory = NSHomeDirectory()
+        
+        #expect(URL(filePath: homeDirectory).pathAbbreviatingWithTilde == "~")
+        #expect(URL(filePath: homeDirectory).appending(component: "Documents").pathAbbreviatingWithTilde == "~/Documents")
+        #expect(URL(filePath: "\(homeDirectory)-backup/file.txt").pathAbbreviatingWithTilde == "\(homeDirectory)-backup/file.txt")
+    }
 }
 
 

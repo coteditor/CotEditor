@@ -155,6 +155,10 @@ public extension URL {
     /// A path string that replaces the user's home directory with a tilde (~) character.
     var pathAbbreviatingWithTilde: String {
         
-        self.path(percentEncoded: false).replacingOccurrences(of: Self.homeDirectory, with: "~", options: .anchored)
+        let path = self.path(percentEncoded: false)
+        
+        guard path == Self.homeDirectory || path.hasPrefix(Self.homeDirectory + "/") else { return path }
+        
+        return path.replacingOccurrences(of: Self.homeDirectory, with: "~", options: .anchored)
     }
 }
