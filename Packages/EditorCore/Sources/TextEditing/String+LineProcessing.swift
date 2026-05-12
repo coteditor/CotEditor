@@ -43,7 +43,7 @@ public extension String {
         
         let string = NSMutableString(string: self)
         var replacementRange = NSRange()
-        var selectedRanges: [NSRange] = []
+        var movedSelectedRanges = [NSRange?](repeating: nil, count: ranges.count)
         
         // swap lines
         for lineRange in lineRanges {
@@ -62,17 +62,21 @@ public extension String {
             replacementRange.formUnion(editRange)
             
             // move selected ranges in the line to move
-            for selectedRange in ranges {
-                if let intersectionRange = selectedRange.intersection(editRange) {
-                    selectedRanges.append(intersectionRange.shifted(by: -upperLineRange.length))
-                    
+            for (index, selectedRange) in ranges.enumerated() {
+                let shiftedRange: NSRange? = if let intersectionRange = selectedRange.intersection(editRange) {
+                    intersectionRange.shifted(by: -upperLineRange.length)
                 } else if editRange.touches(selectedRange.location) {
-                    selectedRanges.append(selectedRange.shifted(by: -upperLineRange.length))
+                    selectedRange.shifted(by: -upperLineRange.length)
+                } else {
+                    nil
+                }
+                
+                if let shiftedRange {
+                    movedSelectedRanges[index] = movedSelectedRanges[index]?.union(shiftedRange) ?? shiftedRange
                 }
             }
         }
-        selectedRanges = selectedRanges.uniqued.sorted(using: KeyPathComparator(\.location))
-        
+        let selectedRanges = movedSelectedRanges.compactMap(\.self).uniqued.sorted(using: KeyPathComparator(\.location))
         let replacementString = string.substring(with: replacementRange)
         
         return EditingContext(strings: [replacementString], ranges: [replacementRange], selectedRanges: selectedRanges)
@@ -96,7 +100,7 @@ public extension String {
         
         let string = NSMutableString(string: self)
         var replacementRange = NSRange()
-        var selectedRanges: [NSRange] = []
+        var movedSelectedRanges = [NSRange?](repeating: nil, count: ranges.count)
         
         // swap lines
         for lineRange in lineRanges.reversed() {
@@ -114,20 +118,26 @@ public extension String {
             string.replaceCharacters(in: editRange, with: lowerLineString + lineString)
             replacementRange.formUnion(editRange)
             
+            let offset = (lineString.last?.isNewline == true)
+                ? lowerLineRange.length
+                : lowerLineRange.length + lowerLineString.last!.utf16.count
+            
             // move selected ranges in the line to move
-            for selectedRange in ranges {
-                if let intersectionRange = selectedRange.intersection(editRange) {
-                    let offset = (lineString.last?.isNewline == true)
-                        ? lowerLineRange.length
-                        : lowerLineRange.length + lowerLineString.last!.utf16.count
-                    selectedRanges.append(intersectionRange.shifted(by: offset))
-                    
+            for (index, selectedRange) in ranges.enumerated() {
+                let shiftedRange: NSRange? = if let intersectionRange = selectedRange.intersection(editRange) {
+                    intersectionRange.shifted(by: offset)
                 } else if editRange.touches(selectedRange.location) {
-                    selectedRanges.append(selectedRange.shifted(by: lowerLineRange.length))
+                    selectedRange.shifted(by: lowerLineRange.length)
+                } else {
+                    nil
+                }
+                
+                if let shiftedRange {
+                    movedSelectedRanges[index] = movedSelectedRanges[index]?.union(shiftedRange) ?? shiftedRange
                 }
             }
         }
-        selectedRanges = selectedRanges.uniqued.sorted(using: KeyPathComparator(\.location))
+        let selectedRanges = movedSelectedRanges.compactMap(\.self).uniqued.sorted(using: KeyPathComparator(\.location))
         
         let replacementString = string.substring(with: replacementRange)
         

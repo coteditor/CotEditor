@@ -57,6 +57,11 @@ struct StringLineProcessingTests {
         #expect(context.ranges == [NSRange(0, 17)])
         #expect(context.selectedRanges == [NSRange(1, 1), NSRange(6, 0), NSRange(13, 1)])
         
+        context = try #require(string.moveLineUp(in: [NSRange(4, 6)]))
+        #expect(context.strings == ["bbbb\nccc\naa\n"])
+        #expect(context.ranges == [NSRange(0, 12)])
+        #expect(context.selectedRanges == [NSRange(1, 6)])
+        
         #expect(string.moveLineUp(in: [NSRange(2, 1)]) == nil)
     }
     
@@ -86,6 +91,11 @@ struct StringLineProcessingTests {
         #expect(context.strings == ["aa\neee\nbbbb\nccc\nd"])
         #expect(context.ranges == [NSRange(0, 17)])
         #expect(context.selectedRanges == [NSRange(8, 1), NSRange(13, 0), NSRange(17, 1)])
+        
+        context = try #require(string.moveLineDown(in: [NSRange(4, 6)]))
+        #expect(context.strings == ["aa\nd\nbbbb\nccc\n"])
+        #expect(context.ranges == [NSRange(0, 14)])
+        #expect(context.selectedRanges == [NSRange(6, 6)])
         
         #expect(string.moveLineDown(in: [NSRange(14, 1)]) == nil)
     }
@@ -147,6 +157,11 @@ struct StringLineProcessingTests {
         #expect(context.ranges == [NSRange(0, 11)])
         #expect(context.selectedRanges == [NSRange(0, 11)])
         
+        context = try #require("aa\nbbbb\nccc".sortLinesAscending(in: NSRange(0, 11)))
+        #expect(context.strings == ["aa\nbbbb\nccc"])
+        #expect(context.ranges == [NSRange(0, 11)])
+        #expect(context.selectedRanges == [NSRange(0, 11)])
+        
         context = try #require(string.sortLinesAscending(in: NSRange(2, 4)))
         #expect(context.strings == ["aa\nccc\n"])
         #expect(context.ranges == [NSRange(0, 7)])
@@ -203,6 +218,11 @@ struct StringLineProcessingTests {
         #expect(context.strings == ["ccc\nbbbb\naa"])
         #expect(context.ranges == [NSRange(0, 11)])
         #expect(context.selectedRanges == [NSRange(0, 11)])
+        
+        context = try #require("aa\naa\n".reverseLines(in: NSRange(0, 6)))
+        #expect(context.strings == ["aa\naa\n"])
+        #expect(context.ranges == [NSRange(0, 6)])
+        #expect(context.selectedRanges == [NSRange(0, 5)])
         
         context = try #require(string.reverseLines(in: NSRange(2, 4)))
         #expect(context.strings == ["bbbb\naa\n"])
@@ -262,6 +282,8 @@ struct StringLineProcessingTests {
         #expect(shuffledLines.sorted() == originalLines.sorted())
         #expect(context.ranges == [NSRange(0, 11)])
         #expect(context.selectedRanges == [NSRange(0, 11)])
+        
+        #expect("aa\naa\n".shuffleLines(in: NSRange(0, 6)) != nil)
     }
     
     
@@ -356,7 +378,7 @@ struct StringLineProcessingTests {
     }
     
     
-    @Test func joinLinesIn() {
+    @Test func joinLinesIn() throws {
         
         let string = """
             aa
@@ -369,6 +391,8 @@ struct StringLineProcessingTests {
         #expect(context.strings == ["a bb", "c"])
         #expect(context.ranges == [NSRange(1, 6), NSRange(10, 1)])
         #expect(context.selectedRanges == [NSRange(1, 4), NSRange(8, 1)])
+        
+        #expect(string.joinLines(in: [NSRange(1, 1)]).strings == ["a"])
     }
     
     
