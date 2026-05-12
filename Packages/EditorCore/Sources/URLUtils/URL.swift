@@ -38,6 +38,7 @@ public extension URL {
     /// Returns whether the URL points to a directory.
     ///
     /// - Note: This property uses cached resource if available.
+    /// - Throws: An error if the resource values cannot be read.
     var isDirectory: Bool {
         
         get throws {
@@ -77,10 +78,10 @@ public extension URL {
     }
     
     
-    /// Checks the given URL is an ancestor of the receiver.
+    /// Checks whether the receiver is an ancestor of the given URL.
     ///
-    /// - Parameter url: The child candidate URL.
-    /// - Returns: `true` if the given URL is child.
+    /// - Parameter url: The descendant candidate URL.
+    /// - Returns: `true` if the receiver is an ancestor of the given URL.
     func isAncestor(of url: URL) -> Bool {
         
         let ancestorComponents = self.standardizedFileURL.resolvingSymlinksInPath().pathComponents
@@ -133,6 +134,7 @@ public extension FileManager {
     /// Creates intermediate directories to the given URL if not available.
     ///
     /// - Parameter fileURL: The file URL.
+    /// - Throws: An error if the directory cannot be created.
     final func createIntermediateDirectories(to fileURL: URL) throws {
         
         try self.createDirectory(at: fileURL.deletingLastPathComponent(), withIntermediateDirectories: true)
