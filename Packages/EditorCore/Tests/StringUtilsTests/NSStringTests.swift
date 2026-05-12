@@ -182,6 +182,10 @@ struct NSStringTests {
         #expect(string2.ranges(of: "aa", options: .caseInsensitive) == [NSRange(0..<2), NSRange(2..<4)])
         #expect(string2.ranges(of: "aa", options: .caseInsensitive, range: NSRange(1..<4)) == [NSRange(1..<3)])
         
+        let string3 = "abc" as NSString
+        #expect(string3.ranges(of: "(?=b)", options: .regularExpression) == [NSRange(1..<1)])
+        #expect(string3.ranges(of: "$", options: .regularExpression) == [NSRange(3..<3)])
+        
         #expect(string.ranges(of: "").isEmpty)
     }
     

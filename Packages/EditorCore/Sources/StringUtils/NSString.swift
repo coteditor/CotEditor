@@ -112,16 +112,24 @@ public extension NSString {
         guard !searchString.isEmpty else { return [] }
         
         let searchRange = searchRange ?? self.range
+        
+        guard !searchRange.isNotFound else { return [] }
+        
         var ranges: [NSRange] = []
         
         var location = searchRange.location
-        while location != NSNotFound {
+        while location <= searchRange.upperBound {
             let range = self.range(of: searchString, options: options, range: NSRange(location..<searchRange.upperBound))
-            location = range.upperBound
             
             guard range.location != NSNotFound else { break }
             
             ranges.append(range)
+            
+            location = if range.isEmpty {
+                range.upperBound < searchRange.upperBound ? self.index(after: range.upperBound) : NSNotFound
+            } else {
+                range.upperBound
+            }
         }
         
         return ranges
