@@ -7,6 +7,7 @@
 
 - Fix an issue where copying or moving a file with certain filenames could unexpectedly change the filename while avoiding a conflict.
 - Fix an issue where the incompatible character list in the Warnings inspector could miss some characters that change after text encoding conversion.
+- Fix an issue where block comment delimiters could be inserted at the wrong indentation when commenting out lines with mixed indentation.
 
 
 

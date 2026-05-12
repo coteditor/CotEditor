@@ -236,12 +236,12 @@ extension String {
                 ranges
                     .map(self.lineContentsRange(for:))
                     .merged
-            case .afterIndent:
+            case .afterIndent(let tabWidth):
                 ranges
                     .map(self.lineContentsRange(for:))
                     .map {
-                        let range = (self as NSString).range(of: "[ \\t]*", options: [.regularExpression, .anchored], range: $0)
-                        return NSRange(range.upperBound..<$0.upperBound)
+                        let lowerBound = self.minimumCommonIndentationLocations(for: [$0], tabWidth: tabWidth).first ?? $0.lowerBound
+                        return NSRange(lowerBound..<$0.upperBound)
                     }
                     .merged
         }
