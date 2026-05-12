@@ -1,5 +1,5 @@
 //
-//  String+NSRange.swift
+//  String.swift
 //  StringUtils
 //
 //  CotEditor
