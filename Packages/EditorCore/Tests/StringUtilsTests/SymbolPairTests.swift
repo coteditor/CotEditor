@@ -70,6 +70,15 @@ struct SymbolPairTests {
     }
     
     
+    @Test func scanMismatchedPair() {
+        
+        let string = "def [ foo }"
+        let pairs = SymbolPair.braces
+        
+        #expect(string.rangeOfEnclosingSymbolPair(at: string.range(7..<7), candidates: pairs) == nil)
+    }
+    
+    
     @Test func scanWithEscape() {
         
         let pairs = SymbolPair.braces

@@ -391,11 +391,12 @@ private final class SymbolPairScanner {
         
         var index = self.scanningRange.lowerBound
         var nestDepths: [SymbolPair: Int] = [:]
+        let candidates = self.scanningPair.map { [$0] } ?? self.candidates
         
         for character in self.string[..<index].reversed() {
             index = self.string.index(before: index)
             
-            if let pair = self.candidates.first(where: { $0.begin == character }) {
+            if let pair = candidates.first(where: { $0.begin == character }) {
                 if let escapeCharacter, self.string.isEscaped(at: index, by: escapeCharacter) { continue }
                 
                 if nestDepths[pair, default: 0] > 0 {
@@ -407,7 +408,7 @@ private final class SymbolPairScanner {
                     return
                 }
                 
-            } else if let pair = self.candidates.first(where: { $0.end == character }) {
+            } else if let pair = candidates.first(where: { $0.end == character }) {
                 if let escapeCharacter, self.string.isEscaped(at: index, by: escapeCharacter) { continue }
                 
                 nestDepths[pair, default: 0] += 1
