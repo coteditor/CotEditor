@@ -32,13 +32,13 @@ public extension FilePermissions {
         
         public enum Style: Codable, Sendable {
             
-            /// Octal presentation like `644`
+            /// Octal presentation like `644`.
             case octal
             
-            /// Symbolic presentation like `-rw-r--r-`
+            /// Symbolic presentation like `-rw-r--r--`.
             case symbolic
             
-            /// Both octal and symbolic presentations like `644 (-rw-r--r-)`
+            /// Both octal and symbolic presentations like `644 (-rw-r--r--)`.
             case full
         }
         

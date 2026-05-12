@@ -85,7 +85,10 @@ public struct FilePermissions: Equatable, Sendable {
     /// The octal value expression like “644”.
     public var octal: String {
         
-        String(self.mask, radix: 8)
+        let octal = String(self.mask, radix: 8)
+        let minimumLength = self.special.isEmpty ? 3 : 4
+        
+        return String(repeating: "0", count: max(0, minimumLength - octal.count)) + octal
     }
 }
 
