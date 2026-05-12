@@ -30,14 +30,16 @@ public struct FilePermissions: Equatable, Sendable {
     public var group: Permission
     public var others: Permission
     
+    private var special: SpecialPermission
+    
     
     public struct Permission: OptionSet, Sendable {
         
         public var rawValue: Int16
         
-        public static let read    = Self(rawValue: 0b100)
-        public static let write   = Self(rawValue: 0b010)
-        public static let execute = Self(rawValue: 0b001)
+        public static let read = Self(rawValue: 0o4)
+        public static let write = Self(rawValue: 0o2)
+        public static let execute = Self(rawValue: 0o1)
         
         
         public init(rawValue: Int16) {
@@ -49,36 +51,83 @@ public struct FilePermissions: Equatable, Sendable {
         /// The human-readable permission expression like “rwx”.
         public var symbolic: String {
             
-            (self.contains(.read) ? "r" : "-") +
-            (self.contains(.write) ? "w" : "-") +
-            (self.contains(.execute) ? "x" : "-")
+            self.symbolic(specialExecute: .none)
         }
+        
+        
+        /// The human-readable permission expression with the special execute bit.
+        ///
+        /// - Parameters:
+        ///   - specialExecute: The special permission bit represented in the execute position.
+        /// - Returns: The symbolic permission.
+        func symbolic(specialExecute: SpecialExecute) -> String {
+            
+            (self.contains(.read) ? "r" : "-")
+            + (self.contains(.write) ? "w" : "-")
+            + specialExecute.symbol(isExecutable: self.contains(.execute))
+        }
+    }
+    
+    
+    enum SpecialExecute {
+        
+        case none
+        case setID
+        case sticky
+        
+        
+        /// Returns the execute-position symbol.
+        ///
+        /// - Parameter isExecutable: Whether the regular execute bit is set.
+        /// - Returns: The symbolic execute-position permission.
+        func symbol(isExecutable: Bool) -> String {
+            
+            switch self {
+                case .none: isExecutable ? "x" : "-"
+                case .setID: isExecutable ? "s" : "S"
+                case .sticky: isExecutable ? "t" : "T"
+            }
+        }
+    }
+    
+    
+    private struct SpecialPermission: OptionSet, Sendable {
+        
+        var rawValue: Int16
+        
+        static let setUserID = Self(rawValue: 0o4)
+        static let setGroupID = Self(rawValue: 0o2)
+        static let sticky = Self(rawValue: 0o1)
     }
     
     
     public init(mask: Int16) {
         
-        self.user   = Permission(rawValue: (mask & 0b111 << 6) >> 6)
-        self.group  = Permission(rawValue: (mask & 0b111 << 3) >> 3)
-        self.others = Permission(rawValue: (mask & 0b111))
+        self.special = SpecialPermission(rawValue: (mask & 0o7000) >> 9)
+        self.user = Permission(rawValue: (mask & 0o0700) >> 6)
+        self.group = Permission(rawValue: (mask & 0o0070) >> 3)
+        self.others = Permission(rawValue: mask & 0o0007)
     }
     
     
     /// The `Int16` value.
     public var mask: Int16 {
         
+        let specialMask = self.special.rawValue << 9
         let userMask = self.user.rawValue << 6
         let groupMask = self.group.rawValue << 3
         let othersMask = self.others.rawValue
         
-        return userMask + groupMask + othersMask
+        return specialMask + userMask + groupMask + othersMask
     }
     
     
     /// The human-readable permission expression like “rwxr--r--”.
     public var symbolic: String {
         
-        self.user.symbolic + self.group.symbolic + self.others.symbolic
+        self.user.symbolic(specialExecute: self.special.contains(.setUserID) ? .setID : .none) +
+        self.group.symbolic(specialExecute: self.special.contains(.setGroupID) ? .setID : .none) +
+        self.others.symbolic(specialExecute: self.special.contains(.sticky) ? .sticky : .none)
     }
     
     

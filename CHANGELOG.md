@@ -8,6 +8,11 @@
 - Improve VoiceOver support.
 
 
+### Fixes
+
+- Fix an issue where saving a file could drop special POSIX permission bits, such as `setuid`, `setgid`, or `sticky`.
+
+
 
 7.0.3 (unreleased)
 --------------------------
