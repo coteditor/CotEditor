@@ -1,5 +1,14 @@
 # Change Log
 
+7.0.4 (unreleased)
+--------------------------
+
+### Improvements
+
+- Improve VoiceOver support.
+
+
+
 7.0.3 (unreleased)
 --------------------------
 

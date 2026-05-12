@@ -38,6 +38,7 @@ struct WrappingHStack<Content: View>: View {
         WrappingHStackLayout(alignment: self.alignment, horizontalSpacing: self.horizontalSpacing, verticalSpacing: self.verticalSpacing) {
             self.content
         }
+        .accessibilityElement(children: .combine)
     }
 }
 

@@ -346,6 +346,7 @@ private struct EditorCountView: View {
         }
         .foregroundStyle(.secondary)
         .monospacedDigit()
+        .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.updatesFrequently)
     }
 }
