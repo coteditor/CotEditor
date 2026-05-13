@@ -6,6 +6,7 @@
 ### Improvements
 
 - Improve VoiceOver support.
+- Improve the paired-symbol matching algorithm for brackets and quotation marks.
 
 
 ### Fixes
