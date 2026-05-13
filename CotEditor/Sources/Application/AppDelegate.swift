@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2025 1024jp
+//  © 2013-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -608,12 +608,6 @@ extension AppDelegate: NSMenuDelegate {
 
 
 // MARK: - Private Extensions
-
-private extension NSSound {
-    
-    @MainActor static let glass = NSSound(named: "Glass")
-}
-
 
 private extension NSPanel {
     

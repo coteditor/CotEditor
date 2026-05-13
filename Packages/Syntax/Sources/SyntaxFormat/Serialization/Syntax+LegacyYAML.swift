@@ -308,10 +308,3 @@ private extension Syntax.Comment {
         }
     }
 }
-
-
-private extension String {
-    
-    /// Constant string representing a separator.
-    static let separator = "-"
-}

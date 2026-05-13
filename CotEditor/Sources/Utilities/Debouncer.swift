@@ -76,14 +76,6 @@
     }
     
     
-    /// Performs the action immediately.
-    func perform() {
-        
-        self.cancel()
-        self.action()
-    }
-    
-    
     /// Performs the action immediately if scheduled.
     func fire() {
         

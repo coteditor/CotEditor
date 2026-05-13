@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -82,20 +82,6 @@ import URLUtils
             .appendingUniqueNumber(in: self.snippets.map(\.name))
         
         return Snippet(name: name)
-    }
-    
-    
-    /// Returns a snippet corresponding to the given conditions.
-    ///
-    /// - Parameters:
-    ///   - shortcut: The shortcut.
-    ///   - scope: The syntax scope.
-    /// - Returns: The corresponded snippet or nil.
-    func snippet(for shortcut: Shortcut, scope: String) -> Snippet? {
-        
-        let snippets = self.snippets.filter { $0.shortcut == shortcut }
-        
-        return snippets.first { $0.scope == scope } ?? snippets.first { $0.scope == nil }
     }
     
     

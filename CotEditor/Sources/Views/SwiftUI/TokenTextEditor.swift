@@ -187,7 +187,6 @@ private extension Tokenizer {
 private extension NSAttributedString.Key {
     
     static let token = NSAttributedString.Key("token")
-    static let tokenKeyword = NSAttributedString.Key("tokenKeyword")
 }
 
 

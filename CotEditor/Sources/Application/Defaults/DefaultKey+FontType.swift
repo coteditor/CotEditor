@@ -25,7 +25,6 @@
 
 import AppKit
 import Defaults
-import SyntaxFormat
 
 enum FontType: String, CaseIterable, Codable {
     
@@ -46,19 +45,6 @@ enum FontType: String, CaseIterable, Codable {
             case .monospaced:
                 .userFixedPitchFont(ofSize: size)
                 ?? .monospacedSystemFont(ofSize: size, weight: .regular)
-        }
-    }
-}
-
-
-extension Syntax.Kind {
-    
-    /// The default font type for the syntax kind.
-    var fontType: FontType {
-        
-        switch self {
-            case .general: .standard
-            case .code: .monospaced
         }
     }
 }
