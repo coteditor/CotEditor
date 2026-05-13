@@ -60,10 +60,9 @@ struct FileNodeTests {
         let destinationNode = try #require(rootNode.node(at: urls.destinationURL))
         let childNode = try #require(rootNode.node(at: urls.childFolderURL))
         let leafNode = try #require(rootNode.node(at: urls.leafURL))
-        
-        folderNode.move(to: destinationNode)
-        
         let movedFolderURL = urls.destinationURL.appending(path: "folder", directoryHint: .isDirectory).standardizedFileURL
+        
+        folderNode.move(to: destinationNode, fileURL: movedFolderURL)
         
         #expect(folderNode.parent === destinationNode)
         #expect(self.path(of: folderNode.file.fileURL) == self.path(of: movedFolderURL))
