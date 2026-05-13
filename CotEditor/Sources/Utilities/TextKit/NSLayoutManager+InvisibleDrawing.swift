@@ -40,6 +40,13 @@ protocol InvisibleDrawing: NSLayoutManager {
 }
 
 
+private struct PathCacheKey: Hashable {
+    
+    let codeUnit: UTF16.CodeUnit
+    let usesRTLPath: Bool
+}
+
+
 extension InvisibleDrawing {
     
     /// Draws invisible character symbols.
@@ -68,7 +75,7 @@ extension InvisibleDrawing {
         let glyphHeight = (self.textFont.capHeight > 0) ? self.textFont.capHeight : self.textFont.ascender
         let lineWidth = self.textFont.pointSize * (1 + self.textFont.weight.rawValue) / 12
         let cacheableInvisibles: Set<Invisible> = [.newLine, .fullwidthSpace, .otherControl]
-        var pathCache: [UTF16.CodeUnit: NSBezierPath] = [:]
+        var pathCache: [PathCacheKey: NSBezierPath] = [:]
         
         // setup drawing parameters
         NSGraphicsContext.saveGraphicsState()
@@ -99,30 +106,45 @@ extension InvisibleDrawing {
             let glyphLocation = self.location(forGlyphAt: glyphIndex)
             let symbolOrigin = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x, dy: baselineOffset - glyphHeight)
             
+            let glyphWidth: CGFloat
+            let usesRTLPath: Bool
+            switch invisible {
+                case .newLine:
+                    glyphWidth = 0
+                    usesRTLPath = isRTL
+                case .otherControl:
+                    // for non-zeroAdvancement controls, such as VERTICAL TABULATION
+                    glyphWidth = self.boundingBoxForControlGlyph(for: self.textFont).width
+                    usesRTLPath = isRTL
+                default:
+                    // -> Avoid invoking `.enclosingRectForGlyph(at:in:)` as much as possible
+                    //    that takes long time with long unwrapped lines.
+                    if lineFragmentRange.contains(glyphIndex + 1) {
+                        let nextGlyphLocation = self.location(forGlyphAt: glyphIndex + 1)
+                        if nextGlyphLocation.x > glyphLocation.x {
+                            glyphWidth = nextGlyphLocation.x - glyphLocation.x
+                            usesRTLPath = false
+                        } else {
+                            glyphWidth = self.enclosingRectForGlyph(at: glyphIndex, in: textContainer).width
+                            usesRTLPath = true
+                        }
+                    } else {
+                        glyphWidth = self.enclosingRectForGlyph(at: glyphIndex, in: textContainer).width
+                        usesRTLPath = isRTL
+                    }
+            }
+            
+            let cacheKey = PathCacheKey(codeUnit: codeUnit, usesRTLPath: usesRTLPath)
             let path: NSBezierPath
-            if let cache = pathCache[codeUnit] {
+            if let cache = pathCache[cacheKey] {
                 path = cache
             } else {
-                let glyphWidth: CGFloat = switch invisible {
-                    case .newLine:
-                        0
-                    case .otherControl:
-                        // for non-zeroAdvancement controls, such as VERTICAL TABULATION
-                        self.boundingBoxForControlGlyph(for: self.textFont).width
-                    default:
-                        // -> Avoid invoking `.enclosingRectForGlyph(at:in:)` as much as possible
-                        //    that takes long time with long unwrapped lines.
-                        (lineFragmentRange.contains(glyphIndex + 1) && !isRTL)
-                            ? self.location(forGlyphAt: glyphIndex + 1).x - glyphLocation.x
-                            : self.enclosingRectForGlyph(at: glyphIndex, in: textContainer).width
-                }
-                
                 let size = CGSize(width: glyphWidth, height: glyphHeight)
-                let cgPath = invisible.path(in: size, lineWidth: lineWidth, isRTL: isRTL)
+                let cgPath = invisible.path(in: size, lineWidth: lineWidth, isRTL: usesRTLPath)
                 path = NSBezierPath(cgPath: cgPath)
                 
                 if cacheableInvisibles.contains(invisible) {
-                    pathCache[codeUnit] = path
+                    pathCache[cacheKey] = path
                 }
             }
             let isInvalid = self.isInvalidInvisible(invisible, at: charIndex)
