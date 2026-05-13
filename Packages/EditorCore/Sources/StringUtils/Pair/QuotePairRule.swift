@@ -46,11 +46,17 @@ public extension Sequence where Element == QuotePairRule {
     
     /// An array of distinct rules for quote matching by keeping ordering.
     ///
-    /// Matching distinguishes rules by symbol pair and escape behavior.
+    /// Matching distinguishes rules by symbol pair and escape behavior, and merges prefixes.
     var distinctForMatching: [QuotePairRule] {
         
         self.reduce(into: []) { result, rule in
-            if !result.contains(where: { $0.pair == rule.pair && $0.escapeCharacter == rule.escapeCharacter }) {
+            if let index = result.firstIndex(where: { $0.pair == rule.pair && $0.escapeCharacter == rule.escapeCharacter }) {
+                if result[index].prefixes.isEmpty || rule.prefixes.isEmpty {
+                    result[index].prefixes = []
+                } else {
+                    result[index].prefixes += rule.prefixes.filter { !result[index].prefixes.contains($0) }
+                }
+            } else {
                 result.append(rule)
             }
         }

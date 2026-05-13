@@ -36,7 +36,20 @@ struct QuotePairRuleTests {
         let escaped = QuotePairRule(pair: SymbolPair("\"", "\""), escapeCharacter: "\\")
         let rules = [first, duplicate, escaped]
         
-        #expect(rules.distinctForMatching == [first, escaped])
+        #expect(rules.distinctForMatching == [
+            QuotePairRule(pair: SymbolPair("\"", "\""), prefixes: ["r", "f"]),
+            escaped,
+        ])
+    }
+    
+    
+    @Test func distinctForMatchingKeepsPrefixlessRule() {
+        
+        let prefixed = QuotePairRule(pair: SymbolPair("\"", "\""), prefixes: ["r"])
+        let prefixless = QuotePairRule(pair: SymbolPair("\"", "\""))
+        let rules = [prefixed, prefixless]
+        
+        #expect(rules.distinctForMatching == [prefixless])
     }
     
     
