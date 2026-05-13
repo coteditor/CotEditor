@@ -41,12 +41,15 @@ extension NSTextView {
             let selectedRanges = self.rangesForUserTextChange
         else { return }
         
+        // avoid `String.index(before:)` on a UTF-16-offset index, which can trap when invisible scalars sit at the head of the cluster
+        let nsString = self.string as NSString
         let lastIndexes = selectedRanges
             .map(\.rangeValue)
             .filter(\.isEmpty)
-            .map { String.Index(utf16Offset: $0.lowerBound, in: self.string) }
-            .filter { $0 > self.string.startIndex }
-            .map(self.string.index(before:))
+            .map(\.lowerBound)
+            .filter { $0 > 0 }
+            .map(nsString.index(before:))
+            .map { String.Index(utf16Offset: $0, in: self.string) }
         
         guard !lastIndexes.isEmpty, let visibleRange else { return }
         
