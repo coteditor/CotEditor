@@ -23,7 +23,7 @@ let package = Package(
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 62, 0)),
     ],
     targets: [
-        .target(name: "ControlUI", dependencies: ["EditorCore"], swiftSettings: [
+        .target(name: "ControlUI", dependencies: ["EditorCore"], resources: [.process("Assets.xcassets")], swiftSettings: [
             .defaultIsolation(MainActor.self),
         ]),
         
