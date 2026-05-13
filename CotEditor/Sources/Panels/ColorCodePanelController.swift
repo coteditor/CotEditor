@@ -1,5 +1,5 @@
 //
-//  ColorPanelController.swift
+//  ColorCodePanelController.swift
 //
 //  CotEditor
 //  https://coteditor.com
