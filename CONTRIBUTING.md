@@ -58,7 +58,7 @@ You have two options for adding a new localization to CotEditor. Choose one of t
     - Open CotEditor.xcodeproj in Xcode, go to Project > CotEditor > Info > Localizations, and add your language to the table. Then, the new language you added will automatically appear in the string catalogs.
     - CotEditor uses the String Catalog format (.xcstrings), introduced in 2023. To add localization to each string catalog file, select your language and fill in the corresponding cells in the table. Cf. [Localizing and varying text with a string catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog)
     - You can find the string catalogs to localize under:
-        - CotEditor/Resources/Localizables/
+        - CotEditor/Localizables/
         - CotEditor/Storyboards/mul.lproj/
         - Packages/EditorCore/Sources/CharacterInfo/Resources/
         - Packages/EditorCore/Sources/FileEncoding/Resources/
@@ -128,7 +128,7 @@ You also need to take care of how Apple treats punctuation characters and symbol
 
 Rather than opening a pull request directly, please create an issue first and get agreement from the maintainers on whether the language is worth including as a built-in syntax in CotEditor. Please note that pull requests for new tree-sitter-based syntaxes are not accepted because of the maintenance cost. If the syntax language is relatively minor, we recommend you not to add it to CotEditor as a built-in syntax but to distribute it as an additional syntax in your way, and just add a link to our [wiki page](https://github.com/coteditor/CotEditor/wiki/Additional-Syntax-Styles).
 
-When adding a new built-in syntax, put just your new syntax into the `/CotEditor/Resources/syntaxes/` directory. You don't need to modify the `SyntaxMap.json` file because it will be automatically generated in the build phase.
+When adding a new built-in syntax, put just your new syntax into the `/CotEditor/Resources/Syntaxes/` directory. You don't need to modify the `SyntaxMap.json` file because it will be automatically generated in the build phase.
 
 The license for the built-in syntaxes must be “Same as CotEditor.”
 
