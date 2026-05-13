@@ -24,8 +24,6 @@
 //  limitations under the License.
 //
 
-import Foundation
-
 public struct QuotePairRule: Equatable, Sendable {
     
     public var pair: SymbolPair

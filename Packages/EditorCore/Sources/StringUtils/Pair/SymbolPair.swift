@@ -24,8 +24,6 @@
 //  limitations under the License.
 //
 
-import Foundation
-
 public typealias SymbolPair = Pair<Character>
 
 public extension Pair where T == Character {

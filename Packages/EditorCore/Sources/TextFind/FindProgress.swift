@@ -24,7 +24,6 @@
 //
 
 public import Observation
-import Foundation
 import Synchronization
 
 @Observable public final class FindProgress: Sendable {

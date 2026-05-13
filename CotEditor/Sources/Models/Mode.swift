@@ -23,7 +23,6 @@
 //  limitations under the License.
 //
 
-import Foundation
 import SyntaxFormat
 
 enum Mode: RawRepresentable, Equatable, Hashable {

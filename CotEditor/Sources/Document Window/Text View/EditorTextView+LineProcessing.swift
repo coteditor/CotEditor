@@ -25,7 +25,6 @@
 
 import AppKit
 import SwiftUI
-import Defaults
 import LineEnding
 import LineSort
 import StringUtils

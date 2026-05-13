@@ -25,7 +25,6 @@
 
 import SwiftUI
 import Defaults
-import SyntaxFormat
 
 struct AppearanceSettingsView: View {
     

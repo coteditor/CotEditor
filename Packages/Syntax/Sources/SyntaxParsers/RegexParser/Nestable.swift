@@ -27,7 +27,6 @@
 
 import Foundation
 import SyntaxFormat
-import ValueRange
 import StringUtils
 
 enum NestableToken: Equatable, Hashable, Sendable {

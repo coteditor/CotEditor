@@ -23,7 +23,6 @@
 //  limitations under the License.
 //
 
-import Foundation
 import SyntaxFormat
 
 struct ModeOptions: Equatable, Codable {

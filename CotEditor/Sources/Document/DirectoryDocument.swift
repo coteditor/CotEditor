@@ -25,7 +25,6 @@
 
 import AppKit
 import UniformTypeIdentifiers
-import OSLog
 import Defaults
 import DocumentFile
 import SyntaxFormat

@@ -25,7 +25,6 @@
 //
 
 public import ValueRange
-import Foundation
 
 /// Counts line endings lazily.
 public final class LineCounter: LazyLineEndingCaching {

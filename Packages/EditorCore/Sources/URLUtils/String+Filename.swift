@@ -24,8 +24,6 @@
 //  limitations under the License.
 //
 
-import Foundation
-
 public extension String {
     
     /// The remainder of the string after the last dot removed.

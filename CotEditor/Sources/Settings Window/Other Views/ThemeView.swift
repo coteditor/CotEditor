@@ -25,7 +25,6 @@
 
 import SwiftUI
 import AppKit.NSColor
-import Combine
 import Defaults
 import SyntaxFormat
 import UniformTypeIdentifiers

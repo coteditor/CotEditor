@@ -24,9 +24,7 @@
 //  limitations under the License.
 //
 
-import Foundation
 import SyntaxFormat
-import SwiftTreeSitter
 
 extension TreeSitterSyntax {
     

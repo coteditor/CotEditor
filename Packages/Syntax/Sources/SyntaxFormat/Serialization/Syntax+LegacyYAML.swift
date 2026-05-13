@@ -28,7 +28,6 @@ public import Foundation
 import OSLog
 import UniformTypeIdentifiers
 import Yams
-import StringUtils
 
 public extension Syntax {
     

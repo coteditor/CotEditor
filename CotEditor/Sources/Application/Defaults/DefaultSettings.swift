@@ -27,7 +27,6 @@
 import AppKit.NSFont
 import Defaults
 import StringUtils
-import SyntaxFormat
 
 struct DefaultSettings {
     

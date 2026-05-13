@@ -24,7 +24,6 @@
 //  limitations under the License.
 //
 
-import Foundation
 import SyntaxFormat
 
 struct OutlinePolicy: Sendable {

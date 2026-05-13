@@ -24,9 +24,6 @@
 //  limitations under the License.
 //
 
-import Foundation
-import StringUtils
-
 extension Syntax.Highlight: Codable {
     
     private enum CodingKeys: String, CodingKey {
