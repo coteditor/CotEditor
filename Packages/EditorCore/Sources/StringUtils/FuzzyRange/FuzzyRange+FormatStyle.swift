@@ -50,7 +50,7 @@ public extension FormatStyle where Self == FuzzyRange.FormatStyle {
 
 extension FuzzyRange {
     
-    public struct FormatStyle: ParseableFormatStyle {
+    public struct FormatStyle: ParseableFormatStyle, Sendable {
         
         public var parseStrategy: ParseStrategy {
             
@@ -73,7 +73,7 @@ extension FuzzyRange {
 
 extension FuzzyRange {
     
-    public struct ParseStrategy: Foundation.ParseStrategy {
+    public struct ParseStrategy: Foundation.ParseStrategy, Sendable {
         
         public enum ParseError: Error {
             

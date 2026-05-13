@@ -172,7 +172,7 @@ struct StringCommentingTests {
         \t  b
         """
         #expect(text4.blockCommentOut(delimiters: Pair("<-", "->"), appendsSpacer: true, ranges: [text4.nsRange], at: .afterIndent(tabWidth: 2)) ==
-                [.init(string: "<- ", location: 6, forward: true), .init(string: " ->", location: 12, forward: false)])
+                [.init(string: "<- ", location: 4, forward: true), .init(string: " ->", location: 12, forward: false)])
     }
     
     

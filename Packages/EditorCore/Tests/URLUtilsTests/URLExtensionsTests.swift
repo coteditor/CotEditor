@@ -114,6 +114,38 @@ struct URLExtensionsTests {
     }
     
     
+    @Test func appendingUniqueNumberWithLowNumberedFilename() throws {
+        
+        let directory = try TemporaryDirectory()
+        defer { directory.cleanup() }
+        
+        let zero = directory.url.appending(component: "file 0.txt")
+        let one = directory.url.appending(component: "file 1.txt")
+        
+        #expect(zero.appendingUniqueNumber().lastPathComponent == "file 0.txt")
+        #expect(one.appendingUniqueNumber().lastPathComponent == "file 1.txt")
+        
+        try Data().write(to: zero)
+        try Data().write(to: one)
+        #expect(zero.appendingUniqueNumber().lastPathComponent == "file 0 2.txt")
+        #expect(one.appendingUniqueNumber().lastPathComponent == "file 1 2.txt")
+    }
+    
+    
+    @Test func appendingUniqueNumberWithDotInFilename() throws {
+        
+        let directory = try TemporaryDirectory()
+        defer { directory.cleanup() }
+        
+        let base = directory.url.appending(component: "1.2 file")
+        
+        #expect(base.appendingUniqueNumber().lastPathComponent == "1.2 file")
+        
+        try Data().write(to: base)
+        #expect(base.appendingUniqueNumber().lastPathComponent == "1.2 file 2")
+    }
+    
+    
     @Test func appendingUniqueNumberWithFormat() throws {
         
         let directory = try TemporaryDirectory()
@@ -142,6 +174,16 @@ struct URLExtensionsTests {
         
         #expect(FileManager.default.fileExists(atPath: directoryURL.path))
         #expect(!FileManager.default.fileExists(atPath: fileURL.path))
+    }
+    
+    
+    @Test func pathAbbreviatingWithTilde() {
+        
+        let homeDirectory = NSHomeDirectory()
+        
+        #expect(URL(filePath: homeDirectory).pathAbbreviatingWithTilde == "~")
+        #expect(URL(filePath: homeDirectory).appending(component: "Documents").pathAbbreviatingWithTilde == "~/Documents")
+        #expect(URL(filePath: "\(homeDirectory)-backup/file.txt").pathAbbreviatingWithTilde == "\(homeDirectory)-backup/file.txt")
     }
 }
 

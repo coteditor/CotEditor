@@ -12,12 +12,15 @@
 ### Fixes
 
 - Fix an issue where saving a file could drop special POSIX permission bits, such as `setuid`, `setgid`, or `sticky`.
+- Fix an issue where copying or moving a file with certain filenames could unexpectedly change the filename while avoiding a conflict.
+- Fix an issue where the incompatible character list in the Warnings inspector could miss some characters that change after text encoding conversion.
+- Fix an issue where block comment delimiters could be inserted at the wrong indentation when commenting out lines with mixed indentation.
 - Fix an issue where NFKC Case-Fold normalization could leave default-ignorable Unicode characters in the text.
 - Fix an issue where invisible character symbols could be drawn incorrectly in right-to-left text.
 
 
 
-7.0.3 (unreleased)
+7.0.3 (2026-05-14)
 --------------------------
 
 ### New Features

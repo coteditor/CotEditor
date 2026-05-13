@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2025 1024jp
+//  © 2025-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,22 +40,66 @@ enum PropertyListValue: Equatable, Sendable {
     case dictionary([String: PropertyListValue])
     
     
+    /// Creates a property list value from a raw property list object.
+    ///
+    /// - Parameter any: The raw property list object.
     init(_ any: Any) {
         
-        self = switch any {
-            case let value as String: .string(value)
-            case let value as Bool: .bool(value)
-            case let value as Int: .int(value)
-            case let value as Double: .double(value)
-            case let value as Data: .data(value)
-            case let value as Date: .date(value)
-            case let value as [Any]: .array(value.map(PropertyListValue.init))
-            case let value as [String: Any]: .dictionary(value.mapValues(PropertyListValue.init))
-            default: fatalError()
+        guard let value = Self(propertyList: any) else {
+            fatalError()
+        }
+        
+        self = value
+    }
+    
+    
+    /// Creates a property list value from a raw object if it is supported.
+    ///
+    /// - Parameter any: The raw object.
+    init?(propertyList any: Any) {
+        
+        switch any {
+            case let value as String:
+                self = .string(value)
+                
+            case let value as NSNumber:
+                self = if CFGetTypeID(value) == CFBooleanGetTypeID() {
+                    .bool(value.boolValue)
+                } else if CFNumberIsFloatType(value) {
+                    .double(value.doubleValue)
+                } else {
+                    .int(value.intValue)
+                }
+                
+            case let value as Data:
+                self = .data(value)
+                
+            case let value as Date:
+                self = .date(value)
+                
+            case let value as [Any]:
+                var array: [Self] = []
+                for element in value {
+                    guard let value = Self(propertyList: element) else { return nil }
+                    array.append(value)
+                }
+                self = .array(array)
+                
+            case let value as [String: Any]:
+                var dictionary: [String: Self] = [:]
+                for (key, element) in value {
+                    guard let value = Self(propertyList: element) else { return nil }
+                    dictionary[key] = value
+                }
+                self = .dictionary(dictionary)
+                
+            default:
+                return nil
         }
     }
     
     
+    /// The raw property list representation.
     var any: any Sendable {
         
         switch self {

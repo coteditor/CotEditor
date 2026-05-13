@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2025 1024jp
+//  © 2025-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -50,13 +50,21 @@ public extension URL {
     func appendingUniqueNumber(format: NumberingFormat? = nil) -> URL {
         
         let format = format ?? NumberingFormat({ $0 }, numbered: { "\($0) \($1)" })
-        let (baseName, count) = format.components(self.deletingPathExtension().lastPathComponent)
+        let filename = self.lastPathComponent
+        let (baseName, count) = format.components(filename.deletingPathExtension)
         let baseURL = self.deletingLastPathComponent()
-        let pathExtension = self.pathExtension
+        let pathExtension = filename.pathExtension
         
         return (count...).lazy
             .map { format.filename(baseName, count: $0) }
-            .map { baseURL.appending(component: $0).appendingPathExtension(pathExtension) }
+            .map { baseURL.appending(component: $0) }
+            .map { url in
+                 if let pathExtension {
+                    url.appendingPathExtension(pathExtension)
+                } else {
+                    url
+                }
+            }
             .first { !$0.isReachable }!
     }
 }
@@ -83,11 +91,16 @@ extension NumberingFormat {
     func components(_ name: String) -> (base: String, count: Int) {
         
         if let match = try? self.multiRegex.wholeMatch(in: name), let count = Int(match.count) {
-            (String(match.base), count)
+            let base = String(match.base)
+            return if self.filename(base, count: count) == name {
+                (base, count)
+            } else {
+                (name, 1)
+            }
         } else if let match = try? self.singleRegex.wholeMatch(in: name) {
-            (String(match.base), 1)
+            return (String(match.base), 1)
         } else {
-            (name, 1)
+            return (name, 1)
         }
     }
     
