@@ -72,7 +72,7 @@ extension Version.FormatStyle: FormatStyle {
 
 extension Version {
     
-    public struct ParseStrategy: Foundation.ParseStrategy {
+    public struct ParseStrategy: Foundation.ParseStrategy, Sendable {
         
         public enum ParseError: Error {
             

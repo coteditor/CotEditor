@@ -27,7 +27,7 @@
 public import Foundation
 public import StringUtils
 
-public protocol CommentDelimiters {
+public protocol CommentDelimiters: Sendable {
     
     var inlineDelimiters: [String] { get }
     var blockDelimiters: [BlockCommentDelimiter] { get }

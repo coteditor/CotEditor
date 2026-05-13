@@ -50,7 +50,7 @@ public extension Array where Element: Hashable {
 
 // MARK: Count
 
-public enum QuantityComparisonResult {
+public enum QuantityComparisonResult: Sendable {
     
     case less, equal, greater
 }
