@@ -62,7 +62,7 @@ public extension String {
     
     /// Finds a quote-pair range at the given index that matches one of the given candidates.
     ///
-    /// If multiple rules match, the shortest range is returned.
+    /// If multiple rules match, a prefix-matched rule is preferred; otherwise the shortest range is returned.
     ///
     /// - Parameters:
     ///   - index: The character index of the quote character to find the mate.
@@ -70,21 +70,26 @@ public extension String {
     /// - Returns: A matching quote-pair range, or `nil` if not found.
     func rangeOfQuotePair(at index: Index, candidates: [QuotePairRule]) -> ClosedRange<Index>? {
         
-        guard !candidates.isEmpty else { return nil }
+        guard !candidates.isEmpty, !self.isEmpty else { return nil }
         
         let character = self[index]
         
         return candidates
             .filter { $0.pair.begin == character || $0.pair.end == character }
-            .compactMap { candidate -> (range: ClosedRange<Index>, distance: Int)? in
+            .compactMap { candidate -> (range: ClosedRange<Index>, distance: Int, hasPrefix: Bool)? in
                 guard
-                    let range = self.rangeOfSymbolPair(at: index, candidates: [candidate.pair], escapeCharacter: candidate.escapeCharacter),
-                    candidate.prefixes.isEmpty || candidate.prefixes.contains(where: self[..<range.lowerBound].hasSuffix)
+                    let range = self.rangeOfSymbolPair(at: index, candidates: [candidate.pair], escapeCharacter: candidate.escapeCharacter)
                 else { return nil }
                 
-                return (range, self.distance(from: range.lowerBound, to: range.upperBound))
+                let hasPrefix = candidate.prefixes.contains {
+                    self[..<range.lowerBound].hasSuffix($0)
+                }
+                
+                guard candidate.prefixes.isEmpty || hasPrefix else { return nil }
+                
+                return (range, self.distance(from: range.lowerBound, to: range.upperBound), hasPrefix)
             }
-            .min { $0.distance < $1.distance }?
+            .min { ($0.hasPrefix != $1.hasPrefix) ? $0.hasPrefix : $0.distance < $1.distance }?
             .range
     }
 }

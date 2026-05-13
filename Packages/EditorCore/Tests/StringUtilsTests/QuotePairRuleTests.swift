@@ -65,6 +65,22 @@ struct QuotePairRuleTests {
     }
     
     
+    @Test func rangeOfQuotePairPrefersPrefixedRule() {
+        
+        let string = "$@\"a\"\"b\""
+        let rules = [
+            QuotePairRule(pair: SymbolPair("\"", "\""), escapeCharacter: "\\"),
+            QuotePairRule(pair: SymbolPair("\"", "\""), escapeCharacter: "\"", prefixes: ["@", "$@", "@$"]),
+        ]
+        
+        let openingRange = string.rangeOfQuotePair(at: string.index(2), candidates: rules)
+        let closingRange = string.rangeOfQuotePair(at: string.index(7), candidates: rules)
+        
+        #expect(openingRange == string.index(2)...string.index(7))
+        #expect(closingRange == string.index(2)...string.index(7))
+    }
+    
+    
     @Test func rangeOfQuotePairWithoutRequiredPrefix() {
         
         let string = "\"foo\""
