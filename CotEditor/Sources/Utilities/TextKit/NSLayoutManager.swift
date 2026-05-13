@@ -30,6 +30,8 @@ extension NSLayoutManager {
     
     /// Calculates visual (wrapped) line range.
     ///
+    /// - Precondition: The line fragment containing `charIndex` has already been laid out.
+    ///
     /// - Parameter charIndex: The index of the character for which to return the line fragment range.
     /// - Returns: The range of characters that locate in the same line fragment of the given character.
     final func lineFragmentRange(at charIndex: Int) -> NSRange {
@@ -48,6 +50,8 @@ extension NSLayoutManager {
         }
         
         let effectiveCharIndex = (charIndex == string.length) ? string.index(before: charIndex) : charIndex
+        assert(self.firstUnlaidCharacterIndex() > effectiveCharIndex)
+        
         let glyphIndex = self.glyphIndexForCharacter(at: effectiveCharIndex)
         
         guard self.isValidGlyphIndex(glyphIndex) else {
