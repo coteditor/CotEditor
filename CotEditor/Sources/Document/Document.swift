@@ -1294,25 +1294,29 @@ extension NSTextView: EditorCounter.Source { }
     
     /// Interactively changes the document's text encoding.
     ///
-    /// - Parameter fileEncoding: The text encoding to change.
-    func askChangingEncoding(to fileEncoding: FileEncoding) {
+    /// - Parameters:
+    ///   - fileEncoding: The text encoding to change.
+    ///   - completionHandler: The closure called after the interaction finishes.
+    func askChangingEncoding(to fileEncoding: FileEncoding, completionHandler: @escaping () -> Void = { }) {
         
         assert(Thread.isMainThread)
         
-        guard fileEncoding != self.fileEncoding else { return }
+        guard fileEncoding != self.fileEncoding else {
+            completionHandler()
+            return
+        }
         
         // change encoding immediately if there is nothing to worry about
         if self.fileURL == nil || self.textStorage.string.isEmpty {
-            return self.changeEncoding(to: fileEncoding)
+            self.changeEncoding(to: fileEncoding)
+            completionHandler()
+            return
         }
         
         // change encoding interactively
         self.performActivity(withSynchronousWaiting: false) { [unowned self] activityCompletionHandler in
-            let completionHandler = { [weak self] didChange in
-                if !didChange, let self {
-                    // reset status bar selection for in case when the operation was invoked from the pop-up button in the status bar
-                    self.fileEncoding = self.fileEncoding
-                }
+            let finishActivity = {
+                completionHandler()
                 activityCompletionHandler()
             }
             
@@ -1331,7 +1335,7 @@ extension NSTextView: EditorCounter.Source { }
             alert.showsHelp = true
             
             guard let documentWindow = self.windowForSheet else {
-                completionHandler(false)
+                finishActivity()
                 assertionFailure()
                 return
             }
@@ -1347,12 +1351,12 @@ extension NSTextView: EditorCounter.Source { }
                                     self.changeEncoding(to: fileEncoding)
                                     self.showWarningInspector()
                                 }
-                                completionHandler(didRecover)
+                                finishActivity()
                             }
                             return
                         }
                         self.changeEncoding(to: fileEncoding)
-                        completionHandler(true)
+                        finishActivity()
                         
                     case .alertSecondButtonReturn:  // = Reinterpret
                         // ask whether discard unsaved changes
@@ -1370,7 +1374,7 @@ extension NSTextView: EditorCounter.Source { }
                             let returnCode = await alert.beginSheetModal(for: documentWindow)
                             
                             guard returnCode == .alertSecondButtonReturn else {  // = Discard Changes
-                                completionHandler(false)
+                                finishActivity()
                                 return
                             }
                         }
@@ -1378,14 +1382,14 @@ extension NSTextView: EditorCounter.Source { }
                         // reinterpret
                         do {
                             try self.reinterpret(encoding: fileEncoding.encoding)
-                            completionHandler(true)
+                            finishActivity()
                         } catch {
                             NSSound.beep()
-                            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
+                            self.presentErrorAsSheet(error) { _ in finishActivity() }
                         }
                         
                     case .alertThirdButtonReturn:  // = Cancel
-                        completionHandler(false)
+                        finishActivity()
                         
                     default: preconditionFailure()
                 }

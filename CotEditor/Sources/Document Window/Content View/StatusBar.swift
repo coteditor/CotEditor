@@ -267,7 +267,9 @@ private struct DocumentStatusBar: View {
                 }
             }
             .onChange(of: self.fileEncoding) { _, newValue in
-                self.document.askChangingEncoding(to: newValue)
+                self.document.askChangingEncoding(to: newValue) {
+                    self.fileEncoding = self.document.fileEncoding
+                }
             }
             .help(String(localized: "Text Encoding", table: "Document"))
             .labelsHidden()
