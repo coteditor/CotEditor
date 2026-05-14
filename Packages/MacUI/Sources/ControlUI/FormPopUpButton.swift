@@ -120,7 +120,7 @@ public final class FormPopUpButtonCell: NSPopUpButtonCell {
         }
         
         // draw chevron
-        let chevron = NSImage(resource: ImageResource(name: "chevron.up.chevron.down.narrow", bundle: .module))
+        let chevron = NSImage(resource: .chevronUpChevronDownNarrow)
         chevron.tinted(with: labelColor)
             .draw(in: rect.insetBy(dx: (rect.width - chevron.size.width) / 2,
                                    dy: (rect.height - chevron.size.height) / 2))
@@ -168,7 +168,7 @@ public final class FormPopUpButtonCell: NSPopUpButtonCell {
         }
         
         // draw chevron
-        let chevron = NSImage(resource: ImageResource(name: "chevron.up.chevron.down.narrow.legacy", bundle: .module))
+        let chevron = NSImage(resource: .chevronUpChevronDownNarrowLegacy)
         let chevronColor: NSColor = switch (isHighContrast, self.isEnabled) {
             case (false, true): .controlTextColor
             case (false, false): .disabledControlTextColor
