@@ -50,6 +50,12 @@ public final class SettingsWindowController<Pane: SettingsPane>: NSWindowControl
     }
     
     
+    deinit {
+        // workaround a Swift 6.3.2 optimizer crash in release builds (2026-05, Xcode 26.5 / Swift 6.3.2)
+        // to reproduce: $swift build --package-path Packages/MacUI -c release --target ControlUI
+    }
+    
+    
     // MARK: Public Methods
     
     /// Opens a specific pane.
