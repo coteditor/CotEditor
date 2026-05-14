@@ -53,6 +53,7 @@ struct NSStringTests {
         #expect(("0🇦🇦00" as NSString).index(before: 2) == 1)
         #expect(("0🇦🇦00" as NSString).index(before: 5) == 1)
         #expect(("0🇦🇦00" as NSString).index(before: 6) == 5)
+        #expect(("[\u{200C}\u{200D}]" as NSString).index(before: 1) == 0)
         
         #expect(("0\r\n0" as NSString).index(before: 3) == 1)
         #expect(("0\r\n0" as NSString).index(before: 2) == 1)
