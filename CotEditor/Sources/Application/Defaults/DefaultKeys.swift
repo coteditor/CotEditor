@@ -102,6 +102,7 @@ extension DefaultKeys {
     static let saveUTF8BOM = DefaultKey<Bool>("saveUTF8BOM")
     static let referToEncodingTag = DefaultKey<Bool>("referToEncodingTag")
     static let syntax = DefaultKey<String>("defaultColoringStyleName")
+    static let hiddenSyntaxes = DefaultKey<[String]>("hiddenSyntaxes")
     
     // Snippets
     static let snippets = DefaultKey<[[String: String]]>("snippets")

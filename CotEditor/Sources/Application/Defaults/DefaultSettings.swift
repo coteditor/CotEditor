@@ -104,6 +104,7 @@ struct DefaultSettings {
             .saveUTF8BOM: false,
             .referToEncodingTag: true,
             .syntax: "Plain Text",
+            .hiddenSyntaxes: [],
             
             // Snippets
             .fileDropArray: [

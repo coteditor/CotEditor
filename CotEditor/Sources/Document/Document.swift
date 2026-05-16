@@ -877,8 +877,12 @@ extension NSTextView: EditorCounter.Source { }
                 return self.isEditable
                 
             case #selector(changeSyntax(_:)):
-                if let item = item as? NSMenuItem {
-                    item.state = (item.representedObject as? String == self.syntaxName) ? .on : .off
+                if let item = item as? NSMenuItem, let name = item.representedObject as? String {
+                    let isSelected = name == self.syntaxName
+                    item.state = isSelected ? .on : .off
+                    item.isHidden = (!isSelected &&
+                                     item.tag != SyntaxMenuTag.recentItem.rawValue &&
+                                     UserDefaults.standard[.hiddenSyntaxes].contains(name))
                 }
                 
             case #selector(toggleEditable):

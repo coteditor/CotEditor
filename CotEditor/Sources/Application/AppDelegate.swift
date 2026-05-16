@@ -472,6 +472,8 @@ extension Logger {
         
         guard self.menuUpdateObservers.isEmpty else { return assertionFailure() }
         
+        self.syntaxesMenu?.delegate = self
+        
         self.updateEncodingMenu(self.encodingsMenu!)
         
         self.lineEndingsMenu?.items = LineEnding.allCases.map { lineEnding in
@@ -559,6 +561,16 @@ extension AppDelegate: NSMenuDelegate {
         switch menu {
             case self.encodingsMenu:
                 self.updateEncodingMenu(menu, checksDocument: true)
+            case self.syntaxesMenu:
+                menu.items.forEach { $0.isHidden = false }
+                if NSApp.target(forAction: #selector((any SyntaxChanging).changeSyntax)) == nil {
+                    let hiddenSyntaxes = Set(UserDefaults.standard[.hiddenSyntaxes])
+                    for item in menu.items {
+                        if let name = item.representedObject as? String {
+                            item.isHidden = hiddenSyntaxes.contains(name)
+                        }
+                    }
+                }
             default:
                 break
         }

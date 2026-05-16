@@ -243,6 +243,7 @@ private struct SyntaxListView: View {
     @State private var isImporterPresented = false
     @State private var isDeleteConfirmationPresented = false
     @State private var isImportConfirmationPresented = false
+    @State private var isListCustomizationViewPresented = false
     @State private var isFileMappingConflictPresented = false
     @State private var importingError: ImportDuplicationError?
     @State private var error: (any Error)?
@@ -380,6 +381,10 @@ private struct SyntaxListView: View {
             } validationAction: { name in
                 try self.manager.validate(settingName: name, originalName: state?.name)
             }
+        }
+        .sheet(isPresented: $isListCustomizationViewPresented) {
+            SyntaxListCustomizationView(items: self.settingNames)
+            
         }
         .sheet(isPresented: $isFileMappingConflictPresented) {
             SyntaxMappingConflictView(table: self.manager.mappingConflicts)
@@ -531,6 +536,10 @@ private struct SyntaxListView: View {
             }
             
             Divider()
+            
+            Button(String(localized: "Customize Syntax Menu…", table: "FormatSettings"), systemImage: "square.and.pencil") {
+                self.isListCustomizationViewPresented = true
+            }
             
             Button(String(localized: "Show File Mapping Conflicts", table: "FormatSettings"), systemImage: "exclamationmark.triangle") {
                 self.isFileMappingConflictPresented = true

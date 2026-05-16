@@ -241,6 +241,7 @@ enum SyntaxName {
             UserDefaults.standard.restore(key: .syntax)
         }
         UserDefaults.standard[.recentSyntaxNames].removeAll { !settingNames.contains($0) }
+        UserDefaults.standard[.hiddenSyntaxes].removeAll { !settingNames.contains($0) }
         
         return settingNames
     }
@@ -251,6 +252,27 @@ enum SyntaxName {
     /// - Parameters:
     ///   - change: The change to report.
     func didUpdateSetting(change: SettingChange) {
+        
+        switch change {
+            case .updated(from: let oldName, to: let newName):
+                guard
+                    oldName != newName,
+                    UserDefaults.standard[.hiddenSyntaxes].contains(oldName)
+                else { break }
+                
+                var hiddenSyntaxes = Set(UserDefaults.standard[.hiddenSyntaxes])
+                hiddenSyntaxes.remove(oldName)
+                hiddenSyntaxes.insert(newName)
+                UserDefaults.standard[.hiddenSyntaxes] = hiddenSyntaxes.sorted()
+                
+            case .removed(let name):
+                guard UserDefaults.standard[.hiddenSyntaxes].contains(name) else { break }
+                
+                UserDefaults.standard[.hiddenSyntaxes].removeAll { $0 == name }
+                
+            case .added:
+                break
+        }
         
         self.updateMappingTable()
     }

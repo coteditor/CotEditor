@@ -31,6 +31,12 @@ import Defaults
 import ControlUI
 import URLUtils
 
+enum SyntaxMenuTag: Int {
+    
+    case recentItem = 1
+}
+
+
 final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Public Properties
@@ -73,7 +79,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     private var documentSyntaxObserver: Task<Void, Never>?
     private var syntaxNamesObserver: Task<Void, Never>?
-    private var recentSyntaxNamesObserver: AnyCancellable?
+    private var syntaxDefaultsObserver: AnyCancellable?
     private weak var syntaxPopUpButton: NSPopUpButton?
     
     
@@ -157,7 +163,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                 self?.buildSyntaxPopUpButton()
             }
         }
-        self.recentSyntaxNamesObserver = UserDefaults.standard.publisher(for: .recentSyntaxNames)
+        self.syntaxDefaultsObserver = Publishers.Merge(UserDefaults.standard.publisher(for: .recentSyntaxNames),
+                                                       UserDefaults.standard.publisher(for: .hiddenSyntaxes))
             .sink { [weak self] _ in self?.buildSyntaxPopUpButton() }
         
         // observe documents to update window title
@@ -417,6 +424,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                 .map { name in
                     let item = NSMenuItem(title: name, action: action, keyEquivalent: "")
                     item.representedObject = name
+                    item.tag = SyntaxMenuTag.recentItem.rawValue
                     return item
                 }
             menu.addItem(.separator())

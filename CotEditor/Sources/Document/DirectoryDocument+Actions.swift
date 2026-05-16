@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import Defaults
 
 // -> Pass all possible actions manually since NSDocument has no next responder (2024-05, macOS 14)
 extension DirectoryDocument {
@@ -46,10 +47,21 @@ extension DirectoryDocument {
                  #selector(printDocument),
                  #selector(changeEncoding),
                  #selector(changeLineEnding),
-                 #selector(changeSyntax),
                  #selector(toggleEditable):
                 // -> PreviewDocument doesn't support file manipulation.
                 return (self.currentDocument as? Document)?.validateUserInterfaceItem(item) ?? false
+                
+            case #selector(changeSyntax):
+                guard let document = self.currentDocument as? Document else {
+                    if let item = item as? NSMenuItem, let name = item.representedObject as? String {
+                        item.state = .off
+                        item.isHidden = (item.tag != SyntaxMenuTag.recentItem.rawValue &&
+                                         UserDefaults.standard[.hiddenSyntaxes].contains(name))
+                    }
+                    return false
+                }
+                
+                return document.validateUserInterfaceItem(item)
                 
             case #selector(showInFinder),
                  #selector(copyPath),

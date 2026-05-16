@@ -107,6 +107,46 @@
         }
       }
     },
+    "Customize Syntax Menu…" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syntaxmenü anpassen …"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Customise Syntax Menu…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Personalizar menú de sintaxis…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Personnaliser le menu de syntaxe …"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "シンタックスメニューをカスタマイズ…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pas syntaxismenu aan…"
+          }
+        }
+      }
+    },
     "Customized Syntaxes" : {
       "localizations" : {
         "bg" : {
