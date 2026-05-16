@@ -383,11 +383,6 @@
       "Rscript"
     ]
   },
-  "Rich Text Format" : {
-    "extensions" : [
-      "rtf"
-    ]
-  },
   "Ruby" : {
     "extensions" : [
       "rb",

@@ -7,6 +7,7 @@
 
 - Improve VoiceOver support.
 - Improve the paired-symbol matching algorithm for brackets and quotation marks.
+- Remove the Rich Text Format built-in syntax.
 
 
 ### Fixes
