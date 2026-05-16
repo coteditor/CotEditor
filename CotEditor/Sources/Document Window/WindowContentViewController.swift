@@ -311,13 +311,10 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     /// Moves the focus to the file browser.
     @IBAction func showFileBrowser(_ sender: Any?) {
         
-        guard
-            let sidebarViewItem,
-            let viewController = sidebarViewItem.viewController as? FileBrowserViewController
-        else { return assertionFailure() }
+        guard let sidebarViewItem else { return assertionFailure() }
         
         sidebarViewItem.animator().isCollapsed = false
-        self.view.window?.makeFirstResponderDiscardingMarkedText(viewController.outlineView)
+        self.view.window?.makeFirstResponderDiscardingMarkedText(sidebarViewItem.viewController)
     }
     
     

@@ -297,6 +297,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     // MARK: Responder Methods
     
+    override func becomeFirstResponder() -> Bool {
+        
+        self.view.window?.makeFirstResponder(self.outlineView) ?? false
+    }
+    
+    
     override func keyDown(with event: NSEvent) {
         
         let hasNoModifier = event.modifierFlags.isDisjoint(with: .deviceIndependentFlagsMask)
