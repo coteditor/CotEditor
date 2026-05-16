@@ -8,6 +8,11 @@
 - Change the system requirement to __macOS Tahoe 26 and later__.
 
 
+### New Features
+
+- Add the Customize Syntax Menu command to the Available syntaxes action menu in Format settings to hide specific syntaxes from syntax menus.
+
+
 
 7.0.4 (unreleased)
 --------------------------
