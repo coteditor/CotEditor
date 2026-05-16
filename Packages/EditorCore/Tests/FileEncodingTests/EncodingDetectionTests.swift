@@ -93,7 +93,7 @@ struct EncodingDetectionTests {
     @Test func utf8BOM() throws {
         
         let data = try self.dataForFileName("UTF-8 BOM")
-        let (string, encoding) = try String.string(data: data, options: .init(candidates: encodings))
+        let (string, encoding) = try String.string(data: data, options: .init(candidates: [.utf8]))
         
         #expect(string == "0")
         #expect(encoding == .utf8)
