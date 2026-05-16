@@ -55,17 +55,7 @@ struct SyntaxListCustomizationView: View {
                     .listRowSeparator(.hidden)
             }
             .scrollContentBackground(.hidden)
-            .modifier { content in
-                if #available(macOS 26, *) {
-                    content
-                        .background(.fill.quaternary, in: .rect(cornerRadius: 8))
-                } else {
-                    content
-                        .background(RoundedRectangle(cornerRadius: 6)
-                            .fill(.fill.quaternary)
-                            .stroke(.separator))
-                }
-            }
+            .background(.fill.quaternary, in: .rect(cornerRadius: 8))
             .frame(minHeight: 200)
             
             Text("Hidden syntaxes are still used for automatic detection.", tableName: "SyntaxListCustomization")
