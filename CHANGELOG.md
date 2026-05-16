@@ -13,11 +13,6 @@
 - Add the Customize Syntax Menu command to the Available syntaxes action menu in Format settings to hide specific syntaxes from syntax menus.
 
 
-### Improvements
-
-- Remove the Rich Text Format built-in syntax.
-
-
 
 7.0.4 (unreleased)
 --------------------------
@@ -26,6 +21,7 @@
 
 - Improve VoiceOver support.
 - Improve the paired-symbol matching algorithm for brackets and quotation marks.
+- Remove the Rich Text Format built-in syntax.
 
 
 ### Fixes
