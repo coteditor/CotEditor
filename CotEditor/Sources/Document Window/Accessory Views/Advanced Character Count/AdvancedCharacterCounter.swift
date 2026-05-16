@@ -41,6 +41,7 @@ import StringUtils
     private weak var textView: NSTextView?
     private var hasSelection = false
     
+    private var editorObservers: Set<NotificationCenter.ObservationToken> = []
     private var observers: Set<AnyCancellable> = []
     private var entireCountTask: Task<Void, any Error>?
     private var selectionCountTask: Task<Void, any Error>?
@@ -69,18 +70,22 @@ import StringUtils
     /// Observe the content and selection of the given text view to count.
     ///
     /// - Parameter textView: The text view to observe.
-    func observe(textView: NSTextView) {
+    func observe(textView: EditorTextView) {
         
         self.textView = textView
         
         self.countEntire()
         self.countSelection()
         
+        self.editorObservers = [
+            NotificationCenter.default.addObserver(of: textView, for: .didLiveChangeSelection) { [weak self] _ in
+                self?.countSelection()
+            },
+        ]
+        
         self.observers = [
             NotificationCenter.default.publisher(for: NSText.didChangeNotification, object: textView)
                 .sink { [unowned self] _ in self.countEntire() },
-            NotificationCenter.default.publisher(for: EditorTextView.DidLiveChangeSelectionMessage.name, object: textView)
-                .sink { [unowned self] _ in self.countSelection() },
             Publishers.Merge7(UserDefaults.standard.publisher(for: .countUnit).map { _ in },
                               UserDefaults.standard.publisher(for: .countNormalizationForm).map { _ in },
                               UserDefaults.standard.publisher(for: .countNormalizes).map { _ in },

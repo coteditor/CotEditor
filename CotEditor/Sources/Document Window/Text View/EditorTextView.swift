@@ -39,6 +39,12 @@ private extension NSAttributedString.Key {
 }
 
 
+extension NotificationCenter.MessageIdentifier where Self == NotificationCenter.BaseMessageIdentifier<EditorTextView.DidLiveChangeSelectionMessage> {
+    
+    static var didLiveChangeSelection: Self { .init() }
+}
+
+
 // MARK: -
 
 final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEditing {
@@ -62,8 +68,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     struct DidLiveChangeSelectionMessage: NotificationCenter.MainActorMessage {
         
         typealias Subject = EditorTextView
-        
-        static let name = Notification.Name("TextViewDidLiveChangeSelection")
     }
     
     
@@ -723,11 +727,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             }
         }
         
-        // send notification on the next run loop
+        // send notification asynchronously
         // -> `self.selectedRange` may not be updated yet at this timing.
-        DispatchQueue.main.async { [weak self] in
-            guard self?.rangesForUserTextChange ?? self?.selectedRanges != currentRanges else { return }
-            NotificationCenter.default.post(name: DidLiveChangeSelectionMessage.name, object: self)
+        Task { @MainActor [weak self] in
+            guard let self, self.rangesForUserTextChange ?? self.selectedRanges != currentRanges else { return }
+            NotificationCenter.default.post(DidLiveChangeSelectionMessage(), subject: self)
         }
     }
     

@@ -74,6 +74,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private var observers: Set<AnyCancellable> = []
     private var defaultsObservers: Set<AnyCancellable> = []
     private var focusObserver: NotificationCenter.ObservationToken?
+    private var textSelectionObservers: [ObjectIdentifier: NotificationCenter.ObservationToken] = [:]
     
     
     // MARK: Lifecycle
@@ -444,13 +445,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     }
     
     
-    /// Invoked when the selection did change.
-    @objc private func textViewDidLiveChangeSelection(_ notification: Notification) {
-        
-        self.document.counter.invalidateSelection()
-    }
-    
-    
     // MARK: Public Methods
     
     /// The array of all child text views.
@@ -810,7 +804,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         else { return }
         
         if let textView = currentEditorViewController.textView {
-            NotificationCenter.default.removeObserver(self, name: EditorTextView.DidLiveChangeSelectionMessage.name, object: textView)
+            self.textSelectionObservers[ObjectIdentifier(textView)] = nil
             textView.undoManager?.removeAllActions(withTarget: textView)
         }
         
@@ -857,13 +851,14 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         let index = otherViewController.flatMap(self.children.firstIndex(of:))?.advanced(by: 1) ?? 0
         self.insertSplitViewItem(splitViewItem, at: index)
         
+        let textView = viewController.textView!
+        
         // observe cursor
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidLiveChangeSelection),
-                                               name: EditorTextView.DidLiveChangeSelectionMessage.name,
-                                               object: viewController.textView)
+        self.textSelectionObservers[ObjectIdentifier(textView)] = NotificationCenter.default.addObserver(of: textView, for: .didLiveChangeSelection) { [weak self] _ in
+            self?.document.counter.invalidateSelection()
+        }
         
         // setup textView
-        let textView = viewController.textView!
         textView.isEditable = self.document.isEditable
         textView.wrapsLines = self.wrapsLines
         textView.showsInvisibles = self.showsInvisibles
