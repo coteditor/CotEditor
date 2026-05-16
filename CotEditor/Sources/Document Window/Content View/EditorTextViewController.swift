@@ -450,7 +450,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         }
         let viewController = NSHostingController(rootView: rootView)
         viewController.sizingOptions = .preferredContentSize
-        viewController.rootView.dismiss = { [weak viewController] in viewController?.dismiss(nil) }
         
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
         
