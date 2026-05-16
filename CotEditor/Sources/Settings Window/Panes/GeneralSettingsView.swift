@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -88,7 +88,7 @@ struct GeneralSettingsView: View {
                         EmptyView()
                     }
                     .pickerStyle(.menu)
-                    .labelsHidden()
+                    .labelsVisibility(.hidden)
                     .accessibilityLabeledPair(role: .content, id: "noDocumentOnLaunchOption", in: self.accessibility)
                     .padding(.leading, 20)
                 }
@@ -153,7 +153,7 @@ struct GeneralSettingsView: View {
                     EmptyView()
                 }
                 .pickerStyle(.radioGroup)
-                .labelsHidden()
+                .labelsVisibility(.hidden)
                 .accessibilityLabeledPair(role: .content, id: "documentConflictOption", in: self.accessibility)
             }
             

@@ -222,7 +222,7 @@ private struct FileSizeView: View {
         LabeledContent(String(localized: "File size", table: "Document"),
                        optional: self.size?.formatted(.byteCount(style: .file, spellsOutZero: false)))
         .monospacedDigit()
-        .labelsHidden()
+        .labelsVisibility(.hidden)
         .help(String(localized: "File size", table: "Document", comment: "tooltip"))
         .fixedSize()
     }
@@ -272,7 +272,7 @@ private struct DocumentStatusBar: View {
                 }
             }
             .help(String(localized: "Text Encoding", table: "Document"))
-            .labelsHidden()
+            .labelsVisibility(.hidden)
             
             Divider()
             
