@@ -213,7 +213,7 @@ final class DirectoryDocument: NSDocument {
         }
         
         if let documentObserver {
-            NotificationCenter.default.removeObserver(documentObserver, name: Document.DidUpdateChangeMessage.name, object: nil)
+            NotificationCenter.default.removeObserver(documentObserver)
             self.documentObserver = nil
         }
     }
