@@ -155,7 +155,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         // observe focus change
         self.focusObserver = NotificationCenter.default.addObserver(for: EditorTextView.DidBecomeFirstResponderMessage.self) { [weak self] message in
-            guard let child = self?.editorViewControllers.first(where: { $0.textView == message.sender }) else { return }
+            guard let child = self?.editorViewControllers.first(where: { $0.textView.map(ObjectIdentifier.init) == message.subjectIdentifier }) else { return }
             self?.focusedChild = child
         }
         

@@ -55,7 +55,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         typealias Subject = EditorTextView
         
-        var sender: Subject
+        var subjectIdentifier: ObjectIdentifier
     }
     
     
@@ -281,8 +281,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         guard super.becomeFirstResponder() else { return false }
         
-        // post notification about becoming the first responder
-        NotificationCenter.default.post(DidBecomeFirstResponderMessage(sender: self), subject: self)
+        NotificationCenter.default.post(DidBecomeFirstResponderMessage(subjectIdentifier: ObjectIdentifier(self)), subject: self)
         
         defer {
             self.invalidateInsertionIndicatorDisplayMode()
