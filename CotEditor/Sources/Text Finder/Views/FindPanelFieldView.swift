@@ -165,10 +165,7 @@ struct FindPanelFieldView: View {
             }
         }
         .onDisappear {
-            if let observer = self.didFindObserver {
-                NotificationCenter.default.removeObserver(observer)
-                self.didFindObserver = nil
-            }
+            self.didFindObserver = nil
         }
         .task {
             for await notification in NotificationCenter.default.notifications(named: NSTextView.didChangeSelectionNotification) {

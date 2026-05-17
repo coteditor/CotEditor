@@ -42,13 +42,6 @@ final class FindPanelContentViewController: NSSplitViewController {
     
     // MARK: Lifecycle
     
-    isolated deinit {
-        if let observer = self.resultObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
-    }
-    
-    
     override func loadView() {
         
         self.splitView = FindPanelSplitView()

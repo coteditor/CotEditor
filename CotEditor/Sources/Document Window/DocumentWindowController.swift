@@ -168,7 +168,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             .sink { [weak self] _ in self?.buildSyntaxPopUpButton() }
         
         // observe documents to update window title
-        self.documentObservers.forEach(NotificationCenter.default.removeObserver)
         self.documentObservers = [
             NotificationCenter.default.addObserver(for: NSDocument.DidChangeFileURLMessage.self) { [weak self] _ in self?.invalidateUniqueDirectory() },
             NotificationCenter.default.addObserver(for: NSDocument.DidMakeWindowMessage.self) { [weak self] _ in self?.invalidateUniqueDirectory() },
@@ -185,7 +184,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     isolated deinit {
         self.documentSyntaxObserver?.cancel()
         self.syntaxNamesObserver?.cancel()
-        self.documentObservers.forEach(NotificationCenter.default.removeObserver)
     }
     
     

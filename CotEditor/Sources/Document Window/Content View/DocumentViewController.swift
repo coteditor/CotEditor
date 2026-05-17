@@ -106,9 +106,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     isolated deinit {
         NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: nil)
-        if let focusObserver {
-            NotificationCenter.default.removeObserver(focusObserver)
-        }
         
         self.editableObserver?.cancel()
     }

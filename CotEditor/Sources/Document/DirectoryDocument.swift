@@ -212,10 +212,7 @@ final class DirectoryDocument: NSDocument {
             document.close()
         }
         
-        if let documentObserver {
-            NotificationCenter.default.removeObserver(documentObserver)
-            self.documentObserver = nil
-        }
+        self.documentObserver = nil
     }
     
     
