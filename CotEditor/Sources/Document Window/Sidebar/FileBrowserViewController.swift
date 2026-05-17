@@ -77,13 +77,15 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let outlineView = NSOutlineView()
         outlineView.headerView = nil
         outlineView.addTableColumn(NSTableColumn())
-        outlineView.setAccessibilityLabel(String(localized: "File Browser", table: "Document", comment: "accessibility label"))
+        outlineView.setAccessibilityLabel(String(localized: "Files", table: "Document", comment: "accessibility label"))
         outlineView.target = self
         outlineView.doubleAction = #selector(outlineViewDoubleClicked)
         
         let scrollView = NSScrollView()
         scrollView.documentView = outlineView
         scrollView.hasVerticalScroller = true
+        scrollView.automaticallyAdjustsContentInsets = false
+        scrollView.contentInsets.top = 8
         
         // workaround the issue where the tableCellViews don't follow the outlineView's width
         // when the scroller knob is shown (2025-09, macOS 26, FB20309978)
@@ -125,6 +127,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         filterField.target = self
         filterField.action = #selector(filterTextDidChange)
         filterField.recentsAutosaveName = "FileBrowserSearch"
+        filterField.setAccessibilityLabel(String(localized: "File browser filter", table: "Document", comment: "accessibility label"))
         
         let filterProgressIndicator = NSProgressIndicator()
         filterProgressIndicator.style = .spinning
@@ -243,7 +246,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel(String(localized: "Sidebar", table: "Document", comment: "accessibility label"))
+        self.view.setAccessibilityLabel(SidebarPane.fileBrowser.label)
     }
     
     

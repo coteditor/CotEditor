@@ -92,7 +92,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         super.viewDidLoad()
         
         if let directoryDocument {
-            let viewController = FileBrowserViewController(document: directoryDocument)
+            let viewController = SidebarViewController(document: directoryDocument)
             let sidebarViewItem = NSSplitViewItem(sidebarWithViewController: viewController)
             self.addSplitViewItem(sidebarViewItem)
             self.sidebarViewItem = sidebarViewItem
@@ -231,23 +231,17 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-            case #selector(showFileBrowser):
-                (item as? NSMenuItem)?.state = (self.sidebarViewItem?.isCollapsed == false) ? .on : .off
-                (item as? NSMenuItem)?.toolTip = (self.sidebarViewItem == nil)
-                    ? String(localized: "The sidebar is only available when a folder is opened as a document.",
-                             table: "MainMenu", comment: "tooltip for the “Show Sidebar” menu item")
-                    : nil
-                return self.sidebarViewItem != nil
-                
             case #selector(toggleSidebar):
                 // The menu item is not validated when the responder has no sidebar (2025-03, macOS 15).
                 (item as? NSMenuItem)?.title = self.sidebarViewItem?.isCollapsed == false
                     ? String(localized: "Hide Sidebar", table: "MainMenu")
                     : String(localized: "Show Sidebar", table: "MainMenu")
-                (item as? NSMenuItem)?.toolTip = (self.sidebarViewItem == nil)
-                    ? String(localized: "The sidebar is only available when a folder is opened as a document.",
-                             table: "MainMenu", comment: "tooltip for the “Show Sidebar” menu item")
-                    : nil
+                (item as? NSMenuItem)?.toolTip = self.sidebarAvailabilityHint
+                return self.canToggleSidebar
+                
+            case #selector(showFileBrowser):
+                (item as? NSMenuItem)?.state = self.isSidebarShown(pane: .fileBrowser) ? .on : .off
+                (item as? NSMenuItem)?.toolTip = self.sidebarAvailabilityHint
                 return self.canToggleSidebar
                 
             case #selector(toggleInspector):
@@ -277,6 +271,25 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     
     
     // MARK: Public Methods
+    
+    /// Opens the desired sidebar pane.
+    ///
+    /// - Parameter pane: The sidebar pane to open.
+    private func showSidebar(pane: SidebarPane) {
+        
+        guard
+            let sidebarViewItem,
+            let viewController = sidebarViewItem.viewController as? NSTabViewController
+        else { return assertionFailure() }
+        
+        sidebarViewItem.animator().isCollapsed = false
+        viewController.selectedTabViewItemIndex = pane.rawValue
+        
+        // move focus
+        let paneTabviewItem = viewController.tabViewItems[viewController.selectedTabViewItemIndex]
+        self.view.window?.makeFirstResponderDiscardingMarkedText(paneTabviewItem.viewController)
+    }
+    
     
     /// Opens the desired inspector pane.
     ///
@@ -311,10 +324,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     /// Moves the focus to the file browser.
     @IBAction func showFileBrowser(_ sender: Any?) {
         
-        guard let sidebarViewItem else { return assertionFailure() }
-        
-        sidebarViewItem.animator().isCollapsed = false
-        self.view.window?.makeFirstResponderDiscardingMarkedText(sidebarViewItem.viewController)
+        self.showSidebar(pane: .fileBrowser)
     }
     
     
@@ -355,6 +365,16 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     }
     
     
+    /// The localized tooltip to show when sidebar commands are unavailable.
+    private var sidebarAvailabilityHint: String? {
+        
+        (self.sidebarViewItem == nil)
+            ? String(localized: "The sidebar is only available when a folder is opened as a document.",
+                     table: "MainMenu", comment: "tooltip for the “Show Sidebar” menu item")
+            : nil
+    }
+    
+    
     /// The view controller for the content view.
     private var contentViewController: ContentViewController {
         
@@ -362,10 +382,27 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     }
     
     
+    /// The view controller for the sidebar.
+    private var sidebarViewController: SidebarViewController? {
+        
+        self.sidebarViewItem?.viewController as? SidebarViewController
+    }
+    
+    
     /// The view controller for the inspector.
     private var inspectorViewController: InspectorViewController {
         
         self.inspectorViewItem.viewController as! InspectorViewController
+    }
+    
+    
+    /// Returns whether the given pane in the sidebar is currently shown.
+    ///
+    /// - Parameter pane: The sidebar pane to check.
+    /// - Returns: `true` when the pane is currently visible.
+    private func isSidebarShown(pane: SidebarPane) -> Bool {
+        
+        self.sidebarViewItem?.isCollapsed != true && (self.sidebarViewController?.selectedPane == pane)
     }
     
     
