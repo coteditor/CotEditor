@@ -57,6 +57,7 @@ import TextFind
             guard self.findString != oldValue, self.findString != self.submittedFindString else { return }
             
             self.searchTask?.cancel()
+            self.selectionTask?.cancel()
             if case .searching = self.state {
                 self.state = .idle
             }
@@ -66,6 +67,7 @@ import TextFind
     private(set) var state: SearchState = .idle
     
     private var searchTask: Task<Void, Never>?
+    private var selectionTask: Task<Void, Never>?
     private var submittedFindString = ""
     
     
@@ -81,6 +83,7 @@ import TextFind
     isolated deinit {
         
         self.searchTask?.cancel()
+        self.selectionTask?.cancel()
     }
     
     
@@ -92,6 +95,7 @@ import TextFind
     func find(usesRegularExpression: Bool, ignoresCase: Bool) {
         
         self.searchTask?.cancel()
+        self.selectionTask?.cancel()
         
         let findString = self.findString
         guard !findString.isEmpty else {
@@ -152,6 +156,34 @@ import TextFind
                     self?.state = .failed(error)
                 }
             }
+        }
+    }
+    
+    
+    /// Opens the file for the selected result and selects the matched range if supplied.
+    ///
+    /// - Parameters:
+    ///   - fileURL: The file URL to open.
+    ///   - range: The matched character range to select.
+    func selectResult(fileURL: URL, range: NSRange?) {
+        
+        self.selectionTask?.cancel()
+        self.selectionTask = Task { @MainActor in
+            guard
+                await self.document.openDocument(at: fileURL),
+                !Task.isCancelled
+            else { return }
+            
+            guard
+                let range,
+                let document = self.document.currentDocument as? Document,
+                let textView = document.textView,
+                range.upperBound <= textView.string.utf16.count
+            else { return }
+            
+            textView.selectedRange = range
+            textView.scrollRangeToVisible(range)
+            textView.showFindIndicator(for: range)
         }
     }
 }
@@ -221,7 +253,7 @@ private struct FolderFindResultView: View {
                     .controlSize(.small)
                 
             case .finished(let summary):
-                FolderFindSummaryView(summary: summary)
+                FolderFindSummaryView(summary: summary, model: self.model)
                 
             case .failed(let error):
                 UnavailableView(title: String(localized: "FolderFind.SearchState.failed.label",
@@ -237,6 +269,7 @@ private struct FolderFindResultView: View {
 private struct FolderFindSummaryView: View {
     
     var summary: FolderFind.Summary
+    var model: FolderFinder
     
     @State private var selection: FolderFind.ResultID?
     @State private var expandedFileURLs: Set<URL>
@@ -244,10 +277,13 @@ private struct FolderFindSummaryView: View {
     
     /// Initializes a folder find summary view.
     ///
-    /// - Parameter summary: The search summary to display.
-    init(summary: FolderFind.Summary) {
+    /// - Parameters:
+    ///   - summary: The search summary to display.
+    ///   - model: The folder find model.
+    init(summary: FolderFind.Summary, model: FolderFinder) {
         
         self.summary = summary
+        self.model = model
         self._expandedFileURLs = State(initialValue: Set(summary.files.map(\.id)))
     }
     
@@ -281,6 +317,11 @@ private struct FolderFindSummaryView: View {
             .onChange(of: self.summary) { _, newValue in
                 self.selection = nil
                 self.expandedFileURLs = Set(newValue.files.map(\.id))
+            }
+            .onChange(of: self.selection) { _, newValue in
+                guard let newValue, let result = self.summary.result(for: newValue) else { return }
+                
+                self.model.selectResult(fileURL: result.file.fileURL, range: result.match?.range)
             }
         }
     }
