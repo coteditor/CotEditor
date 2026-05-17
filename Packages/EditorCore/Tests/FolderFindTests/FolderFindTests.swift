@@ -1,0 +1,251 @@
+//
+//  FolderFindTests.swift
+//  FolderFindTests
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2026-05-17.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2026 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+import Foundation
+import Testing
+import TextFind
+import UniformTypeIdentifiers
+@testable import FolderFind
+
+struct FolderFindTests {
+    
+    @Test func textualSearchGroupsMatchesByFile() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle\nhay\nneedle\n".utf8).write(to: rootURL.appending(path: "a.txt"))
+        try FileManager.default.createDirectory(at: rootURL.appending(path: "Subfolder", directoryHint: .isDirectory), withIntermediateDirectories: true)
+        try Data("hay\nneedle\n".utf8).write(to: rootURL.appending(path: "Subfolder/b.txt"))
+        try Data("hay\n".utf8).write(to: rootURL.appending(path: "c.txt"))
+        
+        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        
+        #expect(summary.searchedFileCount == 3)
+        #expect(summary.skippedFileCount == 0)
+        #expect(summary.matchedFileCount == 2)
+        #expect(summary.matchCount == 3)
+        #expect(summary.files.map(\.filename) == ["b.txt", "a.txt"])
+        #expect(summary.files.map(\.directoryPathComponents) == [["Subfolder"], []])
+        #expect(summary.files[0].matches.map(\.range.location) == [4])
+        #expect(summary.files[1].matches.map(\.range.location) == [0, 11])
+        
+        let fileResult = try #require(summary.result(for: .file(summary.files[0].id)))
+        #expect(fileResult.file == summary.files[0])
+        #expect(fileResult.match == nil)
+        
+        let matchResult = try #require(summary.result(for: .match(fileID: summary.files[1].id,
+                                                                   matchID: summary.files[1].matches[1].id)))
+        #expect(matchResult.file == summary.files[1])
+        #expect(matchResult.match == summary.files[1].matches[1])
+        
+        #expect(summary.result(for: .match(fileID: summary.files[0].id, matchID: NSRange(location: NSNotFound, length: 0))) == nil)
+    }
+    
+    
+    @Test func caseInsensitiveSearch() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("Needle\nneedle\nNEEDLE\n".utf8).write(to: rootURL.appending(path: "case.txt"))
+        
+        let query = FolderFind.Query(findString: "needle", mode: .textual(options: .caseInsensitive, fullWord: false))
+        let summary = try await FolderFind.find(in: rootURL, query: query)
+        
+        #expect(summary.matchCount == 3)
+    }
+    
+    
+    @Test func regularExpressionSearch() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("item-1\nitem-22\nitem-x\n".utf8).write(to: rootURL.appending(path: "regex.txt"))
+        
+        let query = FolderFind.Query(findString: #"item-\d+"#, mode: .regularExpression(options: [], unescapesReplacement: false))
+        let summary = try await FolderFind.find(in: rootURL, query: query)
+        
+        #expect(summary.matchCount == 2)
+        #expect(summary.files.first?.matches.map(\.line) == ["item-1", "item-22"])
+    }
+    
+    
+    @Test func invalidQueryThrowsBeforeScanning() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: "a.txt"))
+        
+        await #expect(throws: TextFind.Error.emptyFindString) {
+            try await FolderFind.find(in: rootURL, query: Self.query(""))
+        }
+        
+        await #expect(throws: TextFind.Error.self) {
+            try await FolderFind.find(in: rootURL, query: FolderFind.Query(findString: "[", mode: .regularExpression(options: [], unescapesReplacement: false)))
+        }
+    }
+    
+    
+    @Test func hiddenAndExcludedItemsAreNotSearched() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: ".hidden.txt"))
+        try FileManager.default.createDirectory(at: rootURL.appending(path: ".git", directoryHint: .isDirectory), withIntermediateDirectories: true)
+        try Data("needle".utf8).write(to: rootURL.appending(path: ".git/config"))
+        try Data("needle".utf8).write(to: rootURL.appending(path: "visible.txt"))
+        
+        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        
+        #expect(summary.searchedFileCount == 1)
+        #expect(summary.matchCount == 1)
+        #expect(summary.files.map(\.filename) == ["visible.txt"])
+    }
+    
+    
+    @Test func hiddenItemsCanBeIncluded() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: ".hidden.txt"))
+        
+        let summary = try await FolderFind.find(in: rootURL,
+                                                    query: Self.query("needle"),
+                                                    options: .init(includesHiddenItems: true))
+        
+        #expect(summary.searchedFileCount == 1)
+        #expect(summary.matchCount == 1)
+        #expect(summary.files.map(\.filename) == [".hidden.txt"])
+    }
+    
+    
+    @Test func binaryPropertyListIsSkipped() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        let propertyList = ["key": "needle"]
+        let xmlData = try PropertyListSerialization.data(fromPropertyList: propertyList, format: .xml, options: 0)
+        let binaryData = try PropertyListSerialization.data(fromPropertyList: propertyList, format: .binary, options: 0)
+        
+        try xmlData.write(to: rootURL.appending(path: "xml.plist"))
+        try binaryData.write(to: rootURL.appending(path: "binary.plist"))
+        
+        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        
+        #expect(summary.searchedFileCount == 1)
+        #expect(summary.skippedFileCount == 1)
+        #expect(summary.matchCount == 1)
+        #expect(summary.files.map(\.filename) == ["xml.plist"])
+    }
+    
+    
+    @Test func candidateReadsMetadataForDefaultInclusion() throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        let textURL = rootURL.appending(path: "text.txt")
+        let extensionlessURL = rootURL.appending(path: "Makefile")
+        
+        try Data("needle".utf8).write(to: textURL)
+        try Data("needle".utf8).write(to: extensionlessURL)
+        
+        let textCandidate = try FolderFind.Candidate(at: textURL)
+        let extensionlessCandidate = try FolderFind.Candidate(at: extensionlessURL)
+        let directoryCandidate = try FolderFind.Candidate(at: rootURL)
+        
+        #expect(textCandidate.fileURL == textURL.standardizedFileURL)
+        #expect(textCandidate.contentType.conforms(to: .text))
+        #expect(!textCandidate.isDirectory)
+        #expect(!textCandidate.isHidden)
+        #expect(FolderFind.isSearchableText(textCandidate))
+        #expect(FolderFind.isSearchableText(extensionlessCandidate))
+        #expect(directoryCandidate.isDirectory)
+        #expect(!FolderFind.isSearchableText(directoryCandidate))
+    }
+    
+    
+    @Test func unreadableTextIsSkipped() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data([0xFF]).write(to: rootURL.appending(path: "invalid.txt"))
+        try Data("needle".utf8).write(to: rootURL.appending(path: "valid.txt"))
+        
+        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        
+        #expect(summary.searchedFileCount == 1)
+        #expect(summary.skippedFileCount == 1)
+        #expect(summary.matchCount == 1)
+    }
+    
+    
+    @Test func customInclusionCanSearchSyntaxMappedFiles() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: "Custom.syntaxless"))
+        
+        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle")) { candidate in
+            FolderFind.isSearchableText(candidate) || candidate.fileURL.lastPathComponent == "Custom.syntaxless"
+        }
+        
+        #expect(summary.matchCount == 1)
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Returns a textual search query.
+    ///
+    /// - Parameter string: The string to search.
+    /// - Returns: A folder search query.
+    private static func query(_ string: String) -> FolderFind.Query {
+        
+        FolderFind.Query(findString: string, mode: .textual(options: [], fullWord: false))
+    }
+    
+    
+    /// Creates a temporary directory for a test.
+    ///
+    /// - Returns: The created directory URL.
+    private static func makeTemporaryDirectory() throws -> URL {
+        
+        let url = FileManager.default.temporaryDirectory
+            .appending(path: UUID().uuidString, directoryHint: .isDirectory)
+        try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+        
+        return url
+    }
+}

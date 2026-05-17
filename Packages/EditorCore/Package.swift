@@ -14,6 +14,7 @@ let package = Package(
             "Defaults",
             "DocumentFile",
             "FileEncoding",
+            "FolderFind",
             "Invisible",
             "LineEnding",
             "LineSort",
@@ -30,6 +31,7 @@ let package = Package(
         .library(name: "Defaults", targets: ["Defaults"]),
         .library(name: "DocumentFile", targets: ["DocumentFile"]),
         .library(name: "FileEncoding", targets: ["FileEncoding"]),
+        .library(name: "FolderFind", targets: ["FolderFind"]),
         .library(name: "Invisible", targets: ["Invisible"]),
         .library(name: "LineEnding", targets: ["LineEnding"]),
         .library(name: "LineSort", targets: ["LineSort"]),
@@ -55,6 +57,9 @@ let package = Package(
         
         .target(name: "FileEncoding", dependencies: ["ValueRange"], resources: [.process("Resources")]),
         .testTarget(name: "FileEncodingTests", dependencies: ["FileEncoding"], resources: [.process("Resources")]),
+        
+        .target(name: "FolderFind", dependencies: ["DocumentFile", "FileEncoding", "LineEnding", "StringUtils", "TextFind"]),
+        .testTarget(name: "FolderFindTests", dependencies: ["FolderFind"]),
         
         .target(name: "Invisible"),
         

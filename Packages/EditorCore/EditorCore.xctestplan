@@ -78,6 +78,13 @@
     {
       "target" : {
         "containerPath" : "container:",
+        "identifier" : "FolderSearchTests",
+        "name" : "FolderSearchTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
         "identifier" : "TextFindTests",
         "name" : "TextFindTests"
       }
