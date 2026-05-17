@@ -111,7 +111,7 @@ extension NSTextView: EditorCounter.Source { }
     
     private var urlDetector: URLDetector?
     
-    private var syntaxUpdateObserver: AnyCancellable?
+    private var syntaxUpdateObserver: NotificationCenter.ObservationToken?
     private var textStorageObserver: AnyCancellable?
     private var defaultObservers: Set<AnyCancellable> = []
     
@@ -149,10 +149,10 @@ extension NSTextView: EditorCounter.Source { }
                 .sink { [weak self] _ in self?.invalidateMode() },
         ]
         
-        self.syntaxUpdateObserver = NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: SyntaxManager.shared)
-            .map { $0.userInfo!["change"] as! SettingChange }
-            .filter { [weak self] change in change.old == self?.syntaxName }
-            .sink { [weak self] change in self?.setSyntax(name: change.new ?? SyntaxName.none) }
+        self.syntaxUpdateObserver = NotificationCenter.default.addObserver(of: SyntaxManager.shared, for: DidManagerUpdateSettingMessage.self) { [weak self] message in
+            guard message.change.old == self?.syntaxName else { return }
+            self?.setSyntax(name: message.change.new ?? SyntaxName.none)
+        }
     }
     
     
@@ -656,7 +656,7 @@ extension NSTextView: EditorCounter.Source { }
         
         super.close()
         
-        self.syntaxUpdateObserver?.cancel()
+        self.syntaxUpdateObserver = nil
         self.textStorageObserver?.cancel()
         self.defaultObservers.removeAll()
         self.counter.cancel()

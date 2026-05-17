@@ -45,6 +45,8 @@ struct ThemeView: View {
     
     @State private var error: (any Error)?
     
+    @State private var settingUpdateObserver: NotificationCenter.ObservationToken?
+    
     
     var body: some View {
         
@@ -65,6 +67,14 @@ struct ThemeView: View {
         }
         .onAppear {
             self.selectDefaultTheme()
+            
+            self.settingUpdateObserver = NotificationCenter.default.addObserver(of: self.manager, for: DidManagerUpdateSettingMessage.self) { message in
+                guard let name = message.change.new, name == self.themeName else { return }
+                self.setTheme(name: name)
+            }
+        }
+        .onDisappear {
+            self.settingUpdateObserver = nil
         }
         .onChange(of: self.documentAppearance) {
             self.selectDefaultTheme()
@@ -74,16 +84,6 @@ struct ThemeView: View {
         }
         .onChange(of: self.selection) { _, newValue in
             self.setTheme(name: newValue)
-        }
-        .task {
-            let names = NotificationCenter.default
-                .notifications(named: .didUpdateSettingNotification, object: self.manager)
-                .compactMap { $0.userInfo?["change"] as? SettingChange }
-                .compactMap(\.new)
-            
-            for await name in names where name == self.themeName {
-                self.setTheme(name: name)
-            }
         }
         .background()
         .border(.separator)

@@ -37,6 +37,8 @@ struct MultipleReplaceSplitView: View {
     @State private var setting: MultipleReplace = .init()
     @State private var error: (any Error)?
     
+    @State private var settingUpdateObserver: NotificationCenter.ObservationToken?
+    
     
     var body: some View {
         
@@ -60,15 +62,14 @@ struct MultipleReplaceSplitView: View {
             }
             self.changeSetting(to: newValue)
         }
-        .task {
-            let names = NotificationCenter.default
-                .notifications(named: .didUpdateSettingNotification, object: self.manager)
-                .compactMap { $0.userInfo?["change"] as? SettingChange }
-                .compactMap(\.new)
-            
-            for await name in names where name == self.selection {
+        .onAppear {
+            self.settingUpdateObserver = NotificationCenter.default.addObserver(of: self.manager, for: DidManagerUpdateSettingMessage.self) { message in
+                guard let name = message.change.new, name == self.selection else { return }
                 self.changeSetting(to: name)
             }
+        }
+        .onDisappear {
+            self.settingUpdateObserver = nil
         }
         .alert(error: $error)
     }

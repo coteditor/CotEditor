@@ -248,6 +248,8 @@ private struct SyntaxListView: View {
     @State private var importingError: ImportDuplicationError?
     @State private var error: (any Error)?
     
+    @State private var settingUpdateObserver: NotificationCenter.ObservationToken?
+    
     
     var body: some View {
         
@@ -293,9 +295,14 @@ private struct SyntaxListView: View {
         .onChange(of: self.settingNames, initial: true) { _, settingNames in
             self.settingStates = settingNames.compactMap(self.manager.state(of:))
         }
-        .onReceive(NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: self.manager)) { _ in
+        .onAppear {
             // update for the "customized" dots
-            self.settingStates = self.manager.settingNames.compactMap(self.manager.state(of:))
+            self.settingUpdateObserver = NotificationCenter.default.addObserver(of: self.manager, for: DidManagerUpdateSettingMessage.self) { _ in
+                self.settingStates = self.manager.settingNames.compactMap(self.manager.state(of:))
+            }
+        }
+        .onDisappear {
+            self.settingUpdateObserver = nil
         }
         .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.cotSyntax, .yaml], allowsMultipleSelection: true) { result in
             switch result {

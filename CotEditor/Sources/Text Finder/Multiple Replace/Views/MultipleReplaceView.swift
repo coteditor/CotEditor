@@ -64,7 +64,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
     
     private var definition = MultipleReplace()
     private lazy var updateNotificationDebouncer = Debouncer(delay: .seconds(1)) { [weak self] in self?.notifyUpdate() }
-    private var settingUpdateObserver: (any NSObjectProtocol)?
+    private var settingUpdateObserver: NotificationCenter.ObservationToken?
     
     @objc private dynamic var hasInvalidSetting = false
     @objc private dynamic var resultMessage: String?
@@ -89,13 +89,6 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
     }
     
     
-    isolated deinit {
-        if let settingUpdateObserver {
-            NotificationCenter.default.removeObserver(settingUpdateObserver)
-        }
-    }
-    
-    
     // MARK: View Controller Methods
     
     override func viewDidLoad() {
@@ -109,12 +102,8 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
         self.addRemoveButton?.setToolTip(String(localized: "Action.add.tooltip", defaultValue: "Add new item"), forSegment: 0)
         self.addRemoveButton?.setToolTip(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"), forSegment: 1)
         
-        self.settingUpdateObserver = NotificationCenter.default.addObserver(forName: .didUpdateSettingNotification, object: ReplacementManager.shared, queue: nil) { [weak self] notification in
-            guard let change = notification.userInfo?["change"] as? SettingChange else { return }
-            
-            MainActor.assumeIsolated {
-                self?.didUpdateSetting(change)
-            }
+        self.settingUpdateObserver = NotificationCenter.default.addObserver(of: ReplacementManager.shared, for: DidManagerUpdateSettingMessage.self) { [weak self] message in
+            self?.didUpdateSetting(message.change)
         }
     }
     

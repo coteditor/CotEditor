@@ -47,10 +47,19 @@ extension SettingState: Identifiable {
 }
 
 
-extension NSNotification.Name {
+/// A message posted when a setting file is updated, with the new and/or previous setting names.
+struct DidManagerUpdateSettingMessage<Subject: SettingFileManaging>: NotificationCenter.MainActorMessage {
     
-    /// A notification posted when a setting file is updated, with the new and/or previous setting names.
-    static let didUpdateSettingNotification = Notification.Name("SettingFileManaging.didUpdateSettingNotification")
+    static var name: Notification.Name { Notification.Name("SettingFileManaging.didUpdateSettingNotification") }
+    
+    
+    var change: SettingChange
+    
+    
+    static func makeNotification(_ message: Self) -> Notification {
+        
+        Notification(name: Self.name, object: nil, userInfo: ["change": message.change])
+    }
 }
 
 
@@ -379,8 +388,8 @@ extension SettingFileManaging {
         self.cachedSettings[name] = setting
         
         let change: SettingChange = self.settingNames.contains(name)
-        ? .updated(from: name, to: name)
-        : .added(name)
+            ? .updated(from: name, to: name)
+            : .added(name)
         self.updateSettingList(change: change)
     }
     
@@ -445,7 +454,7 @@ extension SettingFileManaging {
         
         defer {
             self.didUpdateSetting(change: change)
-            NotificationCenter.default.post(name: .didUpdateSettingNotification, object: self, userInfo: ["change": change])
+            NotificationCenter.default.post(DidManagerUpdateSettingMessage(change: change), subject: self)
         }
         
         guard change.old != change.new else { return }
