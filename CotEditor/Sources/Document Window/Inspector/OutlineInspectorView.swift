@@ -324,7 +324,7 @@ private struct OutlineTreeView: View {
                     .tag(node.id)
                 
             } else {
-                DisclosureGroup(isExpanded: self.binding(for: node.id)) {
+                DisclosureGroup(isExpanded: $expandedNodeIDs.contains(node.id)) {
                     OutlineTreeView(nodes: node.children, expandedNodeIDs: $expandedNodeIDs)
                 } label: {
                     OutlineRowView(item: node.item)
@@ -332,25 +332,6 @@ private struct OutlineTreeView: View {
                 .tag(node.id)
             }
         }
-    }
-    
-    
-    /// Creates a binding that reflects whether the node is expanded.
-    ///
-    /// - Parameter id: The outline item ID.
-    /// - Returns: A binding to the expanded state.
-    private func binding(for id: OutlineItem.ID) -> Binding<Bool> {
-        
-        Binding(
-            get: { self.expandedNodeIDs.contains(id) },
-            set: { isExpanded in
-                if isExpanded {
-                    self.expandedNodeIDs.insert(id)
-                } else {
-                    self.expandedNodeIDs.remove(id)
-                }
-            }
-        )
     }
 }
 

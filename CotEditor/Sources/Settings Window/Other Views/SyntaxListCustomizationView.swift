@@ -99,16 +99,8 @@ private extension Binding where Value == Set<String> {
     func notContains(_ element: String) -> Binding<Bool> {
         
         Binding<Bool>(
-            get: {
-                !self.wrappedValue.contains(element)
-            },
-            set: {
-                if $0 {
-                    self.wrappedValue.remove(element)
-                } else {
-                    self.wrappedValue.insert(element)
-                }
-            }
+            get: { !self.contains(element).wrappedValue },
+            set: { self.contains(element).wrappedValue = !$0 }
         )
     }
 }
