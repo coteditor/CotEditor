@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2025 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ struct FilterField: NSViewRepresentable {
     /// The name under which the search field automatically archives the list of recent search strings.
     ///
     /// - Parameter autosaveName: The unique name for saving recent search strings.
-    func autosaveName(_ autosaveName: String?) -> some View {
+    func autosaveName(_ autosaveName: String?) -> Self {
         
         var view = self
         view.autosaveName = autosaveName
