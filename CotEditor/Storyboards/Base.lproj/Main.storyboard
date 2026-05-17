@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24765"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -646,6 +646,12 @@ Gw
                                                         <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                                         <connections>
                                                             <action selector="showFileBrowser:" target="Ady-hI-5gd" id="Wsz-tN-aQt"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="File Find" secondaryImage="magnifyingglass" catalog="system" keyEquivalent="2" id="UFU-ir-16q">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="showFileFind:" target="Ady-hI-5gd" id="Jip-1U-IHT"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="S3l-cD-Qfr"/>
@@ -1335,6 +1341,7 @@ CA
         <image name="line.3.horizontal" catalog="system" width="16" height="9"/>
         <image name="list.bullet.indent" catalog="system" width="19" height="12"/>
         <image name="macwindow.badge.plus" catalog="system" width="21" height="16"/>
+        <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="menuItem:124:secondaryImage" width="15" height="15">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05T

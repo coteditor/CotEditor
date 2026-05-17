@@ -25879,6 +25879,18 @@
         }
       }
     },
+    "UFU-ir-16q.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"File Find\"; ObjectID = \"UFU-ir-16q\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "File Find"
+          }
+        }
+      }
+    },
     "ULf-cT-Xvb.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Select All Find Matches\"; ObjectID = \"ULf-cT-Xvb\";",
       "extractionState" : "extracted_with_value",

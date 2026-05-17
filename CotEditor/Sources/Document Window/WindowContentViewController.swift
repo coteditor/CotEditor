@@ -244,6 +244,11 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
                 (item as? NSMenuItem)?.toolTip = self.sidebarAvailabilityHint
                 return self.canToggleSidebar
                 
+            case #selector(showFileFind):
+                (item as? NSMenuItem)?.state = self.isSidebarShown(pane: .find) ? .on : .off
+                (item as? NSMenuItem)?.toolTip = self.sidebarAvailabilityHint
+                return self.canToggleSidebar
+                
             case #selector(toggleInspector):
                 (item as? NSMenuItem)?.title = self.inspectorViewItem.isCollapsed == false
                     ? String(localized: "Hide Inspector", table: "MainMenu")
@@ -325,6 +330,13 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     @IBAction func showFileBrowser(_ sender: Any?) {
         
         self.showSidebar(pane: .fileBrowser)
+    }
+    
+    
+    /// Moves the focus to the find.
+    @IBAction func showFileFind(_ sender: Any?) {
+        
+        self.showSidebar(pane: .find)
     }
     
     

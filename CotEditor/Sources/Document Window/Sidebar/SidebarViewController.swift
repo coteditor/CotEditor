@@ -24,11 +24,13 @@
 //
 
 import AppKit
+import SwiftUI
 import ControlUI
 
 enum SidebarPane: Int, CaseIterable {
     
     case fileBrowser
+    case find
 }
 
 
@@ -106,6 +108,9 @@ extension SidebarPane {
             case .fileBrowser:
                 String(localized: "SidebarPane.fileBrowser.label",
                        defaultValue: "File Browser", table: "Document")
+            case .find:
+                String(localized: "SidebarPane.find.label",
+                       defaultValue: "Find", table: "Document")
         }
     }
 }
@@ -117,6 +122,7 @@ private extension SidebarPane {
         
         switch self {
             case .fileBrowser: "folder"
+            case .find: "magnifyingglass"
         }
     }
     
@@ -126,6 +132,8 @@ private extension SidebarPane {
         switch self {
             case .fileBrowser:
                 FileBrowserViewController(document: document)
+            case .find:
+                NSHostingController(rootView: FolderFindView(model: FolderFind(document: document)))
         }
     }
 }
