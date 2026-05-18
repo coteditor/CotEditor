@@ -27,6 +27,7 @@
 import AppKit
 import Combine
 import SwiftUI
+import UniformTypeIdentifiers
 import Defaults
 import ControlUI
 import URLUtils
@@ -81,6 +82,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private var syntaxNamesObserver: Task<Void, Never>?
     private var syntaxDefaultsObserver: AnyCancellable?
     private weak var syntaxPopUpButton: NSPopUpButton?
+    private weak var previousDocumentHistoryMenu: NSMenu?
+    private weak var forwardDocumentHistoryMenu: NSMenu?
     
     
     // MARK: Lifecycle
@@ -516,6 +519,10 @@ private extension NSToolbarItem.Identifier {
     private static let prefix = "com.coteditor.CotEditor.ToolbarItem."
     
     
+    static let documentHistory = Self(Self.prefix + "documentHistory")
+    static let previousDocumentHistory = Self(Self.prefix + "previousDocumentHistory")
+    static let forwardDocumentHistory = Self(Self.prefix + "forwardDocumentHistory")
+    
     static let syntax = Self(Self.prefix + "syntaxStyle")
     static let inspector = Self(Self.prefix + "inspector")
     
@@ -555,19 +562,19 @@ private extension NSToolbarItem.Identifier {
 
 extension DocumentWindowController: NSToolbarDelegate {
     
-    private var directoryIdentifiers: [NSToolbarItem.Identifier] {
+    private var immovableDirectoryIdentifiers: [NSToolbarItem.Identifier] {
         
-        self.isDirectoryDocument ? [
+        [
             .flexibleSpace,
             .toggleSidebar,
             .sidebarTrackingSeparator,
-        ] : []
+        ]
     }
     
     
     func toolbarImmovableItemIdentifiers(_ toolbar: NSToolbar) -> Set<NSToolbarItem.Identifier> {
         
-        Set(self.directoryIdentifiers).union([
+        Set(self.isDirectoryDocument ? self.immovableDirectoryIdentifiers : []).union([
             .inspectorTrackingSeparator,
             .flexibleSpace,
             .inspector,
@@ -577,7 +584,9 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        self.directoryIdentifiers + [
+        let directoryIdentifiers = self.isDirectoryDocument ? self.immovableDirectoryIdentifiers + [.documentHistory] : []
+        
+        return directoryIdentifiers + [
             .syntax,
             .inspectorTrackingSeparator,
             .flexibleSpace,
@@ -588,7 +597,9 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        var identifiers = self.directoryIdentifiers + [
+        let directoryIdentifiers = self.isDirectoryDocument ? self.immovableDirectoryIdentifiers + [.documentHistory] : []
+        
+        var identifiers = directoryIdentifiers + [
             .syntax,
             .inspector,
             .textSize,
@@ -627,6 +638,50 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .toggleSidebar:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.autovalidates = true
+                return item
+                
+            case .documentHistory:
+                let previousMenu = NSMenu()
+                previousMenu.delegate = self
+                self.previousDocumentHistoryMenu = previousMenu
+                
+                let previousItem = NSMenuToolbarItem(itemIdentifier: .previousDocumentHistory)
+                previousItem.label = String(localized: "Toolbar.documentHistory.previous.label",
+                                            defaultValue: "Previous", table: "Document")
+                previousItem.toolTip = String(localized: "Toolbar.documentHistory.previous.tooltip",
+                                              defaultValue: "Go to the previous document", table: "Document")
+                previousItem.image = NSImage(systemSymbolName: "chevron.backward", accessibilityDescription: previousItem.label)
+                previousItem.action = #selector(DirectoryDocument.navigatePreviousDocumentHistory)
+                previousItem.autovalidates = true
+                previousItem.showsIndicator = false
+                previousItem.menu = previousMenu
+                
+                let forwardMenu = NSMenu()
+                forwardMenu.delegate = self
+                self.forwardDocumentHistoryMenu = forwardMenu
+                
+                let forwardItem = NSMenuToolbarItem(itemIdentifier: .forwardDocumentHistory)
+                forwardItem.label = String(localized: "Toolbar.documentHistory.forward.label",
+                                           defaultValue: "Forward", table: "Document")
+                forwardItem.toolTip = String(localized: "Toolbar.documentHistory.forward.tooltip",
+                                             defaultValue: "Go to the next document", table: "Document")
+                forwardItem.image = NSImage(systemSymbolName: "chevron.forward", accessibilityDescription: forwardItem.label)
+                forwardItem.action = #selector(DirectoryDocument.navigateForwardDocumentHistory)
+                forwardItem.autovalidates = true
+                forwardItem.showsIndicator = false
+                forwardItem.menu = forwardMenu
+                
+                let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
+                item.isBordered = true
+                item.controlRepresentation = .expanded
+                item.selectionMode = .momentary
+                item.isNavigational = true
+                item.label = String(localized: "Toolbar.documentHistory.label",
+                                    defaultValue: "History", table: "Document")
+                item.toolTip = String(localized: "Toolbar.documentHistory.tooltip",
+                                      defaultValue: "Go back or forward in document history", table: "Document")
+                item.subitems = [previousItem, forwardItem]
+                item.action = #selector(DirectoryDocument.navigateDocumentHistory(_:))
                 return item
                 
             case .syntax:
@@ -965,6 +1020,60 @@ extension DocumentWindowController: NSToolbarDelegate {
             default:
                 return NSToolbarItem(itemIdentifier: itemIdentifier)
         }
+    }
+}
+
+
+extension DocumentWindowController: NSMenuDelegate {
+    
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        
+        switch menu {
+            case self.previousDocumentHistoryMenu:
+                self.updateDocumentHistoryMenu(menu, forward: false)
+            case self.forwardDocumentHistoryMenu:
+                self.updateDocumentHistoryMenu(menu, forward: true)
+            default:
+                assertionFailure()
+        }
+    }
+    
+    
+    /// Updates a document history menu.
+    ///
+    /// - Parameters:
+    ///   - menu: The menu to update.
+    ///   - forward: Whether the menu represents forward history.
+    private func updateDocumentHistoryMenu(_ menu: NSMenu, forward: Bool) {
+        
+        guard let directoryDocument else { return assertionFailure() }
+        
+        menu.items = directoryDocument.documentHistory.menuItems(forward: forward)
+            .map { item in
+                let menuItem = NSMenuItem(title: item.url.lastPathComponent,
+                                          action: #selector(DirectoryDocument.jumpDocumentHistory),
+                                          keyEquivalent: "")
+                menuItem.representedObject = item.index
+                menuItem.image = Self.documentHistoryIcon(for: item)
+                return menuItem
+            }
+    }
+    
+    
+    /// Returns the icon for a document history item.
+    ///
+    /// - Parameter item: The document history item.
+    /// - Returns: The icon for the item.
+    private static func documentHistoryIcon(for item: DocumentHistory.Item) -> NSImage {
+        
+        let image = if let type = item.entry.fileType {
+            NSWorkspace.shared.icon(for: type)
+        } else {
+            NSWorkspace.shared.icon(forFile: item.url.path)
+        }
+        image.size = NSSize(width: 16, height: 16)
+        
+        return image
     }
 }
 

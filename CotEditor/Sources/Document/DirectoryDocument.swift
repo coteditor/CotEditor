@@ -43,6 +43,7 @@ final class DirectoryDocument: NSDocument {
     
     private(set) var fileNode: FileNode?
     private(set) weak var currentDocument: DataDocument?
+    var documentHistory = DocumentHistory()
     
     weak var fileBrowserViewController: FileBrowserViewController?
     
@@ -116,7 +117,7 @@ final class DirectoryDocument: NSDocument {
                 
                 Task {
                     for url in urls {
-                        await self.openDocument(at: url)
+                        await self.openDocument(at: url, recordsHistory: url == currentDocumentURL)
                     }
                     if let currentDocumentURL, self.currentDocument?.fileURL != currentDocumentURL {
                         if let currentDocument = self.documents.first(where: { $0.fileURL == currentDocumentURL }) {
@@ -301,8 +302,9 @@ final class DirectoryDocument: NSDocument {
     ///   - fileURL: The file URL of the document to open.
     ///   - asPlainText: If `true`, the document is forcibly opened as a plain text file.
     ///   - prefersOriginal: If `true`, opens the alias destination only if the URL already has permission. Otherwise, opens the original file.
+    ///   - recordsHistory: If `true`, records the opened document in the document history.
     /// - Returns: Return `true` if the document of the given file did successfully open.
-    @discardableResult func openDocument(at fileURL: URL, asPlainText: Bool = false, prefersOriginal: Bool = false) async -> Bool {
+    @discardableResult func openDocument(at fileURL: URL, asPlainText: Bool = false, prefersOriginal: Bool = false, recordsHistory: Bool = true) async -> Bool {
         
         if let currentDocument,
            fileURL == currentDocument.fileURL,
@@ -331,6 +333,9 @@ final class DirectoryDocument: NSDocument {
         if let document = NSDocumentController.shared.document(for: fileURL) as? Document {
             if self.documents.contains(document) {
                 self.changeFrontmostDocument(to: document)
+                if recordsHistory {
+                    self.recordDocumentHistory(document: document, opensAsPlainText: asPlainText)
+                }
                 return true
                 
             } else {
@@ -362,6 +367,9 @@ final class DirectoryDocument: NSDocument {
         NSDocumentController.shared.addDocument(document)
         
         self.changeFrontmostDocument(to: document)
+        if recordsHistory {
+            self.recordDocumentHistory(document: document, opensAsPlainText: asPlainText)
+        }
         
         return true
     }
@@ -659,6 +667,20 @@ final class DirectoryDocument: NSDocument {
     }
     
     
+    /// Opens the item in the document history.
+    ///
+    /// - Parameter item: The history item to open.
+    func openDocumentHistoryItem(_ item: DocumentHistory.Item) async {
+        
+        let didOpen = await self.openDocument(at: item.url, asPlainText: item.entry.opensAsPlainText, recordsHistory: false)
+        
+        guard didOpen else { return }
+        
+        self.documentHistory.select(item)
+        self.fileBrowserViewController?.selectCurrentDocument()
+    }
+    
+    
     // MARK: Private Methods
     
     /// Returns whether the receiver should open a file at the given URL as a text-plain file.
@@ -725,6 +747,19 @@ final class DirectoryDocument: NSDocument {
         
         // clean-up
         self.disposeUnusedDocuments()
+    }
+    
+    
+    /// Records the document in the document history.
+    ///
+    /// - Parameters:
+    ///   - document: The document to record.
+    ///   - opensAsPlainText: Whether the document should be opened as plain text when navigating back to it.
+    private func recordDocumentHistory(document: DataDocument, opensAsPlainText: Bool) {
+        
+        guard let fileURL = document.fileURL else { return }
+        
+        self.documentHistory.record(fileURL: fileURL, opensAsPlainText: opensAsPlainText, fileType: document.fileType.flatMap(UTType.init))
     }
     
     
