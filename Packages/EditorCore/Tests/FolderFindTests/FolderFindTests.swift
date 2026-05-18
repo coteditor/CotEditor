@@ -66,6 +66,43 @@ struct FolderFindTests {
     }
     
     
+    @Test func summaryRemovesSelectedResult() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle\nhay\nneedle\n".utf8).write(to: rootURL.appending(path: "a.txt"))
+        try Data("hay\nneedle\n".utf8).write(to: rootURL.appending(path: "b.txt"))
+        
+        var summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        
+        let firstFile = try #require(summary.files.first { $0.filename == "a.txt" })
+        let firstMatch = try #require(firstFile.matches.first)
+        
+        summary.removeResult(for: .match(fileID: firstFile.id, matchID: firstMatch.id))
+        
+        let updatedFirstFile = try #require(summary.files.first { $0.filename == "a.txt" })
+        #expect(updatedFirstFile.matches.map(\.range.location) == [11])
+        #expect(summary.matchedFileCount == 2)
+        #expect(summary.matchCount == 2)
+        
+        let secondFile = try #require(summary.files.first { $0.filename == "b.txt" })
+        let onlyMatch = try #require(secondFile.matches.first)
+        
+        summary.removeResult(for: .match(fileID: secondFile.id, matchID: onlyMatch.id))
+        
+        #expect(summary.files.map(\.filename) == ["a.txt"])
+        #expect(summary.matchedFileCount == 1)
+        #expect(summary.matchCount == 1)
+        
+        summary.removeResult(for: .file(updatedFirstFile.id))
+        
+        #expect(summary.files.isEmpty)
+        #expect(summary.matchedFileCount == 0)
+        #expect(summary.matchCount == 0)
+    }
+    
+    
     @Test func caseInsensitiveSearch() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()

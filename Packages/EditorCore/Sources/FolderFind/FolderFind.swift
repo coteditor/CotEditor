@@ -235,4 +235,25 @@ public extension FolderFind.Summary {
                 return FolderFind.Result(file: file, match: match)
         }
     }
+    
+    
+    /// Removes the search result for the given ID.
+    ///
+    /// - Parameter id: The result ID to remove.
+    mutating func removeResult(for id: FolderFind.ResultID) {
+        
+        switch id {
+            case .file(let fileID):
+                self.files.removeAll { $0.id == fileID }
+                
+            case .match(let fileID, let matchID):
+                guard let fileIndex = self.files.firstIndex(where: { $0.id == fileID }) else { return }
+                
+                self.files[fileIndex].matches.removeAll { $0.id == matchID }
+                
+                if self.files[fileIndex].matches.isEmpty {
+                    self.files.remove(at: fileIndex)
+                }
+        }
+    }
 }

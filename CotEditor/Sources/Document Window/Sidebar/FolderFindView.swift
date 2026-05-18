@@ -186,6 +186,20 @@ import TextFind
             textView.showFindIndicator(for: range)
         }
     }
+    
+    
+    /// Removes the selected result from the current search results.
+    ///
+    /// - Parameter id: The result ID to remove.
+    func removeResult(for id: FolderFind.ResultID) {
+        
+        guard case .finished(var summary) = self.state else { return }
+        
+        summary.removeResult(for: id)
+        self.selectionTask?.cancel()
+        self.selectionTask = nil
+        self.state = .finished(summary)
+    }
 }
 
 
@@ -322,6 +336,12 @@ private struct FolderFindSummaryView: View {
                 guard let newValue, let result = self.summary.result(for: newValue) else { return }
                 
                 self.model.selectResult(fileURL: result.file.fileURL, range: result.match?.range)
+            }
+            .onDeleteCommand {
+                guard let selection = self.selection else { return }
+                
+                self.selection = nil
+                self.model.removeResult(for: selection)
             }
         }
     }
