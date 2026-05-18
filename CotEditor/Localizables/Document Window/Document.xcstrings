@@ -2275,7 +2275,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "製作時間"
+            "value" : "製作日期"
           }
         }
       }
@@ -6635,7 +6635,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已修改"
+            "value" : "修改日期"
           }
         }
       }
