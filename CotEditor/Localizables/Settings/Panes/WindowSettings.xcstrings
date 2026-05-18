@@ -953,7 +953,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "繪圖分隔符號"
+            "value" : "繪製分隔符號"
           }
         }
       }
@@ -2868,7 +2868,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "遵循系統設定"
+            "value" : "關聯系統設定"
           }
         }
       }
