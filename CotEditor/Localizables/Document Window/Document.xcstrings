@@ -9704,6 +9704,9 @@
         }
       }
     },
+    "Reveal in File Browser" : {
+      "comment" : "menu item label"
+    },
     "Scanning incompatible characters…" : {
       "localizations" : {
         "bg" : {

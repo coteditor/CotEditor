@@ -328,6 +328,11 @@ private struct FolderFindSummaryView: View {
                 }
             }
             .scrollContentBackground(.hidden)
+            .contextMenu(forSelectionType: FolderFind.ResultID.self) { selections in
+                if let selection = selections.first, let result = self.summary.result(for: selection) {
+                    FolderFindResultContextMenu(file: result.file, model: self.model)
+                }
+            }
             .onChange(of: self.summary) { _, newValue in
                 self.selection = nil
                 self.expandedFileURLs = Set(newValue.files.map(\.id))
@@ -343,6 +348,34 @@ private struct FolderFindSummaryView: View {
                 self.selection = nil
                 self.model.removeResult(for: selection)
             }
+        }
+    }
+}
+
+
+private struct FolderFindResultContextMenu: View {
+    
+    var file: FolderFind.FileResult
+    var model: FolderFinder
+    
+    
+    var body: some View {
+        
+        Button(String(localized: "Reveal in File Browser", table: "Document", comment: "menu item label"),
+               systemImage: "folder") {
+            self.model.document.revealInFileBrowser(fileURL: self.file.fileURL)
+        }
+        
+        Button(String(localized: "Show in Finder", table: "Document", comment: "menu item label"),
+               systemImage: "finder") {
+            NSWorkspace.shared.activateFileViewerSelecting([self.file.fileURL])
+        }
+        
+        Divider()
+        
+        Button(String(localized: "Open in New Window", table: "Document", comment: "menu item label"),
+               systemImage: "macwindow.badge.plus") {
+            self.model.document.openInNewWindow(fileURL: self.file.fileURL)
         }
     }
 }

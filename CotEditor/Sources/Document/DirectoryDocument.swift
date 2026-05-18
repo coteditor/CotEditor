@@ -625,6 +625,39 @@ final class DirectoryDocument: NSDocument {
     }
     
     
+    /// Reveals a file in the file browser.
+    ///
+    /// - Parameter fileURL: The file URL to reveal.
+    func revealInFileBrowser(fileURL: URL) {
+        
+        guard let fileBrowserViewController else { return assertionFailure() }
+        
+        (self.windowController?.contentViewController as? WindowContentViewController)?.showFileBrowser(nil)
+        
+        guard fileBrowserViewController.revealFile(at: fileURL) else {
+            return self.presentErrorAsSheet(CocoaError.error(.fileNoSuchFile, url: fileURL))
+        }
+    }
+    
+    
+    /// Opens the document at a given file URL in a new window.
+    ///
+    /// - Parameter fileURL: The file URL to open.
+    func openInNewWindow(fileURL: URL) {
+        
+        guard let node = self.fileNode?.node(at: fileURL) else {
+            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { [weak self] _, _, error in
+                if let error {
+                    self?.presentError(error)
+                }
+            }
+            return
+        }
+        
+        self.openInWindow(at: node)
+    }
+    
+    
     /// Open the document at a given fileURL in a new window.
     ///
     /// If the file is an alias, this method tries to open the linked URL instead.

@@ -338,6 +338,26 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    /// Reveals the given file in the outline view.
+    ///
+    /// - Parameter fileURL: The file URL to reveal.
+    /// - Returns: `true` if the file was found and selected.
+    @discardableResult func revealFile(at fileURL: URL) -> Bool {
+        
+        guard let node = self.document.fileNode?.node(at: fileURL) else { return false }
+        
+        if self.isFiltering {
+            self.clearFilter()
+        }
+        
+        guard let row = self.select(node: node) else { return false }
+        
+        self.outlineView.scrollRowToVisible(row)
+        
+        return true
+    }
+    
+    
     /// Invoked when the file node did updated externally.
     ///
     /// - Parameter node: The file node whose children were changed.
@@ -835,9 +855,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     /// Selects the specified item in the outline view.
     ///
     /// - Parameters:
-    ///   - node: The note item to select.
+    ///   - node: The node item to select.
     ///   - edit: If `true`, the text field will be in the editing mode.
-    private func select(node: FileNode, edit: Bool = false) {
+    /// - Returns: The selected row, or `nil` if the item was not selectable.
+    @discardableResult private func select(node: FileNode, edit: Bool = false) -> Int? {
         
         let node = self.document.fileNode?.node(at: node.file.fileURL) ?? node
         
@@ -847,13 +868,15 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         let row = self.outlineView.row(forItem: node)
         
-        guard row >= 0 else { return }  // row can be -1 when the node is filtered
+        guard row >= 0 else { return nil }  // row can be -1 when the node is filtered
         
         self.outlineView.selectRowIndexes([row], byExtendingSelection: false)
         
         if edit {
             self.outlineView.editColumn(0, row: row, with: nil, select: false)
         }
+        
+        return row
     }
     
     
