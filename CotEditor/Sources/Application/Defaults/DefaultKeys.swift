@@ -141,6 +141,8 @@ extension DefaultKeys {
     static let findRegexIsMultiline = DefaultKey<Bool>("findRegexIsMultiline")
     static let findRegexUsesUnicodeBoundaries = DefaultKey<Bool>("regexUsesUnicodeBoundaries")
     static let findRegexUnescapesReplacementString = DefaultKey<Bool>("regexUnescapesReplacementString")
+    static let folderFindUsesRegularExpression = DefaultKey<Bool>("folderFindUsesRegularExpression")
+    static let folderFindIgnoresCase = DefaultKey<Bool>("folderFindIgnoresCase")
     
     // Advanced Character Count
     static let countUnit = RawRepresentableDefaultKey<CharacterCountOptions.CharacterUnit>("countOptionUnit")

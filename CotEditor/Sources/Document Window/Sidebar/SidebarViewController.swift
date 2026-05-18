@@ -133,7 +133,7 @@ private extension SidebarPane {
             case .fileBrowser:
                 FileBrowserViewController(document: document)
             case .find:
-                NSHostingController(rootView: FolderFindView(model: FolderFind(document: document)))
+                NSHostingController(rootView: FolderFindView(model: FolderFinder(document: document)))
         }
     }
 }

@@ -25880,13 +25880,13 @@
       }
     },
     "UFU-ir-16q.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"File Find\"; ObjectID = \"UFU-ir-16q\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Folder Find\"; ObjectID = \"UFU-ir-16q\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "File Find"
+            "value" : "Folder Find"
           }
         }
       }

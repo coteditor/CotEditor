@@ -244,7 +244,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
                 (item as? NSMenuItem)?.toolTip = self.sidebarAvailabilityHint
                 return self.canToggleSidebar
                 
-            case #selector(showFileFind):
+            case #selector(showFolderFinder):
                 (item as? NSMenuItem)?.state = self.isSidebarShown(pane: .find) ? .on : .off
                 (item as? NSMenuItem)?.toolTip = self.sidebarAvailabilityHint
                 return self.canToggleSidebar
@@ -333,8 +333,8 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     }
     
     
-    /// Moves the focus to the find.
-    @IBAction func showFileFind(_ sender: Any?) {
+    /// Moves the focus to the folder finder.
+    @IBAction func showFolderFinder(_ sender: Any?) {
         
         self.showSidebar(pane: .find)
     }

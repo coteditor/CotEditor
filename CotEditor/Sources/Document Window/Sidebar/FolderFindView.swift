@@ -24,29 +24,404 @@
 //
 
 import SwiftUI
+import Defaults
+import FileEncoding
+import FolderFind
+import SyntaxFormat
+import TextFind
 
-@MainActor final class FolderFind {
+@MainActor @Observable final class FolderFinder {
+    
+    enum Error: Swift.Error, Equatable, Sendable {
+        
+        case folderUnavailable
+        case invalidQuery(TextFind.Error)
+        case searchFailed(String)
+    }
+    
+    
+    enum SearchState: Equatable {
+        
+        case idle
+        case searching
+        case finished(FolderFind.Summary)
+        case failed(Error)
+    }
+    
     
     let document: DirectoryDocument
     
+    var findString = "" {
+        
+        didSet {
+            guard self.findString != oldValue, self.findString != self.submittedFindString else { return }
+            
+            self.searchTask?.cancel()
+            if case .searching = self.state {
+                self.state = .idle
+            }
+        }
+    }
     
+    private(set) var state: SearchState = .idle
+    
+    private var searchTask: Task<Void, Never>?
+    private var submittedFindString = ""
+    
+    
+    /// Initializes a folder find model.
+    ///
+    /// - Parameter document: The directory document whose folder is searched.
     init(document: DirectoryDocument) {
         
         self.document = document
+    }
+    
+    
+    isolated deinit {
+        
+        self.searchTask?.cancel()
+    }
+    
+    
+    /// Searches files in the directory document.
+    ///
+    /// - Parameters:
+    ///   - usesRegularExpression: Whether the search string should be treated as a regular expression.
+    ///   - ignoresCase: Whether character case should be ignored.
+    func find(usesRegularExpression: Bool, ignoresCase: Bool) {
+        
+        self.searchTask?.cancel()
+        
+        let findString = self.findString
+        guard !findString.isEmpty else {
+            self.submittedFindString = findString
+            self.state = .idle
+            return
+        }
+        
+        guard let rootURL = self.document.fileURL else {
+            self.state = .failed(.folderUnavailable)
+            return
+        }
+        
+        let mode = TextFind.Mode(usesRegularExpression: usesRegularExpression, ignoresCase: ignoresCase)
+        let query = FolderFind.Query(findString: findString, mode: mode)
+        
+        self.submittedFindString = findString
+        
+        do {
+            try query.validate()
+        } catch {
+            self.state = .failed(.invalidQuery(error))
+            return
+        }
+        
+        let options = FolderFind.Options(
+            decodingOptions: .init(candidates: EncodingManager.shared.fileEncodingCandidates,
+                                   considersDeclaration: UserDefaults.standard[.referToEncodingTag])
+        )
+        let syntaxMappingTable = SyntaxManager.shared.fileMappingTable
+        
+        self.state = .searching
+        
+        self.searchTask = .detached(priority: .userInitiated) {
+            do {
+                let summary = try await FolderFind.find(in: rootURL, query: query, options: options) { candidate in
+                    FolderFind.isSearchableText(candidate) ||
+                    syntaxMappingTable.syntaxName(forFilename: candidate.fileURL.lastPathComponent) != nil
+                }
+                
+                try Task.checkCancellation()
+                
+                await MainActor.run { [weak self] in
+                    guard self?.submittedFindString == findString else { return }
+                    
+                    self?.state = .finished(summary)
+                }
+                
+            } catch is CancellationError {
+                return
+                
+            } catch {
+                let error = FolderFinder.Error.searchFailed(error.localizedDescription)
+                
+                await MainActor.run { [weak self] in
+                    guard self?.submittedFindString == findString else { return }
+                    
+                    self?.state = .failed(error)
+                }
+            }
+        }
     }
 }
 
 
 struct FolderFindView: View {
    
-    var model: FolderFind
+    @Bindable var model: FolderFinder
+    
+    @AppStorage(.folderFindUsesRegularExpression) private var usesRegularExpression: Bool
+    @AppStorage(.folderFindIgnoresCase) private var ignoresCase: Bool
     
     
     var body: some View {
     
-        VStack(alignment: .leading) {
+        VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 8) {
+                SearchField(text: $model.findString, placeholder: String(localized: "Search in Folder", table: "Document", comment: "placeholder"))
+                    .onSubmit { _ in
+                        self.model.find(usesRegularExpression: self.usesRegularExpression, ignoresCase: self.ignoresCase)
+                    }
+                    .autosaveName("FolderSearch")
+                
+                HStack(spacing: 12) {
+                    Toggle(String(localized: "Regular Expression", table: "TextFind", comment: "toggle button label"), isOn: $usesRegularExpression)
+                        .help(String(localized: "Select to search with regular expression.", table: "TextFind", comment: "tooltip"))
+                    Toggle(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"), isOn: $ignoresCase)
+                        .help(String(localized: "Select to ignore character case on search.", table: "TextFind", comment: "tooltip"))
+                }
+                .controlSize(.small)
+                .fixedSize()
+            }
+            .padding(10)
             
+            Divider()
+            
+            FolderFindResultView(model: self.model)
         }
         .accessibilityLabel(SidebarPane.find.label)
+    }
+}
+
+
+private struct FolderFindResultView: View {
+    
+    var model: FolderFinder
+    
+    
+    var body: some View {
+        
+        switch self.model.state {
+            case .idle:
+                Spacer()
+                
+            case .searching:
+                ProgressView(String(localized: "FolderFind.SearchState.searching.label",
+                                    defaultValue: "Searching in folder…", table: "Document"))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .controlSize(.small)
+                
+            case .finished(let summary) where summary.matchCount == 0:
+                UnavailableView(title: String(localized: "FolderFind.SearchState.finished.zero.label",
+                                              defaultValue: "No Results", table: "Document"),
+                                systemName: "magnifyingglass",
+                                description: String(localized: "FolderFind.SearchState.finished.zero.description",
+                                                    defaultValue: "No matches were found.", table: "Document"))
+                    .controlSize(.small)
+                
+            case .finished(let summary):
+                FolderFindSummaryView(summary: summary)
+                
+            case .failed(let error):
+                UnavailableView(title: String(localized: "FolderFind.SearchState.failed.label",
+                                              defaultValue: "Search Failed", table: "Document"),
+                                systemName: "exclamationmark.triangle",
+                                description: error.localizedDescription)
+                    .controlSize(.small)
+        }
+    }
+}
+
+
+private struct FolderFindSummaryView: View {
+    
+    var summary: FolderFind.Summary
+    
+    @State private var selection: FolderFind.ResultID?
+    @State private var expandedFileURLs: Set<URL>
+    
+    
+    /// Initializes a folder find summary view.
+    ///
+    /// - Parameter summary: The search summary to display.
+    init(summary: FolderFind.Summary) {
+        
+        self.summary = summary
+        self._expandedFileURLs = State(initialValue: Set(summary.files.map(\.id)))
+    }
+    
+    
+    var body: some View {
+        
+        VStack(alignment: .leading, spacing: 0) {
+            Text(self.summary.message)
+                .foregroundStyle(.secondary)
+                .controlSize(.small)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 6)
+            
+            Divider()
+            
+            List(selection: $selection) {
+                ForEach(self.summary.files) { file in
+                    DisclosureGroup(isExpanded: $expandedFileURLs.contains(file.id)) {
+                        ForEach(file.matches) { match in
+                            FolderFindMatchView(match: match)
+                                .tag(FolderFind.ResultID.match(fileID: file.id, matchID: match.id))
+                        }
+                    } label: {
+                        FolderFindFileResultView(file: file)
+                    }
+                    .listRowSeparator(.hidden)
+                    .tag(FolderFind.ResultID.file(file.id))
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .onChange(of: self.summary) { _, newValue in
+                self.selection = nil
+                self.expandedFileURLs = Set(newValue.files.map(\.id))
+            }
+        }
+    }
+}
+
+
+private struct FolderFindFileResultView: View {
+    
+    var file: FolderFind.FileResult
+    
+    
+    var body: some View {
+        
+        Label {
+            HStack(spacing: 4) {
+                Text(self.file.filename)
+                    .fontWeight(.semibold)
+                    .layoutPriority(1)
+                
+                if !self.file.directoryPathComponents.isEmpty {
+                    let path = self.file.directoryPathComponents.joined(separator: "/")
+                    Text(path)
+                        .foregroundStyle(.secondary)
+                        .help(path)
+                }
+            }
+            .lineLimit(1)
+        } icon: {
+            Image(systemName: "doc.text")
+        }
+    }
+}
+
+
+private struct FolderFindMatchView: View {
+    
+    var match: FolderFind.Match
+    
+    
+    var body: some View {
+        
+        Text(self.highlightedLine)
+            .foregroundStyle(.secondary)
+            .lineLimit(2)
+            .multilineTextAlignment(.leading)
+    }
+    
+    
+    /// The line text with the matched substring emphasized.
+    private var highlightedLine: AttributedString {
+        
+        var attributedLine = AttributedString(self.match.line)
+        
+        guard let range = Range(self.match.rangeInLine, in: attributedLine) else {
+            return attributedLine
+        }
+        
+        attributedLine[range].inlinePresentationIntent = .stronglyEmphasized
+        attributedLine[range].foregroundColor = .primary
+        
+        return attributedLine
+    }
+}
+
+
+private struct UnavailableView: View {
+    
+    var title: String
+    var systemName: String
+    var description: String
+    
+    
+    var body: some View {
+        
+        ContentUnavailableView {
+            Label {
+                Text(self.title)
+                    .font(.system(size: 16))
+                    .fontWeight(.medium)
+            } icon: {
+                Image(systemName: self.systemName)
+            }
+        } description: {
+            Text(self.description)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+
+// MARK: Private Extensions
+
+private extension TextFind.Mode {
+    
+    /// Initializes a text find mode for the given options.
+    ///
+    /// - Parameters:
+    ///   - usesRegularExpression: Whether the search string should be treated as a regular expression.
+    ///   - ignoresCase: Whether character case should be ignored.
+    init(usesRegularExpression: Bool, ignoresCase: Bool) {
+        
+        self = if usesRegularExpression {
+            .regularExpression(options: ignoresCase ? .caseInsensitive : [], unescapesReplacement: false)
+        } else {
+            .textual(options: ignoresCase ? .caseInsensitive : [], fullWord: false)
+        }
+    }
+}
+
+
+extension FolderFinder.Error: LocalizedError {
+    
+    /// The localized description of the error.
+    var errorDescription: String? {
+        
+        switch self {
+            case .folderUnavailable:
+                String(localized: "FolderFinder.Error.folderUnavailable.message",
+                       defaultValue: "The folder cannot be found.", table: "Document")
+            case .invalidQuery(let error):
+                error.errorDescription
+            case .searchFailed(let message):
+                message
+        }
+    }
+}
+
+
+private extension FolderFind.Summary {
+    
+    /// The localized summary message.
+    var message: String {
+        
+        if self.skippedFileCount == 0 {
+            String(localized: "FolderFind.Summary.message",
+                   defaultValue: "\(self.matchCount) matches in \(self.matchedFileCount) files",
+                   table: "Document", comment: "folder find result summary")
+        } else {
+            String(localized: "FolderFind.Summary.skipped.message",
+                   defaultValue: "\(self.matchCount) matches in \(self.matchedFileCount) files, \(self.skippedFileCount) skipped",
+                   table: "Document", comment: "folder find result summary with skipped file count")
+        }
     }
 }

@@ -105,6 +105,13 @@ enum SyntaxName {
     }
     
     
+    /// A snapshot of the syntax file mapping table.
+    nonisolated var fileMappingTable: SyntaxMappingTable {
+        
+        self.mappingTable.withLock(\.self)
+    }
+    
+    
     /// Returns the syntax name that corresponds to the given document.
     ///
     /// - Parameters:

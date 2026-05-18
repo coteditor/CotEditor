@@ -4066,6 +4066,85 @@
         }
       }
     },
+    "FolderFind.SearchState.failed.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Search Failed"
+          }
+        }
+      }
+    },
+    "FolderFind.SearchState.finished.zero.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "No matches were found."
+          }
+        }
+      }
+    },
+    "FolderFind.SearchState.finished.zero.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "No Results"
+          }
+        }
+      }
+    },
+    "FolderFind.SearchState.searching.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Searching in folder…"
+          }
+        }
+      }
+    },
+    "FolderFind.Summary.message" : {
+      "comment" : "folder find result summary",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld matches in %2$lld files"
+          }
+        }
+      }
+    },
+    "FolderFind.Summary.skipped.message" : {
+      "comment" : "folder find result summary with skipped file count",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld matches in %2$lld files, %3$lld skipped"
+          }
+        }
+      }
+    },
+    "FolderFinder.Error.folderUnavailable.message" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The folder cannot be found."
+          }
+        }
+      }
+    },
     "Found %lld incompatible characters." : {
       "comment" : "%lld is the number of characters.",
       "localizations" : {
@@ -9730,6 +9809,9 @@
           }
         }
       }
+    },
+    "Search in Folder" : {
+      "comment" : "placeholder"
     },
     "Searching in folder…" : {
       "localizations" : {

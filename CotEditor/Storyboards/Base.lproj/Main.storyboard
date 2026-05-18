@@ -648,10 +648,10 @@ Gw
                                                             <action selector="showFileBrowser:" target="Ady-hI-5gd" id="Wsz-tN-aQt"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="File Find" secondaryImage="magnifyingglass" catalog="system" keyEquivalent="2" id="UFU-ir-16q">
+                                                    <menuItem title="Folder Find" secondaryImage="magnifyingglass" catalog="system" keyEquivalent="2" id="UFU-ir-16q">
                                                         <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                                         <connections>
-                                                            <action selector="showFileFind:" target="Ady-hI-5gd" id="Jip-1U-IHT"/>
+                                                            <action selector="showFolderFinder:" target="Ady-hI-5gd" id="Jip-1U-IHT"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="S3l-cD-Qfr"/>

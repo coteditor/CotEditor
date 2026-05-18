@@ -158,6 +158,8 @@ struct DefaultSettings {
             .findRegexIsMultiline: true,
             .findRegexUsesUnicodeBoundaries: false,
             .findRegexUnescapesReplacementString: true,
+            .folderFindUsesRegularExpression: false,
+            .folderFindIgnoresCase: false,
             
             // Advanced Character Count
             .countUnit: CharacterCountOptions.CharacterUnit.graphemeCluster.rawValue,
