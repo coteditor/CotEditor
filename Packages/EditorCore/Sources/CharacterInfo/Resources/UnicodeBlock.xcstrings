@@ -2870,6 +2870,12 @@
             "state" : "translated",
             "value" : "Beria Erfe"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beria Erfe"
+          }
         }
       }
     },
@@ -22188,6 +22194,12 @@
             "state" : "translated",
             "value" : "Miscellaneous Symbols Supplement"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "其他符號補充"
+          }
         }
       }
     },
@@ -28044,6 +28056,12 @@
             "state" : "translated",
             "value" : "Sharada Supplement"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沙拉達文補充"
+          }
         }
       }
     },
@@ -28368,6 +28386,12 @@
     "Sidetic" : {
       "localizations" : {
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sidetic"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sidetic"
@@ -32002,6 +32026,12 @@
             "state" : "translated",
             "value" : "Tai Yo"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tai Yo"
+          }
         }
       }
     },
@@ -32636,7 +32666,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "西夏文補充"
+            "value" : "西夏文組件"
           }
         }
       }
@@ -32647,6 +32677,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tangut Components Supplement"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "西夏文組件補充"
           }
         }
       }
@@ -33502,6 +33538,12 @@
     "Tolong Siki" : {
       "localizations" : {
         "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tolong Siki"
+          }
+        },
+        "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tolong Siki"

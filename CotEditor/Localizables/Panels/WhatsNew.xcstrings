@@ -322,7 +322,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "圖示使結構更易掃描；基於tree-sitter的語法現已支援可摺疊大綱，可呈現代碼階層。"
+            "value" : "圖示令結構更易掃描；基於tree-sitter的語法現已支援可摺疊大綱，可呈現代碼階層。"
           }
         }
       }
@@ -661,7 +661,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "語法分析更精明，編輯體驗更俐落"
+            "value" : "語法分析更精明，編輯體驗更利落"
           }
         }
       }
