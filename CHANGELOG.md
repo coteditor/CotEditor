@@ -13,6 +13,11 @@
 - Add the Customize Syntax Menu command to the Available syntaxes action menu in Format settings to hide specific syntaxes from syntax menus.
 
 
+### Improvements
+
+- Make some setting dialogs resizable.
+
+
 
 7.0.4 (unreleased)
 --------------------------

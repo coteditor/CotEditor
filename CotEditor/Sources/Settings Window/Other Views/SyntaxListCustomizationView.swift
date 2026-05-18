@@ -56,7 +56,16 @@ struct SyntaxListCustomizationView: View {
             }
             .scrollContentBackground(.hidden)
             .background(.fill.quaternary, in: .rect(cornerRadius: 8))
-            .frame(minHeight: 200)
+            .frame(minHeight: 200, idealHeight: 250)
+            
+            HStack {
+                Button(String(localized: "Select All", table: "SyntaxListCustomization")) {
+                    self.hiddenItems.removeAll()
+                }
+                .disabled(self.hiddenItems.isEmpty)
+                .fixedSize()
+                Spacer()
+            }
             
             Text("Hidden syntaxes are still used for automatic detection.", tableName: "SyntaxListCustomization")
                 .controlSize(.small)
@@ -65,11 +74,6 @@ struct SyntaxListCustomizationView: View {
             
             HStack {
                 HelpLink(anchor: "howto_customize_syntax_menu")
-                
-                Button(String(localized: "Select All", table: "SyntaxListCustomization")) {
-                    self.hiddenItems.removeAll()
-                }
-                .disabled(self.hiddenItems.isEmpty)
                 
                 Spacer()
                 
@@ -85,7 +89,8 @@ struct SyntaxListCustomizationView: View {
             self.hiddenItems = Set(UserDefaults.standard[.hiddenSyntaxes])
         }
         .scenePadding()
-        .frame(idealWidth: 240, maxHeight: 450)
+        .frame(minWidth: 300, idealWidth: 400, maxWidth: 1000, idealHeight: 450, maxHeight: .infinity)
+        .presentationSizing(.fitted)
     }
 }
 
