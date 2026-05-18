@@ -50,6 +50,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     private var versionBrowserObservers: [any NSObjectProtocol] = []
     
     private var defaultsObserver: AnyCancellable?
+    private var folderTextSearchPanelController: FolderTextSearchPanelController?
     
     
     // MARK: Split View Controller Methods
@@ -293,6 +294,13 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
                     ? String(localized: "Hide Status Bar", table: "MainMenu")
                     : String(localized: "Show Status Bar", table: "MainMenu")
                 
+            case #selector(searchInFolder):
+                (item as? NSMenuItem)?.toolTip = (self.directoryDocument == nil)
+                    ? String(localized: "Search in Folder is only available when a folder is opened as a document.",
+                             table: "MainMenu", comment: "tooltip for the “Search in Folder” menu item")
+                    : nil
+                return self.directoryDocument?.fileURL != nil
+                
             default: break
         }
         
@@ -370,6 +378,18 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
         UserDefaults.standard[.showStatusBar].toggle()
+    }
+    
+    
+    /// Shows the search-in-folder panel.
+    @IBAction func searchInFolder(_ sender: Any?) {
+        
+        guard let directoryDocument else { return }
+        
+        let controller = self.folderTextSearchPanelController ?? FolderTextSearchPanelController(directoryDocument: directoryDocument)
+        self.folderTextSearchPanelController = controller
+        controller.showWindow(sender)
+        controller.window?.makeKeyAndOrderFront(sender)
     }
     
     

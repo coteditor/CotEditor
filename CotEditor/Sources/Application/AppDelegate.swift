@@ -108,6 +108,7 @@ extension Logger {
     private weak var exportSettingsPanel: NSPanel?
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
+    @IBOutlet private weak var findMenu: NSMenu?
     @IBOutlet private weak var syntaxesMenu: NSMenu?
     @IBOutlet private weak var lineEndingsMenu: NSMenu?
     @IBOutlet private weak var themesMenu: NSMenu?
@@ -476,6 +477,16 @@ extension Logger {
         assert(NSApp.mainMenu != nil)
         
         guard self.menuUpdateObservers.isEmpty else { return assertionFailure() }
+        
+        if let findMenu,
+           findMenu.indexOfItem(withTarget: nil, andAction: #selector(WindowContentViewController.searchInFolder)) == -1,
+           let findAllIndex = findMenu.items.firstIndex(where: { $0.tag == TextFinder.Action.findAll.rawValue })
+        {
+            findMenu.insertItem(NSMenuItem(title: String(localized: "Search in Folder…", table: "MainMenu", comment: "menu item label"),
+                                           systemImage: "folder",
+                                           action: #selector(WindowContentViewController.searchInFolder)),
+                                at: findAllIndex + 1)
+        }
         
         self.updateEncodingMenu(self.encodingsMenu!)
         

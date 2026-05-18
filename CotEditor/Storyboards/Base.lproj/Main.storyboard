@@ -1273,6 +1273,7 @@ CA
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="CotEditor" customModuleProvider="target">
                     <connections>
                         <outlet property="encodingsMenu" destination="300" id="Oy6-3l-RCI"/>
+                        <outlet property="findMenu" destination="kGA-vM-cdL" id="zMJ-zY-aQs"/>
                         <outlet property="lineEndingsMenu" destination="296" id="U4V-rN-Wn0"/>
                         <outlet property="multipleReplaceMenu" destination="OaT-5c-bMY" id="YLT-05-lBG"/>
                         <outlet property="normalizationMenu" destination="600" id="Ned-B7-VAN"/>

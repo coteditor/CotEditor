@@ -76,7 +76,7 @@ let package = Package(
         .target(name: "TextEditing", dependencies: ["StringUtils"]),
         .testTarget(name: "TextEditingTests", dependencies: ["TextEditing"]),
         
-        .target(name: "TextFind", dependencies: ["StringUtils", "ValueRange"]),
+        .target(name: "TextFind", dependencies: ["FileEncoding", "StringUtils", "ValueRange"]),
         .testTarget(name: "TextFindTests", dependencies: ["TextFind"]),
         
         .target(name: "URLUtils"),
