@@ -607,13 +607,14 @@ extension DocumentWindowController: NSToolbarDelegate {
             .fonts,
             .find,
             .print,
+            .writingToolsItemIdentifier,
             .share,
             .space,
             .flexibleSpace,
         ]
         
-        if NSWritingToolsCoordinator.isWritingToolsAvailable {
-            identifiers.insert(.writingToolsItemIdentifier, at: identifiers.count - 3)
+        if !NSWritingToolsCoordinator.isWritingToolsAvailable {
+            identifiers.removeAll { $0 == .writingToolsItemIdentifier }
         }
         
         return identifiers
