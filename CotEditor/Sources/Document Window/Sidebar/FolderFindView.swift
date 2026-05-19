@@ -51,19 +51,6 @@ import TextFind
     
     let document: DirectoryDocument
     
-    var findString = "" {
-        
-        didSet {
-            guard self.findString != oldValue, self.findString != self.submittedFindString else { return }
-            
-            self.searchTask?.cancel()
-            self.selectionTask?.cancel()
-            if case .searching = self.state {
-                self.state = .idle
-            }
-        }
-    }
-    
     private(set) var state: SearchState = .idle
     
     private var searchTask: Task<Void, Never>?
@@ -87,17 +74,32 @@ import TextFind
     }
     
     
+    /// Updates the search state after the find string changes.
+    ///
+    /// - Parameter findString: The new find string.
+    func findStringDidChange(to findString: String) {
+        
+        guard findString != self.submittedFindString else { return }
+        
+        self.searchTask?.cancel()
+        self.selectionTask?.cancel()
+        if case .searching = self.state {
+            self.state = .idle
+        }
+    }
+    
+    
     /// Searches files in the directory document.
     ///
     /// - Parameters:
+    ///   - findString: The string to find.
     ///   - usesRegularExpression: Whether the search string should be treated as a regular expression.
     ///   - ignoresCase: Whether character case should be ignored.
-    func find(usesRegularExpression: Bool, ignoresCase: Bool) {
+    func find(findString: String, usesRegularExpression: Bool, ignoresCase: Bool) {
         
         self.searchTask?.cancel()
         self.selectionTask?.cancel()
         
-        let findString = self.findString
         guard !findString.isEmpty else {
             self.submittedFindString = findString
             self.state = .idle
@@ -207,6 +209,8 @@ struct FolderFindView: View {
    
     @Bindable var model: FolderFinder
     
+    @State private var textFinderSettings: TextFinderSettings = .shared
+    
     @AppStorage(.folderFindUsesRegularExpression) private var usesRegularExpression: Bool
     @AppStorage(.folderFindIgnoresCase) private var ignoresCase: Bool
     
@@ -215,11 +219,17 @@ struct FolderFindView: View {
     
         VStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 8) {
-                SearchField(text: $model.findString, placeholder: String(localized: "Search in Folder", table: "Document", comment: "placeholder"))
-                    .onSubmit { _ in
-                        self.model.find(usesRegularExpression: self.usesRegularExpression, ignoresCase: self.ignoresCase)
-                    }
+                SearchField(text: $textFinderSettings.findString,
+                            placeholder: String(localized: "Search in Folder", table: "Document", comment: "placeholder"))
                     .autosaveName("FolderSearch")
+                    .onSubmit { findString in
+                        self.model.find(findString: findString,
+                                        usesRegularExpression: self.usesRegularExpression,
+                                        ignoresCase: self.ignoresCase)
+                    }
+                    .onChange(of: self.textFinderSettings.findString) { _, newValue in
+                        self.model.findStringDidChange(to: newValue)
+                    }
                 
                 HStack(spacing: 12) {
                     Toggle(String(localized: "Regular Expression", table: "TextFind", comment: "toggle button label"), isOn: $usesRegularExpression)
