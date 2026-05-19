@@ -87,6 +87,19 @@ struct MultipleReplaceListView: View {
                 self.selection = nil
             }
         }
+        .dropDestination(for: TransferableReplacement.self) { items, _ in
+            for item in items {
+                do {
+                    try self.manager.importSetting(.url(item.url), name: item.name, type: .cotReplacement, overwrite: false)
+                    self.selection = item.name
+                } catch let error as ImportDuplicationError {
+                    self.importingError = error
+                    self.isImportConfirmationPresented = true
+                } catch {
+                    self.error = error
+                }
+            }
+        }
         .contextMenu(forSelectionType: String.self) { selections in
             if let selection = selections.first {
                 self.menu(for: selection, isContext: true)
