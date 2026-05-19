@@ -319,6 +319,7 @@ private struct FolderFindSummaryView: View {
             Text(self.summary.message)
                 .foregroundStyle(.secondary)
                 .controlSize(.small)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 6)
             
@@ -402,7 +403,7 @@ private struct FolderFindFileResultView: View {
         Label {
             HStack(spacing: 4) {
                 Text(self.file.filename)
-                    .fontWeight(.semibold)
+                    .fontWeight(.medium)
                     .layoutPriority(1)
                 
                 if !self.file.directoryPathComponents.isEmpty {
