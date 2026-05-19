@@ -296,7 +296,7 @@ private struct FolderFindSummaryView: View {
     var summary: FolderFind.Summary
     var model: FolderFinder
     
-    @State private var selection: FolderFind.ResultID?
+    @State private var selection: Set<FolderFind.ResultID> = []
     @State private var expandedFileURLs: Set<URL>
     
     
@@ -341,24 +341,31 @@ private struct FolderFindSummaryView: View {
             }
             .scrollContentBackground(.hidden)
             .contextMenu(forSelectionType: FolderFind.ResultID.self) { selections in
-                if let selection = selections.first, let result = self.summary.result(for: selection) {
+                if selections.count == 1, let selection = selections.first, let result = self.summary.result(for: selection) {
                     FolderFindResultContextMenu(file: result.file, model: self.model)
                 }
             }
             .onChange(of: self.summary) { _, newValue in
-                self.selection = nil
+                self.selection.removeAll()
                 self.expandedFileURLs = Set(newValue.files.map(\.id))
             }
             .onChange(of: self.selection) { _, newValue in
-                guard let newValue, let result = self.summary.result(for: newValue) else { return }
+                guard
+                    newValue.count == 1,
+                    let selection = newValue.first,
+                    let result = self.summary.result(for: selection)
+                else { return }
                 
                 self.model.selectResult(fileURL: result.file.fileURL, range: result.match?.range)
             }
             .onDeleteCommand {
-                guard let selection = self.selection else { return }
+                guard !self.selection.isEmpty else { return }
                 
-                self.selection = nil
-                self.model.removeResult(for: selection)
+                let selection = self.selection
+                self.selection = []
+                for resultID in selection {
+                    self.model.removeResult(for: resultID)
+                }
             }
         }
     }
