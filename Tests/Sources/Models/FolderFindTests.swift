@@ -46,6 +46,7 @@ import UniformTypeIdentifiers
         
         let summary = try await Self.finishedSummary(from: model)
         
+        #expect(summary.findString == "needle")
         #expect(summary.matchCount == 1)
         #expect(summary.searchedFileCount == 1)
         #expect(summary.skippedFileCount == 0)

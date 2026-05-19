@@ -273,7 +273,8 @@ private struct FolderFindResultView: View {
                                               defaultValue: "No Results", table: "Document"),
                                 systemName: "magnifyingglass",
                                 description: String(localized: "FolderFind.SearchState.finished.zero.description",
-                                                    defaultValue: "No matches were found.", table: "Document"))
+                                                    defaultValue: "No matches for “\(summary.findString)” were found.",
+                                                    table: "Document"))
                     .controlSize(.small)
                 
             case .finished(let summary):

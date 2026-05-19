@@ -121,6 +121,7 @@ public enum FolderFind {
     
     public struct Summary: Equatable, Sendable {
         
+        public var findString: String
         public var files: [FileResult]
         public var searchedFileCount: Int
         public var skippedFileCount: Int

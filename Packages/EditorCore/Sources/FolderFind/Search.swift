@@ -50,7 +50,8 @@ struct Search {
         
         try await self.searchDirectory(at: self.rootURL)
         
-        return FolderFind.Summary(files: self.files,
+        return FolderFind.Summary(findString: self.query.findString,
+                                  files: self.files,
                                   searchedFileCount: self.searchedFileCount,
                                   skippedFileCount: self.skippedFileCount)
     }

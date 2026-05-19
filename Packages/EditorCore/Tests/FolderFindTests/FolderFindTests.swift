@@ -44,6 +44,7 @@ struct FolderFindTests {
         
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
         
+        #expect(summary.findString == "needle")
         #expect(summary.searchedFileCount == 3)
         #expect(summary.skippedFileCount == 0)
         #expect(summary.matchedFileCount == 2)
