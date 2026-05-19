@@ -297,6 +297,19 @@ private struct SyntaxListView: View {
                 self.selection = nil
             }
         }
+        .dropDestination(for: TransferableSyntax.self) { items, _ in
+            for item in items {
+                do {
+                    try self.manager.importSetting(.url(item.url), name: item.name, type: .cotSyntax, overwrite: false)
+                    self.selection = self.manager.state(of: item.name)
+                } catch let error as ImportDuplicationError {
+                    self.importingError = error
+                    self.isImportConfirmationPresented = true
+                } catch {
+                    self.error = error
+                }
+            }
+        }
         .contextMenu(forSelectionType: SettingState.self) { selections in
             self.menu(for: selections.first, isContext: true)
         } primaryAction: { selections in

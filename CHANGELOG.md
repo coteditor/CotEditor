@@ -18,6 +18,7 @@
 
 - Make some setting dialogs resizable.
 - Allow custom syntaxes, themes, and multiple replacement definitions to be deleted by dragging them to the Trash.
+- Allow CotEditor Syntax files to be imported by dropping them onto the syntax list in Format settings.
 
 
 

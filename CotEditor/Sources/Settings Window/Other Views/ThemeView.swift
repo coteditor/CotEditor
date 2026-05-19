@@ -210,11 +210,9 @@ private struct ThemeListView: View {
             }
         }
         .dropDestination(for: TransferableTheme.self) { items, _ in
-            var succeed = false
             for item in items {
                 do {
                     try self.manager.importSetting(.url(item.url), name: item.name, type: .cotTheme, overwrite: false)
-                    succeed = true
                 } catch let error as ImportDuplicationError {
                     self.importingError = error
                     self.isImportConfirmationPresented = true
@@ -222,7 +220,6 @@ private struct ThemeListView: View {
                     self.error = error
                 }
             }
-            return succeed
         }
         .contextMenu(forSelectionType: String.self) { selections in
             if let selection = selections.first {
