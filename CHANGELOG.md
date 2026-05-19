@@ -17,6 +17,7 @@
 ### Improvements
 
 - Make some setting dialogs resizable.
+- Allow custom syntaxes, themes, and multiple replacement definitions to be deleted by dragging them to the Trash.
 
 
 

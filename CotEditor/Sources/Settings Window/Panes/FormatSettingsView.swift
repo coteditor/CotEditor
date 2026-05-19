@@ -265,15 +265,9 @@ private struct SyntaxListView: View {
                 Text(state.name)
             }
             .tag(state)
+            .draggable(containerItemID: state.name)
             .frame(height: self.rowHeight)
             .listRowSeparator(.hidden)
-            .draggable(TransferableSyntax(name: state.name, url: self.manager.urlForUserSetting(name: state.name))) {
-                Label {
-                    Text(state.name)
-                } icon: {
-                    Image(nsImage: NSWorkspace.shared.icon(for: .cotSyntax))
-                }
-            }
         }
         .safeAreaBar(edge: .bottom) {
             VStack(spacing: 0) {
@@ -282,6 +276,27 @@ private struct SyntaxListView: View {
             }
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
+        .dragContainer(for: TransferableSyntax.self, itemID: \.name) { names in
+            names.compactMap { name in
+                self.manager.urlForUserSetting(name: name)
+                    .map { TransferableSyntax(name: name, url: $0) }
+            }
+        }
+        .dragContainerSelection(self.selection.map { [$0.name] } ?? [])
+        .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
+        .onDragSessionUpdated { session in
+            guard case .ended(.delete) = session.phase else { return }
+            
+            for name in session.draggedItemIDs(for: String.self) where self.manager.state(of: name)?.isBundled != true {
+                do {
+                    try self.manager.removeSetting(name: name)
+                } catch {
+                    self.error = error
+                    return
+                }
+                self.selection = nil
+            }
+        }
         .contextMenu(forSelectionType: SettingState.self) { selections in
             self.menu(for: selections.first, isContext: true)
         } primaryAction: { selections in
@@ -505,8 +520,10 @@ private struct SyntaxListView: View {
                    : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection.name)”…"),
                    systemImage: "square.and.arrow.up")
             {
-                self.exportingItem = TransferableSyntax(name: selection.name, url: self.manager.urlForUserSetting(name: selection.name))
-                self.isExporterPresented = true
+                if let url = self.manager.urlForUserSetting(name: selection.name) {
+                    self.exportingItem = TransferableSyntax(name: selection.name, url: url)
+                    self.isExporterPresented = true
+                }
             }
             .modifierKeyAlternate(.option) {
                 Button(isContext
@@ -562,7 +579,7 @@ private struct TransferableSyntax: TransferableFile {
     static let fileType: UTType = .cotSyntax
     
     var name: String
-    var url: URL?
+    var url: URL
 }
 
 

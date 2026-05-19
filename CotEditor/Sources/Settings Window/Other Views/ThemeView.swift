@@ -176,13 +176,7 @@ private struct ThemeListView: View {
                     }
                     .editDisabled(state?.isBundled == true)
                     .focused($editingItem, equals: name)
-                    .draggable(TransferableTheme(name: name, url: self.manager.urlForUserSetting(name: name))) {
-                        Label {
-                            Text(name)
-                        } icon: {
-                            Image(nsImage: NSWorkspace.shared.icon(for: .cotTheme))
-                        }
-                    }
+                    .draggable(containerItemID: name)
                 }
             }
             .listRowSeparator(.hidden)
@@ -194,12 +188,32 @@ private struct ThemeListView: View {
             }
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
+        .dragContainer(for: TransferableTheme.self, itemID: \.name) { names in
+            names.compactMap { name in
+                self.manager.urlForUserSetting(name: name)
+                    .map { TransferableTheme(name: name, url: $0) }
+            }
+        }
+        .dragContainerSelection(self.settingNames.contains(self.selection) ? [self.selection] : [])
+        .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
+        .onDragSessionUpdated { session in
+            guard case .ended(.delete) = session.phase else { return }
+            
+            for name in session.draggedItemIDs(for: String.self) where self.manager.state(of: name)?.isBundled != true {
+                do {
+                    try self.manager.removeSetting(name: name)
+                } catch {
+                    self.error = error
+                    return
+                }
+                UserDefaults.standard.restore(key: .theme)
+            }
+        }
         .dropDestination(for: TransferableTheme.self) { items, _ in
             var succeed = false
             for item in items {
-                guard let url = item.url else { continue }
                 do {
-                    try self.manager.importSetting(.url(url), name: item.name, type: .cotTheme, overwrite: false)
+                    try self.manager.importSetting(.url(item.url), name: item.name, type: .cotTheme, overwrite: false)
                     succeed = true
                 } catch let error as ImportDuplicationError {
                     self.importingError = error
@@ -397,8 +411,10 @@ private struct ThemeListView: View {
                    : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection.name)”…"),
                    systemImage: "square.and.arrow.up")
             {
-                self.exportingItem = TransferableTheme(name: selection.name, url: self.manager.urlForUserSetting(name: selection.name))
-                self.isExporterPresented = true
+                if let url = self.manager.urlForUserSetting(name: selection.name) {
+                    self.exportingItem = TransferableTheme(name: selection.name, url: url)
+                    self.isExporterPresented = true
+                }
             }
             .modifierKeyAlternate(.option) {
                 Button(isContext
@@ -656,7 +672,7 @@ private struct TransferableTheme: TransferableFile {
     static let fileType: UTType = .cotTheme
     
     var name: String
-    var url: URL?
+    var url: URL
 }
 
 

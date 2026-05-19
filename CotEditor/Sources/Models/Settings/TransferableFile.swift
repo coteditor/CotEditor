@@ -32,9 +32,9 @@ protocol TransferableFile: Transferable {
     nonisolated static var fileType: UTType { get }
     
     var name: String { get }
-    var url: URL? { get }
+    var url: URL { get }
     
-    init(name: String, url: URL?)
+    init(name: String, url: URL)
 }
 
 
@@ -43,8 +43,7 @@ extension TransferableFile {
     static var transferRepresentation: some TransferRepresentation {
         
         FileRepresentation(contentType: Self.fileType) { item in
-            guard let url = item.url else { throw CocoaError(.fileNoSuchFile) }
-            return SentTransferredFile(url)
+            return SentTransferredFile(item.url)
             
         } importing: { received throws -> Self in
             let name = received.file.deletingPathExtension().lastPathComponent
@@ -56,6 +55,5 @@ extension TransferableFile {
             return Self(name: name, url: destination)
         }
         .suggestedFileName(\.name)
-        .exportingCondition { $0.url != nil }
     }
 }

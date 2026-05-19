@@ -59,19 +59,34 @@ struct MultipleReplaceListView: View {
                     return true
                 }
                 .focused($editingItem, equals: name)
-                .draggable(TransferableReplacement(name: name, url: self.manager.urlForUserSetting(name: name))) {
-                    Label {
-                        Text(name)
-                    } icon: {
-                        Image(nsImage: NSWorkspace.shared.icon(for: .cotReplacement))
-                    }
-                }
+                .draggable(containerItemID: name)
             }
         }
         .safeAreaBar(edge: .bottom) {
             self.bottomAccessoryView
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
+        .dragContainer(for: TransferableReplacement.self, itemID: \.name) { names in
+            names.compactMap { name in
+                self.manager.urlForUserSetting(name: name)
+                    .map { TransferableReplacement(name: name, url: $0) }
+            }
+        }
+        .dragContainerSelection(self.selection.map { [$0] } ?? [])
+        .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
+        .onDragSessionUpdated { session in
+            guard case .ended(.delete) = session.phase else { return }
+            
+            for name in session.draggedItemIDs(for: String.self) {
+                do {
+                    try self.manager.removeSetting(name: name)
+                } catch {
+                    self.error = error
+                    return
+                }
+                self.selection = nil
+            }
+        }
         .contextMenu(forSelectionType: String.self) { selections in
             if let selection = selections.first {
                 self.menu(for: selection, isContext: true)
@@ -256,8 +271,10 @@ struct MultipleReplaceListView: View {
                    : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection)”…"),
                    systemImage: "square.and.arrow.up")
             {
-                self.exportingItem = TransferableReplacement(name: selection, url: self.manager.urlForUserSetting(name: selection))
-                self.isExporterPresented = true
+                if let url = self.manager.urlForUserSetting(name: selection) {
+                    self.exportingItem = TransferableReplacement(name: selection, url: url)
+                    self.isExporterPresented = true
+                }
             }
             .modifierKeyAlternate(.option) {
                 Button(isContext
@@ -311,7 +328,7 @@ private struct TransferableReplacement: TransferableFile {
     static var fileType: UTType { .cotReplacement }
     
     var name: String
-    var url: URL?
+    var url: URL
 }
 
 
