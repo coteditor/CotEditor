@@ -296,6 +296,8 @@ private struct FolderFindSummaryView: View {
     var summary: FolderFind.Summary
     var model: FolderFinder
     
+    @Namespace private var namespace
+    
     @State private var selection: Set<FolderFind.ResultID> = []
     @State private var expandedFileURLs: Set<URL>
     
@@ -334,6 +336,9 @@ private struct FolderFindSummaryView: View {
                         }
                     } label: {
                         FolderFindFileResultView(file: file)
+                            .draggable(FolderFindDraggedFile.self,
+                                       item: FolderFindDraggedFile(id: .file(file.id), fileURL: file.fileURL),
+                                       containerNamespace: self.namespace)
                     }
                     .listRowSeparator(.hidden)
                     .tag(FolderFind.ResultID.file(file.id))
@@ -345,6 +350,8 @@ private struct FolderFindSummaryView: View {
                     FolderFindResultContextMenu(file: result.file, model: self.model)
                 }
             }
+            .dragContainerSelection(Array(self.selection), containerNamespace: self.namespace)
+            .dragPreviewsFormation(.list)
             .onChange(of: self.summary) { _, newValue in
                 self.selection.removeAll()
                 self.expandedFileURLs = Set(newValue.files.map(\.id))
@@ -396,6 +403,20 @@ private struct FolderFindResultContextMenu: View {
                systemImage: "macwindow.badge.plus") {
             self.model.document.openInNewWindow(fileURL: self.file.fileURL)
         }
+    }
+}
+
+
+private struct FolderFindDraggedFile: Transferable, Identifiable {
+    
+    var id: FolderFind.ResultID
+    var fileURL: URL
+    
+    
+    /// The transfer representations of a dragged file result.
+    static var transferRepresentation: some TransferRepresentation {
+        
+        ProxyRepresentation(exporting: \.fileURL)
     }
 }
 
