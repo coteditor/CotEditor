@@ -35,6 +35,7 @@ struct MultipleReplaceListView: View {
     @State private var settingNames: [String] = []
     @State private var exportingItem: TransferableReplacement?
     @State private var deletingItem: String?
+    @State private var draggingItem: String?
     @FocusState private var editingItem: String?
     
     @State private var isExporterPresented = false
@@ -59,46 +60,37 @@ struct MultipleReplaceListView: View {
                     return true
                 }
                 .focused($editingItem, equals: name)
-                .draggable(containerItemID: name)
+                .draggable(TransferableReplacement.self, id: \.name) {
+                    guard let url = self.manager.urlForUserSetting(name: name) else { return nil }
+                    
+                    self.draggingItem = name
+                    return TransferableReplacement(name: name, url: url)
+                }
+                .tag(name)
             }
         }
         .safeAreaBar(edge: .bottom) {
             self.bottomAccessoryView
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
-        .dragContainer(for: TransferableReplacement.self, itemID: \.name) { names in
-            names.compactMap { name in
-                self.manager.urlForUserSetting(name: name)
-                    .map { TransferableReplacement(name: name, url: $0) }
-            }
-        }
-        .dragContainerSelection(self.selection.map { [$0] } ?? [])
         .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
         .onDragSessionUpdated { session in
-            guard case .ended(.delete) = session.phase else { return }
+            guard case .ended(let operation) = session.phase else { return }
+            defer { self.draggingItem = nil }
+            guard case .delete = operation, let name = self.draggingItem else { return }
             
-            for name in session.draggedItemIDs(for: String.self) {
-                do {
-                    try self.manager.removeSetting(name: name)
-                } catch {
-                    self.error = error
-                    return
-                }
-                self.selection = nil
+            do {
+                try self.manager.removeSetting(name: name)
+            } catch {
+                self.error = error
+                return
             }
+            self.selection = nil
         }
-        .dropDestination(for: TransferableReplacement.self) { items, _ in
-            for item in items {
-                do {
-                    try self.manager.importSetting(.url(item.url), name: item.name, type: .cotReplacement, overwrite: false)
-                    self.selection = item.name
-                } catch let error as ImportDuplicationError {
-                    self.importingError = error
-                    self.isImportConfirmationPresented = true
-                } catch {
-                    self.error = error
-                }
-            }
+        .dropDestination(for: URL.self) { urls, session in
+            guard session.localSession == nil else { return }
+            
+            self.importSettings(at: urls)
         }
         .contextMenu(forSelectionType: String.self) { selections in
             if let selection = selections.first {
@@ -123,26 +115,7 @@ struct MultipleReplaceListView: View {
         .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.cotReplacement, .tabSeparatedText], allowsMultipleSelection: true) { result in
             switch result {
                 case .success(let urls):
-                    for url in urls {
-                        let accessing = url.startAccessingSecurityScopedResource()
-                        defer {
-                            if accessing { url.stopAccessingSecurityScopedResource() }
-                        }
-                        
-                        let name = url.deletingPathExtension().lastPathComponent
-                        do {
-                            let type = try url.resourceValues(forKeys: [.contentTypeKey]).contentType
-                            try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
-                        } catch let error as ImportDuplicationError {
-                            self.importingError = error
-                            self.isImportConfirmationPresented = true
-                            return
-                        } catch {
-                            self.error = error
-                            return
-                        }
-                        self.selection = name
-                    }
+                    self.importSettings(at: urls)
                 case .failure(let error):
                     self.error = error
             }
@@ -331,6 +304,38 @@ struct MultipleReplaceListView: View {
             self.selection = try self.manager.createUntitledSetting()
         } catch {
             self.error = error
+        }
+    }
+    
+    
+    /// Imports setting files at the given URLs.
+    ///
+    /// - Parameter urls: The file URLs to import.
+    private func importSettings(at urls: [URL]) {
+        
+        for url in urls {
+            guard url.isFileURL else { continue }
+            
+            let accessing = url.startAccessingSecurityScopedResource()
+            defer {
+                if accessing { url.stopAccessingSecurityScopedResource() }
+            }
+            
+            let name = url.deletingPathExtension().lastPathComponent
+            do {
+                let type = try url.resourceValues(forKeys: [.contentTypeKey]).contentType
+                guard type?.conforms(to: .cotReplacement) == true || type?.conforms(to: .tabSeparatedText) == true else { continue }
+                
+                try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
+            } catch let error as ImportDuplicationError {
+                self.importingError = error
+                self.isImportConfirmationPresented = true
+                return
+            } catch {
+                self.error = error
+                return
+            }
+            self.selection = name
         }
     }
 }

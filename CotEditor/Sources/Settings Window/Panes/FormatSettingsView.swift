@@ -237,6 +237,7 @@ private struct SyntaxListView: View {
     @State private var selection: SettingState?
     @State private var exportingItem: TransferableSyntax?
     @State private var deletingItem: String?
+    @State private var draggingItem: String?
     @State private var editingMode: EditingMode?
     
     @State private var isExporterPresented = false
@@ -264,9 +265,14 @@ private struct SyntaxListView: View {
                     .accessibilityHidden(!state.isCustomized)
                 Text(state.name)
             }
-            .tag(state)
-            .draggable(containerItemID: state.name)
             .frame(height: self.rowHeight)
+            .draggable(TransferableSyntax.self, id: \.name) {
+                guard let url = self.manager.urlForUserSetting(name: state.name) else { return nil }
+                
+                self.draggingItem = state.name
+                return TransferableSyntax(name: state.name, url: url)
+            }
+            .tag(state)
             .listRowSeparator(.hidden)
         }
         .safeAreaBar(edge: .bottom) {
@@ -276,39 +282,28 @@ private struct SyntaxListView: View {
             }
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
-        .dragContainer(for: TransferableSyntax.self, itemID: \.name) { names in
-            names.compactMap { name in
-                self.manager.urlForUserSetting(name: name)
-                    .map { TransferableSyntax(name: name, url: $0) }
-            }
-        }
-        .dragContainerSelection(self.selection.map { [$0.name] } ?? [])
         .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
         .onDragSessionUpdated { session in
-            guard case .ended(.delete) = session.phase else { return }
+            guard case .ended(let operation) = session.phase else { return }
+            defer { self.draggingItem = nil }
+            guard
+                case .delete = operation,
+                let name = self.draggingItem,
+                self.manager.state(of: name)?.isBundled != true
+            else { return }
             
-            for name in session.draggedItemIDs(for: String.self) where self.manager.state(of: name)?.isBundled != true {
-                do {
-                    try self.manager.removeSetting(name: name)
-                } catch {
-                    self.error = error
-                    return
-                }
-                self.selection = nil
+            do {
+                try self.manager.removeSetting(name: name)
+            } catch {
+                self.error = error
+                return
             }
+            self.selection = nil
         }
-        .dropDestination(for: TransferableSyntax.self) { items, _ in
-            for item in items {
-                do {
-                    try self.manager.importSetting(.url(item.url), name: item.name, type: .cotSyntax, overwrite: false)
-                    self.selection = self.manager.state(of: item.name)
-                } catch let error as ImportDuplicationError {
-                    self.importingError = error
-                    self.isImportConfirmationPresented = true
-                } catch {
-                    self.error = error
-                }
-            }
+        .dropDestination(for: URL.self) { urls, session in
+            guard session.localSession == nil else { return }
+            
+            self.importSettings(at: urls)
         }
         .contextMenu(forSelectionType: SettingState.self) { selections in
             self.menu(for: selections.first, isContext: true)
@@ -335,26 +330,7 @@ private struct SyntaxListView: View {
         .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.cotSyntax, .yaml], allowsMultipleSelection: true) { result in
             switch result {
                 case .success(let urls):
-                    for url in urls {
-                        let accessing = url.startAccessingSecurityScopedResource()
-                        defer {
-                            if accessing { url.stopAccessingSecurityScopedResource() }
-                        }
-                        
-                        let name = url.deletingPathExtension().lastPathComponent
-                        do {
-                            let type = try url.resourceValues(forKeys: [.contentTypeKey]).contentType
-                            try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
-                        } catch let error as ImportDuplicationError {
-                            self.importingError = error
-                            self.isImportConfirmationPresented = true
-                            return
-                        } catch {
-                            self.error = error
-                            return
-                        }
-                        self.selection = self.manager.state(of: name)
-                    }
+                    self.importSettings(at: urls)
                 case .failure(let error):
                     self.error = error
             }
@@ -582,6 +558,38 @@ private struct SyntaxListView: View {
                 self.isFileMappingConflictPresented = true
             }
             .disabled(self.manager.mappingConflicts.isEmpty)
+        }
+    }
+    
+    
+    /// Imports setting files at the given URLs.
+    ///
+    /// - Parameter urls: The file URLs to import.
+    private func importSettings(at urls: [URL]) {
+        
+        for url in urls {
+            guard url.isFileURL else { continue }
+            
+            let accessing = url.startAccessingSecurityScopedResource()
+            defer {
+                if accessing { url.stopAccessingSecurityScopedResource() }
+            }
+            
+            let name = url.deletingPathExtension().lastPathComponent
+            do {
+                let type = try url.resourceValues(forKeys: [.contentTypeKey]).contentType
+                guard type?.conforms(to: .cotSyntax) == true || type?.conforms(to: .yaml) == true else { continue }
+                
+                try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
+            } catch let error as ImportDuplicationError {
+                self.importingError = error
+                self.isImportConfirmationPresented = true
+                return
+            } catch {
+                self.error = error
+                return
+            }
+            self.selection = self.manager.state(of: name)
         }
     }
 }
