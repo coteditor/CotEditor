@@ -207,7 +207,7 @@ struct WindowSettingsView: View {
                 }
                 .pickerStyle(.radioGroup)
                 .horizontalRadioGroupLayout()
-                .labelsVisibility(.hidden)
+                .labelsHidden()
                 .accessibilityLabeledPair(role: .content, id: "writingDirection", in: self.accessibility)
             }
             

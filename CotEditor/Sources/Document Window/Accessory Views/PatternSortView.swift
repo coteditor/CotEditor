@@ -103,7 +103,7 @@ struct PatternSortView: View {
                         }
                         .pickerStyle(.radioGroup)
                         .horizontalRadioGroupLayout()
-                        .labelsVisibility(.hidden)
+                        .labelsHidden()
                         .fixedSize()
                         .onChange(of: self.sortKey) { self.validate() }
                         

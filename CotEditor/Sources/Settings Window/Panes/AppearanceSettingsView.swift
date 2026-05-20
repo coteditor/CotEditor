@@ -136,7 +136,7 @@ struct AppearanceSettingsView: View {
                 .accessibilityLabeledPair(role: .content, id: "documentAppearance", in: self.accessibility)
                 .pickerStyle(.radioGroup)
                 .horizontalRadioGroupLayout()
-                .labelsVisibility(.hidden)
+                .labelsHidden()
             }
             
             GridRow(alignment: .firstTextBaseline) {

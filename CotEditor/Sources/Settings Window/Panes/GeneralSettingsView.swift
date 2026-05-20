@@ -153,7 +153,7 @@ struct GeneralSettingsView: View {
                     EmptyView()
                 }
                 .pickerStyle(.radioGroup)
-                .labelsVisibility(.hidden)
+                .labelsHidden()
                 .accessibilityLabeledPair(role: .content, id: "documentConflictOption", in: self.accessibility)
             }
             
