@@ -20,6 +20,7 @@
 - Fix an issue where block comment delimiters could be inserted at the wrong indentation when commenting out lines with mixed indentation.
 - Fix an issue where NFKC Case-Fold normalization could leave default-ignorable Unicode characters in the text.
 - Fix an issue where invisible character symbols could be drawn incorrectly in right-to-left text.
+- Fix typos in German localization (Thanks to Rush Ali!).
 
 
 
