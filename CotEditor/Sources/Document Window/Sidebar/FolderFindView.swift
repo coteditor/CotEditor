@@ -27,6 +27,7 @@ import SwiftUI
 import Defaults
 import FileEncoding
 import FolderFind
+import StringUtils
 import SyntaxFormat
 import TextFind
 
@@ -451,6 +452,8 @@ private struct FolderFindFileResultView: View {
 
 private struct FolderFindMatchView: View {
     
+    private static let truncationHeadOffset = 32
+    
     var match: FolderFind.Match
     
     
@@ -467,15 +470,39 @@ private struct FolderFindMatchView: View {
     private var highlightedLine: AttributedString {
         
         var attributedLine = AttributedString(self.match.line)
+        var rangeInLine = self.match.rangeInLine
         
-        guard let range = Range(self.match.rangeInLine, in: attributedLine) else {
+        if let indentationRange = Self.leadingIndentationRange(in: self.match.line),
+           rangeInLine.location >= indentationRange.length,
+           let range = Range(indentationRange, in: attributedLine)
+        {
+            attributedLine.removeSubrange(range)
+            rangeInLine.location -= indentationRange.length
+        }
+        
+        guard let range = Range(rangeInLine, in: attributedLine) else {
             return attributedLine
         }
         
         attributedLine[range].inlinePresentationIntent = .stronglyEmphasized
         attributedLine[range].foregroundColor = .primary
         
-        return attributedLine
+        return attributedLine.truncatedHead(until: range.lowerBound, offset: Self.truncationHeadOffset)
+    }
+    
+    
+    /// Returns the range of the leading indentation in the given string.
+    ///
+    /// - Parameter string: The string to inspect.
+    /// - Returns: The range of the leading indentation, or `nil` if the string does not start with indentation.
+    private static func leadingIndentationRange(in string: String) -> NSRange? {
+        
+        guard
+            let index = string.firstIndex(where: { !$0.isWhitespace }),
+            index > string.startIndex
+        else { return nil }
+        
+        return NSRange(string.startIndex..<index, in: string)
     }
 }
 
