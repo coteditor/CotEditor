@@ -21,6 +21,7 @@
 - Fix an issue where NFKC Case-Fold normalization could leave default-ignorable Unicode characters in the text.
 - Fix an issue where invisible character symbols could be drawn incorrectly in right-to-left text.
 - Fix an issue where replacing an existing setting during import could fail for certain files.
+- Fix an issue on macOS 15 where the Export command in the Format settings pane’s menu could fail to export a syntax.
 - Fix typos in German localization (Thanks to Rush Ali!).
 
 
