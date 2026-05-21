@@ -85,6 +85,29 @@ enum ImportingItem {
 }
 
 
+extension ImportingItem {
+    
+    /// Performs the given operation while accessing the underlying security-scoped file URL.
+    ///
+    /// - Parameter body: The operation to perform.
+    /// - Returns: The operation result.
+    /// - Throws: An error thrown by `body`.
+    func withSecurityScopedAccess<Result>(_ body: () throws -> Result) rethrows -> Result {
+        
+        guard case .url(let url) = self else {
+            return try body()
+        }
+        
+        let accessing = url.startAccessingSecurityScopedResource()
+        defer {
+            if accessing { url.stopAccessingSecurityScopedResource() }
+        }
+        
+        return try body()
+    }
+}
+
+
 // MARK: -
 
 @MainActor protocol SettingFileManaging: AnyObject, Sendable {

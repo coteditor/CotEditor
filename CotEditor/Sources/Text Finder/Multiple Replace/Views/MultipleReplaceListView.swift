@@ -131,7 +131,9 @@ struct MultipleReplaceListView: View {
             Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
                 self.importingError = nil
                 do {
-                    try self.manager.importSetting(item.item, name: item.name, type: item.type, overwrite: true)
+                    try item.item.withSecurityScopedAccess {
+                        try self.manager.importSetting(item.item, name: item.name, type: item.type, overwrite: true)
+                    }
                 } catch {
                     self.error = error
                 }
