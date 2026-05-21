@@ -715,7 +715,7 @@
 		<h2>Improvements</h2>
 
 		<ul>
-			<li>Avoid assigning the <kbd>Shift</kbd>+<kbd>Return</kbd> shortcut key for a snippet.</li>
+			<li>Avoid assigning the <kbd>Shift</kbd>-<kbd>Return</kbd> shortcut key for a snippet.</li>
 			<li><span class="trivial">trivial</span>: Update find result messages.</li>
 			<li><span class="trivial">dev</span>: Update the build environment to Xcode 26.0.</li>
 			<li><span class="label">non-AppStore ver.</span>: Update Sparkle from 2.8.0-beta.3 to 2.8.0.</li>
@@ -3462,7 +3462,7 @@
 
 		<ul>
 			<li>Fix an issue that File Drop settings were not saved if both the extensions and syntax styles are for “all.”</li>
-			<li>Fix an issue that shortcuts for snippets did not accept the Shift key with a non-letter character, such as Shift + Return.</li>
+			<li>Fix an issue that shortcuts for snippets did not accept the Shift key with a non-letter character, such as Shift-Return.</li>
 			<li>Fix an issue that the rainbow cursor appeared when the document has a large number of incompatible characters.</li>
 			<li>Fix an issue that the rainbow cursor appeared when expanding the selection by <kbd>⌥⇧←</kbd> shortcut and invisible characters are contained in the new selection.</li>
 			<li>Fix an issue that the writing direction could be changed to right to left although when the text orientation is vertical.</li>
@@ -4581,7 +4581,7 @@
 
 <ul>
 	<li>Keep last opacity state of restored document windows.</li>
-	<li>Update behavior of Opt+Arrow shortcut series.</li>
+	<li>Update behavior of Opt-Arrow shortcut series.</li>
 </ul>
 </section>
 
@@ -4625,7 +4625,7 @@
 	<li>Add “Hide extension” option to the Save dialog.</li>
 	<li>Use the system appearance in the input candidate window even when the theme has a dark background color.</li>
 	<li>Give some feedback about the search result in VoiceOver.</li>
-	<li>Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as <code>.</code> and <code>:</code>.</li>
+	<li>Improve the behavior of Opt-Arrow shortcut series to stop the by punctuation marks, such as <code>.</code> and <code>:</code>.</li>
 	<li>Hide unused items in the font panel toolbar.</li>
 	<li>Optimize the performance of finding the matching brace to highlight.</li>
 	<li>Optimize the performance of line number drawing.</li>
@@ -5211,7 +5211,7 @@
 <ul>
 	<li>Assign <kbd>⌘⇧[</kbd> shortcut to “Show Next Tab” command instead of “Surround Selection with Brackets” command.</li>
 	<li>Treat a logical line, which is delimited by line ending characters, as one line in VoiceOver, instead of a visual (wrapped) line.<ul>
-		<li>Thereby, users can now also know the current line number by pressing VoiceOver shortcut VO+F3.</li>
+		<li>Thereby, users can now also know the current line number by pressing VoiceOver shortcut VO-F3.</li>
 	</ul></li>
 	<li>Improve the accessibility of user interface elements with VoiceOver.</li>
 	<li>Avoid performing custom sort with an invalid parameter.</li>
@@ -5650,7 +5650,7 @@
 <ul>
 	<li>Replace matches with preset replacement definition (Find &gt; Multiple Replace).</li>
 	<li>Add outline menu to side bar.</li>
-	<li>Select tabbed window with <code>⌘+number</code>.</li>
+	<li>Select tabbed window with <code>⌘-number</code>.</li>
 	<li>Parse regular expression pattern in find string field in regular expression mode:<ul>
 		<li>Syntax highlight.</li>
 		<li>Highlight matching brace by moving cursor.</li>
@@ -5983,7 +5983,7 @@
 <ul>
 	<li>Fix an issue where the find panel was over expanded when performing “Find All” with a long find string.</li>
 	<li>Fix an issue where the file size in the status bar was not updated after saving.</li>
-	<li>Fix an issue where the find panel didn’t select the previous field with Shift + Tab keys.</li>
+	<li>Fix an issue where the find panel didn’t select the previous field with Shift-Tab keys.</li>
 	<li>Fix an issue where the application frozen by opening the File Mapping Conflicts list when filename conflict exists.</li>
 </ul>
 </section>
@@ -6693,7 +6693,7 @@
 	<li>Fix an issue where status bar layout collapsed if status line overflows.</li>
 	<li>Fix an issue where document theme reloaded unnecessarily on the first time Appearance pane display.</li>
 	<li>Fix an issue where the application could crash when script was failed.</li>
-	<li>Fix an issue where scrolling to the end of document with <kbd>⌘</kbd>+<kbd>↓</kbd> shortcut didn’t scroll to the end.</li>
+	<li>Fix an issue where scrolling to the end of document with <kbd>⌘</kbd>-<kbd>↓</kbd> shortcut didn’t scroll to the end.</li>
 	<li>Improve general stability.</li>
 </ul>
 </section>
@@ -8791,7 +8791,7 @@
 
 <ul>
 	<li>“Inspect Glyph” feature:<ul>
-		<li>Popover information of the selected character, if <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>I</kbd> is pressed or “Inspect Glyph” menu item in “Edit” menu is selected when exactly a single character is selected.</li>
+		<li>Popover information of the selected character, if <kbd>Cmd</kbd>-<kbd>Option</kbd>-<kbd>I</kbd> is pressed or “Inspect Glyph” menu item in “Edit” menu is selected when exactly a single character is selected.</li>
 	</ul></li>
 	<li>New color code panel:<ul>
 		<li>Support 3-digit Hex, CSS’s rgb(), rgba(), hsl() and hsla().</li>
@@ -9096,7 +9096,7 @@
 <section>
 <h2>Improvements</h2>
 <ul>
-	<li>On Find Panel, don’t close panel when you press return key. (If you’d like to close panel, press shift+return key.) (thanks to akinull-san)</li>
+	<li>On Find Panel, don’t close panel when you press return key. (If you’d like to close panel, press Shift-Return key.) (thanks to akinull-san)</li>
 	<li>Add binary for 10.7. (build separately for 10.4–10.6 and for 10.7)</li>
 </ul>
 </section>
@@ -9130,7 +9130,7 @@
 <h2>Fixes</h2>
 <ul>
 	<li>Fix a bug that ignores tab in auto indent.</li>
-	<li>Fix a bug that cannot open AppleScript Editor for 10.6 by Option+Click on script menu.</li>
+	<li>Fix a bug that cannot open AppleScript Editor for 10.6 by Option-Click on script menu.</li>
 </ul>
 </section>
 </article>
