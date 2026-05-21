@@ -200,19 +200,42 @@ import LineEnding
     }
     
     
-    @Test func formatEditorCount() {
+    @Test func countTypeCases() {
         
-        var count = EditorCount()
+        #expect(CountType.allCases == [.lines, .characters, .words, .location, .line, .column])
+        #expect(CountType.countCases == [.lines, .characters, .words])
+        #expect(CountType.positionCases == [.location, .line, .column])
         
-        #expect(count.formatted == nil)
+        #expect(CountType.lines.counterTypes == .lines)
+        #expect(CountType.characters.counterTypes == .characters)
+        #expect(CountType.words.counterTypes == .words)
+        #expect(CountType.location.counterTypes == .location)
+        #expect(CountType.line.counterTypes == .line)
+        #expect(CountType.column.counterTypes == .column)
+    }
+    
+    
+    @Test func formatCountValue() {
         
-        count.entire = 1000
-        #expect(count.formatted == "1,000")
+        let result = EditorCounter.Result()
         
-        count.selected = 100
-        #expect(count.formatted == "1,000 (100)")
+        #expect(result.formattedValue(type: .characters) == nil)
         
-        count.entire = nil
-        #expect(count.formatted == nil)
+        result.characters.entire = 1000
+        #expect(result.formattedValue(type: .characters) == "1,000")
+        
+        result.characters.selected = 100
+        #expect(result.formattedValue(type: .characters) == "1,000 (100)")
+        
+        result.characters.entire = nil
+        #expect(result.formattedValue(type: .characters) == nil)
+        
+        result.location = 42
+        result.line = 3
+        result.column = 12
+        
+        #expect(result.formattedValue(type: .location) == "42")
+        #expect(result.formattedValue(type: .line) == "3")
+        #expect(result.formattedValue(type: .column) == "12")
     }
 }

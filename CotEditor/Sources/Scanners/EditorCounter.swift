@@ -27,30 +27,13 @@ import Foundation
 import LineEnding
 import StringUtils
 
-struct EditorCount: Equatable {
-    
-    var entire: Int?
-    var selected = 0
-    
-    
-    var formatted: String? {
-        
-        if let entire, self.selected > 0 {
-            "\(entire.formatted()) (\(self.selected.formatted()))"
-        } else {
-            self.entire?.formatted()
-        }
-    }
-}
-
-
 @MainActor final class EditorCounter {
     
     @MainActor @Observable final class Result {
         
-        var characters = EditorCount()
-        var lines = EditorCount()
-        var words = EditorCount()
+        var characters = Count()
+        var lines = Count()
+        var words = Count()
         
         /// Cursor location from the beginning of the content.
         var location: Int?
@@ -63,6 +46,13 @@ struct EditorCount: Equatable {
         
         /// The first selected character (only when selection is a single character).
         var character: Character?
+    }
+    
+    
+    struct Count: Equatable {
+        
+        var entire: Int?
+        var selected = 0
     }
     
     
