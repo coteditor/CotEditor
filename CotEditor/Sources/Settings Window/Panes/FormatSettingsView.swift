@@ -357,13 +357,16 @@ private struct SyntaxListView: View {
             Text(error.recoverySuggestion)
         }
         // place fileExporter after `fileDialogConfirmationLabel(_:)` for the import action to use the default label for the export.
-        .fileExporter(isPresented: $isExporterPresented, item: self.exportingItem, contentTypes: [.cotSyntax], defaultFilename: self.exportingItem?.name) { result in
+        .fileExporter(isPresented: $isExporterPresented, document: self.exportingItem, contentTypes: [.cotSyntax], defaultFilename: self.exportingItem?.name) { result in
+            self.exportingItem = nil
             switch result {
                 case .success:
                     break
                 case .failure(let error):
                     self.error = error
             }
+        } onCancellation: {
+            self.exportingItem = nil
         }
         .confirmationDialog(String(localized: "DeletionConfirmation.title",
                                    defaultValue: "Are you sure you want to delete “\(self.deletingItem ?? String(localized: .unknown))”?"),
@@ -603,6 +606,27 @@ private struct TransferableSyntax: TransferableFile {
     
     var name: String
     var url: URL
+}
+
+
+extension TransferableSyntax: FileDocument {
+    
+    static var readableContentTypes: [UTType] { [Self.fileType] }
+    static var writableContentTypes: [UTType] { [Self.fileType] }
+    
+    
+    init(configuration: ReadConfiguration) throws {
+        
+        throw CocoaError(.fileReadUnsupportedScheme)
+    }
+    
+    
+    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        
+        guard let url else { throw CocoaError(.fileNoSuchFile) }
+        
+        return try FileWrapper(url: url, options: .immediate)
+    }
 }
 
 
