@@ -323,6 +323,7 @@ private struct EditorCountView: View {
                 if self.shows(type: type) {
                     let valueText = self.result.formattedValue(type: type).map { Text($0).foregroundStyle(.primary) } ?? Text.none
                     Text("\(type.label): \(valueText)")
+                        .accessibilityLabel("\(type.label): \(self.result.formattedValue(type: type, forAccessibility: true) ?? String(localized: "None"))")
                 }
             }
         }

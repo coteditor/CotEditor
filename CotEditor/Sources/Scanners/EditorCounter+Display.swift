@@ -77,14 +77,16 @@ extension EditorCounter.Result {
     
     /// Returns the formatted value for the given count type.
     ///
-    /// - Parameter type: The count type to format.
+    /// - Parameters:
+    ///   - type: The count type to format.
+    ///   - forAccessibility: Whether to return the value in a form suitable for accessibility output.
     /// - Returns: The formatted value, or `nil` if the value is not available.
-    func formattedValue(type: CountType) -> String? {
+    func formattedValue(type: CountType, forAccessibility: Bool = false) -> String? {
         
         switch type {
-            case .characters: self.characters.formatted
-            case .lines: self.lines.formatted
-            case .words: self.words.formatted
+            case .characters: self.characters.formatted(forAccessibility: forAccessibility)
+            case .lines: self.lines.formatted(forAccessibility: forAccessibility)
+            case .words: self.words.formatted(forAccessibility: forAccessibility)
             case .location: self.location?.formatted()
             case .line: self.line?.formatted()
             case .column: self.column?.formatted()
@@ -95,11 +97,14 @@ extension EditorCounter.Result {
 
 private extension EditorCounter.Count {
     
-    /// The formatted count value.
-    var formatted: String? {
+    /// Returns the formatted count value.
+    ///
+    /// - Parameter forAccessibility: Whether to return the value in a form suitable for accessibility output.
+    /// - Returns: The formatted count value, or `nil` if the entire count is not available.
+    func formatted(forAccessibility: Bool) -> String? {
         
         if let entire, self.selected > 0 {
-            "\(entire.formatted()) (\(self.selected.formatted()))"
+            "\(entire.formatted()) (\(forAccessibility ? String(localized: "\(self.selected) selected") : self.selected.formatted()))"
         } else {
             self.entire?.formatted()
         }

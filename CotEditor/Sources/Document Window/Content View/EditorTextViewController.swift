@@ -426,7 +426,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         let components = CountType.allCases
             .filter { counter.statusBarRequirements.contains($0.counterTypes) }
             .compactMap { type in
-                counter.result.formattedValue(type: type)
+                counter.result.formattedValue(type: type, forAccessibility: true)
                     .map { "\(type.label): \($0)" }
             }
         
