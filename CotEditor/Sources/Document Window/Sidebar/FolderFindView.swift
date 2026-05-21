@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 import Defaults
 import FileEncoding
 import FolderFind
@@ -414,10 +415,30 @@ private struct FolderFindDraggedFile: Transferable, Identifiable {
     var fileURL: URL
     
     
+    /// The file URL string to transfer.
+    var fileURLString: String {
+        
+        self.fileURL.absoluteString
+    }
+    
+    
+    /// The file path to transfer as plain text.
+    var filePath: String {
+        
+        self.fileURL.path(percentEncoded: false)
+    }
+    
+    
     /// The transfer representations of a dragged file result.
     static var transferRepresentation: some TransferRepresentation {
         
-        ProxyRepresentation(exporting: \.fileURL)
+        DataRepresentation(exportedContentType: .url) { item in
+            Data(item.fileURLString.utf8)
+        }
+        DataRepresentation(exportedContentType: .fileURL) { item in
+            Data(item.fileURLString.utf8)
+        }
+        ProxyRepresentation(exporting: \.filePath)
     }
 }
 
