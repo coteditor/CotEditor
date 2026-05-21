@@ -100,6 +100,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             lineEndingScanner: self.document.lineEndingScanner
         )
         textView.delegate = self
+        textView.accessibilityHelpProvider = { [weak self] in self?.editorAccessibilityHelp }
         
         let scrollView = BidiScrollView()
         scrollView.hasVerticalScroller = true
@@ -417,6 +418,46 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     
     // MARK: Private Methods
+    
+    /// The accessibility help text for the editor text view.
+    private var editorAccessibilityHelp: String? {
+        
+        let types = self.document.counter.statusBarRequirements
+        
+        guard !types.isEmpty else { return nil }
+        
+        let result = self.document.counter.result
+        let entries: [(type: EditorCounter.Types, label: String, value: String?)] = [
+            (.lines,
+             String(localized: "CountType.lines.label", defaultValue: "Lines", table: "Document"),
+             result.lines.formatted),
+            (.characters,
+             String(localized: "CountType.characters.label", defaultValue: "Characters", table: "Document"),
+             result.characters.formatted),
+            (.words,
+             String(localized: "CountType.words.label", defaultValue: "Words", table: "Document"),
+             result.words.formatted),
+            (.location,
+             String(localized: "CountType.location.label", defaultValue: "Location", table: "Document"),
+             result.location?.formatted()),
+            (.line,
+             String(localized: "CountType.line.label", defaultValue: "Line", table: "Document"),
+             result.line?.formatted()),
+            (.column,
+             String(localized: "CountType.column.label", defaultValue: "Column", table: "Document"),
+             result.column?.formatted()),
+        ]
+           
+        
+        let components = entries.compactMap { entry -> String? in
+            guard types.contains(entry.type), let value = entry.value else { return nil }
+            
+            return "\(entry.label): \(value)"
+        }
+        
+        return components.isEmpty ? nil : components.joined(separator: ", ")
+    }
+    
     
     /// Applies syntax to the inner text view.
     private func applySyntax() {

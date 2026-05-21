@@ -5,7 +5,7 @@
 
 ### Improvements
 
-- Improve VoiceOver support.
+- Improve VoiceOver support by letting the editor read the text count information shown in the status bar with VO-Shift-H.
 - Improve the paired-symbol matching algorithm for brackets and quotation marks.
 - Remove the Rich Text Format built-in syntax.
 - [non-AppStore ver.] Update Sparkle from 2.9.1 to 2.9.2.
