@@ -136,6 +136,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     var customSurroundPair: Pair<String>?
     
+    var accessibilityHelpProvider: (() -> String?)?
+    
     
     // MARK: Private Properties
     
@@ -278,6 +280,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         didSet {
             self.invalidateInsertionIndicatorDisplayMode()
         }
+    }
+    
+    
+    override func accessibilityHelp() -> String? {
+        
+        self.accessibilityHelpProvider?() ?? super.accessibilityHelp()
     }
     
     

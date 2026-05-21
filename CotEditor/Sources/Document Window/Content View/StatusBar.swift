@@ -305,29 +305,12 @@ private struct EditorCountView: View {
     var body: some View {
         
         TruncatingHStack {
-            if self.showsLines {
-                Text(String(localized: "CountType.lines.label", defaultValue: "Lines", table: "Document"),
-                     value: self.result.lines.formatted)
-            }
-            if self.showsCharacters {
-                Text(String(localized: "CountType.characters.label", defaultValue: "Characters", table: "Document"),
-                     value: self.result.characters.formatted)
-            }
-            if self.showsWords {
-                Text(String(localized: "CountType.words.label", defaultValue: "Words", table: "Document"),
-                     value: self.result.words.formatted)
-            }
-            if self.showsLocation {
-                Text(String(localized: "CountType.location.label", defaultValue: "Location", table: "Document"),
-                     value: self.result.location?.formatted())
-            }
-            if self.showsLine {
-                Text(String(localized: "CountType.line.label", defaultValue: "Line", table: "Document"),
-                     value: self.result.line?.formatted())
-            }
-            if self.showsColumn {
-                Text(String(localized: "CountType.column.label", defaultValue: "Column", table: "Document"),
-                     value: self.result.column?.formatted())
+            ForEach(CountType.allCases, id: \.self) { type in
+                if self.shows(type: type) {
+                    let valueText = self.result.formattedValue(type: type).map { Text($0).foregroundStyle(.primary) } ?? Text.none
+                    Text("\(type.label): \(valueText)")
+                        .accessibilityLabel("\(type.label): \(self.result.formattedValue(type: type, forAccessibility: true) ?? String(localized: "None"))")
+                }
             }
         }
         .foregroundStyle(.secondary)
@@ -335,25 +318,18 @@ private struct EditorCountView: View {
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.updatesFrequently)
     }
-}
-
-
-private extension Text {
     
-    /// Instantiates the labeled value for status bar.
-    ///
-    /// - Parameters:
-    ///   - label: Localized label.
-    ///   - value: The content string.
-    init(_ label: String, value: String?) {
+    
+    private func shows(type: CountType) -> Bool {
         
-        let valueText = if let value {
-            Text(value).foregroundStyle(.primary)
-        } else {
-            Text.none
+        switch type {
+            case .characters: self.showsCharacters
+            case .lines: self.showsLines
+            case .words: self.showsWords
+            case .location: self.showsLocation
+            case .line: self.showsLine
+            case .column: self.showsColumn
         }
-        
-        self = Text("\(label): \(valueText)")
     }
 }
 

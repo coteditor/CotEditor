@@ -103,6 +103,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             lineEndingScanner: self.document.lineEndingScanner
         )
         textView.delegate = self
+        textView.accessibilityHelpProvider = { [weak self] in self?.editorAccessibilityHelp }
         
         let scrollView = BidiScrollView()
         scrollView.hasVerticalScroller = true
@@ -424,6 +425,21 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     
     // MARK: Private Methods
+    
+    /// The accessibility help text for the editor text view.
+    private var editorAccessibilityHelp: String? {
+        
+        let counter = self.document.counter
+        let components = CountType.allCases
+            .filter { counter.statusBarRequirements.contains($0.counterTypes) }
+            .compactMap { type in
+                counter.result.formattedValue(type: type, forAccessibility: true)
+                    .map { "\(type.label): \($0)" }
+            }
+        
+        return components.isEmpty ? nil : components.joined(separator: ", ")
+    }
+    
     
     /// Applies syntax to the inner text view.
     private func applySyntax() {

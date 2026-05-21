@@ -263,26 +263,15 @@ private struct EditorCountView: View {
         DisclosureGroup(String(localized: "Count", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
                 Section {
-                    LabeledContent(String(localized: "CountType.lines.label", defaultValue: "Lines", table: "Document"),
-                                   optional: self.result.lines.formatted)
-                    .accessibilityAddTraits(.updatesFrequently)
-                    LabeledContent(String(localized: "CountType.characters.label", defaultValue: "Characters", table: "Document"),
-                                   optional: self.result.characters.formatted)
-                    .accessibilityAddTraits(.updatesFrequently)
-                    LabeledContent(String(localized: "CountType.words.label", defaultValue: "Words", table: "Document"),
-                                   optional: self.result.words.formatted)
-                    .accessibilityAddTraits(.updatesFrequently)
+                    ForEach(CountType.countCases, id: \.self) { type in
+                        LabeledContent(type.label, optional: self.result.formattedValue(type: type))
+                            .accessibilityAddTraits(.updatesFrequently)
                 }
                 Section {
-                    LabeledContent(String(localized: "CountType.location.label", defaultValue: "Location", table: "Document"),
-                                   optional: self.result.location?.formatted())
-                    .accessibilityAddTraits(.updatesFrequently)
-                    LabeledContent(String(localized: "CountType.line.label", defaultValue: "Line", table: "Document"),
-                                   optional: self.result.line?.formatted())
-                    .accessibilityAddTraits(.updatesFrequently)
-                    LabeledContent(String(localized: "CountType.column.label", defaultValue: "Column", table: "Document"),
-                                   optional: self.result.column?.formatted())
-                    .accessibilityAddTraits(.updatesFrequently)
+                    ForEach(CountType.positionCases, id: \.self) { type in
+                        LabeledContent(type.label, optional: self.result.formattedValue(type: type))
+                            .accessibilityAddTraits(.updatesFrequently)
+                    }
                 }
             }
             .monospacedDigit()

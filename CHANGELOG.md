@@ -27,7 +27,7 @@
 
 ### Improvements
 
-- Improve VoiceOver support.
+- Improve VoiceOver support by letting the editor read the text count information shown in the status bar with VO-Shift-H.
 - Improve the paired-symbol matching algorithm for brackets and quotation marks.
 - Remove the Rich Text Format built-in syntax.
 - [non-AppStore ver.] Update Sparkle from 2.9.1 to 2.9.2.
@@ -709,7 +709,7 @@
 
 ### Improvements
 
-- Avoid assigning the Shift+Return shortcut key for a snippet.
+- Avoid assigning the Shift-Return shortcut key for a snippet.
 - [trivial] Update find result messages.
 - [dev] Update the build environment to Xcode 26.0.
 - [non-AppStore ver.] Update Sparkle from 2.8.0-beta.3 to 2.8.0.
@@ -3081,7 +3081,7 @@
 ### Fixes
 
 - Fix an issue that File Drop settings were not saved if both the extensions and syntax styles are for “all.”
-- Fix an issue that shortcuts for snippets did not accept the Shift key with a non-letter character, such as Shift + Return.
+- Fix an issue that shortcuts for snippets did not accept the Shift key with a non-letter character, such as Shift-Return.
 - Fix an issue that the rainbow cursor appeared when the document has a large number of incompatible characters.
 - Fix an issue that the rainbow cursor appeared when expanding the selection by “⌥⇧←” shortcut and invisible characters are contained in the new selection.
 - Fix an issue that the writing direction could be changed to right to left although when the text orientation is vertical.
@@ -4000,7 +4000,7 @@
 ### Improvements
 
 - Keep last opacity state of restored document windows.
-- Update behavior of Opt+Arrow shortcut series.
+- Update behavior of Opt-Arrow shortcut series.
 
 
 ### Fixes
@@ -4027,7 +4027,7 @@
 - Add “Hide extension” option to the Save dialog.
 - Use the system appearance in the input candidate window even when the theme has a dark background color.
 - Give some feedback about the search result in VoiceOver.
-- Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as `.` and `:`.
+- Improve the behavior of Opt-Arrow shortcut series to stop the by punctuation marks, such as `.` and `:`.
 - Hide unused items in the font panel toolbar.
 - Optimize the performance of finding the matching brace to highlight.
 - Optimize the performance of line number drawing.
@@ -4279,7 +4279,7 @@
 ### Improvements
 
 - [beta] Support commenting-out/uncommenting in multi-cursor editing.
-- [beta] Support `^T` and `fn+delete` (`^D`) shortcut in multi-cursor editing.
+- [beta] Support `^T` and `fn-delete` (`^D`) shortcut in multi-cursor editing.
 
 
 ### Fixes
@@ -4531,7 +4531,7 @@
 
 - Assign `⌘⇧[` shortcut to “Show Next Tab” command instead of “Surround Selection with Brackets” command.
 - Treat a logical line, which is delimited by line ending characters, as one line in VoiceOver, instead of a visual (wrapped) line.
-    - Thereby, users can now also know the current line number by pressing VoiceOver shortcut VO+F3.
+    - Thereby, users can now also know the current line number by pressing VoiceOver shortcut VO-F3.
 - Improve the accessibility of user interface elements with VoiceOver.
 - Avoid performing custom sort with an invalid parameter.
 - Display default setting values as the input field's placeholder in preferences window when empty.
@@ -4967,7 +4967,7 @@
 
 - Replace matches with preset replacement definition (Find > Show Replacement Set).
 - Add outline menu to side bar.
-- Select tabbed window with `⌘+number`.
+- Select tabbed window with `⌘-number`.
 - Parse regular expression pattern in find string field in regular expression mode:
     - Syntax highlight.
     - Highlight matching brace by moving cursor.
@@ -5023,7 +5023,7 @@
 
 ### Improvements
 
-- When “Indent with Tab key” is on, reduce indent level of the current line with Shift+Tab even when nothing is selected.
+- When “Indent with Tab key” is on, reduce indent level of the current line with Shift-Tab even when nothing is selected.
 
 
 ### Fixes
@@ -5227,7 +5227,7 @@
 
 - Fix an issue where the find panel was over expanded when performing “Find All” with a long find string.
 - Fix an issue where the file size in the status bar was not updated after saving.
-- Fix an issue where the find panel didn't select the previous field with Shift + Tab keys.
+- Fix an issue where the find panel didn't select the previous field with Shift-Tab keys.
 - Fix an issue where the application frozen by opening the File Mapping Conflicts list when filename conflict exists.
 
 
@@ -5692,7 +5692,7 @@
 - Fix an issue where status bar layout collapsed if status line overflows.
 - Fix an issue where document theme reloaded unnecessarily on the first time Appearance pane display.
 - Fix an issue where the application could crash when a script was failed.
-- Fix an issue where scrolling to the end of the document with `⌘`+`↓` shortcut didn't scroll to the end.
+- Fix an issue where scrolling to the end of the document with `⌘`-`↓` shortcut didn't scroll to the end.
 - Improve general stability.
 
 
