@@ -266,6 +266,7 @@ private struct EditorCountView: View {
                     ForEach(CountType.countCases, id: \.self) { type in
                         LabeledContent(type.label, optional: self.result.formattedValue(type: type))
                             .accessibilityAddTraits(.updatesFrequently)
+                    }
                 }
                 Section {
                     ForEach(CountType.positionCases, id: \.self) { type in
