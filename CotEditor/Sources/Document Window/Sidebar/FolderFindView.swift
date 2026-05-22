@@ -371,6 +371,7 @@ private struct FolderFindSummaryView: View {
         VStack(alignment: .leading, spacing: 0) {
             Text(self.summary.message)
                 .foregroundStyle(.secondary)
+                .monospacedDigit()
                 .controlSize(.small)
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.horizontal, 10)
@@ -531,10 +532,17 @@ private struct FolderFindMatchView: View {
     
     var body: some View {
         
-        Text(self.highlightedLine)
-            .foregroundStyle(.secondary)
-            .lineLimit(2)
-            .multilineTextAlignment(.leading)
+        Label {
+            Text(self.highlightedLine)
+        } icon: {
+            Image(systemName: "text")
+                .symbolVariant(.rectangle.fill)
+                .symbolRenderingMode(.hierarchical)
+        }
+        .foregroundStyle(.secondary)
+        .labelIconToTitleSpacing(4)
+        .lineLimit(2)
+        .multilineTextAlignment(.leading)
     }
     
     
