@@ -152,12 +152,10 @@ public enum FolderFind {
     
     public struct Match: Equatable, Identifiable, Sendable {
         
+        public var id = UUID()
         public var range: NSRange
         public var line: String
         public var rangeInLine: NSRange
-        
-        /// The stable identity of the match in a file result.
-        public var id: NSRange  { self.range }
     }
     
     
@@ -255,6 +253,105 @@ public extension FolderFind.Summary {
                 if self.files[fileIndex].matches.isEmpty {
                     self.files.remove(at: fileIndex)
                 }
+        }
+    }
+    
+    
+    /// Updates match ranges in the file after text editing.
+    ///
+    /// This method updates only the ranges used to reveal matches. The display line snapshots are intentionally kept unchanged.
+    ///
+    /// - Parameters:
+    ///   - fileURL: The URL of the edited file.
+    ///   - editedRange: The range edited in the current text.
+    ///   - changeInLength: The length delta from the text edit.
+    ///   - length: The current text length after editing.
+    /// - Returns: `true` if at least one match range was updated.
+    @discardableResult mutating func updateMatchRanges(in fileURL: URL, editedRange: NSRange, changeInLength: Int, length: Int) -> Bool {
+        
+        guard let fileIndex = self.files.firstIndex(where: { $0.fileURL == fileURL }) else { return false }
+        
+        var didUpdate = false
+        for matchIndex in self.files[fileIndex].matches.indices {
+            didUpdate = self.files[fileIndex]
+                .matches[matchIndex]
+                .updateRange(editedRange: editedRange, changeInLength: changeInLength, length: length) || didUpdate
+        }
+        
+        return didUpdate
+    }
+}
+
+
+private extension FolderFind.Match {
+    
+    /// Updates the match range after text editing.
+    ///
+    /// - Parameters:
+    ///   - editedRange: The range edited in the current text.
+    ///   - changeInLength: The length delta from the text edit.
+    ///   - length: The current text length after editing.
+    /// - Returns: `true` if the range was updated.
+    mutating func updateRange(editedRange: NSRange, changeInLength: Int, length: Int) -> Bool {
+        
+        let oldRange = self.range
+        let oldEditedLength = max(editedRange.length - changeInLength, 0)
+        let oldEditedRange = NSRange(location: editedRange.location, length: oldEditedLength)
+        let newLowerBound = Self.updatedLowerBound(of: self.range, oldEditedRange: oldEditedRange,
+                                                   editedRange: editedRange, changeInLength: changeInLength)
+        let newUpperBound = Self.updatedUpperBound(of: self.range, oldEditedRange: oldEditedRange,
+                                                   editedRange: editedRange, changeInLength: changeInLength)
+        let lowerBound = min(max(newLowerBound, 0), length)
+        let upperBound = min(max(newUpperBound, lowerBound), length)
+        
+        self.range = NSRange(lowerBound..<upperBound)
+        
+        return self.range != oldRange
+    }
+    
+    
+    /// Returns the updated lower bound after text editing.
+    ///
+    /// - Parameters:
+    ///   - range: The range to update.
+    ///   - oldEditedRange: The edited range in the previous text.
+    ///   - editedRange: The edited range in the current text.
+    ///   - changeInLength: The length delta from the text edit.
+    /// - Returns: The updated lower bound.
+    private static func updatedLowerBound(of range: NSRange, oldEditedRange: NSRange, editedRange: NSRange, changeInLength: Int) -> Int {
+        
+        switch range.lowerBound {
+            case ..<oldEditedRange.lowerBound:
+                range.location
+            case oldEditedRange.upperBound:
+                editedRange.upperBound
+            case oldEditedRange.upperBound...:
+                range.location + changeInLength
+            default:
+                editedRange.location
+        }
+    }
+    
+    
+    /// Returns the updated upper bound after text editing.
+    ///
+    /// - Parameters:
+    ///   - range: The range to update.
+    ///   - oldEditedRange: The edited range in the previous text.
+    ///   - editedRange: The edited range in the current text.
+    ///   - changeInLength: The length delta from the text edit.
+    /// - Returns: The updated upper bound.
+    private static func updatedUpperBound(of range: NSRange, oldEditedRange: NSRange, editedRange: NSRange, changeInLength: Int) -> Int {
+        
+        switch range.upperBound {
+            case ..<oldEditedRange.location:
+                range.upperBound
+            case oldEditedRange.lowerBound:
+                editedRange.location
+            case oldEditedRange.upperBound...:
+                range.upperBound + changeInLength
+            default:
+                editedRange.upperBound
         }
     }
 }

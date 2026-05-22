@@ -63,7 +63,7 @@ struct FolderFindTests {
         #expect(matchResult.file == summary.files[1])
         #expect(matchResult.match == summary.files[1].matches[1])
         
-        #expect(summary.result(for: .match(fileID: summary.files[0].id, matchID: NSRange(location: NSNotFound, length: 0))) == nil)
+        #expect(summary.result(for: .match(fileID: summary.files[0].id, matchID: UUID())) == nil)
     }
     
     
@@ -101,6 +101,65 @@ struct FolderFindTests {
         #expect(summary.files.isEmpty)
         #expect(summary.matchedFileCount == 0)
         #expect(summary.matchCount == 0)
+    }
+    
+    
+    @Test func summaryUpdatesMatchRangesAfterEditing() throws {
+        
+        let fileURL = URL(fileURLWithPath: "/tmp/a.txt").standardizedFileURL
+        let otherFileURL = URL(fileURLWithPath: "/tmp/b.txt").standardizedFileURL
+        var summary = FolderFind.Summary(findString: "needle",
+                                         files: [
+                                            FolderFind.FileResult(fileURL: fileURL, filename: "a.txt", directoryPathComponents: [],
+                                                                  matches: [
+                                                                    FolderFind.Match(range: NSRange(location: 10, length: 6), line: "first needle", rangeInLine: NSRange(location: 6, length: 6)),
+                                                                    FolderFind.Match(range: NSRange(location: 30, length: 6), line: "second needle", rangeInLine: NSRange(location: 7, length: 6)),
+                                                                  ]),
+                                            FolderFind.FileResult(fileURL: otherFileURL, filename: "b.txt", directoryPathComponents: [],
+                                                                  matches: [
+                                                                    FolderFind.Match(range: NSRange(location: 10, length: 6), line: "other needle", rangeInLine: NSRange(location: 6, length: 6)),
+                                                                  ]),
+                                         ],
+                                         searchedFileCount: 2,
+                                         skippedFileCount: 0)
+        let firstID = summary.files[0].matches[0].id
+        let secondID = summary.files[0].matches[1].id
+        let line = summary.files[0].matches[0].line
+        let rangeInLine = summary.files[0].matches[0].rangeInLine
+        
+        summary.updateMatchRanges(in: fileURL, editedRange: NSRange(location: 3, length: 4), changeInLength: 4, length: 80)
+        
+        #expect(summary.files[0].matches.map(\.range) == [
+            NSRange(location: 14, length: 6),
+            NSRange(location: 34, length: 6),
+        ])
+        #expect(summary.files[0].matches.map(\.id) == [firstID, secondID])
+        #expect(summary.files[0].matches[0].line == line)
+        #expect(summary.files[0].matches[0].rangeInLine == rangeInLine)
+        #expect(summary.files[1].matches.map(\.range) == [NSRange(location: 10, length: 6)])
+    }
+    
+    
+    @Test func summaryKeepsOverlappingEditedMatchInBounds() throws {
+        
+        let fileURL = URL(fileURLWithPath: "/tmp/a.txt").standardizedFileURL
+        var summary = FolderFind.Summary(findString: "needle",
+                                         files: [
+                                            FolderFind.FileResult(fileURL: fileURL, filename: "a.txt", directoryPathComponents: [],
+                                                                  matches: [
+                                                                    FolderFind.Match(range: NSRange(location: 10, length: 10), line: "overlapping needle", rangeInLine: NSRange(location: 12, length: 6)),
+                                                                    FolderFind.Match(range: NSRange(location: 30, length: 6), line: "later needle", rangeInLine: NSRange(location: 6, length: 6)),
+                                                                  ]),
+                                         ],
+                                         searchedFileCount: 1,
+                                         skippedFileCount: 0)
+        
+        summary.updateMatchRanges(in: fileURL, editedRange: NSRange(location: 12, length: 0), changeInLength: -6, length: 40)
+        
+        #expect(summary.files[0].matches.map(\.range) == [
+            NSRange(location: 10, length: 4),
+            NSRange(location: 24, length: 6),
+        ])
     }
     
     

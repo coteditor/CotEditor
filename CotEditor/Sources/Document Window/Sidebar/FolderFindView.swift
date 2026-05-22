@@ -57,6 +57,7 @@ import TextFind
     
     private var searchTask: Task<Void, Never>?
     private var selectionTask: Task<Void, Never>?
+    private var textEditingObserver: (any NSObjectProtocol)?
     private var submittedFindString = ""
     
     
@@ -66,6 +67,7 @@ import TextFind
     init(document: DirectoryDocument) {
         
         self.document = document
+        self.textEditingObserver = self.observeTextStorage()
     }
     
     
@@ -73,6 +75,7 @@ import TextFind
         
         self.searchTask?.cancel()
         self.selectionTask?.cancel()
+        self.textEditingObserver.map(NotificationCenter.default.removeObserver)
     }
     
     
@@ -202,6 +205,46 @@ import TextFind
         summary.removeResult(for: id)
         self.selectionTask?.cancel()
         self.selectionTask = nil
+        self.state = .finished(summary)
+    }
+    
+    
+    /// Observes text editing in the frontmost document.
+    ///
+    /// - Returns: The notification observer.
+    private func observeTextStorage() -> any NSObjectProtocol {
+        
+        NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: nil, queue: .main) { [weak self] notification in
+            let textStorage = notification.object as! NSTextStorage
+            
+            guard textStorage.editedMask.contains(.editedCharacters) else { return }
+            
+            MainActor.assumeIsolated { [range = textStorage.editedRange, changeInLength = textStorage.changeInLength, length = textStorage.length] in
+                self?.documentTextDidChange(textStorage: textStorage, editedRange: range, changeInLength: changeInLength, length: length)
+            }
+        }
+    }
+    
+    
+    /// Updates match ranges after the current document text changes.
+    ///
+    /// - Parameters:
+    ///   - textStorage: The edited text storage.
+    ///   - editedRange: The range edited in the current text.
+    ///   - changeInLength: The length delta from the text edit.
+    ///   - length: The current text length after editing.
+    private func documentTextDidChange(textStorage: NSTextStorage, editedRange: NSRange, changeInLength: Int, length: Int) {
+        
+        guard
+            case .finished(var summary) = self.state,
+            let document = self.document.currentDocument as? Document,
+            document.textStorage === textStorage,
+            let fileURL = document.fileURL,
+            summary.files.contains(where: { $0.fileURL == fileURL })
+        else { return }
+        
+        guard summary.updateMatchRanges(in: fileURL, editedRange: editedRange, changeInLength: changeInLength, length: length) else { return }
+        
         self.state = .finished(summary)
     }
 }
@@ -354,7 +397,9 @@ private struct FolderFindSummaryView: View {
             }
             .dragContainerSelection(Array(self.selection), containerNamespace: self.namespace)
             .dragPreviewsFormation(.list)
-            .onChange(of: self.summary) { _, newValue in
+            .onChange(of: self.summary) { oldValue, newValue in
+                guard oldValue.resultIDs != newValue.resultIDs else { return }
+                
                 self.selection.removeAll()
                 self.expandedFileURLs = Set(newValue.files.map(\.id))
             }
@@ -592,6 +637,15 @@ extension FolderFinder.Error: LocalizedError {
 
 
 private extension FolderFind.Summary {
+    
+    /// The result IDs in the summary.
+    var resultIDs: [FolderFind.ResultID] {
+        
+        self.files.flatMap { file in
+            [FolderFind.ResultID.file(file.id)] + file.matches.map { .match(fileID: file.id, matchID: $0.id) }
+        }
+    }
+    
     
     /// The localized summary message.
     var message: String {
