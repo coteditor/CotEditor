@@ -21,6 +21,43 @@
 
 <article headingoffset="1">
 	<header>
+		<h1>CotEditor 7.0.4</h1>
+		<p>release: <time>2026-05-23</time></p>
+	</header>
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Improve VoiceOver support by letting the editor read the text count information shown in the status bar with <kbd>VO</kbd>-<kbd>Shift</kbd>-<kbd>H</kbd>.</li>
+			<li>Improve the paired-symbol matching algorithm for brackets and quotation marks.</li>
+			<li>Remove the Rich Text Format built-in syntax.</li>
+			<li><span class="label">non-AppStore ver.</span>: Update Sparkle from 2.9.1 to 2.9.2.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue where saving a file could drop special POSIX permission bits, such as <code>setuid</code>, <code>setgid</code>, or <code>sticky</code>.</li>
+			<li>Fix an issue where moving the cursor near leading invisible characters could crash the application (Thanks to felix314159!).</li>
+			<li>Fix an issue where copying or moving a file with certain filenames could unexpectedly change the filename while avoiding a conflict.</li>
+			<li>Fix an issue where the incompatible character list in the Warnings inspector could miss some characters that change after text encoding conversion.</li>
+			<li>Fix an issue where block comment delimiters could be inserted at the wrong indentation when commenting out lines with mixed indentation.</li>
+			<li>Fix an issue where NFKC Case-Fold normalization could leave default-ignorable Unicode characters in the text.</li>
+			<li>Fix an issue where invisible character symbols could be drawn incorrectly in right-to-left text.</li>
+			<li>Fix an issue where replacing an existing setting during import could fail for certain files.</li>
+			<li>Fix an issue on macOS 15 where the Export command in the Format settings pane’s menu could fail to export a syntax.</li>
+			<li>Fix typos in German localization (Thanks to Rush Ali!).</li>
+		</ul>
+	</section>
+</article>
+
+
+<article headingoffset="1">
+	<header>
 		<h1>CotEditor 7.0.3</h1>
 		<p>release: <time>2026-05-14</time></p>
 	</header>
