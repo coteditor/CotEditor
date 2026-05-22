@@ -9819,6 +9819,9 @@
     "Search in Folder" : {
       "comment" : "placeholder"
     },
+    "Search method" : {
+
+    },
     "Searching in folder…" : {
       "localizations" : {
         "bg" : {
@@ -10031,9 +10034,6 @@
           }
         }
       }
-    },
-    "Select to search hidden files and folders." : {
-      "comment" : "tooltip"
     },
     "Share…" : {
       "comment" : "menu item label",

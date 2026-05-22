@@ -267,6 +267,49 @@ struct FolderFindView: View {
     
         VStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 8) {
+                HStack(alignment: .firstTextBaseline) {
+                    Picker(String(localized: "Search method", table: "Document"), selection: $usesRegularExpression) {
+                        Text("Text", tableName: "TextFind")
+                            .tag(false)
+                        Text("Regular Expression", tableName: "TextFind")
+                            .tag(true)
+                    } currentValueLabel: {
+                        self.usesRegularExpression
+                            ? Text("Regular Expression", tableName: "TextFind")
+                                  .foregroundStyle(.tint)
+                            : Text("Text", tableName: "TextFind")
+                    }
+                    .pickerStyle(.menu)
+                    .labelsVisibility(.hidden)
+                    
+                    Spacer()
+                    
+                    Toggle(isOn: $ignoresCase) {
+                        Label {
+                            Text(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"))
+                        } icon: {
+                            Image(systemName: "textformat")
+                                .environment(\.locale, Locale(script: .latin))
+                        }
+                    }
+                    .help(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"))
+                    .toggleStyle(.button)
+                    .fontWeight(self.ignoresCase ? .bold : .medium)
+                    .labelStyle(.iconOnly)
+                    .frame(width: 16, alignment: .center)
+                    
+                    Menu {
+                        Toggle(String(localized: "Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
+                    } label: {
+                        Label(String(localized: "Advanced options", table: "TextFind", comment: "accessibility label"), systemImage: "ellipsis")
+                            .symbolVariant(.circle)
+                            .labelStyle(.iconOnly)
+                    }
+                    .menuIndicator(.hidden)
+                }
+                .buttonStyle(.borderless)
+                .controlSize(.small)
+                
                 SearchField(text: $textFinderSettings.findString,
                             placeholder: String(localized: "Search in Folder", table: "Document", comment: "placeholder"))
                     .autosaveName("FolderSearch")
@@ -280,17 +323,6 @@ struct FolderFindView: View {
                     .onChange(of: self.textFinderSettings.findString) { _, newValue in
                         self.model.findStringDidChange(to: newValue)
                     }
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Toggle(String(localized: "Regular Expression", table: "TextFind", comment: "toggle button label"), isOn: $usesRegularExpression)
-                        .help(String(localized: "Select to search with regular expression.", table: "TextFind", comment: "tooltip"))
-                    Toggle(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"), isOn: $ignoresCase)
-                        .help(String(localized: "Select to ignore character case on search.", table: "TextFind", comment: "tooltip"))
-                    Toggle(String(localized: "Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
-                        .help(String(localized: "Select to search hidden files and folders.", table: "Document", comment: "tooltip"))
-                }
-                .controlSize(.small)
-                .fixedSize()
             }
             .padding(10)
             
