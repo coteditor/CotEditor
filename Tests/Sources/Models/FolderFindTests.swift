@@ -42,7 +42,7 @@ import UniformTypeIdentifiers
         try Data("needle\nhay\n".utf8).write(to: rootURL.appending(path: "a.txt"))
         
         let model = try Self.makeModel(rootURL: rootURL)
-        model.find(findString: "needle", usesRegularExpression: false, ignoresCase: false)
+        model.find(findString: "needle", usesRegularExpression: false, ignoresCase: false, includesHiddenFiles: false)
         
         let summary = try await Self.finishedSummary(from: model)
         
@@ -59,7 +59,7 @@ import UniformTypeIdentifiers
         
         #expect(model.state == .finished(summary))
         
-        model.find(findString: "", usesRegularExpression: false, ignoresCase: false)
+        model.find(findString: "", usesRegularExpression: false, ignoresCase: false, includesHiddenFiles: false)
         
         #expect(model.state == .idle)
     }
@@ -74,7 +74,7 @@ import UniformTypeIdentifiers
         try Data("needle\nneedle\n".utf8).write(to: rootURL.appending(path: "a.txt"))
         
         let model = try Self.makeModel(rootURL: rootURL)
-        model.find(findString: "needle", usesRegularExpression: false, ignoresCase: false)
+        model.find(findString: "needle", usesRegularExpression: false, ignoresCase: false, includesHiddenFiles: false)
         
         let summary = try await Self.finishedSummary(from: model)
         let file = try #require(summary.files.first)
@@ -113,7 +113,7 @@ import UniformTypeIdentifiers
         try Data("needle\n".utf8).write(to: rootURL.appending(path: "a.txt"))
         
         let model = try Self.makeModel(rootURL: rootURL)
-        model.find(findString: "[", usesRegularExpression: true, ignoresCase: false)
+        model.find(findString: "[", usesRegularExpression: true, ignoresCase: false, includesHiddenFiles: false)
         
         let error = try await Self.failedError(from: model)
         
@@ -135,7 +135,7 @@ import UniformTypeIdentifiers
         
         let model = FolderFinder(document: DirectoryDocument())
         
-        model.find(findString: "needle", usesRegularExpression: false, ignoresCase: false)
+        model.find(findString: "needle", usesRegularExpression: false, ignoresCase: false, includesHiddenFiles: false)
         
         #expect(model.state == .failed(.folderUnavailable))
     }
@@ -145,7 +145,7 @@ import UniformTypeIdentifiers
         
         let model = FolderFinder(document: DirectoryDocument())
         
-        model.find(findString: "", usesRegularExpression: false, ignoresCase: false)
+        model.find(findString: "", usesRegularExpression: false, ignoresCase: false, includesHiddenFiles: false)
         
         #expect(model.state == .idle)
     }

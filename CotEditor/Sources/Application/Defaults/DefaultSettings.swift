@@ -160,6 +160,7 @@ struct DefaultSettings {
             .findRegexUnescapesReplacementString: true,
             .folderFindUsesRegularExpression: false,
             .folderFindIgnoresCase: false,
+            .folderFindIncludesHiddenFiles: false,
             
             // Advanced Character Count
             .countUnit: CharacterCountOptions.CharacterUnit.graphemeCluster.rawValue,

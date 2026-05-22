@@ -92,7 +92,7 @@ struct Search {
             
             guard
                 !self.options.excludedNames.contains(candidate.fileURL.lastPathComponent),
-                self.options.includesHiddenItems || !candidate.isHidden
+                self.options.includesHiddenFiles || !candidate.isHidden
             else { continue }
             
             if candidate.isDirectory {

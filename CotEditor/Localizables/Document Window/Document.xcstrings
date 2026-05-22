@@ -5028,6 +5028,9 @@
         }
       }
     },
+    "Include Hidden Files" : {
+      "comment" : "toggle button label"
+    },
     "Incompatible Characters" : {
       "comment" : "section title in inspector",
       "localizations" : {
@@ -10028,6 +10031,9 @@
           }
         }
       }
+    },
+    "Select to search hidden files and folders." : {
+      "comment" : "tooltip"
     },
     "Share…" : {
       "comment" : "menu item label",

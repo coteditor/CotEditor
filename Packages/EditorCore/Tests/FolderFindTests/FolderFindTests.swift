@@ -236,7 +236,7 @@ struct FolderFindTests {
         
         let summary = try await FolderFind.find(in: rootURL,
                                                     query: Self.query("needle"),
-                                                    options: .init(includesHiddenItems: true))
+                                                    options: .init(includesHiddenFiles: true))
         
         #expect(summary.searchedFileCount == 1)
         #expect(summary.matchCount == 1)

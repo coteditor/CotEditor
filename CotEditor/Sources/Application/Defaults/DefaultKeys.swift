@@ -143,6 +143,7 @@ extension DefaultKeys {
     static let findRegexUnescapesReplacementString = DefaultKey<Bool>("regexUnescapesReplacementString")
     static let folderFindUsesRegularExpression = DefaultKey<Bool>("folderFindUsesRegularExpression")
     static let folderFindIgnoresCase = DefaultKey<Bool>("folderFindIgnoresCase")
+    static let folderFindIncludesHiddenFiles = DefaultKey<Bool>("folderFindIncludesHiddenFiles")
     
     // Advanced Character Count
     static let countUnit = RawRepresentableDefaultKey<CharacterCountOptions.CharacterUnit>("countOptionUnit")

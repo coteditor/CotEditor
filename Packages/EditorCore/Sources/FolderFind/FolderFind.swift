@@ -62,7 +62,7 @@ public enum FolderFind {
     
     public struct Options: Sendable {
         
-        public var includesHiddenItems: Bool
+        public var includesHiddenFiles: Bool
         public var excludedNames: Set<String>
         public var maximumLineLength: Int
         public var decodingOptions: String.DetectionOptions
@@ -71,19 +71,19 @@ public enum FolderFind {
         /// Initializes folder find options.
         ///
         /// - Parameters:
-        ///   - includesHiddenItems: Whether hidden files and folders should be included.
+        ///   - includesHiddenFiles: Whether hidden files should be included.
         ///   - excludedNames: File or folder names to exclude from traversal.
         ///   - maximumLineLength: The maximum UTF-16 length of each line fragment in results.
         ///   - decodingOptions: The text decoding options to use for reading files.
         public init(
-            includesHiddenItems: Bool = false,
+            includesHiddenFiles: Bool = false,
             excludedNames: Set<String> = [".DS_Store", ".git"],
             maximumLineLength: Int = 1024,
             decodingOptions: String.DetectionOptions = .init(candidates: [.utf8], considersDeclaration: true)
         ) {
             assert(maximumLineLength > 0)
             
-            self.includesHiddenItems = includesHiddenItems
+            self.includesHiddenFiles = includesHiddenFiles
             self.excludedNames = excludedNames
             self.maximumLineLength = maximumLineLength
             self.decodingOptions = decodingOptions

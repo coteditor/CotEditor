@@ -100,7 +100,8 @@ import TextFind
     ///   - findString: The string to find.
     ///   - usesRegularExpression: Whether the search string should be treated as a regular expression.
     ///   - ignoresCase: Whether character case should be ignored.
-    func find(findString: String, usesRegularExpression: Bool, ignoresCase: Bool) {
+    ///   - includesHiddenFiles: Whether hidden files should be searched.
+    func find(findString: String, usesRegularExpression: Bool, ignoresCase: Bool, includesHiddenFiles: Bool) {
         
         self.searchTask?.cancel()
         self.selectionTask?.cancel()
@@ -129,6 +130,7 @@ import TextFind
         }
         
         let options = FolderFind.Options(
+            includesHiddenFiles: includesHiddenFiles,
             decodingOptions: .init(candidates: EncodingManager.shared.fileEncodingCandidates,
                                    considersDeclaration: UserDefaults.standard[.referToEncodingTag])
         )
@@ -258,6 +260,7 @@ struct FolderFindView: View {
     
     @AppStorage(.folderFindUsesRegularExpression) private var usesRegularExpression: Bool
     @AppStorage(.folderFindIgnoresCase) private var ignoresCase: Bool
+    @AppStorage(.folderFindIncludesHiddenFiles) private var includesHiddenFiles: Bool
     
     
     var body: some View {
@@ -270,17 +273,20 @@ struct FolderFindView: View {
                     .onSubmit { findString in
                         self.model.find(findString: findString,
                                         usesRegularExpression: self.usesRegularExpression,
-                                        ignoresCase: self.ignoresCase)
+                                        ignoresCase: self.ignoresCase,
+                                        includesHiddenFiles: self.includesHiddenFiles)
                     }
                     .onChange(of: self.textFinderSettings.findString) { _, newValue in
                         self.model.findStringDidChange(to: newValue)
                     }
                 
-                HStack(spacing: 12) {
+                VStack(alignment: .leading, spacing: 4) {
                     Toggle(String(localized: "Regular Expression", table: "TextFind", comment: "toggle button label"), isOn: $usesRegularExpression)
                         .help(String(localized: "Select to search with regular expression.", table: "TextFind", comment: "tooltip"))
                     Toggle(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"), isOn: $ignoresCase)
                         .help(String(localized: "Select to ignore character case on search.", table: "TextFind", comment: "tooltip"))
+                    Toggle(String(localized: "Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
+                        .help(String(localized: "Select to search hidden files and folders.", table: "Document", comment: "tooltip"))
                 }
                 .controlSize(.small)
                 .fixedSize()
