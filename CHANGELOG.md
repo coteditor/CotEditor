@@ -1,6 +1,6 @@
 # Change Log
 
-7.0.4 (unreleased)
+7.0.4 (2026-05-23)
 --------------------------
 
 ### Improvements
