@@ -234,7 +234,6 @@
   "LaTeX" : {
     "extensions" : [
       "tex",
-      "TEX",
       "sty",
       "cls"
     ]
