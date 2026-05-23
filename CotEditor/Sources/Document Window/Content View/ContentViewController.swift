@@ -26,12 +26,13 @@
 import AppKit
 import SwiftUI
 
-final class ContentViewController: NSSplitViewController {
+final class ContentViewController: NSViewController {
     
     // MARK: Public Properties
     
     var document: DataDocument?  { didSet { self.updateDocument(from: oldValue) } }
     
+    /// The hosted document view controller, if any.
     var documentViewController: DocumentViewController? {
         
         self.children.first as? DocumentViewController
@@ -46,9 +47,7 @@ final class ContentViewController: NSSplitViewController {
         
         super.init(nibName: nil, bundle: nil)
         
-        self.splitViewItems = [
-            NSSplitViewItem(viewController: .viewController(document: document)),
-        ]
+        self.children = [Self.viewController(document: document)]
     }
     
     
@@ -58,27 +57,41 @@ final class ContentViewController: NSSplitViewController {
     }
     
     
+    override func loadView() {
+        
+        let view = NSView()
+        view.embedSubview(self.children[0].view)
+        
+        self.view = view
+    }
+    
+    
     // MARK: Private Methods
     
-    /// Updates the document in children.
+    /// Updates the hosted view controller when the document changes.
     ///
     /// - Parameter oldDocument: The previous document.
     private func updateDocument(from oldDocument: DataDocument?) {
         
         guard oldDocument != self.document else { return }
         
-        self.splitViewItems[0] = NSSplitViewItem(viewController: .viewController(document: self.document))
+        for child in self.children {
+            child.viewIfLoaded?.removeFromSuperview()
+            child.removeFromParent()
+        }
+        
+        let viewController = Self.viewController(document: self.document)
+        self.children = [viewController]
+        
+        self.viewIfLoaded?.embedSubview(viewController.view)
     }
-}
-
-
-private extension NSViewController {
+    
     
     /// Creates a new view controller with the passed-in document.
     ///
     /// - Parameter document: The represented document.
     /// - Returns: A view controller.
-    static func viewController(document: DataDocument?) -> sending NSViewController {
+    private static func viewController(document: DataDocument?) -> sending NSViewController {
         
         switch document {
             case let document as Document:
@@ -90,5 +103,25 @@ private extension NSViewController {
             default:
                 preconditionFailure()
         }
+    }
+}
+
+
+private extension NSView {
+    
+    /// Adds a subview constrained to fill the receiver.
+    ///
+    /// - Parameter subview: The subview to embed.
+    func embedSubview(_ subview: NSView) {
+        
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(subview)
+        
+        NSLayoutConstraint.activate([
+            subview.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            subview.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            subview.topAnchor.constraint(equalTo: self.topAnchor),
+            subview.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+        ])
     }
 }
