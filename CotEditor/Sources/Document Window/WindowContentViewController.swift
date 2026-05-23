@@ -35,7 +35,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     var document: DataDocument?  { didSet { self.updateDocument() } }
     var directoryDocument: DirectoryDocument?
     
-    var documentViewController: DocumentViewController? { self.contentViewController.documentViewController }
+    var documentViewController: DocumentViewController?  { self.contentViewController.hostedViewController as? DocumentViewController }
     
     
     // MARK: Private Properties

@@ -32,11 +32,7 @@ final class ContentViewController: NSViewController {
     
     var document: DataDocument?  { didSet { self.updateDocument(from: oldValue) } }
     
-    /// The hosted document view controller, if any.
-    var documentViewController: DocumentViewController? {
-        
-        self.children.first as? DocumentViewController
-    }
+    private(set) var hostedViewController: NSViewController
     
     
     // MARK: Lifecycle
@@ -44,10 +40,11 @@ final class ContentViewController: NSViewController {
     init(document: DataDocument?) {
         
         self.document = document
+        self.hostedViewController = Self.viewController(document: document)
         
         super.init(nibName: nil, bundle: nil)
         
-        self.children = [Self.viewController(document: document)]
+        self.addChild(self.hostedViewController)
     }
     
     
@@ -60,7 +57,7 @@ final class ContentViewController: NSViewController {
     override func loadView() {
         
         let view = NSView()
-        view.embedSubview(self.children[0].view)
+        view.embedSubview(self.hostedViewController.view)
         
         self.view = view
     }
@@ -75,15 +72,14 @@ final class ContentViewController: NSViewController {
         
         guard oldDocument != self.document else { return }
         
-        for child in self.children {
-            child.viewIfLoaded?.removeFromSuperview()
-            child.removeFromParent()
-        }
+        // remove only the hosted view controller to preserve accessories such as the status bar
+        // -> Split view item accessory controllers can be attached as children (2026-05, macOS 26).
+        self.hostedViewController.viewIfLoaded?.removeFromSuperview()
+        self.hostedViewController.removeFromParent()
         
-        let viewController = Self.viewController(document: self.document)
-        self.children = [viewController]
-        
-        self.viewIfLoaded?.embedSubview(viewController.view)
+        self.hostedViewController = Self.viewController(document: self.document)
+        self.addChild(self.hostedViewController)
+        self.viewIfLoaded?.embedSubview(self.hostedViewController.view)
     }
     
     
