@@ -196,9 +196,10 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                 },
         ]
         
-        // workaround to apply font immediately (2026-05, macOS 26.4)
-        let mode = ModeManager.shared.setting(for: self.document.mode)
-        self.textView.setFont(type: mode.fontType)
+        // apply initial document settings immediately
+        self.applySyntax()
+        self.textView.lineEnding = self.document.lineEnding
+        self.textView.applyMode(ModeManager.shared.setting(for: self.document.mode))
         
         // observe document setting changes
         self.documentObservers = [
