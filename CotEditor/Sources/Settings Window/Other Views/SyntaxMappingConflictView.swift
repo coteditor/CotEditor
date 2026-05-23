@@ -91,7 +91,8 @@ struct SyntaxMappingConflictView: View {
             self.dismiss()
         }
         .scenePadding()
-        .frame(width: 400, height: 500)
+        .frame(minWidth: 400, idealWidth: 400, maxWidth: 1000, minHeight: 300, idealHeight: 500)
+        .presentationSizing(.fitted)
     }
 }
 

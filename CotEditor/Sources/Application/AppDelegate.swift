@@ -26,17 +26,12 @@
 
 import AppKit
 import SwiftUI
-import Combine
 import OSLog
 import ControlUI
 import Defaults
 import FileEncoding
 import LineEnding
 import StringUtils
-
-@available(macOS, deprecated: 26)
-let isLiquidGlass = if #available(macOS 26, *) { true } else { false }
-
 
 extension Logger {
     
@@ -100,7 +95,7 @@ extension Logger {
     
     private var isSettingsImporterPresented = false
     
-    private var menuUpdateObservers: Set<AnyCancellable> = []
+    private var menuUpdateObservers: [Task<Void, Never>] = []
     
     private lazy var settingsWindowController = SettingsWindowController<SettingsPane>()
     private weak var aboutPanel: NSPanel?
@@ -477,6 +472,8 @@ extension Logger {
         
         guard self.menuUpdateObservers.isEmpty else { return assertionFailure() }
         
+        self.syntaxesMenu?.delegate = self
+        
         self.updateEncodingMenu(self.encodingsMenu!)
         
         self.lineEndingsMenu?.items = LineEnding.allCases.map { lineEnding in
@@ -490,29 +487,51 @@ extension Logger {
             return item
         }
         
-        SyntaxManager.shared.$settingNames
-            .map { names in
-                let action = #selector((any SyntaxChanging).changeSyntax)
-                let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", defaultValue: "None"), action: action, keyEquivalent: "")
-                noneItem.representedObject = SyntaxName.none
-                let items = names.map { name in
-                    let item = NSMenuItem(title: name, action: action, keyEquivalent: "")
-                    item.representedObject = name
-                    return item
+        self.menuUpdateObservers = [
+            Task { [weak self] in
+                for await names in Observations({ SyntaxManager.shared.settingNames }) {
+                    let action = #selector((any SyntaxChanging).changeSyntax)
+                    let noneItem = NSMenuItem(title: String(localized: "SyntaxName.none", defaultValue: "None"), action: action, keyEquivalent: "")
+                    noneItem.representedObject = SyntaxName.none
+                    let items = names.map { name in
+                        let item = NSMenuItem(title: name, action: action, keyEquivalent: "")
+                        item.representedObject = name
+                        return item
+                    }
+                    
+                    self?.syntaxesMenu?.items = [
+                        noneItem,
+                        .separator()
+                    ] + items
                 }
-                
-                return [
-                    noneItem,
-                    .separator()
-                ] + items
-            }
-            .assign(to: \.items, on: self.syntaxesMenu!)
-            .store(in: &self.menuUpdateObservers)
-        
-        ThemeManager.shared.$settingNames
-            .map { $0.map { NSMenuItem(title: $0, action: #selector((any ThemeChanging).changeTheme), keyEquivalent: "") } }
-            .assign(to: \.items, on: self.themesMenu!)
-            .store(in: &self.menuUpdateObservers)
+            },
+            
+            Task { [weak self] in
+                for await names in Observations({ ThemeManager.shared.settingNames }) {
+                    self?.themesMenu?.items = names
+                        .map { NSMenuItem(title: $0, action: #selector((any ThemeChanging).changeTheme), keyEquivalent: "") }
+                }
+            },
+            
+            Task { [weak self] in
+                for await names in Observations({ ReplacementManager.shared.settingNames }) {
+                    guard let menu = self?.multipleReplaceMenu else { return }
+                    
+                    let manageItem = menu.items.last
+                    menu.items = names.map { name in
+                        let item = NSMenuItem()
+                        item.title = name
+                        item.action = #selector(NSTextView.performTextFinderAction)
+                        item.tag = TextFinder.Action.multipleReplace.rawValue
+                        item.representedObject = name
+                        return item
+                    } + [
+                        .separator(),
+                        manageItem!,
+                    ]
+                }
+            },
+        ]
         
         SnippetManager.shared.menu = self.snippetMenu!
         ScriptManager.shared.menu = self.scriptMenu!
@@ -531,26 +550,6 @@ extension Logger {
             item.toolTip = form.localizedDescription
             return item
         }
-        
-        // build multiple replace menu items
-        ReplacementManager.shared.$settingNames
-            .sink { [weak self] names in
-                guard let menu = self?.multipleReplaceMenu else { return }
-                
-                let manageItem = menu.items.last
-                menu.items = names.map { name in
-                    let item = NSMenuItem()
-                    item.title = name
-                    item.action = #selector(NSTextView.performTextFinderAction)
-                    item.tag = TextFinder.Action.multipleReplace.rawValue
-                    item.representedObject = name
-                    return item
-                } + [
-                    .separator(),
-                    manageItem!,
-                ]
-            }
-            .store(in: &self.menuUpdateObservers)
     }
 }
 
@@ -562,6 +561,16 @@ extension AppDelegate: NSMenuDelegate {
         switch menu {
             case self.encodingsMenu:
                 self.updateEncodingMenu(menu, checksDocument: true)
+            case self.syntaxesMenu:
+                menu.items.forEach { $0.isHidden = false }
+                if NSApp.target(forAction: #selector((any SyntaxChanging).changeSyntax)) == nil {
+                    let hiddenSyntaxes = Set(UserDefaults.standard[.hiddenSyntaxes])
+                    for item in menu.items {
+                        if let name = item.representedObject as? String {
+                            item.isHidden = hiddenSyntaxes.contains(name)
+                        }
+                    }
+                }
             default:
                 break
         }
@@ -629,7 +638,7 @@ private extension NSPanel {
         self.titlebarAppearsTransparent = true
         self.hidesOnDeactivate = false
         self.setContentSize(viewController.view.intrinsicContentSize)
-        if #available(macOS 26, *), title == nil {
+        if title == nil {
             self.toolbar = NSToolbar()
         }
         

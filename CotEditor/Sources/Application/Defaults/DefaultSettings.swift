@@ -57,7 +57,6 @@ struct DefaultSettings {
             // Window
             .windowTabbing: -1,  // = Respect System Setting
             .showLineNumbers: true,
-            .showLineNumberSeparator: false,
             .showInvisibles: false,
             .showInvisibleNewLine: true,
             .showInvisibleTab: true,
@@ -105,6 +104,7 @@ struct DefaultSettings {
             .saveUTF8BOM: false,
             .referToEncodingTag: true,
             .syntax: "Plain Text",
+            .hiddenSyntaxes: [],
             
             // Snippets
             .fileDropArray: [

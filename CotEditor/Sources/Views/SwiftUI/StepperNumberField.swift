@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ struct StepperNumberField: View {
     private var step: Int.Stride
     private var promptText: String?
     
-    private var fieldWidth: CGFloat? = isLiquidGlass ? 48 : 32
+    private var fieldWidth: CGFloat? = 48
     
     
     /// Creates a text field editing numeric value with a stepper.
@@ -67,7 +67,7 @@ struct StepperNumberField: View {
             Stepper(value: $value, in: self.bounds, step: self.step, label: EmptyView.init)
                 .accessibilityValue(self.value.formatted())
         }
-        .labelsHidden()
+        .labelsVisibility(.hidden)
         .fixedSize()
     }
     

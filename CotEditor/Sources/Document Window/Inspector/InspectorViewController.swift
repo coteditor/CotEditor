@@ -172,32 +172,3 @@ private extension InspectorPane {
         }
     }
 }
-
-
-@available(macOS, deprecated: 26)
-extension InspectorViewController: InspectorTabViewDelegate {
-    
-    func tabView(_ tabView: NSTabView, selectedImageForItem tabViewItem: NSTabViewItem) -> NSImage? {
-        
-        let index = tabView.indexOfTabViewItem(tabViewItem)
-        
-        guard let pane = InspectorPane(rawValue: index) else { return nil }
-        
-        return NSImage(systemSymbolName: pane.selectedImageName, accessibilityDescription: pane.label)?
-            .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
-    }
-}
-
-
-@available(macOS, deprecated: 26)
-private extension InspectorPane {
-    
-    var selectedImageName: String {
-        
-        switch self {
-            case .document: "document.fill"
-            case .outline: "list.bullet.indent"
-            case .warnings: "exclamationmark.triangle.fill"
-        }
-    }
-}

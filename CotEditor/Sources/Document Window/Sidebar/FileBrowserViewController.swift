@@ -118,12 +118,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                        systemImage: "folder.badge.plus",
                        action: #selector(addFolder), target: self),
         ]
-        if #unavailable(macOS 26) {
-            addButton.menu!.items[0].image = NSImage(systemSymbolName: "plus", accessibilityDescription: nil)
-        }
         addButton.setAccessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
         
-        let filterField = if #available(macOS 26, *) { FilterSearchField() } else { LegacyFilterSearchField() }
+        let filterField = FilterSearchField()
         filterField.focusRingType = .none
         filterField.target = self
         filterField.action = #selector(filterTextDidChange)
@@ -135,8 +132,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         filterProgressIndicator.controlSize = .small
         filterProgressIndicator.setAccessibilityLabel(String(localized: "Searching in folder…", table: "Document"))
         
-        let footerView = isLiquidGlass ? NSView() : NSVisualEffectView()
-        (footerView as? NSVisualEffectView)?.material = .sidebar
+        let footerView = NSView()
         addButton.translatesAutoresizingMaskIntoConstraints = false
         filterField.translatesAutoresizingMaskIntoConstraints = false
         filterProgressIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -146,10 +142,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         
         NSLayoutConstraint.activate([
             addButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
-            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: isLiquidGlass ? 7 : 6),
+            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 7),
             filterField.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
             filterField.leadingAnchor.constraint(equalToSystemSpacingAfter: addButton.trailingAnchor, multiplier: 0.5),
-            filterField.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: isLiquidGlass ? -7 : -5),
+            filterField.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -7),
             filterProgressIndicator.centerYAnchor.constraint(equalTo: filterField.centerYAnchor),
             filterProgressIndicator.trailingAnchor.constraint(equalTo: filterField.trailingAnchor, constant: -24),
         ])
@@ -163,11 +159,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.view.addSubview(bottomSeparator)
         self.view.addSubview(footerView)
         
-        let footerHeight: CGFloat = isLiquidGlass ? 36 : 33
+        let footerHeight: CGFloat = 36
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomSeparator.topAnchor),
             bottomSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             bottomSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             bottomSeparator.bottomAnchor.constraint(equalTo: footerView.topAnchor),
@@ -176,13 +173,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             footerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             footerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
         ])
-        
-        if #available(macOS 26, *) {
-            scrollView.bottomAnchor.constraint(equalTo: bottomSeparator.topAnchor).isActive = true
-        } else {
-            scrollView.additionalSafeAreaInsets.bottom = footerHeight
-            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        }
         
         self.outlineView = outlineView
         self.bottomSeparator = bottomSeparator
@@ -306,6 +296,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     
     // MARK: Responder Methods
+    
+    override func becomeFirstResponder() -> Bool {
+        
+        self.view.window?.makeFirstResponder(self.outlineView) ?? false
+    }
+    
     
     override func keyDown(with event: NSEvent) {
         
@@ -1401,9 +1397,6 @@ private final class FileBrowserTableCellView: NSTableCellView {
         
         self.tagsView?.rootView = TagsView(tags: self.tags, isSelected: self.isSelected)
         self.tagsLayoutConstraint?.isActive = !self.tags.isEmpty
-        
-        guard #available(macOS 26, *) else { return }
-        
         self.imageView?.contentTintColor = self.tags.last?.color.color
     }
 }

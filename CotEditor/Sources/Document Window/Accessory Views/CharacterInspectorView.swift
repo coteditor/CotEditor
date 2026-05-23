@@ -38,7 +38,7 @@ struct CharacterInspectorView: View {
                 .frame(minWidth: 64)
             CharacterDetailView(info: self.info)
         }
-        .padding(.all, isLiquidGlass ? 14 : 10)
+        .padding(14)
     }
 }
 
@@ -68,7 +68,7 @@ private struct CharacterDetailView: View {
             
             if self.info.character.unicodeScalars.count > 1 {
                 VStack(spacing: 0) {
-                    ForEach(Array(self.info.character.unicodeScalars.enumerated()), id: \.offset) { _, scalar in
+                    ForEach(Array(self.info.character.unicodeScalars).enumerated(), id: \.offset) { _, scalar in
                         DisclosureGroup {
                             HStack(alignment: .top) {
                                 let character = Character(scalar)

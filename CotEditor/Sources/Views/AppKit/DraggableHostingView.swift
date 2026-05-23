@@ -136,11 +136,7 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
         
         guard let superview else { return assertionFailure() }
         
-        let insets = if #available(macOS 26, *) {
-            superview.edgeInsets(for: .margins())
-        } else {
-            NSEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        }
+        let insets = superview.edgeInsets(for: .margins())
         
         let maxX = superview.frame.width - self.frame.width - insets.right
         if insets.left < maxX {

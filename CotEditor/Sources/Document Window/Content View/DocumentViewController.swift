@@ -70,8 +70,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private var themeName: String?
     private var theme: Theme?  { self.focusedTextView?.theme }
     
+    private var editableObserver: Task<Void, Never>?
     private var observers: Set<AnyCancellable> = []
     private var defaultsObservers: Set<AnyCancellable> = []
+    private var focusObserver: NotificationCenter.ObservationToken?
+    private var textSelectionObservers: [ObjectIdentifier: NotificationCenter.ObservationToken] = [:]
     
     
     // MARK: Lifecycle
@@ -104,7 +107,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     isolated deinit {
         NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: EditorTextView.DidLiveChangeSelectionMessage.name, object: nil)
+        
+        self.editableObserver?.cancel()
     }
     
     
@@ -140,23 +144,30 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                                                name: NSTextStorage.didProcessEditingNotification,
                                                object: self.document.textStorage)
         
+        // observe editable change
+        self.editableObserver = Task { [weak self, document] in
+            for await isEditable in Observations({ document.isEditable }) {
+                self?.textViews.forEach { $0.isEditable = isEditable }
+            }
+        }
+        
+        // observe focus change
+        self.focusObserver = NotificationCenter.default.addObserver(for: EditorTextView.DidBecomeFirstResponderMessage.self) { [weak self] message in
+            guard let child = self?.editorViewControllers.first(where: { $0.textView.map(ObjectIdentifier.init) == message.subjectIdentifier }) else { return }
+            self?.focusedChild = child
+        }
+        
         // observe
         self.observers = [
             // observe theme change
             UserDefaults.standard.publisher(for: .theme, initial: false)
                 .sink { [weak self] in self?.setTheme(name: $0) },
-            NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: ThemeManager.shared)
+            NotificationCenter.default.publisher(for: DidManagerUpdateSettingMessage<ThemeManager>.name, object: ThemeManager.shared)
                 .map { $0.userInfo!["change"] as! SettingChange }
                 .filter { [weak self] in $0.old == self?.themeName }
                 .compactMap(\.new)
                 .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
                 .sink { [weak self] in self?.setTheme(name: $0) },
-            
-            // observe editable change
-            self.document.$isEditable
-                .sink { [weak self] isEditable in
-                    self?.textViews.forEach { $0.isEditable = isEditable }
-                },
             
             // observe appearance change for theme toggle
             self.view.publisher(for: \.effectiveAppearance)
@@ -172,12 +183,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                     
                     self.setTheme(name: themeName)
                 },
-            
-            // observe focus change
-            NotificationCenter.default.publisher(for: EditorTextView.DidBecomeFirstResponderMessage.name)
-                .map { $0.object as! EditorTextView }
-                .compactMap { [weak self] textView in self?.editorViewControllers.first { $0.textView == textView } }
-                .sink { [weak self] in self?.focusedChild = $0 },
         ]
     }
     
@@ -323,9 +328,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 (item as? NSMenuItem)?.image = self.showsInvisibles
                     ? NSImage(resource: .paragraphsignSlash)
                     : NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: nil)
-                if #unavailable(macOS 26) {
-                    (item as? NSMenuItem)?.image = nil
-                }
                 (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
                 
                 // disable if item cannot be enabled
@@ -404,17 +406,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 (item as? NSMenuItem)?.image = self.splitView.isVertical
                     ? NSImage(systemSymbolName: "rectangle.split.1x2", accessibilityDescription: nil)
                     : NSImage(systemSymbolName: "rectangle.split.2x1", accessibilityDescription: nil)
-                if #unavailable(macOS 26) {
-                    (item as? NSMenuItem)?.image = nil
-                }
                 
             case #selector(openSplitTextView):
                 (item as? NSMenuItem)?.image = self.splitView.isVertical
                     ? NSImage(systemSymbolName: "rectangle.split.2x1", accessibilityDescription: nil)
                     : NSImage(systemSymbolName: "rectangle.split.1x2", accessibilityDescription: nil)
-                if #unavailable(macOS 26) {
-                    (item as? NSMenuItem)?.image = nil
-                }
                 
             case #selector(closeSplitTextView):
                 return self.splitViewItems.count > 1
@@ -446,13 +442,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             self.document.counter.invalidateContent()
             self.document.syntaxController.parseIfNeeded()
         }
-    }
-    
-    
-    /// Invoked when the selection did change.
-    @objc private func textViewDidLiveChangeSelection(_ notification: Notification) {
-        
-        self.document.counter.invalidateSelection()
     }
     
     
@@ -690,13 +679,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// Changes the tab width to desired number through a sheet.
     @IBAction func customizeTabWidth(_ sender: Any?) {
         
-        let view = CustomTabWidthView(tabWidth: self.tabWidth) { [weak self] tabWidth in
-            self?.tabWidth = tabWidth
+        self.view.window?.beginSheet {
+            CustomTabWidthView(tabWidth: self.tabWidth) { [weak self] tabWidth in
+                self?.tabWidth = tabWidth
+            }
         }
-        let viewController = NSHostingController(rootView: view)
-        viewController.rootView.dismiss = { [weak viewController] in viewController?.dismiss(nil) }
-        
-        self.presentAsSheet(viewController)
     }
     
     
@@ -817,7 +804,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         else { return }
         
         if let textView = currentEditorViewController.textView {
-            NotificationCenter.default.removeObserver(self, name: EditorTextView.DidLiveChangeSelectionMessage.name, object: textView)
+            self.textSelectionObservers[ObjectIdentifier(textView)] = nil
             textView.undoManager?.removeAllActions(withTarget: textView)
         }
         
@@ -864,13 +851,14 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         let index = otherViewController.flatMap(self.children.firstIndex(of:))?.advanced(by: 1) ?? 0
         self.insertSplitViewItem(splitViewItem, at: index)
         
+        let textView = viewController.textView!
+        
         // observe cursor
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidLiveChangeSelection),
-                                               name: EditorTextView.DidLiveChangeSelectionMessage.name,
-                                               object: viewController.textView)
+        self.textSelectionObservers[ObjectIdentifier(textView)] = NotificationCenter.default.addObserver(of: textView, for: .didLiveChangeSelection) { [weak self] _ in
+            self?.document.counter.invalidateSelection()
+        }
         
         // setup textView
-        let textView = viewController.textView!
         textView.isEditable = self.document.isEditable
         textView.wrapsLines = self.wrapsLines
         textView.showsInvisibles = self.showsInvisibles

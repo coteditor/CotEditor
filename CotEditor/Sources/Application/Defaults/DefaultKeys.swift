@@ -55,8 +55,6 @@ extension DefaultKeys {
     static let windowWidth = DefaultKey<Double?>("windowWidth")
     static let windowHeight = DefaultKey<Double?>("windowHeight")
     static let showLineNumbers = DefaultKey<Bool>("showLineNumbers")
-    @available(macOS, deprecated: 26)
-    static let showLineNumberSeparator = DefaultKey<Bool>("showLineNumberSeparator")
     static let showInvisibles = DefaultKey<Bool>("showInvisibles")
     static let showInvisibleNewLine = DefaultKey<Bool>("showInvisibleNewLine")
     static let showInvisibleTab = DefaultKey<Bool>("showInvisibleTab")
@@ -104,6 +102,7 @@ extension DefaultKeys {
     static let saveUTF8BOM = DefaultKey<Bool>("saveUTF8BOM")
     static let referToEncodingTag = DefaultKey<Bool>("referToEncodingTag")
     static let syntax = DefaultKey<String>("defaultColoringStyleName")
+    static let hiddenSyntaxes = DefaultKey<[String]>("hiddenSyntaxes")
     
     // Snippets
     static let snippets = DefaultKey<[[String: String]]>("snippets")

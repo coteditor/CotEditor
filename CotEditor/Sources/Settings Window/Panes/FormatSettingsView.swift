@@ -99,14 +99,6 @@ struct FormatSettingsView: View {
                     EmptyView()
                 }
                 .accessibilityLabeledPair(role: .content, id: "lineEnding", in: self.accessibility)
-                .modifier { content in
-                    if #available(macOS 26, *) {
-                        content
-                    } else {
-                        content
-                            .fixedSize()
-                    }
-                }
             }
             
             Divider()
@@ -118,7 +110,7 @@ struct FormatSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 Picker(selection: self.fileEncoding) {
-                    ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { _, encoding in
+                    ForEach(self.encodingManager.fileEncodings.enumerated(), id: \.offset) { _, encoding in
                         if let encoding {
                             Text(encoding.localizedName)
                                 .tag(encoding)
@@ -129,14 +121,7 @@ struct FormatSettingsView: View {
                 } label: {
                     EmptyView()
                 }
-                .modifier { content in
-                    if #available(macOS 26, *) {
-                        content
-                            .buttonSizing(.flexible)
-                    } else {
-                        content
-                    }
-                }
+                .buttonSizing(.flexible)
                 .frame(maxWidth: 260)
                 .accessibilityLabeledPair(role: .content, id: "fileEncoding", in: self.accessibility)
             }
@@ -189,14 +174,7 @@ struct FormatSettingsView: View {
                 } label: {
                     EmptyView()
                 }
-                .modifier { content in
-                    if #available(macOS 26, *) {
-                        content
-                            .buttonSizing(.flexible)
-                    } else {
-                        content
-                    }
-                }
+                .buttonSizing(.flexible)
                 .frame(maxWidth: 260)
                 .accessibilityLabeledPair(role: .content, id: "syntax", in: self.accessibility)
             }
@@ -216,7 +194,7 @@ struct FormatSettingsView: View {
                 HelpLink(anchor: "settings_format")
             }
         }
-        .onReceive(self.syntaxManager.$settingNames) { self.syntaxNames = $0 }
+        .onChange(of: self.syntaxManager.settingNames, initial: true) { _, newValue in self.syntaxNames = newValue }
         .onChange(of: self.presentation.encodingListRequestID, initial: true) { _, requestID in
             guard
                 let requestID,
@@ -259,15 +237,19 @@ private struct SyntaxListView: View {
     @State private var selection: SettingState?
     @State private var exportingItem: TransferableSyntax?
     @State private var deletingItem: String?
+    @State private var draggingItem: String?
     @State private var editingMode: EditingMode?
     
     @State private var isExporterPresented = false
     @State private var isImporterPresented = false
     @State private var isDeleteConfirmationPresented = false
     @State private var isImportConfirmationPresented = false
+    @State private var isListCustomizationViewPresented = false
     @State private var isFileMappingConflictPresented = false
     @State private var importingError: ImportDuplicationError?
     @State private var error: (any Error)?
+    
+    @State private var settingUpdateObserver: NotificationCenter.ObservationToken?
     
     
     var body: some View {
@@ -283,38 +265,45 @@ private struct SyntaxListView: View {
                     .accessibilityHidden(!state.isCustomized)
                 Text(state.name)
             }
-            .tag(state)
             .frame(height: self.rowHeight)
+            .draggable(TransferableSyntax.self, id: \.name) {
+                guard let url = self.manager.urlForUserSetting(name: state.name) else { return nil }
+                
+                self.draggingItem = state.name
+                return TransferableSyntax(name: state.name, url: url)
+            }
+            .tag(state)
             .listRowSeparator(.hidden)
-            .draggable(TransferableSyntax(name: state.name, url: self.manager.urlForUserSetting(name: state.name))) {
-                Label {
-                    Text(state.name)
-                } icon: {
-                    Image(nsImage: NSWorkspace.shared.icon(for: .cotSyntax))
-                }
+        }
+        .safeAreaBar(edge: .bottom) {
+            VStack(spacing: 0) {
+                Divider()
+                self.bottomAccessoryView
             }
         }
-        .modifier { content in
-            if #available(macOS 26, *) {
-                content
-                    .safeAreaBar(edge: .bottom) {
-                        VStack(spacing: 0) {
-                            Divider()
-                            self.bottomAccessoryView
-                        }
-                    }
-                    .scrollEdgeEffectStyle(.hard, for: .bottom)
-            } else {
-                content
-                    .safeAreaInset(edge: .bottom) {
-                        VStack(spacing: 0) {
-                            Divider()
-                                .padding(.horizontal, 4)
-                            self.bottomAccessoryView
-                        }
-                        .background()
-                    }
+        .scrollEdgeEffectStyle(.hard, for: .bottom)
+        .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
+        .onDragSessionUpdated { session in
+            guard case .ended(let operation) = session.phase else { return }
+            defer { self.draggingItem = nil }
+            guard
+                case .delete = operation,
+                let name = self.draggingItem,
+                self.manager.state(of: name)?.isBundled != true
+            else { return }
+            
+            do {
+                try self.manager.removeSetting(name: name)
+            } catch {
+                self.error = error
+                return
             }
+            self.selection = nil
+        }
+        .dropDestination(for: URL.self) { urls, session in
+            guard session.localSession == nil else { return }
+            
+            self.importSettings(at: urls)
         }
         .contextMenu(forSelectionType: SettingState.self) { selections in
             self.menu(for: selections.first, isContext: true)
@@ -329,33 +318,19 @@ private struct SyntaxListView: View {
         .onChange(of: self.settingNames, initial: true) { _, settingNames in
             self.settingStates = settingNames.compactMap(self.manager.state(of:))
         }
-        .onReceive(NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: self.manager)) { _ in
+        .onAppear {
             // update for the "customized" dots
-            self.settingStates = self.manager.settingNames.compactMap(self.manager.state(of:))
+            self.settingUpdateObserver = NotificationCenter.default.addObserver(of: self.manager, for: DidManagerUpdateSettingMessage.self) { _ in
+                self.settingStates = self.manager.settingNames.compactMap(self.manager.state(of:))
+            }
+        }
+        .onDisappear {
+            self.settingUpdateObserver = nil
         }
         .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.cotSyntax, .yaml], allowsMultipleSelection: true) { result in
             switch result {
                 case .success(let urls):
-                    for url in urls {
-                        let accessing = url.startAccessingSecurityScopedResource()
-                        defer {
-                            if accessing { url.stopAccessingSecurityScopedResource() }
-                        }
-                        
-                        let name = url.deletingPathExtension().lastPathComponent
-                        do {
-                            let type = try url.resourceValues(forKeys: [.contentTypeKey]).contentType
-                            try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
-                        } catch let error as ImportDuplicationError {
-                            self.importingError = error
-                            self.isImportConfirmationPresented = true
-                            return
-                        } catch {
-                            self.error = error
-                            return
-                        }
-                        self.selection = self.manager.state(of: name)
-                    }
+                    self.importSettings(at: urls)
                 case .failure(let error):
                     self.error = error
             }
@@ -375,23 +350,20 @@ private struct SyntaxListView: View {
                     self.error = error
                 }
             }
-            Button(.cancel, role: .cancel) {
+            Button(role: .cancel) {
                 self.importingError = nil
             }
         } message: { error in
             Text(error.recoverySuggestion)
         }
         // place fileExporter after `fileDialogConfirmationLabel(_:)` for the import action to use the default label for the export.
-        .fileExporter(isPresented: $isExporterPresented, document: self.exportingItem, contentTypes: [.cotSyntax], defaultFilename: self.exportingItem?.name) { result in
-            self.exportingItem = nil
+        .fileExporter(isPresented: $isExporterPresented, item: self.exportingItem, contentTypes: [.cotSyntax], defaultFilename: self.exportingItem?.name) { result in
             switch result {
                 case .success:
                     break
                 case .failure(let error):
                     self.error = error
             }
-        } onCancellation: {
-            self.exportingItem = nil
         }
         .confirmationDialog(String(localized: "DeletionConfirmation.title",
                                    defaultValue: "Are you sure you want to delete “\(self.deletingItem ?? String(localized: .unknown))”?"),
@@ -405,7 +377,7 @@ private struct SyntaxListView: View {
                     self.error = error
                 }
             }
-            Button(.cancel, role: .cancel) {
+            Button(role: .cancel) {
                 self.deletingItem = nil
             }
         } message: { _ in
@@ -422,6 +394,10 @@ private struct SyntaxListView: View {
             } validationAction: { name in
                 try self.manager.validate(settingName: name, originalName: state?.name)
             }
+        }
+        .sheet(isPresented: $isListCustomizationViewPresented) {
+            SyntaxListCustomizationView(items: self.settingNames)
+            
         }
         .sheet(isPresented: $isFileMappingConflictPresented) {
             SyntaxMappingConflictView(table: self.manager.mappingConflicts)
@@ -535,8 +511,10 @@ private struct SyntaxListView: View {
                    : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection.name)”…"),
                    systemImage: "square.and.arrow.up")
             {
-                self.exportingItem = TransferableSyntax(name: selection.name, url: self.manager.urlForUserSetting(name: selection.name))
-                self.isExporterPresented = true
+                if let url = self.manager.urlForUserSetting(name: selection.name) {
+                    self.exportingItem = TransferableSyntax(name: selection.name, url: url)
+                    self.isExporterPresented = true
+                }
             }
             .modifierKeyAlternate(.option) {
                 Button(isContext
@@ -574,10 +552,46 @@ private struct SyntaxListView: View {
             
             Divider()
             
+            Button(String(localized: "Customize Syntax Menu…", table: "FormatSettings"), systemImage: "square.and.pencil") {
+                self.isListCustomizationViewPresented = true
+            }
+            
             Button(String(localized: "Show File Mapping Conflicts", table: "FormatSettings"), systemImage: "exclamationmark.triangle") {
                 self.isFileMappingConflictPresented = true
             }
             .disabled(self.manager.mappingConflicts.isEmpty)
+        }
+    }
+    
+    
+    /// Imports setting files at the given URLs.
+    ///
+    /// - Parameter urls: The file URLs to import.
+    private func importSettings(at urls: [URL]) {
+        
+        for url in urls {
+            guard url.isFileURL else { continue }
+            
+            let accessing = url.startAccessingSecurityScopedResource()
+            defer {
+                if accessing { url.stopAccessingSecurityScopedResource() }
+            }
+            
+            let name = url.deletingPathExtension().lastPathComponent
+            do {
+                let type = try url.resourceValues(forKeys: [.contentTypeKey]).contentType
+                guard type?.conforms(to: .cotSyntax) == true || type?.conforms(to: .yaml) == true else { continue }
+                
+                try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
+            } catch let error as ImportDuplicationError {
+                self.importingError = error
+                self.isImportConfirmationPresented = true
+                return
+            } catch {
+                self.error = error
+                return
+            }
+            self.selection = self.manager.state(of: name)
         }
     }
 }
@@ -588,28 +602,7 @@ private struct TransferableSyntax: TransferableFile {
     static let fileType: UTType = .cotSyntax
     
     var name: String
-    var url: URL?
-}
-
-
-extension TransferableSyntax: FileDocument {
-    
-    static var readableContentTypes: [UTType] { [Self.fileType] }
-    static var writableContentTypes: [UTType] { [Self.fileType] }
-    
-    
-    init(configuration: ReadConfiguration) throws {
-        
-        throw CocoaError(.fileReadUnsupportedScheme)
-    }
-    
-    
-    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        
-        guard let url else { throw CocoaError(.fileNoSuchFile) }
-        
-        return try FileWrapper(url: url, options: .immediate)
-    }
+    var url: URL
 }
 
 

@@ -146,7 +146,7 @@ private struct ColorCodePanelAccessory: View {
                 .onChange(of: self.type) { _, newValue in
                     self.apply(type: newValue)
                 }
-                .labelsHidden()
+                .labelsVisibility(.hidden)
                 
                 Button(String(localized: "Insert", table: "ColorCode", comment: "button label"), action: self.submit)
                     .keyboardShortcut(.defaultAction)

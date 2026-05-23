@@ -53,7 +53,8 @@ struct IncompatibleCharactersView: View {
         private var scanRevision = 0
         
         private var task: Task<Void, any Error>?
-        private var observers: Set<AnyCancellable> = []
+        private var encodingObserver: Task<Void, Never>?
+        private var textEditingObserver: AnyCancellable?
     }
     
     
@@ -70,7 +71,7 @@ struct IncompatibleCharactersView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Incompatible Characters", tableName: "Document",
                  comment: "section title in inspector")
-                .font(.system(size: 12, weight: isLiquidGlass ? .semibold : .bold))
+                .font(.system(size: 12, weight: .semibold))
                 .foregroundStyle(.secondary)
                 .accessibilityRemoveTraits(.isHeader)
             
@@ -193,24 +194,23 @@ private extension IncompatibleCharactersView.Model {
     /// Updates observations.
     private func invalidateObservation() {
         
-        self.observers.removeAll()
+        self.textEditingObserver?.cancel()
+        self.encodingObserver?.cancel()
         
         guard let document else { return }
         
         self.invalidateIncompatibleCharacters(initial: true)
         
-        NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: document.textStorage)
+        self.textEditingObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: document.textStorage)
             .map { $0.object as! NSTextStorage }
             .filter { $0.editedMask.contains(.editedCharacters) }
             .debounce(for: .seconds(0.3), scheduler: RunLoop.current)
             .sink { [weak self] _ in self?.invalidateIncompatibleCharacters() }
-            .store(in: &self.observers)
-        document.$fileEncoding
-            .map(\.encoding)
-            .removeDuplicates()
-            .dropFirst()
-            .sink { [weak self] _ in self?.invalidateIncompatibleCharacters() }
-            .store(in: &self.observers)
+        self.encodingObserver = Task { [weak self] in
+            for await _ in Observations({ document.fileEncoding.encoding }) {
+                self?.invalidateIncompatibleCharacters()
+            }
+        }
     }
     
     

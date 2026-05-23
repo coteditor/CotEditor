@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021-2025 1024jp
+//  © 2021-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -57,12 +57,12 @@ struct CharacterCountOptionsView: View {
     
     var body: some View {
         
-        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: isLiquidGlass ? 18 : 14) {
+        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 18) {
             GridRow {
                 Text("Whitespace:", tableName: "AdvancedCharacterCount", comment: "label")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
+                VStack(alignment: .leading) {
                     Toggle(String(localized: "Ignore line endings", table: "AdvancedCharacterCount", comment: "setting option"),
                            isOn: $ignoresNewlines)
                     Toggle(String(localized: "Ignore whitespace", table: "AdvancedCharacterCount", comment: "setting option"),
@@ -87,8 +87,7 @@ struct CharacterCountOptionsView: View {
                     } label: {
                         EmptyView()
                     }
-                    .fixedSize()
-                    .labelsHidden()
+                    .labelsVisibility(.hidden)
                     .accessibilityLabeledPair(role: .content, id: "unit", in: self.accessibility)
                     
                     Text(self.unit.description)
@@ -99,7 +98,7 @@ struct CharacterCountOptionsView: View {
                     
                     if self.unit == .byte {
                         Picker(String(localized: "Encoding:", table: "AdvancedCharacterCount", comment: "label"), selection: $encoding) {
-                            ForEach(Array(String.sortedAvailableStringEncodings.enumerated()), id: \.offset) { _, encoding in
+                            ForEach(String.sortedAvailableStringEncodings.enumerated(), id: \.offset) { _, encoding in
                                 if let encoding {
                                     Text(String.localizedName(of: encoding))
                                         .tag(Int(encoding.rawValue))
@@ -108,7 +107,6 @@ struct CharacterCountOptionsView: View {
                                 }
                             }
                         }
-                        .fixedSize()
                         .onGeometryChange(for: CGFloat.self, of: \.size.width) { self.contentWidth = $0 }
                     }
                     
@@ -129,7 +127,7 @@ struct CharacterCountOptionsView: View {
                                     }
                                 }
                             }
-                            .labelsHidden()
+                            .labelsVisibility(.hidden)
                             .disabled(!self.normalizes)
                         }
                         .fixedSize()

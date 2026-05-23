@@ -38,11 +38,21 @@ import SyntaxFormat
     
     var attributes: FileAttributes?  { self.document?.fileAttributes }
     var fileURL: URL?
-    var textSettings: TextSettings?
     var countResult: EditorCounter.Result?  { (self.document as? Document)?.counter.result }
     
     private var urlObserver: AnyCancellable?
-    private var observers: Set<AnyCancellable> = []
+    
+    
+    // MARK: Public Methods
+    
+    var textSettings: TextSettings? {
+        
+        if let document = self.document as? Document {
+            TextSettings(encoding: document.fileEncoding, lineEnding: document.lineEnding, mode: document.mode)
+        } else {
+            nil
+        }
+    }
     
     
     // MARK: Private Methods
@@ -51,12 +61,6 @@ import SyntaxFormat
     private func didUpdateDocument() {
         
         self.fileURL = self.document?.fileURL
-        
-        self.textSettings = if let document = self.document as? Document {
-            TextSettings(encoding: document.fileEncoding, lineEnding: document.lineEnding, mode: document.mode)
-        } else {
-            nil
-        }
         
         if self.isPresented {
             self.startObservation()
@@ -83,17 +87,6 @@ import SyntaxFormat
         self.urlObserver = document?.publisher(for: \.fileURL, options: .initial)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.fileURL = $0 }
-        
-        if let document = document as? Document {
-            self.observers = [
-                document.$fileEncoding
-                    .sink { [weak self] in self?.textSettings?.encoding = $0 },
-                document.$lineEnding
-                    .sink { [weak self] in self?.textSettings?.lineEnding = $0 },
-                document.$mode
-                    .sink { [weak self] in self?.textSettings?.mode = $0 },
-            ]
-        }
     }
     
     
@@ -102,7 +95,6 @@ import SyntaxFormat
         
         (self.document as? Document)?.counter.updatesAll = false
         self.urlObserver = nil
-        self.observers.removeAll()
     }
 }
 
@@ -144,31 +136,18 @@ struct DocumentInspectorView: View, HostedPaneView {
                 DocumentFileView(attributes: self.model.attributes, fileURL: self.model.fileURL)
                 
                 if let textSettings = self.model.textSettings {
-                    if !isLiquidGlass { Divider() }
                     TextSettingsView(value: textSettings)
                 }
                 
                 if let countResult = self.model.countResult {
-                    if !isLiquidGlass { Divider() }
                     EditorCountView(result: countResult)
-                    
-                    if !isLiquidGlass { Divider() }
                     CharacterPaneView(character: countResult.character)
                 }
             }
-            .padding(EdgeInsets(top: isLiquidGlass ? 12 : 4, leading: 12, bottom: 12, trailing: 12))
-            .modifier { content in
-                if #available(macOS 26, *) {
-                    content
-                        .disclosureGroupStyle(InspectorDisclosureGroupStyle())
-                        .labeledContentStyle(InspectorLabeledContentStyle())
-                        .formStyle(.grouped)
-                } else {
-                    content
-                        .disclosureGroupStyle(LegacyInspectorDisclosureGroupStyle())
-                        .labeledContentStyle(LegacyInspectorLabeledContentStyle())
-                }
-            }
+            .disclosureGroupStyle(InspectorDisclosureGroupStyle())
+            .labeledContentStyle(InspectorLabeledContentStyle())
+            .formStyle(.grouped)
+            .padding(12)
         }
         .onChange(of: self.document, initial: true) { _, newValue in
             self.model.document = newValue
@@ -204,8 +183,8 @@ private struct DocumentFileView: View {
                 
                 LabeledContent(String(localized: "Tags", table: "Document", comment: "label in document inspector")) {
                     if let tags = self.attributes?.tags, !tags.isEmpty {
-                        WrappingHStack(alignment: isLiquidGlass ? .trailing : .leading, horizontalSpacing: 7) {
-                            ForEach(Array(tags.enumerated()), id: \.offset) { _, tag in
+                        WrappingHStack(alignment: .trailing, horizontalSpacing: 7) {
+                            ForEach(tags.enumerated(), id: \.offset) { _, tag in
                                 HStack(spacing: 4) {
                                     TagColorView(color: tag.color)
                                         .frame(height: 9)
@@ -229,14 +208,6 @@ private struct DocumentFileView: View {
                                 .lineLimit(5)
                                 .truncationMode(.middle)
                                 .textSelection(.enabled)
-                                .modifier { content in
-                                    if #available(macOS 26, *) {
-                                        content
-                                    } else {
-                                        content
-                                            .foregroundStyle(.primary)
-                                    }
-                                }
                                 .help(fileURL.formatted(.url.scheme(.never)))
                             Button(String(localized: "Show in Finder", table: "Document"), systemImage: "arrow.forward") {
                                 NSWorkspace.shared.activateFileViewerSelecting([fileURL])
@@ -295,14 +266,6 @@ private struct EditorCountView: View {
                     ForEach(CountType.countCases, id: \.self) { type in
                         LabeledContent(type.label, optional: self.result.formattedValue(type: type))
                             .accessibilityAddTraits(.updatesFrequently)
-                            .modifier { content in
-                                if !isLiquidGlass, type == CountType.countCases.last {
-                                    content
-                                        .padding(.bottom, 8)
-                                } else {
-                                    content
-                                }
-                            }
                     }
                 }
                 Section {
@@ -334,8 +297,8 @@ private struct CharacterPaneView: View {
                         ? String(localized: "Code Point", table: "Document", comment: "label in document inspector")
                         : String(localized: "Code Points", table: "Document", comment: "label in document inspector")
                     LabeledContent(label) {
-                        WrappingHStack(alignment: isLiquidGlass ? .trailing : .leading) {
-                            ForEach(Array(scalars.enumerated()), id: \.offset) { _, scalar in
+                        WrappingHStack(alignment: .trailing) {
+                            ForEach(Array(scalars).enumerated(), id: \.offset) { _, scalar in
                                 Text(scalar.codePoint)
                                     .monospacedDigit()
                                     .textSelection(.enabled)
@@ -365,7 +328,6 @@ private struct CharacterPaneView: View {
 }
 
 
-@available(macOS 26, *)
 private struct InspectorDisclosureGroupStyle: DisclosureGroupStyle {
     
     func makeBody(configuration: Configuration) -> some View {
@@ -386,7 +348,6 @@ private struct InspectorDisclosureGroupStyle: DisclosureGroupStyle {
 }
 
 
-@available(macOS 26, *)
 private struct InspectorLabeledContentStyle: LabeledContentStyle {
     
     @Environment(\.controlSize) private var controlSize
@@ -405,7 +366,6 @@ private struct InspectorLabeledContentStyle: LabeledContentStyle {
 }
 
 
-@available(macOS 26, *)
 private extension ControlSize {
     
     var nsControlSize: NSControl.ControlSize {
@@ -418,40 +378,6 @@ private extension ControlSize {
             case .extraLarge: .extraLarge
             @unknown default: .regular
         }
-    }
-}
-
-
-@available(macOS, deprecated: 26)
-private struct LegacyInspectorDisclosureGroupStyle: DisclosureGroupStyle {
-    
-    func makeBody(configuration: Configuration) -> some View {
-        
-        DisclosureGroup(isExpanded: configuration.$isExpanded) {
-            configuration.content
-                .frame(maxWidth: .infinity, alignment: .leading)
-        } label: {
-            configuration.label
-                .font(.system(size: 12, weight: .bold))
-                .foregroundStyle(.secondary)
-                .fixedSize()
-        }
-    }
-}
-
-
-@available(macOS, deprecated: 26)
-private struct LegacyInspectorLabeledContentStyle: LabeledContentStyle {
-    
-    func makeBody(configuration: Configuration) -> some View {
-        
-        LabeledContent {
-            configuration.content
-        } label: {
-            configuration.label
-                // keep specific width for short labels, such as Chinese
-                .frame(minWidth: 48, alignment: .trailing)
-        }.padding(.bottom, 1)
     }
 }
 

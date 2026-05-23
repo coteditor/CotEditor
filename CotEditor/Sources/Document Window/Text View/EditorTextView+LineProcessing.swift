@@ -176,13 +176,11 @@ extension EditorTextView {
         let sampleLine = String(self.string[lineRange])
         let fontName = self.font?.fontName
         
-        let view = PatternSortView(sampleLine: sampleLine, sampleFontName: fontName) { [weak self] pattern, options in
-            self?.sortLines(pattern: pattern, options: options)
+        self.window?.beginSheet {
+            PatternSortView(sampleLine: sampleLine, sampleFontName: fontName) { [weak self] pattern, options in
+                self?.sortLines(pattern: pattern, options: options)
+            }
         }
-        let viewController = NSHostingController(rootView: view)
-        viewController.rootView.dismiss = { [weak viewController] in viewController?.dismiss(nil) }
-        
-        self.viewControllerForSheet?.presentAsSheet(viewController)
     }
     
     

@@ -52,26 +52,15 @@ struct EditSettingsView: View {
     
     var body: some View {
         
-        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: isLiquidGlass ? 18 : 14) {
+        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 18) {
             GridRow {
                 Text("Indentation:", tableName: "EditSettings")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
+                VStack(alignment: .leading) {
                     Picker(String(localized: "Prefer using", table: "EditSettings"), selection: $autoExpandTab) {
                         Text("Spaces", tableName: "EditSettings", comment: "indent style").tag(true)
                         Text("Tabs", tableName: "EditSettings", comment: "indent style").tag(false)
-                    }
-                    .modifier { content in
-                        if #available(macOS 26, *) {
-                            content
-                        } else if Locale.current.language.languageCode == .russian {
-                            content
-                                .frame(maxWidth: 320)
-                        } else {
-                            content
-                                .fixedSize()
-                        }
                     }
                     
                     HStack(alignment: .firstTextBaseline) {
@@ -91,7 +80,7 @@ struct EditSettingsView: View {
                 Text("Whitespace:", tableName: "EditSettings")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
+                VStack(alignment: .leading) {
                     Toggle(String(localized: "Automatically trim trailing whitespace", table: "EditSettings"), isOn: $autoTrimsTrailingWhitespace)
                     Toggle(String(localized: "Including whitespace-only lines", table: "EditSettings"), isOn: $trimsWhitespaceOnlyLines)
                         .disabled(!self.autoTrimsTrailingWhitespace)
@@ -103,7 +92,7 @@ struct EditSettingsView: View {
                 Text("Comment:", tableName: "EditSettings")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
+                VStack(alignment: .leading) {
                     Toggle(String(localized: "Insert comment delimiters after indent", table: "EditSettings"), isOn: $insertsCommentDelimitersAfterIndent)
                     Toggle(String(localized: "Add a space to comment delimiters", table: "EditSettings"), isOn: $appendsCommentSpacer)
                 }
@@ -113,7 +102,7 @@ struct EditSettingsView: View {
                 Text("Content parse:", tableName: "EditSettings")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
+                VStack(alignment: .leading) {
                     Toggle(String(localized: "Link URLs in document", table: "EditSettings"), isOn: $autoLinkDetection)
                     Toggle(String(localized: "Highlight matching braces", table: "EditSettings"), isOn: $highlightBraces)
                     Toggle(String(localized: "Highlight instances of selected text", table: "EditSettings"), isOn: $highlightSelectionInstance)

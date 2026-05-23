@@ -51,6 +51,32 @@ extension Binding where Value: OptionSet & Sendable, Value == Value.Element {
 }
 
 
+// MARK: Set
+
+extension Binding {
+    
+    /// Returns a binding that indicates whether the set contains the given element.
+    ///
+    /// - Parameter element: The element to check.
+    /// - Returns: A binding that inserts the element when set to `true`, or removes it when set to `false`.
+    func contains<Element: Sendable>(_ element: Element) -> Binding<Bool> where Value == Set<Element> {
+        
+        Binding<Bool>(
+            get: {
+                self.wrappedValue.contains(element)
+            },
+            set: {
+                if $0 {
+                    self.wrappedValue.insert(element)
+                } else {
+                    self.wrappedValue.remove(element)
+                }
+            }
+        )
+    }
+}
+
+
 // MARK: Optional Binding
 
 func ?? <T: Sendable>(lhs: Binding<T?>, rhs: T) -> Binding<T> {

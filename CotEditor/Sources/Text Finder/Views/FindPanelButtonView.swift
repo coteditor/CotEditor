@@ -41,13 +41,11 @@ struct FindPanelButtonView: View {
                 self.performAction(.findAll)
             }
             .help(String(localized: "Find and list all matches.", table: "TextFind", comment: "tooltip"))
-            .fixedSize()
             
             Button(String(localized: "Replace All", table: "TextFind", comment: "button label")) {
                 self.performAction(.replaceAll)
             }
             .help(String(localized: "Replace all matches with the replacement text.", table: "TextFind", comment: "tooltip"))
-            .fixedSize()
             
             Spacer()
             
@@ -55,7 +53,6 @@ struct FindPanelButtonView: View {
                 self.performAction(.replaceAndFind)
             }
             .help(String(localized: "Replace the current selection with the replacement text, then find the next match.", table: "TextFind", comment: "tooltip"))
-            .fixedSize()
             
             ControlGroup {
                 Button(String(localized: "Find Previous", table: "TextFind", comment: "button label"), systemImage: "chevron.backward") {
@@ -67,14 +64,7 @@ struct FindPanelButtonView: View {
                 }.help(String(localized: "Find next match.", table: "TextFind", comment: "tooltip"))
             }
             .labelStyle(.iconOnly)
-            .modifier { content in
-                if #available(macOS 26, *) {
-                    content
-                        .buttonSizing(.flexible)
-                } else {
-                    content
-                }
-            }
+            .buttonSizing(.flexible)
             .frame(width: 70)
         }
         .padding(.top, 8)

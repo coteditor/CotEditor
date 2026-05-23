@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2025 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ struct FilterField: NSViewRepresentable {
     
     func makeNSView(context: Context) -> NSSearchField {
         
-        let searchField = if #available(macOS 26, *) { FilterSearchField() } else { LegacyFilterSearchField() }
+        let searchField = FilterSearchField()
         searchField.target = context.coordinator
         searchField.action = #selector(Coordinator.didChangeSearchString)
         searchField.recentsAutosaveName = self.autosaveName
@@ -67,7 +67,7 @@ struct FilterField: NSViewRepresentable {
     /// The name under which the search field automatically archives the list of recent search strings.
     ///
     /// - Parameter autosaveName: The unique name for saving recent search strings.
-    func autosaveName(_ autosaveName: String?) -> some View {
+    func autosaveName(_ autosaveName: String?) -> Self {
         
         var view = self
         view.autosaveName = autosaveName
@@ -183,45 +183,6 @@ private extension NSSearchField {
     var searchButtonCell: NSButtonCell? {
         
         (self.cell as? NSSearchFieldCell)?.searchButtonCell
-    }
-}
-
-
-@available(macOS, deprecated: 26, message: "Remember adding `final` to FilterSearchField when removing this subclass.")
-class LegacyFilterSearchField: FilterSearchField {
-    
-    required init() {
-        
-        super.init()
-        
-        self.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
-        self.alignment = .natural
-        
-        // workaround the button color is .labelColor (2022-09, macOS 13-15, fixed in macOS 26)
-        self.searchButtonCell?.image = self.searchButtonCell?.image?
-            .tinted(with: .secondaryLabelColor)
-        self.cancelButtonCell?.image = self.cancelButtonCell?.image?
-            .tinted(with: .secondaryLabelColor)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func draw(_ dirtyRect: NSRect) {
-        
-        // workaround to update icon while typing on macOS 15
-        super.draw(dirtyRect)
-    }
-    
-    
-    /// The button cell used to display the cancel button image.
-    private var cancelButtonCell: NSButtonCell? {
-        
-        (self.cell as? NSSearchFieldCell)?.cancelButtonCell
     }
 }
 

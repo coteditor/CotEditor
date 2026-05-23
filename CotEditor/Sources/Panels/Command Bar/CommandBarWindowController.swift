@@ -58,10 +58,8 @@ final class CommandBarWindowController: NSWindowController {
         panel.standardWindowButton(.zoomButton)?.isHidden = true
         panel.standardWindowButton(.miniaturizeButton)?.isHidden = true
         
-        if #available(macOS 26, *) {
-            // make window background clear to have glass effect background
-            panel.backgroundColor = .clear
-        }
+        // make window background clear to have glass effect background
+        panel.backgroundColor = .clear
         
         panel.setContentSize(hostingView.intrinsicContentSize)
         panel.center()

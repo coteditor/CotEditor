@@ -45,6 +45,8 @@ struct ThemeView: View {
     
     @State private var error: (any Error)?
     
+    @State private var settingUpdateObserver: NotificationCenter.ObservationToken?
+    
     
     var body: some View {
         
@@ -65,6 +67,14 @@ struct ThemeView: View {
         }
         .onAppear {
             self.selectDefaultTheme()
+            
+            self.settingUpdateObserver = NotificationCenter.default.addObserver(of: self.manager, for: DidManagerUpdateSettingMessage.self) { message in
+                guard let name = message.change.new, name == self.themeName else { return }
+                self.setTheme(name: name)
+            }
+        }
+        .onDisappear {
+            self.settingUpdateObserver = nil
         }
         .onChange(of: self.documentAppearance) {
             self.selectDefaultTheme()
@@ -74,16 +84,6 @@ struct ThemeView: View {
         }
         .onChange(of: self.selection) { _, newValue in
             self.setTheme(name: newValue)
-        }
-        .task {
-            let names = NotificationCenter.default
-                .notifications(named: .didUpdateSettingNotification, object: self.manager)
-                .compactMap { $0.userInfo?["change"] as? SettingChange }
-                .compactMap(\.new)
-            
-            for await name in names where name == self.themeName {
-                self.setTheme(name: name)
-            }
         }
         .background()
         .border(.separator)
@@ -148,6 +148,7 @@ private struct ThemeListView: View {
     @State private var settingNames: [String] = []
     @State private var exportingItem: TransferableTheme?
     @State private var deletingItem: String?
+    @State private var draggingItem: String?
     @FocusState private var editingItem: String?
     
     @State private var isExporterPresented = false
@@ -176,84 +177,57 @@ private struct ThemeListView: View {
                     }
                     .editDisabled(state?.isBundled == true)
                     .focused($editingItem, equals: name)
-                    .draggable(TransferableTheme(name: name, url: self.manager.urlForUserSetting(name: name))) {
-                        Label {
-                            Text(name)
-                        } icon: {
-                            Image(nsImage: NSWorkspace.shared.icon(for: .cotTheme))
-                        }
+                    .draggable(TransferableTheme.self, id: \.name) {
+                        guard let url = self.manager.urlForUserSetting(name: name) else { return nil }
+                        
+                        self.draggingItem = name
+                        return TransferableTheme(name: name, url: url)
                     }
+                    .tag(name)
                 }
             }
             .listRowSeparator(.hidden)
         }
-        .modifier { content in
-            if #available(macOS 26, *) {
-                content
-                    .safeAreaBar(edge: .bottom) {
-                        VStack(spacing: 0) {
-                            Divider()
-                            self.bottomAccessoryView
-                        }
-                    }
-                    .scrollEdgeEffectStyle(.hard, for: .bottom)
-            } else {
-                content
-                    .safeAreaInset(edge: .bottom) {
-                        VStack(spacing: 0) {
-                            Divider()
-                                .padding(.horizontal, 4)
-                            self.bottomAccessoryView
-                        }
-                        .background()
-                    }
+        .safeAreaBar(edge: .bottom) {
+            VStack(spacing: 0) {
+                Divider()
+                self.bottomAccessoryView
             }
         }
-        .dropDestination(for: TransferableTheme.self) { items, _ in
-            var succeed = false
-            for item in items {
-                guard let url = item.url else { continue }
-                do {
-                    try self.manager.importSetting(.url(url), name: item.name, type: .cotTheme, overwrite: false)
-                    succeed = true
-                } catch let error as ImportDuplicationError {
-                    self.importingError = error
-                    self.isImportConfirmationPresented = true
-                } catch {
-                    self.error = error
-                }
+        .scrollEdgeEffectStyle(.hard, for: .bottom)
+        .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
+        .onDragSessionUpdated { session in
+            guard case .ended(let operation) = session.phase else { return }
+            defer { self.draggingItem = nil }
+            guard
+                case .delete = operation,
+                let name = self.draggingItem,
+                self.manager.state(of: name)?.isBundled != true
+            else { return }
+            
+            do {
+                try self.manager.removeSetting(name: name)
+            } catch {
+                self.error = error
+                return
             }
-            return succeed
+            UserDefaults.standard.restore(key: .theme)
+        }
+        .dropDestination(for: URL.self) { urls, session in
+            guard session.localSession == nil else { return }
+            
+            self.importSettings(at: urls)
         }
         .contextMenu(forSelectionType: String.self) { selections in
             if let selection = selections.first {
                 self.menu(for: selection, isContext: true)
             }
         }
-        .onReceive(self.manager.$settingNames) { self.settingNames = $0 }
+        .onChange(of: self.manager.settingNames, initial: true) { _, newValue in self.settingNames = newValue }
         .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.cotTheme], allowsMultipleSelection: true) { result in
             switch result {
                 case .success(let urls):
-                    for url in urls {
-                        let accessing = url.startAccessingSecurityScopedResource()
-                        defer {
-                            if accessing { url.stopAccessingSecurityScopedResource() }
-                        }
-                        
-                        let name = url.deletingPathExtension().lastPathComponent
-                        do {
-                            let type = try url.resourceValues(forKeys: [.contentTypeKey]).contentType
-                            try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
-                        } catch let error as ImportDuplicationError {
-                            self.importingError = error
-                            self.isImportConfirmationPresented = true
-                            return
-                        } catch {
-                            self.error = error
-                            return
-                        }
-                        self.selection = name
-                    }
+                    self.importSettings(at: urls)
                 case .failure(let error):
                     self.error = error
             }
@@ -273,7 +247,7 @@ private struct ThemeListView: View {
                     self.error = error
                 }
             }
-            Button(.cancel, role: .cancel) {
+            Button(role: .cancel) {
                 self.importingError = nil
             }
         } message: { error in
@@ -302,7 +276,7 @@ private struct ThemeListView: View {
                 }
                 UserDefaults.standard.restore(key: .theme)
             }
-            Button(.cancel, role: .cancel) {
+            Button(role: .cancel) {
                 self.deletingItem = nil
             }
         } message: { _ in
@@ -414,8 +388,10 @@ private struct ThemeListView: View {
                    : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection.name)”…"),
                    systemImage: "square.and.arrow.up")
             {
-                self.exportingItem = TransferableTheme(name: selection.name, url: self.manager.urlForUserSetting(name: selection.name))
-                self.isExporterPresented = true
+                if let url = self.manager.urlForUserSetting(name: selection.name) {
+                    self.exportingItem = TransferableTheme(name: selection.name, url: url)
+                    self.isExporterPresented = true
+                }
             }
             .modifierKeyAlternate(.option) {
                 Button(isContext
@@ -450,6 +426,38 @@ private struct ThemeListView: View {
                     }
                 }
             }
+        }
+    }
+    
+    
+    /// Imports setting files at the given URLs.
+    ///
+    /// - Parameter urls: The file URLs to import.
+    private func importSettings(at urls: [URL]) {
+        
+        for url in urls {
+            guard url.isFileURL else { continue }
+            
+            let accessing = url.startAccessingSecurityScopedResource()
+            defer {
+                if accessing { url.stopAccessingSecurityScopedResource() }
+            }
+            
+            let name = url.deletingPathExtension().lastPathComponent
+            do {
+                let type = try url.resourceValues(forKeys: [.contentTypeKey]).contentType
+                guard type?.conforms(to: .cotTheme) == true else { continue }
+                
+                try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
+            } catch let error as ImportDuplicationError {
+                self.importingError = error
+                self.isImportConfirmationPresented = true
+                return
+            } catch {
+                self.error = error
+                return
+            }
+            self.selection = name
         }
     }
 }
@@ -673,7 +681,7 @@ private struct TransferableTheme: TransferableFile {
     static let fileType: UTType = .cotTheme
     
     var name: String
-    var url: URL?
+    var url: URL
 }
 
 

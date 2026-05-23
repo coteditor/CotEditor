@@ -35,6 +35,7 @@ struct MultipleReplaceListView: View {
     @State private var settingNames: [String] = []
     @State private var exportingItem: TransferableReplacement?
     @State private var deletingItem: String?
+    @State private var draggingItem: String?
     @FocusState private var editingItem: String?
     
     @State private var isExporterPresented = false
@@ -59,28 +60,37 @@ struct MultipleReplaceListView: View {
                     return true
                 }
                 .focused($editingItem, equals: name)
-                .draggable(TransferableReplacement(name: name, url: self.manager.urlForUserSetting(name: name))) {
-                    Label {
-                        Text(name)
-                    } icon: {
-                        Image(nsImage: NSWorkspace.shared.icon(for: .cotReplacement))
-                    }
+                .draggable(TransferableReplacement.self, id: \.name) {
+                    guard let url = self.manager.urlForUserSetting(name: name) else { return nil }
+                    
+                    self.draggingItem = name
+                    return TransferableReplacement(name: name, url: url)
                 }
+                .tag(name)
             }
         }
-        .modifier { content in
-            if #available(macOS 26, *) {
-                content
-                    .safeAreaBar(edge: .bottom) {
-                        self.bottomAccessoryView
-                    }
-                    .scrollEdgeEffectStyle(.hard, for: .bottom)
-            } else {
-                content
-                    .safeAreaInset(edge: .bottom, spacing: 0) {
-                        self.bottomAccessoryView
-                    }
+        .safeAreaBar(edge: .bottom) {
+            self.bottomAccessoryView
+        }
+        .scrollEdgeEffectStyle(.hard, for: .bottom)
+        .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
+        .onDragSessionUpdated { session in
+            guard case .ended(let operation) = session.phase else { return }
+            defer { self.draggingItem = nil }
+            guard case .delete = operation, let name = self.draggingItem else { return }
+            
+            do {
+                try self.manager.removeSetting(name: name)
+            } catch {
+                self.error = error
+                return
             }
+            self.selection = nil
+        }
+        .dropDestination(for: URL.self) { urls, session in
+            guard session.localSession == nil else { return }
+            
+            self.importSettings(at: urls)
         }
         .contextMenu(forSelectionType: String.self) { selections in
             if let selection = selections.first {
@@ -89,7 +99,7 @@ struct MultipleReplaceListView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Sidebar", table: "MultipleReplace", comment: "accessibility label"))
-        .onReceive(self.manager.$settingNames) { self.settingNames = $0 }
+        .onChange(of: self.manager.settingNames, initial: true) { _, newValue in self.settingNames = newValue }
         .onAppear {
             // separate from `.onChange(of: self.settingNames.isEmpty)`
             // to avoid evaluating before initializing settingNames
@@ -105,26 +115,7 @@ struct MultipleReplaceListView: View {
         .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.cotReplacement, .tabSeparatedText], allowsMultipleSelection: true) { result in
             switch result {
                 case .success(let urls):
-                    for url in urls {
-                        let accessing = url.startAccessingSecurityScopedResource()
-                        defer {
-                            if accessing { url.stopAccessingSecurityScopedResource() }
-                        }
-                        
-                        let name = url.deletingPathExtension().lastPathComponent
-                        do {
-                            let type = try url.resourceValues(forKeys: [.contentTypeKey]).contentType
-                            try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
-                        } catch let error as ImportDuplicationError {
-                            self.importingError = error
-                            self.isImportConfirmationPresented = true
-                            return
-                        } catch {
-                            self.error = error
-                            return
-                        }
-                        self.selection = name
-                    }
+                    self.importSettings(at: urls)
                 case .failure(let error):
                     self.error = error
             }
@@ -147,7 +138,7 @@ struct MultipleReplaceListView: View {
                     self.error = error
                 }
             }
-            Button(.cancel, role: .cancel) {
+            Button(role: .cancel) {
                 self.importingError = nil
             }
         } message: { error in
@@ -176,7 +167,7 @@ struct MultipleReplaceListView: View {
                 }
                 self.selection = self.settingNames.first
             }
-            Button(.cancel, role: .cancel) {
+            Button(role: .cancel) {
                 self.deletingItem = nil
             }
         } message: { _ in
@@ -268,8 +259,10 @@ struct MultipleReplaceListView: View {
                    : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection)”…"),
                    systemImage: "square.and.arrow.up")
             {
-                self.exportingItem = TransferableReplacement(name: selection, url: self.manager.urlForUserSetting(name: selection))
-                self.isExporterPresented = true
+                if let url = self.manager.urlForUserSetting(name: selection) {
+                    self.exportingItem = TransferableReplacement(name: selection, url: url)
+                    self.isExporterPresented = true
+                }
             }
             .modifierKeyAlternate(.option) {
                 Button(isContext
@@ -315,6 +308,38 @@ struct MultipleReplaceListView: View {
             self.error = error
         }
     }
+    
+    
+    /// Imports setting files at the given URLs.
+    ///
+    /// - Parameter urls: The file URLs to import.
+    private func importSettings(at urls: [URL]) {
+        
+        for url in urls {
+            guard url.isFileURL else { continue }
+            
+            let accessing = url.startAccessingSecurityScopedResource()
+            defer {
+                if accessing { url.stopAccessingSecurityScopedResource() }
+            }
+            
+            let name = url.deletingPathExtension().lastPathComponent
+            do {
+                let type = try url.resourceValues(forKeys: [.contentTypeKey]).contentType
+                guard type?.conforms(to: .cotReplacement) == true || type?.conforms(to: .tabSeparatedText) == true else { continue }
+                
+                try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
+            } catch let error as ImportDuplicationError {
+                self.importingError = error
+                self.isImportConfirmationPresented = true
+                return
+            } catch {
+                self.error = error
+                return
+            }
+            self.selection = name
+        }
+    }
 }
 
 
@@ -323,7 +348,7 @@ private struct TransferableReplacement: TransferableFile {
     static var fileType: UTType { .cotReplacement }
     
     var name: String
-    var url: URL?
+    var url: URL
 }
 
 

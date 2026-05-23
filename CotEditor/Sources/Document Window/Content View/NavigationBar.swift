@@ -87,9 +87,9 @@ struct NavigationBar: View {
         }
         .buttonStyle(.borderless)
         .controlSize(.small)
-        .padding(.horizontal, isLiquidGlass ? 4 : 2)
+        .padding(.horizontal, 4)
         .background(.windowBackground)
-        .frame(height: isLiquidGlass ? 24 : 20)
+        .frame(height: 24)
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Navigation Bar", table: "Document", comment: "accessibility label"))
     }

@@ -497,9 +497,7 @@ private extension AlignmentType {
     
     @MainActor static func setup(segmentedControl: NSSegmentedControl) {
         
-        if #available(macOS 26, *) {
-            segmentedControl.borderShape = .capsule
-        }
+        segmentedControl.borderShape = .capsule
         
         for type in self.allCases {
             segmentedControl.setToolTip(type.label, forSegment: type.rawValue)

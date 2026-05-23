@@ -71,7 +71,7 @@ struct OpenPanelAccessory: View {
                         .tag(String.Encoding?.none)
                     Divider()
                     
-                    ForEach(Array(self.model.fileEncodings.enumerated()), id: \.offset) { _, fileEncoding in
+                    ForEach(self.model.fileEncodings.enumerated(), id: \.offset) { _, fileEncoding in
                         if let fileEncoding {
                             Text(fileEncoding.localizedName)
                                 .tag(String.Encoding?.some(fileEncoding.encoding))
@@ -89,7 +89,6 @@ struct OpenPanelAccessory: View {
                             self.model.options.isReadOnly = false
                         }
                     }
-                    .padding(.bottom, isLiquidGlass ? 0 : -4)  // negative padding to keep 6 px margin in Form
                 
                 Toggle(String(localized: "Show invisible files", table: "OpenPanelAccessory", comment: "toggle button label"), isOn: $showsHiddenFiles)
                     .onChange(of: self.showsHiddenFiles) { _, newValue in
@@ -99,8 +98,9 @@ struct OpenPanelAccessory: View {
                         openPanel.treatsFilePackagesAsDirectories = newValue
                         openPanel.validateVisibleColumns()
                     }
-            }.fixedSize()
-        }.padding()
+            }
+        }
+        .padding()
     }
 }
 

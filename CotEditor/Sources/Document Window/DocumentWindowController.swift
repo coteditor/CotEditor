@@ -27,9 +27,16 @@
 import AppKit
 import Combine
 import SwiftUI
+import UniformTypeIdentifiers
 import Defaults
 import ControlUI
 import URLUtils
+
+enum SyntaxMenuTag: Int {
+    
+    case recentItem = 1
+}
+
 
 final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
@@ -69,11 +76,14 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private var opacityObserver: AnyCancellable?
     private var appearanceModeObserver: AnyCancellable?
     private var fileDocumentNameObserver: AnyCancellable?
-    private var documentsObserver: AnyCancellable?
+    private var documentObservers: [NotificationCenter.ObservationToken] = []
     
-    private var documentSyntaxObserver: AnyCancellable?
-    private var syntaxListObserver: AnyCancellable?
+    private var documentSyntaxObserver: Task<Void, Never>?
+    private var syntaxNamesObserver: Task<Void, Never>?
+    private var syntaxDefaultsObserver: AnyCancellable?
     private weak var syntaxPopUpButton: NSPopUpButton?
+    private weak var previousDocumentHistoryMenu: NSMenu?
+    private weak var forwardDocumentHistoryMenu: NSMenu?
     
     
     // MARK: Lifecycle
@@ -151,23 +161,32 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             .assign(to: \.appearance, on: window)
         
         // observe for syntax line-up change
-        self.syntaxListObserver = Publishers.Merge(SyntaxManager.shared.$settingNames,
-                                                   UserDefaults.standard.publisher(for: .recentSyntaxNames))
+        self.syntaxNamesObserver = Task { [weak self] in
+            for await _ in Observations({ SyntaxManager.shared.settingNames }) {
+                self?.buildSyntaxPopUpButton()
+            }
+        }
+        self.syntaxDefaultsObserver = Publishers.Merge(UserDefaults.standard.publisher(for: .recentSyntaxNames),
+                                                       UserDefaults.standard.publisher(for: .hiddenSyntaxes))
             .sink { [weak self] _ in self?.buildSyntaxPopUpButton() }
         
         // observe documents to update window title
-        self.documentsObserver = Publishers.Merge(
-            NotificationCenter.default.publisher(for: NSDocument.DidChangeFileURLMessage.name, object: nil),
-            NotificationCenter.default.publisher(for: NSDocument.DidMakeWindowMessage.name, object: nil)
-        )
-        .debounce(for: .seconds(0.1), scheduler: RunLoop.main)
-        .sink { [weak self] _ in self?.invalidateUniqueDirectory() }
+        self.documentObservers = [
+            NotificationCenter.default.addObserver(for: NSDocument.DidChangeFileURLMessage.self) { [weak self] _ in self?.invalidateUniqueDirectory() },
+            NotificationCenter.default.addObserver(for: NSDocument.DidMakeWindowMessage.self) { [weak self] _ in self?.invalidateUniqueDirectory() },
+        ]
     }
     
     
     required init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    isolated deinit {
+        self.documentSyntaxObserver?.cancel()
+        self.syntaxNamesObserver?.cancel()
     }
     
     
@@ -327,11 +346,18 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                 .sink { [weak self] _ in self?.synchronizeWindowTitleWithDocumentName() }
         }
         
-        self.syntaxPopUpButton?.isEnabled = (document is Document)
-        
         // observe document's syntax change for toolbar
-        self.documentSyntaxObserver = (document as? Document)?.$syntaxName
-            .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
+        self.documentSyntaxObserver?.cancel()
+        if let document = document as? Document {
+            self.syntaxPopUpButton?.isEnabled = true
+            self.documentSyntaxObserver = Task { [weak self] in
+                for await syntaxName in Observations({ document.syntaxName }) {
+                    self?.selectSyntaxPopUpItem(with: syntaxName)
+                }
+            }
+        } else {
+            self.syntaxPopUpButton?.isEnabled = false
+        }
     }
     
     
@@ -399,6 +425,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                 .map { name in
                     let item = NSMenuItem(title: name, action: action, keyEquivalent: "")
                     item.representedObject = name
+                    item.tag = SyntaxMenuTag.recentItem.rawValue
                     return item
                 }
             menu.addItem(.separator())
@@ -492,6 +519,10 @@ private extension NSToolbarItem.Identifier {
     private static let prefix = "com.coteditor.CotEditor.ToolbarItem."
     
     
+    static let documentHistory = Self(Self.prefix + "documentHistory")
+    static let previousDocumentHistory = Self(Self.prefix + "previousDocumentHistory")
+    static let forwardDocumentHistory = Self(Self.prefix + "forwardDocumentHistory")
+    
     static let syntax = Self(Self.prefix + "syntaxStyle")
     static let inspector = Self(Self.prefix + "inspector")
     
@@ -531,19 +562,19 @@ private extension NSToolbarItem.Identifier {
 
 extension DocumentWindowController: NSToolbarDelegate {
     
-    private var directoryIdentifiers: [NSToolbarItem.Identifier] {
+    private var immovableDirectoryIdentifiers: [NSToolbarItem.Identifier] {
         
-        self.isDirectoryDocument ? [
+        [
             .flexibleSpace,
             .toggleSidebar,
             .sidebarTrackingSeparator,
-        ] : []
+        ]
     }
     
     
     func toolbarImmovableItemIdentifiers(_ toolbar: NSToolbar) -> Set<NSToolbarItem.Identifier> {
         
-        Set(self.directoryIdentifiers).union([
+        Set(self.isDirectoryDocument ? self.immovableDirectoryIdentifiers : []).union([
             .inspectorTrackingSeparator,
             .flexibleSpace,
             .inspector,
@@ -553,7 +584,9 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        self.directoryIdentifiers + [
+        let directoryIdentifiers = self.isDirectoryDocument ? self.immovableDirectoryIdentifiers + [.documentHistory] : []
+        
+        return directoryIdentifiers + [
             .syntax,
             .inspectorTrackingSeparator,
             .flexibleSpace,
@@ -564,7 +597,9 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        var identifiers = self.directoryIdentifiers + [
+        let directoryIdentifiers = self.isDirectoryDocument ? self.immovableDirectoryIdentifiers + [.documentHistory] : []
+        
+        var identifiers = directoryIdentifiers + [
             .syntax,
             .inspector,
             .textSize,
@@ -583,13 +618,14 @@ extension DocumentWindowController: NSToolbarDelegate {
             .fonts,
             .find,
             .print,
+            .writingToolsItemIdentifier,
             .share,
             .space,
             .flexibleSpace,
         ]
         
-        if #available(macOS 15.2, *), NSWritingToolsCoordinator.isWritingToolsAvailable {
-            identifiers.insert(.writingToolsItemIdentifier, at: identifiers.count - 3)
+        if !NSWritingToolsCoordinator.isWritingToolsAvailable {
+            identifiers.removeAll { $0 == .writingToolsItemIdentifier }
         }
         
         return identifiers
@@ -602,6 +638,50 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .toggleSidebar:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.autovalidates = true
+                return item
+                
+            case .documentHistory:
+                let previousMenu = NSMenu()
+                previousMenu.delegate = self
+                self.previousDocumentHistoryMenu = previousMenu
+                
+                let previousItem = NSMenuToolbarItem(itemIdentifier: .previousDocumentHistory)
+                previousItem.label = String(localized: "Toolbar.documentHistory.previous.label",
+                                            defaultValue: "Previous", table: "Document")
+                previousItem.toolTip = String(localized: "Toolbar.documentHistory.previous.tooltip",
+                                              defaultValue: "Go to the previous document", table: "Document")
+                previousItem.image = NSImage(systemSymbolName: "chevron.backward", accessibilityDescription: previousItem.label)
+                previousItem.action = #selector(DirectoryDocument.navigatePreviousDocumentHistory)
+                previousItem.autovalidates = true
+                previousItem.showsIndicator = false
+                previousItem.menu = previousMenu
+                
+                let forwardMenu = NSMenu()
+                forwardMenu.delegate = self
+                self.forwardDocumentHistoryMenu = forwardMenu
+                
+                let forwardItem = NSMenuToolbarItem(itemIdentifier: .forwardDocumentHistory)
+                forwardItem.label = String(localized: "Toolbar.documentHistory.forward.label",
+                                           defaultValue: "Forward", table: "Document")
+                forwardItem.toolTip = String(localized: "Toolbar.documentHistory.forward.tooltip",
+                                             defaultValue: "Go to the next document", table: "Document")
+                forwardItem.image = NSImage(systemSymbolName: "chevron.forward", accessibilityDescription: forwardItem.label)
+                forwardItem.action = #selector(DirectoryDocument.navigateForwardDocumentHistory)
+                forwardItem.autovalidates = true
+                forwardItem.showsIndicator = false
+                forwardItem.menu = forwardMenu
+                
+                let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
+                item.isBordered = true
+                item.controlRepresentation = .expanded
+                item.selectionMode = .momentary
+                item.isNavigational = true
+                item.label = String(localized: "Toolbar.documentHistory.label",
+                                    defaultValue: "History", table: "Document")
+                item.toolTip = String(localized: "Toolbar.documentHistory.tooltip",
+                                      defaultValue: "Go back or forward in document history", table: "Document")
+                item.subitems = [previousItem, forwardItem]
+                item.action = #selector(DirectoryDocument.navigateDocumentHistory(_:))
                 return item
                 
             case .syntax:
@@ -940,6 +1020,60 @@ extension DocumentWindowController: NSToolbarDelegate {
             default:
                 return NSToolbarItem(itemIdentifier: itemIdentifier)
         }
+    }
+}
+
+
+extension DocumentWindowController: NSMenuDelegate {
+    
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        
+        switch menu {
+            case self.previousDocumentHistoryMenu:
+                self.updateDocumentHistoryMenu(menu, forward: false)
+            case self.forwardDocumentHistoryMenu:
+                self.updateDocumentHistoryMenu(menu, forward: true)
+            default:
+                assertionFailure()
+        }
+    }
+    
+    
+    /// Updates a document history menu.
+    ///
+    /// - Parameters:
+    ///   - menu: The menu to update.
+    ///   - forward: Whether the menu represents forward history.
+    private func updateDocumentHistoryMenu(_ menu: NSMenu, forward: Bool) {
+        
+        guard let directoryDocument else { return assertionFailure() }
+        
+        menu.items = directoryDocument.documentHistory.menuItems(forward: forward)
+            .map { item in
+                let menuItem = NSMenuItem(title: item.url.lastPathComponent,
+                                          action: #selector(DirectoryDocument.jumpDocumentHistory),
+                                          keyEquivalent: "")
+                menuItem.representedObject = item.index
+                menuItem.image = Self.documentHistoryIcon(for: item)
+                return menuItem
+            }
+    }
+    
+    
+    /// Returns the icon for a document history item.
+    ///
+    /// - Parameter item: The document history item.
+    /// - Returns: The icon for the item.
+    private static func documentHistoryIcon(for item: DocumentHistory.Item) -> NSImage {
+        
+        let image = if let type = item.entry.fileType {
+            NSWorkspace.shared.icon(for: type)
+        } else {
+            NSWorkspace.shared.icon(forFile: item.url.path)
+        }
+        image.size = NSSize(width: 16, height: 16)
+        
+        return image
     }
 }
 

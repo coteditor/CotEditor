@@ -68,7 +68,6 @@ import LineEnding
     }
     
     
-    @available(macOS 26, *)
     @Test func allRequiredInfo() async throws {
         
         let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
@@ -97,7 +96,6 @@ import LineEnding
     }
     
     
-    @available(macOS 26, *)
     @Test func skipWholeText() async throws {
         
         let source = Source(string: self.testString, selectedRange: NSRange(11..<21))
@@ -128,7 +126,6 @@ import LineEnding
     }
     
     
-    @available(macOS 26, *)
     @Test func crlf() async throws {
         
         let source = Source(string: "a\r\nb", selectedRange: NSRange(1..<4))
@@ -157,7 +154,6 @@ import LineEnding
     }
     
     
-    @available(macOS 26, *)
     @Test func entireLineCountUsesLineRangeCalculator() async throws {
         
         let string = "a\nb\n"
@@ -178,7 +174,6 @@ import LineEnding
     }
     
     
-    @available(macOS 26, *)
     @Test func currentLineUsesLineRangeCalculator() async throws {
         
         let string = "a\n🐕b\nc"

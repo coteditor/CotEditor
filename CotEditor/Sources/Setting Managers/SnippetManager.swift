@@ -25,7 +25,6 @@
 //
 
 import Foundation
-import Combine
 import AppKit.NSMenuItem
 import Defaults
 import Shortcut
@@ -53,6 +52,8 @@ import URLUtils
     
     private var scope: String?
     
+    private var scopeObserver: Task<Void, Never>?
+    
     
     // MARK: Lifecycle
     
@@ -61,13 +62,18 @@ import URLUtils
         self.defaults = defaults
         self.snippets = defaults[.snippets].compactMap(Snippet.init(dictionary:))
         
-        Task {
-            let scopes = (DocumentController.shared as! DocumentController).$currentSyntaxName.values
-            for await scope in scopes where self.scope != scope {
+        self.scopeObserver = Task { [unowned self] in
+            let scopes = Observations { (DocumentController.shared as! DocumentController).currentSyntaxName }
+            for await scope in scopes where scope != self.scope {
                 self.scope = scope
                 self.updateMenu()
             }
         }
+    }
+    
+    
+    isolated deinit {
+        self.scopeObserver?.cancel()
     }
     
     

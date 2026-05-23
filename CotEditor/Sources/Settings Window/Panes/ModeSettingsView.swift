@@ -114,28 +114,13 @@ private struct ModeListView: View {
                 }
             }
         }
-        .modifier { content in
-            if #available(macOS 26, *) {
-                content
-                    .safeAreaBar(edge: .bottom) {
-                        VStack(spacing: 0) {
-                            Divider()
-                            self.bottomAccessoryView
-                        }
-                    }
-                    .scrollEdgeEffectStyle(.hard, for: .bottom)
-            } else {
-                content
-                    .safeAreaInset(edge: .bottom) {
-                        VStack(spacing: 0) {
-                            Divider()
-                                .padding(.horizontal, 4)
-                            self.bottomAccessoryView
-                        }
-                    }
-                    .background()
+        .safeAreaBar(edge: .bottom) {
+            VStack(spacing: 0) {
+                Divider()
+                self.bottomAccessoryView
             }
         }
+        .scrollEdgeEffectStyle(.hard, for: .bottom)
         .accessibilityLabel(String(localized: "Mode", table: "ModeSettings"))
         .onAppear {
             self.syntaxModes = self.manager.syntaxModes
@@ -214,10 +199,10 @@ private struct ModeOptionsView: View {
             }
             .pickerStyle(.radioGroup)
             .horizontalRadioGroupLayout()
-            .padding(.bottom, isLiquidGlass ? 12 : 8)
+            .padding(.bottom, 12)
             
             LabeledContent(String(localized: "Substitution:", table: "ModeSettings")) {
-                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
+                VStack(alignment: .leading) {
                     Toggle(String(localized: "Smart copy/paste", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.smartInsertDelete)
                     Toggle(String(localized: "Smart quotes", table: "ModeSettings", comment: "use localization provided by Apple"),
@@ -232,10 +217,10 @@ private struct ModeOptionsView: View {
                            isOn: $options.automaticSymbolBalancing)
                 }
             }
-            .padding(.bottom, isLiquidGlass ? 12 : 8)
+            .padding(.bottom, 12)
             
             LabeledContent(String(localized: "Spelling:", table: "ModeSettings")) {
-                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
+                VStack(alignment: .leading) {
                     Toggle(String(localized: "Check spelling while typing", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.continuousSpellChecking)
                     Toggle(String(localized: "Check grammar with spelling", table: "ModeSettings", comment: "use localization provided by Apple"),
@@ -244,10 +229,10 @@ private struct ModeOptionsView: View {
                            isOn: $options.automaticSpellingCorrection)
                 }
             }
-            .padding(.bottom, isLiquidGlass ? 12 : 8)
+            .padding(.bottom, 12)
             
             LabeledContent(String(localized: "Completion:", table: "ModeSettings")) {
-                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
+                VStack(alignment: .leading) {
                     Text("Completion list includes:", tableName: "ModeSettings")
                         .foregroundStyle(self.isEnabled ? .primary : .tertiary)
                     Group {

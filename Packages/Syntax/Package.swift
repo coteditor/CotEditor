@@ -6,7 +6,7 @@ let package = Package(
     name: "Syntax",
     defaultLocalization: "en",
     platforms: [
-        .macOS(.v15),
+        .macOS(.v26),
     ],
     products: [
         .library(name: "Syntax", targets: [

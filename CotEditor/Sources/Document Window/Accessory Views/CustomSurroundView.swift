@@ -34,8 +34,8 @@ struct CustomSurroundView: View {
         case endField
     }
     
-    var dismiss: () -> Void = { }
     
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.resetFocus) private var resetFocus
     
     @AppStorage("beginCustomSurroundString") private var defaultBeginString: String?
@@ -88,7 +88,6 @@ struct CustomSurroundView: View {
                 .focused($focus, equals: .endField)
             }
             .onSubmit(self.submit)
-            .fixedSize()
             
             HStack {
                 Spacer()

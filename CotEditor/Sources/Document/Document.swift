@@ -49,8 +49,6 @@ extension NSTextView: EditorCounter.Source { }
     struct DidUpdateChangeMessage: NotificationCenter.MainActorMessage {
         
         typealias Subject = Document
-        
-        static let name = Notification.Name("DocumentDidUpdateChange")
     }
     
     
@@ -71,7 +69,7 @@ extension NSTextView: EditorCounter.Source { }
     
     // MARK: Public Properties
     
-    @ObservationIgnored @Published @objc var isEditable = true  { didSet { self.invalidateRestorableState() } }  // @objc for AppleScript support
+    @objc var isEditable = true  { didSet { self.invalidateRestorableState() } }  // @objc for AppleScript support
     var isTransient = false  // untitled & empty document that was created automatically
     
     nonisolated var isVerticalText: Bool {
@@ -88,10 +86,10 @@ extension NSTextView: EditorCounter.Source { }
     let syntaxController: SyntaxController
     let lineEndingScanner: LineEndingScanner
     let counter: EditorCounter
-    @ObservationIgnored @Published private(set) var fileEncoding: FileEncoding
-    @ObservationIgnored @Published private(set) var lineEnding: LineEnding  { didSet { self.lineEndingScanner.baseLineEnding = lineEnding } }
-    @ObservationIgnored @Published private(set) var syntaxName: String
-    @ObservationIgnored @Published private(set) var mode: Mode
+    private(set) var fileEncoding: FileEncoding
+    private(set) var lineEnding: LineEnding  { didSet { self.lineEndingScanner.baseLineEnding = lineEnding } }
+    private(set) var syntaxName: String
+    private(set) var mode: Mode
     
     
     // MARK: Private Properties
@@ -113,7 +111,7 @@ extension NSTextView: EditorCounter.Source { }
     
     private var urlDetector: URLDetector?
     
-    private var syntaxUpdateObserver: AnyCancellable?
+    private var syntaxUpdateObserver: NotificationCenter.ObservationToken?
     private var textStorageObserver: AnyCancellable?
     private var defaultObservers: Set<AnyCancellable> = []
     
@@ -151,10 +149,10 @@ extension NSTextView: EditorCounter.Source { }
                 .sink { [weak self] _ in self?.invalidateMode() },
         ]
         
-        self.syntaxUpdateObserver = NotificationCenter.default.publisher(for: .didUpdateSettingNotification, object: SyntaxManager.shared)
-            .map { $0.userInfo!["change"] as! SettingChange }
-            .filter { [weak self] change in change.old == self?.syntaxName }
-            .sink { [weak self] change in self?.setSyntax(name: change.new ?? SyntaxName.none) }
+        self.syntaxUpdateObserver = NotificationCenter.default.addObserver(of: SyntaxManager.shared, for: DidManagerUpdateSettingMessage.self) { [weak self] message in
+            guard message.change.old == self?.syntaxName else { return }
+            self?.setSyntax(name: message.change.new ?? SyntaxName.none)
+        }
     }
     
     
@@ -238,7 +236,7 @@ extension NSTextView: EditorCounter.Source { }
         didSet {
             Task { @MainActor [fileURL = self.fileURL] in
                 self.synchronizeFileType(documentName: fileURL?.lastPathComponent)
-                NotificationCenter.default.post(name: NSDocument.DidChangeFileURLMessage.name, object: self)
+                NotificationCenter.default.post(NSDocument.DidChangeFileURLMessage(), subject: self)
             }
         }
     }
@@ -263,7 +261,7 @@ extension NSTextView: EditorCounter.Source { }
                     .assign(to: \.isWhitePaper, on: windowController)
             }
             
-            NotificationCenter.default.post(name: DidMakeWindowMessage.name, object: self)
+            NotificationCenter.default.post(DidMakeWindowMessage(), subject: self)
         }
         
         self.applyContentToWindow()
@@ -658,7 +656,7 @@ extension NSTextView: EditorCounter.Source { }
         
         super.close()
         
-        self.syntaxUpdateObserver?.cancel()
+        self.syntaxUpdateObserver = nil
         self.textStorageObserver?.cancel()
         self.defaultObservers.removeAll()
         self.counter.cancel()
@@ -748,7 +746,7 @@ extension NSTextView: EditorCounter.Source { }
         
         super.updateChangeCount(change)
         
-        NotificationCenter.default.post(name: DidUpdateChangeMessage.name, object: self)
+        NotificationCenter.default.post(DidUpdateChangeMessage(), subject: self)
     }
     
     
@@ -757,7 +755,7 @@ extension NSTextView: EditorCounter.Source { }
         // This method updates the values in the .isDocumentEdited and .hasUnautosavedChanges properties.
         super.updateChangeCount(withToken: changeCountToken, for: saveOperation)
         
-        NotificationCenter.default.post(name: DidUpdateChangeMessage.name, object: self)
+        NotificationCenter.default.post(DidUpdateChangeMessage(), subject: self)
     }
     
     
@@ -879,8 +877,12 @@ extension NSTextView: EditorCounter.Source { }
                 return self.isEditable
                 
             case #selector(changeSyntax(_:)):
-                if let item = item as? NSMenuItem {
-                    item.state = (item.representedObject as? String == self.syntaxName) ? .on : .off
+                if let item = item as? NSMenuItem, let name = item.representedObject as? String {
+                    let isSelected = name == self.syntaxName
+                    item.state = isSelected ? .on : .off
+                    item.isHidden = (!isSelected &&
+                                     item.tag != SyntaxMenuTag.recentItem.rawValue &&
+                                     UserDefaults.standard[.hiddenSyntaxes].contains(name))
                 }
                 
             case #selector(toggleEditable):
@@ -891,9 +893,6 @@ extension NSTextView: EditorCounter.Source { }
                     item.image = self.isEditable
                         ? NSImage(systemSymbolName: "pencil.slash", accessibilityDescription: nil)
                         : NSImage(systemSymbolName: "pencil", accessibilityDescription: nil)
-                    if #unavailable(macOS 26) {
-                        item.image = nil
-                    }
                     
                 } else if let item = item as? StatableToolbarItem {
                     item.toolTip = self.isEditable
@@ -1294,25 +1293,29 @@ extension NSTextView: EditorCounter.Source { }
     
     /// Interactively changes the document's text encoding.
     ///
-    /// - Parameter fileEncoding: The text encoding to change.
-    func askChangingEncoding(to fileEncoding: FileEncoding) {
+    /// - Parameters:
+    ///   - fileEncoding: The text encoding to change.
+    ///   - completionHandler: The closure called after the interaction finishes.
+    func askChangingEncoding(to fileEncoding: FileEncoding, completionHandler: @escaping () -> Void = { }) {
         
         assert(Thread.isMainThread)
         
-        guard fileEncoding != self.fileEncoding else { return }
+        guard fileEncoding != self.fileEncoding else {
+            completionHandler()
+            return
+        }
         
         // change encoding immediately if there is nothing to worry about
         if self.fileURL == nil || self.textStorage.string.isEmpty {
-            return self.changeEncoding(to: fileEncoding)
+            self.changeEncoding(to: fileEncoding)
+            completionHandler()
+            return
         }
         
         // change encoding interactively
         self.performActivity(withSynchronousWaiting: false) { [unowned self] activityCompletionHandler in
-            let completionHandler = { [weak self] didChange in
-                if !didChange, let self {
-                    // reset status bar selection for in case when the operation was invoked from the pop-up button in the status bar
-                    self.fileEncoding = self.fileEncoding
-                }
+            let finishActivity = {
+                completionHandler()
                 activityCompletionHandler()
             }
             
@@ -1331,7 +1334,7 @@ extension NSTextView: EditorCounter.Source { }
             alert.showsHelp = true
             
             guard let documentWindow = self.windowForSheet else {
-                completionHandler(false)
+                finishActivity()
                 assertionFailure()
                 return
             }
@@ -1347,12 +1350,12 @@ extension NSTextView: EditorCounter.Source { }
                                     self.changeEncoding(to: fileEncoding)
                                     self.showWarningInspector()
                                 }
-                                completionHandler(didRecover)
+                                finishActivity()
                             }
                             return
                         }
                         self.changeEncoding(to: fileEncoding)
-                        completionHandler(true)
+                        finishActivity()
                         
                     case .alertSecondButtonReturn:  // = Reinterpret
                         // ask whether discard unsaved changes
@@ -1370,7 +1373,7 @@ extension NSTextView: EditorCounter.Source { }
                             let returnCode = await alert.beginSheetModal(for: documentWindow)
                             
                             guard returnCode == .alertSecondButtonReturn else {  // = Discard Changes
-                                completionHandler(false)
+                                finishActivity()
                                 return
                             }
                         }
@@ -1378,14 +1381,14 @@ extension NSTextView: EditorCounter.Source { }
                         // reinterpret
                         do {
                             try self.reinterpret(encoding: fileEncoding.encoding)
-                            completionHandler(true)
+                            finishActivity()
                         } catch {
                             NSSound.beep()
-                            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
+                            self.presentErrorAsSheet(error) { _ in finishActivity() }
                         }
                         
                     case .alertThirdButtonReturn:  // = Cancel
-                        completionHandler(false)
+                        finishActivity()
                         
                     default: preconditionFailure()
                 }

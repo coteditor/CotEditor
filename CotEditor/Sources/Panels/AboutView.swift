@@ -86,111 +86,23 @@ struct AboutView: View {
                         LicenseView()
                 }
             }
-            .modifier { content in
-                if #available(macOS 26, *) {
-                    content
-                        .safeAreaBar(edge: .top) {
-                            Picker(selection: $pane.animation()) {
-                                ForEach(Pane.allCases, id: \.self) {
-                                    Text($0.label)
-                                }
-                            } label: {
-                                EmptyView()
-                            }
-                            .pickerStyle(.segmented)
-                            .buttonBorderShape(.capsule)
-                            .tint(.secondary.opacity(0.5))
-                            .padding(10)
-                        }
-                        .scrollEdgeEffectStyle(.soft, for: .top)
-                } else {
-                    content
-                        .background()
-                        .safeAreaInset(edge: .top, spacing: 0) {
-                            VStack(spacing: 0) {
-                                HStack {
-                                    ForEach(Pane.allCases, id: \.self) { pane in
-                                        TabPickerButtonView(pane.label, isSelected: self.pane == pane) {
-                                            withAnimation {
-                                                self.pane = pane
-                                            }
-                                        }
-                                    }
-                                }
-                                .accessibilityRepresentation {
-                                    Picker(selection: $pane) {
-                                        ForEach(Pane.allCases, id: \.self) {
-                                            Text($0.label)
-                                        }
-                                    } label: {
-                                        EmptyView()
-                                    }
-                                }
-                                .padding(.vertical, 6)
-                                
-                                Divider()
-                            }
-                            .background()
-                        }
+            .safeAreaBar(edge: .top) {
+                Picker(selection: $pane.animation()) {
+                    ForEach(Pane.allCases, id: \.self) {
+                        Text($0.label)
+                    }
+                } label: {
+                    EmptyView()
                 }
+                .pickerStyle(.segmented)
+                .buttonBorderShape(.capsule)
+                .tint(.secondary.opacity(0.5))
+                .padding(10)
             }
+            .scrollEdgeEffectStyle(.soft, for: .top)
         }
         .controlSize(.small)
         .frame(width: 540, height: 320)
-    }
-}
-
-
-@available(macOS, deprecated: 26)
-private struct TabPickerButtonView: View {
-    
-    var title: String
-    var isSelected: Bool
-    var action: () -> Void
-    
-    @Environment(\.colorSchemeContrast) private var contrast
-    
-    @State private var isHovered = false
-    
-    
-    init(_ title: String, isSelected: Bool, action: @escaping () -> Void) {
-        
-        self.title = title
-        self.isSelected = isSelected
-        self.action = action
-    }
-    
-    
-    var body: some View {
-        
-        Button(self.title, action: self.action)
-            .buttonStyle(.borderless)
-            .brightness(-0.2)
-            .padding(.vertical, 1)
-            .padding(.horizontal, 4)
-            .background(.fill.opacity(self.backgroundOpacity), in: self.shape)
-            .overlay(self.contrast == .increased ? self.shape.stroke(.tertiary) : nil)
-            .onHover { self.isHovered = $0 }
-            .accessibilityAddTraits(self.isSelected ? .isSelected : [])
-            .accessibilityRemoveTraits(self.isSelected ? [] : .isSelected)
-    }
-    
-    
-    private var shape: some Shape {
-        
-        RoundedRectangle(cornerRadius: 3, style: .continuous)
-    }
-    
-    
-    private var backgroundOpacity: Double {
-        
-        if self.isHovered {
-            1
-        } else if self.isSelected {
-            0.6
-        } else {
-            0
-        }
     }
 }
 

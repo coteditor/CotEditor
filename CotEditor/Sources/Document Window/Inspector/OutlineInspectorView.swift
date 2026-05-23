@@ -45,8 +45,7 @@ import StringUtils
     private var outlineRoots: [OutlineBuildNode] = []
     
     private var isOwnSelectionChange = false
-    private var documentObserver: AnyCancellable?
-    private var syntaxObserver: AnyCancellable?
+    private var documentObserver: Task<Void, Never>?
     private var selectionObserver: AnyCancellable?
     
     
@@ -72,21 +71,17 @@ import StringUtils
     /// Updates observations.
     private func invalidateObservation() {
         
-        self.documentObserver = nil
-        self.syntaxObserver = nil
+        self.documentObserver?.cancel()
         self.selectionObserver = nil
         self.items.removeAll()
         
         if let document, self.isPresented {
-            self.documentObserver = document.$syntaxName
-                .sink { [weak self] _ in
-                    self?.syntaxObserver = self?.document?.syntaxController.$outlineItems
-                        .compactMap(\.self)
-                        .sink { [weak self] in
-                            self?.items = $0
-                            self?.invalidateCurrentItem()
-                        }
+            self.documentObserver = Task { [weak self] in
+                for await items in Observations({ document.syntaxController.outlineItems }).compactMap(\.self) {
+                    self?.items = items
+                    self?.invalidateCurrentItem()
                 }
+            }
             
             self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)
                 .map { $0.object as! NSTextView }
@@ -175,7 +170,7 @@ struct OutlineInspectorView: View, HostedPaneView {
         VStack(alignment: .leading) {
             HStack(alignment: .firstTextBaseline) {
                 Text("Outline", tableName: "Document", comment: "section title in inspector")
-                    .font(.system(size: 12, weight: isLiquidGlass ? .semibold : .bold))
+                    .font(.system(size: 12, weight: .semibold))
                     .foregroundStyle(.secondary)
                     .accessibilityRemoveTraits(.isHeader)
                 
@@ -244,7 +239,7 @@ struct OutlineInspectorView: View, HostedPaneView {
         .accessibilityLabel(String(localized: "InspectorPane.outline.label",
                                    defaultValue: "Outline", table: "Document"))
         .controlSize(.small)
-        .padding(EdgeInsets(top: isLiquidGlass ? 16 : 8, leading: 12, bottom: 12, trailing: 12))
+        .padding(EdgeInsets(top: 16, leading: 12, bottom: 12, trailing: 12))
     }
     
     
@@ -305,14 +300,7 @@ private struct OutlineRowView: View {
                             .padding(.trailing, 4)
                     }
                 }
-                .modifier { content in
-                    if #available(macOS 26, *) {
-                        content
-                            .labelIconToTitleSpacing(4)
-                    } else {
-                        content
-                    }
-                }
+                .labelIconToTitleSpacing(4)
             }
         }
     }
@@ -336,7 +324,7 @@ private struct OutlineTreeView: View {
                     .tag(node.id)
                 
             } else {
-                DisclosureGroup(isExpanded: self.binding(for: node.id)) {
+                DisclosureGroup(isExpanded: $expandedNodeIDs.contains(node.id)) {
                     OutlineTreeView(nodes: node.children, expandedNodeIDs: $expandedNodeIDs)
                 } label: {
                     OutlineRowView(item: node.item)
@@ -344,25 +332,6 @@ private struct OutlineTreeView: View {
                 .tag(node.id)
             }
         }
-    }
-    
-    
-    /// Creates a binding that reflects whether the node is expanded.
-    ///
-    /// - Parameter id: The outline item ID.
-    /// - Returns: A binding to the expanded state.
-    private func binding(for id: OutlineItem.ID) -> Binding<Bool> {
-        
-        Binding(
-            get: { self.expandedNodeIDs.contains(id) },
-            set: { isExpanded in
-                if isExpanded {
-                    self.expandedNodeIDs.insert(id)
-                } else {
-                    self.expandedNodeIDs.remove(id)
-                }
-            }
-        )
     }
 }
 

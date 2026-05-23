@@ -151,7 +151,7 @@ struct SyntaxEditView: View {
                         ForEach(Syntax.Kind.allCases, id: \.self) {
                             Text($0.label)
                         }
-                    }.fixedSize()
+                    }
                 }
                 .padding(.bottom)
                 .scenePadding(.horizontal)

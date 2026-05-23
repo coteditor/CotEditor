@@ -102,23 +102,9 @@ struct EncodingListView: View {
             }
             .animation(.default, value: self.model.items)
             .scrollContentBackground(.hidden)
-            .modifier { content in
-                if #available(macOS 26, *) {
-                    content
-                        .background(.fill.quaternary, in: .rect(cornerRadius: 8))
-                } else {
-                    content
-                        .background(RoundedRectangle(cornerRadius: 6)
-                            .fill(.fill.quaternary)
-                            .stroke(.separator))
-                }
-            }
+            .background(.fill.quaternary, in: .rect(cornerRadius: 8))
             .environment(\.defaultMinListRowHeight, 14)
             .frame(minHeight: 250, idealHeight: 250)
-            
-            Text("This order is used for the Encoding menu and for encoding detection. Only the encodings listed here are considered during detection, with higher items taking priority.", tableName: "EncodingList")
-                .controlSize(.small)
-                .fixedSize(horizontal: false, vertical: true)
             
             HStack {
                 Button(String(localized: "Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.model.restore)
@@ -158,9 +144,12 @@ struct EncodingListView: View {
                 .menuStyle(.button)
                 .menuIndicator(.hidden)
                 .labelStyle(.iconOnly)
-                .fixedSize()
             }
-            .padding(.bottom)
+            
+            Text("This order is used for the Encoding menu and for encoding detection. Only the encodings listed here are considered during detection, with higher items taking priority.", tableName: "EncodingList")
+                .controlSize(.small)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.bottom)
             
             HStack {
                 HelpLink(anchor: "howto_customize_encoding_order")
@@ -179,7 +168,8 @@ struct EncodingListView: View {
             self.model.undoManager = self.undoManager
         }
         .scenePadding()
-        .frame(idealWidth: 380, maxHeight: 450)
+        .frame(minWidth: 400, idealWidth: 480, maxWidth: 1000, idealHeight: 500, maxHeight: .infinity)
+        .presentationSizing(.fitted)
     }
 }
 

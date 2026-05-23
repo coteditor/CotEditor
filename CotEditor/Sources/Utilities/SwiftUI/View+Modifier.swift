@@ -27,7 +27,6 @@ import SwiftUI
 
 extension View {
     
-    @available(macOS, deprecated: 26)
     func modifier(@ViewBuilder _ closure: (Self) -> some View) -> some View {
         
         closure(self)

@@ -65,7 +65,7 @@ struct StatusBar: View {
             }
             
             if let document = self.model.document as? Document {
-                NotEditableBadge(document: document)
+                NotEditableBadge(isEditable: document.isEditable)
                 EditorCountView(result: document.counter.result)
                     .layoutPriority(-1)
             }
@@ -110,17 +110,9 @@ struct StatusBar: View {
         .controlSize(.small)
         .lineLimit(1)
         .padding(.leading)
-        .modifier { content in
-            if #available(macOS 26, *) {
-                content
-                    .frame(height: 16)
-                    .padding(.vertical, 8)
-                    .containerCornerOffset(.horizontal, sizeToFit: true)
-            } else {
-                content
-                    .frame(height: 23)
-            }
-        }
+        .frame(height: 16)
+        .padding(.vertical, 8)
+        .containerCornerOffset(.horizontal, sizeToFit: true)
         .background(.windowBackground)
     }
 }
@@ -203,21 +195,18 @@ private struct CoffeeBadge: View {
 
 private struct NotEditableBadge: View {
     
-    var document: Document
-    
-    @State private var isEditable: Bool = true
+    var isEditable: Bool
     
     
     var body: some View {
         
         HStack {
-            if self.isEditable == false {
+            if !self.isEditable {
                 Label(String(localized: "Not editable", table: "Document"), systemImage: "pencil.slash")
                     .help(String(localized: "The document is not editable.", table: "Document", comment: "tooltip"))
                     .labelStyle(.iconOnly)
             }
         }
-        .onReceive(self.document.$isEditable) { self.isEditable = $0 }
         .animation(.default.speed(1.5), value: self.isEditable)
     }
 }
@@ -233,7 +222,7 @@ private struct FileSizeView: View {
         LabeledContent(String(localized: "File size", table: "Document"),
                        optional: self.size?.formatted(.byteCount(style: .file, spellsOutZero: false)))
         .monospacedDigit()
-        .labelsHidden()
+        .labelsVisibility(.hidden)
         .help(String(localized: "File size", table: "Document", comment: "tooltip"))
         .fixedSize()
     }
@@ -244,7 +233,6 @@ private struct DocumentStatusBar: View {
     
     private var document: Document
     
-    @State private var isEditable: Bool
     @State private var lineEnding: LineEnding
     @State private var fileEncoding: FileEncoding
     @State private var encodingManager: EncodingManager = .shared
@@ -253,7 +241,6 @@ private struct DocumentStatusBar: View {
     init(document: Document) {
         
         self.document = document
-        self.isEditable = document.isEditable
         self.lineEnding = document.lineEnding
         self.fileEncoding = document.fileEncoding
     }
@@ -263,7 +250,6 @@ private struct DocumentStatusBar: View {
         
         HStack(spacing: 4) {
             Divider()
-                .padding(.vertical, isLiquidGlass ? 0 : 4)
             
             Picker(String(localized: "Text Encoding", table: "Document"), selection: $fileEncoding) {
                 Section(String(localized: "Text Encoding", table: "Document")) {
@@ -271,7 +257,7 @@ private struct DocumentStatusBar: View {
                         Text(self.fileEncoding.localizedName).tag(self.fileEncoding)
                         Divider()
                     }
-                    ForEach(Array(self.encodingManager.fileEncodings.enumerated()), id: \.offset) { _, fileEncoding in
+                    ForEach(self.encodingManager.fileEncodings.enumerated(), id: \.offset) { _, fileEncoding in
                         if let fileEncoding {
                             Text(fileEncoding.localizedName).tag(fileEncoding)
                         } else {
@@ -281,25 +267,25 @@ private struct DocumentStatusBar: View {
                 }
             }
             .onChange(of: self.fileEncoding) { _, newValue in
-                self.document.askChangingEncoding(to: newValue)
+                self.document.askChangingEncoding(to: newValue) {
+                    self.fileEncoding = self.document.fileEncoding
+                }
             }
             .help(String(localized: "Text Encoding", table: "Document"))
-            .labelsHidden()
+            .labelsVisibility(.hidden)
             
             Divider()
-                .padding(.vertical, isLiquidGlass ? 0 : 4)
             
             LineEndingPicker(String(localized: "Line Endings", table: "Document"), selection: $lineEnding) { lineEnding in
                 self.document.changeLineEnding(to: lineEnding)
             }
-            .disabled(!self.isEditable)
+            .disabled(!self.document.isEditable)
             .help(String(localized: "Line Endings", table: "Document"))
             .accessibilityLabel(String(localized: "Line Endings", table: "Document"))
             .frame(width: 48)
         }
-        .onReceive(self.document.$isEditable) { self.isEditable = $0 }
-        .onReceive(self.document.$lineEnding) { self.lineEnding = $0 }
-        .onReceive(self.document.$fileEncoding) { self.fileEncoding = $0 }
+        .onChange(of: self.document.lineEnding) { _, newValue in self.lineEnding = newValue }
+        .onChange(of: self.document.fileEncoding) { _, newValue in self.fileEncoding = newValue }
     }
 }
 

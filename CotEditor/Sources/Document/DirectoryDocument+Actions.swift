@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import Defaults
 
 // -> Pass all possible actions manually since NSDocument has no next responder (2024-05, macOS 14)
 extension DirectoryDocument {
@@ -46,15 +47,36 @@ extension DirectoryDocument {
                  #selector(printDocument),
                  #selector(changeEncoding),
                  #selector(changeLineEnding),
-                 #selector(changeSyntax),
                  #selector(toggleEditable):
                 // -> PreviewDocument doesn't support file manipulation.
                 return (self.currentDocument as? Document)?.validateUserInterfaceItem(item) ?? false
+                
+            case #selector(changeSyntax):
+                guard let document = self.currentDocument as? Document else {
+                    if let item = item as? NSMenuItem, let name = item.representedObject as? String {
+                        item.state = .off
+                        item.isHidden = (item.tag != SyntaxMenuTag.recentItem.rawValue &&
+                                         UserDefaults.standard[.hiddenSyntaxes].contains(name))
+                    }
+                    return false
+                }
+                
+                return document.validateUserInterfaceItem(item)
                 
             case #selector(showInFinder),
                  #selector(copyPath),
                  #selector(shareDocument):
                 return self.currentDocument?.validateUserInterfaceItem(item) ?? false
+                
+            case #selector(navigateDocumentHistory(_:)):
+                (item as! NSToolbarItemGroup).subitems.forEach { $0.isEnabled = self.validateUserInterfaceItem($0) }
+                return true
+                
+            case #selector(navigatePreviousDocumentHistory):
+                return self.documentHistory.canNavigate(forward: false)
+                
+            case #selector(navigateForwardDocumentHistory):
+                return self.documentHistory.canNavigate(forward: true)
                 
             default:
                 return super.validateUserInterfaceItem(item)
@@ -161,5 +183,50 @@ extension DirectoryDocument {
     @objc func toggleEditable(_ sender: Any?) {
         
         (self.currentDocument as? Document)?.toggleEditable(sender)
+    }
+    
+    
+    // MARK: Directory Document Actions
+    
+    /// Validates the document history toolbar group.
+    @objc func navigateDocumentHistory(_ sender: NSToolbarItemGroup) {
+        
+        assertionFailure("This is a dummy action designed to be used just for the segmentation selection validation.")
+    }
+    
+    
+    /// Navigates to the previous document history item.
+    @objc func navigatePreviousDocumentHistory(_ sender: Any?) {
+        
+        guard let historyItem = self.documentHistory.nextItem(forward: false) else { return }
+        
+        Task {
+            await self.openDocumentHistoryItem(historyItem)
+        }
+    }
+    
+    
+    /// Navigates to the forward document history item.
+    @objc func navigateForwardDocumentHistory(_ sender: Any?) {
+        
+        guard let historyItem = self.documentHistory.nextItem(forward: true) else { return }
+        
+        Task {
+            await self.openDocumentHistoryItem(historyItem)
+        }
+    }
+    
+    
+    /// Jumps to a document in the document history.
+    @objc func jumpDocumentHistory(_ sender: NSMenuItem) {
+        
+        guard
+            let index = sender.representedObject as? Int,
+            let historyItem = self.documentHistory.item(at: index)
+        else { return }
+        
+        Task {
+            await self.openDocumentHistoryItem(historyItem)
+        }
     }
 }

@@ -62,15 +62,6 @@ struct FilePreviewView: View {
                     
                 } else {
                     OpenWithExternalEditorMenu(url: self.item.previewItemURL)
-                        .modifier { content in
-                            if #available(macOS 26, *) {
-                                content
-                            } else {
-                                content
-                                    .fixedSize()
-                                    .labelStyle(.titleAndIcon)
-                            }
-                        }
                     
                     Button(String(localized: "Open as Plain Text", table: "Document")) {
                         let menuItem = NSMenuItem()

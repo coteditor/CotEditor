@@ -1,5 +1,27 @@
 # Change Log
 
+7.1.0 (unreleased)
+--------------------------
+
+### Compatibility Changes
+
+- Change the system requirement to __macOS Tahoe 26 and later__.
+
+
+### New Features
+
+- Add document history navigation to the toolbar for folder documents.
+- Add the Customize Syntax Menu command to the Available syntaxes action menu in Format settings to hide specific syntaxes from syntax menus.
+
+
+### Improvements
+
+- Make some setting dialogs resizable.
+- Allow custom syntaxes, themes, and multiple replacement definitions to be deleted by dragging them to the Trash.
+- Allow CotEditor Syntax files and multiple replacement definitions to be imported by dropping them onto their lists.
+
+
+
 7.0.5 (unreleased)
 --------------------------
 

@@ -33,7 +33,7 @@ struct CustomTabWidthView: View {
     }
     
     
-    var dismiss: () -> Void = { }
+    @Environment(\.dismiss) private var dismiss
     
     @FocusState private var focus: Focus?
     

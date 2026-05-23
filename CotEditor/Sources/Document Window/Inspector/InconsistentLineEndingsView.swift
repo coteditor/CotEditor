@@ -46,7 +46,7 @@ struct InconsistentLineEndingsView: View {
         
         VStack(alignment: .leading, spacing: 8) {
             Text("Inconsistent Line Endings", tableName: "Document", comment: "section title in inspector")
-                .font(.system(size: 12, weight: isLiquidGlass ? .semibold : .bold))
+                .font(.system(size: 12, weight: .semibold))
                 .foregroundStyle(.secondary)
                 .accessibilityRemoveTraits(.isHeader)
             

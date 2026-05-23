@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -60,12 +60,12 @@ struct GeneralSettingsView: View {
     
     var body: some View {
         
-        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: isLiquidGlass ? 18 : 14) {
+        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 18) {
             GridRow {
                 Text("On startup:", tableName: "GeneralSettings")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
+                VStack(alignment: .leading) {
                     Toggle(String(localized: "Reopen windows from last session", table: "GeneralSettings"), isOn: $quitAlwaysKeepsWindows)
                         .onChange(of: self.quitAlwaysKeepsWindows) {
                             guard !self.suppressesQuitAlwaysKeepsWindowsChangeConfirmation else { return }
@@ -88,18 +88,7 @@ struct GeneralSettingsView: View {
                         EmptyView()
                     }
                     .pickerStyle(.menu)
-                    .labelsHidden()
-                    .modifier { content in
-                        if #available(macOS 26, *) {
-                            content
-                        } else if self.locale.language.languageCode == .russian {
-                            content
-                                .frame(maxWidth: 200)
-                        } else {
-                            content
-                                .fixedSize()
-                        }
-                    }
+                    .labelsVisibility(.hidden)
                     .accessibilityLabeledPair(role: .content, id: "noDocumentOnLaunchOption", in: self.accessibility)
                     .padding(.leading, 20)
                 }
@@ -109,7 +98,7 @@ struct GeneralSettingsView: View {
                 Text("Document save:", tableName: "GeneralSettings")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 0) {
+                VStack(alignment: .leading) {
                     Toggle(String(localized: "Enable Auto Save with Versions", table: "GeneralSettings"), isOn: $enablesAutosaveInPlace)
                         .onChange(of: self.enablesAutosaveInPlace) { _, newValue in
                             if newValue != self.initialEnablesAutosaveInPlace {
@@ -127,7 +116,7 @@ struct GeneralSettingsView: View {
                             Button(String(localized: "Later", table: "GeneralSettings", comment: "button label")) {
                                 // do nothing
                             }
-                            Button(.cancel, role: .cancel) {
+                            Button(role: .cancel) {
                                 self.enablesAutosaveInPlace.toggle()
                             }
                         } message: {
@@ -139,7 +128,7 @@ struct GeneralSettingsView: View {
                         .controlSize(.small)
                         .lineLimit(10)
                         .fixedSize(horizontal: false, vertical: true)
-                        .padding(.leading, isLiquidGlass ? 22 : 20)
+                        .padding(.leading, 22)
                 }
             }
             
@@ -181,7 +170,6 @@ struct GeneralSettingsView: View {
             }
             
             Divider()
-                .padding(.vertical, isLiquidGlass ? 0 : 6)
             
             GridRow {
                 Text("Command-line tool:", tableName: "GeneralSettings")
@@ -202,7 +190,9 @@ struct GeneralSettingsView: View {
                                     .imageScale(.small)
                                     .help(self.commandLineToolStatus.message ?? "")
                                     .accessibilityHint(self.commandLineToolStatus.message ?? "")
-                            }.foregroundStyle(.secondary)
+                            }
+                            .foregroundStyle(.secondary)
+                            .labelIconToTitleSpacing(6)
                         }
                     }
                     Text("With the `cot` command-line tool, you can launch CotEditor and let it open files from the command line.", tableName: "GeneralSettings")
@@ -215,7 +205,6 @@ struct GeneralSettingsView: View {
             
             if self.showsUpdaterSettings {
                 Divider()
-                    .padding(.vertical, isLiquidGlass ? 0 : 6)
                 UpdaterView()
             }
             
@@ -248,7 +237,7 @@ private struct UpdaterView: View {
             Text("Software update:", tableName: "GeneralSettings")
                 .gridColumnAlignment(.trailing)
             
-            VStack(alignment: .leading, spacing: isLiquidGlass ? nil : 6) {
+            VStack(alignment: .leading) {
                 Toggle(String(localized: "Check for updates automatically", table: "GeneralSettings"), isOn: $enableAutomaticUpdateChecks)
                 
                 VStack(alignment: .leading, spacing: 2) {

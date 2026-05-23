@@ -41,7 +41,7 @@ struct GoToLineView: View {
     var completionHandler: (_ lineRange: FuzzyRange) -> Bool
     
     
-    var dismiss: () -> Void = { }
+    @Environment(\.dismiss) private var dismiss
     
     @FocusState private var focus: Focus?
     

@@ -44,7 +44,7 @@ struct SettingNameField: View {
     }
     
     
-    func editDisabled(_ editDisabled: Bool) -> some View {
+    func editDisabled(_ editDisabled: Bool) -> Self {
         
         var view = self
         view.isDisabled = editDisabled

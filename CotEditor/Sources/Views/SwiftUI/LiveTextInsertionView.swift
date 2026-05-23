@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ struct LiveTextInsertionView: View {
     var length: Double = 500
     var actionHandler: (String) -> Void
     
-    var dismiss: () -> Void = { }
+    @Environment(\.dismiss) private var dismiss
     
     private static let analyzer = ImageAnalyzer()
     
@@ -62,14 +62,8 @@ struct LiveTextInsertionView: View {
                         self.dismiss()
                     }.keyboardShortcut(.defaultAction)
                 } else {
-                    if #available(macOS 26, *) {
-                        Button(role: .close) {
-                            self.dismiss()
-                        }
-                    } else {
-                        Button(String(localized: "Close", table: "LiveTextInsertion", comment: "button label")) {
-                            self.dismiss()
-                        }
+                    Button(role: .close) {
+                        self.dismiss()
                     }
                 }
             }

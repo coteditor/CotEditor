@@ -41,7 +41,7 @@ struct SyntaxValidationView: View {
             MessageView(count: self.errors.count)
             
             if !self.errors.isEmpty {
-                List(Array(self.errors.enumerated()), id: \.offset, selection: $selection) { _, error in
+                List(self.errors.enumerated(), id: \.offset, selection: $selection) { _, error in
                     ErrorView(error: error)
                 }
                 .border(.separator)

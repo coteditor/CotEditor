@@ -76,14 +76,7 @@ struct AddRemoveButton<Item: Identifiable>: View {
             .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
             .disabled(self.selection.isEmpty)
         }
-        .modifier { content in
-            if #available(macOS 26, *) {
-                content
-                    .buttonSizing(.flexible)
-            } else {
-                content
-            }
-        }
+        .buttonSizing(.flexible)
         .frame(width: 52)
     }
 }
