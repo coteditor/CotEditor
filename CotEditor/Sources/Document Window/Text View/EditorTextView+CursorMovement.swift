@@ -301,8 +301,10 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the current visual line (⌘←).
     override func moveToBeginningOfLine(_ sender: Any?) {
         
+        // handle manually for the Smart Home behavior that walks through
+        // visual line start, indentation, and logical line start
         self.moveCursors(affinity: .downstream) { range in
-            self.locationOfBeginningOfLine(for: range.location, affinity: .downstream)
+            self.locationOfBeginningOfLine(for: range.location)
         }
     }
     
@@ -311,7 +313,7 @@ extension EditorTextView {
     override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
-            let location = self.locationOfBeginningOfLine(for: self.selectedRange.location, affinity: .downstream)
+            let location = self.locationOfBeginningOfLine(for: self.selectedRange.location)
             
             // repeat `moveBackwardAndModifySelection(_:)` until reaching the goal location
             // instead of setting `selectedRange` directly.
@@ -324,7 +326,7 @@ extension EditorTextView {
         }
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { cursor, _ in
-            self.locationOfBeginningOfLine(for: cursor, affinity: .downstream)
+            self.locationOfBeginningOfLine(for: cursor)
         }
     }
     

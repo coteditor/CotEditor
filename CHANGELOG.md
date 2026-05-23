@@ -3,6 +3,10 @@
 7.0.5 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue where the Command-Left Arrow command could fail to move the cursor to the beginning of the current wrapped visual line.
+
 
 
 7.0.4 (2026-05-23)

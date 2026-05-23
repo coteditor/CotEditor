@@ -46,12 +46,10 @@ extension NSTextView {
     
     /// Returns the location of the beginning of the current visual line considering indent.
     ///
-    /// - Parameters:
-    ///   - location: The character location for which to return the line beginning.
-    ///   - affinity: The affinity used when `location` touches two visual lines, or `nil` to use the receiver's current one.
+    /// - Parameter location: The character location for which to return the line beginning.
     /// - Returns: The character location of the line beginning.
     /// - Note: This API requires TextKit 1.
-    final func locationOfBeginningOfLine(for location: Int, affinity: NSSelectionAffinity? = nil) -> Int {
+    final func locationOfBeginningOfLine(for location: Int) -> Int {
         
         guard location > 0 else { return 0 }
         
@@ -59,7 +57,7 @@ extension NSTextView {
         let lineRange = string.lineRange(at: location)
         
         if let layoutManager {
-            let location = switch affinity ?? self.selectionAffinity {
+            let location = switch self.selectionAffinity {
                 case .upstream: location - 1
                 case .downstream: location
                 @unknown default: location
