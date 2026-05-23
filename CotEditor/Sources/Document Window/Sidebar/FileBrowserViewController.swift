@@ -341,7 +341,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     func didUpdateNode(at node: FileNode) {
         
         // -> reload later in viewWillAppear
-        guard !self.view.isHiddenOrHasHiddenAncestor else { return }
+        guard self.viewIfLoaded?.isHiddenOrHasHiddenAncestor == false else { return }
         
         self.outlineView.reloadItem(self.outlineParentItem(for: node), reloadChildren: true)
     }
