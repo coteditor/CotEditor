@@ -68,6 +68,7 @@ struct SyntaxListCustomizationView: View {
             }
             
             Text("Hidden syntaxes are still used for automatic detection.", tableName: "SyntaxListCustomization")
+                .foregroundStyle(.secondary)
                 .controlSize(.small)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.bottom)
