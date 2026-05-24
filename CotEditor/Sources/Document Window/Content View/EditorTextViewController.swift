@@ -197,26 +197,26 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         ]
         
         // apply initial document settings immediately
-        self.applySyntax()
+        self.textView.applySyntax(self.document.syntaxController.syntax)
         self.textView.lineEnding = self.document.lineEnding
         self.textView.applyMode(ModeManager.shared.setting(for: self.document.mode))
         
         // observe document setting changes
         self.documentObservers = [
-            Task { [weak self, document] in
+            Task { [textView, document] in
                 for await _ in Observations({ document.syntaxName }) {
-                    self?.applySyntax()
+                    textView.applySyntax(document.syntaxController.syntax)
                 }
             },
-            Task { [weak self, document] in
+            Task { [textView, document] in
                 for await lineEnding in Observations({ document.lineEnding }) {
-                    self?.textView.lineEnding = lineEnding
+                    textView.lineEnding = lineEnding
                 }
             },
-            Task { [weak self, document] in
+            Task { [textView, document] in
                 for await modeName in Observations({ document.mode }) {
                     let mode = ModeManager.shared.setting(for: modeName)
-                    self?.textView.applyMode(mode)
+                    textView.applyMode(mode)
                 }
             },
         ]
@@ -442,19 +442,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    /// Applies syntax to the inner text view.
-    private func applySyntax() {
-        
-        let syntax = self.document.syntaxController.syntax
-        self.textView.commentDelimiters = syntax.commentDelimiters
-        self.textView.indentTokens = syntax.indentation.blockDelimiters.compactMap {
-            IndentToken(begin: $0.begin, end: $0.end, ignoreCase: $0.ignoreCase)
-        }
-        self.textView.quoteDelimiters = syntax.stringDelimiters + syntax.characterDelimiters
-        self.textView.syntaxCompletionWords = syntax.completionWords
-    }
-    
-    
     /// Shows a popover indicating the given image and live text detection.
     ///
     /// - Parameter image: The image to scan text.
@@ -606,6 +593,20 @@ extension EditorTextViewController: NSFontChanging {
 // MARK: Extensions
 
 private extension EditorTextView {
+    
+    /// Applies the given syntax settings.
+    ///
+    /// - Parameter syntax: The syntax to apply.
+    func applySyntax(_ syntax: Syntax) {
+        
+        self.commentDelimiters = syntax.commentDelimiters
+        self.indentTokens = syntax.indentation.blockDelimiters.compactMap {
+            IndentToken(begin: $0.begin, end: $0.end, ignoreCase: $0.ignoreCase)
+        }
+        self.quoteDelimiters = syntax.stringDelimiters + syntax.characterDelimiters
+        self.syntaxCompletionWords = syntax.completionWords
+    }
+    
     
     /// Updates the settings for the given mode.
     ///
