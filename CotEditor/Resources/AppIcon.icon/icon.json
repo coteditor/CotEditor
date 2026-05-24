@@ -190,8 +190,8 @@
           ],
           "fill" : {
             "linear-gradient" : [
-              "display-p3:0.30400,0.60000,0.12000,1.00000",
-              "display-p3:0.60240,0.72000,0.21600,1.00000"
+              "display-p3:0.43137,0.60784,0.90980,1.00000",
+              "display-p3:0.65098,0.81569,1.00000,1.00000"
             ]
           },
           "hidden" : false,
@@ -216,7 +216,7 @@
         }
       ],
       "lighting" : "combined",
-      "name" : "Green",
+      "name" : "Blue",
       "opacity-specializations" : [
         {
           "value" : 0.92

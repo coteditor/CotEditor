@@ -137,9 +137,10 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         let toolbar = NSToolbar(identifier: self.isDirectoryDocument ? .directoryDocument : .document)
         toolbar.displayMode = .iconOnly
         toolbar.allowsUserCustomization = true
-        toolbar.autosavesConfiguration = true
+        toolbar.autosavesConfiguration = false
+        toolbar.showsBaselineSeparator = false
         toolbar.delegate = self
-        window.toolbarStyle = .unified
+        window.toolbarStyle = .unifiedCompact
         window.toolbar = toolbar
         
         // observe opacity setting change
@@ -574,24 +575,13 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarImmovableItemIdentifiers(_ toolbar: NSToolbar) -> Set<NSToolbarItem.Identifier> {
         
-        Set(self.isDirectoryDocument ? self.immovableDirectoryIdentifiers : []).union([
-            .inspectorTrackingSeparator,
-            .flexibleSpace,
-            .inspector,
-        ])
+        []
     }
     
     
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        let directoryIdentifiers = self.isDirectoryDocument ? self.immovableDirectoryIdentifiers + [.documentHistory] : []
-        
-        return directoryIdentifiers + [
-            .syntax,
-            .inspectorTrackingSeparator,
-            .flexibleSpace,
-            .inspector,
-        ]
+        []
     }
     
     
