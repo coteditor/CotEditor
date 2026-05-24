@@ -28,6 +28,7 @@
 ### Fixes
 
 - Fix an issue where the Command-Left Arrow command could fail to move the cursor to the beginning of the current wrapped visual line.
+- Fix an issue where regular-expression syntax highlighting in input fields could fail to update immediately when changing regular expression mode while editing.
 
 
 

@@ -24,8 +24,29 @@
 //  limitations under the License.
 //
 
+import Foundation
+
 public enum RegexParseMode: Sendable {
     
     case search
     case replacement(unescapes: Bool)
+}
+
+
+extension RegexParseMode {
+    
+    /// Validates a string as a regular expression pattern in the receiver's parse mode.
+    ///
+    /// - Parameters:
+    ///   - pattern: The string to validate.
+    /// - Returns: `true` if the string is valid or no validation is required.
+    func validate(pattern: String) -> Bool {
+        
+        switch self {
+            case .search:
+                (try? NSRegularExpression(pattern: pattern)) != nil
+            case .replacement:
+                true
+        }
+    }
 }
