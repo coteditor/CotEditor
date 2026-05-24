@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2025 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,6 +27,22 @@
 import AppKit
 
 extension NSTextSelectionDataSource {
+    
+    /// Converts the given text range to a character range.
+    ///
+    /// - Parameters:
+    ///   - textRange: The text range to convert.
+    /// - Returns: A character range, or `nil` if the given range is invalid for the content text.
+    func range(for textRange: NSTextRange) -> NSRange? {
+        
+        let location = self.offset(from: self.documentRange.location, to: textRange.location)
+        let length = self.offset(from: textRange.location, to: textRange.endLocation)
+        
+        guard location != NSNotFound, length != NSNotFound else { return nil }
+        
+        return NSRange(location: location, length: length)
+    }
+    
     
     /// Converts the given character range to a text range.
     ///
