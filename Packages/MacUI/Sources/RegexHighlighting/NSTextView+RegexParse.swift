@@ -47,12 +47,7 @@ public extension NSTextView {
         guard enabled else { return true }
         
         // validate regex pattern
-        switch mode {
-            case .search:
-                guard (try? NSRegularExpression(pattern: self.string)) != nil else { return false }
-            case .replacement:
-                break
-        }
+        guard mode.validate(pattern: self.string) else { return false }
         
         // highlight
         for type in RegexSyntaxType.allCases.reversed() {
@@ -84,12 +79,7 @@ public extension NSTextView {
         guard enabled else { return true }
         
         // validate regex pattern
-        switch mode {
-            case .search:
-                guard (try? NSRegularExpression(pattern: self.string)) != nil else { return false }
-            case .replacement:
-                break
-        }
+        guard mode.validate(pattern: self.string) else { return false }
         
         // highlight
         for type in RegexSyntaxType.allCases.reversed() {

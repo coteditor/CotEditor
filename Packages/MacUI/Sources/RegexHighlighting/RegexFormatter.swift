@@ -81,16 +81,7 @@ public final class RegexFormatter<Color: Sendable>: Formatter {
         guard !string.isEmpty else { return attributedString }
         
         if self.parsesRegularExpression {
-            // validate regex pattern
-            switch self.mode {
-                case .search:
-                    do {
-                        _ = try NSRegularExpression(pattern: string)
-                    } catch {
-                        return attributedString
-                    }
-                case .replacement: break
-            }
+            guard self.mode.validate(pattern: string) else { return attributedString }
             
             // syntax highlight
             for type in RegexSyntaxType.allCases.reversed() {
