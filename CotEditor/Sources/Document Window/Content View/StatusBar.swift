@@ -65,7 +65,10 @@ struct StatusBar: View {
             }
             
             if let document = self.model.document as? Document {
-                NotEditableBadge(isEditable: document.isEditable)
+                if !document.isEditable {
+                    NotEditableBadge()
+                        .transition(.opacity.animation(.linear))
+                }
                 EditorCountView(result: document.counter.result)
                     .layoutPriority(-1)
             }
@@ -78,9 +81,6 @@ struct StatusBar: View {
             
             if let document = self.model.document as? Document {
                 DocumentStatusBar(document: document)
-            } else {
-                // for spacer in case only file size is displayed
-                Color.clear.frame(width: 0)
             }
         }
         .onAppear {
@@ -195,19 +195,11 @@ private struct CoffeeBadge: View {
 
 private struct NotEditableBadge: View {
     
-    var isEditable: Bool
-    
-    
     var body: some View {
         
-        HStack {
-            if !self.isEditable {
-                Label(String(localized: "Not editable", table: "Document"), systemImage: "pencil.slash")
-                    .help(String(localized: "The document is not editable.", table: "Document", comment: "tooltip"))
-                    .labelStyle(.iconOnly)
-            }
-        }
-        .animation(.default.speed(1.5), value: self.isEditable)
+        Label(String(localized: "Not editable", table: "Document"), systemImage: "pencil.slash")
+            .help(String(localized: "The document is not editable.", table: "Document", comment: "tooltip"))
+            .labelStyle(.iconOnly)
     }
 }
 
