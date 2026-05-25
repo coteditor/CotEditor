@@ -29,6 +29,7 @@
     - Document Window/Document.xcstrings
     - Settings/Other Views/SyntaxListCustomization.xcstrings
     - Settings/Panes/FormatSettings.xcstrings
+    - Storyboards/Main.xcstrings
 
 
 
