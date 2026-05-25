@@ -97,7 +97,6 @@ public enum FolderFind {
         public var contentType: UTType
         public var isDirectory: Bool
         public var isHidden: Bool
-        public var isAlias: Bool
         
         static let metadataResourceKeys = File.metadataResourceKeys
         
@@ -114,7 +113,6 @@ public enum FolderFind {
             self.contentType = resourceValues.contentType ?? .data
             self.isDirectory = resourceValues.isDirectory ?? false
             self.isHidden = resourceValues.isHidden ?? false
-            self.isAlias = resourceValues.isAliasFile ?? false
         }
     }
     
