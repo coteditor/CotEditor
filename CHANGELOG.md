@@ -21,6 +21,14 @@
 - Allow CotEditor Syntax files and multiple replacement definitions to be imported by dropping them onto their lists.
 
 
+### TODO
+
+- Localize strings added.
+    - Document Window/Document.xcstrings
+    - Settings/Other Views/SyntaxListCustomization.xcstrings
+    - Settings/Panes/FormatSettings.xcstrings
+
+
 
 7.0.5 (unreleased)
 --------------------------
