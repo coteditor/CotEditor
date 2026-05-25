@@ -244,6 +244,24 @@ struct FolderFindTests {
     }
     
     
+    @Test func symbolicLinkCycleIsNotFollowedInfinitely() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: "a.txt"))
+        let subURL = rootURL.appending(path: "sub", directoryHint: .isDirectory)
+        try FileManager.default.createDirectory(at: subURL, withIntermediateDirectories: true)
+        try FileManager.default.createSymbolicLink(at: subURL.appending(path: "loop"), withDestinationURL: rootURL)
+        
+        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        
+        #expect(summary.searchedFileCount == 1)
+        #expect(summary.matchCount == 1)
+        #expect(summary.files.map(\.filename) == ["a.txt"])
+    }
+    
+    
     @Test func binaryPropertyListIsSkipped() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()

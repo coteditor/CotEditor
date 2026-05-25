@@ -41,6 +41,8 @@ struct Search {
     var searchedFileCount = 0
     var skippedFileCount = 0
     
+    var visitedDirectories: Set<URL> = []
+    
     
     /// Runs the folder search.
     ///
@@ -67,6 +69,9 @@ struct Search {
         
         try Task.checkCancellation()
         await Task.yield()
+        
+        // avoid following symbolic-link cycles back into an already-visited directory
+        guard self.visitedDirectories.insert(directoryURL.resolvingSymlinksInPath()).inserted else { return }
         
         guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: Array(FolderFind.Candidate.metadataResourceKeys)) else { return }
         
