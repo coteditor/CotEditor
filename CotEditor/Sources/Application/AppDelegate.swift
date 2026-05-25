@@ -160,6 +160,7 @@ extension Logger {
         KeyBindingManager.shared.applyShortcutsToMainMenu()
         
         NSApp.servicesProvider = ServicesProvider()
+        NSApp.registerServicesMenuSendTypes([.fileURL], returnTypes: [])
         NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         
         let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init)
