@@ -48,6 +48,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     
     private var expandingNodes: [FileNode: [FileNode]] = [:]
     
+    private var contextMenuSession = 0
+    private var isContextMenuShown = false
+    
     private var filterTask: Task<Void, any Error>?
     private var defaultObservers: Set<AnyCancellable> = []
     private var scrollObservers: [any NSObjectProtocol] = []
@@ -206,6 +209,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.outlineView.setDraggingSourceOperationMask([.copy, .move, .delete], forLocal: false)
         
         let contextMenu = NSMenu()
+        contextMenu.delegate = self
         contextMenu.items = [
             NSMenuItem(title: String(localized: "Show in Finder", table: "Document", comment: "menu item label"),
                        systemImage: "finder",
@@ -322,6 +326,24 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         } else {
             super.keyDown(with: event)
         }
+    }
+    
+    
+    override func validRequestor(forSendType sendType: NSPasteboard.PasteboardType?, returnType: NSPasteboard.PasteboardType?) -> Any? {
+        
+        guard sendType == .fileURL, returnType == nil else {
+            return super.validRequestor(forSendType: sendType, returnType: returnType)
+        }
+        
+        let fileURLs = self.targetRows(isContextMenu: self.isContextMenuShown)
+            .compactMap { self.outlineView.item(atRow: $0) as? FileNode }
+            .map(\.file.fileURL)
+        
+        guard !fileURLs.isEmpty else {
+            return super.validRequestor(forSendType: sendType, returnType: returnType)
+        }
+        
+        return FileBrowserServicesRequestor(fileURLs: fileURLs)
     }
     
     
@@ -785,7 +807,16 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     /// - Returns: The outline row indexes.
     private func targetRows(for sender: Any?) -> IndexSet {
         
-        let isContextMenu = ((sender as? NSMenuItem)?.menu == self.outlineView.menu)
+        self.targetRows(isContextMenu: ((sender as? NSMenuItem)?.menu == self.outlineView.menu))
+    }
+    
+    
+    /// Returns the target outline rows.
+    ///
+    /// - Parameter isContextMenu: Whether the action is performed from the contextual menu.
+    /// - Returns: The outline row indexes.
+    private func targetRows(isContextMenu: Bool) -> IndexSet {
+        
         let clickedRow = self.outlineView.clickedRow
         let selectedRows = self.outlineView.selectedRowIndexes
         
@@ -1285,12 +1316,63 @@ extension FileBrowserViewController: NSTextFieldDelegate {
 }
 
 
+// MARK: Menu Delegate
+
+extension FileBrowserViewController: NSMenuDelegate {
+    
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        
+        guard menu == self.outlineView.menu else { return }
+        
+        self.isContextMenuShown = true
+        self.contextMenuSession += 1
+    }
+    
+    
+    func menuDidClose(_ menu: NSMenu) {
+        
+        guard menu == self.outlineView.menu else { return }
+        
+        // -> Services can request the pasteboard contents just after the contextual menu closes.
+        //    (2026-05, macOS 26.5)
+        let session = self.contextMenuSession
+        DispatchQueue.main.async { [weak self] in
+            guard self?.contextMenuSession == session else { return }
+            
+            self?.isContextMenuShown = false
+        }
+    }
+}
+
+
 // MARK: -
 
 /// Column identifiers for outline view.
 private extension NSUserInterfaceItemIdentifier {
     
     static let node = NSUserInterfaceItemIdentifier("node")
+}
+
+
+private final class FileBrowserServicesRequestor: NSObject, NSServicesMenuRequestor {
+    
+    private let fileURLs: [URL]
+    
+    
+    init(fileURLs: [URL]) {
+        
+        self.fileURLs = fileURLs
+    }
+    
+    
+    nonisolated func writeSelection(to pboard: NSPasteboard, types: [NSPasteboard.PasteboardType]) -> Bool {
+        
+        guard types.contains(.fileURL) else { return false }
+        
+        pboard.clearContents()
+        
+        return pboard.writeObjects(self.fileURLs as [NSURL])
+    }
 }
 
 

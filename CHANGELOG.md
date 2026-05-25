@@ -3,6 +3,11 @@
 7.0.5 (unreleased)
 --------------------------
 
+### New Features
+
+- Add the Services menu to the context menu of the file browser.
+
+
 ### Fixes
 
 - Fix an issue where the Command-Left Arrow command could fail to move the cursor to the beginning of the current wrapped visual line.
