@@ -25,6 +25,7 @@
 
 import SwiftUI
 import AppKit
+import RegexHighlighting
 
 struct SearchField: NSViewRepresentable {
     
@@ -35,6 +36,7 @@ struct SearchField: NSViewRepresentable {
     
     private var onSubmit: (String) -> Void = { _ in }
     private var autosaveName: String?
+    private var isRegex = false
     
     
     init(text: Binding<String>, placeholder: String? = nil) {
@@ -46,7 +48,7 @@ struct SearchField: NSViewRepresentable {
     
     func makeNSView(context: Context) -> NSSearchField {
         
-        let searchField = NSSearchField()
+        let searchField = RegexSearchField()
         searchField.sendsSearchStringImmediately = false
         searchField.sendsWholeSearchString = true
         searchField.target = context.coordinator
@@ -67,6 +69,7 @@ struct SearchField: NSViewRepresentable {
         if nsView.stringValue != self.text {
             nsView.stringValue = self.text
         }
+        (nsView as! RegexSearchField).isRegexHighlighted = self.isRegex
         context.coordinator.onSubmit = self.onSubmit
     }
     
@@ -95,6 +98,18 @@ struct SearchField: NSViewRepresentable {
         
         var view = self
         view.autosaveName = autosaveName
+        return view
+    }
+    
+    
+    /// Adds a condition that controls whether syntax highlighting is enabled.
+    ///
+    /// - Parameter isRegex: A Boolean value that determines whether syntax highlighting is enabled.
+    func isRegex(_ isRegex: Bool) -> Self {
+        
+        var view = self
+        view.isRegex = isRegex
+        
         return view
     }
     
@@ -133,6 +148,66 @@ struct SearchField: NSViewRepresentable {
             
             self.onSubmit(sender.stringValue)
         }
+    }
+}
+
+
+private final class RegexSearchField: NSSearchField {
+    
+    var isRegexHighlighted = true {
+        
+        didSet {
+            if isRegexHighlighted != oldValue {
+                self.regexFormatter.parsesRegularExpression = isRegexHighlighted
+                self.invalidateFieldEditor()
+                self.needsDisplay = true
+            }
+        }
+    }
+    
+    
+    // MARK: Private Properties
+    
+    private let regexFormatter = RegexFormatter(theme: .default)
+    
+    
+    // MARK: Text Field Methods
+    
+    override init(frame frameRect: NSRect) {
+        
+        super.init(frame: frameRect)
+        
+        self.formatter = self.regexFormatter
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        super.init(coder: coder)
+        
+        self.formatter = self.regexFormatter
+    }
+    
+    
+    /// Invoked when the receiver was focused to edit the content.
+    override func becomeFirstResponder() -> Bool {
+        
+        guard super.becomeFirstResponder() else { return false }
+        
+        self.invalidateFieldEditor()
+        
+        return true
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Updates the syntax highlight in the field editor.
+    private func invalidateFieldEditor() {
+        
+        guard let editor = self.currentEditor() as? NSTextView else { return }
+        
+        editor.invalidateRegularExpressionHighlight(mode: self.regexFormatter.mode, theme: self.regexFormatter.theme, enabled: self.isRegexHighlighted)
     }
 }
 

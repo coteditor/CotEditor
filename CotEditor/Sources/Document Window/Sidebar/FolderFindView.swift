@@ -270,6 +270,7 @@ struct FolderFindView: View {
                 SearchField(text: $textFinderSettings.findString,
                             placeholder: String(localized: "Search in Folder", table: "Document", comment: "placeholder"))
                     .autosaveName("FolderSearch")
+                    .isRegex(self.usesRegularExpression)
                     .onSubmit { findString in
                         self.model.find(findString: findString,
                                         usesRegularExpression: self.usesRegularExpression,
