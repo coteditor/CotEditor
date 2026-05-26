@@ -529,8 +529,7 @@ private struct FolderFindMatchView: View {
         Label {
             Text(self.highlightedLine)
         } icon: {
-            Image(systemName: "text")
-                .symbolVariant(.rectangle.fill)
+            Image(.textSquareFill)
                 .symbolRenderingMode(.hierarchical)
         }
         .foregroundStyle(.secondary)
