@@ -252,9 +252,59 @@ import TextFind
 }
 
 
+// MARK: - Views
+
 struct FolderFindView: View {
    
     @Bindable var model: FolderFinder
+    
+    
+    var body: some View {
+    
+        VStack(spacing: 0) {
+            FolderFindControlView(model: self.model)
+                .padding(10)
+            
+            Divider()
+            
+            switch self.model.state {
+                case .idle:
+                    Spacer()
+                    
+                case .searching:
+                    ProgressView(String(localized: "FolderFind.SearchState.searching.label",
+                                        defaultValue: "Searching in folder…", table: "Document"))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .controlSize(.small)
+                    
+                case .finished(let summary) where summary.matchCount == 0:
+                    UnavailableView(title: String(localized: "FolderFind.SearchState.finished.zero.label",
+                                                  defaultValue: "No Results", table: "Document"),
+                                    systemName: "magnifyingglass",
+                                    description: String(localized: "FolderFind.SearchState.finished.zero.description",
+                                                        defaultValue: "No matches for “\(summary.findString)” were found.",
+                                                        table: "Document"))
+                    .controlSize(.small)
+                    
+                case .finished(let summary):
+                    FolderFindSummaryView(summary: summary, model: self.model)
+                    
+                case .failed(let error):
+                    UnavailableView(title: String(localized: "FolderFind.SearchState.failed.label",
+                                                  defaultValue: "Search Failed", table: "Document"),
+                                    systemName: "exclamationmark.triangle",
+                                    description: error.localizedDescription)
+                    .controlSize(.small)
+            }
+        }
+        .accessibilityLabel(SidebarPane.find.label)
+    }
+}
+
+
+private struct FolderFindControlView: View {
+    
+    var model: FolderFinder
     
     @State private var textFinderSettings: TextFinderSettings = .shared
     
@@ -264,112 +314,64 @@ struct FolderFindView: View {
     
     
     var body: some View {
-    
-        VStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .firstTextBaseline) {
-                    Picker(String(localized: "Search method", table: "Document"), selection: $usesRegularExpression) {
-                        Text("Text", tableName: "TextFind")
-                            .tag(false)
-                        Text("Regular Expression", tableName: "TextFind")
-                            .tag(true)
-                    } currentValueLabel: {
-                        self.usesRegularExpression
-                            ? Text("Regular Expression", tableName: "TextFind")
-                                  .foregroundStyle(.tint)
-                            : Text("Text", tableName: "TextFind")
-                    }
-                    .pickerStyle(.menu)
-                    .labelsVisibility(.hidden)
-                    
-                    Spacer()
-                    
-                    Toggle(isOn: $ignoresCase) {
-                        Label {
-                            Text(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"))
-                        } icon: {
-                            Image(systemName: "textformat")
-                                .environment(\.locale, Locale(script: .latin))
-                        }
-                    }
-                    .help(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"))
-                    .toggleStyle(.button)
-                    .fontWeight(self.ignoresCase ? .bold : .medium)
-                    .labelStyle(.iconOnly)
-                    .frame(width: 16, alignment: .center)
-                    
-                    Menu {
-                        Toggle(String(localized: "Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
-                    } label: {
-                        Label(String(localized: "Advanced options", table: "TextFind", comment: "accessibility label"), systemImage: "ellipsis")
-                            .symbolVariant(.circle)
-                            .labelStyle(.iconOnly)
-                    }
-                    .menuIndicator(.hidden)
-                }
-                .buttonStyle(.borderless)
-                .controlSize(.small)
-                
-                SearchField(text: $textFinderSettings.findString,
-                            placeholder: String(localized: "Search in Folder", table: "Document", comment: "placeholder"))
-                    .autosaveName("FolderSearch")
-                    .isRegex(self.usesRegularExpression)
-                    .onSubmit { findString in
-                        self.model.find(findString: findString,
-                                        usesRegularExpression: self.usesRegularExpression,
-                                        ignoresCase: self.ignoresCase,
-                                        includesHiddenFiles: self.includesHiddenFiles)
-                    }
-                    .onChange(of: self.textFinderSettings.findString) { _, newValue in
-                        self.model.findStringDidChange(to: newValue)
-                    }
-            }
-            .padding(10)
-            
-            Divider()
-            
-            FolderFindResultView(model: self.model)
-        }
-        .accessibilityLabel(SidebarPane.find.label)
-    }
-}
-
-
-private struct FolderFindResultView: View {
-    
-    var model: FolderFinder
-    
-    
-    var body: some View {
         
-        switch self.model.state {
-            case .idle:
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .firstTextBaseline) {
+                Picker(String(localized: "Search method", table: "Document"), selection: $usesRegularExpression) {
+                    Text("Text", tableName: "TextFind")
+                        .tag(false)
+                    Text("Regular Expression", tableName: "TextFind")
+                        .tag(true)
+                } currentValueLabel: {
+                    self.usesRegularExpression
+                    ? Text("Regular Expression", tableName: "TextFind")
+                        .foregroundStyle(.tint)
+                    : Text("Text", tableName: "TextFind")
+                }
+                .pickerStyle(.menu)
+                .labelsVisibility(.hidden)
+                
                 Spacer()
                 
-            case .searching:
-                ProgressView(String(localized: "FolderFind.SearchState.searching.label",
-                                    defaultValue: "Searching in folder…", table: "Document"))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .controlSize(.small)
+                Toggle(isOn: $ignoresCase) {
+                    Label {
+                        Text(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"))
+                    } icon: {
+                        Image(systemName: "textformat")
+                            .environment(\.locale, Locale(script: .latin))
+                    }
+                }
+                .help(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"))
+                .toggleStyle(.button)
+                .fontWeight(self.ignoresCase ? .bold : .medium)
+                .labelStyle(.iconOnly)
+                .frame(width: 16, alignment: .center)
                 
-            case .finished(let summary) where summary.matchCount == 0:
-                UnavailableView(title: String(localized: "FolderFind.SearchState.finished.zero.label",
-                                              defaultValue: "No Results", table: "Document"),
-                                systemName: "magnifyingglass",
-                                description: String(localized: "FolderFind.SearchState.finished.zero.description",
-                                                    defaultValue: "No matches for “\(summary.findString)” were found.",
-                                                    table: "Document"))
-                    .controlSize(.small)
-                
-            case .finished(let summary):
-                FolderFindSummaryView(summary: summary, model: self.model)
-                
-            case .failed(let error):
-                UnavailableView(title: String(localized: "FolderFind.SearchState.failed.label",
-                                              defaultValue: "Search Failed", table: "Document"),
-                                systemName: "exclamationmark.triangle",
-                                description: error.localizedDescription)
-                    .controlSize(.small)
+                Menu {
+                    Toggle(String(localized: "Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
+                } label: {
+                    Label(String(localized: "Advanced options", table: "TextFind", comment: "accessibility label"), systemImage: "ellipsis")
+                        .symbolVariant(.circle)
+                        .labelStyle(.iconOnly)
+                }
+                .menuIndicator(.hidden)
+            }
+            .buttonStyle(.borderless)
+            .controlSize(.small)
+            
+            SearchField(text: $textFinderSettings.findString,
+                        placeholder: String(localized: "Search in Folder", table: "Document", comment: "placeholder"))
+            .autosaveName("FolderSearch")
+            .isRegex(self.usesRegularExpression)
+            .onSubmit { findString in
+                self.model.find(findString: findString,
+                                usesRegularExpression: self.usesRegularExpression,
+                                ignoresCase: self.ignoresCase,
+                                includesHiddenFiles: self.includesHiddenFiles)
+            }
+            .onChange(of: self.textFinderSettings.findString) { _, newValue in
+                self.model.findStringDidChange(to: newValue)
+            }
         }
     }
 }
@@ -494,40 +496,6 @@ private struct FolderFindResultContextMenu: View {
 }
 
 
-private struct FolderFindDraggedFile: Transferable, Identifiable {
-    
-    var id: FolderFind.ResultID
-    var fileURL: URL
-    
-    
-    /// The file URL string to transfer.
-    var fileURLString: String {
-        
-        self.fileURL.absoluteString
-    }
-    
-    
-    /// The file path to transfer as plain text.
-    var filePath: String {
-        
-        self.fileURL.path(percentEncoded: false)
-    }
-    
-    
-    /// The transfer representations of a dragged file result.
-    static var transferRepresentation: some TransferRepresentation {
-        
-        DataRepresentation(exportedContentType: .url) { item in
-            Data(item.fileURLString.utf8)
-        }
-        DataRepresentation(exportedContentType: .fileURL) { item in
-            Data(item.fileURLString.utf8)
-        }
-        ProxyRepresentation(exporting: \.filePath)
-    }
-}
-
-
 private struct FolderFindFileResultView: View {
     
     var file: FolderFind.FileResult
@@ -645,7 +613,43 @@ private struct UnavailableView: View {
 }
 
 
-// MARK: Private Extensions
+// MARK: - Private Models
+
+private struct FolderFindDraggedFile: Transferable, Identifiable {
+    
+    var id: FolderFind.ResultID
+    var fileURL: URL
+    
+    
+    /// The file URL string to transfer.
+    var fileURLString: String {
+        
+        self.fileURL.absoluteString
+    }
+    
+    
+    /// The file path to transfer as plain text.
+    var filePath: String {
+        
+        self.fileURL.path(percentEncoded: false)
+    }
+    
+    
+    /// The transfer representations of a dragged file result.
+    static var transferRepresentation: some TransferRepresentation {
+        
+        DataRepresentation(exportedContentType: .url) { item in
+            Data(item.fileURLString.utf8)
+        }
+        DataRepresentation(exportedContentType: .fileURL) { item in
+            Data(item.fileURLString.utf8)
+        }
+        ProxyRepresentation(exporting: \.filePath)
+    }
+}
+
+
+// MARK: - Private Extensions
 
 private extension TextFind.Mode {
     
