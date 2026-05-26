@@ -239,7 +239,7 @@ private struct CreditsView: View {
         
         var body: some View {
             
-            HStack(spacing: 2) {
+            HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text(self.contributor.name)
                     .textSelection(.enabled)
                 LinkButton(url: self.contributor.url ?? "")

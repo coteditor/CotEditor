@@ -109,8 +109,8 @@ struct FindPanelFieldView: View {
             .help(String(localized: "Type the text to replace the found text.", table: "TextFind", comment: "tooltip"))
             .frame(minHeight: 44)
             
-            HStack(spacing: 12) {
-                HStack(spacing: 4) {
+            HStack(alignment: .firstTextBaseline, spacing: 12) {
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Toggle(String(localized: "Regular Expression", table: "TextFind", comment: "toggle button label"), isOn: $usesRegularExpression)
                         .help(String(localized: "Select to search with regular expression.", table: "TextFind", comment: "tooltip"))
                         .fixedSize()
