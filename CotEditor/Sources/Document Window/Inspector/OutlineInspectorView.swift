@@ -128,8 +128,6 @@ import StringUtils
         
         self.outlineNodes = self.outlineRoots.compactMap { $0.filteredNode(filter: self.filterString) }
     }
-    
-    
 }
 
 
