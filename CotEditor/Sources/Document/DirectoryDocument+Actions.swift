@@ -198,6 +198,15 @@ extension DirectoryDocument {
     /// Navigates to the previous document history item.
     @objc func navigatePreviousDocumentHistory(_ sender: Any?) {
         
+        // workaround an AppKit issue where clicking the disabled forward segment can invoke
+        // the first subitem's action (2026-05, macOS 26.5).
+        if let sender = sender as? NSToolbarItem,
+           let historyGroup = sender.toolbar?.items
+            .compactMap({ $0 as? NSToolbarItemGroup })
+            .first(where: { $0.subitems.contains(sender) }),
+           historyGroup.selectedIndex != 0
+        { return }
+        
         guard let historyItem = self.documentHistory.nextItem(forward: false) else { return }
         
         Task {
