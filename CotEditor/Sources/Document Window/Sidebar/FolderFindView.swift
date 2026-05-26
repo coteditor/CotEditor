@@ -47,7 +47,7 @@ import TextFind
         case idle
         case searching
         case finished(FolderFind.Summary)
-        case failed(Error)
+        case failed(FolderFinder.Error)
     }
     
     
@@ -414,27 +414,28 @@ private struct FolderFindSummaryView: View {
             
             Divider()
             
-            List(selection: $selection) {
-                ForEach(self.summary.files) { file in
-                    DisclosureGroup(isExpanded: $expandedFileURLs.contains(file.id)) {
-                        ForEach(file.matches) { match in
-                            FolderFindMatchView(match: match)
-                                .tag(FolderFind.ResultID.match(fileID: file.id, matchID: match.id))
-                        }
-                    } label: {
-                        FolderFindFileResultView(file: file)
-                            .draggable(FolderFindDraggedFile.self,
-                                       item: FolderFindDraggedFile(id: .file(file.id), fileURL: file.fileURL),
-                                       containerNamespace: self.namespace)
+            List(self.summary.files, selection: $selection) { file in
+                DisclosureGroup(isExpanded: $expandedFileURLs.contains(file.id)) {
+                    ForEach(file.matches) { match in
+                        FolderFindMatchView(match: match)
+                            .tag(FolderFind.ResultID.match(fileID: file.id, matchID: match.id))
                     }
-                    .listRowSeparator(.hidden)
-                    .tag(FolderFind.ResultID.file(file.id))
+                } label: {
+                    FolderFindFileResultView(file: file)
+                        .draggable(FolderFindDraggedFile.self,
+                                   item: FolderFindDraggedFile(id: .file(file.id), fileURL: file.fileURL),
+                                   containerNamespace: self.namespace)
                 }
+                .listRowSeparator(.hidden)
+                .tag(FolderFind.ResultID.file(file.id))
             }
             .scrollContentBackground(.hidden)
             .contextMenu(forSelectionType: FolderFind.ResultID.self) { selections in
-                if selections.count == 1, let selection = selections.first, let result = self.summary.result(for: selection) {
-                    FolderFindResultContextMenu(file: result.file, model: self.model)
+                if selections.count == 1,
+                   let selection = selections.first,
+                   let result = self.summary.result(for: selection)
+                {
+                    self.contextMenu(for: result.file)
                 }
             }
             .dragContainerSelection(Array(self.selection), containerNamespace: self.namespace)
@@ -455,42 +456,33 @@ private struct FolderFindSummaryView: View {
                 self.model.selectResult(fileURL: result.file.fileURL, range: result.match?.range)
             }
             .onDeleteCommand {
-                guard !self.selection.isEmpty else { return }
-                
-                let selection = self.selection
-                self.selection = []
-                for resultID in selection {
+                for resultID in self.selection {
                     self.model.removeResult(for: resultID)
                 }
+                self.selection.removeAll()
             }
         }
     }
-}
-
-
-private struct FolderFindResultContextMenu: View {
-    
-    var file: FolderFind.FileResult
-    var model: FolderFinder
     
     
-    var body: some View {
+    /// Builds the context menu for a file result.
+    ///
+    /// - Parameter file: The file result represented by the selected row.
+    /// - Returns: The context menu content.
+    @ViewBuilder private func contextMenu(for file: FolderFind.FileResult) -> some View {
         
-        Button(String(localized: "Reveal in File Browser", table: "Document", comment: "menu item label"),
-               systemImage: "folder") {
-            self.model.document.revealInFileBrowser(fileURL: self.file.fileURL)
+        Button(String(localized: "Reveal in File Browser", table: "Document"), systemImage: "folder") {
+            self.model.document.revealInFileBrowser(fileURL: file.fileURL)
         }
         
-        Button(String(localized: "Show in Finder", table: "Document", comment: "menu item label"),
-               systemImage: "finder") {
-            NSWorkspace.shared.activateFileViewerSelecting([self.file.fileURL])
+        Button(String(localized: "Show in Finder", table: "Document"), systemImage: "finder") {
+            NSWorkspace.shared.activateFileViewerSelecting([file.fileURL])
         }
         
         Divider()
         
-        Button(String(localized: "Open in New Window", table: "Document", comment: "menu item label"),
-               systemImage: "macwindow.badge.plus") {
-            self.model.document.openInNewWindow(fileURL: self.file.fileURL)
+        Button(String(localized: "Open in New Window", table: "Document"), systemImage: "macwindow.badge.plus") {
+            self.model.document.openInNewWindow(fileURL: file.fileURL)
         }
     }
 }
@@ -504,7 +496,7 @@ private struct FolderFindFileResultView: View {
     var body: some View {
         
         Label {
-            HStack(spacing: 4) {
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
                 Text(self.file.filename)
                     .fontWeight(.medium)
                     .layoutPriority(1)
@@ -520,6 +512,7 @@ private struct FolderFindFileResultView: View {
         } icon: {
             Image(systemName: "doc.text")
         }
+        .labelIconToTitleSpacing(4)
     }
 }
 
@@ -622,14 +615,14 @@ private struct FolderFindDraggedFile: Transferable, Identifiable {
     
     
     /// The file URL string to transfer.
-    var fileURLString: String {
+    private var fileURLString: String {
         
         self.fileURL.absoluteString
     }
     
     
     /// The file path to transfer as plain text.
-    var filePath: String {
+    private var filePath: String {
         
         self.fileURL.path(percentEncoded: false)
     }
