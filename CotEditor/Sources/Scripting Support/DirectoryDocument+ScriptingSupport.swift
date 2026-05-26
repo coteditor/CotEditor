@@ -284,10 +284,14 @@ extension DirectoryDocument {
     
     // MARK: Private Methods
     
+    /// Returns the current text document for the AppleScript command.
+    ///
+    /// - Parameter command: The AppleScript command that requires the current document.
+    /// - Returns: The current text document, or `nil` if no text document is selected.
     private func scriptDocument(for command: NSScriptCommand? = nil) -> Document? {
         
         guard let document = self.currentDocument as? Document else {
-            self.reportNoCurrentDocument(command)
+            Self.reportNoCurrentDocument(command)
             return nil
         }
         
@@ -295,7 +299,10 @@ extension DirectoryDocument {
     }
     
     
-    private func reportNoCurrentDocument(_ command: NSScriptCommand?) {
+    /// Reports an AppleScript error for the command when no text document is selected.
+    ///
+    /// - Parameter command: The AppleScript command to report the error to.
+    private static func reportNoCurrentDocument(_ command: NSScriptCommand?) {
         
         let command = command ?? NSScriptCommand.current()
         command?.scriptErrorNumber = errOSAGeneralError
