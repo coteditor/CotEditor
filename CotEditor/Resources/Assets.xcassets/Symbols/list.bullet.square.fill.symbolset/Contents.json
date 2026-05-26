@@ -6,7 +6,8 @@
   "symbols" : [
     {
       "filename" : "list.bullet.square.fill.svg",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "language-direction" : "left-to-right"
     }
   ]
 }
