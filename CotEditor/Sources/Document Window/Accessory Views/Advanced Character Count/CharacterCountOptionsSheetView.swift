@@ -39,17 +39,9 @@ struct CharacterCountOptionsSheetView: View {
         VStack {
             CharacterCountOptionsView()
             
-            HStack {
-                HelpLink(anchor: "howto_count_characters")
-                
-                Spacer()
-                
-                SubmitButtonGroup(String(localized: "Start", table: "AdvancedCharacterCount", comment: "button label")) {
-                    self.completionHandler()
-                    self.dismiss()
-                } cancelAction: {
-                    self.dismiss()
-                }
+            SubmitButtonGroup(String(localized: "Start", table: "AdvancedCharacterCount", comment: "button label"), helpAnchor: "howto_count_characters") {
+                self.completionHandler()
+                self.dismiss()
             }
             .padding(.top)
         }

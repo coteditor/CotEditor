@@ -149,20 +149,12 @@ struct EncodingListView: View {
             Text("This order is used for the Encoding menu and for encoding detection. Only the encodings listed here are considered during detection, with higher items taking priority.", tableName: "EncodingList")
                 .controlSize(.small)
                 .fixedSize(horizontal: false, vertical: true)
-                .padding(.bottom)
             
-            HStack {
-                HelpLink(anchor: "howto_customize_encoding_order")
-                
-                Spacer()
-                
-                SubmitButtonGroup {
-                    self.model.save()
-                    self.dismiss()
-                } cancelAction: {
-                    self.dismiss()
-                }
+            SubmitButtonGroup(helpAnchor: "howto_customize_encoding_order") {
+                self.model.save()
+                self.dismiss()
             }
+            .padding(.top)
         }
         .onAppear {
             self.model.undoManager = self.undoManager

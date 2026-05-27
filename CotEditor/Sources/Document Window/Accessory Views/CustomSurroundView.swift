@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -89,15 +89,8 @@ struct CustomSurroundView: View {
             }
             .onSubmit(self.submit)
             
-            HStack {
-                Spacer()
-                SubmitButtonGroup {
-                    self.submit()
-                } cancelAction: {
-                    self.dismiss()
-                }
-            }
-            .padding(.top, 8)
+            SubmitButtonGroup(action: self.submit)
+                .padding(.top)
         }
         .onAppear {
             self.focus = .beginField

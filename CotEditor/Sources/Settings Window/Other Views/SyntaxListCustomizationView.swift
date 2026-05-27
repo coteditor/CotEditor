@@ -71,20 +71,12 @@ struct SyntaxListCustomizationView: View {
                 .foregroundStyle(.secondary)
                 .controlSize(.small)
                 .fixedSize(horizontal: false, vertical: true)
-                .padding(.bottom)
             
-            HStack {
-                HelpLink(anchor: "howto_customize_syntax_menu")
-                
-                Spacer()
-                
-                SubmitButtonGroup {
-                    UserDefaults.standard[.hiddenSyntaxes] = self.hiddenItems.sorted()
-                    self.dismiss()
-                } cancelAction: {
-                    self.dismiss()
-                }
+            SubmitButtonGroup(helpAnchor: "howto_customize_syntax_menu") {
+                UserDefaults.standard[.hiddenSyntaxes] = self.hiddenItems.sorted()
+                self.dismiss()
             }
+            .padding(.top)
         }
         .onAppear {
             self.hiddenItems = Set(UserDefaults.standard[.hiddenSyntaxes])

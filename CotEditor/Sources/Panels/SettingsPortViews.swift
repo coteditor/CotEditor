@@ -53,23 +53,16 @@ struct ExportSettingsView: View {
             
             PortableTypesView(types: $types, includedTypes: self.includedTypes)
             
-            HStack {
-                HelpLink(anchor: "howto_port_settings")
-                Spacer()
-                
-                SubmitButtonGroup(String(localized: "Action.export.label", defaultValue: "Export…")) {
-                    do {
-                        self.document = try PortableSettingsDocument(including: self.types)
-                    } catch {
-                        self.error = error
-                        return
-                    }
-                    self.isFileExporterPresented = true
-                } cancelAction: {
-                    self.dismiss()
+            SubmitButtonGroup(String(localized: "Action.export.label", defaultValue: "Export…"), helpAnchor: "howto_port_settings") {
+                do {
+                    self.document = try PortableSettingsDocument(including: self.types)
+                } catch {
+                    self.error = error
+                    return
                 }
-                .disabled(self.types.isEmpty)
+                self.isFileExporterPresented = true
             }
+            .disabled(self.types.isEmpty)
             .padding(.top)
         }
         .fileExporter(isPresented: $isFileExporterPresented, document: self.document, contentTypes: [.cotSettings], defaultFilename: nil) { result in
@@ -120,23 +113,16 @@ struct ImportSettingsView: View {
             Text("Select the items to import:", tableName: "SettingsPorting")
             PortableTypesView(types: $types, includedTypes: self.document.bundledSettings)
             
-            HStack {
-                HelpLink(anchor: "howto_port_settings")
-                Spacer()
-                
-                SubmitButtonGroup(String(localized: "Action.import.ellipsis.label", defaultValue: "Import…")) {
-                    do {
-                        try self.document.applySettings(types: self.types)
-                    } catch {
-                        self.error = error
-                        return
-                    }
-                    self.dismiss()
-                } cancelAction: {
-                    self.dismiss()
+            SubmitButtonGroup(String(localized: "Action.import.ellipsis.label", defaultValue: "Import…"), helpAnchor: "howto_port_settings") {
+                do {
+                    try self.document.applySettings(types: self.types)
+                } catch {
+                    self.error = error
+                    return
                 }
-                .disabled(self.types.isEmpty)
+                self.dismiss()
             }
+            .disabled(self.types.isEmpty)
             .padding(.top)
         }
         .onAppear {

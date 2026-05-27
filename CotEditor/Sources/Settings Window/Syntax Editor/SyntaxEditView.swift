@@ -162,15 +162,11 @@ struct SyntaxEditView: View {
                 
                 Divider()
                 
-                HStack {
-                    Spacer()
-                    SubmitButtonGroup(action: self.submit) {
-                        self.dismiss()
-                    }
-                }
-                .padding(.top)
-                .scenePadding(.horizontal)
-            }.scenePadding(.vertical)
+                SubmitButtonGroup(action: self.submit, cancelAction: self.dismiss)
+                    .padding(.top)
+                    .scenePadding(.horizontal)
+            }
+            .scenePadding(.vertical)
         }
         .onChange(of: self.pane) {
             self.errors = self.syntax.value.validate()

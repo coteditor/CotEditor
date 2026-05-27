@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -60,18 +60,8 @@ struct GoToLineView: View {
                     .onSubmit(self.submit)
             }
             
-            HStack {
-                HelpLink(anchor: "howto_jump")
-                
-                Spacer(minLength: 16)
-                
-                SubmitButtonGroup(String(localized: "Go", table: "GoToLine", comment: "button label")) {
-                    self.submit()
-                } cancelAction: {
-                    self.dismiss()
-                }
-            }
-            .padding(.top, 8)
+            SubmitButtonGroup(String(localized: "Go", table: "GoToLine", comment: "button label"), helpAnchor: "howto_jump", action: self.submit)
+                .padding(.top)
         }
         .onAppear {
             self.focus = .field

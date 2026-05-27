@@ -141,16 +141,8 @@ struct PatternSortView: View {
                 .accessibilityElement(children: .contain)
             }
             
-            HStack {
-                HelpLink(anchor: "howto_pattern_sort")
-                Spacer()
-                SubmitButtonGroup(String(localized: "Sort", table: "PatternSort", comment: "button label")) {
-                    self.submit()
-                } cancelAction: {
-                    self.dismiss()
-                }.disabled(self.error != nil)
-            }
-            .padding(.top, 8)
+            SubmitButtonGroup(String(localized: "Sort", table: "PatternSort", comment: "button label"), helpAnchor: "howto_pattern_sort", action: self.submit) .disabled(self.error != nil)
+                .padding(.top)
         }
         .onAppear {
             self.validate()

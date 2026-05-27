@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,9 +27,12 @@ import SwiftUI
 
 struct SubmitButtonGroup: View {
     
+    @Environment(\.dismiss) private var dismiss
+    
     private var submitLabel: String
-    private var submitAction: () -> Void
-    private var cancelAction: () -> Void
+    private var helpAnchor: String?
+    private var action: () -> Void
+    private var cancelAction: DismissAction?
     
     
     // MARK: View
@@ -38,27 +41,38 @@ struct SubmitButtonGroup: View {
     ///
     /// - Parameters:
     ///   - submitLabel: The label to be displayed in the submit button, or `nil` for the default "OK."
+    ///   - helpAnchor: The anchor within the help book for the help button, or `nil` to omit the help button.
     ///   - action: The action invoked when the submit button was pressed.
     ///   - cancelAction: The action invoked when the cancel button was pressed.
-    init(_ submitLabel: String? = nil, action: @escaping () -> Void, cancelAction: @escaping () -> Void) {
+    init(_ submitLabel: String? = nil, helpAnchor: String? = nil, action: @escaping () -> Void, cancelAction: DismissAction? = nil) {
         
         self.submitLabel = submitLabel ?? String(localized: .ok)
-        self.submitAction = action
+        self.helpAnchor = helpAnchor
+        self.action = action
         self.cancelAction = cancelAction
     }
     
     
     var body: some View {
         
-        EqualWidthHStack {
-            Button(role: .cancel, action: self.cancelAction)
-                .buttonSizing(.flexible)
-                .keyboardShortcut(.cancelAction)
-                .environment(\.isEnabled, true)  // Cancel button is always active
+        HStack {
+            if let helpAnchor {
+                HelpLink(anchor: helpAnchor)
+                    .environment(\.isEnabled, true)
+            }
             
-            Button(self.submitLabel, action: self.submitAction)
-                .buttonSizing(.flexible)
-                .keyboardShortcut(.defaultAction)
+            Spacer()
+            
+            EqualWidthHStack {
+                Button(role: .cancel, action: { (self.cancelAction ?? self.dismiss)() })
+                    .buttonSizing(.flexible)
+                    .keyboardShortcut(.cancelAction)
+                    .environment(\.isEnabled, true)  // Cancel button is always active
+                
+                Button(self.submitLabel, action: self.action)
+                    .buttonSizing(.flexible)
+                    .keyboardShortcut(.defaultAction)
+            }
         }
     }
 }
@@ -124,7 +138,7 @@ private struct EqualWidthHStack: Layout {
 #Preview {
     HStack {
         Spacer()
-        SubmitButtonGroup(action: {}, cancelAction: {})
+        SubmitButtonGroup(action: {})
     }
     .padding()
     .frame(width: 200)
