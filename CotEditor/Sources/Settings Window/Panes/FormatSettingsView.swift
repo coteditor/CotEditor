@@ -235,7 +235,6 @@ private struct SyntaxListView: View {
     @State private var selection: SettingState?
     @State private var exportingItem: TransferableSyntax?
     @State private var deletingItem: String?
-    @State private var draggingItem: String?
     @State private var editingMode: EditingMode?
     
     @State private var isExporterPresented = false
@@ -264,14 +263,16 @@ private struct SyntaxListView: View {
                     .accessibilityHidden(!state.isCustomized)
             }
             .labelReservedIconWidth(12)
-            .draggable(TransferableSyntax.self) {
-                guard let url = self.manager.urlForUserSetting(name: state.name) else { return nil }
-                
-                self.draggingItem = state.name
-                return TransferableSyntax(name: state.name, url: url)
+            .listRowSeparator(.hidden)
+            .modifier { container in
+                if state.isCustomized {
+                    container
+                        .draggable(containerItemID: state.name)
+                } else {
+                    container
+                }
             }
             .tag(state)
-            .listRowSeparator(.hidden)
         }
         .safeAreaBar(edge: .bottom) {
             VStack(spacing: 0) {
@@ -280,17 +281,20 @@ private struct SyntaxListView: View {
             }
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
+        .dragContainer { draggedItemIDs in
+            draggedItemIDs.compactMap { name in
+                self.manager.urlForUserSetting(name: name)
+                    .map { TransferableSyntax(name: name, url: $0) }
+            }
+        }
         .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
         .onDragSessionUpdated { session in
             switch session.phase {
-                case .ended(let operation):
-                    defer { self.draggingItem = nil }
+                case .ended(.delete):
+                    let names = session.draggedItemIDs(for: String.self)
+                        .filter { self.manager.state(of: $0)?.isBundled != true }
                     
-                    guard
-                        case .delete = operation,
-                        let name = self.draggingItem,
-                        self.manager.state(of: name)?.isBundled != true
-                    else { return }
+                    guard let name = names.first else { return }
                     
                     do {
                         try self.manager.removeSetting(name: name)
