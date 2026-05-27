@@ -382,8 +382,6 @@ private struct FolderFindSummaryView: View {
     var summary: FolderFind.Summary
     var model: FolderFinder
     
-    @Namespace private var namespace
-    
     @State private var selection: Set<FolderFind.ResultID> = []
     @State private var expandedFileURLs: Set<URL>
     
@@ -422,9 +420,7 @@ private struct FolderFindSummaryView: View {
                     }
                 } label: {
                     FolderFindFileResultView(file: file)
-                        .draggable(FolderFindDraggedFile.self,
-                                   item: FolderFindDraggedFile(id: .file(file.id), fileURL: file.fileURL),
-                                   containerNamespace: self.namespace)
+                        .draggable(item: FolderFindDraggedFile(id: .file(file.id), fileURL: file.fileURL))
                 }
                 .listRowSeparator(.hidden)
                 .tag(FolderFind.ResultID.file(file.id))
@@ -438,7 +434,6 @@ private struct FolderFindSummaryView: View {
                     self.contextMenu(for: result.file)
                 }
             }
-            .dragContainerSelection(Array(self.selection), containerNamespace: self.namespace)
             .dragPreviewsFormation(.list)
             .onChange(of: self.summary) { oldValue, newValue in
                 guard oldValue.resultIDs != newValue.resultIDs else { return }
