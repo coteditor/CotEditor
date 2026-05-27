@@ -148,7 +148,6 @@ private struct ThemeListView: View {
     @State private var settingNames: [String] = []
     @State private var exportingItem: TransferableTheme?
     @State private var deletingItem: String?
-    @State private var draggingItem: String?
     @FocusState private var editingItem: String?
     
     @State private var isExporterPresented = false
@@ -178,10 +177,8 @@ private struct ThemeListView: View {
                     .editDisabled(state?.isBundled == true)
                     .focused($editingItem, equals: name)
                     .draggable(TransferableTheme.self) {
-                        guard let url = self.manager.urlForUserSetting(name: name) else { return nil }
-                        
-                        self.draggingItem = name
-                        return TransferableTheme(name: name, url: url)
+                        self.manager.urlForUserSetting(name: name)
+                            .map { .init(name: name, url: $0) }
                     }
                     .tag(name)
                 }
@@ -196,31 +193,6 @@ private struct ThemeListView: View {
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
         .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
-        .onDragSessionUpdated { session in
-            switch session.phase {
-                case .ended(let operation):
-                    defer { self.draggingItem = nil }
-                    
-                    guard
-                        case .delete = operation,
-                        let name = self.draggingItem,
-                        self.manager.state(of: name)?.isBundled != true
-                    else { return }
-                    
-                    do {
-                        try self.manager.removeSetting(name: name)
-                    } catch {
-                        self.error = error
-                        return
-                    }
-                    if self.selection == name {
-                        UserDefaults.standard.restore(key: .theme)
-                    }
-                    
-                default:
-                    break
-            }
-        }
         .dropDestination(for: URL.self) { urls, session in
             guard session.localSession == nil else { return }
             

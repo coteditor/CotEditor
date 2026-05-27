@@ -18,7 +18,7 @@
 ### Improvements
 
 - Make some setting dialogs resizable.
-- Allow custom syntaxes, themes, and multiple replacement definitions to be deleted by dragging them to the Trash.
+- Allow custom syntaxes to be deleted by dragging them to the Trash.
 - Allow CotEditor Syntax files and multiple replacement definitions to be imported by dropping them onto their lists.
 - [dev] Tweak the accent color.
 

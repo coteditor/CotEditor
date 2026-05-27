@@ -35,7 +35,6 @@ struct MultipleReplaceListView: View {
     @State private var settingNames: [String] = []
     @State private var exportingItem: TransferableReplacement?
     @State private var deletingItem: String?
-    @State private var draggingItem: String?
     @FocusState private var editingItem: String?
     
     @State private var isExporterPresented = false
@@ -61,10 +60,8 @@ struct MultipleReplaceListView: View {
                 }
                 .focused($editingItem, equals: name)
                 .draggable(TransferableReplacement.self) {
-                    guard let url = self.manager.urlForUserSetting(name: name) else { return nil }
-                    
-                    self.draggingItem = name
-                    return TransferableReplacement(name: name, url: url)
+                    self.manager.urlForUserSetting(name: name)
+                        .map { .init(name: name, url: $0) }
                 }
                 .tag(name)
             }
@@ -74,30 +71,6 @@ struct MultipleReplaceListView: View {
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
         .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
-        .onDragSessionUpdated { session in
-            switch session.phase {
-                case .ended(let operation):
-                    defer { self.draggingItem = nil }
-                    
-                    guard
-                        case .delete = operation,
-                        let name = self.draggingItem
-                    else { return }
-                    
-                    do {
-                        try self.manager.removeSetting(name: name)
-                    } catch {
-                        self.error = error
-                        return
-                    }
-                    if self.selection == name {
-                        self.selection = nil
-                    }
-                    
-                default:
-                    break
-            }
-        }
         .dropDestination(for: URL.self) { urls, session in
             guard session.localSession == nil else { return }
             
