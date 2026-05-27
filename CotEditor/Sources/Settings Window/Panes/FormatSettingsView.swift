@@ -231,8 +231,6 @@ private struct SyntaxListView: View {
     var settingNames: [String]
     var manager: SyntaxManager
     
-    private let rowHeight: Double = 14
-    
     @State private var settingStates: [SettingState] = []
     @State private var selection: SettingState?
     @State private var exportingItem: TransferableSyntax?
@@ -255,17 +253,17 @@ private struct SyntaxListView: View {
     var body: some View {
         
         List(self.settingStates, selection: $selection) { state in
-            HStack(spacing: 0) {
+            Label {
+                Text(state.name)
+            } icon: {
                 Circle()
-                    .frame(width: 4, height: 4)
-                    .foregroundStyle(.tertiary)
-                    .padding(6)
+                    .frame(width: 4)
+                    .foregroundStyle(.secondary)
                     .help(String(localized: "This syntax is customized.", table: "FormatSettings"))
                     .opacity(state.isCustomized ? 1 : 0)
                     .accessibilityHidden(!state.isCustomized)
-                Text(state.name)
             }
-            .frame(height: self.rowHeight)
+            .labelReservedIconWidth(12)
             .draggable(TransferableSyntax.self, id: \.name) {
                 guard let url = self.manager.urlForUserSetting(name: state.name) else { return nil }
                 
@@ -312,7 +310,6 @@ private struct SyntaxListView: View {
         }
         .accessibilityRotor(String(localized: "Customized Syntaxes", table: "FormatSettings"),
                             entries: self.settingStates.filter(\.isCustomized), entryID: \.id, entryLabel: \.name)
-        .environment(\.defaultMinListRowHeight, self.rowHeight)
         .listStyle(.plain)
         .border(.separator)
         .onChange(of: self.settingNames, initial: true) { _, settingNames in
