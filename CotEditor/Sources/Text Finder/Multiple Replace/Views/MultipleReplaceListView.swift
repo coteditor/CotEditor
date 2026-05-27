@@ -60,7 +60,7 @@ struct MultipleReplaceListView: View {
                     return true
                 }
                 .focused($editingItem, equals: name)
-                .draggable(TransferableReplacement.self, id: \.name) {
+                .draggable(TransferableReplacement.self) {
                     guard let url = self.manager.urlForUserSetting(name: name) else { return nil }
                     
                     self.draggingItem = name
@@ -75,17 +75,28 @@ struct MultipleReplaceListView: View {
         .scrollEdgeEffectStyle(.hard, for: .bottom)
         .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
         .onDragSessionUpdated { session in
-            guard case .ended(let operation) = session.phase else { return }
-            defer { self.draggingItem = nil }
-            guard case .delete = operation, let name = self.draggingItem else { return }
-            
-            do {
-                try self.manager.removeSetting(name: name)
-            } catch {
-                self.error = error
-                return
+            switch session.phase {
+                case .ended(let operation):
+                    defer { self.draggingItem = nil }
+                    
+                    guard
+                        case .delete = operation,
+                        let name = self.draggingItem
+                    else { return }
+                    
+                    do {
+                        try self.manager.removeSetting(name: name)
+                    } catch {
+                        self.error = error
+                        return
+                    }
+                    if self.selection == name {
+                        self.selection = nil
+                    }
+                    
+                default:
+                    break
             }
-            self.selection = nil
         }
         .dropDestination(for: URL.self) { urls, session in
             guard session.localSession == nil else { return }

@@ -177,7 +177,7 @@ private struct ThemeListView: View {
                     }
                     .editDisabled(state?.isBundled == true)
                     .focused($editingItem, equals: name)
-                    .draggable(TransferableTheme.self, id: \.name) {
+                    .draggable(TransferableTheme.self) {
                         guard let url = self.manager.urlForUserSetting(name: name) else { return nil }
                         
                         self.draggingItem = name
@@ -197,21 +197,29 @@ private struct ThemeListView: View {
         .scrollEdgeEffectStyle(.hard, for: .bottom)
         .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
         .onDragSessionUpdated { session in
-            guard case .ended(let operation) = session.phase else { return }
-            defer { self.draggingItem = nil }
-            guard
-                case .delete = operation,
-                let name = self.draggingItem,
-                self.manager.state(of: name)?.isBundled != true
-            else { return }
-            
-            do {
-                try self.manager.removeSetting(name: name)
-            } catch {
-                self.error = error
-                return
+            switch session.phase {
+                case .ended(let operation):
+                    defer { self.draggingItem = nil }
+                    
+                    guard
+                        case .delete = operation,
+                        let name = self.draggingItem,
+                        self.manager.state(of: name)?.isBundled != true
+                    else { return }
+                    
+                    do {
+                        try self.manager.removeSetting(name: name)
+                    } catch {
+                        self.error = error
+                        return
+                    }
+                    if self.selection == name {
+                        UserDefaults.standard.restore(key: .theme)
+                    }
+                    
+                default:
+                    break
             }
-            UserDefaults.standard.restore(key: .theme)
         }
         .dropDestination(for: URL.self) { urls, session in
             guard session.localSession == nil else { return }

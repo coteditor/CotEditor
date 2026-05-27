@@ -27,7 +27,7 @@ import Foundation
 import CoreTransferable
 import UniformTypeIdentifiers
 
-protocol TransferableFile: Transferable {
+protocol TransferableFile: Transferable, Identifiable {
     
     nonisolated static var fileType: UTType { get }
     
@@ -39,6 +39,9 @@ protocol TransferableFile: Transferable {
 
 
 extension TransferableFile {
+    
+    var id: String  { self.name }
+    
     
     static var transferRepresentation: some TransferRepresentation {
         
