@@ -313,7 +313,8 @@ private struct SyntaxPicker: View {
                 .tag(String?.none)
             Divider()
             ForEach(self.syntaxes, id: \.self) {
-                Text($0).tag(String?.some($0))
+                Text($0)
+                    .tag($0, includeOptional: true)
             }
         } label: {
             EmptyView()

@@ -74,7 +74,7 @@ struct OpenPanelAccessory: View {
                     ForEach(self.model.fileEncodings.enumerated(), id: \.offset) { _, fileEncoding in
                         if let fileEncoding {
                             Text(fileEncoding.localizedName)
-                                .tag(String.Encoding?.some(fileEncoding.encoding))
+                                .tag(fileEncoding.encoding, includeOptional: true)
                         } else {
                             Divider()
                         }

@@ -62,7 +62,7 @@ struct SyntaxCompletionEditView: View {
                             Divider()
                             ForEach(SyntaxType.allCases, id: \.self) { type in
                                 Text(type.label)
-                                    .tag(Optional(type))
+                                    .tag(type, includeOptional: true)
                             }
                         } label: {
                             Text("Type", tableName: "SyntaxEditor")
