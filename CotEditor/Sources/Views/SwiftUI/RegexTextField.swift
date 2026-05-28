@@ -224,6 +224,20 @@ final class RegularExpressionTextField: NSTextField {
     }
     
     
+    /// Invoked when the text in the field editor was just changed.
+    override func textDidChange(_ notification: Notification) {
+        
+        super.textDidChange(notification)
+        
+        guard
+            let editor = notification.object as? NSTextView,
+            let layoutManager = editor.textLayoutManager
+        else { return assertionFailure() }
+        
+        layoutManager.updateRegularExpressionHighlight()
+    }
+    
+    
     // MARK: Private Methods
     
     /// Updates the formatter's mode.
@@ -236,9 +250,12 @@ final class RegularExpressionTextField: NSTextField {
     /// Updates the syntax highlight in the field editor.
     private func invalidateFieldEditor() {
         
-        guard let editor = self.currentEditor() as? NSTextView else { return }
+        guard
+            let editor = self.currentEditor() as? NSTextView,
+            let layoutManager = editor.textLayoutManager
+        else { return }
         
-        editor.invalidateRegularExpressionHighlight(mode: self.regexFormatter.mode, theme: self.regexFormatter.theme, enabled: self.isRegexHighlighted)
+        layoutManager.invalidateRegularExpressionHighlight(mode: self.regexFormatter.mode, theme: self.regexFormatter.theme, enabled: self.isRegexHighlighted)
     }
 }
 
