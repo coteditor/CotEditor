@@ -8,6 +8,11 @@
 - Add the Services menu to the context menu of the file browser.
 
 
+### Improvements
+
+- [dev] Update Yams from 6.2.1 to 6.2.2.
+
+
 ### Fixes
 
 - Fix an issue where the Command-Left Arrow command could fail to move the cursor to the beginning of the current wrapped visual line.
