@@ -46,10 +46,10 @@ import UniformTypeIdentifiers
         
         let summary = try await Self.finishedSummary(from: model)
         
-        #expect(summary.findString == "needle")
-        #expect(summary.matchCount == 1)
-        #expect(summary.searchedFileCount == 1)
-        #expect(summary.skippedFileCount == 0)
+        #expect(summary.metrics.findString == "needle")
+        #expect(summary.metrics.matchCount == 1)
+        #expect(summary.metrics.searchedFileCount == 1)
+        #expect(summary.metrics.skippedFileCount == 0)
         
         model.findStringDidChange(to: "hay")
         
@@ -84,7 +84,7 @@ import UniformTypeIdentifiers
         
         switch model.state {
             case .finished(let summary):
-                #expect(summary.matchCount == 1)
+                #expect(summary.metrics.matchCount == 1)
                 #expect(summary.files.first?.matches.count == 1)
             default:
                 Issue.record("Unexpected state: \(model.state)")
@@ -95,7 +95,7 @@ import UniformTypeIdentifiers
         
         switch model.state {
             case .finished(let summary):
-                #expect(summary.matchCount == 0)
+                #expect(summary.metrics.matchCount == 0)
                 #expect(summary.files.isEmpty)
             default:
                 Issue.record("Unexpected state: \(model.state)")

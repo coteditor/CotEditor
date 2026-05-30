@@ -45,7 +45,7 @@ import TextFind
     enum SearchState: Equatable {
         
         case idle
-        case searching
+        case searching(FolderFindProgress)
         case finished(FolderFind.Summary)
         case failed(FolderFinder.Error)
     }
@@ -135,12 +135,13 @@ import TextFind
                                    considersDeclaration: UserDefaults.standard[.referToEncodingTag])
         )
         let syntaxMappingTable = SyntaxManager.shared.fileMappingTable
+        let progress = FolderFindProgress(findString: findString)
         
-        self.state = .searching
+        self.state = .searching(progress)
         
         self.searchTask = .detached(priority: .userInitiated) {
             do {
-                let summary = try await FolderFind.find(in: rootURL, query: query, options: options) { candidate in
+                let summary = try await FolderFind.find(in: rootURL, query: query, options: options, progress: progress) { candidate in
                     FolderFind.isSearchableText(candidate) ||
                     syntaxMappingTable.syntaxName(forFilename: candidate.fileURL.lastPathComponent) != nil
                 }
@@ -271,18 +272,15 @@ struct FolderFindView: View {
                 case .idle:
                     Spacer()
                     
-                case .searching:
-                    ProgressView(String(localized: "FolderFind.SearchState.searching.label",
-                                        defaultValue: "Searching in folder…", table: "Document"))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .controlSize(.small)
+                case .searching(let progress):
+                    FolderFindSearchingView(progress: progress)
                     
-                case .finished(let summary) where summary.matchCount == 0:
+                case .finished(let summary) where summary.metrics.matchCount == 0:
                     UnavailableView(title: String(localized: "FolderFind.SearchState.finished.zero.label",
                                                   defaultValue: "No Results", table: "Document"),
                                     systemName: "magnifyingglass",
                                     description: String(localized: "FolderFind.SearchState.finished.zero.description",
-                                                        defaultValue: "No matches for “\(summary.findString)” were found.",
+                                                        defaultValue: "No matches for “\(summary.metrics.findString)” were found.",
                                                         table: "Document"))
                     .controlSize(.small)
                     
@@ -377,6 +375,46 @@ private struct FolderFindControlView: View {
 }
 
 
+private struct FolderFindMetricsMessageView: View {
+    
+    var metrics: FolderFind.Metrics
+    
+    
+    var body: some View {
+        
+        Text(self.metrics.message)
+            .foregroundStyle(.secondary)
+            .monospacedDigit()
+            .controlSize(.small)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+    }
+}
+
+
+private struct FolderFindSearchingView: View {
+    
+    var progress: FolderFindProgress
+    
+    
+    var body: some View {
+        
+        VStack(spacing: 0) {
+            TimelineView(.periodic(from: .now, by: 0.1)) { _ in
+                FolderFindMetricsMessageView(metrics: self.progress.snapshot)
+            }
+            Divider()
+            
+            ProgressView(String(localized: "FolderFind.SearchState.searching.label",
+                                defaultValue: "Searching in folder…", table: "Document"))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .controlSize(.small)
+        }
+    }
+}
+
+
 private struct FolderFindSummaryView: View {
     
     var summary: FolderFind.Summary
@@ -402,14 +440,7 @@ private struct FolderFindSummaryView: View {
     var body: some View {
         
         VStack(alignment: .leading, spacing: 0) {
-            Text(self.summary.message)
-                .foregroundStyle(.secondary)
-                .monospacedDigit()
-                .controlSize(.small)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 6)
-            
+            FolderFindMetricsMessageView(metrics: self.summary.metrics)
             Divider()
             
             List(self.summary.files, selection: $selection) { file in
@@ -683,17 +714,20 @@ private extension FolderFind.Summary {
             [FolderFind.ResultID.file(file.id)] + file.matches.map { .match(fileID: file.id, matchID: $0.id) }
         }
     }
-    
+}
+
+
+private extension FolderFind.Metrics {
     
     /// The localized summary message.
     var message: String {
         
         if self.skippedFileCount == 0 {
-            String(localized: "FolderFind.Summary.message",
+            String(localized: "FolderFind.Metrics.message",
                    defaultValue: "\(self.matchCount) matches in \(self.matchedFileCount) files",
                    table: "Document", comment: "folder find result summary")
         } else {
-            String(localized: "FolderFind.Summary.skipped.message",
+            String(localized: "FolderFind.Metrics.skipped.message",
                    defaultValue: "\(self.matchCount) matches in \(self.matchedFileCount) files, \(self.skippedFileCount) skipped",
                    table: "Document", comment: "folder find result summary with skipped file count")
         }

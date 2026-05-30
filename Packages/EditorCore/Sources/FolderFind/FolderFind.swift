@@ -117,21 +117,50 @@ public enum FolderFind {
     }
     
     
-    public struct Summary: Equatable, Sendable {
+    public struct Metrics: Equatable, Sendable {
         
         public var findString: String
-        public var files: [FileResult]
-        public var searchedFileCount: Int
-        public var skippedFileCount: Int
-        
-        /// The number of files that contain matches.
-        public var matchedFileCount: Int  { self.files.count }
+        public var matchCount: Int = 0
+        public var matchedFileCount: Int = 0
+        public var searchedFileCount: Int = 0
+        public var skippedFileCount: Int = 0
         
         
-        /// The number of matches found in all files.
-        public var matchCount: Int {
+        /// Initializes folder find result metrics.
+        ///
+        /// - Parameters:
+        ///   - findString: The string to search for.
+        public init(findString: String) {
             
-            self.files.map(\.matches.count).reduce(0, +)
+            self.findString = findString
+        }
+    }
+    
+    
+    public struct Summary: Equatable, Sendable {
+        
+        public var metrics: Metrics
+        public var files: [FileResult]  { didSet { self.updateMatchCounts() } }
+        
+        /// Initializes a folder find summary.
+        ///
+        /// - Parameters:
+        ///   - metrics: The result metrics.
+        ///   - files: The file results.
+        init(metrics: Metrics, files: [FileResult]) {
+            
+            self.metrics = metrics
+            self.files = files
+            
+            self.updateMatchCounts()
+        }
+        
+        
+        /// Updates the match-related metrics from the current files.
+        private mutating func updateMatchCounts() {
+            
+            self.metrics.matchCount = self.files.map(\.matches.count).reduce(0, +)
+            self.metrics.matchedFileCount = self.files.count
         }
     }
     
@@ -179,15 +208,16 @@ public enum FolderFind {
     ///   - rootURL: The folder URL to search.
     ///   - query: The search query.
     ///   - options: The folder search options.
+    ///   - progress: The progress object to update while searching.
     ///   - isIncluded: The predicate to determine whether a file candidate should be searched.
     /// - Returns: The search summary.
     /// - Throws: `TextFind.Error` for invalid queries, or `CancellationError` if the task is cancelled.
-    public static func find(in rootURL: URL, query: Query, options: Options = .init(), isIncluded: @escaping @Sendable (Candidate) -> Bool = Self.isSearchableText) async throws -> Summary {
+    public static func find(in rootURL: URL, query: Query, options: Options = .init(), progress: FolderFindProgress? = nil, isIncluded: @escaping @Sendable (Candidate) -> Bool = Self.isSearchableText) async throws -> Summary {
         
         // validate the query before traversing the folder
         try query.validate()
         
-        var search = Search(rootURL: rootURL, query: query, options: options, isIncluded: isIncluded)
+        var search = Search(rootURL: rootURL, query: query, options: options, progress: progress, isIncluded: isIncluded)
         return try await search.run()
     }
     

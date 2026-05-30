@@ -4392,7 +4392,7 @@
         }
       }
     },
-    "FolderFind.Summary.message" : {
+    "FolderFind.Metrics.message" : {
       "comment" : "folder find result summary",
       "localizations" : {
         "de" : {
@@ -4721,7 +4721,7 @@
         }
       }
     },
-    "FolderFind.Summary.skipped.message" : {
+    "FolderFind.Metrics.skipped.message" : {
       "comment" : "folder find result summary with skipped file count",
       "localizations" : {
         "de" : {

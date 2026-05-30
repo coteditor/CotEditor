@@ -44,11 +44,11 @@ struct FolderFindTests {
         
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
         
-        #expect(summary.findString == "needle")
-        #expect(summary.searchedFileCount == 3)
-        #expect(summary.skippedFileCount == 0)
-        #expect(summary.matchedFileCount == 2)
-        #expect(summary.matchCount == 3)
+        #expect(summary.metrics.findString == "needle")
+        #expect(summary.metrics.searchedFileCount == 3)
+        #expect(summary.metrics.skippedFileCount == 0)
+        #expect(summary.metrics.matchedFileCount == 2)
+        #expect(summary.metrics.matchCount == 3)
         #expect(summary.files.map(\.filename) == ["b.txt", "a.txt"])
         #expect(summary.files.map(\.directoryPathComponents) == [["Subfolder"], []])
         #expect(summary.files[0].matches.map(\.range.location) == [4])
@@ -64,6 +64,44 @@ struct FolderFindTests {
         #expect(matchResult.match == summary.files[1].matches[1])
         
         #expect(summary.result(for: .match(fileID: summary.files[0].id, matchID: UUID())) == nil)
+    }
+    
+    
+    @Test func progressTracksSearchMetrics() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle\nneedle\n".utf8).write(to: rootURL.appending(path: "a.txt"))
+        try Data("hay\nneedle\n".utf8).write(to: rootURL.appending(path: "b.txt"))
+        try Data("hay\n".utf8).write(to: rootURL.appending(path: "c.txt"))
+        try Data([0xFF]).write(to: rootURL.appending(path: "invalid.txt"))
+        
+        let progress = FolderFindProgress(findString: "needle")
+        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"), progress: progress)
+        
+        #expect(progress.snapshot.findString == "needle")
+        #expect(progress.snapshot == summary.metrics)
+    }
+    
+    
+    @Test func progressIsNotUpdatedForInvalidQuery() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: "a.txt"))
+        
+        let progress = FolderFindProgress(findString: "")
+        
+        await #expect(throws: TextFind.Error.emptyFindString) {
+            try await FolderFind.find(in: rootURL, query: Self.query(""), progress: progress)
+        }
+        
+        #expect(progress.snapshot.matchCount == 0)
+        #expect(progress.snapshot.matchedFileCount == 0)
+        #expect(progress.snapshot.searchedFileCount == 0)
+        #expect(progress.snapshot.skippedFileCount == 0)
     }
     
     
@@ -84,8 +122,8 @@ struct FolderFindTests {
         
         let updatedFirstFile = try #require(summary.files.first { $0.filename == "a.txt" })
         #expect(updatedFirstFile.matches.map(\.range.location) == [11])
-        #expect(summary.matchedFileCount == 2)
-        #expect(summary.matchCount == 2)
+        #expect(summary.metrics.matchedFileCount == 2)
+        #expect(summary.metrics.matchCount == 2)
         
         let secondFile = try #require(summary.files.first { $0.filename == "b.txt" })
         let onlyMatch = try #require(secondFile.matches.first)
@@ -93,14 +131,14 @@ struct FolderFindTests {
         summary.removeResult(for: .match(fileID: secondFile.id, matchID: onlyMatch.id))
         
         #expect(summary.files.map(\.filename) == ["a.txt"])
-        #expect(summary.matchedFileCount == 1)
-        #expect(summary.matchCount == 1)
+        #expect(summary.metrics.matchedFileCount == 1)
+        #expect(summary.metrics.matchCount == 1)
         
         summary.removeResult(for: .file(updatedFirstFile.id))
         
         #expect(summary.files.isEmpty)
-        #expect(summary.matchedFileCount == 0)
-        #expect(summary.matchCount == 0)
+        #expect(summary.metrics.matchedFileCount == 0)
+        #expect(summary.metrics.matchCount == 0)
     }
     
     
@@ -108,7 +146,7 @@ struct FolderFindTests {
         
         let fileURL = URL(fileURLWithPath: "/tmp/a.txt").standardizedFileURL
         let otherFileURL = URL(fileURLWithPath: "/tmp/b.txt").standardizedFileURL
-        var summary = FolderFind.Summary(findString: "needle",
+        var summary = FolderFind.Summary(metrics: .init(findString: "needle"),
                                          files: [
                                             FolderFind.FileResult(fileURL: fileURL, filename: "a.txt", directoryPathComponents: [],
                                                                   matches: [
@@ -119,9 +157,7 @@ struct FolderFindTests {
                                                                   matches: [
                                                                     FolderFind.Match(range: NSRange(location: 10, length: 6), line: "other needle", rangeInLine: NSRange(location: 6, length: 6)),
                                                                   ]),
-                                         ],
-                                         searchedFileCount: 2,
-                                         skippedFileCount: 0)
+                                         ])
         let firstID = summary.files[0].matches[0].id
         let secondID = summary.files[0].matches[1].id
         let line = summary.files[0].matches[0].line
@@ -143,16 +179,14 @@ struct FolderFindTests {
     @Test func summaryKeepsOverlappingEditedMatchInBounds() throws {
         
         let fileURL = URL(fileURLWithPath: "/tmp/a.txt").standardizedFileURL
-        var summary = FolderFind.Summary(findString: "needle",
+        var summary = FolderFind.Summary(metrics: .init(findString: "needle"),
                                          files: [
                                             FolderFind.FileResult(fileURL: fileURL, filename: "a.txt", directoryPathComponents: [],
                                                                   matches: [
                                                                     FolderFind.Match(range: NSRange(location: 10, length: 10), line: "overlapping needle", rangeInLine: NSRange(location: 12, length: 6)),
                                                                     FolderFind.Match(range: NSRange(location: 30, length: 6), line: "later needle", rangeInLine: NSRange(location: 6, length: 6)),
                                                                   ]),
-                                         ],
-                                         searchedFileCount: 1,
-                                         skippedFileCount: 0)
+                                         ])
         
         summary.updateMatchRanges(in: fileURL, editedRange: NSRange(location: 12, length: 0), changeInLength: -6, length: 40)
         
@@ -173,7 +207,7 @@ struct FolderFindTests {
         let query = FolderFind.Query(findString: "needle", mode: .textual(options: .caseInsensitive, fullWord: false))
         let summary = try await FolderFind.find(in: rootURL, query: query)
         
-        #expect(summary.matchCount == 3)
+        #expect(summary.metrics.matchCount == 3)
     }
     
     
@@ -187,7 +221,7 @@ struct FolderFindTests {
         let query = FolderFind.Query(findString: #"item-\d+"#, mode: .regularExpression(options: [], unescapesReplacement: false))
         let summary = try await FolderFind.find(in: rootURL, query: query)
         
-        #expect(summary.matchCount == 2)
+        #expect(summary.metrics.matchCount == 2)
         #expect(summary.files.first?.matches.map(\.line) == ["item-1", "item-22"])
     }
     
@@ -221,8 +255,8 @@ struct FolderFindTests {
         
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
         
-        #expect(summary.searchedFileCount == 1)
-        #expect(summary.matchCount == 1)
+        #expect(summary.metrics.searchedFileCount == 1)
+        #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["visible.txt"])
     }
     
@@ -238,8 +272,8 @@ struct FolderFindTests {
                                                     query: Self.query("needle"),
                                                     options: .init(includesHiddenFiles: true))
         
-        #expect(summary.searchedFileCount == 1)
-        #expect(summary.matchCount == 1)
+        #expect(summary.metrics.searchedFileCount == 1)
+        #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == [".hidden.txt"])
     }
     
@@ -256,8 +290,8 @@ struct FolderFindTests {
         
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
         
-        #expect(summary.searchedFileCount == 1)
-        #expect(summary.matchCount == 1)
+        #expect(summary.metrics.searchedFileCount == 1)
+        #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["a.txt"])
     }
     
@@ -276,9 +310,9 @@ struct FolderFindTests {
         
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
         
-        #expect(summary.searchedFileCount == 1)
-        #expect(summary.skippedFileCount == 1)
-        #expect(summary.matchCount == 1)
+        #expect(summary.metrics.searchedFileCount == 1)
+        #expect(summary.metrics.skippedFileCount == 1)
+        #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["xml.plist"])
     }
     
@@ -319,9 +353,9 @@ struct FolderFindTests {
         
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
         
-        #expect(summary.searchedFileCount == 1)
-        #expect(summary.skippedFileCount == 1)
-        #expect(summary.matchCount == 1)
+        #expect(summary.metrics.searchedFileCount == 1)
+        #expect(summary.metrics.skippedFileCount == 1)
+        #expect(summary.metrics.matchCount == 1)
     }
     
     
@@ -336,7 +370,7 @@ struct FolderFindTests {
             FolderFind.isSearchableText(candidate) || candidate.fileURL.lastPathComponent == "Custom.syntaxless"
         }
         
-        #expect(summary.matchCount == 1)
+        #expect(summary.metrics.matchCount == 1)
     }
     
     

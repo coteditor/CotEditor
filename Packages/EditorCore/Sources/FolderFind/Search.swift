@@ -35,13 +35,32 @@ struct Search {
     var rootURL: URL
     var query: FolderFind.Query
     var options: FolderFind.Options
+    var progress: FolderFindProgress?
     var isIncluded: @Sendable (FolderFind.Candidate) -> Bool
     
+    var metrics: FolderFind.Metrics
     var files: [FolderFind.FileResult] = []
-    var searchedFileCount = 0
-    var skippedFileCount = 0
     
     var visitedDirectories: Set<URL> = []
+    
+    
+    /// Initializes a folder find search.
+    ///
+    /// - Parameters:
+    ///   - rootURL: The folder URL to search.
+    ///   - query: The search query.
+    ///   - options: The folder search options.
+    ///   - progress: The progress object to update while searching.
+    ///   - isIncluded: The predicate to determine whether a file candidate should be searched.
+    init(rootURL: URL, query: FolderFind.Query, options: FolderFind.Options, progress: FolderFindProgress?, isIncluded: @escaping @Sendable (FolderFind.Candidate) -> Bool) {
+        
+        self.rootURL = rootURL
+        self.query = query
+        self.options = options
+        self.progress = progress
+        self.isIncluded = isIncluded
+        self.metrics = FolderFind.Metrics(findString: query.findString)
+    }
     
     
     /// Runs the folder search.
@@ -52,10 +71,7 @@ struct Search {
         
         try await self.searchDirectory(at: self.rootURL)
         
-        return FolderFind.Summary(findString: self.query.findString,
-                                  files: self.files,
-                                  searchedFileCount: self.searchedFileCount,
-                                  skippedFileCount: self.skippedFileCount)
+        return FolderFind.Summary(metrics: self.metrics, files: self.files)
     }
     
     
@@ -81,7 +97,7 @@ struct Search {
                 let candidate = try FolderFind.Candidate(at: url)
                 candidates.append(candidate)
             } catch {
-                self.skippedFileCount += 1
+                self.recordSkippedFile()
             }
         }
         candidates.sort { lhs, rhs in
@@ -116,7 +132,7 @@ struct Search {
     private mutating func searchFile(_ candidate: FolderFind.Candidate) throws {
         
         guard !candidate.contentType.conforms(to: .propertyList) || !Self.isBinaryPropertyList(at: candidate.fileURL) else {
-            self.skippedFileCount += 1
+            self.recordSkippedFile()
             return
         }
         
@@ -124,11 +140,9 @@ struct Search {
         do {
             string = try String(contentsOf: candidate.fileURL, decodingOptions: self.options.decodingOptions)
         } catch {
-            self.skippedFileCount += 1
+            self.recordSkippedFile()
             return
         }
-        
-        self.searchedFileCount += 1
         
         let textFind: TextFind
         do {
@@ -139,6 +153,7 @@ struct Search {
         }
         
         let matches = try self.matches(in: string, using: textFind)
+        self.recordSearchedFile(matchCount: matches.count)
         
         guard !matches.isEmpty else { return }
         
@@ -184,6 +199,30 @@ struct Search {
         try Task.checkCancellation()
         
         return matches
+    }
+    
+    
+    /// Records a skipped file.
+    private mutating func recordSkippedFile() {
+        
+        self.metrics.skippedFileCount += 1
+        self.progress?.update(snapshot: self.metrics)
+    }
+    
+    
+    /// Records a searched file.
+    ///
+    /// - Parameter matchCount: The number of matches found in the file.
+    private mutating func recordSearchedFile(matchCount: Int) {
+        
+        self.metrics.searchedFileCount += 1
+        
+        if matchCount > 0 {
+            self.metrics.matchCount += matchCount
+            self.metrics.matchedFileCount += 1
+        }
+        
+        self.progress?.update(snapshot: self.metrics)
     }
     
     
