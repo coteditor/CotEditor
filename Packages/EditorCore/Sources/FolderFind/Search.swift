@@ -38,10 +38,10 @@ struct Search {
     var progress: FolderFindProgress?
     var isIncluded: @Sendable (FolderFind.Candidate) -> Bool
     
-    var metrics: FolderFind.Metrics
-    var files: [FolderFind.FileResult] = []
+    private var metrics: FolderFind.Metrics
+    private var files: [FolderFind.FileResult] = []
     
-    var visitedDirectories: Set<URL> = []
+    private var visitedDirectories: Set<URL> = []
     
     
     /// Initializes a folder find search.
@@ -174,9 +174,12 @@ struct Search {
     /// - Parameters:
     ///   - string: The searched string.
     ///   - textFind: The text find instance.
+    ///   - maximumLineLength: The maximum UTF-16 length of each line fragment in results.
     /// - Returns: Matches for display.
     /// - Throws: `CancellationError` if the task is cancelled.
-    private func matches(in string: String, using textFind: TextFind) throws -> [FolderFind.Match] {
+    private func matches(in string: String, using textFind: TextFind, maximumLineLength: Int = 1024) throws -> [FolderFind.Match] {
+        
+        assert(maximumLineLength > 0)
         
         let lineCounter = LineCounter(string: string)
         let nsString = string as NSString
@@ -190,7 +193,7 @@ struct Search {
             
             let range = ranges[0]
             let lineRange = lineCounter.lineContentsRange(for: range)
-                .clamped(around: range, maxLength: self.options.maximumLineLength)
+                .clamped(around: range, maxLength: maximumLineLength)
             let line = nsString.substring(with: lineRange)
             let rangeInLine = range.shifted(by: -lineRange.location)
             
