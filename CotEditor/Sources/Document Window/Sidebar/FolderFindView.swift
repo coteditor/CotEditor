@@ -222,8 +222,8 @@ import TextFind
             
             guard textStorage.editedMask.contains(.editedCharacters) else { return }
             
-            MainActor.assumeIsolated { [range = textStorage.editedRange, changeInLength = textStorage.changeInLength, length = textStorage.length] in
-                self?.documentTextDidChange(textStorage: textStorage, editedRange: range, changeInLength: changeInLength, length: length)
+            MainActor.assumeIsolated {
+                self?.documentTextDidChange(textStorage: textStorage)
             }
         }
     }
@@ -233,10 +233,7 @@ import TextFind
     ///
     /// - Parameters:
     ///   - textStorage: The edited text storage.
-    ///   - editedRange: The range edited in the current text.
-    ///   - changeInLength: The length delta from the text edit.
-    ///   - length: The current text length after editing.
-    private func documentTextDidChange(textStorage: NSTextStorage, editedRange: NSRange, changeInLength: Int, length: Int) {
+    private func documentTextDidChange(textStorage: NSTextStorage) {
         
         guard
             case .finished(var summary) = self.state,
@@ -246,7 +243,7 @@ import TextFind
             summary.files.contains(where: { $0.fileURL == fileURL })
         else { return }
         
-        guard summary.updateMatchRanges(in: fileURL, editedRange: editedRange, changeInLength: changeInLength, length: length) else { return }
+        guard summary.updateMatchRanges(in: fileURL, editedRange: textStorage.editedRange, changeInLength: textStorage.changeInLength, length: textStorage.length) else { return }
         
         self.state = .finished(summary)
     }
