@@ -43,6 +43,7 @@
 
 ### Improvements
 
+- Update tree-sitter-swift to 0.7.3.
 - [dev] Update Yams from 6.2.1 to 6.2.2.
 
 
