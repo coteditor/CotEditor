@@ -404,10 +404,10 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             let character = self.textView.selectedString.first
         else { return assertionFailure() }
         
-        let characterInfo = CharacterInfo(character: character)
+        let view = NSHostingView(rootView: CharacterInspectorView(character).padding(14))
+        view.frame.size = view.intrinsicContentSize
         let popoverController = DetachablePopoverViewController()
-        popoverController.view = NSHostingView(rootView: CharacterInspectorView(info: characterInfo))
-        popoverController.view.frame.size = popoverController.view.intrinsicContentSize
+        popoverController.view = view
         
         let textView = self.textView
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -4, dy: -4) ?? .zero

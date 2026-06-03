@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021-2025 1024jp
+//  © 2021-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,51 +28,56 @@ import CharacterInfo
 
 struct CharacterInspectorView: View {
     
-    var info: CharacterInfo
+    var character: Character
+    
+    
+    init(_ character: Character) {
+        
+        self.character = character
+    }
     
     
     var body: some View {
         
         HStack(alignment: .top) {
-            CharacterView(info: self.info)
+            CharacterView(character: self.character)
                 .frame(minWidth: 64)
-            CharacterDetailView(info: self.info)
+            CharacterDetailView(character: self.character)
         }
-        .padding(14)
     }
 }
 
 
 private struct CharacterDetailView: View {
     
-    var info: CharacterInfo
+    var character: Character
     
     
     var body: some View {
         
         VStack(alignment: .leading, spacing: 0) {
-            if let description = self.info.localizedDescription {
+            if let description = self.character.localizedDescription {
                 Text(description)
-                    .fontWeight(self.info.isComplex ? .regular : .semibold)
+                    .fontWeight(self.character.isComplex ? .regular : .semibold)
                     .textSelection(.enabled)
             } else {
                 Text("Unknown", tableName: "CharacterInspector")
                     .foregroundStyle(.secondary)
             }
             
-            if !self.info.isComplex {
-                ScalarDetailView(scalar: self.info.character.unicodeScalars.first!)
+            if !self.character.isComplex {
+                ScalarDetailView(scalar: self.character.unicodeScalars.first!)
                     .controlSize(.small)
                     .padding(.top, 4)
             }
             
-            if self.info.character.unicodeScalars.count > 1 {
+            if self.character.unicodeScalars.count > 1 {
                 VStack(spacing: 0) {
-                    ForEach(Array(self.info.character.unicodeScalars).enumerated(), id: \.offset) { _, scalar in
+                    ForEach(Array(self.character.unicodeScalars).enumerated(), id: \.offset) { _, scalar in
                         DisclosureGroup {
                             HStack(alignment: .top) {
                                 let character = Character(scalar)
-                                let pictureCharacter = CharacterInfo(character: character).pictureCharacter
+                                let pictureCharacter = character.pictureCharacter
                                 
                                 Text(String(pictureCharacter ?? character))
                                     .font(.system(size: 28, design: .serif))
@@ -204,7 +209,7 @@ private struct CharacterView: NSViewRepresentable {
     
     typealias NSViewType = NSTextField
     
-    var info: CharacterInfo
+    var character: Character
     
     private let fontSize: CGFloat = 64
     
@@ -223,8 +228,8 @@ private struct CharacterView: NSViewRepresentable {
     
     func updateNSView(_ nsView: NSTextField, context: Context) {
         
-        nsView.stringValue = String(self.info.pictureCharacter ?? self.info.character)
-        nsView.textColor = (self.info.pictureCharacter != nil) ? .tertiaryLabelColor : .labelColor
+        nsView.stringValue = String(self.character.pictureCharacter ?? self.character)
+        nsView.textColor = (self.character.pictureCharacter != nil) ? .tertiaryLabelColor : .labelColor
     }
     
     
@@ -247,11 +252,11 @@ private struct DeprecatedBadge: View {
 }
 
 
-private extension CharacterInfo {
+private extension Character {
     
     var localizedDescription: String? {
         
-        let unicodes = self.character.unicodeScalars
+        let unicodes = self.unicodeScalars
         if self.isComplex {
             return String(localized: "<a letter consisting of \(unicodes.count) characters>",
                           table: "CharacterInspector",
@@ -272,30 +277,30 @@ private extension CharacterInfo {
 // MARK: - Preview
 
 #Preview("𓆏") {
-    CharacterInspectorView(info: CharacterInfo(character: "𓆏"))
+    CharacterInspectorView("𓆏")
 }
 
 #Preview("\\n") {
-    CharacterInspectorView(info: CharacterInfo(character: "\n"))
+    CharacterInspectorView("\n")
 }
 
 #Preview("ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡") {
-    CharacterInspectorView(info: CharacterInfo(character: "ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡"))
+    CharacterInspectorView("ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡")
 }
 
 #Preview("✔︎") {
-    CharacterInspectorView(info: CharacterInfo(character: "✔︎"))
+    CharacterInspectorView("✔︎")
         .frame(height: 240, alignment: .top)
 }
 
 #Preview("🏴‍☠️") {
-    CharacterInspectorView(info: CharacterInfo(character: "🏴‍☠️"))
+    CharacterInspectorView("🏴‍☠️")
 }
 
 #Preview("🇦🇦") {
-    CharacterInspectorView(info: CharacterInfo(character: "🇦🇦"))
+    CharacterInspectorView("🇦🇦")
 }
 
 #Preview("deprecated") {
-    CharacterInspectorView(info: CharacterInfo(character: "ឣ"))
+    CharacterInspectorView("ឣ")
 }

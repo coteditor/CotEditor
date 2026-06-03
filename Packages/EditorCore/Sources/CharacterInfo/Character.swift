@@ -1,5 +1,5 @@
 //
-//  CharacterInfo.swift
+//  Character.swift
 //  CharacterInfo
 //
 //  CotEditor
@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2024 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,50 +24,28 @@
 //  limitations under the License.
 //
 
-public struct CharacterInfo: Sendable {
-    
-    // MARK: Public Properties
-    
-    public var character: Character
-    
-    
-    // MARK: Public Methods
-    
-    public init(character: Character) {
-        
-        self.character = character
-    }
-    
+public extension Character {
     
     /// The representative character to display in the user interface.
-    public var pictureCharacter: Character? {
+    var pictureCharacter: Character? {
         
-        self.character.unicodeScalars.count == 1  // ignore CRLF
-            ? self.character.unicodeScalars.first?.pictureRepresentation.map(Character.init)
+        self.unicodeScalars.count == 1  // ignore CRLF
+            ? self.unicodeScalars.first?.pictureRepresentation.map(Character.init)
             : nil
     }
     
     
     /// Whether the character consists with multiple Unicode scalars.
-    public var isComplex: Bool {
+    var isComplex: Bool {
         
-        self.character.unicodeScalars.count > 1 && !self.isVariant
+        self.unicodeScalars.count > 1 && !self.isVariant
     }
     
     
     /// Whether the character is a single variant character.
-    public var isVariant: Bool {
+    var isVariant: Bool {
         
-        (self.character.unicodeScalars.count == 2 &&
-         self.character.unicodeScalars.last?.variantDescription != nil)
-    }
-}
-
-
-extension CharacterInfo: CustomStringConvertible {
-    
-    public var description: String {
-        
-        String(self.character)
+        (self.unicodeScalars.count == 2 &&
+         self.unicodeScalars.last?.variantDescription != nil)
     }
 }
