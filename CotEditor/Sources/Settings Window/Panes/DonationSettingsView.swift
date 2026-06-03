@@ -51,14 +51,6 @@ struct DonationSettingsView: View {
     var isInAppPurchaseAvailable = true
 #endif
     
-    @AppStorage(.donationBadgeType) private var badgeType: BadgeType
-    
-    @State private var error: (any Error)?
-    @State private var storeKitError: StoreKitError?
-    @State private var hasDonated = false
-    
-    
-    // MARK: View
     
     var body: some View {
         
@@ -67,138 +59,9 @@ struct DonationSettingsView: View {
                 .padding(.bottom, 10)
             
             if self.isInAppPurchaseAvailable {
-                HStack(alignment: .top, spacing: 18) {
-                    VStack(alignment: .leading) {
-                        Text("Continuous support", tableName: "DonationSettings")
-                            .font(.system(size: 14))
-                            .accessibilityAddTraits(.isHeader)
-                        
-                        ProductView(id: Donation.Product.continuous.id, prefersPromotionalIcon: true) {
-                            Label(.InAppPurchase.donationSubscriptionYearlyDisplayName, image: .bagCoffee)
-                                .labelStyle(.iconOnly)
-                                .font(.system(size: 40))
-                                .foregroundStyle(.secondary)
-                                .productIconBorder()
-                        }
-                        .tint(.accentColor)  // workaround for crash (2025-09, macOS 26, FB20281734)
-                        
-                        Group {
-                            if self.hasDonated {
-                                Link(String(localized: "Manage Subscriptions", table: "DonationSettings"),
-                                     destination: URL(string: "itms-apps://apps.apple.com/account/subscriptions")!)
-                            } else {
-                                Button(String(localized: "Restore Subscription", table: "DonationSettings")) {
-                                    Task {
-                                        do {
-                                            try await AppStore.sync()
-                                        } catch {
-                                            self.presentError(error, disablesDonation: false)
-                                        }
-                                    }
-                                }.buttonStyle(.link)
-                            }
-                        }
-                        .textScale(.secondary)
-                        .foregroundStyle(.tint)
-                        
-                        Text(SubscriptionInformationURL.markdown)
-                            .tint(.accentColor)
-                            .foregroundStyle(.secondary)
-                            .font(.footnote)
-                            .padding(.bottom, 10)
-                        
-                        Form {
-                            Picker(String(localized: "Badge type:", table: "DonationSettings"), selection: $badgeType) {
-                                ForEach(BadgeType.allCases, id: \.self) { item in
-                                    HStack {
-                                        Image(systemName: item.symbolName)
-                                        Text(item.label)
-                                    }
-                                }
-                            }
-                            
-                            Text("As proof of your kind support, a coffee badge appears on the status bar during continuous support.", tableName: "DonationSettings")
-                                .foregroundStyle(.secondary)
-                                .controlSize(.small)
-                        }.disabled(!self.hasDonated)
-                    }
-                    .accessibilityElement(children: .contain)
-                    .subscriptionStatusTask(for: Donation.groupID) { taskState in
-                        self.hasDonated = taskState.value?.map(\.state)
-                            .contains { [.subscribed, .inGracePeriod].contains($0) } == true
-                    }
-                    
-                    Divider()
-                    
-                    VStack(alignment: .leading) {
-                        Text("One-time donation", tableName: "DonationSettings")
-                            .font(.system(size: 14))
-                            .accessibilityAddTraits(.isHeader)
-                        
-                        ProductView(id: Donation.Product.onetime.id, prefersPromotionalIcon: true) {
-                            Label(.InAppPurchase.donationOnetimeDisplayName, image: .espresso)
-                                .labelStyle(.iconOnly)
-                        }
-                        .productViewStyle(OnetimeProductViewStyle())
-                        .tint(.accentColor)  // workaround for crash (2025-09, macOS 26, FB20281734)
-                    }
-                    .accessibilityElement(children: .contain)
-                }
-                .disabled(self.storeKitError != nil)
-                .opacity((self.storeKitError == nil) ? 1 : 0.5)
-                .overlay(alignment: .top) {
-                    if let error = self.storeKitError {
-                        VStack {
-                            let description = switch error {
-                                case .networkError:
-                                    String(localized: "An internet connection is required to donate.", table: "DonationSettings",
-                                           comment: "error message")
-                                default:
-                                    error.localizedDescription
-                            }
-                            Text("Donation is currently not available.", tableName: "DonationSettings")
-                            Text(description)
-                                .foregroundStyle(.secondary)
-                                .textScale(.secondary)
-                        }
-                        .accessibilityElement(children: .contain)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 12)
-                        .background(.background.shadow(.drop(radius: 3, y: 1.5)),
-                                    in: .rect(cornerRadius: 8))
-                        .offset(y: 40)
-                    }
-                }
-                .storeProductsTask(for: Donation.Product.allCases.map(\.id)) { taskState in
-                    switch taskState {
-                        case .loading, .success:
-                            break
-                        case .failure(let error):
-                            self.presentError(error)
-                        @unknown default:
-                            assertionFailure()
-                    }
-                }
-                .alert(error: $error)
-                
+                AppPurchaseView()
             } else {
-                VStack(alignment: .center) {
-                    Image(.bagCoffee)
-                        .font(.system(size: 64, weight: .light))
-                        .foregroundStyle(.tertiary)
-                        .padding(.vertical, 6)
-                    Text("The In-App donation feature is available only in CotEditor distributed in the App Store.", tableName: "DonationSettings")
-                        .foregroundStyle(.secondary)
-                    
-                    if let url = URL(string: "itms-apps://apps.apple.com/app/id1024640650") {
-                        Link(String(localized: "Open in App Store", table: "DonationSettings"), destination: url)
-                    }
-                    if let url = URL(string: "https://github.com/sponsors/1024jp/") {
-                        Link(String(localized: "Open GitHub Sponsors", table: "DonationSettings", comment: "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization."), destination: url)
-                    }
-                }
-                .buttonStyle(.bordered)
-                .frame(maxWidth: .infinity, alignment: .center)
+                NoAppPurchaseView()
             }
             
             HStack {
@@ -207,9 +70,157 @@ struct DonationSettingsView: View {
             }
         }
     }
+}
+
+
+private struct NoAppPurchaseView: View {
+    
+    var body: some View {
+        
+        ContentUnavailableView {
+            Image(.bagCoffee)
+                .font(.system(size: 64, weight: .light))
+                .accessibilityHidden(true)
+            
+        } description: {
+            Text("The In-App donation feature is available only in CotEditor distributed in the App Store.", tableName: "DonationSettings")
+            
+        } actions: {
+            Link(String(localized: "Open in App Store", table: "DonationSettings"),
+                 destination: URL(string: "itms-apps://apps.apple.com/app/id1024640650")!)
+            Link(String(localized: "Open GitHub Sponsors", table: "DonationSettings",
+                        comment: "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization."),
+                 destination: URL(string: "https://github.com/sponsors/1024jp/")!)
+        }
+        .buttonStyle(.bordered)
+        .frame(maxWidth: .infinity)
+    }
+}
+
+
+private struct AppPurchaseView: View {
+    
+    @AppStorage(.donationBadgeType) private var badgeType: BadgeType
+    
+    @State private var error: (any Error)?
+    @State private var storeKitError: StoreKitError?
+    @State private var hasDonated = false
     
     
-    // MARK: Private Methods
+    var body: some View {
+        
+        HStack(alignment: .top, spacing: 18) {
+            VStack(alignment: .leading) {
+                Text("Continuous support", tableName: "DonationSettings")
+                    .font(.system(size: 14))
+                    .accessibilityAddTraits(.isHeader)
+                
+                ProductView(id: Donation.Product.continuous.id, prefersPromotionalIcon: true) {
+                    Label(.InAppPurchase.donationSubscriptionYearlyDisplayName, image: .bagCoffee)
+                        .labelStyle(.iconOnly)
+                        .font(.system(size: 40))
+                        .foregroundStyle(.secondary)
+                        .productIconBorder()
+                }
+                .tint(.accentColor)  // workaround for crash (2025-09, macOS 26, FB20281734)
+                
+                Group {
+                    if self.hasDonated {
+                        Link(String(localized: "Manage Subscriptions", table: "DonationSettings"),
+                             destination: URL(string: "itms-apps://apps.apple.com/account/subscriptions")!)
+                    } else {
+                        Button(String(localized: "Restore Subscription", table: "DonationSettings")) {
+                            Task {
+                                do {
+                                    try await AppStore.sync()
+                                } catch {
+                                    self.presentError(error, disablesDonation: false)
+                                }
+                            }
+                        }.buttonStyle(.link)
+                    }
+                }
+                .textScale(.secondary)
+                .foregroundStyle(.tint)
+                
+                Text(SubscriptionInformationURL.markdown)
+                    .tint(.accentColor)
+                    .foregroundStyle(.secondary)
+                    .font(.footnote)
+                    .padding(.bottom, 10)
+                
+                Form {
+                    Picker(String(localized: "Badge type:", table: "DonationSettings"), selection: $badgeType) {
+                        ForEach(BadgeType.allCases, id: \.self) { item in
+                            Label(item.label, systemImage: item.symbolName)
+                        }
+                    }
+                    
+                    Text("As proof of your kind support, a coffee badge appears on the status bar during continuous support.", tableName: "DonationSettings")
+                        .foregroundStyle(.secondary)
+                        .controlSize(.small)
+                }.disabled(!self.hasDonated)
+            }
+            .accessibilityElement(children: .contain)
+            .subscriptionStatusTask(for: Donation.groupID) { taskState in
+                self.hasDonated = taskState.value?.map(\.state)
+                    .contains { [.subscribed, .inGracePeriod].contains($0) } == true
+            }
+            
+            Divider()
+            
+            VStack(alignment: .leading) {
+                Text("One-time donation", tableName: "DonationSettings")
+                    .font(.system(size: 14))
+                    .accessibilityAddTraits(.isHeader)
+                
+                ProductView(id: Donation.Product.onetime.id, prefersPromotionalIcon: true) {
+                    Label(.InAppPurchase.donationOnetimeDisplayName, image: .espresso)
+                        .labelStyle(.iconOnly)
+                }
+                .productViewStyle(OnetimeProductViewStyle())
+                .tint(.accentColor)  // workaround for crash (2025-09, macOS 26, FB20281734)
+            }
+            .accessibilityElement(children: .contain)
+        }
+        .disabled(self.storeKitError != nil)
+        .opacity((self.storeKitError == nil) ? 1 : 0.5)
+        .overlay(alignment: .top) {
+            if let error = self.storeKitError {
+                VStack {
+                    let description = switch error {
+                        case .networkError:
+                            String(localized: "An internet connection is required to donate.", table: "DonationSettings",
+                                   comment: "error message")
+                        default:
+                            error.localizedDescription
+                    }
+                    Text("Donation is currently not available.", tableName: "DonationSettings")
+                    Text(description)
+                        .foregroundStyle(.secondary)
+                        .textScale(.secondary)
+                }
+                .accessibilityElement(children: .contain)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 12)
+                .background(.background.shadow(.drop(radius: 3, y: 1.5)),
+                            in: .rect(cornerRadius: 8))
+                .offset(y: 40)
+            }
+        }
+        .storeProductsTask(for: Donation.Product.allCases.map(\.id)) { taskState in
+            switch taskState {
+                case .loading, .success:
+                    break
+                case .failure(let error):
+                    self.presentError(error)
+                @unknown default:
+                    assertionFailure()
+            }
+        }
+        .alert(error: $error)
+    }
+    
     
     /// Presents the given error.
     ///
