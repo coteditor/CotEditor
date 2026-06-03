@@ -573,7 +573,7 @@ extension NSTextView: EditorCounter.Source { }
         // set accessory view
         let saveOptions = SaveOptions(isExecutable: self.isExecutable)
         self.saveOptions = saveOptions
-        let accessory = SavePanelAccessory(options: saveOptions)
+        let accessory = SavePanelAccessory(options: saveOptions).padding()
         let accessoryView = NSHostingView(rootView: accessory)
         accessoryView.sizingOptions = .intrinsicContentSize
         savePanel.accessoryView = accessoryView

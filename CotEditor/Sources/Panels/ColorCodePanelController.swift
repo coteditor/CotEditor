@@ -73,7 +73,7 @@ import Defaults
         panel.showsAlpha = true
         panel.delegate = self
         
-        let accessory = ColorCodePanelAccessory(colorCode: colorCode, panel: panel)
+        let accessory = ColorCodePanelAccessory(colorCode: colorCode, panel: panel).padding(10)
         let view = NSHostingView(rootView: accessory)
         view.translatesAutoresizingMaskIntoConstraints = false
         panel.accessoryView = view
@@ -150,10 +150,10 @@ private struct ColorCodePanelAccessory: View {
                 
                 Button(String(localized: "Insert", table: "ColorCode", comment: "button label"), action: self.submit)
                     .keyboardShortcut(.defaultAction)
-            }.controlSize(.small)
+            }
+            .controlSize(.small)
         }
         .onReceive(self.panel.publisher(for: \.color), perform: self.apply(color:))
-        .padding(EdgeInsets(top: 8, leading: 10, bottom: 16, trailing: 10))
     }
     
     

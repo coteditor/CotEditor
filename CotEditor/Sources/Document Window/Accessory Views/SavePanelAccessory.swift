@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -47,7 +47,6 @@ struct SavePanelAccessory: View {
     var body: some View {
         
         Toggle(String(localized: "Make file executable", table: "SavePanelAccessory", comment: "toggle button label"), isOn: $options.isExecutable)
-            .padding(10)
     }
 }
 
@@ -56,4 +55,5 @@ struct SavePanelAccessory: View {
 
 #Preview {
     SavePanelAccessory(options: SaveOptions(isExecutable: false))
+        .scenePadding()
 }

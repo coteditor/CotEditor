@@ -220,7 +220,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
     override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?) async -> Int {
         
         let model = OpenPanelModel(fileEncodings: EncodingManager.shared.fileEncodings)
-        let accessory = OpenPanelAccessory(model: model, openPanel: openPanel)
+        let accessory = OpenPanelAccessory(model: model, openPanel: openPanel).padding()
         let accessoryView = NSHostingView(rootView: accessory)
         accessoryView.sizingOptions = .intrinsicContentSize
         
