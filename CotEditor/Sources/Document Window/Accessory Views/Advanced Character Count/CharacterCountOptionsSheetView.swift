@@ -45,7 +45,6 @@ struct CharacterCountOptionsSheetView: View {
             }
             .padding(.top)
         }
-        .scenePadding()
     }
 }
 
@@ -54,4 +53,5 @@ struct CharacterCountOptionsSheetView: View {
 
 #Preview {
     CharacterCountOptionsSheetView { }
+        .scenePadding()
 }

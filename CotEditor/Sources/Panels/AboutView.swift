@@ -100,6 +100,7 @@ struct AboutView: View {
                 .padding(10)
             }
             .scrollEdgeEffectStyle(.soft, for: .top)
+            .contentMargins(20, for: .scrollContent)
         }
         .controlSize(.small)
         .frame(width: 540, height: 320)
@@ -201,7 +202,6 @@ private struct CreditsView: View {
         .multilineTextAlignment(.center)
         .lineSpacing(2)
         .frame(maxWidth: .infinity)
-        .padding()
     }
     
     
@@ -263,7 +263,6 @@ private struct LicenseView: View {
             ForEach(LicenseItem.items, content: ItemView.init(item:))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
     }
     
     

@@ -166,7 +166,10 @@ struct GeneralSettingsView: View {
                     self.isWarningsSettingPresented.toggle()
                 }
                 .accessibilityLabeledPair(role: .content, id: "dialogWarnings", in: self.accessibility)
-                .sheet(isPresented: $isWarningsSettingPresented, content: WarningsSettingView.init)
+                .sheet(isPresented: $isWarningsSettingPresented) {
+                    WarningsSettingView()
+                        .scenePadding()
+                }
             }
             
             Divider()
@@ -219,8 +222,6 @@ struct GeneralSettingsView: View {
             self.commandLineToolURL = manager.linkURL
         }
         .fixedSize(horizontal: false, vertical: true)
-        .scenePadding()
-        .frame(width: 620)
     }
 }
 
@@ -281,7 +282,6 @@ private struct WarningsSettingView: View {
             }.padding(.top)
         }
         .fixedSize()
-        .scenePadding()
     }
 }
 
@@ -364,8 +364,10 @@ private extension DocumentConflictOption {
 
 #Preview {
     GeneralSettingsView(showsUpdaterSettings: false)
+        .scenePadding()
 }
 
 #Preview("with Sparkle") {
     GeneralSettingsView(showsUpdaterSettings: true)
+        .scenePadding()
 }

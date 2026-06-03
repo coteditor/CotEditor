@@ -120,6 +120,7 @@ struct FindPanelFieldView: View {
                     .help(String(localized: "Show quick reference for regular expression syntax.", table: "TextFind", comment: "tooltip"))
                     .detachablePopover(isPresented: $isRegexReferencePresented, arrowEdge: .bottom) {
                         RegularExpressionReferenceView()
+                            .scenePadding()
                     }
                     .controlSize(.mini)
                 }
@@ -137,6 +138,7 @@ struct FindPanelFieldView: View {
                 }
                 .popover(isPresented: $isSettingsPresented, arrowEdge: .trailing) {
                     FindSettingsView()
+                        .scenePadding()
                 }
                 .symbolVariant(.circle)
                 .labelStyle(.iconOnly)

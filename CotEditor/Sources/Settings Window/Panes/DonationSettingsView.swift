@@ -206,8 +206,6 @@ struct DonationSettingsView: View {
                 HelpLink(anchor: "settings_donation")
             }
         }
-        .scenePadding()
-        .frame(width: 620)
     }
     
     
@@ -355,8 +353,10 @@ private extension SubscriptionInformationURL {
 
 #Preview {
     DonationSettingsView(isInAppPurchaseAvailable: true)
+        .scenePadding()
 }
 
 #Preview("Non-AppStore version") {
     DonationSettingsView(isInAppPurchaseAvailable: false)
+        .scenePadding()
 }

@@ -56,6 +56,8 @@ struct ThemeView: View {
             Divider()
             
             ThemeEditorView(theme: $theme, isBundled: self.isBundled)
+                .padding(.vertical, 10)
+                .padding(.horizontal, 14)
                 .frame(width: 400)
                 .onChange(of: self.theme) { _, newValue in
                     do {
@@ -535,8 +537,6 @@ private struct ThemeEditorView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String(localized: "Theme Editor", table: "ThemeEditor"))
-        .padding(.vertical, 10)
-        .padding(.horizontal, 14)
     }
 }
 
@@ -675,6 +675,7 @@ private struct TransferableTheme: TransferableFile {
     @Previewable @State var theme = try! ThemeManager.shared.setting(name: "Anura")
     
     ThemeEditorView(theme: $theme, isBundled: false)
+        .scenePadding()
 }
 
 #Preview("Metadata (editable)") {

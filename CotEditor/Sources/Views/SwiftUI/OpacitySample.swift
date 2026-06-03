@@ -80,5 +80,5 @@ struct OpacitySample: View {
 #Preview {
     OpacitySample(opacity: 0.5)
         .frame(width: 16, height: 16)
-        .padding()
+        .scenePadding()
 }

@@ -73,7 +73,6 @@ struct CustomTabWidthView: View {
             self.focus = .field
         }
         .fixedSize()
-        .scenePadding()
     }
     
     
@@ -92,4 +91,5 @@ struct CustomTabWidthView: View {
 
 #Preview {
     CustomTabWidthView(tabWidth: 4) { _ in }
+        .scenePadding()
 }

@@ -138,6 +138,8 @@ struct FormatSettingsView: View {
                         }
                         .sheet(isPresented: $isEncodingListPresented) {
                             EncodingListView(defaultEncoding: self.encodingManager.defaultEncoding)
+                                .scenePadding()
+                                .presentationSizing(.fitted)
                         }
                         
                         Toggle(String(localized: "Refer to encoding declaration in document", table: "FormatSettings"), isOn: $referToEncodingTag)
@@ -204,8 +206,6 @@ struct FormatSettingsView: View {
             self.handledEncodingListRequestID = requestID
             self.isEncodingListPresented = true
         }
-        .scenePadding()
-        .frame(width: 620)
     }
 }
 
@@ -403,13 +403,18 @@ private struct SyntaxListView: View {
             } validationAction: { name in
                 try self.manager.validate(settingName: name, originalName: state?.name)
             }
+            .presentationSizing(.fitted)
         }
         .sheet(isPresented: $isListCustomizationViewPresented) {
             SyntaxListCustomizationView(items: self.settingNames)
+                .scenePadding()
+                .presentationSizing(.fitted)
             
         }
         .sheet(isPresented: $isFileMappingConflictPresented) {
             SyntaxMappingConflictView(table: self.manager.mappingConflicts)
+                .scenePadding()
+                .presentationSizing(.fitted)
         }
         .alert(error: $error)
     }
@@ -619,4 +624,5 @@ private struct TransferableSyntax: TransferableFile {
 
 #Preview {
     FormatSettingsView()
+        .scenePadding()
 }

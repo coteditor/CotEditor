@@ -49,5 +49,5 @@ struct LinkButton: View {
 
 #Preview {
     LinkButton(url: "https://coteditor.com")
-        .padding()
+        .scenePadding()
 }

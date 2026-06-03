@@ -683,6 +683,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             CustomTabWidthView(tabWidth: self.tabWidth) { [weak self] tabWidth in
                 self?.tabWidth = tabWidth
             }
+            .scenePadding()
         }
     }
     

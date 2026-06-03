@@ -142,6 +142,6 @@ import SwiftUI
                 .border(.tertiary, width: 0.5)
         }
     }
-    .padding()
+    .scenePadding()
     .background()
 }

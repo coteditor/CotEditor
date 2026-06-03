@@ -66,7 +66,8 @@ struct FindPanelResultView: View {
                 Text("Found \(self.model.matches.count) matches in “\(self.documentName ?? String(localized: .unknown)).”",
                      tableName: "TextFind", comment: "message in the Find All result view (“%2$@” is filename)")
                 .fontWeight(.bold)
-            }.scenePadding(.horizontal)
+            }
+            .scenePadding(.horizontal)
             
             Text("Find text: \(self.model.findString)", tableName: "TextFind")
                 .scenePadding(.horizontal)

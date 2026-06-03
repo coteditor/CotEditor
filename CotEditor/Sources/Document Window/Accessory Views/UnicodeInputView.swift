@@ -92,8 +92,7 @@ struct UnicodeInputView: View {
                     .padding(.leading, 4)
                 }
         }
-        .padding()
-        .frame(width: 200)
+        .frame(width: 160)
     }
     
     
@@ -166,8 +165,10 @@ private extension UTF32.CodeUnit {
 
 #Preview("Empty") {
     UnicodeInputView(codePoint: "")
+        .scenePadding()
 }
 
 #Preview("𓆏") {
     UnicodeInputView(codePoint: "U+1318F")
+        .scenePadding()
 }

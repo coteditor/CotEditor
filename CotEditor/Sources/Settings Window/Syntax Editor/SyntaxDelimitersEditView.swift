@@ -112,7 +112,6 @@ struct SyntaxDelimitersEditView: View {
                 HelpLink(anchor: "syntax_delimiter_settings")
             }
         }
-        .scenePadding()
     }
 }
 
@@ -378,4 +377,5 @@ private struct BlockEditView: View {
         characterDelimiters: $characterDelimiters,
         indentations: $indentations
     )
+    .scenePadding()
 }

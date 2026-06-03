@@ -57,8 +57,6 @@ struct SnippetsSettingsView: View {
                 HelpLink(anchor: "settings_snippets")
             }
         }
-        .scenePadding()
-        .frame(width: 620)
     }
 }
 
@@ -394,4 +392,5 @@ private struct InsertionMenuContent<Item: TokenRepresentable>: View {
 
 #Preview {
     SnippetsSettingsView()
+        .scenePadding()
 }

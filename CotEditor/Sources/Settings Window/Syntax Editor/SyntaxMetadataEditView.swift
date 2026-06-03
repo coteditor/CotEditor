@@ -65,7 +65,6 @@ struct SyntaxMetadataEditView: View {
                 HelpLink(anchor: "syntax_metadata_settings")
             }
         }
-        .scenePadding()
     }
 }
 
@@ -74,4 +73,5 @@ struct SyntaxMetadataEditView: View {
 
 #Preview {
     SyntaxMetadataEditView(metadata: .constant(.init()))
+        .scenePadding()
 }

@@ -69,7 +69,6 @@ struct SyntaxFileMappingEditView: View {
                 HelpLink(anchor: "syntax_file_mapping")
             }
         }
-        .scenePadding()
     }
     
     
@@ -130,4 +129,5 @@ struct SyntaxFileMappingEditView: View {
     @Previewable @State var interpreters: [SyntaxObject.KeyString] = []
     
     SyntaxFileMappingEditView(extensions: $extensions, filenames: $filenames, interpreters: $interpreters)
+        .scenePadding()
 }

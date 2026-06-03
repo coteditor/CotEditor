@@ -112,7 +112,7 @@ private extension FinderTag.Color {
         FinderTag(name: "Purple", color: .purple)
     ])
     .frame(height: 12)
-    .padding()
+    .scenePadding()
 }
 
 #Preview {
@@ -122,5 +122,5 @@ private extension FinderTag.Color {
         }
     }
     .frame(height: 14)
-    .padding()
+    .scenePadding()
 }

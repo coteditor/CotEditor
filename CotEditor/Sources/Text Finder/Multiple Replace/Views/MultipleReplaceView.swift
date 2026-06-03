@@ -206,6 +206,7 @@ final class MultipleReplaceViewController: NSViewController, NSUserInterfaceVali
             self.tableView?.reloadData()  // update regex highlight for replacement string
             self.updateNotificationDebouncer.schedule()
         }
+        .scenePadding()
         let viewController = NSHostingController(rootView: view)
         
         self.present(viewController, asPopoverRelativeTo: sender.bounds, of: sender, preferredEdge: .maxX, behavior: .transient)

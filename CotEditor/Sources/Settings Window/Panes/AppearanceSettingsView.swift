@@ -180,8 +180,6 @@ struct AppearanceSettingsView: View {
                 HelpLink(anchor: "settings_appearance")
             }
         }
-        .scenePadding()
-        .frame(width: 620)
     }
     
     
@@ -269,6 +267,7 @@ private extension AppearanceMode {
 
 #Preview {
     AppearanceSettingsView()
+        .scenePadding()
 }
 
 #Preview("FontSettingView") {
@@ -276,5 +275,5 @@ private extension AppearanceMode {
     @Previewable @State var ligature = false
     
     FontSettingView(data: .constant(Data()), fallback: .systemFont(ofSize: 0), antialias: $antialias, ligature: $ligature)
-        .padding()
+        .scenePadding()
 }

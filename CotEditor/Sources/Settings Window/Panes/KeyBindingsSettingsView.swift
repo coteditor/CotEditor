@@ -60,8 +60,6 @@ struct KeyBindingsSettingsView: View {
         .onAppear {
             self.model.load()
         }
-        .scenePadding()
-        .frame(width: 620)
     }
 }
 
@@ -345,4 +343,5 @@ extension KeyBindingTreeViewController: NSTableViewDataSource, NSTableViewDelega
 
 #Preview {
     KeyBindingsSettingsView()
+        .scenePadding()
 }

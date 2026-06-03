@@ -65,8 +65,6 @@ struct ModeSettingsView: View {
         .onChange(of: self.selection, initial: true) { _, newValue in
             self.options = self.manager.setting(for: newValue)
         }
-        .scenePadding()
-        .frame(width: 620)
     }
 }
 
@@ -303,4 +301,5 @@ private extension FontType {
 
 #Preview {
     ModeSettingsView()
+        .scenePadding()
 }

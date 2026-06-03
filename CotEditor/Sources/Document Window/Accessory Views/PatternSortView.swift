@@ -148,8 +148,7 @@ struct PatternSortView: View {
             self.validate()
         }
         .fixedSize(horizontal: false, vertical: true)
-        .scenePadding()
-        .frame(minWidth: 500)
+        .frame(minWidth: 460)
     }
     
     
@@ -367,4 +366,5 @@ extension SortPatternError: @retroactive LocalizedError {
 
 #Preview {
     PatternSortView(sampleLine: "Dog, 🐕, 1", sampleFontName: "Menlo") { _, _ in }
+        .scenePadding()
 }

@@ -75,6 +75,7 @@ extension EditorTextView {
                 self?.surroundSelections(begin: pair.begin, end: pair.end)
                 self?.customSurroundPair = pair
             }
+            .scenePadding()
         }
     }
 }

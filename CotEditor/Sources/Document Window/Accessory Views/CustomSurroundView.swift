@@ -96,7 +96,6 @@ struct CustomSurroundView: View {
             self.focus = .beginField
         }
         .fixedSize()
-        .scenePadding()
     }
     
     
@@ -127,4 +126,5 @@ struct CustomSurroundView: View {
 
 #Preview {
     CustomSurroundView(pair: nil) { _ in }
+        .scenePadding()
 }

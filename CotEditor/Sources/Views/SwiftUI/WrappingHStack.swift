@@ -157,6 +157,6 @@ private struct WrappingHStackLayout: Layout {
         }
     }
     .border(.separator)
-    .padding()
+    .scenePadding()
     .frame(width: 180)
 }

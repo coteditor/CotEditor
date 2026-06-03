@@ -350,6 +350,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
                 
                 return true
             }
+            .scenePadding()
         }
     }
     
@@ -365,6 +366,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             
             textView.replace(with: String(character), range: textView.rangeForUserTextChange, selectedRange: nil)
         }
+        .scenePadding()
         let viewController = NSHostingController(rootView: view)
         viewController.view.frame.size = viewController.view.intrinsicContentSize
         
@@ -389,6 +391,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             CharacterCountOptionsSheetView { [weak self] in
                 self?.showAdvancedCharacterCounter()
             }
+            .scenePadding()
         }
     }
     

@@ -29,6 +29,8 @@ import AppKit.NSImage
 
 public nonisolated protocol SettingsPane: RawRepresentable<String>, Sendable, CaseIterable {
     
+    static var width: Double { get }
+    
     var label: String { get }
     var systemSymbolName: String { get }
     @MainActor var view: any View { get }
@@ -39,7 +41,7 @@ extension SettingsPane {
     
     @MainActor var tabViewItem: NSTabViewItem {
         
-        let viewController = NSHostingController(rootView: AnyView(self.view))
+        let viewController = NSHostingController(rootView: AnyView(self.view).frame(width: Self.width).scenePadding())
         viewController.sizingOptions = .preferredContentSize
         let tabViewItem = NSTabViewItem(viewController: viewController)
         tabViewItem.label = self.label

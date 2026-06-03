@@ -90,9 +90,7 @@ struct SyntaxMappingConflictView: View {
         .onExitCommand {
             self.dismiss()
         }
-        .scenePadding()
-        .frame(minWidth: 400, idealWidth: 400, maxWidth: 1000, minHeight: 300, idealHeight: 500)
-        .presentationSizing(.fitted)
+        .frame(minWidth: 360, idealWidth: 360, maxWidth: 1000, minHeight: 260, idealHeight: 460)
     }
 }
 
@@ -146,4 +144,5 @@ private struct ConflictTable: View {
         extensions: ["svg": ["SVG", "XML"]],
         filenames: ["foo": ["SVG", "XML", "Foo"]]
     ))
+    .scenePadding()
 }

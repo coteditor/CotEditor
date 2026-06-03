@@ -86,5 +86,6 @@ struct StatusImage: View {
         Label(title: { Text("available") }, icon: { StatusImage(status: .available) })
         Label(title: { Text("partiallyAvailable") }, icon: { StatusImage(status: .partiallyAvailable) })
         Label(title: { Text("unavailable") }, icon: { StatusImage(status: .unavailable) })
-    }.padding()
+    }
+    .scenePadding()
 }

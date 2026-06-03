@@ -180,6 +180,7 @@ extension EditorTextView {
             PatternSortView(sampleLine: sampleLine, sampleFontName: fontName) { [weak self] pattern, options in
                 self?.sortLines(pattern: pattern, options: options)
             }
+            .scenePadding()
         }
     }
     

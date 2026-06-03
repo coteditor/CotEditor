@@ -105,7 +105,6 @@ struct SyntaxOutlineEditView: View {
                 HelpLink(anchor: "syntax_outline_settings")
             }
         }
-        .scenePadding()
     }
 }
 
@@ -196,4 +195,5 @@ private struct OutlineKindMenu: View {
     ]
     
     SyntaxOutlineEditView(items: $items)
+        .scenePadding()
 }

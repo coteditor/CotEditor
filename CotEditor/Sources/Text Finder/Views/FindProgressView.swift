@@ -89,8 +89,7 @@ struct FindProgressView: View {
                     self.dismiss()
             }
         }
-        .scenePadding()
-        .frame(width: 260)
+        .frame(width: 220)
     }
     
     
@@ -133,4 +132,5 @@ private extension TextFind.Action {
     progress.updateCompletedUnit(to: 30)
     
     return FindProgressView("Label", progress: progress, action: .find)
+        .scenePadding()
 }

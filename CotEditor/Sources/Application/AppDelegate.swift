@@ -330,7 +330,7 @@ extension Logger {
     @IBAction func exportSettings(_ sender: Any?) {
         
         let panel = self.exportSettingsPanel ?? NSPanel(
-            view: ExportSettingsView(includedTypes: PortableSettingsDocument.exportableSettings),
+            view: ExportSettingsView(includedTypes: PortableSettingsDocument.exportableSettings).scenePadding(),
             hidesTitleButtons: true,
             title: String(localized: "Export Settings", table: "SettingsPorting")
         )
@@ -365,7 +365,7 @@ extension Logger {
             
             let name = url.deletingPathExtension().lastPathComponent
             let panel = NSPanel(
-                view: ImportSettingsView(name: name, document: document),
+                view: ImportSettingsView(name: name, document: document).scenePadding(),
                 hidesTitleButtons: true,
                 title: String(localized: "Import Settings", table: "SettingsPorting")
             )

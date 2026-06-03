@@ -78,8 +78,7 @@ struct ExportSettingsView: View {
             self.dismiss()
         }
         .alert(error: $error)
-        .scenePadding()
-        .frame(width: 380)
+        .frame(width: 340)
     }
 }
 
@@ -134,8 +133,7 @@ struct ImportSettingsView: View {
             }
         }
         .alert(error: $error)
-        .scenePadding()
-        .frame(width: 380)
+        .frame(width: 340)
     }
     
     
@@ -240,6 +238,7 @@ extension PortableSettingsDocument.Error: LocalizedError {
 
 #Preview("Export Settings") {
     ExportSettingsView(includedTypes: PortableSettingsDocument.exportableSettings)
+        .scenePadding()
 }
 
 #Preview("Import Settings") {
@@ -247,4 +246,5 @@ extension PortableSettingsDocument.Error: LocalizedError {
     document.info.version = Version(6, 0, 0)
     
     return ImportSettingsView(name: "Untitled", document: document)
+        .scenePadding()
 }

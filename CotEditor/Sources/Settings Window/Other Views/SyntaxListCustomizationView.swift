@@ -81,9 +81,7 @@ struct SyntaxListCustomizationView: View {
         .onAppear {
             self.hiddenItems = Set(UserDefaults.standard[.hiddenSyntaxes])
         }
-        .scenePadding()
-        .frame(minWidth: 300, idealWidth: 400, maxWidth: 1000, idealHeight: 450, maxHeight: .infinity)
-        .presentationSizing(.fitted)
+        .frame(minWidth: 260, idealWidth: 360, maxWidth: 1000, idealHeight: 410, maxHeight: .infinity)
     }
 }
 
@@ -104,8 +102,9 @@ private extension Binding where Value == Set<String> {
 }
 
 
-// MARK: Preview -
+// MARK: - Preview
 
 #Preview {
     SyntaxListCustomizationView(items: ["HTML", "Swift", "Neko"])
+        .scenePadding()
 }

@@ -251,8 +251,6 @@ struct WindowSettingsView: View {
                 HelpLink(anchor: "settings_window")
             }.padding(.top, -8)
         }
-        .scenePadding()
-        .frame(minWidth: 620)
     }
 }
 
@@ -310,4 +308,5 @@ private extension WritingDirection {
 
 #Preview {
     WindowSettingsView()
+        .scenePadding()
 }

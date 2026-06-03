@@ -131,8 +131,6 @@ struct EditSettingsView: View {
             }
         }
         .fixedSize(horizontal: false, vertical: true)
-        .scenePadding()
-        .frame(width: 620)
     }
 }
 
@@ -141,4 +139,5 @@ struct EditSettingsView: View {
 
 #Preview {
     EditSettingsView()
+        .scenePadding()
 }

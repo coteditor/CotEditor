@@ -67,7 +67,6 @@ struct GoToLineView: View {
             self.focus = .field
         }
         .fixedSize()
-        .scenePadding()
     }
     
     
@@ -89,4 +88,5 @@ struct GoToLineView: View {
 
 #Preview {
     GoToLineView(lineRange: FuzzyRange(location: 1, length: 1)) { _ in true }
+        .scenePadding()
 }

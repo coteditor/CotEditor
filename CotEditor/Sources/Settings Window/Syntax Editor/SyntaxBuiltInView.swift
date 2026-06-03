@@ -47,7 +47,6 @@ struct SyntaxBuiltInView: View {
             }
         }
         .frame(maxHeight: .infinity, alignment: .center)
-        .scenePadding()
     }
 }
 
@@ -56,4 +55,5 @@ struct SyntaxBuiltInView: View {
 
 #Preview {
     SyntaxBuiltInView()
+        .scenePadding()
 }

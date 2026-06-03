@@ -148,7 +148,6 @@ struct SyntaxHighlightEditView: View {
                 HelpLink(anchor: "syntax_highlight_settings")
             }
         }
-        .scenePadding()
     }
 }
 
@@ -163,4 +162,5 @@ struct SyntaxHighlightEditView: View {
     ]
     
     SyntaxHighlightEditView(items: $items)
+        .scenePadding()
 }

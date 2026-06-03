@@ -159,9 +159,7 @@ struct EncodingListView: View {
         .onAppear {
             self.model.undoManager = self.undoManager
         }
-        .scenePadding()
-        .frame(minWidth: 400, idealWidth: 480, maxWidth: 1000, idealHeight: 500, maxHeight: .infinity)
-        .presentationSizing(.fitted)
+        .frame(minWidth: 360, idealWidth: 440, maxWidth: 1000, idealHeight: 460, maxHeight: .infinity)
     }
 }
 
@@ -383,4 +381,5 @@ private extension CFStringEncoding {
 
 #Preview(traits: .fixedLayout(width: 400, height: 400)) {
     EncodingListView(defaultEncoding: .utf8)
+        .scenePadding()
 }

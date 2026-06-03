@@ -717,6 +717,7 @@ struct FindMatchesCache {
         // present progress view
         client.window?.beginSheet {
             FindProgressView(actionName, progress: progress, action: .find)
+                .scenePadding()
         }
         
         // perform
@@ -772,6 +773,7 @@ struct FindMatchesCache {
         // present progress view
         client.window?.beginSheet {
             FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, action: .replace)
+                .scenePadding()
         }
         
         // perform

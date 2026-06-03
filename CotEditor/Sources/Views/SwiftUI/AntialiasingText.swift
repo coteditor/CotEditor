@@ -154,5 +154,6 @@ private final class CenteringTextFieldCell: NSTextFieldCell {
             .font(nsFont: .monospacedSystemFont(ofSize: 8, weight: .regular))
         
         AntialiasingText("Very Long Long Long Long Long Long Text")
-    }.padding()
+    }
+    .scenePadding()
 }

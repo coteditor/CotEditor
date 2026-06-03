@@ -77,7 +77,8 @@ struct AdvancedCharacterCounterView: View {
                         CharacterCountOptionsView()
                         HelpLink(anchor: "howto_count_characters")
                             .frame(maxWidth: .infinity, alignment: .trailing)
-                    }.scenePadding()
+                    }
+                    .scenePadding()
                 }
         }
         .padding(.horizontal, 12)

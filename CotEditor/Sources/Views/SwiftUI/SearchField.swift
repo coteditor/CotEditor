@@ -258,5 +258,5 @@ private extension NSSearchField {
     SearchField(text: $text)
         .autosaveName("SearchField Preview")
         .frame(width: 160)
-        .padding()
+        .scenePadding()
 }

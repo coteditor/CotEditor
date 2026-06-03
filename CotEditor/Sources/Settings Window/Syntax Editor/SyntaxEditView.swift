@@ -159,6 +159,8 @@ struct SyntaxEditView: View {
                 Divider()
                 
                 self.detailView
+                    .padding(self.pane == .delimiters ? [] : .vertical)
+                    .scenePadding(self.pane == .delimiters ? [] : .horizontal)
                 
                 Divider()
                 
@@ -173,7 +175,6 @@ struct SyntaxEditView: View {
         }
         .alert(error: $error)
         .frame(minWidth: 400, idealWidth: 740, minHeight: 560, idealHeight: 580)
-        .presentationSizing(.fitted)
     }
     
     
@@ -203,8 +204,9 @@ struct SyntaxEditView: View {
                         indentations: $syntax.indentations,
                         canCustomizeHighlight: self.customizableFeatures.contains(.highlight)
                     )
+                    .padding(.vertical)
+                    .scenePadding(.horizontal)
                 }
-                .scenePadding([])
             case .outline:
                 if self.customizableFeatures.contains(.outline) {
                     SyntaxOutlineEditView(items: $syntax.outlines)
