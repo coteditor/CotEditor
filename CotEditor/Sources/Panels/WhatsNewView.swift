@@ -122,9 +122,6 @@ struct WhatsNewView: View {
                 self.isPrerelease = true
             }
         }
-        .onExitCommand {  // close window with the Esc key
-            self.dismiss()
-        }
         .focusScope(self.namespace)
         .scenePadding()
         .frame(width: 480)
