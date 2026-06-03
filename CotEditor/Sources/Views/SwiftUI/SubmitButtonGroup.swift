@@ -136,10 +136,7 @@ private struct EqualWidthHStack: Layout {
 // MARK: - Preview
 
 #Preview {
-    HStack {
-        Spacer()
-        SubmitButtonGroup(action: {})
-    }
-    .padding()
-    .frame(width: 200)
+    SubmitButtonGroup(action: {})
+        .scenePadding()
+        .frame(width: 200)
 }
