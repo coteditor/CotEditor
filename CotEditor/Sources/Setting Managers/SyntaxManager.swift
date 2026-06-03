@@ -47,7 +47,6 @@ enum SyntaxName {
     // MARK: Public Properties
     
     static let shared = SyntaxManager()
-    private(set) var migratedSyntaxCount = 0
     
     
     // MARK: Setting File Managing Properties
@@ -220,7 +219,7 @@ enum SyntaxName {
             try FileManager.default.moveItem(at: prereleaseURL, to: syntaxURL)
             
         } else if hasLegacySettings {
-            self.migratedSyntaxCount = try Syntax.migrateFormat(in: legacyURL, to: syntaxURL, deletingOriginal: false, shouldMigrate: { !self.bundledSettingNames.contains($0) })
+            try Syntax.migrateFormat(in: legacyURL, to: syntaxURL, deletingOriginal: false, shouldMigrate: { !self.bundledSettingNames.contains($0) })
         }
 
         // update cache

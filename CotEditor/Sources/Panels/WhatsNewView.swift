@@ -139,12 +139,12 @@ struct WhatsNewView: View {
 
 enum NewFeature: CaseIterable {
     
-    static let version = Version(7, 0, 0)
-    static let buildNumber = 809
+    static let version = Version(7, 1, 0)
+    static let buildNumber = 830
     
-    case syntax
-    case treeSitter
-    case outline
+    case folderFind
+    case folderNavigationHistory
+    case macOS27
 }
 
 
@@ -153,12 +153,12 @@ private extension NewFeature {
     var image: Image {
         
         switch self {
-            case .syntax:
-                Image(systemName: "curlybraces")
-            case .treeSitter:
-                Image(systemName: "tree")
-            case .outline:
-                Image(systemName: "list.bullet.indent")
+            case .folderFind:
+                Image(.folderBadgeMagnifyingglass)
+            case .folderNavigationHistory:
+                Image(systemName: "chevron.left.chevron.right")
+            case .macOS27:
+                Image(systemName: "finder")
         }
     }
     
@@ -166,17 +166,17 @@ private extension NewFeature {
     var label: String {
         
         switch self {
-            case .syntax:
-                String(localized: "NewFeature.syntax.label",
-                       defaultValue: "Smarter syntax, sharper editing",
+            case .folderFind:
+                String(localized: "NewFeature.folderFind.label",
+                       defaultValue: "Folder search",
                        table: "WhatsNew")
-            case .treeSitter:
-                String(localized: "NewFeature.treeSitter.label",
-                       defaultValue: "Powered by tree-sitter, where it matters most",
+            case .folderNavigationHistory:
+                String(localized: "NewFeature.folderNavigationHistory.label",
+                       defaultValue: "Folder navigation history",
                        table: "WhatsNew")
-            case .outline:
-                String(localized: "NewFeature.outline.label",
-                       defaultValue: "Outline with depth",
+            case .macOS27:
+                String(localized: "NewFeature.macOS27.label",
+                       defaultValue: "macOS 27 support",
                        table: "WhatsNew")
         }
     }
@@ -185,17 +185,17 @@ private extension NewFeature {
     var description: String {
         
         switch self {
-            case .syntax:
-                String(localized: "NewFeature.syntax.description",
-                       defaultValue: "More accurate highlighting, smarter commenting, and improved editor behavior, all powered by a redesigned syntax engine and definition format.",
+            case .folderFind:
+                String(localized: "NewFeature.folderFind.description",
+                       defaultValue: "n/a",
                        table: "WhatsNew")
-            case .treeSitter:
-                String(localized: "NewFeature.treeSitter.description",
-                       defaultValue: "Many major built-in syntaxes now use tree-sitter, a modern structure-based parser that enables deeper and more reliable language awareness.",
+            case .folderNavigationHistory:
+                String(localized: "NewFeature.folderNavigationHistory.description",
+                       defaultValue: "n/a",
                        table: "WhatsNew")
-            case .outline:
-                String(localized: "NewFeature.outline.description",
-                       defaultValue: "Icons make structure easier to scan, and tree-sitter-based syntaxes now support collapsible outlines that reflect hierarchy.",
+            case .macOS27:
+                String(localized: "NewFeature.macOS27.description",
+                       defaultValue: "n/a",
                        table: "WhatsNew")
         }
     }
@@ -204,8 +204,6 @@ private extension NewFeature {
     var helpAnchor: String? {
         
         switch self {
-            case .syntax:
-                "specification_changes_on_7.0"
             default:
                 nil
         }
@@ -215,55 +213,9 @@ private extension NewFeature {
     @MainActor @ViewBuilder var supplementalView: some View {
         
         switch self {
-            case .syntax:
-                let count = SyntaxManager.shared.migratedSyntaxCount
-                if count > 0 {
-                    MigrationReportView(count: count)
-                        .padding(.top, 6)
-                }
             default:
                 EmptyView()
         }
-    }
-}
-
-
-private struct MigrationReportView: View {
-    
-    var count: Int
-    
-    @State private var isVisible: Bool = false
-    
-    
-    var body: some View {
-        
-        Label {
-            Text(self.message)
-                .lineLimit(nil)
-                .fixedSize(horizontal: false, vertical: true)
-                .opacity(self.isVisible ? 1 : 0)
-                .animation(.easeIn(duration: 0.2).delay(0.1), value: self.isVisible)
-        } icon: {
-            Image(systemName: "checkmark")
-                .symbolRenderingMode(.hierarchical)
-                .symbolVariant(.circle)
-                .symbolEffect(.drawOn, isActive: !self.isVisible)
-                .imageScale(.large)
-                .foregroundStyle(.accent)
-        }
-        .task {
-            try? await Task.sleep(for: .seconds(0.5))
-            self.isVisible = true
-        }
-    }
-    
-    
-    private var message: String {
-        
-        String(localized: "NewFeature.syntax.supplementalView.message",
-               defaultValue: "Migrated \(self.count) custom syntaxes to the new format.",
-               table: "WhatsNew",
-               comment: "%lld is the number of syntaxes")
     }
 }
 
