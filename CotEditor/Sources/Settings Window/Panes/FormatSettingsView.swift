@@ -30,7 +30,6 @@ import FileEncoding
 import LineEnding
 import SyntaxFormat
 
-
 struct FormatSettingsView: View {
     
     @MainActor @Observable final class Presentation {
