@@ -29,7 +29,7 @@ import TextFind
 struct MultipleReplaceSettingsView: View {
     
     @State var settings: MultipleReplace.Settings
-    var completionHandler: (MultipleReplace.Settings) -> Void
+    var completionHandler: (MultipleReplace.Settings) -> Void = { _ in }
     
     
     // MARK: View
@@ -41,6 +41,8 @@ struct MultipleReplaceSettingsView: View {
                 .fontWeight(.semibold)
                 .foregroundStyle(.secondary)
                 .controlSize(.regular)
+                .accessibilityAddTraits(.isHeader)
+                .accessibilityHeading(.h1)
                 .padding(.bottom, 6)
             
             VStack(alignment: .leading, spacing: 14) {
@@ -63,7 +65,6 @@ struct MultipleReplaceSettingsView: View {
             self.completionHandler(self.settings)
         }
         .controlSize(.small)
-        .fixedSize()
     }
 }
 
@@ -71,6 +72,6 @@ struct MultipleReplaceSettingsView: View {
 // MARK: - Preview
 
 #Preview {
-    MultipleReplaceSettingsView(settings: .init()) { _ in }
+    MultipleReplaceSettingsView(settings: .init())
         .scenePadding()
 }

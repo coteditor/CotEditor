@@ -120,7 +120,6 @@ struct RegularExpressionReferenceView: View {
                     .tint(.accentColor)
                 HelpLink(anchor: "about_regex")
             }
-            .padding(.top, 8)
         }
         .controlSize(.small)
         .fixedSize()

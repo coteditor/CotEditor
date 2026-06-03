@@ -81,15 +81,14 @@ struct FindSettingsView: View {
                     usesUnicodeBoundaries: $findRegexUsesUnicodeBoundaries,
                     unescapesReplacementString: $findRegexUnescapesReplacementString
                 )
-                
-                HStack {
-                    Spacer()
-                    HelpLink(anchor: "howto_find")
-                }
+            }
+            
+            HStack {
+                Spacer()
+                HelpLink(anchor: "howto_find")
             }
         }
         .controlSize(.small)
-        .fixedSize()
     }
 }
 
