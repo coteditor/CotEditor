@@ -328,17 +328,17 @@ private struct FolderFindControlView: View {
                 
                 Spacer()
                 
-                Toggle(isOn: $ignoresCase) {
+                Toggle(isOn: Binding(get: { !self.ignoresCase }, set: { self.ignoresCase = !$0 })) {
                     Label {
-                        Text(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"))
+                        Text(String(localized: "Case Sensitive", table: "TextFind", comment: "toggle button label"))
                     } icon: {
                         Image(systemName: "textformat")
                             .environment(\.locale, Locale(script: .latin))
                     }
                 }
-                .help(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"))
+                .help(String(localized: "Case Sensitive", table: "TextFind", comment: "toggle button label"))
                 .toggleStyle(.button)
-                .fontWeight(self.ignoresCase ? .bold : .medium)
+                .fontWeight(self.ignoresCase ? .medium : .bold)
                 .labelStyle(.iconOnly)
                 .frame(width: 16, alignment: .center)
                 
