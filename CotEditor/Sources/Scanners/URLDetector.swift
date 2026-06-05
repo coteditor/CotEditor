@@ -56,10 +56,8 @@ import ValueRange
     /// Stops the detection and removes highlights.
     func cancel() {
         
-        if let textEditingObserver {
-            NotificationCenter.default.removeObserver(textEditingObserver, name: NSTextStorage.didProcessEditingNotification, object: self.textStorage)
-            self.textEditingObserver = nil
-        }
+        self.textEditingObserver.map(NotificationCenter.default.removeObserver)
+        self.textEditingObserver = nil
         
         self.task?.cancel()
         self.task = nil
