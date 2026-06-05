@@ -130,7 +130,7 @@ extension NSTextView: EditorCounter.Source { }
         self.mode = .kind(.general)
         
         self.syntaxController = SyntaxController(textStorage: self.textStorage, syntax: Syntax.none, name: SyntaxName.none)
-        self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
+        self.lineEndingScanner = LineEndingScanner(textStorage: self.textStorage, lineEnding: lineEnding)
         self.counter = EditorCounter()
         
         super.init()
