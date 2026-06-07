@@ -101,7 +101,8 @@ import TextFind
     ///   - usesRegularExpression: Whether the search string should be treated as a regular expression.
     ///   - ignoresCase: Whether character case should be ignored.
     ///   - includesHiddenFiles: Whether hidden files should be searched.
-    func find(findString: String, usesRegularExpression: Bool, ignoresCase: Bool, includesHiddenFiles: Bool) {
+    ///   - includesOtherFileTypes: Whether files that do not look like plain text should also be searched.
+    func find(findString: String, usesRegularExpression: Bool, ignoresCase: Bool, includesHiddenFiles: Bool, includesOtherFileTypes: Bool = false) {
         
         self.searchTask?.cancel()
         self.selectionTask?.cancel()
@@ -130,6 +131,7 @@ import TextFind
         }
         
         let options = FolderFind.Options(
+            includesOtherFileTypes: includesOtherFileTypes,
             includesHiddenFiles: includesHiddenFiles,
             decodingOptions: .init(candidates: EncodingManager.shared.fileEncodingCandidates,
                                    considersDeclaration: UserDefaults.standard[.referToEncodingTag])
@@ -142,6 +144,7 @@ import TextFind
         self.searchTask = .detached(priority: .userInitiated) {
             do {
                 let summary = try await FolderFind.find(in: rootURL, query: query, options: options, progress: progress) { candidate in
+                    includesOtherFileTypes ||
                     FolderFind.isSearchableText(candidate) ||
                     syntaxMappingTable.syntaxName(forFilename: candidate.fileURL.lastPathComponent) != nil
                 }
@@ -306,6 +309,7 @@ private struct FolderFindControlView: View {
     @AppStorage(.folderFindUsesRegularExpression) private var usesRegularExpression: Bool
     @AppStorage(.folderFindIgnoresCase) private var ignoresCase: Bool
     @AppStorage(.folderFindIncludesHiddenFiles) private var includesHiddenFiles: Bool
+    @AppStorage(.folderFindIncludesOtherFileTypes) private var includesOtherFileTypes: Bool
     
     
     var body: some View {
@@ -344,6 +348,7 @@ private struct FolderFindControlView: View {
                 
                 Menu {
                     Toggle(String(localized: "Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
+                    Toggle(String(localized: "Include Other File Types", table: "Document", comment: "toggle button label"), isOn: $includesOtherFileTypes)
                 } label: {
                     Label(String(localized: "Advanced options", table: "TextFind", comment: "accessibility label"), systemImage: "ellipsis")
                         .symbolVariant(.circle)
@@ -362,7 +367,8 @@ private struct FolderFindControlView: View {
                 self.model.find(findString: findString,
                                 usesRegularExpression: self.usesRegularExpression,
                                 ignoresCase: self.ignoresCase,
-                                includesHiddenFiles: self.includesHiddenFiles)
+                                includesHiddenFiles: self.includesHiddenFiles,
+                                includesOtherFileTypes: self.includesOtherFileTypes)
             }
             .onChange(of: self.textFinderSettings.findString) { _, newValue in
                 self.model.findStringDidChange(to: newValue)

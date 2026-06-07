@@ -36,7 +36,7 @@ struct Search {
     var query: FolderFind.Query
     var options: FolderFind.Options
     var progress: FolderFindProgress?
-    var isIncluded: @Sendable (FolderFind.Candidate) -> Bool
+    var isIncluded: (@Sendable (FolderFind.Candidate) -> Bool)?
     
     private var metrics: FolderFind.Metrics
     private var files: [FolderFind.FileResult] = []
@@ -51,8 +51,8 @@ struct Search {
     ///   - query: The search query.
     ///   - options: The folder search options.
     ///   - progress: The progress object to update while searching.
-    ///   - isIncluded: The predicate to determine whether a file candidate should be searched.
-    init(rootURL: URL, query: FolderFind.Query, options: FolderFind.Options, progress: FolderFindProgress?, isIncluded: @escaping @Sendable (FolderFind.Candidate) -> Bool) {
+    ///   - isIncluded: The predicate to determine whether a file candidate should be searched. If `nil`, the file type option is used.
+    init(rootURL: URL, query: FolderFind.Query, options: FolderFind.Options, progress: FolderFindProgress?, isIncluded: (@Sendable (FolderFind.Candidate) -> Bool)?) {
         
         self.rootURL = rootURL
         self.query = query
@@ -118,7 +118,7 @@ struct Search {
             
             if candidate.isDirectory {
                 try await self.searchDirectory(at: candidate.fileURL)
-            } else if self.isIncluded(candidate) {
+            } else if self.isIncluded?(candidate) ?? (self.options.includesOtherFileTypes || FolderFind.isSearchableText(candidate)) {
                 try self.searchFile(candidate)
             }
         }

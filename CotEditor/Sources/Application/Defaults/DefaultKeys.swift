@@ -144,6 +144,7 @@ extension DefaultKeys {
     static let folderFindUsesRegularExpression = DefaultKey<Bool>("folderFindUsesRegularExpression")
     static let folderFindIgnoresCase = DefaultKey<Bool>("folderFindIgnoresCase")
     static let folderFindIncludesHiddenFiles = DefaultKey<Bool>("folderFindIncludesHiddenFiles")
+    static let folderFindIncludesOtherFileTypes = DefaultKey<Bool>("folderFindIncludesOtherFileTypes")
     
     // Advanced Character Count
     static let countUnit = RawRepresentableDefaultKey<CharacterCountOptions.CharacterUnit>("countOptionUnit")

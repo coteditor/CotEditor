@@ -343,6 +343,26 @@ struct FolderFindTests {
     }
     
     
+    @Test func otherFileTypesOptionSearchesDecodableNonTextFiles() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: "data.bin"))
+        
+        let defaultSummary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        #expect(defaultSummary.metrics.searchedFileCount == 0)
+        #expect(defaultSummary.metrics.matchCount == 0)
+        
+        let otherFileTypesSummary = try await FolderFind.find(in: rootURL,
+                                                              query: Self.query("needle"),
+                                                              options: .init(includesOtherFileTypes: true))
+        #expect(otherFileTypesSummary.metrics.searchedFileCount == 1)
+        #expect(otherFileTypesSummary.metrics.matchCount == 1)
+        #expect(otherFileTypesSummary.files.map(\.filename) == ["data.bin"])
+    }
+    
+    
     @Test func unreadableTextIsSkipped() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()

@@ -161,6 +161,7 @@ struct DefaultSettings {
             .folderFindUsesRegularExpression: false,
             .folderFindIgnoresCase: false,
             .folderFindIncludesHiddenFiles: false,
+            .folderFindIncludesOtherFileTypes: false,
             
             // Advanced Character Count
             .countUnit: CharacterCountOptions.CharacterUnit.graphemeCluster.rawValue,

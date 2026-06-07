@@ -62,6 +62,7 @@ public enum FolderFind {
     
     public struct Options: Sendable {
         
+        public var includesOtherFileTypes: Bool
         public var includesHiddenFiles: Bool
         public var excludedNames: Set<String>
         public var decodingOptions: String.DetectionOptions
@@ -70,15 +71,18 @@ public enum FolderFind {
         /// Initializes folder find options.
         ///
         /// - Parameters:
+        ///   - includesOtherFileTypes: Whether files that do not look like plain text should also be searched.
         ///   - includesHiddenFiles: Whether hidden files should be included.
         ///   - excludedNames: File or folder names to exclude from traversal.
         ///   - decodingOptions: The text decoding options to use for reading files.
         public init(
+            includesOtherFileTypes: Bool = false,
             includesHiddenFiles: Bool = false,
             excludedNames: Set<String> = [".DS_Store", ".git"],
             decodingOptions: String.DetectionOptions = .init(candidates: [.utf8], considersDeclaration: true)
         ) {
             
+            self.includesOtherFileTypes = includesOtherFileTypes
             self.includesHiddenFiles = includesHiddenFiles
             self.excludedNames = excludedNames
             self.decodingOptions = decodingOptions
@@ -204,10 +208,10 @@ public enum FolderFind {
     ///   - query: The search query.
     ///   - options: The folder search options.
     ///   - progress: The progress object to update while searching.
-    ///   - isIncluded: The predicate to determine whether a file candidate should be searched.
+    ///   - isIncluded: The predicate to determine whether a file candidate should be searched. If `nil`, the file type option is used.
     /// - Returns: The search summary.
     /// - Throws: `TextFind.Error` for invalid queries, or `CancellationError` if the task is cancelled.
-    public static func find(in rootURL: URL, query: Query, options: Options = .init(), progress: FolderFindProgress? = nil, isIncluded: @escaping @Sendable (Candidate) -> Bool = Self.isSearchableText) async throws -> Summary {
+    public static func find(in rootURL: URL, query: Query, options: Options = .init(), progress: FolderFindProgress? = nil, isIncluded: (@Sendable (Candidate) -> Bool)? = nil) async throws -> Summary {
         
         // validate the query before traversing the folder
         try query.validate()
