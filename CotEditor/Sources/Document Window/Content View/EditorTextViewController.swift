@@ -86,6 +86,10 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     isolated deinit {
         self.documentObservers.forEach { $0.cancel() }
         
+        guard self.isViewLoaded else { return }
+        
+        self.document.undoManager?.removeAllActions(withTarget: self.textView)
+        
         // detach layoutManager safely
         guard
             let textStorage = self.textView.textStorage,

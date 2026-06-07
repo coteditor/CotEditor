@@ -806,7 +806,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         if let textView = currentEditorViewController.textView {
             self.textSelectionObservers[ObjectIdentifier(textView)] = nil
-            textView.undoManager?.removeAllActions(withTarget: textView)
         }
         
         // end current editing
