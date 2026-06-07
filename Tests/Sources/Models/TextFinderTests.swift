@@ -274,10 +274,7 @@ import Testing
         await withCheckedContinuation { continuation in
             var observer: NotificationCenter.ObservationToken?
             observer = NotificationCenter.default.addObserver(of: finder, for: TextFinder.DidFindMessage.self) { message in
-                if let observer {
-                    NotificationCenter.default.removeObserver(observer)
-                }
-                
+                observer.map(NotificationCenter.default.removeObserver)
                 continuation.resume(returning: message.result)
             }
             

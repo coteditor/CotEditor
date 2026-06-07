@@ -421,9 +421,7 @@ struct FindMatchesCache {
     /// Removes text change observer if set.
     private func removeTextChangeObserver() {
         
-        guard let textChangeObserver else { return }
-        
-        NotificationCenter.default.removeObserver(textChangeObserver)
+        self.textChangeObserver.map(NotificationCenter.default.removeObserver)
         self.textChangeObserver = nil
     }
     

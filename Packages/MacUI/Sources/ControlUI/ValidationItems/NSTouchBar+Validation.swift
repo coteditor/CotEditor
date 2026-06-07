@@ -83,10 +83,8 @@ public extension NSTouchBar {
         didSet {
             guard isEnabled != oldValue else { return }
             
-            if let applicationObserver {
-                NotificationCenter.default.removeObserver(applicationObserver, name: NSApplication.didUpdateNotification, object: NSApp)
-                self.applicationObserver = nil
-            }
+            self.applicationObserver.map(NotificationCenter.default.removeObserver)
+            self.applicationObserver = nil
             
             if isEnabled {
                 self.applicationObserver = NotificationCenter.default.addObserver(forName: NSApplication.didUpdateNotification, object: NSApp, queue: .main) { [unowned self] _ in
