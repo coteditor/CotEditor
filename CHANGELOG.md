@@ -45,6 +45,7 @@
 ### Improvements
 
 - Update tree-sitter-swift to 0.7.3.
+- [non-AppStore ver.] Update Sparkle from 2.9.2 to 2.9.3.
 - [dev] Update Yams from 6.2.1 to 6.2.2.
 
 
