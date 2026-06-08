@@ -363,6 +363,143 @@ struct FolderFindTests {
     }
     
     
+    @Test func fileScopeRulesFilterCandidates() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: "README.md"))
+        try Data("needle".utf8).write(to: rootURL.appending(path: "index.html"))
+        try Data("needle".utf8).write(to: rootURL.appending(path: "note.txt"))
+        
+        let fileScope = FileScope(rules: [
+            FileScope.Rule(target: .filename, comparison: .isEqualTo, value: "README.md"),
+            FileScope.Rule(target: .fileExtension, comparison: .isEqualTo, value: "html"),
+        ])
+        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope))
+        
+        #expect(summary.metrics.searchedFileCount == 2)
+        #expect(summary.metrics.matchCount == 2)
+        #expect(Set(summary.files.map(\.filename)) == ["README.md", "index.html"])
+    }
+    
+    
+    @Test func fileScopeRuleComparisons() throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        let fileURL = rootURL.appending(path: "Package.swift")
+        try Data("needle".utf8).write(to: fileURL)
+        let candidate = try FolderFind.Candidate(at: fileURL)
+        
+        #expect(FileScope(rules: [
+            FileScope.Rule(target: .filename, comparison: .contains, value: "package"),
+        ]).contains(candidate, relativeTo: rootURL))
+        #expect(FileScope(rules: [
+            FileScope.Rule(target: .fileExtension, comparison: .isNotEqualTo, value: "txt"),
+        ]).contains(candidate, relativeTo: rootURL))
+        #expect(FileScope(rules: [
+            FileScope.Rule(target: .filename, comparison: .endsWith, value: ".swift"),
+        ]).contains(candidate, relativeTo: rootURL))
+        #expect(FileScope(rules: [
+            FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: #"Package\..+"#),
+        ]).contains(candidate, relativeTo: rootURL))
+        #expect(!FileScope(rules: [
+            FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: "swift"),
+        ]).contains(candidate, relativeTo: rootURL))
+    }
+    
+    
+    @Test func fileScopePathTargetUsesRelativePath() throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        let subDirectoryURL = rootURL.appending(path: "src", directoryHint: .isDirectory)
+        try FileManager.default.createDirectory(at: subDirectoryURL, withIntermediateDirectories: true)
+        let fileURL = subDirectoryURL.appending(path: "main.swift")
+        try Data("needle".utf8).write(to: fileURL)
+        let candidate = try FolderFind.Candidate(at: fileURL)
+        
+        #expect(FileScope(rules: [
+            FileScope.Rule(target: .filePath, comparison: .isEqualTo, value: "src/main.swift"),
+        ]).contains(candidate, relativeTo: rootURL))
+        #expect(FileScope(rules: [
+            FileScope.Rule(target: .filePath, comparison: .startsWith, value: "src/"),
+        ]).contains(candidate, relativeTo: rootURL))
+        #expect(FileScope(rules: [
+            FileScope.Rule(target: .filePath, comparison: .endsWith, value: "main.swift"),
+        ]).contains(candidate, relativeTo: rootURL))
+        #expect(!FileScope(rules: [
+            FileScope.Rule(target: .filePath, comparison: .isEqualTo, value: "main.swift"),
+        ]).contains(candidate, relativeTo: rootURL))
+    }
+    
+    
+    @Test func fileScopePathTargetFallsBackToAbsolutePath() throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        let fileURL = rootURL.appending(path: "main.swift")
+        try Data("needle".utf8).write(to: fileURL)
+        let candidate = try FolderFind.Candidate(at: fileURL)
+        
+        // the absolute path is used when the candidate is not under the root folder
+        let unrelatedURL = rootURL.appending(path: "other", directoryHint: .isDirectory)
+        
+        #expect(FileScope(rules: [
+            FileScope.Rule(target: .filePath, comparison: .startsWith, value: "/"),
+        ]).contains(candidate, relativeTo: unrelatedURL))
+        #expect(FileScope(rules: [
+            FileScope.Rule(target: .filePath, comparison: .endsWith, value: "/main.swift"),
+        ]).contains(candidate, relativeTo: unrelatedURL))
+    }
+    
+    
+    @Test func invalidFileScopeThrowsBeforeScanning() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: "a.txt"))
+        
+        let progress = FolderFindProgress(findString: "needle")
+        let fileScope = FileScope(rules: [
+            FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: "["),
+        ])
+        
+        await #expect(throws: FileScope.Error.invalidRegularExpression(ruleIndex: 0, pattern: "[")) {
+            try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope), progress: progress)
+        }
+        
+        #expect(progress.snapshot.searchedFileCount == 0)
+        #expect(progress.snapshot.skippedFileCount == 0)
+    }
+    
+    
+    @Test func emptyFileScopeRuleValueThrowsBeforeScanning() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: "a.txt"))
+        
+        let progress = FolderFindProgress(findString: "needle")
+        let fileScope = FileScope(rules: [
+            FileScope.Rule(target: .filename, comparison: .contains, value: ""),
+        ])
+        
+        await #expect(throws: FileScope.Error.emptyValue(ruleIndex: 0)) {
+            try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope), progress: progress)
+        }
+        
+        #expect(progress.snapshot.searchedFileCount == 0)
+        #expect(progress.snapshot.skippedFileCount == 0)
+    }
+    
+    
     @Test func unreadableTextIsSkipped() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()

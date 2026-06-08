@@ -118,7 +118,7 @@ struct Search {
             
             if candidate.isDirectory {
                 try await self.searchDirectory(at: candidate.fileURL)
-            } else if self.isIncluded?(candidate) ?? (self.options.includesOtherFileTypes || FolderFind.isSearchableText(candidate)) {
+            } else if self.includes(candidate) {
                 try self.searchFile(candidate)
             }
         }
@@ -166,6 +166,18 @@ struct Search {
                                                 filename: candidate.fileURL.lastPathComponent,
                                                 directoryPathComponents: Array(directoryPathComponents.dropFirst(rootPathComponents.count)),
                                                 matches: matches))
+    }
+    
+    
+    /// Returns whether the candidate should be searched.
+    ///
+    /// - Parameter candidate: The file candidate to evaluate.
+    /// - Returns: `true` if the candidate should be searched.
+    private func includes(_ candidate: FolderFind.Candidate) -> Bool {
+        
+        let includesFileType = self.isIncluded?(candidate) ?? (self.options.includesOtherFileTypes || FolderFind.isSearchableText(candidate))
+        
+        return includesFileType && self.options.fileScope.contains(candidate, relativeTo: self.rootURL)
     }
     
     

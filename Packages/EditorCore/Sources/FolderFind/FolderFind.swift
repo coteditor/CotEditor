@@ -65,6 +65,7 @@ public enum FolderFind {
         public var includesOtherFileTypes: Bool
         public var includesHiddenFiles: Bool
         public var excludedNames: Set<String>
+        public var fileScope: FileScope
         public var decodingOptions: String.DetectionOptions
         
         
@@ -74,17 +75,20 @@ public enum FolderFind {
         ///   - includesOtherFileTypes: Whether files that do not look like plain text should also be searched.
         ///   - includesHiddenFiles: Whether hidden files should be included.
         ///   - excludedNames: File or folder names to exclude from traversal.
+        ///   - fileScope: The file scope to search.
         ///   - decodingOptions: The text decoding options to use for reading files.
         public init(
             includesOtherFileTypes: Bool = false,
             includesHiddenFiles: Bool = false,
             excludedNames: Set<String> = [".DS_Store", ".git"],
+            fileScope: FileScope = .init(),
             decodingOptions: String.DetectionOptions = .init(candidates: [.utf8], considersDeclaration: true)
         ) {
             
             self.includesOtherFileTypes = includesOtherFileTypes
             self.includesHiddenFiles = includesHiddenFiles
             self.excludedNames = excludedNames
+            self.fileScope = fileScope
             self.decodingOptions = decodingOptions
         }
     }
@@ -210,11 +214,12 @@ public enum FolderFind {
     ///   - progress: The progress object to update while searching.
     ///   - isIncluded: The predicate to determine whether a file candidate should be searched. If `nil`, the file type option is used.
     /// - Returns: The search summary.
-    /// - Throws: `TextFind.Error` for invalid queries, or `CancellationError` if the task is cancelled.
+    /// - Throws: `TextFind.Error` for invalid queries, `FileScope.Error` for invalid file scopes, or `CancellationError` if the task is cancelled.
     public static func find(in rootURL: URL, query: Query, options: Options = .init(), progress: FolderFindProgress? = nil, isIncluded: (@Sendable (Candidate) -> Bool)? = nil) async throws -> Summary {
         
-        // validate the query before traversing the folder
+        // validate search conditions before traversing the folder
         try query.validate()
+        try options.fileScope.validate()
         
         var search = Search(rootURL: rootURL, query: query, options: options, progress: progress, isIncluded: isIncluded)
         return try await search.run()

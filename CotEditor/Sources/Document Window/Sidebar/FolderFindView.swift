@@ -102,7 +102,8 @@ import TextFind
     ///   - ignoresCase: Whether character case should be ignored.
     ///   - includesHiddenFiles: Whether hidden files should be searched.
     ///   - includesOtherFileTypes: Whether files that do not look like plain text should also be searched.
-    func find(findString: String, usesRegularExpression: Bool, ignoresCase: Bool, includesHiddenFiles: Bool, includesOtherFileTypes: Bool = false) {
+    ///   - fileScope: The file scope to search.
+    func find(findString: String, usesRegularExpression: Bool, ignoresCase: Bool, includesHiddenFiles: Bool, includesOtherFileTypes: Bool = false, fileScope: FileScope = .init()) {
         
         self.searchTask?.cancel()
         self.selectionTask?.cancel()
@@ -133,6 +134,7 @@ import TextFind
         let options = FolderFind.Options(
             includesOtherFileTypes: includesOtherFileTypes,
             includesHiddenFiles: includesHiddenFiles,
+            fileScope: fileScope,
             decodingOptions: .init(candidates: EncodingManager.shared.fileEncodingCandidates,
                                    considersDeclaration: UserDefaults.standard[.referToEncodingTag])
         )
@@ -305,6 +307,8 @@ private struct FolderFindControlView: View {
     var model: FolderFinder
     
     @State private var textFinderSettings: TextFinderSettings = .shared
+    @State private var showsFileScopeSheet = false
+    @State private var fileScope = FileScope()
     
     @AppStorage(.folderFindUsesRegularExpression) private var usesRegularExpression: Bool
     @AppStorage(.folderFindIgnoresCase) private var ignoresCase: Bool
@@ -349,6 +353,12 @@ private struct FolderFindControlView: View {
                 Menu {
                     Toggle(String(localized: "Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
                     Toggle(String(localized: "Include Other File Types", table: "Document", comment: "toggle button label"), isOn: $includesOtherFileTypes)
+                    
+                    Divider()
+                    
+                    Button(String(localized: "File Scope…", table: "Document", comment: "menu item title")) {
+                        self.showsFileScopeSheet = true
+                    }
                 } label: {
                     Label(String(localized: "Advanced options", table: "TextFind", comment: "accessibility label"), systemImage: "ellipsis")
                         .symbolVariant(.circle)
@@ -368,11 +378,18 @@ private struct FolderFindControlView: View {
                                 usesRegularExpression: self.usesRegularExpression,
                                 ignoresCase: self.ignoresCase,
                                 includesHiddenFiles: self.includesHiddenFiles,
-                                includesOtherFileTypes: self.includesOtherFileTypes)
+                                includesOtherFileTypes: self.includesOtherFileTypes,
+                                fileScope: self.fileScope)
             }
             .onChange(of: self.textFinderSettings.findString) { _, newValue in
                 self.model.findStringDidChange(to: newValue)
             }
+        }
+        .sheet(isPresented: $showsFileScopeSheet) {
+            FolderFindFileScopeView(fileScope: self.fileScope) { fileScope in
+                self.fileScope = fileScope
+            }
+            .scenePadding()
         }
     }
 }
