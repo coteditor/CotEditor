@@ -166,7 +166,7 @@ private extension NSString {
             var usedLength = 0
             var remaining = NSRange(location: NSNotFound, length: 0)
             
-            let ok = unsafe buffer.withUnsafeMutableBytes { raw -> Bool in
+            let ok = buffer.withUnsafeMutableBytes { raw -> Bool in
                 guard let base = raw.baseAddress else { return false }
                 
                 return unsafe self.getBytes(base, maxLength: raw.count, usedLength: &usedLength, encoding: encoding.rawValue, options: .allowLossy, range: range, remaining: &remaining)
@@ -181,7 +181,7 @@ private extension NSString {
             }
             
             // decode back
-            return unsafe buffer.withUnsafeBytes { raw -> String? in
+            return buffer.withUnsafeBytes { raw -> String? in
                 guard
                     let base = raw.baseAddress,
                     let decoded = unsafe NSString(bytes: base, length: usedLength, encoding: encoding.rawValue)

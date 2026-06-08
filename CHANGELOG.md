@@ -21,6 +21,7 @@
 - Allow custom syntaxes to be deleted by dragging them to the Trash.
 - Allow CotEditor Syntax files and multiple replacement definitions to be imported by dropping them onto their lists.
 - [dev] Tweak the accent color.
+- [dev] Update the build environment to Xcode 27 Beta (Swift 6.4, macOS 27 SDK).
 
 
 ### TODO
