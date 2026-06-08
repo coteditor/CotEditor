@@ -51,7 +51,7 @@ extension NSTextStorage {
         let notifications = NotificationCenter.default.notifications(named: NSTextStorage.didProcessEditingNotification, object: self)
         
         Task {
-            try await withThrowingTaskGroup { group in
+            try? await withThrowingTaskGroup { group in
                 // observe text storage update
                 group.addTask {
                     for await textStorage in notifications.map({ $0.object as! NSTextStorage }) {

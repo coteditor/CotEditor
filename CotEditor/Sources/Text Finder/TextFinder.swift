@@ -375,7 +375,11 @@ struct FindMatchesCache {
         guard let definition = try? ReplacementManager.shared.setting(name: name) else { return assertionFailure() }
         
         Task {
-            try await self.client.replaceAll(definition, inSelection: self.settings.inSelection)
+            do {
+                try await self.client.replaceAll(definition, inSelection: self.settings.inSelection)
+            } catch {
+                return
+            }
             self.invalidateFindMatchesCache()
         }
     }

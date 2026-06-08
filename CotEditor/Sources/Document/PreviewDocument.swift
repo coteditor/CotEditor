@@ -82,7 +82,7 @@ protocol FileContentAttributes: Sendable, Equatable { }
                 
             } else if type.conforms(to: .movie) {
                 Task {
-                    let attributes = try await AVURLAsset(url: url).movieAttributes
+                    guard let attributes = try? await AVURLAsset(url: url).movieAttributes else { return }
                     
                     await MainActor.run {
                         self.previewSize = attributes.dimensions
@@ -92,7 +92,7 @@ protocol FileContentAttributes: Sendable, Equatable { }
                 
             } else if type.conforms(to: .audio) {
                 Task {
-                    let attributes = try await AVURLAsset(url: url).audioAttributes
+                    guard let attributes = try? await AVURLAsset(url: url).audioAttributes else { return }
                     
                     await MainActor.run {
                         self.contentAttributes = attributes
