@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -94,7 +94,7 @@ final class HoleContentView: NSView {
             self.holes.removeAll()
         } else {
             self.holes = self.descendants(type: NSStackView.self)
-                .map { $0.convert($0.frame, to: self) }
+                .map { $0.convert($0.safeAreaRect, to: self) }
                 .filter { !$0.isEmpty }
         }
     }
