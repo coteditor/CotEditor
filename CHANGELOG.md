@@ -10,6 +10,7 @@
 
 ### New Features
 
+- Support __macOS 27 Golden Gate__.
 - Add folder search to the sidebar for searching text across files in an opened folder.
 - Add document history navigation to the toolbar for folder documents.
 - Add the Customize Syntax Menu command to the Available syntaxes action menu in Format settings to hide specific syntaxes from syntax menus.

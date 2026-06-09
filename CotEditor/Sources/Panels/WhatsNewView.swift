@@ -176,7 +176,7 @@ private extension NewFeature {
                        table: "WhatsNew")
             case .macOS27:
                 String(localized: "NewFeature.macOS27.label",
-                       defaultValue: "macOS 27 support",
+                       defaultValue: "macOS 27 Golden Gate support",
                        table: "WhatsNew")
         }
     }
