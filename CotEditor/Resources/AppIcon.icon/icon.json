@@ -1,9 +1,9 @@
 {
+  "features" : [
+    "specular-location"
+  ],
   "fill" : {
-    "linear-gradient" : [
-      "extended-gray:0.97500,1.00000",
-      "gray:0.92000,1.00000"
-    ]
+    "automatic-gradient" : "gray:0.96342,1.00000"
   },
   "groups" : [
     {
@@ -41,7 +41,7 @@
           "name" : "Shadow",
           "opacity-specializations" : [
             {
-              "value" : 0.1
+              "value" : 0.4
             },
             {
               "appearance" : "tinted",
@@ -241,7 +241,7 @@
         "kind" : "layer-color",
         "opacity" : 0.1
       },
-      "specular" : true,
+      "specular" : "inside",
       "translucency-specializations" : [
         {
           "value" : {
