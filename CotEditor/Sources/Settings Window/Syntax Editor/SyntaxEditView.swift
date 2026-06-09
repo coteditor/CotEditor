@@ -82,12 +82,13 @@ struct SyntaxEditView: View {
     
     init(syntax: Syntax? = nil, name: String? = nil, isBundled: Bool = false, customizableFeatures: ParserFeatures = .all, saveAction: @escaping SaveAction, validationAction: @escaping NameValidationAction = { _ in }) {
         
-        self.syntax = SyntaxObject(value: syntax)
-        self.name = name ?? ""
         self.isBundled = isBundled
         self.customizableFeatures = customizableFeatures
         self.saveAction = saveAction
         self.validationAction = validationAction
+        
+        self.syntax = SyntaxObject(value: syntax)
+        self.name = name ?? ""
     }
     
     
