@@ -110,6 +110,7 @@ struct StatusBar: View {
         .controlSize(.small)
         .lineLimit(1)
         .padding(.leading)
+        .padding(.trailing, (ProcessInfo.processInfo.operatingSystemVersion.majorVersion == 27) ? 4 : 0)
         .modifier { content in
             if #available(macOS 26, *) {
                 content
