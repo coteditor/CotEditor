@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ struct OpacitySample: View {
     var body: some View {
         
         GeometryReader { geometry in
-            let radius = geometry.size.height / 4
+            let radius = geometry.size.height / 3
             
             ZStack {
                 RoundedRectangle(cornerRadius: radius, style: .continuous)
@@ -52,7 +52,7 @@ struct OpacitySample: View {
             }
         }
         .aspectRatio(1, contentMode: .fit)
-        .frame(height: 16)
+        .frame(height: 20)
     }
     
     
