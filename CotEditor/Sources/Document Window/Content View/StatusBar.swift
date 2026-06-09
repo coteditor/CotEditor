@@ -109,9 +109,10 @@ struct StatusBar: View {
         .buttonStyle(.borderless)
         .controlSize(.small)
         .lineLimit(1)
-        .padding(.leading)
         .frame(height: 16)
         .padding(.vertical, 8)
+        .padding(.leading)
+        .padding(.trailing, (ProcessInfo.processInfo.operatingSystemVersion.majorVersion == 27) ? 4 : 0)
         .containerCornerOffset(.horizontal, sizeToFit: true)
         .background(.windowBackground)
     }

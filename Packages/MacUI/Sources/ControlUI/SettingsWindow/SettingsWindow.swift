@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,7 +32,11 @@ final class SettingsWindow: NSWindow {
     
     override var canBecomeMain: Bool {
         
-        true  // workaround ShareLink issue (2025-08, macOS 26, FB19287270)
+        if ProcessInfo.processInfo.operatingSystemVersion.majorVersion == 26 {
+            true  // workaround ShareLink issue (2025-08, macOS 26, fixed in macOS 27, FB19287270)
+        } else {
+            false
+        }
     }
     
     

@@ -45,6 +45,7 @@
 ### Improvements
 
 - Update tree-sitter-swift to 0.7.3.
+- Fine-tune the layout for the new macOS.
 - [non-AppStore ver.] Update Sparkle from 2.9.2 to 2.9.3.
 - [dev] Update Yams from 6.2.1 to 6.2.2.
 
@@ -53,6 +54,7 @@
 
 - Fix an issue where the Command-Left Arrow command could fail to move the cursor to the beginning of the current wrapped visual line.
 - Fix an issue where regular-expression syntax highlighting in input fields could fail to update immediately when changing regular expression mode while editing.
+- Fix an issue where the Advanced Character Counter could sometimes be positioned incorrectly.
 
 
 

@@ -76,7 +76,5 @@ struct AddRemoveButton<Item: Identifiable>: View {
             .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
             .disabled(self.selection.isEmpty)
         }
-        .buttonSizing(.flexible)
-        .frame(width: 52)
     }
 }
