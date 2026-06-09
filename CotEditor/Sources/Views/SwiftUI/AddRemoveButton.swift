@@ -79,11 +79,10 @@ struct AddRemoveButton<Item: Identifiable>: View {
         .modifier { content in
             if #available(macOS 26, *) {
                 content
-                    .buttonSizing(.flexible)
             } else {
                 content
+                    .frame(width: 52)
             }
         }
-        .frame(width: 52)
     }
 }
