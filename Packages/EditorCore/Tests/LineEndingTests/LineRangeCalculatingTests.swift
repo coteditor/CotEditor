@@ -68,15 +68,14 @@ struct LineRangeCalculatingTests {
         }
         
         
-        @Test func random() {
+        @Test(arguments: 0..<10)
+        func random(_: Int) {
             
-            for _ in 0..<10 {
-                let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
-                let calculator = Calculator(string: string)
-                
-                for index in (0..<string.utf16.count).shuffled() {
-                    #expect(calculator.lineNumber(at: index) == string.lineNumber(at: index))
-                }
+            let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
+            let calculator = Calculator(string: string)
+            
+            for index in (0..<string.utf16.count).shuffled() {
+                #expect(calculator.lineNumber(at: index) == string.lineNumber(at: index))
             }
         }
     }
@@ -84,13 +83,12 @@ struct LineRangeCalculatingTests {
     
     @Suite struct NumberOfLinesTests {
         
-        @Test func count() {
+        @Test(arguments: ["", "a", "\n", "\n\n", "a\nb", "a\nb\n", "a\r\nb\r\n"])
+        func count(string: String) {
             
-            for string in ["", "a", "\n", "\n\n", "a\nb", "a\nb\n", "a\r\nb\r\n"] {
-                let calculator = Calculator(string: string)
-                
-                #expect(calculator.numberOfLines == string.numberOfLines)
-            }
+            let calculator = Calculator(string: string)
+            
+            #expect(calculator.numberOfLines == string.numberOfLines)
         }
     }
     
@@ -140,18 +138,17 @@ struct LineRangeCalculatingTests {
         }
         
         
-        @Test func random() {
+        @Test(arguments: 0..<10)
+        func random() {
             
-            for _ in 0..<10 {
-                let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
-                let calculator = Calculator(string: string)
+            let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
+            let calculator = Calculator(string: string)
+            
+            for index in (0...string.length).shuffled() {
+                let result = (string as NSString).lineRange(at: index)
                 
-                for index in (0...string.length).shuffled() {
-                    let result = (string as NSString).lineRange(at: index)
-                    
-                    #expect(calculator.lineStartIndex(at: index) == result.lowerBound)
-                    #expect(calculator.lineRange(at: index) == result)
-                }
+                #expect(calculator.lineStartIndex(at: index) == result.lowerBound)
+                #expect(calculator.lineRange(at: index) == result)
             }
         }
     }
@@ -195,19 +192,18 @@ struct LineRangeCalculatingTests {
         }
         
         
-        @Test func random() {
+        @Test(arguments: 0..<10)
+        func random() {
             
-            for _ in 0..<10 {
-                let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
-                let calculator = Calculator(string: string)
-                
-                for lowerBound in (0...string.length).shuffled() {
-                    for upperBound in lowerBound..<string.length {
-                        let range = NSRange(lowerBound..<upperBound)
-                        let result = string.lineContentsRange(for: range)
-                        
-                        #expect(calculator.lineContentsRange(for: range) == result)
-                    }
+            let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
+            let calculator = Calculator(string: string)
+            
+            for lowerBound in (0...string.length).shuffled() {
+                for upperBound in lowerBound..<string.length {
+                    let range = NSRange(lowerBound..<upperBound)
+                    let result = string.lineContentsRange(for: range)
+                    
+                    #expect(calculator.lineContentsRange(for: range) == result)
                 }
             }
         }

@@ -184,6 +184,7 @@ import UniformTypeIdentifiers
                     continue
             }
         }
+        
         throw WaitError.unexpectedState
     }
     
@@ -205,6 +206,7 @@ import UniformTypeIdentifiers
                     continue
             }
         }
+        
         throw WaitError.unexpectedState
     }
     
