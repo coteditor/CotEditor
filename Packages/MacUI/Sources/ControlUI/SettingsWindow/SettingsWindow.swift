@@ -32,11 +32,10 @@ final class SettingsWindow: NSWindow {
     
     override var canBecomeMain: Bool {
         
-        if ProcessInfo.processInfo.operatingSystemVersion.majorVersion == 26 {
-            true  // workaround ShareLink issue (2025-08, macOS 26, fixed in macOS 27, FB19287270)
-        } else {
-            false
-        }
+        // workaround ShareLink issue (2025-08, macOS 26, fixed in macOS 27, FB19287270)
+        guard #available(macOS 27, *) else { return true }
+        
+        return false
     }
     
     
