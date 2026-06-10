@@ -145,6 +145,7 @@ enum NewFeature: CaseIterable {
     case folderFind
     case folderNavigationHistory
     case macOS27
+    case documentName
 }
 
 
@@ -159,6 +160,8 @@ private extension NewFeature {
                 Image(systemName: "chevron.left.chevron.right")
             case .macOS27:
                 Image(systemName: "finder")
+            case .documentName:
+                Image(systemName: "rectangle.and.pencil.and.ellipsis")
         }
     }
     
@@ -178,6 +181,10 @@ private extension NewFeature {
                 String(localized: "NewFeature.macOS27.label",
                        defaultValue: "macOS 27 Golden Gate support",
                        table: "WhatsNew")
+            case .documentName:
+                String(localized: "NewFeature.documentName.label",
+                       defaultValue: "Document name suggestion",
+                       table: "WhatsNew")
         }
     }
     
@@ -195,6 +202,10 @@ private extension NewFeature {
                        table: "WhatsNew")
             case .macOS27:
                 String(localized: "NewFeature.macOS27.description",
+                       defaultValue: "n/a",
+                       table: "WhatsNew")
+            case .documentName:
+                String(localized: "NewFeature.documentName.description",
                        defaultValue: "n/a",
                        table: "WhatsNew")
         }

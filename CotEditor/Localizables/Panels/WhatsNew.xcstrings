@@ -214,6 +214,28 @@
         }
       }
     },
+    "NewFeature.documentName.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "n/a"
+          }
+        }
+      }
+    },
+    "NewFeature.documentName.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Document name suggestion"
+          }
+        }
+      }
+    },
     "NewFeature.folderFind.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
