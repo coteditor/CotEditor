@@ -82,8 +82,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private var syntaxNamesObserver: Task<Void, Never>?
     private var syntaxDefaultsObserver: AnyCancellable?
     private weak var syntaxPopUpButton: NSPopUpButton?
-    private weak var previousDocumentHistoryMenu: NSMenu?
-    private weak var forwardDocumentHistoryMenu: NSMenu?
     
     
     // MARK: Lifecycle
@@ -560,6 +558,13 @@ private extension NSToolbarItem.Identifier {
 }
 
 
+private extension NSUserInterfaceItemIdentifier {
+    
+    static let previousDocumentHistoryMenu = Self(rawValue: "previousDocumentHistoryMenu")
+    static let forwardDocumentHistoryMenu = Self(rawValue: "forwardDocumentHistoryMenu")
+}
+
+
 extension DocumentWindowController: NSToolbarDelegate {
     
     private var immovableDirectoryIdentifiers: [NSToolbarItem.Identifier] {
@@ -642,8 +647,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .documentHistory:
                 let previousMenu = NSMenu()
+                previousMenu.identifier = .previousDocumentHistoryMenu
                 previousMenu.delegate = self
-                self.previousDocumentHistoryMenu = previousMenu
                 
                 let previousItem = NSMenuToolbarItem(itemIdentifier: .previousDocumentHistory)
                 previousItem.label = String(localized: "Toolbar.documentHistory.previous.label",
@@ -657,8 +662,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 previousItem.menu = previousMenu
                 
                 let forwardMenu = NSMenu()
+                forwardMenu.identifier = .forwardDocumentHistoryMenu
                 forwardMenu.delegate = self
-                self.forwardDocumentHistoryMenu = forwardMenu
                 
                 let forwardItem = NSMenuToolbarItem(itemIdentifier: .forwardDocumentHistory)
                 forwardItem.label = String(localized: "Toolbar.documentHistory.forward.label",
@@ -682,6 +687,15 @@ extension DocumentWindowController: NSToolbarDelegate {
                                       defaultValue: "Go back or forward in document history", table: "Document")
                 item.subitems = [previousItem, forwardItem]
                 item.action = #selector(DirectoryDocument.navigateDocumentHistory(_:))
+                
+                let menuRepresentation = NSMenu()
+                menuRepresentation.items = [
+                    NSMenuItem(title: previousItem.label, action: previousItem.action, keyEquivalent: ""),
+                    NSMenuItem(title: forwardItem.label, action: forwardItem.action, keyEquivalent: ""),
+                ]
+                item.menuFormRepresentation = NSMenuItem(title: item.label, action: nil, keyEquivalent: "")
+                item.menuFormRepresentation?.submenu = menuRepresentation
+                
                 return item
                 
             case .syntax:
@@ -1028,10 +1042,10 @@ extension DocumentWindowController: NSMenuDelegate {
     
     func menuNeedsUpdate(_ menu: NSMenu) {
         
-        switch menu {
-            case self.previousDocumentHistoryMenu:
+        switch menu.identifier {
+            case .previousDocumentHistoryMenu:
                 self.updateDocumentHistoryMenu(menu, forward: false)
-            case self.forwardDocumentHistoryMenu:
+            case .forwardDocumentHistoryMenu:
                 self.updateDocumentHistoryMenu(menu, forward: true)
             default:
                 assertionFailure()
