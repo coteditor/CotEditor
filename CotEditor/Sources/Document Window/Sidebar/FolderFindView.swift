@@ -580,7 +580,7 @@ private struct FolderFindMatchView: View {
         }
         .foregroundStyle(.secondary)
         .labelIconToTitleSpacing(4)
-        .lineLimit(2)
+        .lineLimit(3)
         .multilineTextAlignment(.leading)
     }
     
