@@ -28,6 +28,8 @@
 
 ### TODO
 
+- Update the user guide.
+- Update What's New CotEditor 7.1.
 - Localize strings added.
     - Document Window/Document.xcstrings
     - Settings/Other Views/SyntaxListCustomization.xcstrings
