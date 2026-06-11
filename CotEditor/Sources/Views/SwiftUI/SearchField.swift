@@ -189,6 +189,14 @@ private final class RegexSearchField: NSSearchField {
     }
     
     
+    override func draw(_ dirtyRect: NSRect) {
+        
+        // workaround to disable the Liquid Glass style on macOS 27 (2026-06, macOS 27)
+        
+        super.draw(dirtyRect)
+    }
+    
+    
     /// Invoked when the receiver was focused to edit the content.
     override func becomeFirstResponder() -> Bool {
         

@@ -64,6 +64,7 @@ disabled_rules:
   - block_based_kvo
   - force_cast
   - force_try
+  - unneeded_override
   - opening_brace
   - trailing_comma
 
