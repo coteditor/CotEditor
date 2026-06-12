@@ -10,6 +10,7 @@
 
 ### Improvements
 
+- Avoid reopening the completion list automatically after typing an additional character during manual completion.
 - Update tree-sitter-swift to 0.7.3.
 - Fine-tune the layout for the new macOS.
 - [non-AppStore ver.] Update Sparkle from 2.9.2 to 2.9.3.

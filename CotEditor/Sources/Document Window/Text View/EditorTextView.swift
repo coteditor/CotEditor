@@ -159,7 +159,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private var textHighlightColor: NSColor = .accent
     private var instanceHighlightTask: Task<Void, any Error>?
     
-    private var needsRecompletion = false
     private var isShowingCompletion = false
     private var partialCompletionWord: String?
     private lazy var completionDebouncer = Debouncer { [weak self] in self?.performCompletion() }
@@ -460,12 +459,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         if self.isAutomaticWhitespaceTrimmingEnabled {
             self.trimTrailingWhitespaceTask.schedule(delay: .seconds(3))
-        }
-        
-        // retry completion if needed
-        // -> Flag is set in `insertCompletion(_:forPartialWordRange:movement:isFinal:)`.
-        if self.needsRecompletion {
-            self.completionDebouncer.schedule(delay: .milliseconds(50))
         }
     }
     
@@ -1759,7 +1752,6 @@ extension EditorTextView {
     override func insertCompletion(_ word: String, forPartialWordRange charRange: NSRange, movement: Int, isFinal flag: Bool) {
         
         self.completionDebouncer.cancel()
-        self.needsRecompletion = false
         
         self.isShowingCompletion = !flag
         
@@ -1768,25 +1760,17 @@ extension EditorTextView {
             self.partialCompletionWord = (self.string as NSString).substring(with: charRange)
         }
         
-        // raise a flag to proceed word completion again if a normal key input occurs while the completion list is shown.
-        // -> The flag will be used in `didChangeText()`.
-        var movement = movement
-        if flag,
-           let event = self.window?.currentEvent,
-           event.type == .keyDown,
-           !event.modifierFlags.contains(.command),
-           event.charactersIgnoringModifiers == event.characters  // exclude key-bindings
+        // fix that underscore is treated as the right arrow key
+        let movement = if flag,
+                          let event = self.window?.currentEvent,
+                          event.type == .keyDown,
+                          !event.modifierFlags.contains(.command),
+                          event.charactersIgnoringModifiers == event.characters,  // exclude key-bindings
+                          event.characters == "_", movement == NSRightTextMovement
         {
-            // fix that underscore is treated as the right arrow key
-            if event.characters == "_", movement == NSRightTextMovement {
-                movement = NSIllegalTextMovement
-            }
-            if movement == NSIllegalTextMovement,
-               let character = event.characters?.utf16.first,
-               character < 0xF700, character != Int16(NSDeleteCharacter)
-            {  // standard key-input
-                self.needsRecompletion = true
-            }
+            NSIllegalTextMovement
+        } else {
+            movement
         }
         
         var word = word
