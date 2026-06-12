@@ -140,8 +140,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private static let textContainerInset = NSSize(width: 4, height: 6)
     
     private let minimumNonContiguousLayoutLength = 5_000_000
-    private let automaticCompletionDelay = 0.25
     private let minimumAutomaticCompletionLength = 3
+    private let automaticCompletionDelay: TimeInterval = 0.25
     
     private let textFinder = TextFinder()
     
@@ -535,8 +535,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         // auto completion
         if self.isAutomaticCompletionEnabled {
             if self.rangeForUserCompletion.length >= self.minimumAutomaticCompletionLength {
-                let delay: TimeInterval = self.automaticCompletionDelay
-                self.completionDebouncer.schedule(delay: .seconds(delay))
+                self.completionDebouncer.schedule(delay: .seconds(self.automaticCompletionDelay))
             } else {
                 self.completionDebouncer.cancel()
             }
@@ -1826,14 +1825,14 @@ extension EditorTextView {
     /// Displays the word completion candidates list.
     private func performCompletion() {
         
-        // abort if:
         guard
-            !self.hasMarkedText(),  // input is not specified (for Japanese input)
-            self.selectedRange.isEmpty,  // selected
-            let lastCharacter = self.string.character(before: self.selectedRange), !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
+            !self.hasMarkedText(),
+            self.selectedRange.isEmpty,
+            self.string.character(before: self.selectedRange)
+                .map(CharacterSet.whitespacesAndNewlines.contains) != true,  // last character is blank
+            self.string.character(after: self.selectedRange)
+                .map(CharacterSet.alphanumerics.contains) != true  // cursor is (probably) at the middle of a word
         else { return }
-        
-        if let nextCharacter = self.string.character(after: self.selectedRange), CharacterSet.alphanumerics.contains(nextCharacter) { return }  // cursor is (probably) at the middle of a word
         
         self.complete(self)
     }
