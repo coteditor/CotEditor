@@ -527,7 +527,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         // auto completion
         if self.isAutomaticCompletionEnabled {
-            if self.rangeForUserCompletion.length >= self.minimumAutomaticCompletionLength {
+            if !self.hasMarkedText(),
+               self.rangeForUserCompletion.length >= self.minimumAutomaticCompletionLength
+            {
                 self.completionDebouncer.schedule(delay: .seconds(self.automaticCompletionDelay))
             } else {
                 self.completionDebouncer.cancel()
@@ -1812,6 +1814,7 @@ extension EditorTextView {
         guard
             !self.hasMarkedText(),
             self.selectedRange.isEmpty,
+            self.rangeForUserCompletion.length >= self.minimumAutomaticCompletionLength,
             self.string.character(before: self.selectedRange)
                 .map(CharacterSet.whitespacesAndNewlines.contains) != true,  // last character is blank
             self.string.character(after: self.selectedRange)
