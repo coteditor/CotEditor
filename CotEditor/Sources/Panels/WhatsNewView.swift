@@ -159,7 +159,7 @@ private extension NewFeature {
             case .folderNavigationHistory:
                 Image(systemName: "chevron.left.chevron.right")
             case .macOS27:
-                Image(systemName: "finder")
+                Image(systemName: "27.circle")
             case .documentName:
                 Image(systemName: "rectangle.and.pencil.and.ellipsis")
         }
@@ -171,19 +171,19 @@ private extension NewFeature {
         switch self {
             case .folderFind:
                 String(localized: "NewFeature.folderFind.label",
-                       defaultValue: "Folder search",
+                       defaultValue: "Find it in the folder",
                        table: "WhatsNew")
             case .folderNavigationHistory:
                 String(localized: "NewFeature.folderNavigationHistory.label",
-                       defaultValue: "Folder navigation history",
+                       defaultValue: "Back and forward in folders",
                        table: "WhatsNew")
             case .macOS27:
                 String(localized: "NewFeature.macOS27.label",
-                       defaultValue: "macOS 27 Golden Gate support",
+                       defaultValue: "Ready for macOS 27",
                        table: "WhatsNew")
             case .documentName:
                 String(localized: "NewFeature.documentName.label",
-                       defaultValue: "Document name suggestion",
+                       defaultValue: "Let the document name itself",
                        table: "WhatsNew")
         }
     }
@@ -194,19 +194,19 @@ private extension NewFeature {
         switch self {
             case .folderFind:
                 String(localized: "NewFeature.folderFind.description",
-                       defaultValue: "n/a",
+                       defaultValue: "Search text across files in an opened folder right from the sidebar.",
                        table: "WhatsNew")
             case .folderNavigationHistory:
                 String(localized: "NewFeature.folderNavigationHistory.description",
-                       defaultValue: "n/a",
+                       defaultValue: "Use the toolbar to move back and forward through recently viewed documents in a folder document.",
                        table: "WhatsNew")
             case .macOS27:
                 String(localized: "NewFeature.macOS27.description",
-                       defaultValue: "n/a",
+                       defaultValue: "CotEditor now supports macOS 27 Golden Gate, including refreshed appearance for the latest system.",
                        table: "WhatsNew")
             case .documentName:
                 String(localized: "NewFeature.documentName.description",
-                       defaultValue: "n/a",
+                       defaultValue: "On macOS 27, untitled documents automatically get a draft name suggested from their content.",
                        table: "WhatsNew")
         }
     }

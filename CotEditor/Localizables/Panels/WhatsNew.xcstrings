@@ -217,10 +217,46 @@
     "NewFeature.documentName.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unter macOS 27 erhalten unbenannte Dokumente automatisch einen aus ihrem Inhalt vorgeschlagenen Arbeitsnamen."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "n/a"
+            "value" : "On macOS 27, untitled documents automatically get a draft name suggested from their content."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On macOS 27, untitled documents automatically get a draft name suggested from their content."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "En macOS 27, los documentos sin título reciben automáticamente un nombre provisional sugerido a partir de su contenido."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sous macOS 27, les documents sans titre reçoivent automatiquement un nom provisoire suggéré à partir de leur contenu."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 27では、名称未設定の書類に内容から提案された書類名の草案が自動で付くようになりました。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "In macOS 27 krijgen naamloze documenten automatisch een conceptnaam op basis van hun inhoud."
           }
         }
       }
@@ -228,10 +264,46 @@
     "NewFeature.documentName.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Dokument benennt sich selbst"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Document name suggestion"
+            "value" : "Let the document name itself"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let the document name itself"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Deja que el documento se nombre solo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Le document se nomme tout seul"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書類名は書類におまかせ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Laat het document zichzelf een naam geven"
           }
         }
       }
@@ -239,10 +311,46 @@
     "NewFeature.folderFind.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suche direkt über die Seitenleiste nach Text in Dateien eines geöffneten Ordners."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "n/a"
+            "value" : "Search text across files in an opened folder right from the sidebar."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search text across files in an opened folder right from the sidebar."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Busca texto en archivos de una carpeta abierta directamente desde la barra lateral."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Recherchez du texte dans les fichiers d’un dossier ouvert directement depuis la barre latérale."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開いているフォルダ内のファイルを、サイドバーからそのまま全文検索できるようになりました。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zoek tekst in bestanden in een geopende map, rechtstreeks vanuit de navigatiekolom."
           }
         }
       }
@@ -250,10 +358,46 @@
     "NewFeature.folderFind.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Im Ordner finden"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Folder search"
+            "value" : "Find it in the folder"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find it in the folder"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Encuéntralo en la carpeta"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Trouvez-le dans le dossier"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フォルダの中から見つけよう"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Vind het in de map"
           }
         }
       }
@@ -261,10 +405,46 @@
     "NewFeature.folderNavigationHistory.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wechsle in einem Ordnerdokument über die Symbolleiste vor und zurück durch zuletzt angezeigte Dokumente."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "n/a"
+            "value" : "Use the toolbar to move back and forward through recently viewed documents in a folder document."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use the toolbar to move back and forward through recently viewed documents in a folder document."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Usa la barra de herramientas para avanzar y retroceder por los documentos vistos recientemente en un documento de carpeta."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Utilisez la barre d’outils pour naviguer en arrière et en avant parmi les documents récemment consultés dans un document de dossier."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フォルダ書類で最近表示した書類を、ツールバーから戻る・進むでたどれるようになりました。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Gebruik de knoppenbalk om terug en vooruit te gaan door onlangs bekeken documenten in een mapdocument."
           }
         }
       }
@@ -272,10 +452,46 @@
     "NewFeature.folderNavigationHistory.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurück und vorwärts in Ordnern"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Folder navigation history"
+            "value" : "Back and forward in folders"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back and forward in folders"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Atrás y adelante en carpetas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Précédent et suivant dans les dossiers"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フォルダでも戻る・進む"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Terug en vooruit in mappen"
           }
         }
       }
@@ -283,10 +499,46 @@
     "NewFeature.macOS27.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor unterstützt jetzt macOS 27 Golden Gate, einschließlich überarbeitetem Erscheinungsbild für das neueste System."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "n/a"
+            "value" : "CotEditor now supports macOS 27 Golden Gate, including refreshed appearance for the latest system."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor now supports macOS 27 Golden Gate, including refreshed appearance for the latest system."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CotEditor ahora es compatible con macOS 27 Golden Gate, con un aspecto renovado para el sistema más reciente."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CotEditor prend désormais en charge macOS 27 Golden Gate, avec une apparence actualisée pour le tout dernier système."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditorがmacOS 27 Golden Gateに対応しました。最新システムに合わせて外観も整えています。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CotEditor ondersteunt nu macOS 27 Golden Gate, inclusief een vernieuwde vormgeving voor het nieuwste systeem."
           }
         }
       }
@@ -294,10 +546,46 @@
     "NewFeature.macOS27.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bereit für macOS 27"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "macOS 27 Golden Gate support"
+            "value" : "Ready for macOS 27"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ready for macOS 27"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Listo para macOS 27"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prêt pour macOS 27"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 27に対応"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Klaar voor macOS 27"
           }
         }
       }
