@@ -6923,7 +6923,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regulärer-Ausdruck-Suche"
+            "value" : "Suche mit regulären Ausdrücken"
           }
         },
         "en-GB" : {
