@@ -94,9 +94,17 @@ struct AboutView: View {
                 } label: {
                     EmptyView()
                 }
-                .pickerStyle(.segmented)
+                .modifier { container in
+                    if #available(macOS 27, *) {
+                        container
+                            .pickerStyle(.tabs)
+                    } else {
+                        container
+                            .pickerStyle(.segmented)
+                            .tint(.secondary.opacity(0.5))
+                    }
+                }
                 .buttonBorderShape(.capsule)
-                .tint(.secondary.opacity(0.5))
                 .padding(10)
             }
             .scrollEdgeEffectStyle(.soft, for: .top)
