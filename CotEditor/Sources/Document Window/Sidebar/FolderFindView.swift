@@ -261,43 +261,99 @@ struct FolderFindView: View {
    
     @Bindable var model: FolderFinder
     
+    @State private var selection: Set<FolderFind.ResultID> = []
+    @State private var expandedFileURLs: Set<URL> = []
+    
     
     var body: some View {
     
-        VStack(spacing: 0) {
-            FolderFindControlView(model: self.model)
-                .padding(10)
-            
-            Divider()
-            
-            switch self.model.state {
-                case .idle:
-                    Spacer()
-                    
-                case .searching(let progress):
-                    FolderFindSearchingView(progress: progress)
-                    
-                case .finished(let summary) where summary.metrics.matchCount == 0:
-                    UnavailableView(title: String(localized: "FolderFind.SearchState.finished.zero.label",
-                                                  defaultValue: "No Results", table: "Document"),
-                                    systemName: "magnifyingglass",
-                                    description: String(localized: "FolderFind.SearchState.finished.zero.description",
-                                                        defaultValue: "No matches for “\(summary.metrics.findString)” were found.",
-                                                        table: "Document"))
-                    .controlSize(.small)
-                    
-                case .finished(let summary):
-                    FolderFindSummaryView(summary: summary, model: self.model)
-                    
-                case .failed(let error):
-                    UnavailableView(title: String(localized: "FolderFind.SearchState.failed.label",
-                                                  defaultValue: "Search Failed", table: "Document"),
-                                    systemName: "exclamationmark.triangle",
-                                    description: error.localizedDescription)
-                    .controlSize(.small)
+        List(selection: $selection) {
+            if case .finished(let summary) = self.model.state {
+                FolderFindSummaryView(summary: summary, expandedFileURLs: $expandedFileURLs)
             }
         }
+        .safeAreaBar(edge: .top) {
+            VStack(spacing: 0) {
+                FolderFindControlView(model: self.model)
+                    .padding(10)
+                FolderFindMetricsBarView(state: self.model.state)
+            }
+        }
+        .scrollContentBackground(.hidden)
+        .scrollEdgeEffectStyle(.hard, for: .top)
+        .overlay {
+            FolderFindOverlayView(state: self.model.state)
+                .controlSize(.small)
+        }
+        .contextMenu(forSelectionType: FolderFind.ResultID.self) { selections in
+            if selections.count == 1,
+               let selection = selections.first,
+               let result = self.summary?.result(for: selection)
+            {
+                self.contextMenu(for: result.file)
+            }
+        }
+        .dragPreviewsFormation(.list)
+        .onChange(of: self.resultIDs) { oldValue, newValue in
+            guard oldValue != newValue else { return }
+            
+            self.selection.removeAll()
+            self.expandedFileURLs = Set(self.summary?.files.map(\.id) ?? [])
+        }
+        .onChange(of: self.selection) { _, newValue in
+            guard
+                newValue.count == 1,
+                let selection = newValue.first,
+                let result = self.summary?.result(for: selection)
+            else { return }
+            
+            self.model.selectResult(fileURL: result.file.fileURL, range: result.match?.range)
+        }
+        .onDeleteCommand {
+            for resultID in self.selection {
+                self.model.removeResult(for: resultID)
+            }
+            self.selection.removeAll()
+        }
         .accessibilityLabel(SidebarPane.find.label)
+    }
+    
+    
+    /// The current search summary if results are available.
+    private var summary: FolderFind.Summary? {
+        
+        guard case .finished(let summary) = self.model.state else { return nil }
+        
+        return summary
+    }
+    
+    
+    /// The result IDs in the current search summary.
+    private var resultIDs: [FolderFind.ResultID] {
+        
+        self.summary?.resultIDs ?? []
+    }
+    
+    
+    /// Builds the context menu for a file result.
+    ///
+    /// - Parameter file: The file result represented by the selected row.
+    /// - Returns: The context menu content.
+    @ViewBuilder private func contextMenu(for file: FolderFind.FileResult) -> some View {
+        
+        Button(String(localized: "Reveal in File Browser", table: "Document"), systemImage: "folder") {
+            self.model.document.revealInFileBrowser(fileURL: file.fileURL)
+        }
+        
+        Button(String(localized: "Show in Finder", table: "Document"), systemImage: "finder") {
+            NSWorkspace.shared.activateFileViewerSelecting([file.fileURL])
+        }
+        
+        Divider()
+        
+        Button(String(localized: "Open in New Window", table: "Document"), systemImage: "macwindow.badge.plus") {
+            self.model.document.openInNewWindow(fileURL: file.fileURL)
+        }
     }
 }
 
@@ -395,6 +451,29 @@ private struct FolderFindControlView: View {
 }
 
 
+private struct FolderFindMetricsBarView: View {
+    
+    var state: FolderFinder.SearchState
+    
+    
+    var body: some View {
+        
+        switch self.state {
+            case .searching(let progress):
+                TimelineView(.periodic(from: .now, by: 0.1)) { _ in
+                    FolderFindMetricsMessageView(metrics: progress.snapshot)
+                }
+                
+            case .finished(let summary):
+                FolderFindMetricsMessageView(metrics: summary.metrics)
+                
+            case .idle, .failed:
+                EmptyView()
+        }
+    }
+}
+
+
 private struct FolderFindMetricsMessageView: View {
     
     var metrics: FolderFind.Metrics
@@ -402,34 +481,60 @@ private struct FolderFindMetricsMessageView: View {
     
     var body: some View {
         
-        Text(self.metrics.message)
-            .foregroundStyle(.secondary)
-            .monospacedDigit()
-            .controlSize(.small)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .padding(.horizontal, 10)
-            .padding(.vertical, 6)
+        VStack(spacing: 6) {
+            Divider()
+            Text(self.metrics.message)
+                .foregroundStyle(.secondary)
+                .monospacedDigit()
+                .controlSize(.small)
+                .padding(.horizontal, 10)
+            Divider()
+        }
     }
 }
 
 
 private struct FolderFindSearchingView: View {
     
-    var progress: FolderFindProgress
+    var body: some View {
+        
+        ProgressView(String(localized: "FolderFind.SearchState.searching.label",
+                            defaultValue: "Searching in folder…", table: "Document"))
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+
+private struct FolderFindOverlayView: View {
+    
+    var state: FolderFinder.SearchState
     
     
     var body: some View {
         
-        VStack(spacing: 0) {
-            TimelineView(.periodic(from: .now, by: 0.1)) { _ in
-                FolderFindMetricsMessageView(metrics: self.progress.snapshot)
-            }
-            Divider()
-            
-            ProgressView(String(localized: "FolderFind.SearchState.searching.label",
-                                defaultValue: "Searching in folder…", table: "Document"))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .controlSize(.small)
+        switch self.state {
+            case .idle:
+                EmptyView()
+                
+            case .searching:
+                FolderFindSearchingView()
+                
+            case .finished(let summary) where summary.metrics.matchCount == 0:
+                UnavailableView(title: String(localized: "FolderFind.SearchState.finished.zero.label",
+                                              defaultValue: "No Results", table: "Document"),
+                                systemName: "magnifyingglass",
+                                description: String(localized: "FolderFind.SearchState.finished.zero.description",
+                                                    defaultValue: "No matches for “\(summary.metrics.findString)” were found.",
+                                                    table: "Document"))
+                
+            case .finished:
+                EmptyView()
+                
+            case .failed(let error):
+                UnavailableView(title: String(localized: "FolderFind.SearchState.failed.label",
+                                              defaultValue: "Search Failed", table: "Document"),
+                                systemName: "exclamationmark.triangle",
+                                description: error.localizedDescription)
         }
     }
 }
@@ -438,97 +543,23 @@ private struct FolderFindSearchingView: View {
 private struct FolderFindSummaryView: View {
     
     var summary: FolderFind.Summary
-    var model: FolderFinder
-    
-    @State private var selection: Set<FolderFind.ResultID> = []
-    @State private var expandedFileURLs: Set<URL>
-    
-    
-    /// Initializes a folder find summary view.
-    ///
-    /// - Parameters:
-    ///   - summary: The search summary to display.
-    ///   - model: The folder find model.
-    init(summary: FolderFind.Summary, model: FolderFinder) {
-        
-        self.summary = summary
-        self.model = model
-        self._expandedFileURLs = State(initialValue: Set(summary.files.map(\.id)))
-    }
+    @Binding var expandedFileURLs: Set<URL>
     
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 0) {
-            FolderFindMetricsMessageView(metrics: self.summary.metrics)
-            Divider()
-            
-            List(self.summary.files, selection: $selection) { file in
-                DisclosureGroup(isExpanded: $expandedFileURLs.contains(file.id)) {
-                    ForEach(file.matches) { match in
-                        FolderFindMatchView(match: match)
-                            .tag(FolderFind.ResultID.match(fileID: file.id, matchID: match.id))
-                    }
-                } label: {
-                    FolderFindFileResultView(file: file)
-                        .draggable(item: FolderFindDraggedFile(id: .file(file.id), fileURL: file.fileURL))
+        ForEach(self.summary.files) { file in
+            DisclosureGroup(isExpanded: $expandedFileURLs.contains(file.id)) {
+                ForEach(file.matches) { match in
+                    FolderFindMatchView(match: match)
+                        .tag(FolderFind.ResultID.match(fileID: file.id, matchID: match.id))
                 }
-                .listRowSeparator(.hidden)
-                .tag(FolderFind.ResultID.file(file.id))
+            } label: {
+                FolderFindFileResultView(file: file)
+                    .draggable(item: FolderFindDraggedFile(id: .file(file.id), fileURL: file.fileURL))
             }
-            .scrollContentBackground(.hidden)
-            .contextMenu(forSelectionType: FolderFind.ResultID.self) { selections in
-                if selections.count == 1,
-                   let selection = selections.first,
-                   let result = self.summary.result(for: selection)
-                {
-                    self.contextMenu(for: result.file)
-                }
-            }
-            .dragPreviewsFormation(.list)
-            .onChange(of: self.summary) { oldValue, newValue in
-                guard oldValue.resultIDs != newValue.resultIDs else { return }
-                
-                self.selection.removeAll()
-                self.expandedFileURLs = Set(newValue.files.map(\.id))
-            }
-            .onChange(of: self.selection) { _, newValue in
-                guard
-                    newValue.count == 1,
-                    let selection = newValue.first,
-                    let result = self.summary.result(for: selection)
-                else { return }
-                
-                self.model.selectResult(fileURL: result.file.fileURL, range: result.match?.range)
-            }
-            .onDeleteCommand {
-                for resultID in self.selection {
-                    self.model.removeResult(for: resultID)
-                }
-                self.selection.removeAll()
-            }
-        }
-    }
-    
-    
-    /// Builds the context menu for a file result.
-    ///
-    /// - Parameter file: The file result represented by the selected row.
-    /// - Returns: The context menu content.
-    @ViewBuilder private func contextMenu(for file: FolderFind.FileResult) -> some View {
-        
-        Button(String(localized: "Reveal in File Browser", table: "Document"), systemImage: "folder") {
-            self.model.document.revealInFileBrowser(fileURL: file.fileURL)
-        }
-        
-        Button(String(localized: "Show in Finder", table: "Document"), systemImage: "finder") {
-            NSWorkspace.shared.activateFileViewerSelecting([file.fileURL])
-        }
-        
-        Divider()
-        
-        Button(String(localized: "Open in New Window", table: "Document"), systemImage: "macwindow.badge.plus") {
-            self.model.document.openInNewWindow(fileURL: file.fileURL)
+            .listRowSeparator(.hidden)
+            .tag(FolderFind.ResultID.file(file.id))
         }
     }
 }
