@@ -122,7 +122,6 @@ private struct AppPurchaseView: View {
                         .foregroundStyle(.secondary)
                         .productIconBorder()
                 }
-                .tint(.accentColor)  // workaround for crash (2025-09, macOS 26, FB20281734)
                 
                 Group {
                     if self.hasDonated {
@@ -179,7 +178,6 @@ private struct AppPurchaseView: View {
                         .labelStyle(.iconOnly)
                 }
                 .productViewStyle(OnetimeProductViewStyle())
-                .tint(.accentColor)  // workaround for crash (2025-09, macOS 26, FB20281734)
             }
             .accessibilityElement(children: .contain)
         }
