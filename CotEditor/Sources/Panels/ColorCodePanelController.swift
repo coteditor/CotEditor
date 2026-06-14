@@ -73,7 +73,8 @@ import Defaults
         panel.showsAlpha = true
         panel.delegate = self
         
-        let accessory = ColorCodePanelAccessory(colorCode: colorCode, panel: panel).padding(10)
+        let accessory = ColorCodePanelAccessory(colorCode: colorCode, panel: panel)
+            .padding((ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 27) ? .top : .all, 10)
         let view = NSHostingView(rootView: accessory)
         view.translatesAutoresizingMaskIntoConstraints = false
         panel.accessoryView = view
