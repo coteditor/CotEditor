@@ -114,7 +114,6 @@ struct StatusBar: View {
         .padding(.leading)
         .padding(.trailing, (ProcessInfo.processInfo.operatingSystemVersion.majorVersion == 27) ? 4 : 0)
         .containerCornerOffset(.horizontal, sizeToFit: true)
-        .background(.windowBackground)
     }
 }
 
