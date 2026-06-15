@@ -139,7 +139,7 @@ struct LineRangeCalculatingTests {
         
         
         @Test(arguments: 0..<10)
-        func random() {
+        func random(_: Int) {
             
             let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
             let calculator = Calculator(string: string)
@@ -193,7 +193,7 @@ struct LineRangeCalculatingTests {
         
         
         @Test(arguments: 0..<10)
-        func random() {
+        func random(_: Int) {
             
             let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
             let calculator = Calculator(string: string)
