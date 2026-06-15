@@ -163,7 +163,6 @@ struct Search {
         guard directoryPathComponents.starts(with: rootPathComponents) else { return assertionFailure() }
         
         self.files.append(FolderFind.FileResult(fileURL: candidate.fileURL,
-                                                filename: candidate.fileURL.lastPathComponent,
                                                 directoryPathComponents: Array(directoryPathComponents.dropFirst(rootPathComponents.count)),
                                                 matches: matches))
     }

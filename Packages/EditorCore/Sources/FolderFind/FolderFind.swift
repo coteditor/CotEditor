@@ -28,7 +28,6 @@ public import Foundation
 public import FileEncoding
 public import TextFind
 public import UniformTypeIdentifiers
-import DocumentFile
 
 public enum FolderFind {
     
@@ -101,7 +100,7 @@ public enum FolderFind {
         public var isDirectory: Bool
         public var isHidden: Bool
         
-        static let metadataResourceKeys = File.metadataResourceKeys
+        static let metadataResourceKeys: Set<URLResourceKey> = [.contentTypeKey, .isDirectoryKey, .isHiddenKey]
         
         
         /// Initializes by reading a candidate at the given URL.
@@ -127,16 +126,6 @@ public enum FolderFind {
         public var matchedFileCount: Int = 0
         public var searchedFileCount: Int = 0
         public var skippedFileCount: Int = 0
-        
-        
-        /// Initializes folder find result metrics.
-        ///
-        /// - Parameters:
-        ///   - findString: The string to search for.
-        public init(findString: String) {
-            
-            self.findString = findString
-        }
     }
     
     
@@ -171,12 +160,14 @@ public enum FolderFind {
     public struct FileResult: Equatable, Identifiable, Sendable {
         
         public var fileURL: URL
-        public var filename: String
         public var directoryPathComponents: [String]
         public var matches: [Match]
         
         /// The stable identity of the file result.
         public var id: URL  { self.fileURL }
+        
+        /// The filename.
+        public var filename: String  { self.fileURL.lastPathComponent }
     }
     
     

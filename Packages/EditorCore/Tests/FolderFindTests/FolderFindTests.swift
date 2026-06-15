@@ -148,12 +148,12 @@ struct FolderFindTests {
         let otherFileURL = URL(fileURLWithPath: "/tmp/b.txt").standardizedFileURL
         var summary = FolderFind.Summary(metrics: .init(findString: "needle"),
                                          files: [
-                                            FolderFind.FileResult(fileURL: fileURL, filename: "a.txt", directoryPathComponents: [],
+                                            FolderFind.FileResult(fileURL: fileURL, directoryPathComponents: [],
                                                                   matches: [
                                                                     FolderFind.Match(range: NSRange(location: 10, length: 6), line: "first needle", rangeInLine: NSRange(location: 6, length: 6)),
                                                                     FolderFind.Match(range: NSRange(location: 30, length: 6), line: "second needle", rangeInLine: NSRange(location: 7, length: 6)),
                                                                   ]),
-                                            FolderFind.FileResult(fileURL: otherFileURL, filename: "b.txt", directoryPathComponents: [],
+                                            FolderFind.FileResult(fileURL: otherFileURL, directoryPathComponents: [],
                                                                   matches: [
                                                                     FolderFind.Match(range: NSRange(location: 10, length: 6), line: "other needle", rangeInLine: NSRange(location: 6, length: 6)),
                                                                   ]),
@@ -181,7 +181,7 @@ struct FolderFindTests {
         let fileURL = URL(fileURLWithPath: "/tmp/a.txt").standardizedFileURL
         var summary = FolderFind.Summary(metrics: .init(findString: "needle"),
                                          files: [
-                                            FolderFind.FileResult(fileURL: fileURL, filename: "a.txt", directoryPathComponents: [],
+                                            FolderFind.FileResult(fileURL: fileURL, directoryPathComponents: [],
                                                                   matches: [
                                                                     FolderFind.Match(range: NSRange(location: 10, length: 10), line: "overlapping needle", rangeInLine: NSRange(location: 12, length: 6)),
                                                                     FolderFind.Match(range: NSRange(location: 30, length: 6), line: "later needle", rangeInLine: NSRange(location: 6, length: 6)),
