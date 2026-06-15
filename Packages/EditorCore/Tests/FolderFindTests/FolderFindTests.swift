@@ -470,7 +470,7 @@ struct FolderFindTests {
             FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: "["),
         ])
         
-        await #expect(throws: FileScope.Error.invalidRegularExpression(ruleIndex: 0, pattern: "[")) {
+        await #expect(throws: FileScope.Error.invalidRegularExpression(pattern: "[")) {
             try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope), progress: progress)
         }
         
@@ -491,7 +491,7 @@ struct FolderFindTests {
             FileScope.Rule(target: .filename, comparison: .contains, value: ""),
         ])
         
-        await #expect(throws: FileScope.Error.emptyValue(ruleIndex: 0)) {
+        await #expect(throws: FileScope.Error.emptyValue) {
             try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope), progress: progress)
         }
         

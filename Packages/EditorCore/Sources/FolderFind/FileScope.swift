@@ -45,8 +45,8 @@ public struct FileScope: Equatable, Codable, Sendable {
     /// - Throws: `Error.emptyValue` if a rule value is empty, or `Error.invalidRegularExpression` if a regular expression rule is invalid.
     public func validate() throws(Error) {
         
-        for (index, rule) in self.rules.enumerated() {
-            try rule.validate(index: index)
+        for rule in self.rules {
+            try rule.validate()
         }
     }
     
@@ -72,8 +72,8 @@ public extension FileScope {
     
     enum Error: Swift.Error, Equatable, Sendable {
         
-        case emptyValue(ruleIndex: Int)
-        case invalidRegularExpression(ruleIndex: Int, pattern: String)
+        case emptyValue
+        case invalidRegularExpression(pattern: String)
     }
     
     
@@ -100,12 +100,11 @@ public extension FileScope {
         
         /// Validates the rule.
         ///
-        /// - Parameter index: The index of the rule in the file scope.
         /// - Throws: `Error.emptyValue` if the rule value is empty, or `Error.invalidRegularExpression` if the regular expression pattern is invalid.
-        public func validate(index: Int) throws(Error) {
+        public func validate() throws(Error) {
             
             guard !self.value.isEmpty else {
-                throw .emptyValue(ruleIndex: index)
+                throw .emptyValue
             }
             
             guard self.comparison == .matchesRegularExpression else { return }
@@ -113,7 +112,7 @@ public extension FileScope {
             do {
                 _ = try NSRegularExpression(pattern: self.value)
             } catch {
-                throw .invalidRegularExpression(ruleIndex: index, pattern: self.value)
+                throw .invalidRegularExpression(pattern: self.value)
             }
         }
     }
