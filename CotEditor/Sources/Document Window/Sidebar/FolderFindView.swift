@@ -225,34 +225,34 @@ private struct FolderFindMetricsBarView: View {
         switch self.state {
             case .searching(let progress):
                 TimelineView(.periodic(from: .now, by: 0.1)) { _ in
-                    FolderFindMetricsMessageView(metrics: progress.snapshot)
+                    MessageView(metrics: progress.snapshot)
                 }
                 
             case .finished(let summary):
-                FolderFindMetricsMessageView(metrics: summary.metrics)
+                MessageView(metrics: summary.metrics)
                 
             case .idle, .failed:
                 EmptyView()
         }
     }
-}
-
-
-private struct FolderFindMetricsMessageView: View {
-    
-    var metrics: FolderFind.Metrics
     
     
-    var body: some View {
+    private struct MessageView: View {
         
-        VStack(spacing: 6) {
-            Divider()
-            Text(self.metrics.message)
-                .foregroundStyle(.secondary)
-                .monospacedDigit()
-                .controlSize(.small)
-                .padding(.horizontal, 10)
-            Divider()
+        var metrics: FolderFind.Metrics
+        
+        
+        var body: some View {
+            
+            VStack(spacing: 6) {
+                Divider()
+                Text(self.metrics.message)
+                    .foregroundStyle(.secondary)
+                    .monospacedDigit()
+                    .controlSize(.small)
+                    .padding(.horizontal, 10)
+                Divider()
+            }
         }
     }
 }
