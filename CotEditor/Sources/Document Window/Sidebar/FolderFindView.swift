@@ -34,14 +34,15 @@ struct FolderFindView: View {
     @Bindable var model: FolderFinder
     
     @State private var selection: Set<FolderFind.ResultID> = []
-    @State private var expandedFileURLs: Set<URL> = []
     
     
     var body: some View {
     
         List(selection: $selection) {
             if case .finished(let summary) = self.model.state {
-                FolderFindSummaryView(summary: summary, expandedFileURLs: $expandedFileURLs)
+                ForEach(summary.files) { file in
+                    FolderFindFileResultView(file: file)
+                }
             }
         }
         .safeAreaBar(edge: .top) {
@@ -69,7 +70,6 @@ struct FolderFindView: View {
         .dragPreviewsFormation(.list)
         .onChange(of: self.resultIDs) {
             self.selection.removeAll()
-            self.expandedFileURLs = Set(self.summary?.files.map(\.id) ?? [])
         }
         .onChange(of: self.selection) { _, newValue in
             guard
@@ -298,89 +298,60 @@ private struct FolderFindOverlayView: View {
 }
 
 
-private struct FolderFindSummaryView: View {
-    
-    var summary: FolderFind.Summary
-    @Binding var expandedFileURLs: Set<URL>
-    
-    
-    var body: some View {
-        
-        ForEach(self.summary.files) { file in
-            DisclosureGroup(isExpanded: $expandedFileURLs.contains(file.id)) {
-                ForEach(file.matches) { match in
-                    FolderFindMatchView(match: match)
-                        .tag(FolderFind.ResultID.match(fileID: file.id, matchID: match.id))
-                }
-            } label: {
-                FolderFindFileResultView(file: file)
-                    .draggable(item: FolderFindDraggedFile(id: .file(file.id), fileURL: file.fileURL))
-            }
-            .listRowSeparator(.hidden)
-            .tag(FolderFind.ResultID.file(file.id))
-        }
-    }
-}
-
-
 private struct FolderFindFileResultView: View {
     
     var file: FolderFind.FileResult
     
+    @State private var isExpanded = true
+    
     
     var body: some View {
         
-        Label {
-            HStack(alignment: .firstTextBaseline, spacing: 4) {
-                Text(self.file.filename)
-                    .fontWeight(.medium)
-                    .layoutPriority(1)
-                
-                if !self.file.directoryPathComponents.isEmpty {
-                    let path = self.file.directoryPathComponents.joined(separator: "/")
-                    Text(path)
-                        .foregroundStyle(.secondary)
-                        .help(path)
+        DisclosureGroup(isExpanded: $isExpanded) {
+            ForEach(self.file.matches) { match in
+                Label {
+                    Text(Self.highlightedLine(for: match, headOffset: 32))
+                } icon: {
+                    Image(.textSquareFill)
+                        .symbolRenderingMode(.hierarchical)
                 }
+                .foregroundStyle(.secondary)
+                .lineLimit(3)
+                .tag(FolderFind.ResultID.match(fileID: self.file.id, matchID: match.id))
+            }
+        } label: {
+            Label {
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                    Text(self.file.filename)
+                        .fontWeight(.medium)
+                        .layoutPriority(1)
+                    
+                    if !self.file.directoryPathComponents.isEmpty {
+                        let path = self.file.directoryPathComponents.joined(separator: "/")
+                        Text(path)
+                            .foregroundStyle(.secondary)
+                            .help(path)
+                    }
+                }
+            } icon: {
+                Image(systemName: "doc.text")
             }
             .lineLimit(1)
-        } icon: {
-            Image(systemName: "doc.text")
+            .draggable(item: FolderFindDraggedFile(id: .file(self.file.id), fileURL: self.file.fileURL))
         }
         .labelIconToTitleSpacing(4)
-    }
-}
-
-
-private struct FolderFindMatchView: View {
-    
-    private static let truncationHeadOffset = 32
-    
-    var match: FolderFind.Match
-    
-    
-    var body: some View {
-        
-        Label {
-            Text(self.highlightedLine)
-        } icon: {
-            Image(.textSquareFill)
-                .symbolRenderingMode(.hierarchical)
-        }
-        .foregroundStyle(.secondary)
-        .labelIconToTitleSpacing(4)
-        .lineLimit(3)
-        .multilineTextAlignment(.leading)
+        .listRowSeparator(.hidden)
+        .tag(FolderFind.ResultID.file(self.file.id))
     }
     
     
     /// The line text with the matched substring emphasized.
-    private var highlightedLine: AttributedString {
+    private static func highlightedLine(for match: FolderFind.Match, headOffset: Int) -> AttributedString {
         
-        var attributedLine = AttributedString(self.match.line)
-        var rangeInLine = self.match.rangeInLine
+        var attributedLine = AttributedString(match.line)
+        var rangeInLine = match.rangeInLine
         
-        if let indentationRange = Self.leadingIndentationRange(in: self.match.line),
+        if let indentationRange = Self.leadingIndentationRange(in: match.line),
            rangeInLine.location >= indentationRange.length,
            let range = Range(indentationRange, in: attributedLine)
         {
@@ -395,7 +366,7 @@ private struct FolderFindMatchView: View {
         attributedLine[range].inlinePresentationIntent = .stronglyEmphasized
         attributedLine[range].foregroundColor = .primary
         
-        return attributedLine.truncatedHead(until: range.lowerBound, offset: Self.truncationHeadOffset)
+        return attributedLine.truncatedHead(until: range.lowerBound, offset: headOffset)
     }
     
     
