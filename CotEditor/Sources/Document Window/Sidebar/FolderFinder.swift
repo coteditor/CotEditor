@@ -138,8 +138,7 @@ import TextFind
             includesOtherFileTypes: includesOtherFileTypes,
             includesHiddenFiles: includesHiddenFiles,
             fileScope: fileScope,
-            decodingOptions: .init(candidates: EncodingManager.shared.fileEncodingCandidates,
-                                   considersDeclaration: UserDefaults.standard[.referToEncodingTag])
+            decodingOptions: .init(candidates: EncodingManager.shared.fileEncodingCandidates)
         )
         let syntaxMappingTable = SyntaxManager.shared.fileMappingTable
         let progress = FolderFindProgress(findString: findString)

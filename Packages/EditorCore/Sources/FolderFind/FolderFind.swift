@@ -82,7 +82,7 @@ public enum FolderFind {
             includesHiddenFiles: Bool = false,
             excludedNames: Set<String> = [".DS_Store", ".git"],
             fileScope: FileScope = .init(),
-            decodingOptions: String.DetectionOptions = .init(candidates: [.utf8], considersDeclaration: true)
+            decodingOptions: String.DetectionOptions = .init(candidates: [.utf8])
         ) {
             
             self.includesOtherFileTypes = includesOtherFileTypes
