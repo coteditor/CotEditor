@@ -30,6 +30,8 @@ public struct FileScope: Equatable, Codable, Sendable {
     
     public var rules: [Rule]
     
+    public var isEmpty: Bool { self.rules.isEmpty }
+    
     
     /// Initializes a file scope.
     ///
@@ -82,6 +84,8 @@ public extension FileScope {
         public var target: Target
         public var comparison: Comparison
         public var value: String
+        
+        public var isValid: Bool  { (try? self.validate()) != nil }
         
         
         /// Initializes a file scope rule.

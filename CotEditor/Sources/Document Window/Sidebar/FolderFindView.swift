@@ -170,15 +170,16 @@ private struct FolderFindControlView: View {
                 .labelStyle(.iconOnly)
                 .frame(width: 16, alignment: .center)
                 
+                Button(String(localized: "File Scope…", table: "Document"), systemImage: "text.magnifyingglass") {
+                    self.showsFileScopeSheet = true
+                }
+                .foregroundStyle(self.fileScope.isEmpty ? .secondary : Color.accentColor)
+                .fontWeight(self.fileScope.isEmpty ? .regular : .semibold)
+                .labelStyle(.iconOnly)
+                
                 Menu {
                     Toggle(String(localized: "Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
                     Toggle(String(localized: "Include Other File Types", table: "Document", comment: "toggle button label"), isOn: $includesOtherFileTypes)
-                    
-                    Divider()
-                    
-                    Button(String(localized: "File Scope…", table: "Document", comment: "menu item title")) {
-                        self.showsFileScopeSheet = true
-                    }
                 } label: {
                     Label(String(localized: "Advanced options", table: "TextFind", comment: "accessibility label"), systemImage: "ellipsis")
                         .symbolVariant(.circle)
