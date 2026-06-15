@@ -351,12 +351,14 @@ private struct FolderFindFileResultView: View {
         var attributedLine = AttributedString(match.line)
         var rangeInLine = match.rangeInLine
         
-        if let indentationRange = Self.leadingIndentationRange(in: match.line),
-           rangeInLine.location >= indentationRange.length,
-           let range = Range(indentationRange, in: attributedLine)
+        // trim leading whitespace
+        let indentationLength = match.line.prefix(while: \.isWhitespace).utf16.count
+        if indentationLength > 0,
+           rangeInLine.location >= indentationLength,
+           let range = Range(NSRange(0..<indentationLength), in: attributedLine)
         {
             attributedLine.removeSubrange(range)
-            rangeInLine.location -= indentationRange.length
+            rangeInLine.location -= indentationLength
         }
         
         guard let range = Range(rangeInLine, in: attributedLine) else {
@@ -367,21 +369,6 @@ private struct FolderFindFileResultView: View {
         attributedLine[range].foregroundColor = .primary
         
         return attributedLine.truncatedHead(until: range.lowerBound, offset: headOffset)
-    }
-    
-    
-    /// Returns the range of the leading indentation in the given string.
-    ///
-    /// - Parameter string: The string to inspect.
-    /// - Returns: The range of the leading indentation, or `nil` if the string does not start with indentation.
-    private static func leadingIndentationRange(in string: String) -> NSRange? {
-        
-        guard
-            let index = string.firstIndex(where: { !$0.isWhitespace }),
-            index > string.startIndex
-        else { return nil }
-        
-        return NSRange(string.startIndex..<index, in: string)
     }
 }
 
