@@ -359,10 +359,10 @@ extension NSTextView: EditorCounter.Source { }
                                     considersDeclaration: UserDefaults.standard[.referToEncodingTag]))
         }()
         
-        let (string, fileEncoding) = try String.string(data: data, decodingStrategy: strategy)
-        
         // .readingEncoding is only valid once
         self.readingEncoding.withLock { $0 = nil }
+        
+        let (string, fileEncoding) = try String.string(data: data, decodingStrategy: strategy)
         
         // store file data in order to check the file content identity in `presentedItemDidChange()`
         self.fileData.withLock { $0 = data }
