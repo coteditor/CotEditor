@@ -53,6 +53,7 @@ import TextFind
     let document: DirectoryDocument
     
     private(set) var state: SearchState = .idle
+    private(set) var resultRevision = 0
     
     private var searchTask: Task<Void, Never>?
     private var selectionTask: Task<Void, Never>?
@@ -110,11 +111,13 @@ import TextFind
         guard !findString.isEmpty else {
             self.submittedFindString = findString
             self.state = .idle
+            self.resultRevision += 1
             return
         }
         
         guard let rootURL = self.document.fileURL else {
             self.state = .failed(.folderUnavailable)
+            self.resultRevision += 1
             return
         }
         
@@ -127,6 +130,7 @@ import TextFind
             try query.validate()
         } catch {
             self.state = .failed(.invalidQuery(error))
+            self.resultRevision += 1
             return
         }
         
@@ -141,6 +145,7 @@ import TextFind
         let progress = FolderFindProgress(findString: findString)
         
         self.state = .searching(progress)
+        self.resultRevision += 1
         
         self.searchTask = .detached(priority: .userInitiated) {
             do {
@@ -156,6 +161,7 @@ import TextFind
                     guard self?.submittedFindString == findString else { return }
                     
                     self?.state = .finished(summary)
+                    self?.resultRevision += 1
                 }
                 
             } catch is CancellationError {
@@ -168,6 +174,7 @@ import TextFind
                     guard self?.submittedFindString == findString else { return }
                     
                     self?.state = .failed(error)
+                    self?.resultRevision += 1
                 }
             }
         }

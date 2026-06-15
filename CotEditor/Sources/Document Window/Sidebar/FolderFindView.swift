@@ -41,7 +41,7 @@ struct FolderFindView: View {
         List(selection: $selection) {
             if case .finished(let summary) = self.model.state {
                 ForEach(summary.files) { file in
-                    FolderFindFileResultView(file: file)
+                    FolderFindFileResultView(file: file, revision: self.model.resultRevision)
                 }
             }
         }
@@ -68,7 +68,7 @@ struct FolderFindView: View {
             }
         }
         .dragPreviewsFormation(.list)
-        .onChange(of: self.resultIDs) {
+        .onChange(of: self.model.resultRevision) {
             self.selection.removeAll()
         }
         .onChange(of: self.selection) { _, newValue in
@@ -96,13 +96,6 @@ struct FolderFindView: View {
         guard case .finished(let summary) = self.model.state else { return nil }
         
         return summary
-    }
-    
-    
-    /// The result IDs in the current search summary.
-    private var resultIDs: [FolderFind.ResultID] {
-        
-        self.summary?.resultIDs ?? []
     }
     
     
@@ -301,6 +294,7 @@ private struct FolderFindOverlayView: View {
 private struct FolderFindFileResultView: View {
     
     var file: FolderFind.FileResult
+    var revision: Int
     
     @State private var isExpanded = true
     
@@ -342,6 +336,9 @@ private struct FolderFindFileResultView: View {
         .labelIconToTitleSpacing(4)
         .listRowSeparator(.hidden)
         .tag(FolderFind.ResultID.file(self.file.id))
+        .onChange(of: self.revision) {
+            self.isExpanded = true
+        }
     }
     
     
@@ -448,18 +445,6 @@ extension FolderFinder.Error: LocalizedError {
                 error.errorDescription
             case .searchFailed(let message):
                 message
-        }
-    }
-}
-
-
-private extension FolderFind.Summary {
-    
-    /// The result IDs in the summary.
-    var resultIDs: [FolderFind.ResultID] {
-        
-        self.files.flatMap { file in
-            [FolderFind.ResultID.file(file.id)] + file.matches.map { .match(fileID: file.id, matchID: $0.id) }
         }
     }
 }
