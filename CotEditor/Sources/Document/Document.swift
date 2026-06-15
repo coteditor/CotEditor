@@ -236,8 +236,8 @@ extension NSTextView: EditorCounter.Source { }
     @ObservationIgnored override nonisolated var fileURL: URL? {
         
         didSet {
-            Task { @MainActor [fileURL = self.fileURL] in
-                self.synchronizeFileType(documentName: fileURL?.lastPathComponent)
+            Task { @MainActor in
+                self.synchronizeFileType()
                 NotificationCenter.default.post(name: NSDocument.DidChangeFileURLMessage.name, object: self)
             }
         }
@@ -510,7 +510,8 @@ extension NSTextView: EditorCounter.Source { }
             {
                 // -> Due to the async-saving, self.textStorage can be changed from the actual saved content.
                 //    But we don't care about that.
-                self.setSyntax(name: syntaxName, documentName: url.lastPathComponent)
+                // -> The fileURL has already updated to the new one.
+                self.setSyntax(name: syntaxName)
             }
             
             if !saveOperation.isAutosave {
@@ -1089,7 +1090,7 @@ extension NSTextView: EditorCounter.Source { }
         }
         
         guard name != self.syntaxName || syntax != self.syntaxController.syntax else {
-            self.synchronizeFileType(syntax: syntax, documentName: documentName)
+            self.synchronizeFileType(documentName: documentName)
             return
         }
         
@@ -1098,7 +1099,7 @@ extension NSTextView: EditorCounter.Source { }
         // update
         self.syntaxController.update(syntax: syntax, name: name)
         self.syntaxName = name
-        self.synchronizeFileType(syntax: syntax, documentName: documentName)
+        self.synchronizeFileType(documentName: documentName)
         
         self.invalidateMode()
         self.invalidateRestorableState()
@@ -1161,16 +1162,11 @@ extension NSTextView: EditorCounter.Source { }
     /// Updates `fileType` to follow the actual filename for saved documents, or the syntax for unsaved ones.
     ///
     /// - Parameters:
-    ///   - syntax: The syntax to derive the file type from, or `nil` to use the current syntax.
     ///   - documentName: The document filename, or `nil` to use the current file URL.
-    private func synchronizeFileType(syntax: Syntax? = nil, documentName: String? = nil) {
+    private func synchronizeFileType(documentName: String? = nil) {
         
         let documentName = documentName ?? self.fileURL?.lastPathComponent
-        let fileExtension: String? = if let documentName {
-            documentName.pathExtension
-        } else {
-            (syntax ?? self.syntaxController.syntax).fileMap.extensions?.first
-        }
+        let fileExtension = documentName?.pathExtension ?? self.syntaxController.syntax.fileMap.extensions?.first
         let type = fileExtension.flatMap { UTType(filenameExtension: $0) } ?? .plainText
         
         guard self.fileType != type.identifier else { return }
