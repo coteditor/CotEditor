@@ -55,6 +55,7 @@ struct FolderFindView: View {
         .scrollEdgeEffectStyle(.hard, for: .top)
         .overlay {
             FolderFindOverlayView(state: self.model.state)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .controlSize(.small)
         }
         .contextMenu(forSelectionType: FolderFind.ResultID.self) { selections in
@@ -66,9 +67,7 @@ struct FolderFindView: View {
             }
         }
         .dragPreviewsFormation(.list)
-        .onChange(of: self.resultIDs) { oldValue, newValue in
-            guard oldValue != newValue else { return }
-            
+        .onChange(of: self.resultIDs) {
             self.selection.removeAll()
             self.expandedFileURLs = Set(self.summary?.files.map(\.id) ?? [])
         }
@@ -266,17 +265,6 @@ private struct FolderFindMetricsMessageView: View {
 }
 
 
-private struct FolderFindSearchingView: View {
-    
-    var body: some View {
-        
-        ProgressView(String(localized: "FolderFind.SearchState.searching.label",
-                            defaultValue: "Searching in folder…", table: "Document"))
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-
 private struct FolderFindOverlayView: View {
     
     var state: FolderFinder.SearchState
@@ -285,28 +273,26 @@ private struct FolderFindOverlayView: View {
     var body: some View {
         
         switch self.state {
-            case .idle:
-                EmptyView()
-                
             case .searching:
-                FolderFindSearchingView()
+                ProgressView(String(localized: "FolderFind.SearchState.searching.label",
+                                    defaultValue: "Searching in folder…", table: "Document"))
                 
             case .finished(let summary) where summary.metrics.matchCount == 0:
                 UnavailableView(title: String(localized: "FolderFind.SearchState.finished.zero.label",
                                               defaultValue: "No Results", table: "Document"),
-                                systemName: "magnifyingglass",
+                                systemImage: "magnifyingglass",
                                 description: String(localized: "FolderFind.SearchState.finished.zero.description",
                                                     defaultValue: "No matches for “\(summary.metrics.findString)” were found.",
                                                     table: "Document"))
                 
-            case .finished:
-                EmptyView()
-                
             case .failed(let error):
                 UnavailableView(title: String(localized: "FolderFind.SearchState.failed.label",
                                               defaultValue: "Search Failed", table: "Document"),
-                                systemName: "exclamationmark.triangle",
+                                systemImage: "exclamationmark.triangle",
                                 description: error.localizedDescription)
+                
+            case .idle, .finished:
+                EmptyView()
         }
     }
 }
@@ -432,7 +418,7 @@ private struct FolderFindMatchView: View {
 private struct UnavailableView: View {
     
     var title: String
-    var systemName: String
+    var systemImage: String
     var description: String
     
     
@@ -444,12 +430,11 @@ private struct UnavailableView: View {
                     .font(.system(size: 16))
                     .fontWeight(.medium)
             } icon: {
-                Image(systemName: self.systemName)
+                Image(systemName: self.systemImage)
             }
         } description: {
             Text(self.description)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
