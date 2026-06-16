@@ -326,6 +326,15 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         }
         
         if let window {
+            // apply the last user-defined zoom scale for a new document
+            // -> Skip when the scale is already changed (e.g. restored by the state restoration).
+            if self.scale == 1.0 {
+                let scale = UserDefaults.standard[.editorScale]
+                if scale != 1.0, scale > 0 {
+                    self.setScaleKeepingVisibleArea(scale)
+                }
+            }
+
             // apply window opacity
             self.windowOpacityObserver = window.observe(\.isOpaque, options: [.initial, .new]) { [unowned self] _, change in
                 guard let new = change.newValue else { return }

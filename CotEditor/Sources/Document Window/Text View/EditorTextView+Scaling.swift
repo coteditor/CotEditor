@@ -86,6 +86,7 @@ extension EditorTextView: TextSizeChanging {
     @IBAction func biggerFont(_ sender: Any?) {
         
         self.setScaleKeepingVisibleArea(self.scale * 1.1)
+        UserDefaults.standard[.editorScale] = self.scale
     }
     
     
@@ -93,6 +94,7 @@ extension EditorTextView: TextSizeChanging {
     @IBAction func smallerFont(_ sender: Any?) {
         
         self.setScaleKeepingVisibleArea(self.scale / 1.1)
+        UserDefaults.standard[.editorScale] = self.scale
     }
     
     
@@ -100,5 +102,6 @@ extension EditorTextView: TextSizeChanging {
     @IBAction func resetFont(_ sender: Any?) {
         
         self.setScaleKeepingVisibleArea(1.0)
+        UserDefaults.standard[.editorScale] = self.scale
     }
 }

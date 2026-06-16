@@ -602,7 +602,33 @@ extension NSTextView: EditorCounter.Source { }
             DelegateContext(delegate: delegate, selector: shouldCloseSelector, contextInfo: contextInfo).perform(from: self, flag: true)
             return
         }
-        
+
+        // automatically save an untitled document with a generated name on closing
+        // instead of asking the user (Notes-like behavior).
+        // -> Stored in the app's iCloud container so that it syncs across devices.
+        if self.fileURL == nil {
+            Task {
+                guard let url = await self.untitledAutosaveURL() else {
+                    // fall back to the default behavior if no writable destination is available
+                    super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
+                    return
+                }
+
+                let didSave = await withCheckedContinuation { continuation in
+                    self.save(to: url, ofType: self.fileType ?? UTType.plainText.identifier, for: .saveAsOperation) { error in
+                        if let error {
+                            Logger.app.error("Failed autosaving untitled document on closing: \(error)")
+                        }
+                        continuation.resume(returning: error == nil)
+                    }
+                }
+
+                DelegateContext(delegate: delegate, selector: shouldCloseSelector, contextInfo: contextInfo)
+                    .perform(from: self, flag: didSave)
+            }
+            return
+        }
+
         if self.hasUnautosavedChanges, !self.allowsLossySaving, !self.canBeConverted() {
             let alert = NSAlert()
             alert.messageText = String(
@@ -1174,6 +1200,53 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
+    /// Returns a destination URL to automatically save an untitled document on closing.
+    ///
+    /// The document is stored in the app's iCloud container so that it syncs across devices,
+    /// or in the local autosave directory as a fallback when iCloud is unavailable.
+    ///
+    /// - Returns: A unique file URL, or `nil` if no writable destination is available.
+    private func untitledAutosaveURL() async -> URL? {
+
+        let fileExtension = self.fileType.flatMap(UTType.init)?.preferredFilenameExtension ?? "txt"
+
+        // generate a base name from the first non-empty line of the content
+        let firstLine = self.textStorage.string
+            .components(separatedBy: .newlines)
+            .first { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
+        var baseName = (firstLine ?? "")
+            .replacing(/[\/:]/, with: " ")   // remove path separators
+            .replacing(/^\.+/, with: "")     // avoid making a hidden file
+            .trimmingCharacters(in: .whitespaces)
+        baseName = String(baseName.prefix(40)).trimmingCharacters(in: .whitespaces)
+        let fileName = baseName.isEmpty ? (self.displayName ?? "Untitled") : baseName
+
+        // resolve the destination directory off the main thread
+        // -> `url(forUbiquityContainerIdentifier:)` should not be called on the main thread.
+        let directory = await Task.detached(priority: .userInitiated) {
+            let fileManager = FileManager.default
+            if let container = fileManager.url(forUbiquityContainerIdentifier: nil) {
+                let documents = container.appending(component: "Documents")
+                try? fileManager.createDirectory(at: documents, withIntermediateDirectories: true)
+                return documents
+            }
+            return try? URL(for: .autosavedInformationDirectory, in: .userDomainMask, create: true)
+        }.value
+
+        guard let directory else { return nil }
+
+        // ensure a unique filename
+        var url = directory.appending(component: fileName).appendingPathExtension(fileExtension)
+        var index = 2
+        while FileManager.default.fileExists(atPath: url.path(percentEncoded: false)) {
+            url = directory.appending(component: "\(fileName) \(index)").appendingPathExtension(fileExtension)
+            index += 1
+        }
+
+        return url
+    }
+
+
     /// Creates a unique file URL for `autosavedContentsFileURL` to use in Autosave Elsewhere.
     ///
     /// Let the content backup in `~/Library/Autosaved Information/` directory,

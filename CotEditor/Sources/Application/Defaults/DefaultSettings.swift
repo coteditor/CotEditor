@@ -48,6 +48,7 @@ struct DefaultSettings {
             .monospacedFont: try? FontType.monospaced.systemFont().archivedData,
             .monospacedShouldAntialias: true,
             .monospacedLigature: false,
+            .editorScale: 1.0,
             .lineHeight: 1.3,
             .documentAppearance: AppearanceMode.default.rawValue,
             .windowAlpha: 1.0,
