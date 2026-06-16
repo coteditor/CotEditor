@@ -113,10 +113,14 @@ struct FolderFindView: View {
             NSWorkspace.shared.activateFileViewerSelecting([file.fileURL])
         }
         
-        Divider()
-        
         Button(String(localized: "Open in New Window", table: "Document"), systemImage: "macwindow.badge.plus") {
             self.model.document.openInNewWindow(fileURL: file.fileURL)
+        }
+        
+        Divider()
+        
+        Button(String(localized: "Open with External Editor", table: "Document"), systemImage: "arrow.up.forward.square") {
+            NSWorkspace.shared.openWithOtherApplication([file.fileURL])
         }
     }
 }
