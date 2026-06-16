@@ -210,9 +210,8 @@ public enum FolderFind {
         
         // validate search conditions before traversing the folder
         try query.validate()
-        try options.fileScope.validate()
         
-        var search = Search(rootURL: rootURL, query: query, options: options, progress: progress, isIncluded: isIncluded)
+        var search = try Search(rootURL: rootURL, query: query, options: options, progress: progress, isIncluded: isIncluded)
         return try await search.run()
     }
     

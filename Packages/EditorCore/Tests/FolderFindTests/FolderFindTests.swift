@@ -384,6 +384,26 @@ struct FolderFindTests {
     }
     
     
+    @Test func fileScopeRegularExpressionRulesFilterCandidates() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: "README.md"))
+        try Data("needle".utf8).write(to: rootURL.appending(path: "index.html"))
+        try Data("needle".utf8).write(to: rootURL.appending(path: "note.txt"))
+        
+        let fileScope = FileScope(rules: [
+            FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: #".+\.(md|html)"#),
+        ])
+        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope))
+        
+        #expect(summary.metrics.searchedFileCount == 2)
+        #expect(summary.metrics.matchCount == 2)
+        #expect(Set(summary.files.map(\.filename)) == ["README.md", "index.html"])
+    }
+    
+    
     @Test func fileScopeRuleComparisons() throws {
         
         let rootURL = try Self.makeTemporaryDirectory()
@@ -408,6 +428,22 @@ struct FolderFindTests {
         #expect(!FileScope(rules: [
             FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: "swift"),
         ]).contains(candidate, relativeTo: rootURL))
+    }
+    
+    
+    @Test func fileScopeMatcherRejectsInvalidRules() {
+        
+        #expect(throws: FileScope.Error.invalidRegularExpression(pattern: "[")) {
+            _ = try FileScope.Matcher(FileScope(rules: [
+                FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: "["),
+            ]))
+        }
+        
+        #expect(throws: FileScope.Error.emptyValue) {
+            _ = try FileScope.Matcher(FileScope(rules: [
+                FileScope.Rule(target: .filename, comparison: .contains, value: ""),
+            ]))
+        }
     }
     
     

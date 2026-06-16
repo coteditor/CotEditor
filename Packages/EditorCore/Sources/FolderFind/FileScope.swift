@@ -47,9 +47,7 @@ public struct FileScope: Equatable, Codable, Sendable {
     /// - Throws: `Error.emptyValue` if a rule value is empty, or `Error.invalidRegularExpression` if a regular expression rule is invalid.
     public func validate() throws(Error) {
         
-        for rule in self.rules {
-            try rule.validate()
-        }
+        _ = try Matcher(self)
     }
     
     
@@ -62,10 +60,9 @@ public struct FileScope: Equatable, Codable, Sendable {
     public func contains(_ candidate: FolderFind.Candidate, relativeTo rootURL: URL) -> Bool {
         
         guard !self.rules.isEmpty else { return true }
+        guard let matcher = try? Matcher(self) else { return false }
         
-        let values = Values(candidate: candidate, rootURL: rootURL)
-        
-        return self.rules.contains { $0.matches(values: values) }
+        return matcher.contains(candidate, relativeTo: rootURL)
     }
 }
 
@@ -149,44 +146,112 @@ public extension FileScope.Rule {
 }
 
 
-private extension FileScope.Rule {
+extension FileScope {
     
-    /// Returns whether the rule matches the given values.
-    ///
-    /// - Parameter values: The file values to evaluate.
-    /// - Returns: `true` if the rule matches.
-    func matches(values: FileScope.Values) -> Bool {
+    struct Matcher {
         
-        let targetValue = values.value(for: self.target)
+        private var rules: [CompiledRule]
         
-        return switch self.comparison {
-            case .contains:
-                targetValue.range(of: self.value, options: .caseInsensitive) != nil
-            case .isEqualTo:
-                targetValue.compare(self.value, options: .caseInsensitive) == .orderedSame
-            case .isNotEqualTo:
-                targetValue.compare(self.value, options: .caseInsensitive) != .orderedSame
-            case .startsWith:
-                targetValue.range(of: self.value, options: [.anchored, .caseInsensitive]) != nil
-            case .endsWith:
-                targetValue.range(of: self.value, options: [.anchored, .backwards, .caseInsensitive]) != nil
-            case .matchesRegularExpression:
-                self.matchesRegularExpression(in: targetValue)
+        
+        /// Initializes a file scope matcher.
+        ///
+        /// - Parameter fileScope: The file scope to match.
+        /// - Throws: `Error.emptyValue` if a rule value is empty, or `Error.invalidRegularExpression` if a regular expression rule is invalid.
+        init(_ fileScope: FileScope) throws(FileScope.Error) {
+            
+            self.rules = try fileScope.rules.map(CompiledRule.init)
+        }
+        
+        
+        /// Returns whether the candidate is included in the file scope.
+        ///
+        /// - Parameters:
+        ///   - candidate: The file candidate to evaluate.
+        ///   - rootURL: The root folder URL for file path rules.
+        /// - Returns: `true` if the candidate is included.
+        func contains(_ candidate: FolderFind.Candidate, relativeTo rootURL: URL) -> Bool {
+            
+            guard !self.rules.isEmpty else { return true }
+            
+            let values = Values(candidate: candidate, rootURL: rootURL)
+            
+            return self.rules.contains { $0.matches(values: values) }
         }
     }
+}
+
+
+private extension FileScope.Matcher {
     
-    
-    /// Returns whether the pattern matches the whole target string.
-    ///
-    /// - Parameter string: The string to evaluate.
-    /// - Returns: `true` if the regular expression matches the whole string.
-    func matchesRegularExpression(in string: String) -> Bool {
+    struct CompiledRule {
         
-        guard let regularExpression = try? NSRegularExpression(pattern: self.value) else { return false }
+        var target: FileScope.Rule.Target
+        var comparison: FileScope.Rule.Comparison
+        var value: String
+        var regularExpression: NSRegularExpression?
         
-        let range = NSRange(location: 0, length: string.utf16.count)
         
-        return regularExpression.firstMatch(in: string, range: range)?.range == range
+        /// Initializes a compiled file scope rule.
+        ///
+        /// - Parameter rule: The file scope rule to compile.
+        /// - Throws: `FileScope.Error.emptyValue` if the rule value is empty, or `FileScope.Error.invalidRegularExpression` if the regular expression pattern is invalid.
+        init(_ rule: FileScope.Rule) throws(FileScope.Error) {
+            
+            guard !rule.value.isEmpty else {
+                throw .emptyValue
+            }
+            
+            self.target = rule.target
+            self.comparison = rule.comparison
+            self.value = rule.value
+            
+            guard rule.comparison == .matchesRegularExpression else { return }
+            
+            do {
+                self.regularExpression = try NSRegularExpression(pattern: rule.value)
+            } catch {
+                throw .invalidRegularExpression(pattern: rule.value)
+            }
+        }
+        
+        
+        /// Returns whether the rule matches the given values.
+        ///
+        /// - Parameter values: The file values to evaluate.
+        /// - Returns: `true` if the rule matches.
+        func matches(values: FileScope.Values) -> Bool {
+            
+            let targetValue = values.value(for: self.target)
+            
+            return switch self.comparison {
+                case .contains:
+                    targetValue.range(of: self.value, options: .caseInsensitive) != nil
+                case .isEqualTo:
+                    targetValue.compare(self.value, options: .caseInsensitive) == .orderedSame
+                case .isNotEqualTo:
+                    targetValue.compare(self.value, options: .caseInsensitive) != .orderedSame
+                case .startsWith:
+                    targetValue.range(of: self.value, options: [.anchored, .caseInsensitive]) != nil
+                case .endsWith:
+                    targetValue.range(of: self.value, options: [.anchored, .backwards, .caseInsensitive]) != nil
+                case .matchesRegularExpression:
+                    self.matchesRegularExpression(in: targetValue)
+            }
+        }
+        
+        
+        /// Returns whether the regular expression matches the whole target string.
+        ///
+        /// - Parameter string: The string to evaluate.
+        /// - Returns: `true` if the regular expression matches the whole string.
+        private func matchesRegularExpression(in string: String) -> Bool {
+            
+            guard let regularExpression else { return false }
+            
+            let range = NSRange(0..<string.utf16.count)
+            
+            return regularExpression.firstMatch(in: string, range: range)?.range == range
+        }
     }
 }
 

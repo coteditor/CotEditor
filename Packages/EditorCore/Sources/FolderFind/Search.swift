@@ -38,6 +38,7 @@ struct Search {
     var progress: FolderFindProgress?
     var isIncluded: (@Sendable (FolderFind.Candidate) -> Bool)?
     
+    private var fileScopeMatcher: FileScope.Matcher
     private var metrics: FolderFind.Metrics
     private var files: [FolderFind.FileResult] = []
     
@@ -52,13 +53,15 @@ struct Search {
     ///   - options: The folder search options.
     ///   - progress: The progress object to update while searching.
     ///   - isIncluded: The predicate to determine whether a file candidate should be searched. If `nil`, the file type option is used.
-    init(rootURL: URL, query: FolderFind.Query, options: FolderFind.Options, progress: FolderFindProgress?, isIncluded: (@Sendable (FolderFind.Candidate) -> Bool)?) {
+    /// - Throws: `FileScope.Error` if the file scope is invalid.
+    init(rootURL: URL, query: FolderFind.Query, options: FolderFind.Options, progress: FolderFindProgress?, isIncluded: (@Sendable (FolderFind.Candidate) -> Bool)?) throws(FileScope.Error) {
         
         self.rootURL = rootURL
         self.query = query
         self.options = options
         self.progress = progress
         self.isIncluded = isIncluded
+        self.fileScopeMatcher = try FileScope.Matcher(options.fileScope)
         self.metrics = FolderFind.Metrics(findString: query.findString)
     }
     
@@ -176,7 +179,7 @@ struct Search {
         
         let includesFileType = self.isIncluded?(candidate) ?? (self.options.includesOtherFileTypes || FolderFind.isSearchableText(candidate))
         
-        return includesFileType && self.options.fileScope.contains(candidate, relativeTo: self.rootURL)
+        return includesFileType && self.fileScopeMatcher.contains(candidate, relativeTo: self.rootURL)
     }
     
     
