@@ -86,6 +86,7 @@ struct FolderFindView: View {
             }
             self.selection.removeAll()
         }
+        .accessibilityElement(children: .contain)
         .accessibilityLabel(SidebarPane.find.label)
     }
     
