@@ -297,6 +297,8 @@ private struct FolderFindFileResultView: View {
     var file: FolderFind.FileResult
     var revision: Int
     
+    private static let truncationHeadOffset = 32
+    
     @State private var isExpanded = true
     
     
@@ -305,7 +307,9 @@ private struct FolderFindFileResultView: View {
         DisclosureGroup(isExpanded: $isExpanded) {
             ForEach(self.file.matches) { match in
                 Label {
-                    Text(Self.highlightedLine(for: match, headOffset: 32))
+                    // realize character line break, which is currently not available in SwiftUI (2026-06, macOS 27)
+                    Text(Self.highlightedLine(for: match).lineBreakableByCharacter())
+                        .accessibilityLabel(Self.accessibilityLine(for: match))
                 } icon: {
                     Image(.textSquareFill)
                         .symbolRenderingMode(.hierarchical)
@@ -344,7 +348,7 @@ private struct FolderFindFileResultView: View {
     
     
     /// The line text with the matched substring emphasized.
-    private static func highlightedLine(for match: FolderFind.Match, headOffset: Int) -> AttributedString {
+    private static func highlightedLine(for match: FolderFind.Match) -> AttributedString {
         
         var attributedLine = AttributedString(match.line)
         var rangeInLine = match.rangeInLine
@@ -366,7 +370,19 @@ private struct FolderFindFileResultView: View {
         attributedLine[range].inlinePresentationIntent = .stronglyEmphasized
         attributedLine[range].foregroundColor = .primary
         
-        return attributedLine.truncatedHead(until: range.lowerBound, offset: headOffset)
+        return attributedLine.truncatedHead(until: range.lowerBound, offset: Self.truncationHeadOffset)
+    }
+    
+    
+    /// The line text for accessibility.
+    ///
+    /// - Parameter match: The matched range in the line.
+    /// - Returns: The line text without zero-width spaces.
+    private static func accessibilityLine(for match: FolderFind.Match) -> String {
+        
+        let index = String.Index(utf16Offset: match.rangeInLine.lowerBound, in: match.line)
+        
+        return match.line.truncatedHead(until: index, offset: Self.truncationHeadOffset)
     }
 }
 
@@ -465,5 +481,22 @@ private extension FolderFind.Metrics {
                    defaultValue: "\(self.matchCount) matches in \(self.matchedFileCount) files, \(self.skippedFileCount) skipped",
                    table: "Document", comment: "folder find result summary with skipped file count")
         }
+    }
+}
+
+
+private extension AttributedString {
+    
+    /// Inserts zero-width spaces (ZWS) between characters to allow character-by-character line wrapping.
+    ///
+    /// - Returns: An attributed string with zero-width spaces inserted between characters.
+    func lineBreakableByCharacter() -> AttributedString {
+        
+        var string = self
+        for index in string.characters.indices.dropFirst().reversed() {
+            string.insert(AttributedString("\u{200B}"), at: index)
+        }
+        
+        return string
     }
 }
