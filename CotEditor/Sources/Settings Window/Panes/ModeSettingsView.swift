@@ -39,7 +39,7 @@ struct ModeSettingsView: View {
         
         VStack {
             HStack {
-                ModeListView(manager: self.manager, selection: $selection, syntaxes: self.syntaxes)
+                ModeListView(manager: self.manager, selection: $selection, options: $options, syntaxes: self.syntaxes)
                     .frame(width: 120)
                 
                 GroupBox {
@@ -74,6 +74,7 @@ private struct ModeListView: View {
     var manager: ModeManager
     
     @Binding var selection: Mode
+    @Binding var options: ModeOptions
     
     var syntaxes: [String]
     @State private var syntaxModes: [Mode] = []
@@ -119,10 +120,15 @@ private struct ModeListView: View {
             }
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
-        .accessibilityLabel(String(localized: "Mode", table: "ModeSettings"))
+        .contextMenu(forSelectionType: Mode.self) { selections in
+            if let selection = selections.first {
+                self.contextMenu(for: selection)
+            }
+        }
         .onAppear {
             self.syntaxModes = self.manager.syntaxModes
         }
+        .accessibilityLabel(String(localized: "Mode", table: "ModeSettings"))
         .border(.separator)
         .background()
     }
@@ -176,6 +182,26 @@ private struct ModeListView: View {
         .padding(2)
         .labelStyle(.iconOnly)
         .buttonStyle(.borderless)
+    }
+    
+    
+    /// Builds the context menu for a list item.
+    ///
+    /// - Parameter mode: The mode represented by the selected row.
+    /// - Returns: The context menu content.
+    @ViewBuilder private func contextMenu(for mode: Mode) -> some View {
+        
+        if case .kind(let kind) = mode {
+            let defaultOptions = kind.defaultOptions
+            
+            Button(String(localized: "Action.restore.label", defaultValue: "Restore")) {
+                self.manager.save(setting: defaultOptions, mode: mode)
+                if self.selection == mode {
+                    self.options = defaultOptions
+                }
+            }
+            .disabled(self.manager.setting(for: mode) == defaultOptions)
+        }
     }
 }
 
