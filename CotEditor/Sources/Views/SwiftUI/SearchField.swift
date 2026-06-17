@@ -49,6 +49,7 @@ struct SearchField: NSViewRepresentable {
     func makeNSView(context: Context) -> NSSearchField {
         
         let searchField = RegexSearchField()
+        searchField.usesSingleLineMode = false
         searchField.sendsSearchStringImmediately = false
         searchField.sendsWholeSearchString = true
         searchField.target = context.coordinator
