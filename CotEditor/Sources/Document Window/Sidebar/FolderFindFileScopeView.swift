@@ -61,12 +61,23 @@ struct FolderFindFileScopeView: View {
                     .symbolRenderingMode(.multicolor)
             }
             
-            SubmitButtonGroup(action: self.apply)
-                .padding(.top)
+            SubmitButtonGroup(supplementalButton: {
+                Button(String(localized: "Action.removeAll.label", defaultValue: "Remove All"), action: self.clear)
+                    .disabled(self.fileScope.normalized.isEmpty)
+            }, action: self.apply)
+            .padding(.top)
         }
         .onChange(of: self.fileScope) {
             self.validationError = nil
         }
+    }
+    
+    
+    /// Clears the file scope.
+    private func clear() {
+        
+        self.fileScope = FileScope()
+        self.validationError = nil
     }
     
     
@@ -110,6 +121,10 @@ private struct RuleEditor: NSViewRepresentable {
     func updateNSView(_ nsView: NSRuleEditor, context: Context) {
         
         context.coordinator.fileScope = $fileScope
+        
+        if context.coordinator.fileScope(from: nsView).normalized != self.fileScope.normalized {
+            context.coordinator.apply(self.fileScope, to: nsView)
+        }
     }
     
     
@@ -256,7 +271,7 @@ private struct RuleEditor: NSViewRepresentable {
         ///
         /// - Parameter ruleEditor: The rule editor to read.
         /// - Returns: The current file scope.
-        private func fileScope(from ruleEditor: NSRuleEditor) -> FileScope {
+        func fileScope(from ruleEditor: NSRuleEditor) -> FileScope {
             
             let rules = ruleEditor.subrowIndexes(forRow: -1)
                 .compactMap { self.rule(from: ruleEditor, row: $0) }

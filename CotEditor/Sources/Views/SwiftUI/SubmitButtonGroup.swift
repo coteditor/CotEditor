@@ -25,12 +25,13 @@
 
 import SwiftUI
 
-struct SubmitButtonGroup: View {
+struct SubmitButtonGroup<SupplementalButton: View>: View {
     
     @Environment(\.dismiss) private var dismiss
     
     private var submitLabel: String
     private var helpAnchor: String?
+    private var supplementalButton: SupplementalButton?
     private var action: () -> Void
     private var cancelAction: DismissAction?
     
@@ -42,12 +43,14 @@ struct SubmitButtonGroup: View {
     /// - Parameters:
     ///   - submitLabel: The label to be displayed in the submit button, or `nil` for the default "OK."
     ///   - helpAnchor: The anchor within the help book for the help button, or `nil` to omit the help button.
+    ///   - supplementalButton: The view to be displayed next to the help button.
     ///   - action: The action invoked when the submit button was pressed.
     ///   - cancelAction: The action invoked when the cancel button was pressed.
-    init(_ submitLabel: String? = nil, helpAnchor: String? = nil, action: @escaping () -> Void, cancelAction: DismissAction? = nil) {
+    init(_ submitLabel: String? = nil, helpAnchor: String? = nil, @ViewBuilder supplementalButton: () -> SupplementalButton, action: @escaping () -> Void, cancelAction: DismissAction? = nil) {
         
         self.submitLabel = submitLabel ?? String(localized: .ok)
         self.helpAnchor = helpAnchor
+        self.supplementalButton = supplementalButton()
         self.action = action
         self.cancelAction = cancelAction
     }
@@ -59,6 +62,10 @@ struct SubmitButtonGroup: View {
             if let helpAnchor {
                 HelpLink(anchor: helpAnchor)
                     .environment(\.isEnabled, true)
+            }
+            
+            if let supplementalButton {
+                supplementalButton
             }
             
             Spacer()
@@ -74,6 +81,26 @@ struct SubmitButtonGroup: View {
                     .keyboardShortcut(.defaultAction)
             }
         }
+    }
+}
+
+
+extension SubmitButtonGroup where SupplementalButton == EmptyView {
+    
+    /// Creates two buttons with the same width; one is the cancel button and another is the submit button.
+    ///
+    /// - Parameters:
+    ///   - submitLabel: The label to be displayed in the submit button, or `nil` for the default "OK."
+    ///   - helpAnchor: The anchor within the help book for the help button, or `nil` to omit the help button.
+    ///   - action: The action invoked when the submit button was pressed.
+    ///   - cancelAction: The action invoked when the cancel button was pressed.
+    init(_ submitLabel: String? = nil, helpAnchor: String? = nil, action: @escaping () -> Void, cancelAction: DismissAction? = nil) {
+        
+        self.submitLabel = submitLabel ?? String(localized: .ok)
+        self.helpAnchor = helpAnchor
+        self.supplementalButton = nil
+        self.action = action
+        self.cancelAction = cancelAction
     }
 }
 
