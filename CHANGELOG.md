@@ -29,9 +29,9 @@
 
 ### TODO
 
-- Update the user guide.
 - Localize strings added.
     - Document Window/Document.xcstrings
+    - Panels/WhatsNew.xcstrings
     - Settings/Other Views/SyntaxListCustomization.xcstrings
     - Settings/Panes/FormatSettings.xcstrings
     - Storyboards/Main.xcstrings

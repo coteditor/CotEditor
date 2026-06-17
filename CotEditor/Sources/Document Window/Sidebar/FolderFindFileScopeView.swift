@@ -61,7 +61,7 @@ struct FolderFindFileScopeView: View {
                     .symbolRenderingMode(.multicolor)
             }
             
-            SubmitButtonGroup(action: self.apply, supplementalButton: {
+            SubmitButtonGroup(helpAnchor: "howto_find_in_folder", action: self.apply, supplementalButton: {
                 Button(String(localized: "Action.removeAll.label", defaultValue: "Remove All"), action: self.clear)
                     .disabled(self.fileScope.normalized.isEmpty)
             })

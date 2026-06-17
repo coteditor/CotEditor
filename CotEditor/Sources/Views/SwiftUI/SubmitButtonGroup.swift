@@ -45,7 +45,7 @@ struct SubmitButtonGroup<SupplementalButton: View>: View {
     ///   - helpAnchor: The anchor within the help book for the help button, or `nil` to omit the help button.
     ///   - action: The action invoked when the submit button was pressed.
     ///   - cancelAction: The action invoked when the cancel button was pressed.
-    ///   - supplementalButton: The button view to be displayed next to the help button.   
+    ///   - supplementalButton: The button view to be displayed next to the help button.
     init(_ submitLabel: String? = nil, helpAnchor: String? = nil, action: @escaping () -> Void, cancelAction: DismissAction? = nil, @ViewBuilder supplementalButton: () -> SupplementalButton) {
         
         self.submitLabel = submitLabel ?? String(localized: .ok)
