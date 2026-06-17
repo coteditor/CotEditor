@@ -61,10 +61,10 @@ struct FolderFindFileScopeView: View {
                     .symbolRenderingMode(.multicolor)
             }
             
-            SubmitButtonGroup(supplementalButton: {
+            SubmitButtonGroup(action: self.apply, supplementalButton: {
                 Button(String(localized: "Action.removeAll.label", defaultValue: "Remove All"), action: self.clear)
                     .disabled(self.fileScope.normalized.isEmpty)
-            }, action: self.apply)
+            })
             .padding(.top)
         }
         .onChange(of: self.fileScope) {
