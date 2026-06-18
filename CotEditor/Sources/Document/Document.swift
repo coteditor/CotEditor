@@ -106,7 +106,7 @@ extension NSTextView: EditorCounter.Source { }
     private let selectedRanges: Mutex<[NSRange]> = .init([])
     
     // temporal data used only within saving process
-    private var lastSavedData: Data?
+    private let pendingFileData: Mutex<Data?> = .init(nil)
     private let lastAdditionalFileAttributes: Mutex<[String: any Sendable]> = .init([:])
     
     private var urlDetector: URLDetector?
@@ -442,7 +442,7 @@ extension NSTextView: EditorCounter.Source { }
         }
         
         // keep to swap with `fileData` later, but only when succeed
-        self.lastSavedData = data
+        self.pendingFileData.withLock { $0 = data }
         
         return data
     }
@@ -491,16 +491,19 @@ extension NSTextView: EditorCounter.Source { }
         //     4. Then, the application hangs up.
         super.save(to: url, ofType: typeName, for: saveOperation) { [unowned self, url] error in
             defer {
+                self.pendingFileData.withLock { $0 = nil }
                 completionHandler(error)
             }
-            if error != nil { return }
+            if error != nil {
+                return
+            }
             
             // store file data in order to check the file content identity in `presentedItemDidChange()`
             if saveOperation.updatesDocumentFile {
-                assert(self.lastSavedData != nil)
-                self.fileData.withLock { $0 = self.lastSavedData }
+                let pendingFileData = self.pendingFileData.withLock(\.self)
+                assert(pendingFileData != nil)
+                self.fileData.withLock { $0 = pendingFileData }
             }
-            self.lastSavedData = nil
             
             // apply syntax that is inferred from the filename or the shebang
             if saveOperation == .saveAsOperation,
@@ -1258,6 +1261,7 @@ extension NSTextView: EditorCounter.Source { }
         
         let fileModificationDate = self.fileModificationDate
         let fileData = self.fileData.withLock(\.self)
+        let pendingFileData = self.pendingFileData.withLock(\.self)
         
         fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
         
@@ -1272,9 +1276,9 @@ extension NSTextView: EditorCounter.Source { }
                 modificationDate = try newURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
                 guard modificationDate != fileModificationDate else { return }
                 
-                // check if file content was changed from the stored file data
+                // check if file content was changed from the stored or pending saved file data
                 let data = try Data(contentsOf: newURL)
-                didChange = (data != fileData)
+                didChange = (data != fileData && data != pendingFileData)
             } catch {
                 readingError = error
             }
