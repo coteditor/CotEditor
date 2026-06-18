@@ -24,6 +24,7 @@
 - Fix an issue where the text composing in a text field on the Find window could disappear while incremental search.
 - Fix an issue where regular-expression syntax highlighting in input fields could fail to update immediately when changing regular expression mode while editing.
 - Fix an issue where the Advanced Character Counter could sometimes be positioned incorrectly.
+- Address an issue where the external modification alert could appear after saving a document in a synced folder.
 
 
 
