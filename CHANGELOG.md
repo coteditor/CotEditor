@@ -20,7 +20,7 @@
 ### Fixes
 
 - Fix an issue where the Command-Left Arrow command could fail to move the cursor to the beginning of the current wrapped visual line.
-- Fix an issue where the “Suggest completions while typing” option could unexpectedly commit text being composed.
+- Fix an issue on macOS 26.5.1 where the “Suggest completions while typing” option could unexpectedly commit text being composed.
 - Fix an issue where the text composing in a text field on the Find window could disappear while incremental search.
 - Fix an issue where regular-expression syntax highlighting in input fields could fail to update immediately when changing regular expression mode while editing.
 - Fix an issue where the Advanced Character Counter could sometimes be positioned incorrectly.
