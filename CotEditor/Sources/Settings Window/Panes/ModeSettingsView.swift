@@ -48,6 +48,7 @@ struct ModeSettingsView: View {
                         .onChange(of: self.options) { _, newValue in
                             self.manager.save(setting: newValue, mode: self.selection)
                         }
+                        .padding(10)
                         .frame(maxWidth: .infinity)
                         .accessibilityElement(children: .contain)
                         .accessibilityLabel(self.selection.label)
@@ -273,8 +274,6 @@ private struct ModeOptionsView: View {
                 }
             }
         }
-        .fixedSize(horizontal: false, vertical: true)
-        .padding(10)
     }
 }
 
