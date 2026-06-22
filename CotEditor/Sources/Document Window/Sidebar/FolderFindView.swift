@@ -302,8 +302,6 @@ private struct FolderFindFileResultView: View {
     var file: FolderFind.FileResult
     var revision: Int
     
-    private static let truncationHeadOffset = 32
-    
     @State private var isExpanded = true
     
     
@@ -311,17 +309,8 @@ private struct FolderFindFileResultView: View {
         
         DisclosureGroup(isExpanded: $isExpanded) {
             ForEach(self.file.matches) { match in
-                Label {
-                    // realize character line break, which is currently not available in SwiftUI (2026-06, macOS 27)
-                    Text(Self.highlightedLine(for: match).lineBreakableByCharacter())
-                        .accessibilityLabel(Self.accessibilityLine(for: match))
-                } icon: {
-                    Image(.textSquareFill)
-                        .symbolRenderingMode(.hierarchical)
-                }
-                .foregroundStyle(.secondary)
-                .lineLimit(3)
-                .tag(FolderFind.ResultID.match(fileID: self.file.id, matchID: match.id))
+                ItemView(match: match)
+                    .tag(FolderFind.ResultID.match(fileID: self.file.id, matchID: match.id))
             }
         } label: {
             Label {
@@ -352,42 +341,62 @@ private struct FolderFindFileResultView: View {
     }
     
     
-    /// The line text with the matched substring emphasized.
-    private static func highlightedLine(for match: FolderFind.Match) -> AttributedString {
+    private struct ItemView: View {
         
-        var attributedLine = AttributedString(match.line)
-        var rangeInLine = match.rangeInLine
+        var match: FolderFind.Match
         
-        // trim leading whitespace
-        let indentationLength = match.line.prefix(while: \.isWhitespace).utf16.count
-        if indentationLength > 0,
-           rangeInLine.location >= indentationLength,
-           let range = Range(NSRange(0..<indentationLength), in: attributedLine)
-        {
-            attributedLine.removeSubrange(range)
-            rangeInLine.location -= indentationLength
+        private static let truncationHeadOffset = 32
+        
+        
+        var body: some View {
+            
+            Label {
+                // realize character line break, which is currently not available in SwiftUI (2026-06, macOS 27)
+                Text(self.highlightedLine.lineBreakableByCharacter())
+                    .accessibilityLabel(self.accessibilityLine)
+            } icon: {
+                Image(.textSquareFill)
+                    .symbolRenderingMode(.hierarchical)
+            }
+            .foregroundStyle(.secondary)
+            .lineLimit(3)
         }
         
-        guard let range = Range(rangeInLine, in: attributedLine) else {
-            return attributedLine
+        
+        /// The line text with the matched substring emphasized.
+        private var highlightedLine: AttributedString {
+            
+            var attributedLine = AttributedString(self.match.line)
+            var rangeInLine = self.match.rangeInLine
+            
+            // trim leading whitespace
+            let indentationLength = self.match.line.prefix(while: \.isWhitespace).utf16.count
+            if indentationLength > 0,
+               rangeInLine.location >= indentationLength,
+               let range = Range(NSRange(0..<indentationLength), in: attributedLine)
+            {
+                attributedLine.removeSubrange(range)
+                rangeInLine.location -= indentationLength
+            }
+            
+            guard let range = Range(rangeInLine, in: attributedLine) else {
+                return attributedLine
+            }
+            
+            attributedLine[range].inlinePresentationIntent = .stronglyEmphasized
+            attributedLine[range].foregroundColor = .primary
+            
+            return attributedLine.truncatedHead(until: range.lowerBound, offset: Self.truncationHeadOffset)
         }
         
-        attributedLine[range].inlinePresentationIntent = .stronglyEmphasized
-        attributedLine[range].foregroundColor = .primary
         
-        return attributedLine.truncatedHead(until: range.lowerBound, offset: Self.truncationHeadOffset)
-    }
-    
-    
-    /// The line text for accessibility.
-    ///
-    /// - Parameter match: The matched range in the line.
-    /// - Returns: The line text without zero-width spaces.
-    private static func accessibilityLine(for match: FolderFind.Match) -> String {
-        
-        let index = String.Index(utf16Offset: match.rangeInLine.lowerBound, in: match.line)
-        
-        return match.line.truncatedHead(until: index, offset: Self.truncationHeadOffset)
+        /// The line text for accessibility.
+        private var accessibilityLine: String {
+            
+            let index = String.Index(utf16Offset: self.match.rangeInLine.lowerBound, in: self.match.line)
+            
+            return self.match.line.truncatedHead(until: index, offset: Self.truncationHeadOffset)
+        }
     }
 }
 
