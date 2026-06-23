@@ -98,9 +98,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let messageField = NSTextField(labelWithString: message)
         messageField.textColor = .secondaryLabelColor
         messageField.isHidden = true
-        outlineView.addSubview(messageField)
-        
         messageField.translatesAutoresizingMaskIntoConstraints = false
+        
+        outlineView.addSubview(messageField)
         NSLayoutConstraint.activate([
             messageField.centerXAnchor.constraint(equalTo: outlineView.centerXAnchor),
             messageField.centerYAnchor.constraint(equalTo: outlineView.centerYAnchor),
@@ -137,49 +137,23 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         filterProgressIndicator.isDisplayedWhenStopped = false
         filterProgressIndicator.controlSize = .small
         filterProgressIndicator.setAccessibilityLabel(String(localized: "Searching in folder…", table: "Document"))
-        
-        let footerView = NSView()
-        addButton.translatesAutoresizingMaskIntoConstraints = false
-        filterField.translatesAutoresizingMaskIntoConstraints = false
         filterProgressIndicator.translatesAutoresizingMaskIntoConstraints = false
-        footerView.addSubview(addButton)
-        footerView.addSubview(filterField)
-        footerView.addSubview(filterProgressIndicator)
         
+        filterField.addSubview(filterProgressIndicator)
         NSLayoutConstraint.activate([
-            addButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
-            addButton.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 7),
-            filterField.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
-            filterField.leadingAnchor.constraint(equalToSystemSpacingAfter: addButton.trailingAnchor, multiplier: 0.5),
-            filterField.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -7),
             filterProgressIndicator.centerYAnchor.constraint(equalTo: filterField.centerYAnchor),
             filterProgressIndicator.trailingAnchor.constraint(equalTo: filterField.trailingAnchor, constant: -24),
+            filterProgressIndicator.heightAnchor.constraint(equalTo: filterField.heightAnchor, multiplier: 0.6)
         ])
         
-        self.view = NSView()
+        let footerView = NSStackView(views: [addButton, filterField])
+        footerView.edgeInsets = NSEdgeInsets(top: 6, left: 7, bottom: 6, right: 7)
         
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        bottomSeparator.translatesAutoresizingMaskIntoConstraints = false
-        footerView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(scrollView)
-        self.view.addSubview(bottomSeparator)
-        self.view.addSubview(footerView)
+        let stackView = NSStackView(views: [scrollView, bottomSeparator, footerView])
+        stackView.orientation = .vertical
+        stackView.spacing = 0
         
-        let footerHeight: CGFloat = 36
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomSeparator.topAnchor),
-            bottomSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            bottomSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            bottomSeparator.bottomAnchor.constraint(equalTo: footerView.topAnchor),
-            footerView.heightAnchor.constraint(equalToConstant: footerHeight),
-            footerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            footerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            footerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-        ])
-        
+        self.view = stackView
         self.outlineView = outlineView
         self.bottomSeparator = bottomSeparator
         self.messageField = messageField
