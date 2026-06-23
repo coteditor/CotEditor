@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24765" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="25084" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24765"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="25084"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -20,7 +20,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="202"/>
-                                        <menuItem title="Settings…" secondaryImage="gear" catalog="system" keyEquivalent="," id="129">
+                                        <menuItem title="Settings…" image="gear" catalog="system" keyEquivalent="," id="129">
                                             <connections>
                                                 <action selector="showSettingsWindow:" target="Ady-hI-5gd" id="B5S-pE-Q9J"/>
                                             </connections>
@@ -1330,7 +1330,7 @@ CA
         <image name="filemenu.and.selection" catalog="system" width="18" height="14"/>
         <image name="finder" catalog="system" width="16" height="15"/>
         <image name="folder" catalog="system" width="18" height="14"/>
-        <image name="gear" catalog="system" width="17" height="16"/>
+        <image name="gear" catalog="system" width="17" height="17"/>
         <image name="highlighter" catalog="system" width="17" height="16"/>
         <image name="increase.indent" catalog="system" width="18" height="13"/>
         <image name="inset.filled.bottomhalf.tophalf.rectangle" catalog="system" width="18" height="14"/>
