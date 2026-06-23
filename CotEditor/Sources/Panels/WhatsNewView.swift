@@ -98,7 +98,7 @@ struct WhatsNewView: View {
                     NSHelpManager.shared.openHelpAnchor("releasenotes", inBook: Bundle.main.helpBookName)
                 } label: {
                     Text("Release Notes", tableName: "WhatsNew")
-                        .frame(minWidth: 100)
+                        .frame(minWidth: 110)
                 }
                 .glassEffect()
                 
@@ -107,7 +107,7 @@ struct WhatsNewView: View {
                     self.dismiss()
                 } label: {
                     Text("Continue", tableName: "WhatsNew")
-                        .frame(minWidth: 100)
+                        .frame(minWidth: 110)
                 }
                 .focused($isContinueButtonFocused)  // workaround: .prefersDefaultFocus(in:) doesn't work (2026-01, macOS 26).
                 .prefersDefaultFocus(true, in: self.namespace)
@@ -124,7 +124,7 @@ struct WhatsNewView: View {
         }
         .focusScope(self.namespace)
         .scenePadding()
-        .frame(width: 480)
+        .frame(width: 460)
         .background {
             Image(systemName: "gearshape.2")
                 .font(.system(size: 750, weight: .ultraLight))
