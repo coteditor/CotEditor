@@ -38,3 +38,11 @@ struct ItemCountView: View {
             .controlSize(.small)
     }
 }
+
+
+// MARK: - Preview
+
+#Preview {
+    ItemCountView(count: 1024)
+        .scenePadding()
+}

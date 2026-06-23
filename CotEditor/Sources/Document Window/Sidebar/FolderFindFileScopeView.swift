@@ -488,3 +488,11 @@ private extension FileScope.Rule.Comparison {
         }
     }
 }
+
+
+// MARK: - Preview
+
+#Preview {
+    FolderFindFileScopeView(fileScope: .init()) { _ in }
+        .scenePadding()
+}
