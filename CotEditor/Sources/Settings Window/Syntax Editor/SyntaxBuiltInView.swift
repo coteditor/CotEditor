@@ -37,16 +37,21 @@ struct SyntaxBuiltInView: View {
                         .fontWeight(.semibold)
                 } icon: {
                     Image(systemName: "pencil.slash")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 64)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 64)
                 }
                 
             } description: {
                 Text(String(localized: "SyntaxBuiltInView.description", defaultValue: "This language uses a structure-based, general-purpose parser called tree-sitter for syntax analysis.\nBecause the extraction rules are managed by the app, you can’t customize them.", table: "SyntaxEditor"))
             }
+            .frame(maxHeight: .infinity, alignment: .center)
+            
+            HStack {
+                Spacer()
+                HelpLink(anchor: "syntax_definition")
+            }
         }
-        .frame(maxHeight: .infinity, alignment: .center)
     }
 }
 
