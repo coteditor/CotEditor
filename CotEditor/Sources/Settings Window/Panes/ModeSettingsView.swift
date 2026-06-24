@@ -136,7 +136,7 @@ private struct ModeListView: View {
     
     
     /// The action buttons to place at the bottom of the list.
-    @ViewBuilder private var bottomAccessoryView: some View {
+    @ContentBuilder private var bottomAccessoryView: some View {
         
         HStack(spacing: 0) {
             Menu(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus") {
@@ -190,7 +190,7 @@ private struct ModeListView: View {
     ///
     /// - Parameter mode: The mode represented by the selected row.
     /// - Returns: The context menu content.
-    @ViewBuilder private func contextMenu(for mode: Mode) -> some View {
+    @ContentBuilder private func contextMenu(for mode: Mode) -> some View {
         
         if case .kind(let kind) = mode {
             let defaultOptions = kind.defaultOptions

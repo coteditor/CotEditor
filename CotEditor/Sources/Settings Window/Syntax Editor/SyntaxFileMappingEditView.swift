@@ -78,13 +78,13 @@ struct SyntaxFileMappingEditView: View {
         
         
         @Binding var items: [Item]
-        @ViewBuilder var label: Label
+        @ContentBuilder var label: Label
         
         @State private var selection: Set<Item.ID> = []
         @FocusState private var focusedField: Item.ID?
         
         
-        init(_ items: Binding<[Item]>, @ViewBuilder label: () -> Label) {
+        init(_ items: Binding<[Item]>, @ContentBuilder label: () -> Label) {
             
             self._items = items
             self.label = label()

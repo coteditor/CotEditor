@@ -151,7 +151,7 @@ private struct OutlineNavigationView: View {
     
     // MARK: Private Methods
     
-    @ViewBuilder private func previousButton(systemImage: String) -> some View {
+    @ContentBuilder private func previousButton(systemImage: String) -> some View {
         
         Button {
             self.navigator.selectPreviousItem()
@@ -167,7 +167,7 @@ private struct OutlineNavigationView: View {
     }
     
     
-    @ViewBuilder private func nextButton(systemImage: String) -> some View {
+    @ContentBuilder private func nextButton(systemImage: String) -> some View {
         
         Button {
             self.navigator.selectNextItem()

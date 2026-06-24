@@ -420,7 +420,7 @@ private struct SyntaxListView: View {
     
     
     /// The action buttons to place at the bottom of the list.
-    @ViewBuilder private var bottomAccessoryView: some View {
+    @ContentBuilder private var bottomAccessoryView: some View {
         
         HStack {
             Button {
@@ -477,7 +477,7 @@ private struct SyntaxListView: View {
     ///   - selection: The action target.
     ///   - isContext: Whether the items are for the context menu.
     /// - Returns: Menu items.
-    @ViewBuilder private func menu(for selection: SettingState?, isContext: Bool = false) -> some View {
+    @ContentBuilder private func menu(for selection: SettingState?, isContext: Bool = false) -> some View {
         
         if let selection {
             if isContext {

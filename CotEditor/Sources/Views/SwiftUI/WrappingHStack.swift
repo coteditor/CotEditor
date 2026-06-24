@@ -30,7 +30,7 @@ struct WrappingHStack<Content: View>: View {
     var alignment: HorizontalAlignment = .leading
     var horizontalSpacing: Double = 4
     var verticalSpacing: Double = 4
-    @ViewBuilder var content: Content
+    @ContentBuilder var content: Content
     
     
     var body: some View {

@@ -104,7 +104,7 @@ struct FolderFindView: View {
     ///
     /// - Parameter file: The file result represented by the selected row.
     /// - Returns: The context menu content.
-    @ViewBuilder private func contextMenu(for file: FolderFind.FileResult) -> some View {
+    @ContentBuilder private func contextMenu(for file: FolderFind.FileResult) -> some View {
         
         Button(String(localized: "Reveal in File Browser", table: "Document"), systemImage: "folder") {
             self.model.document.revealInFileBrowser(fileURL: file.fileURL)

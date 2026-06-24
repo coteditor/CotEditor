@@ -179,7 +179,7 @@ struct SyntaxEditView: View {
     }
     
     
-    @ViewBuilder private static func lockedPaneLabel(_ pane: Pane) -> some View {
+    @ContentBuilder private static func lockedPaneLabel(_ pane: Pane) -> some View {
         
         HStack(alignment: .firstTextBaseline, spacing: 4) {
             Text(pane.label)
@@ -190,7 +190,7 @@ struct SyntaxEditView: View {
     }
     
     
-    @ViewBuilder private var detailView: some View {
+    @ContentBuilder private var detailView: some View {
         
         switch self.pane {
             case .fileMapping:

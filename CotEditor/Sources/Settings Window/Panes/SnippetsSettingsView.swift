@@ -325,7 +325,7 @@ private struct InsertionFormatView<Variable: TokenRepresentable, MenuContent: Vi
     
     @Binding var text: String?
     var count: Int
-    @ViewBuilder var menuContent: MenuContent
+    @ContentBuilder var menuContent: MenuContent
     
     @Namespace private var accessibility
     

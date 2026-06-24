@@ -221,7 +221,7 @@ private extension NewFeature {
     }
     
     
-    @MainActor @ViewBuilder var supplementalView: some View {
+    @MainActor @ContentBuilder var supplementalView: some View {
         
         switch self {
             default:

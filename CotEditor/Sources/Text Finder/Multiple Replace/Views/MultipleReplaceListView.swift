@@ -163,7 +163,7 @@ struct MultipleReplaceListView: View {
     
     
     /// The action buttons to place at the bottom of the list.
-    @ViewBuilder private var bottomAccessoryView: some View {
+    @ContentBuilder private var bottomAccessoryView: some View {
         
         HStack {
             Button {
@@ -208,7 +208,7 @@ struct MultipleReplaceListView: View {
     ///   - selection: The action target.
     ///   - isContext: Whether the items are for the context menu.
     /// - Returns: Menu items.
-    @ViewBuilder private func menu(for selection: String?, isContext: Bool = false) -> some View {
+    @ContentBuilder private func menu(for selection: String?, isContext: Bool = false) -> some View {
         
         if let selection {
             Button(isContext

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -216,10 +216,10 @@ private struct CreditsView: View {
     private struct SectionView<Content: View>: View {
         
         var label: String
-        @ViewBuilder var content: Content
+        @ContentBuilder var content: Content
         
         
-        init(_ label: String, @ViewBuilder content: () -> Content) {
+        init(_ label: String, @ContentBuilder content: () -> Content) {
             
             self.label = label
             self.content = content()

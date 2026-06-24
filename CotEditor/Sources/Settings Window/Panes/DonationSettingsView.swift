@@ -262,7 +262,7 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
     ///   - product: The product.
     ///   - icon: The product icon.
     /// - Returns: The view to display when the state is success.
-    @ViewBuilder private func productView(_ product: Product, icon: ProductViewStyleConfiguration.Icon) -> some View {
+    @ContentBuilder private func productView(_ product: Product, icon: ProductViewStyleConfiguration.Icon) -> some View {
         
         HStack(alignment: .top, spacing: 10) {
             icon

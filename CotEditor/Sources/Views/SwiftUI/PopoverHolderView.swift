@@ -35,7 +35,7 @@ extension View {
     ///   - arrowEdge: The edge of the bounds that defines the location of the popover’s arrow.
     ///   - content: A closure returning the content of the popover.
     /// - Returns: Some view.
-    func detachablePopover<Content>(isPresented: Binding<Bool>, arrowEdge: Edge = .top, @ViewBuilder content: () -> Content) -> some View where Content: View {
+    func detachablePopover<Content>(isPresented: Binding<Bool>, arrowEdge: Edge = .top, @ContentBuilder content: () -> Content) -> some View where Content: View {
         
         self.background(PopoverHolderView(isPresented: isPresented, arrowEdge: arrowEdge, content: content))
     }
@@ -60,7 +60,7 @@ private struct PopoverHolderView<Content: View>: NSViewRepresentable {
     
     @Binding var isPresented: Bool
     var arrowEdge: Edge
-    @ViewBuilder var content: Content
+    @ContentBuilder var content: Content
     
     
     func makeNSView(context: Context) -> NSView {

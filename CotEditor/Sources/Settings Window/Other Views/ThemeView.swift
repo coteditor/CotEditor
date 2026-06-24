@@ -270,7 +270,7 @@ private struct ThemeListView: View {
     
     
     /// The action buttons to place at the bottom of the list.
-    @ViewBuilder private var bottomAccessoryView: some View {
+    @ContentBuilder private var bottomAccessoryView: some View {
         
         HStack {
             Button {
@@ -320,7 +320,7 @@ private struct ThemeListView: View {
     ///   - selection: The action target.
     ///   - isContext: Whether the items are for the context menu.
     /// - Returns: Menu items.
-    @ViewBuilder private func menu(for selection: String, isContext: Bool = false) -> some View {
+    @ContentBuilder private func menu(for selection: String, isContext: Bool = false) -> some View {
         
         if let selection = self.manager.state(of: selection) {
             Button(isContext
@@ -615,7 +615,7 @@ private struct ThemeMetadataView: View {
     }
     
     
-    @ViewBuilder private func itemView(_ title: some StringProtocol, text: Binding<String>, lineLimit: ClosedRange<Int> = 1...1) -> some View {
+    @ContentBuilder private func itemView(_ title: some StringProtocol, text: Binding<String>, lineLimit: ClosedRange<Int> = 1...1) -> some View {
         
         Text(title)
             .fontWeight(.bold)
