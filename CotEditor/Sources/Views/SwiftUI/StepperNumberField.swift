@@ -87,7 +87,7 @@ struct StepperNumberField: View {
     /// Sets the input field width to the specified size.
     ///
     /// - Parameter fieldWidth: The field width.
-    func fieldWidth(_ fieldWidth: CGFloat?) -> some View {
+    func fieldWidth(_ fieldWidth: CGFloat?) -> Self {
         
         var view = self
         view.fieldWidth = fieldWidth
