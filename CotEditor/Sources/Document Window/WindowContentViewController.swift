@@ -26,6 +26,7 @@
 import AppKit
 import SwiftUI
 import Combine
+import ControlUI
 import Defaults
 
 final class WindowContentViewController: NSSplitViewController, NSToolbarItemValidation {
@@ -79,7 +80,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     
     override func loadView() {
         
-        self.view = HoleContentView()
+        self.view = HoleContentView<BidiScrollView>()
         self.view.frame.size = NSSize(width: 640, height: 720)
         
         self.splitView.translatesAutoresizingMaskIntoConstraints = false

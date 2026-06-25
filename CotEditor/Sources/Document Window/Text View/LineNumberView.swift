@@ -29,7 +29,7 @@ import Combine
 import CoreText.CTFont
 import StringUtils
 
-final class LineNumberView: NSView {
+final class LineNumberView: NSRulerView {
     
     private struct DrawingInfo: Equatable {
         
@@ -62,20 +62,6 @@ final class LineNumberView: NSView {
     }
     
     
-    // MARK: Public Properties
-    
-    var orientation: NSLayoutManager.TextLayoutOrientation = .horizontal {
-        
-        didSet {
-            if !self.isHiddenOrHasHiddenAncestor {
-                self.invalidateThickness()
-            }
-        }
-    }
-    
-    @Invalidating(.display) var layoutDirection: NSUserInterfaceLayoutDirection = .leftToRight
-    
-    
     // MARK: Private Properties
     
     private let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
@@ -84,13 +70,8 @@ final class LineNumberView: NSView {
     
     private let minimumNumberOfDigits = 3
     
-    private weak let textView: NSTextView?
-    
     private var drawingInfo: DrawingInfo
-    @Invalidating(.display, .intrinsicContentSize) private var thickness: Double = 32
-    
     @Invalidating(.display) private var textColor: NSColor = .textColor
-    @Invalidating(.display) private var backgroundColor: NSColor = .textBackgroundColor
     
     private var textViewObservers: Set<AnyCancellable> = []
     
@@ -99,12 +80,15 @@ final class LineNumberView: NSView {
     
     // MARK: Lifecycle
     
-    init(textView: NSTextView) {
+    init(textView: NSTextView, scrollView: NSScrollView, orientation: NSRulerView.Orientation) {
         
-        self.textView = textView
         self.drawingInfo = DrawingInfo(font: self.lineNumberFont, fontSize: textView.font!.pointSize, scale: textView.scale)
         
-        super.init(frame: .zero)
+        super.init(scrollView: scrollView, orientation: orientation)
+        
+        self.clientView = textView
+        self.reservedThicknessForMarkers = 0
+        self.updateRuleThickness()
         
         self.observeTextView(textView)
     }
@@ -124,52 +108,36 @@ final class LineNumberView: NSView {
     }
     
     
-    override var isOpaque: Bool {
+    override var isFlipped: Bool {
         
-        self.textView?.isOpaque != false
-    }
-    
-    
-    override var isHidden: Bool {
-        
-        didSet {
-            if !self.isHidden {
-                self.invalidateThickness()
-            }
-        }
-    }
-    
-    
-    override var intrinsicContentSize: NSSize {
-        
-        switch self.orientation {
-            case .horizontal:
-                NSSize(width: self.thickness, height: NSView.noIntrinsicMetric)
-            case .vertical:
-                NSSize(width: NSView.noIntrinsicMetric, height: self.thickness + self.safeAreaInsets.top)
-            @unknown default:
-                fatalError()
-        }
+        false
     }
     
     
     override func draw(_ dirtyRect: NSRect) {
         
+        self.drawHashMarksAndLabels(in: dirtyRect)
+    }
+    
+    
+    override func drawHashMarksAndLabels(in rect: NSRect) {
+        
         NSGraphicsContext.saveGraphicsState()
         
-        // fill background
-        if self.isOpaque {
-            self.backgroundColor.setFill()
-            dirtyRect.intersection(self.bounds).fill()
-        }
-        
-        self.drawNumbers(in: dirtyRect)
+        self.drawNumbers(in: rect)
         
         NSGraphicsContext.restoreGraphicsState()
     }
     
     
     // MARK: Private Methods
+    
+    /// The client text view.
+    private var textView: NSTextView? {
+        
+        self.clientView as? NSTextView
+    }
+    
     
     /// The total number of lines in the text view.
     private var numberOfLines: Int {
@@ -211,9 +179,6 @@ final class LineNumberView: NSView {
         context.setFillColor(self.foregroundColor().cgColor)
         context.setStrokeColor(self.foregroundColor(.stroke).cgColor)
         
-        // workaround issue #1938 that numbers don't get the soft edge effect (2026-03, macOS 26.4)
-        context.clip(to: self.safeAreaRect)
-        
         let isVerticalText = textView.layoutOrientation == .vertical
         let scale = textView.scale
         
@@ -223,7 +188,7 @@ final class LineNumberView: NSView {
         let lineOffset = scale * layoutManager.baselineOffset(for: textView.layoutOrientation)
         switch textView.layoutOrientation {
             case .horizontal:
-                context.translateBy(x: self.safeAreaRect.maxX, y: relativePoint.y - originOffset)
+                context.translateBy(x: self.bounds.maxX, y: relativePoint.y - originOffset)
             case .vertical:
                 context.translateBy(x: relativePoint.x - originOffset, y: 0)
             @unknown default: fatalError()
@@ -302,26 +267,30 @@ final class LineNumberView: NSView {
         self.drawingInfo = drawingInfo
         self.needsDisplay = true
         
-        self.invalidateThickness()
+        self.updateRuleThickness()
     }
     
     
-    /// Updates receiver's thickness based on drawingInfo and textView's status.
-    private func invalidateThickness() {
+    /// Updates receiver's rule thickness based on drawingInfo and textView's status.
+    private func updateRuleThickness() {
         
-        let thickness: Double
+        var ruleThickness: CGFloat
         let drawingInfo = self.drawingInfo
         switch self.orientation {
-            case .horizontal:
+            case .verticalRuler:
                 let numberOfDigits = max(self.numberOfLines.digits.count, self.minimumNumberOfDigits)
-                thickness = max(Double(numberOfDigits + 2) * drawingInfo.charWidth, 32)
-            case .vertical:
-                thickness = max(2 * drawingInfo.fontSize + drawingInfo.tickLength, 20)
+                ruleThickness = max(CGFloat(numberOfDigits + 2) * drawingInfo.charWidth, 32)
+            case .horizontalRuler:
+                ruleThickness = max(2 * drawingInfo.fontSize + drawingInfo.tickLength, 20)
             @unknown default:
                 fatalError()
         }
         
-        self.thickness = thickness.rounded(.up)
+        ruleThickness.round(.up)
+        
+        guard ruleThickness != self.ruleThickness else { return }
+        
+        self.ruleThickness = ruleThickness
     }
     
     
@@ -333,18 +302,15 @@ final class LineNumberView: NSView {
         assert(textView.enclosingScrollView?.contentView != nil)
         
         self.textViewObservers = [
-            // workaround the issue where the view is trucked under the titlebar area (2025-09, macOS 26)
-            self.publisher(for: \.safeAreaInsets)
-                .filter { [weak self] _ in self?.orientation == .vertical }
-                .sink { [weak self] _ in self?.invalidateIntrinsicContentSize() },
-            
             NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textView.textStorage)
                 .map { $0.object as! NSTextStorage }
                 .filter { $0.editedMask.contains(.editedCharacters) }
                 .sink { [weak self] _ in
-                    // -> The digit of the line numbers affect thickness.
-                    if self?.orientation == .horizontal {
-                        self?.invalidateThickness()
+                    // -> The digit of the line numbers affect the rule thickness.
+                    if self?.orientation == .verticalRuler {
+                        DispatchQueue.main.async { [weak self] in
+                            self?.updateRuleThickness()
+                        }
                     }
                     self?.needsDisplay = true
                 },
@@ -364,9 +330,6 @@ final class LineNumberView: NSView {
             textView.publisher(for: \.textColor, options: .initial)
                 .compactMap(\.self)
                 .sink { [weak self] in self?.textColor = $0 },
-            
-            textView.publisher(for: \.backgroundColor, options: .initial)
-                .sink { [weak self] in self?.backgroundColor = $0 },
             
             textView.publisher(for: \.font)
                 .sink { [weak self] _ in self?.invalidateDrawingInfo() },

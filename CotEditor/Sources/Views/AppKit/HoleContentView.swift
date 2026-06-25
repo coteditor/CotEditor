@@ -26,7 +26,7 @@
 import AppKit
 import Combine
 
-final class HoleContentView: NSView {
+final class HoleContentView<HoleView: NSView>: NSView {
     
     // MARK: Private Properties
     
@@ -62,7 +62,7 @@ final class HoleContentView: NSView {
                 } else {
                     NotificationCenter.default.publisher(for: NSView.frameDidChangeNotification)
                         .map { $0.object as! NSView }
-                        .filter { $0 is NSStackView }
+                        .filter { $0 is HoleView }
                         .filter { $0.isDescendant(of: self) }
                         .sink { [unowned self] _ in self.invalidateHoles(isOpaque: false) }
                 }
@@ -93,7 +93,7 @@ final class HoleContentView: NSView {
         if isOpaque {
             self.holes.removeAll()
         } else {
-            self.holes = self.descendants(type: NSStackView.self)
+            self.holes = self.descendants(type: HoleView.self)
                 .map { $0.convert($0.safeAreaRect, to: self) }
                 .filter { !$0.isEmpty }
         }

@@ -57,7 +57,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     private let document: Document
     
-    @ViewLoading private var lineNumberView: LineNumberView
+    @ViewLoading private var scrollView: BidiScrollView
     private weak var advancedCounterView: NSView?
     
     private var documentObservers: [Task<Void, Never>] = []
@@ -107,21 +107,19 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             lineEndingScanner: self.document.lineEndingScanner
         )
         textView.delegate = self
+        textView.usesRuler = false
         textView.accessibilityHelpProvider = { [weak self] in self?.editorAccessibilityHelp }
         
         let scrollView = BidiScrollView()
         scrollView.hasVerticalScroller = true
+        scrollView.contentView.automaticallyAdjustsContentInsets = false
         scrollView.documentView = textView
+        scrollView.verticalRulerView = LineNumberView(textView: textView, scrollView: scrollView, orientation: .verticalRuler)
+        scrollView.horizontalRulerView = LineNumberView(textView: textView, scrollView: scrollView, orientation: .horizontalRuler)
         scrollView.identifier = NSUserInterfaceItemIdentifier("EditorScrollView")
         
-        let lineNumberView = LineNumberView(textView: textView)
-        
-        let stackView = NSStackView(views: [lineNumberView, scrollView])
-        stackView.spacing = 0
-        stackView.distribution = .fill
-        
-        self.view = stackView
-        self.lineNumberView = lineNumberView
+        self.view = scrollView
+        self.scrollView = scrollView
         self.textView = textView
     }
     
@@ -180,24 +178,24 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             
             // observe text orientation for line number view
             self.textView.publisher(for: \.layoutOrientation, options: .initial)
-                .sink { [weak self] orientation in
-                    (self?.view as? NSStackView)?.orientation = switch orientation {
-                        case .horizontal: .horizontal
-                        case .vertical: .vertical
-                        @unknown default: fatalError()
+                .sink { [weak scrollView] orientation in
+                    switch orientation {
+                        case .horizontal:
+                            scrollView?.hasVerticalRuler = true
+                            scrollView?.hasHorizontalRuler = false
+                        case .vertical:
+                            scrollView?.hasVerticalRuler = false
+                            scrollView?.hasHorizontalRuler = true
+                        @unknown default:
+                            fatalError()
                     }
-                    self?.lineNumberView.orientation = orientation
                 },
             
-            // let accessory views' position follow the writing direction
+            // let line number view's position follow the writing direction
             self.textView.publisher(for: \.baseWritingDirection, options: .initial)
                 .removeDuplicates()
                 .map { ($0 == .rightToLeft) ? NSUserInterfaceLayoutDirection.rightToLeft : .leftToRight }
-                .sink { [weak self] direction in
-                    self?.view.userInterfaceLayoutDirection = direction
-                    (self?.textView.enclosingScrollView as? BidiScrollView)?.contentDirection = direction
-                    self?.lineNumberView.layoutDirection = direction
-                },
+                .assign(to: \.contentDirection, on: self.scrollView)
         ]
         
         // apply initial document settings immediately
@@ -427,8 +425,8 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// The visibility of the line number view.
     var showsLineNumber: Bool {
         
-        get { self.lineNumberView.isHidden == false }
-        set { self.lineNumberView.isHidden = !newValue }
+        get { self.scrollView.rulersVisible }
+        set { self.scrollView.rulersVisible = newValue }
     }
     
     
