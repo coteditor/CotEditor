@@ -179,23 +179,15 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             // observe text orientation for line number view
             self.textView.publisher(for: \.layoutOrientation, options: .initial)
                 .sink { [weak scrollView] orientation in
-                    switch orientation {
-                        case .horizontal:
-                            scrollView?.hasVerticalRuler = true
-                            scrollView?.hasHorizontalRuler = false
-                        case .vertical:
-                            scrollView?.hasVerticalRuler = false
-                            scrollView?.hasHorizontalRuler = true
-                        @unknown default:
-                            fatalError()
-                    }
+                    scrollView?.hasVerticalRuler = (orientation != .vertical)
+                    scrollView?.hasHorizontalRuler = (orientation == .vertical)
                 },
             
             // let line number view's position follow the writing direction
             self.textView.publisher(for: \.baseWritingDirection, options: .initial)
                 .removeDuplicates()
                 .map { ($0 == .rightToLeft) ? NSUserInterfaceLayoutDirection.rightToLeft : .leftToRight }
-                .assign(to: \.contentDirection, on: self.scrollView)
+                .assign(to: \.contentDirection, on: self.scrollView),
         ]
         
         // apply initial document settings immediately
@@ -217,8 +209,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             },
             Task { [textView, document] in
                 for await modeName in Observations({ document.mode }) {
-                    let mode = ModeManager.shared.setting(for: modeName)
-                    textView.applyMode(mode)
+                    textView.applyMode(ModeManager.shared.setting(for: modeName))
                 }
             },
         ]
