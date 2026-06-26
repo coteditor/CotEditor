@@ -73,7 +73,6 @@ final class EditorViewController: NSSplitViewController {
         self.splitView.isVertical = false
         
         // setup navigation bar
-        self.outlineNavigator.textView = self.textView
         let navigationBar = NavigationBar(outlineNavigator: self.outlineNavigator, splitState: self.splitState)
         self.navigationBarItem = NSSplitViewItem(viewController: NSHostingController(rootView: navigationBar))
         self.navigationBarItem.isCollapsed = !UserDefaults.standard[.showNavigationBar]
@@ -81,6 +80,8 @@ final class EditorViewController: NSSplitViewController {
         
         // setup text view controller
         self.addChild(self.textViewController)
+        
+        self.outlineNavigator.textView = self.textView
         
         // set accessibility
         self.view.setAccessibilityElement(true)
