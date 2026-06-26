@@ -65,10 +65,9 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     private let splitState = SplitState()
     
-    private weak var focusedChild: EditorViewController?
-    
     private var themeName: String?
-    private var theme: Theme?  { self.focusedTextView?.theme }
+    
+    private weak var focusedChild: EditorViewController?
     
     private var editableObserver: Task<Void, Never>?
     private var observers: Set<AnyCancellable> = []
@@ -452,6 +451,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         self.editorViewControllers.compactMap(\.textView)
     }
+    
     
     /// The text view currently focused on.
     var focusedTextView: EditorTextView? {
@@ -878,7 +878,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             
             // copy parsed syntax highlight
             if let highlights = baseTextView.layoutManager?.syntaxHighlights(), !highlights.isEmpty {
-                textView.layoutManager?.apply(highlights: highlights, theme: self.theme, in: textView.string.range)
+                textView.layoutManager?.apply(highlights: highlights, theme: textView.theme, in: textView.string.range)
             }
         }
         
