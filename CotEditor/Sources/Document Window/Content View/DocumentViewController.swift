@@ -471,8 +471,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     @objc dynamic var showsLineNumber = false {
         
         didSet {
-            for viewController in self.editorViewControllers {
-                viewController.showsLineNumber = showsLineNumber
+            for textView in self.textViews {
+                textView.usesRuler = showsLineNumber
             }
         }
     }
@@ -865,7 +865,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         textView.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
         textView.showsPageGuide = self.showsPageGuide
         textView.showsIndentGuides = self.showsIndentGuides
-        viewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
+        textView.usesRuler = self.showsLineNumber  // need to be set after setting text orientation
         
         // copy base textView states
         if let baseTextView = otherViewController?.textView {

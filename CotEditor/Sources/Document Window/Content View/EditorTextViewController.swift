@@ -411,16 +411,6 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     }
     
     
-    // MARK: Public Methods
-    
-    /// The visibility of the line number view.
-    var showsLineNumber: Bool {
-        
-        get { self.scrollView.rulersVisible }
-        set { self.scrollView.rulersVisible = newValue }
-    }
-    
-    
     // MARK: Private Methods
     
     /// The accessibility help text for the editor text view.

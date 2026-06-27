@@ -148,16 +148,6 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    // MARK: Public Methods
-    
-    /// Whether line number view is visible.
-    var showsLineNumber: Bool {
-        
-        get { self.textViewController.showsLineNumber }
-        set { self.textViewController.showsLineNumber = newValue }
-    }
-    
-    
     // MARK: Action Messages
     
     /// Toggles visibility of navigation bar with fancy animation (sync all documents).
