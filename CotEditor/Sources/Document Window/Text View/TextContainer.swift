@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2025 1024jp
+//  © 2019-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -111,6 +111,9 @@ final class TextContainer: NSTextContainer {
     private func invalidateLayout() {
         
         guard let layoutManager = self.layoutManager else { return }
+        
+        // avoid invalidating the empty range because it clears the extra line fragment
+        guard layoutManager.attributedString().length > 0 else { return }
         
         layoutManager.invalidateLayout(forCharacterRange: layoutManager.attributedString().range, actualCharacterRange: nil)
     }

@@ -39,4 +39,23 @@ struct LayoutManagerTests {
         
         #expect(!layoutManager.layoutManager(layoutManager, shouldBreakLineByWordBeforeCharacterAt: 4))
     }
+    
+    
+    @MainActor @Test func changingHangingIndentAttributesKeepsExtraLineFragmentInEmptyDocument() {
+        
+        let textStorage = NSTextStorage(string: "")
+        let layoutManager = LayoutManager(lineEndingScanner: LineEndingScanner(textStorage: textStorage, lineEnding: .lf))
+        let textContainer = TextContainer()
+        layoutManager.addTextContainer(textContainer)
+        textStorage.addLayoutManager(layoutManager)
+        layoutManager.ensureLayout(for: textContainer)
+        
+        #expect(!layoutManager.extraLineFragmentRect.isEmpty)
+        
+        textContainer.spaceWidth = 4
+        textContainer.isHangingIndentEnabled = true
+        textContainer.hangingIndentWidth = 2
+        
+        #expect(!layoutManager.extraLineFragmentRect.isEmpty)
+    }
 }
