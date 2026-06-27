@@ -1595,7 +1595,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nieprzezroczysty"
+            "value" : "Nieprzezroczyste"
           }
         },
         "pt" : {
@@ -1613,7 +1613,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mat"
+            "value" : "Opak"
           }
         },
         "zh-Hans" : {
@@ -1631,7 +1631,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "透明"
+            "value" : "不透明"
           }
         }
       }
