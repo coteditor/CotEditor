@@ -67,7 +67,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     private var themeName: String?
     
-    private weak var focusedChild: EditorViewController?
+    weak var focusedTextView: EditorTextView?
     
     private var editableObserver: Task<Void, Never>?
     private var observers: Set<AnyCancellable> = []
@@ -152,8 +152,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         // observe focus change
         self.focusObserver = NotificationCenter.default.addObserver(for: EditorTextView.DidBecomeFirstResponderMessage.self) { [weak self] message in
-            guard let child = self?.editorViewControllers.first(where: { $0.textView.map(ObjectIdentifier.init) == message.subjectIdentifier }) else { return }
-            self?.focusedChild = child
+            guard let textView = self?.textViews.first(where: { ObjectIdentifier($0) == message.subjectIdentifier }) else { return }
+            self?.focusedTextView = textView
         }
         
         // observe
@@ -449,14 +449,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// The array of all child text views.
     var textViews: [EditorTextView] {
         
-        self.editorViewControllers.compactMap(\.textView)
-    }
-    
-    
-    /// The text view currently focused on.
-    var focusedTextView: EditorTextView? {
-        
-        self.focusedChild?.textView ?? self.textViews.first
+        self.children.compactMap { $0 as? EditorViewController }.compactMap(\.textView)
     }
     
     
@@ -778,21 +771,20 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         guard self.splitViewItems.count < Self.maximumNumberOfSplitEditors else { return NSSound.beep() }
         
-        guard let currentEditorViewController = self.baseEditorViewController(for: sender) else { return assertionFailure() }
+        guard let currentTextView = self.textView(for: sender) else { return assertionFailure() }
         
-        let newEditorViewController = self.addEditorView(below: currentEditorViewController)
+        let newTextView = self.addEditorView(below: currentTextView)
         
         // adjust visible areas
-        if let selectedRange = currentEditorViewController.textView?.selectedRange {
-            newEditorViewController.textView?.selectedRange = selectedRange
-            currentEditorViewController.textView?.scrollRangeToVisible(selectedRange)
-            newEditorViewController.textView?.scrollRangeToVisible(selectedRange)
-        }
+        let selectedRange = currentTextView.selectedRange
+        newTextView.selectedRange = selectedRange
+        currentTextView.scrollRangeToVisible(selectedRange)
+        newTextView.scrollRangeToVisible(selectedRange)
         
         self.splitState.canClose = true
         
         // move focus to the new editor
-        self.view.window?.makeFirstResponderDiscardingMarkedText(newEditorViewController.textView)
+        self.view.window?.makeFirstResponderDiscardingMarkedText(newTextView)
     }
     
     
@@ -801,27 +793,30 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         
         guard
             self.splitViewItems.count > 1,
-            let currentEditorViewController = self.baseEditorViewController(for: sender)
+            let currentTextView = self.textView(for: sender)
         else { return }
         
-        if let textView = currentEditorViewController.textView {
-            self.textSelectionObservers[ObjectIdentifier(textView)] = nil
-        }
+        self.textSelectionObservers[ObjectIdentifier(currentTextView)] = nil
         
         // end current editing
         NSTextInputContext.current?.discardMarkedText()
         
         // move focus to the next text view if the view to close has a focus
-        if self.focusedChild == currentEditorViewController {
-            let children = self.editorViewControllers
-            let deleteIndex = children.firstIndex(of: currentEditorViewController) ?? 0
-            let newFocusEditorViewController = children[safe: deleteIndex - 1] ?? children.last!
+        if self.focusedTextView == currentTextView {
+            let textViews = self.textViews
+            let deleteIndex = textViews.firstIndex(of: currentTextView) ?? 0
+            let newFocusedTextView = textViews[safe: deleteIndex - 1] ?? textViews.last!
             
-            self.view.window?.makeFirstResponder(newFocusEditorViewController.textView)
+            self.view.window?.makeFirstResponder(newFocusedTextView)
+            self.focusedTextView = newFocusedTextView
         }
         
         // close
-        currentEditorViewController.removeFromParent()
+        if let editorViewController = self.children
+            .compactMap({ $0 as? EditorViewController })
+            .first(where: { $0.textView == currentTextView }) {
+            editorViewController.removeFromParent()
+        }
         
         self.splitState.canClose = self.splitViewItems.count > 1
     }
@@ -829,18 +824,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     // MARK: Private Methods
     
-    /// The array of all child editor view controllers.
-    private var editorViewControllers: [EditorViewController] {
-        
-        self.children.compactMap { $0 as? EditorViewController }
-    }
-    
-    
     /// Creates a new split editor.
     ///
-    /// - Parameter otherViewController: The view controller of the reference editor located above the editor to add.
-    /// - Returns: The editor view controller created.
-    @discardableResult private func addEditorView(below otherViewController: EditorViewController? = nil) -> sending EditorViewController {
+    /// - Parameter baseTextView: The reference text view located above the editor to add.
+    /// - Returns: The text view created.
+    @discardableResult private func addEditorView(below baseTextView: EditorTextView? = nil) -> EditorTextView {
         
         let viewController = EditorViewController(document: self.document, splitState: self.splitState)
         
@@ -848,7 +836,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         splitViewItem.minimumThickness = 100
         
         // add to the split view
-        let index = otherViewController.flatMap(self.children.firstIndex(of:))?.advanced(by: 1) ?? 0
+        let index = baseTextView.flatMap(self.textViews.firstIndex(of:))?.advanced(by: 1) ?? 0
         self.insertSplitViewItem(splitViewItem, at: index)
         
         let textView = viewController.textView!
@@ -868,7 +856,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         textView.usesRuler = self.showsLineNumber  // need to be set after setting text orientation
         
         // copy base textView states
-        if let baseTextView = otherViewController?.textView {
+        if let baseTextView {
             textView.font = baseTextView.font
             textView.usesAntialias = baseTextView.usesAntialias
             textView.ligature = baseTextView.ligature
@@ -886,23 +874,19 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
             textView.baseWritingDirection = self.writingDirection
         }
         
-        return viewController
+        self.focusedTextView = textView
+        
+        return textView
     }
     
     
-    /// Finds the base `EditorViewController` for split editor management actions.
+    /// Finds the `EditorTextView` for split editor management actions.
     ///
     /// - Parameter sender: The action sender.
-    /// - Returns: An editor view controller, or `nil` if not found.
-    private func baseEditorViewController(for sender: Any?) -> EditorViewController? {
+    /// - Returns: An editor text view, or `nil` if not found.
+    private func textView(for sender: Any?) -> EditorTextView? {
         
-        if let view = sender as? NSView,
-           let controller = self.editorViewControllers.first(where: { view.isDescendant(of: $0.view) })
-        {
-            controller
-        } else {
-            self.focusedChild
-        }
+        (sender as? EditorTextView) ?? self.focusedTextView
     }
     
     
@@ -911,16 +895,16 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// - Parameter reverse: If `true`, move to the previous editor.
     private func focusNextSplitEditor(reverse: Bool = false) {
         
-        let children = self.editorViewControllers
+        let textViews = self.textViews
         
-        guard let focusedChild = self.focusedChild,
-              let focusIndex = children.firstIndex(of: focusedChild),
-              let nextChild = reverse
-                ? children[safe: focusIndex - 1] ?? children.last
-                : children[safe: focusIndex + 1] ?? children.first
+        guard let focusedTextView = self.focusedTextView,
+              let focusIndex = textViews.firstIndex(of: focusedTextView),
+              let nextTextView = reverse
+                ? textViews[safe: focusIndex - 1] ?? textViews.last
+                : textViews[safe: focusIndex + 1] ?? textViews.first
         else { return assertionFailure() }
         
-        self.view.window?.makeFirstResponderDiscardingMarkedText(nextChild.textView)
+        self.view.window?.makeFirstResponderDiscardingMarkedText(nextTextView)
     }
     
     
