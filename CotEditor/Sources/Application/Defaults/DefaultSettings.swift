@@ -50,6 +50,7 @@ struct DefaultSettings {
             .monospacedLigature: false,
             .lineHeight: 1.3,
             .documentAppearance: AppearanceMode.default.rawValue,
+            .prefersOpaqueBarBackground: false,
             .windowAlpha: 1.0,
             .theme: "Anura",
             .pinsThemeAppearance: false,

@@ -46,6 +46,7 @@ extension DefaultKeys {
     static let monospacedLigature = DefaultKey<Bool>("monospacedLigature")
     static let lineHeight = DefaultKey<Double>("lineHeight")
     static let documentAppearance = RawRepresentableDefaultKey<AppearanceMode>("appearance")
+    static let prefersOpaqueBarBackground = DefaultKey<Bool>("prefersOpaqueBarBackground")
     static let windowAlpha = DefaultKey<Double>("windowAlpha")
     static let theme = DefaultKey<String>("defaultTheme")
     static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")

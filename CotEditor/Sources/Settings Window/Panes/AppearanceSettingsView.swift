@@ -43,6 +43,7 @@ struct AppearanceSettingsView: View {
     
     @AppStorage(.lineHeight) private var lineHeight
     @AppStorage(.documentAppearance) private var documentAppearance
+    @AppStorage(.prefersOpaqueBarBackground) private var prefersOpaqueBarBackground
     @AppStorage(.windowAlpha) private var windowAlpha
     
     @State private var selectingFont: Data?
@@ -134,6 +135,25 @@ struct AppearanceSettingsView: View {
                     EmptyView()
                 }
                 .accessibilityLabeledPair(role: .content, id: "documentAppearance", in: self.accessibility)
+                .pickerStyle(.radioGroup)
+                .horizontalRadioGroupLayout()
+                .labelsHidden()
+            }
+            
+            GridRow {
+                Text("Status bar:", tableName: "AppearanceSettings")
+                    .gridColumnAlignment(.trailing)
+                    .accessibilityLabeledPair(role: .label, id: "prefersOpaqueBarBackground", in: self.accessibility)
+                
+                Picker(selection: $prefersOpaqueBarBackground) {
+                    Text("Tinted", tableName: "AppearanceSettings")
+                        .tag(false)
+                    Text("Opaque", tableName: "AppearanceSettings")
+                        .tag(true)
+                } label: {
+                    EmptyView()
+                }
+                .accessibilityLabeledPair(role: .content, id: "prefersOpaqueBarBackground", in: self.accessibility)
                 .pickerStyle(.radioGroup)
                 .horizontalRadioGroupLayout()
                 .labelsHidden()

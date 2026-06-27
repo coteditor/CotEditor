@@ -51,6 +51,7 @@ struct StatusBar: View {
     
     @State var model: Model
     
+    @AppStorage(.prefersOpaqueBarBackground) private var prefersOpaqueBarBackground
     @AppStorage(.showStatusBar) private var showsStatusBar
     @AppStorage(.donationBadgeType) private var badgeType
     
@@ -114,6 +115,8 @@ struct StatusBar: View {
         .padding(.leading)
         .padding(.trailing, (ProcessInfo.processInfo.operatingSystemVersion.majorVersion == 27) ? 4 : 0)
         .containerCornerOffset(.horizontal, sizeToFit: true)
+        .background(.bar.opacity(self.prefersOpaqueBarBackground ? 1 : 0))
+        .animation(.linear, value: self.prefersOpaqueBarBackground)
     }
 }
 

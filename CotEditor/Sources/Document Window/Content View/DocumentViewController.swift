@@ -36,6 +36,7 @@ import TextEditing
     
     var isVertical: Bool
     var canClose: Bool
+    var opaqueBars: Set<ObjectIdentifier> = []
     
     
     init(isVertical: Bool = false, canClose: Bool = false) {

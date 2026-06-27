@@ -15,6 +15,7 @@
 - Add document history navigation to the toolbar for folder documents.
 - Automatically generate and apply a draft document name from the document content on macOS 27.
 - Add the Customize Syntax Menu command to the Available syntaxes action menu in Format settings to hide specific syntaxes from syntax menus.
+- Add the “Status bar” option to Appearance settings pane.
 
 
 ### Improvements
