@@ -118,6 +118,8 @@ private struct OutlineNavigationView: View {
                             self.nextButton(systemImage: "chevron.down")
                         }
                     }
+                    .fontWeight(.medium)
+                    .labelStyle(.iconOnly)
                     
                     // Use AppKit-based picker to open programmatically (2024-05, macOS 14).
                     OutlinePicker(items: items, selection: $navigator.selection, isPresented: $navigator.isOutlinePickerPresented) {
@@ -153,15 +155,11 @@ private struct OutlineNavigationView: View {
     
     @ContentBuilder private func previousButton(systemImage: String) -> some View {
         
-        Button {
-            self.navigator.selectPreviousItem()
-        } label: {
+        Button(action: self.navigator.selectPreviousItem) {
             Label(String(localized: "Previous Outline Item", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
                 .frame(width: 18)
                 .frame(maxHeight: .infinity, alignment: .center)
         }
-        .fontWeight(.medium)
-        .labelStyle(.iconOnly)
         .disabled(!self.navigator.canSelectPreviousItem)
         .help(String(localized: "Jump to previous outline item", table: "Document", comment: "tooltip for button"))
     }
@@ -169,15 +167,11 @@ private struct OutlineNavigationView: View {
     
     @ContentBuilder private func nextButton(systemImage: String) -> some View {
         
-        Button {
-            self.navigator.selectNextItem()
-        } label: {
+        Button(action: self.navigator.selectNextItem) {
             Label(String(localized: "Next Outline Item", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
                 .frame(width: 18)
                 .frame(maxHeight: .infinity, alignment: .center)
         }
-        .fontWeight(.medium)
-        .labelStyle(.iconOnly)
         .disabled(!self.navigator.canSelectNextItem)
         .help(String(localized: "Jump to next outline item", table: "Document", comment: "tooltip for button"))
     }
