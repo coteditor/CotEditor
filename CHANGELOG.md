@@ -24,12 +24,14 @@
 - Allow CotEditor Syntax files and multiple replacement definitions to be imported by dropping them onto their lists.
 - Add the context menu to the list in Mode settings pane.
 - [dev] Tweak the accent color.
-- [dev] Update the build environment to Xcode 27 Beta (Swift 6.4, macOS 27 SDK).
+- [dev] Update the build environment to Xcode 27 Beta 2 (Swift 6.4, macOS 27 SDK).
 
 
-### TODO
+### Known Issues
 
-- Localize strings added.
+- The text color on the status bar is black and unreadable with the combination of the light system appearance, the dark document window appearance and dark theme on macOS 26.
+- A sandboxed URL is passed when folder search results are dropped.
+- The strings added are not localized yet in Bulgarian, Simplified Chinese, Traditional Chinese, Chinese (Hong Kong), Czech, Italian, Korean, Polish, Portuguese, Russian, and Turkish:
     - Document Window/Document.xcstrings
     - Panels/WhatsNew.xcstrings
     - Settings/Other Views/SyntaxListCustomization.xcstrings
