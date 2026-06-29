@@ -70,7 +70,7 @@ final class LineNumberView: NSRulerView {
     
     private let minimumNumberOfDigits = 3
     
-    private var drawingInfo: DrawingInfo
+    private var drawingInfo: DrawingInfo?
     private var needsUpdateDrawingInfo = false
     @Invalidating(.display) private var textColor: NSColor = .textColor
     
@@ -83,14 +83,12 @@ final class LineNumberView: NSRulerView {
     
     init(textView: NSTextView, scrollView: NSScrollView, orientation: NSRulerView.Orientation) {
         
-        self.drawingInfo = DrawingInfo(font: self.lineNumberFont, fontSize: textView.font!.pointSize, scale: textView.scale)
-        
         super.init(scrollView: scrollView, orientation: orientation)
         
-        self.clientView = textView
         self.reservedThicknessForMarkers = 0
         
-        self.updateRuleThickness()
+        self.clientView = textView
+        self.updateDrawingInfo()
         self.observeTextView(textView)
     }
     
@@ -175,6 +173,7 @@ final class LineNumberView: NSRulerView {
     private func drawNumbers(in rect: NSRect) {
         
         guard
+            let drawingInfo,
             let textView,
             let layoutManager = textView.layoutManager as? LayoutManager
         else { return }
@@ -183,8 +182,6 @@ final class LineNumberView: NSRulerView {
             let range = textView.range(for: textView.visibleRect, withoutAdditionalLayout: true),
             let context = NSGraphicsContext.current?.cgContext
         else { return assertionFailure() }
-        
-        let drawingInfo = self.drawingInfo
         
         context.setFont(self.lineNumberFont)
         context.setFontSize(drawingInfo.fontSize)
@@ -286,7 +283,8 @@ final class LineNumberView: NSRulerView {
     /// Updates receiver's rule thickness based on drawingInfo and textView's status.
     private func updateRuleThickness() {
         
-        let drawingInfo = self.drawingInfo
+        guard let drawingInfo else { return }
+        
         var ruleThickness: CGFloat
         switch self.orientation {
             case .verticalRuler:
