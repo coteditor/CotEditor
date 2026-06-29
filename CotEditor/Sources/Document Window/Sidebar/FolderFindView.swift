@@ -330,7 +330,7 @@ private struct FolderFindFileResultView: View {
                 Image(systemName: "doc.text")
             }
             .lineLimit(1)
-            .draggable(item: FolderFindDraggedFile(id: .file(self.file.id), fileURL: self.file.fileURL))
+            .draggable(item: FolderFindDraggedFile(id: .file(self.file.id)))
         }
         .labelIconToTitleSpacing(4)
         .listRowSeparator(.hidden)
@@ -430,33 +430,25 @@ private struct UnavailableView: View {
 private struct FolderFindDraggedFile: Transferable, Identifiable {
     
     var id: FolderFind.ResultID
-    var fileURL: URL
-    
-    
-    /// The file URL string to transfer.
-    private var fileURLString: String {
-        
-        self.fileURL.absoluteString
-    }
-    
-    
-    /// The file path to transfer as plain text.
-    private var filePath: String {
-        
-        self.fileURL.path(percentEncoded: false)
-    }
     
     
     /// The transfer representations of a dragged file result.
     static var transferRepresentation: some TransferRepresentation {
         
-        DataRepresentation(exportedContentType: .url) { item in
-            Data(item.fileURLString.utf8)
+        FileRepresentation(exportedContentType: .data) { item in
+            SentTransferredFile(item.fileURL, allowAccessingOriginalFile: true)
         }
-        DataRepresentation(exportedContentType: .fileURL) { item in
-            Data(item.fileURLString.utf8)
+        .suggestedFileName(\.fileURL.lastPathComponent)
+        
+        ProxyRepresentation(exporting: \.fileURL.absoluteString)
+    }
+    
+    
+    private var fileURL: URL {
+        
+        switch self.id {
+            case .file(let fileURL), .match(let fileURL, _): fileURL
         }
-        ProxyRepresentation(exporting: \.filePath)
     }
 }
 

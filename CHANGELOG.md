@@ -31,7 +31,7 @@
 ### Known Issues
 
 - The text color on the status bar is black and unreadable with the combination of the light system appearance, the dark document window appearance and dark theme on macOS 26.
-- A sandboxed URL is passed when folder search results are dropped.
+- A sandboxed URL is passed in some cases when folder search results are dropped.
 - The strings added are not localized yet in Bulgarian, Simplified Chinese, Traditional Chinese, Chinese (Hong Kong), Czech, Italian, Korean, Polish, Portuguese, Russian, and Turkish:
     - Document Window/Document.xcstrings
     - Panels/WhatsNew.xcstrings
