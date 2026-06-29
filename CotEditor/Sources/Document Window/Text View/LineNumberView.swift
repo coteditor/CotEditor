@@ -71,6 +71,7 @@ final class LineNumberView: NSRulerView {
     private let minimumNumberOfDigits = 3
     
     private var drawingInfo: DrawingInfo
+    private var needsUpdateDrawingInfo = false
     @Invalidating(.display) private var textColor: NSColor = .textColor
     
     private var textViewObservers: Set<AnyCancellable> = []
@@ -114,6 +115,17 @@ final class LineNumberView: NSRulerView {
     }
     
     
+    override func viewWillDraw() {
+        
+        super.viewWillDraw()
+        
+        if self.needsUpdateDrawingInfo {
+            self.updateDrawingInfo()
+            self.needsUpdateDrawingInfo = false
+        }
+    }
+    
+    
     override func draw(_ dirtyRect: NSRect) {
         
         self.drawHashMarksAndLabels(in: dirtyRect)
@@ -142,7 +154,7 @@ final class LineNumberView: NSRulerView {
     /// The total number of lines in the text view.
     private var numberOfLines: Int {
         
-        guard let textView = self.textView else { return 0 }
+        guard let textView else { return 0 }
         
         return textView.lineNumber(at: textView.string.length)
     }
@@ -163,7 +175,7 @@ final class LineNumberView: NSRulerView {
     private func drawNumbers(in rect: NSRect) {
         
         guard
-            let textView = self.textView,
+            let textView,
             let layoutManager = textView.layoutManager as? LayoutManager
         else { return }
         
@@ -253,10 +265,10 @@ final class LineNumberView: NSRulerView {
     
     
     /// Updates parameters related to drawing and layout based on textView's status.
-    private func invalidateDrawingInfo() {
+    private func updateDrawingInfo() {
         
         guard
-            let textView = self.textView,
+            let textView,
             let editorFont = textView.font
         else { return assertionFailure() }
         
@@ -274,8 +286,8 @@ final class LineNumberView: NSRulerView {
     /// Updates receiver's rule thickness based on drawingInfo and textView's status.
     private func updateRuleThickness() {
         
-        var ruleThickness: CGFloat
         let drawingInfo = self.drawingInfo
+        var ruleThickness: CGFloat
         switch self.orientation {
             case .verticalRuler:
                 let numberOfDigits = max(self.numberOfLines.digits.count, self.minimumNumberOfDigits)
@@ -332,10 +344,10 @@ final class LineNumberView: NSRulerView {
                 .sink { [weak self] in self?.textColor = $0 },
             
             textView.publisher(for: \.font)
-                .sink { [weak self] _ in self?.invalidateDrawingInfo() },
+                .sink { [weak self] _ in self?.needsUpdateDrawingInfo = true },
             
             textView.publisher(for: \.scale)
-                .sink { [weak self] _ in self?.invalidateDrawingInfo() },
+                .sink { [weak self] _ in self?.needsUpdateDrawingInfo = true },
         ]
     }
 }
@@ -365,8 +377,8 @@ extension LineNumberView {
     override func mouseDown(with event: NSEvent) {
         
         guard
-            let textView = self.textView,
-            let window = self.window
+            let textView,
+            let window
         else { return assertionFailure() }
         
         // get start point
@@ -404,9 +416,9 @@ extension LineNumberView {
     private func selectLines(with event: NSEvent) {
         
         guard
-            let textView = self.textView,
-            let window = self.window,
-            let draggingInfo = self.draggingInfo
+            let textView,
+            let window,
+            let draggingInfo
         else { return assertionFailure() }
         
         // scroll text view if needed
