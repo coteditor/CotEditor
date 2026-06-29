@@ -66,7 +66,7 @@ final class LineNumberView: NSRulerView {
     
     private let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
     private let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .medium).cgFont
-    private let highContrastBoldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
+    private lazy var highContrastBoldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
     
     private let minimumNumberOfDigits = 3
     
@@ -88,8 +88,8 @@ final class LineNumberView: NSRulerView {
         
         self.clientView = textView
         self.reservedThicknessForMarkers = 0
-        self.updateRuleThickness()
         
+        self.updateRuleThickness()
         self.observeTextView(textView)
     }
     
