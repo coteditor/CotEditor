@@ -115,7 +115,7 @@ struct StatusBar: View {
         .padding(.leading)
         .padding(.trailing, (ProcessInfo.processInfo.operatingSystemVersion.majorVersion == 27) ? 4 : 0)
         .containerCornerOffset(.horizontal, sizeToFit: true)
-        .background(.bar.opacity(self.prefersOpaqueBarBackground ? 1 : 0))
+        .background(.windowBackground.opacity(self.prefersOpaqueBarBackground ? 1 : 0))
         .animation(.linear, value: self.prefersOpaqueBarBackground)
     }
 }
