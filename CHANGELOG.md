@@ -5,34 +5,34 @@
 
 ### Compatibility Changes
 
-- Change the system requirement to __macOS Tahoe 26 and later__.
+- Change the system requirement to __macOS Tahoe 26 or later__.
 
 
 ### New Features
 
 - Support __macOS 27 Golden Gate__.
-- Add folder search to the sidebar for searching text across files in an opened folder.
+- Add folder search to the sidebar for searching for text across files in an open folder.
 - Add document history navigation to the toolbar for folder documents.
-- Automatically generate and apply a draft document name from the document content on macOS 27.
-- Add the Customize Syntax Menu command to the Available syntaxes action menu in Format settings to hide specific syntaxes from syntax menus.
-- Add the “Status bar” option to Appearance settings pane.
+- Automatically generate and apply a draft document name from the document’s content on macOS 27.
+- Add the Customize Syntax Menu command to the action menu in the “Available syntaxes” section of the Format settings pane, allowing specific syntaxes to be hidden from syntax menus.
+- Add the “Status bar” option to the Appearance settings pane.
 
 
 ### Improvements
 
-- Make some setting dialogs resizable.
+- Make some settings dialogs resizable.
 - Allow custom syntaxes to be deleted by dragging them to the Trash.
-- Allow CotEditor Syntax files and multiple replacement definitions to be imported by dropping them onto their lists.
-- Add the context menu to the list in Mode settings pane.
+- Allow CotEditor Syntax files and multiple replacement definitions to be imported by dropping them onto their respective lists.
+- Add a context menu to the list in the Mode settings pane.
 - [dev] Tweak the accent color.
 - [dev] Update the build environment to Xcode 27 Beta 2 (Swift 6.4, macOS 27 SDK).
 
 
 ### Known Issues
 
-- The text color on the status bar is black and unreadable with the combination of the light system appearance, the dark document window appearance and dark theme on macOS 26.
-- A sandboxed URL is passed in some cases when folder search results are dropped.
-- The strings added are not localized yet in Bulgarian, Simplified Chinese, Traditional Chinese, Chinese (Hong Kong), Czech, Italian, Korean, Polish, Portuguese, Russian, and Turkish:
+- The status bar text can appear black and unreadable when the light system appearance, dark document window appearance, and a dark theme are combined on macOS 26.
+- In some cases, a sandboxed URL is passed when folder search results are dropped onto another app.
+- Strings added in this release are not yet localized in Bulgarian, Simplified Chinese, Traditional Chinese, Chinese (Hong Kong), Czech, Italian, Korean, Polish, Portuguese, Russian, and Turkish:
     - Document Window/Document.xcstrings
     - Panels/WhatsNew.xcstrings
     - Settings/Other Views/SyntaxListCustomization.xcstrings
