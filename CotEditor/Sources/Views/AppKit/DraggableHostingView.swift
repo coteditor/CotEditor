@@ -28,22 +28,11 @@ import SwiftUI
 
 private struct Edge {
     
-    enum Horizontal {
-        
-        case left
-        case right
-    }
+    enum Horizontal { case left, right }
+    enum Vertical { case top, bottom }
     
-    
-    enum Vertical {
-        
-        case top
-        case bottom
-    }
-    
-    
-    var horizontal: Horizontal?
-    var vertical: Vertical?
+    var horizontal: Horizontal
+    var vertical: Vertical
 }
 
 
@@ -74,7 +63,7 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
         
         super.viewWillStartLiveResize()
         
-        self.liveResizingEdge = self.preferredEdge
+        self.liveResizingEdge = self.nearestEdge
     }
     
     
@@ -93,11 +82,13 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
         guard let superview = self.superview else { return }
         
         // stick to the nearest edge
-        if (self.liveResizingEdge ?? self.preferredEdge)?.horizontal == .right {
-            self.frame.origin.x += superview.frame.width - oldSize.width
-        }
-        if (self.liveResizingEdge ?? self.preferredEdge)?.vertical == .top {
-            self.frame.origin.y += superview.frame.height - oldSize.height
+        if let preferredEdge = self.liveResizingEdge ?? self.nearestEdge {
+            if preferredEdge.horizontal == .right {
+                self.frame.origin.x += superview.frame.width - oldSize.width
+            }
+            if preferredEdge.vertical == .top {
+                self.frame.origin.y += superview.frame.height - oldSize.height
+            }
         }
         
         self.adjustPosition()
@@ -121,8 +112,8 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
     
     // MARK: Private Methods
     
-    /// The area in which the receiver is located in the superview.
-    private var preferredEdge: Edge? {
+    /// The nearest edge of the superview to the receiver.
+    private var nearestEdge: Edge? {
         
         self.superview.map { superview in
             Edge(horizontal: superview.frame.width / 2 < self.frame.midX ? .right : .left,
