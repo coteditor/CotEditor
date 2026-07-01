@@ -451,16 +451,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     /// Hides the existing advanced character counter.
     private func dismissAdvancedCharacterCounter() {
         
-        guard let counterView = self.advancedCounterView else { return assertionFailure() }
-        
-        NSAnimationContext.runAnimationGroup { _ in
-            counterView.animator().alphaValue = 0
-        } completionHandler: {
-            Task { @MainActor in
-                counterView.removeFromSuperview()
-            }
-        }
-        
+        self.advancedCounterView?.animator().removeFromSuperview()
         self.invalidateRestorableState()
     }
     
