@@ -34,12 +34,12 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     // MARK: Public Properties
     
     var document: DataDocument?  { didSet { self.updateDocument() } }
-    var directoryDocument: DirectoryDocument?
-    
     var documentViewController: DocumentViewController?  { self.contentViewController.hostedViewController as? DocumentViewController }
     
     
     // MARK: Private Properties
+    
+    private let directoryDocument: DirectoryDocument?
     
     private var sidebarStateCache: Bool?
     private let statusBarModel: StatusBar.Model
