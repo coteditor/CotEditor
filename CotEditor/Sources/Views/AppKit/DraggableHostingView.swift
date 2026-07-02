@@ -51,10 +51,11 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
         didSet {
             guard frame != oldValue else { return }
             
+            var frame = self.frame
             if frame.width != oldValue.width {
-                self.frame.origin.x += oldValue.width - self.frame.width
+                frame.origin.x += oldValue.width - frame.width
             }
-            self.adjustPosition()
+            self.setConstrainedFrame(frame)
         }
     }
     
@@ -81,17 +82,19 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
         
         guard let superview = self.superview else { return }
         
+        var frame = self.frame
+        
         // stick to the nearest edge
         if let preferredEdge = self.liveResizingEdge ?? self.nearestEdge {
             if preferredEdge.horizontal == .right {
-                self.frame.origin.x += superview.frame.width - oldSize.width
+                frame.origin.x += superview.bounds.width - oldSize.width
             }
             if preferredEdge.vertical == .top {
-                self.frame.origin.y += superview.frame.height - oldSize.height
+                frame.origin.y += superview.bounds.height - oldSize.height
             }
         }
         
-        self.adjustPosition()
+        self.setConstrainedFrame(frame)
     }
     
     
@@ -105,34 +108,49 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
         
         guard let superview = self.superview else { return }
         
-        self.frame.origin = superview.convert(event.locationInWindow, from: nil)
+        let origin = superview
+            .convert(event.locationInWindow, from: nil)
             .offset(by: -self.clickedPoint)
+        self.setConstrainedFrame(NSRect(origin: origin, size: self.frame.size))
     }
-    
-    
-    // MARK: Private Methods
+}
+
+
+// MARK: Private Extension
+
+private extension NSView {
     
     /// The nearest edge of the superview to the receiver.
-    private var nearestEdge: Edge? {
+    var nearestEdge: Edge? {
         
         self.superview.map { superview in
-            Edge(horizontal: superview.frame.width / 2 < self.frame.midX ? .right : .left,
-                 vertical: superview.frame.height / 2 < self.frame.midY ? .top : .bottom)
+            Edge(horizontal: superview.bounds.midX < self.frame.midX ? .right : .left,
+                 vertical: superview.bounds.midY < self.frame.midY ? .top : .bottom)
         }
     }
     
     
-    /// Keeps position to be inside of the parent frame.
-    private func adjustPosition() {
+    /// Sets the given frame clamped inside the superview margins.
+    ///
+    /// - Parameter frame: The frame to set in the superview coordinate system.
+    func setConstrainedFrame(_ frame: NSRect) {
         
         guard let superview else { return assertionFailure() }
         
         let insets = superview.edgeInsets(for: .margins())
+        let bounds = superview.bounds
         
-        let maxX = superview.frame.width - self.frame.width - insets.right
-        self.frame.origin.x.clamp(to: insets.left...max(maxX, insets.left))
+        var frame = frame
+        let minX = bounds.minX + insets.left
+        let maxX = bounds.maxX - frame.width - insets.right
+        frame.origin.x.clamp(to: minX...max(maxX, minX))
         
-        let maxY = superview.frame.height - self.frame.height - insets.top
-        self.frame.origin.y.clamp(to: insets.bottom...max(maxY, insets.bottom))
+        let minY = bounds.minY + insets.bottom
+        let maxY = bounds.maxY - frame.height - insets.top
+        frame.origin.y.clamp(to: minY...max(maxY, minY))
+        
+        guard self.frame != frame else { return }
+        
+        self.frame = frame
     }
 }
