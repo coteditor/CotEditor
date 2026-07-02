@@ -130,9 +130,9 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
         let insets = superview.edgeInsets(for: .margins())
         
         let maxX = superview.frame.width - self.frame.width - insets.right
-        self.frame.origin.x.clamp(to: insets.left...maxX)
+        self.frame.origin.x.clamp(to: insets.left...max(maxX, insets.left))
         
         let maxY = superview.frame.height - self.frame.height - insets.top
-        self.frame.origin.y.clamp(to: insets.bottom...maxY)
+        self.frame.origin.y.clamp(to: insets.bottom...max(maxY, insets.bottom))
     }
 }

@@ -118,7 +118,10 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         scrollView.horizontalRulerView = LineNumberView(textView: textView, scrollView: scrollView, orientation: .horizontalRuler)
         scrollView.identifier = NSUserInterfaceItemIdentifier("EditorScrollView")
         
-        self.view = scrollView
+        let view = NSView()
+        view.addSubview(scrollView)
+        
+        self.view = view
         self.scrollView = scrollView
         self.textView = textView
     }

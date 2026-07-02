@@ -83,6 +83,7 @@ struct AdvancedCharacterCounterView: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
+        .fixedSize()
         .glassEffect(in: .capsule)
         .onTapGesture { }  // avoid clicking through
         .contextMenu {
