@@ -58,6 +58,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     let document: Document
     
+    private(set) weak var focusedTextView: EditorTextView?
+    
     
     // MARK: Private Properties
     
@@ -66,8 +68,6 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     private let splitState = SplitState()
     
     private var themeName: String?
-    
-    weak var focusedTextView: EditorTextView?
     
     private var editableObserver: Task<Void, Never>?
     private var observers: Set<AnyCancellable> = []
@@ -449,7 +449,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     /// The array of all child text views.
     var textViews: [EditorTextView] {
         
-        self.children.compactMap { $0 as? EditorViewController }.compactMap(\.textView)
+        self.children.compactMap { $0 as? EditorViewController }.map(\.textView)
     }
     
     
@@ -839,7 +839,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         let index = baseTextView.flatMap(self.textViews.firstIndex(of:))?.advanced(by: 1) ?? 0
         self.insertSplitViewItem(splitViewItem, at: index)
         
-        let textView = viewController.textView!
+        let textView = viewController.textView
         
         // observe cursor
         self.textSelectionObservers[ObjectIdentifier(textView)] = NotificationCenter.default.addObserver(of: textView, for: .didLiveChangeSelection) { [weak self] _ in

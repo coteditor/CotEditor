@@ -116,6 +116,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         scrollView.documentView = textView
         scrollView.verticalRulerView = LineNumberView(textView: textView, scrollView: scrollView, orientation: .verticalRuler)
         scrollView.horizontalRulerView = LineNumberView(textView: textView, scrollView: scrollView, orientation: .horizontalRuler)
+        scrollView.autoresizingMask = [.width, .height]
         scrollView.identifier = NSUserInterfaceItemIdentifier("EditorScrollView")
         
         let view = NSView()

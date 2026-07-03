@@ -33,7 +33,7 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
-    var textView: EditorTextView?  { self.textViewController.textView }
+    var textView: EditorTextView  { self.textViewController.textView }
     
     
     // MARK: Private Properties
