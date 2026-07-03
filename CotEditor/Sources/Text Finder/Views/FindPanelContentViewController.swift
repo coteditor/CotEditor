@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -120,13 +120,9 @@ final class FindPanelContentViewController: NSSplitViewController {
         
         super.splitViewDidResizeSubviews(notification)
         
-        // collapse result view if closed
-        let item = self.resultSplitViewItem
-        
-        if let view = item.viewController.viewIfLoaded,
-           view.frame.height < 1
-        {
-            item.isCollapsed = true
+        // re-evaluated in viewDidEndLiveResize() of FindPanelSplitView
+        if !self.splitView.inLiveResize {
+            self.collapseResultViewIfNeeded()
         }
     }
     
@@ -148,6 +144,26 @@ final class FindPanelContentViewController: NSSplitViewController {
     
     
     // MARK: Private Methods
+    
+    /// Collapses the result view if the view is dragged to close.
+    ///
+    /// - Note:
+    ///   Do not invoke this method during live resize; otherwise, the panel can unexpectedly resize.
+    ///   cf. [#2123](https://github.com/coteditor/CotEditor/issues/2123)
+    fileprivate func collapseResultViewIfNeeded() {
+        
+        assert(!self.splitView.inLiveResize)
+        
+        let item = self.resultSplitViewItem
+        
+        guard
+            let view = item.viewController.viewIfLoaded,
+            view.frame.height < 1
+        else { return }
+        
+        item.isCollapsed = true
+    }
+    
     
     /// Notifies the completion of the Find All command.
     ///
@@ -186,6 +202,15 @@ final class FindPanelContentViewController: NSSplitViewController {
 private final class FindPanelSplitView: NSSplitView {
     
     // MARK: Split View Methods
+    
+    override func viewDidEndLiveResize() {
+        
+        super.viewDidEndLiveResize()
+        
+        // a divider drag also runs as a live resize session
+        (self.delegate as? FindPanelContentViewController)?.collapseResultViewIfNeeded()
+    }
+    
     
     override func drawDivider(in rect: NSRect) {
         

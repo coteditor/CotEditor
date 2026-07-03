@@ -3,6 +3,9 @@
 7.0.6 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue where the Find window could unexpectedly resize while dragging the divider of the find result view.
 
 
 7.0.5 (2026-06-23)
