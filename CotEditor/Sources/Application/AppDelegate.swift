@@ -129,9 +129,6 @@ extension Logger {
     
     func applicationWillFinishLaunching(_ notification: Notification) {
         
-        // -> Setting `automaticTerminationSupportEnabled` programmatically doesn't appear to be working.
-        //    (2024-11, macOS 15.1, FB15979536)
-        ProcessInfo.processInfo.automaticTerminationSupportEnabled = true
         if Document.autosavesInPlace {
             ProcessInfo.processInfo.enableSuddenTermination()
         }
