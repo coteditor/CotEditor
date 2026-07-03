@@ -28,6 +28,11 @@
 - [dev] Update the build environment to Xcode 27 Beta 2 (Swift 6.4, macOS 27 SDK).
 
 
+### Fixes
+
+- Fix an issue where the Find window could unexpectedly resize while dragging the divider of the find result view.
+
+
 ### Known Issues
 
 - The status bar text can appear black and unreadable when the light system appearance, dark document window appearance, and a dark theme are combined on macOS 26.
