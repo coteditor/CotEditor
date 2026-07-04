@@ -31,6 +31,12 @@ body:
       description: >-
         A clear and concise description of what you expected to happen.
 
+  - type: textarea
+    attributes:
+      label: Actual behavior
+      description: >-
+        A clear and concise description of what actually happens.
+
   - type: input
     attributes:
       label: CotEditor version
