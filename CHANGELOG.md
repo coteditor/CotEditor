@@ -3,6 +3,11 @@
 7.0.6 (unreleased)
 --------------------------
 
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle from 2.9.3 to 2.9.4.
+
+
 ### Fixes
 
 - Fix an issue where the external modification alert could wrongly appear on saving a document in a synced folder even when the file content was unchanged.
