@@ -1195,7 +1195,11 @@ extension NSTextView: EditorCounter.Source { }
     private func synchronizeFileType(documentName: String? = nil) {
         
         let documentName = documentName ?? self.fileURL?.lastPathComponent
-        let fileExtension = documentName?.pathExtension ?? self.syntaxController.syntax.fileMap.extensions?.first
+        let fileExtension: String? = if let documentName {
+            documentName.pathExtension
+        } else {
+            self.syntaxController.syntax.fileMap.extensions?.first
+        }
         let type = fileExtension.flatMap { UTType(filenameExtension: $0) } ?? .plainText
         
         guard self.fileType != type.identifier else { return }
