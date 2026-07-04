@@ -51,8 +51,9 @@
 
 ### Fixes
 
-- Fix an issue where documents without a filename extension could not be saved due to a false permission error when a syntax with associated filename extensions is applied.
+- Fix an issue on CotEditor 7.0.5 where documents without a filename extension could not be saved due to a false permission error when a syntax with associated filename extensions is applied.
 - Fix an issue where the external modification alert could wrongly appear on saving a document in a synced folder even when the file content was unchanged.
+- Fix an issue where typing a closing quotation mark just before an automatically inserted closing quotation mark could insert an extra pair of quotation marks instead of just moving the insertion point.
 - Fix an issue where the Find window could unexpectedly resize while dragging the divider of the find result view.
 
 
