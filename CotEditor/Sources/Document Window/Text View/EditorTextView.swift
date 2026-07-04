@@ -478,6 +478,17 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         // balance brackets and quotes
         if self.isAutomaticSymbolBalancingEnabled, replacementRange.isEmpty {
+            // just move cursor if the automatically inserted closing bracket is already typed (#2121)
+            if self.rangeForUserTextChange.isEmpty,
+               self.matchingSymbolPairs.contains(where: { String($0.end) == plainString }),
+               plainString.unicodeScalars.first == self.string.character(after: self.rangeForUserTextChange),
+               self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool == true
+            {
+                self.textStorage?.removeAttribute(.autoBalancedClosingBracket, range: NSRange(location: self.selectedRange.location, length: 1))
+                self.selectedRange.location += 1
+                return
+            }
+            
             // with opening symbol input
             if let pair = self.matchingSymbolPairs.first(where: { String($0.begin) == plainString }) {
                 // wrap selection with brackets if some text is selected
@@ -502,16 +513,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                                                    range: NSRange(location: self.selectedRange.location, length: 1))
                     return
                 }
-            }
-            
-            // just move cursor if closing bracket is already typed
-            if self.matchingSymbolPairs.contains(where: { String($0.end) == plainString }),
-               plainString.unicodeScalars.first == self.string.character(after: self.rangeForUserTextChange),
-               self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool == true
-            {
-                self.textStorage?.removeAttribute(.autoBalancedClosingBracket, range: NSRange(location: self.selectedRange.location, length: 1))
-                self.selectedRange.location += 1
-                return
             }
         }
         
