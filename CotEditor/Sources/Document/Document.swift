@@ -448,6 +448,26 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
+    override func save(withDelegate delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+        
+        // adopt the file modification date to avoid the false alert about the external modification
+        self.invalidateFileModificationDate()
+        
+        super.save(withDelegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
+    }
+    
+    
+    override func autosave(withImplicitCancellability autosavingIsImplicitlyCancellable: Bool, completionHandler: @escaping ((any Error)?) -> Void) {
+        
+        // adopt the file modification date to avoid the false alert about the external modification
+        if Self.autosavesInPlace {
+            self.invalidateFileModificationDate()
+        }
+        
+        super.autosave(withImplicitCancellability: autosavingIsImplicitlyCancellable, completionHandler: completionHandler)
+    }
+    
+    
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping ((any Error)?) -> Void) {
         
         // check if the content can be saved with the current text encoding
@@ -834,6 +854,7 @@ extension NSTextView: EditorCounter.Source { }
         guard strategy != .ignore else { return }
         
         // check if the file content were changed from the stored file data
+        let fileModificationDate = self.fileModificationDate
         let didChange: Bool
         let modificationDate: Date?
         do {
@@ -846,7 +867,12 @@ extension NSTextView: EditorCounter.Source { }
         guard didChange else {
             // update the document's fileModificationDate for a workaround (2014-03)
             // -> Otherwise, an alert shows up when the user saves the file.
-            if let modificationDate, self.fileModificationDate?.compare(modificationDate) == .orderedAscending {
+            //    The modification date can also go backward, for example, when a cloud-storage
+            //    client adjusts it to the server-side value after uploading (issue #2100).
+            if let modificationDate,
+               modificationDate != fileModificationDate,
+               self.fileModificationDate == fileModificationDate  // check no save operation has intervened
+            {
                 self.fileModificationDate = modificationDate
             }
             return
@@ -1168,7 +1194,11 @@ extension NSTextView: EditorCounter.Source { }
     private func synchronizeFileType(documentName: String? = nil) {
         
         let documentName = documentName ?? self.fileURL?.lastPathComponent
-        let fileExtension = documentName?.pathExtension ?? self.syntaxController.syntax.fileMap.extensions?.first
+        let fileExtension: String? = if let documentName {
+            documentName.pathExtension
+        } else {
+            self.syntaxController.syntax.fileMap.extensions?.first
+        }
         let type = fileExtension.flatMap { UTType(filenameExtension: $0) } ?? .plainText
         
         guard self.fileType != type.identifier else { return }
@@ -1288,6 +1318,26 @@ extension NSTextView: EditorCounter.Source { }
         }
         
         return (didChange, modificationDate)
+    }
+    
+    
+    /// Updates the `fileModificationDate` property when the file has been touched
+    /// by another process without changing its content.
+    ///
+    /// - Note:
+    ///   The date change is normally adopted in `presentedItemDidChange()`,
+    ///   but the invocation can be delayed or even skipped, such as for files on network volumes (issue #2100).
+    private func invalidateFileModificationDate() {
+        
+        guard
+            self.fileModificationDate != nil,
+            let (didChange, modificationDate) = try? self.checkFileContentsDidChange(),
+            !didChange,
+            let modificationDate,
+            modificationDate != self.fileModificationDate
+        else { return }
+        
+        self.fileModificationDate = modificationDate
     }
     
     

@@ -28,11 +28,6 @@
 - [dev] Update the build environment to Xcode 27 Beta 2 (Swift 6.4, macOS 27 SDK).
 
 
-### Fixes
-
-- Fix an issue where the Find window could unexpectedly resize while dragging the divider of the find result view.
-
-
 ### Known Issues
 
 - The status bar text can appear black and unreadable when the light system appearance, dark document window appearance, and a dark theme are combined on macOS 26.
@@ -43,6 +38,22 @@
     - Settings/Other Views/SyntaxListCustomization.xcstrings
     - Settings/Panes/FormatSettings.xcstrings
     - Storyboards/Main.xcstrings
+
+
+
+7.0.6 (unreleased)
+--------------------------
+
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle from 2.9.3 to 2.9.4.
+
+
+### Fixes
+
+- Fix an issue where documents without a filename extension could not be saved due to a false permission error when a syntax with associated filename extensions is applied.
+- Fix an issue where the external modification alert could wrongly appear on saving a document in a synced folder even when the file content was unchanged.
+- Fix an issue where the Find window could unexpectedly resize while dragging the divider of the find result view.
 
 
 
