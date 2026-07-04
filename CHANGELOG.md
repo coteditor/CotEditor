@@ -5,6 +5,7 @@
 
 ### Fixes
 
+- Fix an issue where the external modification alert could wrongly appear on saving a document in a synced folder even when the file content was unchanged.
 - Fix an issue where the Find window could unexpectedly resize while dragging the divider of the find result view.
 
 
