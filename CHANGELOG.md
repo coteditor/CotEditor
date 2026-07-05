@@ -29,6 +29,11 @@
 - [dev] Update the build environment to Xcode 27 Beta 2 (Swift 6.4, macOS 27 SDK).
 
 
+### Fixes
+
+- [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
+
+
 ### Known Issues
 
 - The status bar text can appear black and unreadable when the light system appearance, dark document window appearance, and a dark theme are combined on macOS 26.

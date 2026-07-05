@@ -101,7 +101,7 @@ struct SyntaxCompletionEditView: View {
             
             HStack {
                 Spacer()
-                HelpLink(anchor: "syntax_highlight_settings")
+                HelpLink(anchor: "syntax_completion_settings")
             }
         }
     }
