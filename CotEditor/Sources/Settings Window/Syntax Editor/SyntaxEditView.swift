@@ -75,6 +75,7 @@ struct SyntaxEditView: View {
     
     @State private var pane: Pane = .fileMapping
     @State private var errors: [Syntax.Error] = []
+    @State private var validationTask: Task<Void, any Error>?
     @State private var error: (any Error)?
     
     @FocusState private var isNameFieldFocused: Bool
@@ -117,7 +118,14 @@ struct SyntaxEditView: View {
                 }
                 Section(String(localized: "Definition File", table: "SyntaxEditor", comment: "section header in sidebar")) {
                     ForEach(Pane.syntaxData, id: \.self) { pane in
-                        Text(pane.label)
+                        switch pane {
+                            case .validation:
+                                Text(pane.label)
+                                    .badge(self.errors.count)
+                                    .badgeProminence(.increased)
+                            default:
+                                Text(pane.label)
+                        }
                     }
                 }
             }.environment(\.sidebarRowSize, .medium)
@@ -171,8 +179,16 @@ struct SyntaxEditView: View {
             }
             .scenePadding(.vertical)
         }
-        .onChange(of: self.pane) {
+        .task {
             self.errors = self.syntax.value.validate()
+        }
+        .onChange(of: self.syntax.value) { _, newValue in
+            self.validationTask?.cancel()
+            self.validationTask = Task {
+                try await Task.sleep(for: .seconds(0.3))  // debounce
+                try Task.checkCancellation()
+                self.errors = newValue.validate()
+            }
         }
         .alert(error: $error)
         .frame(minWidth: 400, idealWidth: 740, minHeight: 560, idealHeight: 580)
