@@ -21,6 +21,35 @@
 
 <article headingoffset="1">
 	<header>
+		<h1>CotEditor 7.0.6</h1>
+		<p>release: <time>2026-07-05</time></p>
+	</header>
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li><span class="trivial">dev</span>: Update the build environment to Xcode 26.6.</li>
+			<li><span class="label">non-AppStore ver.</span>: Update Sparkle from 2.9.3 to 2.9.4.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue on CotEditor 7.0.5 where documents without a filename extension could not be saved due to a false permission error when a syntax with associated filename extensions is applied.</li>
+			<li>Fix an issue where the external modification alert could wrongly appear on saving a document in a synced folder even when the file content was unchanged.</li>
+			<li>Fix an issue where typing a closing quotation mark just before an automatically inserted closing quotation mark could insert an extra pair of quotation marks instead of just moving the insertion point.</li>
+			<li>Fix an issue where the Find window could unexpectedly resize while dragging the divider of the find result view.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article headingoffset="1">
+	<header>
 		<h1>CotEditor 7.0.5</h1>
 		<p>release: <time>2026-06-23</time></p>
 	</header>
