@@ -50,16 +50,23 @@ import TextFind
     }
     
     
+    // MARK: Public Properties
+    
     let document: DirectoryDocument
     
     private(set) var state: SearchState = .idle
     private(set) var resultRevision = 0
+    
+    
+    // MARK: Private Properties
     
     private var searchTask: Task<Void, Never>?
     private var selectionTask: Task<Void, Never>?
     private var textEditingObserver: (any NSObjectProtocol)?
     private var submittedFindString = ""
     
+    
+    // MARK: Lifecycle
     
     /// Initializes a folder find model.
     ///
@@ -78,6 +85,8 @@ import TextFind
         self.textEditingObserver.map(NotificationCenter.default.removeObserver)
     }
     
+    
+    // MARK: Public Methods
     
     /// Updates the search state after the find string changes.
     ///
@@ -219,6 +228,8 @@ import TextFind
         self.state = .finished(summary)
     }
     
+    
+    // MARK: Private Methods
     
     /// Observes text editing in open documents.
     ///
