@@ -498,11 +498,18 @@ private extension AttributedString {
     /// - Returns: An attributed string with zero-width spaces inserted between characters.
     func lineBreakableByCharacter() -> AttributedString {
         
-        var string = self
-        for index in string.characters.indices.dropFirst().reversed() {
-            string.insert(AttributedString("\u{200B}"), at: index)
+        // rebuild the string at once instead of inserting ZWSs one by one, which is too slow for long lines
+        self.runs.reduce(into: .init()) { attrString, run in
+            // convert into String first because iterating AttributedString.CharacterView is slow
+            let text = String(self[run.range].characters)
+                .map(String.init)
+                .joined(separator: "\u{200B}")
+            
+            let piece = AttributedString(text, attributes: run.attributes)
+            if !attrString.characters.isEmpty {
+                attrString.append(AttributedString("\u{200B}"))
+            }
+            attrString.append(piece)
         }
-        
-        return string
     }
 }

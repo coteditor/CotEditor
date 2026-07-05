@@ -200,7 +200,7 @@ struct Search {
     ///   - maximumLineLength: The maximum UTF-16 length of each line fragment in results.
     /// - Returns: Matches for display.
     /// - Throws: `CancellationError` if the task is cancelled.
-    private func matches(in string: String, using textFind: TextFind, maximumLineLength: Int = 1024) throws -> [FolderFind.Match] {
+    private func matches(in string: String, using textFind: TextFind, maximumLineLength: Int = 512) throws -> [FolderFind.Match] {
         
         assert(maximumLineLength > 0)
         
