@@ -220,7 +220,7 @@ import TextFind
     }
     
     
-    /// Observes text editing in the frontmost document.
+    /// Observes text editing in open documents.
     ///
     /// - Returns: The notification observer.
     private func observeTextStorage() -> any NSObjectProtocol {
@@ -237,7 +237,7 @@ import TextFind
     }
     
     
-    /// Updates match ranges after the current document text changes.
+    /// Updates match ranges after the text of an open document changes.
     ///
     /// - Parameters:
     ///   - textStorage: The edited text storage.
@@ -245,8 +245,9 @@ import TextFind
         
         guard
             case .finished(var summary) = self.state,
-            let document = self.document.currentDocument as? Document,
-            document.textStorage === textStorage,
+            let document = NSDocumentController.shared.documents
+                .compactMap({ $0 as? Document })
+                .first(where: { $0.textStorage === textStorage }),
             let fileURL = document.fileURL
         else { return }
         

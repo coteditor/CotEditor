@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import AppKit
 import Foundation
 import Testing
 import FolderFind
@@ -100,6 +101,39 @@ import UniformTypeIdentifiers
             default:
                 Issue.record("Unexpected state: \(model.state)")
                 throw WaitError.unexpectedState
+        }
+    }
+    
+    
+    @Test(.timeLimit(.minutes(1)))
+    func editingIndependentDocumentUpdatesMatchRanges() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        let fileURL = rootURL.appending(path: "a.txt").standardizedFileURL
+        try Data("hay\nneedle\n".utf8).write(to: fileURL)
+        
+        let model = try Self.makeModel(rootURL: rootURL)
+        model.find(findString: "needle", usesRegularExpression: false, ignoresCase: false, includesHiddenFiles: false)
+        
+        let summary = try await Self.finishedSummary(from: model)
+        #expect(summary.files.first?.matches.map(\.range) == [NSRange(location: 4, length: 6)])
+        
+        // edit the file in a document that is not part of the directory document
+        let document = try Document(contentsOf: fileURL, ofType: UTType.plainText.identifier)
+        NSDocumentController.shared.addDocument(document)
+        defer { document.close() }
+        
+        document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: "!!")
+        
+        for await state in Observations({ model.state }) {
+            guard
+                case .finished(let updated) = state,
+                updated.files.first?.matches.map(\.range) == [NSRange(location: 6, length: 6)]
+            else { continue }
+            
+            break
         }
     }
     
