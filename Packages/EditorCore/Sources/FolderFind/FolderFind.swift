@@ -64,6 +64,7 @@ public enum FolderFind {
         public var includesOtherFileTypes: Bool
         public var includesHiddenFiles: Bool
         public var excludedNames: Set<String>
+        public var maximumFileSize: Int
         public var fileScope: FileScope
         public var decodingOptions: String.DetectionOptions
         
@@ -74,12 +75,14 @@ public enum FolderFind {
         ///   - includesOtherFileTypes: Whether files that do not look like plain text should also be searched.
         ///   - includesHiddenFiles: Whether hidden files should be included.
         ///   - excludedNames: File or folder names to exclude from traversal.
+        ///   - maximumFileSize: The maximum file size in bytes to search. Files larger than this size are skipped.
         ///   - fileScope: The file scope to search.
         ///   - decodingOptions: The text decoding options to use for reading files.
         public init(
             includesOtherFileTypes: Bool = false,
             includesHiddenFiles: Bool = false,
             excludedNames: Set<String> = [".DS_Store", ".git"],
+            maximumFileSize: Int = 1_000_000_000,  // 1 GB
             fileScope: FileScope = .init(),
             decodingOptions: String.DetectionOptions = .init(candidates: [.utf8])
         ) {
@@ -87,6 +90,7 @@ public enum FolderFind {
             self.includesOtherFileTypes = includesOtherFileTypes
             self.includesHiddenFiles = includesHiddenFiles
             self.excludedNames = excludedNames
+            self.maximumFileSize = maximumFileSize
             self.fileScope = fileScope
             self.decodingOptions = decodingOptions
         }
@@ -99,8 +103,9 @@ public enum FolderFind {
         public var contentType: UTType
         public var isDirectory: Bool
         public var isHidden: Bool
+        public var fileSize: Int
         
-        static let metadataResourceKeys: Set<URLResourceKey> = [.contentTypeKey, .isDirectoryKey, .isHiddenKey]
+        static let metadataResourceKeys: Set<URLResourceKey> = [.contentTypeKey, .isDirectoryKey, .isHiddenKey, .fileSizeKey]
         
         
         /// Initializes by reading a candidate at the given URL.
@@ -115,6 +120,7 @@ public enum FolderFind {
             self.contentType = resourceValues.contentType ?? .data
             self.isDirectory = resourceValues.isDirectory ?? false
             self.isHidden = resourceValues.isHidden ?? false
+            self.fileSize = resourceValues.fileSize ?? 0
         }
     }
     

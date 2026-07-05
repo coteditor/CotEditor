@@ -136,6 +136,11 @@ struct Search {
     /// - Throws: `CancellationError` if the task is cancelled.
     private mutating func searchFile(_ candidate: FolderFind.Candidate) throws {
         
+        guard candidate.fileSize <= self.options.maximumFileSize else {
+            self.recordSkippedItem()
+            return
+        }
+        
         guard !candidate.contentType.conforms(to: .propertyList) || !Self.isBinaryPropertyList(at: candidate.fileURL) else {
             self.recordSkippedItem()
             return

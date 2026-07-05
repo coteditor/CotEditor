@@ -568,6 +568,24 @@ struct FolderFindTests {
     }
     
     
+    @Test func fileLargerThanMaximumFileSizeIsSkipped() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: "small.txt"))
+        try Data("needle needle".utf8).write(to: rootURL.appending(path: "large.txt"))
+        
+        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"),
+                                                options: .init(maximumFileSize: 8))
+        
+        #expect(summary.metrics.searchedFileCount == 1)
+        #expect(summary.metrics.skippedItemCount == 1)
+        #expect(summary.metrics.matchCount == 1)
+        #expect(summary.files.map(\.filename) == ["small.txt"])
+    }
+    
+    
     @Test func unreadableDirectoryIsCountedAsSkipped() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()
