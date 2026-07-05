@@ -293,14 +293,19 @@ public extension FolderFind.Summary {
         
         guard let fileIndex = self.files.firstIndex(where: { $0.fileURL == fileURL }) else { return false }
         
+        // update a local copy to avoid invoking `didSet` of `files` for every single match
+        var file = self.files[fileIndex]
         var didUpdate = false
-        for matchIndex in self.files[fileIndex].matches.indices {
-            didUpdate = self.files[fileIndex]
-                .matches[matchIndex]
+        for matchIndex in file.matches.indices {
+            didUpdate = file.matches[matchIndex]
                 .updateRange(editedRange: editedRange, changeInLength: changeInLength, length: length) || didUpdate
         }
         
-        return didUpdate
+        guard didUpdate else { return false }
+        
+        self.files[fileIndex] = file
+        
+        return true
     }
 }
 

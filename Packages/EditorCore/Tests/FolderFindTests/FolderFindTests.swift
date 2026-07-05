@@ -163,7 +163,9 @@ struct FolderFindTests {
         let line = summary.files[0].matches[0].line
         let rangeInLine = summary.files[0].matches[0].rangeInLine
         
-        summary.updateMatchRanges(in: fileURL, editedRange: NSRange(location: 3, length: 4), changeInLength: 4, length: 80)
+        let didUpdate = summary.updateMatchRanges(in: fileURL, editedRange: NSRange(location: 3, length: 4), changeInLength: 4, length: 80)
+        
+        #expect(didUpdate)
         
         #expect(summary.files[0].matches.map(\.range) == [
             NSRange(location: 14, length: 6),
@@ -173,6 +175,15 @@ struct FolderFindTests {
         #expect(summary.files[0].matches[0].line == line)
         #expect(summary.files[0].matches[0].rangeInLine == rangeInLine)
         #expect(summary.files[1].matches.map(\.range) == [NSRange(location: 10, length: 6)])
+        
+        // edits after all matches change nothing
+        let didUpdateBehind = summary.updateMatchRanges(in: fileURL, editedRange: NSRange(location: 70, length: 2), changeInLength: 2, length: 82)
+        
+        #expect(!didUpdateBehind)
+        #expect(summary.files[0].matches.map(\.range) == [
+            NSRange(location: 14, length: 6),
+            NSRange(location: 34, length: 6),
+        ])
     }
     
     
@@ -188,7 +199,9 @@ struct FolderFindTests {
                                                                   ]),
                                          ])
         
-        summary.updateMatchRanges(in: fileURL, editedRange: NSRange(location: 12, length: 0), changeInLength: -6, length: 40)
+        let didUpdate = summary.updateMatchRanges(in: fileURL, editedRange: NSRange(location: 12, length: 0), changeInLength: -6, length: 40)
+        
+        #expect(didUpdate)
         
         #expect(summary.files[0].matches.map(\.range) == [
             NSRange(location: 10, length: 4),
