@@ -110,7 +110,7 @@ struct SyntaxCompletionEditView: View {
 
 private extension SyntaxType? {
     
-    // The value for column sorting.
+    /// The value for column sorting.
     var sortValue: Int {
         
         switch self {

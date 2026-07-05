@@ -60,6 +60,10 @@ import SyntaxFormat
         var comments: [Highlight] = []
         
         
+        /// Returns the highlight definition values for the given syntax type.
+        ///
+        /// - Parameter type: The syntax type.
+        /// - Returns: An array of highlights.
         func values(for type: SyntaxType) -> [Syntax.Highlight] {
             
             switch type {
