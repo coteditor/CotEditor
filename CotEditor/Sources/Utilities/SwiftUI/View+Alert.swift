@@ -51,28 +51,29 @@ extension View {
 
 private struct LocalizedAlertError: LocalizedError {
     
-    private var underlyingError: any LocalizedError
+    private var underlyingError: any Error
     
     
-    /// Creates an existential error confirms to `LocalizedError` protocol from a general `Swift.Error`.
+    /// Creates an existential error conforming to the `LocalizedError` protocol from a general `Swift.Error`.
     ///
     /// - Parameter error: The error to present.
     init?(_ error: (some Error)?) {
         
-        guard let localizedError = error as? any LocalizedError else { return nil }
+        guard let error else { return nil }
         
-        self.underlyingError = localizedError
+        self.underlyingError = error
     }
     
     
     var errorDescription: String? {
         
-        self.underlyingError.errorDescription
+        (self.underlyingError as? any LocalizedError)?.errorDescription
+            ?? self.underlyingError.localizedDescription
     }
     
     
     var recoverySuggestion: String? {
         
-        self.underlyingError.recoverySuggestion
+        (self.underlyingError as? any LocalizedError)?.recoverySuggestion
     }
 }

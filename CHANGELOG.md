@@ -6,6 +6,7 @@
 ### Improvements'
 
 - Prevent the file browser from opening UNIX executable files as plain text.
+- Display more accurate error messages in dialogs.
 
 
 ### Fixes
