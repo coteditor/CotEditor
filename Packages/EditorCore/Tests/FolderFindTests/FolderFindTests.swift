@@ -425,6 +425,9 @@ struct FolderFindTests {
         #expect(FileScope(rules: [
             FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: #"Package\..+"#),
         ]).contains(candidate, relativeTo: rootURL))
+        #expect(FileScope(rules: [
+            FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: #"Package|Package\.swift"#),
+        ]).contains(candidate, relativeTo: rootURL))
         #expect(!FileScope(rules: [
             FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: "swift"),
         ]).contains(candidate, relativeTo: rootURL))

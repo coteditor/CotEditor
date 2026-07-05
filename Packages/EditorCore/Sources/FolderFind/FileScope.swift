@@ -133,7 +133,8 @@ public extension FileScope.Rule {
     /// A comparison that a file scope rule applies.
     ///
     /// String comparisons other than regular expressions are case-insensitive.
-    /// Regular expressions are case-sensitive unless the pattern specifies otherwise, for example with `(?i)`.
+    /// Regular expressions must match the whole target value,
+    /// and are case-sensitive unless the pattern specifies otherwise, for example with `(?i)`.
     enum Comparison: String, Codable, CaseIterable, Sendable {
         
         case contains
@@ -208,7 +209,8 @@ private extension FileScope.Matcher {
             guard rule.comparison == .matchesRegularExpression else { return }
             
             do {
-                self.regularExpression = try NSRegularExpression(pattern: rule.value)
+                // wrap in anchors to require matching the whole target value
+                self.regularExpression = try NSRegularExpression(pattern: #"\A(?:"# + rule.value + #")\z"#)
             } catch {
                 throw .invalidRegularExpression(pattern: rule.value)
             }
@@ -250,7 +252,7 @@ private extension FileScope.Matcher {
             
             let range = NSRange(0..<string.utf16.count)
             
-            return regularExpression.firstMatch(in: string, range: range)?.range == range
+            return regularExpression.firstMatch(in: string, range: range) != nil
         }
     }
 }
