@@ -52,7 +52,7 @@ struct Search {
     ///   - query: The search query.
     ///   - options: The folder search options.
     ///   - progress: The progress object to update while searching.
-    ///   - isIncluded: The predicate to determine whether a file candidate should be searched. If `nil`, the file type option is used.
+    ///   - isIncluded: An additional predicate to include file candidates that the default file type check excludes.
     /// - Throws: `FileScope.Error` if the file scope is invalid.
     init(rootURL: URL, query: FolderFind.Query, options: FolderFind.Options, progress: FolderFindProgress?, isIncluded: (@Sendable (FolderFind.Candidate) -> Bool)?) throws(FileScope.Error) {
         
@@ -177,7 +177,9 @@ struct Search {
     /// - Returns: `true` if the candidate should be searched.
     private func includes(_ candidate: FolderFind.Candidate) -> Bool {
         
-        let includesFileType = self.isIncluded?(candidate) ?? (self.options.includesOtherFileTypes || FolderFind.isSearchableText(candidate))
+        let includesFileType = self.options.includesOtherFileTypes
+            || FolderFind.isSearchableText(candidate)
+            || self.isIncluded?(candidate) == true
         
         return includesFileType && self.fileScopeMatcher.contains(candidate, relativeTo: self.rootURL)
     }

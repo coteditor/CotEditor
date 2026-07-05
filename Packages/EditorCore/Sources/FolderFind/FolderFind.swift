@@ -203,7 +203,7 @@ public enum FolderFind {
     ///   - query: The search query.
     ///   - options: The folder search options.
     ///   - progress: The progress object to update while searching.
-    ///   - isIncluded: The predicate to determine whether a file candidate should be searched. If `nil`, the file type option is used.
+    ///   - isIncluded: An additional predicate to include file candidates that the default file type check excludes.
     /// - Returns: The search summary.
     /// - Throws: `TextFind.Error` for invalid queries, `FileScope.Error` for invalid file scopes, or `CancellationError` if the task is cancelled.
     public static func find(in rootURL: URL, query: Query, options: Options = .init(), progress: FolderFindProgress? = nil, isIncluded: (@Sendable (Candidate) -> Bool)? = nil) async throws -> Summary {

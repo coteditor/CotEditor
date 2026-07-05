@@ -576,9 +576,23 @@ struct FolderFindTests {
         try Data("needle".utf8).write(to: rootURL.appending(path: "Custom.syntaxless"))
         
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle")) { candidate in
-            FolderFind.isSearchableText(candidate) || candidate.fileURL.lastPathComponent == "Custom.syntaxless"
+            candidate.fileURL.lastPathComponent == "Custom.syntaxless"
         }
         
+        #expect(summary.metrics.matchCount == 1)
+    }
+    
+    
+    @Test func customInclusionDoesNotExcludeSearchableFiles() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: "a.txt"))
+        
+        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle")) { _ in false }
+        
+        #expect(summary.metrics.searchedFileCount == 1)
         #expect(summary.metrics.matchCount == 1)
     }
     

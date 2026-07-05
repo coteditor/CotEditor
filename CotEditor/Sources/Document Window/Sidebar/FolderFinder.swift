@@ -149,8 +149,6 @@ import TextFind
         self.searchTask = .detached(priority: .userInitiated) {
             do {
                 let summary = try await FolderFind.find(in: rootURL, query: query, options: options, progress: progress) { candidate in
-                    includesOtherFileTypes ||
-                    FolderFind.isSearchableText(candidate) ||
                     syntaxMappingTable.syntaxName(forFilename: candidate.fileURL.lastPathComponent) != nil
                 }
                 
