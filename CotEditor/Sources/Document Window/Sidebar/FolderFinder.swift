@@ -157,7 +157,7 @@ import TextFind
                 try Task.checkCancellation()
                 
                 await MainActor.run { [weak self] in
-                    guard self?.submittedFindString == findString else { return }
+                    guard !Task.isCancelled else { return }
                     
                     self?.state = .finished(summary)
                     self?.resultRevision += 1
@@ -170,7 +170,7 @@ import TextFind
                 let error = FolderFinder.Error.searchFailed(error.localizedDescription)
                 
                 await MainActor.run { [weak self] in
-                    guard self?.submittedFindString == findString else { return }
+                    guard !Task.isCancelled else { return }
                     
                     self?.state = .failed(error)
                     self?.resultRevision += 1
