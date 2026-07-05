@@ -161,6 +161,11 @@ final class FindPanelContentViewController: NSSplitViewController {
             view.frame.height < 1
         else { return }
         
+        // switch the collapse behavior temporarily to let the field view absorb
+        // the vanishing divider space instead of shrinking the panel by it
+        item.collapseBehavior = .preferResizingSiblingsWithFixedSplitView
+        defer { item.collapseBehavior = .preferResizingSplitViewWithFixedSiblings }
+        
         item.isCollapsed = true
     }
     

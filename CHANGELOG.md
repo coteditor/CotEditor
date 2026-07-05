@@ -3,6 +3,11 @@
 7.0.7 (unreleased)
 --------------------------
 
+### Improvements
+
+- [trivial] Keep the Find window height unchanged when the find result view is closed by dragging the divider.
+
+
 ### Fixes
 
 - [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
