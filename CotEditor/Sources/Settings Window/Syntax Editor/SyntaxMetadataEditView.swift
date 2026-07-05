@@ -49,7 +49,6 @@ struct SyntaxMetadataEditView: View {
                                 .foregroundStyle(.secondary)
                                 .padding(.trailing, 4)
                         }
-                        .textContentType(.URL)
                 }
                 TextField(String(localized: "Author:", table: "SyntaxEditor", comment: "label"),
                           text: $metadata.author ?? "")
