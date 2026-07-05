@@ -54,7 +54,7 @@ import TextFind
     
     let document: DirectoryDocument
     
-    private(set) var state: SearchState = .idle
+    private(set) var state: SearchState = .idle  { didSet { self.updateTextStorageObservation() } }
     private(set) var resultRevision = 0
     
     
@@ -74,7 +74,6 @@ import TextFind
     init(document: DirectoryDocument) {
         
         self.document = document
-        self.textEditingObserver = self.observeTextStorage()
     }
     
     
@@ -230,6 +229,19 @@ import TextFind
     
     
     // MARK: Private Methods
+    
+    /// Starts or stops observing text editing according to the current search state.
+    private func updateTextStorageObservation() {
+        
+        if case .finished = self.state {
+            guard self.textEditingObserver == nil else { return }
+            self.textEditingObserver = self.observeTextStorage()
+        } else {
+            self.textEditingObserver.map(NotificationCenter.default.removeObserver)
+            self.textEditingObserver = nil
+        }
+    }
+    
     
     /// Observes text editing in open documents.
     ///
