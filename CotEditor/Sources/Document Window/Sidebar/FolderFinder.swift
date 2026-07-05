@@ -207,6 +207,9 @@ import TextFind
                 range.upperBound <= textView.string.utf16.count
             else { return }
             
+            // ensure the newly swapped-in editor has its final visible rect before scrolling
+            textView.window?.contentView?.layoutSubtreeIfNeeded()
+            
             textView.selectedRange = range
             textView.scrollRangeToVisible(range)
             textView.showFindIndicator(for: range)
