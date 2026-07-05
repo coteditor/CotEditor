@@ -87,7 +87,7 @@ import TextFind
     
     // MARK: Public Methods
     
-    /// Updates the search state after the find string changes.
+    /// Updates the search state after the user edits the find string.
     ///
     /// - Parameter findString: The new find string.
     func findStringDidChange(to findString: String) {

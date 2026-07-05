@@ -35,6 +35,7 @@ struct SearchField: NSViewRepresentable {
     private var placeholder: String?
     
     private var onSubmit: (String) -> Void = { _ in }
+    private var onTextChange: (String) -> Void = { _ in }
     private var autosaveName: String?
     private var isRegex = false
     
@@ -72,12 +73,13 @@ struct SearchField: NSViewRepresentable {
         }
         (nsView as! RegexSearchField).isRegexHighlighted = self.isRegex
         context.coordinator.onSubmit = self.onSubmit
+        context.coordinator.onTextChange = self.onTextChange
     }
     
     
     func makeCoordinator() -> Coordinator {
         
-        Coordinator(text: $text, action: self.onSubmit)
+        Coordinator(text: $text, onSubmit: self.onSubmit, onTextChange: self.onTextChange)
     }
     
     
@@ -88,6 +90,19 @@ struct SearchField: NSViewRepresentable {
         
         var view = self
         view.onSubmit = action
+        return view
+    }
+    
+    
+    /// Sets an action to perform when the user edits the text in this view.
+    ///
+    /// The action is performed only for user-initiated edits, not for programmatic text changes.
+    ///
+    /// - Parameter action: The action to perform on the edit of the text.
+    func onTextChange(_ action: @escaping (String) -> Void) -> Self {
+        
+        var view = self
+        view.onTextChange = action
         return view
     }
     
@@ -118,14 +133,16 @@ struct SearchField: NSViewRepresentable {
     @MainActor final class Coordinator: NSObject, NSSearchFieldDelegate {
         
         var onSubmit: (String) -> Void
+        var onTextChange: (String) -> Void
         
         @Binding private var text: String
         
         
-        init(text: Binding<String>, action: @escaping (String) -> Void) {
+        init(text: Binding<String>, onSubmit: @escaping (String) -> Void, onTextChange: @escaping (String) -> Void) {
             
             self._text = text
-            self.onSubmit = action
+            self.onSubmit = onSubmit
+            self.onTextChange = onTextChange
         }
         
         
@@ -137,6 +154,7 @@ struct SearchField: NSViewRepresentable {
             else { return }
             
             self.text = textField.stringValue
+            self.onTextChange(textField.stringValue)
         }
         
         

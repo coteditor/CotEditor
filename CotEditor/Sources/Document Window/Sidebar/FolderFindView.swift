@@ -207,8 +207,8 @@ private struct FolderFindControlView: View {
                                 includesOtherFileTypes: self.includesOtherFileTypes,
                                 fileScope: self.fileScope)
             }
-            .onChange(of: self.textFinderSettings.findString) { _, newValue in
-                self.model.findStringDidChange(to: newValue)
+            .onTextChange { findString in
+                self.model.findStringDidChange(to: findString)
             }
         }
         .sheet(isPresented: $showsFileScopeSheet) {
