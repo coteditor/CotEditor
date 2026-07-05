@@ -49,21 +49,6 @@ public struct FileScope: Equatable, Codable, Sendable {
         
         _ = try Matcher(self)
     }
-    
-    
-    /// Returns whether the candidate is included in the file scope.
-    ///
-    /// - Parameters:
-    ///   - candidate: The file candidate to evaluate.
-    ///   - rootURL: The root folder URL for file path rules.
-    /// - Returns: `true` if the candidate is included.
-    public func contains(_ candidate: FolderFind.Candidate, relativeTo rootURL: URL) -> Bool {
-        
-        guard !self.rules.isEmpty else { return true }
-        guard let matcher = try? Matcher(self) else { return false }
-        
-        return matcher.contains(candidate, relativeTo: rootURL)
-    }
 }
 
 

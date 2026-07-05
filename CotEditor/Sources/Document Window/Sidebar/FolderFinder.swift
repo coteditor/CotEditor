@@ -249,8 +249,7 @@ import TextFind
             case .finished(var summary) = self.state,
             let document = self.document.currentDocument as? Document,
             document.textStorage === textStorage,
-            let fileURL = document.fileURL,
-            summary.files.contains(where: { $0.fileURL == fileURL })
+            let fileURL = document.fileURL
         else { return }
         
         guard summary.updateMatchRanges(in: fileURL, editedRange: textStorage.editedRange, changeInLength: textStorage.changeInLength, length: textStorage.length) else { return }

@@ -84,7 +84,7 @@ struct FolderFindFileScopeView: View {
     /// Applies the current file scope and closes the sheet.
     private func apply() {
         
-        var fileScope = self.fileScope.normalized
+        let fileScope = self.fileScope.normalized
         
         do {
             try fileScope.validate()
@@ -92,8 +92,6 @@ struct FolderFindFileScopeView: View {
             self.validationError = error
             return
         }
-        
-        fileScope.rules.removeAll { !$0.isValid }
         
         self.completionHandler(fileScope)
         self.dismiss()

@@ -413,22 +413,22 @@ struct FolderFindTests {
         try Data("needle".utf8).write(to: fileURL)
         let candidate = try FolderFind.Candidate(at: fileURL)
         
-        #expect(FileScope(rules: [
+        #expect(try FileScope(rules: [
             FileScope.Rule(target: .filename, comparison: .contains, value: "package"),
         ]).contains(candidate, relativeTo: rootURL))
-        #expect(FileScope(rules: [
+        #expect(try FileScope(rules: [
             FileScope.Rule(target: .fileExtension, comparison: .isNotEqualTo, value: "txt"),
         ]).contains(candidate, relativeTo: rootURL))
-        #expect(FileScope(rules: [
+        #expect(try FileScope(rules: [
             FileScope.Rule(target: .filename, comparison: .endsWith, value: ".swift"),
         ]).contains(candidate, relativeTo: rootURL))
-        #expect(FileScope(rules: [
+        #expect(try FileScope(rules: [
             FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: #"Package\..+"#),
         ]).contains(candidate, relativeTo: rootURL))
-        #expect(FileScope(rules: [
+        #expect(try FileScope(rules: [
             FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: #"Package|Package\.swift"#),
         ]).contains(candidate, relativeTo: rootURL))
-        #expect(!FileScope(rules: [
+        #expect(try !FileScope(rules: [
             FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: "swift"),
         ]).contains(candidate, relativeTo: rootURL))
     }
@@ -461,16 +461,16 @@ struct FolderFindTests {
         try Data("needle".utf8).write(to: fileURL)
         let candidate = try FolderFind.Candidate(at: fileURL)
         
-        #expect(FileScope(rules: [
+        #expect(try FileScope(rules: [
             FileScope.Rule(target: .filePath, comparison: .isEqualTo, value: "src/main.swift"),
         ]).contains(candidate, relativeTo: rootURL))
-        #expect(FileScope(rules: [
+        #expect(try FileScope(rules: [
             FileScope.Rule(target: .filePath, comparison: .startsWith, value: "src/"),
         ]).contains(candidate, relativeTo: rootURL))
-        #expect(FileScope(rules: [
+        #expect(try FileScope(rules: [
             FileScope.Rule(target: .filePath, comparison: .endsWith, value: "main.swift"),
         ]).contains(candidate, relativeTo: rootURL))
-        #expect(!FileScope(rules: [
+        #expect(try !FileScope(rules: [
             FileScope.Rule(target: .filePath, comparison: .isEqualTo, value: "main.swift"),
         ]).contains(candidate, relativeTo: rootURL))
     }
@@ -488,10 +488,10 @@ struct FolderFindTests {
         // the absolute path is used when the candidate is not under the root folder
         let unrelatedURL = rootURL.appending(path: "other", directoryHint: .isDirectory)
         
-        #expect(FileScope(rules: [
+        #expect(try FileScope(rules: [
             FileScope.Rule(target: .filePath, comparison: .startsWith, value: "/"),
         ]).contains(candidate, relativeTo: unrelatedURL))
-        #expect(FileScope(rules: [
+        #expect(try FileScope(rules: [
             FileScope.Rule(target: .filePath, comparison: .endsWith, value: "/main.swift"),
         ]).contains(candidate, relativeTo: unrelatedURL))
     }
@@ -592,5 +592,21 @@ struct FolderFindTests {
         try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         
         return url
+    }
+}
+
+
+private extension FileScope {
+    
+    /// Returns whether the candidate is included in the file scope.
+    ///
+    /// - Parameters:
+    ///   - candidate: The file candidate to evaluate.
+    ///   - rootURL: The root folder URL for file path rules.
+    /// - Returns: `true` if the candidate is included.
+    /// - Throws: `FileScope.Error` if the file scope is invalid.
+    func contains(_ candidate: FolderFind.Candidate, relativeTo rootURL: URL) throws -> Bool {
+        
+        try Matcher(self).contains(candidate, relativeTo: rootURL)
     }
 }
