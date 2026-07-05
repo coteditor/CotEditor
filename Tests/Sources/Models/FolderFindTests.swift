@@ -49,7 +49,7 @@ import UniformTypeIdentifiers
         #expect(summary.metrics.findString == "needle")
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.metrics.searchedFileCount == 1)
-        #expect(summary.metrics.skippedFileCount == 0)
+        #expect(summary.metrics.skippedItemCount == 0)
         
         model.findStringDidChange(to: "hay")
         

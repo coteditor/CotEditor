@@ -93,7 +93,7 @@ struct Search {
         guard self.visitedDirectories.insert(directoryURL.resolvingSymlinksInPath()).inserted else { return }
         
         guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: Array(FolderFind.Candidate.metadataResourceKeys)) else {
-            return self.recordSkippedFile()
+            return self.recordSkippedItem()
         }
         
         var candidates: [FolderFind.Candidate] = []
@@ -102,7 +102,7 @@ struct Search {
                 let candidate = try FolderFind.Candidate(at: url)
                 candidates.append(candidate)
             } catch {
-                self.recordSkippedFile()
+                self.recordSkippedItem()
             }
         }
         candidates.sort { lhs, rhs in
@@ -137,7 +137,7 @@ struct Search {
     private mutating func searchFile(_ candidate: FolderFind.Candidate) throws {
         
         guard !candidate.contentType.conforms(to: .propertyList) || !Self.isBinaryPropertyList(at: candidate.fileURL) else {
-            self.recordSkippedFile()
+            self.recordSkippedItem()
             return
         }
         
@@ -145,7 +145,7 @@ struct Search {
         do {
             string = try String(contentsOf: candidate.fileURL, decodingOptions: self.options.decodingOptions)
         } catch {
-            self.recordSkippedFile()
+            self.recordSkippedItem()
             return
         }
         
@@ -224,9 +224,9 @@ struct Search {
     
     
     /// Records a skipped file or folder.
-    private mutating func recordSkippedFile() {
+    private mutating func recordSkippedItem() {
         
-        self.metrics.skippedFileCount += 1
+        self.metrics.skippedItemCount += 1
         self.progress?.update(snapshot: self.metrics)
     }
     

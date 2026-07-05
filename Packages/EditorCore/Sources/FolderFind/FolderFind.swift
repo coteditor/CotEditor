@@ -125,7 +125,7 @@ public enum FolderFind {
         public var matchCount: Int = 0
         public var matchedFileCount: Int = 0
         public var searchedFileCount: Int = 0
-        public var skippedFileCount: Int = 0
+        public var skippedItemCount: Int = 0
     }
     
     

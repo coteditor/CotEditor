@@ -46,7 +46,7 @@ struct FolderFindTests {
         
         #expect(summary.metrics.findString == "needle")
         #expect(summary.metrics.searchedFileCount == 3)
-        #expect(summary.metrics.skippedFileCount == 0)
+        #expect(summary.metrics.skippedItemCount == 0)
         #expect(summary.metrics.matchedFileCount == 2)
         #expect(summary.metrics.matchCount == 3)
         #expect(summary.files.map(\.filename) == ["b.txt", "a.txt"])
@@ -101,7 +101,7 @@ struct FolderFindTests {
         #expect(progress.snapshot.matchCount == 0)
         #expect(progress.snapshot.matchedFileCount == 0)
         #expect(progress.snapshot.searchedFileCount == 0)
-        #expect(progress.snapshot.skippedFileCount == 0)
+        #expect(progress.snapshot.skippedItemCount == 0)
     }
     
     
@@ -324,7 +324,7 @@ struct FolderFindTests {
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
         
         #expect(summary.metrics.searchedFileCount == 1)
-        #expect(summary.metrics.skippedFileCount == 1)
+        #expect(summary.metrics.skippedItemCount == 1)
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["xml.plist"])
     }
@@ -527,7 +527,7 @@ struct FolderFindTests {
         }
         
         #expect(progress.snapshot.searchedFileCount == 0)
-        #expect(progress.snapshot.skippedFileCount == 0)
+        #expect(progress.snapshot.skippedItemCount == 0)
     }
     
     
@@ -548,7 +548,7 @@ struct FolderFindTests {
         }
         
         #expect(progress.snapshot.searchedFileCount == 0)
-        #expect(progress.snapshot.skippedFileCount == 0)
+        #expect(progress.snapshot.skippedItemCount == 0)
     }
     
     
@@ -563,7 +563,7 @@ struct FolderFindTests {
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
         
         #expect(summary.metrics.searchedFileCount == 1)
-        #expect(summary.metrics.skippedFileCount == 1)
+        #expect(summary.metrics.skippedItemCount == 1)
         #expect(summary.metrics.matchCount == 1)
     }
     
@@ -583,7 +583,7 @@ struct FolderFindTests {
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
         
         #expect(summary.metrics.searchedFileCount == 1)
-        #expect(summary.metrics.skippedFileCount == 1)
+        #expect(summary.metrics.skippedItemCount == 1)
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["a.txt"])
     }

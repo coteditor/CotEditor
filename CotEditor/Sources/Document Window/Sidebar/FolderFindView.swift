@@ -478,13 +478,13 @@ private extension FolderFind.Metrics {
     /// The localized summary message.
     var message: String {
         
-        if self.skippedFileCount == 0 {
+        if self.skippedItemCount == 0 {
             String(localized: "FolderFind.Metrics.message",
                    defaultValue: "\(self.matchCount) matches in \(self.matchedFileCount) files",
                    table: "Document", comment: "folder find result summary")
         } else {
             String(localized: "FolderFind.Metrics.skipped.message",
-                   defaultValue: "\(self.matchCount) matches in \(self.matchedFileCount) files, \(self.skippedFileCount) skipped",
+                   defaultValue: "\(self.matchCount) matches in \(self.matchedFileCount) files, \(self.skippedItemCount) skipped",
                    table: "Document", comment: "folder find result summary with skipped file count")
         }
     }
