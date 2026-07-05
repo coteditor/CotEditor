@@ -30,7 +30,7 @@ import FolderFind
 import StringUtils
 
 struct FolderFindView: View {
-   
+    
     @Bindable var model: FolderFinder
     
     @State private var selection: Set<FolderFind.ResultID> = []
