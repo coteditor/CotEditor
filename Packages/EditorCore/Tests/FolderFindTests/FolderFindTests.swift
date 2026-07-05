@@ -568,6 +568,27 @@ struct FolderFindTests {
     }
     
     
+    @Test func unreadableDirectoryIsCountedAsSkipped() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle".utf8).write(to: rootURL.appending(path: "a.txt"))
+        let lockedURL = rootURL.appending(path: "locked", directoryHint: .isDirectory)
+        try FileManager.default.createDirectory(at: lockedURL, withIntermediateDirectories: true)
+        try Data("needle".utf8).write(to: lockedURL.appending(path: "b.txt"))
+        try FileManager.default.setAttributes([.posixPermissions: 0o000], ofItemAtPath: lockedURL.path)
+        defer { try? FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: lockedURL.path) }
+        
+        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        
+        #expect(summary.metrics.searchedFileCount == 1)
+        #expect(summary.metrics.skippedFileCount == 1)
+        #expect(summary.metrics.matchCount == 1)
+        #expect(summary.files.map(\.filename) == ["a.txt"])
+    }
+    
+    
     @Test func customInclusionCanSearchSyntaxMappedFiles() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()

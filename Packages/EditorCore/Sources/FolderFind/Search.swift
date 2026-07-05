@@ -92,7 +92,9 @@ struct Search {
         // avoid following symbolic-link cycles back into an already-visited directory
         guard self.visitedDirectories.insert(directoryURL.resolvingSymlinksInPath()).inserted else { return }
         
-        guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: Array(FolderFind.Candidate.metadataResourceKeys)) else { return }
+        guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: Array(FolderFind.Candidate.metadataResourceKeys)) else {
+            return self.recordSkippedFile()
+        }
         
         var candidates: [FolderFind.Candidate] = []
         for url in urls {
@@ -221,7 +223,7 @@ struct Search {
     }
     
     
-    /// Records a skipped file.
+    /// Records a skipped file or folder.
     private mutating func recordSkippedFile() {
         
         self.metrics.skippedFileCount += 1
