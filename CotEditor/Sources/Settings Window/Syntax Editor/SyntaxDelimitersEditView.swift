@@ -326,6 +326,7 @@ private struct BlockEditView: View {
             TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { $item in
                 Toggle(isOn: $item.value.ignoreCase, label: EmptyView.init)
                     .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
+                    .accessibilityLabel(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                     .onChange(of: item.value.ignoreCase) { _, newValue in
                         guard self.selection.contains(item.id) else { return }
                         $items

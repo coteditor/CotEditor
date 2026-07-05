@@ -49,6 +49,7 @@ struct SyntaxHighlightEditView: View {
                     if let item = $items[id: wrappedItem.id] {
                         Toggle(isOn: item.value.isRegularExpression, label: EmptyView.init)
                             .help(String(localized: "Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
+                            .accessibilityLabel(String(localized: "Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
                             .onChange(of: item.value.isRegularExpression.wrappedValue) { _, newValue in
                                 guard self.selection.contains(item.id) else { return }
                                 $items
@@ -65,6 +66,7 @@ struct SyntaxHighlightEditView: View {
                     if let item = $items[id: wrappedItem.id] {
                         Toggle(isOn: item.value.ignoreCase, label: EmptyView.init)
                             .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
+                            .accessibilityLabel(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                             .onChange(of: item.value.ignoreCase.wrappedValue) { _, newValue in
                                 guard self.selection.contains(item.id) else { return }
                                 $items

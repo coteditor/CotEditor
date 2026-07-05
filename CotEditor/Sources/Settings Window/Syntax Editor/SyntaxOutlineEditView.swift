@@ -47,6 +47,7 @@ struct SyntaxOutlineEditView: View {
                 TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { $item in
                     Toggle(isOn: $item.value.ignoreCase, label: EmptyView.init)
                         .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
+                        .accessibilityLabel(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                 }
                 .width(24)
                 .alignment(.center)
@@ -178,6 +179,7 @@ private struct OutlineKindMenu: View {
                 Image(systemName: "square")
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(.tertiary)
+                    .accessibilityLabel(String(localized: "None", table: "SyntaxEditor"))
             }
         }
         .menuStyle(.button)
