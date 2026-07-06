@@ -1,46 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Select the syntaxes you want to appear in syntax menus:" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wähle die Syntaxen aus, die in den Syntaxmenüs angezeigt werden sollen:"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Select the syntaxes you want to appear in syntax menus:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Selecciona las sintaxis que quieres que aparezcan en los menús Sintaxis:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sélectionnez les syntaxes à afficher dans les menus Syntaxe :"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "「シンタックス」メニューに表示するシンタックスを選択してください:"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Selecteer de syntaxen die je in de Syntaxismenu’s wilt weergeven:"
-          }
-        }
-      }
-    },
     "Hidden syntaxes are still used for automatic detection." : {
       "localizations" : {
         "de" : {
@@ -77,6 +37,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Verborgen syntaxen worden nog steeds gebruikt voor automatische detectie."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隱藏的語法仍可用作自動偵測。"
           }
         }
       }
@@ -183,6 +149,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "全選"
+          }
+        }
+      }
+    },
+    "Select the syntaxes you want to appear in syntax menus:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle die Syntaxen aus, die in den Syntaxmenüs angezeigt werden sollen:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select the syntaxes you want to appear in syntax menus:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Selecciona las sintaxis que quieres que aparezcan en los menús Sintaxis:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sélectionnez les syntaxes à afficher dans les menus Syntaxe :"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「シンタックス」メニューに表示するシンタックスを選択してください:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Selecteer de syntaxen die je in de Syntaxismenu’s wilt weergeven:"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇要在語法選單中顯示的語法："
           }
         }
       }
