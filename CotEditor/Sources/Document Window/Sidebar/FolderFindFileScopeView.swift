@@ -612,15 +612,15 @@ private extension FileScope.TextRule.Comparison {
                        table: "Document")
             case .isEqualTo:
                 String(localized: "FileScope.TextRule.Comparison.isEqualTo.label",
-                       defaultValue: "is equal to",
+                       defaultValue: "is",
                        table: "Document")
             case .isNotEqualTo:
                 String(localized: "FileScope.TextRule.Comparison.isNotEqualTo.label",
-                       defaultValue: "is not equal to",
+                       defaultValue: "is not",
                        table: "Document")
             case .startsWith:
                 String(localized: "FileScope.TextRule.Comparison.startsWith.label",
-                       defaultValue: "starts with",
+                       defaultValue: "begins with",
                        table: "Document")
             case .endsWith:
                 String(localized: "FileScope.TextRule.Comparison.endsWith.label",
