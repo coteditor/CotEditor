@@ -377,6 +377,7 @@ private struct RuleEditor: NSViewRepresentable {
             
             let textField = NSTextField(string: value)
             textField.delegate = self
+            textField.focusRingType = .none
             textField.controlSize = .small
             textField.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
             textField.frame.size.width = 180
@@ -399,8 +400,9 @@ private struct RuleEditor: NSViewRepresentable {
             
             let textField = NSTextField(string: "")
             textField.delegate = self
+            textField.focusRingType = .none
             textField.controlSize = .small
-            textField.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
+            textField.font = .monospacedDigitSystemFont(ofSize: NSFont.smallSystemFontSize, weight: .regular)
             textField.formatter = formatter
             textField.frame.size.width = 96
             if let value {
