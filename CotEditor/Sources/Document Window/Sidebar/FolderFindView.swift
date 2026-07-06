@@ -433,6 +433,16 @@ private struct FolderFindDraggedFile: Transferable, Identifiable {
     
     
     /// The transfer representations of a dragged file result.
+    ///
+    /// The exported file is currently passed to receivers as a temporary copy in the app's
+    /// own sandbox container (`Caches/com.apple.SwiftUI.Drag-*`) instead of
+    /// the actual file URL (FB23578716): dropping on the Finder still creates the file and
+    /// application icons still open it, but receivers interpreting the URL itself, such as
+    /// browser windows and text views accepting file paths, observe the container path.
+    ///
+    /// A `DataRepresentation` exporting the actual file URL data as `.fileURL` doesn't
+    /// work around the issue either; the data is likewise replaced with the copy's URL,
+    /// and moreover, drops onto application icons are not accepted anymore.
     static var transferRepresentation: some TransferRepresentation {
         
         FileRepresentation(exportedContentType: .data) { item in
