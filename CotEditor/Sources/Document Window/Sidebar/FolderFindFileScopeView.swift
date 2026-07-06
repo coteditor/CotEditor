@@ -164,9 +164,7 @@ private struct RuleEditor: NSViewRepresentable {
                 ruleEditor.removeRows(at: IndexSet(integersIn: 0..<ruleEditor.numberOfRows), includeSubrows: true)
             }
             
-            let rules = fileScope.rules.isEmpty
-                ? [FileScope.Rule(target: .filename, comparison: .contains, value: "")]
-                : fileScope.rules
+            let rules = fileScope.rules.isEmpty ? [.placeholder] : fileScope.rules
             
             for rule in rules {
                 let row = ruleEditor.numberOfRows
@@ -175,8 +173,8 @@ private struct RuleEditor: NSViewRepresentable {
                 switch rule {
                     case .text(let rule):
                         ruleEditor.setCriteria([
-                            Criterion(rule.target),
-                            Criterion(rule.comparison),
+                            Criterion(.target(rule.target)),
+                            Criterion(.comparison(rule.comparison)),
                             Criterion(.value),
                         ], andDisplayValues: [
                             rule.target.label,
@@ -187,9 +185,9 @@ private struct RuleEditor: NSViewRepresentable {
                     case .fileSize(let rule):
                         ruleEditor.setCriteria([
                             Criterion(.sizeTarget),
-                            Criterion(rule.comparison),
+                            Criterion(.sizeComparison(rule.comparison)),
                             Criterion(.sizeValue),
-                            Criterion(rule.unit),
+                            Criterion(.sizeUnit(rule.unit)),
                         ], andDisplayValues: [
                             Self.sizeTargetLabel,
                             rule.comparison.label,
@@ -201,62 +199,17 @@ private struct RuleEditor: NSViewRepresentable {
         }
         
         
+        // MARK: Delegate Methods
+        
         func ruleEditor(_ editor: NSRuleEditor, numberOfChildrenForCriterion criterion: Any?, with rowType: NSRuleEditor.RowType) -> Int {
             
-            guard let criterion = criterion as? Criterion else {
-                return switch rowType {
-                    case .compound:
-                        0
-                    case .simple:
-                        FileScope.TextRule.Target.allCases.count + 1  // + file size target
-                    @unknown default:
-                        0
-                }
-            }
-            
-            return switch criterion.kind {
-                case .target: FileScope.TextRule.Comparison.allCases.count
-                case .comparison: 1
-                case .value: 0
-                case .sizeTarget: FileScope.FileSizeRule.Comparison.allCases.count
-                case .sizeComparison: 1
-                case .sizeValue: FileScope.FileSizeRule.Unit.allCases.count
-                case .sizeUnit: 0
-            }
+            self.children(of: criterion as? Criterion, with: rowType).count
         }
         
         
         func ruleEditor(_ editor: NSRuleEditor, child index: Int, forCriterion criterion: Any?, with rowType: NSRuleEditor.RowType) -> Any {
             
-            guard let criterion = criterion as? Criterion else {
-                return switch rowType {
-                    case .compound:
-                        Criterion(.value)
-                    case .simple:
-                        (index < FileScope.TextRule.Target.allCases.count)
-                            ? Criterion(FileScope.TextRule.Target.allCases[index])
-                            : Criterion(.sizeTarget)
-                    @unknown default:
-                        Criterion(.value)
-                }
-            }
-            
-            return switch criterion.kind {
-                case .target:
-                    Criterion(FileScope.TextRule.Comparison.allCases[index])
-                case .comparison:
-                    Criterion(.value)
-                case .value:
-                    Criterion(.value)
-                case .sizeTarget:
-                    Criterion(FileScope.FileSizeRule.Comparison.allCases[index])
-                case .sizeComparison:
-                    Criterion(.sizeValue)
-                case .sizeValue:
-                    Criterion(FileScope.FileSizeRule.Unit.allCases[index])
-                case .sizeUnit:
-                    Criterion(.sizeUnit(FileScope.FileSizeRule.Unit.allCases[index]))
-            }
+            self.children(of: criterion as? Criterion, with: rowType)[index]
         }
         
         
@@ -271,6 +224,7 @@ private struct RuleEditor: NSViewRepresentable {
                     comparison.label
                 case .value:
                     self.existingTextField(in: editor, row: row, hasFormatter: false) ?? self.textField(value: "")
+                
                 case .sizeTarget:
                     Self.sizeTargetLabel
                 case .sizeComparison(let comparison):
@@ -301,6 +255,38 @@ private struct RuleEditor: NSViewRepresentable {
         private static let sizeTargetLabel = String(localized: "FileScope.Rule.Target.fileSize.label",
                                                     defaultValue: "File size",
                                                     table: "Document")
+        
+        
+        /// Returns the child criteria of the given criterion.
+        ///
+        /// - Parameters:
+        ///   - criterion: The parent criterion, or `nil` for the root.
+        ///   - rowType: The row type.
+        /// - Returns: The child criteria.
+        private func children(of criterion: Criterion?, with rowType: NSRuleEditor.RowType) -> [Criterion] {
+            
+            guard let criterion else {
+                guard rowType == .simple else { return [] }
+                return FileScope.TextRule.Target.allCases.map { Criterion(.target($0)) } + [Criterion(.sizeTarget)]
+            }
+            
+            return switch criterion.kind {
+                case .target:
+                    FileScope.TextRule.Comparison.allCases.map { Criterion(.comparison($0)) }
+                case .comparison:
+                    [Criterion(.value)]
+                case .value:
+                    []
+                case .sizeTarget:
+                    FileScope.FileSizeRule.Comparison.allCases.map { Criterion(.sizeComparison($0)) }
+                case .sizeComparison:
+                    [Criterion(.sizeValue)]
+                case .sizeValue:
+                    FileScope.FileSizeRule.Unit.allCases.map { Criterion(.sizeUnit($0)) }
+                case .sizeUnit:
+                    []
+            }
+        }
         
         
         /// Returns the text field already displayed in the row to reuse it on the row reconfiguration.
@@ -356,7 +342,7 @@ private struct RuleEditor: NSViewRepresentable {
             let criteria = ruleEditor.criteria(forRow: row).compactMap { $0 as? Criterion }
             let displayValues = ruleEditor.displayValues(forRow: row)
             
-            if criteria.contains(where: { $0.kind == .sizeTarget }) {
+            if criteria.map(\.kind).contains(.sizeValue) {
                 guard
                     let comparison = criteria.compactMap(\.kind.sizeComparison).first,
                     let unit = criteria.compactMap(\.kind.sizeUnit).first
@@ -390,7 +376,6 @@ private struct RuleEditor: NSViewRepresentable {
         private func textField(value: String) -> NSTextField {
             
             let textField = NSTextField(string: value)
-            
             textField.delegate = self
             textField.controlSize = .small
             textField.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
@@ -456,42 +441,6 @@ private final class Criterion: NSObject {
     }
     
     
-    /// Initializes with a text rule target.
-    ///
-    /// - Parameter target: The text rule target.
-    convenience init(_ target: FileScope.TextRule.Target) {
-        
-        self.init(.target(target))
-    }
-    
-    
-    /// Initializes with a text rule comparison.
-    ///
-    /// - Parameter comparison: The text rule comparison.
-    convenience init(_ comparison: FileScope.TextRule.Comparison) {
-        
-        self.init(.comparison(comparison))
-    }
-    
-    
-    /// Initializes with a file size rule comparison.
-    ///
-    /// - Parameter comparison: The file size rule comparison.
-    convenience init(_ comparison: FileScope.FileSizeRule.Comparison) {
-        
-        self.init(.sizeComparison(comparison))
-    }
-    
-    
-    /// Initializes with a file size unit.
-    ///
-    /// - Parameter unit: The file size unit.
-    convenience init(_ unit: FileScope.FileSizeRule.Unit) {
-        
-        self.init(.sizeUnit(unit))
-    }
-    
-    
     override var hash: Int {
         
         self.kind.hashValue
@@ -511,10 +460,8 @@ private extension Criterion.Kind {
     var target: FileScope.TextRule.Target? {
         
         switch self {
-            case .target(let target):
-                target
-            default:
-                nil
+            case .target(let target): target
+            default: nil
         }
     }
     
@@ -523,10 +470,8 @@ private extension Criterion.Kind {
     var comparison: FileScope.TextRule.Comparison? {
         
         switch self {
-            case .comparison(let comparison):
-                comparison
-            default:
-                nil
+            case .comparison(let comparison): comparison
+            default: nil
         }
     }
     
@@ -535,10 +480,8 @@ private extension Criterion.Kind {
     var sizeComparison: FileScope.FileSizeRule.Comparison? {
         
         switch self {
-            case .sizeComparison(let comparison):
-                comparison
-            default:
-                nil
+            case .sizeComparison(let comparison): comparison
+            default: nil
         }
     }
     
@@ -547,10 +490,8 @@ private extension Criterion.Kind {
     var sizeUnit: FileScope.FileSizeRule.Unit? {
         
         switch self {
-            case .sizeUnit(let unit):
-                unit
-            default:
-                nil
+            case .sizeUnit(let unit): unit
+            default: nil
         }
     }
 }
@@ -558,22 +499,24 @@ private extension Criterion.Kind {
 
 // MARK: - Private Extensions
 
+private extension FileScope.Rule {
+    
+    /// The empty rule displayed in the rule editor as a placeholder for an empty scope.
+    static let placeholder = Self(target: .filename, comparison: .contains, value: "")
+}
+
+
 private extension FileScope {
     
-    /// The file scope without no-op default rules.
+    /// The file scope without placeholder rules.
     var normalized: Self {
         
-        Self(rules: self.rules.filter { rule in
-            switch rule {
-                case .text(let rule):
-                    rule.target != .filename || rule.comparison != .contains || !rule.value.isEmpty
-                case .fileSize:
-                    true
-            }
-        })
+        Self(rules: self.rules.filter { $0 != .placeholder })
     }
 }
 
+
+// MARK: - Localization
 
 extension FileScope.Error: @retroactive LocalizedError {
     
