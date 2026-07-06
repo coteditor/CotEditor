@@ -270,13 +270,13 @@ private struct RuleEditor: NSViewRepresentable {
                 case .comparison(let comparison):
                     comparison.label
                 case .value:
-                    self.textField(value: "")
+                    self.existingTextField(in: editor, row: row, hasFormatter: false) ?? self.textField(value: "")
                 case .sizeTarget:
                     Self.sizeTargetLabel
                 case .sizeComparison(let comparison):
                     comparison.label
                 case .sizeValue:
-                    self.sizeField(value: nil)
+                    self.existingTextField(in: editor, row: row, hasFormatter: true) ?? self.sizeField(value: nil)
                 case .sizeUnit(let unit):
                     unit.label
             }
@@ -301,6 +301,26 @@ private struct RuleEditor: NSViewRepresentable {
         private static let sizeTargetLabel = String(localized: "FileScope.Rule.Target.fileSize.label",
                                                     defaultValue: "File size",
                                                     table: "Document")
+        
+        
+        /// Returns the text field already displayed in the row to reuse it on the row reconfiguration.
+        ///
+        /// Reusing the display value keeps the user’s input and the field geometry
+        /// when another criterion in the same row is changed.
+        ///
+        /// - Parameters:
+        ///   - ruleEditor: The rule editor to inspect.
+        ///   - row: The row index.
+        ///   - hasFormatter: Whether the text field to find has a formatter, namely, is for a file size rule.
+        /// - Returns: The text field currently displayed in the row, or `nil` if not found.
+        private func existingTextField(in ruleEditor: NSRuleEditor, row: Int, hasFormatter: Bool) -> NSTextField? {
+            
+            guard row < ruleEditor.numberOfRows else { return nil }
+            
+            return ruleEditor.displayValues(forRow: row)
+                .compactMap { $0 as? NSTextField }
+                .first { ($0.formatter != nil) == hasFormatter }
+        }
         
         
         /// Updates the bound file scope from the rule editor.
@@ -407,6 +427,8 @@ private struct RuleEditor: NSViewRepresentable {
     }
 }
 
+
+// MARK: - Private Models
 
 private final class Criterion: NSObject {
     
@@ -533,6 +555,8 @@ private extension Criterion.Kind {
     }
 }
 
+
+// MARK: - Private Extensions
 
 private extension FileScope {
     
