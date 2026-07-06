@@ -44,10 +44,18 @@ public struct FileScope: Equatable, Codable, Sendable {
     
     /// Validates rules in the file scope.
     ///
-    /// - Throws: `Error.emptyValue` if a rule value is empty, or `Error.invalidRegularExpression` if a regular expression rule is invalid.
-    public func validate() throws(Error) {
+    /// - Parameter maximumFileSize: The maximum file size in bytes the search can handle,
+    ///   or `nil` to skip checking whether file size rules can actually match.
+    /// - Throws: `FileScope.Error` if any rule is invalid.
+    public func validate(maximumFileSize: Int? = nil) throws(Error) {
         
         _ = try Matcher(self)
+        
+        guard let maximumFileSize else { return }
+        
+        for rule in self.rules {
+            try rule.validate(maximumFileSize: maximumFileSize)
+        }
     }
 }
 
@@ -58,19 +66,42 @@ public extension FileScope {
         
         case emptyValue
         case invalidRegularExpression(pattern: String)
+        case invalidSizeValue
+        case unreachableSizeValue(maximumFileSize: Int)
     }
     
     
-    struct Rule: Equatable, Codable, Sendable {
+    enum Rule: Equatable, Codable, Sendable {
+        
+        case text(TextRule)
+        case fileSize(FileSizeRule)
+        
+        public var isValid: Bool  { (try? self.validate()) != nil }
+        
+        
+        /// Validates the rule.
+        ///
+        /// - Parameter maximumFileSize: The maximum file size in bytes the search can handle,
+        ///   or `nil` to skip checking whether file size rules can actually match.
+        /// - Throws: `FileScope.Error` if the rule is invalid.
+        public func validate(maximumFileSize: Int? = nil) throws(FileScope.Error) {
+            
+            switch self {
+                case .text(let rule): try rule.validate()
+                case .fileSize(let rule): try rule.validate(maximumFileSize: maximumFileSize)
+            }
+        }
+    }
+    
+    
+    struct TextRule: Equatable, Codable, Sendable {
         
         public var target: Target
         public var comparison: Comparison
         public var value: String
         
-        public var isValid: Bool  { (try? self.validate()) != nil }
         
-        
-        /// Initializes a file scope rule.
+        /// Initializes a text-based file scope rule.
         ///
         /// - Parameters:
         ///   - target: The file attribute to evaluate.
@@ -87,7 +118,7 @@ public extension FileScope {
         /// Validates the rule.
         ///
         /// - Throws: `Error.emptyValue` if the rule value is empty, or `Error.invalidRegularExpression` if the regular expression pattern is invalid.
-        public func validate() throws(Error) {
+        public func validate() throws(FileScope.Error) {
             
             guard !self.value.isEmpty else {
                 throw .emptyValue
@@ -102,10 +133,81 @@ public extension FileScope {
             }
         }
     }
+    
+    
+    struct FileSizeRule: Equatable, Codable, Sendable {
+        
+        public var comparison: Comparison
+        public var value: Double
+        public var unit: Unit
+        
+        /// The size threshold in bytes.
+        public var byteCount: Int  { Int((self.value * Double(self.unit.byteFactor)).rounded()) }
+        
+        
+        /// Initializes a file size-based file scope rule.
+        ///
+        /// - Parameters:
+        ///   - comparison: The comparison to apply.
+        ///   - value: The size value in the given unit.
+        ///   - unit: The unit of the size value.
+        public init(comparison: Comparison, value: Double, unit: Unit) {
+            
+            self.comparison = comparison
+            self.value = value
+            self.unit = unit
+        }
+        
+        
+        /// Validates the rule.
+        ///
+        /// - Parameter maximumFileSize: The maximum file size in bytes the search can handle,
+        ///   or `nil` to skip checking whether the rule can actually match.
+        /// - Throws: `Error.invalidSizeValue` if the size value is negative, not finite, or zero with the `isLessThan` comparison,
+        ///   or `Error.unreachableSizeValue` if no file within `maximumFileSize` can match the rule.
+        public func validate(maximumFileSize: Int? = nil) throws(FileScope.Error) {
+            
+            guard self.value >= 0, self.value.isFinite else {
+                throw .invalidSizeValue
+            }
+            
+            // a “less than zero” rule can never match
+            guard self.comparison != .isLessThan || self.value > 0 else {
+                throw .invalidSizeValue
+            }
+            
+            // files beyond the maximum are not searched anyway
+            if let maximumFileSize {
+                let isUnreachable = switch self.comparison {
+                    case .isEqualTo: self.byteCount > maximumFileSize
+                    case .isLessThan: false
+                    case .isGreaterThan: self.byteCount >= maximumFileSize
+                }
+                if isUnreachable {
+                    throw .unreachableSizeValue(maximumFileSize: maximumFileSize)
+                }
+            }
+        }
+    }
 }
 
 
 public extension FileScope.Rule {
+    
+    /// Initializes a text-based file scope rule.
+    ///
+    /// - Parameters:
+    ///   - target: The file attribute to evaluate.
+    ///   - comparison: The comparison to apply.
+    ///   - value: The value to compare.
+    init(target: FileScope.TextRule.Target, comparison: FileScope.TextRule.Comparison, value: String) {
+        
+        self = .text(FileScope.TextRule(target: target, comparison: comparison, value: value))
+    }
+}
+
+
+public extension FileScope.TextRule {
     
     enum Target: String, Codable, CaseIterable, Sendable {
         
@@ -115,7 +217,7 @@ public extension FileScope.Rule {
     }
     
     
-    /// A comparison that a file scope rule applies.
+    /// A comparison that a text-based file scope rule applies.
     ///
     /// String comparisons other than regular expressions are case-insensitive.
     /// Regular expressions must match the whole target value,
@@ -132,6 +234,36 @@ public extension FileScope.Rule {
 }
 
 
+public extension FileScope.FileSizeRule {
+    
+    enum Comparison: String, Codable, CaseIterable, Sendable {
+        
+        case isEqualTo
+        case isLessThan
+        case isGreaterThan
+    }
+    
+    
+    enum Unit: String, Codable, CaseIterable, Sendable {
+        
+        case bytes
+        case kilobytes
+        case megabytes
+        
+        
+        /// The number of bytes the unit represents.
+        var byteFactor: Int {
+            
+            switch self {
+                case .bytes: 1
+                case .kilobytes: 1_000
+                case .megabytes: 1_000_000
+            }
+        }
+    }
+}
+
+
 extension FileScope {
     
     struct Matcher {
@@ -142,7 +274,7 @@ extension FileScope {
         /// Initializes a file scope matcher.
         ///
         /// - Parameter fileScope: The file scope to match.
-        /// - Throws: `Error.emptyValue` if a rule value is empty, or `Error.invalidRegularExpression` if a regular expression rule is invalid.
+        /// - Throws: `FileScope.Error` if any rule is invalid.
         init(_ fileScope: FileScope) throws(FileScope.Error) {
             
             self.rules = try fileScope.rules.map(CompiledRule.init)
@@ -169,35 +301,36 @@ extension FileScope {
 
 private extension FileScope.Matcher {
     
-    struct CompiledRule {
+    enum CompiledRule {
         
-        var target: FileScope.Rule.Target
-        var comparison: FileScope.Rule.Comparison
-        var value: String
-        var regularExpression: NSRegularExpression?
+        case text(FileScope.TextRule, regularExpression: NSRegularExpression? = nil)
+        case fileSize(FileScope.FileSizeRule)
         
         
         /// Initializes a compiled file scope rule.
         ///
         /// - Parameter rule: The file scope rule to compile.
-        /// - Throws: `FileScope.Error.emptyValue` if the rule value is empty, or `FileScope.Error.invalidRegularExpression` if the regular expression pattern is invalid.
+        /// - Throws: `FileScope.Error` if the rule is invalid.
         init(_ rule: FileScope.Rule) throws(FileScope.Error) {
             
-            guard !rule.value.isEmpty else {
-                throw .emptyValue
-            }
+            try rule.validate()
             
-            self.target = rule.target
-            self.comparison = rule.comparison
-            self.value = rule.value
-            
-            guard rule.comparison == .matchesRegularExpression else { return }
-            
-            do {
-                // wrap in anchors to require matching the whole target value
-                self.regularExpression = try NSRegularExpression(pattern: #"\A(?:"# + rule.value + #")\z"#)
-            } catch {
-                throw .invalidRegularExpression(pattern: rule.value)
+            switch rule {
+                case .text(let rule) where rule.comparison == .matchesRegularExpression:
+                    let regularExpression: NSRegularExpression?
+                    do {
+                        // wrap in anchors to require matching the whole target value
+                        regularExpression = try NSRegularExpression(pattern: #"\A(?:"# + rule.value + #")\z"#)
+                    } catch {
+                        throw .invalidRegularExpression(pattern: rule.value)
+                    }
+                    self = .text(rule, regularExpression: regularExpression)
+                    
+                case .text(let rule):
+                    self = .text(rule)
+                    
+                case .fileSize(let rule):
+                    self = .fileSize(rule)
             }
         }
         
@@ -208,36 +341,31 @@ private extension FileScope.Matcher {
         /// - Returns: `true` if the rule matches.
         func matches(values: FileScope.Values) -> Bool {
             
-            let targetValue = values.value(for: self.target)
-            
-            return switch self.comparison {
-                case .contains:
-                    targetValue.range(of: self.value, options: .caseInsensitive) != nil
-                case .isEqualTo:
-                    targetValue.compare(self.value, options: .caseInsensitive) == .orderedSame
-                case .isNotEqualTo:
-                    targetValue.compare(self.value, options: .caseInsensitive) != .orderedSame
-                case .startsWith:
-                    targetValue.range(of: self.value, options: [.anchored, .caseInsensitive]) != nil
-                case .endsWith:
-                    targetValue.range(of: self.value, options: [.anchored, .backwards, .caseInsensitive]) != nil
-                case .matchesRegularExpression:
-                    self.matchesRegularExpression(in: targetValue)
+            switch self {
+                case .text(let rule, let regularExpression):
+                    let targetValue = values.value(for: rule.target)
+                    return switch rule.comparison {
+                        case .contains:
+                            targetValue.range(of: rule.value, options: .caseInsensitive) != nil
+                        case .isEqualTo:
+                            targetValue.compare(rule.value, options: .caseInsensitive) == .orderedSame
+                        case .isNotEqualTo:
+                            targetValue.compare(rule.value, options: .caseInsensitive) != .orderedSame
+                        case .startsWith:
+                            targetValue.range(of: rule.value, options: [.anchored, .caseInsensitive]) != nil
+                        case .endsWith:
+                            targetValue.range(of: rule.value, options: [.anchored, .backwards, .caseInsensitive]) != nil
+                        case .matchesRegularExpression:
+                            regularExpression?.firstMatch(in: targetValue, range: NSRange(0..<targetValue.utf16.count)) != nil
+                    }
+                
+                case .fileSize(let rule):
+                    return switch rule.comparison {
+                        case .isEqualTo: values.fileSize == rule.byteCount
+                        case .isLessThan: values.fileSize < rule.byteCount
+                        case .isGreaterThan: values.fileSize > rule.byteCount
+                    }
             }
-        }
-        
-        
-        /// Returns whether the regular expression matches the whole target string.
-        ///
-        /// - Parameter string: The string to evaluate.
-        /// - Returns: `true` if the regular expression matches the whole string.
-        private func matchesRegularExpression(in string: String) -> Bool {
-            
-            guard let regularExpression else { return false }
-            
-            let range = NSRange(0..<string.utf16.count)
-            
-            return regularExpression.firstMatch(in: string, range: range) != nil
         }
     }
 }
@@ -250,6 +378,7 @@ private extension FileScope {
         var filename: String
         var filePath: String
         var fileExtension: String
+        var fileSize: Int
         
         
         /// Initializes values from a candidate.
@@ -264,14 +393,15 @@ private extension FileScope {
             self.filename = fileURL.lastPathComponent
             self.filePath = fileURL.searchPath(under: rootURL)
             self.fileExtension = fileURL.pathExtension
+            self.fileSize = candidate.fileSize
         }
         
         
-        /// Returns the value for the given target.
+        /// Returns the value for the given text rule target.
         ///
-        /// - Parameter target: The file rule target.
+        /// - Parameter target: The text rule target.
         /// - Returns: The target value.
-        func value(for target: Rule.Target) -> String {
+        func value(for target: TextRule.Target) -> String {
             
             switch target {
                 case .filename: self.filename
