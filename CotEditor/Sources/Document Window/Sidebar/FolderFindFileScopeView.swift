@@ -609,27 +609,33 @@ private extension FileScope.TextRule.Comparison {
             case .contains:
                 String(localized: "FileScope.TextRule.Comparison.contains.label",
                        defaultValue: "contains",
-                       table: "Document")
+                       table: "Document",
+                       comment: "This is immediately followed by the value field.")
             case .isEqualTo:
                 String(localized: "FileScope.TextRule.Comparison.isEqualTo.label",
                        defaultValue: "is",
-                       table: "Document")
+                       table: "Document",
+                       comment: "This is immediately followed by the value field.")
             case .isNotEqualTo:
                 String(localized: "FileScope.TextRule.Comparison.isNotEqualTo.label",
                        defaultValue: "is not",
-                       table: "Document")
+                       table: "Document",
+                       comment: "This is immediately followed by the value field.")
             case .startsWith:
                 String(localized: "FileScope.TextRule.Comparison.startsWith.label",
                        defaultValue: "begins with",
-                       table: "Document")
+                       table: "Document",
+                       comment: "This is immediately followed by the value field.")
             case .endsWith:
                 String(localized: "FileScope.TextRule.Comparison.endsWith.label",
                        defaultValue: "ends with",
-                       table: "Document")
+                       table: "Document",
+                       comment: "This is immediately followed by the value field.")
             case .matchesRegularExpression:
                 String(localized: "FileScope.TextRule.Comparison.matchesRegularExpression.label",
                        defaultValue: "matches regular expression",
-                       table: "Document")
+                       table: "Document",
+                       comment: "This is immediately followed by the value field.")
         }
     }
 }
@@ -644,15 +650,18 @@ private extension FileScope.FileSizeRule.Comparison {
             case .isEqualTo:
                 String(localized: "FileScope.FileSizeRule.Comparison.isEqualTo.label",
                        defaultValue: "is",
-                       table: "Document")
+                       table: "Document",
+                       comment: "This is immediately followed by the value field.")
             case .isLessThan:
                 String(localized: "FileScope.FileSizeRule.Comparison.isLessThan.label",
                        defaultValue: "is less than",
-                       table: "Document")
+                       table: "Document",
+                       comment: "This is immediately followed by the value field.")
             case .isGreaterThan:
                 String(localized: "FileScope.FileSizeRule.Comparison.isGreaterThan.label",
                        defaultValue: "is greater than",
-                       table: "Document")
+                       table: "Document",
+                       comment: "This is immediately followed by the value field.")
         }
     }
 }

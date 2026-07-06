@@ -4348,6 +4348,7 @@
       }
     },
     "FileScope.FileSizeRule.Comparison.isEqualTo.label" : {
+      "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "bg" : {
@@ -4461,6 +4462,7 @@
       }
     },
     "FileScope.FileSizeRule.Comparison.isGreaterThan.label" : {
+      "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "bg" : {
@@ -4574,6 +4576,7 @@
       }
     },
     "FileScope.FileSizeRule.Comparison.isLessThan.label" : {
+      "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "bg" : {
@@ -5472,6 +5475,7 @@
       }
     },
     "FileScope.TextRule.Comparison.contains.label" : {
+      "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "bg" : {
@@ -5585,6 +5589,7 @@
       }
     },
     "FileScope.TextRule.Comparison.endsWith.label" : {
+      "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "bg" : {
@@ -5698,6 +5703,7 @@
       }
     },
     "FileScope.TextRule.Comparison.isEqualTo.label" : {
+      "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "bg" : {
@@ -5811,6 +5817,7 @@
       }
     },
     "FileScope.TextRule.Comparison.isNotEqualTo.label" : {
+      "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "bg" : {
@@ -5924,6 +5931,7 @@
       }
     },
     "FileScope.TextRule.Comparison.matchesRegularExpression.label" : {
+      "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
@@ -5971,6 +5979,7 @@
       }
     },
     "FileScope.TextRule.Comparison.startsWith.label" : {
+      "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "bg" : {
