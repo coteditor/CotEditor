@@ -144,6 +144,12 @@
             "state" : "needs_review",
             "value" : "Pas syntaxismenu aan…"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自訂語法選單⋯"
+          }
         }
       }
     },

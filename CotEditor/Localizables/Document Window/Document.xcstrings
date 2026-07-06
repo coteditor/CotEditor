@@ -363,6 +363,12 @@
             "state" : "needs_review",
             "value" : "Aan een van de volgende voorwaarden is voldaan:"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "符合下列條件之一："
+          }
         }
       }
     },
@@ -3223,6 +3229,12 @@
             "state" : "needs_review",
             "value" : "Filter voor bestandskiezer"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案瀏覽器過濾"
+          }
         }
       }
     },
@@ -3263,6 +3275,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bestandsbereik…"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案範圍⋯"
           }
         }
       }
@@ -4203,6 +4221,12 @@
             "state" : "needs_review",
             "value" : "Het bestandsbereik bevat een regel zonder waarde."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案範圍包括未包括值的規則。"
+          }
         }
       }
     },
@@ -4249,6 +4273,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het bestandsbereik bevat een ongeldige reguliere expressie."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案範圍包括無效的常規表示式。"
           }
         }
       }
@@ -4297,6 +4327,12 @@
             "state" : "needs_review",
             "value" : "Het bestandsbereik bevat een regel met een ongeldige bestandsgroottewaarde."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "包括"
+          }
         }
       }
     },
@@ -4343,6 +4379,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het bestandsbereik bevat een bestandsgrootteregel die de maximaal doorzoekbare bestandsgrootte (%@) overschrijdt."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "結尾為"
           }
         }
       }
@@ -4458,6 +4500,12 @@
             "state" : "translated",
             "value" : "是"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "等於"
+          }
         }
       }
     },
@@ -4572,6 +4620,12 @@
             "state" : "translated",
             "value" : "大於"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不等於"
+          }
         }
       }
     },
@@ -4685,6 +4739,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "小於"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "符合常規表示式"
           }
         }
       }
@@ -5024,6 +5084,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "MB"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開頭為"
           }
         }
       }
@@ -6418,6 +6484,42 @@
               }
             }
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@arg2@中的%#@arg1@"
+          },
+          "substitutions" : {
+            "arg1" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg個符合項目"
+                    }
+                  }
+                }
+              }
+            },
+            "arg2" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg個檔案"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -6881,6 +6983,56 @@
               }
             }
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@arg2@中的%#@arg1@，其中%#@arg3@個檔案已略過"
+          },
+          "substitutions" : {
+            "arg1" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg個符合項目"
+                    }
+                  }
+                }
+              }
+            },
+            "arg2" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg個檔案"
+                    }
+                  }
+                }
+              }
+            },
+            "arg3" : {
+              "argNum" : 3,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -7040,6 +7192,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Geen overeenkomsten voor ‘%@’ gevonden."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "找不到與「%@」相符的結果。"
           }
         }
       }
@@ -7201,6 +7359,12 @@
             "state" : "needs_review",
             "value" : "Zoeken in map…"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在資料夾中搜尋⋯"
+          }
         }
       }
     },
@@ -7247,6 +7411,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "De map kan niet worden gevonden."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "找不到資料夾。"
           }
         }
       }
@@ -8172,6 +8342,12 @@
             "state" : "needs_review",
             "value" : "Verborgen bestanden opnemen"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "包括隱藏檔案"
+          }
         }
       }
     },
@@ -8212,6 +8388,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Andere bestandstypen opnemen"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "包括其他檔案類型"
           }
         }
       }
@@ -12930,6 +13112,12 @@
             "state" : "needs_review",
             "value" : "Toon in bestandskiezer"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在檔案瀏覽器中顯示"
+          }
         }
       }
     },
@@ -13077,6 +13265,12 @@
             "state" : "needs_review",
             "value" : "Zoeken in map"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在Finder搜尋"
+          }
         }
       }
     },
@@ -13116,6 +13310,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Zoekmethode"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜尋方式"
           }
         }
       }
@@ -13221,7 +13421,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在資料夾中尋找⋯"
+            "value" : "在資料夾中搜尋⋯"
           }
         }
       }
@@ -15220,6 +15420,12 @@
             "state" : "needs_review",
             "value" : "Volgende"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下一個"
+          }
         }
       }
     },
@@ -15266,6 +15472,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ga naar het volgende document"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前往下一個文件"
           }
         }
       }
@@ -15314,6 +15526,12 @@
             "state" : "needs_review",
             "value" : "Geschiedenis"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "瀏覽記錄"
+          }
         }
       }
     },
@@ -15360,6 +15578,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Vorige"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上一個"
           }
         }
       }
@@ -15408,6 +15632,12 @@
             "state" : "needs_review",
             "value" : "Ga naar het vorige document"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前往上一個文件"
+          }
         }
       }
     },
@@ -15454,6 +15684,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ga terug of vooruit in de documentgeschiedenis"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在文件瀏覽記錄中返回或往前"
           }
         }
       }

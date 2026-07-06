@@ -25888,6 +25888,12 @@
             "state" : "new",
             "value" : "Folder Find"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "資料夾尋找"
+          }
         }
       }
     },

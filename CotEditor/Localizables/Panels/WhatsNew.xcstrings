@@ -258,6 +258,12 @@
             "state" : "needs_review",
             "value" : "In macOS 27 krijgen naamloze documenten automatisch een conceptnaam op basis van hun inhoud."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "於macOS 27上，未命名文件會自動從其內容中建議一個草稿名稱。"
+          }
         }
       }
     },
@@ -304,6 +310,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Laat het document zichzelf een naam geven"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使文件自動命名"
           }
         }
       }
@@ -352,6 +364,12 @@
             "state" : "needs_review",
             "value" : "Zoek tekst in bestanden in een geopende map, rechtstreeks vanuit de navigatiekolom."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "直接透過側邊欄搜尋開啟的資料夾中的檔案文字。"
+          }
         }
       }
     },
@@ -398,6 +416,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Vind het in de map"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "於資料夾中尋找"
           }
         }
       }
@@ -446,6 +470,12 @@
             "state" : "needs_review",
             "value" : "Gebruik de knoppenbalk om terug en vooruit te gaan door onlangs bekeken documenten in een mapdocument."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用工具列在資料夾中最近檢視過的文件間前後切換。"
+          }
         }
       }
     },
@@ -492,6 +522,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Terug en vooruit in mappen"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "於資料夾中前後切換瀏覽"
           }
         }
       }
@@ -540,6 +576,12 @@
             "state" : "needs_review",
             "value" : "CotEditor ondersteunt nu macOS 27 Golden Gate, inclusief een vernieuwde vormgeving voor het nieuwste systeem."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor現已支援macOS 27 Golden Gate，當中包括為最新系統而設的全新外觀。"
+          }
         }
       }
     },
@@ -586,6 +628,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Klaar voor macOS 27"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "為macOS 27準備好"
           }
         }
       }

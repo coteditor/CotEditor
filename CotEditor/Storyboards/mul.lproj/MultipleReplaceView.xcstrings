@@ -1041,7 +1041,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選擇以忽略尋找中的字元大小寫。"
+            "value" : "選擇以忽略搜尋中的字元大小寫。"
           }
         }
       }
@@ -1497,7 +1497,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選擇以使用常規表示式尋找。"
+            "value" : "選擇以使用常規表示式搜尋。"
           }
         }
       }

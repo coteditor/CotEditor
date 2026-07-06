@@ -3782,7 +3782,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "换行尋找"
+            "value" : "換行搜尋"
           }
         }
       }
@@ -7114,7 +7114,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常規表示式尋找"
+            "value" : "常規表示式搜尋"
           }
         }
       }
