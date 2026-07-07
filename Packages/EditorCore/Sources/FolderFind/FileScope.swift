@@ -28,6 +28,7 @@ public import Foundation
 
 public struct FileScope: Equatable, Codable, Sendable {
     
+    public var conjunction: Conjunction
     public var rules: [Rule]
     
     public var isEmpty: Bool { self.rules.isEmpty }
@@ -35,9 +36,12 @@ public struct FileScope: Equatable, Codable, Sendable {
     
     /// Initializes a file scope.
     ///
-    /// - Parameter rules: The rules to evaluate.
-    public init(rules: [Rule] = []) {
+    /// - Parameters:
+    ///   - conjunction: How to combine the rules.
+    ///   - rules: The rules to evaluate.
+    public init(conjunction: Conjunction = .any, rules: [Rule] = []) {
         
+        self.conjunction = conjunction
         self.rules = rules
     }
     
@@ -58,6 +62,13 @@ public extension FileScope {
         
         case emptyValue
         case invalidRegularExpression(pattern: String)
+    }
+    
+    
+    enum Conjunction: String, Codable, CaseIterable, Sendable {
+        
+        case any
+        case all
     }
     
     
@@ -123,6 +134,7 @@ public extension FileScope.Rule {
     enum Comparison: String, Codable, CaseIterable, Sendable {
         
         case contains
+        case doesNotContain
         case isEqualTo
         case isNotEqualTo
         case startsWith
@@ -136,6 +148,7 @@ extension FileScope {
     
     struct Matcher {
         
+        private var conjunction: Conjunction
         private var rules: [CompiledRule]
         
         
@@ -145,6 +158,7 @@ extension FileScope {
         /// - Throws: `Error.emptyValue` if a rule value is empty, or `Error.invalidRegularExpression` if a regular expression rule is invalid.
         init(_ fileScope: FileScope) throws(FileScope.Error) {
             
+            self.conjunction = fileScope.conjunction
             self.rules = try fileScope.rules.map(CompiledRule.init)
         }
         
@@ -161,7 +175,10 @@ extension FileScope {
             
             let values = Values(candidate: candidate, rootURL: rootURL)
             
-            return self.rules.contains { $0.matches(values: values) }
+            return switch self.conjunction {
+                case .any: self.rules.contains { $0.matches(values: values) }
+                case .all: self.rules.allSatisfy { $0.matches(values: values) }
+            }
         }
     }
 }
@@ -213,6 +230,8 @@ private extension FileScope.Matcher {
             return switch self.comparison {
                 case .contains:
                     targetValue.range(of: self.value, options: .caseInsensitive) != nil
+                case .doesNotContain:
+                    targetValue.range(of: self.value, options: .caseInsensitive) == nil
                 case .isEqualTo:
                     targetValue.compare(self.value, options: .caseInsensitive) == .orderedSame
                 case .isNotEqualTo:

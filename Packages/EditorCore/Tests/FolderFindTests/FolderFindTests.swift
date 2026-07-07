@@ -430,6 +430,12 @@ struct FolderFindTests {
             FileScope.Rule(target: .filename, comparison: .contains, value: "package"),
         ]).contains(candidate, relativeTo: rootURL))
         #expect(try FileScope(rules: [
+            FileScope.Rule(target: .filename, comparison: .doesNotContain, value: "objc"),
+        ]).contains(candidate, relativeTo: rootURL))
+        #expect(try !FileScope(rules: [
+            FileScope.Rule(target: .filename, comparison: .doesNotContain, value: "PACKAGE"),
+        ]).contains(candidate, relativeTo: rootURL))
+        #expect(try FileScope(rules: [
             FileScope.Rule(target: .fileExtension, comparison: .isNotEqualTo, value: "txt"),
         ]).contains(candidate, relativeTo: rootURL))
         #expect(try FileScope(rules: [
@@ -444,6 +450,64 @@ struct FolderFindTests {
         #expect(try !FileScope(rules: [
             FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: "swift"),
         ]).contains(candidate, relativeTo: rootURL))
+    }
+    
+    
+    @Test func fileScopeConjunctionCombinesRules() throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        let buildDirectoryURL = rootURL.appending(path: "build", directoryHint: .isDirectory)
+        try FileManager.default.createDirectory(at: buildDirectoryURL, withIntermediateDirectories: true)
+        try Data("needle".utf8).write(to: rootURL.appending(path: "main.swift"))
+        try Data("needle".utf8).write(to: rootURL.appending(path: "README.md"))
+        try Data("needle".utf8).write(to: buildDirectoryURL.appending(path: "generated.swift"))
+        
+        let source = try FolderFind.Candidate(at: rootURL.appending(path: "main.swift"))
+        let readme = try FolderFind.Candidate(at: rootURL.appending(path: "README.md"))
+        let generated = try FolderFind.Candidate(at: buildDirectoryURL.appending(path: "generated.swift"))
+        
+        let rules = [
+            FileScope.Rule(target: .fileExtension, comparison: .isEqualTo, value: "swift"),
+            FileScope.Rule(target: .filePath, comparison: .startsWith, value: "build/"),
+        ]
+        
+        // include files matching any of the rules
+        #expect(try FileScope(conjunction: .any, rules: rules).contains(source, relativeTo: rootURL))
+        #expect(try !FileScope(conjunction: .any, rules: rules).contains(readme, relativeTo: rootURL))
+        #expect(try FileScope(conjunction: .any, rules: rules).contains(generated, relativeTo: rootURL))
+        
+        // include only files matching all the rules
+        #expect(try !FileScope(conjunction: .all, rules: rules).contains(source, relativeTo: rootURL))
+        #expect(try !FileScope(conjunction: .all, rules: rules).contains(readme, relativeTo: rootURL))
+        #expect(try FileScope(conjunction: .all, rules: rules).contains(generated, relativeTo: rootURL))
+        
+        // combine an inclusion and an exclusion
+        let mixedScope = FileScope(conjunction: .all, rules: [
+            FileScope.Rule(target: .fileExtension, comparison: .isEqualTo, value: "swift"),
+            FileScope.Rule(target: .filePath, comparison: .doesNotContain, value: "build"),
+        ])
+        #expect(try mixedScope.contains(source, relativeTo: rootURL))
+        #expect(try !mixedScope.contains(generated, relativeTo: rootURL))
+        
+        // an empty scope includes all files regardless of the conjunction
+        for conjunction in FileScope.Conjunction.allCases {
+            #expect(try FileScope(conjunction: conjunction).contains(generated, relativeTo: rootURL))
+        }
+    }
+    
+    
+    @Test func fileScopeRoundTripsThroughCodable() throws {
+        
+        let fileScope = FileScope(conjunction: .all, rules: [
+            FileScope.Rule(target: .filePath, comparison: .startsWith, value: "build/"),
+        ])
+        let data = try JSONEncoder().encode(fileScope)
+        let decoded = try JSONDecoder().decode(FileScope.self, from: data)
+        
+        #expect(decoded == fileScope)
+        #expect(FileScope().conjunction == .any)
     }
     
     

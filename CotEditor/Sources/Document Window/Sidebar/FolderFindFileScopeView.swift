@@ -53,7 +53,8 @@ struct FolderFindFileScopeView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("Any of the following conditions are met:", tableName: "Document")
+            self.conjunctionPicker
+            
             RuleEditor(fileScope: $fileScope)
             
             if let validationError {
@@ -69,6 +70,35 @@ struct FolderFindFileScopeView: View {
         }
         .onChange(of: self.fileScope) {
             self.validationError = nil
+        }
+    }
+    
+    
+    /// The picker to select the rule conjunction, embedded in the description sentence.
+    private var conjunctionPicker: some View {
+        
+        HStack(alignment: .firstTextBaseline, spacing: 4) {
+            let prefix = String(localized: "FileScope.Conjunction.prefix",
+                                defaultValue: "Match",
+                                table: "Document",
+                                comment: "The text preceding the any/all popup in the sentence “Match [any|all] of the following conditions:”; can be empty.")
+            if !prefix.isEmpty {
+                Text(prefix)
+            }
+            
+            Picker(selection: $fileScope.conjunction) {
+                ForEach(FileScope.Conjunction.allCases, id: \.self) {
+                    Text($0.label)
+                }
+            } label: {
+                EmptyView()
+            }
+            .labelsHidden()
+            
+            Text(String(localized: "FileScope.Conjunction.suffix",
+                        defaultValue: "of the following conditions:",
+                        table: "Document",
+                        comment: "The text following the any/all popup in the sentence “Match [any|all] of the following conditions:”."))
         }
     }
     
@@ -280,6 +310,9 @@ private struct RuleEditor: NSViewRepresentable {
         
         /// Returns a file scope from the rule editor.
         ///
+        /// The conjunction is not editable in the rule editor and is therefore
+        /// taken over from the currently bound file scope.
+        ///
         /// - Parameter ruleEditor: The rule editor to read.
         /// - Returns: The current file scope.
         func fileScope(from ruleEditor: NSRuleEditor) -> FileScope {
@@ -287,7 +320,7 @@ private struct RuleEditor: NSViewRepresentable {
             let rules = ruleEditor.subrowIndexes(forRow: -1)
                 .compactMap { self.rule(from: ruleEditor, row: $0) }
             
-            return FileScope(rules: rules)
+            return FileScope(conjunction: self.fileScope.wrappedValue.conjunction, rules: rules)
         }
         
         
@@ -407,12 +440,33 @@ private extension FileScope {
     /// The file scope without placeholder rules.
     var normalized: Self {
         
-        Self(rules: self.rules.filter { $0 != .placeholder })
+        Self(conjunction: self.conjunction, rules: self.rules.filter { $0 != .placeholder })
     }
 }
 
 
 // MARK: - Localization
+
+private extension FileScope.Conjunction {
+    
+    /// The localized label.
+    var label: String {
+        
+        switch self {
+            case .any:
+                String(localized: "FileScope.Conjunction.any.label",
+                       defaultValue: "any",
+                       table: "Document",
+                       comment: "The popup item inserted into the sentence “Match [any|all] of the following conditions:”.")
+            case .all:
+                String(localized: "FileScope.Conjunction.all.label",
+                       defaultValue: "all",
+                       table: "Document",
+                       comment: "The popup item inserted into the sentence “Match [any|all] of the following conditions:”.")
+        }
+    }
+}
+
 
 extension FileScope.Error: @retroactive LocalizedError {
     
@@ -464,6 +518,11 @@ private extension FileScope.Rule.Comparison {
             case .contains:
                 String(localized: "FileScope.Rule.Comparison.contains.label",
                        defaultValue: "contains",
+                       table: "Document",
+                       comment: "This is immediately followed by the value field.")
+            case .doesNotContain:
+                String(localized: "FileScope.Rule.Comparison.doesNotContain.label",
+                       defaultValue: "does not contain",
                        table: "Document",
                        comment: "This is immediately followed by the value field.")
             case .isEqualTo:
