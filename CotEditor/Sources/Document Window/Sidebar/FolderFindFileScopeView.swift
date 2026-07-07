@@ -87,7 +87,7 @@ struct FolderFindFileScopeView: View {
         let fileScope = self.fileScope.normalized
         
         do {
-            try fileScope.validate(maximumFileSize: FolderFind.Options().maximumFileSize)
+            try fileScope.validate()
         } catch {
             self.validationError = error
             return
@@ -170,31 +170,15 @@ private struct RuleEditor: NSViewRepresentable {
                 let row = ruleEditor.numberOfRows
                 ruleEditor.insertRow(at: row, with: .simple, asSubrowOfRow: -1, animate: false)
                 
-                switch rule {
-                    case .text(let rule):
-                        ruleEditor.setCriteria([
-                            Criterion(.target(rule.target)),
-                            Criterion(.comparison(rule.comparison)),
-                            Criterion(.value),
-                        ], andDisplayValues: [
-                            rule.target.label,
-                            rule.comparison.label,
-                            self.textField(value: rule.value),
-                        ], forRowAt: row)
-                    
-                    case .fileSize(let rule):
-                        ruleEditor.setCriteria([
-                            Criterion(.sizeTarget),
-                            Criterion(.sizeComparison(rule.comparison)),
-                            Criterion(.sizeValue),
-                            Criterion(.sizeUnit(rule.unit)),
-                        ], andDisplayValues: [
-                            Self.sizeTargetLabel,
-                            rule.comparison.label,
-                            self.sizeField(value: rule.value),
-                            rule.unit.label,
-                        ], forRowAt: row)
-                }
+                ruleEditor.setCriteria([
+                    Criterion(.target(rule.target)),
+                    Criterion(.comparison(rule.comparison)),
+                    Criterion(.value),
+                ], andDisplayValues: [
+                    rule.target.label,
+                    rule.comparison.label,
+                    self.textField(value: rule.value),
+                ], forRowAt: row)
             }
         }
         
@@ -223,16 +207,7 @@ private struct RuleEditor: NSViewRepresentable {
                 case .comparison(let comparison):
                     comparison.label
                 case .value:
-                    self.existingTextField(in: editor, row: row, hasFormatter: false) ?? self.textField(value: "")
-                
-                case .sizeTarget:
-                    Self.sizeTargetLabel
-                case .sizeComparison(let comparison):
-                    comparison.label
-                case .sizeValue:
-                    self.existingTextField(in: editor, row: row, hasFormatter: true) ?? self.sizeField(value: nil)
-                case .sizeUnit(let unit):
-                    unit.label
+                    self.existingTextField(in: editor, row: row) ?? self.textField(value: "")
             }
         }
         
@@ -251,12 +226,6 @@ private struct RuleEditor: NSViewRepresentable {
         
         // MARK: Private Methods
         
-        /// The localized label for the file size target.
-        private static let sizeTargetLabel = String(localized: "FileScope.Rule.Target.fileSize.label",
-                                                    defaultValue: "File size",
-                                                    table: "Document")
-        
-        
         /// Returns the child criteria of the given criterion.
         ///
         /// - Parameters:
@@ -267,23 +236,15 @@ private struct RuleEditor: NSViewRepresentable {
             
             guard let criterion else {
                 guard rowType == .simple else { return [] }
-                return FileScope.TextRule.Target.allCases.map { Criterion(.target($0)) } + [Criterion(.sizeTarget)]
+                return FileScope.Rule.Target.allCases.map { Criterion(.target($0)) }
             }
             
             return switch criterion.kind {
                 case .target:
-                    FileScope.TextRule.Comparison.allCases.map { Criterion(.comparison($0)) }
+                    FileScope.Rule.Comparison.allCases.map { Criterion(.comparison($0)) }
                 case .comparison:
                     [Criterion(.value)]
                 case .value:
-                    []
-                case .sizeTarget:
-                    FileScope.FileSizeRule.Comparison.allCases.map { Criterion(.sizeComparison($0)) }
-                case .sizeComparison:
-                    [Criterion(.sizeValue)]
-                case .sizeValue:
-                    FileScope.FileSizeRule.Unit.allCases.map { Criterion(.sizeUnit($0)) }
-                case .sizeUnit:
                     []
             }
         }
@@ -297,15 +258,14 @@ private struct RuleEditor: NSViewRepresentable {
         /// - Parameters:
         ///   - ruleEditor: The rule editor to inspect.
         ///   - row: The row index.
-        ///   - hasFormatter: Whether the text field to find has a formatter, namely, is for a file size rule.
         /// - Returns: The text field currently displayed in the row, or `nil` if not found.
-        private func existingTextField(in ruleEditor: NSRuleEditor, row: Int, hasFormatter: Bool) -> NSTextField? {
+        private func existingTextField(in ruleEditor: NSRuleEditor, row: Int) -> NSTextField? {
             
             guard row < ruleEditor.numberOfRows else { return nil }
             
             return ruleEditor.displayValues(forRow: row)
                 .compactMap { $0 as? NSTextField }
-                .first { ($0.formatter != nil) == hasFormatter }
+                .first
         }
         
         
@@ -340,32 +300,17 @@ private struct RuleEditor: NSViewRepresentable {
         private func rule(from ruleEditor: NSRuleEditor, row: Int) -> FileScope.Rule? {
             
             let criteria = ruleEditor.criteria(forRow: row).compactMap { $0 as? Criterion }
-            let displayValues = ruleEditor.displayValues(forRow: row)
             
-            if criteria.map(\.kind).contains(.sizeValue) {
-                guard
-                    let comparison = criteria.compactMap(\.kind.sizeComparison).first,
-                    let unit = criteria.compactMap(\.kind.sizeUnit).first
-                else { return nil }
-                
-                let value = displayValues
-                    .compactMap { ($0 as? NSTextField)?.doubleValue }
-                    .last ?? 0
-                
-                return .fileSize(FileScope.FileSizeRule(comparison: comparison, value: value, unit: unit))
+            guard
+                let target = criteria.compactMap(\.kind.target).first,
+                let comparison = criteria.compactMap(\.kind.comparison).first
+            else { return nil }
             
-            } else {
-                guard
-                    let target = criteria.compactMap(\.kind.target).first,
-                    let comparison = criteria.compactMap(\.kind.comparison).first
-                else { return nil }
-                
-                let value = displayValues
-                    .compactMap { ($0 as? NSTextField)?.stringValue }
-                    .last ?? ""
-                
-                return .text(FileScope.TextRule(target: target, comparison: comparison, value: value))
-            }
+            let value = ruleEditor.displayValues(forRow: row)
+                .compactMap { ($0 as? NSTextField)?.stringValue }
+                .last ?? ""
+            
+            return FileScope.Rule(target: target, comparison: comparison, value: value)
         }
         
         
@@ -384,33 +329,6 @@ private struct RuleEditor: NSViewRepresentable {
             
             return textField
         }
-        
-        
-        /// Creates a text field for a file size rule value.
-        ///
-        /// - Parameter value: The size value to display, or `nil` to leave the field empty.
-        /// - Returns: The text field.
-        private func sizeField(value: Double?) -> NSTextField {
-            
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .decimal
-            formatter.usesGroupingSeparator = false
-            formatter.minimum = 0
-            formatter.isLenient = true
-            
-            let textField = NSTextField(string: "")
-            textField.delegate = self
-            textField.focusRingType = .none
-            textField.controlSize = .small
-            textField.font = .monospacedDigitSystemFont(ofSize: NSFont.smallSystemFontSize, weight: .regular)
-            textField.formatter = formatter
-            textField.frame.size.width = 96
-            if let value {
-                textField.objectValue = value
-            }
-            
-            return textField
-        }
     }
 }
 
@@ -421,13 +339,9 @@ private final class Criterion: NSObject {
     
     enum Kind: Hashable {
         
-        case target(FileScope.TextRule.Target)
-        case comparison(FileScope.TextRule.Comparison)
+        case target(FileScope.Rule.Target)
+        case comparison(FileScope.Rule.Comparison)
         case value
-        case sizeTarget
-        case sizeComparison(FileScope.FileSizeRule.Comparison)
-        case sizeValue
-        case sizeUnit(FileScope.FileSizeRule.Unit)
     }
     
     
@@ -458,8 +372,8 @@ private final class Criterion: NSObject {
 
 private extension Criterion.Kind {
     
-    /// The target value if the criterion represents a text rule target.
-    var target: FileScope.TextRule.Target? {
+    /// The target value if the criterion represents a rule target.
+    var target: FileScope.Rule.Target? {
         
         switch self {
             case .target(let target): target
@@ -468,31 +382,11 @@ private extension Criterion.Kind {
     }
     
     
-    /// The comparison value if the criterion represents a text rule comparison.
-    var comparison: FileScope.TextRule.Comparison? {
+    /// The comparison value if the criterion represents a rule comparison.
+    var comparison: FileScope.Rule.Comparison? {
         
         switch self {
             case .comparison(let comparison): comparison
-            default: nil
-        }
-    }
-    
-    
-    /// The comparison value if the criterion represents a file size rule comparison.
-    var sizeComparison: FileScope.FileSizeRule.Comparison? {
-        
-        switch self {
-            case .sizeComparison(let comparison): comparison
-            default: nil
-        }
-    }
-    
-    
-    /// The unit value if the criterion represents a file size unit.
-    var sizeUnit: FileScope.FileSizeRule.Unit? {
-        
-        switch self {
-            case .sizeUnit(let unit): unit
             default: nil
         }
     }
@@ -533,20 +427,12 @@ extension FileScope.Error: @retroactive LocalizedError {
                 String(localized: "FileScope.Error.invalidRegularExpression.message",
                        defaultValue: "The file scope contains an invalid regular expression.",
                        table: "Document")
-            case .invalidSizeValue:
-                String(localized: "FileScope.Error.invalidSizeValue.message",
-                       defaultValue: "The file scope contains a rule with an invalid file size value.",
-                       table: "Document")
-            case .unreachableSizeValue(let maximumFileSize):
-                String(localized: "FileScope.Error.unreachableSizeValue.message",
-                       defaultValue: "The file scope contains a file size rule exceeding the maximum searchable file size (\(maximumFileSize.formatted(.byteCount(style: .file)))).",
-                       table: "Document")
         }
     }
 }
 
 
-private extension FileScope.TextRule.Target {
+private extension FileScope.Rule.Target {
     
     /// The localized label.
     var label: String {
@@ -569,91 +455,42 @@ private extension FileScope.TextRule.Target {
 }
 
 
-private extension FileScope.TextRule.Comparison {
+private extension FileScope.Rule.Comparison {
     
     /// The localized label.
     var label: String {
         
         switch self {
             case .contains:
-                String(localized: "FileScope.TextRule.Comparison.contains.label",
+                String(localized: "FileScope.Rule.Comparison.contains.label",
                        defaultValue: "contains",
                        table: "Document",
                        comment: "This is immediately followed by the value field.")
             case .isEqualTo:
-                String(localized: "FileScope.TextRule.Comparison.isEqualTo.label",
+                String(localized: "FileScope.Rule.Comparison.isEqualTo.label",
                        defaultValue: "is",
                        table: "Document",
                        comment: "This is immediately followed by the value field.")
             case .isNotEqualTo:
-                String(localized: "FileScope.TextRule.Comparison.isNotEqualTo.label",
+                String(localized: "FileScope.Rule.Comparison.isNotEqualTo.label",
                        defaultValue: "is not",
                        table: "Document",
                        comment: "This is immediately followed by the value field.")
             case .startsWith:
-                String(localized: "FileScope.TextRule.Comparison.startsWith.label",
+                String(localized: "FileScope.Rule.Comparison.startsWith.label",
                        defaultValue: "begins with",
                        table: "Document",
                        comment: "This is immediately followed by the value field.")
             case .endsWith:
-                String(localized: "FileScope.TextRule.Comparison.endsWith.label",
+                String(localized: "FileScope.Rule.Comparison.endsWith.label",
                        defaultValue: "ends with",
                        table: "Document",
                        comment: "This is immediately followed by the value field.")
             case .matchesRegularExpression:
-                String(localized: "FileScope.TextRule.Comparison.matchesRegularExpression.label",
+                String(localized: "FileScope.Rule.Comparison.matchesRegularExpression.label",
                        defaultValue: "matches regular expression",
                        table: "Document",
                        comment: "This is immediately followed by the value field.")
-        }
-    }
-}
-
-
-private extension FileScope.FileSizeRule.Comparison {
-    
-    /// The localized label.
-    var label: String {
-        
-        switch self {
-            case .isEqualTo:
-                String(localized: "FileScope.FileSizeRule.Comparison.isEqualTo.label",
-                       defaultValue: "is",
-                       table: "Document",
-                       comment: "This is immediately followed by the value field.")
-            case .isLessThan:
-                String(localized: "FileScope.FileSizeRule.Comparison.isLessThan.label",
-                       defaultValue: "is less than",
-                       table: "Document",
-                       comment: "This is immediately followed by the value field.")
-            case .isGreaterThan:
-                String(localized: "FileScope.FileSizeRule.Comparison.isGreaterThan.label",
-                       defaultValue: "is greater than",
-                       table: "Document",
-                       comment: "This is immediately followed by the value field.")
-        }
-    }
-}
-
-
-private extension FileScope.FileSizeRule.Unit {
-    
-    /// The localized label.
-    var label: String {
-        
-        switch self {
-            case .bytes:
-                String(localized: "FileScope.FileSizeRule.Unit.bytes.label",
-                       defaultValue: "bytes",
-                       table: "Document")
-            case .kilobytes:
-                String(localized: "FileScope.FileSizeRule.Unit.kilobytes.label",
-                       defaultValue: "KB",
-                       table: "Document")
-            case .megabytes:
-                String(localized: "FileScope.FileSizeRule.Unit.megabytes.label",
-                       defaultValue: "MB",
-                       table: "Document")
         }
     }
 }
