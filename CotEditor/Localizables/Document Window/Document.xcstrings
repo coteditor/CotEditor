@@ -4131,8 +4131,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "jeder"
+            "state" : "translated",
+            "value" : "allen"
           }
         },
         "en" : {
@@ -4150,13 +4150,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "cada una"
+            "value" : "todas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "chacune"
+            "value" : "toutes les"
           }
         },
         "ja" : {
@@ -4168,7 +4168,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "elk"
+            "value" : "alle"
           }
         },
         "zh-HK" : {
@@ -4185,7 +4185,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "einer"
           }
         },
@@ -4204,13 +4204,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "cualquiera"
+            "value" : "alguna de"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "l’une"
+            "value" : "l’une des"
           }
         },
         "ja" : {
@@ -4222,7 +4222,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "een"
+            "value" : "een of meer"
           }
         },
         "zh-HK" : {
@@ -4239,7 +4239,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Übereinstimmung mit"
           }
         },
@@ -4264,7 +4264,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Correspond à"
+            "value" : "Satisfaire à"
           }
         },
         "ja" : {
@@ -4293,7 +4293,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "der folgenden Bedingungen:"
           }
         },
@@ -4312,13 +4312,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "de las siguientes condiciones:"
+            "value" : "las siguientes condiciones:"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "des conditions suivantes :"
+            "value" : "conditions suivantes :"
           }
         },
         "ja" : {
@@ -4330,7 +4330,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "van de volgende voorwaarden:"
+            "value" : "volgende voorwaarden:"
           }
         },
         "zh-HK" : {
