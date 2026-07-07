@@ -71,6 +71,7 @@ struct FolderFindFileScopeView: View {
         .onChange(of: self.fileScope) {
             self.validationError = nil
         }
+        .frame(minWidth: 400, idealWidth: 540)
     }
     
     

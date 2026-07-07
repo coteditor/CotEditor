@@ -216,7 +216,7 @@ private struct FolderFindControlView: View {
                 self.fileScope = fileScope
             }
             .scenePadding()
-            .frame(width: 560)
+            .presentationSizing(.fitted)
         }
     }
 }
