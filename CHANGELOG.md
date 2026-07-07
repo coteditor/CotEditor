@@ -24,8 +24,8 @@
 - Allow custom syntaxes to be deleted by dragging them to the Trash.
 - Allow CotEditor Syntax files and multiple replacement definitions to be imported by dropping them onto their respective lists.
 - Add a context menu to the list in the Mode settings pane.
-- Display more accurate error messages in dialogs.
 - Display the number of definition errors as a badge in the sidebar of the syntax editor.
+- Display more accurate error messages in dialogs.
 - [trivial] Keep the Find window height unchanged when the find result view is closed by dragging the divider.
 - [dev] Tweak the accent color.
 - [dev] Update the build environment to Xcode 27 Beta 2 (Swift 6.4, macOS 27 SDK).
@@ -38,8 +38,8 @@
 
 ### Known Issues
 
-- The status bar text can appear black and unreadable when the light system appearance, dark document window appearance, and a dark theme are combined on macOS 26.
-- In some cases, a sandboxed URL is passed when folder search results are dropped onto another app.
+- The status bar text can appear black and unreadable when the light system appearance, dark document window appearance, and a dark theme are combined on macOS 26 (FB23611796).
+- In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
 - Strings added in this release are not yet localized in Bulgarian, Simplified Chinese, Traditional Chinese, Chinese (Hong Kong), Czech, Italian, Korean, Polish, Portuguese, Russian, and Turkish:
     - Document Window/Document.xcstrings
     - Panels/WhatsNew.xcstrings
