@@ -46,8 +46,7 @@ struct AppearanceSettingsView: View {
     @AppStorage(.prefersOpaqueBarBackground) private var prefersOpaqueBarBackground
     @AppStorage(.windowAlpha) private var windowAlpha
     
-    @State private var selectingFont: Data?
-    @State private var isMonospacedFontAlertPresented = false
+    @State private var monospacedAlertFont: Data?
     @State private var isRestoringMonospacedFont = false
     
     
@@ -86,16 +85,12 @@ struct AppearanceSettingsView: View {
                            font.fontName == oldFont.fontName
                         { return }
                         
-                        self.selectingFont = oldValue
-                        self.isMonospacedFontAlertPresented = true
+                        self.monospacedAlertFont = oldValue
                     }
                     .accessibilityLabeledPair(role: .content, id: "monospacedFont", in: self.accessibility)
-                    .alert(String(localized: "MonospacedFontAlert.title", defaultValue: "The selected font doesn’t seem to be monospaced.", table: "AppearanceSettings"), isPresented: $isMonospacedFontAlertPresented, presenting: self.selectingFont) { font in
-                        Button(.ok) {
-                            self.selectingFont = nil
-                        }
+                    .alert(String(localized: "MonospacedFontAlert.title", defaultValue: "The selected font doesn’t seem to be monospaced.", table: "AppearanceSettings"), item: $monospacedAlertFont) { font in
+                        Button(.ok) { }
                         Button(role: .cancel) {
-                            self.selectingFont = nil
                             self.isRestoringMonospacedFont = true
                             self.monospacedFont = font
                         }

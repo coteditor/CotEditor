@@ -154,8 +154,6 @@ private struct ThemeListView: View {
     
     @State private var isExporterPresented = false
     @State private var isImporterPresented = false
-    @State private var isDeleteConfirmationPresented = false
-    @State private var isImportConfirmationPresented = false
     @State private var importingError: ImportDuplicationError?
     @State private var error: (any Error)?
     
@@ -218,9 +216,8 @@ private struct ThemeListView: View {
         .confirmationDialog(String(localized: "ImportDuplicationError.description",
                                    defaultValue: "“\(self.importingError?.name ?? String(localized: .unknown))” already exists. Do you want to replace it?",
                                    comment: "%@ is a name of a setting. Refer to the same expression by Apple."),
-                            isPresented: $isImportConfirmationPresented, presenting: self.importingError) { item in
+                            item: $importingError) { item in
             Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
-                self.importingError = nil
                 do {
                     try item.item.withSecurityScopedAccess {
                         try self.manager.importSetting(item.item, name: item.name, type: item.type, overwrite: true)
@@ -228,9 +225,6 @@ private struct ThemeListView: View {
                 } catch {
                     self.error = error
                 }
-            }
-            Button(role: .cancel) {
-                self.importingError = nil
             }
         } message: { error in
             Text(error.recoverySuggestion)
@@ -246,10 +240,9 @@ private struct ThemeListView: View {
         }
         .confirmationDialog(String(localized: "DeletionConfirmation.title",
                                    defaultValue: "Are you sure you want to delete “\(self.deletingItem ?? String(localized: .unknown))”?"),
-                            isPresented: $isDeleteConfirmationPresented, presenting: self.deletingItem)
+                            item: $deletingItem)
         { name in
             Button(String(localized: "Action.delete.label", defaultValue: "Delete"), role: .destructive) {
-                self.deletingItem = nil
                 do {
                     try self.manager.removeSetting(name: name)
                 } catch {
@@ -257,9 +250,6 @@ private struct ThemeListView: View {
                     return
                 }
                 UserDefaults.standard.restore(key: .theme)
-            }
-            Button(role: .cancel) {
-                self.deletingItem = nil
             }
         } message: { _ in
             Text(String(localized: "DeletionConfirmation.message",
@@ -289,7 +279,6 @@ private struct ThemeListView: View {
             
             Button {
                 self.deletingItem = self.selection
-                self.isDeleteConfirmationPresented = true
             } label: {
                 Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
                     .padding(2)
@@ -360,7 +349,6 @@ private struct ThemeListView: View {
             if isContext {
                 Button(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "trash") {
                     self.deletingItem = selection.name
-                    self.isDeleteConfirmationPresented = true
                 }
                 .disabled(selection.isBundled)
             }
@@ -433,7 +421,6 @@ private struct ThemeListView: View {
                 try self.manager.importSetting(.url(url), name: name, type: type, overwrite: false)
             } catch let error as ImportDuplicationError {
                 self.importingError = error
-                self.isImportConfirmationPresented = true
                 return
             } catch {
                 self.error = error
