@@ -208,7 +208,7 @@ private struct RuleEditor: NSViewRepresentable {
                 ], andDisplayValues: [
                     rule.target.label,
                     rule.comparison.label,
-                    self.textField(value: rule.value),
+                    self.createTextField(value: rule.value, comparison: rule.comparison),
                 ], forRowAt: row)
             }
         }
@@ -238,7 +238,7 @@ private struct RuleEditor: NSViewRepresentable {
                 case .comparison(let comparison):
                     comparison.label
                 case .value:
-                    self.existingTextField(in: editor, row: row) ?? self.textField(value: "")
+                    self.textField(in: editor, row: row)
             }
         }
         
@@ -290,12 +290,12 @@ private struct RuleEditor: NSViewRepresentable {
         ///   - ruleEditor: The rule editor to inspect.
         ///   - row: The row index.
         /// - Returns: The text field currently displayed in the row, or `nil` if not found.
-        private func existingTextField(in ruleEditor: NSRuleEditor, row: Int) -> NSTextField? {
+        private func existingTextField(in ruleEditor: NSRuleEditor, row: Int) -> RegularExpressionTextField? {
             
             guard row < ruleEditor.numberOfRows else { return nil }
             
             return ruleEditor.displayValues(forRow: row)
-                .compactMap { $0 as? NSTextField }
+                .compactMap { $0 as? RegularExpressionTextField }
                 .first
         }
         
@@ -348,13 +348,36 @@ private struct RuleEditor: NSViewRepresentable {
         }
         
         
+        /// Returns a configured text field for the rule value in the row.
+        ///
+        /// - Parameters:
+        ///   - ruleEditor: The rule editor to inspect.
+        ///   - row: The row index.
+        /// - Returns: The text field.
+        private func textField(in ruleEditor: NSRuleEditor, row: Int) -> RegularExpressionTextField {
+            
+            let comparison = ruleEditor.criteria(forRow: row)
+                .compactMap { ($0 as? Criterion)?.kind.comparison }
+                .first
+            
+            let textField = self.existingTextField(in: ruleEditor, row: row)
+                ?? self.createTextField(value: "", comparison: comparison)
+            textField.isRegexHighlighted = (comparison == .matchesRegularExpression)
+            
+            return textField
+        }
+        
+        
         /// Creates a text field for a text rule value.
         ///
-        /// - Parameter value: The text field string value.
+        /// - Parameters:
+        ///   - value: The text field string value.
+        ///   - comparison: The comparison kind for the rule, if available.
         /// - Returns: The text field.
-        private func textField(value: String) -> NSTextField {
+        private func createTextField(value: String, comparison: FileScope.Rule.Comparison?) -> RegularExpressionTextField {
             
-            let textField = NSTextField(string: value)
+            let textField = RegularExpressionTextField(string: value)
+            textField.isRegexHighlighted = (comparison == .matchesRegularExpression)
             textField.delegate = self
             textField.focusRingType = .none
             textField.controlSize = .small
