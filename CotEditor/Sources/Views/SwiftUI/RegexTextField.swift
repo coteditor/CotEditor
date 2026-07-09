@@ -157,7 +157,7 @@ struct RegexTextField: NSViewRepresentable {
 }
 
 
-final class RegularExpressionTextField: NSTextField {
+class RegularExpressionTextField: NSTextField {
     
     // MARK: Public Properties
     

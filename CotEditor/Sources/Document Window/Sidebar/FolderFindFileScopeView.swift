@@ -376,7 +376,7 @@ private struct RuleEditor: NSViewRepresentable {
         /// - Returns: The text field.
         private func createTextField(value: String, comparison: FileScope.Rule.Comparison?) -> RegularExpressionTextField {
             
-            let textField = RegularExpressionTextField(string: value)
+            let textField = FillingTextField(string: value)
             textField.isRegexHighlighted = (comparison == .matchesRegularExpression)
             textField.delegate = self
             textField.focusRingType = .none
@@ -386,6 +386,54 @@ private struct RuleEditor: NSViewRepresentable {
             
             return textField
         }
+    }
+}
+
+
+/// A regular expression text field that stretches itself to fill the remaining width of a rule editor row.
+///
+/// `NSRuleEditor` lays out display value views only with their requested widths
+/// and reimposes those widths on every layout pass; therefore, the field instead
+/// intercepts the imposed frames and extends them by itself up to the trailing row buttons.
+/// (2026-07, macOS 27 beta 3, FB23616278)
+private final class FillingTextField: RegularExpressionTextField {
+    
+    override var frame: NSRect {
+        
+        get { super.frame }
+        set { super.frame = self.filling(newValue) }
+    }
+    
+    
+    override func setFrameSize(_ newSize: NSSize) {
+        
+        var frame = self.frame
+        frame.size = newSize
+        
+        super.setFrameSize(self.filling(frame).size)
+    }
+    
+    
+    /// Extends the given frame to fill the remaining width of the rule editor row.
+    ///
+    /// - Parameter frame: The proposed frame.
+    /// - Returns: The extended frame.
+    private func filling(_ frame: NSRect) -> NSRect {
+        
+        guard let rowView = self.superview else { return frame }
+        
+        // the add/remove row buttons are the only right-anchored views in a row
+        let buttonMinX = rowView.subviews
+            .filter { $0 !== self && $0.autoresizingMask.contains(.minXMargin) }
+            .map(\.frame.minX)
+            .min()
+        
+        guard let buttonMinX else { return frame }
+        
+        var frame = frame
+        frame.size.width = max(buttonMinX - 6 - frame.minX, 40)  // 6: the standard slice gap
+        
+        return frame
     }
 }
 
