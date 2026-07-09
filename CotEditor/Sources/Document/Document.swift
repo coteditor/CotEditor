@@ -307,9 +307,14 @@ extension NSTextView: EditorCounter.Source { }
     
     override func revert(toContentsOf url: URL, ofType typeName: String) throws {
         
-        // once force-close all sheets
-        // -> Presented errors will be displayed again after the revert automatically. (since OS X 10.10)
-        self.windowForSheet?.sheets.forEach { $0.close() }
+        // dismiss the alert sheets whose questions will be outdated by the revert
+        // -> Sheets without the `.contentDependentAlert` identifier, such as progress indicators
+        //    or save panels, are kept because the revert doesn't invalidate them.
+        if let window = self.windowForSheet {
+            for sheet in window.sheets where sheet.identifier == .contentDependentAlert {
+                window.endSheet(sheet)
+            }
+        }
         
         let selection = self.editorSelection
         
@@ -657,6 +662,7 @@ extension NSTextView: EditorCounter.Source { }
                 comment: "Refer the same sentence in AppKit.framework by Apple."))
             alert.addButton(withTitle: String(localized: .cancel))
             alert.buttons[1].hasDestructiveAction = true
+            alert.window.identifier = .contentDependentAlert
             
             Task {
                 let returnCode = if let window = self.windowForSheet {
@@ -673,11 +679,9 @@ extension NSTextView: EditorCounter.Source { }
                         // tell the document can be closed without saving
                         DelegateContext(delegate: delegate, selector: shouldCloseSelector, contextInfo: contextInfo)
                             .perform(from: self, flag: true)
-                    case .alertThirdButtonReturn:  // Cancel
+                    default:  // Cancel (or the sheet was dismissed programmatically)
                         DelegateContext(delegate: delegate, selector: shouldCloseSelector, contextInfo: contextInfo)
                             .perform(from: self, flag: false)
-                    default:
-                        fatalError()
                 }
             }
             return
@@ -1405,6 +1409,7 @@ extension NSTextView: EditorCounter.Source { }
             alert.addButton(withTitle: String(localized: .cancel))
             alert.helpAnchor = "howto_change_encoding"
             alert.showsHelp = true
+            alert.window.identifier = .contentDependentAlert
             
             guard let documentWindow = self.windowForSheet else {
                 completionHandler(false)
@@ -1442,6 +1447,7 @@ extension NSTextView: EditorCounter.Source { }
                             alert.addButton(withTitle: String(localized: "UnsavedReinterpretationAlert.button.discard",
                                                               defaultValue: "Discard Changes"))
                             alert.buttons.last?.hasDestructiveAction = true
+                            alert.window.identifier = .contentDependentAlert
                             
                             let returnCode = await alert.beginSheetModal(for: documentWindow)
                             
@@ -1460,10 +1466,8 @@ extension NSTextView: EditorCounter.Source { }
                             self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
                         }
                         
-                    case .alertThirdButtonReturn:  // = Cancel
+                    default:  // = Cancel (or the sheet was dismissed programmatically)
                         completionHandler(false)
-                        
-                    default: preconditionFailure()
                 }
             }
         }
@@ -1510,6 +1514,7 @@ extension NSTextView: EditorCounter.Source { }
                                                     comment: "toggle button label")
             alert.helpAnchor = "inconsistent_line_endings"
             alert.showsHelp = true
+            alert.window.identifier = .contentDependentAlert
             
             Task {
                 let returnCode = await alert.beginSheetModal(for: documentWindow)
@@ -1532,11 +1537,8 @@ extension NSTextView: EditorCounter.Source { }
                     case (.alertSecondButtonReturn, true),
                          (.alertFirstButtonReturn, false):  // == Review
                         self.showWarningInspector()
-                    case (.alertThirdButtonReturn, true),
-                         (.alertSecondButtonReturn, false):  // == Ignore
+                    default:  // == Ignore (or the sheet was dismissed programmatically)
                         break
-                    default:
-                        fatalError()
                 }
                 
                 activityCompletionHandler()
@@ -1577,6 +1579,7 @@ extension NSTextView: EditorCounter.Source { }
             if documentWindow.attachedSheet != nil {
                 alert.alertStyle = .critical
             }
+            alert.window.identifier = .contentDependentAlert
             
             Task {
                 let returnCode = await alert.beginSheetModal(for: documentWindow)
@@ -1640,6 +1643,15 @@ private extension Document {
                 .uniqued as [NSValue]
         }
     }
+}
+
+
+// MARK: - Private Extensions
+
+private extension NSUserInterfaceItemIdentifier {
+    
+    /// The identifier for alert sheets asking questions that depend on the current document contents.
+    static let contentDependentAlert = NSUserInterfaceItemIdentifier("contentDependentAlert")
 }
 
 
