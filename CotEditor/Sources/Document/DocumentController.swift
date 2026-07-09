@@ -463,8 +463,7 @@ final class DocumentController: NSDocumentController {
         }
         
         // manually invoke the original delegate method
-        guard let context: DelegateContext = bridgeUnwrapped(contextInfo) else { return assertionFailure() }
-        
+        let context: DelegateContext = bridgeUnwrapped(contextInfo)
         context.perform(from: self, flag: didCloseAll)
     }
     
