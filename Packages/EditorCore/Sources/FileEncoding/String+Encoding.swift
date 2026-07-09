@@ -109,7 +109,7 @@ public extension String {
     /// - Returns: A new string with all Yen signs converted.
     func convertYenSign(for encoding: String.Encoding) -> String {
         
-        "¥".canBeConverted(to: encoding) ? self : self.replacing("¥", with: "\\")
+        "¥".canBeConverted(to: encoding) ? self : self.replacingOccurrences(of: "¥", with: "\\", options: .literal)
     }
 }
 
