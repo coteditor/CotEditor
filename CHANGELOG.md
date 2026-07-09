@@ -11,6 +11,7 @@
 
 ### Fixes
 
+- Fix an issue where the “Make file executable” option changed in a canceled save panel could still be applied on subsequent saving.
 - [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
 
 

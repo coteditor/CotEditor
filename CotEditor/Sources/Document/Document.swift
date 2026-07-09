@@ -491,7 +491,6 @@ extension NSTextView: EditorCounter.Source { }
         // apply save panel options
         if let saveOptions {
             self.isExecutable = saveOptions.isExecutable
-            self.saveOptions = nil
         }
         
         // modify place to create the elsewhere backup file to `~/Library/Autosaved Information/`
@@ -578,6 +577,16 @@ extension NSTextView: EditorCounter.Source { }
         
         try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
             .merging(self.lastAdditionalFileAttributes.withLock(\.self)) { _, new in new }
+    }
+    
+    
+    override func runModalSavePanel(for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+        
+        // hook the end of the save panel session to invalidate the save options
+        // -> Otherwise, the options for a canceled panel would be applied to a subsequent save operation.
+        let context = DelegateContext(delegate: delegate, selector: didSaveSelector, contextInfo: contextInfo)
+        
+        super.runModalSavePanel(for: saveOperation, delegate: self, didSave: #selector(document(_:didSave:contextInfo:)), contextInfo: bridgeWrapped(context))
     }
     
     
@@ -1261,6 +1270,23 @@ extension NSTextView: EditorCounter.Source { }
         }
         
         return attributes
+    }
+    
+    
+    /// Invalidates the save options when the save panel session started in `runModalSavePanel(for:delegate:didSave:contextInfo:)` ended.
+    ///
+    /// - Parameters:
+    ///   - document: The document that was saved or not.
+    ///   - didSave: Whether the document was saved.
+    ///   - contextInfo: The original delegate context wrapped in `runModalSavePanel(for:delegate:didSave:contextInfo:)`.
+    @objc private func document(_ document: NSDocument, didSave: Bool, contextInfo: UnsafeRawPointer) {
+        
+        // discard the save options at the end of the save panel session
+        self.saveOptions = nil
+        
+        // manually invoke the original delegate
+        let context: DelegateContext = bridgeUnwrapped(contextInfo)
+        context.perform(from: document, flag: didSave)
     }
     
     
