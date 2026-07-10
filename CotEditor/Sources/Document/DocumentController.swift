@@ -318,7 +318,13 @@ final class DocumentController: NSDocumentController {
     /// - Returns: Returns the new Document object.
     @discardableResult func openUntitledDocument(content: String, title: String? = nil, display displayDocument: Bool) throws -> Document {
         
-        let document = try self.transientDocument ?? (try self.openUntitledDocumentAndDisplay(false) as! Document)
+        let document: Document = if let transientDocument,
+                                    transientDocument.windowForSheet?.attachedSheet == nil
+        {
+            transientDocument
+        } else {
+            try self.openUntitledDocumentAndDisplay(false) as! Document
+        }
         
         if !content.isEmpty {
             document.textStorage.replaceCharacters(in: document.textStorage.range, with: content)
