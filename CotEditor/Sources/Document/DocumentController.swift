@@ -118,14 +118,18 @@ final class DocumentController: NSDocumentController {
             (document, documentWasAlreadyOpen) = try await super.openDocument(withContentsOf: url, display: false)
         } catch {
             if let transientDocument {
-                if let document = self.deferredDocuments?.first {
-                    self.deferredDocuments?.removeFirst()
-                    self.replaceTransientDocument(transientDocument, with: document)
-                    document.makeWindowControllers()
-                    document.showWindows()
-                } else {
-                    // restore the reserved transient document when the opening flow failed
-                    transientDocument.isTransient = true
+                // check the transient document is still intact
+                // -> The user may have edited the transient document while the file was being loaded.
+                if transientDocument.textStorage.length == 0 {
+                    if let document = self.deferredDocuments?.first {
+                        self.deferredDocuments?.removeFirst()
+                        self.replaceTransientDocument(transientDocument, with: document)
+                        document.makeWindowControllers()
+                        document.showWindows()
+                    } else {
+                        // restore the reserved transient document when the opening flow failed
+                        transientDocument.isTransient = true
+                    }
                 }
                 self.displayDeferredDocuments()
             }
@@ -134,7 +138,11 @@ final class DocumentController: NSDocumentController {
         
         if let document = document as? Document {
             if let transientDocument {
-                self.replaceTransientDocument(transientDocument, with: document)
+                // check the transient document is still intact
+                // -> The user may have edited the transient document while the file was being loaded.
+                if transientDocument.textStorage.length == 0 {
+                    self.replaceTransientDocument(transientDocument, with: document)
+                }
                 if displayDocument {
                     document.makeWindowControllers()
                     document.showWindows()
@@ -380,10 +388,9 @@ final class DocumentController: NSDocumentController {
         guard
             self.documents.count == 1,
             let document = self.documents.first as? Document,
-            document.isTransient
+            document.isTransient,
+            document.textStorage.length == 0
         else { return nil }
-        
-        assert(document.textStorage.length == 0)
         
         return document
     }

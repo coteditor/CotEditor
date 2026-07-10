@@ -14,6 +14,7 @@
 - Fix an issue where the “Make file executable” option changed in a canceled save panel could still be applied on subsequent saving.
 - Fix an issue where the application became unresponsive when a document was automatically updated due to an external modification while an alert for the document was displayed.
 - Fix an issue where the alerts about inconsistent line endings or an external modification could be displayed twice for the same document.
+- Fix an issue where text typed in an untitled document while a file was being opened could be discarded silently.
 - [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
 
 
