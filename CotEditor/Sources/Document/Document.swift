@@ -101,7 +101,7 @@ extension NSTextView: EditorCounter.Source { }
     private let fileData: Mutex<Data?> = .init(nil)
     private var shouldSaveEncodingXattr = true
     private var isExecutable = false
-    private var isExternalUpdateAlertShown = false
+    private var isExternalUpdateAlertPending = false
     private var isInconsistentLineEndingAlertPending = false
     private var suppressesInconsistentLineEndingAlert = false
     private var allowsLossySaving = false
@@ -1559,17 +1559,18 @@ extension NSTextView: EditorCounter.Source { }
     /// Displays an alert about file modification by an external process.
     private func showUpdatedByExternalProcessAlert() {
         
-        // do nothing if alert is already shown
-        guard !self.isExternalUpdateAlertShown else { return }
+        // avoid queuing the same alert twice
+        guard !self.isExternalUpdateAlertPending else { return }
+        
+        self.isExternalUpdateAlertPending = true
         
         self.performActivity(withSynchronousWaiting: false) { [unowned self] activityCompletionHandler in
             guard let documentWindow = self.windowForSheet else {
+                self.isExternalUpdateAlertPending = false
                 activityCompletionHandler()
                 assertionFailure()
                 return
             }
-            
-            self.isExternalUpdateAlertShown = true
             
             let alert = NSAlert()
             alert.messageText = self.isDocumentEdited
@@ -1596,7 +1597,7 @@ extension NSTextView: EditorCounter.Source { }
                     self.revert()
                 }
                 
-                self.isExternalUpdateAlertShown = false
+                self.isExternalUpdateAlertPending = false
                 activityCompletionHandler()
             }
         }
