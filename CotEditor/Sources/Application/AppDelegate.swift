@@ -211,7 +211,7 @@ extension Logger {
         // such as NSQuitAlwaysKeepsWindows, the iCloud Drive availability, etc,
         // execute the action directly by self (2024-05, macOS 14).
         if !flag {
-            (DocumentController.shared as? DocumentController)?.performOnLaunchAction(isReopen: true)
+            (DocumentController.shared as? DocumentController)?.performOnLaunchAction()
             return false
         } else {
             // -> bring a document in the Dock to the front if any exists.

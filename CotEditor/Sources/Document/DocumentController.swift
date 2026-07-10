@@ -344,9 +344,7 @@ final class DocumentController: NSDocumentController {
     
     
     /// Performs the user-defined action on the open/reopen event.
-    ///
-    /// - Parameter isReopen: Flag to tell whether the event is the reopen event (not affected to the behavior).
-    func performOnLaunchAction(isReopen: Bool = false) {
+    func performOnLaunchAction() {
         
         switch UserDefaults.standard[.noDocumentOnLaunchOption] {
             case .untitledDocument:
