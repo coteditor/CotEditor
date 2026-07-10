@@ -659,12 +659,10 @@ final class DirectoryDocument: NSDocument {
         if type.conforms(to: .resolvable) { return false }
         
         if type.conforms(to: .propertyList) {
-            guard let data = try? Data(contentsOf: url) else { return true }
+            // detect binary property list from the magic number
+            guard let data = try? Data(contentsOf: url, options: .mappedIfSafe) else { return true }
             
-            var format: PropertyListSerialization.PropertyListFormat = .xml
-            _ = try? PropertyListSerialization.propertyList(from: data, format: &format)
-            
-            return format != .binary
+            return !data.starts(with: "bplist".utf8)
         }
         
         // check the default app for the file is CotEditor
