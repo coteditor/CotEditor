@@ -15,6 +15,7 @@
 - Fix an issue where the application became unresponsive when a document was automatically updated due to an external modification while an alert for the document was displayed.
 - Fix an issue where the alerts about inconsistent line endings or an external modification could be displayed twice for the same document.
 - Fix an issue where text typed in an untitled document while a file was being opened could be discarded silently.
+- Fix an issue in the file browser where the “Open in New Window” command did not work for the file currently displayed as a preview.
 - [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
 
 

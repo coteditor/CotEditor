@@ -622,16 +622,22 @@ final class DirectoryDocument: NSDocument {
             self.documents.removeFirst(document)
             self.invalidateRestorableState()
             
-            // create a new window for the document
-            document.windowController = nil
-            document.makeWindowControllers()
-            document.showWindows()
+            if let document = document as? Document {
+                // create a new window for the document
+                document.windowController = nil
+                document.makeWindowControllers()
+                document.showWindows()
+                return
+            }
             
-        } else {
-            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { [weak self] _, _, error in
-                if let error {
-                    self?.presentError(error)
-                }
+            // reopen the file as a normal document
+            // -> A PreviewDocument cannot create its own window.
+            document.close()
+        }
+        
+        NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { [weak self] _, _, error in
+            if let error {
+                self?.presentError(error)
             }
         }
     }
