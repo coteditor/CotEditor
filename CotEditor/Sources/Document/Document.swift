@@ -102,6 +102,7 @@ extension NSTextView: EditorCounter.Source { }
     private var shouldSaveEncodingXattr = true
     private var isExecutable = false
     private var isExternalUpdateAlertShown = false
+    private var isInconsistentLineEndingAlertPending = false
     private var suppressesInconsistentLineEndingAlert = false
     private var allowsLossySaving = false
     private var saveOptions: SaveOptions?
@@ -1478,12 +1479,19 @@ extension NSTextView: EditorCounter.Source { }
     private func showInconsistentLineEndingAlert() {
         
         guard
+            !self.isInconsistentLineEndingAlertPending,
             !UserDefaults.standard[.suppressesInconsistentLineEndingAlert],
             !self.suppressesInconsistentLineEndingAlert
         else { return }
         
+        // avoid queuing the same alert twice
+        // -> The `makeWindowControllers()` can be invoked multiple times for the same presentation,
+        //    for example, when the window restoration and the reopening coincide at the launch.
+        self.isInconsistentLineEndingAlertPending = true
+        
         self.performActivity(withSynchronousWaiting: false) { [unowned self] activityCompletionHandler in
             guard let documentWindow = self.windowForSheet else {
+                self.isInconsistentLineEndingAlertPending = false
                 activityCompletionHandler()
                 assertionFailure()
                 return
@@ -1541,6 +1549,7 @@ extension NSTextView: EditorCounter.Source { }
                         break
                 }
                 
+                self.isInconsistentLineEndingAlertPending = false
                 activityCompletionHandler()
             }
         }
