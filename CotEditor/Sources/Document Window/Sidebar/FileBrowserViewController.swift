@@ -87,6 +87,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let scrollView = NSScrollView()
         scrollView.documentView = outlineView
         scrollView.hasVerticalScroller = true
+        scrollView.drawsBackground = false
         scrollView.automaticallyAdjustsContentInsets = false
         scrollView.contentInsets.top = 8
         
