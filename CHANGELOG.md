@@ -14,7 +14,7 @@
 - Fix an issue where the “Make file executable” option changed in a canceled save panel could still be applied on subsequent saving.
 - Fix an issue where the application became unresponsive when a document was automatically updated due to an external modification while an alert for the document was displayed.
 - Fix an issue where the alerts about inconsistent line endings or an external modification could be displayed twice for the same document.
-- Fix an issue where text typed in an untitled document while a file was being opened could be discarded silently.
+- Fix an issue where text typed in an untitled document while another document was being opened could be discarded silently.
 - Fix an issue in the file browser where the “Open in New Window” command did not work for the file currently displayed as a preview.
 - Fix an issue where the Syntax toolbar menu was no longer updated once the toolbar customization dialog was opened.
 - Fix an issue where wrapped lines could be printed with an incorrect indentation width when hanging indentation was enabled.
