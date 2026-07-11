@@ -150,6 +150,9 @@ final class PrintTextView: NSTextView {
             self.typingAttributes[.paragraphStyle] = paragraphStyle
             self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.range)
             
+            // set attributes for the hanging indent width calculation
+            (self.textContainer as? TextContainer)?.indentAttributes = [.font: font, .paragraphStyle: paragraphStyle]
+            
             // set font also to layout manager
             (self.layoutManager as? LayoutManager)?.textFont = font
         }
