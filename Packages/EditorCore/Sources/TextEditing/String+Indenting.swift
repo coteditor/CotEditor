@@ -115,9 +115,10 @@ public extension String {
             .filter { $1 > 0 }
             .map { NSRange(location: $0.location, length: $1) }
         let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
+            // count only the dropped characters located before the selection start
             let offset = droppedRanges
                 .prefix { $0.location < selectedRange.location }
-                .map { (selectedRange.intersection($0) ?? $0).length }
+                .map { min($0.length, selectedRange.location - $0.location) }
                 .reduce(0, +)
             let lengthDiff = droppedRanges
                 .compactMap { selectedRange.intersection($0)?.length }
