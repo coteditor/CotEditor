@@ -101,6 +101,23 @@ struct StringLineProcessingTests {
     }
     
     
+    @Test func moveLineDownWithDocumentEndCaret() throws {
+        
+        // the caret on the trailing empty line must stay in place
+        // instead of being shifted out of the string bounds
+        let string = "aa\nbb\ncc\n"
+        var context = try #require(string.moveLineDown(in: [NSRange(3, 0), NSRange(9, 0)]))
+        
+        #expect(context.strings == ["aa\ncc\nbb\n"])
+        #expect(context.ranges == [NSRange(0, 9)])
+        #expect(context.selectedRanges == [NSRange(6, 0), NSRange(9, 0)])
+        
+        // the caret on the trailing empty line must not be dropped
+        context = try #require("aa\nbb\ncc\ndd\n".moveLineDown(in: [NSRange(3, 0), NSRange(12, 0)]))
+        #expect(context.selectedRanges == [NSRange(6, 0), NSRange(12, 0)])
+    }
+    
+    
     @Test func moveLineUpWithCRLF() throws {
         
         // CR+LF is treated as a single Character; offsets must use UTF-16 lengths.

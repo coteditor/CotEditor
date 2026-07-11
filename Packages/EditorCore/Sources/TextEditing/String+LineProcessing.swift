@@ -124,6 +124,12 @@ public extension String {
             
             // move selected ranges in the line to move
             for (index, selectedRange) in ranges.enumerated() {
+                // keep the caret on the trailing empty line in place
+                if selectedRange == NSRange(location: self.length, length: 0), self.last?.isNewline == true {
+                    movedSelectedRanges[index] = selectedRange
+                    continue
+                }
+                
                 let shiftedRange: NSRange? = if let intersectionRange = selectedRange.intersection(editRange) {
                     intersectionRange.shifted(by: offset)
                 } else if editRange.touches(selectedRange.location) {
