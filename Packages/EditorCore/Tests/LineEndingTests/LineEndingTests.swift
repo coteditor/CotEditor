@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2025 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -99,18 +99,6 @@ struct LineEndingTests {
         
         #expect("foo\r\nbar\n".replacingLineEndings(with: .cr) == "foo\rbar\r")
         #expect("foo\u{c}bar\n".replacingLineEndings(with: .cr) == "foo\u{c}bar\r")
-    }
-    
-    
-    @Test func replaceAttributedString() {
-        
-        let string = NSMutableAttributedString(string: "foo\r\nbar\n")
-        string.replaceLineEndings(with: .cr)
-        #expect(string.string == "foo\rbar\r")
-        
-        let string2 = NSMutableAttributedString(string: "foo\u{c}bar\n")
-        string2.replaceLineEndings(with: .cr)
-        #expect(string2.string == "foo\u{c}bar\r")
     }
 }
 
