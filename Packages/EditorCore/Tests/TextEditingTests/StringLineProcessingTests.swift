@@ -410,6 +410,22 @@ struct StringLineProcessingTests {
         #expect(context.ranges == [NSRange(2, 3), NSRange(13, 1)])
         #expect(context.selectedRanges == nil)
     }
+    
+    
+    @Test func joinLinesAfterAcrossBlankLine() {
+        
+        // ranges to replace must not overlap when the lines to join
+        // are separated by a whitespace-only line
+        let context = "a\n  \nb".joinLines(after: [NSRange(0, 0), NSRange(3, 0)])
+        
+        #expect(context.strings == [" "])
+        #expect(context.ranges == [NSRange(1, 4)])
+        
+        let emptyLineContext = "a\n \n \nb".joinLines(after: [NSRange(2, 0), NSRange(4, 0)])
+        
+        #expect(emptyLineContext.strings == [" "])
+        #expect(emptyLineContext.ranges == [NSRange(2, 4)])
+    }
 }
 
 

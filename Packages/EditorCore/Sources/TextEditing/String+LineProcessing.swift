@@ -279,6 +279,7 @@ public extension String {
         let replacementRanges = lineRanges
             .map { (self as NSString).range(of: #"\s*\R\s*"#, options: .regularExpression, range: NSRange($0.lowerBound..<self.length)) }
             .filter { !$0.isNotFound }  // when in the last line
+            .merged
         let replacementStrings = Array(repeating: " ", count: replacementRanges.count)
         
         return EditingContext(strings: replacementStrings, ranges: replacementRanges)
