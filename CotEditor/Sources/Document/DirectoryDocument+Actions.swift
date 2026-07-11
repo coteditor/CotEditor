@@ -94,14 +94,12 @@ extension DirectoryDocument {
     
     override func lock(_ sender: Any?) {
         
-        assertionFailure()
         self.currentDocument?.lock(sender)
     }
     
     
     override func unlock(_ sender: Any?) {
         
-        assertionFailure()
         self.currentDocument?.unlock(sender)
     }
     
