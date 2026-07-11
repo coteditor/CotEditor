@@ -106,7 +106,8 @@ extension EditorTextView {
         let range = self.rangeForUserCompletion
         
         guard
-            let candidate = anItem.candidates[index] as? String,
+            // -> The index is NSNotFound when the user ended touching without selecting any candidate.
+            let candidate = anItem.candidates[safe: index] as? String,
             self.shouldChangeText(in: range, replacementString: candidate)
         else { return super.candidateListTouchBarItem(anItem, endSelectingCandidateAt: index) }
         
