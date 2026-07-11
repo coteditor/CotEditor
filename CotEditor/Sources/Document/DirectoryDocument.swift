@@ -615,10 +615,12 @@ final class DirectoryDocument: NSDocument {
             }
         }
         
-        if let document = self.currentDocument, fileURL == document.fileURL {
-            // remove from the current window
-            self.windowController?.fileDocument = nil
-            self.currentDocument = nil
+        if let document = self.documents.first(where: { $0.fileURL == fileURL }) {
+            // detach the document from the receiver
+            if document === self.currentDocument {
+                self.windowController?.fileDocument = nil
+                self.currentDocument = nil
+            }
             self.documents.removeFirst(document)
             self.invalidateRestorableState()
             
