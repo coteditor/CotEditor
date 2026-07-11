@@ -34,6 +34,9 @@ struct DelegateContext {
     
     /// Manually invokes the original delegate method stored as a DelegateContext.
     ///
+    /// This method does nothing if the receiver has no delegate or selector,
+    /// or if the delegate doesn't respond to the selector.
+    ///
     /// - SeeAlso: *Advice for Overriders of Methods that Follow the delegate:didSomethingSelector:contextInfo: Pattern* in
     ///   <https://developer.apple.com/library/archive/releasenotes/AppKit/RN-AppKitOlderNotes/>.
     ///
@@ -47,7 +50,7 @@ struct DelegateContext {
             let selector = self.selector,
             delegate.responds(to: selector),
             let method = delegate.method(for: selector)
-        else { return assertionFailure() }
+        else { return }
         
         typealias Signature = @convention(c) (AnyObject, Selector, AnyObject, Bool, UnsafeMutableRawPointer?) -> Void
         let function = unsafeBitCast(method, to: Signature.self)
@@ -57,6 +60,9 @@ struct DelegateContext {
     
     
     /// Manually invokes the original delegate method stored as a DelegateContext.
+    ///
+    /// This method does nothing if the receiver has no delegate or selector,
+    /// or if the delegate doesn't respond to the selector.
     ///
     /// - SeeAlso: *Advice for Overriders of Methods that Follow the delegate:didSomethingSelector:contextInfo: Pattern* in
     ///   <https://developer.apple.com/library/archive/releasenotes/AppKit/RN-AppKitOlderNotes/>.
@@ -70,7 +76,7 @@ struct DelegateContext {
             let selector = self.selector,
             delegate.responds(to: selector),
             let method = delegate.method(for: selector)
-        else { return assertionFailure() }
+        else { return }
         
         typealias Signature = @convention(c) (AnyObject, Selector, Bool, UnsafeMutableRawPointer?) -> Void
         let function = unsafeBitCast(method, to: Signature.self)

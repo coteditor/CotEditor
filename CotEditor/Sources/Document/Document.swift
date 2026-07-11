@@ -99,7 +99,8 @@ extension NSTextView: EditorCounter.Source { }
     private let fileData: Mutex<Data?> = .init(nil)
     private var shouldSaveEncodingXattr = true
     private var isExecutable = false
-    private var isExternalUpdateAlertShown = false
+    private var isExternalUpdateAlertPending = false
+    private var isInconsistentLineEndingAlertPending = false
     private var suppressesInconsistentLineEndingAlert = false
     private var allowsLossySaving = false
     private var saveOptions: SaveOptions?
@@ -305,9 +306,14 @@ extension NSTextView: EditorCounter.Source { }
     
     override func revert(toContentsOf url: URL, ofType typeName: String) throws {
         
-        // once force-close all sheets
-        // -> Presented errors will be displayed again after the revert automatically. (since OS X 10.10)
-        self.windowForSheet?.sheets.forEach { $0.close() }
+        // dismiss the alert sheets whose questions will be outdated by the revert
+        // -> Sheets without the `.contentDependentAlert` identifier, such as progress indicators
+        //    or save panels, are kept because the revert doesn't invalidate them.
+        if let window = self.windowForSheet {
+            for sheet in window.sheets where sheet.identifier == .contentDependentAlert {
+                window.endSheet(sheet)
+            }
+        }
         
         let selection = self.editorSelection
         
@@ -489,7 +495,6 @@ extension NSTextView: EditorCounter.Source { }
         // apply save panel options
         if let saveOptions {
             self.isExecutable = saveOptions.isExecutable
-            self.saveOptions = nil
         }
         
         // modify place to create the elsewhere backup file to `~/Library/Autosaved Information/`
@@ -579,6 +584,16 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
+    override func runModalSavePanel(for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+        
+        // hook the end of the save panel session to invalidate the save options
+        // -> Otherwise, the options for a canceled panel would be applied to a subsequent save operation.
+        let context = DelegateContext(delegate: delegate, selector: didSaveSelector, contextInfo: contextInfo)
+        
+        super.runModalSavePanel(for: saveOperation, delegate: self, didSave: #selector(document(_:didSave:contextInfo:)), contextInfo: bridgeWrapped(context))
+    }
+    
+    
     override func prepareSavePanel(_ savePanel: NSSavePanel) -> Bool {
         
         savePanel.allowsOtherFileTypes = true
@@ -646,6 +661,7 @@ extension NSTextView: EditorCounter.Source { }
                 comment: "Refer the same sentence in AppKit.framework by Apple."))
             alert.addButton(withTitle: String(localized: .cancel))
             alert.buttons[1].hasDestructiveAction = true
+            alert.window.identifier = .contentDependentAlert
             
             Task {
                 let returnCode = if let window = self.windowForSheet {
@@ -662,11 +678,9 @@ extension NSTextView: EditorCounter.Source { }
                         // tell the document can be closed without saving
                         DelegateContext(delegate: delegate, selector: shouldCloseSelector, contextInfo: contextInfo)
                             .perform(from: self, flag: true)
-                    case .alertThirdButtonReturn:  // Cancel
+                    default:  // Cancel (or the sheet was dismissed programmatically)
                         DelegateContext(delegate: delegate, selector: shouldCloseSelector, contextInfo: contextInfo)
                             .perform(from: self, flag: false)
-                    default:
-                        fatalError()
                 }
             }
             return
@@ -1263,6 +1277,23 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
+    /// Invalidates the save options when the save panel session started in `runModalSavePanel(for:delegate:didSave:contextInfo:)` ended.
+    ///
+    /// - Parameters:
+    ///   - document: The document that was saved or not.
+    ///   - didSave: Whether the document was saved.
+    ///   - contextInfo: The original delegate context wrapped in `runModalSavePanel(for:delegate:didSave:contextInfo:)`.
+    @objc private func document(_ document: NSDocument, didSave: Bool, contextInfo: UnsafeRawPointer) {
+        
+        // discard the save options at the end of the save panel session
+        self.saveOptions = nil
+        
+        // manually invoke the original delegate
+        let context: DelegateContext = bridgeUnwrapped(contextInfo)
+        context.perform(from: document, flag: didSave)
+    }
+    
+    
     /// Transfers the file information to UI.
     private func applyContentToWindow() {
         
@@ -1382,6 +1413,7 @@ extension NSTextView: EditorCounter.Source { }
             alert.addButton(withTitle: String(localized: .cancel))
             alert.helpAnchor = "howto_change_encoding"
             alert.showsHelp = true
+            alert.window.identifier = .contentDependentAlert
             
             guard let documentWindow = self.windowForSheet else {
                 finishActivity()
@@ -1419,6 +1451,7 @@ extension NSTextView: EditorCounter.Source { }
                             alert.addButton(withTitle: String(localized: "UnsavedReinterpretationAlert.button.discard",
                                                               defaultValue: "Discard Changes"))
                             alert.buttons.last?.hasDestructiveAction = true
+                            alert.window.identifier = .contentDependentAlert
                             
                             let returnCode = await alert.beginSheetModal(for: documentWindow)
                             
@@ -1437,10 +1470,8 @@ extension NSTextView: EditorCounter.Source { }
                             self.presentErrorAsSheet(error) { _ in finishActivity() }
                         }
                         
-                    case .alertThirdButtonReturn:  // = Cancel
+                    default:  // = Cancel (or the sheet was dismissed programmatically)
                         finishActivity()
-                        
-                    default: preconditionFailure()
                 }
             }
         }
@@ -1451,12 +1482,19 @@ extension NSTextView: EditorCounter.Source { }
     private func showInconsistentLineEndingAlert() {
         
         guard
+            !self.isInconsistentLineEndingAlertPending,
             !UserDefaults.standard[.suppressesInconsistentLineEndingAlert],
             !self.suppressesInconsistentLineEndingAlert
         else { return }
         
+        // avoid queuing the same alert twice
+        // -> The `makeWindowControllers()` can be invoked multiple times for the same presentation,
+        //    for example, when the window restoration and the reopening coincide at the launch.
+        self.isInconsistentLineEndingAlertPending = true
+        
         self.performActivity(withSynchronousWaiting: false) { [unowned self] activityCompletionHandler in
             guard let documentWindow = self.windowForSheet else {
+                self.isInconsistentLineEndingAlertPending = false
                 activityCompletionHandler()
                 assertionFailure()
                 return
@@ -1487,6 +1525,7 @@ extension NSTextView: EditorCounter.Source { }
                                                     comment: "toggle button label")
             alert.helpAnchor = "inconsistent_line_endings"
             alert.showsHelp = true
+            alert.window.identifier = .contentDependentAlert
             
             Task {
                 let returnCode = await alert.beginSheetModal(for: documentWindow)
@@ -1509,13 +1548,11 @@ extension NSTextView: EditorCounter.Source { }
                     case (.alertSecondButtonReturn, true),
                          (.alertFirstButtonReturn, false):  // == Review
                         self.showWarningInspector()
-                    case (.alertThirdButtonReturn, true),
-                         (.alertSecondButtonReturn, false):  // == Ignore
+                    default:  // == Ignore (or the sheet was dismissed programmatically)
                         break
-                    default:
-                        fatalError()
                 }
                 
+                self.isInconsistentLineEndingAlertPending = false
                 activityCompletionHandler()
             }
         }
@@ -1525,17 +1562,18 @@ extension NSTextView: EditorCounter.Source { }
     /// Displays an alert about file modification by an external process.
     private func showUpdatedByExternalProcessAlert() {
         
-        // do nothing if alert is already shown
-        guard !self.isExternalUpdateAlertShown else { return }
+        // avoid queuing the same alert twice
+        guard !self.isExternalUpdateAlertPending else { return }
+        
+        self.isExternalUpdateAlertPending = true
         
         self.performActivity(withSynchronousWaiting: false) { [unowned self] activityCompletionHandler in
             guard let documentWindow = self.windowForSheet else {
+                self.isExternalUpdateAlertPending = false
                 activityCompletionHandler()
                 assertionFailure()
                 return
             }
-            
-            self.isExternalUpdateAlertShown = true
             
             let alert = NSAlert()
             alert.messageText = self.isDocumentEdited
@@ -1554,6 +1592,7 @@ extension NSTextView: EditorCounter.Source { }
             if documentWindow.attachedSheet != nil {
                 alert.alertStyle = .critical
             }
+            alert.window.identifier = .contentDependentAlert
             
             Task {
                 let returnCode = await alert.beginSheetModal(for: documentWindow)
@@ -1561,7 +1600,7 @@ extension NSTextView: EditorCounter.Source { }
                     self.revert()
                 }
                 
-                self.isExternalUpdateAlertShown = false
+                self.isExternalUpdateAlertPending = false
                 activityCompletionHandler()
             }
         }
@@ -1617,6 +1656,15 @@ private extension Document {
                 .uniqued as [NSValue]
         }
     }
+}
+
+
+// MARK: - Private Extensions
+
+private extension NSUserInterfaceItemIdentifier {
+    
+    /// The identifier for alert sheets asking questions that depend on the current document contents.
+    static let contentDependentAlert = NSUserInterfaceItemIdentifier("contentDependentAlert")
 }
 
 

@@ -512,7 +512,7 @@ extension SettingFileManaging {
             throw .empty
         }
         
-        if (settingName + (Setting.fileType.preferredFilenameExtension.map({ "." + $0 }) ?? "")).utf16.count > Int(NAME_MAX) {
+        if (settingName + (Setting.fileType.preferredFilenameExtension.map({ "." + $0 }) ?? "")).utf8.count > Int(NAME_MAX) {
             throw .tooLong
         }
         

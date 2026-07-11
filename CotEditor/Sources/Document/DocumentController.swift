@@ -118,14 +118,18 @@ protocol AdditionalDocumentPreparing: NSDocument {
             (document, documentWasAlreadyOpen) = try await super.openDocument(withContentsOf: url, display: false)
         } catch {
             if let transientDocument {
-                if let document = self.deferredDocuments?.first {
-                    self.deferredDocuments?.removeFirst()
-                    self.replaceTransientDocument(transientDocument, with: document)
-                    document.makeWindowControllers()
-                    document.showWindows()
-                } else {
-                    // restore the reserved transient document when the opening flow failed
-                    transientDocument.isTransient = true
+                // check the transient document is still intact
+                // -> The user may have edited the transient document while the file was being loaded.
+                if transientDocument.textStorage.length == 0 {
+                    if let document = self.deferredDocuments?.first {
+                        self.deferredDocuments?.removeFirst()
+                        self.replaceTransientDocument(transientDocument, with: document)
+                        document.makeWindowControllers()
+                        document.showWindows()
+                    } else {
+                        // restore the reserved transient document when the opening flow failed
+                        transientDocument.isTransient = true
+                    }
                 }
                 self.displayDeferredDocuments()
             }
@@ -134,7 +138,11 @@ protocol AdditionalDocumentPreparing: NSDocument {
         
         if let document = document as? Document {
             if let transientDocument {
-                self.replaceTransientDocument(transientDocument, with: document)
+                // check the transient document is still intact
+                // -> The user may have edited the transient document while the file was being loaded.
+                if transientDocument.textStorage.length == 0 {
+                    self.replaceTransientDocument(transientDocument, with: document)
+                }
                 if displayDocument {
                     document.makeWindowControllers()
                     document.showWindows()
@@ -310,7 +318,13 @@ protocol AdditionalDocumentPreparing: NSDocument {
     /// - Returns: Returns the new Document object.
     @discardableResult func openUntitledDocument(content: String, title: String? = nil, display displayDocument: Bool) throws -> Document {
         
-        let document = try self.transientDocument ?? (try self.openUntitledDocumentAndDisplay(false) as! Document)
+        let document: Document = if let transientDocument,
+                                    transientDocument.windowForSheet?.attachedSheet == nil
+        {
+            transientDocument
+        } else {
+            try self.openUntitledDocumentAndDisplay(false) as! Document
+        }
         
         if !content.isEmpty {
             document.textStorage.replaceCharacters(in: document.textStorage.range, with: content)
@@ -336,9 +350,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
     
     
     /// Performs the user-defined action on the open/reopen event.
-    ///
-    /// - Parameter isReopen: Flag to tell whether the event is the reopen event (not affected to the behavior).
-    func performOnLaunchAction(isReopen: Bool = false) {
+    func performOnLaunchAction() {
         
         switch UserDefaults.standard[.noDocumentOnLaunchOption] {
             case .untitledDocument:
@@ -380,10 +392,9 @@ protocol AdditionalDocumentPreparing: NSDocument {
         guard
             self.documents.count == 1,
             let document = self.documents.first as? Document,
-            document.isTransient
+            document.isTransient,
+            document.textStorage.length == 0
         else { return nil }
-        
-        assert(document.textStorage.length == 0)
         
         return document
     }
@@ -468,8 +479,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
         }
         
         // manually invoke the original delegate method
-        guard let context: DelegateContext = bridgeUnwrapped(contextInfo) else { return assertionFailure() }
-        
+        let context: DelegateContext = bridgeUnwrapped(contextInfo)
         context.perform(from: self, flag: didCloseAll)
     }
     

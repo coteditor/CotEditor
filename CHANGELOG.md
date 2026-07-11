@@ -26,14 +26,8 @@
 - Add a context menu to the list in the Mode settings pane.
 - Display the number of definition errors as a badge in the sidebar of the syntax editor.
 - Display more accurate error messages in dialogs.
-- [trivial] Keep the Find window height unchanged when the find result view is closed by dragging the divider.
 - [dev] Tweak the accent color.
 - [dev] Update the build environment to Xcode 27 Beta 2 (Swift 6.4, macOS 27 SDK).
-
-
-### Fixes
-
-- [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
 
 
 ### Known Issues
@@ -47,6 +41,25 @@
     - Settings/Panes/FormatSettings.xcstrings
     - Storyboards/Main.xcstrings
 
+
+7.0.7 (unreleased)
+--------------------------
+
+### Improvements
+
+- Improve the performance of saving a large document encoded in Western (ASCII).
+- [trivial] Keep the Find window height unchanged when the find result view is closed by dragging the divider.
+
+
+### Fixes
+
+- Fix an issue where the “Make file executable” option changed in a canceled save panel could still be applied on subsequent saving.
+- Fix an issue where the application became unresponsive when a document was automatically updated due to an external modification while an alert for the document was displayed.
+- Fix an issue where the alerts about inconsistent line endings or an external modification could be displayed twice for the same document.
+- Fix an issue where text typed in an untitled document while a file was being opened could be discarded silently.
+- Fix an issue in the file browser where the “Open in New Window” command did not work for the file currently displayed as a preview.
+- [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
+- [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
 
 
 7.0.6 (2026-07-05)

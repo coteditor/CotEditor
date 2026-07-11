@@ -170,8 +170,10 @@ extension NSDocument {
             return
         }
         
-        // close previous sheet if exists
-        window.attachedSheet?.orderOut(self)
+        // dismiss the previous sheet if exists
+        if let sheet = window.attachedSheet {
+            window.endSheet(sheet)
+        }
         
         if let recoveryHandler {
             self.presentError(error, modalFor: window,
