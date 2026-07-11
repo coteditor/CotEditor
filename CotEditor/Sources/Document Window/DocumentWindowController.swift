@@ -738,15 +738,15 @@ extension DocumentWindowController: NSToolbarDelegate {
                                            defaultValue: "Smaller", table: "Document")
                 smallerItem.toolTip = String(localized: "Toolbar.textSize.smaller.tooltip",
                                              defaultValue: "Decrease text size", table: "Document")
-                smallerItem.image = NSImage(systemSymbolName: "textformat.size.smaller", accessibilityDescription: smallerItem.label)!
+                smallerItem.image = NSImage(systemSymbolName: "textformat.size.smaller", accessibilityDescription: smallerItem.label)
                 smallerItem.action = #selector(EditorTextView.smallerFont)
                 
                 let biggerItem = NSToolbarItem(itemIdentifier: .bigger)
                 biggerItem.label = String(localized: "Toolbar.textSize.bigger.label",
                                           defaultValue: "Bigger", table: "Document")
-                biggerItem.toolTip = String(localized: "Toolbar.textSize.small.tooltip",
+                biggerItem.toolTip = String(localized: "Toolbar.textSize.bigger.tooltip",
                                             defaultValue: "Increase text size", table: "Document")
-                biggerItem.image = NSImage(systemSymbolName: "textformat.size.larger", accessibilityDescription: biggerItem.label)!
+                biggerItem.image = NSImage(systemSymbolName: "textformat.size.larger", accessibilityDescription: biggerItem.label)
                 biggerItem.action = #selector(EditorTextView.biggerFont)
                 
                 let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
