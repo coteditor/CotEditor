@@ -61,7 +61,6 @@
 - Fix an issue where the Syntax toolbar menu was no longer updated once the toolbar customization dialog was opened.
 - Fix an issue where wrapped lines could be printed with an incorrect indentation width when hanging indentation was enabled.
 - [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
-- [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
 
 
 7.0.6 (2026-07-05)
