@@ -398,9 +398,14 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     
     /// Builds syntax pop-up menu in toolbar.
-    private func buildSyntaxPopUpButton() {
+    ///
+    /// - Parameter popUpButton: The pop-up button to build the menu for, or `nil` to use the one in the toolbar.
+    private func buildSyntaxPopUpButton(_ popUpButton: NSPopUpButton? = nil) {
         
-        guard let menu = self.syntaxPopUpButton?.menu else { return }
+        guard
+            let popUpButton = popUpButton ?? self.syntaxPopUpButton,
+            let menu = popUpButton.menu
+        else { return }
         
         let syntaxNames = SyntaxManager.shared.settingNames
         let recentSyntaxNames = UserDefaults.standard[.recentSyntaxNames]
@@ -437,18 +442,20 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             }
         
         if let document = self.fileDocument as? Document {
-            self.selectSyntaxPopUpItem(with: document.syntaxName)
+            self.selectSyntaxPopUpItem(with: document.syntaxName, in: popUpButton)
         }
     }
     
     
     /// Selects the given syntax in the syntax pop-up button for the toolbar.
     ///
-    /// - Parameter syntaxName: The name of the syntax to select.
-    private func selectSyntaxPopUpItem(with syntaxName: String) {
+    /// - Parameters:
+    ///   - syntaxName: The name of the syntax to select.
+    ///   - popUpButton: The pop-up button to select the item in, or `nil` to use the one in the toolbar.
+    private func selectSyntaxPopUpItem(with syntaxName: String, in popUpButton: NSPopUpButton? = nil) {
         
         guard
-            let popUpButton = self.syntaxPopUpButton,
+            let popUpButton = popUpButton ?? self.syntaxPopUpButton,
             let menu = popUpButton.menu
         else { return }
         
@@ -702,8 +709,12 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let popUpButton = NSPopUpButton()
                 popUpButton.bezelStyle = .toolbar
                 popUpButton.isEnabled = (self.fileDocument is Document)
-                self.syntaxPopUpButton = popUpButton
-                self.buildSyntaxPopUpButton()
+                // store the reference only for the actual toolbar
+                // -> this method is invoked also for creating the item copies for the customization palette.
+                if flag {
+                    self.syntaxPopUpButton = popUpButton
+                }
+                self.buildSyntaxPopUpButton(popUpButton)
                 
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = String(localized: "Toolbar.syntax.label",

@@ -49,16 +49,12 @@ final class PrintTextView: NSTextView {
     private let headerFooterFontSize: Double = 9
     
     
-    // MARK: Public Properties
-    
-    private(set) var theme: Theme?
-    
-    
     // MARK: Private Properties
     
     private let documentInfo: DocumentInfo
     private let tabWidth: Int
     private let lineHeight: CGFloat
+    private var theme: Theme?
     private var printsLineNumber = false
     private var xOffset: CGFloat = 0
     private var lastPaperContentSize: NSSize = .zero
@@ -153,6 +149,9 @@ final class PrintTextView: NSTextView {
             self.defaultParagraphStyle = paragraphStyle
             self.typingAttributes[.paragraphStyle] = paragraphStyle
             self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.range)
+            
+            // set attributes for the hanging indent width calculation
+            (self.textContainer as? TextContainer)?.indentAttributes = [.font: font, .paragraphStyle: paragraphStyle]
             
             // set font also to layout manager
             (self.layoutManager as? LayoutManager)?.textFont = font
