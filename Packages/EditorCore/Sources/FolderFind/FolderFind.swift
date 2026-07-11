@@ -225,7 +225,7 @@ public enum FolderFind {
     ///
     /// - Parameter candidate: The file candidate to evaluate.
     /// - Returns: `true` if the candidate should be searched.
-    public static func isSearchableText(_ candidate: Candidate) -> Bool {
+    static func isSearchableText(_ candidate: Candidate) -> Bool {
         
         guard !candidate.isDirectory else { return false }
         

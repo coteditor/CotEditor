@@ -298,7 +298,10 @@ public extension NSString {
         
         return NSRange(lowerBound..<upperBound)
     }
-    
+}
+
+
+extension NSString {
     
     /// Returns the lower bound of the composed character sequence by moving the bound toward the start by the given offset in composed character sequences.
     ///
@@ -330,10 +333,7 @@ public extension NSString {
         
         return boundary
     }
-}
-
-
-extension NSString {
+    
     
     /// Returns whether the given location is between CR and LF in a CRLF pair.
     ///

@@ -142,7 +142,10 @@ public extension NSMutableAttributedString {
         
         lhs.append(rhs)
     }
-    
+}
+
+
+extension NSMutableAttributedString {
     
     /// Truncates the head with an ellipsis until the specified `location` if the length before `location` exceeds `offset`.
     ///
