@@ -1322,8 +1322,8 @@ extension NSTextView: EditorCounter.Source { }
         guard var fileURL = self.fileURL else { throw CocoaError(.fileReadNoSuchFile) }
         
         let fileModificationDate = self.fileModificationDate
-        let fileData = self.fileData.withLock(\.self)
         let pendingFileData = self.pendingFileData.withLock(\.self)
+        let fileData = self.fileData.withLock(\.self)
         
         fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
         
