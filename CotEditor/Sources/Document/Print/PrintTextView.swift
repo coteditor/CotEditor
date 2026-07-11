@@ -49,16 +49,12 @@ final class PrintTextView: NSTextView {
     private let headerFooterFontSize: Double = 9
     
     
-    // MARK: Public Properties
-    
-    private(set) var theme: Theme?
-    
-    
     // MARK: Private Properties
     
     private let documentInfo: DocumentInfo
     private let tabWidth: Int
     private let lineHeight: CGFloat
+    private var theme: Theme?
     private var printsLineNumber = false
     private var xOffset: CGFloat = 0
     private var lastPaperContentSize: NSSize = .zero
