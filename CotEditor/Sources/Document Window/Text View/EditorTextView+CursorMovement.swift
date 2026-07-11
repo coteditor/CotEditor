@@ -284,6 +284,7 @@ extension EditorTextView {
         guard !(self.string as NSString).rangeOfCharacter(from: Self.additionalWordSeparators, range: diffRange).isNotFound else { return }
         
         // adjust selection range character by character
+        var visitedRanges: Set<NSRange> = [self.selectedRange]
         while self.selectedRange != newRange {
             if (self.selectedRange.upperBound > newRange.upperBound) ||
                (self.selectedRange.lowerBound > newRange.lowerBound)
@@ -292,6 +293,10 @@ extension EditorTextView {
             } else {
                 super.moveForwardAndModifySelection(self)
             }
+            
+            // abort if the same selection appears again to avoid an infinite loop
+            // in case the goal boundary is unreachable by the cursor movement
+            guard visitedRanges.insert(self.selectedRange).inserted else { return assertionFailure() }
         }
     }
     
@@ -806,16 +811,26 @@ private extension NSAttributedString {
         
         guard !delimiters.isEmpty else { return rawNextIndex }
         
+        let string = self.string as NSString
         let lastCharacterIndex = isForward ? max(rawNextIndex - 1, 0) : rawNextIndex
-        let characterRange = (self.string as NSString).rangeOfComposedCharacterSequence(at: lastCharacterIndex)
+        let characterRange = string.rangeOfComposedCharacterSequence(at: lastCharacterIndex)
         let nextIndex = isForward ? characterRange.upperBound : characterRange.lowerBound
         
+        // exclude the delimiter cluster adjacent to the given location from the search range
+        // -> Otherwise, a delimiter forming a single character cluster with combining marks
+        //    just behind the location is found again and the cursor cannot move over it.
+        let searchBound = isForward
+            ? location + 1
+            : string.rangeOfComposedCharacterSequence(at: location - 1).lowerBound
+        
         let options: NSString.CompareOptions = isForward ? [.literal] : [.literal, .backwards]
-        let range = isForward ? (location + 1)..<nextIndex : nextIndex..<(location - 1)
-        let trimmedRange = (self.string as NSString).rangeOfCharacter(from: delimiters, options: options, range: NSRange(range))
+        let range = isForward ? searchBound..<nextIndex : nextIndex..<searchBound
+        let trimmedRange = string.rangeOfCharacter(from: delimiters, options: options, range: NSRange(range))
         
         guard !trimmedRange.isNotFound else { return nextIndex }
         
-        return isForward ? trimmedRange.lowerBound : trimmedRange.upperBound
+        return isForward
+            ? string.rangeOfComposedCharacterSequence(at: trimmedRange.lowerBound).lowerBound
+            : string.rangeOfComposedCharacterSequence(at: trimmedRange.upperBound - 1).upperBound
     }
 }
