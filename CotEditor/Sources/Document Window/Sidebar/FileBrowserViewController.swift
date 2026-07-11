@@ -148,6 +148,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         ])
         
         let footerView = NSStackView(views: [addButton, filterField])
+        footerView.setHuggingPriority(.required, for: .vertical)
         footerView.edgeInsets = NSEdgeInsets(top: 6, left: 7, bottom: 6, right: 7)
         
         let stackView = NSStackView(views: [scrollView, bottomSeparator, footerView])
