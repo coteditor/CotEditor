@@ -64,10 +64,10 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Private Properties
     
-    private var directoryDocument: DirectoryDocument?
-    private var isDirectoryDocument: Bool
+    private let directoryDocument: DirectoryDocument?
+    private let isDirectoryDocument: Bool
     
-    private var windowAutosaveName: NSWindow.FrameAutosaveName
+    private let windowAutosaveName: NSWindow.FrameAutosaveName
     private var needsManualOnAppear = false
     private var uniqueDirectory: String?
     
