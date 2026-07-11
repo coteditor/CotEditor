@@ -6,6 +6,7 @@
 ### Improvements
 
 - Improve the performance of saving a large document encoded in Western (ASCII).
+- Improve overall stability and performance.
 - [trivial] Keep the Find window height unchanged when the find result view is closed by dragging the divider.
 
 
