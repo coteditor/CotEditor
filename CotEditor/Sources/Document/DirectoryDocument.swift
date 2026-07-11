@@ -420,7 +420,7 @@ final class DirectoryDocument: NSDocument {
     func renameItem(at node: FileNode, with name: String) throws {
         
         // validate new name
-        guard name.utf16.count <= Int(NAME_MAX) else {
+        guard name.utf8.count <= Int(NAME_MAX) else {
             throw InvalidNameError.tooLong
         }
         guard !name.isEmpty else {
