@@ -18,6 +18,7 @@
 - Fix an issue in the file browser where the “Open in New Window” command did not work for the file currently displayed as a preview.
 - Fix an issue where the Syntax toolbar menu was no longer updated once the toolbar customization dialog was opened.
 - Fix an issue where wrapped lines could be printed with an incorrect indentation width when hanging indentation was enabled.
+- Fix the Portuguese localization.
 - [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
 
 
