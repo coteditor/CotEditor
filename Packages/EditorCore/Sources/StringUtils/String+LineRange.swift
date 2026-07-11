@@ -26,16 +26,6 @@
 
 public import Foundation
 
-public extension String {
-    
-    /// The first appeared line ending character.
-    var firstLineEnding: Character? {
-        
-        self.firstMatch(of: /\R/)?.output.first
-    }
-}
-
-
 public extension StringProtocol {
     
     /// Returns the range of the line containing a given index.

@@ -99,14 +99,6 @@ struct LineRangeTests {
     }
     
     
-    @Test func firstLineEnding() {
-        
-        #expect("foo\r\nbar".firstLineEnding == "\r\n")
-        #expect("foo".firstLineEnding == nil)
-        #expect("".firstLineEnding == nil)
-    }
-    
-    
     @Test func nsStringLineRangeAtLocation() {
         
         let string = "foo\nbar\r\nbaz" as NSString
