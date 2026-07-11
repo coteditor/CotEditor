@@ -241,12 +241,10 @@ struct Search {
     /// - Parameter matchCount: The number of matches found in the file.
     private mutating func recordSearchedFile(matchCount: Int) {
         
-        self.metrics.searchedFileCount += 1
+        guard matchCount > 0 else { return }
         
-        if matchCount > 0 {
-            self.metrics.matchCount += matchCount
-            self.metrics.matchedFileCount += 1
-        }
+        self.metrics.matchCount += matchCount
+        self.metrics.matchedFileCount += 1
         
         self.progress?.update(snapshot: self.metrics)
     }

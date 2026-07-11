@@ -130,7 +130,6 @@ public enum FolderFind {
         public var findString: String
         public var matchCount: Int = 0
         public var matchedFileCount: Int = 0
-        public var searchedFileCount: Int = 0
         public var skippedItemCount: Int = 0
     }
     
