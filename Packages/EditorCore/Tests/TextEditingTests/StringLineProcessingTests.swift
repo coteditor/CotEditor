@@ -101,6 +101,42 @@ struct StringLineProcessingTests {
     }
     
     
+    @Test func moveLineUpWithDocumentEndCaret() throws {
+        
+        // the caret on the trailing empty line must stay in place instead of being dropped
+        var context = try #require("aa\nbb\ncc\n".moveLineUp(in: [NSRange(3, 1), NSRange(9, 0)]))
+        
+        #expect(context.strings == ["bb\naa\n"])
+        #expect(context.ranges == [NSRange(0, 6)])
+        #expect(context.selectedRanges == [NSRange(0, 1), NSRange(9, 0)])
+        
+        // ... and must not be relocated into the moved text
+        context = try #require("aa\nbb\n".moveLineUp(in: [NSRange(3, 0), NSRange(6, 0)]))
+        #expect(context.selectedRanges == [NSRange(0, 0), NSRange(6, 0)])
+        
+        // moving the trailing empty line itself remains possible
+        context = try #require("aa\nbb\n".moveLineUp(in: [NSRange(6, 0)]))
+        #expect(context.selectedRanges == [NSRange(3, 0)])
+    }
+    
+    
+    @Test func moveLineDownWithDocumentEndCaret() throws {
+        
+        // the caret on the trailing empty line must stay in place
+        // instead of being shifted out of the string bounds
+        let string = "aa\nbb\ncc\n"
+        var context = try #require(string.moveLineDown(in: [NSRange(3, 0), NSRange(9, 0)]))
+        
+        #expect(context.strings == ["aa\ncc\nbb\n"])
+        #expect(context.ranges == [NSRange(0, 9)])
+        #expect(context.selectedRanges == [NSRange(6, 0), NSRange(9, 0)])
+        
+        // the caret on the trailing empty line must not be dropped
+        context = try #require("aa\nbb\ncc\ndd\n".moveLineDown(in: [NSRange(3, 0), NSRange(12, 0)]))
+        #expect(context.selectedRanges == [NSRange(6, 0), NSRange(12, 0)])
+    }
+    
+    
     @Test func moveLineUpWithCRLF() throws {
         
         // CR+LF is treated as a single Character; offsets must use UTF-16 lengths.
@@ -409,6 +445,22 @@ struct StringLineProcessingTests {
         #expect(context.strings == [" ", " "])
         #expect(context.ranges == [NSRange(2, 3), NSRange(13, 1)])
         #expect(context.selectedRanges == nil)
+    }
+    
+    
+    @Test func joinLinesAfterAcrossBlankLine() {
+        
+        // ranges to replace must not overlap when the lines to join
+        // are separated by a whitespace-only line
+        let context = "a\n  \nb".joinLines(after: [NSRange(0, 0), NSRange(3, 0)])
+        
+        #expect(context.strings == [" "])
+        #expect(context.ranges == [NSRange(1, 4)])
+        
+        let emptyLineContext = "a\n \n \nb".joinLines(after: [NSRange(2, 0), NSRange(4, 0)])
+        
+        #expect(emptyLineContext.strings == [" "])
+        #expect(emptyLineContext.ranges == [NSRange(2, 4)])
     }
 }
 

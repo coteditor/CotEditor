@@ -48,18 +48,30 @@
 ### Improvements
 
 - Improve the performance of saving a large document encoded in Western (ASCII).
+- Improve overall stability and performance.
 - [trivial] Keep the Find window height unchanged when the find result view is closed by dragging the divider.
 
 
 ### Fixes
 
-- Fix an issue where the “Make file executable” option changed in a canceled save panel could still be applied on subsequent saving.
-- Fix an issue where the application became unresponsive when a document was automatically updated due to an external modification while an alert for the document was displayed.
+- Fix an issue where changes to the “Make file executable” option in a canceled save panel could be applied to a subsequent save.
+- Fix an issue where the app became unresponsive when a document was automatically updated due to an external modification while an alert for the document was displayed.
 - Fix an issue where the alerts about inconsistent line endings or an external modification could be displayed twice for the same document.
-- Fix an issue where text typed in an untitled document while another document was being opened could be discarded silently.
+- Fix an issue where text typed in an untitled document while another document was being opened could be lost without warning.
 - Fix an issue in the file browser where the “Open in New Window” command did not work for the file currently displayed as a preview.
 - Fix an issue where the Syntax toolbar menu was no longer updated once the toolbar customization dialog was opened.
 - Fix an issue where wrapped lines could be printed with an incorrect indentation width when hanging indentation was enabled.
+- Fix several issues in editing commands with multiple cursors or selections.
+- Fix an issue where the “Shift Left” command could crash the app when the selection started within the indentation.
+- Fix an issue where the app could crash when selecting a completion candidate in the Touch Bar.
+- Fix an issue where the app could become unresponsive when modifying the selection word by word in text containing combining characters.
+- Fix an issue where setting the tab width to zero with AppleScript could crash the app.
+- Fix an issue where the automatic outdent when typing a closing symbol, such as “}”, removed only a single character instead of a whole indent level in space-indented documents when the tab character is preferred for indentation.
+- Fix an issue where the “URL Encode” command could fail for selections containing an invalid percent-encoding sequence, such as a standalone “%”.
+- Fix an issue where expanding the selection to the beginning of the line discarded the selected range ahead of the anchor when the selection was made from left to right.
+- Fix several issues in modifying the selection in documents containing inconsistent CRLF line endings.
+- Fix an issue where the insertion point could move to an unexpected position after typing a quotation mark when the Smart Quotes substitution is enabled.
+- Fix the Portuguese localization.
 - [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
 
 

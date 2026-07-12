@@ -828,7 +828,7 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
-    override func attemptRecovery(fromError error: any Error, optionIndex recoveryOptionIndex: Int, delegate: Any?, didRecoverSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+    override nonisolated func attemptRecovery(fromError error: any Error, optionIndex recoveryOptionIndex: Int, delegate: Any?, didRecoverSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
         guard (error as NSError).domain == DocumentSavingError.errorDomain else {
             return super.attemptRecovery(fromError: error, optionIndex: recoveryOptionIndex, delegate: delegate, didRecoverSelector: didRecoverSelector, contextInfo: contextInfo)
@@ -836,7 +836,7 @@ extension NSTextView: EditorCounter.Source { }
         
         switch recoveryOptionIndex {
             case 0:  // == Save
-                Task { @MainActor in
+                DispatchQueue.syncOnMain {
                     self.allowsLossySaving = true
                 }
             case 1:  // == Show Incompatible Characters
@@ -1321,8 +1321,8 @@ extension NSTextView: EditorCounter.Source { }
         guard var fileURL = self.fileURL else { throw CocoaError(.fileReadNoSuchFile) }
         
         let fileModificationDate = self.fileModificationDate
-        let fileData = self.fileData.withLock(\.self)
         let pendingFileData = self.pendingFileData.withLock(\.self)
+        let fileData = self.fileData.withLock(\.self)
         
         fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
         

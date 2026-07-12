@@ -6008,7 +6008,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Настройки…"
+            "value" : "Ajustes…"
           }
         },
         "ru" : {
@@ -9542,7 +9542,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Уменьшить"
+            "value" : "Menor"
           }
         },
         "ru" : {

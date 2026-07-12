@@ -107,6 +107,20 @@ struct StringIndentationTests {
     }
     
     
+    @Test func indentMultipleSelections() {
+        
+        // the restored selections must cover all lines of each selection,
+        // also for the selections after the first one
+        let string = "aaa\nbbb\nccc\nddd"
+        let ranges = [NSRange(location: 0, length: 7), NSRange(location: 8, length: 7)]
+        
+        let context = string.indent(style: .space, indentWidth: 4, in: ranges)
+        
+        #expect(context.strings == ["    aaa\n", "    bbb\n", "    ccc\n", "    ddd"])
+        #expect(context.selectedRanges == [NSRange(location: 4, length: 11), NSRange(location: 20, length: 11)])
+    }
+    
+    
     @Test func outdent() throws {
         
         let string = "  foo\n\tbar\nbaz"
@@ -130,6 +144,23 @@ struct StringIndentationTests {
         let range = NSRange(location: 0, length: string.utf16.count)
         
         #expect(string.outdent(style: .space, indentWidth: 2, in: [range]) == nil)
+    }
+    
+    
+    @Test func outdentSelectionInsideIndent() throws {
+        
+        // the selection starting inside the leading indent must not underflow
+        let string = "    abcdefgh\n"
+        
+        let context = try #require(string.outdent(style: .space, indentWidth: 4, in: [NSRange(location: 1, length: 10)]))
+        
+        #expect(context.strings == ["abcdefgh\n"])
+        #expect(context.ranges == [NSRange(location: 0, length: 13)])
+        #expect(context.selectedRanges == [NSRange(location: 0, length: 7)])
+        
+        let caretContext = try #require(string.outdent(style: .space, indentWidth: 4, in: [NSRange(location: 2, length: 0)]))
+        
+        #expect(caretContext.selectedRanges == [NSRange(location: 0, length: 0)])
     }
     
     @Test func smartOutdentLevel() {
@@ -193,11 +224,16 @@ struct StringIndentationTests {
     }
     
     
-    @Test func softTab() {
+    @Test func softTabs() {
         
-        #expect("abc".softTab(at: 0, tabWidth: 4) == "    ")
-        #expect("abc".softTab(at: 2, tabWidth: 4) == "  ")
-        #expect("\t".softTab(at: 1, tabWidth: 4) == "    ")
+        // take the column shifts by the preceding insertions in the same line into account
+        #expect("ab cd".softTabs(for: [NSRange(location: 2, length: 0), NSRange(location: 5, length: 0)], tabWidth: 4) == ["  ", " "])
+        
+        // cursors in different lines are not affected
+        #expect("a\nb".softTabs(for: [NSRange(location: 1, length: 0), NSRange(location: 3, length: 0)], tabWidth: 4) == ["   ", "   "])
+        
+        // non-empty ranges shift the following columns by the replaced width
+        #expect("aa bb cc".softTabs(for: [NSRange(location: 2, length: 3), NSRange(location: 8, length: 0)], tabWidth: 4) == ["  ", " "])
     }
     
     

@@ -68,7 +68,7 @@ public extension String {
         // calculate new selection range
         let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
             let shift = lineRanges.prefix(while: { $0.location <= selectedRange.location }).count
-            let lineCount = lineRanges.prefix(while: selectedRange.intersects).count
+            let lineCount = lineRanges.count(where: selectedRange.intersects)
             let lengthDiff = max(lineCount - 1, 0) * indentLength
             
             return NSRange(location: selectedRange.location + shift * indentLength,
@@ -115,9 +115,10 @@ public extension String {
             .filter { $1 > 0 }
             .map { NSRange(location: $0.location, length: $1) }
         let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
+            // count only the dropped characters located before the selection start
             let offset = droppedRanges
                 .prefix { $0.location < selectedRange.location }
-                .map { (selectedRange.intersection($0) ?? $0).length }
+                .map { min($0.length, selectedRange.location - $0.location) }
                 .reduce(0, +)
             let lengthDiff = droppedRanges
                 .compactMap { selectedRange.intersection($0)?.length }
@@ -306,21 +307,34 @@ public extension String {
     }
     
     
-    /// Returns the soft-tab string (spaces) needed to reach the next tab stop.
+    /// Returns the soft-tab strings (spaces) needed to reach the next tab stop for each given range.
     ///
     /// - Parameters:
-    ///   - location: The base character index as a UTF-16 offset.
+    ///   - ranges: The ranges to be replaced with soft tabs, ordered from the beginning of the receiver.
     ///   - tabWidth: The number of spaces that represent one tab stop.
-    /// - Returns: A string of spaces.
-    func softTab(at location: Int, tabWidth: Int) -> String {
+    /// - Returns: An array of space strings corresponding to `ranges`.
+    func softTabs(for ranges: [NSRange], tabWidth: Int) -> [String] {
         
         assert(tabWidth > 0)
-        assert(location >= 0)
         
-        let column = self.column(of: location, tabWidth: tabWidth)
-        let length = tabWidth - (column % tabWidth)
+        var lastLineStart = -1
+        var shift = 0
         
-        return String(repeating: " ", count: length)
+        return ranges.map { range in
+            let lineStart = (self as NSString).lineStartIndex(at: range.location)
+            if lineStart != lastLineStart {
+                lastLineStart = lineStart
+                shift = 0
+            }
+            
+            let column = self.column(of: range.location, tabWidth: tabWidth) + shift
+            let length = tabWidth - (((column % tabWidth) + tabWidth) % tabWidth)
+            shift += length - (self.column(of: range.upperBound, tabWidth: tabWidth) -
+                               self.column(of: range.lowerBound, tabWidth: tabWidth))
+            
+            return length
+        }
+        .map { String(repeating: " ", count: $0) }
     }
     
     

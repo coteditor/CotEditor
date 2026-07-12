@@ -167,7 +167,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private var partialCompletionWord: String?
     private lazy var completionDebouncer = Debouncer { [weak self] in self?.performCompletion() }
     
-    private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(keepingEditingPoint: true) }
+    private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in
+        guard let self, !self.hasMarkedText() else { return }
+        self.trimTrailingWhitespace(keepingEditingPoint: true)
+    }
     
     private var fontObservers: Set<AnyCancellable> = []
     private var windowOpacityObserver: NSKeyValueObservation?
@@ -506,7 +509,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                      self.string.character(before: self.rangeForUserTextChange).map(CharacterSet.alphanumerics.contains) == true)  // for "
                 {
                     // raise a flag to adjust the cursor later in `handleTextCheckingResults(_:forRange:types:options:orthography:wordCount:)`
-                    if self.isAutomaticQuoteSubstitutionEnabled, pair.begin == "\"" {
+                    // -> The smart quote substitution replaces both double and single quotation marks.
+                    if self.isAutomaticQuoteSubstitutionEnabled, pair.begin == "\"" || pair.begin == "'" {
                         self.isTypingPairedQuotes = true
                     }
                     
@@ -523,6 +527,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if self.isAutomaticIndentEnabled, replacementRange.isEmpty {
             let levelToReduce = self.string.smartOutdentLevel(with: plainString, indentWidth: self.tabWidth, tokens: self.indentTokens, in: self.rangeForUserTextChange)
             for _ in 0..<levelToReduce {
+                // select the whole space run for a single indent level beforehand
+                // -> Otherwise, `deleteBackward(_:)` deletes only a single character per level when the automatic tab expansion is disabled.
+                if let deletionRange = self.string.rangeForSoftTabDeletion(in: self.rangeForUserTextChange, tabWidth: self.tabWidth) {
+                    self.setSelectedRangesWithUndo(self.selectedRanges.map(\.rangeValue))
+                    self.selectedRange = deletionRange
+                }
                 self.deleteBackward(nil)
             }
         }
@@ -554,7 +564,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if self.isAutomaticTabExpansionEnabled,
            let ranges = self.rangesForUserTextChange?.map(\.rangeValue)
         {
-            let softTabs = ranges.map { self.string.softTab(at: $0.location, tabWidth: self.tabWidth) }
+            let softTabs = self.string.softTabs(for: ranges, tabWidth: self.tabWidth)
             self.replace(with: softTabs, ranges: ranges, selectedRanges: nil)
             return
         }
@@ -642,14 +652,19 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     override func handleTextCheckingResults(_ results: [NSTextCheckingResult], forRange range: NSRange, types checkingTypes: NSTextCheckingTypes, options: [NSSpellChecker.OptionKey: Any] = [:], orthography: NSOrthography, wordCount: Int) {
         
+        let selectedRange = self.selectedRange
+        
         super.handleTextCheckingResults(results, forRange: range, types: checkingTypes, options: options, orthography: orthography, wordCount: wordCount)
         
         // move the cursor back into the middle of quotes if the paired closing quote was automatically inserted,
         // because the cursor is automatically moved after the close quote by this method (#1384)
+        // -> Verify the movement to preserve user input made before this asynchronous callback.
         if self.isTypingPairedQuotes,
            self.isAutomaticQuoteSubstitutionEnabled,
+           selectedRange.isEmpty,
            self.selectedRange.isEmpty,
-           results.map(\.resultType).contains(where: { $0.contains(.quote) })
+           self.selectedRange.location == selectedRange.location + 1,
+           results.contains(where: { $0.resultType.contains(.quote) && $0.range.upperBound == self.selectedRange.location })
         {
             self.selectedRange.location -= 1
         }
@@ -699,8 +714,19 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         self.insertionLocations.removeAll { location in selectedRanges.contains { $0.touches(location) } }
         
-        if !stillSelectingFlag, !self.hasMultipleInsertions {
-            self.selectionOrigins = [self.selectedRange.location]
+        if !self.hasMultipleInsertions {
+            let selectedRange = self.selectedRange
+            let keepsOrigin = !selectedRange.isEmpty
+                && self.selectionOrigins.count == 1
+                && self.selectionOrigins.contains { $0 == selectedRange.lowerBound || $0 == selectedRange.upperBound }
+            
+            // update the selection origin
+            // -> Record the origin also in the still-selecting state when the selection is empty
+            //    (namely, at a drag start), and keep it as long as it stays at either bound
+            //    so that the anchor of a selection made backward remains at the upper bound.
+            if !keepsOrigin, selectedRange.isEmpty || !stillSelectingFlag {
+                self.selectionOrigins = [selectedRange.location]
+            }
         }
         
         self.needsUpdateLineHighlight = true
@@ -1222,7 +1248,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     var tabWidth: Int = 4 {
         
         didSet {
-            tabWidth = max(tabWidth, 0)
+            tabWidth = max(1, tabWidth)
             (self.layoutManager as? LayoutManager)?.tabWidth = tabWidth
             
             guard tabWidth != oldValue else { return }

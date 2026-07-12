@@ -26,6 +26,7 @@
 import AppKit
 import LineEnding
 import StringUtils
+import ValueRange
 
 extension EditorTextView {
     
@@ -56,7 +57,7 @@ extension EditorTextView {
     override func moveLeftAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02, macOS 12).
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveLeftAndModifySelection(sender)
         }
         
@@ -87,7 +88,7 @@ extension EditorTextView {
     override func moveRightAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02, macOS 12).
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveRightAndModifySelection(sender)
         }
         
@@ -113,7 +114,7 @@ extension EditorTextView {
     /// Moves the cursor up and modifies the selection (⇧↑ / ^⇧P).
     override func moveUpAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveUpAndModifySelection(sender)
         }
         
@@ -139,7 +140,7 @@ extension EditorTextView {
     /// Moves the cursor down and modifies the selection (⇧↓ / ^⇧N).
     override func moveDownAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveDownAndModifySelection(sender)
         }
         
@@ -167,7 +168,7 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the word and modifies the selection repeatedly (⇧⌥←).
     override func moveWordLeftAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return self.moveWordAndModifySelection(sender, forward: false) { sender in
                 super.moveWordLeftAndModifySelection(sender)
             }
@@ -193,7 +194,7 @@ extension EditorTextView {
     /// Moves the cursor to the end of the word and modifies the selection repeatedly (⇧⌥→).
     override func moveWordRightAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return self.moveWordAndModifySelection(sender, forward: true) { sender in
                 super.moveWordRightAndModifySelection(sender)
             }
@@ -208,7 +209,7 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the logical line and modifies the selection repeatedly (⇧⌥↑).
     override func moveParagraphBackwardAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveParagraphBackwardAndModifySelection(sender)
         }
         
@@ -221,7 +222,7 @@ extension EditorTextView {
     /// Moves the cursor to the end of the logical line and modifies the selection repeatedly (⇧⌥↓).
     override func moveParagraphForwardAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveParagraphForwardAndModifySelection(sender)
         }
         
@@ -284,6 +285,7 @@ extension EditorTextView {
         guard !(self.string as NSString).rangeOfCharacter(from: Self.additionalWordSeparators, range: diffRange).isNotFound else { return }
         
         // adjust selection range character by character
+        var visitedRanges: Set<NSRange> = [self.selectedRange]
         while self.selectedRange != newRange {
             if (self.selectedRange.upperBound > newRange.upperBound) ||
                (self.selectedRange.lowerBound > newRange.lowerBound)
@@ -292,6 +294,10 @@ extension EditorTextView {
             } else {
                 super.moveForwardAndModifySelection(self)
             }
+            
+            // abort if the same selection appears again to avoid an infinite loop
+            // in case the goal boundary is unreachable by the cursor movement
+            guard visitedRanges.insert(self.selectedRange).inserted else { return assertionFailure() }
         }
     }
     
@@ -312,15 +318,33 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the current visual line and modifies the selection (⇧⌘←).
     override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
-            let location = self.locationOfBeginningOfLine(for: self.selectedRange.location)
+        guard self.hasMultipleInsertions || self.containsCRLF else {
+            let selectedRange = self.selectedRange
+            
+            // determine the end of the selection to move based on the recorded anchor
+            var movesUpperBound = !selectedRange.isEmpty && self.selectionOrigins.first == selectedRange.location
+            let location = self.locationOfBeginningOfLine(for: movesUpperBound ? selectedRange.upperBound : selectedRange.location)
+            
+            // keep the whole selection and extend the lower side by re-anchoring
+            // at the upper bound when the goal is behind the selection
+            if movesUpperBound, location < selectedRange.location {
+                self.setSelectedRange(NSRange(location: selectedRange.upperBound, length: 0))
+                movesUpperBound = false
+            }
             
             // repeat `moveBackwardAndModifySelection(_:)` until reaching the goal location
             // instead of setting `selectedRange` directly.
             // -> This avoids an issue where using ⇧→ immediately after this command
             //    expands the selection in the wrong direction. (2018-11, macOS 10.14, #863)
-            while self.selectedRange.location > location {
+            while (movesUpperBound ? self.selectedRange.upperBound : self.selectedRange.location) > location {
+                let oldRange = self.selectedRange
                 self.moveBackwardAndModifySelection(self)
+                if movesUpperBound, self.selectedRange.isEmpty {
+                    movesUpperBound = false
+                }
+                
+                // avoid an infinite loop in case the goal boundary is unreachable
+                guard self.selectedRange != oldRange else { return assertionFailure() }
             }
             return
         }
@@ -348,7 +372,7 @@ extension EditorTextView {
     /// Moves the cursor to the end of the current visual line and modifies the selection (⇧⌘→).
     override func moveToEndOfLineAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveToEndOfLineAndModifySelection(sender)
         }
         
@@ -380,7 +404,7 @@ extension EditorTextView {
     override func moveBackwardAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02, macOS 12).
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveBackwardAndModifySelection(sender)
         }
         
@@ -407,7 +431,7 @@ extension EditorTextView {
     override func moveForwardAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02, macOS 12).
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveForwardAndModifySelection(sender)
         }
         
@@ -433,7 +457,7 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the logical line and modifies the selection (^⇧A).
     override func moveToBeginningOfParagraphAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveToBeginningOfParagraphAndModifySelection(sender)
         }
         
@@ -461,7 +485,7 @@ extension EditorTextView {
     /// Moves the cursor to the end of the logical line and modifies the selection (^⇧E).
     override func moveToEndOfParagraphAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveToEndOfParagraphAndModifySelection(sender)
         }
         
@@ -487,7 +511,7 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the word and modifies the selection (^⌥⇧B).
     override func moveWordBackwardAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return self.moveWordAndModifySelection(sender, forward: false) { sender in
                 super.moveWordBackwardAndModifySelection(sender)
             }
@@ -519,7 +543,7 @@ extension EditorTextView {
     /// Moves the cursor to the end of the word and modifies the selection (^⌥⇧F).
     override func moveWordForwardAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return self.moveWordAndModifySelection(sender, forward: true) { sender in
                 super.moveWordForwardAndModifySelection(sender)
             }
@@ -620,6 +644,18 @@ extension EditorTextView {
         self.selectedRanges = ranges
             .flatMap(self.string.lineContentsRanges(for:)) as [NSValue]
     }
+    
+    
+    // MARK: Private Methods
+    
+    /// Whether the content can contain CRLF line endings that require handling the cursor movement manually.
+    ///
+    /// The text storage holds the file content as is, so that CRLF line endings can exist also in documents whose document line ending is not CRLF.
+    private var containsCRLF: Bool {
+        
+        self.lineEnding == .crlf || (self.layoutManager as? LayoutManager)?.lineEndingScanner.inconsistentLineEndings
+            .contains { $0.value == .crlf } ?? false
+    }
 }
 
 
@@ -647,7 +683,24 @@ extension EditorTextView {
             return super.deleteToEndOfParagraph(sender)
         }
         
-        self.moveToEndOfParagraphAndModifySelection(sender)
+        // build deletion ranges manually
+        // -> Otherwise, the character just before the cursor is deleted
+        //    when the cursor is already at the end of the line.
+        let string = self.string as NSString
+        let ranges = self.insertionRanges
+            .map { range in
+                let contentsEnd = string.lineContentsEndIndex(at: range.upperBound)
+                let upperBound = (range.isEmpty && range.location == contentsEnd)
+                    ? string.lineRange(at: range.location).upperBound  // delete the line ending
+                    : max(contentsEnd, range.upperBound)
+                return NSRange(range.location..<upperBound)
+            }
+            .merged
+            .filter { !$0.isEmpty }
+        
+        guard !ranges.isEmpty else { return }
+        
+        self.selectedRanges = ranges as [NSValue]
         self.deleteBackward(sender)
     }
     
@@ -733,6 +786,13 @@ extension EditorTextView {
             
             let lastIndex = string.index(before: range.location)
             let nextIndex = string.index(after: range.location)
+            
+            // keep cursors whose swap range overlaps the swap range of the adjacent cursor
+            if let lastRange = replacementRanges.last, nextIndex > lastRange.lowerBound {
+                selectedRanges.append(range)
+                continue
+            }
+            
             let lastCharacter = string.substring(with: NSRange(lastIndex..<range.location))
             let nextCharacter = string.substring(with: NSRange(range.location..<nextIndex))
             
@@ -806,16 +866,26 @@ private extension NSAttributedString {
         
         guard !delimiters.isEmpty else { return rawNextIndex }
         
+        let string = self.string as NSString
         let lastCharacterIndex = isForward ? max(rawNextIndex - 1, 0) : rawNextIndex
-        let characterRange = (self.string as NSString).rangeOfComposedCharacterSequence(at: lastCharacterIndex)
+        let characterRange = string.rangeOfComposedCharacterSequence(at: lastCharacterIndex)
         let nextIndex = isForward ? characterRange.upperBound : characterRange.lowerBound
         
+        // exclude the delimiter cluster adjacent to the given location from the search range
+        // -> Otherwise, a delimiter forming a single character cluster with combining marks
+        //    just behind the location is found again and the cursor cannot move over it.
+        let searchBound = isForward
+            ? location + 1
+            : string.rangeOfComposedCharacterSequence(at: location - 1).lowerBound
+        
         let options: NSString.CompareOptions = isForward ? [.literal] : [.literal, .backwards]
-        let range = isForward ? (location + 1)..<nextIndex : nextIndex..<(location - 1)
-        let trimmedRange = (self.string as NSString).rangeOfCharacter(from: delimiters, options: options, range: NSRange(range))
+        let range = isForward ? searchBound..<nextIndex : nextIndex..<searchBound
+        let trimmedRange = string.rangeOfCharacter(from: delimiters, options: options, range: NSRange(range))
         
         guard !trimmedRange.isNotFound else { return nextIndex }
         
-        return isForward ? trimmedRange.lowerBound : trimmedRange.upperBound
+        return isForward
+            ? string.rangeOfComposedCharacterSequence(at: trimmedRange.lowerBound).lowerBound
+            : string.rangeOfComposedCharacterSequence(at: trimmedRange.upperBound - 1).upperBound
     }
 }
