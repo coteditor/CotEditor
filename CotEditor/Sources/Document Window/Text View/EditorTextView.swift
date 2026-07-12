@@ -649,14 +649,19 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     override func handleTextCheckingResults(_ results: [NSTextCheckingResult], forRange range: NSRange, types checkingTypes: NSTextCheckingTypes, options: [NSSpellChecker.OptionKey: Any] = [:], orthography: NSOrthography, wordCount: Int) {
         
+        let selectedRange = self.selectedRange
+        
         super.handleTextCheckingResults(results, forRange: range, types: checkingTypes, options: options, orthography: orthography, wordCount: wordCount)
         
         // move the cursor back into the middle of quotes if the paired closing quote was automatically inserted,
         // because the cursor is automatically moved after the close quote by this method (#1384)
+        // -> Verify the movement to preserve user input made before this asynchronous callback.
         if self.isTypingPairedQuotes,
            self.isAutomaticQuoteSubstitutionEnabled,
+           selectedRange.isEmpty,
            self.selectedRange.isEmpty,
-           results.map(\.resultType).contains(where: { $0.contains(.quote) })
+           self.selectedRange.location == selectedRange.location + 1,
+           results.contains(where: { $0.resultType.contains(.quote) && $0.range.upperBound == self.selectedRange.location })
         {
             self.selectedRange.location -= 1
         }
