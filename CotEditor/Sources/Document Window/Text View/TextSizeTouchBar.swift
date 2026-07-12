@@ -96,7 +96,6 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
                 
                 // observe scale
                 self.scaleObserver = textView.publisher(for: \.scale)
-                    .filter { _ in item.isVisible }
                     .map(Double.init)
                     .assign(to: \.doubleValue, on: item)
                 
