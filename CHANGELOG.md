@@ -43,7 +43,7 @@
     - Storyboards/Main.xcstrings
 
 
-7.0.7 (unreleased)
+7.0.7 (2026-07-13)
 --------------------------
 
 ### Improvements
