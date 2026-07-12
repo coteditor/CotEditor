@@ -60,11 +60,7 @@ extension EditorTextView {
     /// Encodes URL.
     @IBAction func encodeURL(_ sender: Any?) {
         
-        let allowedCharacters = CharacterSet.alphanumerics.union(.init(charactersIn: "-._~"))
-        self.transformSelection { substring in
-            substring.removingPercentEncoding?
-                .addingPercentEncoding(withAllowedCharacters: allowedCharacters) ?? substring
-        }
+        self.transformSelection(to: \.urlPercentEncoded)
     }
     
     
