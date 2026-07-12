@@ -652,7 +652,24 @@ extension EditorTextView {
             return super.deleteToEndOfParagraph(sender)
         }
         
-        self.moveToEndOfParagraphAndModifySelection(sender)
+        // build deletion ranges manually
+        // -> Otherwise, the character just before the cursor is deleted
+        //    when the cursor is already at the end of the line.
+        let string = self.string as NSString
+        let ranges = self.insertionRanges
+            .map { range in
+                let contentsEnd = string.lineContentsEndIndex(at: range.upperBound)
+                let upperBound = (range.isEmpty && range.location == contentsEnd)
+                    ? string.lineRange(at: range.location).upperBound  // delete the line ending
+                    : max(contentsEnd, range.upperBound)
+                return NSRange(range.location..<upperBound)
+            }
+            .merged
+            .filter { !$0.isEmpty }
+        
+        guard !ranges.isEmpty else { return }
+        
+        self.selectedRanges = ranges as [NSValue]
         self.deleteBackward(sender)
     }
     
