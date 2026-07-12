@@ -755,6 +755,13 @@ extension EditorTextView {
             
             let lastIndex = string.index(before: range.location)
             let nextIndex = string.index(after: range.location)
+            
+            // keep cursors whose swap range overlaps the swap range of the adjacent cursor
+            if let lastRange = replacementRanges.last, nextIndex > lastRange.lowerBound {
+                selectedRanges.append(range)
+                continue
+            }
+            
             let lastCharacter = string.substring(with: NSRange(lastIndex..<range.location))
             let nextCharacter = string.substring(with: NSRange(range.location..<nextIndex))
             
