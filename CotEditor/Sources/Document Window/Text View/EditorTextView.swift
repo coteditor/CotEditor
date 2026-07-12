@@ -163,7 +163,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private var partialCompletionWord: String?
     private lazy var completionDebouncer = Debouncer { [weak self] in self?.performCompletion() }
     
-    private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(keepingEditingPoint: true) }
+    private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in
+        guard let self, !self.hasMarkedText() else { return }
+        self.trimTrailingWhitespace(keepingEditingPoint: true)
+    }
     
     private var fontObservers: Set<AnyCancellable> = []
     private var windowOpacityObserver: NSKeyValueObservation?
