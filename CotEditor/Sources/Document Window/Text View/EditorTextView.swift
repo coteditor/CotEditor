@@ -1131,8 +1131,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-            case #selector(pasteAsIs),
-                 #selector(shiftRight),
+            case #selector(pasteAsIs):
+                return self.isEditable && NSPasteboard.general.canReadObject(forClasses: [NSString.self], options: nil)
+            
+            case #selector(shiftRight),
                  #selector(shiftLeft),
                  #selector(shift),
                  #selector(convertIndentationToSpaces),
