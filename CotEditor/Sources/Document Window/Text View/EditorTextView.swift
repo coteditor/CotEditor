@@ -1219,7 +1219,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     var tabWidth: Int = 4 {
         
         didSet {
-            tabWidth = max(tabWidth, 0)
+            tabWidth = max(1, tabWidth)
             (self.layoutManager as? LayoutManager)?.tabWidth = tabWidth
             
             guard tabWidth != oldValue else { return }
