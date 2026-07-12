@@ -127,6 +127,15 @@ struct StringSmartIndentingTests {
     }
     
     
+    @Test func smartIndentNoIndentOnEmptyLine() {
+        
+        // no indent when inserting a line break on the empty line after a token line
+        // -> The token ends the line before, not the line where the cursor is.
+        #expect("then\n\n".smartIndent(style: .space, indentWidth: 2, tokens: Self.tokens, in: [NSRange(location: 6, length: 0)]) == nil)
+        #expect("then\r\n\r\n".smartIndent(style: .space, indentWidth: 2, tokens: Self.tokens, in: [NSRange(location: 8, length: 0)]) == nil)
+    }
+    
+    
     @Test func smartIndentThenEndPair() throws {
         
         // insert extra line when the closing token follows
@@ -171,6 +180,10 @@ struct StringSmartIndentingTests {
         #expect(!"thens\n".matches(token: "then", before: 5))
         #expect("{".matches(token: "{", before: 1))
         #expect(!"{".matches(token: "{", before: 0))
+        
+        // the token just before a line ending at the range end must not match
+        #expect(!"then\n".matches(token: "then", before: 5))
+        #expect(!"then\r\n".matches(token: "then", before: 6))
     }
     
     

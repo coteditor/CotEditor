@@ -241,7 +241,7 @@ extension NSString {
         let range = NSRange(0..<location)
         let options: NSString.CompareOptions = ignoreCase ? .caseInsensitive : []
         let foundRange = if token.first?.isLetter == true {
-            self.range(of: "(?<![A-Za-z0-9_])\(NSRegularExpression.escapedPattern(for: token))$", options: options.union(.regularExpression), range: range)
+            self.range(of: "(?<![A-Za-z0-9_])\(NSRegularExpression.escapedPattern(for: token))\\z", options: options.union(.regularExpression), range: range)
         } else {
             self.range(of: token, options: options.union([.anchored, .backwards]), range: range)
         }
