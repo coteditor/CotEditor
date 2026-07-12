@@ -26,6 +26,7 @@
 - Add a context menu to the list in the Mode settings pane.
 - Display the number of definition errors as a badge in the sidebar of the syntax editor.
 - Display more accurate error messages in dialogs.
+- Improve overall stability and performance.
 - [dev] Tweak the accent color.
 - [dev] Update the build environment to Xcode 27 Beta 3 (Swift 6.4, macOS 27 SDK).
 
