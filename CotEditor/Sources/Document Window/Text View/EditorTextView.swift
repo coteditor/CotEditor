@@ -119,6 +119,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     var needsUpdateLineHighlight = true {
         
         didSet {
+            guard needsUpdateLineHighlight else { return }
             (self.lineHighlightRects + [self.visibleRect]).forEach { self.setNeedsDisplay($0, avoidAdditionalLayout: true) }
         }
     }
