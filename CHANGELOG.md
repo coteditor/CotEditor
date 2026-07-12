@@ -24,6 +24,7 @@
 - Fix an issue where the app could crash when selecting a completion candidate in the Touch Bar.
 - Fix an issue where the app could become unresponsive when modifying the selection word by word in text containing combining characters.
 - Fix an issue where setting the tab width to zero with AppleScript could crash the app.
+- Fix an issue where the automatic outdent when typing a closing symbol, such as “}”, removed only a single character instead of a whole indent level in space-indented documents when the tab character is preferred for indentation.
 - Fix the Portuguese localization.
 - [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
 

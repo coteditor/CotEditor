@@ -520,6 +520,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if self.isAutomaticIndentEnabled, replacementRange.isEmpty {
             let levelToReduce = self.string.smartOutdentLevel(with: plainString, indentWidth: self.tabWidth, tokens: self.indentTokens, in: self.rangeForUserTextChange)
             for _ in 0..<levelToReduce {
+                // select the whole space run for a single indent level beforehand
+                // -> Otherwise, `deleteBackward(_:)` deletes only a single character per level when the automatic tab expansion is disabled.
+                if let deletionRange = self.string.rangeForSoftTabDeletion(in: self.rangeForUserTextChange, tabWidth: self.tabWidth) {
+                    self.setSelectedRangesWithUndo(self.selectedRanges.map(\.rangeValue))
+                    self.selectedRange = deletionRange
+                }
                 self.deleteBackward(nil)
             }
         }
