@@ -318,14 +318,32 @@ extension EditorTextView {
     override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
-            let location = self.locationOfBeginningOfLine(for: self.selectedRange.location)
+            let selectedRange = self.selectedRange
+            
+            // determine the end of the selection to move based on the recorded anchor
+            var movesUpperBound = !selectedRange.isEmpty && self.selectionOrigins.first == selectedRange.location
+            let location = self.locationOfBeginningOfLine(for: movesUpperBound ? selectedRange.upperBound : selectedRange.location)
+            
+            // keep the whole selection and extend the lower side by re-anchoring
+            // at the upper bound when the goal is behind the selection
+            if movesUpperBound, location < selectedRange.location {
+                self.setSelectedRange(NSRange(location: selectedRange.upperBound, length: 0))
+                movesUpperBound = false
+            }
             
             // repeat `moveBackwardAndModifySelection(_:)` until reaching the goal location
             // instead of setting `selectedRange` directly.
             // -> This avoids an issue where using ⇧→ immediately after this command
             //    expands the selection in the wrong direction. (2018-11, macOS 10.14, #863)
-            while self.selectedRange.location > location {
+            while (movesUpperBound ? self.selectedRange.upperBound : self.selectedRange.location) > location {
+                let oldRange = self.selectedRange
                 self.moveBackwardAndModifySelection(self)
+                if movesUpperBound, self.selectedRange.isEmpty {
+                    movesUpperBound = false
+                }
+                
+                // avoid an infinite loop in case the goal boundary is unreachable
+                guard self.selectedRange != oldRange else { return assertionFailure() }
             }
             return
         }
