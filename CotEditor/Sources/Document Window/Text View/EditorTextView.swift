@@ -557,7 +557,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if self.isAutomaticTabExpansionEnabled,
            let ranges = self.rangesForUserTextChange?.map(\.rangeValue)
         {
-            let softTabs = ranges.map { self.string.softTab(at: $0.location, tabWidth: self.tabWidth) }
+            let softTabs = self.string.softTabs(for: ranges, tabWidth: self.tabWidth)
             self.replace(with: softTabs, ranges: ranges, selectedRanges: nil)
             return
         }

@@ -210,11 +210,16 @@ struct StringIndentationTests {
     }
     
     
-    @Test func softTab() {
+    @Test func softTabs() {
         
-        #expect("abc".softTab(at: 0, tabWidth: 4) == "    ")
-        #expect("abc".softTab(at: 2, tabWidth: 4) == "  ")
-        #expect("\t".softTab(at: 1, tabWidth: 4) == "    ")
+        // take the column shifts by the preceding insertions in the same line into account
+        #expect("ab cd".softTabs(for: [NSRange(location: 2, length: 0), NSRange(location: 5, length: 0)], tabWidth: 4) == ["  ", " "])
+        
+        // cursors in different lines are not affected
+        #expect("a\nb".softTabs(for: [NSRange(location: 1, length: 0), NSRange(location: 3, length: 0)], tabWidth: 4) == ["   ", "   "])
+        
+        // non-empty ranges shift the following columns by the replaced width
+        #expect("aa bb cc".softTabs(for: [NSRange(location: 2, length: 3), NSRange(location: 8, length: 0)], tabWidth: 4) == ["  ", " "])
     }
     
     
