@@ -1540,22 +1540,21 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.width(of: " ")
         }
         
-        // -> This guard is certainly passed on the first time because the initial values of defaultParagraphStyle are zero. (2024-02, macOS 14)
-        guard
-            paragraphStyle.lineHeightMultiple != self.defaultParagraphStyle?.lineHeightMultiple ||
-            paragraphStyle.defaultTabInterval != self.defaultParagraphStyle?.defaultTabInterval
-        else { return }
-        
-        self.defaultParagraphStyle = paragraphStyle
-        self.typingAttributes[.paragraphStyle] = paragraphStyle
-        self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.range)
+        // update the paragraph style only when it actually changed
+        // -> This condition is certainly met on the first time because the initial values of defaultParagraphStyle are zero. (2024-02, macOS 14)
+        if paragraphStyle.lineHeightMultiple != self.defaultParagraphStyle?.lineHeightMultiple ||
+           paragraphStyle.defaultTabInterval != self.defaultParagraphStyle?.defaultTabInterval
+        {
+            self.defaultParagraphStyle = paragraphStyle
+            self.typingAttributes[.paragraphStyle] = paragraphStyle
+            self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.range)
+            self.needsUpdateInsertionIndicators = true
+        }
         
         // tell line height also to scroll view so that scroll view can scroll line by line
         if let lineHeight = (self.layoutManager as? LayoutManager)?.lineHeight {
             self.enclosingScrollView?.lineScroll = lineHeight
         }
-        
-        self.needsUpdateInsertionIndicators = true
     }
     
     
