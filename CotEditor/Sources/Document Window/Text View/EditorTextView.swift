@@ -506,7 +506,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                      self.string.character(before: self.rangeForUserTextChange).map(CharacterSet.alphanumerics.contains) == true)  // for "
                 {
                     // raise a flag to adjust the cursor later in `handleTextCheckingResults(_:forRange:types:options:orthography:wordCount:)`
-                    if self.isAutomaticQuoteSubstitutionEnabled, pair.begin == "\"" {
+                    // -> The smart quote substitution replaces both double and single quotation marks.
+                    if self.isAutomaticQuoteSubstitutionEnabled, pair.begin == "\"" || pair.begin == "'" {
                         self.isTypingPairedQuotes = true
                     }
                     
