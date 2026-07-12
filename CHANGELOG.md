@@ -13,12 +13,16 @@
 ### Fixes
 
 - Fix an issue where the “Make file executable” option changed in a canceled save panel could still be applied on subsequent saving.
-- Fix an issue where the application became unresponsive when a document was automatically updated due to an external modification while an alert for the document was displayed.
+- Fix an issue where the app became unresponsive when a document was automatically updated due to an external modification while an alert for the document was displayed.
 - Fix an issue where the alerts about inconsistent line endings or an external modification could be displayed twice for the same document.
 - Fix an issue where text typed in an untitled document while another document was being opened could be discarded silently.
 - Fix an issue in the file browser where the “Open in New Window” command did not work for the file currently displayed as a preview.
 - Fix an issue where the Syntax toolbar menu was no longer updated once the toolbar customization dialog was opened.
 - Fix an issue where wrapped lines could be printed with an incorrect indentation width when hanging indentation was enabled.
+- Fix an issue where the “Join Lines” and “Move Line Down” commands with multiple cursors could crash the app or silently remove text.
+- Fix an issue where the “Shift Left” command could crash the app when the selection started within the indentation.
+- Fix an issue where the app could crash when selecting a completion candidate in the Touch Bar.
+- Fix an issue where the app could become unresponsive when modifying the selection word by word in text containing combining characters.
 - Fix an issue where setting the tab width to zero with AppleScript could crash the app.
 - Fix the Portuguese localization.
 - [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
