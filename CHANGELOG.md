@@ -28,6 +28,7 @@
 - Fix an issue where the “URL Encode” command did nothing for selections containing an invalid percent-encoding sequence, such as a standalone “%”.
 - Fix several issues in editing commands with multiple cursors or selections.
 - Fix an issue where expanding the selection to the beginning of the line discarded the selected range ahead of the anchor when the selection was made from left to right.
+- Fix several issues in modifying the selection in documents containing inconsistent CRLF line endings.
 - Fix the Portuguese localization.
 - [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
 

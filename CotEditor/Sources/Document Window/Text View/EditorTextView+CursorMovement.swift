@@ -26,6 +26,7 @@
 import AppKit
 import LineEnding
 import StringUtils
+import ValueRange
 
 extension EditorTextView {
     
@@ -56,7 +57,7 @@ extension EditorTextView {
     override func moveLeftAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02, macOS 12).
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveLeftAndModifySelection(sender)
         }
         
@@ -87,7 +88,7 @@ extension EditorTextView {
     override func moveRightAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02, macOS 12).
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveRightAndModifySelection(sender)
         }
         
@@ -113,7 +114,7 @@ extension EditorTextView {
     /// Moves the cursor up and modifies the selection (⇧↑ / ^⇧P).
     override func moveUpAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveUpAndModifySelection(sender)
         }
         
@@ -139,7 +140,7 @@ extension EditorTextView {
     /// Moves the cursor down and modifies the selection (⇧↓ / ^⇧N).
     override func moveDownAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveDownAndModifySelection(sender)
         }
         
@@ -167,7 +168,7 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the word and modifies the selection repeatedly (⇧⌥←).
     override func moveWordLeftAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return self.moveWordAndModifySelection(sender, forward: false) { sender in
                 super.moveWordLeftAndModifySelection(sender)
             }
@@ -193,7 +194,7 @@ extension EditorTextView {
     /// Moves the cursor to the end of the word and modifies the selection repeatedly (⇧⌥→).
     override func moveWordRightAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return self.moveWordAndModifySelection(sender, forward: true) { sender in
                 super.moveWordRightAndModifySelection(sender)
             }
@@ -208,7 +209,7 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the logical line and modifies the selection repeatedly (⇧⌥↑).
     override func moveParagraphBackwardAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveParagraphBackwardAndModifySelection(sender)
         }
         
@@ -221,7 +222,7 @@ extension EditorTextView {
     /// Moves the cursor to the end of the logical line and modifies the selection repeatedly (⇧⌥↓).
     override func moveParagraphForwardAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveParagraphForwardAndModifySelection(sender)
         }
         
@@ -317,7 +318,7 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the current visual line and modifies the selection (⇧⌘←).
     override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             let selectedRange = self.selectedRange
             
             // determine the end of the selection to move based on the recorded anchor
@@ -371,7 +372,7 @@ extension EditorTextView {
     /// Moves the cursor to the end of the current visual line and modifies the selection (⇧⌘→).
     override func moveToEndOfLineAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveToEndOfLineAndModifySelection(sender)
         }
         
@@ -403,7 +404,7 @@ extension EditorTextView {
     override func moveBackwardAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02, macOS 12).
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveBackwardAndModifySelection(sender)
         }
         
@@ -430,7 +431,7 @@ extension EditorTextView {
     override func moveForwardAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02, macOS 12).
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveForwardAndModifySelection(sender)
         }
         
@@ -456,7 +457,7 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the logical line and modifies the selection (^⇧A).
     override func moveToBeginningOfParagraphAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveToBeginningOfParagraphAndModifySelection(sender)
         }
         
@@ -484,7 +485,7 @@ extension EditorTextView {
     /// Moves the cursor to the end of the logical line and modifies the selection (^⇧E).
     override func moveToEndOfParagraphAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return super.moveToEndOfParagraphAndModifySelection(sender)
         }
         
@@ -510,7 +511,7 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the word and modifies the selection (^⌥⇧B).
     override func moveWordBackwardAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return self.moveWordAndModifySelection(sender, forward: false) { sender in
                 super.moveWordBackwardAndModifySelection(sender)
             }
@@ -542,7 +543,7 @@ extension EditorTextView {
     /// Moves the cursor to the end of the word and modifies the selection (^⌥⇧F).
     override func moveWordForwardAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
+        guard self.hasMultipleInsertions || self.containsCRLF else {
             return self.moveWordAndModifySelection(sender, forward: true) { sender in
                 super.moveWordForwardAndModifySelection(sender)
             }
@@ -642,6 +643,18 @@ extension EditorTextView {
         
         self.selectedRanges = ranges
             .flatMap(self.string.lineContentsRanges(for:)) as [NSValue]
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Whether the content can contain CRLF line endings that require handling the cursor movement manually.
+    ///
+    /// The text storage holds the file content as is, so that CRLF line endings can exist also in documents whose document line ending is not CRLF.
+    private var containsCRLF: Bool {
+        
+        self.lineEnding == .crlf || (self.layoutManager as? LayoutManager)?.lineEndingScanner.inconsistentLineEndings
+            .contains { $0.value == .crlf } ?? false
     }
 }
 
