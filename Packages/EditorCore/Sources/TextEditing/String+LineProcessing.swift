@@ -44,6 +44,7 @@ public extension String {
         let string = NSMutableString(string: self)
         var replacementRange = NSRange()
         var movedSelectedRanges = [NSRange?](repeating: nil, count: ranges.count)
+        let keepsEndInsertionPoint = self.last?.isNewline == true && lineRanges.last?.isEmpty != true
         
         // swap lines
         for lineRange in lineRanges {
@@ -63,6 +64,11 @@ public extension String {
             
             // move selected ranges in the line to move
             for (index, selectedRange) in ranges.enumerated() {
+                if keepsEndInsertionPoint, selectedRange == NSRange(location: self.length, length: 0) {
+                    movedSelectedRanges[index] = selectedRange
+                    continue
+                }
+                
                 let shiftedRange: NSRange? = if let intersectionRange = selectedRange.intersection(editRange) {
                     intersectionRange.shifted(by: -upperLineRange.length)
                 } else if editRange.touches(selectedRange.location) {

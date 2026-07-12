@@ -101,6 +101,25 @@ struct StringLineProcessingTests {
     }
     
     
+    @Test func moveLineUpWithDocumentEndCaret() throws {
+        
+        // the caret on the trailing empty line must stay in place instead of being dropped
+        var context = try #require("aa\nbb\ncc\n".moveLineUp(in: [NSRange(3, 1), NSRange(9, 0)]))
+        
+        #expect(context.strings == ["bb\naa\n"])
+        #expect(context.ranges == [NSRange(0, 6)])
+        #expect(context.selectedRanges == [NSRange(0, 1), NSRange(9, 0)])
+        
+        // ... and must not be relocated into the moved text
+        context = try #require("aa\nbb\n".moveLineUp(in: [NSRange(3, 0), NSRange(6, 0)]))
+        #expect(context.selectedRanges == [NSRange(0, 0), NSRange(6, 0)])
+        
+        // moving the trailing empty line itself remains possible
+        context = try #require("aa\nbb\n".moveLineUp(in: [NSRange(6, 0)]))
+        #expect(context.selectedRanges == [NSRange(3, 0)])
+    }
+    
+    
     @Test func moveLineDownWithDocumentEndCaret() throws {
         
         // the caret on the trailing empty line must stay in place
