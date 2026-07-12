@@ -107,6 +107,20 @@ struct StringIndentationTests {
     }
     
     
+    @Test func indentMultipleSelections() {
+        
+        // the restored selections must cover all lines of each selection,
+        // also for the selections after the first one
+        let string = "aaa\nbbb\nccc\nddd"
+        let ranges = [NSRange(location: 0, length: 7), NSRange(location: 8, length: 7)]
+        
+        let context = string.indent(style: .space, indentWidth: 4, in: ranges)
+        
+        #expect(context.strings == ["    aaa\n", "    bbb\n", "    ccc\n", "    ddd"])
+        #expect(context.selectedRanges == [NSRange(location: 4, length: 11), NSRange(location: 20, length: 11)])
+    }
+    
+    
     @Test func outdent() throws {
         
         let string = "  foo\n\tbar\nbaz"
