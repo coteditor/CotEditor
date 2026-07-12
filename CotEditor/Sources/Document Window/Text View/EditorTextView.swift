@@ -702,8 +702,19 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         self.insertionLocations.removeAll { location in selectedRanges.contains { $0.touches(location) } }
         
-        if !stillSelectingFlag, !self.hasMultipleInsertions {
-            self.selectionOrigins = [self.selectedRange.location]
+        if !self.hasMultipleInsertions {
+            let selectedRange = self.selectedRange
+            let keepsOrigin = !selectedRange.isEmpty
+                && self.selectionOrigins.count == 1
+                && self.selectionOrigins.contains { $0 == selectedRange.lowerBound || $0 == selectedRange.upperBound }
+            
+            // update the selection origin
+            // -> Record the origin also in the still-selecting state when the selection is empty
+            //    (namely, at a drag start), and keep it as long as it stays at either bound
+            //    so that the anchor of a selection made backward remains at the upper bound.
+            if !keepsOrigin, selectedRange.isEmpty || !stillSelectingFlag {
+                self.selectionOrigins = [selectedRange.location]
+            }
         }
         
         self.needsUpdateLineHighlight = true
