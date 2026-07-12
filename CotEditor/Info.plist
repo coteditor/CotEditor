@@ -179,8 +179,6 @@
 			</array>
 		</dict>
 	</array>
-	<key>NSSupportsAutomaticTermination</key>
-	<true/>
 	<key>NSUbiquitousContainers</key>
 	<dict>
 		<key>iCloud.com.coteditor.CotEditor</key>
