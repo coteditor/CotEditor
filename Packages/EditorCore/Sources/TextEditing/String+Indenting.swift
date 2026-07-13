@@ -147,13 +147,16 @@ public extension String {
         
         let string = self as NSString
         
-        // process whole document if no text selected
-        let ranges = selectedRanges.contains(where: { !$0.isEmpty }) ? selectedRanges : [string.range]
+        // process only non-empty selections, or the whole document if no text is selected
+        let selectedLineRanges = selectedRanges
+            .filter { !$0.isEmpty }
+            .map(string.lineRange(for:))
+        let lineRanges = selectedLineRanges.isEmpty ? [string.range] : selectedLineRanges.merged
         
         var replacementRanges: [NSRange] = []
         var replacementStrings: [String] = []
         
-        for range in ranges {
+        for range in lineRanges {
             let selectedString = string.substring(with: range)
             let convertedString = selectedString.standardizingIndent(to: style, tabWidth: indentWidth)
             
