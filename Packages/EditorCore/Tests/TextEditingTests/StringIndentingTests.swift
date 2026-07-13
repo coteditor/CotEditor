@@ -194,6 +194,31 @@ struct StringIndentationTests {
     }
     
     
+    @Test func convertIndentationMidLineSelection() throws {
+        
+        // a selection starting mid-line must not convert whitespace that is not indentation
+        let string = "foo\tbar\n\tbaz\n"
+        let context = try #require(string.convertIndentation(to: .space, indentWidth: 4, in: [NSRange(location: 3, length: 9)]))
+        
+        #expect(context.strings == ["foo\tbar\n    baz\n"])
+        #expect(context.ranges == [NSRange(location: 0, length: 13)])
+    }
+    
+    
+    @Test func convertIndentationWithMixedSelections() throws {
+        
+        // an insertion point must not extend the conversion beyond non-empty selections
+        let string = "\tfoo\n\tbar\n"
+        let context = try #require(string.convertIndentation(to: .space, indentWidth: 4, in: [
+            NSRange(location: 1, length: 1),
+            NSRange(location: 5, length: 0),
+        ]))
+        
+        #expect(context.strings == ["    foo\n"])
+        #expect(context.ranges == [NSRange(location: 0, length: 5)])
+    }
+    
+    
     // MARK: Editing Range Detection Tests
     
     @Test func rangeOfIndent() {
