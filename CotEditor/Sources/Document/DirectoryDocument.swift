@@ -660,6 +660,8 @@ final class DirectoryDocument: NSDocument {
         // symbolic link and alias file
         if type.conforms(to: .resolvable) { return false }
         
+        if type.conforms(to: .unixExecutable) { return false }
+        
         if type.conforms(to: .propertyList) {
             // detect binary property list from the magic number
             guard let data = try? Data(contentsOf: url, options: .mappedIfSafe) else { return true }

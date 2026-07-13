@@ -3,6 +3,11 @@
 7.0.8 (unreleased)
 --------------------------
 
+### Improvements'
+
+- Prevent the file browser from opening UNIX executable files as plain text.
+
+
 ### Fixes
 
 - Fix an issue where the tab width customized for a document was not applied when printing.
