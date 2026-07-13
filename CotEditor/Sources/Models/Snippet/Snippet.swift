@@ -135,17 +135,21 @@ extension Snippet {
         
         assert(indent.allSatisfy(\.isWhitespace))
         
-        let format = self.format
+        // split at the cursor tokens before inserting the selection,
+        // so that a cursor token contained in the selection is kept as is
+        let parts = self.format
             .replacing(/\R/) { $0.output + indent }  // indent
-            .replacing(Variable.selection.token, with: selectedString)  // selection
+            .components(separatedBy: Variable.cursor.token)
+            .map { $0.replacing(Variable.selection.token, with: selectedString) }  // selection
         
-        let cursors = (format as NSString).ranges(of: Variable.cursor.token)
-        let ranges = cursors
-            .enumerated()
-            .map { $0.element.location - $0.offset * $0.element.length }
-            .map { NSRange(location: $0, length: 0) }
-        
-        let text = format.replacing(Variable.cursor.token, with: "")
+        var text = ""
+        var ranges: [NSRange] = []
+        for (index, part) in parts.enumerated() {
+            if index > 0 {
+                ranges.append(NSRange(location: (text as NSString).length, length: 0))
+            }
+            text += part
+        }
         
         return (text, ranges)
     }

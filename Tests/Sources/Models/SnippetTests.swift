@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2025 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,6 +38,24 @@ struct SnippetTests {
         
         #expect(string == "<h1>abc</h1>")
         #expect(selections == [NSRange(location: 7, length: 0)])
+    }
+    
+    
+    @Test func cursorTokenInSelection() {
+        
+        // a cursor token contained in the selection must be kept as is, not treated as a marker
+        let snippet = Snippet(name: "", format: "<q><<<SELECTION>>></q>")
+        let (string, selections) = snippet.insertion(selectedString: "a<<<CURSOR>>>b")
+        
+        #expect(string == "<q>a<<<CURSOR>>>b</q>")
+        #expect(selections.isEmpty)
+        
+        // the format cursor still works while the selection keeps its literal token
+        let snippet2 = Snippet(name: "", format: "<q><<<SELECTION>>><<<CURSOR>>></q>")
+        let (string2, selections2) = snippet2.insertion(selectedString: "x<<<CURSOR>>>y")
+        
+        #expect(string2 == "<q>x<<<CURSOR>>>y</q>")
+        #expect(selections2 == [NSRange(location: 17, length: 0)])
     }
     
     
