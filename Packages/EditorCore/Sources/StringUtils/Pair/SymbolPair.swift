@@ -78,12 +78,13 @@ public extension String {
     /// - Parameters:
     ///   - index: The character index of the symbol character to find the mate.
     ///   - candidates: Symbol pairs to find.
+    ///   - range: The range of characters to find in.
     ///   - pairToIgnore: The symbol pair in which symbol characters should be ignored.
     ///   - escapeCharacter: The escape character, or `nil` for no escape.
     /// - Returns: The range enclosed by the symbol pair, or `nil` if not found.
-    func rangeOfSymbolPair(at index: Index, candidates: [SymbolPair], ignoring pairToIgnore: SymbolPair? = nil, escapeCharacter: Character? = nil) -> ClosedRange<Index>? {
+    func rangeOfSymbolPair(at index: Index, candidates: [SymbolPair], in range: Range<Index>? = nil, ignoring pairToIgnore: SymbolPair? = nil, escapeCharacter: Character? = nil) -> ClosedRange<Index>? {
         
-        guard let pairIndex = self.indexOfSymbolPair(at: index, candidates: candidates, ignoring: pairToIgnore, escapeCharacter: escapeCharacter) else { return nil }
+        guard let pairIndex = self.indexOfSymbolPair(at: index, candidates: candidates, in: range, ignoring: pairToIgnore, escapeCharacter: escapeCharacter) else { return nil }
         
         return switch pairIndex {
             case .begin(let beginIndex): beginIndex...index

@@ -809,12 +809,20 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 return syntaxRange
             }
         }
-        if let quoteRange = self.string.rangeOfQuotePair(at: characterIndex, candidates: self.quotePairRules) {
+        
+        // limit the search range around the clicked position to avoid scanning the entire text in a large document
+        let nsString = self.string as NSString
+        let searchMargin = 50_000
+        let lowerBound = max(0, wordRange.lowerBound - searchMargin)
+        let upperBound = min(nsString.length, wordRange.upperBound + searchMargin)
+        let searchRange = Range(nsString.rangeOfComposedCharacterSequences(for: NSRange(lowerBound..<upperBound)), in: self.string)
+        
+        if let quoteRange = self.string.rangeOfQuotePair(at: characterIndex, candidates: self.quotePairRules, in: searchRange) {
             return NSRange(quoteRange, in: self.string)
         }
         
         // select inside of brackets
-        if let pairRange = self.string.rangeOfSymbolPair(at: characterIndex, candidates: SymbolPair.braces + [.ltgt]) {
+        if let pairRange = self.string.rangeOfSymbolPair(at: characterIndex, candidates: SymbolPair.braces + [.ltgt], in: searchRange) {
             return NSRange(pairRange, in: self.string)
         }
         

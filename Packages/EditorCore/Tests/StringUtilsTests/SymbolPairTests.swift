@@ -123,6 +123,19 @@ struct SymbolPairTests {
     }
     
     
+    @Test func rangeOfSymbolPairWithinRange() {
+        
+        let string = "(a[b]c)"
+        
+        // the mate is found only when the search range reaches it
+        #expect(string.rangeOfSymbolPair(at: string.index(0), candidates: SymbolPair.braces, in: string.range(0..<7)) == string.index(0)...string.index(6))
+        #expect(string.rangeOfSymbolPair(at: string.index(0), candidates: SymbolPair.braces, in: string.range(0..<6)) == nil)
+        
+        #expect(string.rangeOfSymbolPair(at: string.index(6), candidates: SymbolPair.braces, in: string.range(0..<7)) == string.index(0)...string.index(6))
+        #expect(string.rangeOfSymbolPair(at: string.index(6), candidates: SymbolPair.braces, in: string.range(1..<7)) == nil)
+    }
+    
+    
     @Test func rangeOfSymbolPairWithoutBackslashEscaping() {
         
         let string = #"foo \(bar\) baz"#

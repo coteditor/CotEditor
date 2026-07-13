@@ -67,6 +67,18 @@ struct QuotePairRuleTests {
     }
     
     
+    @Test func rangeOfQuotePairWithinRange() {
+        
+        let string = "'foo' 'bar'"
+        let rules = [QuotePairRule(pair: SymbolPair("'", "'"))]
+        let index = string.index(0)
+        
+        // the closing quote at index 4 is found only when included in the search range
+        #expect(string.rangeOfQuotePair(at: index, candidates: rules, in: string.index(0)..<string.index(5)) == string.index(0)...string.index(4))
+        #expect(string.rangeOfQuotePair(at: index, candidates: rules, in: string.index(0)..<string.index(4)) == nil)
+    }
+    
+    
     @Test func rangeOfQuotePairWithPrefix() {
         
         let string = "r\"foo\""

@@ -71,8 +71,9 @@ public extension String {
     /// - Parameters:
     ///   - index: The character index of the quote character to find the mate.
     ///   - candidates: Quote pair rules to find.
+    ///   - searchRange: The range of characters to find in.
     /// - Returns: A matching quote-pair range, or `nil` if not found.
-    func rangeOfQuotePair(at index: Index, candidates: [QuotePairRule]) -> ClosedRange<Index>? {
+    func rangeOfQuotePair(at index: Index, candidates: [QuotePairRule], in searchRange: Range<Index>? = nil) -> ClosedRange<Index>? {
         
         guard !candidates.isEmpty, !self.isEmpty else { return nil }
         
@@ -82,7 +83,7 @@ public extension String {
             .filter { $0.pair.begin == character || $0.pair.end == character }
             .compactMap { candidate -> (range: ClosedRange<Index>, distance: Int, hasPrefix: Bool)? in
                 guard
-                    let range = self.rangeOfSymbolPair(at: index, candidates: [candidate.pair], escapeCharacter: candidate.escapeCharacter)
+                    let range = self.rangeOfSymbolPair(at: index, candidates: [candidate.pair], in: searchRange, escapeCharacter: candidate.escapeCharacter)
                 else { return nil }
                 
                 let hasPrefix = candidate.prefixes.contains {
