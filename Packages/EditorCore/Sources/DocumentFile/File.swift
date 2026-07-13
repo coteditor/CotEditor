@@ -38,6 +38,7 @@ public struct File: Equatable, Sendable {
         case image
         case movie
         case audio
+        case executable
     }
     
     
@@ -169,6 +170,8 @@ extension File.Kind {
             self = .audio
         } else if type.conforms(to: .archive) {
             self = .archive
+        } else if type.conforms(to: .unixExecutable) {
+            self = .executable
         } else {
             self = .general
         }

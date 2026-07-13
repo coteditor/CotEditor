@@ -24,6 +24,7 @@
 - Allow custom syntaxes to be deleted by dragging them to the Trash.
 - Allow CotEditor Syntax files and multiple replacement definitions to be imported by dropping them onto their respective lists.
 - Add a context menu to the list in the Mode settings pane.
+- Prevent the file browser from opening UNIX executable files as plain text.
 - Display the number of definition errors as a badge in the sidebar of the syntax editor.
 - Display more accurate error messages in dialogs.
 - Improve overall stability and performance.

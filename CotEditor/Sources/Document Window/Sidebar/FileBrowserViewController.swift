@@ -1505,6 +1505,7 @@ private extension File.Kind {
             case .image: "photo"
             case .movie: "film"
             case .audio: "music.note"
+            case .executable: "apple.terminal.fill"
         }
     }
     
@@ -1525,6 +1526,8 @@ private extension File.Kind {
                 String(localized: "File.Kind.movie.label", defaultValue: "Movie", table: "Document")
             case .audio:
                 String(localized: "File.Kind.audio.label", defaultValue: "Audio", table: "Document")
+            case .executable:
+                String(localized: "File.Kind.executable.label", defaultValue: "UNIX excecutable", table: "Document")
         }
     }
 }
