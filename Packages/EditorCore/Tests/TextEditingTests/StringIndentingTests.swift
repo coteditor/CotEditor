@@ -180,6 +180,22 @@ struct StringIndentationTests {
     }
     
     
+    @Test func smartOutdentLevelSearchRange() {
+        
+        let tokens: [IndentToken] = [IndentToken(begin: "{", end: "}")!]
+        
+        // the opening token within the search margin is matched even in a large text
+        let nearString = "{\n" + String(repeating: " ", count: 40_000) + "\n    "
+        let nearRange = NSRange(location: nearString.utf16.count, length: 0)
+        #expect(nearString.smartOutdentLevel(with: "}", indentWidth: 4, tokens: tokens, in: nearRange) == 1)
+        
+        // the opening token farther than the search margin is left unmatched
+        let farString = "{\n" + String(repeating: " ", count: 60_000) + "\n    "
+        let farRange = NSRange(location: farString.utf16.count, length: 0)
+        #expect(farString.smartOutdentLevel(with: "}", indentWidth: 4, tokens: tokens, in: farRange) == 0)
+    }
+    
+    
     @Test func convertIndentation() throws {
         
         #expect("".convertIndentation(to: .space, indentWidth: 2, in: [NSRange(0..<0)]) == nil)

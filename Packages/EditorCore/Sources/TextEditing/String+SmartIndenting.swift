@@ -190,9 +190,17 @@ public extension String {
         let lineRange = self.lineRange(at: insertionIndex)
         
         // decrease indent level if the line is consists of only whitespace
-        guard
-            self[lineRange].starts(with: /[ \t]+\R?$/),
-            let precedingIndex = self.indexOfSymbolPair(endIndex: insertionIndex, pair: pair)
+        guard self[lineRange].starts(with: /[ \t]+\R?$/) else { return 0 }
+        
+        // limit the backward search range for performance in a large document
+        // -> A matching opening token farther than the margin just leaves the indentation untouched.
+        let searchMargin = 50_000
+        let searchLowerBound = max(0, range.upperBound - searchMargin)
+        let searchStart = searchLowerBound > 0
+            ? String.Index(utf16Offset: (self as NSString).rangeOfComposedCharacterSequence(at: searchLowerBound).location, in: self)
+            : self.startIndex
+        
+        guard let precedingIndex = self.indexOfSymbolPair(endIndex: insertionIndex, pair: pair, until: searchStart)
         else { return 0 }
         
         let desiredLevel = self.indentLevel(at: precedingIndex, tabWidth: indentWidth)
