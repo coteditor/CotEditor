@@ -184,6 +184,12 @@ struct StringSmartIndentingTests {
         // the token just before a line ending at the range end must not match
         #expect(!"then\n".matches(token: "then", before: 5))
         #expect(!"then\r\n".matches(token: "then", before: 6))
+        
+        // the character preceding the token must be respected even when the token
+        // is not at the document start (the look-behind must see it)
+        #expect(!"xthen".matches(token: "then", before: 5))
+        #expect("a\nthen".matches(token: "then", before: 6))
+        #expect("prefix\tthen".matches(token: "then", before: 11))
     }
     
     

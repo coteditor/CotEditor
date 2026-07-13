@@ -238,7 +238,10 @@ extension NSString {
         
         guard location > 0 else { return false }
         
-        let range = NSRange(0..<location)
+        // limit the search range to just around the location for performance
+        // -> The token must end at `location`, so only the token length plus one
+        //    preceding character for the look-behind needs to be searched.
+        let range = NSRange(max(0, location - token.utf16.count - 1)..<location)
         let options: NSString.CompareOptions = ignoreCase ? .caseInsensitive : []
         let foundRange = if token.first?.isLetter == true {
             self.range(of: "(?<![A-Za-z0-9_])\(NSRegularExpression.escapedPattern(for: token))\\z", options: options.union(.regularExpression), range: range)
