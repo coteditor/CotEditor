@@ -88,32 +88,3 @@ extension NSTextView {
         self.window?.makeFirstResponderDiscardingMarkedText(self)
     }
 }
-
-
-extension String {
-    
-    /// Returns the character just before the given range.
-    ///
-    /// - Parameter range: The range to inspect.
-    /// - Returns: The character just before `range`, or `nil` if the range starts at the beginning.
-    func character(before range: NSRange) -> Unicode.Scalar? {
-        
-        guard range.lowerBound > 0 else { return nil }
-        
-        let index = String.UnicodeScalarIndex(utf16Offset: range.lowerBound - 1, in: self)
-        
-        return self.unicodeScalars[safe: index]
-    }
-    
-    
-    /// Returns the character just after the given range.
-    ///
-    /// - Parameter range: The range to inspect.
-    /// - Returns: The character just after `range`, or `nil` if no character follows it.
-    func character(after range: NSRange) -> Unicode.Scalar? {
-        
-        let index = String.UnicodeScalarIndex(utf16Offset: range.upperBound, in: self)
-        
-        return self.unicodeScalars[safe: index]
-    }
-}
