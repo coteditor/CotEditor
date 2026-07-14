@@ -1231,12 +1231,16 @@ extension NSTextView: EditorCounter.Source { }
     /// - Returns: A file URL.
     private nonisolated static func autosaveElsewhereURL(for url: URL) -> URL {
         
-        let baseFileName = url.deletingPathExtension().lastPathComponent
+        var baseFileName = url.deletingPathExtension().lastPathComponent
             .replacing(/^\./, with: "", maxReplacements: 1)  // avoid file to be hidden
         
-        // append a unique string to avoid overwriting another backup file with the same filename.
-        let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + url.pathExtension).length
-        let fileName = baseFileName + " (" + UUID().uuidString.prefix(maxIdentifierLength) + ")"
+        // append a unique string to avoid overwriting another backup file with the same filename
+        let identifierSuffix = " (\(UUID().uuidString))"
+        let maxBaseByteCount = max(Int(NAME_MAX) - (identifierSuffix + "." + url.pathExtension).utf8.count, 0)
+        while baseFileName.utf8.count > maxBaseByteCount {
+            baseFileName.removeLast()
+        }
+        let fileName = baseFileName + identifierSuffix
         
         return try! URL(for: .autosavedInformationDirectory, in: .userDomainMask, create: true)
             .appending(component: fileName)
