@@ -62,6 +62,12 @@ struct StringLineProcessingTests {
         #expect(context.ranges == [NSRange(0, 12)])
         #expect(context.selectedRanges == [NSRange(1, 6)])
         
+        // a move that does not touch the first line replaces only the affected range
+        context = try #require(string.moveLineUp(in: [NSRange(9, 0)]))
+        #expect(context.strings == ["ccc\nbbbb\n"])
+        #expect(context.ranges == [NSRange(3, 9)])
+        #expect(context.selectedRanges == [NSRange(4, 0)])
+        
         #expect(string.moveLineUp(in: [NSRange(2, 1)]) == nil)
     }
     
@@ -78,23 +84,23 @@ struct StringLineProcessingTests {
         var context: EditingContext
         
         context = try #require(string.moveLineDown(in: [NSRange(4, 1)]))
-        #expect(context.strings == ["aa\nccc\nbbbb\n"])
-        #expect(context.ranges == [NSRange(0, 12)])
+        #expect(context.strings == ["ccc\nbbbb\n"])
+        #expect(context.ranges == [NSRange(3, 9)])
         #expect(context.selectedRanges == [NSRange(8, 1)])
         
         context = try #require(string.moveLineDown(in: [NSRange(4, 1), NSRange(6, 0)]))
-        #expect(context.strings == ["aa\nccc\nbbbb\n"])
-        #expect(context.ranges == [NSRange(0, 12)])
+        #expect(context.strings == ["ccc\nbbbb\n"])
+        #expect(context.ranges == [NSRange(3, 9)])
         #expect(context.selectedRanges == [NSRange(8, 1), NSRange(10, 0)])
         
         context = try #require(string.moveLineDown(in: [NSRange(4, 1), NSRange(9, 0), NSRange(13, 1)]))
-        #expect(context.strings == ["aa\neee\nbbbb\nccc\nd"])
-        #expect(context.ranges == [NSRange(0, 17)])
+        #expect(context.strings == ["eee\nbbbb\nccc\nd"])
+        #expect(context.ranges == [NSRange(3, 14)])
         #expect(context.selectedRanges == [NSRange(8, 1), NSRange(13, 0), NSRange(17, 1)])
         
         context = try #require(string.moveLineDown(in: [NSRange(4, 6)]))
-        #expect(context.strings == ["aa\nd\nbbbb\nccc\n"])
-        #expect(context.ranges == [NSRange(0, 14)])
+        #expect(context.strings == ["d\nbbbb\nccc\n"])
+        #expect(context.ranges == [NSRange(3, 11)])
         #expect(context.selectedRanges == [NSRange(6, 6)])
         
         #expect(string.moveLineDown(in: [NSRange(14, 1)]) == nil)
@@ -127,8 +133,8 @@ struct StringLineProcessingTests {
         let string = "aa\nbb\ncc\n"
         var context = try #require(string.moveLineDown(in: [NSRange(3, 0), NSRange(9, 0)]))
         
-        #expect(context.strings == ["aa\ncc\nbb\n"])
-        #expect(context.ranges == [NSRange(0, 9)])
+        #expect(context.strings == ["cc\nbb\n"])
+        #expect(context.ranges == [NSRange(3, 6)])
         #expect(context.selectedRanges == [NSRange(6, 0), NSRange(9, 0)])
         
         // the caret on the trailing empty line must not be dropped
@@ -162,10 +168,9 @@ struct StringLineProcessingTests {
         let string = "aa\r\nbbbb\r\nccc\r\nd\r\neee"
         var context: EditingContext
         
-        // replacementRange unions from NSRange() so it grows from location 0
         context = try #require(string.moveLineDown(in: [NSRange(5, 1)]))
-        #expect(context.strings == ["aa\r\nccc\r\nbbbb\r\n"])
-        #expect(context.ranges == [NSRange(0, 15)])
+        #expect(context.strings == ["ccc\r\nbbbb\r\n"])
+        #expect(context.ranges == [NSRange(4, 11)])
         #expect(context.selectedRanges == [NSRange(10, 1)])
         
         // last line without trailing line break — needs to account for CRLF utf16 length (2)

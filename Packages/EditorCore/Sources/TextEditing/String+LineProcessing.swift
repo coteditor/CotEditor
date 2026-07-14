@@ -42,7 +42,7 @@ public extension String {
         guard !lineRanges.isEmpty, lineRanges.first!.lowerBound != 0 else { return nil }
         
         let string = NSMutableString(string: self)
-        var replacementRange = NSRange()
+        var replacementRange: NSRange?
         var movedSelectedRanges = [NSRange?](repeating: nil, count: ranges.count)
         let keepsEndInsertionPoint = self.last?.isNewline == true && lineRanges.last?.isEmpty != true
         
@@ -60,7 +60,7 @@ public extension String {
             // swap
             let editRange = lineRange.union(upperLineRange)
             string.replaceCharacters(in: editRange, with: lineString + upperLineString)
-            replacementRange.formUnion(editRange)
+            replacementRange = replacementRange?.union(editRange) ?? editRange
             
             // move selected ranges in the line to move
             for (index, selectedRange) in ranges.enumerated() {
@@ -82,6 +82,8 @@ public extension String {
                 }
             }
         }
+        guard let replacementRange else { return nil }
+        
         let selectedRanges = movedSelectedRanges.compactMap(\.self).uniqued.sorted(using: KeyPathComparator(\.location))
         let replacementString = string.substring(with: replacementRange)
         
@@ -105,7 +107,7 @@ public extension String {
         else { return nil }
         
         let string = NSMutableString(string: self)
-        var replacementRange = NSRange()
+        var replacementRange: NSRange?
         var movedSelectedRanges = [NSRange?](repeating: nil, count: ranges.count)
         
         // swap lines
@@ -122,7 +124,7 @@ public extension String {
             // swap
             let editRange = lineRange.union(lowerLineRange)
             string.replaceCharacters(in: editRange, with: lowerLineString + lineString)
-            replacementRange.formUnion(editRange)
+            replacementRange = replacementRange?.union(editRange) ?? editRange
             
             let offset = (lineString.last?.isNewline == true)
                 ? lowerLineRange.length
@@ -149,6 +151,8 @@ public extension String {
                 }
             }
         }
+        guard let replacementRange else { return nil }
+        
         let selectedRanges = movedSelectedRanges.compactMap(\.self).uniqued.sorted(using: KeyPathComparator(\.location))
         
         let replacementString = string.substring(with: replacementRange)
