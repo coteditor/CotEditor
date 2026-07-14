@@ -32,6 +32,11 @@
 - [dev] Update the build environment to Xcode 27 Beta 3 (Swift 6.4, macOS 27 SDK).
 
 
+### Fixes
+
+- Fix an issue where the insertion point could move to an incorrect column when extending a selection upward from the end of the document.
+
+
 ### Known Issues
 
 - The status bar text can appear black and unreadable when the light system appearance, dark document window appearance, and a dark theme are combined on macOS 26 (FB23611796).
