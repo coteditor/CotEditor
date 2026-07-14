@@ -26,6 +26,7 @@
 import AppKit
 import LineEnding
 import StringUtils
+import TextEditing
 import ValueRange
 
 extension EditorTextView {
@@ -766,42 +767,20 @@ extension EditorTextView {
     
     // MARK: Editing
     
-    /// Swaps the characters before and after the insertions (^T).
+    /// Transposes the characters around each insertion point (^T).
     override func transpose(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions else {
+        guard  self.hasMultipleInsertions || self.containsCRLF else {
             return super.transpose(sender)
         }
         
-        let string = self.string as NSString
+        // -> Do not invoke super, even with a single selection,
+        //    to workaround the framework issue with CRLF.
+        //    (2026-07, macOS 27)
         
-        var replacementRanges: [NSRange] = []
-        var replacementStrings: [String] = []
-        var selectedRanges: [NSRange] = []
-        for range in self.insertionRanges.reversed() {
-            guard range.isEmpty else {
-                selectedRanges.append(range)
-                continue
-            }
-            
-            let lastIndex = string.index(before: range.location)
-            let nextIndex = string.index(after: range.location)
-            
-            // keep cursors whose swap range overlaps the swap range of the adjacent cursor
-            if let lastRange = replacementRanges.last, nextIndex > lastRange.lowerBound {
-                selectedRanges.append(range)
-                continue
-            }
-            
-            let lastCharacter = string.substring(with: NSRange(lastIndex..<range.location))
-            let nextCharacter = string.substring(with: NSRange(range.location..<nextIndex))
-            
-            replacementStrings.append(nextCharacter + lastCharacter)
-            replacementRanges.append(NSRange(lastIndex..<nextIndex))
-            selectedRanges.append(NSRange(nextIndex..<nextIndex))
-        }
+        guard let context = self.string.transpose(at: self.insertionRanges) else { return }
         
-        self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
+        self.edit(with: context)
     }
 }
 
