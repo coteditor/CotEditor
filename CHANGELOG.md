@@ -3,6 +3,10 @@
 7.0.8 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue where the insertion point could move to an incorrect column when extending a selection upward from the end of the document.
+
 
 
 7.0.7 (2026-07-13)
