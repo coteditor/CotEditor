@@ -64,7 +64,8 @@ extension Collection {
     /// - Returns: The element at the specified index only if it is within bounds, otherwise nil.
     subscript(safe index: Index) -> Element? {
         
-        self.indices.contains(index) ? self[index] : nil
+        // -> Avoid using .indices to keep O(1) performance.
+        (self.startIndex..<self.endIndex).contains(index) ? self[index] : nil
     }
 }
 
