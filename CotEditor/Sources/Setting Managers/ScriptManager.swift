@@ -46,8 +46,6 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     
     // MARK: Private Properties
     
-    private nonisolated static let separator = "-"
-    
     private let scriptsDirectoryURL: URL?
     private var scope: String?
     private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
@@ -126,8 +124,11 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
                                            returnID: AEReturnID(kAutoGenerateReturnID),
                                            transactionID: AETransactionID(kAnyTransactionID))
         
-        let documentDescriptor = documentSpecifier.descriptor ?? NSAppleEventDescriptor(string: "BUG: document.objectSpecifier.descriptor was nil")
-        event.setParam(documentDescriptor, forKeyword: AEKeyword(keyDirectObject))
+        if let documentDescriptor = documentSpecifier.descriptor {
+            event.setParam(documentDescriptor, forKeyword: AEKeyword(keyDirectObject))
+        } else {
+            assertionFailure()
+        }
         
         await self.dispatch(event, handlers: scripts)
     }
@@ -312,7 +313,7 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
             let name = url.deletingPathExtension().lastPathComponent
                 .replacing(/^\d+\)/.asciiOnlyDigits(), with: "", maxReplacements: 1)  // remove ordering prefix
             
-            let item: ScriptMenuItem? = if name == Self.separator {
+            let item: ScriptMenuItem? = if name == "-" {
                 .separator
             } else if let script = try? ScriptDescriptor(contentsOf: url, name: name)?.makeScript() {
                 // -> Check script possibility before folder because a script can be a directory, e.g. .scptd.
