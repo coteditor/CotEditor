@@ -144,7 +144,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             defaults.publisher(for: .autoExpandTab, initial: true)
                 .filter { [document] _ in ModeManager.shared.setting(for: document.mode).indentOptions == nil }
                 .assign(to: \.isAutomaticTabExpansionEnabled, on: self.textView),
-            defaults.publisher(for: .modes)
+            defaults.publisher(for: .modes, initial: true)
                 .map { [document] _ in ModeManager.shared.setting(for: document.mode).indentOptions }
                 .removeDuplicates()
                 .sink { [textView] options in textView.applyIndentOptions(options) },
@@ -631,7 +631,7 @@ private extension EditorTextView {
             self.tabWidth = options.width
         } else {
             self.isAutomaticTabExpansionEnabled = UserDefaults.standard[.autoExpandTab]
-            self.tabWidth =  UserDefaults.standard[.tabWidth]
+            self.tabWidth = UserDefaults.standard[.tabWidth]
         }
     }
 }
