@@ -82,6 +82,7 @@ public extension String {
                 }
             }
         }
+        
         guard let replacementRange else { return nil }
         
         let selectedRanges = movedSelectedRanges.compactMap(\.self).uniqued.sorted(using: KeyPathComparator(\.location))
@@ -151,6 +152,7 @@ public extension String {
                 }
             }
         }
+        
         guard let replacementRange else { return nil }
         
         let selectedRanges = movedSelectedRanges.compactMap(\.self).uniqued.sorted(using: KeyPathComparator(\.location))
