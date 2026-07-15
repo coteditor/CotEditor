@@ -153,7 +153,7 @@ public struct Syntax: Equatable, Sendable {
             public var end: String
             public var isNestable: Bool
             
-            public var pair: Pair<String>  { .init(self.begin, self.end) }
+            public var pair: Pair<String>  { Pair(self.begin, self.end) }
             
             
             public init(begin: String = "", end: String = "", isNestable: Bool = false) {
@@ -326,11 +326,9 @@ public struct Syntax: Equatable, Sendable {
             completions
         } else {
             // from normal highlighting words
-            SyntaxType.allCases
-                .flatMap { type -> [CompletionWord] in
-                    guard let highlights = self.highlights[type] else { return [] }
-                    
-                    return highlights
+            self.highlights
+                .flatMap { type, highlights -> [CompletionWord] in
+                    highlights
                         .filter { $0.end == nil && !$0.isRegularExpression }
                         .map { $0.begin.trimmingCharacters(in: .whitespacesAndNewlines) }
                         .filter { !$0.isEmpty }
