@@ -138,10 +138,16 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
             defaults.publisher(for: .lineHeight, initial: true)
                 .assign(to: \.lineHeight, on: self.textView),
             defaults.publisher(for: .tabWidth, initial: true)
+                .filter { [document] _ in ModeManager.shared.setting(for: document.mode).indentOptions == nil }
                 .assign(to: \.tabWidth, on: self.textView),
             
             defaults.publisher(for: .autoExpandTab, initial: true)
+                .filter { [document] _ in ModeManager.shared.setting(for: document.mode).indentOptions == nil }
                 .assign(to: \.isAutomaticTabExpansionEnabled, on: self.textView),
+            defaults.publisher(for: .modes)
+                .map { [document] _ in ModeManager.shared.setting(for: document.mode).indentOptions }
+                .removeDuplicates()
+                .sink { [textView] options in textView.applyIndentOptions(options) },
             defaults.publisher(for: .autoIndent, initial: true)
                 .assign(to: \.isAutomaticIndentEnabled, on: self.textView),
             defaults.publisher(for: .trimsWhitespaceOnlyLines, initial: true)
@@ -597,6 +603,8 @@ private extension EditorTextView {
         self.defaultFontType = mode.fontType
         self.setFont(type: mode.fontType)
         
+        self.applyIndentOptions(mode.indentOptions)
+        
         self.smartInsertDeleteEnabled = mode.smartInsertDelete
         self.isAutomaticDashSubstitutionEnabled = mode.automaticDashSubstitution
         self.isAutomaticQuoteSubstitutionEnabled = mode.automaticQuoteSubstitution
@@ -610,6 +618,21 @@ private extension EditorTextView {
         
         self.completionWordTypes = mode.completionWordTypes
         self.isAutomaticCompletionEnabled = mode.automaticCompletion && !mode.completionWordTypes.isEmpty
+    }
+    
+    
+    /// Applies the given indentation settings, falling back to the default settings.
+    ///
+    /// - Parameter options: The indentation settings to apply.
+    func applyIndentOptions(_ options: ModeOptions.IndentOptions?) {
+        
+        if let options {
+            self.isAutomaticTabExpansionEnabled = options.expandsTab
+            self.tabWidth = options.width
+        } else {
+            self.isAutomaticTabExpansionEnabled = UserDefaults.standard[.autoExpandTab]
+            self.tabWidth =  UserDefaults.standard[.tabWidth]
+        }
     }
 }
 

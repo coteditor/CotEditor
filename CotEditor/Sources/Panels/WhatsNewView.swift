@@ -147,6 +147,7 @@ enum NewFeature: CaseIterable {
     case folderNavigationHistory
     case macOS27
     case documentName
+    case customIndentStyle
 }
 
 
@@ -163,6 +164,8 @@ private extension NewFeature {
                 Image(systemName: "27.circle")
             case .documentName:
                 Image(systemName: "rectangle.and.pencil.and.ellipsis")
+            case .customIndentStyle:
+                Image(systemName: "increase.indent")
         }
     }
     
@@ -186,6 +189,10 @@ private extension NewFeature {
                 String(localized: "NewFeature.documentName.label",
                        defaultValue: "Let the document name itself",
                        table: "WhatsNew")
+            case .customIndentStyle:
+                String(localized: "NewFeature.customIndentStyle.label",
+                       defaultValue: "Indentation that fits each syntax",
+                       table: "WhatsNew")
         }
     }
     
@@ -208,6 +215,10 @@ private extension NewFeature {
             case .documentName:
                 String(localized: "NewFeature.documentName.description",
                        defaultValue: "On macOS 27, untitled documents automatically get a draft name suggested from their content.",
+                       table: "WhatsNew")
+            case .customIndentStyle:
+                String(localized: "NewFeature.customIndentStyle.description",
+                       defaultValue: "Use Mode settings to customize the indentation style for individual syntaxes as needed.",
                        table: "WhatsNew")
         }
     }
