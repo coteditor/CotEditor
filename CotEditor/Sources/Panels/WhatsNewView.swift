@@ -66,6 +66,7 @@ struct WhatsNewView: View {
                             .symbolColorRenderingMode(.gradient)
                             .frame(width: 40, alignment: .center)
                             .accessibilityHidden(true)
+                            .padding(.top, 8)
                         
                         VStack(alignment: .leading, spacing: 4) {
                             Text(feature.label)
