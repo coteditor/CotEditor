@@ -214,6 +214,100 @@
         }
       }
     },
+    "NewFeature.customIndentStyle.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passe bei Bedarf den Einzugsstil für einzelne Syntaxen in den Einstellungen „Modus“ an."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Use Mode settings to customize the indentation style for individual syntaxes as needed."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use Mode settings to customize the indentation style for individual syntaxes as needed."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Usa los ajustes de Modo para personalizar el estilo de sangría de sintaxis concretas cuando sea necesario."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Utilisez les réglages Mode pour personnaliser le style d’indentation de certaines syntaxes si nécessaire."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "必要に応じて、「モード」設定でシンタックスごとにインデントスタイルをカスタマイズできるようになりました。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pas de inspringstijl zo nodig per syntaxis aan in de Modusinstellingen."
+          }
+        }
+      }
+    },
+    "NewFeature.customIndentStyle.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einrückung passend zur Syntax"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Indentation that fits each syntax"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indentation that fits each syntax"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Una sangría adaptada a cada sintaxis"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Une indentation adaptée à chaque syntaxe"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "シンタックスに合わせたインデント"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Inspringing passend bij elke syntaxis"
+          }
+        }
+      }
+    },
     "NewFeature.documentName.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
