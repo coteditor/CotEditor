@@ -24,6 +24,7 @@
 //
 
 import SwiftUI
+import Defaults
 import SyntaxFormat
 
 struct ModeSettingsView: View {
@@ -273,7 +274,90 @@ private struct ModeOptionsView: View {
                     .disabled(self.options.completionWordTypes.isEmpty)
                 }
             }
+            .padding(.bottom, 12)
+            
+            LabeledContent(String(localized: "Indentation:", table: "ModeSettings")) {
+                ModeIndentOptionsView(options: $options.indentOptions)
+            }
         }
+    }
+}
+
+
+private struct ModeIndentOptionsView: View {
+    
+    @Binding var options: ModeOptions.IndentOptions?
+    
+    
+    @Namespace private var accessibility
+    
+    @AppStorage(.autoExpandTab) private var defaultExpandsTab
+    @AppStorage(.tabWidth) private var defaultIndentWidth
+    
+    
+    var body: some View {
+        
+        VStack(alignment: .leading) {
+            Toggle(String(localized: "Use custom settings", table: "ModeSettings"),
+                   isOn: self.usesCustomIndentation)
+            
+            Group {
+                HStack(alignment: .firstTextBaseline) {
+                    Text(String(localized: "Prefer using", table: "EditSettings"))
+                        .accessibilityLabeledPair(role: .label, id: "expandsTab", in: self.accessibility)
+                    Picker(selection: self.expandsTab) {
+                        Text("Spaces", tableName: "EditSettings", comment: "indent style").tag(true)
+                        Text("Tabs", tableName: "EditSettings", comment: "indent style").tag(false)
+                    } label: {
+                        EmptyView()
+                    }
+                    .accessibilityLabeledPair(role: .content, id: "expandsTab", in: self.accessibility)
+                }
+                
+                HStack(alignment: .firstTextBaseline) {
+                    Text("Indent width:", tableName: "EditSettings")
+                        .accessibilityLabeledPair(role: .label, id: "indentWidth", in: self.accessibility)
+                    StepperNumberField(value: self.indentWidth, default: self.defaultIndentWidth, in: 1...99)
+                        .accessibilityLabeledPair(role: .content, id: "indentWidth", in: self.accessibility)
+                    Text("spaces", tableName: "EditSettings", comment: "unit for indentation")
+                }
+            }
+            .labelsHidden()
+            .disabled(self.options == nil)
+            .foregroundStyle(self.options != nil ? .primary : .tertiary)
+            .padding(.leading, 20)
+        }
+    }
+    
+    
+    /// Whether the mode uses custom indentation settings.
+    private var usesCustomIndentation: Binding<Bool> {
+        
+        Binding(
+            get: { self.options != nil },
+            set: { usesCustomIndentation in
+                self.options = usesCustomIndentation
+                    ? .init(expandsTab: self.defaultExpandsTab, width: self.defaultIndentWidth)
+                    : nil
+            })
+    }
+    
+    
+    /// Whether tabs are expanded in the custom indentation settings.
+    private var expandsTab: Binding<Bool> {
+        
+        Binding(
+            get: { self.options?.expandsTab ?? self.defaultExpandsTab },
+            set: { self.options?.expandsTab = $0 })
+    }
+    
+    
+    /// The custom indentation width.
+    private var indentWidth: Binding<Int> {
+        
+        Binding(
+            get: { self.options?.width ?? self.defaultIndentWidth },
+            set: { self.options?.width = $0 })
     }
 }
 

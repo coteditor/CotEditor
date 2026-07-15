@@ -27,6 +27,13 @@ import SyntaxFormat
 
 struct ModeOptions: Equatable, Codable {
     
+    struct IndentOptions: Equatable, Codable {
+        
+        var expandsTab: Bool
+        var width: Int
+    }
+    
+    
     var fontType: FontType = .standard
     
     var smartInsertDelete: Bool = false
@@ -42,6 +49,8 @@ struct ModeOptions: Equatable, Codable {
     
     var completionWordTypes: CompletionWordTypes = []
     var automaticCompletion: Bool = false
+    
+    var indentOptions: IndentOptions?
 }
 
 
@@ -127,6 +136,10 @@ extension ModeOptions {
         
         self.completionWordTypes = CompletionWordTypes(rawValue: dictionary[.completionWordTypes] as? Int ?? 0)
         self.automaticCompletion = dictionary[.automaticCompletion] as? Bool ?? false
+        
+        if let dictionary = dictionary[.indentOptions] as? [String: AnyHashable] {
+            self.indentOptions = IndentOptions(dictionary: dictionary)
+        }
     }
     
     
@@ -143,25 +156,63 @@ extension ModeOptions {
     }
     
     
-    /// A complete dictionary of all option values keyed by `CodingKeys`.
+    /// A dictionary of option values keyed by `CodingKeys`.
     private var keyedDictionary: [ModeOptions.CodingKeys: AnyHashable] {
         
-        [CodingKeys
-         .fontType: self.fontType.rawValue,
-         
-         .smartInsertDelete: self.smartInsertDelete,
-         .automaticQuoteSubstitution: self.automaticQuoteSubstitution,
-         .automaticDashSubstitution: self.automaticDashSubstitution,
-         .automaticTextReplacement: self.automaticTextReplacement,
-         .automaticPeriodSubstitution: self.automaticPeriodSubstitution,
-         .automaticSymbolBalancing: self.automaticSymbolBalancing,
-         
-         .continuousSpellChecking: self.continuousSpellChecking,
-         .grammarChecking: self.grammarChecking,
-         .automaticSpellingCorrection: self.automaticSpellingCorrection,
-         
-         .completionWordTypes: self.completionWordTypes.rawValue,
-         .automaticCompletion: self.automaticCompletion,
+        var dictionary: [ModeOptions.CodingKeys: AnyHashable] = [
+            .fontType: self.fontType.rawValue,
+            
+            .smartInsertDelete: self.smartInsertDelete,
+            .automaticQuoteSubstitution: self.automaticQuoteSubstitution,
+            .automaticDashSubstitution: self.automaticDashSubstitution,
+            .automaticTextReplacement: self.automaticTextReplacement,
+            .automaticPeriodSubstitution: self.automaticPeriodSubstitution,
+            .automaticSymbolBalancing: self.automaticSymbolBalancing,
+            
+            .continuousSpellChecking: self.continuousSpellChecking,
+            .grammarChecking: self.grammarChecking,
+            .automaticSpellingCorrection: self.automaticSpellingCorrection,
+            
+            .completionWordTypes: self.completionWordTypes.rawValue,
+            .automaticCompletion: self.automaticCompletion,
         ]
+        
+        if let indentOptions {
+            dictionary[.indentOptions] = indentOptions.dictionary
+        }
+        
+        return dictionary
+    }
+}
+
+
+private extension ModeOptions.IndentOptions {
+    
+    /// Instantiates from the serialization form.
+    ///
+    /// - Parameter dictionary: The dictionary.
+    init?(dictionary: [String: AnyHashable]) {
+        
+        let dictionary = dictionary.compactMapKeys(CodingKeys.init(stringValue:))
+        
+        guard
+            let expandsTab = dictionary[CodingKeys.expandsTab] as? Bool,
+            let width = dictionary[CodingKeys.width] as? Int,
+            (1...99).contains(width)
+        else { return nil }
+        
+        self.init(expandsTab: expandsTab, width: width)
+    }
+    
+    
+    /// The dictionary representation to serialize.
+    var dictionary: [String: AnyHashable] {
+        
+        let dictionary: [CodingKeys: AnyHashable] = [
+            .expandsTab: self.expandsTab,
+            .width: self.width,
+        ]
+        
+        return dictionary.mapKeys(\.stringValue)
     }
 }

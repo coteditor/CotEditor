@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2025 1024jp
+//  © 2025-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,15 +45,38 @@ struct ModeTests {
             fontType: .monospaced,
             automaticDashSubstitution: false,  // <- default value
             automaticTextReplacement: false,
-            completionWordTypes: [.document, .syntax]
+            completionWordTypes: [.document, .syntax],
+            indentOptions: .init(expandsTab: true, width: 2)
         )
-        
-        #expect(mode.dictionary == [
+        let indentOptions: [String: AnyHashable] = [
+            "expandsTab": true,
+            "width": 2,
+        ]
+        let dictionary: [String: AnyHashable] = [
             "fontType": "monospaced",
             "automaticTextReplacement": false,
             "completionWordTypes": mode.completionWordTypes.rawValue,
-        ])
+            "indentOptions": indentOptions,
+        ]
+        
+        #expect(mode.dictionary == dictionary)
         #expect(ModeOptions(dictionary: mode.dictionary) == mode)
+    }
+    
+    
+    @Test func invalidIndentOptionsSerialization() {
+        
+        let invalidWidth: [String: AnyHashable] = [
+            "expandsTab": true,
+            "width": 0,
+        ]
+        let invalidType: [String: AnyHashable] = [
+            "expandsTab": "true",
+            "width": 4,
+        ]
+        
+        #expect(ModeOptions(dictionary: ["indentOptions": invalidWidth])?.indentOptions == nil)
+        #expect(ModeOptions(dictionary: ["indentOptions": invalidType])?.indentOptions == nil)
     }
     
     
@@ -69,6 +92,7 @@ struct ModeTests {
         setting.automaticSymbolBalancing = true
         setting.completionWordTypes = [.document, .syntax]
         setting.automaticCompletion = true
+        setting.indentOptions = .init(expandsTab: true, width: 2)
         
         manager.save(setting: setting, mode: .kind(.code))
         try manager.addSetting(for: "Swift")
