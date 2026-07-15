@@ -312,7 +312,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     func textView(_ view: NSTextView, menu: NSMenu, for event: NSEvent, at charIndex: Int) -> NSMenu? {
         
         // add "Inspect Character" menu item if single character is selected
-        if self.textView.selectsSingleCharacter == true {
+        if self.textView.selectsSingleCharacter {
             menu.insertItem(.init(title: String(localized: "Inspect Character", table: "MainMenu"),
                                   systemImage: "character.bubble",
                                   action: #selector(showSelectionInfo)),
@@ -504,7 +504,7 @@ extension EditorTextViewController: NSUserInterfaceValidations {
                 return true
                 
             case #selector(showSelectionInfo):
-                return self.textView.selectsSingleCharacter == true
+                return self.textView.selectsSingleCharacter
                 
             case nil:
                 return false
@@ -641,6 +641,7 @@ private extension EditorTextView {
 
 private extension MultiCursorEditing {
     
+    /// Whether only a single character is selected.
     var selectsSingleCharacter: Bool {
         
         !self.hasMultipleInsertions && self.selectedString.compareCount(with: 1) == .equal

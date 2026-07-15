@@ -60,7 +60,7 @@ struct MultipleReplaceCodableTests {
         #expect(decoded.usesRegularExpression == false)
         #expect(decoded.ignoresCase == false)
         #expect(decoded.description == nil)
-        #expect(decoded.isEnabled == true)
+        #expect(decoded.isEnabled)
     }
     
     

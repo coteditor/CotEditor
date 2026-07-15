@@ -158,7 +158,7 @@ struct VersionTests {
     @Test func isPrerelease() {
         
         #expect(Version(5, 0, 1).isPrerelease == false)
-        #expect(Version(5, 0, 1, prereleaseIdentifier: "beta").isPrerelease == true)
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "beta").isPrerelease)
     }
     
     

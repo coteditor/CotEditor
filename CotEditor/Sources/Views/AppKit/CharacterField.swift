@@ -53,7 +53,7 @@ final class CharacterField: NSTextField {
         
         self.attributedStringValue.draw(at: drawingPoint)
         
-        if self.drawsGuide == true {
+        if self.drawsGuide {
             self.bounds.frame(withWidth: 0.2)
             centeringRect.frame(withWidth: 0.2)
         }
