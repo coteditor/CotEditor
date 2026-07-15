@@ -49,23 +49,33 @@ final class PrintTextView: NSTextView {
     private let headerFooterFontSize: Double = 9
     
     
+    // MARK: Public Properties
+    
+    var tabWidth: Int = 4  { didSet { self.needsUpdateTextStyle = true } }
+    
+    
     // MARK: Private Properties
     
     private let documentInfo: DocumentInfo
-    private let tabWidth: Int
     private let lineHeight: CGFloat
     private var theme: Theme?
     private var printsLineNumber = false
     private var xOffset: CGFloat = 0
+    private var needsUpdateTextStyle = true
     private var lastPaperContentSize: NSSize = .zero
     
     
     // MARK: Lifecycle
     
+    /// Creates a text view for printing a document.
+    ///
+    /// - Parameters:
+    ///   - textStorage: The text storage to print.
+    ///   - lineEndingScanner: The line ending scanner for the document.
+    ///   - info: The document information to display in headers and footers.
     init(textStorage: NSTextStorage, lineEndingScanner: LineEndingScanner, info: DocumentInfo) {
         
         self.documentInfo = info
-        self.tabWidth = UserDefaults.standard[.tabWidth]
         self.lineHeight = UserDefaults.standard[.lineHeight]
         
         // setup textContainer
@@ -135,26 +145,7 @@ final class PrintTextView: NSTextView {
     override var font: NSFont? {
         
         didSet {
-            guard let font else { return }
-            
-            let spaceWidth = font.width(of: " ")
-            
-            (self.textContainer as? TextContainer)?.spaceWidth = spaceWidth
-            
-            // setup paragraph style
-            let paragraphStyle = (self.defaultParagraphStyle ?? .default).mutable
-            paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * spaceWidth
-            paragraphStyle.lineHeightMultiple = self.lineHeight
-            self.defaultParagraphStyle = paragraphStyle
-            self.typingAttributes[.paragraphStyle] = paragraphStyle
-            self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.range)
-            
-            // set attributes for the hanging indent width calculation
-            (self.textContainer as? TextContainer)?.indentAttributes = [.font: font, .paragraphStyle: paragraphStyle]
-            
-            // set font also to layout manager
-            (self.layoutManager as? LayoutManager)?.textFont = font
+            self.needsUpdateTextStyle = true
         }
     }
     
@@ -163,6 +154,7 @@ final class PrintTextView: NSTextView {
         
         if let printInfo = NSPrintOperation.current?.printInfo {
             self.apply(printInfo: printInfo)
+            self.updateTextStyleIfNeeded()
             
             // adjust paddings considering the line numbers
             let printsAtLeft = (self.printsLineNumber && self.baseWritingDirection != .rightToLeft)
@@ -261,6 +253,37 @@ final class PrintTextView: NSTextView {
     
     
     // MARK: Private Methods
+    
+    /// Updates the text style if needed.
+    private func updateTextStyleIfNeeded() {
+        
+        guard
+            self.needsUpdateTextStyle,
+            let font
+        else { return }
+        
+        let spaceWidth = font.width(of: " ")
+        
+        (self.textContainer as? TextContainer)?.spaceWidth = spaceWidth
+        
+        // setup paragraph style
+        let paragraphStyle = (self.defaultParagraphStyle ?? .default).mutable
+        paragraphStyle.tabStops = []
+        paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * spaceWidth
+        paragraphStyle.lineHeightMultiple = self.lineHeight
+        self.defaultParagraphStyle = paragraphStyle
+        self.typingAttributes[.paragraphStyle] = paragraphStyle
+        self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.range)
+        
+        // set attributes for the hanging indent width calculation
+        (self.textContainer as? TextContainer)?.indentAttributes = [.font: font, .paragraphStyle: paragraphStyle]
+        
+        // set font also to layout manager
+        (self.layoutManager as? LayoutManager)?.textFont = font
+        
+        self.needsUpdateTextStyle = false
+    }
+    
     
     /// Applies the current print settings in the print info.
     ///

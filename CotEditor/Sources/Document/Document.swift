@@ -724,6 +724,7 @@ extension NSTextView: EditorCounter.Source { }
         let viewController = self.viewController!
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
         printView.baseWritingDirection = viewController.writingDirection
+        printView.tabWidth = viewController.tabWidth
         printView.ligature = self.textView?.ligature ?? .standard
         printView.font = viewController.font?.withSize(UserDefaults.standard[.printFontSize])
         
