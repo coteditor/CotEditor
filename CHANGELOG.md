@@ -83,6 +83,7 @@
 - [trivial] Fix an issue where the help button in the Completion pane of the syntax editor opened the Highlighting help page.
 
 
+
 7.0.6 (2026-07-05)
 --------------------------
 
