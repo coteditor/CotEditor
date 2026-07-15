@@ -113,12 +113,12 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     ///   - documentSpecifier: The script object specifier of the target document.
     func dispatch(event eventType: ScriptingEventType, document documentSpecifier: NSScriptObjectSpecifier) async {
         
+        guard let scripts = self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
+        
         // wait for the ongoing script scan before reading scriptHandlersTable
         while self.isUpdatingMenu, let menuUpdateTask = self.menuUpdateTask {
             try? await menuUpdateTask.value
         }
-
-        guard let scripts = self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
         
         let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"),
                                            eventID: eventType.eventID,
