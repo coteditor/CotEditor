@@ -470,7 +470,7 @@ private struct SyntaxListView: View {
         
         if let selection {
             if isContext {
-                Button(String(localized: "Edit…", table: "FormatSettings"), systemImage: "square.and.pencil") {
+                Button(String(localized: "Action.edit.ellipsis.label", defaultValue: "Edit…"), systemImage: "square.and.pencil") {
                     self.editingMode = .edit(selection)
                 }
             }
