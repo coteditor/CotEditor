@@ -69,11 +69,11 @@ struct AboutView: View {
             }
             .textSelection(.enabled)
             .multilineTextAlignment(.center)
-            .fixedSize()
             .accessibilitySortPriority(1)
             .scenePadding([.leading, .vertical])
             .padding(.trailing)
-            .frame(minWidth: 200, maxHeight: .infinity)
+            .frame(maxHeight: .infinity)
+            .frame(width: 200)
             .background(.fill.quaternary)
             
             Divider()
@@ -109,9 +109,10 @@ struct AboutView: View {
             }
             .scrollEdgeEffectStyle(.soft, for: .top)
             .contentMargins(20, for: .scrollContent)
+            .frame(width: 340)
         }
         .controlSize(.small)
-        .frame(width: 540, height: 320)
+        .frame(height: 320)
     }
 }
 
