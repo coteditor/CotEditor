@@ -4430,7 +4430,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "存储"
+            "value" : "保存"
           }
         },
         "zh-Hant" : {
@@ -4556,7 +4556,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "頁面設定⋯"
+            "value" : "設定頁面⋯"
           }
         }
       }
@@ -4694,7 +4694,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sichern als …"
+            "value" : "Sichern unter …"
           }
         },
         "en" : {
@@ -4724,7 +4724,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salva come…"
+            "value" : "Salva col nome…"
           }
         },
         "ja" : {
@@ -4736,7 +4736,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "다음으로 저장…"
+            "value" : "별도 저장…"
           }
         },
         "nl" : {
@@ -4772,7 +4772,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "存储为…"
+            "value" : "保存为…"
           }
         },
         "zh-Hant" : {
@@ -5570,7 +5570,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "复原到已存储版本"
+            "value" : "复原到已存版本"
           }
         },
         "zh-Hant" : {
@@ -6536,7 +6536,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ocultar otros"
+            "value" : "Ocultar otras apps"
           }
         },
         "fr" : {
@@ -6548,7 +6548,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nascondi altri"
+            "value" : "Nascondi altre"
           }
         },
         "ja" : {
@@ -6662,7 +6662,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra tutto"
+            "value" : "Mostra tutte"
           }
         },
         "ja" : {
