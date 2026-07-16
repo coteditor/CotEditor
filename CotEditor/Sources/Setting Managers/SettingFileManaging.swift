@@ -26,6 +26,7 @@
 import Foundation
 import UniformTypeIdentifiers
 import AppKit.NSApplication
+import StringUtils
 import URLUtils
 
 typealias SettingChange = ItemChange<String>

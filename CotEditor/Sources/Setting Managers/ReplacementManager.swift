@@ -25,7 +25,7 @@
 
 import Foundation
 import TextFind
-import URLUtils
+import StringUtils
 
 @MainActor @Observable final class ReplacementManager: SettingFileManaging {
     

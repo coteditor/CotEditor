@@ -26,7 +26,7 @@
 import Foundation
 import UniformTypeIdentifiers
 import Defaults
-import URLUtils
+import StringUtils
 
 @MainActor @Observable final class ThemeManager: SettingFileManaging {
     

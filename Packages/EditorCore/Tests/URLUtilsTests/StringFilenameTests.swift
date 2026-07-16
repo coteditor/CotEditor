@@ -53,18 +53,6 @@ struct StringFilenameTests {
     }
     
     
-    @Test func numberingComponents() {
-        
-        #expect(" ".numberingComponents == (" ", 1))
-        #expect("1".numberingComponents == ("1", 1))
-        #expect(" 1".numberingComponents == (" 1", 1))
-        #expect("test".numberingComponents == ("test", 1))
-        #expect("test 5".numberingComponents == ("test", 5))
-        #expect("test copy".numberingComponents == ("test copy", 1))
-        #expect("test copy 5".numberingComponents == ("test copy", 5))
-    }
-    
-    
     @Test func englishFormat() {
         
         let format = NumberingFormat { base in
@@ -138,18 +126,5 @@ struct StringFilenameTests {
         #expect(format.filename("test 1", count: 1) == "Copia de test 1")
         #expect(format.filename("test", count: 2) == "Copia de test 2")
         #expect(format.filename("test 1", count: 2) == "Copia de test 1 2")
-    }
-    
-    
-    @Test func appendingUniqueNumber() {
-        
-        let names = ["foo", "foo 3", "foo copy 3", "foo 4", "foo 7"]
-        
-        #expect("foo".appendingUniqueNumber(in: names) == "foo 2")
-        #expect("foo 2".appendingUniqueNumber(in: names) == "foo 2")
-        #expect("foo 3".appendingUniqueNumber(in: names) == "foo 5")
-        #expect("foo".appendingUniqueNumber(in: names + ["foo 2", "foo 2"]) == "foo 5")
-        
-        #expect("foo".appendingUniqueNumber(in: []) == "foo")
     }
 }

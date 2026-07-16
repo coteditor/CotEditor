@@ -40,36 +40,4 @@ public extension String {
         
         return String(match.1)
     }
-    
-    
-    /// Creates a unique name from the given names by adding the smallest unique number if needed.
-    ///
-    /// - Parameters:
-    ///   - names: The names already taken.
-    /// - Returns: A unique name.
-    func appendingUniqueNumber(in names: [String]) -> String {
-        
-        let (base, count) = self.numberingComponents
-        let usedNames = Set(names)
-        
-        return (count...).lazy
-            .map { ($0 < 2) ? base : "\(base) \($0)" }
-            .first { !usedNames.contains($0) }!
-    }
-}
-
-
-extension String {
-    
-    /// Splits the receiver into parts of filename for unique numbering..
-    var numberingComponents: (base: String, count: Int) {
-        
-        assert(!self.isEmpty)
-        
-        let match = self.wholeMatch(of: /(?<base>.+?)(?: (?<number>[0-9]+))?/)!
-        let base = String(match.base)
-        let count = match.number.flatMap { Int($0) } ?? 1
-        
-        return (base, count)
-    }
 }
