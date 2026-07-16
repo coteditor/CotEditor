@@ -37,7 +37,7 @@ struct FolderFindView: View {
     
     
     var body: some View {
-    
+        
         List(selection: $selection) {
             if case .finished(let summary) = self.model.state {
                 ForEach(summary.files) { file in
@@ -132,7 +132,7 @@ private struct FolderFindControlView: View {
     var model: FolderFinder
     
     @State private var textFinderSettings: TextFinderSettings = .shared
-    @State private var showsFileScopeSheet = false
+    @State private var isFileScopeEditorPresented = false
     @State private var fileScope = FileScope()
     
     @AppStorage(.folderFindUsesRegularExpression) private var usesRegularExpression: Bool
@@ -176,7 +176,7 @@ private struct FolderFindControlView: View {
                 .frame(width: 16, alignment: .center)
                 
                 Button(String(localized: "File Scope…", table: "Document"), systemImage: "text.magnifyingglass") {
-                    self.showsFileScopeSheet = true
+                    self.isFileScopeEditorPresented = true
                 }
                 .foregroundStyle(self.fileScope.isEmpty ? .secondary : Color.accentColor)
                 .fontWeight(self.fileScope.isEmpty ? .regular : .semibold)
@@ -211,7 +211,7 @@ private struct FolderFindControlView: View {
                 self.model.findStringDidChange(to: findString)
             }
         }
-        .sheet(isPresented: $showsFileScopeSheet) {
+        .sheet(isPresented: $isFileScopeEditorPresented) {
             FolderFindFileScopeView(fileScope: self.fileScope) { fileScope in
                 self.fileScope = fileScope
             }
