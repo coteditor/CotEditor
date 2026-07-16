@@ -133,7 +133,10 @@ private struct FolderFindControlView: View {
     
     @State private var textFinderSettings: TextFinderSettings = .shared
     @State private var isFileScopeEditorPresented = false
+    @State private var isSavedScopesEditorPresented = false
     @State private var fileScope = FileScope()
+    
+    @State private var savedScopesData: [String: Data] = [:]
     
     @AppStorage(.folderFindUsesRegularExpression) private var usesRegularExpression: Bool
     @AppStorage(.folderFindIgnoresCase) private var ignoresCase: Bool
@@ -175,13 +178,6 @@ private struct FolderFindControlView: View {
                 .labelStyle(.iconOnly)
                 .frame(width: 16, alignment: .center)
                 
-                Button(String(localized: "File Scope…", table: "Document"), systemImage: "text.magnifyingglass") {
-                    self.isFileScopeEditorPresented = true
-                }
-                .foregroundStyle(self.fileScope.isEmpty ? .secondary : Color.accentColor)
-                .fontWeight(self.fileScope.isEmpty ? .regular : .semibold)
-                .labelStyle(.iconOnly)
-                
                 Menu {
                     Toggle(String(localized: "Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
                     Toggle(String(localized: "Include Other File Types", table: "Document", comment: "toggle button label"), isOn: $includesOtherFileTypes)
@@ -210,14 +206,84 @@ private struct FolderFindControlView: View {
             .onTextChange { findString in
                 self.model.findStringDidChange(to: findString)
             }
+            
+            Menu {
+                Button(String(localized: "Edit File Scope…", table: "Document")) {
+                    self.isFileScopeEditorPresented = true
+                }
+                Button(String(localized: "Clear File Scope", table: "Document")) {
+                    self.fileScope = FileScope()
+                }
+                .disabled(self.fileScope.isEmpty)
+                
+                if !self.savedScopes.isEmpty {
+                    Picker(String(localized: "Saved Scopes", table: "Document"), selection: $fileScope) {
+                        ForEach(self.savedScopes.sorted(using: KeyPathComparator(\.key, comparator: .localizedStandard)), id: \.key) { name, scope in
+                            Label(name, systemImage: "text.magnifyingglass")
+                                .tag(scope)
+                        }
+                    }
+                    .pickerStyle(.inline)
+                    .labelStyle(.titleAndIcon)
+                    
+                    Button(String(localized: "Manage Saved Scopes…", table: "Document")) {
+                        self.isSavedScopesEditorPresented = true
+                    }
+                }
+            } label: {
+                Label(self.currentScopeName ?? String(localized: "File Scope", table: "Document"), systemImage: "text.magnifyingglass")
+                    .foregroundStyle(self.fileScope.isEmpty ? .secondary : Color.accentColor)
+            }
+            .labelIconToTitleSpacing(6)
+            .buttonStyle(.plain)
+            .controlSize(.small)
         }
         .sheet(isPresented: $isFileScopeEditorPresented) {
-            FolderFindFileScopeView(fileScope: self.fileScope) { fileScope in
+            FolderFindFileScopeView(fileScope: self.fileScope, savedScopes: self.savedScopesBinding) { fileScope in
                 self.fileScope = fileScope
             }
             .scenePadding()
             .presentationSizing(.fitted)
         }
+        .sheet(isPresented: $isSavedScopesEditorPresented) {
+            FolderFindSavedScopesView(scopes: self.savedScopesBinding)
+                .scenePadding()
+                .presentationSizing(.fitted)
+        }
+        .onReceive(UserDefaults.standard.publisher(for: .folderFindSavedScopes, initial: true)) { scopesData in
+            self.savedScopesData = scopesData
+        }
+    }
+    
+    
+    /// The saved file scopes persisted in the user defaults.
+    private var savedScopes: [String: FileScope] {
+        
+        get {
+            self.savedScopesData.compactMapValues { try? JSONDecoder().decode(FileScope.self, from: $0) }
+        }
+        
+        nonmutating set {
+            UserDefaults.standard[.folderFindSavedScopes] = newValue.compactMapValues { try? JSONEncoder().encode($0) }
+        }
+    }
+    
+    
+    /// The binding to the saved scopes to pass to the sheets.
+    private var savedScopesBinding: Binding<[String: FileScope]> {
+        
+        Binding(get: { self.savedScopes }, set: { self.savedScopes = $0 })
+    }
+    
+    
+    /// The name of the saved scope equivalent to the current file scope.
+    private var currentScopeName: String? {
+        
+        self.savedScopes
+            .filter { $0.value == self.fileScope }
+            .keys
+            .sorted(using: .localizedStandard)
+            .first
     }
 }
 
