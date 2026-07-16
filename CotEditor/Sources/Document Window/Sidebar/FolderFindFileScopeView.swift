@@ -27,27 +27,19 @@ public import Foundation
 public import FolderFind
 import AppKit
 import SwiftUI
+import StringUtils
 
 struct FolderFindFileScopeView: View {
     
+    @State var fileScope: FileScope
+    var savedScopes: Binding<[String: FileScope]>?
+    var completionHandler: (FileScope) -> Void
+    
+    
     @Environment(\.dismiss) private var dismiss
     
-    @State private var fileScope: FileScope
     @State private var validationError: FileScope.Error?
-    
-    private var completionHandler: (FileScope) -> Void
-    
-    
-    /// Initializes a file scope editor view.
-    ///
-    /// - Parameters:
-    ///   - fileScope: The initial file scope.
-    ///   - completionHandler: The handler to call with the updated file scope.
-    init(fileScope: FileScope, completionHandler: @escaping (FileScope) -> Void) {
-        
-        self._fileScope = State(initialValue: fileScope)
-        self.completionHandler = completionHandler
-    }
+    @State private var isScopeSaveViewPresented = false
     
     
     var body: some View {
@@ -63,8 +55,14 @@ struct FolderFindFileScopeView: View {
             }
             
             SubmitButtonGroup(helpAnchor: "howto_find_in_folder", action: self.apply, supplementalButton: {
-                Button(String(localized: "Action.removeAll.label", defaultValue: "Remove All"), action: self.clear)
+                if let savedScopes = self.savedScopes,
+                   !savedScopes.wrappedValue.values.contains(self.fileScope.normalized)
+                {
+                    Button(String(localized: "Save as Named Scope…", table: "Document")) {
+                        self.beginSavingScope()
+                    }
                     .disabled(self.fileScope.normalized.isEmpty)
+                }
             })
             .padding(.top)
         }
@@ -72,6 +70,16 @@ struct FolderFindFileScopeView: View {
             self.validationError = nil
         }
         .frame(minWidth: 400, idealWidth: 540)
+        .sheet(isPresented: $isScopeSaveViewPresented) {
+            if let savedScopes = self.savedScopes {
+                ScopeSaveView(scopes: savedScopes, scope: self.fileScope.normalized) {
+                    self.completionHandler(self.fileScope.normalized)
+                    self.dismiss()
+                }
+                .scenePadding()
+                .presentationSizing(.fitted)
+            }
+        }
     }
     
     
@@ -104,14 +112,6 @@ struct FolderFindFileScopeView: View {
     }
     
     
-    /// Clears the file scope.
-    private func clear() {
-        
-        self.fileScope = FileScope()
-        self.validationError = nil
-    }
-    
-    
     /// Applies the current file scope and closes the sheet.
     private func apply() {
         
@@ -126,6 +126,75 @@ struct FolderFindFileScopeView: View {
         
         self.completionHandler(fileScope)
         self.dismiss()
+    }
+    
+    
+    /// Validates the current file scope and presents the sheet to save it as a named scope.
+    private func beginSavingScope() {
+        
+        let fileScope = self.fileScope.normalized
+        
+        do {
+            try fileScope.validate()
+        } catch {
+            self.validationError = error
+            return
+        }
+        
+        self.isScopeSaveViewPresented = true
+    }
+}
+
+
+private struct ScopeSaveView: View {
+    
+    private enum Focus {
+        
+        case field
+    }
+    
+    
+    @Binding var scopes: [String: FileScope]
+    var scope: FileScope
+    var completionHandler: () -> Void
+    
+    @Environment(\.dismiss) private var dismiss
+    
+    @FocusState private var focus: Focus?
+    @State private var name = ""
+    
+    
+    var body: some View {
+        
+        VStack(alignment: .leading) {
+            Form {
+                TextField(String(localized: "ScopeSaveView.label", defaultValue: "Save as:", table: "Document"),
+                          text: $name,
+                          prompt: Text(String(localized: "ScopeSaveView.field.label", defaultValue: "Name", table: "Document")))
+                .focused($focus, equals: .field)
+                .onSubmit(self.submit)
+            }
+            
+            SubmitButtonGroup(String(localized: "Action.save.label", defaultValue: "Save"), action: self.submit)
+                .padding(.top)
+        }
+        .onAppear {
+            self.focus = .field
+        }
+        .frame(idealWidth: 300)
+    }
+    
+    
+    /// Saves the scope under the input name and closes the sheet.
+    private func submit() {
+        
+        let name = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard !name.isEmpty else { return NSSound.beep() }
+        
+        self.scopes[name.appendingUniqueNumber(in: self.scopes.keys)] = self.scope
+        self.dismiss()
+        self.completionHandler()
     }
 }
 
@@ -547,11 +616,11 @@ extension FileScope.Error: @retroactive LocalizedError {
         switch self {
             case .emptyValue:
                 String(localized: "FileScope.Error.emptyValue.message",
-                       defaultValue: "The file scope contains a rule without a value.",
+                       defaultValue: "The scope contains a rule without a value.",
                        table: "Document")
             case .invalidRegularExpression:
                 String(localized: "FileScope.Error.invalidRegularExpression.message",
-                       defaultValue: "The file scope contains an invalid regular expression.",
+                       defaultValue: "The scope contains an invalid regular expression.",
                        table: "Document")
         }
     }

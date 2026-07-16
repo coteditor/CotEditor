@@ -641,6 +641,46 @@
         }
       }
     },
+    "Clear File Scope" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dateibereich löschen"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear File Scope"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Borrar ámbito de archivos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Effacer le périmètre des fichiers"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイルスコープを消去"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Wis bestandsbereik"
+          }
+        }
+      }
+    },
     "Close split editor" : {
       "comment" : "tooltip for button",
       "localizations" : {
@@ -2706,6 +2746,46 @@
         }
       }
     },
+    "Edit File Scope…" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dateibereich bearbeiten …"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit File Scope…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Editar ámbito de archivos…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Modifier le périmètre des fichiers…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイルスコープを編集…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Wijzig bestandsbereik…"
+          }
+        }
+      }
+    },
     "Editor" : {
       "comment" : "accessibility label",
       "localizations" : {
@@ -3186,49 +3266,48 @@
         }
       }
     },
-    "File Scope…" : {
-      "comment" : "menu item title",
+    "File Scope" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dateibereich…"
+            "value" : "Dateibereich"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "File Scope…"
+            "value" : "File Scope"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Ámbito de archivos…"
+            "value" : "Ámbito de archivos"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Périmètre des fichiers…"
+            "value" : "Périmètre des fichiers"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ファイルスコープ…"
+            "value" : "ファイルスコープ"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Bestandsbereik…"
+            "value" : "Bestandsbereik"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檔案範圍⋯"
+            "value" : "檔案範圍"
           }
         }
       }
@@ -4460,49 +4539,49 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Dateibereich enthält eine Regel ohne Wert."
+            "value" : "Der Bereich enthält eine Regel ohne Wert."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "The file scope contains a rule without a value."
+            "value" : "The scope contains a rule without a value."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The file scope contains a rule without a value."
+            "value" : "The scope contains a rule without a value."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "El ámbito de archivos contiene una regla sin valor."
+            "value" : "El ámbito contiene una regla sin valor."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Le périmètre des fichiers contient une règle sans valeur."
+            "value" : "Le périmètre contient une règle sans valeur."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ファイルスコープに値が入力されていないルールがあります。"
+            "value" : "スコープに値が入力されていないルールがあります。"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Het bestandsbereik bevat een regel zonder waarde."
+            "value" : "Het bereik bevat een regel zonder waarde."
           }
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "檔案範圍包括未包括值的規則。"
+            "state" : "needs_review",
+            "value" : "範圍包括未包括值的規則。"
           }
         }
       }
@@ -4513,49 +4592,49 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Dateibereich enthält einen ungültigen regulären Ausdruck."
+            "value" : "Der Bereich enthält einen ungültigen regulären Ausdruck."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "The file scope contains an invalid regular expression."
+            "value" : "The scope contains an invalid regular expression."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The file scope contains an invalid regular expression."
+            "value" : "The scope contains an invalid regular expression."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "El ámbito de archivos contiene una expresión regular no válida."
+            "value" : "El ámbito contiene una expresión regular no válida."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Le périmètre des fichiers contient une expression régulière non valide."
+            "value" : "Le périmètre contient une expression régulière non valide."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ファイルスコープに不正な正規表現が含まれています。"
+            "value" : "スコープに不正な正規表現が含まれています。"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Het bestandsbereik bevat een ongeldige reguliere expressie."
+            "value" : "Het bereik bevat een ongeldige reguliere expressie."
           }
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "檔案範圍包括無效的常規表示式。"
+            "state" : "needs_review",
+            "value" : "範圍包括無效的常規表示式。"
           }
         }
       }
@@ -9383,6 +9462,46 @@
         }
       }
     },
+    "Manage Saved Scopes…" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesicherte Bereiche verwalten …"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage Saved Scopes…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Gestionar ámbitos guardados…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Gérer les périmètres enregistrés…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存されたスコープを管理…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Beheer bewaarde bereiken…"
+          }
+        }
+      }
+    },
     "Mode" : {
       "comment" : "label in document inspector",
       "localizations" : {
@@ -12588,6 +12707,126 @@
         }
       }
     },
+    "Save as Named Scope…" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Als benannten Bereich sichern …"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save as Named Scope…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Guardar como ámbito con nombre…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Enregistrer comme périmètre nommé…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名前を付けて保存…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bewaar als benoemd bereik…"
+          }
+        }
+      }
+    },
+    "Saved Scopes" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesicherte Bereiche"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved Scopes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ámbitos guardados"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Périmètres enregistrés"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存されたスコープ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bewaarde bereiken"
+          }
+        }
+      }
+    },
+    "Saved scopes:" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesicherte Bereiche:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved scopes:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ámbitos guardados:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Périmètres enregistrés :"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存されたスコープ:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bewaarde bereiken:"
+          }
+        }
+      }
+    },
     "Scanning incompatible characters…" : {
       "localizations" : {
         "bg" : {
@@ -12690,6 +12929,160 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "正在掃描不相容的字元⋯"
+          }
+        }
+      }
+    },
+    "ScopeSaveView.field.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Name"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nombre"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nom"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名前"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Naam"
+          }
+        }
+      }
+    },
+    "ScopeSaveView.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uložit jako:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sichern unter:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Save as:"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save as:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardar como:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer sous :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salva col nome:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "名前:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "별도 저장:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bewaar als:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowaj jako:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvar como:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить как:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Farklı Kaydet:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存为："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存為："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存為："
           }
         }
       }

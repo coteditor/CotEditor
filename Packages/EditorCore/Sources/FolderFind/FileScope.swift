@@ -26,7 +26,7 @@
 
 public import Foundation
 
-public struct FileScope: Equatable, Codable, Sendable {
+public struct FileScope: Hashable, Codable, Sendable {
     
     public var conjunction: Conjunction
     public var rules: [Rule]
@@ -72,7 +72,7 @@ public extension FileScope {
     }
     
     
-    struct Rule: Equatable, Codable, Sendable {
+    struct Rule: Hashable, Codable, Sendable {
         
         public var target: Target
         public var comparison: Comparison

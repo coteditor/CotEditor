@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -130,6 +130,13 @@ public extension UserDefaults {
     subscript(key: DefaultKey<[String: AnyHashable]>) -> [String: AnyHashable] {
         
         get { self.dictionary(forKey: key.rawValue) as? [String: AnyHashable] ?? [:] }
+        set { self.set(newValue, forKey: key.rawValue) }
+    }
+    
+    
+    subscript(key: DefaultKey<[String: Data]>) -> [String: Data] {
+        
+        get { self.dictionary(forKey: key.rawValue) as? [String: Data] ?? [:] }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     
