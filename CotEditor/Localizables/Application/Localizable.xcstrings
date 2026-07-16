@@ -3585,7 +3585,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不存储"
+            "value" : "不保存"
           }
         },
         "zh-Hant" : {
@@ -3699,7 +3699,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果不存储，你更改的内容将会丢失。保存时将替换或删除不兼容的字符。"
+            "value" : "如果不保存，你更改的内容将会丢失。保存时将替换或删除不兼容的字符。"
           }
         },
         "zh-Hant" : {
@@ -3813,7 +3813,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "你要存储对文稿“%@”所做的更改吗？"
+            "value" : "你要保存对文稿“%@”所做的更改吗？"
           }
         },
         "zh-Hant" : {
@@ -5062,7 +5062,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "保存时将替换或删除不兼容的字符。仍要存储吗？"
+            "value" : "保存时将替换或删除不兼容的字符。仍要保存吗？"
           }
         },
         "zh-Hant" : {
@@ -12522,7 +12522,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "该文稿可能已使用了不同的文本编码来存储，或者可能不是文本文件。"
+            "value" : "该文稿可能已使用了不同的文本编码来保存，或者可能不是文本文件。"
           }
         },
         "zh-Hant" : {
