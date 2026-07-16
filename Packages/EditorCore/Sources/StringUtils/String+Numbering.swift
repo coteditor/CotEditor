@@ -31,7 +31,7 @@ public extension String {
     /// - Parameters:
     ///   - names: The names already taken.
     /// - Returns: A unique name.
-    func appendingUniqueNumber(in names: [String]) -> String {
+    func appendingUniqueNumber(in names: any Sequence<String>) -> String {
         
         let (base, count) = self.numberingComponents
         let usedNames = Set(names)
