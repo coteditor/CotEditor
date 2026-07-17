@@ -144,9 +144,10 @@ struct Search {
         }
         
         let matches = try self.matches(in: string, using: textFind)
-        self.recordSearchedFile(matchCount: matches.count)
         
         guard !matches.isEmpty else { return }
+        
+        self.recordSearchedFile(matchCount: matches.count)
         
         let rootPathComponents = self.rootURL.standardizedFileURL.pathComponents
         let directoryPathComponents = candidate.fileURL.deletingLastPathComponent().standardizedFileURL.pathComponents
@@ -214,7 +215,7 @@ struct Search {
     /// - Parameter matchCount: The number of matches found in the file.
     private mutating func recordSearchedFile(matchCount: Int) {
         
-        guard matchCount > 0 else { return }
+        assert(matchCount > 0)
         
         self.metrics.matchCount += matchCount
         self.metrics.matchedFileCount += 1
