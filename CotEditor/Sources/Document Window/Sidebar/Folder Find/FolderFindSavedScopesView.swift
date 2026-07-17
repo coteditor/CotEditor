@@ -31,6 +31,7 @@ struct FolderFindSavedScopesView: View {
     
     enum Change {
         
+        case add(name: String, fileScope: FileScope)
         case update(originalName: String, name: String, fileScope: FileScope)
         case delete(name: String)
     }
@@ -45,7 +46,8 @@ struct FolderFindSavedScopesView: View {
     }
     
     
-    @Binding var scopes: [String: FileScope]
+    var scopes: [String: FileScope]
+    var savedScopeNames: Set<String>
     var changeHandler: (_ change: Change) -> Void = { _ in }
     
     @Environment(\.dismiss) private var dismiss
@@ -97,16 +99,17 @@ struct FolderFindSavedScopesView: View {
             }
         }
         .sheet(isPresented: $isAddingScope) {
-            FolderFindFileScopeView(fileScope: FileScope(), name: "", savedScopes: $scopes) { _, name in
+            FolderFindFileScopeView(fileScope: FileScope(), name: "", savedScopeNames: self.savedScopeNames) { fileScope, name in
                 guard let name else { return assertionFailure() }
                 
+                self.changeHandler(.add(name: name, fileScope: fileScope))
                 self.selection = name
             }
             .scenePadding()
             .presentationSizing(FolderFindFileScopeView.sheetPresentationSizing)
         }
         .sheet(item: $editingItem) { item in
-            FolderFindFileScopeView(fileScope: item.scope, name: item.name, savedScopes: $scopes) { fileScope, name in
+            FolderFindFileScopeView(fileScope: item.scope, name: item.name, savedScopeNames: self.savedScopeNames) { fileScope, name in
                 guard let name else { return assertionFailure() }
                 
                 self.selection = name
@@ -121,7 +124,6 @@ struct FolderFindSavedScopesView: View {
         { name in
             Button(String(localized: "Action.delete.label", defaultValue: "Delete"), role: .destructive) {
                 self.changeHandler(.delete(name: name))
-                self.scopes[name] = nil
                 self.selection = nil
             }
         } message: { _ in
@@ -196,9 +198,9 @@ struct FolderFindSavedScopesView: View {
         
         guard let scope = self.scopes[name] else { return }
         
-        let newName = name.appendingUniqueNumber(in: self.scopes.keys)
+        let newName = name.appendingUniqueNumber(in: self.savedScopeNames)
         
-        self.scopes[newName] = scope
+        self.changeHandler(.add(name: newName, fileScope: scope))
         self.selection = newName
     }
 }
@@ -207,11 +209,11 @@ struct FolderFindSavedScopesView: View {
 // MARK: - Preview
 
 #Preview {
-    @Previewable @State var scopes: [String: FileScope] = [
+    let scopes: [String: FileScope] = [
         "Swift": FileScope(rules: [.init(target: .fileExtension, comparison: .isEqualTo, value: "swift")]),
         "No Builds": FileScope(rules: [.init(target: .filePath, comparison: .doesNotContain, value: "build")]),
     ]
     
-    FolderFindSavedScopesView(scopes: $scopes)
+    FolderFindSavedScopesView(scopes: scopes, savedScopeNames: Set(scopes.keys))
         .scenePadding()
 }

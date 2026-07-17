@@ -220,12 +220,14 @@ private struct FileScopeMenu: View {
     
     @Binding var selection: FileScopeSelection
     
-    @State private var savedScopes: [String: FileScope] = [:]
+    @State private var savedScopesData: [String: Data] = [:]
     @State private var isFileScopeEditorPresented = false
     @State private var isSavedScopesEditorPresented = false
     
     
     var body: some View {
+        
+        let savedScopes = self.savedScopesData.compactMapValues { try? JSONDecoder().decode(FileScope.self, from: $0) }
         
         Menu {
             Button(String(localized: "Edit File Scope…", table: "Document")) {
@@ -236,9 +238,9 @@ private struct FileScopeMenu: View {
             }
             .disabled(self.selection.fileScope.isEmpty)
             
-            if !self.savedScopes.isEmpty {
+            if !savedScopes.isEmpty {
                 Picker(String(localized: "Saved Scopes", table: "Document"), selection: $selection.name) {
-                    ForEach(self.savedScopes.keys.sorted(using: .localizedStandard), id: \.self) { name in
+                    ForEach(savedScopes.keys.sorted(using: .localizedStandard), id: \.self) { name in
                         Label(name, systemImage: "text.magnifyingglass")
                             .tag(name)
                     }
@@ -258,40 +260,31 @@ private struct FileScopeMenu: View {
         .buttonStyle(.plain)
         .controlSize(.small)
         .onChange(of: self.selection.name) { _, newValue in
-            // fired also on programmatic selection updates, in which case the assignment below
-            // is no-op because the selection is always updated before the saved scopes store
-            if let newValue, let fileScope = self.savedScopes[newValue] {
+            // fired also on programmatic selection updates, in which case the reassignment below
+            // is harmless because the looked-up scope is identical to the one already assigned
+            if let newValue, let fileScope = savedScopes[newValue] {
                 self.selection.fileScope = fileScope
             }
         }
         .sheet(isPresented: $isFileScopeEditorPresented) {
-            FolderFindFileScopeView(fileScope: self.selection.fileScope, name: self.selection.name, savedScopes: self.savedScopesBinding) { fileScope, name in
-                self.selection = FileScopeSelection(name: name, fileScope: fileScope)
+            FolderFindFileScopeView(fileScope: self.selection.fileScope, name: self.selection.name, savedScopeNames: Set(self.savedScopesData.keys)) { fileScope, name in
+                self.apply(fileScope, name: name)
             }
             .scenePadding()
             .presentationSizing(FolderFindFileScopeView.sheetPresentationSizing)
         }
         .sheet(isPresented: $isSavedScopesEditorPresented) {
-            FolderFindSavedScopesView(scopes: self.savedScopesBinding) { change in
-                switch change {
-                    case .update(let originalName, let name, let fileScope):
-                        if self.selection.name == originalName {
-                            self.selection = FileScopeSelection(name: name, fileScope: fileScope)
-                        }
-                    case .delete(let name):
-                        if self.selection.name == name {
-                            self.selection.name = nil
-                        }
-                }
-            }
+            FolderFindSavedScopesView(scopes: savedScopes,
+                                      savedScopeNames: Set(self.savedScopesData.keys),
+                                      changeHandler: self.handleSavedScopesChange)
             .scenePadding()
             .presentationSizing(.fitted)
         }
         .onReceive(UserDefaults.standard.publisher(for: .folderFindSavedScopes, initial: true)) { scopesData in
-            self.savedScopes = scopesData.compactMapValues { try? JSONDecoder().decode(FileScope.self, from: $0) }
+            self.savedScopesData = scopesData
             
             if let name = self.selection.name {
-                if let fileScope = self.savedScopes[name] {
+                if let data = scopesData[name], let fileScope = try? JSONDecoder().decode(FileScope.self, from: data) {
                     self.selection.fileScope = fileScope
                 } else {
                     self.selection.name = nil
@@ -301,11 +294,80 @@ private struct FileScopeMenu: View {
     }
     
     
-    /// The binding to the saved scopes that stores changes in the user defaults.
-    private var savedScopesBinding: Binding<[String: FileScope]> {
+    /// Applies a file scope edited from the scope menu.
+    ///
+    /// - Parameters:
+    ///   - fileScope: The edited file scope.
+    ///   - name: The name under which the file scope is saved, or `nil` for an unnamed scope.
+    private func apply(_ fileScope: FileScope, name: String?) {
         
-        Binding(get: { self.savedScopes },
-                set: { UserDefaults.standard[.folderFindSavedScopes] = $0.compactMapValues { try? JSONEncoder().encode($0) } })
+        if let name {
+            self.save(fileScope, name: name, replacing: self.selection.name)
+        }
+        
+        self.selection = FileScopeSelection(name: name, fileScope: fileScope)
+        
+        if name != nil {
+            self.persistSavedScopes()
+        }
+    }
+    
+    
+    /// Applies a change from the saved scopes editor.
+    ///
+    /// - Parameter change: The change to apply.
+    private func handleSavedScopesChange(_ change: FolderFindSavedScopesView.Change) {
+        
+        switch change {
+            case .add(let name, let fileScope):
+                self.save(fileScope, name: name)
+                
+            case .update(let originalName, let name, let fileScope):
+                self.save(fileScope, name: name, replacing: originalName)
+                
+                if self.selection.name == originalName {
+                    self.selection = FileScopeSelection(name: name, fileScope: fileScope)
+                }
+                
+            case .delete(let name):
+                self.savedScopesData[name] = nil
+                
+                if self.selection.name == name {
+                    self.selection.name = nil
+                }
+        }
+        
+        self.persistSavedScopes()
+    }
+    
+    
+    /// Saves a file scope in the persisted representation.
+    ///
+    /// - Parameters:
+    ///   - fileScope: The file scope to save.
+    ///   - name: The name under which to save the file scope.
+    ///   - originalName: The current name to remove, or `nil` when adding a scope.
+    private func save(_ fileScope: FileScope, name: String, replacing originalName: String? = nil) {
+        
+        let data: Data
+        do {
+            data = try JSONEncoder().encode(fileScope)
+        } catch {
+            assertionFailure("Failed to encode a saved file scope: \(error)")
+            return
+        }
+        
+        if let originalName {
+            self.savedScopesData[originalName] = nil
+        }
+        self.savedScopesData[name] = data
+    }
+    
+    
+    /// Writes the saved scopes to the user defaults.
+    private func persistSavedScopes() {
+        
+        UserDefaults.standard[.folderFindSavedScopes] = self.savedScopesData
     }
 }
 

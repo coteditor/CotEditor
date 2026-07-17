@@ -53,7 +53,7 @@ struct FolderFindFileScopeView: View {
     @State private var name: String
     private let originalName: String?
     
-    @Binding private var savedScopes: [String: FileScope]
+    private let savedScopeNames: Set<String>
     var completionHandler: (_ fileScope: FileScope, _ name: String?) -> Void
     
     
@@ -68,14 +68,14 @@ struct FolderFindFileScopeView: View {
     /// - Parameters:
     ///   - fileScope: The file scope to edit.
     ///   - name: The name of the saved scope, an empty string to create a new saved scope, or `nil` for an unnamed scope.
-    ///   - savedScopes: The saved scopes available to the editor.
+    ///   - savedScopeNames: The names reserved by saved scopes.
     ///   - completionHandler: The action to perform when the editing is accepted.
-    init(fileScope: FileScope, name: String? = nil, savedScopes: Binding<[String: FileScope]>, completionHandler: @escaping (_ fileScope: FileScope, _ name: String?) -> Void) {
+    init(fileScope: FileScope, name: String? = nil, savedScopeNames: Set<String>, completionHandler: @escaping (_ fileScope: FileScope, _ name: String?) -> Void) {
         
         self._fileScope = State(initialValue: fileScope)
         self._name = State(initialValue: name ?? "")
         self.originalName = name
-        self._savedScopes = savedScopes
+        self.savedScopeNames = savedScopeNames
         self.completionHandler = completionHandler
     }
     
@@ -123,7 +123,7 @@ struct FolderFindFileScopeView: View {
         }
         .frame(minWidth: 400, idealWidth: 540, maxHeight: .infinity, alignment: .top)
         .sheet(isPresented: $isScopeSaveViewPresented) {
-            ScopeSaveView(scopes: $savedScopes, scope: self.fileScope.normalized) { name in
+            ScopeSaveView(savedScopeNames: self.savedScopeNames) { name in
                 self.completionHandler(self.fileScope.normalized, name)
                 self.dismiss()
             }
@@ -140,7 +140,7 @@ struct FolderFindFileScopeView: View {
         
         guard self.validate(fileScope) else { return }
         
-        if let originalName {
+        if self.originalName != nil {
             let newName = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
             
             do {
@@ -151,13 +151,7 @@ struct FolderFindFileScopeView: View {
                 return
             }
             
-            // update the current selection before the defaults publisher observes the renamed key
             self.completionHandler(fileScope, newName)
-            
-            var savedScopes = self.savedScopes
-            savedScopes[originalName] = nil
-            savedScopes[newName] = fileScope
-            self.savedScopes = savedScopes
             
         } else {
             self.completionHandler(fileScope, nil)
@@ -198,7 +192,7 @@ struct FolderFindFileScopeView: View {
             throw .newLine
         }
         
-        guard name == self.originalName || self.savedScopes[name] == nil else {
+        guard name == self.originalName || !self.savedScopeNames.contains(name) else {
             throw .duplicated(name: name)
         }
     }
@@ -247,8 +241,7 @@ private struct ScopeSaveView: View {
     }
     
     
-    @Binding var scopes: [String: FileScope]
-    var scope: FileScope
+    var savedScopeNames: Set<String>
     var completionHandler: (_ name: String) -> Void
     
     @Environment(\.dismiss) private var dismiss
@@ -285,8 +278,7 @@ private struct ScopeSaveView: View {
         
         guard !name.isEmpty else { return NSSound.beep() }
         
-        let uniqueName = name.appendingUniqueNumber(in: self.scopes.keys)
-        self.scopes[uniqueName] = self.scope
+        let uniqueName = name.appendingUniqueNumber(in: self.savedScopeNames)
         self.dismiss()
         self.completionHandler(uniqueName)
     }
@@ -789,6 +781,6 @@ private extension FileScope.Rule.Comparison {
 // MARK: - Preview
 
 #Preview {
-    FolderFindFileScopeView(fileScope: .init(), savedScopes: .constant([:])) { _, _ in }
+    FolderFindFileScopeView(fileScope: .init(), savedScopeNames: []) { _, _ in }
         .scenePadding()
 }
