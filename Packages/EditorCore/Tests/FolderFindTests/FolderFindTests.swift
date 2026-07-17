@@ -576,7 +576,6 @@ struct FolderFindTests {
         await #expect(throws: FileScope.Error.invalidRegularExpression(pattern: "[")) {
             try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope), progress: progress)
         }
-        
     }
     
     
@@ -595,7 +594,6 @@ struct FolderFindTests {
         await #expect(throws: FileScope.Error.emptyValue) {
             try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope), progress: progress)
         }
-        
     }
     
     
