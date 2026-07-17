@@ -59,7 +59,7 @@ struct FolderFindFileScopeView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @State private var validationError: FileScope.Error?
+    @State private var validationError: (any Error)?
     @State private var isScopeSaveViewPresented = false
     
     
@@ -91,10 +91,17 @@ struct FolderFindFileScopeView: View {
             ConjunctionPicker(selection: $fileScope.conjunction)
             RuleEditor(rules: $fileScope.rules)
             
-            if let validationError {
-                Label(validationError.localizedDescription, systemImage: "exclamationmark.triangle.fill")
-                    .symbolRenderingMode(.multicolor)
+            Group {
+                if let validationError {
+                    Label(validationError.localizedDescription, systemImage: "exclamationmark.triangle.fill")
+                        .symbolRenderingMode(.multicolor)
+                        .lineLimit(1)
+                } else {
+                    Color.clear
+                }
             }
+            .frame(height: 10)
+            .padding(.vertical, 4)
             
             SubmitButtonGroup(helpAnchor: "howto_find_in_folder", action: self.apply, supplementalButton: {
                 if self.originalName == nil {
@@ -106,9 +113,12 @@ struct FolderFindFileScopeView: View {
                     .disabled(self.fileScope.normalized.isEmpty)
                 }
             })
-            .padding(.top)
+            .disabled(self.originalName != nil && self.fileScope.normalized.isEmpty)
         }
         .onChange(of: self.fileScope) {
+            self.validationError = nil
+        }
+        .onChange(of: self.name) {
             self.validationError = nil
         }
         .frame(minWidth: 400, idealWidth: 540, maxHeight: .infinity, alignment: .top)
@@ -133,10 +143,13 @@ struct FolderFindFileScopeView: View {
         if let originalName {
             let newName = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
             
-            guard
-                !newName.isEmpty,
-                newName == originalName || self.savedScopes[newName] == nil
-            else { return NSSound.beep() }
+            do {
+                try self.validateName(newName)
+            } catch {
+                self.validationError = error
+                NSSound.beep()
+                return
+            }
             
             // update the current selection before the defaults publisher observes the renamed key
             self.completionHandler(fileScope, newName)
@@ -168,6 +181,26 @@ struct FolderFindFileScopeView: View {
         }
         
         return true
+    }
+    
+    
+    /// Validates the input scope name.
+    ///
+    /// - Parameter name: The scope name to validate.
+    /// - Throws: `InvalidNameError` if the name is invalid.
+    private func validateName(_ name: String) throws(InvalidNameError) {
+        
+        guard !name.isEmpty else {
+            throw .empty
+        }
+        
+        guard !name.contains(where: \.isNewline) else {
+            throw .newLine
+        }
+        
+        guard name == self.originalName || self.savedScopes[name] == nil else {
+            throw .duplicated(name: name)
+        }
     }
 }
 
