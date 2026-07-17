@@ -132,11 +132,7 @@ private struct FolderFindControlView: View {
     var model: FolderFinder
     
     @State private var textFinderSettings: TextFinderSettings = .shared
-    @State private var isFileScopeEditorPresented = false
-    @State private var isSavedScopesEditorPresented = false
     @State private var fileScope = FileScope()
-    
-    @State private var savedScopesData: [String: Data] = [:]
     
     @AppStorage(.folderFindUsesRegularExpression) private var usesRegularExpression: Bool
     @AppStorage(.folderFindIgnoresCase) private var ignoresCase: Bool
@@ -155,9 +151,9 @@ private struct FolderFindControlView: View {
                         .tag(true)
                 } currentValueLabel: {
                     self.usesRegularExpression
-                    ? Text("Regular Expression", tableName: "TextFind")
-                        .foregroundStyle(.tint)
-                    : Text("Text", tableName: "TextFind")
+                        ? Text("Regular Expression", tableName: "TextFind")
+                            .foregroundStyle(.tint)
+                        : Text("Text", tableName: "TextFind")
                 }
                 .pickerStyle(.menu)
                 .labelsVisibility(.hidden)
@@ -207,37 +203,53 @@ private struct FolderFindControlView: View {
                 self.model.findStringDidChange(to: findString)
             }
             
-            Menu {
-                Button(String(localized: "Edit File Scope…", table: "Document")) {
-                    self.isFileScopeEditorPresented = true
-                }
-                Button(String(localized: "Clear File Scope", table: "Document")) {
-                    self.fileScope = FileScope()
-                }
-                .disabled(self.fileScope.isEmpty)
-                
-                if !self.savedScopes.isEmpty {
-                    Picker(String(localized: "Saved Scopes", table: "Document"), selection: $fileScope) {
-                        ForEach(self.savedScopes.sorted(using: KeyPathComparator(\.key, comparator: .localizedStandard)), id: \.key) { name, scope in
-                            Label(name, systemImage: "text.magnifyingglass")
-                                .tag(scope)
-                        }
-                    }
-                    .pickerStyle(.inline)
-                    .labelStyle(.titleAndIcon)
-                    
-                    Button(String(localized: "Manage Saved Scopes…", table: "Document")) {
-                        self.isSavedScopesEditorPresented = true
-                    }
-                }
-            } label: {
-                Label(self.currentScopeName ?? String(localized: "File Scope", table: "Document"), systemImage: "text.magnifyingglass")
-                    .foregroundStyle(self.fileScope.isEmpty ? .secondary : Color.accentColor)
-            }
-            .labelIconToTitleSpacing(6)
-            .buttonStyle(.plain)
-            .controlSize(.small)
+            FileScopeMenu(fileScope: $fileScope)
         }
+    }
+}
+
+
+private struct FileScopeMenu: View {
+    
+    @Binding var fileScope: FileScope
+    
+    @State private var savedScopesData: [String: Data] = [:]
+    @State private var isFileScopeEditorPresented = false
+    @State private var isSavedScopesEditorPresented = false
+    
+    
+    var body: some View {
+        
+        Menu {
+            Button(String(localized: "Edit File Scope…", table: "Document")) {
+                self.isFileScopeEditorPresented = true
+            }
+            Button(String(localized: "Clear File Scope", table: "Document")) {
+                self.fileScope = FileScope()
+            }
+            .disabled(self.fileScope.isEmpty)
+            
+            if !self.savedScopes.isEmpty {
+                Picker(String(localized: "Saved Scopes", table: "Document"), selection: $fileScope) {
+                    ForEach(self.savedScopes.sorted(using: KeyPathComparator(\.key, comparator: .localizedStandard)), id: \.key) { name, scope in
+                        Label(name, systemImage: "text.magnifyingglass")
+                            .tag(scope)
+                    }
+                }
+                .pickerStyle(.inline)
+                .labelStyle(.titleAndIcon)
+                
+                Button(String(localized: "Manage Saved Scopes…", table: "Document")) {
+                    self.isSavedScopesEditorPresented = true
+                }
+            }
+        } label: {
+            Label(self.currentScopeName ?? String(localized: "File Scope", table: "Document"), systemImage: "text.magnifyingglass")
+                .foregroundStyle(self.fileScope.isEmpty ? .secondary : Color.accentColor)
+                .labelIconToTitleSpacing(6)
+        }
+        .buttonStyle(.plain)
+        .controlSize(.small)
         .sheet(isPresented: $isFileScopeEditorPresented) {
             FolderFindFileScopeView(fileScope: self.fileScope, savedScopes: self.savedScopesBinding) { fileScope in
                 self.fileScope = fileScope
