@@ -98,11 +98,12 @@ struct FolderFindFileScopeView: View {
             
             SubmitButtonGroup(helpAnchor: "howto_find_in_folder", action: self.apply, supplementalButton: {
                 if self.originalName == nil {
-                    let fileScope = self.fileScope.normalized
                     Button(String(localized: "Save as Named Scope…", table: "Document")) {
-                        self.beginSavingScope(for: fileScope)
+                        guard self.validate(self.fileScope.normalized) else { return }
+                        
+                        self.isScopeSaveViewPresented = true
                     }
-                    .disabled(fileScope.isEmpty)
+                    .disabled(self.fileScope.normalized.isEmpty)
                 }
             })
             .padding(.top)
@@ -127,12 +128,7 @@ struct FolderFindFileScopeView: View {
         
         let fileScope = self.fileScope.normalized
         
-        do {
-            try fileScope.validate()
-        } catch {
-            self.validationError = error
-            return
-        }
+        guard self.validate(fileScope) else { return }
         
         if let originalName {
             let newName = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -158,21 +154,20 @@ struct FolderFindFileScopeView: View {
     }
     
     
-    /// Validates the given file scope and presents the sheet to save it as a named scope.
+    /// Validates the given file scope and updates the validation error state.
     ///
-    /// - Parameter fileScope: The normalized file scope to validate.
-    private func beginSavingScope(for fileScope: FileScope) {
-        
-        assert(fileScope == fileScope.normalized)
+    /// - Parameter fileScope: The file scope to validate.
+    /// - Returns: `true` if the file scope is valid.
+    private func validate(_ fileScope: FileScope) -> Bool {
         
         do {
             try fileScope.validate()
         } catch {
             self.validationError = error
-            return
+            return false
         }
         
-        self.isScopeSaveViewPresented = true
+        return true
     }
 }
 
