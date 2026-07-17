@@ -66,6 +66,14 @@ struct FolderFindSavedScopesView: View {
                         .listRowSeparator(.hidden)
                 }
             }
+            .safeAreaBar(edge: .bottom) {
+                VStack(spacing: 0) {
+                    Divider()
+                    self.bottomAccessoryView
+                        .padding(6)
+                }
+            }
+            .scrollEdgeEffectStyle(.hard, for: .bottom)
             .contextMenu(forSelectionType: String.self) { selections in
                 if selections.count == 1, let selection = selections.first {
                     self.contextMenu(for: selection)
@@ -74,22 +82,8 @@ struct FolderFindSavedScopesView: View {
             .border(.separator)
             .frame(minWidth: 240, minHeight: 180)
             
-            HStack {
-                Button(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus") {
-                    self.deletingItem = self.selection
-                }
-                .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
-                .labelStyle(.iconOnly)
-                .disabled(self.selection == nil)
-                
+            HStack(alignment: .firstTextBaseline) {
                 Spacer()
-                
-                Button(String(localized: "Action.edit.ellipsis.label", defaultValue: "Edit…")) {
-                    if let name = self.selection, let scope = self.scopes[name] {
-                        self.editingItem = EditingScope(name: name, scope: scope)
-                    }
-                }
-                .disabled(self.selection == nil)
                 
                 Button(role: .close) {
                     self.dismiss()
@@ -120,6 +114,39 @@ struct FolderFindSavedScopesView: View {
             Text(String(localized: "DeletionConfirmation.message",
                         defaultValue: "This action cannot be undone."))
         }
+    }
+    
+    
+    /// The action buttons to place at the bottom of the list.
+    @ContentBuilder private var bottomAccessoryView: some View {
+        
+        HStack(alignment: .firstTextBaseline) {
+            Button {
+                self.deletingItem = self.selection
+            } label: {
+                Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
+                    .padding(2)
+            }
+            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
+            .frame(width: 16)
+            .disabled(self.selection == nil)
+            
+            Button {
+                if let name = self.selection, let scope = self.scopes[name] {
+                    self.editingItem = EditingScope(name: name, scope: scope)
+                }
+            } label: {
+                Label(String(localized: "Action.edit.ellipsis.label", defaultValue: "Edit…"), systemImage: "pencil")
+                    .padding(2)
+            }
+            .help(String(localized: "Action.edit.tooltip", defaultValue: "Edit selected item"))
+            .frame(width: 16)
+            .disabled(self.selection == nil)
+            
+            Spacer()
+        }
+        .labelStyle(.iconOnly)
+        .buttonStyle(.borderless)
     }
     
     
