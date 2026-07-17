@@ -220,7 +220,7 @@ private struct FileScopeMenu: View {
     
     @Binding var selection: FileScopeSelection
     
-    @State private var savedScopesData: [String: Data] = [:]
+    @State private var savedScopes: [String: FileScope] = [:]
     @State private var isFileScopeEditorPresented = false
     @State private var isSavedScopesEditorPresented = false
     
@@ -245,11 +245,6 @@ private struct FileScopeMenu: View {
                 }
                 .pickerStyle(.inline)
                 .labelStyle(.titleAndIcon)
-                .onChange(of: self.selection.name) { _, name in
-                    if let name, let fileScope = self.savedScopes[name] {
-                        self.selection.fileScope = fileScope
-                    }
-                }
                 
                 Button(String(localized: "Manage Saved Scopes…", table: "Document")) {
                     self.isSavedScopesEditorPresented = true
@@ -262,6 +257,13 @@ private struct FileScopeMenu: View {
         }
         .buttonStyle(.plain)
         .controlSize(.small)
+        .onChange(of: self.selection.name) { _, newValue in
+            // fired also on programmatic selection updates, in which case the assignment below
+            // is no-op because the selection is always updated before the saved scopes store
+            if let newValue, let fileScope = self.savedScopes[newValue] {
+                self.selection.fileScope = fileScope
+            }
+        }
         .sheet(isPresented: $isFileScopeEditorPresented) {
             FolderFindFileScopeView(fileScope: self.selection.fileScope, name: self.selection.name, savedScopes: self.savedScopesBinding) { fileScope, name in
                 self.selection = FileScopeSelection(name: name, fileScope: fileScope)
@@ -286,37 +288,24 @@ private struct FileScopeMenu: View {
             .presentationSizing(.fitted)
         }
         .onReceive(UserDefaults.standard.publisher(for: .folderFindSavedScopes, initial: true)) { scopesData in
-            self.savedScopesData = scopesData
+            self.savedScopes = scopesData.compactMapValues { try? JSONDecoder().decode(FileScope.self, from: $0) }
             
-            if let name = self.selection.name,
-               let scopeData = scopesData[name],
-               let fileScope = try? JSONDecoder().decode(FileScope.self, from: scopeData)
-            {
-                self.selection.fileScope = fileScope
-            } else if self.selection.name != nil {
-                self.selection.name = nil
+            if let name = self.selection.name {
+                if let fileScope = self.savedScopes[name] {
+                    self.selection.fileScope = fileScope
+                } else {
+                    self.selection.name = nil
+                }
             }
         }
     }
     
     
-    /// The saved file scopes persisted in the user defaults.
-    private var savedScopes: [String: FileScope] {
-        
-        get {
-            self.savedScopesData.compactMapValues { try? JSONDecoder().decode(FileScope.self, from: $0) }
-        }
-        
-        nonmutating set {
-            UserDefaults.standard[.folderFindSavedScopes] = newValue.compactMapValues { try? JSONEncoder().encode($0) }
-        }
-    }
-    
-    
-    /// The binding to the saved scopes to pass to the sheets.
+    /// The binding to the saved scopes that stores changes in the user defaults.
     private var savedScopesBinding: Binding<[String: FileScope]> {
         
-        Binding(get: { self.savedScopes }, set: { self.savedScopes = $0 })
+        Binding(get: { self.savedScopes },
+                set: { UserDefaults.standard[.folderFindSavedScopes] = $0.compactMapValues { try? JSONEncoder().encode($0) } })
     }
 }
 
