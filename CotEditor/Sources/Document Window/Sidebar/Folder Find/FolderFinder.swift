@@ -111,7 +111,7 @@ import TextFind
     ///   - includesHiddenFiles: Whether hidden files should be searched.
     ///   - includesOtherFileTypes: Whether files that do not look like plain text should also be searched.
     ///   - fileScope: The file scope to search.
-    func find(findString: String, usesRegularExpression: Bool, ignoresCase: Bool, includesHiddenFiles: Bool, includesOtherFileTypes: Bool = false, fileScope: FileScope = .init()) {
+    func find(findString: String, usesRegularExpression: Bool, ignoresCase: Bool, includesHiddenFiles: Bool, includesOtherFileTypes: Bool = false, fileScope: FileScope? = nil) {
         
         self.searchTask?.cancel()
         self.selectionTask?.cancel()

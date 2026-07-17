@@ -38,7 +38,7 @@ struct Search {
     var progress: FolderFindProgress?
     var isIncluded: (@Sendable (FolderFind.Candidate) -> Bool)?
     
-    private var fileScopeMatcher: FileScope.Matcher
+    private var fileScopeMatcher: FileScope.Matcher?
     private var metrics: FolderFind.Metrics
     private var files: [FolderFind.FileResult] = []
     
@@ -61,7 +61,11 @@ struct Search {
         self.options = options
         self.progress = progress
         self.isIncluded = isIncluded
-        self.fileScopeMatcher = try FileScope.Matcher(options.fileScope)
+        self.fileScopeMatcher = if let fileScope = options.fileScope {
+            try FileScope.Matcher(fileScope)
+        } else {
+            nil
+        }
         self.metrics = FolderFind.Metrics(findString: query.findString)
     }
     
@@ -170,7 +174,7 @@ struct Search {
             || FolderFind.isSearchableText(candidate)
             || self.isIncluded?(candidate) == true
         
-        return includesFileType && self.fileScopeMatcher.contains(candidate, relativeTo: self.rootURL)
+        return includesFileType && (self.fileScopeMatcher?.contains(candidate, relativeTo: self.rootURL) ?? true)
     }
     
     

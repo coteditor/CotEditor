@@ -65,7 +65,7 @@ public enum FolderFind {
         public var includesHiddenFiles: Bool
         public var excludedNames: Set<String>
         public var maximumFileSize: Int
-        public var fileScope: FileScope
+        public var fileScope: FileScope?
         public var decodingOptions: String.DetectionOptions
         
         
@@ -83,7 +83,7 @@ public enum FolderFind {
             includesHiddenFiles: Bool = false,
             excludedNames: Set<String> = [".DS_Store", ".git"],
             maximumFileSize: Int = 1_000_000_000,  // 1 GB
-            fileScope: FileScope = .init(),
+            fileScope: FileScope? = nil,
             decodingOptions: String.DetectionOptions = .init(candidates: [.utf8])
         ) {
             

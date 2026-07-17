@@ -197,7 +197,7 @@ private struct FolderFindControlView: View {
                                 ignoresCase: self.ignoresCase,
                                 includesHiddenFiles: self.includesHiddenFiles,
                                 includesOtherFileTypes: self.includesOtherFileTypes,
-                                fileScope: self.fileScopeSelection.fileScope)
+                                fileScope: self.fileScopeSelection.fileScope.isEmpty ? nil : self.fileScopeSelection.fileScope)
             }
             .onTextChange { findString in
                 self.model.findStringDidChange(to: findString)
