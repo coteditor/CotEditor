@@ -267,7 +267,7 @@ private struct FileScopeMenu: View {
                 self.selection = FileScopeSelection(name: name, fileScope: fileScope)
             }
             .scenePadding()
-            .presentationSizing(.fitted)
+            .presentationSizing(FolderFindFileScopeView.sheetPresentationSizing)
         }
         .sheet(isPresented: $isSavedScopesEditorPresented) {
             FolderFindSavedScopesView(scopes: self.savedScopesBinding) { change in

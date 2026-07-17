@@ -31,6 +31,24 @@ import StringUtils
 
 struct FolderFindFileScopeView: View {
     
+    private struct SheetSizing: PresentationSizing {
+        
+        func proposedSize(for root: PresentationSizingRoot, context: PresentationSizingContext) -> ProposedViewSize {
+            
+            ProposedViewSize(root.sizeThatFits(.unspecified))
+        }
+    }
+    
+    
+    /// The presentation sizing that follows changes to the ideal content height.
+    static var sheetPresentationSizing: some PresentationSizing {
+        
+        SheetSizing()
+            .fitted(horizontal: false, vertical: true)
+            .sticky(horizontal: true, vertical: false)
+    }
+    
+    
     @State var fileScope: FileScope
     @State private var name: String
     private let originalName: String?
@@ -92,7 +110,7 @@ struct FolderFindFileScopeView: View {
         .onChange(of: self.fileScope) {
             self.validationError = nil
         }
-        .frame(minWidth: 400, idealWidth: 540)
+        .frame(minWidth: 400, idealWidth: 540, maxHeight: .infinity, alignment: .top)
         .sheet(isPresented: $isScopeSaveViewPresented) {
             ScopeSaveView(scopes: $savedScopes, scope: self.fileScope.normalized) { name in
                 self.completionHandler(self.fileScope.normalized, name)

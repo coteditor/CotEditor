@@ -105,7 +105,7 @@ struct FolderFindSavedScopesView: View {
                 self.changeHandler(.update(originalName: item.name, name: name, fileScope: fileScope))
             }
             .scenePadding()
-            .presentationSizing(.fitted)
+            .presentationSizing(FolderFindFileScopeView.sheetPresentationSizing)
         }
         .confirmationDialog(String(localized: "DeletionConfirmation.title",
                                    defaultValue: "Are you sure you want to delete “\(self.deletingItem ?? String(localized: .unknown))”?"),
