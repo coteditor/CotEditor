@@ -25883,10 +25883,46 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Folder Find\"; ObjectID = \"UFU-ir-16q\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordnersuche"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Folder Find"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder Find"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Búsqueda en carpetas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Recherche dans le dossier"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フォルダ検索"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zoeken in map"
           }
         },
         "zh-HK" : {
