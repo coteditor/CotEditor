@@ -71,7 +71,7 @@ struct FolderFindFileScopeView: View {
             }
             
             ConjunctionPicker(selection: $fileScope.conjunction)
-            RuleEditor(fileScope: $fileScope)
+            RuleEditor(rules: $fileScope.rules)
             
             if let validationError {
                 Label(validationError.localizedDescription, systemImage: "exclamationmark.triangle.fill")
@@ -248,7 +248,7 @@ private struct ScopeSaveView: View {
 
 private struct RuleEditor: NSViewRepresentable {
     
-    @Binding var fileScope: FileScope
+    @Binding var rules: [FileScope.Rule]
     
     
     func makeNSView(context: Context) -> NSRuleEditor {
@@ -257,7 +257,7 @@ private struct RuleEditor: NSViewRepresentable {
         ruleEditor.delegate = context.coordinator
         ruleEditor.nestingMode = .simple
         ruleEditor.canRemoveAllRows = false
-        context.coordinator.apply(self.fileScope, to: ruleEditor)
+        context.coordinator.apply(self.rules, to: ruleEditor)
         
         return ruleEditor
     }
@@ -265,53 +265,53 @@ private struct RuleEditor: NSViewRepresentable {
     
     func updateNSView(_ nsView: NSRuleEditor, context: Context) {
         
-        context.coordinator.fileScope = $fileScope
+        context.coordinator.rules = $rules
         
-        if context.coordinator.fileScope(from: nsView).normalized != self.fileScope.normalized {
-            context.coordinator.apply(self.fileScope, to: nsView)
+        if context.coordinator.rules(from: nsView) != self.rules {
+            context.coordinator.apply(self.rules, to: nsView)
         }
     }
     
     
     func makeCoordinator() -> Coordinator {
         
-        Coordinator(fileScope: $fileScope)
+        Coordinator(rules: $rules)
     }
     
     
     @MainActor final class Coordinator: NSObject, NSRuleEditorDelegate, NSTextFieldDelegate {
         
-        var fileScope: Binding<FileScope>
+        var rules: Binding<[FileScope.Rule]>
         
         private weak var ruleEditor: NSRuleEditor?
-        private var updatesFileScope = true
+        private var updatesRules = true
         
         
         /// Initializes a rule editor coordinator.
         ///
-        /// - Parameter fileScope: The file scope binding to update.
-        init(fileScope: Binding<FileScope>) {
+        /// - Parameter rules: The file scope rules binding to update.
+        init(rules: Binding<[FileScope.Rule]>) {
             
-            self.fileScope = fileScope
+            self.rules = rules
         }
         
         
-        /// Applies the given file scope to the rule editor.
+        /// Applies the given file scope rules to the rule editor.
         ///
         /// - Parameters:
-        ///   - fileScope: The file scope to apply.
+        ///   - rules: The file scope rules to apply.
         ///   - ruleEditor: The rule editor to update.
-        func apply(_ fileScope: FileScope, to ruleEditor: NSRuleEditor) {
+        func apply(_ rules: [FileScope.Rule], to ruleEditor: NSRuleEditor) {
             
             self.ruleEditor = ruleEditor
-            self.updatesFileScope = false
-            defer { self.updatesFileScope = true }
+            self.updatesRules = false
+            defer { self.updatesRules = true }
             
             if ruleEditor.numberOfRows > 0 {
                 ruleEditor.removeRows(at: IndexSet(integersIn: 0..<ruleEditor.numberOfRows), includeSubrows: true)
             }
             
-            let rules = fileScope.rules.isEmpty ? [.placeholder] : fileScope.rules
+            let rules = rules.isEmpty ? [.placeholder] : rules
             
             for rule in rules {
                 let row = ruleEditor.numberOfRows
@@ -361,13 +361,13 @@ private struct RuleEditor: NSViewRepresentable {
         
         func ruleEditorRowsDidChange(_ notification: Notification) {
             
-            self.updateFileScope()
+            self.updateRules()
         }
         
         
         func controlTextDidChange(_ notification: Notification) {
             
-            self.updateFileScope()
+            self.updateRules()
         }
         
         
@@ -416,28 +416,24 @@ private struct RuleEditor: NSViewRepresentable {
         }
         
         
-        /// Updates the bound file scope from the rule editor.
-        private func updateFileScope() {
+        /// Updates the bound file scope rules from the rule editor.
+        private func updateRules() {
             
-            guard self.updatesFileScope, let ruleEditor else { return }
+            guard self.updatesRules, let ruleEditor else { return }
             
-            self.fileScope.wrappedValue = self.fileScope(from: ruleEditor)
+            self.rules.wrappedValue = self.rules(from: ruleEditor)
         }
         
         
-        /// Returns a file scope from the rule editor.
-        ///
-        /// The conjunction is not editable in the rule editor and is therefore
-        /// taken over from the currently bound file scope.
+        /// Returns the file scope rules from the rule editor, excluding placeholder rules.
         ///
         /// - Parameter ruleEditor: The rule editor to read.
-        /// - Returns: The current file scope.
-        func fileScope(from ruleEditor: NSRuleEditor) -> FileScope {
+        /// - Returns: The file scope rules represented by the rows.
+        func rules(from ruleEditor: NSRuleEditor) -> [FileScope.Rule] {
             
-            let rules = ruleEditor.subrowIndexes(forRow: -1)
+            ruleEditor.subrowIndexes(forRow: -1)
                 .compactMap { self.rule(from: ruleEditor, row: $0) }
-            
-            return FileScope(conjunction: self.fileScope.wrappedValue.conjunction, rules: rules)
+                .filter { $0 != .placeholder }
         }
         
         
