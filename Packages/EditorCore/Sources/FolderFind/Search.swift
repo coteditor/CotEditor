@@ -92,19 +92,9 @@ struct Search {
         // avoid following symbolic-link cycles back into an already-visited directory
         guard self.visitedDirectories.insert(directoryURL.resolvingSymlinksInPath()).inserted else { return }
         
-        guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: Array(FolderFind.Candidate.metadataResourceKeys)) else {
-            return self.recordSkippedItem()
-        }
+        guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: Array(FolderFind.Candidate.metadataResourceKeys)) else { return }
         
-        var candidates: [FolderFind.Candidate] = []
-        for url in urls {
-            do {
-                let candidate = try FolderFind.Candidate(at: url)
-                candidates.append(candidate)
-            } catch {
-                self.recordSkippedItem()
-            }
-        }
+        var candidates = urls.compactMap { try? FolderFind.Candidate(at: $0) }
         candidates.sort { lhs, rhs in
             if lhs.isDirectory != rhs.isDirectory {
                 lhs.isDirectory && !rhs.isDirectory
@@ -136,23 +126,14 @@ struct Search {
     /// - Throws: `CancellationError` if the task is cancelled.
     private mutating func searchFile(_ candidate: FolderFind.Candidate) throws {
         
-        guard candidate.fileSize <= self.options.maximumFileSize else {
-            self.recordSkippedItem()
-            return
-        }
+        guard
+            candidate.fileSize <= self.options.maximumFileSize,
+            !candidate.contentType.conforms(to: .propertyList) || !Self.isBinaryPropertyList(at: candidate.fileURL)
+        else { return }
         
-        guard !candidate.contentType.conforms(to: .propertyList) || !Self.isBinaryPropertyList(at: candidate.fileURL) else {
-            self.recordSkippedItem()
-            return
-        }
-        
-        let string: String
-        do {
-            string = try String(contentsOf: candidate.fileURL, decodingOptions: self.options.decodingOptions)
-        } catch {
-            self.recordSkippedItem()
-            return
-        }
+        guard
+            let string = try? String(contentsOf: candidate.fileURL, decodingOptions: self.options.decodingOptions)
+        else { return }
         
         let textFind: TextFind
         do {
@@ -225,14 +206,6 @@ struct Search {
         try Task.checkCancellation()
         
         return matches
-    }
-    
-    
-    /// Records a skipped file or folder.
-    private mutating func recordSkippedItem() {
-        
-        self.metrics.skippedItemCount += 1
-        self.progress?.update(snapshot: self.metrics)
     }
     
     

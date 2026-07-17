@@ -45,7 +45,6 @@ struct FolderFindTests {
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
         
         #expect(summary.metrics.findString == "needle")
-        #expect(summary.metrics.skippedItemCount == 0)
         #expect(summary.metrics.matchedFileCount == 2)
         #expect(summary.metrics.matchCount == 3)
         #expect(summary.files.map(\.filename) == ["b.txt", "a.txt"])
@@ -99,7 +98,6 @@ struct FolderFindTests {
         
         #expect(progress.snapshot.matchCount == 0)
         #expect(progress.snapshot.matchedFileCount == 0)
-        #expect(progress.snapshot.skippedItemCount == 0)
     }
     
     
@@ -318,7 +316,6 @@ struct FolderFindTests {
         
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
         
-        #expect(summary.metrics.skippedItemCount == 1)
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["xml.plist"])
     }
@@ -580,7 +577,6 @@ struct FolderFindTests {
             try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope), progress: progress)
         }
         
-        #expect(progress.snapshot.skippedItemCount == 0)
     }
     
     
@@ -600,7 +596,6 @@ struct FolderFindTests {
             try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope), progress: progress)
         }
         
-        #expect(progress.snapshot.skippedItemCount == 0)
     }
     
     
@@ -614,7 +609,6 @@ struct FolderFindTests {
         
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
         
-        #expect(summary.metrics.skippedItemCount == 1)
         #expect(summary.metrics.matchCount == 1)
     }
     
@@ -630,13 +624,12 @@ struct FolderFindTests {
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"),
                                                 options: .init(maximumFileSize: 8))
         
-        #expect(summary.metrics.skippedItemCount == 1)
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["small.txt"])
     }
     
     
-    @Test func unreadableDirectoryIsCountedAsSkipped() async throws {
+    @Test func unreadableDirectoryIsSkipped() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: rootURL) }
@@ -650,7 +643,6 @@ struct FolderFindTests {
         
         let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
         
-        #expect(summary.metrics.skippedItemCount == 1)
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["a.txt"])
     }
