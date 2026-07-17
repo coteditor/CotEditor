@@ -189,6 +189,7 @@ private struct ThemeListView: View {
             VStack(spacing: 0) {
                 Divider()
                 self.bottomAccessoryView
+                    .padding(6)
             }
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
@@ -299,7 +300,6 @@ private struct ThemeListView: View {
             }
         }
         .buttonStyle(.borderless)
-        .padding(6)
     }
     
     

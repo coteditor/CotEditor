@@ -66,6 +66,7 @@ struct MultipleReplaceListView: View {
         }
         .safeAreaBar(edge: .bottom) {
             self.bottomAccessoryView
+                .padding(6)
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
         .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))
@@ -187,7 +188,6 @@ struct MultipleReplaceListView: View {
             }
         }
         .buttonStyle(.borderless)
-        .padding(6)
     }
     
     

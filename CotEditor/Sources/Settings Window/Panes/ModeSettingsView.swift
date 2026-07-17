@@ -119,6 +119,7 @@ private struct ModeListView: View {
             VStack(spacing: 0) {
                 Divider()
                 self.bottomAccessoryView
+                    .padding(2)
             }
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
@@ -181,7 +182,6 @@ private struct ModeListView: View {
             
             Spacer()
         }
-        .padding(2)
         .labelStyle(.iconOnly)
         .buttonStyle(.borderless)
     }
