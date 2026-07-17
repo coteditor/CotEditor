@@ -440,7 +440,7 @@ private struct SyntaxListView: View {
                 Label(String(localized: "Action.edit.label", defaultValue: "Edit"), systemImage: "pencil")
                     .padding(2)
             }
-            .help(String(localized: "Edit selected item", table: "FormatSettings"))
+            .help(String(localized: "Action.edit.tooltip", defaultValue: "Edit selected item"))
             .labelStyle(.iconOnly)
             .frame(width: 16)
             .disabled(self.selection == nil)
