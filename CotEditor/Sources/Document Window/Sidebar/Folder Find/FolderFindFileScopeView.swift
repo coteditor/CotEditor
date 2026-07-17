@@ -79,13 +79,12 @@ struct FolderFindFileScopeView: View {
             }
             
             SubmitButtonGroup(helpAnchor: "howto_find_in_folder", action: self.apply, supplementalButton: {
-                if self.originalName == nil,
-                   !self.savedScopes.values.contains(self.fileScope.normalized)
-                {
+                if self.originalName == nil {
+                    let fileScope = self.fileScope.normalized
                     Button(String(localized: "Save as Named Scope…", table: "Document")) {
-                        self.beginSavingScope()
+                        self.beginSavingScope(for: fileScope)
                     }
-                    .disabled(self.fileScope.normalized.isEmpty)
+                    .disabled(fileScope.isEmpty)
                 }
             })
             .padding(.top)
@@ -117,7 +116,7 @@ struct FolderFindFileScopeView: View {
             return
         }
         
-        if let originalName = self.originalName {
+        if let originalName {
             let newName = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
             
             guard
@@ -141,10 +140,12 @@ struct FolderFindFileScopeView: View {
     }
     
     
-    /// Validates the current file scope and presents the sheet to save it as a named scope.
-    private func beginSavingScope() {
+    /// Validates the given file scope and presents the sheet to save it as a named scope.
+    ///
+    /// - Parameter fileScope: The normalized file scope to validate.
+    private func beginSavingScope(for fileScope: FileScope) {
         
-        let fileScope = self.fileScope.normalized
+        assert(fileScope == fileScope.normalized)
         
         do {
             try fileScope.validate()
