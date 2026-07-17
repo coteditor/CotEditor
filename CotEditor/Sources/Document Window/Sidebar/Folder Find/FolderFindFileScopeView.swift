@@ -27,7 +27,6 @@ public import Foundation
 public import FolderFind
 import AppKit
 import SwiftUI
-import StringUtils
 
 struct FolderFindFileScopeView: View {
     
@@ -144,7 +143,7 @@ struct FolderFindFileScopeView: View {
             let newName = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
             
             do {
-                try self.validateName(newName)
+                try self.savedScopeNames.validateFileScopeName(newName, originalName: self.originalName)
             } catch {
                 self.validationError = error
                 NSSound.beep()
@@ -175,26 +174,6 @@ struct FolderFindFileScopeView: View {
         }
         
         return true
-    }
-    
-    
-    /// Validates the input scope name.
-    ///
-    /// - Parameter name: The scope name to validate.
-    /// - Throws: `InvalidNameError` if the name is invalid.
-    private func validateName(_ name: String) throws(InvalidNameError) {
-        
-        guard !name.isEmpty else {
-            throw .empty
-        }
-        
-        guard !name.contains(where: \.isNewline) else {
-            throw .newLine
-        }
-        
-        guard name == self.originalName || !self.savedScopeNames.contains(name) else {
-            throw .duplicated(name: name)
-        }
     }
 }
 
@@ -248,6 +227,7 @@ private struct ScopeSaveView: View {
     
     @FocusState private var focus: Focus?
     @State private var name = ""
+    @State private var validationError: InvalidNameError?
     
     
     var body: some View {
@@ -261,11 +241,25 @@ private struct ScopeSaveView: View {
                 .onSubmit(self.submit)
             }
             
+            Group {
+                if let validationError {
+                    Label(validationError.localizedDescription, systemImage: "exclamationmark.triangle.fill")
+                        .symbolRenderingMode(.multicolor)
+                        .lineLimit(1)
+                } else {
+                    Color.clear
+                }
+            }
+            .frame(height: 10)
+            .padding(.vertical, 4)
+            
             SubmitButtonGroup(String(localized: "Action.save.label", defaultValue: "Save"), action: self.submit)
-                .padding(.top)
         }
         .onAppear {
             self.focus = .field
+        }
+        .onChange(of: self.name) {
+            self.validationError = nil
         }
         .frame(idealWidth: 300)
     }
@@ -276,11 +270,41 @@ private struct ScopeSaveView: View {
         
         let name = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        guard !name.isEmpty else { return NSSound.beep() }
+        do {
+            try self.savedScopeNames.validateFileScopeName(name)
+        } catch {
+            self.validationError = error
+            NSSound.beep()
+            return
+        }
         
-        let uniqueName = name.appendingUniqueNumber(in: self.savedScopeNames)
         self.dismiss()
-        self.completionHandler(uniqueName)
+        self.completionHandler(name)
+    }
+}
+
+
+private extension Set where Element == String {
+    
+    /// Validates a file scope name.
+    ///
+    /// - Parameters:
+    ///   - name: The name to validate.
+    ///   - originalName: The original name allowed during renaming.
+    /// - Throws: `InvalidNameError` if the name is invalid.
+    func validateFileScopeName(_ name: String, originalName: String? = nil) throws(InvalidNameError) {
+        
+        guard !name.isEmpty else {
+            throw .empty
+        }
+        
+        guard !name.contains(where: \.isNewline) else {
+            throw .newLine
+        }
+        
+        guard name == originalName || !self.contains(name) else {
+            throw .duplicated(name: name)
+        }
     }
 }
 
