@@ -35,7 +35,7 @@ struct FolderFindFileScopeView: View {
     @State private var name: String
     private let originalName: String?
     
-    var savedScopes: Binding<[String: FileScope]>?
+    @Binding private var savedScopes: [String: FileScope]
     var completionHandler: (_ fileScope: FileScope, _ name: String?) -> Void
     
     
@@ -52,12 +52,12 @@ struct FolderFindFileScopeView: View {
     ///   - name: The name of the saved scope, or `nil` for an unnamed scope.
     ///   - savedScopes: The saved scopes available to the editor.
     ///   - completionHandler: The action to perform when the editing is accepted.
-    init(fileScope: FileScope, name: String? = nil, savedScopes: Binding<[String: FileScope]>? = nil, completionHandler: @escaping (_ fileScope: FileScope, _ name: String?) -> Void) {
+    init(fileScope: FileScope, name: String? = nil, savedScopes: Binding<[String: FileScope]>, completionHandler: @escaping (_ fileScope: FileScope, _ name: String?) -> Void) {
         
         self._fileScope = State(initialValue: fileScope)
         self._name = State(initialValue: name ?? "")
         self.originalName = name
-        self.savedScopes = savedScopes
+        self._savedScopes = savedScopes
         self.completionHandler = completionHandler
     }
     
@@ -67,7 +67,6 @@ struct FolderFindFileScopeView: View {
         VStack(alignment: .leading) {
             if self.originalName != nil {
                 TextField(String(localized: "ScopeSaveView.field.label", defaultValue: "Name", table: "Document"), text: $name)
-                    .labelsVisibility(.visible)
                     .padding(.bottom)
             }
             
@@ -82,8 +81,7 @@ struct FolderFindFileScopeView: View {
             
             SubmitButtonGroup(helpAnchor: "howto_find_in_folder", action: self.apply, supplementalButton: {
                 if self.originalName == nil,
-                   let savedScopes = self.savedScopes,
-                   !savedScopes.wrappedValue.values.contains(self.fileScope.normalized)
+                   !self.savedScopes.values.contains(self.fileScope.normalized)
                 {
                     Button(String(localized: "Save as Named Scope…", table: "Document")) {
                         self.beginSavingScope()
@@ -98,14 +96,12 @@ struct FolderFindFileScopeView: View {
         }
         .frame(minWidth: 400, idealWidth: 540)
         .sheet(isPresented: $isScopeSaveViewPresented) {
-            if let savedScopes = self.savedScopes {
-                ScopeSaveView(scopes: savedScopes, scope: self.fileScope.normalized) { name in
-                    self.completionHandler(self.fileScope.normalized, name)
-                    self.dismiss()
-                }
-                .scenePadding()
-                .presentationSizing(.fitted)
+            ScopeSaveView(scopes: $savedScopes, scope: self.fileScope.normalized) { name in
+                self.completionHandler(self.fileScope.normalized, name)
+                self.dismiss()
             }
+            .scenePadding()
+            .presentationSizing(.fitted)
         }
     }
     
@@ -152,21 +148,21 @@ struct FolderFindFileScopeView: View {
         }
         
         if let originalName = self.originalName {
-            guard let savedScopes = self.savedScopes else { return assertionFailure() }
-            
             let newName = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
-            var scopes = savedScopes.wrappedValue
             
             guard
                 !newName.isEmpty,
-                newName == originalName || scopes[newName] == nil
+                newName == originalName || self.savedScopes[newName] == nil
             else { return NSSound.beep() }
             
-            // Update the current selection before the defaults publisher observes the renamed key.
+            // update the current selection before the defaults publisher observes the renamed key
             self.completionHandler(fileScope, newName)
-            scopes[originalName] = nil
-            scopes[newName] = fileScope
-            savedScopes.wrappedValue = scopes
+            
+            var savedScopes = self.savedScopes
+            savedScopes[originalName] = nil
+            savedScopes[newName] = fileScope
+            self.savedScopes = savedScopes
+            
         } else {
             self.completionHandler(fileScope, nil)
         }
@@ -746,6 +742,6 @@ private extension FileScope.Rule.Comparison {
 // MARK: - Preview
 
 #Preview {
-    FolderFindFileScopeView(fileScope: .init()) { _, _ in }
+    FolderFindFileScopeView(fileScope: .init(), savedScopes: .constant([:])) { _, _ in }
         .scenePadding()
 }
