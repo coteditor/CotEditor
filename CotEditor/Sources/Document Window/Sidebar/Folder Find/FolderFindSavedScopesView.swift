@@ -62,7 +62,7 @@ struct FolderFindSavedScopesView: View {
                 }
             }
             .contextMenu(forSelectionType: String.self) { selections in
-                if let selection = selections.first {
+                if selections.count == 1, let selection = selections.first {
                     self.contextMenu(for: selection)
                 }
             }
@@ -120,11 +120,11 @@ struct FolderFindSavedScopesView: View {
     /// - Returns: The context menu content.
     @ContentBuilder private func contextMenu(for name: String) -> some View {
         
-        Button(String(localized: "Action.duplicate.label", defaultValue: "Duplicate")) {
+        Button(String(localized: "Action.duplicate.label", defaultValue: "Duplicate"), systemImage: "plus.square.on.square") {
             self.duplicateScope(name)
         }
         
-        Button(String(localized: "Action.delete.label")) {
+        Button(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "trash") {
             self.deletingItem = name
         }
     }
