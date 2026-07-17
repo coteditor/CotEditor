@@ -54,11 +54,8 @@ struct FolderFindSavedScopesView: View {
             
             List(selection: $selection) {
                 ForEach(self.scopes.keys.sorted(using: .localizedStandard), id: \.self) { name in
-                    SettingNameField(text: name) { newName in
-                        self.renameScope(name, to: newName)
-                    }
-                    .listRowSeparator(.hidden)
-                    .tag(name)
+                    Text(name)
+                        .listRowSeparator(.hidden)
                 }
             }
             .contextMenu(forSelectionType: String.self) { selections in
@@ -93,8 +90,8 @@ struct FolderFindSavedScopesView: View {
             }
         }
         .sheet(item: $editingItem) { item in
-            FolderFindFileScopeView(fileScope: item.scope) { scope in
-                self.scopes[item.name] = scope
+            FolderFindFileScopeView(fileScope: item.scope, name: item.name, savedScopes: $scopes) { _, name in
+                self.selection = name
             }
             .scenePadding()
             .presentationSizing(.fitted)
@@ -141,29 +138,6 @@ struct FolderFindSavedScopesView: View {
         
         self.scopes[newName] = scope
         self.selection = newName
-    }
-    
-    
-    /// Renames the saved scope.
-    ///
-    /// - Parameters:
-    ///   - name: The current scope name.
-    ///   - newName: The new scope name.
-    /// - Returns: Whether the renaming succeeded.
-    private func renameScope(_ name: String, to newName: String) -> Bool {
-        
-        let newName = newName.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        guard
-            !newName.isEmpty,
-            newName != name,
-            self.scopes[newName] == nil
-        else { return false }
-        
-        self.scopes[newName] = self.scopes.removeValue(forKey: name)
-        self.selection = newName
-        
-        return true
     }
 }
 

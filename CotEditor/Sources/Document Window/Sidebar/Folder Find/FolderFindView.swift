@@ -214,6 +214,7 @@ private struct FileScopeMenu: View {
     @Binding var fileScope: FileScope
     
     @State private var savedScopesData: [String: Data] = [:]
+    @State private var selectedScopeName: String?
     @State private var isFileScopeEditorPresented = false
     @State private var isSavedScopesEditorPresented = false
     
@@ -225,33 +226,40 @@ private struct FileScopeMenu: View {
                 self.isFileScopeEditorPresented = true
             }
             Button(String(localized: "Clear File Scope", table: "Document")) {
+                self.selectedScopeName = nil
                 self.fileScope = FileScope()
             }
             .disabled(self.fileScope.isEmpty)
             
             if !self.savedScopes.isEmpty {
-                Picker(String(localized: "Saved Scopes", table: "Document"), selection: $fileScope) {
-                    ForEach(self.savedScopes.sorted(using: KeyPathComparator(\.key, comparator: .localizedStandard)), id: \.key) { name, scope in
+                Picker(String(localized: "Saved Scopes", table: "Document"), selection: $selectedScopeName) {
+                    ForEach(self.savedScopes.keys.sorted(using: .localizedStandard), id: \.self) { name in
                         Label(name, systemImage: "text.magnifyingglass")
-                            .tag(scope)
+                            .tag(name)
                     }
                 }
                 .pickerStyle(.inline)
                 .labelStyle(.titleAndIcon)
+                .onChange(of: self.selectedScopeName) { _, name in
+                    if let name, let fileScope = self.savedScopes[name] {
+                        self.fileScope = fileScope
+                    }
+                }
                 
                 Button(String(localized: "Manage Saved Scopes…", table: "Document")) {
                     self.isSavedScopesEditorPresented = true
                 }
             }
         } label: {
-            Label(self.currentScopeName ?? String(localized: "File Scope", table: "Document"), systemImage: "text.magnifyingglass")
+            Label(self.selectedScopeName ?? String(localized: "File Scope", table: "Document"), systemImage: "text.magnifyingglass")
                 .foregroundStyle(self.fileScope.isEmpty ? .secondary : Color.accentColor)
                 .labelIconToTitleSpacing(6)
         }
         .buttonStyle(.plain)
         .controlSize(.small)
         .sheet(isPresented: $isFileScopeEditorPresented) {
-            FolderFindFileScopeView(fileScope: self.fileScope, savedScopes: self.savedScopesBinding) { fileScope in
+            FolderFindFileScopeView(fileScope: self.fileScope, name: self.selectedScopeName, savedScopes: self.savedScopesBinding) { fileScope, name in
+                self.selectedScopeName = name
                 self.fileScope = fileScope
             }
             .scenePadding()
@@ -264,6 +272,20 @@ private struct FileScopeMenu: View {
         }
         .onReceive(UserDefaults.standard.publisher(for: .folderFindSavedScopes, initial: true)) { scopesData in
             self.savedScopesData = scopesData
+            
+            if let selectedScopeName = self.selectedScopeName,
+               let scopeData = scopesData[selectedScopeName],
+               let fileScope = try? JSONDecoder().decode(FileScope.self, from: scopeData)
+            {
+                self.fileScope = fileScope
+            } else {
+                self.selectedScopeName = scopesData
+                    .compactMapValues { try? JSONDecoder().decode(FileScope.self, from: $0) }
+                    .filter { $0.value == self.fileScope }
+                    .keys
+                    .sorted(using: .localizedStandard)
+                    .first
+            }
         }
     }
     
@@ -285,17 +307,6 @@ private struct FileScopeMenu: View {
     private var savedScopesBinding: Binding<[String: FileScope]> {
         
         Binding(get: { self.savedScopes }, set: { self.savedScopes = $0 })
-    }
-    
-    
-    /// The name of the saved scope equivalent to the current file scope.
-    private var currentScopeName: String? {
-        
-        self.savedScopes
-            .filter { $0.value == self.fileScope }
-            .keys
-            .sorted(using: .localizedStandard)
-            .first
     }
 }
 

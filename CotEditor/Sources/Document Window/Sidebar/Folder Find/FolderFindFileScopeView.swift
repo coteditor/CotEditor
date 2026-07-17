@@ -32,8 +32,11 @@ import StringUtils
 struct FolderFindFileScopeView: View {
     
     @State var fileScope: FileScope
+    @State private var name: String
+    private let originalName: String?
+    
     var savedScopes: Binding<[String: FileScope]>?
-    var completionHandler: (FileScope) -> Void
+    var completionHandler: (_ fileScope: FileScope, _ name: String?) -> Void
     
     
     @Environment(\.dismiss) private var dismiss
@@ -42,9 +45,32 @@ struct FolderFindFileScopeView: View {
     @State private var isScopeSaveViewPresented = false
     
     
+    /// Creates a file scope editor.
+    ///
+    /// - Parameters:
+    ///   - fileScope: The file scope to edit.
+    ///   - name: The name of the saved scope, or `nil` for an unnamed scope.
+    ///   - savedScopes: The saved scopes available to the editor.
+    ///   - completionHandler: The action to perform when the editing is accepted.
+    init(fileScope: FileScope, name: String? = nil, savedScopes: Binding<[String: FileScope]>? = nil, completionHandler: @escaping (_ fileScope: FileScope, _ name: String?) -> Void) {
+        
+        self._fileScope = State(initialValue: fileScope)
+        self._name = State(initialValue: name ?? "")
+        self.originalName = name
+        self.savedScopes = savedScopes
+        self.completionHandler = completionHandler
+    }
+    
+    
     var body: some View {
         
         VStack(alignment: .leading) {
+            if self.originalName != nil {
+                TextField(String(localized: "ScopeSaveView.field.label", defaultValue: "Name", table: "Document"), text: $name)
+                    .labelsVisibility(.visible)
+                    .padding(.bottom)
+            }
+            
             self.conjunctionPicker
             
             RuleEditor(fileScope: $fileScope)
@@ -55,7 +81,8 @@ struct FolderFindFileScopeView: View {
             }
             
             SubmitButtonGroup(helpAnchor: "howto_find_in_folder", action: self.apply, supplementalButton: {
-                if let savedScopes = self.savedScopes,
+                if self.originalName == nil,
+                   let savedScopes = self.savedScopes,
                    !savedScopes.wrappedValue.values.contains(self.fileScope.normalized)
                 {
                     Button(String(localized: "Save as Named Scope…", table: "Document")) {
@@ -73,7 +100,7 @@ struct FolderFindFileScopeView: View {
         .sheet(isPresented: $isScopeSaveViewPresented) {
             if let savedScopes = self.savedScopes {
                 ScopeSaveView(scopes: savedScopes, scope: self.fileScope.normalized) {
-                    self.completionHandler(self.fileScope.normalized)
+                    self.completionHandler(self.fileScope.normalized, nil)
                     self.dismiss()
                 }
                 .scenePadding()
@@ -124,7 +151,28 @@ struct FolderFindFileScopeView: View {
             return
         }
         
-        self.completionHandler(fileScope)
+        let name: String?
+        if let originalName = self.originalName {
+            guard let savedScopes = self.savedScopes else { return assertionFailure() }
+            
+            let newName = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
+            var scopes = savedScopes.wrappedValue
+            
+            guard
+                !newName.isEmpty,
+                newName == originalName || scopes[newName] == nil
+            else { return NSSound.beep() }
+            
+            scopes[originalName] = nil
+            scopes[newName] = fileScope
+            savedScopes.wrappedValue = scopes
+            name = newName
+        } else {
+            name = nil
+        }
+        
+        self.completionHandler(fileScope, name)
+        
         self.dismiss()
     }
     
@@ -699,6 +747,6 @@ private extension FileScope.Rule.Comparison {
 // MARK: - Preview
 
 #Preview {
-    FolderFindFileScopeView(fileScope: .init()) { _ in }
+    FolderFindFileScopeView(fileScope: .init()) { _, _ in }
         .scenePadding()
 }
