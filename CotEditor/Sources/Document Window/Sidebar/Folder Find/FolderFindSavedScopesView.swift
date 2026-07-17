@@ -51,6 +51,7 @@ struct FolderFindSavedScopesView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var selection: String?
+    @State private var isAddingScope = false
     @State private var editingItem: EditingScope?
     @State private var deletingItem: String?
     
@@ -78,6 +79,10 @@ struct FolderFindSavedScopesView: View {
                 if selections.count == 1, let selection = selections.first {
                     self.contextMenu(for: selection)
                 }
+            } primaryAction: { selections in
+                if let name = selections.first, let scope = self.scopes[name] {
+                    self.editingItem = EditingScope(name: name, scope: scope)
+                }
             }
             .border(.separator)
             .frame(minWidth: 240, minHeight: 180)
@@ -90,6 +95,15 @@ struct FolderFindSavedScopesView: View {
                 }
                 .keyboardShortcut(.defaultAction)
             }
+        }
+        .sheet(isPresented: $isAddingScope) {
+            FolderFindFileScopeView(fileScope: FileScope(), name: "", savedScopes: $scopes) { _, name in
+                guard let name else { return assertionFailure() }
+                
+                self.selection = name
+            }
+            .scenePadding()
+            .presentationSizing(FolderFindFileScopeView.sheetPresentationSizing)
         }
         .sheet(item: $editingItem) { item in
             FolderFindFileScopeView(fileScope: item.scope, name: item.name, savedScopes: $scopes) { fileScope, name in
@@ -121,6 +135,15 @@ struct FolderFindSavedScopesView: View {
     @ContentBuilder private var bottomAccessoryView: some View {
         
         HStack(alignment: .firstTextBaseline) {
+            Button {
+                self.isAddingScope = true
+            } label: {
+                Label(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus")
+                    .padding(2)
+            }
+            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
+            .frame(width: 16)
+            
             Button {
                 self.deletingItem = self.selection
             } label: {

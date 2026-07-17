@@ -67,7 +67,7 @@ struct FolderFindFileScopeView: View {
     ///
     /// - Parameters:
     ///   - fileScope: The file scope to edit.
-    ///   - name: The name of the saved scope, or `nil` for an unnamed scope.
+    ///   - name: The name of the saved scope, an empty string to create a new saved scope, or `nil` for an unnamed scope.
     ///   - savedScopes: The saved scopes available to the editor.
     ///   - completionHandler: The action to perform when the editing is accepted.
     init(fileScope: FileScope, name: String? = nil, savedScopes: Binding<[String: FileScope]>, completionHandler: @escaping (_ fileScope: FileScope, _ name: String?) -> Void) {
