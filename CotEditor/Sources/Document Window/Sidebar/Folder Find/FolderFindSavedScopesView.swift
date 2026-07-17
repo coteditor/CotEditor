@@ -29,6 +29,13 @@ import StringUtils
 
 struct FolderFindSavedScopesView: View {
     
+    enum Change {
+        
+        case update(originalName: String, name: String, fileScope: FileScope)
+        case delete(name: String)
+    }
+    
+    
     private struct EditingScope: Identifiable {
         
         var name: String
@@ -39,6 +46,7 @@ struct FolderFindSavedScopesView: View {
     
     
     @Binding var scopes: [String: FileScope]
+    var changeHandler: (_ change: Change) -> Void = { _ in }
     
     @Environment(\.dismiss) private var dismiss
     
@@ -90,8 +98,11 @@ struct FolderFindSavedScopesView: View {
             }
         }
         .sheet(item: $editingItem) { item in
-            FolderFindFileScopeView(fileScope: item.scope, name: item.name, savedScopes: $scopes) { _, name in
+            FolderFindFileScopeView(fileScope: item.scope, name: item.name, savedScopes: $scopes) { fileScope, name in
+                guard let name else { return assertionFailure() }
+                
                 self.selection = name
+                self.changeHandler(.update(originalName: item.name, name: name, fileScope: fileScope))
             }
             .scenePadding()
             .presentationSizing(.fitted)
@@ -101,6 +112,7 @@ struct FolderFindSavedScopesView: View {
                             item: $deletingItem)
         { name in
             Button(String(localized: "Action.delete.label", defaultValue: "Delete"), role: .destructive) {
+                self.changeHandler(.delete(name: name))
                 self.scopes[name] = nil
                 self.selection = nil
             }

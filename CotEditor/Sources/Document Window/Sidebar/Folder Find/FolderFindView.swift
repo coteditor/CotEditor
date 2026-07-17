@@ -132,7 +132,7 @@ private struct FolderFindControlView: View {
     var model: FolderFinder
     
     @State private var textFinderSettings: TextFinderSettings = .shared
-    @State private var fileScope = FileScope()
+    @State private var fileScopeSelection = FileScopeSelection()
     
     @AppStorage(.folderFindUsesRegularExpression) private var usesRegularExpression: Bool
     @AppStorage(.folderFindIgnoresCase) private var ignoresCase: Bool
@@ -197,24 +197,30 @@ private struct FolderFindControlView: View {
                                 ignoresCase: self.ignoresCase,
                                 includesHiddenFiles: self.includesHiddenFiles,
                                 includesOtherFileTypes: self.includesOtherFileTypes,
-                                fileScope: self.fileScope)
+                                fileScope: self.fileScopeSelection.fileScope)
             }
             .onTextChange { findString in
                 self.model.findStringDidChange(to: findString)
             }
             
-            FileScopeMenu(fileScope: $fileScope)
+            FileScopeMenu(selection: $fileScopeSelection)
         }
     }
 }
 
 
+private struct FileScopeSelection {
+    
+    var name: String?
+    var fileScope = FileScope()
+}
+
+
 private struct FileScopeMenu: View {
     
-    @Binding var fileScope: FileScope
+    @Binding var selection: FileScopeSelection
     
     @State private var savedScopesData: [String: Data] = [:]
-    @State private var selectedScopeName: String?
     @State private var isFileScopeEditorPresented = false
     @State private var isSavedScopesEditorPresented = false
     
@@ -226,13 +232,12 @@ private struct FileScopeMenu: View {
                 self.isFileScopeEditorPresented = true
             }
             Button(String(localized: "Clear File Scope", table: "Document")) {
-                self.selectedScopeName = nil
-                self.fileScope = FileScope()
+                self.selection = FileScopeSelection()
             }
-            .disabled(self.fileScope.isEmpty)
+            .disabled(self.selection.fileScope.isEmpty)
             
             if !self.savedScopes.isEmpty {
-                Picker(String(localized: "Saved Scopes", table: "Document"), selection: $selectedScopeName) {
+                Picker(String(localized: "Saved Scopes", table: "Document"), selection: $selection.name) {
                     ForEach(self.savedScopes.keys.sorted(using: .localizedStandard), id: \.self) { name in
                         Label(name, systemImage: "text.magnifyingglass")
                             .tag(name)
@@ -240,9 +245,9 @@ private struct FileScopeMenu: View {
                 }
                 .pickerStyle(.inline)
                 .labelStyle(.titleAndIcon)
-                .onChange(of: self.selectedScopeName) { _, name in
+                .onChange(of: self.selection.name) { _, name in
                     if let name, let fileScope = self.savedScopes[name] {
-                        self.fileScope = fileScope
+                        self.selection.fileScope = fileScope
                     }
                 }
                 
@@ -251,40 +256,45 @@ private struct FileScopeMenu: View {
                 }
             }
         } label: {
-            Label(self.selectedScopeName ?? String(localized: "File Scope", table: "Document"), systemImage: "text.magnifyingglass")
-                .foregroundStyle(self.fileScope.isEmpty ? .secondary : Color.accentColor)
+            Label(self.selection.name ?? String(localized: "File Scope", table: "Document"), systemImage: "text.magnifyingglass")
+                .foregroundStyle(self.selection.fileScope.isEmpty ? .secondary : Color.accentColor)
                 .labelIconToTitleSpacing(6)
         }
         .buttonStyle(.plain)
         .controlSize(.small)
         .sheet(isPresented: $isFileScopeEditorPresented) {
-            FolderFindFileScopeView(fileScope: self.fileScope, name: self.selectedScopeName, savedScopes: self.savedScopesBinding) { fileScope, name in
-                self.selectedScopeName = name
-                self.fileScope = fileScope
+            FolderFindFileScopeView(fileScope: self.selection.fileScope, name: self.selection.name, savedScopes: self.savedScopesBinding) { fileScope, name in
+                self.selection = FileScopeSelection(name: name, fileScope: fileScope)
             }
             .scenePadding()
             .presentationSizing(.fitted)
         }
         .sheet(isPresented: $isSavedScopesEditorPresented) {
-            FolderFindSavedScopesView(scopes: self.savedScopesBinding)
-                .scenePadding()
-                .presentationSizing(.fitted)
+            FolderFindSavedScopesView(scopes: self.savedScopesBinding) { change in
+                switch change {
+                    case .update(let originalName, let name, let fileScope):
+                        if self.selection.name == originalName {
+                            self.selection = FileScopeSelection(name: name, fileScope: fileScope)
+                        }
+                    case .delete(let name):
+                        if self.selection.name == name {
+                            self.selection.name = nil
+                        }
+                }
+            }
+            .scenePadding()
+            .presentationSizing(.fitted)
         }
         .onReceive(UserDefaults.standard.publisher(for: .folderFindSavedScopes, initial: true)) { scopesData in
             self.savedScopesData = scopesData
             
-            if let selectedScopeName = self.selectedScopeName,
-               let scopeData = scopesData[selectedScopeName],
+            if let name = self.selection.name,
+               let scopeData = scopesData[name],
                let fileScope = try? JSONDecoder().decode(FileScope.self, from: scopeData)
             {
-                self.fileScope = fileScope
-            } else {
-                self.selectedScopeName = scopesData
-                    .compactMapValues { try? JSONDecoder().decode(FileScope.self, from: $0) }
-                    .filter { $0.value == self.fileScope }
-                    .keys
-                    .sorted(using: .localizedStandard)
-                    .first
+                self.selection.fileScope = fileScope
+            } else if self.selection.name != nil {
+                self.selection.name = nil
             }
         }
     }

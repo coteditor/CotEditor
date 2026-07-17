@@ -99,8 +99,8 @@ struct FolderFindFileScopeView: View {
         .frame(minWidth: 400, idealWidth: 540)
         .sheet(isPresented: $isScopeSaveViewPresented) {
             if let savedScopes = self.savedScopes {
-                ScopeSaveView(scopes: savedScopes, scope: self.fileScope.normalized) {
-                    self.completionHandler(self.fileScope.normalized, nil)
+                ScopeSaveView(scopes: savedScopes, scope: self.fileScope.normalized) { name in
+                    self.completionHandler(self.fileScope.normalized, name)
                     self.dismiss()
                 }
                 .scenePadding()
@@ -151,7 +151,6 @@ struct FolderFindFileScopeView: View {
             return
         }
         
-        let name: String?
         if let originalName = self.originalName {
             guard let savedScopes = self.savedScopes else { return assertionFailure() }
             
@@ -163,15 +162,14 @@ struct FolderFindFileScopeView: View {
                 newName == originalName || scopes[newName] == nil
             else { return NSSound.beep() }
             
+            // Update the current selection before the defaults publisher observes the renamed key.
+            self.completionHandler(fileScope, newName)
             scopes[originalName] = nil
             scopes[newName] = fileScope
             savedScopes.wrappedValue = scopes
-            name = newName
         } else {
-            name = nil
+            self.completionHandler(fileScope, nil)
         }
-        
-        self.completionHandler(fileScope, name)
         
         self.dismiss()
     }
@@ -204,7 +202,7 @@ private struct ScopeSaveView: View {
     
     @Binding var scopes: [String: FileScope]
     var scope: FileScope
-    var completionHandler: () -> Void
+    var completionHandler: (_ name: String) -> Void
     
     @Environment(\.dismiss) private var dismiss
     
@@ -240,9 +238,10 @@ private struct ScopeSaveView: View {
         
         guard !name.isEmpty else { return NSSound.beep() }
         
-        self.scopes[name.appendingUniqueNumber(in: self.scopes.keys)] = self.scope
+        let uniqueName = name.appendingUniqueNumber(in: self.scopes.keys)
+        self.scopes[uniqueName] = self.scope
         self.dismiss()
-        self.completionHandler()
+        self.completionHandler(uniqueName)
     }
 }
 
