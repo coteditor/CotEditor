@@ -78,13 +78,6 @@
     {
       "target" : {
         "containerPath" : "container:",
-        "identifier" : "FolderSearchTests",
-        "name" : "FolderSearchTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:",
         "identifier" : "TextFindTests",
         "name" : "TextFindTests"
       }
@@ -92,15 +85,29 @@
     {
       "target" : {
         "containerPath" : "container:",
-        "identifier" : "FilePermissionsTests",
-        "name" : "FilePermissionsTests"
+        "identifier" : "TextClippingTests",
+        "name" : "TextClippingTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:",
-        "identifier" : "TextClippingTests",
-        "name" : "TextClippingTests"
+        "identifier" : "FolderFindTests",
+        "name" : "FolderFindTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "ValueRangeTests",
+        "name" : "ValueRangeTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "DocumentFileTests",
+        "name" : "DocumentFileTests"
       }
     }
   ],

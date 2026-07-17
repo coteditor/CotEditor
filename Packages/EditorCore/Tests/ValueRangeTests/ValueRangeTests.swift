@@ -60,10 +60,10 @@ struct ValueRangeTests {
     
     @Test func hashable() {
         
-        let a = ValueRange(value: "a", range: NSRange(location: 2, length: 4))
-        let sameAsA = ValueRange(value: "a", range: NSRange(location: 2, length: 4))
-        let b = ValueRange(value: "b", range: NSRange(location: 2, length: 4))
+        let rangeA = ValueRange(value: "a", range: NSRange(location: 2, length: 4))
+        let rangeSameAsA = ValueRange(value: "a", range: NSRange(location: 2, length: 4))
+        let rangeB = ValueRange(value: "b", range: NSRange(location: 2, length: 4))
         
-        #expect(Set([a, sameAsA, b]).count == 2)
+        #expect(Set([rangeA, rangeSameAsA, rangeB]).count == 2)
     }
 }

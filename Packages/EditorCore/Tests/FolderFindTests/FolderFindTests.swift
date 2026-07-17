@@ -57,7 +57,7 @@ struct FolderFindTests {
         #expect(fileResult.match == nil)
         
         let matchResult = try #require(summary.result(for: .match(fileID: summary.files[1].id,
-                                                                   matchID: summary.files[1].matches[1].id)))
+                                                                  matchID: summary.files[1].matches[1].id)))
         #expect(matchResult.file == summary.files[1])
         #expect(matchResult.match == summary.files[1].matches[1])
         
@@ -277,8 +277,8 @@ struct FolderFindTests {
         try Data("needle".utf8).write(to: rootURL.appending(path: ".hidden.txt"))
         
         let summary = try await FolderFind.find(in: rootURL,
-                                                    query: Self.query("needle"),
-                                                    options: .init(includesHiddenFiles: true))
+                                                query: Self.query("needle"),
+                                                options: .init(includesHiddenFiles: true))
         
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == [".hidden.txt"])
