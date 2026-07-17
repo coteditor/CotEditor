@@ -70,8 +70,7 @@ struct FolderFindFileScopeView: View {
                     .padding(.bottom)
             }
             
-            self.conjunctionPicker
-            
+            ConjunctionPicker(selection: $fileScope.conjunction)
             RuleEditor(fileScope: $fileScope)
             
             if let validationError {
@@ -102,35 +101,6 @@ struct FolderFindFileScopeView: View {
             }
             .scenePadding()
             .presentationSizing(.fitted)
-        }
-    }
-    
-    
-    /// The picker to select the rule conjunction, embedded in the description sentence.
-    private var conjunctionPicker: some View {
-        
-        HStack(alignment: .firstTextBaseline, spacing: 4) {
-            let prefix = String(localized: "FileScope.Conjunction.prefix",
-                                defaultValue: "Match",
-                                table: "Document",
-                                comment: "The text preceding the any/all popup in the sentence “Match [any|all] of the following conditions:”; can be empty.")
-            if !prefix.isEmpty {
-                Text(prefix)
-            }
-            
-            Picker(selection: $fileScope.conjunction) {
-                ForEach(FileScope.Conjunction.allCases, id: \.self) {
-                    Text($0.label)
-                }
-            } label: {
-                EmptyView()
-            }
-            .labelsHidden()
-            
-            Text(String(localized: "FileScope.Conjunction.suffix",
-                        defaultValue: "of the following conditions:",
-                        table: "Document",
-                        comment: "The text following the any/all popup in the sentence “Match [any|all] of the following conditions:”."))
         }
     }
     
@@ -184,6 +154,40 @@ struct FolderFindFileScopeView: View {
         }
         
         self.isScopeSaveViewPresented = true
+    }
+}
+
+
+private struct ConjunctionPicker: View {
+    
+    @Binding var selection: FileScope.Conjunction
+    
+    
+    var body: some View {
+        
+        HStack(alignment: .firstTextBaseline, spacing: 4) {
+            let prefix = String(localized: "FileScope.Conjunction.prefix",
+                                defaultValue: "Match",
+                                table: "Document",
+                                comment: "The text preceding the any/all popup in the sentence “Match [any|all] of the following conditions:”; can be empty.")
+            if !prefix.isEmpty {
+                Text(prefix)
+            }
+            
+            Picker(selection: $selection) {
+                ForEach(FileScope.Conjunction.allCases, id: \.self) {
+                    Text($0.label)
+                }
+            } label: {
+                EmptyView()
+            }
+            .labelsHidden()
+            
+            Text(String(localized: "FileScope.Conjunction.suffix",
+                        defaultValue: "of the following conditions:",
+                        table: "Document",
+                        comment: "The text following the any/all popup in the sentence “Match [any|all] of the following conditions:”."))
+        }
     }
 }
 
