@@ -157,10 +157,11 @@ extension MultipleReplace {
         var result: [NSRange] = []
         
         for replacement in self.replacements where replacement.isEnabled {
-            let mode = replacement.mode(settings: self.settings)
-            
             // -> Invalid replacement rules will just be ignored.
-            guard let textFind = try? TextFind(for: string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: ranges) else { continue }
+            guard
+                let pattern = try? replacement.pattern(settings: self.settings),
+                let textFind = try? TextFind(for: string, pattern: pattern, inSelection: inSelection, selectedRanges: ranges)
+            else { continue }
             
             // process find
             textFind.findAll { ranges, stop in
@@ -197,11 +198,13 @@ extension MultipleReplace {
         var result = Result(string: string, selectedRanges: ranges)
         
         for replacement in self.replacements where replacement.isEnabled {
-            let mode = replacement.mode(settings: self.settings)
             let findRanges = result.selectedRanges ?? [result.string.nsRange]
             
             // -> Invalid replacement rules will just be ignored.
-            guard let textFind = try? TextFind(for: result.string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: findRanges) else { continue }
+            guard
+                let pattern = try? replacement.pattern(settings: self.settings),
+                let textFind = try? TextFind(for: result.string, pattern: pattern, inSelection: inSelection, selectedRanges: findRanges)
+            else { continue }
             
             // process replacement
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { _, count, stop in
@@ -240,6 +243,17 @@ extension MultipleReplace {
 
 private extension MultipleReplace.Replacement {
     
+    /// Creates a compiled text find pattern with Replacement.
+    ///
+    /// - Parameter settings: The replacement settings to obtain the pattern.
+    /// - Returns: The compiled text find pattern.
+    /// - Throws: `TextFind.Error` if the find string is empty or an invalid regular expression.
+    func pattern(settings: MultipleReplace.Settings) throws(TextFind.Error) -> TextFind.Pattern {
+        
+        try TextFind.Pattern(findString: self.findString, mode: self.mode(settings: settings))
+    }
+    
+    
     /// Creates a TextFind.Mode with Replacement.
     ///
     /// - Parameter settings: The replacement settings to obtain the mode.
@@ -271,7 +285,7 @@ extension MultipleReplace {
         
         for replacement in self.replacements {
             do {
-                try replacement.validate(regexOptions: self.settings.regexOptions)
+                _ = try replacement.pattern(settings: self.settings)
             } catch {
                 return false
             }
@@ -283,21 +297,12 @@ extension MultipleReplace {
 
 extension MultipleReplace.Replacement {
     
-    /// Checks if replacement rule is valid.
+    /// Validates the replacement rule.
     ///
-    /// - Parameter regexOptions: The regular expression options to validate with.
-    public func validate(regexOptions: NSRegularExpression.Options = []) throws(TextFind.Error) {
+    /// - Parameter settings: The replacement settings to use for validation.
+    /// - Throws: `TextFind.Error` if the find string is empty or an invalid regular expression.
+    public func validate(settings: MultipleReplace.Settings = .init()) throws(TextFind.Error) {
         
-        guard !self.findString.isEmpty else {
-            throw .emptyFindString
-        }
-        
-        if self.usesRegularExpression {
-            do {
-                _ = try NSRegularExpression(pattern: self.findString, options: regexOptions)
-            } catch {
-                throw .regularExpression(reason: error.localizedDescription)
-            }
-        }
+        _ = try self.pattern(settings: settings)
     }
 }

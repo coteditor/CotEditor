@@ -31,18 +31,23 @@ import Testing
 
 struct TextFindTests {
     
-    @Test func initializationErrors() {
+    @Test func selectionInitializationError() throws {
+        
+        let pattern = try TextFind.Pattern(findString: "a", mode: .textual(options: [], fullWord: false))
+        #expect(throws: TextFind.Error.emptyInSelectionSearch) {
+            try TextFind(for: "abc", pattern: pattern, inSelection: true, selectedRanges: [NSRange()])
+        }
+    }
+    
+    
+    @Test func patternInitializationErrors() {
         
         #expect(throws: TextFind.Error.emptyFindString) {
-            try TextFind(for: "abc", findString: "", mode: .textual(options: [], fullWord: false))
-        }
-        
-        #expect(throws: TextFind.Error.emptyInSelectionSearch) {
-            try TextFind(for: "abc", findString: "a", mode: .textual(options: [], fullWord: false), inSelection: true, selectedRanges: [NSRange()])
+            try TextFind.Pattern(findString: "", mode: .textual(options: [], fullWord: false))
         }
         
         let regexError = #expect(throws: TextFind.Error.self) {
-            try TextFind(for: "abc", findString: "[", mode: .regularExpression(options: [], unescapesReplacement: false))
+            try TextFind.Pattern(findString: "[", mode: .regularExpression(options: [], unescapesReplacement: false))
         }
         if case .regularExpression(let reason) = regexError {
             #expect(!reason.isEmpty)
@@ -52,10 +57,24 @@ struct TextFindTests {
     }
     
     
+    @Test func reusePattern() throws {
+        
+        let mode = TextFind.Mode.regularExpression(options: [], unescapesReplacement: false)
+        let pattern = try TextFind.Pattern(findString: #"item-\d+"#, mode: mode)
+        let firstTextFind = TextFind(for: "item-1 item-x", pattern: pattern)
+        let secondTextFind = TextFind(for: "item-22", pattern: pattern)
+        
+        #expect(firstTextFind.findString == pattern.findString)
+        #expect(firstTextFind.mode == pattern.mode)
+        #expect(try firstTextFind.matches == [NSRange(location: 0, length: 6)])
+        #expect(try secondTextFind.matches == [NSRange(location: 0, length: 7)])
+    }
+    
+    
     @Test func scopeRangeInSelection() throws {
         
-        let textFind = try TextFind(for: "abcdef", findString: "a",
-                                    mode: .textual(options: [], fullWord: false),
+        let pattern = try TextFind.Pattern(findString: "a", mode: .textual(options: [], fullWord: false))
+        let textFind = try TextFind(for: "abcdef", pattern: pattern,
                                     inSelection: true,
                                     selectedRanges: [NSRange(location: 1, length: 2),
                                                      NSRange(location: 4, length: 1)])
@@ -66,8 +85,8 @@ struct TextFindTests {
     
     @Test func findIncludingSelection() throws {
         
-        let textFind = try TextFind(for: "abc abc", findString: "abc",
-                                    mode: .textual(options: [], fullWord: false),
+        let pattern = try TextFind.Pattern(findString: "abc", mode: .textual(options: [], fullWord: false))
+        let textFind = try TextFind(for: "abc abc", pattern: pattern,
                                     selectedRanges: [NSRange(location: 0, length: 3)])
         
         let matches = try textFind.matches
@@ -82,11 +101,12 @@ struct TextFindTests {
     @Test func findZeroLengthMatch() throws {
         
         let mode: TextFind.Mode = .regularExpression(options: [], unescapesReplacement: false)
-        let matches = try TextFind(for: "aa", findString: "(?=a)", mode: mode).matches
+        let pattern = try TextFind.Pattern(findString: "(?=a)", mode: mode)
+        let matches = try TextFind(for: "aa", pattern: pattern).matches
         
         #expect(matches == [NSRange(location: 0, length: 0), NSRange(location: 1, length: 0)])
         
-        var textFind = try TextFind(for: "aa", findString: "(?=a)", mode: mode,
+        var textFind = try TextFind(for: "aa", pattern: pattern,
                                     selectedRanges: [NSRange(location: 0, length: 0)])
         
         let included = try #require(textFind.find(in: matches, forward: true, includingSelection: true, wraps: false))
@@ -99,7 +119,7 @@ struct TextFindTests {
         #expect(wrappedPrevious.range == NSRange(location: 1, length: 0))
         #expect(wrappedPrevious.wrapped)
         
-        textFind = try TextFind(for: "aa", findString: "(?=a)", mode: mode,
+        textFind = try TextFind(for: "aa", pattern: pattern,
                                 selectedRanges: [NSRange(location: 1, length: 0)])
         
         let previous = try #require(textFind.find(in: matches, forward: false, wraps: false))
@@ -114,7 +134,8 @@ struct TextFindTests {
     @Test func matchesCancellation() async throws {
         
         let string = "aa aa"
-        let textFind = try TextFind(for: string, findString: "a", mode: .textual(options: [], fullWord: false))
+        let pattern = try TextFind.Pattern(findString: "a", mode: .textual(options: [], fullWord: false))
+        let textFind = TextFind(for: string, pattern: pattern)
         
         let task = Task {
             while !Task.isCancelled {
@@ -131,19 +152,20 @@ struct TextFindTests {
     
     @Test func countCaptureGroup() throws {
         
-        var mode: TextFind.Mode
+        let mode = TextFind.Mode.regularExpression(options: [], unescapesReplacement: false)
+        var pattern: TextFind.Pattern
         var textFind: TextFind
         
-        mode = .regularExpression(options: [], unescapesReplacement: false)
-        
-        textFind = try TextFind(for: "", findString: "a", mode: mode)
+        pattern = try TextFind.Pattern(findString: "a", mode: mode)
+        textFind = TextFind(for: "", pattern: pattern)
         #expect(textFind.numberOfCaptureGroups == 0)
         
-        textFind = try TextFind(for: "", findString: "(?!=a)(b)(c)(?=d)", mode: mode)
+        pattern = try TextFind.Pattern(findString: "(?!=a)(b)(c)(?=d)", mode: mode)
+        textFind = TextFind(for: "", pattern: pattern)
         #expect(textFind.numberOfCaptureGroups == 2)
         
-        mode = .textual(options: [], fullWord: false)
-        textFind = try TextFind(for: "", findString: "(?!=a)(b)(c)(?=d)", mode: mode)
+        pattern = try TextFind.Pattern(findString: "(?!=a)(b)(c)(?=d)", mode: .textual(options: [], fullWord: false))
+        textFind = TextFind(for: "", pattern: pattern)
         #expect(textFind.numberOfCaptureGroups == 0)
     }
     
@@ -152,12 +174,13 @@ struct TextFindTests {
         
         let text = "abcdefg abcdefg ABCDEFG"
         let findString = "abc"
+        let pattern = try TextFind.Pattern(findString: findString, mode: .textual(options: [], fullWord: false))
         
         var textFind: TextFind
         var result: (range: NSRange, wrapped: Bool)
         var matches: [NSRange]
         
-        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: [], fullWord: false))
+        textFind = TextFind(for: text, pattern: pattern)
         matches = try textFind.matches
         
         result = try #require(textFind.find(in: matches, forward: true, wraps: false))
@@ -168,7 +191,7 @@ struct TextFindTests {
         #expect(textFind.find(in: matches, forward: false, wraps: false) == nil)
         
         
-        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: [], fullWord: false), selectedRanges: [NSRange(location: 1, length: 0)])
+        textFind = try TextFind(for: text, pattern: pattern, selectedRanges: [NSRange(location: 1, length: 0)])
         
         matches = try textFind.matches
         #expect(matches.count == 2)
@@ -182,7 +205,8 @@ struct TextFindTests {
         #expect(result.wrapped)
         
         
-        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: .caseInsensitive, fullWord: false), selectedRanges: [NSRange(location: 1, length: 0)])
+        let caseInsensitivePattern = try TextFind.Pattern(findString: findString, mode: .textual(options: .caseInsensitive, fullWord: false))
+        textFind = try TextFind(for: text, pattern: caseInsensitivePattern, selectedRanges: [NSRange(location: 1, length: 0)])
         
         matches = try textFind.matches
         #expect(matches.count == 3)
@@ -195,33 +219,34 @@ struct TextFindTests {
     
     @Test func fullWord() throws {
         
+        var pattern: TextFind.Pattern
         var textFind: TextFind
         var result: (range: NSRange, wrapped: Bool)
         var matches: [NSRange]
         
-        textFind = try TextFind(for: "apples apple Apple", findString: "apple",
-                                mode: .textual(options: .caseInsensitive, fullWord: true))
+        pattern = try TextFind.Pattern(findString: "apple", mode: .textual(options: .caseInsensitive, fullWord: true))
+        textFind = TextFind(for: "apples apple Apple", pattern: pattern)
         matches = try textFind.matches
         result = try #require(textFind.find(in: matches, forward: true, wraps: true))
         #expect(matches.count == 2)
         #expect(result.range == NSRange(location: 7, length: 5))
         
-        textFind = try TextFind(for: "apples apple Apple", findString: "apple",
-                                mode: .textual(options: [.caseInsensitive, .literal], fullWord: true))
+        pattern = try TextFind.Pattern(findString: "apple", mode: .textual(options: [.caseInsensitive, .literal], fullWord: true))
+        textFind = TextFind(for: "apples apple Apple", pattern: pattern)
         matches = try textFind.matches
         result = try #require(textFind.find(in: matches, forward: true, wraps: true))
         #expect(matches.count == 2)
         #expect(result.range == NSRange(location: 7, length: 5))
         
-        textFind = try TextFind(for: "Apfel Äpfel Äpfelchen", findString: "Äpfel",
-                                mode: .textual(options: .diacriticInsensitive, fullWord: true))
+        pattern = try TextFind.Pattern(findString: "Äpfel", mode: .textual(options: .diacriticInsensitive, fullWord: true))
+        textFind = TextFind(for: "Apfel Äpfel Äpfelchen", pattern: pattern)
         matches = try textFind.matches
         result = try #require(textFind.find(in: matches, forward: true, wraps: true))
         #expect(matches.count == 2)
         #expect(result.range == NSRange(location: 0, length: 5))
         
-        textFind = try TextFind(for: "イヌら ｲﾇ イヌ", findString: "イヌ",
-                                mode: .textual(options: .widthInsensitive, fullWord: true))
+        pattern = try TextFind.Pattern(findString: "イヌ", mode: .textual(options: .widthInsensitive, fullWord: true))
+        textFind = TextFind(for: "イヌら ｲﾇ イヌ", pattern: pattern)
         matches = try textFind.matches
         result = try #require(textFind.find(in: matches, forward: true, wraps: true))
         #expect(matches.count == 2)
@@ -232,7 +257,8 @@ struct TextFindTests {
     @Test func unescapedRegexFind() throws {
         
         let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: true)
-        let textFind = try TextFind(for: "1", findString: "1", mode: mode, selectedRanges: [NSRange(0..<1)])
+        let pattern = try TextFind.Pattern(findString: "1", mode: mode)
+        let textFind = try TextFind(for: "1", pattern: pattern, selectedRanges: [NSRange(0..<1)])
         let replacementResult = try #require(textFind.replace(with: #"foo：\n1"#))
         #expect(replacementResult.value == "foo：\n1")
     }
@@ -242,13 +268,14 @@ struct TextFindTests {
         
         let findString = "(?!=a)b(c)(?=d)"
         let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: true)
+        let pattern = try TextFind.Pattern(findString: findString, mode: mode)
         
         var textFind: TextFind
         var result: (range: NSRange, wrapped: Bool)
         var matches: [NSRange]
         
         
-        textFind = try TextFind(for: "abcdefg abcdefg ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 1)])
+        textFind = try TextFind(for: "abcdefg abcdefg ABCDEFG", pattern: pattern, selectedRanges: [NSRange(location: 1, length: 1)])
         
         matches = try textFind.matches
         #expect(matches.count == 3)
@@ -262,7 +289,7 @@ struct TextFindTests {
         #expect(result.wrapped)
         
         
-        textFind = try TextFind(for: "ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 1)])
+        textFind = try TextFind(for: "ABCDEFG", pattern: pattern, selectedRanges: [NSRange(location: 1, length: 1)])
         
         matches = try textFind.matches
         #expect(matches.count == 1)
@@ -278,7 +305,7 @@ struct TextFindTests {
         #expect(textFind.replace(with: "$1") == nil)
         
         
-        textFind = try TextFind(for: "ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 2)])
+        textFind = try TextFind(for: "ABCDEFG", pattern: pattern, selectedRanges: [NSRange(location: 1, length: 2)])
         
         let replacementResult = try #require(textFind.replace(with: "$1\\t"))
         #expect(replacementResult.value == "C\t")
@@ -289,9 +316,11 @@ struct TextFindTests {
     @Test func findAll() throws {
         
         let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: false)
+        var pattern: TextFind.Pattern
         var textFind: TextFind
         
-        textFind = try TextFind(for: "abcdefg ABCDEFG", findString: "(?!=a)b(c)(?=d)", mode: mode)
+        pattern = try TextFind.Pattern(findString: "(?!=a)b(c)(?=d)", mode: mode)
+        textFind = TextFind(for: "abcdefg ABCDEFG", pattern: pattern)
         
         var matches = [[NSRange]]()
         textFind.findAll { matchedRanges, _ in
@@ -306,7 +335,8 @@ struct TextFindTests {
         #expect(matches[1][1] == NSRange(location: 10, length: 1))
         
         
-        textFind = try TextFind(for: "abcdefg ABCDEFG", findString: "ab", mode: mode)
+        pattern = try TextFind.Pattern(findString: "ab", mode: mode)
+        textFind = TextFind(for: "abcdefg ABCDEFG", pattern: pattern)
         
         matches = [[NSRange]]()
         textFind.findAll { matchedRanges, _ in
@@ -322,12 +352,14 @@ struct TextFindTests {
     
     @Test func replaceAll() throws {
         
+        var pattern: TextFind.Pattern
         var textFind: TextFind
         var replacementItems: [TextFind.ReplacementItem]
         var selectedRanges: [NSRange]?
         
-        textFind = try TextFind(for: "abcdefg ABCDEFG", findString: "(?!=a)b(c)(?=d)",
-                                mode: .regularExpression(options: .caseInsensitive, unescapesReplacement: false))
+        pattern = try TextFind.Pattern(findString: "(?!=a)b(c)(?=d)",
+                                       mode: .regularExpression(options: .caseInsensitive, unescapesReplacement: false))
+        textFind = TextFind(for: "abcdefg ABCDEFG", pattern: pattern)
         
         (replacementItems, selectedRanges) = textFind.replaceAll(with: "$1\\\\t") { _, _, _ in }
         #expect(replacementItems.count == 1)
@@ -336,8 +368,8 @@ struct TextFindTests {
         #expect(selectedRanges == nil)
         
         
-        textFind = try TextFind(for: "abcdefg abcdefg abcdefg", findString: "abc",
-                                mode: .regularExpression(options: [], unescapesReplacement: false),
+        pattern = try TextFind.Pattern(findString: "abc", mode: .regularExpression(options: [], unescapesReplacement: false))
+        textFind = try TextFind(for: "abcdefg abcdefg abcdefg", pattern: pattern,
                                 inSelection: true,
                                 selectedRanges: [NSRange(location: 1, length: 14),
                                                  NSRange(location: 16, length: 7)])
@@ -352,8 +384,8 @@ struct TextFindTests {
         #expect(selectedRanges?[1] == NSRange(location: 14, length: 5))
         
         
-        textFind = try TextFind(for: "abcx---def", findString: "abc",
-                                mode: .textual(options: [], fullWord: false),
+        pattern = try TextFind.Pattern(findString: "abc", mode: .textual(options: [], fullWord: false))
+        textFind = try TextFind(for: "abcx---def", pattern: pattern,
                                 inSelection: true,
                                 selectedRanges: [NSRange(location: 0, length: 4),
                                                  NSRange(location: 7, length: 3)])
@@ -369,8 +401,8 @@ struct TextFindTests {
     
     @Test func replaceAllTextualCanonicallyEquivalentCharacter() throws {
         
-        let textFind = try TextFind(for: "\u{00B7}", findString: "\u{00B7}",
-                                    mode: .textual(options: [], fullWord: false))
+        let pattern = try TextFind.Pattern(findString: "\u{00B7}", mode: .textual(options: [], fullWord: false))
+        let textFind = TextFind(for: "\u{00B7}", pattern: pattern)
         
         let (replacementItems, selectedRanges) = textFind.replaceAll(with: "\u{0387}") { _, _, _ in }
         

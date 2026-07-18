@@ -49,12 +49,12 @@ public enum FolderFind {
         }
         
         
-        /// Validates the query.
+        /// The compiled text find pattern for the query.
         ///
-        /// - Throws: `TextFind.Error` if the query is invalid.
-        public func validate() throws(TextFind.Error) {
+        /// - Throws: `TextFind.Error` if the find string is empty or an invalid regular expression.
+        public func pattern() throws(TextFind.Error) -> TextFind.Pattern {
             
-            _ = try TextFind(for: "", findString: self.findString, mode: self.mode)
+            try TextFind.Pattern(findString: self.findString, mode: self.mode)
         }
     }
     
@@ -197,26 +197,6 @@ public enum FolderFind {
         
         public var file: FileResult
         public var match: Match?
-    }
-    
-    
-    /// Finds text in files in a folder.
-    ///
-    /// - Parameters:
-    ///   - rootURL: The folder URL to search.
-    ///   - query: The search query.
-    ///   - options: The folder search options.
-    ///   - progress: The progress object to update while searching.
-    ///   - isIncluded: An additional predicate to include file candidates that the default file type check excludes.
-    /// - Returns: The search summary.
-    /// - Throws: `TextFind.Error` for invalid queries, `FileScope.Error` for invalid file scopes, or `CancellationError` if the task is cancelled.
-    public static func find(in rootURL: URL, query: Query, options: Options = .init(), progress: FolderFindProgress? = nil, isIncluded: (@Sendable (Candidate) -> Bool)? = nil) async throws -> Summary {
-        
-        // validate search conditions before traversing the folder
-        try query.validate()
-        
-        var search = try Search(rootURL: rootURL, query: query, options: options, progress: progress, isIncluded: isIncluded)
-        return try await search.run()
     }
     
     

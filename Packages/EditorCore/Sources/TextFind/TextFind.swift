@@ -52,12 +52,54 @@ public struct TextFind: Equatable, Sendable {
         case emptyFindString
         case emptyInSelectionSearch
     }
+
+
+    public struct Pattern: Equatable, Sendable {
+        
+        public let findString: String
+        public let mode: TextFind.Mode
+        
+        fileprivate let regex: NSRegularExpression?
+        fileprivate let fullWordChecker: NSRegularExpression?
+        
+        
+        /// Creates a compiled text find pattern.
+        ///
+        /// - Parameters:
+        ///   - findString: The string for which to search.
+        ///   - mode: The settable options for the text search.
+        /// - Throws: `TextFind.Error` if the find string is empty or an invalid regular expression.
+        public init(findString: String, mode: TextFind.Mode) throws(TextFind.Error) {
+            
+            guard !findString.isEmpty else {
+                throw .emptyFindString
+            }
+            
+            switch mode {
+                case .textual(let options, let isFullWord):
+                    assert(!options.contains(.backwards))
+                    self.regex = nil
+                    self.fullWordChecker = isFullWord ? try! NSRegularExpression(pattern: #"^\b.+\b$"#) : nil
+                    
+                case .regularExpression(let options, _):
+                    do {
+                        self.regex = try NSRegularExpression(pattern: findString, options: options)
+                    } catch {
+                        throw .regularExpression(reason: error.localizedDescription)
+                    }
+                    self.fullWordChecker = nil
+            }
+            
+            self.findString = findString
+            self.mode = mode
+        }
+    }
     
     
     // MARK: Public Properties
     
-    public let findString: String
-    public let mode: TextFind.Mode
+    public var findString: String  { self.pattern.findString }
+    public var mode: TextFind.Mode  { self.pattern.mode }
     public let inSelection: Bool
     
     public let string: String
@@ -66,50 +108,44 @@ public struct TextFind: Equatable, Sendable {
     
     // MARK: Private Properties
     
-    private let regex: NSRegularExpression?
-    private let fullWordChecker: NSRegularExpression?
+    private let pattern: Pattern
     private let scopeRanges: [NSRange]
     
     
     // MARK: Lifecycle
     
-    /// Returns a TextFind instance with the specified options.
+    /// Returns a TextFind instance that searches the entire string with the specified compiled pattern.
     ///
     /// - Parameters:
     ///   - string: The string to search.
-    ///   - findString: The string for which to search.
-    ///   - mode: The settable options for the text search.
+    ///   - pattern: The compiled text find pattern.
+    public init(for string: String, pattern: Pattern) {
+        
+        self.pattern = pattern
+        self.inSelection = false
+        self.string = string
+        self.selectedRanges = [NSRange()]
+        self.scopeRanges = [string.range]
+    }
+    
+    
+    /// Returns a TextFind instance with the specified compiled pattern and selection options.
+    ///
+    /// - Parameters:
+    ///   - string: The string to search.
+    ///   - pattern: The compiled text find pattern.
     ///   - inSelection: Whether find string only in selectedRanges.
     ///   - selectedRanges: The selected ranges in the text view.
-    public init(for string: String, findString: String, mode: TextFind.Mode, inSelection: Bool = false, selectedRanges: [NSRange] = [NSRange()]) throws(TextFind.Error) {
+    /// - Throws: `TextFind.Error.emptyInSelectionSearch` if searching in an empty selection.
+    public init(for string: String, pattern: Pattern, inSelection: Bool = false, selectedRanges: [NSRange]) throws(TextFind.Error) {
         
         assert(!selectedRanges.isEmpty)
-        
-        guard !findString.isEmpty else {
-            throw .emptyFindString
-        }
         
         guard !inSelection || !selectedRanges.allSatisfy(\.isEmpty) else {
             throw .emptyInSelectionSearch
         }
         
-        switch mode {
-            case .textual(let options, let isFullWord):
-                assert(!options.contains(.backwards))
-                self.regex = nil
-                self.fullWordChecker = isFullWord ? try! NSRegularExpression(pattern: #"^\b.+\b$"#) : nil
-                
-            case .regularExpression(let options, _):
-                do {
-                    self.regex = try NSRegularExpression(pattern: findString, options: options)
-                } catch {
-                    throw .regularExpression(reason: error.localizedDescription)
-                }
-                self.fullWordChecker = nil
-        }
-        
-        self.findString = findString
-        self.mode = mode
+        self.pattern = pattern
         self.inSelection = inSelection
         self.string = string
         self.selectedRanges = selectedRanges
@@ -122,7 +158,7 @@ public struct TextFind: Equatable, Sendable {
     /// The number of capture groups in the regular expression.
     public var numberOfCaptureGroups: Int {
         
-        self.regex?.numberOfCaptureGroups ?? 0
+        self.pattern.regex?.numberOfCaptureGroups ?? 0
     }
     
     
@@ -232,7 +268,7 @@ public struct TextFind: Equatable, Sendable {
                 return ReplacementItem(value: replacementString, range: matchedRange)
                 
             case .regularExpression:
-                let regex = self.regex!
+                let regex = self.pattern.regex!
                 guard let match = regex.firstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: selectedRange) else { return nil }
                 
                 let template = self.replacementString(from: replacementString)
@@ -359,7 +395,7 @@ public struct TextFind: Equatable, Sendable {
     /// - Returns: Whether the substring of the given range is full word.
     private func checkFullWord(in range: NSRange) -> Bool {
         
-        guard let fullWordChecker else { return true }
+        guard let fullWordChecker = self.pattern.fullWordChecker else { return true }
         
         return fullWordChecker.firstMatch(in: self.string, options: .withTransparentBounds, range: range) != nil
     }
@@ -423,7 +459,7 @@ public struct TextFind: Equatable, Sendable {
         let string = self.string
         let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds]
         
-        unsafe self.regex!.enumerateMatches(in: string, options: options, range: range) { result, _, stop in
+        unsafe self.pattern.regex!.enumerateMatches(in: string, options: options, range: range) { result, _, stop in
             guard let result else { return }
             
             var ioStop = false

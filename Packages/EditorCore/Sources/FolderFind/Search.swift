@@ -24,16 +24,17 @@
 //  limitations under the License.
 //
 
-import Foundation
+public import Foundation
+public import TextFind
 import UniformTypeIdentifiers
 import LineEnding
 import StringUtils
-import TextFind
 
-struct Search {
+/// A folder search configured with a compiled text find pattern.
+public struct Search {
     
     var rootURL: URL
-    var query: FolderFind.Query
+    var pattern: TextFind.Pattern
     var options: FolderFind.Options
     var progress: FolderFindProgress?
     var isIncluded: (@Sendable (FolderFind.Candidate) -> Bool)?
@@ -49,15 +50,15 @@ struct Search {
     ///
     /// - Parameters:
     ///   - rootURL: The folder URL to search.
-    ///   - query: The search query.
+    ///   - pattern: The compiled text find pattern.
     ///   - options: The folder search options.
     ///   - progress: The progress object to update while searching.
     ///   - isIncluded: An additional predicate to include file candidates that the default file type check excludes.
     /// - Throws: `FileScope.Error` if the file scope is invalid.
-    init(rootURL: URL, query: FolderFind.Query, options: FolderFind.Options, progress: FolderFindProgress?, isIncluded: (@Sendable (FolderFind.Candidate) -> Bool)?) throws(FileScope.Error) {
+    public init(rootURL: URL, pattern: TextFind.Pattern, options: FolderFind.Options = .init(), progress: FolderFindProgress? = nil, isIncluded: (@Sendable (FolderFind.Candidate) -> Bool)? = nil) throws(FileScope.Error) {
         
         self.rootURL = rootURL
-        self.query = query
+        self.pattern = pattern
         self.options = options
         self.progress = progress
         self.isIncluded = isIncluded
@@ -66,15 +67,15 @@ struct Search {
         } else {
             nil
         }
-        self.metrics = FolderFind.Metrics(findString: query.findString)
+        self.metrics = FolderFind.Metrics(findString: pattern.findString)
     }
     
     
-    /// Runs the folder search.
+    /// Runs the configured folder search.
     ///
     /// - Returns: The search summary.
     /// - Throws: `CancellationError` if the task is cancelled.
-    mutating func run() async throws -> FolderFind.Summary {
+    public mutating func run() async throws -> FolderFind.Summary {
         
         try await self.searchDirectory(at: self.rootURL)
         
@@ -139,14 +140,7 @@ struct Search {
             let string = try? String(contentsOf: candidate.fileURL, decodingOptions: self.options.decodingOptions)
         else { return }
         
-        let textFind: TextFind
-        do {
-            textFind = try TextFind(for: string, findString: self.query.findString, mode: self.query.mode)
-        } catch {
-            assertionFailure("The query should have been already validated.")
-            return
-        }
-        
+        let textFind = TextFind(for: string, pattern: self.pattern)
         let matches = try self.matches(in: string, using: textFind)
         
         guard !matches.isEmpty else { return }

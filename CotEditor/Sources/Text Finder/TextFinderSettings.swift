@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -120,7 +120,7 @@ import TextFind
         self.searchesIncrementally &&
         !self.inSelection &&
         !self.findString.isEmpty &&
-        (!self.usesRegularExpression || (try? NSRegularExpression(pattern: self.findString)) != nil)
+        (!self.usesRegularExpression || (try? TextFind.Pattern(findString: self.findString, mode: self.mode)) != nil)
     }
     
     

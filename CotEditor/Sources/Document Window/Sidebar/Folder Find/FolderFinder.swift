@@ -134,8 +134,9 @@ import TextFind
         
         self.submittedFindString = findString
         
+        let pattern: TextFind.Pattern
         do {
-            try query.validate()
+            pattern = try query.pattern()
         } catch {
             self.state = .failed(.invalidQuery(error))
             self.resultRevision += 1
@@ -156,9 +157,10 @@ import TextFind
         
         self.searchTask = .detached(priority: .userInitiated) {
             do {
-                let summary = try await FolderFind.find(in: rootURL, query: query, options: options, progress: progress) { candidate in
+                var search = try Search(rootURL: rootURL, pattern: pattern, options: options, progress: progress) { candidate in
                     syntaxMappingTable.syntaxName(forFilename: candidate.fileURL.lastPathComponent) != nil
                 }
+                let summary = try await search.run()
                 
                 try Task.checkCancellation()
                 

@@ -534,7 +534,7 @@ extension MultipleReplaceViewController: NSTableViewDelegate {
         if identifier == .findString, let imageView = cellView.imageView {
             let errorMessage: String? = {
                 do throws(TextFind.Error) {
-                    try replacement.validate(regexOptions: self.definition.settings.regexOptions)
+                    try replacement.validate(settings: self.definition.settings)
                 } catch {
                     guard let suggestion = error.recoverySuggestion else { return error.localizedDescription }
                     

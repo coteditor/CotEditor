@@ -42,7 +42,8 @@ struct FolderFindTests {
         try Data("hay\nneedle\n".utf8).write(to: rootURL.appending(path: "Subfolder/b.txt"))
         try Data("hay\n".utf8).write(to: rootURL.appending(path: "c.txt"))
         
-        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern())
+        let summary = try await search.run()
         
         #expect(summary.metrics.findString == "needle")
         #expect(summary.metrics.matchedFileCount == 2)
@@ -76,7 +77,8 @@ struct FolderFindTests {
         try Data([0xFF]).write(to: rootURL.appending(path: "invalid.txt"))
         
         let progress = FolderFindProgress(findString: "needle")
-        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"), progress: progress)
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern(), progress: progress)
+        let summary = try await search.run()
         
         #expect(progress.snapshot.findString == "needle")
         #expect(progress.snapshot == summary.metrics)
@@ -93,7 +95,8 @@ struct FolderFindTests {
         let progress = FolderFindProgress(findString: "")
         
         await #expect(throws: TextFind.Error.emptyFindString) {
-            try await FolderFind.find(in: rootURL, query: Self.query(""), progress: progress)
+            var search = try Search(rootURL: rootURL, pattern: Self.query("").pattern(), progress: progress)
+            _ = try await search.run()
         }
         
         #expect(progress.snapshot.matchCount == 0)
@@ -109,7 +112,8 @@ struct FolderFindTests {
         try Data("needle\nhay\nneedle\n".utf8).write(to: rootURL.appending(path: "a.txt"))
         try Data("hay\nneedle\n".utf8).write(to: rootURL.appending(path: "b.txt"))
         
-        var summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern())
+        var summary = try await search.run()
         
         let firstFile = try #require(summary.files.first { $0.filename == "a.txt" })
         let firstMatch = try #require(firstFile.matches.first)
@@ -214,7 +218,8 @@ struct FolderFindTests {
         try Data("Needle\nneedle\nNEEDLE\n".utf8).write(to: rootURL.appending(path: "case.txt"))
         
         let query = FolderFind.Query(findString: "needle", mode: .textual(options: .caseInsensitive, fullWord: false))
-        let summary = try await FolderFind.find(in: rootURL, query: query)
+        var search = try Search(rootURL: rootURL, pattern: query.pattern())
+        let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 3)
     }
@@ -228,7 +233,8 @@ struct FolderFindTests {
         try Data("item-1\nitem-22\nitem-x\n".utf8).write(to: rootURL.appending(path: "regex.txt"))
         
         let query = FolderFind.Query(findString: #"item-\d+"#, mode: .regularExpression(options: [], unescapesReplacement: false))
-        let summary = try await FolderFind.find(in: rootURL, query: query)
+        var search = try Search(rootURL: rootURL, pattern: query.pattern())
+        let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 2)
         #expect(summary.files.first?.matches.map(\.line) == ["item-1", "item-22"])
@@ -243,11 +249,14 @@ struct FolderFindTests {
         try Data("needle".utf8).write(to: rootURL.appending(path: "a.txt"))
         
         await #expect(throws: TextFind.Error.emptyFindString) {
-            try await FolderFind.find(in: rootURL, query: Self.query(""))
+            var search = try Search(rootURL: rootURL, pattern: Self.query("").pattern())
+            _ = try await search.run()
         }
         
         await #expect(throws: TextFind.Error.self) {
-            try await FolderFind.find(in: rootURL, query: FolderFind.Query(findString: "[", mode: .regularExpression(options: [], unescapesReplacement: false)))
+            let query = FolderFind.Query(findString: "[", mode: .regularExpression(options: [], unescapesReplacement: false))
+            var search = try Search(rootURL: rootURL, pattern: query.pattern())
+            _ = try await search.run()
         }
     }
     
@@ -262,7 +271,8 @@ struct FolderFindTests {
         try Data("needle".utf8).write(to: rootURL.appending(path: ".git/config"))
         try Data("needle".utf8).write(to: rootURL.appending(path: "visible.txt"))
         
-        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern())
+        let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["visible.txt"])
@@ -276,9 +286,10 @@ struct FolderFindTests {
         
         try Data("needle".utf8).write(to: rootURL.appending(path: ".hidden.txt"))
         
-        let summary = try await FolderFind.find(in: rootURL,
-                                                query: Self.query("needle"),
-                                                options: .init(includesHiddenFiles: true))
+        var search = try Search(rootURL: rootURL,
+                                pattern: Self.query("needle").pattern(),
+                                options: .init(includesHiddenFiles: true))
+        let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == [".hidden.txt"])
@@ -295,7 +306,8 @@ struct FolderFindTests {
         try FileManager.default.createDirectory(at: subURL, withIntermediateDirectories: true)
         try FileManager.default.createSymbolicLink(at: subURL.appending(path: "loop"), withDestinationURL: rootURL)
         
-        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern())
+        let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["a.txt"])
@@ -314,7 +326,8 @@ struct FolderFindTests {
         try xmlData.write(to: rootURL.appending(path: "xml.plist"))
         try binaryData.write(to: rootURL.appending(path: "binary.plist"))
         
-        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern())
+        let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["xml.plist"])
@@ -354,12 +367,14 @@ struct FolderFindTests {
         
         try Data("needle".utf8).write(to: rootURL.appending(path: "data.bin"))
         
-        let defaultSummary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        var defaultSearch = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern())
+        let defaultSummary = try await defaultSearch.run()
         #expect(defaultSummary.metrics.matchCount == 0)
         
-        let otherFileTypesSummary = try await FolderFind.find(in: rootURL,
-                                                              query: Self.query("needle"),
-                                                              options: .init(includesOtherFileTypes: true))
+        var otherFileTypesSearch = try Search(rootURL: rootURL,
+                                              pattern: Self.query("needle").pattern(),
+                                              options: .init(includesOtherFileTypes: true))
+        let otherFileTypesSummary = try await otherFileTypesSearch.run()
         #expect(otherFileTypesSummary.metrics.matchCount == 1)
         #expect(otherFileTypesSummary.files.map(\.filename) == ["data.bin"])
     }
@@ -378,7 +393,8 @@ struct FolderFindTests {
             FileScope.Rule(target: .filename, comparison: .isEqualTo, value: "README.md"),
             FileScope.Rule(target: .fileExtension, comparison: .isEqualTo, value: "html"),
         ])
-        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope))
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern(), options: .init(fileScope: fileScope))
+        let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 2)
         #expect(Set(summary.files.map(\.filename)) == ["README.md", "index.html"])
@@ -397,7 +413,8 @@ struct FolderFindTests {
         let fileScope = FileScope(rules: [
             FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: #".+\.(md|html)"#),
         ])
-        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope))
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern(), options: .init(fileScope: fileScope))
+        let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 2)
         #expect(Set(summary.files.map(\.filename)) == ["README.md", "index.html"])
@@ -574,7 +591,8 @@ struct FolderFindTests {
         ])
         
         await #expect(throws: FileScope.Error.invalidRegularExpression(pattern: "[")) {
-            try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope), progress: progress)
+            var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern(), options: .init(fileScope: fileScope), progress: progress)
+            _ = try await search.run()
         }
     }
     
@@ -592,7 +610,8 @@ struct FolderFindTests {
         ])
         
         await #expect(throws: FileScope.Error.emptyValue) {
-            try await FolderFind.find(in: rootURL, query: Self.query("needle"), options: .init(fileScope: fileScope), progress: progress)
+            var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern(), options: .init(fileScope: fileScope), progress: progress)
+            _ = try await search.run()
         }
     }
     
@@ -605,7 +624,8 @@ struct FolderFindTests {
         try Data([0xFF]).write(to: rootURL.appending(path: "invalid.txt"))
         try Data("needle".utf8).write(to: rootURL.appending(path: "valid.txt"))
         
-        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern())
+        let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 1)
     }
@@ -619,8 +639,10 @@ struct FolderFindTests {
         try Data("needle".utf8).write(to: rootURL.appending(path: "small.txt"))
         try Data("needle needle".utf8).write(to: rootURL.appending(path: "large.txt"))
         
-        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"),
-                                                options: .init(maximumFileSize: 8))
+        var search = try Search(rootURL: rootURL,
+                                pattern: Self.query("needle").pattern(),
+                                options: .init(maximumFileSize: 8))
+        let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["small.txt"])
@@ -639,7 +661,8 @@ struct FolderFindTests {
         try FileManager.default.setAttributes([.posixPermissions: 0o000], ofItemAtPath: lockedURL.path)
         defer { try? FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: lockedURL.path) }
         
-        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle"))
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern())
+        let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["a.txt"])
@@ -653,9 +676,10 @@ struct FolderFindTests {
         
         try Data("needle".utf8).write(to: rootURL.appending(path: "Custom.syntaxless"))
         
-        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle")) { candidate in
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern()) { candidate in
             candidate.fileURL.lastPathComponent == "Custom.syntaxless"
         }
+        let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 1)
     }
@@ -668,7 +692,8 @@ struct FolderFindTests {
         
         try Data("needle".utf8).write(to: rootURL.appending(path: "a.txt"))
         
-        let summary = try await FolderFind.find(in: rootURL, query: Self.query("needle")) { _ in false }
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern()) { _ in false }
+        let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 1)
     }

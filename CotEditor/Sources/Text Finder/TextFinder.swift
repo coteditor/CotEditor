@@ -140,6 +140,7 @@ struct FindMatchesCache {
     // MARK: Private Properties
     
     private(set) var findMatchesCache: FindMatchesCache?
+    private var cachedPattern: TextFind.Pattern?
     private var textVersion = 0
     
     private var findTask: Task<Void, any Error>?
@@ -476,6 +477,29 @@ struct FindMatchesCache {
     }
     
     
+    /// Returns a compiled pattern for the given search options, reusing the current one if possible.
+    ///
+    /// - Parameters:
+    ///   - findString: The string for which to search.
+    ///   - mode: The settable options for the text search.
+    /// - Returns: The compiled text find pattern.
+    /// - Throws: `TextFind.Error` if the find string is empty or an invalid regular expression.
+    private func pattern(findString: String, mode: TextFind.Mode) throws(TextFind.Error) -> TextFind.Pattern {
+        
+        if let pattern = self.cachedPattern,
+           pattern.findString.compare(findString, options: .literal) == .orderedSame,
+           pattern.mode == mode
+        {
+            return pattern
+        }
+        
+        let pattern = try TextFind.Pattern(findString: findString, mode: mode)
+        self.cachedPattern = pattern
+        
+        return pattern
+    }
+    
+    
     /// Checks the Find action can be performed and alerts if needed.
     ///
     /// - Parameter presentsError: Whether shows error dialog on the find panel.
@@ -495,7 +519,8 @@ struct FindMatchesCache {
         
         let textFind: TextFind
         do {
-            textFind = try TextFind(for: string, findString: findString, mode: mode, inSelection: inSelection, selectedRanges: selectedRanges)
+            let pattern = try self.pattern(findString: findString, mode: mode)
+            textFind = try TextFind(for: string, pattern: pattern, inSelection: inSelection, selectedRanges: selectedRanges)
         } catch {
             guard presentsError else { return nil }
             
