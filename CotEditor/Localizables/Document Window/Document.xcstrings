@@ -10992,6 +10992,12 @@
             "state" : "needs_review",
             "value" : "Bewaarde bereiken:"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已保存的范围："
+          }
         }
       }
     },
@@ -13265,6 +13271,12 @@
     "Toolbar.documentHistory.forward.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vpřed"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13280,12 +13292,12 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Forwards"
+            "value" : "Forward"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Adelante"
           }
         },
@@ -13295,10 +13307,22 @@
             "value" : "Suivant"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avanti"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "進む"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앞으로"
           }
         },
         "nl" : {
@@ -13307,16 +13331,40 @@
             "value" : "Volgende"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dalej"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avançar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "вперед"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İleri"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "前进"
+            "value" : "往前"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "下一個"
+            "value" : "往前"
           }
         }
       }
@@ -13470,7 +13518,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "返回/前进"
+            "value" : "返回/往前"
           }
         },
         "zh-Hant" : {
@@ -13490,27 +13538,33 @@
     "Toolbar.documentHistory.previous.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zpět"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rückwärts"
+            "value" : "Zurück"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Backward"
+            "value" : "Back"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Backwards"
+            "value" : "Back"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Atrás"
           }
         },
@@ -13520,16 +13574,52 @@
             "value" : "Précédent"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indietro"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "戻る"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "뒤로"
+          }
+        },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Vorige"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wróć"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voltar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Назад"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geri"
           }
         },
         "zh-Hans" : {
@@ -13541,7 +13631,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "上一個"
+            "value" : "返回"
           }
         }
       }
