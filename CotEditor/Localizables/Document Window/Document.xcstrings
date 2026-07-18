@@ -13535,7 +13535,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "后退"
+            "value" : "返回"
           }
         },
         "zh-HK" : {
@@ -13653,7 +13653,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在文稿历史记录中后退或前进"
+            "value" : "在文稿历史记录中返回或前进"
           }
         },
         "zh-HK" : {
