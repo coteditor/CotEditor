@@ -173,16 +173,6 @@ private struct FolderFindControlView: View {
                 .fontWeight(self.ignoresCase ? .medium : .bold)
                 .labelStyle(.iconOnly)
                 .frame(width: 16, alignment: .center)
-                
-                Menu {
-                    Toggle(String(localized: "Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
-                    Toggle(String(localized: "Include Other File Types", table: "Document", comment: "toggle button label"), isOn: $includesOtherFileTypes)
-                } label: {
-                    Label(String(localized: "Advanced options", table: "TextFind", comment: "accessibility label"), systemImage: "ellipsis")
-                        .symbolVariant(.circle)
-                        .labelStyle(.iconOnly)
-                }
-                .menuIndicator(.hidden)
             }
             .buttonStyle(.borderless)
             .controlSize(.small)
@@ -203,7 +193,9 @@ private struct FolderFindControlView: View {
                 self.model.findStringDidChange(to: findString)
             }
             
-            FileScopeMenu(selection: $fileScopeSelection)
+            FileScopeMenu(selection: $fileScopeSelection,
+                          includesHiddenFiles: $includesHiddenFiles,
+                          includesOtherFileTypes: $includesOtherFileTypes)
         }
     }
 }
@@ -219,6 +211,8 @@ private struct FileScopeSelection {
 private struct FileScopeMenu: View {
     
     @Binding var selection: FileScopeSelection
+    @Binding var includesHiddenFiles: Bool
+    @Binding var includesOtherFileTypes: Bool
     
     @State private var savedScopesData: [String: Data] = [:]
     @State private var isFileScopeEditorPresented = false
@@ -230,6 +224,11 @@ private struct FileScopeMenu: View {
         let savedScopes = self.savedScopesData.compactMapValues { try? JSONDecoder().decode(FileScope.self, from: $0) }
         
         Menu {
+            Section {
+                Toggle(String(localized: "Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
+                Toggle(String(localized: "Include Other File Types", table: "Document", comment: "toggle button label"), isOn: $includesOtherFileTypes)
+            }
+            
             Button(String(localized: "Edit File Scope…", table: "Document")) {
                 self.isFileScopeEditorPresented = true
             }
