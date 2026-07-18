@@ -220,43 +220,43 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Passe bei Bedarf den Einzugsstil für einzelne Syntaxen in den Einstellungen „Modus“ an."
+            "value" : "Passe nach Belieben den Einzugsstil für einzelne Syntaxen in den Einstellungen „Modus“ an."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Use Mode settings to customize the indentation style for individual syntaxes as needed."
+            "value" : "Use Mode settings to customize the indentation style for individual syntaxes as you like."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use Mode settings to customize the indentation style for individual syntaxes as needed."
+            "value" : "Use Mode settings to customize the indentation style for individual syntaxes as you like."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Usa los ajustes de Modo para personalizar el estilo de sangría de sintaxis concretas cuando sea necesario."
+            "value" : "Usa los ajustes de Modo para personalizar el estilo de sangría de sintaxis concretas a tu gusto."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Utilisez les réglages Mode pour personnaliser le style d’indentation de certaines syntaxes si nécessaire."
+            "value" : "Utilisez les réglages Mode pour personnaliser le style d’indentation de certaines syntaxes à votre convenance."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "必要に応じて、「モード」設定でシンタックスごとにインデントスタイルをカスタマイズできるようになりました。"
+            "value" : "お好みで、「モード」設定でシンタックスごとにインデントスタイルをカスタマイズできるようになりました。"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Pas de inspringstijl zo nodig per syntaxis aan in de Modusinstellingen."
+            "value" : "Pas de inspringstijl naar wens per syntaxis aan in de Modusinstellingen."
           }
         }
       }
@@ -450,7 +450,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開いているフォルダ内のファイルを、サイドバーからそのまま全文検索できるようになりました。"
+            "value" : "開いているフォルダ内のファイルを、サイドバーから全文検索できるようになりました。"
           }
         },
         "nl" : {
@@ -556,7 +556,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "フォルダ書類で最近表示した書類を、ツールバーから戻る・進むでたどれるようになりました。"
+            "value" : "フォルダ書類で最近表示した書類を、ツールバーから戻る・進むで辿れるようになりました。"
           }
         },
         "nl" : {

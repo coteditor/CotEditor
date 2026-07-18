@@ -218,7 +218,7 @@ private extension NewFeature {
                        table: "WhatsNew")
             case .customIndentStyle:
                 String(localized: "NewFeature.customIndentStyle.description",
-                       defaultValue: "Use Mode settings to customize the indentation style for individual syntaxes as needed.",
+                       defaultValue: "Use Mode settings to customize the indentation style for individual syntaxes as you like.",
                        table: "WhatsNew")
         }
     }
