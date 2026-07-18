@@ -25925,6 +25925,12 @@
             "value" : "Zoeken in map"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件夹查找"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
