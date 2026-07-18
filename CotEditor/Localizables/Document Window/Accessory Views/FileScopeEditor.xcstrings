@@ -47,6 +47,12 @@
             "value" : "alle"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所有"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -99,6 +105,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "een of meer"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "任一"
           }
         },
         "zh-HK" : {
@@ -155,6 +167,12 @@
             "value" : "Komt overeen met"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "符合以下"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -207,6 +225,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "volgende voorwaarden:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "条件："
           }
         },
         "zh-HK" : {
@@ -262,6 +286,12 @@
             "value" : "Het bereik bevat een regel zonder waarde."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件范围中包含未设置值的规则。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -313,6 +343,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het bereik bevat een ongeldige reguliere expressie."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件范围中包含无效的正则表达式。"
           }
         },
         "zh-HK" : {
@@ -938,6 +974,12 @@
             "state" : "needs_review",
             "value" : "komt overeen met reguliere expressie"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "匹配正则表达式"
+          }
         }
       }
     },
@@ -1430,6 +1472,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewaar als benoemd bereik…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存为命名范围…"
           }
         }
       }
