@@ -86,7 +86,7 @@ struct FolderFindSavedScopesView: View {
                     self.editingItem = EditingScope(name: name, scope: scope)
                 }
             }
-            .border(.separator)
+            .listStyle(.bordered)
             .frame(minWidth: 240, minHeight: 180)
             
             HStack(alignment: .firstTextBaseline) {
