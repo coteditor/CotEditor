@@ -678,6 +678,12 @@
             "state" : "needs_review",
             "value" : "Wis bestandsbereik"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除文件范围"
+          }
         }
       }
     },
@@ -2783,6 +2789,12 @@
             "state" : "needs_review",
             "value" : "Wijzig bestandsbereik…"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "编辑文件范围…"
+          }
         }
       }
     },
@@ -3258,6 +3270,12 @@
             "value" : "Filter voor bestandskiezer"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件浏览器过滤器"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3302,6 +3320,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bestandsbereik"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件范围"
           }
         },
         "zh-HK" : {
@@ -4644,6 +4668,42 @@
             }
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@arg2@中的%#@arg1@"
+          },
+          "substitutions" : {
+            "arg1" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg个匹配项"
+                    }
+                  }
+                }
+              }
+            },
+            "arg2" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg个文件"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4840,6 +4900,12 @@
             "value" : "Geen overeenkomsten voor ‘%@’ gevonden."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未找到“%@”的匹配项。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5006,6 +5072,12 @@
             "value" : "Zoeken in map…"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在文件夹中搜索…"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5057,6 +5129,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "De map kan niet worden gevonden."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "找不到文件夹。"
           }
         },
         "zh-HK" : {
@@ -5989,6 +6067,12 @@
             "value" : "Verborgen bestanden opnemen"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "包括隐藏文件"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6034,6 +6118,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Andere bestandstypen opnemen"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "包括其他文件类型"
           }
         },
         "zh-HK" : {
@@ -7598,6 +7688,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beheer bewaarde bereiken…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理已保存的范围…"
           }
         }
       }
@@ -10799,6 +10895,12 @@
             "value" : "Toon in bestandskiezer"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在文件浏览器中显示"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10843,6 +10945,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewaarde bereiken"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已保存的范围"
           }
         }
       }
@@ -11032,6 +11140,12 @@
             "value" : "Zoeken in map"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在文件夹中搜索"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11076,6 +11190,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Zoekmethode"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜索方式"
           }
         },
         "zh-HK" : {
@@ -13187,6 +13307,12 @@
             "value" : "Volgende"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前进"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13238,6 +13364,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ga naar het volgende document"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前往下一个文稿"
           }
         },
         "zh-HK" : {
@@ -13293,6 +13425,12 @@
             "value" : "Geschiedenis"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "历史记录"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13344,6 +13482,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Vorige"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "后退"
           }
         },
         "zh-HK" : {
@@ -13399,6 +13543,12 @@
             "value" : "Ga naar het vorige document"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前往上一个文稿"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13450,6 +13600,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ga terug of vooruit in de documentgeschiedenis"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在文稿历史记录中后退或前进"
           }
         },
         "zh-HK" : {

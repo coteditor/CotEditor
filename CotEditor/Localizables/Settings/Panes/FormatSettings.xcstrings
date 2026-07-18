@@ -145,6 +145,12 @@
             "value" : "Pas syntaxismenu aan…"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自定义语法菜单…"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",

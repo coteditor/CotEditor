@@ -39,6 +39,12 @@
             "value" : "Verborgen syntaxen worden nog steeds gebruikt voor automatische detectie."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隐藏的语法仍会用于自动检测。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -189,6 +195,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Selecteer de syntaxen die je in de Syntaxismenu’s wilt weergeven:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择要在语法菜单中显示的语法："
           }
         },
         "zh-HK" : {
