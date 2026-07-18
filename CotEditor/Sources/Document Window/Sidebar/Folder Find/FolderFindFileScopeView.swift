@@ -83,7 +83,7 @@ struct FolderFindFileScopeView: View {
         
         VStack(alignment: .leading) {
             if self.originalName != nil {
-                TextField(String(localized: "ScopeSaveView.field.label", defaultValue: "Name", table: "Document"), text: $name)
+                TextField(String(localized: "ScopeSaveView.field.label", defaultValue: "Name", table: "FileScopeEditor"), text: $name)
                     .padding(.bottom)
             }
             
@@ -104,7 +104,7 @@ struct FolderFindFileScopeView: View {
             
             SubmitButtonGroup(helpAnchor: "howto_find_in_folder", action: self.apply, supplementalButton: {
                 if self.originalName == nil {
-                    Button(String(localized: "Save as Named Scope…", table: "Document")) {
+                    Button(String(localized: "Save as Named Scope…", table: "FileScopeEditor")) {
                         guard self.validate(self.fileScope.normalized) else { return NSSound.beep() }
                         
                         self.isScopeSaveViewPresented = true
@@ -188,7 +188,7 @@ private struct ConjunctionPicker: View {
         HStack(alignment: .firstTextBaseline, spacing: 4) {
             let prefix = String(localized: "FileScope.Conjunction.prefix",
                                 defaultValue: "Match",
-                                table: "Document",
+                                table: "FileScopeEditor",
                                 comment: "The text preceding the any/all popup in the sentence “Match [any|all] of the following conditions:”; can be empty.")
             if !prefix.isEmpty {
                 Text(prefix)
@@ -205,7 +205,7 @@ private struct ConjunctionPicker: View {
             
             Text(String(localized: "FileScope.Conjunction.suffix",
                         defaultValue: "of the following conditions:",
-                        table: "Document",
+                        table: "FileScopeEditor",
                         comment: "The text following the any/all popup in the sentence “Match [any|all] of the following conditions:”."))
         }
     }
@@ -227,9 +227,9 @@ private struct ScopeSaveView: View {
         
         VStack(alignment: .leading) {
             Form {
-                TextField(String(localized: "ScopeSaveView.label", defaultValue: "Save as:", table: "Document"),
+                TextField(String(localized: "ScopeSaveView.label", defaultValue: "Save as:", table: "FileScopeEditor"),
                           text: $name,
-                          prompt: Text(String(localized: "ScopeSaveView.field.label", defaultValue: "Name", table: "Document")))
+                          prompt: Text(String(localized: "ScopeSaveView.field.label", defaultValue: "Name", table: "FileScopeEditor")))
                 .onSubmit(self.submit)
             }
             
@@ -692,12 +692,12 @@ private extension FileScope.Conjunction {
             case .any:
                 String(localized: "FileScope.Conjunction.any.label",
                        defaultValue: "any",
-                       table: "Document",
+                       table: "FileScopeEditor",
                        comment: "The popup item inserted into the sentence “Match [any|all] of the following conditions:”.")
             case .all:
                 String(localized: "FileScope.Conjunction.all.label",
                        defaultValue: "all",
-                       table: "Document",
+                       table: "FileScopeEditor",
                        comment: "The popup item inserted into the sentence “Match [any|all] of the following conditions:”.")
         }
     }
@@ -712,11 +712,11 @@ extension FileScope.Error: @retroactive LocalizedError {
             case .emptyValue:
                 String(localized: "FileScope.Error.emptyValue.message",
                        defaultValue: "The scope contains a rule without a value.",
-                       table: "Document")
+                       table: "FileScopeEditor")
             case .invalidRegularExpression:
                 String(localized: "FileScope.Error.invalidRegularExpression.message",
                        defaultValue: "The scope contains an invalid regular expression.",
-                       table: "Document")
+                       table: "FileScopeEditor")
         }
     }
 }
@@ -731,15 +731,15 @@ private extension FileScope.Rule.Target {
             case .filename:
                 String(localized: "FileScope.Rule.Target.filename.label",
                        defaultValue: "File name",
-                       table: "Document")
+                       table: "FileScopeEditor")
             case .filePath:
                 String(localized: "FileScope.Rule.Target.filePath.label",
                        defaultValue: "File path",
-                       table: "Document")
+                       table: "FileScopeEditor")
             case .fileExtension:
                 String(localized: "FileScope.Rule.Target.fileExtension.label",
                        defaultValue: "File extension",
-                       table: "Document")
+                       table: "FileScopeEditor")
         }
     }
 }
@@ -754,37 +754,37 @@ private extension FileScope.Rule.Comparison {
             case .contains:
                 String(localized: "FileScope.Rule.Comparison.contains.label",
                        defaultValue: "contains",
-                       table: "Document",
+                       table: "FileScopeEditor",
                        comment: "This is immediately followed by the value field.")
             case .doesNotContain:
                 String(localized: "FileScope.Rule.Comparison.doesNotContain.label",
                        defaultValue: "does not contain",
-                       table: "Document",
+                       table: "FileScopeEditor",
                        comment: "This is immediately followed by the value field.")
             case .isEqualTo:
                 String(localized: "FileScope.Rule.Comparison.isEqualTo.label",
                        defaultValue: "is",
-                       table: "Document",
+                       table: "FileScopeEditor",
                        comment: "This is immediately followed by the value field.")
             case .isNotEqualTo:
                 String(localized: "FileScope.Rule.Comparison.isNotEqualTo.label",
                        defaultValue: "is not",
-                       table: "Document",
+                       table: "FileScopeEditor",
                        comment: "This is immediately followed by the value field.")
             case .startsWith:
                 String(localized: "FileScope.Rule.Comparison.startsWith.label",
                        defaultValue: "begins with",
-                       table: "Document",
+                       table: "FileScopeEditor",
                        comment: "This is immediately followed by the value field.")
             case .endsWith:
                 String(localized: "FileScope.Rule.Comparison.endsWith.label",
                        defaultValue: "ends with",
-                       table: "Document",
+                       table: "FileScopeEditor",
                        comment: "This is immediately followed by the value field.")
             case .matchesRegularExpression:
                 String(localized: "FileScope.Rule.Comparison.matchesRegularExpression.label",
                        defaultValue: "matches regular expression",
-                       table: "Document",
+                       table: "FileScopeEditor",
                        comment: "This is immediately followed by the value field.")
         }
     }
