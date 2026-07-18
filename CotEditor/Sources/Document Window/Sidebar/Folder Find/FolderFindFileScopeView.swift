@@ -105,7 +105,7 @@ struct FolderFindFileScopeView: View {
             SubmitButtonGroup(helpAnchor: "howto_find_in_folder", action: self.apply, supplementalButton: {
                 if self.originalName == nil {
                     Button(String(localized: "Save as Named Scope…", table: "Document")) {
-                        guard self.validate(self.fileScope.normalized) else { return }
+                        guard self.validate(self.fileScope.normalized) else { return NSSound.beep() }
                         
                         self.isScopeSaveViewPresented = true
                     }
@@ -137,7 +137,7 @@ struct FolderFindFileScopeView: View {
         
         let fileScope = self.fileScope.normalized
         
-        guard self.validate(fileScope) else { return }
+        guard self.validate(fileScope) else { return NSSound.beep() }
         
         if self.originalName != nil {
             let newName = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
