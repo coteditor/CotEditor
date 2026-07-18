@@ -15,7 +15,7 @@
 - Add document history navigation to the toolbar for folder documents.
 - Automatically generate and apply a draft document name from the document’s content on macOS 27.
 - Allow the indentation style (spaces or tabs) and width to be set for each Mode.
-- Add the Customize Syntax Menu command to the action menu in the “Available syntaxes” section of the Format settings pane, allowing specific syntaxes to be hidden from syntax menus.
+- Add the Customize Syntax Menu command to the More menu in the “Available syntaxes” section of the Format settings pane, allowing specific syntaxes to be hidden from syntax menus.
 - Add the “Status bar” option to the Appearance settings pane.
 
 

@@ -21,6 +21,65 @@
 
 <article headingoffset="1">
 	<header>
+		<h1>CotEditor 7.1.0</h1>
+		<p>release: <time>2026-09</time></p>
+	</header>
+
+	<section>
+		<h2>Compatibility Changes</h2>
+
+		<ul>
+			<li>Change the system requirement to <strong>macOS Tahoe 26 or later</strong>.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>New Features</h2>
+
+		<ul>
+			<li>Support <strong>macOS 27 Golden Gate</strong>.</li>
+			<li>Add folder search to the sidebar for searching for text across files in an open folder.</li>
+			<li>Add document history navigation to the toolbar for folder documents.</li>
+			<li>Automatically generate and apply a draft document name from the document’s content on macOS 27.</li>
+			<li>Allow the indentation style (spaces or tabs) and width to be set for each Mode.</li>
+			<li>Add the Customize Syntax Menu command to the More menu in the “Available syntaxes” section of the Format settings pane, allowing specific syntaxes to be hidden from syntax menus.</li>
+			<li>Add the “Status bar” option to the Appearance settings pane.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Make some settings dialogs resizable.</li>
+			<li>Allow custom syntaxes to be deleted by dragging them to the Trash.</li>
+			<li>Allow CotEditor Syntax files and multiple replacement definitions to be imported by dropping them onto their respective lists.</li>
+			<li>Add a context menu to the list in the Mode settings pane.</li>
+			<li>Prevent the file browser from opening UNIX executable files as plain text.</li>
+			<li>Display the number of definition errors as a badge in the sidebar of the syntax editor.</li>
+			<li>Display more accurate error messages in dialogs.</li>
+			<li>Improve overall stability and performance.</li>
+			<li><span class="trivial">dev</span>: Tweak the accent color.</li>
+			<li><span class="trivial">dev</span>: Update the build environment to Xcode 27 (Swift 6.4, macOS 27 SDK).</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue where the tab width customized for a document was not applied when printing.</li>
+			<li>Fix an issue where the insertion point could move to an incorrect column when extending a selection upward from the end of the document.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article headingoffset="1">
+	<header>
 		<h1>CotEditor 7.0.7</h1>
 		<p>release: <time>2026-07-13</time></p>
 	</header>
