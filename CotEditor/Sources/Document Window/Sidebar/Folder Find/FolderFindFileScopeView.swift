@@ -214,18 +214,11 @@ private struct ConjunctionPicker: View {
 
 private struct ScopeSaveView: View {
     
-    private enum Focus {
-        
-        case field
-    }
-    
-    
     var savedScopeNames: Set<String>
     var completionHandler: (_ name: String) -> Void
     
     @Environment(\.dismiss) private var dismiss
     
-    @FocusState private var focus: Focus?
     @State private var name = ""
     @State private var validationError: InvalidNameError?
     
@@ -237,7 +230,6 @@ private struct ScopeSaveView: View {
                 TextField(String(localized: "ScopeSaveView.label", defaultValue: "Save as:", table: "Document"),
                           text: $name,
                           prompt: Text(String(localized: "ScopeSaveView.field.label", defaultValue: "Name", table: "Document")))
-                .focused($focus, equals: .field)
                 .onSubmit(self.submit)
             }
             
@@ -254,9 +246,6 @@ private struct ScopeSaveView: View {
             .padding(.vertical, 4)
             
             SubmitButtonGroup(String(localized: "Action.save.label", defaultValue: "Save"), action: self.submit)
-        }
-        .onAppear {
-            self.focus = .field
         }
         .onChange(of: self.name) {
             self.validationError = nil
