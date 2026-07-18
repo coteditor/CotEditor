@@ -258,6 +258,12 @@
             "state" : "needs_review",
             "value" : "Pas de inspringstijl naar wens per syntaxis aan in de Modusinstellingen."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用“模式”设置，按需为各个语法自定义缩进样式。"
+          }
         }
       }
     },
@@ -305,6 +311,12 @@
             "state" : "needs_review",
             "value" : "Inspringing passend bij elke syntaxis"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "适配各种语法的缩进"
+          }
         }
       }
     },
@@ -351,6 +363,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "In macOS 27 krijgen naamloze documenten automatisch een conceptnaam op basis van hun inhoud."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 macOS 27 中，系统会根据内容为未命名文稿自动建议一个草稿名称。"
           }
         },
         "zh-HK" : {
@@ -406,6 +424,12 @@
             "value" : "Laat het document zichzelf een naam geven"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "让文稿自行命名"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -457,6 +481,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Zoek tekst in bestanden in een geopende map, rechtstreeks vanuit de navigatiekolom."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "直接在边栏中搜索已打开文件夹内的文本。"
           }
         },
         "zh-HK" : {
@@ -512,6 +542,12 @@
             "value" : "Vind het in de map"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在文件夹中查找"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -563,6 +599,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Gebruik de knoppenbalk om terug en vooruit te gaan door onlangs bekeken documenten in een mapdocument."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用工具栏在文件夹中前后浏览最近查看过的文稿。"
           }
         },
         "zh-HK" : {
@@ -618,6 +660,12 @@
             "value" : "Terug en vooruit in mappen"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在文件夹中前后浏览"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -671,6 +719,12 @@
             "value" : "CotEditor ondersteunt nu macOS 27 Golden Gate, inclusief een vernieuwde vormgeving voor het nieuwste systeem."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor 现已支持 macOS 27 Golden Gate，并为最新系统带来全新外观。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -722,6 +776,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Klaar voor macOS 27"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已为 macOS 27 准备就绪"
           }
         },
         "zh-HK" : {
