@@ -95,11 +95,11 @@ public extension MultipleReplace.Replacement {
     /// - Returns: `true` if both definitions have the same literal values.
     static func == (lhs: Self, rhs: Self) -> Bool {
         
-        (lhs.findString as NSString).isEqual(to: rhs.findString) &&
-        (lhs.replacementString as NSString).isEqual(to: rhs.replacementString) &&
+        lhs.findString.compare(rhs.findString, options: .literal) == .orderedSame &&
+        lhs.replacementString.compare(rhs.replacementString, options: .literal) == .orderedSame &&
         lhs.usesRegularExpression == rhs.usesRegularExpression &&
         lhs.ignoresCase == rhs.ignoresCase &&
-        Self.isLiteralEqual(lhs.description, to: rhs.description) &&
+        Self.isLiterallyEqual(lhs.description, to: rhs.description) &&
         lhs.isEnabled == rhs.isEnabled
     }
     
@@ -110,15 +110,13 @@ public extension MultipleReplace.Replacement {
     ///   - lhs: The left-hand string.
     ///   - rhs: The right-hand string.
     /// - Returns: `true` if both strings have the same literal value.
-    private static func isLiteralEqual(_ lhs: String?, to rhs: String?) -> Bool {
+    private static func isLiterallyEqual(_ lhs: String?, to rhs: String?) -> Bool {
         
         switch (lhs, rhs) {
             case (let lhs?, let rhs?):
-                (lhs as NSString).isEqual(to: rhs)
-                
+                lhs.compare(rhs, options: .literal) == .orderedSame
             case (nil, nil):
                 true
-                
             default:
                 false
         }
