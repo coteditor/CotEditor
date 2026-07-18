@@ -13280,13 +13280,13 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Forward"
+            "value" : "Forwards"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Siguiente"
+            "value" : "Adelante"
           }
         },
         "fr" : {
@@ -13383,58 +13383,106 @@
     "Toolbar.documentHistory.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zpět/Vpřed"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verlauf"
+            "value" : "Zurück/Vorwärts"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "History"
+            "value" : "Back/Forward"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "History"
+            "value" : "Back/Forward"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Historial"
+            "state" : "translated",
+            "value" : "Atrás/Adelante"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Historique"
+            "state" : "translated",
+            "value" : "Précédent/Suivant"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indietro/Avanti"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "履歴"
+            "value" : "戻る/進む"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "뒤로/앞으로"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Geschiedenis"
+            "state" : "translated",
+            "value" : "Vorige/Volgende"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wróć/Dalej"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voltar/Avançar"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Назад/вперед"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geri/İleri"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "历史记录"
+            "value" : "返回/前进"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "返回/往前"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "瀏覽記錄"
+            "value" : "返回/往前"
           }
         }
       }
@@ -13445,25 +13493,25 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zurück"
+            "value" : "Rückwärts"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Previous"
+            "value" : "Backward"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Previous"
+            "value" : "Backwards"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Anterior"
+            "value" : "Atrás"
           }
         },
         "fr" : {

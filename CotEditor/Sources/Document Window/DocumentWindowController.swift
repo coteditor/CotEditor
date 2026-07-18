@@ -659,7 +659,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
                 let previousItem = NSMenuToolbarItem(itemIdentifier: .previousDocumentHistory)
                 previousItem.label = String(localized: "Toolbar.documentHistory.previous.label",
-                                            defaultValue: "Previous", table: "Document")
+                                            defaultValue: "Backward", table: "Document")
                 previousItem.toolTip = String(localized: "Toolbar.documentHistory.previous.tooltip",
                                               defaultValue: "Go to the previous document", table: "Document")
                 previousItem.image = NSImage(systemSymbolName: "chevron.backward", accessibilityDescription: previousItem.label)
@@ -689,7 +689,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.selectionMode = .momentary
                 item.isNavigational = true
                 item.label = String(localized: "Toolbar.documentHistory.label",
-                                    defaultValue: "History", table: "Document")
+                                    defaultValue: "Back/Forward", table: "Document")
                 item.toolTip = String(localized: "Toolbar.documentHistory.tooltip",
                                       defaultValue: "Go back or forward in document history", table: "Document")
                 item.subitems = [previousItem, forwardItem]
