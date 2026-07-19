@@ -1,0 +1,9 @@
+{
+  "id" : "4bc471a9-8c62-4876-85bd-52328a6228a1",
+  "targets" : [
+    {
+      "id" : "FF9C886A-F024-4E37-B66B-753C479FBBDF",
+      "name" : "CotEditor"
+    }
+  ]
+}
