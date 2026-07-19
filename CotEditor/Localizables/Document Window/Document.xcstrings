@@ -684,6 +684,12 @@
             "state" : "translated",
             "value" : "清除文件范围"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除檔案範圍"
+          }
         }
       }
     },
@@ -2794,6 +2800,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "编辑文件范围…"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "編輯檔案範圍⋯"
           }
         }
       }
@@ -7695,6 +7707,12 @@
             "state" : "translated",
             "value" : "管理已保存的范围…"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理儲存的範圍⋯"
+          }
         }
       }
     },
@@ -10952,6 +10970,12 @@
             "state" : "translated",
             "value" : "已保存的范围"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已儲存的範圍"
+          }
         }
       }
     },
@@ -10997,6 +11021,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已保存的范围："
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已儲存的範圍："
           }
         }
       }

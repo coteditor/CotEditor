@@ -264,6 +264,12 @@
             "state" : "translated",
             "value" : "使用“模式”设置，按需为各个语法自定义缩进样式。"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用「模式設定」按需要自訂個別語法的縮排樣式。"
+          }
         }
       }
     },
@@ -316,6 +322,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "适配各种语法的缩进"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "符合每個語法的縮排"
           }
         }
       }
@@ -374,7 +386,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "於macOS 27上，未命名文件會自動從其內容中建議一個草稿名稱。"
+            "value" : "在macOS 27上，未命名的文件會自動從其內容中建議一個草稿名稱。"
           }
         }
       }
@@ -492,7 +504,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直接透過側邊欄搜尋開啟的資料夾中的檔案文字。"
+            "value" : "直接透過側邊欄，在開啟的資料夾的檔案裡搜尋文字。"
           }
         }
       }
@@ -551,7 +563,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "於資料夾中尋找"
+            "value" : "在資料夾中尋找"
           }
         }
       }
@@ -669,7 +681,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "於資料夾中前後切換瀏覽"
+            "value" : "於資料夾之間前後切換"
           }
         }
       }

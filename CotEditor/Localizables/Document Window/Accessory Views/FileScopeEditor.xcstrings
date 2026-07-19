@@ -55,8 +55,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "所有"
+            "state" : "translated",
+            "value" : "所有條件"
           }
         }
       }
@@ -115,8 +115,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "任一"
+            "state" : "translated",
+            "value" : "條件之一"
           }
         }
       }
@@ -175,7 +175,7 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "符合下列"
           }
         }
@@ -235,8 +235,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "條件："
+            "state" : "translated",
+            "value" : "："
           }
         }
       }
@@ -294,8 +294,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "範圍包括未包括值的規則。"
+            "state" : "translated",
+            "value" : "範圍的規則未包括任何值。"
           }
         }
       }
@@ -353,7 +353,7 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "範圍包括無效的常規表示式。"
           }
         }
@@ -980,6 +980,12 @@
             "state" : "translated",
             "value" : "匹配正则表达式"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "符合常規表示式"
+          }
         }
       }
     },
@@ -1478,6 +1484,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保存为命名范围…"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存為已命名的範圍⋯"
           }
         }
       }
