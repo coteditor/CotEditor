@@ -39,6 +39,12 @@
             "value" : "Verborgen syntaxen worden nog steeds gebruikt voor automatische detectie."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gizlenmiş sözdizimleri yine de otomatik algılama için kullanılırlar."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -195,6 +201,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Selecteer de syntaxen die je in de Syntaxismenu’s wilt weergeven:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sözdizimi menüsünde görünmesini istediğiniz sözdizimlerini seçin:"
           }
         },
         "zh-Hans" : {

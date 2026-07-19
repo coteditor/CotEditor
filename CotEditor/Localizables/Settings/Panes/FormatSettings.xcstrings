@@ -145,6 +145,12 @@
             "value" : "Pas syntaxismenu aan…"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sözdizimi Menüsünü Özelleştir…"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

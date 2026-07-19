@@ -47,6 +47,12 @@
             "value" : "alle"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tümü"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -105,6 +111,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "een of meer"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "herhangi biri"
           }
         },
         "zh-Hans" : {
@@ -167,6 +179,12 @@
             "value" : "Komt overeen met"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aşağıdaki koşullardan"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -225,6 +243,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "volgende voorwaarden:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ile eşleştir:"
           }
         },
         "zh-Hans" : {
@@ -286,6 +310,12 @@
             "value" : "Het bereik bevat een regel zonder waarde."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapsamda değeri olmayan bir kural var."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -343,6 +373,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het bereik bevat een ongeldige reguliere expressie."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapsamda geçersiz bir düzenli ifade var."
           }
         },
         "zh-Hans" : {
@@ -975,6 +1011,12 @@
             "value" : "komt overeen met reguliere expressie"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "düzenli ifade ile eşleşir"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1478,6 +1520,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewaar als benoemd bereik…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adlandırılmış Kapsam Olarak Kaydet…"
           }
         },
         "zh-Hans" : {

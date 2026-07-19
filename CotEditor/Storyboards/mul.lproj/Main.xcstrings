@@ -25925,6 +25925,12 @@
             "value" : "Zoeken in map"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klasör Bul"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

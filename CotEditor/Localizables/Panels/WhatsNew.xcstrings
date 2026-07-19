@@ -259,6 +259,12 @@
             "value" : "Pas de inspringstijl naar wens per syntaxis aan in de Modusinstellingen."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mod ayarlarını kullanarak, istediğiniz gibi her bir sözdizimi için girintileme stilini özelleştirebilirsiniz."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -316,6 +322,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Inspringing passend bij elke syntaxis"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Her bir sözdizimine uyan girintileme"
           }
         },
         "zh-Hans" : {
@@ -377,6 +389,12 @@
             "value" : "In macOS 27 krijgen naamloze documenten automatisch een conceptnaam op basis van hun inhoud."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 27 ile, başlıksız belgeler kendiliğinden içeriklerinden önerilen bir taslak adı alır."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -434,6 +452,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Laat het document zichzelf een naam geven"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belgelerin kendilerini adlandırmalarına izin verin"
           }
         },
         "zh-Hans" : {
@@ -495,6 +519,12 @@
             "value" : "Zoek tekst in bestanden in een geopende map, rechtstreeks vanuit de navigatiekolom."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Açık bir klasördeki dosyalar arasında metin aramayı doğrudan kenar çubuğundan yapabilirsiniz."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -552,6 +582,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Vind het in de map"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klasörlerde bulun"
           }
         },
         "zh-Hans" : {
@@ -613,6 +649,12 @@
             "value" : "Gebruik de knoppenbalk om terug en vooruit te gaan door onlangs bekeken documenten in een mapdocument."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klasör içindeki belgelerde yakın zamanda görüntülenen belgeler arasında ileri ve geri gitmek için araç çubuğunu kullanın."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -670,6 +712,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Terug en vooruit in mappen"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klasörlerde ileri ve geri gidin"
           }
         },
         "zh-Hans" : {
@@ -731,6 +779,12 @@
             "value" : "CotEditor ondersteunt nu macOS 27 Golden Gate, inclusief een vernieuwde vormgeving voor het nieuwste systeem."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor artık macOS 27 Golden Gate’i destekliyor ve bu en yeni işletim sistemi için yenilenmiş bir görünüşe kavuştu."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -788,6 +842,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Klaar voor macOS 27"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 27 için hazır"
           }
         },
         "zh-Hans" : {
