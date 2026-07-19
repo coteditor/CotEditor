@@ -95,6 +95,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         if let directoryDocument {
             let viewController = SidebarViewController(document: directoryDocument)
             let sidebarViewItem = NSSplitViewItem(sidebarWithViewController: viewController)
+            sidebarViewItem.addTopAlignedAccessoryViewController(viewController.makeAccessoryViewController())
             self.addSplitViewItem(sidebarViewItem)
             self.sidebarViewItem = sidebarViewItem
         }

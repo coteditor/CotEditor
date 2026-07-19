@@ -34,7 +34,7 @@ enum SidebarPane: Int, CaseIterable {
 }
 
 
-final class SidebarViewController: NSTabViewController {
+final class SidebarViewController: SidebarTabViewController {
     
     // MARK: Public Properties
     
@@ -55,26 +55,6 @@ final class SidebarViewController: NSTabViewController {
     required init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func loadView() {
-        
-        let tabView = InspectorTabView()
-        let view = NSView()
-        
-        tabView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tabView)
-        
-        NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: tabView.topAnchor),
-            view.bottomAnchor.constraint(equalTo: tabView.bottomAnchor),
-            view.leadingAnchor.constraint(equalTo: tabView.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: tabView.trailingAnchor),
-        ])
-        
-        self.tabView = tabView
-        self.view = view
     }
     
     
