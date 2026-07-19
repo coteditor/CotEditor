@@ -109,15 +109,14 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let bottomSeparator = NSBox()
         bottomSeparator.boxType = .separator
         
-        let addButton = NSPopUpButton()
-        (addButton.cell as! NSPopUpButtonCell).arrowPosition = .noArrow
-        addButton.pullsDown = true
-        addButton.autoenablesItems = false
-        addButton.isBordered = false
-        let addButtonLabelItem = NSMenuItem(title: "", action: nil, keyEquivalent: "")
-        addButtonLabelItem.image = NSImage(systemSymbolName: "plus", accessibilityDescription: nil)
+        // use custom MenuButton to apply Liquid Glass style (2026-07, macOS 27)
+        let addButton = MenuButton()
+        addButton.image = NSImage(systemSymbolName: "plus", accessibilityDescription: nil)
+        addButton.bezelStyle = .glass
+        addButton.borderShape = .circle
+        addButton.menu = NSMenu()
+        addButton.menu!.autoenablesItems = false
         addButton.menu!.items = [
-            addButtonLabelItem,
             NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
                        systemImage: "document.badge.plus",
                        action: #selector(addFile), target: self),
@@ -151,6 +150,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let footerView = NSStackView(views: [addButton, filterField])
         footerView.setHuggingPriority(.required, for: .vertical)
         footerView.edgeInsets = NSEdgeInsets(top: 6, left: 7, bottom: 6, right: 7)
+        footerView.alignment = .centerY
         
         let stackView = NSStackView(views: [scrollView, bottomSeparator, footerView])
         stackView.orientation = .vertical
