@@ -35,6 +35,12 @@
             "value" : "toutes les"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tutte le"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -105,6 +111,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "l’une des"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "una delle"
           }
         },
         "ja" : {
@@ -179,6 +191,12 @@
             "value" : "Satisfaire à"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rispetta"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -249,6 +267,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "conditions suivantes :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "seguenti condizioni:"
           }
         },
         "ja" : {
@@ -322,6 +346,12 @@
             "value" : "Le périmètre contient une règle sans valeur."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L’ambito contiene una regola priva di valore."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -391,6 +421,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Le périmètre contient une expression régulière non valide."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L’ambito contiene una espressione regolare non valida."
           }
         },
         "ja" : {
@@ -1035,6 +1071,12 @@
             "value" : "correspond à l’expression régulière"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "corrisponde all’espressione regolare"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1550,6 +1592,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Enregistrer comme périmètre nommé…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salva come ambito denominato…"
           }
         },
         "ja" : {

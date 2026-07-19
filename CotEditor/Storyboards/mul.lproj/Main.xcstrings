@@ -25913,6 +25913,12 @@
             "value" : "Recherche dans le dossier"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trova cartella"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",

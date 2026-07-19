@@ -43,7 +43,7 @@
 
 - The status bar text can appear black and unreadable when the light system appearance, dark document window appearance, and a dark theme are combined on macOS 26 (FB23611796).
 - In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
-- Strings added in this release are not yet localized in Bulgarian, Czech, Italian, Korean, Polish, Portuguese, and Russian.
+- Strings added in this release are not yet localized in Bulgarian, Czech, Korean, Polish, Portuguese, and Russian.
 
 
 

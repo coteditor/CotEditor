@@ -667,6 +667,12 @@
             "value" : "Effacer le périmètre des fichiers"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancella l’ambito del file"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2796,6 +2802,12 @@
             "value" : "Modifier le périmètre des fichiers…"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifica l’ambito del file…"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3290,8 +3302,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Filtro del browser file"
+            "state" : "translated",
+            "value" : "Filtro del browser dei file"
           }
         },
         "ja" : {
@@ -3356,6 +3368,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Périmètre des fichiers"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ambito del file"
           }
         },
         "ja" : {
@@ -4644,6 +4662,54 @@
             }
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@arg1@ in %#@arg2@"
+          },
+          "substitutions" : {
+            "arg1" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg risultato"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg risultati"
+                    }
+                  }
+                }
+              }
+            },
+            "arg2" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg file"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg file"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5032,6 +5098,12 @@
             "value" : "Aucun résultat pour « %@ » n’a été trouvé."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessun risultato trovato per “%@”."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5216,6 +5288,12 @@
             "value" : "Recherche dans le dossier…"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ricerca nella cartella…"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5285,6 +5363,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Le dossier est introuvable."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile trovare la cartella."
           }
         },
         "ja" : {
@@ -6235,6 +6319,12 @@
             "value" : "Inclure les fichiers cachés"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Includi i file nascosti"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6298,6 +6388,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Inclure d’autres types de fichiers"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Includi altri tipi di file"
           }
         },
         "ja" : {
@@ -7880,6 +7976,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Gérer les périmètres enregistrés…"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestisci gli ambiti salvati…"
           }
         },
         "ja" : {
@@ -11105,6 +11207,12 @@
             "value" : "Afficher dans le navigateur de fichiers"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rivela nel browser dei file"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11169,6 +11277,12 @@
             "value" : "Périmètres enregistrés"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ambiti salvati"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11231,6 +11345,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Périmètres enregistrés :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ambiti salvati:"
           }
         },
         "ja" : {
@@ -11404,6 +11524,12 @@
             "value" : "Rechercher dans le dossier"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerca nella cartella"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11466,6 +11592,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Méthode de recherche"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metodo di ricerca"
           }
         },
         "ja" : {
@@ -13702,6 +13834,12 @@
             "value" : "Aller au document suivant"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vai al prossimo documento"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13987,6 +14125,12 @@
             "value" : "Aller au document précédent"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vai al documento precedente"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14056,6 +14200,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Revenir ou avancer dans l’historique des documents"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scorri avanti o indietro nella cronologia documenti"
           }
         },
         "ja" : {

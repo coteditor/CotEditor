@@ -27,6 +27,12 @@
             "value" : "Les syntaxes masquées sont toujours utilisées pour la détection automatique."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le sintassi nascoste vengono comunque utilizzate per il rilevamento automatico."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -195,6 +201,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sélectionnez les syntaxes à afficher dans les menus Syntaxe :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scegli le sintassi che vuoi far apparire nei menu delle sintassi:"
           }
         },
         "ja" : {

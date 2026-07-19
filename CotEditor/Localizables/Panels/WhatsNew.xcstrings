@@ -247,6 +247,12 @@
             "value" : "Utilisez les réglages Mode pour personnaliser le style d’indentation de certaines syntaxes à votre convenance."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usa le impostazioni del Modo per personalizzare lo stile di indentazione in base alla sintassi preferita."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -316,6 +322,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Une indentation adaptée à chaque syntaxe"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indentazione adatta ad ogni sintassi"
           }
         },
         "ja" : {
@@ -389,6 +401,12 @@
             "value" : "Sous macOS 27, les documents sans titre reçoivent automatiquement un nom provisoire suggéré à partir de leur contenu."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In macOS 27, i documenti senza titolo ricevono una bozza di nome in base al loro contenuto."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -458,6 +476,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Le document se nomme tout seul"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nomenclatura automatica dei documenti"
           }
         },
         "ja" : {
@@ -531,6 +555,12 @@
             "value" : "Recherchez du texte dans les fichiers d’un dossier ouvert directement depuis la barre latérale."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ricerca diretta di un testo in più file di una cartella dalla barra laterale."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -600,6 +630,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Trouvez-le dans le dossier"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trova nella cartella"
           }
         },
         "ja" : {
@@ -673,6 +709,12 @@
             "value" : "Utilisez la barre d’outils pour naviguer en arrière et en avant parmi les documents récemment consultés dans un document de dossier."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usa la barra strumenti per scorrere avanti e indietro tra i documenti visti di recente in una cartella."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -742,6 +784,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Précédent et suivant dans les dossiers"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scorri le cartelle avanti e indietro"
           }
         },
         "ja" : {
@@ -815,6 +863,12 @@
             "value" : "CotEditor prend désormais en charge macOS 27 Golden Gate, avec une apparence actualisée pour le tout dernier système."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor ora supporta macOS 27 Golden Gate, incluse le modifiche all'aspetto dell'ultima versione."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -884,6 +938,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Prêt pour macOS 27"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pronto per macOS 27"
           }
         },
         "ja" : {

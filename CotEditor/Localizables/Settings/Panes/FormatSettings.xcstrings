@@ -133,6 +133,12 @@
             "value" : "Personnaliser le menu de syntaxe …"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalizza il Menu Sintassi…"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
