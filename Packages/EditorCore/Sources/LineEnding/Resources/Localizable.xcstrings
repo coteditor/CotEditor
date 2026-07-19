@@ -82,6 +82,12 @@
             "value" : "Mac OS clássico"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Classic Mac OS"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -189,6 +195,12 @@
             "value" : "Windows"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -291,6 +303,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "macOS / Unix"
@@ -404,6 +422,12 @@
             "value" : "Unix line separator"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Line Separator"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -512,6 +536,12 @@
             "value" : "Unix next line"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Next Line"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -618,6 +648,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unix paragraph separator"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix Paragraph Separator"
           }
         },
         "tr" : {
