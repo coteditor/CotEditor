@@ -114,8 +114,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         addButton.pullsDown = true
         addButton.autoenablesItems = false
         addButton.isBordered = false
+        let addButtonLabelItem = NSMenuItem(title: "", action: nil, keyEquivalent: "")
+        addButtonLabelItem.image = NSImage(systemSymbolName: "plus", accessibilityDescription: nil)
         addButton.menu!.items = [
-            NSMenuItem(title: "", systemImage: "plus"),
+            addButtonLabelItem,
             NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
                        systemImage: "document.badge.plus",
                        action: #selector(addFile), target: self),
