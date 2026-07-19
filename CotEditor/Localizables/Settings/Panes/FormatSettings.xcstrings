@@ -157,6 +157,12 @@
             "value" : "自定义语法菜单…"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自訂語法選單⋯"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",

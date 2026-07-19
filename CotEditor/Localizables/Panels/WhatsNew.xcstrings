@@ -271,6 +271,12 @@
             "value" : "使用“模式”设置，按需为各个语法自定义缩进样式。"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用模式設定，依您的喜好為個別語法自訂縮排樣式。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -334,6 +340,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "适配各种语法的缩进"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "貼合每種語法的縮排"
           }
         },
         "zh-HK" : {
@@ -401,6 +413,12 @@
             "value" : "在 macOS 27 中，系统会根据内容为未命名文稿自动建议一个草稿名称。"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在macOS 27上，未命名文件會自動根據內容獲得建議的草稿名稱。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -464,6 +482,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "让文稿自行命名"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "讓文件自行命名"
           }
         },
         "zh-HK" : {
@@ -531,6 +555,12 @@
             "value" : "直接在边栏中搜索已打开文件夹内的文本。"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "直接從側邊欄搜尋已開啟檔案夾中所有檔案的文字內容。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -594,6 +624,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在文件夹中查找"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在檔案夾中尋找"
           }
         },
         "zh-HK" : {
@@ -661,6 +697,12 @@
             "value" : "使用工具栏在文件夹中前后浏览最近查看过的文稿。"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用工具列在檔案夾文件中最近檢視過的文件之間前進與返回。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -724,6 +766,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在文件夹中前后浏览"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在檔案夾中前進與返回"
           }
         },
         "zh-HK" : {
@@ -791,6 +839,12 @@
             "value" : "CotEditor 现已支持 macOS 27 Golden Gate，并为最新系统带来全新外观。"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor 現已支援macOS 27 Golden Gate，包含針對最新系統的煥新外觀。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -854,6 +908,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已为 macOS 27 准备就绪"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "準備好迎接macOS 27"
           }
         },
         "zh-HK" : {

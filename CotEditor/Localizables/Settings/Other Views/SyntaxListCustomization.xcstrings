@@ -51,6 +51,12 @@
             "value" : "隐藏的语法仍会用于自动检测。"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隱藏的語法仍會用於自動偵測。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -213,6 +219,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "选择要在语法菜单中显示的语法："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇要在語法選單中顯示的語法："
           }
         },
         "zh-HK" : {

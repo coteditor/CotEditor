@@ -25937,6 +25937,12 @@
             "value" : "文件夹查找"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案夾搜尋"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",

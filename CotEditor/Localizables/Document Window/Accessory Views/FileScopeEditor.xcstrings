@@ -59,6 +59,12 @@
             "value" : "所有"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所有"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -120,6 +126,12 @@
           }
         },
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "任一"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "任一"
@@ -191,6 +203,12 @@
             "value" : "符合以下"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "比對"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -255,6 +273,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "条件："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下列條件："
           }
         },
         "zh-HK" : {
@@ -322,6 +346,12 @@
             "value" : "文件范围中包含未设置值的规则。"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "範圍中包含不含值的規則。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -385,6 +415,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "文件范围中包含无效的正则表达式。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "範圍中包含無效的正規表示式。"
           }
         },
         "zh-HK" : {
@@ -1023,6 +1059,12 @@
             "value" : "匹配正则表达式"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "符合正規表示式"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1532,6 +1574,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保存为命名范围…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存為命名範圍⋯"
           }
         },
         "zh-HK" : {
