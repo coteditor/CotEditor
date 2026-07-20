@@ -144,7 +144,7 @@ private struct FolderFindControlView: View {
         
         VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .firstTextBaseline) {
-                Picker(String(localized: "Search method", table: "Document"), selection: $usesRegularExpression) {
+                Picker(String(localized: "Search method", table: "Document", comment: "Accessibility label for the menu selecting Text or Regular Expression in the Folder Find pane"), selection: $usesRegularExpression) {
                     Text("Text", tableName: "TextFind")
                         .tag(false)
                     Text("Regular Expression", tableName: "TextFind")

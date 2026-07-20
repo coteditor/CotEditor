@@ -11725,6 +11725,7 @@
       }
     },
     "Search method" : {
+      "comment" : "Accessibility label for the menu selecting Text or Regular Expression in the Folder Find pane",
       "localizations" : {
         "de" : {
           "stringUnit" : {
