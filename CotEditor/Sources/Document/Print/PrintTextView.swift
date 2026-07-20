@@ -76,7 +76,7 @@ final class PrintTextView: NSTextView {
     init(textStorage: NSTextStorage, lineEndingScanner: LineEndingScanner, info: DocumentInfo) {
         
         self.documentInfo = info
-        self.lineHeight = UserDefaults.standard[.lineHeight]
+        self.lineHeight = (UserDefaults.standard[.lineHeight] > 0) ? UserDefaults.standard[.lineHeight] : 1
         
         // setup textContainer
         let textContainer = TextContainer()
@@ -278,8 +278,11 @@ final class PrintTextView: NSTextView {
         // set attributes for the hanging indent width calculation
         (self.textContainer as? TextContainer)?.indentAttributes = [.font: font, .paragraphStyle: paragraphStyle]
         
-        // set font also to layout manager
-        (self.layoutManager as? LayoutManager)?.textFont = font
+        // set also to layout manager
+        if let layoutManager = self.layoutManager as? LayoutManager {
+            layoutManager.textFont = font
+            layoutManager.lineHeightMultiple = paragraphStyle.lineHeightMultiple
+        }
         
         self.needsUpdateTextStyle = false
     }

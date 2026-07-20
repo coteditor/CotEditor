@@ -1262,7 +1262,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     var lineHeight: Double = 1.2 {
         
         didSet {
-            lineHeight = max(lineHeight, 0)
+            lineHeight = (lineHeight > 0) ? lineHeight : 1
             
             guard lineHeight != oldValue else { return }
             
@@ -1543,6 +1543,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.defaultParagraphStyle = paragraphStyle
         self.typingAttributes[.paragraphStyle] = paragraphStyle
         self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.range)
+        (self.layoutManager as? LayoutManager)?.lineHeightMultiple = paragraphStyle.lineHeightMultiple
         
         // tell line height also to scroll view so that scroll view can scroll line by line
         if let lineHeight = (self.layoutManager as? LayoutManager)?.lineHeight {
