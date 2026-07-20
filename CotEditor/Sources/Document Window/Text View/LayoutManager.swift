@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -73,6 +73,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     
     var showsIndentGuides = false  { didSet { self.invalidateDisplay(forCharacterRange: self.attributedString().range) } }
     var tabWidth = 0
+    var lineHeightMultiple: CGFloat = 1.0
     
     
     // MARK: Private Properties
@@ -217,10 +218,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
     /// Fixed line height to avoid having different line height by composite font.
     var lineHeight: CGFloat {
         
-        let textView = self.firstTextView
-        let multiple = MainActor.assumeIsolated { textView?.defaultParagraphStyle?.lineHeightMultiple } ?? 1.0
-        
-        return (multiple > 0 ? multiple : 1) * self.defaultLineHeight
+        self.lineHeightMultiple * self.defaultLineHeight
     }
     
     

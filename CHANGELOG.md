@@ -25,18 +25,10 @@
 - Allow custom syntaxes to be deleted by dragging them to the Trash.
 - Allow CotEditor Syntax files and multiple replacement definitions to be imported by dropping them onto their respective lists.
 - Add a context menu to the list in the Mode settings pane.
-- Prevent the file browser from opening UNIX executable files as plain text.
 - Display the number of definition errors as a badge in the sidebar of the syntax editor.
-- Display more accurate error messages in dialogs.
 - Improve overall stability and performance.
 - [dev] Tweak the accent color.
 - [dev] Update the build environment to Xcode 27 Beta 3 (Swift 6.4, macOS 27 SDK).
-
-
-### Fixes
-
-- Fix an issue where the tab width customized for a document was not applied when printing.
-- Fix an issue where the insertion point could move to an incorrect column when extending a selection upward from the end of the document.
 
 
 ### Known Issues
@@ -44,6 +36,23 @@
 - The status bar text can appear black and unreadable when the light system appearance, dark document window appearance, and a dark theme are combined on macOS 26 (FB23611796).
 - In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
 - Strings added in this release are not yet localized in Bulgarian, Czech, Korean, Polish, and, Portuguese.
+
+
+
+7.0.8 (unreleased)
+--------------------------
+
+### Improvements
+
+- Prevent the file browser from opening UNIX executable files as plain text.
+- Display more accurate error messages in dialogs.
+
+
+### Fixes
+
+- Fix an issue where the tab width customized for a document was not applied when printing.
+- Fix an issue where the insertion point could move to an incorrect column when extending a selection upward from the end of the document.
+- Address a potential crash in the text layout process.
 
 
 
