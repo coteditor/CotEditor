@@ -45,6 +45,12 @@
             "value" : "Verborgen syntaxen worden nog steeds gebruikt voor automatische detectie."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрытые синтаксисы все еще используются для автоматического определения формата файла."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -219,6 +225,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Selecteer de syntaxen die je in de Syntaxismenu’s wilt weergeven:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите синтаксисы, которые должны отображаться в меню:"
           }
         },
         "tr" : {

@@ -685,6 +685,12 @@
             "value" : "Wis bestandsbereik"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистить область поиска"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2820,6 +2826,12 @@
             "value" : "Wijzig bestandsbereik…"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактировать область поиска…"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3318,6 +3330,12 @@
             "value" : "Filter voor bestandskiezer"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фильтр файлов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3386,6 +3404,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bestandsbereik"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Область поиска"
           }
         },
         "tr" : {
@@ -4794,6 +4818,78 @@
             }
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@arg1@ в %#@arg2@"
+          },
+          "substitutions" : {
+            "arg1" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg совпадений"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg совпадений"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg совпадение"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg совпадений"
+                    }
+                  }
+                }
+              }
+            },
+            "arg2" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg файлов"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg файлов"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg файл"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg файлов"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5116,6 +5212,12 @@
             "value" : "Geen overeenkomsten voor ‘%@’ gevonden."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Совпадения для “%@” не найдены."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5306,6 +5408,12 @@
             "value" : "Zoeken in map…"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск в папке…"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5381,6 +5489,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "De map kan niet worden gevonden."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Папка не найдена."
           }
         },
         "tr" : {
@@ -6337,6 +6451,12 @@
             "value" : "Verborgen bestanden opnemen"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включать скрытые файлы"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6406,6 +6526,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Andere bestandstypen opnemen"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включать другие типы файлов"
           }
         },
         "tr" : {
@@ -7994,6 +8120,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beheer bewaarde bereiken…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управление сохраненными областями поиска…"
           }
         },
         "tr" : {
@@ -11225,6 +11357,12 @@
             "value" : "Toon in bestandskiezer"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать в проводнике файлов"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11295,6 +11433,12 @@
             "value" : "Bewaarde bereiken"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохраненные области поиска"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11363,6 +11507,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewaarde bereiken:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохраненные области поиска:"
           }
         },
         "tr" : {
@@ -11542,6 +11692,12 @@
             "value" : "Zoeken in map"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск в папке"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11610,6 +11766,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Zoekmethode"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Метод поиска"
           }
         },
         "tr" : {
@@ -13852,6 +14014,12 @@
             "value" : "Ga naar het volgende document"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейти к следующему документу"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14143,6 +14311,12 @@
             "value" : "Ga naar het vorige document"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейти к предыдущему документу"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14218,6 +14392,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ga terug of vooruit in de documentgeschiedenis"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейти назад или вперед в истории документов"
           }
         },
         "tr" : {

@@ -53,6 +53,12 @@
             "value" : "alle"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "все"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -129,6 +135,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "een of meer"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "любые"
           }
         },
         "tr" : {
@@ -209,6 +221,12 @@
             "value" : "Komt overeen met"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Соответствует"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -285,6 +303,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "volgende voorwaarden:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "из следующих условий:"
           }
         },
         "tr" : {
@@ -364,6 +388,12 @@
             "value" : "Het bereik bevat een regel zonder waarde."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Область поиска содержит правило без значения."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -439,6 +469,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het bereik bevat een ongeldige reguliere expressie."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Область поиска содержит недействительное регулярное выражение."
           }
         },
         "tr" : {
@@ -1089,6 +1125,12 @@
             "value" : "komt overeen met reguliere expressie"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "совпадает с регулярным выражением"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1610,6 +1652,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewaar als benoemd bereik…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить область поиска…"
           }
         },
         "tr" : {

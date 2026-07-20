@@ -265,6 +265,12 @@
             "value" : "Pas de inspringstijl naar wens per syntaxis aan in de Modusinstellingen."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используйте настройки для стиля отступов под каждый синтаксис по своему усмотрению."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -340,6 +346,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Inspringing passend bij elke syntaxis"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отступы, соответствующие каждому синтаксису"
           }
         },
         "tr" : {
@@ -419,6 +431,12 @@
             "value" : "In macOS 27 krijgen naamloze documenten automatisch een conceptnaam op basis van hun inhoud."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На macOS 27 неозаглавленные документы автоматически получают имя на основе их содержимого."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -494,6 +512,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Laat het document zichzelf een naam geven"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Название документа будет создано автоматически"
           }
         },
         "tr" : {
@@ -573,6 +597,12 @@
             "value" : "Zoek tekst in bestanden in een geopende map, rechtstreeks vanuit de navigatiekolom."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск текста среди файлов в открытой папке прямо из боковой панели."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -648,6 +678,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Vind het in de map"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найти в папке"
           }
         },
         "tr" : {
@@ -727,6 +763,12 @@
             "value" : "Gebruik de knoppenbalk om terug en vooruit te gaan door onlangs bekeken documenten in een mapdocument."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используйте панель инструментов, чтобы перемещаться назад и вперед среди недавно просмотренных документов в текущей папке."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -802,6 +844,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Terug en vooruit in mappen"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "История переходов между папками"
           }
         },
         "tr" : {
@@ -881,6 +929,12 @@
             "value" : "CotEditor ondersteunt nu macOS 27 Golden Gate, inclusief een vernieuwde vormgeving voor het nieuwste systeem."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor теперь поддерживает macOS 27 Golden Gate, включая обновленный внешний вид системы."
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -956,6 +1010,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Klaar voor macOS 27"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готов к macOS 27"
           }
         },
         "tr" : {

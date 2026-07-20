@@ -25931,6 +25931,12 @@
             "value" : "Zoeken in map"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск в папке"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
