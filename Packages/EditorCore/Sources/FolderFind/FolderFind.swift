@@ -102,10 +102,9 @@ public enum FolderFind {
         public var fileURL: URL
         public var contentType: UTType
         public var isDirectory: Bool
-        public var isHidden: Bool
         public var fileSize: Int
         
-        static let metadataResourceKeys: Set<URLResourceKey> = [.contentTypeKey, .isDirectoryKey, .isHiddenKey, .fileSizeKey]
+        static let metadataResourceKeys: Set<URLResourceKey> = [.contentTypeKey, .isDirectoryKey, .fileSizeKey]
         
         
         /// Initializes by reading a candidate at the given URL.
@@ -119,7 +118,6 @@ public enum FolderFind {
             self.fileURL = url.standardizedFileURL
             self.contentType = resourceValues.contentType ?? .data
             self.isDirectory = resourceValues.isDirectory ?? false
-            self.isHidden = resourceValues.isHidden ?? false
             self.fileSize = resourceValues.fileSize ?? 0
         }
     }

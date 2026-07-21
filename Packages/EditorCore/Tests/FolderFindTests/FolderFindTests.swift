@@ -352,7 +352,6 @@ struct FolderFindTests {
         #expect(textCandidate.fileURL == textURL.standardizedFileURL)
         #expect(textCandidate.contentType.conforms(to: .text))
         #expect(!textCandidate.isDirectory)
-        #expect(!textCandidate.isHidden)
         #expect(FolderFind.isSearchableText(textCandidate))
         #expect(FolderFind.isSearchableText(extensionlessCandidate))
         #expect(directoryCandidate.isDirectory)

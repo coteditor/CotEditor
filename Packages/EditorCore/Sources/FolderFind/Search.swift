@@ -97,7 +97,8 @@ public struct Search {
         // avoid following symbolic-link cycles back into an already-visited directory
         guard self.visitedDirectories.insert(directoryURL.resolvingSymlinksInPath()).inserted else { return }
         
-        guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: Array(FolderFind.Candidate.metadataResourceKeys)) else { return }
+        let enumerationOptions: FileManager.DirectoryEnumerationOptions = self.options.includesHiddenFiles ? [] : [.skipsHiddenFiles]
+        guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: Array(FolderFind.Candidate.metadataResourceKeys), options: enumerationOptions) else { return }
         
         var candidates = urls.compactMap { try? FolderFind.Candidate(at: $0) }
         candidates.sort { lhs, rhs in
@@ -111,10 +112,7 @@ public struct Search {
         for candidate in candidates {
             try Task.checkCancellation()
             
-            guard
-                !self.options.excludedNames.contains(candidate.fileURL.lastPathComponent),
-                self.options.includesHiddenFiles || !candidate.isHidden
-            else { continue }
+            guard !self.options.excludedNames.contains(candidate.fileURL.lastPathComponent) else { continue }
             
             if candidate.isDirectory {
                 try await self.searchDirectory(at: candidate.fileURL)
