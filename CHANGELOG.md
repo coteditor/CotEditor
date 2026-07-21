@@ -3,17 +3,17 @@
 7.0.8 (unreleased)
 --------------------------
 
-### Improvements'
+### Improvements
 
 - Prevent the file browser from opening UNIX executable files as plain text.
 - Display more accurate error messages in dialogs.
+- Improve overall stability.
 
 
 ### Fixes
 
 - Fix an issue where the tab width customized for a document was not applied when printing.
 - Fix an issue where the insertion point could move to an incorrect column when extending a selection upward from the end of the document.
-- Address a potential crash in the text layout process.
 
 
 
