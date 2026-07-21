@@ -80,7 +80,7 @@ private struct ModeListView: View {
     
     var syntaxes: [String]
     @State private var syntaxModes: [Mode] = []
-    @State private var error: (any Error)?
+    @State private var error: any Error?
     
     
     var body: some View {

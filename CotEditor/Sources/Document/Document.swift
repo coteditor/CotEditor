@@ -463,7 +463,7 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
-    override func autosave(withImplicitCancellability autosavingIsImplicitlyCancellable: Bool, completionHandler: @escaping ((any Error)?) -> Void) {
+    override func autosave(withImplicitCancellability autosavingIsImplicitlyCancellable: Bool, completionHandler: @escaping (any Error?) -> Void) {
         
         // adopt the file modification date to avoid the false alert about the external modification
         if Self.autosavesInPlace {
@@ -474,7 +474,7 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
-    override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping ((any Error)?) -> Void) {
+    override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping (any Error?) -> Void) {
         
         // check if the content can be saved with the current text encoding
         guard saveOperation.isAutosaveElsewhere || self.allowsLossySaving || self.canBeConverted() else {
@@ -1335,7 +1335,7 @@ extension NSTextView: EditorCounter.Source { }
         var didChange = false
         var modificationDate: Date?
         var coordinationError: NSError?
-        var readingError: (any Error)?
+        var readingError: any Error?
         NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: &coordinationError) { newURL in  // FILE_ACCESS
             do {
                 // ignore if file's modificationDate is the same as document's modificationDate

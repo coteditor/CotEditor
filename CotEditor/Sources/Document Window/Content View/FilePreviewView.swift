@@ -224,7 +224,7 @@ private struct OpenWithExternalEditorMenu: View {
     var url: URL
     
     @State private var isFileBrowserPresented = false
-    @State private var error: (any Error)?
+    @State private var error: any Error?
     
     
     var body: some View {

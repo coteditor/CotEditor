@@ -40,7 +40,7 @@ struct MultipleReplaceListView: View {
     @State private var isExporterPresented = false
     @State private var isImporterPresented = false
     @State private var importingError: ImportDuplicationError?
-    @State private var error: (any Error)?
+    @State private var error: any Error?
     
     
     var body: some View {

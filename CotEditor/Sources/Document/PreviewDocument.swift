@@ -40,7 +40,7 @@ protocol FileContentAttributes: Sendable, Equatable { }
     private(set) var isFolderAlias = false
     
     private(set) var previewSize: CGSize?
-    private(set) var contentAttributes: (any FileContentAttributes)?
+    private(set) var contentAttributes: any FileContentAttributes?
     
     
     // MARK: Document Methods

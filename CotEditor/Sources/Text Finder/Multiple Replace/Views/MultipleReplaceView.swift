@@ -630,7 +630,7 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
     
     
     /// Sets items per row to drag.
-    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> (any NSPasteboardWriting)? {
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> any NSPasteboardWriting? {
         
         NSPasteboardItem(pasteboardPropertyList: row, ofType: .row)
     }

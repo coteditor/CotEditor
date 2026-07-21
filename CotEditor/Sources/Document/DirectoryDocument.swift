@@ -361,7 +361,7 @@ final class DirectoryDocument: NSDocument {
         let fileURL = parentNode.file.fileURL.appending(component: name).appendingPathExtension(pathExtension ?? "").appendingUniqueNumber()
         
         var coordinationError: NSError?
-        var writingError: (any Error)?
+        var writingError: any Error?
         NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, error: &coordinationError) { newURL in
             do {
                 try Data().write(to: newURL, options: .withoutOverwriting)
@@ -394,7 +394,7 @@ final class DirectoryDocument: NSDocument {
         let folderURL = parentNode.file.fileURL.appending(component: name).appendingUniqueNumber()
         
         var coordinationError: NSError?
-        var writingError: (any Error)?
+        var writingError: any Error?
         NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: folderURL, error: &coordinationError) { newURL in
             do {
                 try FileManager.default.createDirectory(at: newURL, withIntermediateDirectories: true)
@@ -490,7 +490,7 @@ final class DirectoryDocument: NSDocument {
             .appendingUniqueNumber()
         
         var coordinationError: NSError?
-        var copyingError: (any Error)?
+        var copyingError: any Error?
         NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, writingItemAt: destinationURL, error: &coordinationError) { newSourceURL, newDestinationURL in
             do {
                 try FileManager.default.copyItem(at: newSourceURL, to: newDestinationURL)
@@ -528,7 +528,7 @@ final class DirectoryDocument: NSDocument {
         let duplicatedURL = node.file.fileURL.appendingUniqueNumber(format: format)
         
         var coordinationError: NSError?
-        var copyError: (any Error)?
+        var copyError: any Error?
         NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: node.file.fileURL, options: .withoutChanges, writingItemAt: duplicatedURL, error: &coordinationError) { newSourceURL, newDestinationURL in
             do {
                 try FileManager.default.copyItem(at: newSourceURL, to: newDestinationURL)
@@ -563,7 +563,7 @@ final class DirectoryDocument: NSDocument {
         
         var trashedURL: NSURL?
         var coordinationError: NSError?
-        var trashError: (any Error)?
+        var trashError: any Error?
         NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: node.file.fileURL, options: .forDeleting, error: &coordinationError) { newURL in
             do {
                 try FileManager.default.trashItem(at: newURL, resultingItemURL: &trashedURL)
@@ -799,7 +799,7 @@ final class DirectoryDocument: NSDocument {
     private func moveFile(from sourceURL: URL, to destinationURL: URL) throws {
         
         var coordinationError: NSError?
-        var movingError: (any Error)?
+        var movingError: any Error?
         NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: sourceURL, options: .forMoving, writingItemAt: destinationURL, options: .forMoving, error: &coordinationError) { newSourceURL, newDestinationURL in
             do {
                 try FileManager.default.moveItem(at: newSourceURL, to: newDestinationURL)

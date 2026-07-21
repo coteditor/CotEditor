@@ -965,7 +965,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     }
     
     
-    func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> (any NSPasteboardWriting)? {
+    func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> any NSPasteboardWriting? {
         
         (item as? FileNode)?.file.fileURL as? NSURL
     }

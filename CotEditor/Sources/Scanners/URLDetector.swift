@@ -35,7 +35,7 @@ import ValueRange
     private var editedRanges: EditedRangeSet
     private let delay: Duration = .seconds(0.5)
     
-    private var textEditingObserver: (any NSObjectProtocol)?
+    private var textEditingObserver: any NSObjectProtocol?
     private var task: Task<Void, any Error>?
     
     

@@ -82,7 +82,7 @@ extension FileBrowserViewController: @MainActor QLPreviewPanelDataSource {
     }
     
     
-    func previewPanel(_ panel: QLPreviewPanel!, previewItemAt index: Int) -> (any QLPreviewItem)! {
+    func previewPanel(_ panel: QLPreviewPanel!, previewItemAt index: Int) -> any QLPreviewItem! {
         
         let row = self.outlineView.selectedRowIndexes.sorted()[index]
         
@@ -103,7 +103,7 @@ extension FileBrowserViewController: @MainActor QLPreviewPanelDelegate {
     }
     
     
-    func previewPanel(_ panel: QLPreviewPanel!, sourceFrameOnScreenFor item: (any QLPreviewItem)!) -> NSRect {
+    func previewPanel(_ panel: QLPreviewPanel!, sourceFrameOnScreenFor item: any QLPreviewItem!) -> NSRect {
         
         guard
             let fileURL = item as? URL,

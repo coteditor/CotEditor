@@ -33,7 +33,7 @@ struct ShortcutField: NSViewRepresentable {
     typealias NSViewType = NSTextField
     
     @Binding var value: Shortcut?
-    @Binding var error: (any Error)?
+    @Binding var error: any Error?
     
     
     func makeNSView(context: Context) -> NSTextField {
@@ -72,10 +72,10 @@ struct ShortcutField: NSViewRepresentable {
         private var shortcut: Binding<Shortcut?>
         private var cachedShortcut: Shortcut?
         
-        @Binding private var error: (any Error)?
+        @Binding private var error: any Error?
         
         
-        init(shortcut: Binding<Shortcut?>, error: Binding<(any Error)?>) {
+        init(shortcut: Binding<Shortcut?>, error: Binding<any Error?>) {
             
             self.shortcut = shortcut
             self.cachedShortcut = shortcut.wrappedValue

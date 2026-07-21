@@ -70,7 +70,7 @@ struct KeyBindingsSettingsView: View {
     
     private(set) var tree: [Item] = []
     private(set) var isRestorable: Bool = false
-    var error: (any Error)?
+    var error: any Error?
     
     var rootIndex: Int?
     

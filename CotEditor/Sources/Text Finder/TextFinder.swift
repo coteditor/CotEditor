@@ -145,7 +145,7 @@ struct FindMatchesCache {
     
     private var findTask: Task<Void, any Error>?
     private var highlightObservationTask: Task<Void, Never>?
-    private var textChangeObserver: (any NSObjectProtocol)?
+    private var textChangeObserver: any NSObjectProtocol?
     
     
     // MARK: Lifecycle

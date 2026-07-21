@@ -84,8 +84,8 @@ import StringUtils
     
     let result: Result = .init()
     
-    var source: () -> (any Source)? = { nil }
-    var lineRangeCalculator: (any LineRangeCalculating)?
+    var source: () -> any Source? = { nil }
+    var lineRangeCalculator: any LineRangeCalculating?
     
     var updatesAll = false  { didSet { self.updateTypes() } }
     var statusBarRequirements: Types = []  { didSet { self.updateTypes() } }

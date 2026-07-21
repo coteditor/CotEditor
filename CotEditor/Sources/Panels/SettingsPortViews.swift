@@ -38,7 +38,7 @@ struct ExportSettingsView: View {
     @State private var types: Types = .all
     @State private var document: PortableSettingsDocument?
     @State private var isFileExporterPresented = false
-    @State private var error: (any Error)?
+    @State private var error: any Error?
     
     
     var body: some View {
@@ -95,7 +95,7 @@ struct ImportSettingsView: View {
     
     @State private var types: Types = .all
     @State private var documentError: PortableSettingsDocument.Error?
-    @State private var error: (any Error)?
+    @State private var error: any Error?
     
     
     var body: some View {

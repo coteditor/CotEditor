@@ -241,7 +241,7 @@ private struct SyntaxListView: View {
     @State private var isListCustomizationViewPresented = false
     @State private var isFileMappingConflictPresented = false
     @State private var importingError: ImportDuplicationError?
-    @State private var error: (any Error)?
+    @State private var error: any Error?
     
     @State private var settingUpdateObserver: NotificationCenter.ObservationToken?
     

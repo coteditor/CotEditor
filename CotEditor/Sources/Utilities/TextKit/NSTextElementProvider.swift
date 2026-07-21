@@ -43,7 +43,7 @@ extension NSTextElementProvider {
     /// - Parameters:
     ///   - location: The character index to convert.
     /// - Returns: A text location.
-    func textLocation(for location: Int) -> (any NSTextLocation)? {
+    func textLocation(for location: Int) -> any NSTextLocation? {
         
         self.location?(self.documentRange.location, offsetBy: location)
     }

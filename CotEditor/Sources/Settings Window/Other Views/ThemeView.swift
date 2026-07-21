@@ -43,7 +43,7 @@ struct ThemeView: View {
     @State private var theme: Theme = .init()
     @State private var isBundled: Bool = false
     
-    @State private var error: (any Error)?
+    @State private var error: any Error?
     
     @State private var settingUpdateObserver: NotificationCenter.ObservationToken?
     
@@ -155,7 +155,7 @@ private struct ThemeListView: View {
     @State private var isExporterPresented = false
     @State private var isImporterPresented = false
     @State private var importingError: ImportDuplicationError?
-    @State private var error: (any Error)?
+    @State private var error: any Error?
     
     
     var body: some View {

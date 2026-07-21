@@ -112,7 +112,7 @@ extension NSTextView {
     /// The object calculating line range.
     ///
     /// - Note: This API requires TextKit 1.
-    private var lineRangeCalculating: (any LineRangeCalculating)? {
+    private var lineRangeCalculating: any LineRangeCalculating? {
         
         (self.layoutManager as? LayoutManager)?.lineEndingScanner
     }

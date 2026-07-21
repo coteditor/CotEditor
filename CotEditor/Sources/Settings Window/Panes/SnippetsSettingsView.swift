@@ -72,7 +72,7 @@ private struct CommandSnippetsView: View {
     @State private var selection: Set<Item.ID> = []
     @State private var syntaxes: [String] = []
     
-    @State private var error: (any Error)?
+    @State private var error: any Error?
     @State private var format: String?
     
     

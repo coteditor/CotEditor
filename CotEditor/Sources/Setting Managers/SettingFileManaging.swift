@@ -598,10 +598,10 @@ struct SettingFileError: LocalizedError {
     
     var code: Code
     var name: String
-    var underlyingError: (any Error)?
+    var underlyingError: any Error?
     
     
-    init(_ code: Code, name: String, underlyingError: (any Error)? = nil) {
+    init(_ code: Code, name: String, underlyingError: any Error? = nil) {
         
         self.code = code
         self.name = name

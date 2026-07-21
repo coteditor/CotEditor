@@ -52,8 +52,8 @@ extension NSAttributedString.Key {
     // MARK: Private Properties
     
     private let textStorage: NSTextStorage
-    private var highlightParser: (any HighlightParsing)?
-    private var outlineParser: (any OutlineParsing)?
+    private var highlightParser: any HighlightParsing?
+    private var outlineParser: any OutlineParsing?
     
     private var highlightParseTask: Task<Void, any Error>?
     private var outlineParseTask: Task<Void, any Error>?
@@ -203,7 +203,7 @@ extension NSAttributedString.Key {
     // MARK: Private Methods
     
     /// Returns the parser instance that supports incremental edit updates.
-    private var incrementalParser: (any IncrementalParsing)? {
+    private var incrementalParser: any IncrementalParsing? {
         
         let highlightParser = self.highlightParser as? any IncrementalParsing
         let outlineParser = self.outlineParser as? any IncrementalParsing

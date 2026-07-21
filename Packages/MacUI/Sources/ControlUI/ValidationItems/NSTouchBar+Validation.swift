@@ -100,7 +100,7 @@ public extension NSTouchBar {
     // MARK: Private Properties
     
     private weak var validationTimer: Timer?
-    private var applicationObserver: (any NSObjectProtocol)?
+    private var applicationObserver: any NSObjectProtocol?
     
     
     private nonisolated enum ValidationDelay: TimeInterval {

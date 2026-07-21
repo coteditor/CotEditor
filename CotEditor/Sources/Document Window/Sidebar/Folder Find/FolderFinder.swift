@@ -62,7 +62,7 @@ import TextFind
     
     private var searchTask: Task<Void, Never>?
     private var selectionTask: Task<Void, Never>?
-    private var textEditingObserver: (any NSObjectProtocol)?
+    private var textEditingObserver: any NSObjectProtocol?
     private var submittedFindString = ""
     
     

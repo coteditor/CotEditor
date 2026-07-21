@@ -76,7 +76,7 @@ struct SyntaxEditView: View {
     @State private var pane: Pane = .fileMapping
     @State private var errors: [Syntax.Error] = []
     @State private var validationTask: Task<Void, any Error>?
-    @State private var error: (any Error)?
+    @State private var error: any Error?
     
     @FocusState private var isNameFieldFocused: Bool
     

@@ -257,7 +257,7 @@ struct PortableSettingsDocument: FileDocument {
 private extension FileWrapper {
     
     /// The persisted representation of the receiver, if supported for settings archives.
-    var persistable: (any Persistable)? {
+    var persistable: any Persistable? {
         
         if self.isDirectory {
             self

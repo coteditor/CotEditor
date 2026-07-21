@@ -35,7 +35,7 @@ struct MultipleReplaceSplitView: View {
     @AppStorage(.selectedMultipleReplaceSettingName) private var selection: String?
     @State private var settingName: String?
     @State private var setting: MultipleReplace = .init()
-    @State private var error: (any Error)?
+    @State private var error: any Error?
     
     @State private var settingUpdateObserver: NotificationCenter.ObservationToken?
     

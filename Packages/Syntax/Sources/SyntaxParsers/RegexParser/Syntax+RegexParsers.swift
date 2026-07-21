@@ -31,7 +31,7 @@ import StringUtils
 extension Syntax {
     
     /// The parser for the outline extraction.
-    public var outlineParser: (any OutlineParsing)? {
+    public var outlineParser: any OutlineParsing? {
         
         let extractors = self.outlines.compactMap { try? OutlineExtractor(definition: $0) }
         
@@ -42,7 +42,7 @@ extension Syntax {
     
     
     /// The parser for the syntax highlighting.
-    public var highlightParser: (any HighlightParsing)? {
+    public var highlightParser: any HighlightParsing? {
         
         let extractors = self.highlights
             .mapValues(\.consolidatingSimpleWords)
