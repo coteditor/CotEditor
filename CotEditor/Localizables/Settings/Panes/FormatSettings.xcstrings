@@ -145,10 +145,22 @@
             "value" : "シンタックスメニューをカスタマイズ…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구문 메뉴 사용자화…"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Pas syntaxismenu aan…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настроить меню синтаксиса…"
           }
         },
         "tr" : {

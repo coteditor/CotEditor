@@ -47,6 +47,12 @@
             "value" : "すべて"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모두"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -129,6 +135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "いずれか"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "하나라도"
           }
         },
         "nl" : {
@@ -215,6 +227,12 @@
             "value" : "次の"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음 조건 중"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -297,6 +315,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "の条件に一致:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일치:"
           }
         },
         "nl" : {
@@ -382,6 +406,12 @@
             "value" : "スコープに値が入力されていないルールがあります。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "범위에 값이 없는 규칙이 포함되어 있습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -463,6 +493,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スコープに不正な正規表現が含まれています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "범위에 유효하지 않은 정규 표현식이 포함되어 있습니다."
           }
         },
         "nl" : {
@@ -1119,6 +1155,12 @@
             "value" : "が次の正規表現と一致"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정규 표현식과 일치"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1646,6 +1688,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "名前を付けて保存…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이름이 지정된 범위로 저장…"
           }
         },
         "nl" : {

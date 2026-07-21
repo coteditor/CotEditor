@@ -679,6 +679,12 @@
             "value" : "ファイルスコープを消去"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 범위 지우기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -2820,6 +2826,12 @@
             "value" : "ファイルスコープを編集…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 범위 편집…"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -3324,6 +3336,12 @@
             "value" : "ファイルブラウザフィルタ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 브라우저 필터"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -3398,6 +3416,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルスコープ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 범위"
           }
         },
         "nl" : {
@@ -4770,6 +4794,42 @@
             }
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@arg2@에서 %#@arg1@"
+          },
+          "substitutions" : {
+            "arg1" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg개 일치"
+                    }
+                  }
+                }
+              }
+            },
+            "arg2" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "파일 %arg개"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5206,6 +5266,12 @@
             "value" : "“%@”に一致するものはありません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”과(와) 일치하는 항목을 찾을 수 없습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5402,6 +5468,12 @@
             "value" : "フォルダを検索中…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "폴더에서 검색 중…"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5483,6 +5555,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "フォルダが見つかりません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "폴더를 찾을 수 없습니다."
           }
         },
         "nl" : {
@@ -6445,6 +6523,12 @@
             "value" : "不可視ファイルを含める"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "숨겨진 파일 포함"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -6520,6 +6604,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ほかのファイルタイプを含める"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기타 파일 유형 포함"
           }
         },
         "nl" : {
@@ -8114,6 +8204,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保存されたスコープを管理…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장된 범위 관리…"
           }
         },
         "nl" : {
@@ -11351,6 +11447,12 @@
             "value" : "ファイルブラウザに表示"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 브라우저에서 보기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -11427,6 +11529,12 @@
             "value" : "保存されたスコープ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장된 범위"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -11501,6 +11609,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保存されたスコープ:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장된 범위:"
           }
         },
         "nl" : {
@@ -11686,6 +11800,12 @@
             "value" : "フォルダ内検索"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "폴더에서 검색"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -11761,6 +11881,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "検索方法"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "검색 방법"
           }
         },
         "nl" : {
@@ -14009,6 +14135,12 @@
             "value" : "次の書類に進む"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음 문서로 이동"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -14306,6 +14438,12 @@
             "value" : "前の書類に戻る"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이전 문서로 이동"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -14387,6 +14525,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類の履歴を戻る／進む"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서 기록에서 뒤로 또는 앞으로 이동"
           }
         },
         "nl" : {

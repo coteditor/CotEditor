@@ -259,6 +259,12 @@
             "value" : "お好みで、「モード」設定でシンタックスごとにインデントスタイルをカスタマイズできるようになりました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모드 설정을 사용하여 개별 구문의 들여쓰기 스타일을 원하는 대로 사용자화할 수 있습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -340,6 +346,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "シンタックスに合わせたインデント"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "각 구문에 맞는 들여쓰기"
           }
         },
         "nl" : {
@@ -425,6 +437,12 @@
             "value" : "macOS 27では、名称未設定の書類に内容から提案された書類名の草案が自動で付くようになりました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 27에서는 무제 문서에 콘텐츠를 기반으로 제안된 이름이 자동으로 지정됩니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -506,6 +524,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類名は書類におまかせ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문서 스스로 이름 짓기"
           }
         },
         "nl" : {
@@ -591,6 +615,12 @@
             "value" : "開いているフォルダ内のファイルを、サイドバーから全文検索できるようになりました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사이드바에서 바로 열려 있는 폴더의 여러 파일에 있는 텍스트를 검색할 수 있습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -672,6 +702,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "フォルダの中から見つけよう"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "폴더에서 찾기"
           }
         },
         "nl" : {
@@ -757,6 +793,12 @@
             "value" : "フォルダ書類で最近表示した書類を、ツールバーから戻る・進むで辿れるようになりました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도구 막대를 사용하여 폴더 문서에서 최근에 본 문서 사이를 뒤로 또는 앞으로 이동할 수 있습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -838,6 +880,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "フォルダでも戻る・進む"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "폴더에서 뒤로 및 앞으로 이동"
           }
         },
         "nl" : {
@@ -923,6 +971,12 @@
             "value" : "CotEditorがmacOS 27 Golden Gateに対応しました。最新システムに合わせて外観も整えています。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor가 이제 macOS 27 Golden Gate를 지원하며, 최신 시스템에 맞게 새로워진 디자인을 제공합니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1004,6 +1058,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "macOS 27に対応"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 27 지원"
           }
         },
         "nl" : {

@@ -39,6 +39,12 @@
             "value" : "自動判定には、非表示のシンタックスも使用されます。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "숨겨진 구문도 자동 감지에는 계속 사용됩니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -219,6 +225,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "「シンタックス」メニューに表示するシンタックスを選択してください:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구문 메뉴에 표시할 구문을 선택하십시오:"
           }
         },
         "nl" : {

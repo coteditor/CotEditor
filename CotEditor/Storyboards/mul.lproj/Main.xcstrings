@@ -25925,6 +25925,12 @@
             "value" : "フォルダ検索"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "폴더에서 찾기"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
