@@ -49,7 +49,7 @@ extension DefaultSettings {
         .pinsThemeAppearance,
         
         // Window
-        .windowTabbing,  // = Respect System Setting
+        .windowTabbing,
         .windowWidth,
         .windowHeight,
         .showLineNumbers,
