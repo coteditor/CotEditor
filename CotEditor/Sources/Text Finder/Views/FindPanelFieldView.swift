@@ -39,7 +39,7 @@ struct FindPanelFieldView: View {
     @AppStorage(.findInSelection) private var inSelection: Bool
     @AppStorage(.findRegexUnescapesReplacementString) private var unescapesReplacementString: Bool
     
-    @State private var settings: TextFinderSettings = .shared
+    @Bindable private var settings: TextFinderSettings = .shared
     @State private var result: FindResult?
     @State private var resultClientIdentifier: ObjectIdentifier?
     @State private var didFindObserver: NotificationCenter.ObservationToken?

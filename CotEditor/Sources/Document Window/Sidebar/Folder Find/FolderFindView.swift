@@ -131,7 +131,7 @@ private struct FolderFindControlView: View {
     
     var model: FolderFinder
     
-    @State private var textFinderSettings: TextFinderSettings = .shared
+    @Bindable private var textFinderSettings: TextFinderSettings = .shared
     @State private var fileScopeSelection = FileScopeSelection()
     
     @AppStorage(.folderFindUsesRegularExpression) private var usesRegularExpression: Bool

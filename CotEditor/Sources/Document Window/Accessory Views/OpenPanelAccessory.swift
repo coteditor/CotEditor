@@ -54,7 +54,7 @@ import FileEncoding
 
 struct OpenPanelAccessory: View {
     
-    @State var model: OpenPanelModel
+    @Bindable var model: OpenPanelModel
     weak var openPanel: NSOpenPanel?
     
     @State private var showsHiddenFiles = false

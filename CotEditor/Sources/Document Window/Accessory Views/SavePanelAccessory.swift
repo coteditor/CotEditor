@@ -39,7 +39,7 @@ import SwiftUI
 
 struct SavePanelAccessory: View {
     
-    @State var options: SaveOptions
+    @Bindable var options: SaveOptions
     
     
     // MARK: View

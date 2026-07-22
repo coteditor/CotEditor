@@ -29,7 +29,7 @@ import SyntaxParsers
 
 struct NavigationBar: View {
     
-    @State var outlineNavigator: OutlineNavigator
+    @Bindable var outlineNavigator: OutlineNavigator
     var splitState: SplitState
     
     
@@ -57,7 +57,7 @@ struct NavigationBar: View {
                 .opacity(self.splitState.canClose && self.outlineNavigator.items?.isEmpty == false ? 1 : 0)
                 .accessibilityHidden(!self.splitState.canClose)
             
-            OutlineNavigationView(navigator: $outlineNavigator)
+            OutlineNavigationView(navigator: self.outlineNavigator)
             
             Spacer()
             
@@ -98,7 +98,7 @@ struct NavigationBar: View {
 
 private struct OutlineNavigationView: View {
     
-    @Binding var navigator: OutlineNavigator
+    @Bindable var navigator: OutlineNavigator
     
     @State private var isLongExtraction = false
     @State private var extractionDelayTask: Task<Void, any Error>?
