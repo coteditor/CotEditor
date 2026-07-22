@@ -114,6 +114,9 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         addButton.image = NSImage(systemSymbolName: "plus", accessibilityDescription: nil)
         addButton.bezelStyle = .glass
         addButton.borderShape = .circle
+        if #unavailable(macOS 27) {
+            addButton.isBordered = false
+        }
         addButton.menu = NSMenu()
         addButton.menu!.autoenablesItems = false
         addButton.menu!.items = [
