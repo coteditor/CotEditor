@@ -14,6 +14,7 @@
 
 - Fix an issue where the tab width customized for a document was not applied when printing.
 - Fix an issue where the insertion point could move to an incorrect column when extending a selection upward from the end of the document.
+- Fix an issue where the window size setting was not included in the exported settings archive (Thanks to offyotto!).
 
 
 
