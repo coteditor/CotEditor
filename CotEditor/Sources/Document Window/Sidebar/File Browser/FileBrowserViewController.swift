@@ -88,7 +88,6 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         scrollView.documentView = outlineView
         scrollView.hasVerticalScroller = true
         scrollView.drawsBackground = false
-        scrollView.additionalSafeAreaInsets.top = 8
         
         // workaround the issue where the tableCellViews don't follow the outlineView's width
         // when the scroller knob is shown (2025-09, macOS 26, FB20309978)
