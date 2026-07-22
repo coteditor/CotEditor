@@ -214,6 +214,8 @@ private struct FileScopeMenu: View {
     @Binding var includesHiddenFiles: Bool
     @Binding var includesOtherFileTypes: Bool
     
+    @Environment(\.accessibilityDifferentiateWithoutColor) private var differentiateWithoutColor
+    
     @State private var savedScopesData: [String: Data] = [:]
     @State private var isFileScopeEditorPresented = false
     @State private var isSavedScopesEditorPresented = false
@@ -254,6 +256,7 @@ private struct FileScopeMenu: View {
         } label: {
             Label(self.selection.name ?? String(localized: "File Scope", table: "Document"), systemImage: "text.magnifyingglass")
                 .foregroundStyle(self.selection.fileScope.isEmpty ? .secondary : Color.accentColor)
+                .fontWeight((self.differentiateWithoutColor && !self.selection.fileScope.isEmpty) ? .semibold : .regular)
                 .labelIconToTitleSpacing(6)
         }
         .buttonStyle(.plain)
