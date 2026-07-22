@@ -50,6 +50,8 @@ extension DefaultSettings {
         
         // Window
         .windowTabbing,  // = Respect System Setting
+        .windowWidth,
+        .windowHeight,
         .showLineNumbers,
         .showInvisibles,
         .showInvisibleNewLine,

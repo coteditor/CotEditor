@@ -25,6 +25,7 @@
 
 import Foundation
 import Testing
+import Defaults
 import SemanticVersioning
 import SyntaxFormat
 @testable import CotEditor
@@ -45,6 +46,15 @@ import SyntaxFormat
         #expect(fileWrapper.fileWrappers?["Info.json"]?.regularFileContents != nil)
         #expect(syntax.kind == .code)
         #expect(syntax.fileMap.extensions == ["sample"])
+    }
+
+
+    @Test func defaultWindowSizeIsPortable() {
+
+        let keys = DefaultSettings.portableKeys.map(\.rawValue)
+
+        #expect(keys.contains(DefaultKeys.windowWidth.rawValue))
+        #expect(keys.contains(DefaultKeys.windowHeight.rawValue))
     }
     
     
