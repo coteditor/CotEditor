@@ -119,7 +119,7 @@ private struct ModeListView: View {
             VStack(spacing: 0) {
                 Divider()
                 self.bottomAccessoryView
-                    .padding(2)
+                    .padding(6)
             }
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
@@ -140,8 +140,8 @@ private struct ModeListView: View {
     /// The action buttons to place at the bottom of the list.
     @ContentBuilder private var bottomAccessoryView: some View {
         
-        HStack(spacing: 0) {
-            Menu(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus") {
+        HStack {
+            Menu {
                 Section(String(localized: "Syntax", table: "ModeSettings")) {
                     ForEach(self.syntaxes, id: \.self) { syntaxName in
                         Button(syntaxName) {
@@ -158,9 +158,11 @@ private struct ModeListView: View {
                         }.disabled(self.syntaxModes.compactMap(\.syntaxName).contains(syntaxName))
                     }
                 }
+            } label: {
+                Label(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus")
+                    .padding(2)
             }
             .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
-            .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
             .menuIndicator(.hidden)
             .alert(error: $error)
             
@@ -173,17 +175,17 @@ private struct ModeListView: View {
                 }
             } label: {
                 Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
-                    .frame(width: 14, height: 14)
+                    .padding(2)
                     .fontWeight(.medium)
             }
             .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
-            .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
+            .frame(width: 16)
             .disabled(self.selection.syntaxName == nil)
             
             Spacer()
         }
-        .labelStyle(.iconOnly)
         .buttonStyle(.borderless)
+        .labelStyle(.iconOnly)
     }
     
     
