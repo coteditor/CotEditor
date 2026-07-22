@@ -254,7 +254,7 @@ private struct SyntaxListView: View {
             } icon: {
                 Circle()
                     .frame(width: 4)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Color.secondary)
                     .help(String(localized: "This syntax is customized.", table: "FormatSettings"))
                     .opacity(state.isCustomized ? 1 : 0)
                     .accessibilityHidden(!state.isCustomized)
