@@ -55,7 +55,6 @@ struct FolderFindSavedScopesView: View {
     @State private var selection: String?
     @State private var isAddingScope = false
     @State private var editingItem: EditingScope?
-    @State private var deletingItem: String?
     
     
     var body: some View {
@@ -118,18 +117,6 @@ struct FolderFindSavedScopesView: View {
             .scenePadding()
             .presentationSizing(FolderFindFileScopeView.sheetPresentationSizing)
         }
-        .confirmationDialog(String(localized: "DeletionConfirmation.title",
-                                   defaultValue: "Are you sure you want to delete “\(self.deletingItem ?? String(localized: .unknown))”?"),
-                            item: $deletingItem)
-        { name in
-            Button(String(localized: "Action.delete.label", defaultValue: "Delete"), role: .destructive) {
-                self.changeHandler(.delete(name: name))
-                self.selection = nil
-            }
-        } message: { _ in
-            Text(String(localized: "DeletionConfirmation.message",
-                        defaultValue: "This action cannot be undone."))
-        }
     }
     
     
@@ -147,7 +134,10 @@ struct FolderFindSavedScopesView: View {
             .frame(width: 16)
             
             Button {
-                self.deletingItem = self.selection
+                if let name = self.selection {
+                    self.changeHandler(.delete(name: name))
+                    self.selection = nil
+                }
             } label: {
                 Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
                     .padding(2)
@@ -186,7 +176,8 @@ struct FolderFindSavedScopesView: View {
         }
         
         Button(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "trash") {
-            self.deletingItem = name
+            self.changeHandler(.delete(name: name))
+            self.selection = nil
         }
     }
     
