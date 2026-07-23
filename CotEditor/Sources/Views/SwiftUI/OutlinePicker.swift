@@ -52,19 +52,22 @@ struct OutlinePicker: NSViewRepresentable {
     
     func updateNSView(_ nsView: NSPopUpButton, context: Context) {
         
-        let fontSize = NSFont.systemFontSize(for: nsView.controlSize)
-        let font = nsView.font?.withSize(fontSize) ?? .menuFont(ofSize: fontSize)
-        nsView.menu?.items = self.items.map { item in
-            if item.isSeparator {
-                return .separator()
-            } else {
-                let menuItem = NSMenuItem()
-                menuItem.target = context.coordinator
-                menuItem.action = #selector(Coordinator.itemSelected)
-                menuItem.representedObject = item
-                menuItem.attributedTitle = item.attributedTitle(font: font)
-                menuItem.indentationLevel = item.indent.level ?? 0
-                return menuItem
+        if self.items != context.coordinator.items {
+            context.coordinator.items = self.items
+            let fontSize = NSFont.systemFontSize(for: nsView.controlSize)
+            let font = nsView.font?.withSize(fontSize) ?? .menuFont(ofSize: fontSize)
+            nsView.menu?.items = self.items.map { item in
+                if item.isSeparator {
+                    return .separator()
+                } else {
+                    let menuItem = NSMenuItem()
+                    menuItem.target = context.coordinator
+                    menuItem.action = #selector(Coordinator.itemSelected)
+                    menuItem.representedObject = item
+                    menuItem.attributedTitle = item.attributedTitle(font: font)
+                    menuItem.indentationLevel = item.indent.level ?? 0
+                    return menuItem
+                }
             }
         }
         
@@ -105,6 +108,9 @@ struct OutlinePicker: NSViewRepresentable {
         
         @Binding var selection: OutlineItem.ID?
         var onSelect: (OutlineItem) -> Void
+        
+        /// The items currently applied to the menu to avoid rebuilding the menu when the items are unchanged.
+        var items: [OutlineItem] = []
         
         
         init(selection: Binding<OutlineItem.ID?>, onSelect: @escaping (OutlineItem) -> Void) {
