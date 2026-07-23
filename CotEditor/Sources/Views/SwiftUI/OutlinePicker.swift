@@ -53,22 +53,30 @@ struct OutlinePicker: NSViewRepresentable {
     func updateNSView(_ nsView: NSPopUpButton, context: Context) {
         
         if self.items != context.coordinator.items {
-            context.coordinator.items = self.items
-            let fontSize = NSFont.systemFontSize(for: nsView.controlSize)
-            let font = nsView.font?.withSize(fontSize) ?? .menuFont(ofSize: fontSize)
-            nsView.menu?.items = self.items.map { item in
-                if item.isSeparator {
-                    return .separator()
-                } else {
-                    let menuItem = NSMenuItem()
-                    menuItem.target = context.coordinator
-                    menuItem.action = #selector(Coordinator.itemSelected)
+            if self.items.isDisplayEquivalent(to: context.coordinator.items) {
+                // update only the represented objects to keep the jump ranges fresh
+                // when the changes are only in the ranges by shifting through the user edit
+                for (menuItem, item) in zip(nsView.menu?.items ?? [], self.items) where !item.isSeparator {
                     menuItem.representedObject = item
-                    menuItem.attributedTitle = item.attributedTitle(font: font)
-                    menuItem.indentationLevel = item.indent.level ?? 0
-                    return menuItem
+                }
+            } else {
+                let fontSize = NSFont.systemFontSize(for: nsView.controlSize)
+                let font = nsView.font?.withSize(fontSize) ?? .menuFont(ofSize: fontSize)
+                nsView.menu?.items = self.items.map { item in
+                    if item.isSeparator {
+                        return .separator()
+                    } else {
+                        let menuItem = NSMenuItem()
+                        menuItem.target = context.coordinator
+                        menuItem.action = #selector(Coordinator.itemSelected)
+                        menuItem.representedObject = item
+                        menuItem.attributedTitle = item.attributedTitle(font: font)
+                        menuItem.indentationLevel = item.indent.level ?? 0
+                        return menuItem
+                    }
                 }
             }
+            context.coordinator.items = self.items
         }
         
         if let index = self.items.firstIndex(where: { $0.id == self.selection }) {
@@ -146,6 +154,22 @@ private final class OutlinePopUpButtonCell: NSPopUpButtonCell {
         
         set {
             super.attributedTitle = newValue
+        }
+    }
+}
+
+
+private extension [OutlineItem] {
+    
+    /// Returns whether the receiver displays the same menu contents as the given items
+    /// by ignoring the ranges used only for the selection jump.
+    ///
+    /// - Parameter items: The items to compare with.
+    /// - Returns: `true` if the menu representations are identical.
+    func isDisplayEquivalent(to items: [OutlineItem]) -> Bool {
+        
+        self.count == items.count && zip(self, items).allSatisfy {
+            $0.title == $1.title && $0.kind == $1.kind && $0.indent == $1.indent
         }
     }
 }
