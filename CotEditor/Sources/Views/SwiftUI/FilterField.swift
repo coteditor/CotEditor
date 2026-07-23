@@ -47,14 +47,16 @@ struct FilterField: NSViewRepresentable {
         searchField.target = context.coordinator
         searchField.action = #selector(Coordinator.didChangeSearchString)
         searchField.recentsAutosaveName = self.autosaveName
-
+        
         return searchField
     }
     
     
     func updateNSView(_ nsView: NSSearchField, context: Context) {
         
-        nsView.stringValue = self.text
+        if nsView.stringValue != self.text {
+            nsView.stringValue = self.text
+        }
     }
     
     
