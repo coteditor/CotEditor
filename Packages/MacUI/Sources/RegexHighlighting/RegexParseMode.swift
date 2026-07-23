@@ -26,7 +26,7 @@
 
 import Foundation
 
-public enum RegexParseMode: Sendable {
+public enum RegexParseMode: Equatable, Sendable {
     
     case search
     case replacement(unescapes: Bool)

@@ -140,7 +140,7 @@ struct RegexTextField: NSViewRepresentable {
             
             self._text = text
         }
-
+        
         func updateBinding(_ text: Binding<String>) {
             
             self._text = text
@@ -164,6 +164,8 @@ class RegularExpressionTextField: NSTextField {
     @objc dynamic var isRegexHighlighted = true {
         
         didSet {
+            guard isRegexHighlighted != oldValue else { return }
+            
             self.regexFormatter.parsesRegularExpression = isRegexHighlighted
             self.invalidateFieldEditor()
             self.needsDisplay = true
@@ -174,6 +176,8 @@ class RegularExpressionTextField: NSTextField {
         
         get { self.regexFormatter.mode }
         set {
+            guard newValue != self.regexFormatter.mode else { return }
+            
             self.regexFormatter.mode = newValue
             self.invalidateFieldEditor()
         }

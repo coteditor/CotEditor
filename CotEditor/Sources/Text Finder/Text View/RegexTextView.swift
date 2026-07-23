@@ -31,8 +31,21 @@ class RegexTextView: NSTextView {
     
     // MARK: Public Properties
     
-    var parseMode: RegexParseMode = .search  { didSet { self.invalidateRegularExpression() } }
-    var isRegularExpressionMode: Bool = false  { didSet { self.invalidateRegularExpression() } }
+    var parseMode: RegexParseMode = .search {
+        
+        didSet {
+            guard parseMode != oldValue else { return }
+            self.invalidateRegularExpression()
+        }
+    }
+    
+    var isRegularExpressionMode: Bool = false {
+        
+        didSet {
+            guard isRegularExpressionMode != oldValue else { return }
+            self.invalidateRegularExpression()
+        }
+    }
     
     private var isValid = true
     
