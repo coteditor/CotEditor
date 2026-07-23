@@ -462,7 +462,7 @@ private struct FolderFindFileResultView: View {
         
         DisclosureGroup(isExpanded: $isExpanded) {
             ForEach(self.file.matches) { match in
-                ItemView(match: match)
+                ItemView(line: match.line, rangeInLine: match.rangeInLine)
                     .tag(FolderFind.ResultID.match(fileID: self.file.id, matchID: match.id))
             }
         } label: {
@@ -496,7 +496,8 @@ private struct FolderFindFileResultView: View {
     
     private struct ItemView: View {
         
-        var match: FolderFind.Match
+        var line: String
+        var rangeInLine: NSRange
         
         private static let truncationHeadOffset = 32
         
@@ -519,11 +520,11 @@ private struct FolderFindFileResultView: View {
         /// The line text with the matched substring emphasized.
         private var highlightedLine: AttributedString {
             
-            var attributedLine = AttributedString(self.match.line)
-            var rangeInLine = self.match.rangeInLine
+            var attributedLine = AttributedString(self.line)
+            var rangeInLine = self.rangeInLine
             
             // trim leading whitespace
-            let indentationLength = self.match.line.prefix(while: \.isWhitespace).utf16.count
+            let indentationLength = self.line.prefix(while: \.isWhitespace).utf16.count
             if indentationLength > 0,
                rangeInLine.location >= indentationLength,
                let range = Range(NSRange(0..<indentationLength), in: attributedLine)
@@ -546,9 +547,9 @@ private struct FolderFindFileResultView: View {
         /// The line text for accessibility.
         private var accessibilityLine: String {
             
-            let index = String.Index(utf16Offset: self.match.rangeInLine.lowerBound, in: self.match.line)
+            let index = String.Index(utf16Offset: self.rangeInLine.lowerBound, in: self.line)
             
-            return self.match.line.truncatedHead(until: index, offset: Self.truncationHeadOffset)
+            return self.line.truncatedHead(until: index, offset: Self.truncationHeadOffset)
         }
     }
 }
