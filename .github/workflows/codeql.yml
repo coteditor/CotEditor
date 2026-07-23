@@ -14,12 +14,12 @@ permissions:
 
 jobs:
   analyze:
-    runs-on: macos-26
+    runs-on: xcode-27
     env:
       DEVELOPER_DIR: /Applications/Xcode_27.0.app
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
