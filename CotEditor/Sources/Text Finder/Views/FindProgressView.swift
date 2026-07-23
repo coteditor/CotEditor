@@ -73,7 +73,7 @@ struct FindProgressView: View {
         }
         .task {
             // periodically updates the current value label
-            while !self.progress.state.isTerminated {
+            while !Task.isCancelled, !self.progress.state.isTerminated {
                 self.updateDescription()
                 try? await Task.sleep(for: .milliseconds(100), tolerance: .milliseconds(100))
             }
