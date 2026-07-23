@@ -56,7 +56,7 @@ struct SyntaxListCustomizationView: View {
             }
             .scrollContentBackground(.hidden)
             .background(.fill.quaternary, in: .rect(cornerRadius: 8))
-            .frame(minHeight: 200, idealHeight: 250)
+            .frame(minHeight: 100, idealHeight: 250)
             
             HStack {
                 Button(String(localized: "Select All", table: "SyntaxListCustomization")) {
@@ -81,7 +81,7 @@ struct SyntaxListCustomizationView: View {
         .onAppear {
             self.hiddenItems = Set(UserDefaults.standard[.hiddenSyntaxes])
         }
-        .frame(minWidth: 260, idealWidth: 360, maxWidth: 1000, idealHeight: 410, maxHeight: .infinity)
+        .frame(minWidth: 260, idealWidth: 360, maxWidth: 1000, maxHeight: .infinity)
     }
 }
 
