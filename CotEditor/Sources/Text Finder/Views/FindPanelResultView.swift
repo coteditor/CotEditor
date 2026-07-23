@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2025 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -98,7 +98,7 @@ struct FindPanelResultView: View {
             .onChange(of: self.selection) { _, newValue in
                 // remove selection of previous data
                 if newValue.count > 1 {
-                    let ids = self.model.matches.map(\.id)
+                    let ids = Set(self.model.matches.map(\.id))
                     for id in newValue where !ids.contains(id) {
                         self.selection.remove(id)
                     }
