@@ -130,20 +130,18 @@ struct FormatSettingsView: View {
                     .accessibilityLabeledPair(role: .label, id: "encodingPriority", in: self.accessibility)
                     .gridColumnAlignment(.trailing)
                 
-                VStack {
-                    VStack(alignment: .leading) {
-                        Button(String(localized: "Edit List…", table: "FormatSettings")) {
-                            self.isEncodingListPresented.toggle()
-                        }
-                        .sheet(isPresented: $isEncodingListPresented) {
-                            EncodingListView(defaultEncoding: self.encodingManager.defaultEncoding)
-                                .scenePadding()
-                                .presentationSizing(.fitted)
-                        }
-                        
-                        Toggle(String(localized: "Refer to encoding declaration in document", table: "FormatSettings"), isOn: $referToEncodingTag)
-                            .fixedSize(horizontal: false, vertical: true)
+                VStack(alignment: .leading) {
+                    Button(String(localized: "Edit List…", table: "FormatSettings")) {
+                        self.isEncodingListPresented.toggle()
                     }
+                    .sheet(isPresented: $isEncodingListPresented) {
+                        EncodingListView(defaultEncoding: self.encodingManager.defaultEncoding)
+                            .scenePadding()
+                            .presentationSizing(.fitted)
+                    }
+                    
+                    Toggle(String(localized: "Refer to encoding declaration in document", table: "FormatSettings"), isOn: $referToEncodingTag)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .accessibilityLabeledPair(role: .content, id: "encodingPriority", in: self.accessibility)
             }
