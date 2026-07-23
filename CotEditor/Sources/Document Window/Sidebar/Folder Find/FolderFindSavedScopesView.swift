@@ -85,6 +85,7 @@ struct FolderFindSavedScopesView: View {
                     self.editingItem = EditingScope(name: name, scope: scope)
                 }
             }
+            .animation(.default, value: self.scopes.keys)
             .listStyle(.bordered)
             .frame(minWidth: 240, minHeight: 180)
             
