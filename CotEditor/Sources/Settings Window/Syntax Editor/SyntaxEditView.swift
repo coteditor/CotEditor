@@ -180,14 +180,19 @@ struct SyntaxEditView: View {
             .scenePadding(.vertical)
         }
         .task {
-            self.errors = self.syntax.value.validate()
-        }
-        .onChange(of: self.syntax.value) { _, newValue in
-            self.validationTask?.cancel()
-            self.validationTask = Task {
-                try await Task.sleep(for: .seconds(0.3))  // debounce
-                try Task.checkCancellation()
-                self.errors = newValue.validate()
+            // observe edits in a task instead of `.onChange(of:)`
+            // to avoid rebuilding the whole syntax value on every body evaluation
+            var isInitial = true
+            for await value in Observations({ self.syntax.value }) {
+                self.validationTask?.cancel()
+                self.validationTask = Task { [isInitial] in
+                    if !isInitial {
+                        try await Task.sleep(for: .seconds(0.3))  // debounce
+                        try Task.checkCancellation()
+                    }
+                    self.errors = value.validate()
+                }
+                isInitial = false
             }
         }
         .alert(error: $error)

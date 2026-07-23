@@ -43,10 +43,14 @@ struct SyntaxHighlightEditView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
+            // pre-calculate the item positions to avoid a linear search for each cell
+            let itemIndexes: [Item.ID: Int] = self.items.enumerated()
+                .reduce(into: [:]) { indexes, item in indexes[item.element.id] = item.offset }
+            
             // create a table with wrapped values and then find the editable item again in each column to enable sorting (2025-07, macOS 26)
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
                 TableColumn(String(localized: "RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)"), value: \.value.isRegularExpression, comparator: BoolComparator()) { wrappedItem in
-                    if let item = $items[id: wrappedItem.id] {
+                    if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         Toggle(isOn: item.value.isRegularExpression, label: EmptyView.init)
                             .help(String(localized: "Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
                             .accessibilityLabel(String(localized: "Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
@@ -63,7 +67,7 @@ struct SyntaxHighlightEditView: View {
                 .alignment(.center)
                 
                 TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)"), value: \.value.ignoreCase, comparator: BoolComparator()) { wrappedItem in
-                    if let item = $items[id: wrappedItem.id] {
+                    if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         Toggle(isOn: item.value.ignoreCase, label: EmptyView.init)
                             .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                             .accessibilityLabel(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
@@ -80,40 +84,36 @@ struct SyntaxHighlightEditView: View {
                 .alignment(.center)
                 
                 TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header"), value: \.value.begin) { wrappedItem in
-                    if let item = $items[id: wrappedItem.id] {
+                    if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         HStack {
                             RegexTextField(text: item.value.begin)
                                 .regexHighlighted(item.value.isRegularExpression.wrappedValue)
                                 .style(.table)
                                 .focused($focusedField, equals: item.id)
                             
-                            if wrappedItem.value.isRegularExpression, (try? NSRegularExpression(pattern: wrappedItem.value.begin)) == nil {
-                                Image(systemName: "exclamationmark.triangle.fill")
-                                    .symbolRenderingMode(.multicolor)
-                                    .help(Syntax.Error.Code.regularExpression.localizedDescription)
+                            if wrappedItem.value.isRegularExpression {
+                                RegexValidationMark(pattern: wrappedItem.value.begin)
                             }
                         }
                     }
                 }
                 
                 TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.value.end)) { wrappedItem in
-                    if let item = $items[id: wrappedItem.id] {
+                    if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         HStack {
                             RegexTextField(text: item.value.end ?? "")
                                 .regexHighlighted(item.value.isRegularExpression.wrappedValue)
                                 .style(.table)
                             
-                            if let end = wrappedItem.value.end, wrappedItem.value.isRegularExpression, (try? NSRegularExpression(pattern: end)) == nil {
-                                Image(systemName: "exclamationmark.triangle.fill")
-                                    .symbolRenderingMode(.multicolor)
-                                    .help(Syntax.Error.Code.regularExpression.localizedDescription)
+                            if let end = wrappedItem.value.end, wrappedItem.value.isRegularExpression {
+                                RegexValidationMark(pattern: end)
                             }
                         }
                     }
                 }
                 
                 TableColumn(String(localized: "Multiline", table: "SyntaxEditor", comment: "table column header, keep short"), value: \.value.isMultiline, comparator: BoolComparator()) { wrappedItem in
-                    if let item = $items[id: wrappedItem.id] {
+                    if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         Toggle(isOn: item.value.isMultiline, label: EmptyView.init)
                             .onChange(of: item.value.isMultiline.wrappedValue) { _, newValue in
                                 guard self.selection.contains(item.id) else { return }
@@ -127,7 +127,7 @@ struct SyntaxHighlightEditView: View {
                 .alignment(.center)
                 
                 TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.value.description)) { wrappedItem in
-                    if let item = $items[id: wrappedItem.id] {
+                    if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         TextField(text: item.value.description ?? "", label: EmptyView.init)
                     }
                 }
@@ -149,6 +149,36 @@ struct SyntaxHighlightEditView: View {
                 Spacer()
                 HelpLink(anchor: "syntax_highlight_settings")
             }
+        }
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Returns the binding to the item with the given ID.
+    ///
+    /// - Parameters:
+    ///   - id: The ID of the item to find.
+    ///   - indexes: The pre-calculated table of the item positions.
+    /// - Returns: The binding to the item, or `nil` if not found.
+    private func item(with id: Item.ID, in indexes: [Item.ID: Int]) -> Binding<Item>? {
+        
+        indexes[id].map { self.$items[$0] }
+    }
+}
+
+
+private struct RegexValidationMark: View {
+    
+    var pattern: String
+    
+    
+    var body: some View {
+        
+        if (try? NSRegularExpression(pattern: self.pattern)) == nil {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .symbolRenderingMode(.multicolor)
+                .help(Syntax.Error.Code.regularExpression.localizedDescription)
         }
     }
 }
