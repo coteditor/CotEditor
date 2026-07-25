@@ -136,7 +136,7 @@ private struct OutlineNavigationView: View {
             self.extractionDelayTask?.cancel()
         }
         .onChange(of: self.navigator.items, initial: true) { _, newValue in
-            // show message only when parse takes more than 1 second.
+            // show message only when parse takes more than 1 second
             self.extractionDelayTask?.cancel()
             if newValue == nil {
                 self.extractionDelayTask = Task {
