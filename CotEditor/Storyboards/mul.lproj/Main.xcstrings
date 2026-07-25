@@ -25937,6 +25937,12 @@
             "value" : "Zoeken in map"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar em Pasta"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",

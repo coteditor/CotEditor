@@ -157,6 +157,12 @@
             "value" : "Pas syntaxismenu aan…"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalizar Menu de Sintaxe…"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",

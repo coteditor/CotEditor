@@ -271,6 +271,12 @@
             "value" : "Pas de inspringstijl naar wens per syntaxis aan in de Modusinstellingen."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use as configurações de Modo para personalizar o estilo de recuo de sintaxes individuais como preferir."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -358,6 +364,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Inspringing passend bij elke syntaxis"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recuo que se ajusta a cada sintaxe"
           }
         },
         "ru" : {
@@ -449,6 +461,12 @@
             "value" : "In macOS 27 krijgen naamloze documenten automatisch een conceptnaam op basis van hun inhoud."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No macOS 27, documentos sem título recebem automaticamente um nome provisório sugerido a partir do conteúdo."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -536,6 +554,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Laat het document zichzelf een naam geven"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deixe o documento se nomear"
           }
         },
         "ru" : {
@@ -627,6 +651,12 @@
             "value" : "Zoek tekst in bestanden in een geopende map, rechtstreeks vanuit de navigatiekolom."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Busque texto nos arquivos de uma pasta aberta diretamente pela barra lateral."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -714,6 +744,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Vind het in de map"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encontre na pasta"
           }
         },
         "ru" : {
@@ -805,6 +841,12 @@
             "value" : "Gebruik de knoppenbalk om terug en vooruit te gaan door onlangs bekeken documenten in een mapdocument."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use a barra de ferramentas para voltar e avançar entre os documentos vistos recentemente em um documento de pasta."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -892,6 +934,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Terug en vooruit in mappen"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voltar e avançar entre pastas"
           }
         },
         "ru" : {
@@ -983,6 +1031,12 @@
             "value" : "CotEditor ondersteunt nu macOS 27 Golden Gate, inclusief een vernieuwde vormgeving voor het nieuwste systeem."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O CotEditor agora oferece suporte ao macOS 27 Golden Gate, incluindo uma aparência renovada para o sistema mais recente."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1070,6 +1124,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Klaar voor macOS 27"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pronto para o macOS 27"
           }
         },
         "ru" : {

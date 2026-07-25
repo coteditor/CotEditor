@@ -59,6 +59,12 @@
             "value" : "alle"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "todas"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -147,6 +153,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "een of meer"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "qualquer uma"
           }
         },
         "ru" : {
@@ -239,6 +251,12 @@
             "value" : "Komt overeen met"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Corresponde a"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -327,6 +345,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "volgende voorwaarden:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "das condições a seguir:"
           }
         },
         "ru" : {
@@ -418,6 +442,12 @@
             "value" : "Het bereik bevat een regel zonder waarde."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O escopo contém uma regra sem valor."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -505,6 +535,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het bereik bevat een ongeldige reguliere expressie."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O escopo contém uma expressão regular inválida."
           }
         },
         "ru" : {
@@ -1167,6 +1203,12 @@
             "value" : "komt overeen met reguliere expressie"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "corresponde à expressão regular"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1700,6 +1742,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewaar als benoemd bereik…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvar como Escopo Nomeado…"
           }
         },
         "ru" : {

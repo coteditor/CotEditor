@@ -51,6 +51,12 @@
             "value" : "Verborgen syntaxen worden nog steeds gebruikt voor automatische detectie."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As sintaxes ocultas continuam sendo usadas para a detecção automática."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -237,6 +243,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Selecteer de syntaxen die je in de Syntaxismenu’s wilt weergeven:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecione as sintaxes que devem aparecer no menu de sintaxes:"
           }
         },
         "ru" : {

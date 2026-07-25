@@ -691,6 +691,12 @@
             "value" : "Wis bestandsbereik"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limpar Escopo de Arquivo"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2838,6 +2844,12 @@
             "value" : "Wijzig bestandsbereik…"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editar Escopo de Arquivo…"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3348,6 +3360,12 @@
             "value" : "Filter voor bestandskiezer"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtro do Navegador de Arquivos"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3428,6 +3446,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bestandsbereik"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escopo de Arquivo"
           }
         },
         "ru" : {
@@ -4878,6 +4902,54 @@
             }
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@arg1@ em %#@arg2@"
+          },
+          "substitutions" : {
+            "arg1" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg correspondência"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg correspondências"
+                    }
+                  }
+                }
+              }
+            },
+            "arg2" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg arquivo"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg arquivos"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5278,6 +5350,12 @@
             "value" : "Geen overeenkomsten voor ‘%@’ gevonden."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nenhuma correspondência para “%@” foi encontrada."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5480,6 +5558,12 @@
             "value" : "Zoeken in map…"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscando na pasta…"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5567,6 +5651,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "De map kan niet worden gevonden."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível encontrar a pasta."
           }
         },
         "ru" : {
@@ -6535,6 +6625,12 @@
             "value" : "Verborgen bestanden opnemen"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incluir Arquivos Ocultos"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6616,6 +6712,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Andere bestandstypen opnemen"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incluir Outros Tipos de Arquivo"
           }
         },
         "ru" : {
@@ -8216,6 +8318,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beheer bewaarde bereiken…"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerenciar Escopos Salvos…"
           }
         },
         "ru" : {
@@ -11459,6 +11567,12 @@
             "value" : "Toon in bestandskiezer"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar no Navegador de Arquivos"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11541,6 +11655,12 @@
             "value" : "Bewaarde bereiken"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escopos Salvos"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11621,6 +11741,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewaarde bereiken:"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escopos Salvos:"
           }
         },
         "ru" : {
@@ -11812,6 +11938,12 @@
             "value" : "Zoeken in map"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar na Pasta"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11893,6 +12025,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Zoekmethode"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Método de busca"
           }
         },
         "ru" : {
@@ -14147,6 +14285,12 @@
             "value" : "Ga naar het volgende document"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ir para o documento seguinte"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14450,6 +14594,12 @@
             "value" : "Ga naar het vorige document"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ir para o documento anterior"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14537,6 +14687,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ga terug of vooruit in de documentgeschiedenis"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volte ou avance no histórico de documentos"
           }
         },
         "ru" : {
