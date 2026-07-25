@@ -118,11 +118,11 @@ struct FindPanelFieldView: View {
                         self.isRegexReferencePresented.toggle()
                     }
                     .help(String(localized: "Show quick reference for regular expression syntax.", table: "TextFind", comment: "tooltip"))
+                    .controlSize(.mini)
                     .detachablePopover(isPresented: $isRegexReferencePresented, arrowEdge: .bottom) {
                         RegularExpressionReferenceView()
                             .scenePadding()
                     }
-                    .controlSize(.mini)
                 }
                 Toggle(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"), isOn: $ignoresCase)
                     .help(String(localized: "Select to ignore character case on search.", table: "TextFind", comment: "tooltip"))

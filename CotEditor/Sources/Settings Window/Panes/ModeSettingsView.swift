@@ -123,6 +123,7 @@ private struct ModeListView: View {
             }
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
+        .border(.separator)
         .contextMenu(forSelectionType: Mode.self) { selections in
             if let selection = selections.first {
                 self.contextMenu(for: selection)
@@ -132,7 +133,6 @@ private struct ModeListView: View {
             self.syntaxModes = self.manager.syntaxModes
         }
         .accessibilityLabel(String(localized: "Mode", table: "ModeSettings"))
-        .border(.separator)
         .background()
     }
     
