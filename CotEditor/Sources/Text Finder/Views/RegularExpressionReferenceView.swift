@@ -82,7 +82,6 @@ struct RegularExpressionReferenceView: View {
         VStack(alignment: .leading) {
             Text("Basic Regular Expression Syntax", tableName: "RegexReference", comment: "title")
                 .font(.title3)
-                .foregroundStyle(.secondary)
                 .accessibilityHeading(.h1)
             
             HStack(alignment: .top, spacing: 12) {
@@ -145,7 +144,7 @@ struct RegularExpressionReferenceView: View {
                 Text(self.title)
                     .fontWeight(.semibold)
                     .foregroundStyle(.secondary)
-                    .accessibilityAddTraits(.isHeader)
+                    .accessibilityHeading(.h2)
                 
                 Grid(alignment: .leading, verticalSpacing: 3) {
                     ForEach(self.definitions) { definition in
