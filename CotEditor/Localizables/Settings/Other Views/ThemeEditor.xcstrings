@@ -1,108 +1,108 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Author:" : {
+    "Author" : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Автор:"
+            "value" : "Автор"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Autor:"
+            "value" : "Autor"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Autor:"
+            "value" : "Autor"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Author:"
+            "value" : "Author"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Autor:"
+            "value" : "Autor"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auteur :"
+            "value" : "Auteur"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Autore:"
+            "value" : "Autore"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "作者:"
+            "value" : "作者"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "작성자:"
+            "value" : "작성자"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auteur:"
+            "value" : "Auteur"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Autor:"
+            "value" : "Autor"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Autor:"
+            "value" : "Autor"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Автор:"
+            "value" : "Автор"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yazar:"
+            "value" : "Yazar"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "作者："
+            "value" : "作者"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "作者："
+            "value" : "作者"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "作者："
+            "value" : "作者"
           }
         }
       }
@@ -425,108 +425,108 @@
         }
       }
     },
-    "Description:" : {
+    "Description" : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Описание:"
+            "value" : "Описание"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Popis:"
+            "value" : "Popis"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beschreibung:"
+            "value" : "Beschreibung"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Description:"
+            "value" : "Description"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Descripción:"
+            "value" : "Descripción"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Description :"
+            "value" : "Description"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Descrizione:"
+            "value" : "Descrizione"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "説明:"
+            "value" : "説明"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "설명:"
+            "value" : "설명"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beschrijving:"
+            "value" : "Beschrijving"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opis:"
+            "value" : "Opis"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Descrição:"
+            "value" : "Descrição"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Описание:"
+            "value" : "Описание"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Açıklama:"
+            "value" : "Açıklama"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "描述："
+            "value" : "描述"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "描述："
+            "value" : "描述"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "描述："
+            "value" : "描述"
           }
         }
       }
@@ -743,108 +743,108 @@
         }
       }
     },
-    "License:" : {
+    "License" : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Лиценз:"
+            "value" : "Лиценз"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licence:"
+            "value" : "Licence"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lizenz:"
+            "value" : "Lizenz"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licence:"
+            "value" : "Licence"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licencia:"
+            "value" : "Licencia"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licence :"
+            "value" : "Licence"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licenza:"
+            "value" : "Licenza"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ライセンス:"
+            "value" : "ライセンス"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "사용권 계약:"
+            "value" : "사용권 계약"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licentie:"
+            "value" : "Licentie"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licencja:"
+            "value" : "Licencja"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Licença:"
+            "value" : "Licença"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Лицензия:"
+            "value" : "Лицензия"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lisans:"
+            "value" : "Lisans"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "许可证："
+            "value" : "许可证"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "許可證："
+            "value" : "許可證"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "許可證："
+            "value" : "許可證"
           }
         }
       }
@@ -1704,108 +1704,108 @@
         }
       }
     },
-    "URL:" : {
+    "URL" : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL:"
+            "value" : "URL"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL:"
+            "value" : "URL"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL:"
+            "value" : "URL"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL:"
+            "value" : "URL"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL:"
+            "value" : "URL"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL :"
+            "value" : "URL"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL:"
+            "value" : "URL"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL:"
+            "value" : "URL"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL:"
+            "value" : "URL"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL:"
+            "value" : "URL"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL:"
+            "value" : "URL"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL:"
+            "value" : "URL"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL:"
+            "value" : "URL"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL:"
+            "value" : "URL"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL："
+            "value" : "URL"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL："
+            "value" : "URL"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL："
+            "value" : "URL"
           }
         }
       }

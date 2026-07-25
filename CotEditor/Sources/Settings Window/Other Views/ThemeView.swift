@@ -568,56 +568,43 @@ private struct ThemeMetadataView: View {
     @Binding var metadata: Theme.Metadata
     var isEditable: Bool
     
-    @Namespace private var accessibility
-    
-    
-    // MARK: View
     
     var body: some View {
         
-        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 4) {
-            GridRow {
-                self.itemView(String(localized: "Author:", table: "ThemeEditor"),
-                              text: $metadata.author ?? "")
-            }
-            GridRow {
-                self.itemView(String(localized: "URL:", table: "ThemeEditor"),
-                              text: $metadata.distributionURL ?? "")
-                .textContentType(.URL)
+        Form {
+            self.itemView(.init("Author", table: "ThemeEditor"), text: $metadata.author ?? "")
+            HStack {
+                self.itemView(.init("URL", table: "ThemeEditor"), text: $metadata.distributionURL ?? "")
+                    .textContentType(.URL)
                 LinkButton(url: self.metadata.distributionURL ?? "")
                     .foregroundStyle(.secondary)
             }
-            GridRow {
-                self.itemView(String(localized: "License:", table: "ThemeEditor"),
-                              text: $metadata.license ?? "")
-            }
-            GridRow {
-                self.itemView(String(localized: "Description:", table: "ThemeEditor"),
-                              text: $metadata.description ?? "", lineLimit: 2...5)
-            }
+            self.itemView(.init("License", table: "ThemeEditor"), text: $metadata.license ?? "")
+            self.itemView(.init("Description", table: "ThemeEditor"), text: $metadata.description ?? "",
+                          lineLimit: 2...5)
         }
-        .padding(10)
+        .textFieldStyle(.plain)
         .controlSize(.small)
+        .padding(10)
         .frame(width: 300, alignment: .leading)
     }
     
     
-    @ContentBuilder private func itemView(_ title: some StringProtocol, text: Binding<String>, lineLimit: ClosedRange<Int> = 1...1) -> some View {
-        
-        Text(title)
-            .fontWeight(.bold)
-            .gridColumnAlignment(.trailing)
-            .accessibilityLabeledPair(role: .label, id: title, in: self.accessibility)
+    @ContentBuilder private func itemView(_ title: LocalizedStringResource, text: Binding<String>, lineLimit: ClosedRange<Int> = 1...1) -> some View {
         
         if self.isEditable {
-            TextField(title, text: text, prompt: Text("Not defined", tableName: "ThemeEditor", comment: "placeholder"), axis: .vertical)
-                .lineLimit(lineLimit)
-                .textFieldStyle(.plain)
-                .accessibilityLabeledPair(role: .content, id: title, in: self.accessibility)
+            TextField(text: text, prompt: Text("Not defined", tableName: "ThemeEditor", comment: "placeholder"), axis: .vertical) {
+                Text(title).fontWeight(.bold)
+            }
+            .lineLimit(lineLimit)
         } else {
-            Text(text.wrappedValue)
-                .textSelection(.enabled)
-                .accessibilityLabeledPair(role: .content, id: title, in: self.accessibility)
+            LabeledContent {
+                Text(text.wrappedValue)
+                    .textSelection(.enabled)
+            } label: {
+                Text(title).fontWeight(.bold)
+            }
+            .padding(.bottom, 2)
         }
     }
 }
