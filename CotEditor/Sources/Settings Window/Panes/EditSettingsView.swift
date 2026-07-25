@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ struct EditSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Picker(String(localized: "Prefer using", table: "EditSettings"), selection: $autoExpandTab) {
+                    Picker(.init("Prefer using", table: "EditSettings"), selection: $autoExpandTab) {
                         Text("Spaces", tableName: "EditSettings", comment: "indent style").tag(true)
                         Text("Tabs", tableName: "EditSettings", comment: "indent style").tag(false)
                     }
@@ -70,9 +70,9 @@ struct EditSettingsView: View {
                             .accessibilityLabeledPair(role: .content, id: "tabWidth", in: self.accessibility)
                         Text("spaces", tableName: "EditSettings", comment: "unit for indentation")
                     }
-                    Toggle(String(localized: "Detect indent style on document opening", table: "EditSettings"), isOn: $detectsIndentStyle)
-                    Toggle(String(localized: "Automatically indent while typing", table: "EditSettings"), isOn: $autoIndent)
-                    Toggle(String(localized: "Indent selection with Tab key", table: "EditSettings"), isOn: $indentWithTabKey)
+                    Toggle(.init("Detect indent style on document opening", table: "EditSettings"), isOn: $detectsIndentStyle)
+                    Toggle(.init("Automatically indent while typing", table: "EditSettings"), isOn: $autoIndent)
+                    Toggle(.init("Indent selection with Tab key", table: "EditSettings"), isOn: $indentWithTabKey)
                 }
             }
             
@@ -81,8 +81,8 @@ struct EditSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Toggle(String(localized: "Automatically trim trailing whitespace", table: "EditSettings"), isOn: $autoTrimsTrailingWhitespace)
-                    Toggle(String(localized: "Including whitespace-only lines", table: "EditSettings"), isOn: $trimsWhitespaceOnlyLines)
+                    Toggle(.init("Automatically trim trailing whitespace", table: "EditSettings"), isOn: $autoTrimsTrailingWhitespace)
+                    Toggle(.init("Including whitespace-only lines", table: "EditSettings"), isOn: $trimsWhitespaceOnlyLines)
                         .disabled(!self.autoTrimsTrailingWhitespace)
                         .padding(.leading, 20)
                 }
@@ -93,8 +93,8 @@ struct EditSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Toggle(String(localized: "Insert comment delimiters after indent", table: "EditSettings"), isOn: $insertsCommentDelimitersAfterIndent)
-                    Toggle(String(localized: "Add a space to comment delimiters", table: "EditSettings"), isOn: $appendsCommentSpacer)
+                    Toggle(.init("Insert comment delimiters after indent", table: "EditSettings"), isOn: $insertsCommentDelimitersAfterIndent)
+                    Toggle(.init("Add a space to comment delimiters", table: "EditSettings"), isOn: $appendsCommentSpacer)
                 }
             }
             
@@ -103,9 +103,9 @@ struct EditSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Toggle(String(localized: "Link URLs in document", table: "EditSettings"), isOn: $autoLinkDetection)
-                    Toggle(String(localized: "Highlight matching braces", table: "EditSettings"), isOn: $highlightBraces)
-                    Toggle(String(localized: "Highlight instances of selected text", table: "EditSettings"), isOn: $highlightSelectionInstance)
+                    Toggle(.init("Link URLs in document", table: "EditSettings"), isOn: $autoLinkDetection)
+                    Toggle(.init("Highlight matching braces", table: "EditSettings"), isOn: $highlightBraces)
+                    Toggle(.init("Highlight instances of selected text", table: "EditSettings"), isOn: $highlightSelectionInstance)
                     HStack(alignment: .firstTextBaseline) {
                         Text("Delay:", tableName: "EditSettings")
                             .accessibilityLabeledPair(role: .label, id: "selectionInstanceHighlightDelay", in: self.accessibility)

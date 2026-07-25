@@ -63,7 +63,7 @@ struct UnicodeInputView: View {
                             .compactMap(UTF32.CodeUnit.init(codePoint:))
                             .compactMap(UnicodeScalar.init)
                         
-                        Section(String(localized: "Recents", table: "UnicodeInput", comment: "menu header")) {
+                        Section(.init("Recents", table: "UnicodeInput", comment: "menu header")) {
                             ForEach(scalars, id: \.self) { scalar in
                                 Button {
                                     self.codePoint = scalar.codePoint
@@ -79,13 +79,13 @@ struct UnicodeInputView: View {
                         }
                         
                         if !scalars.isEmpty {
-                            Button(String(localized: "Clear Recents", table: "UnicodeInput", comment: "button label"),
+                            Button(.init("Clear Recents", table: "UnicodeInput", comment: "button label"),
                                    role: .destructive, action: self.clearRecents)
                         }
                     } label: {
                         EmptyView()
                     }
-                    .accessibilityLabel(String(localized: "Recents", table: "UnicodeInput"))
+                    .accessibilityLabel(.init("Recents", table: "UnicodeInput"))
                     .menuStyle(.button)
                     .buttonStyle(.borderless)
                     .frame(width: 16)

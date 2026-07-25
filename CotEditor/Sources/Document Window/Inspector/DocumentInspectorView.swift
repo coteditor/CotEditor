@@ -155,8 +155,7 @@ struct DocumentInspectorView: View, HostedPaneView {
         .onChange(of: self.isPresented, initial: true) { _, newValue in
             self.model.isPresented = newValue
         }
-        .accessibilityLabel(String(localized: "InspectorPane.document.label",
-                                   defaultValue: "Document Inspector", table: "Document"))
+        .accessibilityLabel(.init("InspectorPane.document.label", defaultValue: "Document Inspector", table: "Document"))
         .controlSize(.small)
     }
 }
@@ -172,16 +171,16 @@ private struct DocumentFileView: View {
     
     var body: some View {
         
-        DisclosureGroup(String(localized: "File", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
+        DisclosureGroup(.init("File", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                LabeledContent(String(localized: "Created", table: "Document", comment: "label in document inspector"),
+                LabeledContent(.init("Created", table: "Document", comment: "label in document inspector"),
                                optional: self.attributes?.creationDate?.formatted(date: .abbreviated, time: .shortened))
-                LabeledContent(String(localized: "Modified", table: "Document", comment: "label in document inspector"),
+                LabeledContent(.init("Modified", table: "Document", comment: "label in document inspector"),
                                optional: self.attributes?.modificationDate?.formatted(date: .abbreviated, time: .shortened))
-                LabeledContent(String(localized: "Size", table: "Document", comment: "label in document inspector"),
+                LabeledContent(.init("Size", table: "Document", comment: "label in document inspector"),
                                optional: self.attributes?.size.formatted(.byteCount(style: .file, includesActualByteCount: true)))
                 
-                LabeledContent(String(localized: "Tags", table: "Document", comment: "label in document inspector")) {
+                LabeledContent(.init("Tags", table: "Document", comment: "label in document inspector")) {
                     if let tags = self.attributes?.tags, !tags.isEmpty {
                         WrappingHStack(alignment: .trailing, horizontalSpacing: 7) {
                             ForEach(tags.enumerated(), id: \.offset) { _, tag in
@@ -196,12 +195,12 @@ private struct DocumentFileView: View {
                         Text.none
                     }
                 }
-                LabeledContent(String(localized: "Permissions", table: "Document", comment: "label in document inspector"),
+                LabeledContent(.init("Permissions", table: "Document", comment: "label in document inspector"),
                                optional: self.attributes?.permissions.formatted())
-                LabeledContent(String(localized: "Owner", table: "Document", comment: "label in document inspector"),
+                LabeledContent(.init("Owner", table: "Document", comment: "label in document inspector"),
                                optional: self.attributes?.owner)
                 
-                LabeledContent(String(localized: "Full Path", table: "Document", comment: "label in document inspector")) {
+                LabeledContent(.init("Full Path", table: "Document", comment: "label in document inspector")) {
                     if let fileURL = self.fileURL {
                         HStack(alignment: .lastTextBaseline, spacing: 4) {
                             Text(fileURL, format: .url.scheme(.never))
@@ -209,7 +208,7 @@ private struct DocumentFileView: View {
                                 .truncationMode(.middle)
                                 .textSelection(.enabled)
                                 .help(fileURL.formatted(.url.scheme(.never)))
-                            Button(String(localized: "Show in Finder", table: "Document"), systemImage: "arrow.forward") {
+                            Button(.init("Show in Finder", table: "Document"), systemImage: "arrow.forward") {
                                 NSWorkspace.shared.activateFileViewerSelecting([fileURL])
                             }
                             .symbolVariant(.circle.fill)
@@ -237,13 +236,13 @@ private struct TextSettingsView: View {
     
     var body: some View {
         
-        DisclosureGroup(String(localized: "Text Settings", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
+        DisclosureGroup(.init("Text Settings", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
-                LabeledContent(String(localized: "Encoding", table: "Document", comment: "label in document inspector"),
+                LabeledContent(.init("Encoding", table: "Document", comment: "label in document inspector"),
                                value: self.value.encoding.localizedName)
-                LabeledContent(String(localized: "Line Endings", table: "Document", comment: "label in document inspector"),
+                LabeledContent(.init("Line Endings", table: "Document", comment: "label in document inspector"),
                                value: self.value.lineEnding.label)
-                LabeledContent(String(localized: "Mode", table: "Document", comment: "label in document inspector"),
+                LabeledContent(.init("Mode", table: "Document", comment: "label in document inspector"),
                                value: self.value.mode.label)
             }
         }
@@ -260,7 +259,7 @@ private struct EditorCountView: View {
     
     var body: some View {
         
-        DisclosureGroup(String(localized: "Count", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
+        DisclosureGroup(.init("Count", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
                 Section {
                     ForEach(CountType.countCases, id: \.self) { type in
@@ -290,13 +289,10 @@ private struct CharacterPaneView: View {
     
     var body: some View {
         
-        DisclosureGroup(String(localized: "Character", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
+        DisclosureGroup(.init("Character", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
                 if let scalars = self.character?.unicodeScalars {
-                    let label = (scalars.count == 1)
-                        ? String(localized: "Code Point", table: "Document", comment: "label in document inspector")
-                        : String(localized: "Code Points", table: "Document", comment: "label in document inspector")
-                    LabeledContent(label) {
+                    LabeledContent {
                         WrappingHStack(alignment: .trailing) {
                             ForEach(Array(scalars).enumerated(), id: \.offset) { _, scalar in
                                 Text(scalar.codePoint)
@@ -307,20 +303,24 @@ private struct CharacterPaneView: View {
                                         .strokeBorder(.tertiary))
                             }
                         }
+                    } label: {
+                        (scalars.count == 1)
+                            ? Text("Code Point", tableName: "Document", comment: "label in document inspector")
+                            : Text("Code Points", tableName: "Document", comment: "label in document inspector")
                     }
                     if scalars.count == 1, let scalar = scalars.first {
-                        LabeledContent(String(localized: "Name", table: "Document", comment: "label in document inspector"),
+                        LabeledContent(.init("Name", table: "Document", comment: "label in document inspector"),
                                        optional: scalar.name)
-                        LabeledContent(String(localized: "Block", table: "Document", comment: "label in document inspector"),
+                        LabeledContent(.init("Block", table: "Document", comment: "label in document inspector"),
                                        optional: scalar.localizedBlockName)
                         let category = scalar.properties.generalCategory
-                        LabeledContent(String(localized: "Category", table: "Document", comment: "label in document inspector"),
+                        LabeledContent(.init("Category", table: "Document", comment: "label in document inspector"),
                                        value: "\(category.longName) (\(category.shortName))")
                     }
                 } else {
                     Text("Not selected", tableName: "Document", comment: "placeholder")
                         .foregroundStyle(.tertiary)
-                        .help(String(localized: "Select a single character to show Unicode information.", table: "Document", comment: "tooltip"))
+                        .help(.init("Select a single character to show Unicode information.", table: "Document", comment: "tooltip"))
                 }
             }
         }

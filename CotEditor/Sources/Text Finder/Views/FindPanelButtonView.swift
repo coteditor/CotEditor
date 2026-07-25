@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,38 +30,38 @@ struct FindPanelButtonView: View {
     var body: some View {
         
         HStack(alignment: .bottom) {
-            Menu(String(localized: "Find All", table: "TextFind", comment: "button label")) {
-                Button(String(localized: "Highlight All", table: "TextFind", comment: "button label"), systemImage: "highlighter") {
+            Menu(.init("Find All", table: "TextFind", comment: "button label")) {
+                Button(.init("Highlight All", table: "TextFind", comment: "button label"), systemImage: "highlighter") {
                     self.performAction(.highlight)
                 }
-                Button(String(localized: "Select All", table: "TextFind", comment: "button label"), systemImage: "character.textbox") {
+                Button(.init("Select All", table: "TextFind", comment: "button label"), systemImage: "character.textbox") {
                     self.performAction(.selectAll)
                 }
             } primaryAction: {
                 self.performAction(.findAll)
             }
-            .help(String(localized: "Find and list all matches.", table: "TextFind", comment: "tooltip"))
+            .help(.init("Find and list all matches.", table: "TextFind", comment: "tooltip"))
             
-            Button(String(localized: "Replace All", table: "TextFind", comment: "button label")) {
+            Button(.init("Replace All", table: "TextFind", comment: "button label")) {
                 self.performAction(.replaceAll)
             }
-            .help(String(localized: "Replace all matches with the replacement text.", table: "TextFind", comment: "tooltip"))
+            .help(.init("Replace all matches with the replacement text.", table: "TextFind", comment: "tooltip"))
             
             Spacer()
             
-            Button(String(localized: "Replace", table: "TextFind", comment: "button label")) {
+            Button(.init("Replace", table: "TextFind", comment: "button label")) {
                 self.performAction(.replaceAndFind)
             }
-            .help(String(localized: "Replace the current selection with the replacement text, then find the next match.", table: "TextFind", comment: "tooltip"))
+            .help(.init("Replace the current selection with the replacement text, then find the next match.", table: "TextFind", comment: "tooltip"))
             
             ControlGroup {
-                Button(String(localized: "Find Previous", table: "TextFind", comment: "button label"), systemImage: "chevron.backward") {
+                Button(.init("Find Previous", table: "TextFind", comment: "button label"), systemImage: "chevron.backward") {
                     self.performAction(.previousMatch)
-                }.help(String(localized: "Find previous match.", table: "TextFind", comment: "tooltip"))
+                }.help(.init("Find previous match.", table: "TextFind", comment: "tooltip"))
                 
-                Button(String(localized: "Find Next", table: "TextFind", comment: "button label"), systemImage: "chevron.forward") {
+                Button(.init("Find Next", table: "TextFind", comment: "button label"), systemImage: "chevron.forward") {
                     self.performAction(.nextMatch)
-                }.help(String(localized: "Find next match.", table: "TextFind", comment: "tooltip"))
+                }.help(.init("Find next match.", table: "TextFind", comment: "tooltip"))
             }
             .labelStyle(.iconOnly)
             .buttonSizing(.flexible)

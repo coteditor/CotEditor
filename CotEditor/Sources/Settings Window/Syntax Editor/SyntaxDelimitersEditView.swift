@@ -131,11 +131,11 @@ private struct InlineCommentsEditView: View {
     var body: some View {
         
         Table($items, selection: $selection) {
-            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.begin, label: EmptyView.init)
                     .focused($focusedField, equals: item.id)
             }
-            TableColumn(String(localized: "Line Start Only", table: "SyntaxEditor", comment: "table column header, keep short")) { $item in
+            TableColumn(.init("Line Start Only", table: "SyntaxEditor", comment: "table column header, keep short")) { $item in
                 Toggle(isOn: $item.value.leadingOnly, label: EmptyView.init)
             }
             .alignment(.center)
@@ -167,14 +167,14 @@ private struct BlockCommentsEditView: View {
     var body: some View {
         
         Table($items, selection: $selection) {
-            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.begin, label: EmptyView.init)
                     .focused($focusedField, equals: item.id)
             }
-            TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("End String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.end, label: EmptyView.init)
             }
-            TableColumn(String(localized: "Nest", table: "SyntaxEditor", comment: "table column header, keep short")) { $item in
+            TableColumn(.init("Nest", table: "SyntaxEditor", comment: "table column header, keep short")) { $item in
                 Toggle(isOn: $item.value.isNestable, label: EmptyView.init)
                     .onChange(of: item.value.isNestable) { _, newValue in
                         guard self.selection.contains(item.id) else { return }
@@ -215,17 +215,17 @@ private struct StringDelimitersEditView: View {
     var body: some View {
         
         Table($items, selection: $selection) {
-            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.begin, label: EmptyView.init)
                     .focused($focusedField, equals: item.id)
             }
-            TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("End String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.end, label: EmptyView.init)
             }
-            TableColumn(String(localized: "Prefixes", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("Prefixes", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(value: $item.value.prefixes ?? [], format: .csv(omittingEmptyItems: true), label: EmptyView.init)
             }
-            TableColumn(String(localized: "Multiline", table: "SyntaxEditor", comment: "table column header, keep short")) { $item in
+            TableColumn(.init("Multiline", table: "SyntaxEditor", comment: "table column header, keep short")) { $item in
                 Toggle(isOn: $item.value.isMultiline, label: EmptyView.init)
                     .onChange(of: item.value.isMultiline) { _, newValue in
                         guard self.selection.contains(item.id) else { return }
@@ -236,14 +236,14 @@ private struct StringDelimitersEditView: View {
                     }
             }
             .alignment(.center)
-            TableColumn(String(localized: "Escape Character", defaultValue: "Escape Character", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("Escape Character", defaultValue: "Escape Character", table: "SyntaxEditor", comment: "table column header")) { $item in
                 let binding = Binding<String>(
                     get: { item.value.escapeCharacter.map(String.init) ?? "" },
                     set: { item.value.escapeCharacter = $0.first }
                 )
                 TextField(text: binding, label: EmptyView.init)
             }
-            TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("Description", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.description ?? "", label: EmptyView.init)
             }
         }
@@ -276,21 +276,21 @@ private struct CharacterDelimitersEditView: View {
     var body: some View {
         
         Table($items, selection: $selection) {
-            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.begin, label: EmptyView.init)
                     .focused($focusedField, equals: item.id)
             }
-            TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("End String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.end, label: EmptyView.init)
             }
-            TableColumn(String(localized: "Escape Character", defaultValue: "Escape Character", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("Escape Character", defaultValue: "Escape Character", table: "SyntaxEditor", comment: "table column header")) { $item in
                 let binding = Binding<String>(
                     get: { item.value.escapeCharacter.map(String.init) ?? "" },
                     set: { item.value.escapeCharacter = $0.first }
                 )
                 TextField(text: binding, label: EmptyView.init)
             }
-            TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("Description", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.description ?? "", label: EmptyView.init)
             }
         }
@@ -323,10 +323,10 @@ private struct BlockEditView: View {
     var body: some View {
         
         Table($items, selection: $selection) {
-            TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { $item in
+            TableColumn(.init("IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { $item in
                 Toggle(isOn: $item.value.ignoreCase, label: EmptyView.init)
-                    .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
-                    .accessibilityLabel(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
+                    .help(.init("Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
+                    .accessibilityLabel(.init("Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                     .onChange(of: item.value.ignoreCase) { _, newValue in
                         guard self.selection.contains(item.id) else { return }
                         $items
@@ -337,14 +337,14 @@ private struct BlockEditView: View {
             }
             .width(34)
             .alignment(.center)
-            TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("Begin String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.begin, label: EmptyView.init)
                     .focused($focusedField, equals: item.id)
             }
-            TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("End String", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.end ?? "", label: EmptyView.init)
             }
-            TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { $item in
+            TableColumn(.init("Description", table: "SyntaxEditor", comment: "table column header")) { $item in
                 TextField(text: $item.value.description ?? "", label: EmptyView.init)
             }
         }

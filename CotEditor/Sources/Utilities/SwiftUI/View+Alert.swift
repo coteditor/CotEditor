@@ -32,12 +32,12 @@ extension View {
     /// - Parameters:
     ///   - error: An optional Error that is used to generate the alert.
     ///   - buttonTitle: The title for the button in the alert panel, or `nil` for the default "OK."
-    func alert(error: Binding<some Error?>, buttonTitle: String? = nil) -> some View {
+    func alert(error: Binding<some Error?>, buttonTitle: LocalizedStringResource? = nil) -> some View {
         
         let localizedError = LocalizedAlertError(error.wrappedValue)
         
         return self.alert(isPresented: .constant(localizedError != nil), error: localizedError) { _ in
-            Button(buttonTitle ?? String(localized: .ok)) {
+            Button(buttonTitle ?? .ok) {
                 error.wrappedValue = nil
             }
         } message: { error in

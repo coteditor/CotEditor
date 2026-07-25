@@ -53,21 +53,21 @@ enum CountType: CaseIterable {
     
     
     /// The localized label for the count type.
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .lines:
-                String(localized: "CountType.lines.label", defaultValue: "Lines", table: "Document")
+                .init("CountType.lines.label", defaultValue: "Lines", table: "Document")
             case .characters:
-                String(localized: "CountType.characters.label", defaultValue: "Characters", table: "Document")
+                .init("CountType.characters.label", defaultValue: "Characters", table: "Document")
             case .words:
-                String(localized: "CountType.words.label", defaultValue: "Words", table: "Document")
+                .init("CountType.words.label", defaultValue: "Words", table: "Document")
             case .location:
-                String(localized: "CountType.location.label", defaultValue: "Location", table: "Document")
+                .init("CountType.location.label", defaultValue: "Location", table: "Document")
             case .line:
-                String(localized: "CountType.line.label", defaultValue: "Line", table: "Document")
+                .init("CountType.line.label", defaultValue: "Line", table: "Document")
             case .column:
-                String(localized: "CountType.column.label", defaultValue: "Column", table: "Document")
+                .init("CountType.column.label", defaultValue: "Column", table: "Document")
         }
     }
 }

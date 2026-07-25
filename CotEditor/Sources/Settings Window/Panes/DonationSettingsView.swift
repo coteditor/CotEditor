@@ -33,11 +33,11 @@ private enum SubscriptionInformationURL: String, CaseIterable {
     case privacyPolicy = "https://coteditor.com/privacy"
     
     
-    private var label: String {
+    private var label: LocalizedStringResource {
         
         switch self {
-            case .termsOfService: String(localized: "Terms of Service", table: "DonationSettings")
-            case .privacyPolicy: String(localized: "Privacy Policy", table: "DonationSettings")
+            case .termsOfService: .init("Terms of Service", table: "DonationSettings")
+            case .privacyPolicy: .init("Privacy Policy", table: "DonationSettings")
         }
     }
 }
@@ -86,10 +86,10 @@ private struct NoAppPurchaseView: View {
             Text("The In-App donation feature is available only in CotEditor distributed in the App Store.", tableName: "DonationSettings")
             
         } actions: {
-            Link(String(localized: "Open in App Store", table: "DonationSettings"),
+            Link(.init("Open in App Store", table: "DonationSettings"),
                  destination: URL(string: "itms-apps://apps.apple.com/app/id1024640650")!)
-            Link(String(localized: "Open GitHub Sponsors", table: "DonationSettings",
-                        comment: "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization."),
+            Link(.init("Open GitHub Sponsors", table: "DonationSettings",
+                       comment: "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization."),
                  destination: URL(string: "https://github.com/sponsors/1024jp/")!)
         }
         .buttonStyle(.bordered)
@@ -125,10 +125,10 @@ private struct AppPurchaseView: View {
                 
                 Group {
                     if self.hasDonated {
-                        Link(String(localized: "Manage Subscriptions", table: "DonationSettings"),
+                        Link(.init("Manage Subscriptions", table: "DonationSettings"),
                              destination: URL(string: "itms-apps://apps.apple.com/account/subscriptions")!)
                     } else {
-                        Button(String(localized: "Restore Subscription", table: "DonationSettings")) {
+                        Button(.init("Restore Subscription", table: "DonationSettings")) {
                             Task {
                                 do {
                                     try await AppStore.sync()
@@ -149,7 +149,7 @@ private struct AppPurchaseView: View {
                     .padding(.bottom, 10)
                 
                 Form {
-                    Picker(String(localized: "Badge type:", table: "DonationSettings"), selection: $badgeType) {
+                    Picker(.init("Badge type:", table: "DonationSettings"), selection: $badgeType) {
                         ForEach(BadgeType.allCases, id: \.self) { item in
                             Label(item.label, systemImage: item.symbolName)
                         }
@@ -278,12 +278,12 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
                             .fixedSize()
                         Text("× \(self.quantity)", tableName: "DonationSettings", comment: "multiple sign for the quantity of items to purchase")
                             .monospacedDigit()
-                            .accessibilityLabel(String(localized: "\(self.quantity) cups", table: "DonationSettings", comment: "accessibility label for item quantity"))
+                            .accessibilityLabel(.init("\(self.quantity) cups", table: "DonationSettings", comment: "accessibility label for item quantity"))
                             .frame(minWidth: 28, alignment: .trailing)
                     }.accessibilityElement(children: .combine)
                     Stepper(value: $quantity, in: 1...99, label: EmptyView.init)
-                        .accessibilityValue(String(localized: "\(self.quantity) cups", table: "DonationSettings"))
-                        .accessibilityLabel(String(localized: "Quantity", table: "DonationSettings", comment: "accessibility label for item quantity stepper"))
+                        .accessibilityValue(.init("\(self.quantity) cups", table: "DonationSettings"))
+                        .accessibilityLabel(.init("Quantity", table: "DonationSettings", comment: "accessibility label for item quantity stepper"))
                 }
                 
                 Text(product.description)

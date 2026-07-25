@@ -59,7 +59,7 @@ struct SyntaxListCustomizationView: View {
             .frame(minHeight: 100, idealHeight: 250)
             
             HStack {
-                Button(String(localized: "Select All", table: "SyntaxListCustomization")) {
+                Button(.init("Select All", table: "SyntaxListCustomization")) {
                     self.hiddenItems.removeAll()
                 }
                 .disabled(self.hiddenItems.isEmpty)

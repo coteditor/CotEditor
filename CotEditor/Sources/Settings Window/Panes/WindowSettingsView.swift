@@ -107,7 +107,7 @@ struct WindowSettingsView: View {
                                 .accessibilityLabeledPair(role: .label, id: "windowWidth", in: self.accessibility)
                         }
                         Text("px", tableName: "WindowSettings", comment: "length unit following an input field")
-                            .accessibilityLabel(String(localized: "pixels", table: "WindowSettings", comment: "accessibility label for “px”"))
+                            .accessibilityLabel(.init("pixels", table: "WindowSettings", comment: "accessibility label for “px”"))
                     }
                     .accessibilityElement(children: .contain)
                     
@@ -124,7 +124,7 @@ struct WindowSettingsView: View {
                                 .accessibilityLabeledPair(role: .content, id: "windowHeight", in: self.accessibility)
                         }
                         Text("px", tableName: "WindowSettings", comment: "length unit following an input field")
-                            .accessibilityLabel(String(localized: "pixels", table: "WindowSettings", comment: "accessibility label for “px”"))
+                            .accessibilityLabel(.init("pixels", table: "WindowSettings", comment: "accessibility label for “px”"))
                     }
                     .accessibilityElement(children: .contain)
                 }
@@ -139,29 +139,29 @@ struct WindowSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Toggle(String(localized: "Line numbers", table: "WindowSettings"), isOn: $showLineNumbers)
+                    Toggle(.init("Line numbers", table: "WindowSettings"), isOn: $showLineNumbers)
                     
-                    Toggle(String(localized: "Invisible characters", table: "WindowSettings"), isOn: $showInvisibles)
+                    Toggle(.init("Invisible characters", table: "WindowSettings"), isOn: $showInvisibles)
                     Grid(alignment: .leading, horizontalSpacing: 20) {
                         GridRow {
-                            Toggle(String(localized: "Line ending", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleNewLine)
-                            Toggle(String(localized: "Tab", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleTab)
-                            Toggle(String(localized: "Space", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleSpace)
+                            Toggle(.init("Line ending", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleNewLine)
+                            Toggle(.init("Tab", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleTab)
+                            Toggle(.init("Space", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleSpace)
                         }
                         GridRow {
-                            Toggle(String(localized: "Other whitespace", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleWhitespaces)
-                            Toggle(String(localized: "Other control characters", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleControl)
+                            Toggle(.init("Other whitespace", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleWhitespaces)
+                            Toggle(.init("Other control characters", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleControl)
                                 .gridCellColumns(2)
                         }
                     }
                     .padding(.leading, 20)
                     .fixedSize()
                     
-                    Toggle(String(localized: "Indent guides", table: "WindowSettings"), isOn: $showIndentGuides)
+                    Toggle(.init("Indent guides", table: "WindowSettings"), isOn: $showIndentGuides)
                     HStack(alignment: .firstTextBaseline) {
-                        Toggle(String(localized: "Page guide at column:", table: "WindowSettings"), isOn: $showPageGuide)
+                        Toggle(.init("Page guide at column:", table: "WindowSettings"), isOn: $showPageGuide)
                         StepperNumberField(value: $pageGuideColumn, default: UserDefaults.standard[initial: .pageGuideColumn], in: 1...999)
-                            .accessibilityLabel(String(localized: "Page guide at column:", table: "WindowSettings"))
+                            .accessibilityLabel(.init("Page guide at column:", table: "WindowSettings"))
                             .disabled(!self.showPageGuide)
                     }
                 }
@@ -171,7 +171,7 @@ struct WindowSettingsView: View {
                 Text("Current line:", tableName: "WindowSettings")
                     .gridColumnAlignment(.trailing)
                 
-                Toggle(String(localized: "Change background color", table: "WindowSettings"), isOn: $highlightCurrentLine)
+                Toggle(.init("Change background color", table: "WindowSettings"), isOn: $highlightCurrentLine)
             }
             
             Divider()
@@ -182,12 +182,12 @@ struct WindowSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Toggle(String(localized: "Wrap lines to editor width", table: "WindowSettings"), isOn: $wrapLines)
+                    Toggle(.init("Wrap lines to editor width", table: "WindowSettings"), isOn: $wrapLines)
                     HStack(alignment: .firstTextBaseline) {
-                        Toggle(String(localized: "Indent wrapped lines by", table: "WindowSettings"), isOn: $enablesHangingIndent)
+                        Toggle(.init("Indent wrapped lines by", table: "WindowSettings"), isOn: $enablesHangingIndent)
                         StepperNumberField(value: $hangingIndentWidth, default: UserDefaults.standard[initial: .hangingIndentWidth], in: 0...99)
                             .disabled(!self.enablesHangingIndent)
-                            .accessibilityLabel(String(localized: "wrapped line indent spaces", table: "WindowSettings", comment: "accessibility label"))
+                            .accessibilityLabel(.init("wrapped line indent spaces", table: "WindowSettings", comment: "accessibility label"))
                         Text("spaces", tableName: "WindowSettings", comment: "unit for indentation")
                     }
                 }
@@ -232,14 +232,14 @@ struct WindowSettingsView: View {
                 
                 HStack(alignment: .firstTextBaseline, spacing: 20) {
                     VStack(alignment: .leading) {
-                        Toggle(String(localized: "Line count", table: "WindowSettings"), isOn: $showStatusBarLines)
-                        Toggle(String(localized: "Character count", table: "WindowSettings"), isOn: $showStatusBarChars)
-                        Toggle(String(localized: "Word count", table: "WindowSettings"), isOn: $showStatusBarWords)
+                        Toggle(.init("Line count", table: "WindowSettings"), isOn: $showStatusBarLines)
+                        Toggle(.init("Character count", table: "WindowSettings"), isOn: $showStatusBarChars)
+                        Toggle(.init("Word count", table: "WindowSettings"), isOn: $showStatusBarWords)
                     }
                     VStack(alignment: .leading) {
-                        Toggle(String(localized: "Location", table: "WindowSettings"), isOn: $showStatusBarLocation)
-                        Toggle(String(localized: "Current line", table: "WindowSettings"), isOn: $showStatusBarLine)
-                        Toggle(String(localized: "Current column", table: "WindowSettings"), isOn: $showStatusBarColumn)
+                        Toggle(.init("Location", table: "WindowSettings"), isOn: $showStatusBarLocation)
+                        Toggle(.init("Current line", table: "WindowSettings"), isOn: $showStatusBarLine)
+                        Toggle(.init("Current column", table: "WindowSettings"), isOn: $showStatusBarColumn)
                     }
                 }
                 .accessibilityLabeledPair(role: .content, id: "sideBarShows", in: self.accessibility)

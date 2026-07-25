@@ -66,16 +66,16 @@ struct GeneralSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Toggle(String(localized: "Reopen windows from last session", table: "GeneralSettings"), isOn: $quitAlwaysKeepsWindows)
+                    Toggle(.init("Reopen windows from last session", table: "GeneralSettings"), isOn: $quitAlwaysKeepsWindows)
                         .onChange(of: self.quitAlwaysKeepsWindows) {
                             guard !self.suppressesQuitAlwaysKeepsWindowsChangeConfirmation else { return }
                             
                             self.isQuitAlwaysKeepsWindowsChangeConfirmationPresented = true
                             self.suppressesQuitAlwaysKeepsWindowsChangeConfirmation = true
                         }
-                        .confirmationDialog(String(localized: "NextSessionApplicationConfirmation.title", defaultValue: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: $isQuitAlwaysKeepsWindowsChangeConfirmationPresented) {
+                        .confirmationDialog(.init("NextSessionApplicationConfirmation.title", defaultValue: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: $isQuitAlwaysKeepsWindowsChangeConfirmationPresented) {
                         } message: {
-                            Text(String(localized: "NextSessionApplicationConfirmation.nextAfterNext.message", defaultValue: "The app’s behavior will change from the next launch after that one.", table: "GeneralSettings"))
+                            Text(.init("NextSessionApplicationConfirmation.nextAfterNext.message", defaultValue: "The app’s behavior will change from the next launch after that one.", table: "GeneralSettings"))
                         }
                     
                     Text("When nothing else is open:", tableName: "GeneralSettings")
@@ -99,7 +99,7 @@ struct GeneralSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Toggle(String(localized: "Enable Auto Save with Versions", table: "GeneralSettings"), isOn: $enablesAutosaveInPlace)
+                    Toggle(.init("Enable Auto Save with Versions", table: "GeneralSettings"), isOn: $enablesAutosaveInPlace)
                         .onChange(of: self.enablesAutosaveInPlace) { _, newValue in
                             if newValue != self.initialEnablesAutosaveInPlace {
                                 self.isAutosaveChangeConfirmationPresented = true
@@ -108,19 +108,19 @@ struct GeneralSettingsView: View {
                         .onAppear {
                             self.initialEnablesAutosaveInPlace = self.enablesAutosaveInPlace
                         }
-                        .confirmationDialog(String(localized: "NextSessionApplicationConfirmation.title", defaultValue: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: $isAutosaveChangeConfirmationPresented) {
-                            Button(String(localized: "Restart Now", table: "GeneralSettings", comment: "button label")) {
+                        .confirmationDialog(.init("NextSessionApplicationConfirmation.title", defaultValue: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: $isAutosaveChangeConfirmationPresented) {
+                            Button(.init("Restart Now", table: "GeneralSettings", comment: "button label")) {
                                 (NSApp.delegate as? AppDelegate)?.needsRelaunch = true
                                 NSApp.terminate(self)
                             }
-                            Button(String(localized: "Later", table: "GeneralSettings", comment: "button label")) {
+                            Button(.init("Later", table: "GeneralSettings", comment: "button label")) {
                                 // do nothing
                             }
                             Button(role: .cancel) {
                                 self.enablesAutosaveInPlace.toggle()
                             }
                         } message: {
-                            Text(String(localized: "NextSessionApplicationConfirmation.message", defaultValue: "Do you want to restart CotEditor now?", table: "GeneralSettings"))
+                            Text(.init("NextSessionApplicationConfirmation.message", defaultValue: "Do you want to restart CotEditor now?", table: "GeneralSettings"))
                         }
                     
                     Text("A system feature that automatically overwrites your files while editing. Even if turned off, CotEditor covertly creates a backup in case it unexpectedly quits.", tableName: "GeneralSettings")
@@ -162,7 +162,7 @@ struct GeneralSettingsView: View {
                     .gridColumnAlignment(.trailing)
                     .accessibilityLabeledPair(role: .label, id: "dialogWarnings", in: self.accessibility)
                 
-                Button(String(localized: "Manage Warnings…", table: "GeneralSettings")) {
+                Button(.init("Manage Warnings…", table: "GeneralSettings")) {
                     self.isWarningsSettingPresented.toggle()
                 }
                 .accessibilityLabeledPair(role: .content, id: "dialogWarnings", in: self.accessibility)
@@ -180,7 +180,7 @@ struct GeneralSettingsView: View {
                 
                 VStack(alignment: .leading) {
                     HStack(alignment: .firstTextBaseline) {
-                        Button(String(localized: "Learn More…", table: "GeneralSettings")) {
+                        Button(.init("Learn More…", table: "GeneralSettings")) {
                             NSHelpManager.shared.openHelpAnchor("about_cot", inBook: nil)
                         }
                         if self.commandLineToolStatus.installed,
@@ -239,10 +239,10 @@ private struct UpdaterView: View {
                 .gridColumnAlignment(.trailing)
             
             VStack(alignment: .leading) {
-                Toggle(String(localized: "Check for updates automatically", table: "GeneralSettings"), isOn: $enableAutomaticUpdateChecks)
+                Toggle(.init("Check for updates automatically", table: "GeneralSettings"), isOn: $enableAutomaticUpdateChecks)
                 
                 VStack(alignment: .leading, spacing: 2) {
-                    Toggle(String(localized: "Update to prereleases when available", table: "GeneralSettings"), isOn: $checksUpdatesForBeta)
+                    Toggle(.init("Update to prereleases when available", table: "GeneralSettings"), isOn: $checksUpdatesForBeta)
                     
                     if Bundle.main.version!.isPrerelease {
                         Text("Regardless of this setting, new prereleases are always included while using a prerelease.", tableName: "GeneralSettings")
@@ -270,7 +270,7 @@ private struct WarningsSettingView: View {
         VStack {
             Form {
                 Text("Suppress the following warnings:", tableName: "GeneralSettings")
-                Toggle(String(localized: "Inconsistent line endings", table: "GeneralSettings"), isOn: $suppressesInconsistentLineEndingAlert)
+                Toggle(.init("Inconsistent line endings", table: "GeneralSettings"), isOn: $suppressesInconsistentLineEndingAlert)
             }
             
             HStack {

@@ -39,7 +39,7 @@ struct CharacterCountOptionsSheetView: View {
         VStack {
             CharacterCountOptionsView()
             
-            SubmitButtonGroup(String(localized: "Start", table: "AdvancedCharacterCount", comment: "button label"), helpAnchor: "howto_count_characters") {
+            SubmitButtonGroup(.init("Start", table: "AdvancedCharacterCount", comment: "button label"), helpAnchor: "howto_count_characters") {
                 self.completionHandler()
                 self.dismiss()
             }

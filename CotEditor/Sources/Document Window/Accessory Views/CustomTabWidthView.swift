@@ -60,7 +60,7 @@ struct CustomTabWidthView: View {
     var body: some View {
         
         VStack {
-            LabeledContent(String(localized: "Tab width:", table: "CustomTabWidth")) {
+            LabeledContent(.init("Tab width:", table: "CustomTabWidth")) {
                 StepperNumberField(value: $value, default: self.defaultWidth, in: 1...99)
                     .focused($focus, equals: .field)
                     .onSubmit(self.submit)

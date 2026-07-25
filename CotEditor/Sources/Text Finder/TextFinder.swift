@@ -308,7 +308,7 @@ struct FindMatchesCache {
     private func findAll() {
         
         Task {
-            await self.findAll(showsList: true, actionName: String(localized: "Find All", table: "TextFind"))
+            await self.findAll(showsList: true, actionName: .init("Find All", table: "TextFind"))
         }
     }
     
@@ -317,7 +317,7 @@ struct FindMatchesCache {
     private func highlight() {
         
         Task {
-            await self.findAll(showsList: false, actionName: String(localized: "Highlight All", table: "TextFind"))
+            await self.findAll(showsList: false, actionName: .init("Highlight All", table: "TextFind"))
         }
     }
     
@@ -687,7 +687,7 @@ struct FindMatchesCache {
     /// - Parameters:
     ///   - showsList: Whether shows the result view when finished.
     ///   - actionName: The name of the action to display in the progress sheet.
-    private func findAll(showsList: Bool, actionName: String) async {
+    private func findAll(showsList: Bool, actionName: LocalizedStringResource) async {
         
         guard let (textFind, client) = self.prepareTextFind() else { return }
         
@@ -799,7 +799,7 @@ struct FindMatchesCache {
         
         // present progress view
         client.window?.beginSheet {
-            FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, action: .replace)
+            FindProgressView(.init("Replace All", table: "TextFind"), progress: progress, action: .replace)
                 .scenePadding()
         }
         

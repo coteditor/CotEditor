@@ -77,13 +77,13 @@ struct PatternSortView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Section(String(localized: "Sample:", table: "PatternSort")) {
+            Section(.init("Sample:", table: "PatternSort")) {
                 GroupBox {
                     Text(self.attributedSampleLine)
                         .font(.custom(self.sampleFontName ?? "", size: 0))
                         .truncationMode(.tail)
                         .lineLimit(1)
-                        .help(String(localized: "Sample line to check which part of a line will be used for sorting.", table: "PatternSort", comment: "tooltip"))
+                        .help(.init("Sample line to check which part of a line will be used for sorting.", table: "PatternSort", comment: "tooltip"))
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }.padding(.bottom)
             }
@@ -125,15 +125,15 @@ struct PatternSortView: View {
                     Text("Sort option:", tableName: "PatternSort")
                     
                     VStack(alignment: .leading) {
-                        Toggle(String(localized: "Ignore case", table: "PatternSort"),
+                        Toggle(.init("Ignore case", table: "PatternSort"),
                                isOn: $options.ignoresCase)
-                        Toggle(String(localized: "Respect language rules", table: "PatternSort"),
+                        Toggle(.init("Respect language rules", table: "PatternSort"),
                                isOn: $options.isLocalized)
-                        Toggle(String(localized: "Treat numbers as numeric values", table: "PatternSort"),
+                        Toggle(.init("Treat numbers as numeric values", table: "PatternSort"),
                                isOn: $options.numeric)
-                        Toggle(String(localized: "Keep the first line at the top", table: "PatternSort"),
+                        Toggle(.init("Keep the first line at the top", table: "PatternSort"),
                                isOn: $options.keepsFirstLine)
-                        Toggle(String(localized: "In descending order", table: "PatternSort"),
+                        Toggle(.init("In descending order", table: "PatternSort"),
                                isOn: $options.descending)
                     }
                 }
@@ -141,7 +141,7 @@ struct PatternSortView: View {
                 .accessibilityElement(children: .contain)
             }
             
-            SubmitButtonGroup(String(localized: "Sort", table: "PatternSort", comment: "button label"), helpAnchor: "howto_pattern_sort", action: self.submit) .disabled(self.error != nil)
+            SubmitButtonGroup(.init("Sort", table: "PatternSort", comment: "button label"), helpAnchor: "howto_pattern_sort", action: self.submit) .disabled(self.error != nil)
                 .padding(.top)
         }
         .onAppear {
@@ -216,12 +216,12 @@ struct ColumnSortPatternView: View {
     var body: some View {
         
         HStack(alignment: .firstTextBaseline) {
-            LabeledContent(String(localized: "Delimiter:", table: "PatternSort")) {
+            LabeledContent(.init("Delimiter:", table: "PatternSort")) {
                 TextField(text: $pattern.delimiter, prompt: Text(verbatim: ","), label: EmptyView.init)
                     .frame(width: 32)
             }.padding(.trailing)
             
-            LabeledContent(String(localized: "Position:", table: "PatternSort")) {
+            LabeledContent(.init("Position:", table: "PatternSort")) {
                 StepperNumberField(value: $pattern.column, default: 1, in: 1...(.max))
             }
         }.fixedSize()
@@ -251,7 +251,7 @@ struct RegularExpressionSortPatternView: View {
                             Menu {
                                 let patterns = UserDefaults.standard[.regexPatternSortHistory]
                                 
-                                Section(String(localized: "Recents", table: "PatternSort", comment: "menu header")) {
+                                Section(.init("Recents", table: "PatternSort", comment: "menu header")) {
                                     ForEach(patterns, id: \.self) { pattern in
                                         Button(pattern) {
                                             self.pattern.searchPattern = pattern
@@ -260,12 +260,12 @@ struct RegularExpressionSortPatternView: View {
                                 }
                                 
                                 if !patterns.isEmpty {
-                                    Button(String(localized: "Clear Recents", table: "PatternSort"), role: .destructive, action: self.clearRecents)
+                                    Button(.init("Clear Recents", table: "PatternSort"), role: .destructive, action: self.clearRecents)
                                 }
                             } label: {
                                 EmptyView()
                             }
-                            .accessibilityLabel(String(localized: "Recents", table: "PatternSort"))
+                            .accessibilityLabel(.init("Recents", table: "PatternSort"))
                             .menuStyle(.button)
                             .buttonStyle(.borderless)
                             .frame(width: 16)
@@ -273,7 +273,7 @@ struct RegularExpressionSortPatternView: View {
                         }
                     
                     HStack(alignment: .firstTextBaseline) {
-                        Toggle(String(localized: "Ignore case", table: "PatternSort"),
+                        Toggle(.init("Ignore case", table: "PatternSort"),
                                isOn: $pattern.ignoresCase)
                             .fixedSize()
                         Spacer()
@@ -295,10 +295,10 @@ struct RegularExpressionSortPatternView: View {
         }
         
         HStack(alignment: .firstTextBaseline) {
-            Toggle(String(localized: "Use captured group:", table: "PatternSort"), isOn: $pattern.usesCaptureGroup)
+            Toggle(.init("Use captured group:", table: "PatternSort"), isOn: $pattern.usesCaptureGroup)
             StepperNumberField(value: $pattern.group, default: 1, in: 0...self.pattern.numberOfCaptureGroups)
                 .disabled(!self.pattern.usesCaptureGroup)
-                .accessibilityLabel(String(localized: "Use captured group:", table: "PatternSort"))
+                .accessibilityLabel(.init("Use captured group:", table: "PatternSort"))
         }
     }
     
@@ -313,21 +313,21 @@ struct RegularExpressionSortPatternView: View {
 
 private extension PatternSortView.SortKey {
     
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .entire:
-                String(localized: "Entire line",
-                       table: "PatternSort",
-                       comment: "pattern sort key option")
+                .init("Entire line",
+                      table: "PatternSort",
+                      comment: "pattern sort key option")
             case .column:
-                String(localized: "Column",
-                       table: "PatternSort",
-                       comment: "pattern sort key option")
+                .init("Column",
+                      table: "PatternSort",
+                      comment: "pattern sort key option")
             case .regularExpression:
-                String(localized: "Regular expression",
-                       table: "PatternSort",
-                       comment: "pattern sort key option")
+                .init("Regular expression",
+                      table: "PatternSort",
+                      comment: "pattern sort key option")
         }
     }
 }

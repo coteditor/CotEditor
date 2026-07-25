@@ -130,7 +130,7 @@ struct FormatSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Button(String(localized: "Edit List…", table: "FormatSettings")) {
+                    Button(.init("Edit List…", table: "FormatSettings")) {
                         self.isEncodingListPresented.toggle()
                     }
                     .sheet(isPresented: $isEncodingListPresented) {
@@ -139,7 +139,7 @@ struct FormatSettingsView: View {
                             .presentationSizing(.fitted)
                     }
                     
-                    Toggle(String(localized: "Refer to encoding declaration in document", table: "FormatSettings"), isOn: $referToEncodingTag)
+                    Toggle(.init("Refer to encoding declaration in document", table: "FormatSettings"), isOn: $referToEncodingTag)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .accessibilityLabeledPair(role: .content, id: "encodingPriority", in: self.accessibility)
@@ -154,15 +154,15 @@ struct FormatSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 Picker(selection: $syntax) {
-                    Text(String(localized: "SyntaxName.none", defaultValue: "None"))
+                    Text(.init("SyntaxName.none", defaultValue: "None"))
                         .tag(SyntaxName.none)
                     
                     Divider()
                     
                     if !(self.syntaxNames + [SyntaxName.none]).contains(self.syntax) {
                         Text(self.syntax).tag(self.syntax)
-                            .help(String(localized: "This syntax does not exist",
-                                         table: "FormatSettings", comment: "tooltip"))
+                            .help(.init("This syntax does not exist",
+                                        table: "FormatSettings", comment: "tooltip"))
                             .foregroundStyle(.secondary)
                     }
                     
@@ -252,7 +252,7 @@ private struct SyntaxListView: View {
                 Circle()
                     .frame(width: 4)
                     .foregroundStyle(Color.secondary)
-                    .help(String(localized: "This syntax is customized.", table: "FormatSettings"))
+                    .help(.init("This syntax is customized.", table: "FormatSettings"))
                     .opacity(state.isCustomized ? 1 : 0)
                     .accessibilityHidden(!state.isCustomized)
             }
@@ -315,7 +315,7 @@ private struct SyntaxListView: View {
         } primaryAction: { selections in
             self.editingMode = selections.first.map { .edit($0) }
         }
-        .accessibilityRotor(String(localized: "Customized Syntaxes", table: "FormatSettings"),
+        .accessibilityRotor(.init("Customized Syntaxes", table: "FormatSettings"),
                             entries: self.settingStates.filter(\.isCustomized), entryID: \.id, entryLabel: \.name)
         .listStyle(.plain)
         .border(.separator)
@@ -339,12 +339,12 @@ private struct SyntaxListView: View {
                     self.error = error
             }
         }
-        .fileDialogConfirmationLabel(String(localized: "Action.import.label", defaultValue: "Import"))
-        .confirmationDialog(String(localized: "ImportDuplicationError.description",
-                                   defaultValue: "“\(self.importingError?.name ?? String(localized: .unknown))” already exists. Do you want to replace it?",
-                                   comment: "%@ is a name of a setting. Refer to the same expression by Apple."),
+        .fileDialogConfirmationLabel(.init("Action.import.label", defaultValue: "Import"))
+        .confirmationDialog(.init("ImportDuplicationError.description",
+                                  defaultValue: "“\(self.importingError?.name ?? String(localized: .unknown))” already exists. Do you want to replace it?",
+                                  comment: "%@ is a name of a setting. Refer to the same expression by Apple."),
                             item: $importingError) { item in
-            Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
+            Button(.init("Action.replace.label", defaultValue: "Replace")) {
                 do {
                     try item.item.withSecurityScopedAccess {
                         try self.manager.importSetting(item.item, name: item.name, type: item.type, overwrite: true)
@@ -365,11 +365,11 @@ private struct SyntaxListView: View {
                     self.error = error
             }
         }
-        .confirmationDialog(String(localized: "DeletionConfirmation.title",
-                                   defaultValue: "Are you sure you want to delete “\(self.deletingItem ?? String(localized: .unknown))”?"),
+        .confirmationDialog(.init("DeletionConfirmation.title",
+                                  defaultValue: "Are you sure you want to delete “\(self.deletingItem ?? String(localized: .unknown))”?"),
                             item: $deletingItem)
         { name in
-            Button(String(localized: "Action.delete.label", defaultValue: "Delete"), role: .destructive) {
+            Button(.init("Action.delete.label", defaultValue: "Delete"), role: .destructive) {
                 do {
                     try self.manager.removeSetting(name: name)
                 } catch {
@@ -377,8 +377,7 @@ private struct SyntaxListView: View {
                 }
             }
         } message: { _ in
-            Text(String(localized: "DeletionConfirmation.message",
-                        defaultValue: "This action cannot be undone."))
+            Text(.init("DeletionConfirmation.message", defaultValue: "This action cannot be undone."))
         }
         .sheet(item: $editingMode) { mode in
             let state: SettingState? = if case .edit(let state) = mode { state } else { nil }
@@ -414,20 +413,20 @@ private struct SyntaxListView: View {
             Button {
                 self.editingMode = .new
             } label: {
-                Label(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus")
+                Label(.init("Action.add.label", defaultValue: "Add"), systemImage: "plus")
                     .padding(2)
             }
-            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
+            .help(.init("Action.add.tooltip", defaultValue: "Add new item"))
             .labelStyle(.iconOnly)
             .frame(width: 16)
             
             Button {
                 self.deletingItem = self.selection?.name
             } label: {
-                Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
+                Label(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
                     .padding(2)
             }
-            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
+            .help(.init("Action.delete.tooltip", defaultValue: "Delete selected items"))
             .labelStyle(.iconOnly)
             .frame(width: 16)
             .disabled(self.selection?.isBundled != false)
@@ -435,10 +434,10 @@ private struct SyntaxListView: View {
             Button {
                 self.editingMode = .edit(self.selection!)
             } label: {
-                Label(String(localized: "Action.edit.label", defaultValue: "Edit"), systemImage: "pencil")
+                Label(.init("Action.edit.label", defaultValue: "Edit"), systemImage: "pencil")
                     .padding(2)
             }
-            .help(String(localized: "Action.edit.tooltip", defaultValue: "Edit selected item"))
+            .help(.init("Action.edit.tooltip", defaultValue: "Edit selected item"))
             .labelStyle(.iconOnly)
             .frame(width: 16)
             .disabled(self.selection == nil)
@@ -448,7 +447,7 @@ private struct SyntaxListView: View {
             Menu {
                 self.menu(for: self.selection)
             } label: {
-                Label(String(localized: "Button.actions.label", defaultValue: "Actions"), systemImage: "ellipsis")
+                Label(.init("Button.actions.label", defaultValue: "Actions"), systemImage: "ellipsis")
                     .symbolVariant(.circle)
                     .labelStyle(.iconOnly)
             }
@@ -467,14 +466,14 @@ private struct SyntaxListView: View {
         
         if let selection {
             if isContext {
-                Button(String(localized: "Action.edit.ellipsis.label", defaultValue: "Edit…"), systemImage: "square.and.pencil") {
+                Button(.init("Action.edit.ellipsis.label", defaultValue: "Edit…"), systemImage: "square.and.pencil") {
                     self.editingMode = .edit(selection)
                 }
             }
             
             Button(isContext
-                   ? String(localized: "Action.duplicate.label", defaultValue: "Duplicate")
-                   : String(localized: "Action.duplicate.named.label", defaultValue: "Duplicate “\(selection.name)”"),
+                   ? .init("Action.duplicate.label", defaultValue: "Duplicate")
+                   : .init("Action.duplicate.named.label", defaultValue: "Duplicate “\(selection.name)”"),
                    systemImage: "plus.square.on.square")
             {
                 do {
@@ -485,8 +484,8 @@ private struct SyntaxListView: View {
             }
             
             Button(isContext
-                   ? String(localized: "Action.restore.label", defaultValue: "Restore")
-                   : String(localized: "Action.restore.named.label", defaultValue: "Restore “\(selection.name)”"),
+                   ? .init("Action.restore.label", defaultValue: "Restore")
+                   : .init("Action.restore.named.label", defaultValue: "Restore “\(selection.name)”"),
                    systemImage: "arrow.clockwise")
             {
                 do {
@@ -498,15 +497,15 @@ private struct SyntaxListView: View {
             .disabled(!selection.isRestorable)
             
             if isContext {
-                Button(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "trash") {
+                Button(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "trash") {
                     self.deletingItem = selection.name
                 }
                 .disabled(selection.isBundled)
             }
             
             Button(isContext
-                   ? String(localized: "Action.export.label", defaultValue: "Export…")
-                   : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection.name)”…"),
+                   ? .init("Action.export.label", defaultValue: "Export…")
+                   : .init("Action.export.named.label", defaultValue: "Export “\(selection.name)”…"),
                    systemImage: "square.and.arrow.up")
             {
                 if let url = self.manager.urlForUserSetting(name: selection.name) {
@@ -516,8 +515,8 @@ private struct SyntaxListView: View {
             }
             .modifierKeyAlternate(.option) {
                 Button(isContext
-                       ? String(localized: "Action.revealInFinder.label", defaultValue: "Reveal in Finder")
-                       : String(localized: "Action.revealInFinder.named.label", defaultValue: "Reveal “\(selection.name)” in Finder"),
+                       ? .init("Action.revealInFinder.label", defaultValue: "Reveal in Finder")
+                       : .init("Action.revealInFinder.named.label", defaultValue: "Reveal “\(selection.name)” in Finder"),
                        systemImage: "finder")
                 {
                     guard let url = self.manager.urlForUserSetting(name: selection.name) else { return }
@@ -537,11 +536,11 @@ private struct SyntaxListView: View {
         if !isContext {
             Divider()
             
-            Button(String(localized: "Action.import.ellipsis.label", defaultValue: "Import…"), systemImage: "square.and.arrow.down") {
+            Button(.init("Action.import.ellipsis.label", defaultValue: "Import…"), systemImage: "square.and.arrow.down") {
                 self.isImporterPresented = true
             }
             .modifierKeyAlternate(.option) {
-                Button(String(localized: "Reload All Syntaxes", table: "FormatSettings"), systemImage: "arrow.clockwise") {
+                Button(.init("Reload All Syntaxes", table: "FormatSettings"), systemImage: "arrow.clockwise") {
                     Task {
                         await self.manager.invalidateUserSettings()
                     }
@@ -550,11 +549,11 @@ private struct SyntaxListView: View {
             
             Divider()
             
-            Button(String(localized: "Customize Syntax Menu…", table: "FormatSettings"), systemImage: "square.and.pencil") {
+            Button(.init("Customize Syntax Menu…", table: "FormatSettings"), systemImage: "square.and.pencil") {
                 self.isListCustomizationViewPresented = true
             }
             
-            Button(String(localized: "Show File Mapping Conflicts", table: "FormatSettings"), systemImage: "exclamationmark.triangle") {
+            Button(.init("Show File Mapping Conflicts", table: "FormatSettings"), systemImage: "exclamationmark.triangle") {
                 self.isFileMappingConflictPresented = true
             }
             .disabled(self.manager.mappingConflicts.isEmpty)

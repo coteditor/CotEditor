@@ -44,20 +44,20 @@ struct SyntaxOutlineEditView: View {
         
         VStack(alignment: .leading) {
             Table($items, selection: $selection) {
-                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { $item in
+                TableColumn(.init("IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { $item in
                     Toggle(isOn: $item.value.ignoreCase, label: EmptyView.init)
-                        .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
-                        .accessibilityLabel(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
+                        .help(.init("Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
+                        .accessibilityLabel(.init("Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                 }
                 .width(24)
                 .alignment(.center)
                 
-                TableColumn(String(localized: "Kind", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TableColumn(.init("Kind", table: "SyntaxEditor", comment: "table column header")) { $item in
                     OutlineKindMenu(kind: $item.value.kind)
                 }
                 .width(40)
                 
-                TableColumn(String(localized: "Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TableColumn(.init("Regular Expression Pattern", table: "SyntaxEditor", comment: "table column header")) { $item in
                     HStack {
                         RegexTextField(text: $item.value.pattern)
                             .style(.table)
@@ -71,7 +71,7 @@ struct SyntaxOutlineEditView: View {
                 }
                 .width(min: 180, ideal: 240)
                 
-                TableColumn(String(localized: "Display Pattern", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TableColumn(.init("Display Pattern", table: "SyntaxEditor", comment: "table column header")) { $item in
                     let isSeparator = (item.value.kind == .separator)
                     
                     RegexTextField(
@@ -86,7 +86,7 @@ struct SyntaxOutlineEditView: View {
                 }
                 .width(min: 40, ideal: 140)
                 
-                TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header")) { $item in
+                TableColumn(.init("Description", table: "SyntaxEditor", comment: "table column header")) { $item in
                     TextField(text: $item.value.description ?? "", label: EmptyView.init)
                 }
                 .width(min: 40, ideal: 100)
@@ -179,7 +179,7 @@ private struct OutlineKindMenu: View {
                 Image(systemName: "square")
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(.tertiary)
-                    .accessibilityLabel(String(localized: "None", table: "SyntaxEditor"))
+                    .accessibilityLabel(.init("None", table: "SyntaxEditor"))
             }
         }
         .menuStyle(.button)

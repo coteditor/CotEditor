@@ -32,7 +32,7 @@ struct FindProgressView: View {
     
     @State private var progress: FindProgress
     private var action: TextFind.Action
-    private var label: String
+    private var label: LocalizedStringResource
     
     @State private var description: String = ""
     
@@ -45,7 +45,7 @@ struct FindProgressView: View {
     ///   - label: The text to display as the label of the indicator.
     ///   - progress: The progress instance to indicate.
     ///   - action: The find action type for count results in the description.
-    init(_ label: String, progress: FindProgress, action: TextFind.Action) {
+    init(_ label: LocalizedStringResource, progress: FindProgress, action: TextFind.Action) {
         
         assert(!progress.state.isTerminated)
         

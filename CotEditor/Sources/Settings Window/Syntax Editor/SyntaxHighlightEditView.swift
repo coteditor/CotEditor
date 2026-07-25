@@ -49,11 +49,11 @@ struct SyntaxHighlightEditView: View {
             
             // create a table with wrapped values and then find the editable item again in each column to enable sorting (2025-07, macOS 26)
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
-                TableColumn(String(localized: "RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)"), value: \.value.isRegularExpression, comparator: BoolComparator()) { wrappedItem in
+                TableColumn(.init("RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)"), value: \.value.isRegularExpression, comparator: BoolComparator()) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         Toggle(isOn: item.value.isRegularExpression, label: EmptyView.init)
-                            .help(String(localized: "Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
-                            .accessibilityLabel(String(localized: "Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
+                            .help(.init("Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
+                            .accessibilityLabel(.init("Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
                             .onChange(of: item.value.isRegularExpression.wrappedValue) { _, newValue in
                                 guard self.selection.contains(item.id) else { return }
                                 $items
@@ -66,11 +66,11 @@ struct SyntaxHighlightEditView: View {
                 .width(24)
                 .alignment(.center)
                 
-                TableColumn(String(localized: "IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)"), value: \.value.ignoreCase, comparator: BoolComparator()) { wrappedItem in
+                TableColumn(.init("IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)"), value: \.value.ignoreCase, comparator: BoolComparator()) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         Toggle(isOn: item.value.ignoreCase, label: EmptyView.init)
-                            .help(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
-                            .accessibilityLabel(String(localized: "Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
+                            .help(.init("Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
+                            .accessibilityLabel(.init("Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                             .onChange(of: item.value.ignoreCase.wrappedValue) { _, newValue in
                                 guard self.selection.contains(item.id) else { return }
                                 $items
@@ -83,7 +83,7 @@ struct SyntaxHighlightEditView: View {
                 .width(24)
                 .alignment(.center)
                 
-                TableColumn(String(localized: "Begin String", table: "SyntaxEditor", comment: "table column header"), value: \.value.begin) { wrappedItem in
+                TableColumn(.init("Begin String", table: "SyntaxEditor", comment: "table column header"), value: \.value.begin) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         HStack {
                             RegexTextField(text: item.value.begin)
@@ -98,7 +98,7 @@ struct SyntaxHighlightEditView: View {
                     }
                 }
                 
-                TableColumn(String(localized: "End String", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.value.end)) { wrappedItem in
+                TableColumn(.init("End String", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.value.end)) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         HStack {
                             RegexTextField(text: item.value.end ?? "")
@@ -112,7 +112,7 @@ struct SyntaxHighlightEditView: View {
                     }
                 }
                 
-                TableColumn(String(localized: "Multiline", table: "SyntaxEditor", comment: "table column header, keep short"), value: \.value.isMultiline, comparator: BoolComparator()) { wrappedItem in
+                TableColumn(.init("Multiline", table: "SyntaxEditor", comment: "table column header, keep short"), value: \.value.isMultiline, comparator: BoolComparator()) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         Toggle(isOn: item.value.isMultiline, label: EmptyView.init)
                             .onChange(of: item.value.isMultiline.wrappedValue) { _, newValue in
@@ -126,7 +126,7 @@ struct SyntaxHighlightEditView: View {
                 }
                 .alignment(.center)
                 
-                TableColumn(String(localized: "Description", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.value.description)) { wrappedItem in
+                TableColumn(.init("Description", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.value.description)) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         TextField(text: item.value.description ?? "", label: EmptyView.init)
                     }

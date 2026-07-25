@@ -173,13 +173,13 @@ struct OutlineInspectorView: View, HostedPaneView {
                     .accessibilityRemoveTraits(.isHeader)
                 
                 Spacer()
-                Menu(String(localized: "Options", table: "Document"), systemImage: "ellipsis.circle") {
-                    Toggle(String(localized: "Wrap Lines", table: "MainMenu"), isOn: $wrapsLines)
+                Menu(.init("Options", table: "Document"), systemImage: "ellipsis.circle") {
+                    Toggle(.init("Wrap Lines", table: "MainMenu"), isOn: $wrapsLines)
                     
-                    Section(String(localized: "Text Size", table: "MainMenu")) {
-                        Button(String(localized: "Bigger", table: "MainMenu"), systemImage: "textformat.size.larger", action: self.biggerFont)
-                        Button(String(localized: "Smaller", table: "MainMenu"), systemImage: "textformat.size.smaller", action: self.smallerFont)
-                        Button(String(localized: "Reset to Default", table: "MainMenu"), systemImage: "textformat.size", action: self.resetFont)
+                    Section(.init("Text Size", table: "MainMenu")) {
+                        Button(.init("Bigger", table: "MainMenu"), systemImage: "textformat.size.larger", action: self.biggerFont)
+                        Button(.init("Smaller", table: "MainMenu"), systemImage: "textformat.size.smaller", action: self.smallerFont)
+                        Button(.init("Reset to Default", table: "MainMenu"), systemImage: "textformat.size", action: self.resetFont)
                     }
                 }
                 .menuStyle(.button)
@@ -234,8 +234,7 @@ struct OutlineInspectorView: View, HostedPaneView {
             self.model.isPresented = newValue
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(String(localized: "InspectorPane.outline.label",
-                                   defaultValue: "Outline", table: "Document"))
+        .accessibilityLabel(.init("InspectorPane.outline.label", defaultValue: "Outline", table: "Document"))
         .controlSize(.small)
         .padding(EdgeInsets(top: 16, leading: 12, bottom: 12, trailing: 12))
     }

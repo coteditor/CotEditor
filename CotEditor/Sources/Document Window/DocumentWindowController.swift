@@ -1124,8 +1124,8 @@ private struct EditedIndicator: View {
             .fill(.tertiary)
             .frame(width: 4, height: 4)
             .padding(8)
-            .help(String(localized: "Document has unsaved changes",
-                         table: "Document",
-                         comment: "tooltip for the “edited” indicator in the window tab"))
+            .help(.init("Document has unsaved changes",
+                        table: "Document",
+                        comment: "tooltip for the “edited” indicator in the window tab"))
     }
 }

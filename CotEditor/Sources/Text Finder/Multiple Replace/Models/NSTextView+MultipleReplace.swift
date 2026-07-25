@@ -54,7 +54,7 @@ extension NSTextView {
         
         // present progress view
         self.window?.beginSheet {
-            FindProgressView(String(localized: "Highlight All", table: "TextFind"), progress: progress, action: .find)
+            FindProgressView(.init("Highlight All", table: "TextFind"), progress: progress, action: .find)
                 .scenePadding()
         }
         
@@ -107,7 +107,7 @@ extension NSTextView {
         
         // present progress view
         self.window?.beginSheet {
-            FindProgressView(String(localized: "Replace All", table: "TextFind"), progress: progress, action: .replace)
+            FindProgressView(.init("Replace All", table: "TextFind"), progress: progress, action: .replace)
                 .scenePadding()
         }
         

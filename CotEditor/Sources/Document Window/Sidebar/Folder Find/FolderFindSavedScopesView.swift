@@ -128,10 +128,10 @@ struct FolderFindSavedScopesView: View {
             Button {
                 self.isAddingScope = true
             } label: {
-                Label(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus")
+                Label(.init("Action.add.label", defaultValue: "Add"), systemImage: "plus")
                     .padding(2)
             }
-            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
+            .help(.init("Action.add.tooltip", defaultValue: "Add new item"))
             .frame(width: 16)
             
             Button {
@@ -140,10 +140,10 @@ struct FolderFindSavedScopesView: View {
                     self.selection = nil
                 }
             } label: {
-                Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
+                Label(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
                     .padding(2)
             }
-            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
+            .help(.init("Action.delete.tooltip", defaultValue: "Delete selected items"))
             .frame(width: 16)
             .disabled(self.selection == nil)
             
@@ -152,10 +152,10 @@ struct FolderFindSavedScopesView: View {
                     self.editingItem = EditingScope(name: name, scope: scope)
                 }
             } label: {
-                Label(String(localized: "Action.edit.ellipsis.label", defaultValue: "Edit…"), systemImage: "pencil")
+                Label(.init("Action.edit.ellipsis.label", defaultValue: "Edit…"), systemImage: "pencil")
                     .padding(2)
             }
-            .help(String(localized: "Action.edit.tooltip", defaultValue: "Edit selected item"))
+            .help(.init("Action.edit.tooltip", defaultValue: "Edit selected item"))
             .frame(width: 16)
             .disabled(self.selection == nil)
             
@@ -172,11 +172,11 @@ struct FolderFindSavedScopesView: View {
     /// - Returns: The context menu content.
     @ContentBuilder private func contextMenu(for name: String) -> some View {
         
-        Button(String(localized: "Action.duplicate.label", defaultValue: "Duplicate"), systemImage: "plus.square.on.square") {
+        Button(.init("Action.duplicate.label", defaultValue: "Duplicate"), systemImage: "plus.square.on.square") {
             self.duplicateScope(name)
         }
         
-        Button(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "trash") {
+        Button(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "trash") {
             self.changeHandler(.delete(name: name))
             self.selection = nil
         }

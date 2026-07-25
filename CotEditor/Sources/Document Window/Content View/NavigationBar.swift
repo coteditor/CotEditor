@@ -39,12 +39,12 @@ struct NavigationBar: View {
             Button {
                 NSApp.sendAction(#selector(DocumentViewController.closeSplitTextView), to: nil, from: self.outlineNavigator.textView)
             } label: {
-                Label(String(localized: "Close Split Editor", table: "Document", comment: "accessibility label for button"), systemImage: "xmark")
+                Label(.init("Close Split Editor", table: "Document", comment: "accessibility label for button"), systemImage: "xmark")
                     .frame(width: 18)
                     .frame(maxHeight: .infinity, alignment: .center)
             }
             .labelStyle(.iconOnly)
-            .help(String(localized: "Close split editor", table: "Document", comment: "tooltip for button"))
+            .help(.init("Close split editor", table: "Document", comment: "tooltip for button"))
             .symbolEffect(.disappear, isActive: !self.splitState.canClose)
             .opacity(self.splitState.canClose ? 1 : 0)
             .disabled(!self.splitState.canClose)
@@ -64,22 +64,22 @@ struct NavigationBar: View {
             Button {
                 NSApp.sendAction(#selector(DocumentViewController.openSplitTextView), to: nil, from: self.outlineNavigator.textView)
             } label: {
-                Label(String(localized: "Split Editor", table: "Document", comment: "accessibility label for button"), image: .splitAdd)
+                Label(.init("Split Editor", table: "Document", comment: "accessibility label for button"), image: .splitAdd)
                     .frame(width: 18)
                     .frame(maxHeight: .infinity, alignment: .center)
             }
             .rotationEffect(.degrees(self.splitState.isVertical ? -90 : 0))
             .labelStyle(.iconOnly)
-            .help(String(localized: "Split editor", table: "Document", comment: "tooltip for button"))
+            .help(.init("Split editor", table: "Document", comment: "tooltip for button"))
             .contextMenu {
                 Button {
                     NSApp.sendAction(#selector(DocumentViewController.toggleSplitOrientation), to: nil, from: nil)
                 } label: {
                     if self.splitState.isVertical {
-                        Label(String(localized: "Stack Editors Horizontally", table: "MainMenu"),
+                        Label(.init("Stack Editors Horizontally", table: "MainMenu"),
                               systemImage: "rectangle.split.1x2")
                     } else {
-                        Label(String(localized: "Stack Editors Vertically", table: "MainMenu"),
+                        Label(.init("Stack Editors Vertically", table: "MainMenu"),
                               systemImage: "rectangle.split.2x1")
                     }
                 }
@@ -91,7 +91,7 @@ struct NavigationBar: View {
         .background(.windowBackground)
         .frame(height: 24)
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(String(localized: "Navigation Bar", table: "Document", comment: "accessibility label"))
+        .accessibilityLabel(.init("Navigation Bar", table: "Document", comment: "accessibility label"))
     }
 }
 
@@ -125,7 +125,7 @@ private struct OutlineNavigationView: View {
                     OutlinePicker(items: items, selection: $navigator.selection, isPresented: $navigator.isOutlinePickerPresented) {
                         self.navigator.textView?.select(range: $0.range)
                     }
-                    .accessibilityLabel(String(localized: "Outline Menu", table: "Document", comment: "accessibility label"))
+                    .accessibilityLabel(.init("Outline Menu", table: "Document", comment: "accessibility label"))
                 }
             } else if self.isLongExtraction {
                 Text("Extracting Outline…", tableName: "Document")
@@ -156,24 +156,24 @@ private struct OutlineNavigationView: View {
     @ContentBuilder private func previousButton(systemImage: String) -> some View {
         
         Button(action: self.navigator.selectPreviousItem) {
-            Label(String(localized: "Previous Outline Item", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
+            Label(.init("Previous Outline Item", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
                 .frame(width: 18)
                 .frame(maxHeight: .infinity, alignment: .center)
         }
         .disabled(!self.navigator.canSelectPreviousItem)
-        .help(String(localized: "Jump to previous outline item", table: "Document", comment: "tooltip for button"))
+        .help(.init("Jump to previous outline item", table: "Document", comment: "tooltip for button"))
     }
     
     
     @ContentBuilder private func nextButton(systemImage: String) -> some View {
         
         Button(action: self.navigator.selectNextItem) {
-            Label(String(localized: "Next Outline Item", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
+            Label(.init("Next Outline Item", table: "Document", comment: "accessibility label for button"), systemImage: systemImage)
                 .frame(width: 18)
                 .frame(maxHeight: .infinity, alignment: .center)
         }
         .disabled(!self.navigator.canSelectNextItem)
-        .help(String(localized: "Jump to next outline item", table: "Document", comment: "tooltip for button"))
+        .help(.init("Jump to next outline item", table: "Document", comment: "tooltip for button"))
     }
 }
 

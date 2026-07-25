@@ -40,8 +40,7 @@ struct WarningInspectorView: View, HostedPaneView {
                 .padding(.top, 8)
         }
         .padding(EdgeInsets(top: 16, leading: 12, bottom: 12, trailing: 12))
-        .accessibilityLabel(String(localized: "InspectorPane.warnings.label",
-                                   defaultValue: "Warnings", table: "Document"))
+        .accessibilityLabel(.init("InspectorPane.warnings.label", defaultValue: "Warnings", table: "Document"))
     }
 }
 

@@ -83,14 +83,14 @@ struct CustomSurroundView: View {
                 .fontWeight(.semibold)
             
             HStack(alignment: .firstTextBaseline) {
-                LabeledContent(String(localized: "Begin:", table: "CustomSurround")) {
+                LabeledContent(.init("Begin:", table: "CustomSurround")) {
                     TextField(text: $pair.begin, label: EmptyView.init)
                         .frame(width: 48)
                 }
                 .focused($focus, equals: .beginField)
                 .padding(.trailing)
                 
-                LabeledContent(String(localized: "End:", table: "CustomSurround")) {
+                LabeledContent(.init("End:", table: "CustomSurround")) {
                     TextField(text: $pair.end, prompt: Text(self.pair.begin), label: EmptyView.init)
                         .frame(width: 48)
                 }

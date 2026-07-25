@@ -28,7 +28,7 @@ import SwiftUI
 private struct Definition: Identifiable {
     
     var term: String
-    var description: String
+    var description: LocalizedStringResource
     
     var id: String { self.term }
 }
@@ -37,40 +37,40 @@ private struct Definition: Identifiable {
 extension Definition {
     
     static let characters = [
-        Self(term: ".", description: String(localized: "any character", table: "RegexReference")),
-        Self(term: "\\R", description: String(localized: "new line character", table: "RegexReference")),
-        Self(term: "\\t", description: String(localized: "tab character", table: "RegexReference")),
-        Self(term: "\\w", description: String(localized: "word character", table: "RegexReference")),
-        Self(term: "\\s", description: String(localized: "whitespace character", table: "RegexReference")),
-        Self(term: "\\S", description: String(localized: "non-whitespace character", table: "RegexReference")),
-        Self(term: "\\d", description: String(localized: "decimal number", table: "RegexReference")),
-        Self(term: "[A-Z]", description: String(localized: "any character in range A to Z", table: "RegexReference")),
-        Self(term: "[^A-Z]", description: String(localized: "any character not in range A to Z", table: "RegexReference")),
+        Self(term: ".", description: .init("any character", table: "RegexReference")),
+        Self(term: "\\R", description: .init("new line character", table: "RegexReference")),
+        Self(term: "\\t", description: .init("tab character", table: "RegexReference")),
+        Self(term: "\\w", description: .init("word character", table: "RegexReference")),
+        Self(term: "\\s", description: .init("whitespace character", table: "RegexReference")),
+        Self(term: "\\S", description: .init("non-whitespace character", table: "RegexReference")),
+        Self(term: "\\d", description: .init("decimal number", table: "RegexReference")),
+        Self(term: "[A-Z]", description: .init("any character in range A to Z", table: "RegexReference")),
+        Self(term: "[^A-Z]", description: .init("any character not in range A to Z", table: "RegexReference")),
     ]
     
     static let anchors = [
-        Self(term: "^", description: String(localized: "beginning of the line", table: "RegexReference")),
-        Self(term: "$", description: String(localized: "end of the line", table: "RegexReference")),
-        Self(term: "\\b", description: String(localized: "word boundary", table: "RegexReference")),
+        Self(term: "^", description: .init("beginning of the line", table: "RegexReference")),
+        Self(term: "$", description: .init("end of the line", table: "RegexReference")),
+        Self(term: "\\b", description: .init("word boundary", table: "RegexReference")),
     ]
     
     static let quantifiers = [
-        Self(term: "?", description: String(localized: "1 or 0 times", table: "RegexReference")),
-        Self(term: "*", description: String(localized: "0 or more times", table: "RegexReference")),
-        Self(term: "+", description: String(localized: "1 or more times", table: "RegexReference")),
-        Self(term: "{n,m}", description: String(localized: "at least n but not more than m times", table: "RegexReference")),
-        Self(term: "{n,}", description: String(localized: "at least n times", table: "RegexReference")),
-        Self(term: "{,n}", description: String(localized: "at least 0 but not more than n times", table: "RegexReference")),
-        Self(term: "{n}", description: String(localized: "n times", table: "RegexReference")),
+        Self(term: "?", description: .init("1 or 0 times", table: "RegexReference")),
+        Self(term: "*", description: .init("0 or more times", table: "RegexReference")),
+        Self(term: "+", description: .init("1 or more times", table: "RegexReference")),
+        Self(term: "{n,m}", description: .init("at least n but not more than m times", table: "RegexReference")),
+        Self(term: "{n,}", description: .init("at least n times", table: "RegexReference")),
+        Self(term: "{,n}", description: .init("at least 0 but not more than n times", table: "RegexReference")),
+        Self(term: "{n}", description: .init("n times", table: "RegexReference")),
     ]
     
     static let extendedGroups = [
-        Self(term: "(?=subexp)", description: String(localized: "look-ahead", table: "RegexReference")),
-        Self(term: "(?<=subexp)", description: String(localized: "look-behind", table: "RegexReference")),
+        Self(term: "(?=subexp)", description: .init("look-ahead", table: "RegexReference")),
+        Self(term: "(?<=subexp)", description: .init("look-behind", table: "RegexReference")),
     ]
     
     static let backReference = [
-        Self(term: "$1", description: String(localized: "first match", table: "RegexReference")),
+        Self(term: "$1", description: .init("first match", table: "RegexReference")),
     ]
 }
 
@@ -87,19 +87,19 @@ struct RegularExpressionReferenceView: View {
             HStack(alignment: .top, spacing: 12) {
                 VStack(alignment: .leading, spacing: 12) {
                     DefinitionList(Definition.characters,
-                                   title: String(localized: "Characters", table: "RegexReference", comment: "heading"))
+                                   title: .init("Characters", table: "RegexReference", comment: "heading"))
                     DefinitionList(Definition.anchors,
-                                   title: String(localized: "Anchors", table: "RegexReference", comment: "heading"))
+                                   title: .init("Anchors", table: "RegexReference", comment: "heading"))
                 }
                 .accessibilityElement(children: .contain)
                 Divider()
                 VStack(alignment: .leading, spacing: 12) {
                     DefinitionList(Definition.quantifiers,
-                                   title: String(localized: "Quantifiers", table: "RegexReference", comment: "heading"))
+                                   title: .init("Quantifiers", table: "RegexReference", comment: "heading"))
                     DefinitionList(Definition.extendedGroups,
-                                   title: String(localized: "Extended Groups", table: "RegexReference", comment: "heading"))
+                                   title: .init("Extended Groups", table: "RegexReference", comment: "heading"))
                     DefinitionList(Definition.backReference,
-                                   title: String(localized: "Back Reference", table: "RegexReference", comment: "heading"))
+                                   title: .init("Back Reference", table: "RegexReference", comment: "heading"))
                 }
                 .accessibilityElement(children: .contain)
             }
@@ -127,11 +127,11 @@ struct RegularExpressionReferenceView: View {
     
     private struct DefinitionList: View {
         
-        private var title: String
+        private var title: LocalizedStringResource
         private var definitions: [Definition]
         
         
-        init(_ definitions: [Definition], title: String) {
+        init(_ definitions: [Definition], title: LocalizedStringResource) {
             
             self.definitions = definitions
             self.title = title

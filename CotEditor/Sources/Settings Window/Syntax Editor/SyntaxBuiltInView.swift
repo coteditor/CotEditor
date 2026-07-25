@@ -43,7 +43,7 @@ struct SyntaxBuiltInView: View {
                 }
                 
             } description: {
-                Text(String(localized: "SyntaxBuiltInView.description", defaultValue: "This language uses a structure-based, general-purpose parser called tree-sitter for syntax analysis.\nBecause the extraction rules are managed by the app, you can’t customize them.", table: "SyntaxEditor"))
+                Text(.init("SyntaxBuiltInView.description", defaultValue: "This language uses a structure-based, general-purpose parser called tree-sitter for syntax analysis.\nBecause the extraction rules are managed by the app, you can’t customize them.", table: "SyntaxEditor"))
             }
             .frame(maxHeight: .infinity, alignment: .center)
             

@@ -53,7 +53,7 @@ struct ExportSettingsView: View {
             
             PortableTypesView(types: $types, includedTypes: self.includedTypes)
             
-            SubmitButtonGroup(String(localized: "Action.export.label", defaultValue: "Export…"), helpAnchor: "howto_port_settings") {
+            SubmitButtonGroup(.init("Action.export.label", defaultValue: "Export…"), helpAnchor: "howto_port_settings") {
                 do {
                     self.document = try PortableSettingsDocument(including: self.types)
                 } catch {
@@ -112,7 +112,7 @@ struct ImportSettingsView: View {
             Text("Select the items to import:", tableName: "SettingsPorting")
             PortableTypesView(types: $types, includedTypes: self.document.bundledSettings)
             
-            SubmitButtonGroup(String(localized: "Action.import.ellipsis.label", defaultValue: "Import…"), helpAnchor: "howto_port_settings") {
+            SubmitButtonGroup(.init("Action.import.ellipsis.label", defaultValue: "Import…"), helpAnchor: "howto_port_settings") {
                 do {
                     try self.document.applySettings(types: self.types)
                 } catch {
@@ -179,27 +179,27 @@ private struct PortableTypesView: View {
         
         VStack(alignment: .leading, spacing: 8) {
             Toggle(isOn: $types.bind(.settings)) {
-                Text(String(localized: "SettingTypes.settings.label", defaultValue: "Settings", table: "SettingsPorting"))
-                Text(String(localized: "SettingTypes.settings.description", defaultValue: "All settings in the Settings window", table: "SettingsPorting"))
+                Text(.init("SettingTypes.settings.label", defaultValue: "Settings", table: "SettingsPorting"))
+                Text(.init("SettingTypes.settings.description", defaultValue: "All settings in the Settings window", table: "SettingsPorting"))
             }
             
             if let names = self.includedTypes[.themes], !names.isEmpty {
                 Toggle(isOn: $types.bind(.themes)) {
-                    Text(String(localized: "SettingTypes.themes.label", defaultValue: "Themes", table: "SettingsPorting"))
+                    Text(.init("SettingTypes.themes.label", defaultValue: "Themes", table: "SettingsPorting"))
                     Text("\(names.count) custom themes", tableName: "SettingsPorting")
                 }
             }
             
             if let names = self.includedTypes[.syntaxes], !names.isEmpty {
                 Toggle(isOn: $types.bind(.syntaxes)) {
-                    Text(String(localized: "SettingTypes.syntaxes.label", defaultValue: "Syntaxes", table: "SettingsPorting"))
+                    Text(.init("SettingTypes.syntaxes.label", defaultValue: "Syntaxes", table: "SettingsPorting"))
                     Text("\(names.count) custom syntaxes", tableName: "SettingsPorting")
                 }
             }
             
             if let names = self.includedTypes[.replacements], !names.isEmpty {
                 Toggle(isOn: $types.bind(.replacements)) {
-                    Text(String(localized: "SettingTypes.replacements.label", defaultValue: "Multiple Replace Definitions", table: "SettingsPorting"))
+                    Text(.init("SettingTypes.replacements.label", defaultValue: "Multiple Replace Definitions", table: "SettingsPorting"))
                     Text("\(names.count) definitions", tableName: "SettingsPorting",
                          comment: "unit for multiple replace settings")
                 }

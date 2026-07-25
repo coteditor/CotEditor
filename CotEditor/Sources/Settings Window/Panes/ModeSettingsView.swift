@@ -86,7 +86,7 @@ private struct ModeListView: View {
     var body: some View {
         
         List(selection: $selection) {
-            Section(String(localized: "Mode", table: "ModeSettings")) {
+            Section(.init("Mode", table: "ModeSettings")) {
                 ForEach(Syntax.Kind.allCases, id: \.self) { kind in
                     Text(kind.label)
                         .tag(Mode.kind(kind))
@@ -95,14 +95,14 @@ private struct ModeListView: View {
             }
             
             if !self.syntaxModes.isEmpty {
-                Section(String(localized: "Syntax", table: "ModeSettings")) {
+                Section(.init("Syntax", table: "ModeSettings")) {
                     ForEach(self.syntaxModes, id: \.self) { mode in
                         let available = mode.available(within: self.syntaxes)
                         HStack {
                             Text(mode.label)
                             if !available {
                                 Spacer()
-                                Label(String(localized: "Not found", table: "ModeSettings", comment: "accessibility label"), systemImage: "exclamationmark.triangle")
+                                Label(.init("Not found", table: "ModeSettings", comment: "accessibility label"), systemImage: "exclamationmark.triangle")
                                     .labelStyle(.iconOnly)
                             }
                         }
@@ -132,7 +132,7 @@ private struct ModeListView: View {
         .onAppear {
             self.syntaxModes = self.manager.syntaxModes
         }
-        .accessibilityLabel(String(localized: "Mode", table: "ModeSettings"))
+        .accessibilityLabel(.init("Mode", table: "ModeSettings"))
         .background()
     }
     
@@ -142,7 +142,7 @@ private struct ModeListView: View {
         
         HStack {
             Menu {
-                Section(String(localized: "Syntax", table: "ModeSettings")) {
+                Section(.init("Syntax", table: "ModeSettings")) {
                     ForEach(self.syntaxes, id: \.self) { syntaxName in
                         Button(syntaxName) {
                             do {
@@ -159,10 +159,10 @@ private struct ModeListView: View {
                     }
                 }
             } label: {
-                Label(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus")
+                Label(.init("Action.add.label", defaultValue: "Add"), systemImage: "plus")
                     .padding(2)
             }
-            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
+            .help(.init("Action.add.tooltip", defaultValue: "Add new item"))
             .menuIndicator(.hidden)
             .alert(error: $error)
             
@@ -174,11 +174,11 @@ private struct ModeListView: View {
                     self.selection = .kind(.general)
                 }
             } label: {
-                Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
+                Label(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
                     .padding(2)
                     .fontWeight(.medium)
             }
-            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
+            .help(.init("Action.delete.tooltip", defaultValue: "Delete selected items"))
             .frame(width: 16)
             .disabled(self.selection.syntaxName == nil)
             
@@ -198,7 +198,7 @@ private struct ModeListView: View {
         if case .kind(let kind) = mode {
             let defaultOptions = kind.defaultOptions
             
-            Button(String(localized: "Action.restore.label", defaultValue: "Restore")) {
+            Button(.init("Action.restore.label", defaultValue: "Restore")) {
                 self.manager.save(setting: defaultOptions, mode: mode)
                 if self.selection == mode {
                     self.options = defaultOptions
@@ -220,7 +220,7 @@ private struct ModeOptionsView: View {
     var body: some View {
         
         Form {
-            Picker(String(localized: "Font:", table: "ModeSettings"), selection: $options.fontType) {
+            Picker(.init("Font:", table: "ModeSettings"), selection: $options.fontType) {
                 ForEach(FontType.allCases, id: \.self) { type in
                     Text(type.label)
                 }
@@ -229,56 +229,56 @@ private struct ModeOptionsView: View {
             .horizontalRadioGroupLayout()
             .padding(.bottom, 12)
             
-            LabeledContent(String(localized: "Substitution:", table: "ModeSettings")) {
+            LabeledContent(.init("Substitution:", table: "ModeSettings")) {
                 VStack(alignment: .leading) {
-                    Toggle(String(localized: "Smart copy/paste", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Smart copy/paste", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.smartInsertDelete)
-                    Toggle(String(localized: "Smart quotes", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Smart quotes", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.automaticQuoteSubstitution)
-                    Toggle(String(localized: "Smart dashes", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Smart dashes", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.automaticDashSubstitution)
-                    Toggle(String(localized: "Text replacement", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Text replacement", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.automaticTextReplacement)
-                    Toggle(String(localized: "Add period with double-space", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Add period with double-space", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.automaticPeriodSubstitution)
-                    Toggle(String(localized: "Automatically insert closing brackets and quotes", table: "ModeSettings"),
+                    Toggle(.init("Automatically insert closing brackets and quotes", table: "ModeSettings"),
                            isOn: $options.automaticSymbolBalancing)
                 }
             }
             .padding(.bottom, 12)
             
-            LabeledContent(String(localized: "Spelling:", table: "ModeSettings")) {
+            LabeledContent(.init("Spelling:", table: "ModeSettings")) {
                 VStack(alignment: .leading) {
-                    Toggle(String(localized: "Check spelling while typing", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Check spelling while typing", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.continuousSpellChecking)
-                    Toggle(String(localized: "Check grammar with spelling", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Check grammar with spelling", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.grammarChecking)
-                    Toggle(String(localized: "Correct spelling automatically", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Correct spelling automatically", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.automaticSpellingCorrection)
                 }
             }
             .padding(.bottom, 12)
             
-            LabeledContent(String(localized: "Completion:", table: "ModeSettings")) {
+            LabeledContent(.init("Completion:", table: "ModeSettings")) {
                 VStack(alignment: .leading) {
                     Text("Completion list includes:", tableName: "ModeSettings")
                         .foregroundStyle(self.isEnabled ? .primary : .tertiary)
                     Group {
-                        Toggle(String(localized: "Standard words", table: "ModeSettings"),
+                        Toggle(.init("Standard words", table: "ModeSettings"),
                                isOn: $options.completionWordTypes.bind(.standard))
-                        Toggle(String(localized: "Words in document", table: "ModeSettings"),
+                        Toggle(.init("Words in document", table: "ModeSettings"),
                                isOn: $options.completionWordTypes.bind(.document))
-                        Toggle(String(localized: "Words defined in syntax", table: "ModeSettings"),
+                        Toggle(.init("Words defined in syntax", table: "ModeSettings"),
                                isOn: $options.completionWordTypes.bind(.syntax))
                     }.padding(.leading, 20)
-                    Toggle(String(localized: "Suggest completions while typing", table: "ModeSettings"),
+                    Toggle(.init("Suggest completions while typing", table: "ModeSettings"),
                            isOn: $options.automaticCompletion)
                     .disabled(self.options.completionWordTypes.isEmpty)
                 }
             }
             .padding(.bottom, 12)
             
-            LabeledContent(String(localized: "Indentation:", table: "ModeSettings")) {
+            LabeledContent(.init("Indentation:", table: "ModeSettings")) {
                 ModeIndentOptionsView(options: $options.indentOptions)
             }
         }
@@ -300,12 +300,12 @@ private struct ModeIndentOptionsView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Toggle(String(localized: "Use custom settings", table: "ModeSettings"),
+            Toggle(.init("Use custom settings", table: "ModeSettings"),
                    isOn: self.usesCustomIndentation)
             
             Group {
                 HStack(alignment: .firstTextBaseline) {
-                    Text(String(localized: "Prefer using", table: "EditSettings"))
+                    Text(.init("Prefer using", table: "EditSettings"))
                         .accessibilityLabeledPair(role: .label, id: "expandsTab", in: self.accessibility)
                     Picker(selection: self.expandsTab) {
                         Text("Spaces", tableName: "EditSettings", comment: "indent style").tag(true)

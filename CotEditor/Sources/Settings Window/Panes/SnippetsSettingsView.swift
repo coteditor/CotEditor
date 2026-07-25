@@ -82,17 +82,17 @@ private struct CommandSnippetsView: View {
             Text("Text to be inserted by a command in the menu or by keyboard shortcut:", tableName: "SnippetsSettings")
             
             Table(of: Binding<Item>.self, selection: $selection) {
-                TableColumn(String(localized: "Syntax", table: "SnippetsSettings", comment: "table column header")) { $item in
+                TableColumn(.init("Syntax", table: "SnippetsSettings", comment: "table column header")) { $item in
                     SyntaxPicker(syntaxes: self.syntaxes, selection: $item.scope)
                         .buttonStyle(.borderless)
-                        .help(String(localized: "Syntax in which this file drop setting is used.", table: "SnippetsSettings", comment: "tooltip"))
+                        .help(.init("Syntax in which this file drop setting is used.", table: "SnippetsSettings", comment: "tooltip"))
                 }.width(160)
                 
-                TableColumn(String(localized: "Name", table: "SnippetsSettings", comment: "table column header")) { $item in
+                TableColumn(.init("Name", table: "SnippetsSettings", comment: "table column header")) { $item in
                     TextField(text: $item.name, label: EmptyView.init)
                 }
                 
-                TableColumn(String(localized: "Key", table: "SnippetsSettings", comment: "table column header")) { $item in
+                TableColumn(.init("Key", table: "SnippetsSettings", comment: "table column header")) { $item in
                     ShortcutField(value: $item.shortcut, error: $error)
                 }
                 .width(80)
@@ -179,18 +179,18 @@ private struct FileDropView: View {
             Text("Text to be inserted by dropping files to the editor:", tableName: "SnippetsSettings")
             
             Table(of: Binding<Item>.self, selection: $selection) {
-                TableColumn(String(localized: "Syntax", table: "SnippetsSettings", comment: "table column header")) { $item in
+                TableColumn(.init("Syntax", table: "SnippetsSettings", comment: "table column header")) { $item in
                     SyntaxPicker(syntaxes: self.syntaxes, selection: $item.scope)
                         .buttonStyle(.borderless)
-                        .help(String(localized: "Syntax in which this file drop setting is used.", table: "SnippetsSettings", comment: "tooltip"))
+                        .help(.init("Syntax in which this file drop setting is used.", table: "SnippetsSettings", comment: "tooltip"))
                 }.width(160)
                 
-                TableColumn(String(localized: "Extensions", table: "SnippetsSettings", comment: "table column header")) { $item in
+                TableColumn(.init("Extensions", table: "SnippetsSettings", comment: "table column header")) { $item in
                     TextField(value: $item.extensions, format: .csv(omittingEmptyItems: true), prompt: Text("All", tableName: "SnippetsSettings"), label: EmptyView.init)
-                        .help(String(localized: "File extensions of dropped file (comma-separated).", table: "SnippetsSettings", comment: "tooltip"))
+                        .help(.init("File extensions of dropped file (comma-separated).", table: "SnippetsSettings", comment: "tooltip"))
                 }
                 
-                TableColumn(String(localized: "Description", table: "SnippetsSettings", comment: "table column header")) { $item in
+                TableColumn(.init("Description", table: "SnippetsSettings", comment: "table column header")) { $item in
                     TextField(text: $item.description ?? "", label: EmptyView.init)
                 }
             } rows: {
@@ -227,7 +227,7 @@ private struct FileDropView: View {
             HStack(alignment: .firstTextBaseline) {
                 AddRemoveButton($items, selection: $selection, newItem: Item())
                 Spacer()
-                Button(String(localized: "Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.restore)
+                Button(.init("Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.restore)
                     .disabled(!self.canRestore)
             }
             .padding(.bottom)
@@ -235,10 +235,10 @@ private struct FileDropView: View {
             InsertionFormatView<FileDropItem.Variable, _>(text: $format, count: self.selection.count) {
                 InsertionMenuContent(items: FileDropItem.Variable.pathTokens)
                 
-                Section(String(localized: "Text File", table: "SnippetsSettings", comment: "menu item header")) {
+                Section(.init("Text File", table: "SnippetsSettings", comment: "menu item header")) {
                     InsertionMenuContent(items: FileDropItem.Variable.textTokens)
                 }
-                Section(String(localized: "Image File", table: "SnippetsSettings", comment: "menu item header")) {
+                Section(.init("Image File", table: "SnippetsSettings", comment: "menu item header")) {
                     InsertionMenuContent(items: FileDropItem.Variable.imageTokens)
                 }
             }
@@ -338,7 +338,7 @@ private struct InsertionFormatView<Variable: TokenRepresentable, MenuContent: Vi
                     .accessibilityLabeledPair(role: .label, id: "insertionFormat", in: self.accessibility)
                 Spacer()
                 
-                Menu(String(localized: "Insert Variable", table: "SnippetsSettings", comment: "button label")) {
+                Menu(.init("Insert Variable", table: "SnippetsSettings", comment: "button label")) {
                     self.menuContent
                 }
             }
@@ -356,12 +356,12 @@ private struct InsertionFormatView<Variable: TokenRepresentable, MenuContent: Vi
     }
     
     
-    private var prompt: String? {
+    private var prompt: LocalizedStringResource? {
         
         switch self.count {
-            case 0: String(localized: "ItemSelection.zero.message", defaultValue: "No item selected")
+            case 0: .init("ItemSelection.zero.message", defaultValue: "No item selected")
             case 1: nil
-            default: String(localized: "ItemSelection.multiple.message", defaultValue: "Multiple items selected")
+            default: .init("ItemSelection.multiple.message", defaultValue: "Multiple items selected")
         }
     }
 }

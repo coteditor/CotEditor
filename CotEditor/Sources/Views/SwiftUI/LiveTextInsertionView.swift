@@ -57,7 +57,7 @@ struct LiveTextInsertionView: View {
                 Spacer()
                 
                 if let transcript = try? self.result?.get().transcript, !transcript.isEmpty {
-                    Button(String(localized: "Insert", table: "LiveTextInsertion", comment: "button label")) {
+                    Button(.init("Insert", table: "LiveTextInsertion", comment: "button label")) {
                         self.actionHandler(transcript)
                         self.dismiss()
                     }.keyboardShortcut(.defaultAction)
@@ -100,7 +100,7 @@ struct LiveTextInsertionView: View {
                     
                 case .failure(let error):
                     VStack(spacing: 4) {
-                        Label(String(localized: "Detection failed", table: "LiveTextInsertion"), systemImage: "exclamationmark.triangle")
+                        Label(.init("Detection failed", table: "LiveTextInsertion"), systemImage: "exclamationmark.triangle")
                             .symbolVariant(.fill)
                         Text(error.localizedDescription)
                             .lineLimit(nil)

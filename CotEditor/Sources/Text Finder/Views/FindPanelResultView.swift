@@ -55,13 +55,13 @@ struct FindPanelResultView: View {
         
         VStack(alignment: .leading) {
             HStack {
-                Button(String(localized: "Close", table: "TextFind", comment: "button label"), systemImage: "chevron.up") {
+                Button(.init("Close", table: "TextFind", comment: "button label"), systemImage: "chevron.up") {
                     NSApp.sendAction(#selector(FindPanelContentViewController.closeResultView), to: nil, from: nil)
                 }
                 .fontWeight(.medium)
                 .imageScale(.small)
                 .labelStyle(.iconOnly)
-                .help(String(localized: "Close find result.", table: "TextFind", comment: "tooltip"))
+                .help(.init("Close find result.", table: "TextFind", comment: "tooltip"))
                 
                 Text("Found \(self.model.matches.count) matches in “\(self.documentName ?? String(localized: .unknown)).”",
                      tableName: "TextFind", comment: "message in the Find All result view (“%2$@” is filename)")
@@ -73,7 +73,7 @@ struct FindPanelResultView: View {
                 .scenePadding(.horizontal)
             
             Table(self.model.matches, selection: $selection, sortOrder: $sortOrder) {
-                TableColumn(String(localized: "Line", table: "TextFind", comment: "table column header"), value: \.range.location) {
+                TableColumn(.init("Line", table: "TextFind", comment: "table column header"), value: \.range.location) {
                     Text($0.lineNumber, format: .number)
                         .monospacedDigit()
                         .padding(.vertical, -2)
@@ -81,7 +81,7 @@ struct FindPanelResultView: View {
                 .width(ideal: 30, max: 64)
                 .alignment(.trailing)
                 
-                TableColumn(String(localized: "Matched Text", table: "TextFind", comment: "table column header")) {
+                TableColumn(.init("Matched Text", table: "TextFind", comment: "table column header")) {
                     Text(AttributedString($0.attributedLineString(offset: 16)))
                         .truncationMode(.tail)
                         .padding(.vertical, -2)
@@ -114,10 +114,10 @@ struct FindPanelResultView: View {
                 self.documentName = newValue?.documentName
             }
             .contextMenu {
-                Menu(String(localized: "Text Size", table: "MainMenu")) {
-                    Button(String(localized: "Bigger", table: "MainMenu"), systemImage: "textformat.size.larger", action: self.biggerFont)
-                    Button(String(localized: "Smaller", table: "MainMenu"), systemImage: "textformat.size.smaller", action: self.smallerFont)
-                    Button(String(localized: "Reset to Default", table: "MainMenu"), systemImage: "textformat.size", action: self.resetFont)
+                Menu(.init("Text Size", table: "MainMenu")) {
+                    Button(.init("Bigger", table: "MainMenu"), systemImage: "textformat.size.larger", action: self.biggerFont)
+                    Button(.init("Smaller", table: "MainMenu"), systemImage: "textformat.size.smaller", action: self.smallerFont)
+                    Button(.init("Reset to Default", table: "MainMenu"), systemImage: "textformat.size", action: self.resetFont)
                 }
             }
             .onCommand(#selector((any TextSizeChanging).biggerFont), perform: self.biggerFont)
@@ -127,7 +127,7 @@ struct FindPanelResultView: View {
         .controlSize(.small)
         .padding(.top, 8)
         .frame(minHeight: 0)
-        .accessibilityLabel(String(localized: "Find Result", table: "TextFind", comment: "accessibility label"))
+        .accessibilityLabel(.init("Find Result", table: "TextFind", comment: "accessibility label"))
     }
     
     

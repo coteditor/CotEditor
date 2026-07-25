@@ -170,56 +170,56 @@ private extension NewFeature {
     }
     
     
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .folderFind:
-                String(localized: "NewFeature.folderFind.label",
-                       defaultValue: "Find it in the folder",
-                       table: "WhatsNew")
+                .init("NewFeature.folderFind.label",
+                      defaultValue: "Find it in the folder",
+                      table: "WhatsNew")
             case .folderNavigationHistory:
-                String(localized: "NewFeature.folderNavigationHistory.label",
-                       defaultValue: "Back and forward in folders",
-                       table: "WhatsNew")
+                .init("NewFeature.folderNavigationHistory.label",
+                      defaultValue: "Back and forward in folders",
+                      table: "WhatsNew")
             case .macOS27:
-                String(localized: "NewFeature.macOS27.label",
-                       defaultValue: "Ready for macOS 27",
-                       table: "WhatsNew")
+                .init("NewFeature.macOS27.label",
+                      defaultValue: "Ready for macOS 27",
+                      table: "WhatsNew")
             case .documentName:
-                String(localized: "NewFeature.documentName.label",
-                       defaultValue: "Let the document name itself",
-                       table: "WhatsNew")
+                .init("NewFeature.documentName.label",
+                      defaultValue: "Let the document name itself",
+                      table: "WhatsNew")
             case .customIndentStyle:
-                String(localized: "NewFeature.customIndentStyle.label",
-                       defaultValue: "Indentation that fits each syntax",
-                       table: "WhatsNew")
+                .init("NewFeature.customIndentStyle.label",
+                      defaultValue: "Indentation that fits each syntax",
+                      table: "WhatsNew")
         }
     }
     
     
-    var description: String {
+    var description: LocalizedStringResource {
         
         switch self {
             case .folderFind:
-                String(localized: "NewFeature.folderFind.description",
-                       defaultValue: "Search text across files in an opened folder right from the sidebar.",
-                       table: "WhatsNew")
+                .init("NewFeature.folderFind.description",
+                      defaultValue: "Search text across files in an opened folder right from the sidebar.",
+                      table: "WhatsNew")
             case .folderNavigationHistory:
-                String(localized: "NewFeature.folderNavigationHistory.description",
-                       defaultValue: "Use the toolbar to move back and forward through recently viewed documents in a folder document.",
-                       table: "WhatsNew")
+                .init("NewFeature.folderNavigationHistory.description",
+                      defaultValue: "Use the toolbar to move back and forward through recently viewed documents in a folder document.",
+                      table: "WhatsNew")
             case .macOS27:
-                String(localized: "NewFeature.macOS27.description",
-                       defaultValue: "CotEditor now supports macOS 27 Golden Gate, including refreshed appearance for the latest system.",
-                       table: "WhatsNew")
+                .init("NewFeature.macOS27.description",
+                      defaultValue: "CotEditor now supports macOS 27 Golden Gate, including refreshed appearance for the latest system.",
+                      table: "WhatsNew")
             case .documentName:
-                String(localized: "NewFeature.documentName.description",
-                       defaultValue: "On macOS 27, untitled documents automatically get a draft name suggested from their content.",
-                       table: "WhatsNew")
+                .init("NewFeature.documentName.description",
+                      defaultValue: "On macOS 27, untitled documents automatically get a draft name suggested from their content.",
+                      table: "WhatsNew")
             case .customIndentStyle:
-                String(localized: "NewFeature.customIndentStyle.description",
-                       defaultValue: "Use Mode settings to customize the indentation style for individual syntaxes as you like.",
-                       table: "WhatsNew")
+                .init("NewFeature.customIndentStyle.description",
+                      defaultValue: "Use Mode settings to customize the indentation style for individual syntaxes as you like.",
+                      table: "WhatsNew")
         }
     }
     

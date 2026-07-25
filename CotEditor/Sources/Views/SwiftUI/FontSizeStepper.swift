@@ -27,7 +27,7 @@ import SwiftUI
 
 struct FontSizeStepper: View {
     
-    private var label: String
+    private var label: LocalizedStringResource
     @Binding private var font: NSFont
     
     
@@ -38,7 +38,7 @@ struct FontSizeStepper: View {
     }
     
     
-    init(_ label: String, font: Binding<NSFont>) {
+    init(_ label: LocalizedStringResource, font: Binding<NSFont>) {
         
         self.label = label
         self._font = font

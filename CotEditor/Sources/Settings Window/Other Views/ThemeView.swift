@@ -91,7 +91,7 @@ struct ThemeView: View {
         .border(.separator)
         .alert(error: $error)
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(String(localized: "Theme", table: "ThemeEditor"))
+        .accessibilityLabel(.init("Theme", table: "ThemeEditor"))
     }
     
     
@@ -161,7 +161,7 @@ private struct ThemeListView: View {
     var body: some View {
         
         List(selection: $selection) {
-            Section(String(localized: "Theme", table: "ThemeEditor")) {
+            Section(.init("Theme", table: "ThemeEditor")) {
                 ForEach(self.settingNames, id: \.self) { name in
                     let state = self.manager.state(of: name)
                     
@@ -213,12 +213,12 @@ private struct ThemeListView: View {
                     self.error = error
             }
         }
-        .fileDialogConfirmationLabel(String(localized: "Action.import.label", defaultValue: "Import"))
-        .confirmationDialog(String(localized: "ImportDuplicationError.description",
-                                   defaultValue: "“\(self.importingError?.name ?? String(localized: .unknown))” already exists. Do you want to replace it?",
-                                   comment: "%@ is a name of a setting. Refer to the same expression by Apple."),
+        .fileDialogConfirmationLabel(.init("Action.import.label", defaultValue: "Import"))
+        .confirmationDialog(.init("ImportDuplicationError.description",
+                                  defaultValue: "“\(self.importingError?.name ?? String(localized: .unknown))” already exists. Do you want to replace it?",
+                                  comment: "%@ is a name of a setting. Refer to the same expression by Apple."),
                             item: $importingError) { item in
-            Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
+            Button(.init("Action.replace.label", defaultValue: "Replace")) {
                 do {
                     try item.item.withSecurityScopedAccess {
                         try self.manager.importSetting(item.item, name: item.name, type: item.type, overwrite: true)
@@ -239,11 +239,11 @@ private struct ThemeListView: View {
                     self.error = error
             }
         }
-        .confirmationDialog(String(localized: "DeletionConfirmation.title",
-                                   defaultValue: "Are you sure you want to delete “\(self.deletingItem ?? String(localized: .unknown))”?"),
+        .confirmationDialog(.init("DeletionConfirmation.title",
+                                  defaultValue: "Are you sure you want to delete “\(self.deletingItem ?? String(localized: .unknown))”?"),
                             item: $deletingItem)
         { name in
-            Button(String(localized: "Action.delete.label", defaultValue: "Delete"), role: .destructive) {
+            Button(.init("Action.delete.label", defaultValue: "Delete"), role: .destructive) {
                 do {
                     try self.manager.removeSetting(name: name)
                 } catch {
@@ -253,8 +253,8 @@ private struct ThemeListView: View {
                 UserDefaults.standard.restore(key: .theme)
             }
         } message: { _ in
-            Text(String(localized: "DeletionConfirmation.message",
-                        defaultValue: "This action cannot be undone."))
+            Text(.init("DeletionConfirmation.message",
+                       defaultValue: "This action cannot be undone."))
         }
         .alert(error: $error)
     }
@@ -271,20 +271,20 @@ private struct ThemeListView: View {
                     self.error = error
                 }
             } label: {
-                Label(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus")
+                Label(.init("Action.add.label", defaultValue: "Add"), systemImage: "plus")
                     .padding(2)
             }
-            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
+            .help(.init("Action.add.tooltip", defaultValue: "Add new item"))
             .labelStyle(.iconOnly)
             .frame(width: 16)
             
             Button {
                 self.deletingItem = self.selection
             } label: {
-                Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
+                Label(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
                     .padding(2)
             }
-            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
+            .help(.init("Action.delete.tooltip", defaultValue: "Delete selected items"))
             .labelStyle(.iconOnly)
             .frame(width: 16)
             .disabled(self.manager.state(of: self.selection)?.isBundled != false)
@@ -294,7 +294,7 @@ private struct ThemeListView: View {
             Menu {
                 self.menu(for: self.selection)
             } label: {
-                Label(String(localized: "Button.actions.label", defaultValue: "Actions"), systemImage: "ellipsis")
+                Label(.init("Button.actions.label", defaultValue: "Actions"), systemImage: "ellipsis")
                     .symbolVariant(.circle)
                     .labelStyle(.iconOnly)
             }
@@ -313,8 +313,8 @@ private struct ThemeListView: View {
         
         if let selection = self.manager.state(of: selection) {
             Button(isContext
-                   ? String(localized: "Action.duplicate.label", defaultValue: "Duplicate")
-                   : String(localized: "Action.duplicate.named.label", defaultValue: "Duplicate “\(selection.name)”"),
+                   ? .init("Action.duplicate.label", defaultValue: "Duplicate")
+                   : .init("Action.duplicate.named.label", defaultValue: "Duplicate “\(selection.name)”"),
                    systemImage: "plus.square.on.square")
             {
                 do {
@@ -325,8 +325,8 @@ private struct ThemeListView: View {
             }
             
             Button(isContext
-                   ? String(localized: "Action.rename.label", defaultValue: "Rename")
-                   : String(localized: "Action.rename.named.label", defaultValue: "Rename “\(selection.name)”"),
+                   ? .init("Action.rename.label", defaultValue: "Rename")
+                   : .init("Action.rename.named.label", defaultValue: "Rename “\(selection.name)”"),
                    systemImage: "pencil")
             {
                 self.editingItem = selection.name
@@ -334,8 +334,8 @@ private struct ThemeListView: View {
             .disabled(selection.isBundled)
             
             Button(isContext
-                   ? String(localized: "Action.restore.label", defaultValue: "Restore")
-                   : String(localized: "Action.restore.named.label", defaultValue: "Restore “\(selection.name)”"),
+                   ? .init("Action.restore.label", defaultValue: "Restore")
+                   : .init("Action.restore.named.label", defaultValue: "Restore “\(selection.name)”"),
                    systemImage: "arrow.clockwise")
             {
                 do {
@@ -347,15 +347,15 @@ private struct ThemeListView: View {
             .disabled(!selection.isRestorable)
             
             if isContext {
-                Button(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "trash") {
+                Button(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "trash") {
                     self.deletingItem = selection.name
                 }
                 .disabled(selection.isBundled)
             }
             
             Button(isContext
-                   ? String(localized: "Action.export.label", defaultValue: "Export…")
-                   : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection.name)”…"),
+                   ? .init("Action.export.label", defaultValue: "Export…")
+                   : .init("Action.export.named.label", defaultValue: "Export “\(selection.name)”…"),
                    systemImage: "square.and.arrow.up")
             {
                 if let url = self.manager.urlForUserSetting(name: selection.name) {
@@ -365,8 +365,8 @@ private struct ThemeListView: View {
             }
             .modifierKeyAlternate(.option) {
                 Button(isContext
-                       ? String(localized: "Action.revealInFinder.label", defaultValue: "Reveal in Finder")
-                       : String(localized: "Action.revealInFinder.named.label", defaultValue: "Reveal “\(selection.name)” in Finder"),
+                       ? .init("Action.revealInFinder.label", defaultValue: "Reveal in Finder")
+                       : .init("Action.revealInFinder.named.label", defaultValue: "Reveal “\(selection.name)” in Finder"),
                        systemImage: "finder")
                 {
                     guard let url = self.manager.urlForUserSetting(name: selection.name) else { return }
@@ -386,11 +386,11 @@ private struct ThemeListView: View {
         if !isContext {
             Divider()
             
-            Button(String(localized: "Action.import.ellipsis.label", defaultValue: "Import…"), systemImage: "square.and.arrow.down") {
+            Button(.init("Action.import.ellipsis.label", defaultValue: "Import…"), systemImage: "square.and.arrow.down") {
                 self.isImporterPresented = true
             }
             .modifierKeyAlternate(.option) {
-                Button(String(localized: "Reload All Themes", table: "ThemeEditor"), systemImage: "arrow.clockwise") {
+                Button(.init("Reload All Themes", table: "ThemeEditor"), systemImage: "arrow.clockwise") {
                     Task {
                         await self.manager.invalidateUserSettings()
                     }
@@ -447,26 +447,26 @@ private struct ThemeEditorView: View {
         Grid(alignment: .trailingFirstTextBaseline, verticalSpacing: 4) {
             GridRow {
                 VStack(alignment: .trailing, spacing: 3) {
-                    ColorPicker(String(localized: "Text:", table: "ThemeEditor"),
+                    ColorPicker(.init("Text:", table: "ThemeEditor"),
                                 selection: $theme.text.binding, supportsOpacity: false)
-                    ColorPicker(String(localized: "Invisibles:", table: "ThemeEditor"),
+                    ColorPicker(.init("Invisibles:", table: "ThemeEditor"),
                                 selection: $theme.invisibles.binding)
-                    SystemColorPicker(String(localized: "Cursor:", table: "ThemeEditor"),
+                    SystemColorPicker(.init("Cursor:", table: "ThemeEditor"),
                                       selection: $theme.insertionPoint,
                                       systemColor: Color(nsColor: .textInsertionPointColor),
                                       supportsOpacity: false)
                 }.accessibilityElement(children: .contain)
                 
                 VStack(alignment: .trailing, spacing: 3) {
-                    ColorPicker(String(localized: "Background:", table: "ThemeEditor"),
+                    ColorPicker(.init("Background:", table: "ThemeEditor"),
                                 selection: $theme.background.binding, supportsOpacity: false)
-                    ColorPicker(String(localized: "Current Line:", table: "ThemeEditor"),
+                    ColorPicker(.init("Current Line:", table: "ThemeEditor"),
                                 selection: $theme.lineHighlight.binding)
-                    SystemColorPicker(String(localized: "Selection:", table: "ThemeEditor"),
+                    SystemColorPicker(.init("Selection:", table: "ThemeEditor"),
                                       selection: $theme.selection,
                                       systemColor: Color(nsColor: .selectedTextBackgroundColor.forDarkMode(self.theme.isDarkTheme)),
                                       supportsOpacity: false)
-                    SystemColorPicker(String(localized: "Highlight:", table: "ThemeEditor"),
+                    SystemColorPicker(.init("Highlight:", table: "ThemeEditor"),
                                       selection: $theme.highlight,
                                       systemColor: .accentColor,
                                       supportsOpacity: false)
@@ -483,35 +483,35 @@ private struct ThemeEditorView: View {
             
             GridRow {
                 VStack(alignment: .trailing, spacing: 3) {
-                    ColorPicker(String(localized: "\(SyntaxType.keywords.label):"),
+                    ColorPicker(LocalizedStringResource("\(SyntaxType.keywords.label):"),
                                 selection: $theme.keywords.binding)
-                    ColorPicker(String(localized: "\(SyntaxType.commands.label):"),
+                    ColorPicker(LocalizedStringResource("\(SyntaxType.commands.label):"),
                                 selection: $theme.commands.binding)
-                    ColorPicker(String(localized: "\(SyntaxType.types.label):"),
+                    ColorPicker(LocalizedStringResource("\(SyntaxType.types.label):"),
                                 selection: $theme.types.binding)
-                    ColorPicker(String(localized: "\(SyntaxType.attributes.label):"),
+                    ColorPicker(LocalizedStringResource("\(SyntaxType.attributes.label):"),
                                 selection: $theme.attributes.binding)
-                    ColorPicker(String(localized: "\(SyntaxType.variables.label):"),
+                    ColorPicker(LocalizedStringResource("\(SyntaxType.variables.label):"),
                                 selection: $theme.variables.binding)
                 }.accessibilityElement(children: .contain)
                 
                 VStack(alignment: .trailing, spacing: 3) {
-                    ColorPicker(String(localized: "\(SyntaxType.values.label):"),
+                    ColorPicker(LocalizedStringResource("\(SyntaxType.values.label):"),
                                 selection: $theme.values.binding)
-                    ColorPicker(String(localized: "\(SyntaxType.numbers.label):"),
+                    ColorPicker(LocalizedStringResource("\(SyntaxType.numbers.label):"),
                                 selection: $theme.numbers.binding)
-                    ColorPicker(String(localized: "\(SyntaxType.strings.label):"),
+                    ColorPicker(LocalizedStringResource("\(SyntaxType.strings.label):"),
                                 selection: $theme.strings.binding)
-                    ColorPicker(String(localized: "\(SyntaxType.characters.label):"),
+                    ColorPicker(LocalizedStringResource("\(SyntaxType.characters.label):"),
                                 selection: $theme.characters.binding)
-                    ColorPicker(String(localized: "\(SyntaxType.comments.label):"),
+                    ColorPicker(LocalizedStringResource("\(SyntaxType.comments.label):"),
                                 selection: $theme.comments.binding)
                 }.accessibilityElement(children: .contain)
             }.accessibilityElement(children: .contain)
             
             HStack {
                 Spacer()
-                Button(String(localized: "Show theme file information", table: "ThemeEditor"), systemImage: "info") {
+                Button(.init("Show theme file information", table: "ThemeEditor"), systemImage: "info") {
                     self.isMetadataPresenting.toggle()
                 }
                 .symbolVariant(.circle)
@@ -523,14 +523,14 @@ private struct ThemeEditorView: View {
             }
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(String(localized: "Theme Editor", table: "ThemeEditor"))
+        .accessibilityLabel(.init("Theme Editor", table: "ThemeEditor"))
     }
 }
 
 
 private struct SystemColorPicker: View {
     
-    var label: String
+    var label: LocalizedStringResource
     @Binding var selection: Theme.SystemDefaultStyle
     var systemColor: Color
     var supportsOpacity: Bool
@@ -538,7 +538,7 @@ private struct SystemColorPicker: View {
     @Namespace private var accessibility
     
     
-    init(_ label: String, selection: Binding<Theme.SystemDefaultStyle>, systemColor: Color, supportsOpacity: Bool = true) {
+    init(_ label: LocalizedStringResource, selection: Binding<Theme.SystemDefaultStyle>, systemColor: Color, supportsOpacity: Bool = true) {
         
         self.label = label
         self._selection = selection
@@ -555,7 +555,7 @@ private struct SystemColorPicker: View {
                     .accessibilityLabeledPair(role: .label, id: "color", in: self.accessibility)
             }
             .disabled(self.selection.usesSystemSetting)
-            Toggle(String(localized: "Use system color", table: "ThemeEditor", comment: "toggle button label"), isOn: $selection.usesSystemSetting)
+            Toggle(.init("Use system color", table: "ThemeEditor", comment: "toggle button label"), isOn: $selection.usesSystemSetting)
                 .controlSize(.small)
                 .accessibilityLabeledPair(role: .content, id: "color", in: self.accessibility)
         }.accessibilityElement(children: .contain)

@@ -33,13 +33,13 @@ struct AboutView: View {
         case credits
         case license
         
-        var label: String {
+        var label: LocalizedStringResource {
             
             switch self {
                 case .credits:
-                    String(localized: "Credits", table: "About", comment: "button label")
+                    .init("Credits", table: "About", comment: "button label")
                 case .license:
-                    String(localized: "Licenses", table: "About", comment: "button label")
+                    .init("Licenses", table: "About", comment: "button label")
             }
         }
     }
@@ -53,7 +53,7 @@ struct AboutView: View {
         HStack(spacing: 0) {
             VStack(spacing: 6) {
                 Image(nsImage: NSApp.applicationIconImage)
-                    .accessibilityLabel(String(localized: "\(Bundle.main.bundleName) icon", table: "About", comment: "%@ is application name"))
+                    .accessibilityLabel(.init("\(Bundle.main.bundleName) icon", table: "About", comment: "%@ is application name"))
                 Text(Bundle.main.bundleName)
                     .font(.title)
                 Text("Version \(Bundle.main.shortVersion) (\(Bundle.main.bundleVersion))",
@@ -144,13 +144,13 @@ private struct CreditsView: View {
     var body: some View {
         
         VStack(spacing: 6) {
-            SectionView(String(localized: "The CotEditor Project", table: "About", comment: "section heading")) {
+            SectionView(.init("The CotEditor Project", table: "About", comment: "section heading")) {
                 ForEach(self.credits.project, id: \.name) {
                     ContributorView(contributor: $0)
                 }
             }
             
-            SectionView(String(localized: "Localization", table: "About", comment: "section heading")) {
+            SectionView(.init("Localization", table: "About", comment: "section heading")) {
                 Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 4) {
                     ForEach(self.credits.localization.sorted(using: KeyPathComparator(\.key)), id: \.key) { item in
                         GridRow {
@@ -169,12 +169,12 @@ private struct CreditsView: View {
                 }
             }
             
-            SectionView(String(localized: "Code Contributors", table: "About", comment: "section heading")) {
+            SectionView(.init("Code Contributors", table: "About", comment: "section heading")) {
                 Text(self.credits.contributors.map(\.name).sorted(using: .localized), format: .list(type: .and))
                     .textSelection(.enabled)
             }
             
-            SectionView(String(localized: "Special Thanks", table: "About", comment: "section heading")) {
+            SectionView(.init("Special Thanks", table: "About", comment: "section heading")) {
                 Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 4) {
                     GridRow {
                         Text("original developer", tableName: "About")
@@ -216,11 +216,11 @@ private struct CreditsView: View {
     
     private struct SectionView<Content: View>: View {
         
-        var label: String
+        var label: LocalizedStringResource
         @ContentBuilder var content: Content
         
         
-        init(_ label: String, @ContentBuilder content: () -> Content) {
+        init(_ label: LocalizedStringResource, @ContentBuilder content: () -> Content) {
             
             self.label = label
             self.content = content()

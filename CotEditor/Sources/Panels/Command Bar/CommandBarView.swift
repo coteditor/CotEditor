@@ -279,11 +279,11 @@ private extension ActionCommand.Kind {
     }
     
     
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
-            case .command: String(localized: "Command", table: "CommandBar", comment: "command type")
-            case .script: String(localized: "Script", table: "CommandBar", comment: "command type")
+            case .command: .init("Command", table: "CommandBar", comment: "command type")
+            case .script: .init("Script", table: "CommandBar", comment: "command type")
         }
     }
 }

@@ -70,13 +70,13 @@ struct SyntaxMappingConflictView: View {
             Text("The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition.", tableName: "SyntaxMappingConflict")
             
             if !self.extensionConflicts.isEmpty {
-                ConflictTable(String(localized: "Extension", table: "SyntaxMappingConflict", comment: "heading"), items: self.extensionConflicts)
+                ConflictTable(.init("Extension", table: "SyntaxMappingConflict", comment: "heading"), items: self.extensionConflicts)
             }
             if !self.filenameConflicts.isEmpty {
-                ConflictTable(String(localized: "Filename", table: "SyntaxMappingConflict", comment: "heading"), items: self.filenameConflicts)
+                ConflictTable(.init("Filename", table: "SyntaxMappingConflict", comment: "heading"), items: self.filenameConflicts)
             }
             if !self.interpreterConflicts.isEmpty {
-                ConflictTable(String(localized: "Interpreter", table: "SyntaxMappingConflict", comment: "heading"), items: self.interpreterConflicts)
+                ConflictTable(.init("Interpreter", table: "SyntaxMappingConflict", comment: "heading"), items: self.interpreterConflicts)
             }
             
             HStack {
@@ -99,14 +99,14 @@ private struct ConflictTable: View {
     
     typealias Item = FileMappingConflict
     
-    var name: String
+    var name: LocalizedStringResource
     @State var items: [Item]
     
     @State private var selection: Item.ID?
     @State private var sortOrder = [KeyPathComparator(\Item.name)]
     
     
-    init(_ name: String, items: [Item]) {
+    init(_ name: LocalizedStringResource, items: [Item]) {
         
         self.name = name
         self.items = items
@@ -118,10 +118,10 @@ private struct ConflictTable: View {
         Section {
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
                 TableColumn(self.name, value: \.name)
-                TableColumn(String(localized: "Used syntax", table: "SyntaxMappingConflict", comment: "table column header"), value: \.primarySyntax) {
+                TableColumn(.init("Used syntax", table: "SyntaxMappingConflict", comment: "table column header"), value: \.primarySyntax) {
                     Text($0.primarySyntax).fontWeight(.semibold)
                 }
-                TableColumn(String(localized: "Duplicated syntaxes", table: "SyntaxMappingConflict", comment: "table column header"), sortUsing: KeyPathComparator(\.duplicatedSyntaxes.first)) {
+                TableColumn(.init("Duplicated syntaxes", table: "SyntaxMappingConflict", comment: "table column header"), sortUsing: KeyPathComparator(\.duplicatedSyntaxes.first)) {
                     Text($0.duplicatedSyntaxes, format: .list(type: .and, width: .narrow))
                 }
             }

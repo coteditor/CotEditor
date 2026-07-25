@@ -81,7 +81,7 @@ struct MultipleReplaceListView: View {
             }
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(String(localized: "Sidebar", table: "MultipleReplace", comment: "accessibility label"))
+        .accessibilityLabel(.init("Sidebar", table: "MultipleReplace", comment: "accessibility label"))
         .onChange(of: self.manager.settingNames, initial: true) { _, newValue in self.settingNames = newValue }
         .onAppear {
             // separate from `.onChange(of: self.settingNames.isEmpty)`
@@ -103,15 +103,15 @@ struct MultipleReplaceListView: View {
                     self.error = error
             }
         }
-        .fileDialogMessage(String(localized: "FileImporter.message",
-                                  defaultValue: "Choose CotEditor Replace Definition or TSV (Tab-separated values) files.", table: "MultipleReplace",
-                                  comment: "CotEditor Replace Definition is a proper file type name. Refer to InfoPlist.xcstrings."))
-        .fileDialogConfirmationLabel(String(localized: "Action.import.label", defaultValue: "Import"))
-        .confirmationDialog(String(localized: "ImportDuplicationError.description",
-                                   defaultValue: "“\(self.importingError?.name ?? String(localized: .unknown))” already exists. Do you want to replace it?",
-                                   comment: "%@ is a name of a setting. Refer to the same expression by Apple."),
+        .fileDialogMessage(.init("FileImporter.message",
+                                 defaultValue: "Choose CotEditor Replace Definition or TSV (Tab-separated values) files.", table: "MultipleReplace",
+                                 comment: "CotEditor Replace Definition is a proper file type name. Refer to InfoPlist.xcstrings."))
+        .fileDialogConfirmationLabel(.init("Action.import.label", defaultValue: "Import"))
+        .confirmationDialog(.init("ImportDuplicationError.description",
+                                  defaultValue: "“\(self.importingError?.name ?? String(localized: .unknown))” already exists. Do you want to replace it?",
+                                  comment: "%@ is a name of a setting. Refer to the same expression by Apple."),
                             item: $importingError) { item in
-            Button(String(localized: "Action.replace.label", defaultValue: "Replace")) {
+            Button(.init("Action.replace.label", defaultValue: "Replace")) {
                 do {
                     try item.item.withSecurityScopedAccess {
                         try self.manager.importSetting(item.item, name: item.name, type: item.type, overwrite: true)
@@ -132,11 +132,11 @@ struct MultipleReplaceListView: View {
                     self.error = error
             }
         }
-        .confirmationDialog(String(localized: "DeletionConfirmation.title",
-                                   defaultValue: "Are you sure you want to delete “\(self.deletingItem ?? String(localized: .unknown))”?"),
+        .confirmationDialog(.init("DeletionConfirmation.title",
+                                  defaultValue: "Are you sure you want to delete “\(self.deletingItem ?? String(localized: .unknown))”?"),
                             item: $deletingItem)
         { name in
-            Button(String(localized: "Action.delete.label", defaultValue: "Delete"), role: .destructive) {
+            Button(.init("Action.delete.label", defaultValue: "Delete"), role: .destructive) {
                 do {
                     try self.manager.removeSetting(name: name)
                 } catch {
@@ -146,8 +146,7 @@ struct MultipleReplaceListView: View {
                 self.selection = self.settingNames.first
             }
         } message: { _ in
-            Text(String(localized: "DeletionConfirmation.message",
-                        defaultValue: "This action cannot be undone."))
+            Text(.init("DeletionConfirmation.message", defaultValue: "This action cannot be undone."))
         }
         .alert(error: $error)
     }
@@ -160,20 +159,20 @@ struct MultipleReplaceListView: View {
             Button {
                 self.createUntitledSetting()
             } label: {
-                Label(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus")
+                Label(.init("Action.add.label", defaultValue: "Add"), systemImage: "plus")
                     .padding(2)
             }
-            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
+            .help(.init("Action.add.tooltip", defaultValue: "Add new item"))
             .labelStyle(.iconOnly)
             .frame(width: 16)
             
             Button {
                 self.deletingItem = self.selection
             } label: {
-                Label(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
+                Label(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
                     .padding(2)
             }
-            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
+            .help(.init("Action.delete.tooltip", defaultValue: "Delete selected items"))
             .labelStyle(.iconOnly)
             .frame(width: 16)
             
@@ -182,7 +181,7 @@ struct MultipleReplaceListView: View {
             Menu {
                 self.menu(for: self.selection)
             } label: {
-                Label(String(localized: "Button.actions.label", defaultValue: "Actions"), systemImage: "ellipsis")
+                Label(.init("Button.actions.label", defaultValue: "Actions"), systemImage: "ellipsis")
                     .symbolVariant(.circle)
                     .labelStyle(.iconOnly)
             }
@@ -201,8 +200,8 @@ struct MultipleReplaceListView: View {
         
         if let selection {
             Button(isContext
-                   ? String(localized: "Action.duplicate.label", defaultValue: "Duplicate")
-                   : String(localized: "Action.duplicate.named.label", defaultValue: "Duplicate “\(selection)”"),
+                   ? .init("Action.duplicate.label", defaultValue: "Duplicate")
+                   : .init("Action.duplicate.named.label", defaultValue: "Duplicate “\(selection)”"),
                    systemImage: "plus.square.on.square")
             {
                 do {
@@ -213,22 +212,22 @@ struct MultipleReplaceListView: View {
             }
             
             Button(isContext
-                   ? String(localized: "Action.rename.label", defaultValue: "Rename")
-                   : String(localized: "Action.rename.named.label", defaultValue: "Rename “\(selection)”"),
+                   ? .init("Action.rename.label", defaultValue: "Rename")
+                   : .init("Action.rename.named.label", defaultValue: "Rename “\(selection)”"),
                    systemImage: "pencil")
             {
                 self.editingItem = selection
             }
             
             if isContext {
-                Button(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "trash") {
+                Button(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "trash") {
                     self.deletingItem = selection
                 }
             }
             
             Button(isContext
-                   ? String(localized: "Action.export.label", defaultValue: "Export…")
-                   : String(localized: "Action.export.named.label", defaultValue: "Export “\(selection)”…"),
+                   ? .init("Action.export.label", defaultValue: "Export…")
+                   : .init("Action.export.named.label", defaultValue: "Export “\(selection)”…"),
                    systemImage: "square.and.arrow.up")
             {
                 if let url = self.manager.urlForUserSetting(name: selection) {
@@ -238,8 +237,8 @@ struct MultipleReplaceListView: View {
             }
             .modifierKeyAlternate(.option) {
                 Button(isContext
-                       ? String(localized: "Action.revealInFinder.label", defaultValue: "Reveal in Finder")
-                       : String(localized: "Action.revealInFinder.named.label", defaultValue: "Reveal “\(selection)” in Finder"),
+                       ? .init("Action.revealInFinder.label", defaultValue: "Reveal in Finder")
+                       : .init("Action.revealInFinder.named.label", defaultValue: "Reveal “\(selection)” in Finder"),
                        systemImage: "finder")
                 {
                     guard let url = self.manager.urlForUserSetting(name: selection) else { return }
@@ -257,11 +256,11 @@ struct MultipleReplaceListView: View {
         if !isContext {
             Divider()
             
-            Button(String(localized: "Action.import.ellipsis.label", defaultValue: "Import…"), systemImage: "square.and.arrow.down") {
+            Button(.init("Action.import.ellipsis.label", defaultValue: "Import…"), systemImage: "square.and.arrow.down") {
                 self.isImporterPresented = true
             }
             .modifierKeyAlternate(.option) {
-                Button(String(localized: "Reload All Definitions", table: "MultipleReplace"), systemImage: "arrow.clockwise") {
+                Button(.init("Reload All Definitions", table: "MultipleReplace"), systemImage: "arrow.clockwise") {
                     Task {
                         await self.manager.invalidateUserSettings()
                     }

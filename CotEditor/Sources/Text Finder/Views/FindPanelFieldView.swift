@@ -74,9 +74,9 @@ struct FindPanelFieldView: View {
             .onModifierKeysChanged(mask: .shift) { _, new in self.isPressingShift = new.contains(.shift) }
             .overlay(alignment: .top) {
                 HStack(alignment: .firstTextBaseline) {
-                    HistoryMenu(String(localized: "Recent Searches", table: "TextFind", comment: "menu item header"),
+                    HistoryMenu(.init("Recent Searches", table: "TextFind", comment: "menu item header"),
                                 defaultKey: .findHistory, systemImage: "magnifyingglass",
-                                clearLabel: String(localized: "Clear Recent Searches", table: "TextFind", comment: "menu item label"),
+                                clearLabel: .init("Clear Recent Searches", table: "TextFind", comment: "menu item label"),
                                 value: $settings.findString)
                     Spacer()
                     FindPanelFieldAccessoryView(result: self.findResultMessage,
@@ -85,7 +85,7 @@ struct FindPanelFieldView: View {
                 }
                 .padding(.trailing, self.scrollerThickness)
             }
-            .help(String(localized: "Type the text to search for.", table: "TextFind", comment: "tooltip"))
+            .help(.init("Type the text to search for.", table: "TextFind", comment: "tooltip"))
             .frame(minHeight: 44)
             
             FindTextField(String(localized: "Replace with", table: "TextFind", comment: "placeholder"),
@@ -95,9 +95,9 @@ struct FindPanelFieldView: View {
                           trailingInset: self.replaceMessageWidth)
             .overlay(alignment: .top) {
                 HStack(alignment: .firstTextBaseline) {
-                    HistoryMenu(String(localized: "Recent Replacements", table: "TextFind", comment: "menu item header"),
+                    HistoryMenu(.init("Recent Replacements", table: "TextFind", comment: "menu item header"),
                                 defaultKey: .replaceHistory, systemImage: "pencil",
-                                clearLabel: String(localized: "Clear Recent Replacements", table: "TextFind", comment: "menu item label"),
+                                clearLabel: .init("Clear Recent Replacements", table: "TextFind", comment: "menu item label"),
                                 value: $settings.replacementString)
                     Spacer()
                     FindPanelFieldAccessoryView(result: (self.result?.action == .replace) ? self.result?.message : nil,
@@ -106,34 +106,34 @@ struct FindPanelFieldView: View {
                 }
                 .padding(.trailing, self.scrollerThickness)
             }
-            .help(String(localized: "Type the text to replace the found text.", table: "TextFind", comment: "tooltip"))
+            .help(.init("Type the text to replace the found text.", table: "TextFind", comment: "tooltip"))
             .frame(minHeight: 44)
             
             HStack(alignment: .firstTextBaseline, spacing: 12) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Toggle(String(localized: "Regular Expression", table: "TextFind", comment: "toggle button label"), isOn: $usesRegularExpression)
-                        .help(String(localized: "Select to search with regular expression.", table: "TextFind", comment: "tooltip"))
+                    Toggle(.init("Regular Expression", table: "TextFind", comment: "toggle button label"), isOn: $usesRegularExpression)
+                        .help(.init("Select to search with regular expression.", table: "TextFind", comment: "tooltip"))
                         .fixedSize()
                     HelpLink {
                         self.isRegexReferencePresented.toggle()
                     }
-                    .help(String(localized: "Show quick reference for regular expression syntax.", table: "TextFind", comment: "tooltip"))
+                    .help(.init("Show quick reference for regular expression syntax.", table: "TextFind", comment: "tooltip"))
                     .controlSize(.mini)
                     .detachablePopover(isPresented: $isRegexReferencePresented, arrowEdge: .bottom) {
                         RegularExpressionReferenceView()
                             .scenePadding()
                     }
                 }
-                Toggle(String(localized: "Ignore Case", table: "TextFind", comment: "toggle button label"), isOn: $ignoresCase)
-                    .help(String(localized: "Select to ignore character case on search.", table: "TextFind", comment: "tooltip"))
+                Toggle(.init("Ignore Case", table: "TextFind", comment: "toggle button label"), isOn: $ignoresCase)
+                    .help(.init("Select to ignore character case on search.", table: "TextFind", comment: "tooltip"))
                     .fixedSize()
-                Toggle(String(localized: "In Selection", table: "TextFind", comment: "toggle button label"), isOn: $inSelection)
-                    .help(String(localized: "Select to search text only from selection.", table: "TextFind", comment: "tooltip"))
+                Toggle(.init("In Selection", table: "TextFind", comment: "toggle button label"), isOn: $inSelection)
+                    .help(.init("Select to search text only from selection.", table: "TextFind", comment: "tooltip"))
                     .fixedSize()
                 
                 Spacer()
                 
-                Button(String(localized: "Advanced options", table: "TextFind", comment: "accessibility label"), systemImage: "ellipsis") {
+                Button(.init("Advanced options", table: "TextFind", comment: "accessibility label"), systemImage: "ellipsis") {
                     self.isSettingsPresented.toggle()
                 }
                 .popover(isPresented: $isSettingsPresented, arrowEdge: .trailing) {
@@ -142,7 +142,7 @@ struct FindPanelFieldView: View {
                 }
                 .symbolVariant(.circle)
                 .labelStyle(.iconOnly)
-                .help(String(localized: "Show advanced options", table: "TextFind", comment: "tooltip"))
+                .help(.init("Show advanced options", table: "TextFind", comment: "tooltip"))
             }
             .controlSize(.small)
         }
@@ -238,7 +238,7 @@ private struct FindPanelFieldAccessoryView: View {
                         .clipShape(.rect(cornerRadius: 2))
                 }
                 
-                Button(String(localized: "Clear", table: "TextFind", comment: "button label"), systemImage: "xmark") {
+                Button(.init("Clear", table: "TextFind", comment: "button label"), systemImage: "xmark") {
                     self.text = ""
                 }
                 .symbolVariant(.circle.fill)
@@ -256,14 +256,14 @@ private struct HistoryMenu: View {
     
     var defaultKey: DefaultKey<[String]>
     
-    var label: String
+    var label: LocalizedStringResource
     var systemImage: String
-    var clearLabel: String
+    var clearLabel: LocalizedStringResource
     
     @Binding var value: String
     
     
-    init(_ label: String, defaultKey: DefaultKey<[String]>, systemImage: String, clearLabel: String, value: Binding<String>) {
+    init(_ label: LocalizedStringResource, defaultKey: DefaultKey<[String]>, systemImage: String, clearLabel: LocalizedStringResource, value: Binding<String>) {
         
         self.defaultKey = defaultKey
         self.label = label

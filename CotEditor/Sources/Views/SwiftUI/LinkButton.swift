@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2025 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ struct LinkButton: View {
         
         if let url = URL(string: self.url) {
             Link(destination: url) {
-                Label(String(localized: "LinkButton.label", defaultValue: "Jump to URL", comment: "accessibility label for link button"), systemImage: "arrow.forward")
+                Label(.init("LinkButton.label", defaultValue: "Jump to URL", comment: "accessibility label for link button"), systemImage: "arrow.forward")
                     .symbolVariant(.circle)
             }
             .labelStyle(.iconOnly)

@@ -97,7 +97,7 @@ struct SyntaxEditView: View {
         
         NavigationSplitView(columnVisibility: .constant(.all)) {
             List(selection: $pane) {
-                Section(String(localized: "Features", table: "SyntaxEditor", comment: "section header in sidebar")) {
+                Section(.init("Features", table: "SyntaxEditor", comment: "section header in sidebar")) {
                     ForEach(Pane.features, id: \.self) { pane in
                         switch pane {
                             case .outline where !self.customizableFeatures.contains(.outline):
@@ -107,7 +107,7 @@ struct SyntaxEditView: View {
                         }
                     }
                 }
-                Section(String(localized: "Highlighting", table: "SyntaxEditor", comment: "section header in sidebar")) {
+                Section(.init("Highlighting", table: "SyntaxEditor", comment: "section header in sidebar")) {
                     if self.customizableFeatures.contains(.highlight) {
                         ForEach(Pane.highlights, id: \.self) { pane in
                             Text(pane.label)
@@ -116,7 +116,7 @@ struct SyntaxEditView: View {
                         Self.lockedPaneLabel(.builtIn)
                     }
                 }
-                Section(String(localized: "Definition File", table: "SyntaxEditor", comment: "section header in sidebar")) {
+                Section(.init("Definition File", table: "SyntaxEditor", comment: "section header in sidebar")) {
                     ForEach(Pane.syntaxData, id: \.self) { pane in
                         switch pane {
                             case .validation:
@@ -136,10 +136,10 @@ struct SyntaxEditView: View {
                     if self.isBundled {
                         Text(self.name)
                             .fontWeight(.semibold)
-                            .help(String(localized: "Built-in syntaxes can’t be renamed.", table: "SyntaxEditor",
-                                         comment: "tooltip for name field for bundled syntax"))
+                            .help(.init("Built-in syntaxes can’t be renamed.", table: "SyntaxEditor",
+                                        comment: "tooltip for name field for bundled syntax"))
                     } else {
-                        TextField(String(localized: "Syntax name", table: "SyntaxEditor"), text: $name)
+                        TextField(.init("Syntax name", table: "SyntaxEditor"), text: $name)
                             .focused($isNameFieldFocused)
                             .fontWeight(.medium)
                             .frame(minWidth: 80, maxWidth: 160)
@@ -156,7 +156,7 @@ struct SyntaxEditView: View {
                     }
                     
                     Spacer()
-                    Picker(String(localized: "Kind:", table: "SyntaxEditor"), selection: $syntax.kind) {
+                    Picker(.init("Kind:", table: "SyntaxEditor"), selection: $syntax.kind) {
                         ForEach(Syntax.Kind.allCases, id: \.self) {
                             Text($0.label)
                         }

@@ -88,14 +88,14 @@ struct AppearanceSettingsView: View {
                         self.monospacedAlertFont = oldValue
                     }
                     .accessibilityLabeledPair(role: .content, id: "monospacedFont", in: self.accessibility)
-                    .alert(String(localized: "MonospacedFontAlert.title", defaultValue: "The selected font doesn’t seem to be monospaced.", table: "AppearanceSettings"), item: $monospacedAlertFont) { font in
+                    .alert(.init("MonospacedFontAlert.title", defaultValue: "The selected font doesn’t seem to be monospaced.", table: "AppearanceSettings"), item: $monospacedAlertFont) { font in
                         Button(.ok) { }
                         Button(role: .cancel) {
                             self.isRestoringMonospacedFont = true
                             self.monospacedFont = font
                         }
                     } message: { _ in
-                        Text(String(localized: "MonospacedFontAlert.message", defaultValue: "Do you want to use it for the monospaced font?", table: "AppearanceSettings", comment: "“it” is the selected font in the title."))
+                        Text(.init("MonospacedFontAlert.message", defaultValue: "Do you want to use it for the monospaced font?", table: "AppearanceSettings", comment: "“it” is the selected font in the title."))
                     }
             }
             
@@ -108,8 +108,8 @@ struct AppearanceSettingsView: View {
                     Stepper(value: $lineHeight, in: 0.1...10, step: 0.1, format: .number.precision(.fractionLength(1...2)).numberLocale, label: EmptyView.init)
                         .monospacedDigit()
                         .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
-                        .accessibilityValue(String(localized: "\(self.lineHeight, format: .number) times", table: "AppearanceSettings",
-                                                   comment: "accessibility label for line height"))
+                        .accessibilityValue(.init("\(self.lineHeight, format: .number) times", table: "AppearanceSettings",
+                                                  comment: "accessibility label for line height"))
                     
                     Text("times", tableName: "AppearanceSettings", comment: "unit for line height")
                         .accessibilityHidden(true)
@@ -166,10 +166,10 @@ struct AppearanceSettingsView: View {
                         Text(self.windowAlphaBinding.wrappedValue, format: .percent)
                     } minimumValueLabel: {
                         OpacitySample(opacity: 0.2)
-                            .help(String(localized: "OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
+                            .help(.init("OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
                     } maximumValueLabel: {
                         OpacitySample(opacity: 1)
-                            .help(String(localized: "OpacitySlider.maximumValue.label", defaultValue: "Opaque", table: "AppearanceSettings"))
+                            .help(.init("OpacitySlider.maximumValue.label", defaultValue: "Opaque", table: "AppearanceSettings"))
                     } ticks: {
                         SliderTickContentForEach(Array(stride(from: 0.2, through: 1, by: 0.1)), id: \.self) { value in
                             SliderTick(value)
@@ -233,15 +233,15 @@ private struct FontSettingView: View {
                     .help(font.displayNameAndSize)
                     .frame(maxWidth: 260)
                     .alignmentGuide(.firstTextBaseline, computeValue: \.height)
-                FontSizeStepper(String(localized: "Font size", table: "AppearanceSettings"), font: self.font)
-                    .accessibilityValue(String(localized: "\(font.pointSize, format: .number) points",
-                                               table: "AppearanceSettings", comment: "accessibility label for font size"))
+                FontSizeStepper(.init("Font size", table: "AppearanceSettings"), font: self.font)
+                    .accessibilityValue(.init("\(font.pointSize, format: .number) points",
+                                              table: "AppearanceSettings", comment: "accessibility label for font size"))
                     .padding(.leading, -4)
-                FontPicker(String(localized: "Select…", table: "AppearanceSettings", comment: "label for font picker button"), selection: self.font)
+                FontPicker(.init("Select…", table: "AppearanceSettings", comment: "label for font picker button"), selection: self.font)
             }
             HStack {
-                Toggle(String(localized: "Antialias", table: "AppearanceSettings"), isOn: $antialias)
-                Toggle(String(localized: "Ligatures", table: "AppearanceSettings"), isOn: $ligature)
+                Toggle(.init("Antialias", table: "AppearanceSettings"), isOn: $antialias)
+                Toggle(.init("Ligatures", table: "AppearanceSettings"), isOn: $ligature)
             }.controlSize(.small)
         }
     }
@@ -260,21 +260,21 @@ private extension NSFont {
 
 private extension AppearanceMode {
     
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .default:
-                String(localized: "AppearanceMode.automatic.label",
-                       defaultValue: "Match System",
-                       table: "AppearanceSettings")
+                .init("AppearanceMode.automatic.label",
+                      defaultValue: "Match System",
+                      table: "AppearanceSettings")
             case .light:
-                String(localized: "AppearanceMode.light.label",
-                       defaultValue: "Light",
-                       table: "AppearanceSettings")
+                .init("AppearanceMode.light.label",
+                      defaultValue: "Light",
+                      table: "AppearanceSettings")
             case .dark:
-                String(localized: "AppearanceMode.dark.label",
-                       defaultValue: "Dark",
-                       table: "AppearanceSettings")
+                .init("AppearanceMode.dark.label",
+                      defaultValue: "Dark",
+                      table: "AppearanceSettings")
         }
     }
 }

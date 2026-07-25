@@ -107,24 +107,24 @@ struct EncodingListView: View {
             .frame(minHeight: 100, idealHeight: 250)
             
             HStack(alignment: .firstTextBaseline) {
-                Button(String(localized: "Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.model.restore)
+                Button(.init("Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.model.restore)
                     .disabled(!self.model.canRestore)
                 
                 Spacer()
                 
                 ControlGroup {
-                    Menu(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus") {
+                    Menu(.init("Action.add.label", defaultValue: "Add"), systemImage: "plus") {
                         let listedEncodings = self.model.items.compactMap(\.encoding)
                         let encodings = String.availableStringEncodings
                             .filter { !listedEncodings.contains($0.cfEncoding) }
                             .sorted(using: KeyPathComparator(\.localizedName, comparator: .localizedStandard))
                         
-                        Button(String(localized: "Separator", table: "EncodingList")) {
+                        Button(.init("Separator", table: "EncodingList")) {
                             let item = self.model.addSeparator(after: self.selection)
                             self.selection = [item.id]
                         }
                         
-                        Section(String(localized: "Text Encoding", table: "EncodingList")) {
+                        Section(.init("Text Encoding", table: "EncodingList")) {
                             ForEach(encodings, id: \.rawValue) { encoding in
                                 Button(encoding.localizedName) {
                                     let item = self.model.addEncoding(encoding.cfEncoding, after: self.selection)
@@ -135,7 +135,7 @@ struct EncodingListView: View {
                     }
                     
                     let removalError = self.model.canRemove(ids: self.selection)
-                    Button(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus") {
+                    Button(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "minus") {
                         self.model.remove(ids: self.selection)
                     }
                     .disabled(removalError != nil)

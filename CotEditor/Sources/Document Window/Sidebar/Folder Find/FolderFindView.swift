@@ -106,21 +106,21 @@ struct FolderFindView: View {
     /// - Returns: The context menu content.
     @ContentBuilder private func contextMenu(for file: FolderFind.FileResult) -> some View {
         
-        Button(String(localized: "Reveal in File Browser", table: "Document"), systemImage: "folder") {
+        Button(.init("Reveal in File Browser", table: "Document"), systemImage: "folder") {
             self.model.document.revealInFileBrowser(fileURL: file.fileURL)
         }
         
-        Button(String(localized: "Show in Finder", table: "Document"), systemImage: "finder") {
+        Button(.init("Show in Finder", table: "Document"), systemImage: "finder") {
             NSWorkspace.shared.activateFileViewerSelecting([file.fileURL])
         }
         
-        Button(String(localized: "Open in New Window", table: "Document"), systemImage: "macwindow.badge.plus") {
+        Button(.init("Open in New Window", table: "Document"), systemImage: "macwindow.badge.plus") {
             self.model.document.openInNewWindow(fileURL: file.fileURL)
         }
         
         Divider()
         
-        Button(String(localized: "Open with External Editor", table: "Document"), systemImage: "arrow.up.forward.square") {
+        Button(.init("Open with External Editor", table: "Document"), systemImage: "arrow.up.forward.square") {
             NSWorkspace.shared.openWithOtherApplication([file.fileURL])
         }
     }
@@ -144,7 +144,7 @@ private struct FolderFindControlView: View {
         
         VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .firstTextBaseline) {
-                Picker(String(localized: "Search method", table: "Document", comment: "Accessibility label for the menu selecting Text or Regular Expression in the Folder Find pane"), selection: $usesRegularExpression) {
+                Picker(.init("Search method", table: "Document", comment: "Accessibility label for the menu selecting Text or Regular Expression in the Folder Find pane"), selection: $usesRegularExpression) {
                     Text("Text", tableName: "TextFind")
                         .tag(false)
                     Text("Regular Expression", tableName: "TextFind")
@@ -162,13 +162,13 @@ private struct FolderFindControlView: View {
                 
                 Toggle(isOn: Binding(get: { !self.ignoresCase }, set: { self.ignoresCase = !$0 })) {
                     Label {
-                        Text(String(localized: "Case Sensitive", table: "TextFind", comment: "toggle button label"))
+                        Text(.init("Case Sensitive", table: "TextFind", comment: "toggle button label"))
                     } icon: {
                         Image(systemName: "textformat")
                             .environment(\.locale, Locale(script: .latin))
                     }
                 }
-                .help(String(localized: "Case Sensitive", table: "TextFind", comment: "toggle button label"))
+                .help(.init("Case Sensitive", table: "TextFind", comment: "toggle button label"))
                 .toggleStyle(.button)
                 .fontWeight(self.ignoresCase ? .medium : .bold)
                 .labelStyle(.iconOnly)
@@ -227,20 +227,20 @@ private struct FileScopeMenu: View {
         
         Menu {
             Section {
-                Toggle(String(localized: "Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
-                Toggle(String(localized: "Include Other File Types", table: "Document", comment: "toggle button label"), isOn: $includesOtherFileTypes)
+                Toggle(.init("Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
+                Toggle(.init("Include Other File Types", table: "Document", comment: "toggle button label"), isOn: $includesOtherFileTypes)
             }
             
-            Button(String(localized: "Edit File Scope…", table: "Document")) {
+            Button(.init("Edit File Scope…", table: "Document")) {
                 self.isFileScopeEditorPresented = true
             }
-            Button(String(localized: "Clear File Scope", table: "Document")) {
+            Button(.init("Clear File Scope", table: "Document")) {
                 self.selection = FileScopeSelection()
             }
             .disabled(self.selection.fileScope.isEmpty)
             
             if !savedScopes.isEmpty {
-                Picker(String(localized: "Saved Scopes", table: "Document"), selection: $selection.name) {
+                Picker(.init("Saved Scopes", table: "Document"), selection: $selection.name) {
                     ForEach(savedScopes.keys.sorted(using: .localizedStandard), id: \.self) { name in
                         Label(name, systemImage: "text.magnifyingglass")
                             .tag(name)
@@ -249,7 +249,7 @@ private struct FileScopeMenu: View {
                 .pickerStyle(.inline)
                 .labelStyle(.titleAndIcon)
                 
-                Button(String(localized: "Manage Saved Scopes…", table: "Document")) {
+                Button(.init("Manage Saved Scopes…", table: "Document")) {
                     self.isSavedScopesEditorPresented = true
                 }
             }
@@ -426,23 +426,21 @@ private struct FolderFindOverlayView: View {
         
         switch self.state {
             case .searching:
-                ProgressView(String(localized: "FolderFind.SearchState.searching.label",
-                                    defaultValue: "Searching in folder…", table: "Document"))
+                ProgressView(.init("FolderFind.SearchState.searching.label",
+                                   defaultValue: "Searching in folder…", table: "Document"))
                 
             case .finished(let summary) where summary.metrics.matchCount == 0:
                 ContentUnavailableView(
-                    String(localized: "FolderFind.SearchState.finished.zero.label",
-                           defaultValue: "No Results", table: "Document"),
+                    .init("FolderFind.SearchState.finished.zero.label", defaultValue: "No Results", table: "Document"),
                     systemImage: "magnifyingglass",
-                    description: Text(String(localized: "FolderFind.SearchState.finished.zero.description",
-                                             defaultValue: "No matches for “\(summary.metrics.findString)” were found.",
-                                             table: "Document")).font(.body)
+                    description: Text(.init("FolderFind.SearchState.finished.zero.description",
+                                            defaultValue: "No matches for “\(summary.metrics.findString)” were found.",
+                                            table: "Document")).font(.body)
                 )
                 
             case .failed(let error):
                 ContentUnavailableView(
-                    String(localized: "FolderFind.SearchState.failed.label",
-                           defaultValue: "Search Failed", table: "Document"),
+                    .init("FolderFind.SearchState.failed.label", defaultValue: "Search Failed", table: "Document"),
                     systemImage: "exclamationmark.triangle",
                     description: Text(error.localizedDescription).font(.body)
                 )

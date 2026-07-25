@@ -124,7 +124,7 @@ private struct ColorCodePanelAccessory: View {
     var body: some View {
         
         VStack {
-            TextField(String(localized: "Color Code", table: "ColorCode", comment: "placeholder"), text: $colorCode)
+            TextField(.init("Color Code", table: "ColorCode", comment: "placeholder"), text: $colorCode)
                 .font(.system(size: 14, design: .monospaced))
                 .multilineTextAlignment(.center)
                 .onSubmit {
@@ -152,7 +152,7 @@ private struct ColorCodePanelAccessory: View {
                 .labelsVisibility(.hidden)
                 .buttonSizing(.flexible)
                 
-                Button(String(localized: "Insert", table: "ColorCode", comment: "button label"), action: self.submit)
+                Button(.init("Insert", table: "ColorCode", comment: "button label"), action: self.submit)
                     .keyboardShortcut(.defaultAction)
             }
             .controlSize(.small)

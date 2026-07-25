@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ struct AddRemoveButton<Item: Identifiable>: View {
     var body: some View {
         
         ControlGroup {
-            Button(String(localized: "Action.add.label", defaultValue: "Add"), systemImage: "plus") {
+            Button(.init("Action.add.label", defaultValue: "Add"), systemImage: "plus") {
                 let item = self.newItem()
                 let index = self.items.lastIndex { self.selection.contains($0.id) } ?? self.items.endIndex - 1
                 
@@ -63,9 +63,9 @@ struct AddRemoveButton<Item: Identifiable>: View {
                     self.completion(item)
                 }
             }
-            .help(String(localized: "Action.add.tooltip", defaultValue: "Add new item"))
+            .help(.init("Action.add.tooltip", defaultValue: "Add new item"))
             
-            Button(String(localized: "Action.delete.label", defaultValue: "Delete"), systemImage: "minus") {
+            Button(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "minus") {
                 withAnimation {
                     self.items.removeAll {
                         self.selection.contains($0.id)
@@ -73,7 +73,7 @@ struct AddRemoveButton<Item: Identifiable>: View {
                     self.selection.removeAll()
                 }
             }
-            .help(String(localized: "Action.delete.tooltip", defaultValue: "Delete selected items"))
+            .help(.init("Action.delete.tooltip", defaultValue: "Delete selected items"))
             .disabled(self.selection.isEmpty)
         }
     }

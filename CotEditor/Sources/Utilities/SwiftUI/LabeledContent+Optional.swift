@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ extension LabeledContent where Label == Text, Content == _OptionalContent {
     /// - Parameters:
     ///   - title: A string that describes the purpose of the view.
     ///   - value: The optional value being labeled.
-    init(_ title: some StringProtocol, optional value: String?) {
+    init(_ title: LocalizedStringResource, optional value: String?) {
         
         self.init(title) {
             _OptionalContent(value: value)
@@ -63,7 +63,7 @@ extension Text {
     static var none: Text {
         
         Text(verbatim: "–")
-            .accessibilityLabel(String(localized: "None", comment: "accessibility label for “–”"))
+            .accessibilityLabel(.init("None", comment: "accessibility label for “–”"))
             .foregroundStyle(.tertiary)
     }
 }

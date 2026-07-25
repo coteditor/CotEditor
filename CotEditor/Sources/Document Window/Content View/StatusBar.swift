@@ -106,7 +106,7 @@ struct StatusBar: View {
                 .contains { [.subscribed, .inGracePeriod].contains($0) } == true
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel(String(localized: "Status Bar", table: "Document", comment: "accessibility label"))
+        .accessibilityLabel(.init("Status Bar", table: "Document", comment: "accessibility label"))
         .buttonStyle(.borderless)
         .controlSize(.small)
         .lineLimit(1)
@@ -200,8 +200,8 @@ private struct NotEditableBadge: View {
     
     var body: some View {
         
-        Label(String(localized: "Not editable", table: "Document"), systemImage: "pencil.slash")
-            .help(String(localized: "The document is not editable.", table: "Document", comment: "tooltip"))
+        Label(.init("Not editable", table: "Document"), systemImage: "pencil.slash")
+            .help(.init("The document is not editable.", table: "Document", comment: "tooltip"))
             .labelStyle(.iconOnly)
     }
 }
@@ -214,11 +214,11 @@ private struct FileSizeView: View {
     
     var body: some View {
         
-        LabeledContent(String(localized: "File size", table: "Document"),
+        LabeledContent(.init("File size", table: "Document"),
                        optional: self.size?.formatted(.byteCount(style: .file, spellsOutZero: false)))
         .monospacedDigit()
         .labelsVisibility(.hidden)
-        .help(String(localized: "File size", table: "Document", comment: "tooltip"))
+        .help(.init("File size", table: "Document", comment: "tooltip"))
         .fixedSize()
     }
 }
@@ -246,8 +246,8 @@ private struct DocumentStatusBar: View {
         HStack(spacing: 4) {
             Divider()
             
-            Picker(String(localized: "Text Encoding", table: "Document"), selection: $fileEncoding) {
-                Section(String(localized: "Text Encoding", table: "Document")) {
+            Picker(.init("Text Encoding", table: "Document"), selection: $fileEncoding) {
+                Section(.init("Text Encoding", table: "Document")) {
                     if !self.encodingManager.fileEncodings.contains(self.fileEncoding) {
                         Text(self.fileEncoding.localizedName).tag(self.fileEncoding)
                         Divider()
@@ -266,7 +266,7 @@ private struct DocumentStatusBar: View {
                     self.fileEncoding = self.document.fileEncoding
                 }
             }
-            .help(String(localized: "Text Encoding", table: "Document"))
+            .help(.init("Text Encoding", table: "Document"))
             .labelsVisibility(.hidden)
             
             Divider()
@@ -275,8 +275,8 @@ private struct DocumentStatusBar: View {
                 self.document.changeLineEnding(to: lineEnding)
             }
             .disabled(!self.document.isEditable)
-            .help(String(localized: "Line Endings", table: "Document"))
-            .accessibilityLabel(String(localized: "Line Endings", table: "Document"))
+            .help(.init("Line Endings", table: "Document"))
+            .accessibilityLabel(.init("Line Endings", table: "Document"))
             .frame(width: 48)
         }
         .onChange(of: self.document.lineEnding) { _, newValue in self.lineEnding = newValue }

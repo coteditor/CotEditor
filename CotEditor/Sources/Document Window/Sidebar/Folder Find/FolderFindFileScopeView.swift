@@ -83,7 +83,7 @@ struct FolderFindFileScopeView: View {
         
         VStack(alignment: .leading) {
             if self.originalName != nil {
-                TextField(String(localized: "ScopeSaveView.field.label", defaultValue: "Name", table: "FileScopeEditor"), text: $name)
+                TextField(.init("ScopeSaveView.field.label", defaultValue: "Name", table: "FileScopeEditor"), text: $name)
                     .padding(.bottom)
             }
             
@@ -104,7 +104,7 @@ struct FolderFindFileScopeView: View {
             
             SubmitButtonGroup(helpAnchor: "howto_find_in_folder", action: self.apply, supplementalButton: {
                 if self.originalName == nil {
-                    Button(String(localized: "Save as Named Scope…", table: "FileScopeEditor")) {
+                    Button(.init("Save as Named Scope…", table: "FileScopeEditor")) {
                         guard self.validate(self.fileScope.normalized) else { return NSSound.beep() }
                         
                         self.isScopeSaveViewPresented = true
@@ -203,10 +203,10 @@ private struct ConjunctionPicker: View {
             }
             .labelsHidden()
             
-            Text(String(localized: "FileScope.Conjunction.suffix",
-                        defaultValue: "of the following conditions:",
-                        table: "FileScopeEditor",
-                        comment: "The text following the any/all popup in the sentence “Match [any|all] of the following conditions:”."))
+            Text(.init("FileScope.Conjunction.suffix",
+                       defaultValue: "of the following conditions:",
+                       table: "FileScopeEditor",
+                       comment: "The text following the any/all popup in the sentence “Match [any|all] of the following conditions:”."))
         }
     }
 }
@@ -227,9 +227,9 @@ private struct ScopeSaveView: View {
         
         VStack(alignment: .leading) {
             Form {
-                TextField(String(localized: "ScopeSaveView.label", defaultValue: "Save as:", table: "FileScopeEditor"),
+                TextField(.init("ScopeSaveView.label", defaultValue: "Save as:", table: "FileScopeEditor"),
                           text: $name,
-                          prompt: Text(String(localized: "ScopeSaveView.field.label", defaultValue: "Name", table: "FileScopeEditor")))
+                          prompt: Text(.init("ScopeSaveView.field.label", defaultValue: "Name", table: "FileScopeEditor")))
                 .onSubmit(self.submit)
             }
             
@@ -245,7 +245,7 @@ private struct ScopeSaveView: View {
             .frame(height: 10)
             .padding(.vertical, 4)
             
-            SubmitButtonGroup(String(localized: "Action.save.label", defaultValue: "Save"), action: self.submit)
+            SubmitButtonGroup(.init("Action.save.label", defaultValue: "Save"), action: self.submit)
         }
         .onChange(of: self.name) {
             self.validationError = nil

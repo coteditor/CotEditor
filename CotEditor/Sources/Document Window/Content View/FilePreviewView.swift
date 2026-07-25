@@ -42,18 +42,18 @@ struct FilePreviewView: View {
             
             HStack(spacing: 12) {
                 if self.item.isAlias {
-                    Button(String(localized: "Show in Finder", table: "Document")) {
+                    Button(.init("Show in Finder", table: "Document")) {
                         let url = (self.item.contentAttributes as? LinkFileAttributes)?.destinationURL ?? self.item.previewItemURL!
                         NSWorkspace.shared.activateFileViewerSelecting([url])
                     }
                     
                     if self.item.isFolderAlias {
-                        Button(String(localized: "Open in New Window", table: "Document")) {
+                        Button(.init("Open in New Window", table: "Document")) {
                             self.item.openLinkedFile()
                         }
                     } else {
-                        Button(String(localized: "Open Original", table: "Document",
-                                      comment: "action label; “Original” refers to the target of an alias/symlink in macOS. Refer to how the Finder translates it.")) {
+                        Button(.init("Open Original", table: "Document",
+                                     comment: "action label; “Original” refers to the target of an alias/symlink in macOS. Refer to how the Finder translates it.")) {
                             let menuItem = NSMenuItem()
                             menuItem.representedObject = self.item.previewItemURL
                             NSApp.sendAction(#selector(DirectoryDocument.openOriginalDocumentAsPlainText), to: nil, from: menuItem)
@@ -63,7 +63,7 @@ struct FilePreviewView: View {
                 } else {
                     OpenWithExternalEditorMenu(url: self.item.previewItemURL)
                     
-                    Button(String(localized: "Open as Plain Text", table: "Document")) {
+                    Button(.init("Open as Plain Text", table: "Document")) {
                         let menuItem = NSMenuItem()
                         menuItem.representedObject = self.item.previewItemURL
                         NSApp.sendAction(#selector(DirectoryDocument.openDocumentAsPlainText), to: nil, from: menuItem)
@@ -74,7 +74,7 @@ struct FilePreviewView: View {
             .padding(.top)
             
             Form {
-                LabeledContent(String(localized: "Kind", table: "Document")) {
+                LabeledContent(.init("Kind", table: "Document")) {
                     if let type = self.item.fileType, let typeName = UTType(type)?.localizedDescription {
                         Text(typeName)
                     } else {
@@ -101,7 +101,7 @@ struct FilePreviewView: View {
             .monospacedDigit()
             .formStyle(.grouped)
             .frame(maxWidth: 400)
-            .accessibilityLabel(String(localized: "Information", table: "Document", comment: "accessibility label"))
+            .accessibilityLabel(.init("Information", table: "Document", comment: "accessibility label"))
         }
         .scenePadding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -156,7 +156,7 @@ struct LinkFileAttributesView: View {
     
     var body: some View {
         
-        LabeledContent(String(localized: "Original", table: "Document", comment: "label for the original path of alias/symlink (refer to the Finder)")) {
+        LabeledContent(.init("Original", table: "Document", comment: "label for the original path of alias/symlink (refer to the Finder)")) {
             if let url = self.attributes.destinationURL {
                 Text(url, format: .url.scheme(.never))
                     .multilineTextAlignment(.leading)
@@ -175,14 +175,14 @@ struct ImageAttributesView: View {
     
     var body: some View {
         
-        LabeledContent(String(localized: "Dimensions", table: "Document"),
+        LabeledContent(.init("Dimensions", table: "Document"),
                        value: self.attributes.dimensions.formatted)
-        LabeledContent(String(localized: "Image DPI", table: "Document"),
+        LabeledContent(.init("Image DPI", table: "Document"),
                        value: String(localized: "\(self.attributes.dotsPerInch, format: .number) pixels/inch", table: "Document"))
         if let colorSpace = self.attributes.colorSpace {
-            LabeledContent(String(localized: "Color space", table: "Document"),
+            LabeledContent(.init("Color space", table: "Document"),
                            optional: colorSpace.colorSpaceModel.localizedName)
-            LabeledContent(String(localized: "Color profile", table: "Document"),
+            LabeledContent(.init("Color profile", table: "Document"),
                            optional: colorSpace.localizedName)
         }
     }
@@ -196,9 +196,9 @@ struct MovieAttributesView: View {
     
     var body: some View {
         
-        LabeledContent(String(localized: "Dimensions", table: "Document"),
+        LabeledContent(.init("Dimensions", table: "Document"),
                        value: self.attributes.dimensions.formatted)
-        LabeledContent(String(localized: "Duration", table: "Document"),
+        LabeledContent(.init("Duration", table: "Document"),
                        value: self.attributes.duration,
                        format: .time(pattern: self.attributes.duration.naturalPattern))
     }
@@ -212,7 +212,7 @@ struct AudioAttributesView: View {
     
     var body: some View {
         
-        LabeledContent(String(localized: "Duration", table: "Document"),
+        LabeledContent(.init("Duration", table: "Document"),
                        value: self.attributes.duration,
                        format: .time(pattern: self.attributes.duration.naturalPattern))
     }
@@ -231,7 +231,7 @@ private struct OpenWithExternalEditorMenu: View {
     
     var body: some View {
         
-        Menu(String(localized: "Open with External Editor", table: "Document")) {
+        Menu(.init("Open with External Editor", table: "Document")) {
             let editors = NSWorkspace.shared.urlsForApplications(toOpen: self.url)
                 .map(Editor.init(url:))
             
@@ -267,7 +267,7 @@ private struct OpenWithExternalEditorMenu: View {
             }
             
             Divider()
-            Button(String(localized: "Other…", table: "Document")) {
+            Button(.init("Other…", table: "Document")) {
                 self.isFileBrowserPresented = true
             }
             
