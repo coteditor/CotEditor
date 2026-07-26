@@ -209,6 +209,7 @@ private extension IncompatibleCharactersView.Model {
             .map(\.encoding)
             .removeDuplicates()
             .dropFirst()
+            .receive(on: DispatchQueue.main)  // -> Wait until the property value is actually updated (a @Published property emits the new value on willSet).
             .sink { [weak self] _ in self?.invalidateIncompatibleCharacters() }
             .store(in: &self.observers)
     }
