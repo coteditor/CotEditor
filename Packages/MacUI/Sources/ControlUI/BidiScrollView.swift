@@ -42,6 +42,27 @@ public final class BidiScrollView: NSScrollView {
     
     // MARK: View Methods
     
+    public override var contentInsets: NSEdgeInsets {
+        
+        get { super.contentInsets }
+        
+        set {
+            // pin the vertical insets to the safe area
+            // -> The automatic content inset adjustment varies insets depending on the scroll position,
+            //    which can cause an infinite layout loop (2026-07, macOS 27).
+            var insets = newValue
+            if self.automaticallyAdjustsContentInsets {
+                insets.top = self.safeAreaInsets.top
+                insets.bottom = self.safeAreaInsets.bottom
+            }
+            
+            guard insets != super.contentInsets else { return }
+            
+            super.contentInsets = insets
+        }
+    }
+    
+    
     public override func tile() {
         
         super.tile()
@@ -84,10 +105,17 @@ public final class BidiScrollView: NSScrollView {
         
         guard !self.contentView.automaticallyAdjustsContentInsets else { return }
         
-        self.contentView.contentInsets.left = 0
-        self.contentView.contentInsets.right = 0
-        self.contentView.contentInsets.top = self.contentInsets.top
-        self.contentView.contentInsets.bottom = self.contentInsets.bottom
+        // apply the safe area insets instead of the content insets
+        // -> The automatic content insets vary depending on the visible content position,
+        //    and applying them to the clip view moves the content,
+        //    which can cause an infinite layout loop (2026-07, macOS 27).
+        let insets = NSEdgeInsets(top: self.safeAreaInsets.top, left: 0,
+                                  bottom: self.safeAreaInsets.bottom, right: 0)
+        
+        // avoid dirtying the layout by re-applying the same insets
+        guard insets != self.contentView.contentInsets else { return }
+        
+        self.contentView.contentInsets = insets
     }
     
     
