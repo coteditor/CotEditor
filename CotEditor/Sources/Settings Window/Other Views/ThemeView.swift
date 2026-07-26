@@ -519,6 +519,7 @@ private struct ThemeEditorView: View {
                 .buttonStyle(.borderless)
                 .popover(isPresented: $isMetadataPresenting, arrowEdge: .trailing) {
                     ThemeMetadataView(metadata: $theme.metadata ?? .init(), isEditable: !self.isBundled)
+                        .padding(10)
                 }
             }
         }
@@ -572,39 +573,46 @@ private struct ThemeMetadataView: View {
     var body: some View {
         
         Form {
-            self.itemView(.init("Author", table: "ThemeEditor"), text: $metadata.author ?? "")
+            self.itemView(.init("Author", table: "ThemeEditor"), text: $metadata.author)
             HStack {
-                self.itemView(.init("URL", table: "ThemeEditor"), text: $metadata.distributionURL ?? "")
+                self.itemView(.init("URL", table: "ThemeEditor"), text: $metadata.distributionURL)
                     .textContentType(.URL)
                 LinkButton(url: self.metadata.distributionURL ?? "")
                     .foregroundStyle(.secondary)
             }
-            self.itemView(.init("License", table: "ThemeEditor"), text: $metadata.license ?? "")
-            self.itemView(.init("Description", table: "ThemeEditor"), text: $metadata.description ?? "",
-                          lineLimit: 2...5)
+            self.itemView(.init("License", table: "ThemeEditor"), text: $metadata.license)
+            self.itemView(.init("Description", table: "ThemeEditor"), text: $metadata.description)
+            .lineLimit(2...5)
         }
         .textFieldStyle(.plain)
+        .labeledContentStyle(MetadataLabeledContentStyle())
         .controlSize(.small)
-        .padding(10)
-        .frame(width: 300, alignment: .leading)
+        .frame(width: 280, alignment: .leading)
     }
     
     
-    @ContentBuilder private func itemView(_ title: LocalizedStringResource, text: Binding<String>, lineLimit: ClosedRange<Int> = 1...1) -> some View {
+    @ContentBuilder private func itemView(_ title: LocalizedStringResource, text: Binding<String?>) -> some View {
         
         if self.isEditable {
-            TextField(text: text, prompt: Text("Not defined", tableName: "ThemeEditor", comment: "placeholder"), axis: .vertical) {
-                Text(title).fontWeight(.bold)
-            }
-            .lineLimit(lineLimit)
+            TextField(title, text: text ?? "", prompt: Text("Not defined", tableName: "ThemeEditor", comment: "placeholder"), axis: .vertical)
         } else {
+            LabeledContent(title, value: text.wrappedValue ?? "")
+                .padding(.bottom, 2)
+        }
+    }
+    
+    
+    private struct MetadataLabeledContentStyle: LabeledContentStyle {
+        
+        func makeBody(configuration: Configuration) -> some View {
+            
             LabeledContent {
-                Text(text.wrappedValue)
+                configuration.content
                     .textSelection(.enabled)
             } label: {
-                Text(title).fontWeight(.bold)
+                configuration.label
+                    .fontWeight(.bold)
             }
-            .padding(.bottom, 2)
         }
     }
 }
@@ -659,6 +667,7 @@ private struct TransferableTheme: TransferableFile {
     )
     
     ThemeMetadataView(metadata: $metadata, isEditable: true)
+        .scenePadding()
 }
 
 #Preview("Metadata (fixed)") {
@@ -667,4 +676,5 @@ private struct TransferableTheme: TransferableFile {
     )
     
     ThemeMetadataView(metadata: $metadata, isEditable: false)
+        .scenePadding()
 }
