@@ -144,8 +144,8 @@ enum NewFeature: CaseIterable {
     static let buildNumber = 832
     
     case folderFind
-    case folderNavigationHistory
     case macOS27
+    case folderNavigationHistory
     case documentName
     case customIndentStyle
 }
@@ -158,10 +158,10 @@ private extension NewFeature {
         switch self {
             case .folderFind:
                 Image(.folderBadgeMagnifyingglass)
-            case .folderNavigationHistory:
-                Image(systemName: "chevron.left.chevron.right")
             case .macOS27:
                 Image(systemName: "27.circle")
+            case .folderNavigationHistory:
+                Image(systemName: "chevron.left.chevron.right")
             case .documentName:
                 Image(systemName: "rectangle.and.pencil.and.ellipsis")
             case .customIndentStyle:
@@ -177,13 +177,13 @@ private extension NewFeature {
                 .init("NewFeature.folderFind.label",
                       defaultValue: "Find it in the folder",
                       table: "WhatsNew")
-            case .folderNavigationHistory:
-                .init("NewFeature.folderNavigationHistory.label",
-                      defaultValue: "Back and forward in folders",
-                      table: "WhatsNew")
             case .macOS27:
                 .init("NewFeature.macOS27.label",
                       defaultValue: "Ready for macOS 27",
+                      table: "WhatsNew")
+            case .folderNavigationHistory:
+                .init("NewFeature.folderNavigationHistory.label",
+                      defaultValue: "Back and forward in folders",
                       table: "WhatsNew")
             case .documentName:
                 .init("NewFeature.documentName.label",
@@ -204,13 +204,13 @@ private extension NewFeature {
                 .init("NewFeature.folderFind.description",
                       defaultValue: "Search text across files in an opened folder right from the sidebar.",
                       table: "WhatsNew")
-            case .folderNavigationHistory:
-                .init("NewFeature.folderNavigationHistory.description",
-                      defaultValue: "Use the toolbar to move back and forward through recently viewed documents in a folder document.",
-                      table: "WhatsNew")
             case .macOS27:
                 .init("NewFeature.macOS27.description",
                       defaultValue: "CotEditor now supports macOS 27 Golden Gate, including refreshed appearance for the latest system.",
+                      table: "WhatsNew")
+            case .folderNavigationHistory:
+                .init("NewFeature.folderNavigationHistory.description",
+                      defaultValue: "Use the toolbar to move back and forward through recently viewed documents in a folder document.",
                       table: "WhatsNew")
             case .documentName:
                 .init("NewFeature.documentName.description",
