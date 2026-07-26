@@ -318,21 +318,21 @@ private extension CommandLineToolManager.Status {
 
 private extension NoDocumentOnLaunchOption {
     
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .untitledDocument:
-                String(localized: "NoDocumentOnLaunchOption.untitledDocument.label",
-                       defaultValue: "Create New Document",
-                       table: "GeneralSettings")
+                .init("NoDocumentOnLaunchOption.untitledDocument.label",
+                      defaultValue: "Create New Document",
+                      table: "GeneralSettings")
             case .openPanel:
-                String(localized: "NoDocumentOnLaunchOption.openPanel.label",
-                       defaultValue: "Show Open Dialog",
-                       table: "GeneralSettings")
+                .init("NoDocumentOnLaunchOption.openPanel.label",
+                      defaultValue: "Show Open Dialog",
+                      table: "GeneralSettings")
             case .none:
-                String(localized: "NoDocumentOnLaunchOption.none.label",
-                       defaultValue: "Do Nothing",
-                       table: "GeneralSettings")
+                .init("NoDocumentOnLaunchOption.none.label",
+                      defaultValue: "Do Nothing",
+                      table: "GeneralSettings")
         }
     }
 }
@@ -340,21 +340,21 @@ private extension NoDocumentOnLaunchOption {
 
 private extension DocumentConflictOption {
     
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .ignore:
-                String(localized: "DocumentConflictOption.ignore.label",
-                       defaultValue: "Keep CotEditor’s version",
-                       table: "GeneralSettings")
+                .init("DocumentConflictOption.ignore.label",
+                      defaultValue: "Keep CotEditor’s version",
+                      table: "GeneralSettings")
             case .notify:
-                String(localized: "DocumentConflictOption.notify.label",
-                       defaultValue: "Ask how to resolve",
-                       table: "GeneralSettings")
+                .init("DocumentConflictOption.notify.label",
+                      defaultValue: "Ask how to resolve",
+                      table: "GeneralSettings")
             case .revert:
-                String(localized: "DocumentConflictOption.revert.label",
-                       defaultValue: "Update to modified version",
-                       table: "GeneralSettings")
+                .init("DocumentConflictOption.revert.label",
+                      defaultValue: "Update to modified version",
+                      table: "GeneralSettings")
         }
     }
 }

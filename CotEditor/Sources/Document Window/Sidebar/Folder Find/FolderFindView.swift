@@ -618,11 +618,11 @@ extension FolderFinder.Error: LocalizedError {
 private extension FolderFind.Metrics {
     
     /// The localized summary message.
-    var message: String {
+    var message: LocalizedStringResource {
         
-        String(localized: "FolderFind.Metrics.message",
-               defaultValue: "\(self.matchCount) matches in \(self.matchedFileCount) files",
-               table: "Document", comment: "folder find result summary")
+        .init("FolderFind.Metrics.message",
+              defaultValue: "\(self.matchCount) matches in \(self.matchedFileCount) files",
+              table: "Document", comment: "folder find result summary")
     }
 }
 

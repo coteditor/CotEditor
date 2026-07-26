@@ -686,19 +686,19 @@ private extension FileScope {
 private extension FileScope.Conjunction {
     
     /// The localized label.
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .any:
-                String(localized: "FileScope.Conjunction.any.label",
-                       defaultValue: "any",
-                       table: "FileScopeEditor",
-                       comment: "The popup item inserted into the sentence “Match [any|all] of the following conditions:”.")
+                .init("FileScope.Conjunction.any.label",
+                      defaultValue: "any",
+                      table: "FileScopeEditor",
+                      comment: "The popup item inserted into the sentence “Match [any|all] of the following conditions:”.")
             case .all:
-                String(localized: "FileScope.Conjunction.all.label",
-                       defaultValue: "all",
-                       table: "FileScopeEditor",
-                       comment: "The popup item inserted into the sentence “Match [any|all] of the following conditions:”.")
+                .init("FileScope.Conjunction.all.label",
+                      defaultValue: "all",
+                      table: "FileScopeEditor",
+                      comment: "The popup item inserted into the sentence “Match [any|all] of the following conditions:”.")
         }
     }
 }

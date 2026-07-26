@@ -34,7 +34,7 @@ struct FindProgressView: View {
     private var action: TextFind.Action
     private var label: LocalizedStringResource
     
-    @State private var description: String = ""
+    @State private var description: LocalizedStringResource?
     
     
     // MARK: View
@@ -61,7 +61,9 @@ struct FindProgressView: View {
             ProgressView(value: self.progress.fractionCompleted) {
                 Text(self.label)
             } currentValueLabel: {
-                Text(self.description)
+                if let description {
+                    Text(description)
+                }
             }
             
             Button(role: .cancel) {
@@ -109,17 +111,17 @@ private extension TextFind.Action {
     ///
     /// - Parameter count: The number of processed items.
     /// - Returns: The formatted string.
-    func processMessage(_ count: Int) -> String {
+    func processMessage(_ count: Int) -> LocalizedStringResource {
         
         switch self {
             case _ where count == 0:
-                String(localized: "Searching in text…", table: "TextFind")
+                .init("Searching in text…", table: "TextFind")
             case .find:
-                String(localized: "\(count) matches found.", table: "TextFind",
-                       comment: "progress report in find progress dialog")
+                .init("\(count) matches found.", table: "TextFind",
+                      comment: "progress report in find progress dialog")
             case .replace:
-                String(localized: "\(count) matches replaced.", table: "TextFind",
-                       comment: "progress report in find progress dialog")
+                .init("\(count) matches replaced.", table: "TextFind",
+                      comment: "progress report in find progress dialog")
         }
     }
 }

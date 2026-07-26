@@ -392,17 +392,17 @@ private extension Mode {
 
 private extension FontType {
     
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .standard:
-                String(localized: "FontType.standard.label",
-                       defaultValue: "Standard",
-                       table: "ModeSettings")
+                .init("FontType.standard.label",
+                      defaultValue: "Standard",
+                      table: "ModeSettings")
             case .monospaced:
-                String(localized: "FontType.monospaced.label",
-                       defaultValue: "Monospaced",
-                       table: "ModeSettings")
+                .init("FontType.monospaced.label",
+                      defaultValue: "Monospaced",
+                      table: "ModeSettings")
         }
     }
 }

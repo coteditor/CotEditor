@@ -257,21 +257,21 @@ struct WindowSettingsView: View {
 
 private extension NSWindow.UserTabbingPreference {
     
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .manual:
-                String(localized: "Never",
-                       table: "WindowSettings",
-                       comment: "window tabbing option")
+                .init("Never",
+                      table: "WindowSettings",
+                      comment: "window tabbing option")
             case .always:
-                String(localized: "Always",
-                       table: "WindowSettings",
-                       comment: "window tabbing option")
+                .init("Always",
+                      table: "WindowSettings",
+                      comment: "window tabbing option")
             case .inFullScreen:
-                String(localized: "Automatically",
-                       table: "WindowSettings",
-                       comment: "window tabbing option")
+                .init("Automatically",
+                      table: "WindowSettings",
+                      comment: "window tabbing option")
             @unknown default:
                 fatalError()
         }
@@ -281,24 +281,24 @@ private extension NSWindow.UserTabbingPreference {
 
 private extension WritingDirection {
     
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .leftToRight:
-                String(localized: "WritingDirection.leftToRight.label",
-                       defaultValue: "Left to right",
-                       table: "WindowSettings",
-                       comment: "writing direction option")
+                .init("WritingDirection.leftToRight.label",
+                      defaultValue: "Left to right",
+                      table: "WindowSettings",
+                      comment: "writing direction option")
             case .rightToLeft:
-                String(localized: "WritingDirection.rightToLeft.label",
-                       defaultValue: "Right to left",
-                       table: "WindowSettings",
-                       comment: "writing direction option")
+                .init("WritingDirection.rightToLeft.label",
+                      defaultValue: "Right to left",
+                      table: "WindowSettings",
+                      comment: "writing direction option")
             case .vertical:
-                String(localized: "WritingDirection.vertical.label",
-                       defaultValue: "Vertical",
-                       table: "WindowSettings",
-                       comment: "writing direction option")
+                .init("WritingDirection.vertical.label",
+                      defaultValue: "Vertical",
+                      table: "WindowSettings",
+                      comment: "writing direction option")
         }
     }
 }
