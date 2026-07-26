@@ -141,7 +141,7 @@ struct WhatsNewView: View {
 enum NewFeature: CaseIterable {
     
     static let version = Version(7, 1, 0)
-    static let buildNumber = 830
+    static let buildNumber = 832
     
     case folderFind
     case folderNavigationHistory
