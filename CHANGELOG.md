@@ -8,6 +8,7 @@
 - Prevent the file browser from opening UNIX executable files as plain text.
 - Display more accurate error messages in dialogs.
 - Updated the SON syntax to change the file mapping for `Package.resolved` from file extensions to filenames.
+- Improve cancellation handling for syntax highlighting with computationally intensive regular expressions.
 - Improve overall stability.
 - [non-AppStore ver.] Update Sparkle from 2.9.3 to 2.9.4.
 
