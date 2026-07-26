@@ -81,10 +81,13 @@ struct FolderFindView: View {
             self.model.selectResult(fileURL: result.file.fileURL, range: result.match?.range)
         }
         .onDeleteCommand {
-            for resultID in self.selection {
-                self.model.removeResult(for: resultID)
+            withAnimation {
+                for resultID in self.selection {
+                    self.model.removeResult(for: resultID)
+                }
+            } completion: {
+                self.selection.removeAll()
             }
-            self.selection.removeAll()
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(SidebarPane.find.label)
