@@ -61,10 +61,11 @@ struct NSRegularExpressionTests {
     }
     
     
-    @Test func cancellableMatchesCancellation() async throws {
+    @Test(.timeLimit(.minutes(1))) func cancellableMatchesCancellation() async throws {
         
-        let regex = try NSRegularExpression(pattern: "a")
-        let string = "a"
+        let regex = try NSRegularExpression(pattern: "^(a+)+$")
+        let string = String(repeating: "a", count: 64) + "!"
+        let clock = ContinuousClock()
         
         let task = Task {
             while !Task.isCancelled {
@@ -75,7 +76,9 @@ struct NSRegularExpressionTests {
         }
         task.cancel()
         
+        let start = clock.now
         await #expect(throws: CancellationError.self) { try await task.value }
+        #expect(start.duration(to: clock.now) < .seconds(1))
     }
     
     
@@ -93,10 +96,11 @@ struct NSRegularExpressionTests {
     }
     
     
-    @Test func cancellableMatchRangesCancellation() async throws {
+    @Test(.timeLimit(.minutes(1))) func cancellableMatchRangesCancellation() async throws {
         
-        let regex = try NSRegularExpression(pattern: "a")
-        let string = "a"
+        let regex = try NSRegularExpression(pattern: "^(a+)+$")
+        let string = String(repeating: "a", count: 64) + "!"
+        let clock = ContinuousClock()
         
         let task = Task {
             while !Task.isCancelled {
@@ -107,6 +111,8 @@ struct NSRegularExpressionTests {
         }
         task.cancel()
         
+        let start = clock.now
         await #expect(throws: CancellationError.self) { try await task.value }
+        #expect(start.duration(to: clock.now) < .seconds(1))
     }
 }

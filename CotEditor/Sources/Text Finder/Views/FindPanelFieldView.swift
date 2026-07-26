@@ -136,13 +136,13 @@ struct FindPanelFieldView: View {
                 Button(.init("Advanced options", table: "TextFind", comment: "accessibility label"), systemImage: "ellipsis") {
                     self.isSettingsPresented.toggle()
                 }
+                .help(.init("Show advanced options", table: "TextFind", comment: "tooltip"))
+                .symbolVariant(.circle)
+                .labelStyle(.iconOnly)
                 .popover(isPresented: $isSettingsPresented, arrowEdge: .trailing) {
                     FindSettingsView()
                         .scenePadding()
                 }
-                .symbolVariant(.circle)
-                .labelStyle(.iconOnly)
-                .help(.init("Show advanced options", table: "TextFind", comment: "tooltip"))
             }
             .controlSize(.small)
         }
