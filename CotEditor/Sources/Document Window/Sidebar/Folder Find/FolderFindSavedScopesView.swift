@@ -85,6 +85,12 @@ struct FolderFindSavedScopesView: View {
                     self.editingItem = EditingScope(name: name, scope: scope)
                 }
             }
+            .onDeleteCommand {
+                if let name = self.selection {
+                    self.changeHandler(.delete(name: name))
+                    self.selection = nil
+                }
+            }
             .animation(.default, value: self.scopes.keys)
             .listStyle(.bordered)
             .frame(minWidth: 140, idealWidth: 240, minHeight: 180)
