@@ -10,6 +10,7 @@ CotEditor is a lightweight plain text editor designed for macOS. The project aim
 ![screenshot](screenshot@2x.png)
 
 
+
 ## Design Philosophy
 
 CotEditor is built with a clear focus on being a truly __macOS-native__ text editor.
@@ -32,6 +33,16 @@ Its design emphasizes the following principles:
 
 These principles guide the project’s long-term direction and day-to-day development decisions,
 and they also help determine which feature requests align with CotEditor’s macOS-native identity.
+
+
+
+## Supported macOS Versions
+
+CotEditor supports the latest two major macOS releases.
+
+This policy has been in place for many years and is not evaluated on a per-release basis. It allows the project to adopt new macOS technologies in a timely manner while maintaining the quality and stability of supported releases. Supporting more macOS versions would significantly increase the testing and maintenance burden, making it harder to deliver both new features and reliable updates.
+
+If you're using an older macOS release that is no longer supported by the current version of CotEditor, please use the latest compatible version available from the [Archives](https://coteditor.com/archives). It is also the most stable version for your system, as it includes the final updates and fixes for that macOS release.
 
 
 
