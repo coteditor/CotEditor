@@ -689,50 +689,7 @@ struct FindMatchesCache {
         defer { client.isEditable = wasEditable }
         
         let progress = FindProgress(scope: textFind.scopeRange)
-        let task = Task.detached(priority: .userInitiated) {
-            let highlightColors = NSColor.textHighlighterColor.decompose(into: textFind.numberOfCaptureGroups + 1)
-            let lineCounter = LineCounter(string: textFind.string)
-            
-            var highlights: [ValueRange<NSColor>] = []
-            var resultMatches: [FindAllMatch] = []  // not used if showsList is false
-            
-            textFind.findAll { matches, stop in
-                guard progress.state != .cancelled else {
-                    stop = true
-                    return
-                }
-                
-                // highlight
-                highlights += matches.enumerated()
-                    .filter { !$0.element.isEmpty }
-                    .map { ValueRange(value: highlightColors[$0.offset], range: $0.element) }
-                
-                // build find result for table
-                if showsList {
-                    let matchedRange = matches[0]
-                    
-                    // build a highlighted line string for result table
-                    let lineFragmentRange = lineCounter.lineContentsRange(for: matchedRange)
-                        .clamped(around: matchedRange, maxLength: 1024)  // -> limit to avoid out of memory with very long lines
-                    let lineString = (textFind.string as NSString).substring(with: lineFragmentRange)
-                    let attrLineString = NSMutableAttributedString(string: lineString)
-                    for (color, range) in zip(highlightColors, matches) where !range.isEmpty {
-                        guard let inlineRange = range.shifted(by: -lineFragmentRange.location).intersection(attrLineString.range) else { continue }
-                        attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
-                    }
-                    
-                    let lineNumber = lineCounter.lineNumber(at: matchedRange.location)
-                    let inlineLocation = matchedRange.location - lineFragmentRange.location
-                    
-                    resultMatches.append(.init(range: matchedRange, lineNumber: lineNumber, inlineLocation: inlineLocation, attributedLineString: attrLineString))
-                }
-                
-                progress.updateCompletedUnit(to: matches[0].upperBound)
-                progress.incrementCount()
-            }
-            
-            return (highlights, resultMatches)
-        }
+        async let findResult = Self.findAll(for: textFind, showsList: showsList, progress: progress)
         
         // present progress view
         client.window?.beginSheet {
@@ -741,7 +698,7 @@ struct FindMatchesCache {
         }
         
         // perform
-        let (highlights, matches) = await task.value
+        let (highlights, matches) = await findResult
         
         guard progress.state != .cancelled else { return }
         
@@ -776,19 +733,8 @@ struct FindMatchesCache {
         defer { client.isEditable = true }
         
         let replacementString = self.settings.replacementString
-        
         let progress = FindProgress(scope: textFind.scopeRange)
-        let task = Task.detached(priority: .userInitiated) {
-            textFind.replaceAll(with: replacementString) { range, count, stop in
-                guard progress.state != .cancelled else {
-                    stop = true
-                    return
-                }
-                
-                progress.updateCompletedUnit(to: range.upperBound)
-                progress.incrementCount(by: count)
-            }
-        }
+        async let replacementResult = Self.replaceAll(for: textFind, with: replacementString, progress: progress)
         
         // present progress view
         client.window?.beginSheet {
@@ -797,7 +743,7 @@ struct FindMatchesCache {
         }
         
         // perform
-        let (replacementItems, selectedRanges) = await task.value
+        let (replacementItems, selectedRanges) = await replacementResult
         
         client.isEditable = true
         
@@ -842,5 +788,80 @@ struct FindMatchesCache {
     @concurrent private static func matches(in textFind: TextFind) async throws -> [NSRange] {
         
         try textFind.matches
+    }
+    
+    
+    /// Finds all matches in the find state and builds the results in the background.
+    ///
+    /// - Parameters:
+    ///   - textFind: The find state to use.
+    ///   - showsList: Whether builds the matched line entries for the result table.
+    ///   - progress: The progress object to report the state.
+    /// - Returns: The ranges to highlight and the matched line entries for the result table.
+    @concurrent private static func findAll(for textFind: TextFind, showsList: Bool, progress: FindProgress) async -> (highlights: [ValueRange<NSColor>], matches: [FindAllMatch]) {
+        
+        let highlightColors = NSColor.textHighlighterColor.decompose(into: textFind.numberOfCaptureGroups + 1)
+        let lineCounter = LineCounter(string: textFind.string)
+        
+        var highlights: [ValueRange<NSColor>] = []
+        var resultMatches: [FindAllMatch] = []  // not used if showsList is false
+        
+        textFind.findAll { matches, stop in
+            guard progress.state != .cancelled else {
+                stop = true
+                return
+            }
+            
+            // highlight
+            highlights += matches.enumerated()
+                .filter { !$0.element.isEmpty }
+                .map { ValueRange(value: highlightColors[$0.offset], range: $0.element) }
+            
+            // build find result for table
+            if showsList {
+                let matchedRange = matches[0]
+                
+                // build a highlighted line string for result table
+                let lineFragmentRange = lineCounter.lineContentsRange(for: matchedRange)
+                    .clamped(around: matchedRange, maxLength: 1024)  // -> limit to avoid out of memory with very long lines
+                let lineString = (textFind.string as NSString).substring(with: lineFragmentRange)
+                let attrLineString = NSMutableAttributedString(string: lineString)
+                for (color, range) in zip(highlightColors, matches) where !range.isEmpty {
+                    guard let inlineRange = range.shifted(by: -lineFragmentRange.location).intersection(attrLineString.range) else { continue }
+                    attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
+                }
+                
+                let lineNumber = lineCounter.lineNumber(at: matchedRange.location)
+                let inlineLocation = matchedRange.location - lineFragmentRange.location
+                
+                resultMatches.append(.init(range: matchedRange, lineNumber: lineNumber, inlineLocation: inlineLocation, attributedLineString: attrLineString))
+            }
+            
+            progress.updateCompletedUnit(to: matches[0].upperBound)
+            progress.incrementCount()
+        }
+        
+        return (highlights, resultMatches)
+    }
+    
+    
+    /// Replaces all matches in the find state with the replacement string in the background.
+    ///
+    /// - Parameters:
+    ///   - textFind: The find state to use.
+    ///   - replacementString: The string to replace matches with.
+    ///   - progress: The progress object to report the state.
+    /// - Returns: The replacement items and the selected ranges after the replacement.
+    @concurrent private static func replaceAll(for textFind: TextFind, with replacementString: String, progress: FindProgress) async -> (replacementItems: [TextFind.ReplacementItem], selectedRanges: [NSRange]?) {
+        
+        textFind.replaceAll(with: replacementString) { range, count, stop in
+            guard progress.state != .cancelled else {
+                stop = true
+                return
+            }
+            
+            progress.updateCompletedUnit(to: range.upperBound)
+            progress.incrementCount(by: count)
+        }
     }
 }
