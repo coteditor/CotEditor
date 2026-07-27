@@ -237,7 +237,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nach Updates suchen …"
+            "value" : "Nach Updates suchen …"
           }
         },
         "en-GB" : {
@@ -661,7 +661,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Codierungsliste bearbeiten …"
+            "value" : "Codierungsliste bearbeiten …"
           }
         },
         "en-GB" : {
@@ -1104,7 +1104,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Encodage en « %@ »"
+            "value" : "Encodage en « %@ »"
           }
         },
         "it" : {
@@ -2920,7 +2920,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "スクリプトをエディタで開くにはOption+クリックしてください。"
+            "value" : "スクリプトをエディタで開くにはoptionキーを押しながらクリックしてください。"
           }
         },
         "ko" : {
@@ -5679,7 +5679,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "La barre latérale n'est disponible que lorsqu'un dossier est ouvert en tant que document."
+            "value" : "La barre latérale n’est disponible que lorsqu’un dossier est ouvert en tant que document."
           }
         },
         "it" : {
@@ -5798,7 +5798,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不可視文字を表示させるには「ウインドウ」設定で設定を変更してください"
+            "value" : "不可視文字を表示させるには“ウインドウ”設定で設定を変更してください"
           }
         },
         "ko" : {

@@ -360,7 +360,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Commentaires :"
+            "value" : "Commentaires :"
           }
         },
         "it" : {
@@ -466,7 +466,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parsing :"
+            "value" : "Parsing :"
           }
         },
         "it" : {
@@ -572,7 +572,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Délai :"
+            "value" : "Délai :"
           }
         },
         "it" : {
@@ -1208,7 +1208,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Largeur :"
+            "value" : "Largeur :"
           }
         },
         "it" : {
@@ -1314,7 +1314,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indentation :"
+            "value" : "Indentation :"
           }
         },
         "it" : {
@@ -1420,7 +1420,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Insérer des délimiteurs de commentaire après l'indentation"
+            "value" : "Insérer des délimiteurs de commentaire après l’indentation"
           }
         },
         "it" : {
@@ -1632,7 +1632,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Préférer :"
+            "value" : "Préférer :"
           }
         },
         "it" : {
@@ -2166,7 +2166,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Espace :"
+            "value" : "Espace :"
           }
         },
         "it" : {

@@ -1292,7 +1292,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "16進数（ショート・アルファ値付き）"
+            "value" : "16進数（ショート、アルファ値付き）"
           }
         },
         "ko" : {

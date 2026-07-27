@@ -891,7 +891,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Format du texte à insérer :"
+            "value" : "Format du texte à insérer :"
           }
         },
         "it" : {
@@ -1544,7 +1544,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Texte à insérer lors d’une commande de menu ou d’un raccourcis clavier :"
+            "value" : "Texte à insérer lors d’une commande de menu ou d’un raccourcis clavier :"
           }
         },
         "it" : {
@@ -1650,7 +1650,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Texte à insérer en glissant-déposant des fichiers dans l’éditeur :"
+            "value" : "Texte à insérer en glissant-déposant des fichiers dans l’éditeur :"
           }
         },
         "it" : {

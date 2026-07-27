@@ -248,7 +248,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Outil en ligne de commande :"
+            "value" : "Outil en ligne de commande :"
           }
         },
         "it" : {
@@ -580,7 +580,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avertissements :"
+            "value" : "Avertissements :"
           }
         },
         "it" : {
@@ -686,7 +686,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enregistrement :"
+            "value" : "Enregistrement :"
           }
         },
         "it" : {
@@ -1343,7 +1343,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Installé ici : %@"
+            "value" : "Installé ici : %@"
           }
         },
         "it" : {
@@ -1538,7 +1538,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mehr Infos …"
+            "value" : "Mehr Infos …"
           }
         },
         "en-GB" : {
@@ -1644,7 +1644,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Warnungen verwalten…"
+            "value" : "Warnungen verwalten …"
           }
         },
         "en-GB" : {
@@ -1775,7 +1775,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voulez-vous relancer CotEditor maintenant ?"
+            "value" : "Voulez-vous relancer CotEditor maintenant ?"
           }
         },
         "it" : {
@@ -1888,13 +1888,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Le comportement de l'application changera dès le prochain lancement suivant celui-ci."
+            "value" : "Le comportement de l’application changera dès le prochain lancement suivant celui-ci."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il comportamento dell'app verrà modificato alla prima esecuzione dopo la prossima."
+            "value" : "Il comportamento dell’app verrà modificato alla prima esecuzione dopo la prossima."
           }
         },
         "ja" : {
@@ -2446,7 +2446,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Au lancement :"
+            "value" : "Au lancement :"
           }
         },
         "it" : {
@@ -2871,7 +2871,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mise à jour :"
+            "value" : "Mise à jour :"
           }
         },
         "it" : {
@@ -2977,7 +2977,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cacher ces avertissements :"
+            "value" : "Cacher ces avertissements :"
           }
         },
         "it" : {
@@ -3189,7 +3189,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lorsque le document est modifié par une autre application :"
+            "value" : "Lorsque le document est modifié par une autre application :"
           }
         },
         "it" : {
@@ -3295,7 +3295,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quand aucune fenêtre n’est ouverte :"
+            "value" : "Quand aucune fenêtre n’est ouverte :"
           }
         },
         "it" : {

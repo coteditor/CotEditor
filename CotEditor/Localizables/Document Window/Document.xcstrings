@@ -124,7 +124,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ Pixel/Zoll"
+            "value" : "%@ Pixel/Zoll"
           }
         },
         "en-GB" : {
@@ -3113,7 +3113,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gliederung extrahieren …"
+            "value" : "Gliederung extrahieren …"
           }
         },
         "en-GB" : {
@@ -8835,7 +8835,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Voulez-vous placer « %@ » dans la corbeille ?"
+            "value" : "Voulez-vous placer « %@ » dans la corbeille ?"
           }
         },
         "it" : {
@@ -8998,7 +8998,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Voulez-vous placer %lld éléments sélectionnés dans la corbeille ?"
+                  "value" : "Voulez-vous placer %lld éléments sélectionnés dans la corbeille ?"
                 }
               }
             }
@@ -10892,7 +10892,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Andere …"
+            "value" : "Andere …"
           }
         },
         "en-GB" : {
@@ -11798,7 +11798,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inkompatible Zeichen scannen …"
+            "value" : "Inkompatible Zeichen scannen …"
           }
         },
         "en-GB" : {
@@ -12082,7 +12082,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Im Ordner suchen…"
+            "value" : "Im Ordner suchen …"
           }
         },
         "en-GB" : {
@@ -12296,7 +12296,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Teilen …"
+            "value" : "Teilen …"
           }
         },
         "en-GB" : {
@@ -13717,7 +13717,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Merci pour votre soutien !"
+            "value" : "Merci pour votre soutien !"
           }
         },
         "it" : {
@@ -15459,7 +15459,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "「検索と置換」を表示"
+            "value" : "“検索と置換”を表示"
           }
         },
         "ko" : {
@@ -18739,7 +18739,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " 削除された項目"
+            "value" : "削除された項目"
           }
         },
         "ko" : {
@@ -19156,7 +19156,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Konfigurieren …"
+            "value" : "Konfigurieren …"
           }
         },
         "en" : {

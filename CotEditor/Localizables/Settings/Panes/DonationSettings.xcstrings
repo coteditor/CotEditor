@@ -567,7 +567,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Als Beweis für deine freundliche Unterstützung erscheint während des laufenden Unterstützung ein Kaffee-Badge in der Statusleiste."
+            "value" : "Als Beweis für deine freundliche Unterstützung erscheint während der laufenden Unterstützung ein Kaffee-Badge in der Statusleiste."
           }
         },
         "en-GB" : {
@@ -585,7 +585,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Comme preuve de votre soutien, un badge de café apparaît sur la barre d'état pendant le soutien continu."
+            "value" : "Comme preuve de votre soutien, un badge de café apparaît sur la barre d’état pendant le soutien continu."
           }
         },
         "it" : {
@@ -691,7 +691,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Type de badge :"
+            "value" : "Type de badge :"
           }
         },
         "it" : {
@@ -1009,7 +1009,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Le don n'est pas disponible pour le moment."
+            "value" : "Le don n’est pas disponible pour le moment."
           }
         },
         "it" : {
@@ -1310,7 +1310,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GitHub Sponsors öffnen"
+            "value" : "GitHub Sponsors öffnen"
           }
         },
         "en-GB" : {
@@ -1328,7 +1328,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Ouvrir GitHub Sponsors"
+            "value" : "Ouvrir GitHub Sponsors"
           }
         },
         "it" : {
@@ -1416,7 +1416,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Im App Store öffnen"
+            "value" : "Im App Store öffnen"
           }
         },
         "en-GB" : {
@@ -1434,7 +1434,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir dans l’App Store"
+            "value" : "Ouvrir dans l’App Store"
           }
         },
         "it" : {
@@ -1947,7 +1947,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die In-App-Spendenfunktion ist nur in CotEditor verfügbar, der im App Store vertrieben wird."
+            "value" : "Die In-App-Spendenfunktion ist nur in der über den App Store vertriebenen Version von CotEditor verfügbar."
           }
         },
         "en-GB" : {
@@ -1965,13 +1965,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "La fonction de donation intégrée n'est disponible que dans CotEditor distribué dans l'App Store."
+            "value" : "La fonction de donation intégrée n’est disponible que dans CotEditor distribué dans l’App Store."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si può donare in-app solo tramite il CotEditor distribuito dall'App Store."
+            "value" : "Si può donare in-app solo tramite il CotEditor distribuito dall’App Store."
           }
         },
         "ja" : {

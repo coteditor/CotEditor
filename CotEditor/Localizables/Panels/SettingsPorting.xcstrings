@@ -1606,7 +1606,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Puoi comunque importare l'archivio, ma alcune impostazioni potrebbero essere incompatibili."
+            "value" : "Puoi comunque importare l’archivio, ma alcune impostazioni potrebbero essere incompatibili."
           }
         },
         "ja" : {
@@ -1706,7 +1706,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Exporter les réglages sélectionnés sous forme d'archive afin de pouvoir les importer sur d'autres ordinateurs."
+            "value" : "Exporter les réglages sélectionnés sous forme d’archive afin de pouvoir les importer sur d’autres ordinateurs."
           }
         },
         "it" : {
@@ -2024,7 +2024,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sélectionner les éléments à importer :"
+            "value" : "Sélectionner les éléments à importer :"
           }
         },
         "it" : {
@@ -2357,7 +2357,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "「設定」ウインドウ内のすべての設定"
+            "value" : "“設定”ウインドウ内のすべての設定"
           }
         },
         "ko" : {

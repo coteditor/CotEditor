@@ -818,7 +818,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Konfigurieren …"
+            "value" : "Konfigurieren …"
           }
         },
         "en" : {
@@ -2186,7 +2186,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schnellaktionen einblenden …"
+            "value" : "Schnellaktionen einblenden …"
           }
         },
         "en" : {
@@ -4124,7 +4124,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öffnen …"
+            "value" : "Öffnen …"
           }
         },
         "en" : {
@@ -4466,7 +4466,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Papierformat …"
+            "value" : "Papierformat …"
           }
         },
         "en" : {
@@ -4580,7 +4580,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Drucken …"
+            "value" : "Drucken …"
           }
         },
         "en" : {
@@ -4694,7 +4694,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sichern unter …"
+            "value" : "Sichern unter …"
           }
         },
         "en" : {
@@ -5948,7 +5948,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Einstellungen …"
+            "value" : "Einstellungen …"
           }
         },
         "en" : {
@@ -10310,7 +10310,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ripristina l'analisi della sintassi"
+            "value" : "Ripristina l’analisi della sintassi"
           }
         },
         "ja" : {
@@ -11534,7 +11534,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Symbolleiste anpassen …"
+            "value" : "Symbolleiste anpassen …"
           }
         },
         "en" : {
@@ -12218,7 +12218,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Farbcode bearbeiten …"
+            "value" : "Farbcode bearbeiten …"
           }
         },
         "en" : {
@@ -13274,7 +13274,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sposta il focus sull'editor precedente"
+            "value" : "Sposta il focus sull’editor precedente"
           }
         },
         "ja" : {
@@ -15524,7 +15524,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Einstellungen importieren …"
+            "value" : "Einstellungen importieren …"
           }
         },
         "en" : {
@@ -15866,7 +15866,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gehe zu Zeile …"
+            "value" : "Gehe zu Zeile …"
           }
         },
         "en" : {
@@ -16094,7 +16094,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Suchen …"
+            "value" : "Suchen …"
           }
         },
         "en" : {
@@ -17120,7 +17120,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Konfigurieren …"
+            "value" : "Konfigurieren …"
           }
         },
         "en" : {
@@ -19172,7 +19172,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Einstellungen exportieren …"
+            "value" : "Einstellungen exportieren …"
           }
         },
         "en" : {
@@ -20540,7 +20540,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nach Muster sortieren …"
+            "value" : "Nach Muster sortieren …"
           }
         },
         "en" : {
@@ -21680,7 +21680,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Multiple Ersetzungen verwalten …"
+            "value" : "Multiple Ersetzungen verwalten …"
           }
         },
         "en" : {
@@ -22250,7 +22250,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Snippets bearbeiten …"
+            "value" : "Snippets bearbeiten …"
           }
         },
         "en" : {
@@ -24416,7 +24416,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erweiterte Zeichenanzahl …"
+            "value" : "Erweiterte Zeichenanzahl …"
           }
         },
         "en" : {
@@ -25100,7 +25100,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Teilen …"
+            "value" : "Teilen …"
           }
         },
         "en" : {
@@ -25328,7 +25328,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "In Unicode-Codepunkt eingeben …"
+            "value" : "In Unicode-Codepunkt eingeben …"
           }
         },
         "en" : {

@@ -66,6 +66,7 @@
 - Display more accurate error messages in dialogs.
 - Updated the SON syntax to change the file mapping for `Package.resolved` from file extensions to filenames.
 - Improve cancellation handling for syntax highlighting with computationally intensive regular expressions.
+- Improve localization.
 - Improve overall stability.
 - [non-AppStore ver.] Update Sparkle from 2.9.3 to 2.9.4.
 
@@ -77,6 +78,7 @@
 - Fix an issue where the insertion point could move to an incorrect column when extending a selection upward from the end of the document.
 - Fix an issue where the Surround Selection With > Custom dialog did not show the last used strings.
 - Fix an issue where the window size setting was not included in the exported settings archive (Thanks to offyotto!).
+- Fix an issue where the incompatible character list in the Warnings inspector was not updated when the text encoding was changed.
 
 
 
