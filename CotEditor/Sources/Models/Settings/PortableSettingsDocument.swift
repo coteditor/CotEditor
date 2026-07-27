@@ -52,8 +52,9 @@ struct PortableSettingsDocument: FileDocument {
         static let replacements = Self(rawValue: 1 << 1)
         static let syntaxes     = Self(rawValue: 1 << 2)
         static let themes       = Self(rawValue: 1 << 3)
+        static let fileScopes   = Self(rawValue: 1 << 4)
         
-        static let all: Self = [.settings, .replacements, .syntaxes, .themes]
+        static let all: Self = [.settings, .replacements, .syntaxes, .themes, .fileScopes]
     }
     
     
@@ -175,6 +176,7 @@ struct PortableSettingsDocument: FileDocument {
             .replacements: self.replacements.keys.sorted(),
             .syntaxes: self.syntaxes.keys.sorted(),
             .themes: self.themes.keys.sorted(),
+            .fileScopes: self.fileScopes.sorted()
         ]
     }
     
@@ -184,6 +186,18 @@ struct PortableSettingsDocument: FileDocument {
         
         guard self.info.version == Bundle.main.version else {
             throw .versionMismatch(self.info.version)
+        }
+    }
+    
+    
+    /// The names of file scopes bundled in the receiver.
+    private var fileScopes: [String] {
+        
+        switch self.defaults[DefaultKeys.folderFindSavedScopes.rawValue] {
+            case .dictionary(let dictionary):
+                Array(dictionary.keys)
+            default:
+                []
         }
     }
 }
@@ -198,21 +212,28 @@ struct PortableSettingsDocument: FileDocument {
             .replacements: ReplacementManager.shared.userSettingNames,
             .syntaxes: SyntaxManager.shared.userSettingNames,
             .themes: ThemeManager.shared.userSettingNames,
+            .fileScopes: Array(UserDefaults.standard[.folderFindSavedScopes].keys),
         ]
     }
     
     
-    init(including types: SettingTypes) throws {
+    init(including types: SettingTypes, userDefaults: UserDefaults = .standard) throws {
         
         self.info = Info(date: .now, version: Bundle.main.version!)
         
+        var keys: [DefaultKeys] = []
         if types.contains(.settings) {
-            let keys = DefaultSettings.portableKeys.map(\.rawValue)
-            self.defaults = UserDefaults.standard.dictionaryWithValues(forKeys: keys)
+            keys += DefaultSettings.portableKeys
+        }
+        if types.contains(.fileScopes) {
+            keys.append(.folderFindSavedScopes)
+        }
+        
+        self.defaults = userDefaults.dictionaryWithValues(forKeys: keys.map(\.rawValue))
                 .compactMapValues { ($0 is NSNull) ? nil : PropertyListValue($0) }
+        
+        if types.contains(.settings) {
             self.keyBindings = try KeyBindingManager.shared.userSettingsData()
-        } else {
-            self.defaults = [:]
         }
         
         self.replacements = types.contains(.replacements) ? ReplacementManager.shared.exportSettings() : [:]
@@ -223,8 +244,10 @@ struct PortableSettingsDocument: FileDocument {
     
     /// Applies settings to the current user environment.
     ///
-    /// - Parameter types: The setting types to apply.
-    func applySettings(types: SettingTypes = .all) throws {
+    /// - Parameters:
+    ///   - types: The setting types to apply.
+    ///   - userDefaults: The user defaults store to which general settings and file scopes are applied.
+    func applySettings(types: SettingTypes = .all, to userDefaults: UserDefaults = .standard) throws {
         
         if types.contains(.replacements) {
             for (name, payload) in self.replacements {
@@ -244,11 +267,20 @@ struct PortableSettingsDocument: FileDocument {
             }
         }
         
-        if types.contains(.settings), !self.defaults.isEmpty {
-            UserDefaults.standard.setValuesForKeys(self.defaults.mapValues(\.any))
+        if types.contains(.settings) {
+            let portableKeys = Set(DefaultSettings.portableKeys.map(\.rawValue))
+            let defaults = self.defaults.filter { portableKeys.contains($0.key) }
+            
+            userDefaults.setValuesForKeys(defaults.mapValues(\.any))
         }
         if types.contains(.settings), let keyBindings {
             try KeyBindingManager.shared.importSetting(data: keyBindings)
+        }
+        
+        if types.contains(.fileScopes),
+           let fileScopes = self.defaults[DefaultKeys.folderFindSavedScopes]?.any as? [String: Data]
+        {
+            userDefaults[.folderFindSavedScopes].merge(fileScopes) { _, imported in imported }
         }
     }
 }

@@ -58,6 +58,67 @@ import SyntaxFormat
     }
     
     
+    @Test(arguments: [false, true])
+    func appliesOnlySelectedDefaults(fileScopes: Bool) throws {
+        
+        let suiteName = "PortableSettingsDocumentTests.\(UUID().uuidString)"
+        let userDefaults = try #require(UserDefaults(suiteName: suiteName))
+        defer { userDefaults.removePersistentDomain(forName: suiteName) }
+        
+        let windowWidthKey = DefaultKeys.windowWidth.rawValue
+        let fileScopesKey = DefaultKeys.folderFindSavedScopes.rawValue
+        let currentWindowWidth = 320.0
+        let importedWindowWidth = 640.0
+        let currentFileScopes = [
+            "Current": Data([0x01]),
+            "Duplicate": Data([0x02]),
+        ]
+        let importedFileScopes = [
+            "Duplicate": Data([0x03]),
+            "Imported": Data([0x04]),
+        ]
+        let mergedFileScopes = [
+            "Current": Data([0x01]),
+            "Duplicate": Data([0x03]),
+            "Imported": Data([0x04]),
+        ]
+        
+        userDefaults.set(currentWindowWidth, forKey: windowWidthKey)
+        userDefaults.set(currentFileScopes, forKey: fileScopesKey)
+        
+        var document = try PortableSettingsDocument(including: [])
+        document.defaults = [
+            windowWidthKey: PropertyListValue(importedWindowWidth),
+            fileScopesKey: PropertyListValue(importedFileScopes),
+        ]
+        
+        try document.applySettings(types: fileScopes ? .fileScopes : .settings, to: userDefaults)
+        
+        #expect(userDefaults.double(forKey: windowWidthKey) == (fileScopes ? currentWindowWidth : importedWindowWidth))
+        #expect(userDefaults.object(forKey: fileScopesKey) as? [String: Data] == (fileScopes ? mergedFileScopes : currentFileScopes))
+    }
+    
+    
+    @Test func emptyFileScopesKeepExistingScopes() throws {
+        
+        let suiteName = "PortableSettingsDocumentTests.\(UUID().uuidString)"
+        let userDefaults = try #require(UserDefaults(suiteName: suiteName))
+        defer { userDefaults.removePersistentDomain(forName: suiteName) }
+        
+        let fileScopesKey = DefaultKeys.folderFindSavedScopes.rawValue
+        let currentFileScopes = ["Current": Data([0x01])]
+        
+        userDefaults.set(currentFileScopes, forKey: fileScopesKey)
+        
+        var document = try PortableSettingsDocument(including: [])
+        document.defaults = [fileScopesKey: PropertyListValue([String: Data]())]
+        
+        try document.applySettings(types: .fileScopes, to: userDefaults)
+        
+        #expect(userDefaults.object(forKey: fileScopesKey) as? [String: Data] == currentFileScopes)
+    }
+    
+    
     // MARK: Private Methods
     
     private func createSettingsArchive() throws -> URL {

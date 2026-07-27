@@ -204,6 +204,14 @@ private struct PortableTypesView: View {
                          comment: "unit for multiple replace settings")
                 }
             }
+            
+            if let names = self.includedTypes[.fileScopes], !names.isEmpty {
+                Toggle(isOn: $types.bind(.fileScopes)) {
+                    Text(.init("SettingTypes.fileScopes.label", defaultValue: "File Scopes", table: "SettingsPorting"))
+                    Text("\(names.count) items", tableName: "SettingsPorting",
+                         comment: "unit for file scopes")
+                }
+            }
         }
         .monospacedDigit()
     }
