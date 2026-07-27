@@ -115,7 +115,7 @@ import StringUtils
         }
         
         let options = UserDefaults.standard.characterCountOptions
-        self.entireCountTask = Task { [weak self] in
+        self.entireCountTask = Task(priority: .utility) { [weak self] in
             try Task.checkCancellation()
             let count = await Self.calculateCount(in: string, options: options)
             try Task.checkCancellation()
@@ -139,7 +139,7 @@ import StringUtils
         
         let strings = textView.selectedStrings
         let options = UserDefaults.standard.characterCountOptions
-        self.selectionCountTask = Task { [weak self] in
+        self.selectionCountTask = Task(priority: .utility) { [weak self] in
             try Task.checkCancellation()
             let count = await Self.calculateCount(in: strings, options: options)
             try Task.checkCancellation()

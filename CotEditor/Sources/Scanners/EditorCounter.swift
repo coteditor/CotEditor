@@ -118,7 +118,7 @@ import StringUtils
         
         guard !self.types.isDisjoint(with: .count) else { return }
         
-        self.contentTask = Task {
+        self.contentTask = Task(priority: .utility) {
             try await Task.sleep(for: .milliseconds(20), tolerance: .milliseconds(20))  // debounce
             
             guard let source = self.source() else { return }
@@ -127,7 +127,7 @@ import StringUtils
             
             if self.types.contains(.characters) {
                 try Task.checkCancellation()
-                self.result.characters.entire = await Task.detached { string.count }.value
+                self.result.characters.entire = await Self.calculate { string.count }
             }
             
             if self.types.contains(.lines) {
@@ -135,13 +135,13 @@ import StringUtils
                 self.result.lines.entire = if let lineRangeCalculator {
                     lineRangeCalculator.numberOfLines
                 } else {
-                    await Task.detached { string.numberOfLines }.value
+                    await Self.calculate { string.numberOfLines }
                 }
             }
             
             if self.types.contains(.words) {
                 try Task.checkCancellation()
-                self.result.words.entire = await Task.detached { string.numberOfWords }.value
+                self.result.words.entire = await Self.calculate { string.numberOfWords }
             }
         }
     }
@@ -154,7 +154,7 @@ import StringUtils
         
         guard !self.types.isEmpty else { return }
         
-        self.selectionTask = Task {
+        self.selectionTask = Task(priority: .utility) {
             try await Task.sleep(for: .milliseconds(200), tolerance: .milliseconds(40))  // debounce
             
             guard let source = self.source() else { return }
@@ -173,22 +173,22 @@ import StringUtils
             
             if self.types.contains(.characters) {
                 try Task.checkCancellation()
-                self.result.characters.selected = await Task.detached { selectedStrings.map(\.count).reduce(0, +) }.value
+                self.result.characters.selected = await Self.calculate { selectedStrings.map(\.count).reduce(0, +) }
             }
             
             if self.types.contains(.lines) {
                 try Task.checkCancellation()
-                self.result.lines.selected = await Task.detached { string.numberOfLines(in: selectedRanges) }.value
+                self.result.lines.selected = await Self.calculate { string.numberOfLines(in: selectedRanges) }
             }
             
             if self.types.contains(.words) {
                 try Task.checkCancellation()
-                self.result.words.selected = await Task.detached { selectedStrings.map(\.numberOfWords).reduce(0, +) }.value
+                self.result.words.selected = await Self.calculate { selectedStrings.map(\.numberOfWords).reduce(0, +) }
             }
             
             if self.types.contains(.location) {
                 try Task.checkCancellation()
-                self.result.location = await Task.detached { string.distance(from: string.startIndex, to: location) }.value
+                self.result.location = await Self.calculate { string.distance(from: string.startIndex, to: location) }
             }
             
             if self.types.contains(.line) {
@@ -196,13 +196,13 @@ import StringUtils
                 self.result.line = if let lineRangeCalculator, let nsLocation = selectedNSRanges.first?.location {
                     lineRangeCalculator.lineNumber(at: nsLocation)
                 } else {
-                    await Task.detached { string.lineNumber(at: location) }.value
+                    await Self.calculate { string.lineNumber(at: location) }
                 }
             }
             
             if self.types.contains(.column) {
                 try Task.checkCancellation()
-                self.result.column = await Task.detached { string.columnNumber(at: location) }.value
+                self.result.column = await Self.calculate { string.columnNumber(at: location) }
             }
         }
     }
@@ -232,5 +232,15 @@ import StringUtils
         if !added.isEmpty {
             self.invalidateSelection()
         }
+    }
+    
+    
+    /// Performs the given calculation in the background.
+    ///
+    /// - Parameter calculation: The calculation to perform.
+    /// - Returns: The calculation result.
+    @concurrent private static func calculate<Value: Sendable>(_ calculation: @Sendable () -> Value) async -> Value {
+        
+        calculation()
     }
 }
