@@ -19,7 +19,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ Punkt"
+            "value" : "%@ Punkt"
           }
         },
         "en-GB" : {
@@ -1315,7 +1315,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Möchtest du sie für die nichtproportionale Schrift verwenden?"
+            "value" : "Soll sie als nichtproportionale Schrift verwendet werden?"
           }
         },
         "en" : {
@@ -1767,7 +1767,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auswählen …"
+            "value" : "Auswählen …"
           }
         },
         "en-GB" : {

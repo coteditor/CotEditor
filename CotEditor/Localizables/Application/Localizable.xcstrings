@@ -1243,7 +1243,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exportieren …"
+            "value" : "Exportieren …"
           }
         },
         "en" : {
@@ -1356,7 +1356,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "„%@“ exportieren …"
+            "value" : "„%@“ exportieren …"
           }
         },
         "en" : {
@@ -1469,7 +1469,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Importieren …"
+            "value" : "Importieren …"
           }
         },
         "en" : {
@@ -3621,7 +3621,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deine Änderungen gehen verloren, wenn du diese nicht sicherst. Inkompatible Zeichen werden beim Speichern entweder ersetzt oder entfernt."
+            "value" : "Deine Änderungen gehen verloren, wenn du diese nicht sicherst. Inkompatible Zeichen werden beim Sichern entweder ersetzt oder entfernt."
           }
         },
         "en" : {
@@ -4984,7 +4984,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inkompatible Zeichen werden beim Speichern entweder ersetzt oder entfernt. Möchtest du dennoch sichern?"
+            "value" : "Inkompatible Zeichen werden beim Sichern entweder ersetzt oder entfernt. Möchtest du dennoch sichern?"
           }
         },
         "en" : {
@@ -8266,7 +8266,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Möchtest du alle Zeilenenden in %@ umwandeln, das häufigste Zeilenende in diesem Dokument?"
+            "value" : "Möchtest du alle Zeilenenden in %@ umwandeln, da dieses Zeilenende in diesem Dokument am häufigsten verwendet wird?"
           }
         },
         "en" : {
@@ -10978,7 +10978,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inkompatible Zeichen werden beim Speichern entweder ersetzt oder entfernt. Möchtest du die Textcodierung ändern und die inkompatiblen Zeichen überprüfen?"
+            "value" : "Inkompatible Zeichen werden beim Sichern entweder ersetzt oder entfernt. Möchtest du die Textcodierung ändern und die inkompatiblen Zeichen überprüfen?"
           }
         },
         "en" : {

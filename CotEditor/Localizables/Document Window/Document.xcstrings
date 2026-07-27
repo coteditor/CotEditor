@@ -124,7 +124,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ Pixel/Zoll"
+            "value" : "%@ Pixel/Zoll"
           }
         },
         "en-GB" : {
@@ -2937,7 +2937,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gliederung extrahieren …"
+            "value" : "Gliederung extrahieren …"
           }
         },
         "en-GB" : {
@@ -9073,7 +9073,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Andere …"
+            "value" : "Andere …"
           }
         },
         "en-GB" : {
@@ -9714,7 +9714,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inkompatible Zeichen scannen …"
+            "value" : "Inkompatible Zeichen scannen …"
           }
         },
         "en-GB" : {
@@ -9820,7 +9820,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Im Ordner suchen…"
+            "value" : "Im Ordner suchen …"
           }
         },
         "en-GB" : {
@@ -10034,7 +10034,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Teilen …"
+            "value" : "Teilen …"
           }
         },
         "en-GB" : {
@@ -16062,7 +16062,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Konfigurieren …"
+            "value" : "Konfigurieren …"
           }
         },
         "en" : {

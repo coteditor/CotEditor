@@ -553,7 +553,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die folgenden Dateizuordnungsregeln sind in mehreren Syntaxen registriert.CotEditor verwendet die erste Syntax automatisch. Um Konflikte zu beheben, bearbeite jede Syntax."
+            "value" : "Die folgenden Dateizuordnungsregeln sind in mehreren Syntaxen registriert. CotEditor verwendet die erste Syntax automatisch. Um Konflikte zu beheben, bearbeite jede Syntax."
           }
         },
         "en-GB" : {

@@ -1192,7 +1192,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Originale Entwickler"
+            "value" : "Ursprünglich entwickelt von"
           }
         },
         "en-GB" : {
@@ -1406,7 +1406,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das CotEditor Projekt"
+            "value" : "Das CotEditor-Projekt"
           }
         },
         "en-GB" : {

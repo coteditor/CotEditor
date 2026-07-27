@@ -567,7 +567,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Als Beweis für deine freundliche Unterstützung erscheint während des laufenden Unterstützung ein Kaffee-Badge in der Statusleiste."
+            "value" : "Als Beweis für deine freundliche Unterstützung erscheint während der laufenden Unterstützung ein Kaffee-Badge in der Statusleiste."
           }
         },
         "en-GB" : {
@@ -1310,7 +1310,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GitHub Sponsors öffnen"
+            "value" : "GitHub Sponsors öffnen"
           }
         },
         "en-GB" : {
@@ -1416,7 +1416,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Im App Store öffnen"
+            "value" : "Im App Store öffnen"
           }
         },
         "en-GB" : {
@@ -1947,7 +1947,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die In-App-Spendenfunktion ist nur in CotEditor verfügbar, der im App Store vertrieben wird."
+            "value" : "Die In-App-Spendenfunktion ist nur in der über den App Store vertriebenen Version von CotEditor verfügbar."
           }
         },
         "en-GB" : {
