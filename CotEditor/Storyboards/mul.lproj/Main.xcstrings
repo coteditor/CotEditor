@@ -10310,7 +10310,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ripristina l'analisi della sintassi"
+            "value" : "Ripristina l’analisi della sintassi"
           }
         },
         "ja" : {
@@ -13274,7 +13274,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sposta il focus sull'editor precedente"
+            "value" : "Sposta il focus sull’editor precedente"
           }
         },
         "ja" : {

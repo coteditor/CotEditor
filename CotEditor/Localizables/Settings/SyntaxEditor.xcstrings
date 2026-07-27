@@ -4562,7 +4562,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gestito dall'app"
+            "value" : "Gestito dall’app"
           }
         },
         "ja" : {
@@ -6648,7 +6648,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I delimitatori di blocco sono usati per l'indentazione automatica durante la digitazione."
+            "value" : "I delimitatori di blocco sono usati per l’indentazione automatica durante la digitazione."
           }
         },
         "ja" : {
@@ -6754,7 +6754,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I delimitatori qui definiti sono usati anche per l'evidenziazione della sintassi."
+            "value" : "I delimitatori qui definiti sono usati anche per l’evidenziazione della sintassi."
           }
         },
         "ja" : {

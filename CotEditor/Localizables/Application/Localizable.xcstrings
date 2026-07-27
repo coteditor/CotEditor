@@ -3309,7 +3309,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il file “%@” è già aperto in un'altra finestra."
+            "value" : "Il file “%@” è già aperto in un’altra finestra."
           }
         },
         "ja" : {
@@ -3423,7 +3423,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Per aprirlo in questa finestra, chiudere prima l'altra."
+            "value" : "Per aprirlo in questa finestra, chiudere prima l’altra."
           }
         },
         "ja" : {
@@ -7616,7 +7616,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Accedi alla posizione originale per autorizzare CotEditor all'accesso."
+            "value" : "Accedi alla posizione originale per autorizzare CotEditor all’accesso."
           }
         },
         "ja" : {
@@ -7844,7 +7844,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esiste già un'opzione con lo stesso nome. Sostituendola, il suo contenuto verrà sovrascritto."
+            "value" : "Esiste già un’opzione con lo stesso nome. Sostituendola, il suo contenuto verrà sovrascritto."
           }
         },
         "ja" : {
