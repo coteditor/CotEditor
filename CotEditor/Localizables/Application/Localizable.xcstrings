@@ -14288,7 +14288,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shiftキーはほかの修飾キーと合わせて使う必要があります。"
+            "value" : "shiftキーはほかの修飾キーと合わせて使う必要があります。"
           }
         },
         "ko" : {

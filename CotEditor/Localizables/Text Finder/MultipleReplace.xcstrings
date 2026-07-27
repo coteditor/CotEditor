@@ -270,7 +270,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor置換定義かTSV （タブ区切り値）ファイルを選択してください。"
+            "value" : "CotEditor置換定義かTSV（タブ区切り値）ファイルを選択してください。"
           }
         },
         "ko" : {

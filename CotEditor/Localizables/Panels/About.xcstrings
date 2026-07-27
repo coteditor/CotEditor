@@ -1549,7 +1549,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "バージョン %1$@ (%2$@)"
+            "value" : "バージョン %1$@（%2$@）"
           }
         },
         "ko" : {

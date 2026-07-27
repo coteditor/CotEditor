@@ -12365,7 +12365,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "「検索と置換」を表示"
+            "value" : "“検索と置換”を表示"
           }
         },
         "ko" : {
@@ -15645,7 +15645,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " 削除された項目"
+            "value" : "削除された項目"
           }
         },
         "ko" : {
