@@ -353,7 +353,7 @@ private extension SubscriptionInformationURL {
     
     private var markdown: String {
         
-        "[\(self.label)](\(self.rawValue))"
+        "[\(String(localized: self.label))](\(self.rawValue))"
     }
 }
 
