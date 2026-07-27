@@ -5323,7 +5323,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Aucun résultat pour « %@ » n’a été trouvé."
+            "value" : "Aucun résultat pour « %@ » n’a été trouvé."
           }
         },
         "it" : {
@@ -11716,7 +11716,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Périmètres enregistrés :"
+            "value" : "Périmètres enregistrés :"
           }
         },
         "it" : {

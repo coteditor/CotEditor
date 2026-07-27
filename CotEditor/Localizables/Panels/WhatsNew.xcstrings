@@ -434,7 +434,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Sous macOS 27, les documents sans titre reçoivent automatiquement un nom provisoire suggéré à partir de leur contenu."
+            "value" : "Sous macOS 27, les documents sans titre reçoivent automatiquement un nom provisoire suggéré à partir de leur contenu."
           }
         },
         "it" : {
@@ -1004,7 +1004,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "CotEditor prend désormais en charge macOS 27 Golden Gate, avec une apparence actualisée pour le tout dernier système."
+            "value" : "CotEditor prend désormais en charge macOS 27 Golden Gate, avec une apparence actualisée pour le tout dernier système."
           }
         },
         "it" : {
@@ -1099,7 +1099,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Prêt pour macOS 27"
+            "value" : "Prêt pour macOS 27"
           }
         },
         "it" : {

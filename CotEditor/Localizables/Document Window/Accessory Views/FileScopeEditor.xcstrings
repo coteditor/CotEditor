@@ -320,7 +320,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "conditions suivantes :"
+            "value" : "conditions suivantes :"
           }
         },
         "it" : {
@@ -1937,7 +1937,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enregistrer sous :"
+            "value" : "Enregistrer sous :"
           }
         },
         "it" : {
