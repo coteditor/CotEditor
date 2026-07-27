@@ -781,7 +781,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ligne courante :"
+            "value" : "Ligne courante :"
           }
         },
         "it" : {
@@ -1736,7 +1736,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Retours à la ligne :"
+            "value" : "Retours à la ligne :"
           }
         },
         "it" : {
@@ -2056,7 +2056,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir dans des onglets :"
+            "value" : "Ouvrir dans des onglets :"
           }
         },
         "it" : {
@@ -2376,7 +2376,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Overscroll :"
+            "value" : "Overscroll :"
           }
         },
         "it" : {
@@ -2482,7 +2482,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guide de page à la colonne :"
+            "value" : "Guide de page à la colonne :"
           }
         },
         "it" : {
@@ -2908,7 +2908,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Afficher :"
+            "value" : "Afficher :"
           }
         },
         "it" : {
@@ -3228,7 +3228,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La barre d’état affiche :"
+            "value" : "La barre d’état affiche :"
           }
         },
         "it" : {
@@ -3547,7 +3547,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Taille de la fenêtre :"
+            "value" : "Taille de la fenêtre :"
           }
         },
         "it" : {
@@ -3972,7 +3972,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sens de l’écriture :"
+            "value" : "Sens de l’écriture :"
           }
         },
         "it" : {

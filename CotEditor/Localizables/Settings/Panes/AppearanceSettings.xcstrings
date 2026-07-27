@@ -356,7 +356,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mode d’apparence :"
+            "value" : "Mode d’apparence :"
           }
         },
         "it" : {
@@ -801,7 +801,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opacité de l’éditeur :"
+            "value" : "Opacité de l’éditeur :"
           }
         },
         "it" : {
@@ -1119,7 +1119,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hauteur de ligne :"
+            "value" : "Hauteur de ligne :"
           }
         },
         "it" : {
@@ -1225,7 +1225,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Police monochasse :"
+            "value" : "Police monochasse :"
           }
         },
         "it" : {
@@ -1339,7 +1339,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voulez-vous l’utiliser comme police monochasse ?"
+            "value" : "Voulez-vous l’utiliser comme police monochasse ?"
           }
         },
         "it" : {
@@ -1891,7 +1891,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Police standard :"
+            "value" : "Police standard :"
           }
         },
         "it" : {

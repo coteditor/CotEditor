@@ -1498,7 +1498,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Encodage :"
+            "value" : "Encodage :"
           }
         },
         "it" : {
@@ -1926,7 +1926,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Normalisation :"
+            "value" : "Normalisation :"
           }
         },
         "it" : {
@@ -2568,7 +2568,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unité :"
+            "value" : "Unité :"
           }
         },
         "it" : {
@@ -2675,7 +2675,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Espaces :"
+            "value" : "Espaces :"
           }
         },
         "it" : {

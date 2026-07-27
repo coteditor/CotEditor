@@ -463,7 +463,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La liste de complétion inclut :"
+            "value" : "La liste de complétion inclut :"
           }
         },
         "it" : {
@@ -569,7 +569,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Complétion :"
+            "value" : "Complétion :"
           }
         },
         "it" : {
@@ -782,7 +782,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Police :"
+            "value" : "Police :"
           }
         },
         "it" : {
@@ -1648,7 +1648,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Orthographe :"
+            "value" : "Orthographe :"
           }
         },
         "it" : {
@@ -1860,7 +1860,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Substitution :"
+            "value" : "Substitution :"
           }
         },
         "it" : {

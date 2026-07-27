@@ -143,7 +143,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bloc :"
+            "value" : "Bloc :"
           }
         },
         "it" : {
@@ -249,7 +249,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Catégorie :"
+            "value" : "Catégorie :"
           }
         },
         "it" : {
@@ -355,7 +355,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Point de Code :"
+            "value" : "Point de Code :"
           }
         },
         "it" : {
@@ -780,7 +780,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Version :"
+            "value" : "Version :"
           }
         },
         "it" : {

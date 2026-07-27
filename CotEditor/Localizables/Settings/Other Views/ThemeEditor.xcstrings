@@ -142,7 +142,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fond :"
+            "value" : "Fond :"
           }
         },
         "it" : {
@@ -248,7 +248,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ligne courante :"
+            "value" : "Ligne courante :"
           }
         },
         "it" : {
@@ -354,7 +354,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Curseur :"
+            "value" : "Curseur :"
           }
         },
         "it" : {
@@ -566,7 +566,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Surbrillance :"
+            "value" : "Surbrillance :"
           }
         },
         "it" : {
@@ -672,7 +672,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Invisibles :"
+            "value" : "Invisibles :"
           }
         },
         "it" : {
@@ -1097,7 +1097,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sélection :"
+            "value" : "Sélection :"
           }
         },
         "it" : {
@@ -1415,7 +1415,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Texte :"
+            "value" : "Texte :"
           }
         },
         "it" : {

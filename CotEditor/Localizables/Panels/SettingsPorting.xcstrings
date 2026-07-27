@@ -1371,7 +1371,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Exporter les réglages sélectionnés sous forme d'archive afin de pouvoir les importer sur d'autres ordinateurs."
+            "value" : "Exporter les réglages sélectionnés sous forme d’archive afin de pouvoir les importer sur d’autres ordinateurs."
           }
         },
         "it" : {
@@ -1689,7 +1689,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sélectionner les éléments à importer :"
+            "value" : "Sélectionner les éléments à importer :"
           }
         },
         "it" : {

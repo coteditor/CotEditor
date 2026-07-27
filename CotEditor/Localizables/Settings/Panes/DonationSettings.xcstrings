@@ -585,7 +585,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Comme preuve de votre soutien, un badge de café apparaît sur la barre d'état pendant le soutien continu."
+            "value" : "Comme preuve de votre soutien, un badge de café apparaît sur la barre d’état pendant le soutien continu."
           }
         },
         "it" : {
@@ -691,7 +691,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Type de badge :"
+            "value" : "Type de badge :"
           }
         },
         "it" : {
@@ -1009,7 +1009,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Le don n'est pas disponible pour le moment."
+            "value" : "Le don n’est pas disponible pour le moment."
           }
         },
         "it" : {
@@ -1328,7 +1328,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Ouvrir GitHub Sponsors"
+            "value" : "Ouvrir GitHub Sponsors"
           }
         },
         "it" : {
@@ -1434,7 +1434,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ouvrir dans l’App Store"
+            "value" : "Ouvrir dans l’App Store"
           }
         },
         "it" : {
@@ -1965,7 +1965,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "La fonction de donation intégrée n'est disponible que dans CotEditor distribué dans l'App Store."
+            "value" : "La fonction de donation intégrée n’est disponible que dans CotEditor distribué dans l’App Store."
           }
         },
         "it" : {

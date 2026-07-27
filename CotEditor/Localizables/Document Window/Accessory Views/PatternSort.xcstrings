@@ -249,7 +249,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Délimiteur :"
+            "value" : "Délimiteur :"
           }
         },
         "it" : {
@@ -994,7 +994,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pattern :"
+            "value" : "Pattern :"
           }
         },
         "it" : {
@@ -1100,7 +1100,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Position :"
+            "value" : "Position :"
           }
         },
         "it" : {
@@ -1740,7 +1740,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Échantillon :"
+            "value" : "Échantillon :"
           }
         },
         "it" : {
@@ -1953,7 +1953,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Clé de tri :"
+            "value" : "Clé de tri :"
           }
         },
         "it" : {
@@ -2059,7 +2059,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Options de tri :"
+            "value" : "Options de tri :"
           }
         },
         "it" : {
@@ -2271,7 +2271,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utiliser le groupe de capture :"
+            "value" : "Utiliser le groupe de capture :"
           }
         },
         "it" : {

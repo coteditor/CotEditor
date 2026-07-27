@@ -2405,7 +2405,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rechercher du texte : %@"
+            "value" : "Rechercher du texte : %@"
           }
         },
         "it" : {
@@ -3837,7 +3837,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La recherche ignore les signes diacritiques (Ex. : ö = o)"
+            "value" : "La recherche ignore les signes diacritiques (Ex. : ö = o)"
           }
         },
         "it" : {
@@ -4065,7 +4065,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignore les différences de forme des caractères (Ex. : ａ = a)."
+            "value" : "Ignore les différences de forme des caractères (Ex. : ａ = a)."
           }
         },
         "it" : {
@@ -5777,19 +5777,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Une occurrence trouvée dans « %2$@ »."
+                  "value" : "Une occurrence trouvée dans « %2$@ »."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "%1$lld occurrences trouvées dans « %2$@ »."
+                  "value" : "%1$lld occurrences trouvées dans « %2$@ »."
                 }
               },
               "zero" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Aucune occurrence trouvée dans « %2$@ »."
+                  "value" : "Aucune occurrence trouvée dans « %2$@ »."
                 }
               }
             }
@@ -8670,7 +8670,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’option « Dans la sélection » est activée mais il n’y a aucune sélection."
+            "value" : "L’option « Dans la sélection » est activée mais il n’y a aucune sélection."
           }
         },
         "it" : {

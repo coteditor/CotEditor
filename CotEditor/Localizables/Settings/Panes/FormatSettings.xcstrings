@@ -36,7 +36,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Syntaxes disponibles :"
+            "value" : "Syntaxes disponibles :"
           }
         },
         "it" : {
@@ -248,7 +248,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fins de ligne par défaut :"
+            "value" : "Fins de ligne par défaut :"
           }
         },
         "it" : {
@@ -354,7 +354,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Syntaxe par défaut :"
+            "value" : "Syntaxe par défaut :"
           }
         },
         "it" : {
@@ -460,7 +460,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Encodage du texte par défaut :"
+            "value" : "Encodage du texte par défaut :"
           }
         },
         "it" : {
@@ -890,7 +890,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Priorité des encodages :"
+            "value" : "Priorité des encodages :"
           }
         },
         "it" : {

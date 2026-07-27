@@ -36,7 +36,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Début :"
+            "value" : "Début :"
           }
         },
         "it" : {
@@ -142,7 +142,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fin :"
+            "value" : "Fin :"
           }
         },
         "it" : {
@@ -248,7 +248,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entourer avec :"
+            "value" : "Entourer avec :"
           }
         },
         "it" : {

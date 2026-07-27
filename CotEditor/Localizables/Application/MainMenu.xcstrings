@@ -1104,7 +1104,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Encodage en « %@ »"
+            "value" : "Encodage en « %@ »"
           }
         },
         "it" : {
@@ -5679,7 +5679,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "La barre latérale n'est disponible que lorsqu'un dossier est ouvert en tant que document."
+            "value" : "La barre latérale n’est disponible que lorsqu’un dossier est ouvert en tant que document."
           }
         },
         "it" : {

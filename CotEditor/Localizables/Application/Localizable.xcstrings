@@ -144,7 +144,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ :"
+            "value" : "%@ :"
           }
         },
         "it" : {
@@ -257,7 +257,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ : %2$@"
+            "value" : "%1$@ : %2$@"
           }
         },
         "it" : {
@@ -1041,7 +1041,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dupliquer « %@ »"
+            "value" : "Dupliquer « %@ »"
           }
         },
         "it" : {
@@ -1380,7 +1380,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exporter « %@ »…"
+            "value" : "Exporter « %@ »…"
           }
         },
         "it" : {
@@ -1832,7 +1832,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Renommer « %@ »"
+            "value" : "Renommer « %@ »"
           }
         },
         "it" : {
@@ -2171,7 +2171,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Restaurer « %@ »"
+            "value" : "Restaurer « %@ »"
           }
         },
         "it" : {
@@ -2510,7 +2510,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Afficher « %@ » dans le Finder"
+            "value" : "Afficher « %@ » dans le Finder"
           }
         },
         "it" : {
@@ -3190,7 +3190,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voulez-vous vraiment supprimer « %@ » ?"
+            "value" : "Voulez-vous vraiment supprimer « %@ » ?"
           }
         },
         "it" : {
@@ -3303,7 +3303,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Le fichier « %@ » est déjà ouvert dans une autre fenêtre."
+            "value" : "Le fichier « %@ » est déjà ouvert dans une autre fenêtre."
           }
         },
         "it" : {
@@ -3759,7 +3759,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Souhaitez-vous enregistrer les modifications apportées au document « %@ » ?"
+            "value" : "Souhaitez-vous enregistrer les modifications apportées au document « %@ » ?"
           }
         },
         "it" : {
@@ -4098,7 +4098,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le fichier « %@ » ne semble pas être dans un format textuel."
+            "value" : "Le fichier « %@ » ne semble pas être dans un format textuel."
           }
         },
         "it" : {
@@ -4212,7 +4212,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le fichier semble être %@.\n\nVoulez-vous vraiment ouvrir le fichier ?"
+            "value" : "Le fichier semble être %@.\n\nVoulez-vous vraiment ouvrir le fichier ?"
           }
         },
         "it" : {
@@ -4553,7 +4553,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le fichier « %1$@ » a une taille de %2$@."
+            "value" : "Le fichier « %1$@ » a une taille de %2$@."
           }
         },
         "it" : {
@@ -4666,7 +4666,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "En ouvrant un fichier d’aussi grande taille, il se peut que l’application ralentisse ou ne réponde plus.\n\nVoulez-vous tout de même ouvrir ce fichier ?"
+            "value" : "En ouvrant un fichier d’aussi grande taille, il se peut que l’application ralentisse ou ne réponde plus.\n\nVoulez-vous tout de même ouvrir ce fichier ?"
           }
         },
         "it" : {
@@ -5008,7 +5008,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les caractères incompatibles sont soit remplacés, soit supprimés lors de l’enregistrement. Voulez-vous quand même enregistrer ?"
+            "value" : "Les caractères incompatibles sont soit remplacés, soit supprimés lors de l’enregistrement. Voulez-vous quand même enregistrer ?"
           }
         },
         "it" : {
@@ -5460,7 +5460,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voulez-vous convertir le document ou bien le réinterpréter en utilisant « %@ » ?"
+            "value" : "Voulez-vous convertir le document ou bien le réinterpréter en utilisant « %@ » ?"
           }
         },
         "it" : {
@@ -7724,7 +7724,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "« %@ » existe déjà. Souhaitez-vous le remplacer ?"
+            "value" : "« %@ » existe déjà. Souhaitez-vous le remplacer ?"
           }
         },
         "it" : {
@@ -8290,7 +8290,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Souhaitez-vous convertir toutes les fins de ligne en %@, le plus courant dans le document ?"
+            "value" : "Souhaitez-vous convertir toutes les fins de ligne en %@, le plus courant dans le document ?"
           }
         },
         "it" : {
@@ -8743,7 +8743,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le nom « %@ » est déjà utilisé."
+            "value" : "Le nom « %@ » est déjà utilisé."
           }
         },
         "it" : {
@@ -8970,7 +8970,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le nom ne peut pas contenir « %@ »."
+            "value" : "Le nom ne peut pas contenir « %@ »."
           }
         },
         "it" : {
@@ -9309,7 +9309,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le nom « %@ » est réservé."
+            "value" : "Le nom « %@ » est réservé."
           }
         },
         "it" : {
@@ -9422,7 +9422,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le nom ne peut pas commencer par « . »."
+            "value" : "Le nom ne peut pas commencer par « . »."
           }
         },
         "it" : {
@@ -10775,7 +10775,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le document contient des caractères incompatibles avec « %@ »."
+            "value" : "Le document contient des caractères incompatibles avec « %@ »."
           }
         },
         "it" : {
@@ -11002,7 +11002,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les caractères incompatibles sont soit remplacés, soit supprimés lors de l’enregistrement. Voulez-vous modifier l’encodage du texte et revoir les caractères incompatibles ?"
+            "value" : "Les caractères incompatibles sont soit remplacés, soit supprimés lors de l’enregistrement. Voulez-vous modifier l’encodage du texte et revoir les caractères incompatibles ?"
           }
         },
         "it" : {
@@ -12355,7 +12355,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le document n’a pas pu être réinterprété en utilisant l’encodage « %@ »."
+            "value" : "Le document n’a pas pu être réinterprété en utilisant l’encodage « %@ »."
           }
         },
         "it" : {
@@ -12920,7 +12920,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le script « %@ » n’existe pas."
+            "value" : "Le script « %@ » n’existe pas."
           }
         },
         "it" : {
@@ -13033,7 +13033,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le fichier de script « %@ » n’a pas pu être ouvert."
+            "value" : "Le fichier de script « %@ » n’a pas pu être ouvert."
           }
         },
         "it" : {
@@ -13146,7 +13146,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le script « %@ » n’a pas pu être exécuté car vous ne disposez pas des permissions d’exécution."
+            "value" : "Le script « %@ » n’a pas pu être exécuté car vous ne disposez pas des permissions d’exécution."
           }
         },
         "it" : {
@@ -13372,7 +13372,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le script « %@ » n’a pas pu être lu."
+            "value" : "Le script « %@ » n’a pas pu être lu."
           }
         },
         "it" : {
@@ -13598,7 +13598,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "« %@ » n’a pas pu être supprimé."
+            "value" : "« %@ » n’a pas pu être supprimé."
           }
         },
         "it" : {
@@ -13711,7 +13711,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "« %@ » n’a pas pu être importé."
+            "value" : "« %@ » n’a pas pu être importé."
           }
         },
         "it" : {
@@ -13824,7 +13824,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "« %@ » n’a pas pu être chargé."
+            "value" : "« %@ » n’a pas pu être chargé."
           }
         },
         "it" : {
@@ -13937,7 +13937,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erreur de décodage : %@"
+            "value" : "Erreur de décodage : %@"
           }
         },
         "it" : {
@@ -14050,7 +14050,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucun fichier original pour « %@ » n’a été trouvé."
+            "value" : "Aucun fichier original pour « %@ » n’a été trouvé."
           }
         },
         "it" : {
@@ -14163,7 +14163,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "« %1$@ » est déjà associé à la commande « %2$@ »."
+            "value" : "« %1$@ » est déjà associé à la commande « %2$@ »."
           }
         },
         "it" : {
@@ -14276,7 +14276,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La touche Maj ne peut être utilisée qu'avec une autre touche de modification."
+            "value" : "La touche Maj ne peut être utilisée qu’avec une autre touche de modification."
           }
         },
         "it" : {
@@ -14502,7 +14502,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La combinaison « %@ » n’est pas supportée comme combinaison de raccourci clavier."
+            "value" : "La combinaison « %@ » n’est pas supportée comme combinaison de raccourci clavier."
           }
         },
         "it" : {
@@ -15182,7 +15182,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voulez-vous vraiment abandonner les modifications et réouvrir le document en utilisant « %@ » ?"
+            "value" : "Voulez-vous vraiment abandonner les modifications et réouvrir le document en utilisant « %@ » ?"
           }
         },
         "it" : {
@@ -15848,7 +15848,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voulez-vous garder la version dans CotEditor ou rafraîchir vers la version modifiée ?"
+            "value" : "Voulez-vous garder la version dans CotEditor ou rafraîchir vers la version modifiée ?"
           }
         },
         "it" : {

@@ -7016,7 +7016,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Voulez-vous placer « %@ » dans la corbeille ?"
+            "value" : "Voulez-vous placer « %@ » dans la corbeille ?"
           }
         },
         "it" : {
@@ -7179,7 +7179,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Voulez-vous placer %lld éléments sélectionnés dans la corbeille ?"
+                  "value" : "Voulez-vous placer %lld éléments sélectionnés dans la corbeille ?"
                 }
               }
             }
@@ -11229,7 +11229,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Merci pour votre soutien !"
+            "value" : "Merci pour votre soutien !"
           }
         },
         "it" : {
