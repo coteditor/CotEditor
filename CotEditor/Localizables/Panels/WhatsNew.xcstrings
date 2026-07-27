@@ -410,7 +410,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unter macOS 27 erhalten unbenannte Dokumente automatisch einen aus ihrem Inhalt vorgeschlagenen Arbeitsnamen."
+            "value" : "Unter macOS 27 erhalten unbenannte Dokumente automatisch einen aus ihrem Inhalt vorgeschlagenen Arbeitsnamen."
           }
         },
         "en" : {
@@ -980,7 +980,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor unterstützt jetzt macOS 27 Golden Gate, einschließlich überarbeitetem Erscheinungsbild für das neueste System."
+            "value" : "CotEditor unterstützt jetzt macOS 27 Golden Gate, einschließlich überarbeitetem Erscheinungsbild für das neueste System."
           }
         },
         "en" : {
@@ -1075,7 +1075,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bereit für macOS 27"
+            "value" : "Bereit für macOS 27"
           }
         },
         "en" : {

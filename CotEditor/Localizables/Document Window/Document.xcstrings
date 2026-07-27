@@ -2799,7 +2799,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dateibereich bearbeiten …"
+            "value" : "Dateibereich bearbeiten …"
           }
         },
         "en-GB" : {
@@ -5507,7 +5507,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Im Ordner suchen…"
+            "value" : "Im Ordner suchen …"
           }
         },
         "en" : {
@@ -8275,7 +8275,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gesicherte Bereiche verwalten …"
+            "value" : "Gesicherte Bereiche verwalten …"
           }
         },
         "en-GB" : {
