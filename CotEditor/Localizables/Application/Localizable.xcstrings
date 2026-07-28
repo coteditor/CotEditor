@@ -1065,7 +1065,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dupliceer '%@'"
+            "value" : "Dupliceer ‘%@’"
           }
         },
         "pl" : {
@@ -1630,7 +1630,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exporteer '%@'…"
+            "value" : "Exporteer ‘%@’…"
           }
         },
         "pl" : {
@@ -2082,7 +2082,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hernoem '%@'"
+            "value" : "Hernoem ‘%@’"
           }
         },
         "pl" : {
@@ -2421,7 +2421,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Herstel '%@'"
+            "value" : "Herstel ‘%@’"
           }
         },
         "pl" : {
@@ -2760,7 +2760,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toon '%@' in Finder"
+            "value" : "Toon ‘%@’ in Finder"
           }
         },
         "pl" : {
@@ -3553,7 +3553,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Weet je zeker dat je '%@' wilt verwijderen?"
+            "value" : "Weet je zeker dat je ‘%@’ wilt verwijderen?"
           }
         },
         "pl" : {
@@ -3666,7 +3666,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het bestand '%@' is al geopend in een ander venster."
+            "value" : "Het bestand ‘%@’ is al geopend in een ander venster."
           }
         },
         "pl" : {
@@ -4122,7 +4122,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wil je de gemaakte wijzigingen in het document '%@' bewaren?"
+            "value" : "Wil je de gemaakte wijzigingen in het document ‘%@’ bewaren?"
           }
         },
         "pl" : {
@@ -4461,7 +4461,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het bestand '%@' bevat geen tekstgegevens."
+            "value" : "Het bestand ‘%@’ bevat geen tekstgegevens."
           }
         },
         "pl" : {
@@ -4916,7 +4916,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het bestand '%1$@' heeft een grootte van %2$@."
+            "value" : "Het bestand ‘%1$@’ heeft een grootte van %2$@."
           }
         },
         "pl" : {
@@ -5029,7 +5029,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het openen van zo'n groot bestand kan de applicatie traag of onresponsief maken.\n\nWil je het bestand echt openen?"
+            "value" : "Het openen van zo’n groot bestand kan de applicatie traag of onresponsief maken.\n\nWil je het bestand echt openen?"
           }
         },
         "pl" : {
@@ -5823,7 +5823,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wil je dit document converteren of herinterpreteren met '%@'?"
+            "value" : "Wil je dit document converteren of herinterpreteren met ‘%@’?"
           }
         },
         "pl" : {
@@ -8087,7 +8087,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wil je '%@' vervangen?"
+            "value" : "Wil je ‘%@’ vervangen?"
           }
         },
         "pl" : {
@@ -9106,7 +9106,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De naam '%@' is al in gebruik."
+            "value" : "De naam ‘%@’ is al in gebruik."
           }
         },
         "pl" : {
@@ -9333,7 +9333,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Naam mag geen '%@' bevatten."
+            "value" : "Naam mag geen ‘%@’ bevatten."
           }
         },
         "pl" : {
@@ -9672,7 +9672,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De naam '%@' is gereserveerd."
+            "value" : "De naam ‘%@’ is gereserveerd."
           }
         },
         "pl" : {
@@ -9785,7 +9785,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Naam kan niet beginnen met '."
+            "value" : "Naam kan niet beginnen met ‘.’."
           }
         },
         "pl" : {
@@ -10036,7 +10036,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aşağıdaki şablonu doldurun ve %1$@'da bir kayıt açın veya %2$@ adresine gönderin. Bu e-postanın içeriğinin \"Issues\" sayfasında paylaşılacağını not edin. Lütfen içeriği İngilizce veya Japonca yazın."
+            "value" : "Aşağıdaki şablonu doldurun ve %1$@’da bir kayıt açın veya %2$@ adresine gönderin. Bu e-postanın içeriğinin “Issues” sayfasında paylaşılacağını not edin. Lütfen içeriği İngilizce veya Japonca yazın."
           }
         },
         "zh-Hans" : {
@@ -11138,7 +11138,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het document bevat tekens die niet compatibel zijn met '%@'."
+            "value" : "Het document bevat tekens die niet compatibel zijn met ‘%@’."
           }
         },
         "pl" : {
@@ -12718,7 +12718,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het document kon niet worden geherinterpreteerd met de tekstcodering '%@'."
+            "value" : "Het document kon niet worden geherinterpreteerd met de tekstcodering ‘%@’."
           }
         },
         "pl" : {
@@ -13283,7 +13283,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het script '%@' bestaat niet."
+            "value" : "Het script ‘%@’ bestaat niet."
           }
         },
         "pl" : {
@@ -13396,7 +13396,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het scriptbestand '%@' kon niet worden geopend."
+            "value" : "Het scriptbestand ‘%@’ kon niet worden geopend."
           }
         },
         "pl" : {
@@ -13509,7 +13509,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het script '%@' kan niet worden uitgevoerd omdat je geen rechten hebt om het uit te voeren."
+            "value" : "Het script ‘%@’ kan niet worden uitgevoerd omdat je geen rechten hebt om het uit te voeren."
           }
         },
         "pl" : {
@@ -13735,7 +13735,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Het script '%@' kon niet worden gelezen."
+            "value" : "Het script ‘%@’ kon niet worden gelezen."
           }
         },
         "pl" : {
@@ -14300,7 +14300,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "'%@' kon niet worden verwijderd."
+            "value" : "‘%@’ kon niet worden verwijderd."
           }
         },
         "pl" : {
@@ -14413,7 +14413,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "'%@' kon niet worden geïmporteerd."
+            "value" : "‘%@’ kon niet worden geïmporteerd."
           }
         },
         "pl" : {
@@ -14526,7 +14526,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "'%@' kon niet worden geladen."
+            "value" : "‘%@’ kon niet worden geladen."
           }
         },
         "pl" : {
@@ -14752,7 +14752,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geen origineel bestand gevonden voor '%@'."
+            "value" : "Geen origineel bestand gevonden voor ‘%@’."
           }
         },
         "pl" : {
@@ -14865,7 +14865,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "'%1$@' is al bezet door het commando '%2$@'."
+            "value" : "‘%1$@’ is al bezet door het commando ‘%2$@’."
           }
         },
         "pl" : {
@@ -15204,7 +15204,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De combinatie '%@' wordt niet ondersteund voor het aanpassen van de snelkoppeling."
+            "value" : "De combinatie ‘%@’ wordt niet ondersteund voor het aanpassen van de snelkoppeling."
           }
         },
         "pl" : {
@@ -15884,7 +15884,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Weet je zeker dat je je wijzigingen wilt verwijderen en het document opnieuw wilt openen met '%@'?"
+            "value" : "Weet je zeker dat je je wijzigingen wilt verwijderen en het document opnieuw wilt openen met ‘%@’?"
           }
         },
         "pl" : {

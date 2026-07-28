@@ -529,7 +529,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "%lld aangepaste thema's"
+                  "value" : "%lld aangepaste thema’s"
                 }
               }
             }
@@ -2369,7 +2369,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Alle instellingen in het venster 'Instellingen'"
+            "value" : "Alle instellingen in het venster ‘Instellingen’"
           }
         },
         "pl" : {
@@ -2708,7 +2708,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Thema's"
+            "value" : "Thema’s"
           }
         },
         "pl" : {

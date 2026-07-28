@@ -8907,7 +8907,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De optie 'in selectie' is geselecteerd, hoewel er niets is geselecteerd."
+            "value" : "De optie ‘in selectie’ is geselecteerd, hoewel er niets is geselecteerd."
           }
         },
         "pl" : {
@@ -9020,7 +9020,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecteer het zoekbereik in het document of schakel de optie 'in selectie' uit."
+            "value" : "Selecteer het zoekbereik in het document of schakel de optie ‘in selectie’ uit."
           }
         },
         "pl" : {
