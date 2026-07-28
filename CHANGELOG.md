@@ -6,6 +6,7 @@
 ### Improvements
 
 - [beta] Add file scopes to exportable settings.
+- [beta] Improve overall stability and performance.
 
 
 ### Known Issues
