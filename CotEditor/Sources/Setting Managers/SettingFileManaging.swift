@@ -433,9 +433,7 @@ extension SettingFileManaging {
     func invalidateUserSettings() async {
         
         self.cachedSettings.removeAll()
-        self.settingNames = await Task.detached {
-            self.listAvailableSettings()
-        }.value
+        self.settingNames = await self.availableSettings()
     }
     
     
@@ -580,6 +578,15 @@ extension SettingFileManaging {
     private nonisolated func preparedURLForUserSetting(name: String) -> URL {
         
         self.userSettingDirectoryURL.appendingPathComponent(name, conformingTo: Setting.fileType)
+    }
+    
+    
+    /// Lists the available setting names in the background.
+    ///
+    /// - Returns: The available setting names.
+    @concurrent private func availableSettings() async -> [String] {
+        
+        self.listAvailableSettings()
     }
 }
 
