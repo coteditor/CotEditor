@@ -161,6 +161,10 @@ struct StringCountingTests {
         #expect(string.numberOfLines(in: [range1, range2, range3]) == 3)
         #expect(string.numberOfLines(in: [range1, range2], includesLastBreak: true) == 4)
         
+        let emptyRange = string.index(string.startIndex, offsetBy: 2)..<string.index(string.startIndex, offsetBy: 2)
+        #expect(string.numberOfLines(in: [emptyRange, emptyRange]) == 0)
+        #expect(string.numberOfLines(in: [range1, emptyRange]) == 1)
+        
         let bomString = "\u{FEFF}\nb"
         let bomRange = bomString.startIndex..<bomString.index(bomString.startIndex, offsetBy: 2)
         #expect(bomString.numberOfLines(in: [bomRange, bomRange]) == 1)  // "\u{FEFF}\n"

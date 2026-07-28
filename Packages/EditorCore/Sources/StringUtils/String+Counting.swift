@@ -103,7 +103,7 @@ public extension StringProtocol {
         
         // evaluate line ranges to avoid double-count lines holding multiple ranges
         var lineRanges: Set<Range<String.Index>> = []
-        for range in ranges {
+        for range in ranges where !range.isEmpty {
             let lineRange = self.lineRange(for: range)
             self.enumerateSubstrings(in: lineRange, options: [.byLines, .substringNotRequired]) { _, substringRange, _, _ in
                 lineRanges.insert(substringRange)
