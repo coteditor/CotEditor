@@ -738,7 +738,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tel op de intuïtieve manier zoals gedefinieerd in Unicode. Een teken dat uit meerdere Unicode-codepunten bestaat, zoals emoji's, wordt als één teken geteld."
+            "value" : "Tel op de intuïtieve manier zoals gedefinieerd in Unicode. Een teken dat uit meerdere Unicode-codepunten bestaat, zoals emoji’s, wordt als één teken geteld."
           }
         },
         "pl" : {

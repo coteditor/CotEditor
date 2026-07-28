@@ -256,13 +256,13 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld commando's gevonden"
+                  "value" : "%lld commando’s gevonden"
                 }
               },
               "zero" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Geen commando's gevonden"
+                  "value" : "Geen commando’s gevonden"
                 }
               }
             }
