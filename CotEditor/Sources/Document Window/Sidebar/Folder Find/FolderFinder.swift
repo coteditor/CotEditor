@@ -155,34 +155,23 @@ import TextFind
         self.state = .searching(progress)
         self.resultRevision += 1
         
-        self.searchTask = .detached(priority: .userInitiated) {
+        self.searchTask = Task { [weak self] in
             do {
-                var search = try Search(rootURL: rootURL, pattern: pattern, options: options, progress: progress) { candidate in
-                    syntaxMappingTable.syntaxName(forFilename: candidate.fileURL.lastPathComponent) != nil
-                }
-                let summary = try await search.run()
+                let summary = try await Self.search(rootURL: rootURL, pattern: pattern, options: options, progress: progress, syntaxMappingTable: syntaxMappingTable)
                 
                 try Task.checkCancellation()
                 
-                await MainActor.run { [weak self] in
-                    guard !Task.isCancelled else { return }
-                    
-                    self?.state = .finished(summary)
-                    self?.resultRevision += 1
-                }
+                self?.state = .finished(summary)
+                self?.resultRevision += 1
                 
             } catch is CancellationError {
                 return
                 
             } catch {
-                let error = FolderFinder.Error.searchFailed(error.localizedDescription)
+                guard !Task.isCancelled else { return }
                 
-                await MainActor.run { [weak self] in
-                    guard !Task.isCancelled else { return }
-                    
-                    self?.state = .failed(error)
-                    self?.resultRevision += 1
-                }
+                self?.state = .failed(.searchFailed(error.localizedDescription))
+                self?.resultRevision += 1
             }
         }
     }
@@ -282,6 +271,25 @@ import TextFind
         guard summary.updateMatchRanges(in: fileURL, editedRange: textStorage.editedRange, changeInLength: textStorage.changeInLength, length: textStorage.length) else { return }
         
         self.state = .finished(summary)
+    }
+    
+    
+    /// Searches the folder contents in the background.
+    ///
+    /// - Parameters:
+    ///   - rootURL: The file URL of the folder to search in.
+    ///   - pattern: The compiled find pattern.
+    ///   - options: The find options.
+    ///   - progress: The progress object to report the search state.
+    ///   - syntaxMappingTable: The syntax mapping table to determine whether a file is a plain-text type.
+    /// - Returns: The search summary.
+    /// - Throws: `CancellationError` or errors on searching.
+    @concurrent private static func search(rootURL: URL, pattern: TextFind.Pattern, options: FolderFind.Options, progress: FolderFindProgress, syntaxMappingTable: SyntaxMappingTable) async throws -> FolderFind.Summary {
+        
+        var search = try Search(rootURL: rootURL, pattern: pattern, options: options, progress: progress) { candidate in
+            syntaxMappingTable.syntaxName(forFilename: candidate.fileURL.lastPathComponent) != nil
+        }
+        return try await search.run()
     }
 }
 
