@@ -9697,7 +9697,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aşağıdaki şablonu doldurun ve %1$@'da bir kayıt açın veya %2$@ adresine gönderin. Bu e-postanın içeriğinin \"Issues\" sayfasında paylaşılacağını not edin. Lütfen içeriği İngilizce veya Japonca yazın."
+            "value" : "Aşağıdaki şablonu doldurun ve %1$@’da bir kayıt açın veya %2$@ adresine gönderin. Bu e-postanın içeriğinin “Issues” sayfasında paylaşılacağını not edin. Lütfen içeriği İngilizce veya Japonca yazın."
           }
         },
         "zh-Hans" : {
