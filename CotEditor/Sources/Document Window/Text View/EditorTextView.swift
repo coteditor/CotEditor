@@ -1612,6 +1612,17 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
+    /// Updates the selection instance highlighting state.
+    private func invalidateInstanceHighlights() {
+        
+        if !self.highlightsSelectionInstance {
+            self.instanceHighlightTask?.cancel()
+            self.instanceHighlightTask = nil
+            self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.range)
+        }
+    }
+    
+    
     /// Highlights all instances of the selection.
     private func highlightInstances() async throws {
         
@@ -1624,17 +1635,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             self.selectedRanges.count == 1
         else { return }
         
-        let string = self.string.immutable
         let selectedRange = self.selectedRange
-        let task: Task<[NSRange], any Error> = .detached {
-            try string.instanceRangesOfWord(at: selectedRange)
-                .filter { $0 != selectedRange }
-        }
-        let ranges: [NSRange] = try await withTaskCancellationHandler {
-            try await task.value
-        } onCancel: {
-            task.cancel()
-        }
+        let ranges = try await Self.instanceRanges(in: self.string.immutable, at: selectedRange)
         
         try Task.checkCancellation()
         
@@ -1659,14 +1661,17 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    /// Updates the selection instance highlighting state.
-    private func invalidateInstanceHighlights() {
+    /// Finds the ranges of the instances of the word at the given range in the background.
+    ///
+    /// - Parameters:
+    ///   - string: The string to find in.
+    ///   - selectedRange: The range of the selected word.
+    /// - Returns: The found ranges excluding the selected range itself.
+    /// - Throws: `CancellationError`
+    @concurrent private static func instanceRanges(in string: String, at selectedRange: NSRange) async throws -> [NSRange] {
         
-        if !self.highlightsSelectionInstance {
-            self.instanceHighlightTask?.cancel()
-            self.instanceHighlightTask = nil
-            self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.range)
-        }
+        try string.instanceRangesOfWord(at: selectedRange)
+            .filter { $0 != selectedRange }
     }
 }
 

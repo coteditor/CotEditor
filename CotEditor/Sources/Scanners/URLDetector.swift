@@ -134,16 +134,7 @@ extension NSTextStorage {
         let string = self.string.immutable
         let range = range ?? self.range
         
-        let task: Task<[ValueRange<URL>], any Error> = .detached {
-            try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-                .cancellableMatches(in: string, range: range)
-                .compactMap { match in match.url.map { ValueRange(value: $0, range: match.range) } }
-        }
-        let links: [ValueRange<URL>] = try await withTaskCancellationHandler {
-            try await task.value
-        } onCancel: {
-            task.cancel()
-        }
+        let links = try await Self.detectLinks(in: string, range: range)
         
         try Task.checkCancellation()
         
@@ -159,5 +150,20 @@ extension NSTextStorage {
             self.addAttribute(.link, value: link.value, range: link.range)
         }
         self.endEditing()
+    }
+    
+    
+    /// Detects URLs in the given string in the background.
+    ///
+    /// - Parameters:
+    ///   - string: The string to detect URLs.
+    ///   - range: The range where URLs are detected.
+    /// - Returns: The detected URLs with their ranges.
+    /// - Throws: `CancellationError`
+    @concurrent private static func detectLinks(in string: String, range: NSRange) async throws -> [ValueRange<URL>] {
+        
+        try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+            .cancellableMatches(in: string, range: range)
+            .compactMap { match in match.url.map { ValueRange(value: $0, range: match.range) } }
     }
 }

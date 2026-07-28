@@ -142,6 +142,18 @@ final class FileNode {
             .map { try File(at: $0) }
             .sorted(using: Self.fileSortOrder)
     }
+    
+    
+    /// Reads and returns the immediate child files for the given directory URL in the background.
+    ///
+    /// - Parameters:
+    ///   - fileURL: The directory URL whose contents should be read.
+    /// - Returns: An array of `File` objects representing the accepted child items, sorted for display.
+    /// - Throws: An error if reading the directory contents or initializing `File` metadata fails.
+    @concurrent private static func childFiles(at fileURL: URL) async throws -> [File] {
+        
+        try Self.readChildFiles(at: fileURL)
+    }
 }
 
 
@@ -406,16 +418,8 @@ extension FileNode {
         if self.file.isDirectory {
             // async read files in background
             if self.cachedChildren == nil {
-                let fileURL = self.file.fileURL
-                let task = Task.detached(priority: .userInitiated) { @Sendable in  // explicit @Sendable for a Swift-side bug (2025-10, Xcode 26.1, Swift 6.2.1)
-                    try Self.readChildFiles(at: fileURL)
-                }
-                self.cachedChildren = try await withTaskCancellationHandler {
-                    try await task.value
-                } onCancel: {
-                    task.cancel()
-                }
-                .map { FileNode(file: $0, parent: self) }
+                self.cachedChildren = try await Self.childFiles(at: self.file.fileURL)
+                    .map { FileNode(file: $0, parent: self) }
             }
             
             if let children {
