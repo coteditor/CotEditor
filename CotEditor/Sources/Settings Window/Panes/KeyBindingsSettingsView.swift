@@ -185,9 +185,9 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
         self.listView?.reloadData()
         self.outlineView?.reloadData()
         
-        self.restorabilityObserver = Task { [unowned self] in
-            for await isRestorable in Observations({ self.model.isRestorable }) where !isRestorable {
-                self.outlineView?.reloadData()
+        self.restorabilityObserver = Task { [weak self, model] in
+            for await isRestorable in Observations({ model.isRestorable }) where !isRestorable {
+                self?.outlineView?.reloadData()
             }
         }
     }

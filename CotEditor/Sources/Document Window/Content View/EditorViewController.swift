@@ -94,9 +94,9 @@ final class EditorViewController: NSSplitViewController {
         
         super.viewWillAppear()
         
-        self.outlineObserver = Task { [unowned self] in
-            for await items in Observations({ self.document.syntaxController.outlineItems }) {
-                self.outlineNavigator.items = items
+        self.outlineObserver = Task { [weak self, document] in
+            for await items in Observations({ document.syntaxController.outlineItems }) {
+                self?.outlineNavigator.items = items
             }
         }
         self.defaultObservers = [
