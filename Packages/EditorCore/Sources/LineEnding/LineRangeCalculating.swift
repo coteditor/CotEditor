@@ -47,6 +47,23 @@ public extension LineRangeCalculating {
     }
     
     
+    /// Returns the number of lines that contain characters in the given ranges.
+    ///
+    /// - Parameter ranges: The character ranges to count lines.
+    /// - Returns: The number of lines.
+    func numberOfLines(in ranges: [NSRange]) -> Int {
+        
+        ranges
+            .filter { !$0.isEmpty }
+            .reduce(into: IndexSet()) { lineIndexes, range in
+                let lowerLine = self.lineNumber(at: range.lowerBound)
+                let upperLine = self.lineNumber(at: range.upperBound - 1)
+                lineIndexes.insert(integersIn: lowerLine...upperLine)
+            }
+            .count
+    }
+    
+    
     /// Returns the 1-based line number at the given character index.
     ///
     /// - Note: If the LF-side index of a CRLF pair is passed, it is treated as part of the previous line.

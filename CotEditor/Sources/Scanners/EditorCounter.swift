@@ -204,12 +204,16 @@ import StringUtils
                 }
                 
                 if self.types.contains(.lines) {
-                    group.addTask {
-                        try Task.checkCancellation()
-                        let count = string.numberOfLines(in: selectedRanges)
-                        try await MainActor.run {
+                    if let lineRangeCalculator = self.lineRangeCalculator {
+                        self.result.lines.selected = lineRangeCalculator.numberOfLines(in: selectedNSRanges)
+                    } else {
+                        group.addTask {
                             try Task.checkCancellation()
-                            self.result.lines.selected = count
+                            let count = string.numberOfLines(in: selectedRanges)
+                            try await MainActor.run {
+                                try Task.checkCancellation()
+                                self.result.lines.selected = count
+                            }
                         }
                     }
                 }

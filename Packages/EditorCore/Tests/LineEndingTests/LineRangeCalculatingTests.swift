@@ -90,6 +90,55 @@ struct LineRangeCalculatingTests {
             
             #expect(calculator.numberOfLines == string.numberOfLines)
         }
+        
+        
+        @Test func countInRanges() {
+            
+            let calculator = Calculator(string: "a\nb\n\nc\n")
+            
+            #expect(calculator.numberOfLines(in: []) == 0)
+            #expect(calculator.numberOfLines(in: [NSRange(0..<0)]) == 0)
+            #expect(calculator.numberOfLines(in: [NSRange(0..<2)]) == 1)  // "a\n"
+            #expect(calculator.numberOfLines(in: [NSRange(0..<3)]) == 2)  // "a\nb"
+            #expect(calculator.numberOfLines(in: [NSRange(4..<5)]) == 1)  // "\n"
+            #expect(calculator.numberOfLines(in: [NSRange(0..<2), NSRange(2..<4)]) == 2)  // "a\n" and "b\n"
+            #expect(calculator.numberOfLines(in: [NSRange(0..<3), NSRange(2..<4)]) == 2)  // overlapping lines
+            #expect(calculator.numberOfLines(in: [NSRange(0..<2), NSRange(5..<6)]) == 2)  // distant lines
+            #expect(calculator.numberOfLines(in: [NSRange(1..<1), NSRange(0..<2)]) == 1)  // with empty range
+        }
+        
+        
+        @Test func countInRangesCRLF() {
+            
+            let calculator = Calculator(string: "a\r\nb\r\nc")
+            
+            #expect(calculator.numberOfLines(in: [NSRange(0..<2)]) == 1)  // "a\r"
+            #expect(calculator.numberOfLines(in: [NSRange(0..<3)]) == 1)  // "a\r\n"
+            #expect(calculator.numberOfLines(in: [NSRange(2..<3)]) == 1)  // LF-side of CRLF
+            #expect(calculator.numberOfLines(in: [NSRange(0..<4)]) == 2)  // "a\r\nb"
+        }
+        
+        
+        @Test(arguments: 0..<10)
+        func randomInRanges(_: Int) {
+            
+            let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
+            let calculator = Calculator(string: string)
+            
+            let ranges = (0..<5)
+                .map { _ -> NSRange in
+                    let lowerBound = (0..<string.length).randomElement()!
+                    let upperBound = ((lowerBound + 1)...string.length).randomElement()!
+                    return NSRange(lowerBound..<upperBound)
+                }
+                .compactMap { Range($0, in: string) }
+                
+            guard !ranges.isEmpty else { return }
+            
+            let nsRanges = ranges.map { NSRange($0, in: string) }
+            
+            #expect(calculator.numberOfLines(in: nsRanges) == string.numberOfLines(in: ranges))
+        }
     }
     
     

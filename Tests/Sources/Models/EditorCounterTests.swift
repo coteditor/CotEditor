@@ -168,6 +168,26 @@ import LineEnding
     }
     
     
+    @Test func selectedLineCountUsesLineRangeCalculator() async throws {
+        
+        let string = "a\n🐕b\nc"
+        let lineCounter = LineCounter(string: string)
+        let source = Source(string: string, selectedRange: NSRange(0..<5))  // "a\n🐕b"
+        
+        let counter = EditorCounter()
+        defer { counter.cancel() }
+        counter.source = { source }
+        counter.lineRangeCalculator = lineCounter
+        
+        counter.statusBarRequirements = [.lines]
+        
+        _ = await Observations { counter.result.lines.selected }.first { @MainActor in $0 != 0 }
+        
+        #expect(counter.result.lines.selected == 2)
+        #expect(!lineCounter.lineEndings.isEmpty)
+    }
+    
+    
     @Test func currentLineUsesLineRangeCalculator() async throws {
         
         let string = "a\n🐕b\nc"
