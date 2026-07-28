@@ -78,9 +78,7 @@ import LineEnding
         
         counter.updatesAll = true
         
-        let column = await Observations { counter.result.column }.first { @MainActor in $0 != nil }
-        
-        #expect(column == 0)
+        _ = await Observations { counter.result.isPopulated }.first { @MainActor in $0 }
         
         #expect(counter.result.lines.entire == 3)
         #expect(counter.result.characters.entire == 31)
@@ -108,9 +106,7 @@ import LineEnding
         
         counter.invalidateSelection()
         
-        let column = await Observations { counter.result.column }.first { @MainActor in $0 != nil }
-        
-        #expect(column == 0)
+        _ = await Observations { counter.result.isSelectionPopulated }.first { @MainActor in $0 }
         
         #expect(counter.result.lines.entire == nil)
         #expect(counter.result.characters.entire == nil)
@@ -136,9 +132,7 @@ import LineEnding
         
         counter.updatesAll = true
         
-        let column = await Observations { counter.result.column }.first { @MainActor in $0 != nil }
-        
-        #expect(column == 1)
+        _ = await Observations { counter.result.isPopulated }.first { @MainActor in $0 }
         
         #expect(counter.result.lines.entire == 2)
         #expect(counter.result.characters.entire == 3)
@@ -232,5 +226,34 @@ import LineEnding
         #expect(result.formattedValue(type: .location) == "42")
         #expect(result.formattedValue(type: .line) == "3")
         #expect(result.formattedValue(type: .column) == "12")
+    }
+}
+
+
+private extension EditorCounter.Result {
+    
+    /// Whether all values are populated.
+    ///
+    /// This getter assumes the selection is not empty.
+    var isPopulated: Bool {
+        
+        self.isSelectionPopulated
+            && self.characters.entire != nil
+            && self.lines.entire != nil
+            && self.words.entire != nil
+    }
+    
+    
+    /// Whether all selection-related values are populated.
+    ///
+    /// This getter assumes the selection is not empty.
+    var isSelectionPopulated: Bool {
+        
+        self.characters.selected != 0
+            && self.lines.selected != 0
+            && self.words.selected != 0
+            && self.location != nil
+            && self.line != nil
+            && self.column != nil
     }
 }

@@ -125,23 +125,43 @@ import StringUtils
             
             let string = source.string.immutable
             
-            if self.types.contains(.characters) {
-                try Task.checkCancellation()
-                self.result.characters.entire = await Self.calculate { string.count }
-            }
-            
-            if self.types.contains(.lines) {
-                try Task.checkCancellation()
-                self.result.lines.entire = if let lineRangeCalculator {
-                    lineRangeCalculator.numberOfLines
-                } else {
-                    await Self.calculate { string.numberOfLines }
+            try await withThrowingDiscardingTaskGroup { group in
+                if self.types.contains(.characters) {
+                    group.addTask {
+                        try Task.checkCancellation()
+                        let count = string.count
+                        try await MainActor.run {
+                            try Task.checkCancellation()
+                            self.result.characters.entire = count
+                        }
+                    }
                 }
-            }
-            
-            if self.types.contains(.words) {
-                try Task.checkCancellation()
-                self.result.words.entire = await Self.calculate { string.numberOfWords }
+                
+                if self.types.contains(.lines) {
+                    if let lineRangeCalculator = self.lineRangeCalculator {
+                        self.result.lines.entire = lineRangeCalculator.numberOfLines
+                    } else {
+                        group.addTask {
+                            try Task.checkCancellation()
+                            let count = string.numberOfLines
+                            try await MainActor.run {
+                                try Task.checkCancellation()
+                                self.result.lines.entire = count
+                            }
+                        }
+                    }
+                }
+                
+                if self.types.contains(.words) {
+                    group.addTask {
+                        try Task.checkCancellation()
+                        let count = string.numberOfWords
+                        try await MainActor.run {
+                            try Task.checkCancellation()
+                            self.result.words.entire = count
+                        }
+                    }
+                }
             }
         }
     }
@@ -171,38 +191,76 @@ import StringUtils
                     : nil
             }
             
-            if self.types.contains(.characters) {
-                try Task.checkCancellation()
-                self.result.characters.selected = await Self.calculate { selectedStrings.map(\.count).reduce(0, +) }
-            }
-            
-            if self.types.contains(.lines) {
-                try Task.checkCancellation()
-                self.result.lines.selected = await Self.calculate { string.numberOfLines(in: selectedRanges) }
-            }
-            
-            if self.types.contains(.words) {
-                try Task.checkCancellation()
-                self.result.words.selected = await Self.calculate { selectedStrings.map(\.numberOfWords).reduce(0, +) }
-            }
-            
-            if self.types.contains(.location) {
-                try Task.checkCancellation()
-                self.result.location = await Self.calculate { string.distance(from: string.startIndex, to: location) }
-            }
-            
-            if self.types.contains(.line) {
-                try Task.checkCancellation()
-                self.result.line = if let lineRangeCalculator, let nsLocation = selectedNSRanges.first?.location {
-                    lineRangeCalculator.lineNumber(at: nsLocation)
-                } else {
-                    await Self.calculate { string.lineNumber(at: location) }
+            try await withThrowingDiscardingTaskGroup { group in
+                if self.types.contains(.characters) {
+                    group.addTask {
+                        try Task.checkCancellation()
+                        let count = selectedStrings.map(\.count).reduce(0, +)
+                        try await MainActor.run {
+                            try Task.checkCancellation()
+                            self.result.characters.selected = count
+                        }
+                    }
                 }
-            }
-            
-            if self.types.contains(.column) {
-                try Task.checkCancellation()
-                self.result.column = await Self.calculate { string.columnNumber(at: location) }
+                
+                if self.types.contains(.lines) {
+                    group.addTask {
+                        try Task.checkCancellation()
+                        let count = string.numberOfLines(in: selectedRanges)
+                        try await MainActor.run {
+                            try Task.checkCancellation()
+                            self.result.lines.selected = count
+                        }
+                    }
+                }
+                
+                if self.types.contains(.words) {
+                    group.addTask {
+                        try Task.checkCancellation()
+                        let count = selectedStrings.map(\.numberOfWords).reduce(0, +)
+                        try await MainActor.run {
+                            try Task.checkCancellation()
+                            self.result.words.selected = count
+                        }
+                    }
+                }
+                
+                if self.types.contains(.location) {
+                    group.addTask {
+                        try Task.checkCancellation()
+                        let offset = string.distance(from: string.startIndex, to: location)
+                        try await MainActor.run {
+                            try Task.checkCancellation()
+                            self.result.location = offset
+                        }
+                    }
+                }
+                
+                if self.types.contains(.line) {
+                    if let lineRangeCalculator = self.lineRangeCalculator, let nsLocation = selectedNSRanges.first?.location {
+                        self.result.line = lineRangeCalculator.lineNumber(at: nsLocation)
+                    } else {
+                        group.addTask {
+                            try Task.checkCancellation()
+                            let line = string.lineNumber(at: location)
+                            try await MainActor.run {
+                                try Task.checkCancellation()
+                                self.result.line = line
+                            }
+                        }
+                    }
+                }
+                
+                if self.types.contains(.column) {
+                    group.addTask {
+                        try Task.checkCancellation()
+                        let column = string.columnNumber(at: location)
+                        try await MainActor.run {
+                            try Task.checkCancellation()
+                            self.result.column = column
+                        }
+                    }
+                }
             }
         }
     }
@@ -232,15 +290,5 @@ import StringUtils
         if !added.isEmpty {
             self.invalidateSelection()
         }
-    }
-    
-    
-    /// Performs the given calculation in the background.
-    ///
-    /// - Parameter calculation: The calculation to perform.
-    /// - Returns: The calculation result.
-    @concurrent private static func calculate<Value: Sendable>(_ calculation: @Sendable () -> Value) async -> Value {
-        
-        calculation()
     }
 }
