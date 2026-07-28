@@ -9,6 +9,11 @@
 - [beta] Improve overall stability and performance.
 
 
+### Fixes
+
+- [beta] Fix an issue where some labels in the Settings window were not localized propery.
+
+
 ### Known Issues
 
 - The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).
