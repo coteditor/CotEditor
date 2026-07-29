@@ -35,7 +35,7 @@ Please refrain from simply adding “+1” or similar comments to existing reque
 
 ### General Code Improvements
 
-Bug fixes and improvements are always welcome. However, if you are considering adding a new feature or making a significant change, please consult the team beforehand to ensure it aligns with the project’s direction. Feature additions that do not align with the project's direction are likely to be rejected.
+Bug fixes are always welcome. However, if you are considering adding a new feature or making a significant change, please consult the team beforehand to ensure it aligns with the project’s direction. Feature additions that do not align with the project's direction are likely to be rejected.
 
 Instead of modifying multiple features in a single pull request, create a pull request for each feature.
 
@@ -120,6 +120,8 @@ Especially, follow the terms of the following applications:
 
 Additionally, we strongly recommend utilizing the [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa Katsumi to find macOS-friendly expressions. This service enables us to search in the text localized by Apple for macOS apps and frameworks.
 You also need to take care of how Apple treats punctuation characters and symbols. For example, regarding quotation marks, they generally prefer the typographer's ones.
+
+Recent versions of Xcode include a translation skill at `~/Library/Developer/Xcode/CodingAssistant/codex/skills/__xcode/translation/`. Although the skill is intended for agentic coding, its `references` directory contains useful style guides for several languages. If you have Xcode installed and a guide is available for your language, we recommend consulting it as well.
 
 
 ### Syntaxes
