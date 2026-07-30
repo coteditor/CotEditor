@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ extension UTType {
     
     /// Whether the type should be handled as plain-text in this app.
     ///
-    /// - RTF also conforms to public.text, but it is OK in CotEditor.
+    /// - RTF conforms to public.text.
     /// - SVG conforms both .text and .image (except SVGZ).
     /// - The parent of `.propertyList` is not text but `.data` (It can not be determined only from UTI whether the file is binary or XML).
     /// - "ts" extension conflicts between MPEG-2 transport stream and TypeScript.
@@ -44,7 +44,9 @@ extension UTType {
     /// - Note: This judge is valid only in CotEditor.
     var isPlainText: Bool {
         
-        self.conforms(to: .text) || self.conforms(to: .propertyList) || self == .mpeg2TransportStream
+        (self.conforms(to: .text) && !self.conforms(to: .rtf)) ||
+        self.conforms(to: .propertyList) ||
+        self == .mpeg2TransportStream
     }
 }
 
