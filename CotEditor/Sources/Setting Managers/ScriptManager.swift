@@ -238,7 +238,7 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
         
         let openMenuItem = NSMenuItem(title: String(localized: "Open Scripts Folder", table: "MainMenu"),
                                       systemImage: "folder",
-                                      action: #selector(openScriptFolder))
+                                      action: #selector(openScriptFolder), keyEquivalent: "")
         openMenuItem.target = self
         
         self.menu?.items = menuItems + [.separator(), openMenuItem]

@@ -109,6 +109,17 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         bottomSeparator.boxType = .separator
         
         // use custom MenuButton to apply Liquid Glass style (2026-07, macOS 27)
+        let addMenu = NSMenu()
+        addMenu.autoenablesItems = false
+        addMenu.items = [
+            NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
+                       systemImage: "document.badge.plus",
+                       action: #selector(addFile), keyEquivalent: ""),
+            NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
+                       systemImage: "folder.badge.plus",
+                       action: #selector(addFolder), keyEquivalent: ""),
+        ]
+        addMenu.items.forEach { $0.target = self }
         let addButton = MenuButton()
         addButton.image = NSImage(systemSymbolName: "plus", accessibilityDescription: nil)
         addButton.bezelStyle = .glass
@@ -116,16 +127,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         if #unavailable(macOS 27) {
             addButton.isBordered = false
         }
-        addButton.menu = NSMenu()
-        addButton.menu!.autoenablesItems = false
-        addButton.menu!.items = [
-            NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
-                       systemImage: "document.badge.plus",
-                       action: #selector(addFile), target: self),
-            NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
-                       systemImage: "folder.badge.plus",
-                       action: #selector(addFolder), target: self),
-        ]
+        addButton.menu = addMenu
         addButton.setAccessibilityLabel(String(localized: "Action.add.label", defaultValue: "Add"))
         
         let filterField = FilterSearchField()
@@ -188,41 +190,41 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         contextMenu.items = [
             NSMenuItem(title: String(localized: "Show in Finder", table: "Document", comment: "menu item label"),
                        systemImage: "finder",
-                       action: #selector(showInFinder)),
+                       action: #selector(showInFinder), keyEquivalent: ""),
             .separator(),
             
             NSMenuItem(title: String(localized: "Open in New Window", table: "Document", comment: "menu item label"),
                        systemImage: "macwindow.badge.plus",
-                       action: #selector(openInNewWindow)),
+                       action: #selector(openInNewWindow), keyEquivalent: ""),
             NSMenuItem(title: String(localized: "Open with External Editor", table: "Document", comment: "menu item label"),
                        systemImage: "arrow.up.forward.square",
-                       action: #selector(openWithExternalEditor)),
+                       action: #selector(openWithExternalEditor), keyEquivalent: ""),
             .separator(),
             
             NSMenuItem(title: String(localized: "Move to Trash", table: "Document", comment: "menu item label"),
                        systemImage: "trash",
-                       action: #selector(moveToTrash)),
+                       action: #selector(moveToTrash), keyEquivalent: ""),
             NSMenuItem(title: String(localized: "Duplicate", table: "Document", comment: "menu item label"),
                        systemImage: "plus.square.on.square",
-                       action: #selector(duplicate)),
+                       action: #selector(duplicate), keyEquivalent: ""),
             .separator(),
             
             NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
                        systemImage: "document.badge.plus",
-                       action: #selector(addFile)),
+                       action: #selector(addFile), keyEquivalent: ""),
             NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
                        systemImage: "folder.badge.plus",
-                       action: #selector(addFolder)),
+                       action: #selector(addFolder), keyEquivalent: ""),
             .separator(),
             
             NSMenuItem(title: String(localized: "Share…", table: "Document", comment: "menu item label"),
                        systemImage: "square.and.arrow.up",
-                       action: #selector(share)),
+                       action: #selector(share), keyEquivalent: ""),
             .separator(),
             
             NSMenuItem(title: String(localized: "Show Hidden Files", table: "Document", comment: "menu item label"),
                        systemImage: "eye",
-                       action: #selector(toggleHiddenFileVisibility)),
+                       action: #selector(toggleHiddenFileVisibility), keyEquivalent: ""),
         ]
         for item in contextMenu.items where !item.isSeparatorItem {
             item.target = self

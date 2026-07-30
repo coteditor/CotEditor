@@ -1007,7 +1007,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                     NSMenuItem(title: String(localized: "Toolbar.fonts.menu.showFonts.label",
                                              defaultValue: "Show Fonts", table: "Document"),
                                systemImage: "textformat",
-                               action: #selector(NSFontManager.orderFrontFontPanel)),
+                               action: #selector(NSFontManager.orderFrontFontPanel), keyEquivalent: ""),
                 ]
                 return item
                 

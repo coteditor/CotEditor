@@ -315,7 +315,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         if self.textView.selectsSingleCharacter {
             menu.insertItem(.init(title: String(localized: "Inspect Character", table: "MainMenu"),
                                   systemImage: "character.bubble",
-                                  action: #selector(showSelectionInfo)),
+                                  action: #selector(showSelectionInfo), keyEquivalent: ""),
                             at: 1)
         }
         

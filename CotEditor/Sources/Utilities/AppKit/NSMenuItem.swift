@@ -27,11 +27,10 @@ import AppKit
 
 extension NSMenuItem {
     
-    convenience init(title: String, systemImage: String, action: Selector? = nil, target: AnyObject? = nil) {
+    @available(macOS, deprecated: 27)
+    convenience init(title: String, systemImage: String, action: Selector?, keyEquivalent: String) {
         
-        self.init(title: title, action: action, keyEquivalent: "")
-        
-        self.target = target
+        self.init(title: title, action: action, keyEquivalent: keyEquivalent)
         
         if #unavailable(macOS 27) {
             self.image = NSImage(systemSymbolName: systemImage, accessibilityDescription: nil)
