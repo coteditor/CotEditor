@@ -32,7 +32,6 @@ struct WhatsNewView: View {
     @Environment(\.dismiss) private var dismiss
     
     @Namespace private var namespace
-    @FocusState private var isContinueButtonFocused: Bool
     
     @State private var isPrerelease: Bool = false
     
@@ -110,7 +109,6 @@ struct WhatsNewView: View {
                     Text("Continue", tableName: "WhatsNew")
                         .frame(minWidth: 110)
                 }
-                .focused($isContinueButtonFocused)  // workaround: .prefersDefaultFocus(in:) doesn't work (2026-01, macOS 26).
                 .prefersDefaultFocus(true, in: self.namespace)
                 .keyboardShortcut(.defaultAction)
                 .glassEffect()
@@ -118,7 +116,6 @@ struct WhatsNewView: View {
             .controlSize(.extraLarge)
         }
         .onAppear {
-            self.isContinueButtonFocused = true
             if let version = Bundle.main.version, version < NewFeature.version {
                 self.isPrerelease = true
             }

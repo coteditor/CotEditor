@@ -28,22 +28,11 @@ import StringUtils
 
 struct GoToLineView: View {
     
-    private enum Focus {
-        
-        case field
-    }
-    
-    
-    /// The current line range.
     @State var lineRange: FuzzyRange
-    
-    /// The callback method to perform when the command was accepted.
     var completionHandler: (_ lineRange: FuzzyRange) -> Bool
     
     
     @Environment(\.dismiss) private var dismiss
-    
-    @FocusState private var focus: Focus?
     
     
     // MARK: View
@@ -56,15 +45,11 @@ struct GoToLineView: View {
                           prompt: Text("Line Number", tableName: "GoToLine", comment: "placeholder"))
                     .monospacedDigit()
                     .multilineTextAlignment(.trailing)
-                    .focused($focus, equals: .field)
                     .onSubmit(self.submit)
             }
             
             SubmitButtonGroup(.init("Go", table: "GoToLine", comment: "button label"), helpAnchor: "howto_jump", action: self.submit)
                 .padding(.top)
-        }
-        .onAppear {
-            self.focus = .field
         }
         .fixedSize()
     }

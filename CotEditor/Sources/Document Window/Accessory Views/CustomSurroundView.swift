@@ -28,13 +28,6 @@ import StringUtils
 
 struct CustomSurroundView: View {
     
-    private enum Focus {
-        
-        case beginField
-        case endField
-    }
-    
-    
     private enum AppStorageKey {
         
         static let beginString = "beginCustomSurroundString"
@@ -43,13 +36,9 @@ struct CustomSurroundView: View {
     
     
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.resetFocus) private var resetFocus
     
     @AppStorage(AppStorageKey.beginString) private var defaultBeginString: String?
     @AppStorage(AppStorageKey.endString) private var defaultEndString: String?
-    
-    @FocusState private var focus: Focus?
-    @Namespace private var namespace
     
     @State private var pair: Pair<String>
     private var completionHandler: (_ pair: Pair<String>) -> Void
@@ -87,22 +76,17 @@ struct CustomSurroundView: View {
                     TextField(text: $pair.begin, label: EmptyView.init)
                         .frame(width: 48)
                 }
-                .focused($focus, equals: .beginField)
                 .padding(.trailing)
                 
                 LabeledContent(.init("End:", table: "CustomSurround")) {
                     TextField(text: $pair.end, prompt: Text(self.pair.begin), label: EmptyView.init)
                         .frame(width: 48)
                 }
-                .focused($focus, equals: .endField)
             }
             .onSubmit(self.submit)
             
             SubmitButtonGroup(action: self.submit)
                 .padding(.top)
-        }
-        .onAppear {
-            self.focus = .beginField
         }
         .fixedSize()
     }
@@ -112,8 +96,6 @@ struct CustomSurroundView: View {
     
     /// Submits the current input.
     private func submit() {
-        
-        self.resetFocus(in: self.namespace)
         
         guard !self.pair.begin.isEmpty else { return NSSound.beep() }
         
