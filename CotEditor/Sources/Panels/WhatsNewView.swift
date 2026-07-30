@@ -24,7 +24,6 @@
 //
 
 import SwiftUI
-import AppKit
 import SemanticVersioning
 
 struct WhatsNewView: View {
