@@ -340,13 +340,9 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     @IBAction func gotoLocation(_ sender: Any?) {
         
         let textView = self.textView
-        let string = textView.string
-        let lineNumber = string.lineNumber(at: textView.selectedRange.location)
-        let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
-        let lineRange = FuzzyRange(location: lineNumber, length: lineCount)
         
         self.view.window?.beginSheet {
-            GoToLineView(lineRange: lineRange) { lineRange in
+            GoToLineView { lineRange in
                 guard let range = textView.string.rangeForLine(in: lineRange) else { return false }
                 
                 textView.select(range: range)

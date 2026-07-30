@@ -28,11 +28,12 @@ import StringUtils
 
 struct GoToLineView: View {
     
-    @State var lineRange: FuzzyRange
     var completionHandler: (_ lineRange: FuzzyRange) -> Bool
     
     
     @Environment(\.dismiss) private var dismiss
+    
+    @State private var lineRange: FuzzyRange?
     
     
     // MARK: View
@@ -40,13 +41,9 @@ struct GoToLineView: View {
     var body: some View {
         
         VStack {
-            Form {
-                TextField(.init("Line:", table: "GoToLine"), value: $lineRange, format: .fuzzyRange,
-                          prompt: Text("Line Number", tableName: "GoToLine", comment: "placeholder"))
-                    .monospacedDigit()
-                    .multilineTextAlignment(.trailing)
-                    .onSubmit(self.submit)
-            }
+            TextField(.init("Line Number", table: "GoToLine"), value: $lineRange, format: .fuzzyRange)
+                .monospacedDigit()
+                .onSubmit(self.submit)
             
             SubmitButtonGroup(.init("Go", table: "GoToLine", comment: "button label"), helpAnchor: "howto_jump", action: self.submit)
                 .padding(.top)
@@ -61,7 +58,8 @@ struct GoToLineView: View {
     private func submit() {
         
         guard
-            self.completionHandler(self.lineRange)
+            let lineRange,
+            self.completionHandler(lineRange)
         else { return NSSound.beep() }
         
         self.dismiss()
@@ -72,6 +70,6 @@ struct GoToLineView: View {
 // MARK: - Preview
 
 #Preview {
-    GoToLineView(lineRange: FuzzyRange(location: 1, length: 1)) { _ in true }
+    GoToLineView { _ in true }
         .scenePadding()
 }
