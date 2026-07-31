@@ -11,7 +11,8 @@
 
 ### Fixes
 
-- [beta] Fix an issue where some labels in the Settings window were not localized propery.
+- [beta] Fix an issue where the app became unresponsive when opening a document taller than the window (FB23993752).
+- [beta] Fix an issue where some labels in the Settings window were not localized properly.
 
 
 ### Known Issues

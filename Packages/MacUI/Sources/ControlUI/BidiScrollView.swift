@@ -40,6 +40,12 @@ public final class BidiScrollView: NSScrollView {
     }
     
     
+    // MARK: Private Properties
+    
+    /// The number of content inset changes in the current runloop turn.
+    private var insetsChangeCount = 0
+    
+    
     // MARK: View Methods
     
     public override var contentInsets: NSEdgeInsets {
@@ -57,6 +63,18 @@ public final class BidiScrollView: NSScrollView {
             }
             
             guard insets != super.contentInsets else { return }
+            
+            // limit the number of inset changes per runloop turn to break an infinite layout loop
+            // -> The safe area insets themselves oscillate during the layout pass
+            //    for the first window presentation while the window chrome is being resolved
+            //    (2026-07, macOS 27, FB23993752).
+            self.insetsChangeCount += 1
+            if self.insetsChangeCount == 1 {
+                DispatchQueue.main.async { [weak self] in
+                    self?.insetsChangeCount = 0
+                }
+            }
+            guard self.insetsChangeCount <= 2 else { return }
             
             super.contentInsets = insets
         }
