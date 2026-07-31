@@ -154,6 +154,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         self.focusObserver = NotificationCenter.default.addObserver(for: EditorTextView.DidBecomeFirstResponderMessage.self) { [weak self] message in
             guard let textView = self?.textViews.first(where: { ObjectIdentifier($0) == message.subjectIdentifier }) else { return }
             self?.focusedTextView = textView
+            self?.document.updateSelectedRanges(textView.selectedRanges.map(\.rangeValue))
         }
         
         // observe

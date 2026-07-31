@@ -327,6 +327,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         guard
             let textView = notification.object as? NSTextView,
+            textView == textView.window?.firstResponder,
             !textView.hasMarkedText()
         else { return }
         
