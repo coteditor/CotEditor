@@ -217,6 +217,12 @@
     "NewFeature.customIndentStyle.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "V nastavení režimu si můžete přizpůsobit styl odsazení pro jednotlivé syntaxe."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -312,6 +318,12 @@
     "NewFeature.customIndentStyle.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odsazení podle syntaxe"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -407,6 +419,12 @@
     "NewFeature.documentName.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "V macOS 27 získají nepojmenované dokumenty automaticky pracovní název navržený podle svého obsahu."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -502,6 +520,12 @@
     "NewFeature.documentName.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nechte dokument zvolit vlastní název"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -597,6 +621,12 @@
     "NewFeature.folderFind.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyhledávejte text napříč soubory v otevřené složce přímo z bočního panelu."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -692,6 +722,12 @@
     "NewFeature.folderFind.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hledání ve složce"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -787,6 +823,12 @@
     "NewFeature.folderNavigationHistory.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomocí panelu nástrojů můžete přecházet zpět a vpřed mezi naposledy zobrazenými dokumenty v otevřené složce."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -882,6 +924,12 @@
     "NewFeature.folderNavigationHistory.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zpět a vpřed ve složkách"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -977,6 +1025,12 @@
     "NewFeature.macOS27.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor nyní podporuje macOS 27 Golden Gate a přebírá jeho nový vzhled."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1072,6 +1126,12 @@
     "NewFeature.macOS27.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Připraveno pro macOS 27"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

@@ -5,6 +5,12 @@
       "comment" : "The popup item inserted into the sentence “Match [any|all] of the following conditions:”.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "všechny"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -101,6 +107,12 @@
       "comment" : "The popup item inserted into the sentence “Match [any|all] of the following conditions:”.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "alespoň jednu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -197,6 +209,12 @@
       "comment" : "The text preceding the any/all popup in the sentence “Match [any|all] of the following conditions:”; can be empty.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Splňuje"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -293,6 +311,12 @@
       "comment" : "The text following the any/all popup in the sentence “Match [any|all] of the following conditions:”.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z následujících podmínek:"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -388,6 +412,12 @@
     "FileScope.Error.emptyValue.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozsah obsahuje pravidlo bez hodnoty."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -483,6 +513,12 @@
     "FileScope.Error.invalidRegularExpression.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozsah obsahuje neplatný regulární výraz."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1149,6 +1185,12 @@
       "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "odpovídá regulárnímu výrazu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1696,6 +1738,12 @@
     },
     "Save as Named Scope…" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uložit jako pojmenovaný rozsah…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

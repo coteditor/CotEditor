@@ -3,6 +3,12 @@
   "strings" : {
     "Hidden syntaxes are still used for automatic detection." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skryté syntaxe se budou i nadále používat pro automatické rozpoznávání."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -197,6 +203,12 @@
     },
     "Select the syntaxes you want to appear in syntax menus:" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyberte syntaxe, které se mají zobrazovat v nabídkách syntaxí:"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

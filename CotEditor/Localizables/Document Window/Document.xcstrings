@@ -643,6 +643,12 @@
     },
     "Clear File Scope" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vymazat rozsah souborů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2796,6 +2802,12 @@
     },
     "Edit File Scope…" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upravit rozsah souborů…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3312,6 +3324,12 @@
     "File browser filter" : {
       "comment" : "accessibility label",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtr prohlížeče souborů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3400,6 +3418,12 @@
     },
     "File Scope" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozsah souborů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4494,6 +4518,78 @@
     "FolderFind.Metrics.message" : {
       "comment" : "folder find result summary",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@arg1@ v %#@arg2@"
+          },
+          "substitutions" : {
+            "arg1" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg shody"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg shod"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg shoda"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg shod"
+                    }
+                  }
+                }
+              }
+            },
+            "arg2" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg souborech"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg souborech"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg souboru"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg souborech"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5296,6 +5392,12 @@
     "FolderFind.SearchState.finished.zero.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nebyla nalezena žádná shoda pro „%@“."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5504,6 +5606,12 @@
     "FolderFind.SearchState.searching.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hledání ve složce…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5599,6 +5707,12 @@
     "FolderFinder.Error.folderUnavailable.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Složku se nepodařilo najít."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6577,6 +6691,12 @@
     "Include Hidden Files" : {
       "comment" : "toggle button label",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahrnout skryté soubory"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6666,6 +6786,12 @@
     "Include Other File Types" : {
       "comment" : "toggle button label",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahrnout ostatní typy souborů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8272,6 +8398,12 @@
     },
     "Manage Saved Scopes…" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spravovat uložené rozsahy…"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11519,6 +11651,12 @@
     "Reveal in File Browser" : {
       "comment" : "menu item label",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit v prohlížeči souborů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11607,6 +11745,12 @@
     },
     "Saved Scopes" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uložené rozsahy"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11695,6 +11839,12 @@
     },
     "Saved scopes:" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uložené rozsahy:"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11890,6 +12040,12 @@
     "Search in Folder" : {
       "comment" : "placeholder",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hledat ve složce"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11979,6 +12135,12 @@
     "Search method" : {
       "comment" : "Accessibility label for the menu selecting Text or Regular Expression in the Folder Find pane",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Způsob hledání"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12830,8 +12992,8 @@
         },
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Hledat"
+            "state" : "translated",
+            "value" : "Hledat ve složce"
           }
         },
         "de" : {
@@ -14231,6 +14393,12 @@
     "Toolbar.documentHistory.forward.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přejít na další dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14540,6 +14708,12 @@
     "Toolbar.documentHistory.previous.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přejít na předchozí dokument"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14635,6 +14809,12 @@
     "Toolbar.documentHistory.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přejít zpět nebo vpřed v historii dokumentu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

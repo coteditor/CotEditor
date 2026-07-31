@@ -25883,6 +25883,12 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"Folder Find\"; ObjectID = \"UFU-ir-16q\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hledat ve složce"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",

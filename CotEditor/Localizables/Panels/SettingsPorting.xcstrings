@@ -2098,6 +2098,12 @@
     "SettingTypes.fileScopes.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozsahy souborů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
