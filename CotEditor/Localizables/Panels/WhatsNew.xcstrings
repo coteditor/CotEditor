@@ -500,7 +500,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在 macOS 27 中，系统会根据内容为未命名文稿自动建议一个草稿名称。"
+            "value" : "在macOS 27中，系统会根据内容为未命名文稿自动建议一个草稿名称。"
           }
         },
         "zh-Hant" : {
@@ -1106,13 +1106,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor 现已支持 macOS 27 Golden Gate，并为最新系统带来全新外观。"
+            "value" : "CotEditor现已支持macOS 27 Golden Gate，并为最新系统带来全新外观。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor 現已支援macOS 27 Golden Gate，包含針對最新系統的煥新外觀。"
+            "value" : "CotEditor現已支援macOS 27 Golden Gate，包含針對最新系統的煥新外觀。"
           }
         },
         "zh-HK" : {
@@ -1207,7 +1207,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已为 macOS 27 准备就绪"
+            "value" : "已为macOS 27准备就绪"
           }
         },
         "zh-Hant" : {
