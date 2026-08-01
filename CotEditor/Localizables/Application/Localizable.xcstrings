@@ -8988,7 +8988,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이름이"
+            "value" : "이름에 ‘%@’를 포함할 수 없습니다."
           }
         },
         "nl" : {

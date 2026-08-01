@@ -178,7 +178,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld 컵"
+                  "value" : "%lld컵"
                 }
               }
             }
