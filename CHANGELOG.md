@@ -14,6 +14,7 @@
 ### Fixes
 
 - [beta] Fix an issue where the app became unresponsive when opening a document taller than the window (FB23993752).
+- [beta] Fix an issue where the editor could slightly scroll on typing.
 - [beta] Fix an issue where some labels in the Settings window were not localized properly.
 - [beta] Fix an issue on macOS 27 where the app icons did not appear in the Open in External Editor button in the file preview view.
 

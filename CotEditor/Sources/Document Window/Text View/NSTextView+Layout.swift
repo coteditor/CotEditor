@@ -137,8 +137,7 @@ extension NSTextView {
             self.didChangeValue(for: \.scale)
             
             // reset minimum size for unwrap mode
-            let visibleRect = self.enclosingScrollView?.documentVisibleRect ?? self.visibleRect
-            self.minSize = visibleRect.size
+            self.minSize = self.contentAreaSize
             
             // update view size
             // -> For in the case by scaling-down when the view becomes bigger than text content width
@@ -203,6 +202,19 @@ extension NSTextView {
 
 extension NSTextView {
     
+    /// The size of the visible content area in the enclosing scroll view
+    /// by taking the content insets of the clip view into the account.
+    final var contentAreaSize: NSSize {
+        
+        guard let clipView = self.enclosingScrollView?.contentView else { return self.frame.size }
+        
+        let insets = clipView.contentInsets
+        
+        return NSSize(width: clipView.bounds.width - insets.left - insets.right,
+                      height: clipView.bounds.height - insets.top - insets.bottom)
+    }
+    
+    
     /// Whether soft wraps lines.
     ///
     /// - Note: This API requires TextKit 1.
@@ -229,9 +241,9 @@ extension NSTextView {
             }
             
             if newValue {
-                let width = self.visibleRect.width
-                self.frame.size[keyPath: isVertical ? \NSSize.height : \NSSize.width] = width * self.scale
-                textContainer.size.width = width
+                let length = self.contentAreaSize[keyPath: isVertical ? \NSSize.height : \NSSize.width]
+                self.frame.size[keyPath: isVertical ? \NSSize.height : \NSSize.width] = length
+                textContainer.size.width = length / self.scale
                 textContainer.widthTracksTextView = true
             } else {
                 textContainer.widthTracksTextView = false
@@ -240,6 +252,23 @@ extension NSTextView {
             
             if let visibleRange {
                 self.scrollRangeToVisible(visibleRange)
+                
+                // snap the scroll position to the leading edge of the lines
+                // -> scrollRangeToVisible() scrolls to the leading edge of the line fragments,
+                //    which is slightly inset from the view edge.
+                if let scrollView = self.enclosingScrollView {
+                    let clipView = scrollView.contentView
+                    var bounds = clipView.bounds
+                    if isVertical {
+                        bounds.origin.y = -bounds.height
+                    } else if self.baseWritingDirection == .rightToLeft {
+                        bounds.origin.x = self.frame.width
+                    } else {
+                        bounds.origin.x = -bounds.width
+                    }
+                    clipView.scroll(to: clipView.constrainBoundsRect(bounds).origin)
+                    scrollView.reflectScrolledClipView(clipView)
+                }
             }
         }
     }

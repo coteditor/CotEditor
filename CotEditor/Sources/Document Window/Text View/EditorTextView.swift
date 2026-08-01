@@ -1043,7 +1043,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         // reset text wrapping width
         if self.wrapsLines {
             let keyPath = (orientation == .vertical) ? \NSSize.height : \NSSize.width
-            self.frame.size[keyPath: keyPath] = self.visibleRect.width * self.scale
+            self.frame.size[keyPath: keyPath] = self.contentAreaSize[keyPath: keyPath]
         }
         
         // update keyboard shortcuts
