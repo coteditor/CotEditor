@@ -133,11 +133,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         // setup toolbar
         let toolbar = NSToolbar(identifier: self.isDirectoryDocument ? .directoryDocument : .document)
-        toolbar.displayMode = .iconOnly
         toolbar.allowsUserCustomization = true
         toolbar.autosavesConfiguration = true
         toolbar.delegate = self
-        window.toolbarStyle = .unified
         window.toolbar = toolbar
         
         // observe opacity setting change
@@ -529,7 +527,6 @@ private extension NSToolbarItem.Identifier {
     static let forwardDocumentHistory = Self(Self.prefix + "forwardDocumentHistory")
     
     static let syntax = Self(Self.prefix + "syntaxStyle")
-    static let inspector = Self(Self.prefix + "inspector")
     
     static let textSize = Self(Self.prefix + "textSize")
     static let smaller = Self(Self.prefix + "smaller")
@@ -548,19 +545,16 @@ private extension NSToolbarItem.Identifier {
     static let shiftRight = Self(Self.prefix + "shiftRight")
     
     static let comment = Self(Self.prefix + "comment")
-    
     static let tabStyle = Self(Self.prefix + "tabStyle")
     static let invisibles = Self(Self.prefix + "invisibles")
     static let wrapLines = Self(Self.prefix + "wrapLines")
     static let indentGuides = Self(Self.prefix + "indentGuides")
-    
     static let keepOnTop = Self(Self.prefix + "keepOnTop")
     static let editable = Self(Self.prefix + "editable")
     static let spellCheck = Self(Self.prefix + "spellCheck")
     static let emojiAndSymbols = Self(Self.prefix + "emojiAndSymbols")
     static let fonts = Self(Self.prefix + "fonts")
     static let find = Self(Self.prefix + "find")
-    static let print = Self(Self.prefix + "print")
     static let share = Self(Self.prefix + "share")
 }
 
@@ -589,7 +583,7 @@ extension DocumentWindowController: NSToolbarDelegate {
         Set(self.isDirectoryDocument ? self.immovableDirectoryIdentifiers : []).union([
             .inspectorTrackingSeparator,
             .flexibleSpace,
-            .inspector,
+            .toggleInspector,
         ])
     }
     
@@ -602,7 +596,7 @@ extension DocumentWindowController: NSToolbarDelegate {
             .syntax,
             .inspectorTrackingSeparator,
             .flexibleSpace,
-            .inspector,
+            .toggleInspector,
         ]
     }
     
@@ -613,7 +607,7 @@ extension DocumentWindowController: NSToolbarDelegate {
         
         var identifiers = directoryIdentifiers + [
             .syntax,
-            .inspector,
+            .toggleInspector,
             .textSize,
             .writingDirection,
             .textOrientation,
@@ -633,7 +627,6 @@ extension DocumentWindowController: NSToolbarDelegate {
             .writingToolsItemIdentifier,
             .share,
             .space,
-            .flexibleSpace,
         ]
         
         if !NSWritingToolsCoordinator.isWritingToolsAvailable {
@@ -647,11 +640,6 @@ extension DocumentWindowController: NSToolbarDelegate {
     func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
         
         switch itemIdentifier {
-            case .toggleSidebar:
-                let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-                item.autovalidates = true
-                return item
-                
             case .documentHistory:
                 let previousMenu = NSMenu()
                 previousMenu.identifier = .previousDocumentHistoryMenu
@@ -729,18 +717,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 menuItem.title = item.label
                 item.menuFormRepresentation = menuItem
                 
-                return item
-                
-            case .inspector:
-                let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
-                item.label = String(localized: "Toolbar.inspector.label",
-                                    defaultValue: "Inspector", table: "Document")
-                item.toolTip = String(localized: "Toolbar.inspector.tooltip",
-                                      defaultValue: "Show inspector", table: "Document")
-                item.image = NSImage(systemSymbolName: "sidebar.trailing", accessibilityDescription: item.label)
-                item.action = #selector(NSSplitViewController.toggleInspector)
-                item.visibilityPriority = .high
                 return item
                 
             case .textSize:
@@ -859,7 +835,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .comment:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
                 item.label = String(localized: "Toolbar.comment.label",
                                     defaultValue: "Comment", table: "Document")
                 item.toolTip = String(localized: "Toolbar.comment.tooltip",
@@ -870,7 +845,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .tabStyle:
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
                 item.label = String(localized: "Toolbar.tabStyle.label",
                                     defaultValue: "Tab Style", table: "Document")
                 item.toolTip = String(localized: "Toolbar.tabStyle.tooltip.off",
@@ -899,7 +873,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .wrapLines:
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
                 item.label = String(localized: "Toolbar.wrapLines.label",
                                     defaultValue: "Line Wrapping", table: "Document")
                 item.toolTip = String(localized: "Toolbar.wrapLines.tooltip.off",
@@ -912,7 +885,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .invisibles:
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
                 item.label = String(localized: "Toolbar.invisibles.label",
                                     defaultValue: "Invisibles", table: "Document")
                 item.toolTip = String(localized: "Toolbar.invisibles.tooltip.off",
@@ -925,7 +897,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .indentGuides:
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
                 item.label = String(localized: "Toolbar.indentGuides.label",
                                     defaultValue: "Indent Guides", table: "Document")
                 item.toolTip = String(localized: "Toolbar.indentGuides.tooltip.off",
@@ -939,7 +910,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .keepOnTop:
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
                 item.label = String(localized: "Toolbar.keepOnTop.label",
                                     defaultValue: "Keep on Top", table: "Document")
                 item.toolTip = String(localized: "Toolbar.keepOnTop.tooltip",
@@ -951,7 +921,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .editable:
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
                 item.label = String(localized: "Toolbar.editable.label",
                                     defaultValue: "Edit", table: "Document")
                 item.toolTip = String(localized: "Toolbar.editable.tooltip.off",
@@ -963,19 +932,17 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .spellCheck:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
                 item.label = String(localized: "Toolbar.spellCheck.label",
                                     defaultValue: "Spell Check", table: "Document")
                 item.toolTip = String(localized: "Toolbar.spellCheck.tooltip",
                                       defaultValue: "Show spelling and grammar", table: "Document")
                 item.image = NSImage(systemSymbolName: "textformat.abc.dottedunderline", accessibilityDescription: item.label)?
-                    .withLocale(.init(identifier: "en"))  // fix the symbol with "abc"
+                    .withLocale(Locale(script: .latin))  // fix the symbol with "abc"
                 item.action = #selector(NSTextView.showGuessPanel)
                 return item
                 
             case .emojiAndSymbols:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
                 item.label = String(localized: "Toolbar.emojiAndSymbols.label",
                                     defaultValue: "Emoji & Symbols", table: "Document")
                 item.toolTip = String(localized: "Toolbar.emojiAndSymbols.tooltip",
@@ -986,7 +953,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .fonts:
                 let item = NSMenuToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
                 item.label = String(localized: "Toolbar.fonts.label",
                                     defaultValue: "Fonts", table: "Document")
                 item.toolTip = String(localized: "Toolbar.fonts.tooltip",
@@ -1013,7 +979,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .find:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
                 item.label = String(localized: "Toolbar.find.label",
                                     defaultValue: "Find", table: "Document")
                 item.toolTip = String(localized: "Toolbar.find.tooltip",
@@ -1021,17 +986,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: item.label)
                 item.action = #selector(performTextFinderAction)
                 item.tag = TextFinder.Action.showFindInterface.rawValue
-                return item
-                
-            case .print:
-                let item = NSToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
-                item.label = String(localized: "Toolbar.print.label",
-                                    defaultValue: "Print", table: "Document")
-                item.toolTip = String(localized: "Toolbar.print.tooltip",
-                                      defaultValue: "Print document", table: "Document")
-                item.image = NSImage(systemSymbolName: "printer", accessibilityDescription: item.label)
-                item.action = #selector(NSDocument.printDocument)
                 return item
                 
             case .share:
