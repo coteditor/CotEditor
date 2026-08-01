@@ -246,6 +246,7 @@ private struct OpenWithExternalEditorMenu: View {
                     } icon: {
                         Image(nsImage: editor.icon)
                     }
+                    .labelStyle(.titleAndIcon)
                 }
                 Divider()
             }
@@ -263,6 +264,7 @@ private struct OpenWithExternalEditorMenu: View {
                     } icon: {
                         Image(nsImage: editor.icon)
                     }
+                    .labelStyle(.titleAndIcon)
                 }
             }
             
