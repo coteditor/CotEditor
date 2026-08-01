@@ -543,19 +543,19 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CSS 含Alpha的HWB"
+            "value" : "CSS含Alpha的HWB"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CSS 帶有Alpha的HWB"
+            "value" : "CSS帶有Alpha的HWB"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CSS 帶有Alpha的HWB"
+            "value" : "CSS帶有Alpha的HWB"
           }
         }
       }

@@ -2579,7 +2579,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在%2$lld項配對結果中的第 %1$lld 項。"
+            "value" : "在%2$lld項配對結果中的第%1$lld項。"
           }
         },
         "zh-HK" : {
