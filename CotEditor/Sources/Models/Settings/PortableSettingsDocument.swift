@@ -26,6 +26,7 @@
 import SwiftUI
 import UniformTypeIdentifiers
 import Defaults
+import FolderFind
 import SemanticVersioning
 import URLUtils
 
@@ -280,7 +281,11 @@ struct PortableSettingsDocument: FileDocument {
         if types.contains(.fileScopes),
            let fileScopes = self.defaults[DefaultKeys.folderFindSavedScopes]?.any as? [String: Data]
         {
-            userDefaults[.folderFindSavedScopes].merge(fileScopes) { _, imported in imported }
+            // drop undecodable scopes, which would be invisible in the UI while still reserving their names
+            let decoder = JSONDecoder()
+            let validScopes = fileScopes.filter { (try? decoder.decode(FileScope.self, from: $0.value)) != nil }
+            
+            userDefaults[.folderFindSavedScopes].merge(validScopes) { _, imported in imported }
         }
     }
 }
