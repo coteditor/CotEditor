@@ -2366,7 +2366,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "发布 URL："
+            "value" : "发布URL："
           }
         },
         "zh-Hant" : {
@@ -5874,7 +5874,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "같은 단어가 여러번 등록됨."
+            "value" : "같은 단어가 여러 번 등록됨."
           }
         },
         "nl" : {
@@ -6596,7 +6596,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此語言使用名為 tree-sitter 的基於結構的通用剖析器進行語法分析。\n因為擷取規則由應用程式管理，您無法自訂它們。"
+            "value" : "此語言使用名為tree-sitter的基於結構的通用剖析器進行語法分析。\n因為擷取規則由應用程式管理，您無法自訂它們。"
           }
         },
         "zh-HK" : {

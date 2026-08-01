@@ -902,7 +902,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "対応する括弧“()” “[]” “{}”をハイライト"
+            "value" : "対応する括弧をハイライト"
           }
         },
         "ko" : {
@@ -1580,7 +1580,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "链接文稿中的 URL"
+            "value" : "链接文稿中的URL"
           }
         },
         "zh-Hant" : {
@@ -1692,7 +1692,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "縮進專用字元:"
+            "value" : "縮進專用字元："
           }
         },
         "zh-HK" : {

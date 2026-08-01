@@ -177,7 +177,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%ll개의 사용자 정의 구문"
+                  "value" : "%lld개의 사용자 정의 구문"
                 }
               }
             }
@@ -1541,7 +1541,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此设置归档由不同版本的CotEditor 创建（%@）。"
+            "value" : "此设置归档由不同版本的CotEditor创建（%@）。"
           }
         },
         "zh-Hant" : {

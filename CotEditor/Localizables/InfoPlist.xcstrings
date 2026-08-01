@@ -2109,13 +2109,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Go 脚本"
+            "value" : "Go脚本"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Go 腳本"
+            "value" : "Go腳本"
           }
         },
         "zh-HK" : {

@@ -92,7 +92,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用选中内容创建新的CotEditor 窗口"
+            "value" : "使用选中内容创建新的CotEditor窗口"
           }
         },
         "zh-Hant" : {

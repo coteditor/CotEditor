@@ -203,7 +203,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "字區:"
+            "value" : "字區："
           }
         },
         "zh-HK" : {
@@ -309,7 +309,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "分類:"
+            "value" : "分類："
           }
         },
         "zh-HK" : {
@@ -415,7 +415,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "碼位:"
+            "value" : "碼位："
           }
         },
         "zh-HK" : {
@@ -840,7 +840,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "版本:"
+            "value" : "版本："
           }
         },
         "zh-HK" : {

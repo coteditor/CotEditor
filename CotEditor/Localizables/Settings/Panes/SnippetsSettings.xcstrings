@@ -1604,7 +1604,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "欲藉由選單命令或鍵盤熱鍵插入的文字:"
+            "value" : "欲藉由選單命令或鍵盤熱鍵插入的文字："
           }
         },
         "zh-HK" : {
@@ -1710,7 +1710,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "欲藉由將檔案拽入至編輯器的方式插入的文字:"
+            "value" : "欲藉由將檔案拽入至編輯器的方式插入的文字："
           }
         },
         "zh-HK" : {
