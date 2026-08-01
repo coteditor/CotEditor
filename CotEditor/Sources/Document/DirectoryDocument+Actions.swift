@@ -72,7 +72,7 @@ extension DirectoryDocument {
                 (item as! NSToolbarItemGroup).subitems.forEach { $0.isEnabled = self.validateUserInterfaceItem($0) }
                 return true
                 
-            case #selector(navigatePreviousDocumentHistory):
+            case #selector(navigateBackDocumentHistory):
                 return self.documentHistory.canNavigate(forward: false)
                 
             case #selector(navigateForwardDocumentHistory):
@@ -194,11 +194,12 @@ extension DirectoryDocument {
     
     
     /// Navigates to the previous document history item.
-    @objc func navigatePreviousDocumentHistory(_ sender: Any?) {
+    @objc func navigateBackDocumentHistory(_ sender: Any?) {
         
         // workaround an AppKit issue where clicking the disabled forward segment can invoke
-        // the first subitem's action (2026-05, macOS 26.5).
-        if let sender = sender as? NSToolbarItem,
+        // the first subitem's action (2026-05, macOS 26.5, fixed in macOS 27).
+        if #unavailable(macOS 26),
+           let sender = sender as? NSToolbarItem,
            let historyGroup = sender.toolbar?.items
             .compactMap({ $0 as? NSToolbarItemGroup })
             .first(where: { $0.subitems.contains(sender) }),

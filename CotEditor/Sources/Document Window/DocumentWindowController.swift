@@ -561,7 +561,7 @@ private extension NSToolbarItem.Identifier {
 
 private extension NSUserInterfaceItemIdentifier {
     
-    static let previousDocumentHistoryMenu = Self(rawValue: "previousDocumentHistoryMenu")
+    static let backDocumentHistoryMenu = Self(rawValue: "backDocumentHistoryMenu")
     static let forwardDocumentHistoryMenu = Self(rawValue: "forwardDocumentHistoryMenu")
 }
 
@@ -642,19 +642,19 @@ extension DocumentWindowController: NSToolbarDelegate {
         switch itemIdentifier {
             case .documentHistory:
                 let previousMenu = NSMenu()
-                previousMenu.identifier = .previousDocumentHistoryMenu
+                previousMenu.identifier = .backDocumentHistoryMenu
                 previousMenu.delegate = self
                 
-                let previousItem = NSMenuToolbarItem(itemIdentifier: .previousDocumentHistory)
-                previousItem.label = String(localized: "Toolbar.documentHistory.previous.label",
-                                            defaultValue: "Back", table: "Document")
-                previousItem.toolTip = String(localized: "Toolbar.documentHistory.previous.tooltip",
-                                              defaultValue: "Go to the previous document", table: "Document")
-                previousItem.image = NSImage(systemSymbolName: "chevron.backward", accessibilityDescription: previousItem.label)
-                previousItem.action = #selector(DirectoryDocument.navigatePreviousDocumentHistory)
-                previousItem.autovalidates = true
-                previousItem.showsIndicator = false
-                previousItem.menu = previousMenu
+                let backItem = NSMenuToolbarItem(itemIdentifier: .previousDocumentHistory)
+                backItem.label = String(localized: "Toolbar.documentHistory.previous.label",
+                                        defaultValue: "Back", table: "Document")
+                backItem.toolTip = String(localized: "Toolbar.documentHistory.previous.tooltip",
+                                          defaultValue: "Go to the previous document", table: "Document")
+                backItem.image = NSImage(systemSymbolName: "chevron.backward", accessibilityDescription: backItem.label)
+                backItem.action = #selector(DirectoryDocument.navigateBackDocumentHistory)
+                backItem.autovalidates = true
+                backItem.showsIndicator = false
+                backItem.menu = previousMenu
                 
                 let forwardMenu = NSMenu()
                 forwardMenu.identifier = .forwardDocumentHistoryMenu
@@ -680,12 +680,12 @@ extension DocumentWindowController: NSToolbarDelegate {
                                     defaultValue: "Back/Forward", table: "Document")
                 item.toolTip = String(localized: "Toolbar.documentHistory.tooltip",
                                       defaultValue: "Go back or forward in document history", table: "Document")
-                item.subitems = [previousItem, forwardItem]
+                item.subitems = [backItem, forwardItem]
                 item.action = #selector(DirectoryDocument.navigateDocumentHistory(_:))
                 
                 let menuRepresentation = NSMenu()
                 menuRepresentation.items = [
-                    NSMenuItem(title: previousItem.label, action: previousItem.action, keyEquivalent: ""),
+                    NSMenuItem(title: backItem.label, action: backItem.action, keyEquivalent: ""),
                     NSMenuItem(title: forwardItem.label, action: forwardItem.action, keyEquivalent: ""),
                 ]
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: nil, keyEquivalent: "")
@@ -1008,7 +1008,7 @@ extension DocumentWindowController: NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {
         
         switch menu.identifier {
-            case .previousDocumentHistoryMenu:
+            case .backDocumentHistoryMenu:
                 self.updateDocumentHistoryMenu(menu, forward: false)
             case .forwardDocumentHistoryMenu:
                 self.updateDocumentHistoryMenu(menu, forward: true)
@@ -1033,26 +1033,15 @@ extension DocumentWindowController: NSMenuDelegate {
                                           action: #selector(DirectoryDocument.jumpDocumentHistory),
                                           keyEquivalent: "")
                 menuItem.representedObject = item.index
-                menuItem.image = Self.documentHistoryIcon(for: item)
+                menuItem.image = item.icon
+                menuItem.image?.size = NSSize(width: 16, height: 16)
+                
+                guard #available(macOS 27, *) else { return menuItem }
+                
+                menuItem.preferredImageVisibility = .visible
+                
                 return menuItem
             }
-    }
-    
-    
-    /// Returns the icon for a document history item.
-    ///
-    /// - Parameter item: The document history item.
-    /// - Returns: The icon for the item.
-    private static func documentHistoryIcon(for item: DocumentHistory.Item) -> NSImage {
-        
-        let image = if let type = item.entry.fileType {
-            NSWorkspace.shared.icon(for: type)
-        } else {
-            NSWorkspace.shared.icon(forFile: item.url.path)
-        }
-        image.size = NSSize(width: 16, height: 16)
-        
-        return image
     }
 }
 
@@ -1064,6 +1053,20 @@ extension DocumentWindowController: NSSharingServicePickerToolbarItemDelegate {
         guard let document = self.fileDocument else { return [] }
         
         return [document]
+    }
+}
+
+
+private extension DocumentHistory.Item {
+    
+    /// The document icon.
+    var icon: NSImage {
+        
+        if let type = self.entry.fileType {
+            NSWorkspace.shared.icon(for: type)
+        } else {
+            NSWorkspace.shared.icon(forFile: self.url.path)
+        }
     }
 }
 
