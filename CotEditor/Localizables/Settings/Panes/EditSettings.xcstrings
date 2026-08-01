@@ -902,7 +902,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "対応する括弧“()” “[]” “{}”をハイライト"
+            "value" : "対応する括弧をハイライト"
           }
         },
         "ko" : {
