@@ -133,12 +133,27 @@ extension Logger {
             ProcessInfo.processInfo.enableSuddenTermination()
         }
         
-        // migrate syntax definitions to the format in CotEditor 7.0.0 (2026)
-        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init), lastVersion < 809 {
-            do {
-                try SyntaxManager.shared.migrateUserSettings()
-            } catch {
-                Logger.app.error("Failed syntax definition migration: \(error)")
+        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init) {
+            // migrate syntax definitions to the format in CotEditor 7.0.0 (2026-04)
+            if lastVersion < 809 {
+                do {
+                    try SyntaxManager.shared.migrateUserSettings()
+                } catch {
+                    Logger.app.error("Failed syntax definition migration: \(error)")
+                }
+            }
+            
+            // reset toolbar customization in CotEditor 7.1.0 (2026-08)
+            if lastVersion < 833 {
+                for identifier in ["Document", "DirectoryDocument"] {
+                    let key = "NSToolbar Configuration " + identifier
+                    guard
+                        var dictionary = UserDefaults.standard.dictionary(forKey: key),
+                        dictionary.removeValue(forKey: "TB Item Identifiers") != nil
+                    else { continue }
+                    
+                    UserDefaults.standard.set(dictionary, forKey: key)
+                }
             }
         }
         

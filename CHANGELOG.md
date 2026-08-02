@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- [dev] Reset the toolbar customization.
 - [beta] Add file scopes to exportable settings.
 - [beta] Display document icons in menus of the Back/Forward toolbar item.
 - [beta] Improve overall stability and performance.
