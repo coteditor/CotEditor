@@ -27,7 +27,7 @@
 public import SwiftUI
 import AppKit.NSImage
 
-public nonisolated protocol SettingsPane: RawRepresentable<String>, Sendable, CaseIterable {
+public nonisolated protocol SettingsPane: RawRepresentable<String>, Equatable, Sendable, CaseIterable {
     
     static var width: Double { get }
     

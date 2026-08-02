@@ -57,9 +57,12 @@ public final class SettingsWindowController<Pane: SettingsPane>: NSWindowControl
     /// - Parameter pane: The pane to display.
     public func openPane(_ pane: Pane) {
         
-        let index = Pane.allCases.firstIndex { $0.rawValue == pane.rawValue } as? Int ?? 0
-        (self.contentViewController as? NSTabViewController)?.selectedTabViewItemIndex = index
+        guard
+            let viewController = self.contentViewController as? NSTabViewController,
+            let index = Pane.allCases.firstIndex(of: pane) as? Int
+        else { return assertionFailure() }
         
+        viewController.selectedTabViewItemIndex = index
         self.showWindow(nil)
     }
 }
