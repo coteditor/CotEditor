@@ -285,13 +285,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld özel sözdizim"
+                  "value" : "%lld özel sözdizimi"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld özel sözdizim"
+                  "value" : "%lld özel sözdizimi"
                 }
               }
             }
@@ -1631,7 +1631,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ayarları İçe Aktar"
+            "value" : "Ayarlar İçe Aktar"
           }
         },
         "zh-Hans" : {
@@ -2189,7 +2189,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizimler"
+            "value" : "Sözdizimleri"
           }
         },
         "zh-Hans" : {

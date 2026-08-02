@@ -1504,7 +1504,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uygulama ile gelen sözdizimler yeniden adlandırılamaz."
+            "value" : "Uygulama ile gelen sözdizimleri yeniden adlandırılamaz."
           }
         },
         "zh-Hans" : {
@@ -1611,7 +1611,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Karakter sınırlayıcılar:"
+            "value" : "Karakter sınırlayıcıları:"
           }
         },
         "zh-Hans" : {
@@ -3430,7 +3430,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Belirtilmemişse sözdizim tamamlama sözcükleri vurgulama ayarları tabanlı olarak üretilir."
+            "value" : "Belirtilmemişse sözdizimi tamamlama sözcükleri vurgulama ayarları tabanlı olarak üretilir."
           }
         },
         "zh-Hans" : {
@@ -5037,7 +5037,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hiçbiri"
+            "value" : "Yok"
           }
         },
         "zh-Hans" : {
@@ -5572,7 +5572,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dizi sınırlayıcılar:"
+            "value" : "Dizi sınırlayıcıları:"
           }
         },
         "zh-Hans" : {
@@ -5678,7 +5678,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizim Adı"
+            "value" : "Sözdizimi Adı"
           }
         },
         "zh-Hans" : {
@@ -6584,7 +6584,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bu dil, sözdizim analizi için tree-sitter adı verilen yapı tabanlı, genel amaçlı bir ayrıştırıcı kullanır.\nÇıkarma kuralları uygulama tarafından yönetildiğinden, bunları özelleştiremezsiniz."
+            "value" : "Bu dil, sözdizimi analizi için tree-sitter adı verilen yapı tabanlı, genel amaçlı bir ayrıştırıcı kullanır.\nÇıkarma kuralları uygulama tarafından yönetildiğinden, bunları özelleştiremezsiniz."
           }
         },
         "zh-Hans" : {
@@ -6796,7 +6796,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Burada tanımlanan ayırıcılar, sözdizim vurgulaması için de kullanılır."
+            "value" : "Burada tanımlanan ayırıcılar, sözdizimi vurgulaması için de kullanılır."
           }
         },
         "zh-Hans" : {
@@ -6903,7 +6903,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yorumlayıcılar, belgedeki `#!` üstbilgisinden sözdizimi belirlemek için kullanılır."
+            "value" : "Yorumlayıcılar, belgedeki `#!` üstbilgisinden sözdizimini belirlemek için kullanılır."
           }
         },
         "zh-Hans" : {

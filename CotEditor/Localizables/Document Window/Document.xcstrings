@@ -4423,7 +4423,7 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Bir uyumsuz karakter bulundu."
+                  "value" : "1 uyumsuz karakter bulundu."
                 }
               },
               "other" : {
@@ -4998,7 +4998,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Görüntü DPI’sı"
+            "value" : "Görüntü DPI’si"
           }
         },
         "zh-Hans" : {
@@ -15908,7 +15908,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizimi değiştir"
+            "value" : "Sözdizimini değiştir"
           }
         },
         "zh-Hans" : {

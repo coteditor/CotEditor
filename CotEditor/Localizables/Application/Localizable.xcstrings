@@ -1089,7 +1089,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” Ögesini Çoğalt"
+            "value" : "Çoğalt: “%@”"
           }
         },
         "zh-Hans" : {
@@ -1880,7 +1880,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” Ögesini Yeniden Adlandır"
+            "value" : "Yeniden Adlandır: “%@”"
           }
         },
         "zh-Hans" : {
@@ -2219,7 +2219,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” Ögesini Geri Yükle"
+            "value" : "Geri Yükle: “%@”"
           }
         },
         "zh-Hans" : {
@@ -2558,7 +2558,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” Ögesini Finder’da Göster"
+            "value" : "Finder’da Göster: “%@”"
           }
         },
         "zh-Hans" : {
@@ -3351,7 +3351,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” dosyası halihazırda başka bir pencerede açık."
+            "value" : "“%@” dosyası hâlihazırda başka bir pencerede açık."
           }
         },
         "zh-Hans" : {
@@ -3807,7 +3807,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” belgesinde yapılan değişiklikleri kaydetmek ister misiniz?"
+            "value" : "“%@” belgesinde yapılan değişiklikleri kaydetmek istiyor musunuz?"
           }
         },
         "zh-Hans" : {
@@ -7772,7 +7772,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” zaten var. Onu değiştirmek istiyor musunuz?"
+            "value" : "“%@” hâlihazırda var. Onu değiştirmek istiyor musunuz?"
           }
         },
         "zh-Hans" : {
@@ -7886,7 +7886,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aynı adlı bir özelleştirilmiş ayar halihazırda var. Onu değiştirmek geçerli içeriğin üzerine yazacaktır."
+            "value" : "Aynı adlı bir özelleştirilmiş ayar hâlihazırda var. Onu değiştirmek geçerli içeriğin üzerine yazacaktır."
           }
         },
         "zh-Hans" : {
@@ -8791,7 +8791,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” adı halihazırda kullanılıyor."
+            "value" : "“%@” adı hâlihazırda kullanılıyor."
           }
         },
         "zh-Hans" : {
@@ -9697,7 +9697,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aşağıdaki şablonu doldurun ve %1$@’da bir kayıt açın veya %2$@ adresine gönderin. Bu e-postanın içeriğinin “Issues” sayfasında paylaşılacağını not edin. Lütfen içeriği İngilizce veya Japonca yazın."
+            "value" : "Aşağıdaki şablonu doldurun ve %1$@ üzerinde bir kayıt açın veya %2$@ adresine gönderin. Bu e-postanın içeriğinin “Issues” sayfasında paylaşılacağını not edin. Lütfen içeriği İngilizce veya Japonca yazın."
           }
         },
         "zh-Hans" : {
@@ -10376,7 +10376,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Birden çok öge seçili"
+            "value" : "Birden çok öğe seçili"
           }
         },
         "zh-Hans" : {
@@ -10489,7 +10489,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seçili öge yok"
+            "value" : "Seçili öğe yok"
           }
         },
         "zh-Hans" : {
@@ -11163,7 +11163,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hiçbiri"
+            "value" : "Yok"
           }
         },
         "zh-Hans" : {
@@ -12968,7 +12968,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” betiği mevcut değil."
+            "value" : "“%@” betiği yok."
           }
         },
         "zh-Hans" : {

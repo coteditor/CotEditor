@@ -84,7 +84,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kullanılabilir sözdizimler:"
+            "value" : "Kullanılabilir sözdizimleri:"
           }
         },
         "zh-Hans" : {
@@ -190,7 +190,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Özelleştirilmiş sözdizimler"
+            "value" : "Özelleştirilmiş sözdizimleri"
           }
         },
         "zh-Hans" : {
@@ -402,7 +402,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öntanımlı sözdizim:"
+            "value" : "Öntanımlı sözdizimi:"
           }
         },
         "zh-Hans" : {
@@ -1375,7 +1375,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bu sözdizim yok"
+            "value" : "Bu sözdizimi yok"
           }
         },
         "zh-Hans" : {
@@ -1487,7 +1487,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bu sözdizim özelleştirilmiş."
+            "value" : "Bu sözdizimi özelleştirilmiş."
           }
         },
         "zh-Hans" : {

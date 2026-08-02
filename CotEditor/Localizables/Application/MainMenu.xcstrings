@@ -939,7 +939,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Satın Sil"
+            "value" : "Satırı Sil"
           }
         },
         "zh-Hans" : {
@@ -1045,7 +1045,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Satır Yinele"
+            "value" : "Satırı Yinele"
           }
         },
         "zh-Hans" : {
@@ -1152,7 +1152,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” olarak kodlanıyor"
+            "value" : "“%@” Olarak Kodla"
           }
         },
         "zh-Hans" : {
