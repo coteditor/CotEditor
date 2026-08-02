@@ -34,7 +34,7 @@ import ValueRange
     
     var baseLineEnding: LineEnding  { didSet { self.invalidateLineEnding() } }
     
-    private(set) var lineEndings: [ValueRange<LineEnding>]
+    @ObservationIgnored private(set) var lineEndings: [ValueRange<LineEnding>]
     private(set) var inconsistentLineEndings: [ValueRange<LineEnding>]
     
     var length: Int  { self.textStorage.length }
