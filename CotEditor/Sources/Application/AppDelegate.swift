@@ -144,7 +144,7 @@ extension Logger {
             }
             
             // reset toolbar customization in CotEditor 7.1.0 (2026-08)
-            if lastVersion < 833 {
+            if lastVersion < 834 {
                 for identifier in ["Document", "DirectoryDocument"] {
                     let key = "NSToolbar Configuration " + identifier
                     guard
