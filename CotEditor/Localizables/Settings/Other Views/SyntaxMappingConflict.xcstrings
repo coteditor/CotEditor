@@ -85,7 +85,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yinelenmiş Sözdizimler"
+            "value" : "Yinelenmiş Sözdizimleri"
           }
         },
         "zh-Hans" : {
@@ -513,7 +513,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizim Eşlemleme Çakışmaları"
+            "value" : "Sözdizimi Eşlemleme Çakışmaları"
           }
         },
         "zh-Hans" : {
@@ -619,7 +619,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aşağıdaki dosya eşlemleme kuralları birden çok sözdizimde kayıtlıdır. CotEditor, kendiliğinden ilk sözdizimi kullanır. Çakışmaları çözmek için her bir sözdizim tanımını düzenleyin."
+            "value" : "Aşağıdaki dosya eşlemleme kuralları birden çok sözdiziminde kayıtlıdır. CotEditor, kendiliğinden ilk sözdizimini kullanır. Çakışmaları çözmek için her bir sözdizimi tanımını düzenleyin."
           }
         },
         "zh-Hans" : {
@@ -726,7 +726,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kullanılan Sözdizim"
+            "value" : "Kullanılan Sözdizimi"
           }
         },
         "zh-Hans" : {

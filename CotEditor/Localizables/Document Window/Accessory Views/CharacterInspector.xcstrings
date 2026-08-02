@@ -85,7 +85,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld karakterden oluşan bir harf"
+            "value" : "<%lld karakterden oluşan bir harf>"
           }
         },
         "zh-Hans" : {

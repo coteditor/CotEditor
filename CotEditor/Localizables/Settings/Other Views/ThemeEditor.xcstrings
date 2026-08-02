@@ -1357,7 +1357,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizim"
+            "value" : "Sözdizimi"
           }
         },
         "zh-Hans" : {
@@ -1681,7 +1681,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tema editörü"
+            "value" : "Tema Düzenleyicisi"
           }
         },
         "zh-Hans" : {

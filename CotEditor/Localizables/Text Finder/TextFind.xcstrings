@@ -742,7 +742,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Upřesňující možnosti hledání"
+            "value" : "Gelişmiş Bulma Ayarları"
           }
         },
         "zh-Hans" : {
@@ -956,7 +956,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Büyük-Küçük Harfe Duyarlı"
+            "value" : "BÜYÜK/küçük Harf Duyarlı"
           }
         },
         "zh-Hans" : {
@@ -1491,7 +1491,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bulma sonucunu kapat."
+            "value" : "Bulma sonucunu kapatın."
           }
         },
         "zh-Hans" : {
@@ -1919,7 +1919,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vyhledat a vypsat všechny shody."
+            "value" : "Tüm eşleşmeleri bulun ve listeleyin."
           }
         },
         "zh-Hans" : {
@@ -2133,7 +2133,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bir sonraki eşleşmeyi bul."
+            "value" : "Bir sonraki eşleşmeyi bulun."
           }
         },
         "zh-Hans" : {
@@ -2347,7 +2347,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bir önceki eşleşmeyi bul."
+            "value" : "Bir önceki eşleşmeyi bulun."
           }
         },
         "zh-Hans" : {
@@ -6347,7 +6347,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Büyük-Küçük Harf Fark Etmez"
+            "value" : "BÜYÜK/küçük Harf Duyarsız"
           }
         },
         "zh-Hans" : {
@@ -9044,7 +9044,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vyberte rozsah vyhledávání v dokumentu nebo zakažte možnost „ve výběru“."
+            "value" : "Belgedeki arama kapsamını seçin veya “seçimde” seçeneğinin işaretini kaldırın."
           }
         },
         "zh-Hans" : {
