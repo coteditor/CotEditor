@@ -37,13 +37,6 @@
 - [beta] Fix an issue on macOS 27 where the app icons did not appear in the Open in External Editor button in the file preview view.
 
 
-### Known Issues
-
-- The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).
-- In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
-- The text added in CotEditor 7.1.0 is not yet localized in Bulgarian and Polish.
-
-
 
 7.1.0-beta (2026-07-26)
 --------------------------
@@ -76,13 +69,6 @@
 - Improve overall stability and performance.
 - [dev] Tweak the accent color.
 - [dev] Update the build environment to Xcode 27 Beta 4 (Swift 6.4, macOS 27 SDK).
-
-
-### Known Issues
-
-- The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).
-- In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
-- The text added in CotEditor 7.1.0 is not yet localized in Bulgarian, Czech, and Polish.
 
 
 
