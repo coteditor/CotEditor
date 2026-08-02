@@ -36,7 +36,7 @@ struct ActionCommand: Identifiable {
     }
     
     
-    let id = UUID()
+    let id: ObjectIdentifier
     
     var kind: Kind
     var title: String
@@ -65,9 +65,27 @@ struct ActionCommand: Identifiable {
 }
 
 
+extension ActionCommand: Equatable {
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        
+        // -> `target` and `representedObject` are left out of the comparison
+        //    because they are not comparable and remain unchanged as long as `id`,
+        //    which represents the identity of the source menu item, is equal.
+        lhs.id == rhs.id &&
+        lhs.kind == rhs.kind &&
+        lhs.title == rhs.title &&
+        lhs.paths == rhs.paths &&
+        lhs.shortcut == rhs.shortcut &&
+        lhs.action == rhs.action &&
+        lhs.tag == rhs.tag
+    }
+}
+
+
 extension ActionCommand {
     
-    struct MatchedPath {
+    struct MatchedPath: Equatable {
         
         var string: String
         var ranges: [Range<String.Index>]
@@ -142,7 +160,8 @@ private extension NSMenuItem {
                   let action = self.action,
                   !ActionCommand.unsupportedActions.contains(action)
         {
-            return [ActionCommand(kind: (action == #selector(ScriptManager.launchScript)) ? .script : .command,
+            return [ActionCommand(id: ObjectIdentifier(self),
+                                  kind: (action == #selector(ScriptManager.launchScript)) ? .script : .command,
                                   title: self.actionTitle, paths: [], shortcut: self.shortcut?.normalized, action: action, target: self.target, tag: self.tag,
                                   representedObject: self.representedObject)]
             

@@ -36,7 +36,7 @@ struct CommandBarView: View {
     }
     
     
-    struct Candidate: Identifiable {
+    struct Candidate: Equatable, Identifiable {
         
         var command: ActionCommand
         var matches: [ActionCommand.MatchedPath]
@@ -316,14 +316,15 @@ private extension Color {
 // MARK: - Preview
 
 #Preview {
+    let menuItems = [NSMenuItem(), NSMenuItem(), NSMenuItem()]
     let candidates: [CommandBarView.Candidate] = [
-        .init(command: .init(kind: .command, title: "Enter Full Screen",
+        .init(command: .init(id: ObjectIdentifier(menuItems[0]), kind: .command, title: "Enter Full Screen",
                              paths: ["View"],
                              shortcut: Shortcut("E", modifiers: .function),
                              action: #selector(NSResponder.yank)),
               matches: [.init(string: "Enter Full Screen", ranges: [])],
               score: 0),
-        .init(command: .init(kind: .command, title: "Fortran",
+        .init(command: .init(id: ObjectIdentifier(menuItems[1]), kind: .command, title: "Fortran",
                              paths: ["Format", "Syntax"],
                              action: #selector(NSResponder.yank)),
               matches: [
@@ -331,7 +332,7 @@ private extension Color {
                 .init(string: "Fortran", ranges: []),
               ],
               score: 0),
-        .init(command: .init(kind: .script, title: "Run Script",
+        .init(command: .init(id: ObjectIdentifier(menuItems[2]), kind: .script, title: "Run Script",
                              paths: ["Script"],
                              shortcut: Shortcut("R", modifiers: .command),
                              action: #selector(NSResponder.yank)),
@@ -345,7 +346,7 @@ private extension Color {
 
 #Preview("Command View") {
     ActionCommandView(
-        command: .init(kind: .command, title: "Swift",
+        command: .init(id: ObjectIdentifier(NSMenuItem()), kind: .command, title: "Swift",
                        paths: ["Format", "Syntax"],
                        shortcut: Shortcut("s", modifiers: [.command]),
                        action: #selector(NSResponder.yank)),

@@ -31,7 +31,8 @@ import Testing
 
 struct ActionCommandTests {
     
-    private let command = ActionCommand(kind: .command,
+    private let command = ActionCommand(id: ObjectIdentifier(NSMenuItem()),
+                                        kind: .command,
                                         title: "Swift",
                                         paths: ["Format", "Syntax"],
                                         action: #selector(NSResponder.yank))
