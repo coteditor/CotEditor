@@ -247,7 +247,6 @@ struct MultipleReplaceListView: View {
                 }
             }
             
-            // -> ShareLink in menu can't find the appropriate popover origin. (2025-08, macOS 26, FB19287270)
             if let url = self.manager.urlForUserSetting(name: selection) {
                 ShareLink(item: url)
             }

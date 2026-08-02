@@ -508,7 +508,7 @@ extension NSTextView: EditorCounter.Source { }
         self.lastAdditionalFileAttributes.withLock { $0 = additionalFileAttributes }
         
         // workaround the issue that invoking the async version super blocks the save process
-        // (2022, macOS 12-26 + Xcode 13-26, FB11203469).
+        // (2022, macOS 12-27 + Xcode 13-27, FB11203469).
         // To reproduce the issue:
         //     1. Make a document unsaved ("Edited" status in the window subtitle).
         //     2. Open the save panel once and cancel it.

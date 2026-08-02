@@ -98,7 +98,7 @@ struct CommandBarView: View {
                                 }
                         }
                     }
-                    .padding(.horizontal, 10)  // workaround for FB16141979
+                    .padding(.horizontal, 10)  // workaround for FB16141979 (fixed in macOS 27)
                 }
                 .scrollPosition($position)
                 .contentMargins(.vertical, 10, for: .scrollContent)
