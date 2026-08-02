@@ -2226,7 +2226,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizim"
+            "value" : "Sözdizimi"
           }
         },
         "zh-Hans" : {
@@ -2440,7 +2440,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bu sözdizim yok"
+            "value" : "Bu sözdizimi yok"
           }
         },
         "zh-Hans" : {
@@ -2652,7 +2652,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizimde tanımlı sözcükler"
+            "value" : "Sözdiziminde tanımlı sözcükler"
           }
         },
         "zh-Hans" : {

@@ -85,7 +85,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kural Sil"
+            "value" : "Kuralı Sil"
           }
         },
         "zh-Hans" : {
@@ -192,7 +192,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kural Düzenle"
+            "value" : "Kuralı Düzenle"
           }
         },
         "zh-Hans" : {
@@ -520,7 +520,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kural Taşı"
+            "value" : "Kuralı Taşı"
           }
         },
         "zh-Hans" : {

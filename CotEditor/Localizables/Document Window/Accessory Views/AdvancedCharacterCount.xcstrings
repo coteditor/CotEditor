@@ -285,8 +285,8 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "new",
-                  "value" : "*%lld* character"
+                  "state" : "translated",
+                  "value" : "*%lld* karakter"
                 }
               },
               "other" : {
@@ -534,7 +534,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Belirtilen kodlama ile kodlanmış metnin baytlarını say."
+            "value" : "Belirtilen kodlama ile kodlanmış metnin baytlarını sayın."
           }
         },
         "zh-Hans" : {
@@ -762,7 +762,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode’da tanımlandığı üzere sezgisel olarak say. Birden çok Unicode kod noktasından oluşan bir karakter; örneğin Emojiler, bir karakter olarak sayılır."
+            "value" : "Unicode’da tanımlandığı üzere sezgisel olarak sayın. Birden çok Unicode kod noktasından oluşan bir karakter; örneğin Emojiler, bir karakter olarak sayılır."
           }
         },
         "zh-Hans" : {
@@ -990,7 +990,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode kod noktalarını say. UTF-32 sayma ile aynıdır."
+            "value" : "Unicode kod noktalarını sayın. UTF-32 sayma ile aynıdır."
           }
         },
         "zh-Hans" : {
@@ -1218,7 +1218,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode kod noktalarını say; ancak vekil çifti iki karakter olarak say."
+            "value" : "Unicode kod noktalarını sayın; ancak vekil çifti iki karakter olarak sayın."
           }
         },
         "zh-Hans" : {

@@ -531,7 +531,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siyah - Beyaz"
+            "value" : "Siyah–Beyaz"
           }
         },
         "zh-Hans" : {
@@ -1838,7 +1838,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hiçbiri"
+            "value" : "Yok"
           }
         },
         "zh-Hans" : {
@@ -2177,7 +2177,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizim Adı"
+            "value" : "Sözdizimi Adı"
           }
         },
         "zh-Hans" : {

@@ -1272,7 +1272,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizim"
+            "value" : "Sözdizimi"
           }
         },
         "zh-Hans" : {
@@ -1379,7 +1379,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bu dosya bırakma ayarının etkinleştirildiği sözdizim"
+            "value" : "Bu dosya bırakma ayarının etkinleştirildiği sözdizimi"
           }
         },
         "zh-Hans" : {

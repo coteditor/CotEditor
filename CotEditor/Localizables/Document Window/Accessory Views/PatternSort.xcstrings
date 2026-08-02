@@ -617,7 +617,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Büyük-Küçük Harf Fark Etmez"
+            "value" : "BÜYÜK/küçük harf duyarsız"
           }
         },
         "zh-Hans" : {
