@@ -83,7 +83,7 @@
 - Improve cancellation handling for syntax highlighting with computationally intensive regular expressions.
 - Improve localization.
 - Improve overall stability.
-- [non-AppStore ver.] Update Sparkle from 2.9.3 to 2.9.4.
+- [non-AppStore ver.] Update Sparkle from 2.9.3 to 2.9.5.
 
 
 ### Fixes
