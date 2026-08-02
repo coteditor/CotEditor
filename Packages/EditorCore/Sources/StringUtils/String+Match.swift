@@ -28,7 +28,7 @@ public import Foundation
 
 public struct FilteredItem<Value: Identifiable & Sendable>: Identifiable, Sendable {
     
-    public enum State: Sendable {
+    public enum State: Equatable, Sendable {
         
         case noFilter
         case filtered([Range<String.Index>])
@@ -40,6 +40,9 @@ public struct FilteredItem<Value: Identifiable & Sendable>: Identifiable, Sendab
     
     public var id: Value.ID { self.value.id }
 }
+
+
+extension FilteredItem: Equatable where Value: Equatable { }
 
 
 public extension FilteredItem {

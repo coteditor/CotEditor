@@ -335,7 +335,7 @@ private struct OutlineTreeView: View {
 
 // MARK: - Models
 
-struct OutlineNode: Identifiable {
+struct OutlineNode: Equatable, Identifiable {
     
     var item: FilteredItem<OutlineItem>
     var children: [OutlineNode] = []

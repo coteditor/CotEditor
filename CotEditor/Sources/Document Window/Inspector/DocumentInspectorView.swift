@@ -101,7 +101,7 @@ import SyntaxFormat
 
 // MARK: - View
 
-struct TextSettings {
+struct TextSettings: Equatable {
     
     var encoding: FileEncoding
     var lineEnding: LineEnding

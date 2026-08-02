@@ -28,7 +28,7 @@ import SyntaxFormat
 
 @Observable final class SyntaxObject {
     
-    struct Item<Value: Sendable & Equatable>: Identifiable {
+    struct Item<Value: Sendable & Equatable>: Equatable, Identifiable {
         
         let id = UUID()
         var value: Value
