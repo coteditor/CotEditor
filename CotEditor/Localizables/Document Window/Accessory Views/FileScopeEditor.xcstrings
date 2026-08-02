@@ -65,6 +65,12 @@
             "value" : "alle"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "wszystkie"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -165,6 +171,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "een of meer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dowolne"
           }
         },
         "pt" : {
@@ -269,6 +281,12 @@
             "value" : "Komt overeen met"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spełniają"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -369,6 +387,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "volgende voorwaarden:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "z następujących warunków:"
           }
         },
         "pt" : {
@@ -472,6 +496,12 @@
             "value" : "Het bereik bevat een regel zonder waarde."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zakres zawiera regułę bez wymaganej wartości."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -571,6 +601,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het bereik bevat een ongeldige reguliere expressie."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zakres zawiera nieprawidłowe wyrażenie regularne."
           }
         },
         "pt" : {
@@ -1245,6 +1281,12 @@
             "value" : "komt overeen met reguliere expressie"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pasuje do wyrażenia regularnego"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1790,6 +1832,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewaar als benoemd bereik…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zachowaj jako nazwany zakres…"
           }
         },
         "pt" : {

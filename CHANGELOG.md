@@ -6,13 +6,14 @@
 ### Improvements
 
 - [beta] Improve the drawing performance.
+- [beta] Update Polish localization.
 
 
 ### Known Issues
 
 - The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).
 - In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
-- The text added in CotEditor 7.1.0 is not yet localized in Bulgarian and Polish.
+- The text added in CotEditor 7.1.0 is not yet localized in Bulgarian.
 
 
 

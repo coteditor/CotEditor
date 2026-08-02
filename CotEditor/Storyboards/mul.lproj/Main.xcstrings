@@ -25943,6 +25943,12 @@
             "value" : "Zoeken in map"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znajdź w folderze"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

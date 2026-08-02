@@ -57,6 +57,12 @@
             "value" : "Verborgen syntaxen worden nog steeds gebruikt voor automatische detectie."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niezaznaczone składnie są nadal używane do automatycznego wykrywania."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -255,6 +261,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Selecteer de syntaxen die je in de Syntaxismenu’s wilt weergeven:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaznacz składnie, które mają być wyświetlane w menu składni:"
           }
         },
         "pt" : {

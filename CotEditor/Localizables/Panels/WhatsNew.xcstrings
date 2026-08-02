@@ -277,6 +277,12 @@
             "value" : "Pas de inspringstijl naar wens per syntaxis aan in de Modusinstellingen."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Użyj ustawień Trybu by dostosować do własnych upodobań styl wcięć dla poszczególnych składni."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -376,6 +382,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Inspringing passend bij elke syntaxis"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wcięcie pasujące do każdej składni"
           }
         },
         "pt" : {
@@ -479,6 +491,12 @@
             "value" : "In macOS 27 krijgen naamloze documenten automatisch een conceptnaam op basis van hun inhoud."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W systemie macOS 27 dokumenty bez nazwy automatycznie otrzymują nazwę roboczą sugerowaną na podstawie ich zawartości."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -578,6 +596,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Laat het document zichzelf een naam geven"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pozwól by dokument sam się nazwał"
           }
         },
         "pt" : {
@@ -681,6 +705,12 @@
             "value" : "Zoek tekst in bestanden in een geopende map, rechtstreeks vanuit de navigatiekolom."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyszukuj tekst w plikach otwartego folderu, bezpośrednio z paska bocznego."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -780,6 +810,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Vind het in de map"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Znajdź to w folderze"
           }
         },
         "pt" : {
@@ -883,6 +919,12 @@
             "value" : "Gebruik de knoppenbalk om terug en vooruit te gaan door onlangs bekeken documenten in een mapdocument."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Użyj paska narzędzi by przechodzić wstecz i dalej pomiędzy ostatnio przeglądanymi dokumentami w folderze."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -982,6 +1024,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Terug en vooruit in mappen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wróć i przejdź dalej w forderach"
           }
         },
         "pt" : {
@@ -1085,6 +1133,12 @@
             "value" : "CotEditor ondersteunt nu macOS 27 Golden Gate, inclusief een vernieuwde vormgeving voor het nieuwste systeem."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor obsługuje teraz system macOS 27 Golden Gate, w tym odświeżony wygląd najnowszego systemu."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1184,6 +1238,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Klaar voor macOS 27"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gotowy na macOS 27"
           }
         },
         "pt" : {

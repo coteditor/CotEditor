@@ -2158,6 +2158,12 @@
             "value" : "Bestandsbereiken"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zakresy plików"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",

@@ -697,6 +697,12 @@
             "value" : "Wis bestandsbereik"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymaż zakres plików"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2856,6 +2862,12 @@
             "value" : "Wijzig bestandsbereik…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edytuj zakres plików…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3378,6 +3390,12 @@
             "value" : "Filter voor bestandskiezer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtr Przeglądarki plików"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3470,6 +3488,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bestandsbereik"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zakres plików"
           }
         },
         "pt" : {
@@ -4998,6 +5022,78 @@
             }
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@arg1@ w %#@arg2@"
+          },
+          "substitutions" : {
+            "arg1" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg dopasowania"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg dopasowań"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg dopasowanie"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg dopasowania"
+                    }
+                  }
+                }
+              }
+            },
+            "arg2" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg plikach"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg plikach"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg pliku"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg pliku"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5452,6 +5548,12 @@
             "value" : "Geen overeenkomsten voor ‘%@’ gevonden."
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie znaleziono wyników dla „%@”."
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5666,6 +5768,12 @@
             "value" : "Zoeken in map…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szukam w folderze…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5765,6 +5873,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "De map kan niet worden gevonden."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie można znaleźć folderu."
           }
         },
         "pt" : {
@@ -6745,6 +6859,12 @@
             "value" : "Verborgen bestanden opnemen"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uwzględniaj ukryte pliki"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6838,6 +6958,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Andere bestandstypen opnemen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uwzględniaj inne typy plików"
           }
         },
         "pt" : {
@@ -8450,6 +8576,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beheer bewaarde bereiken…"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zarządzaj zapisanymi zakresami…"
           }
         },
         "pt" : {
@@ -11705,6 +11837,12 @@
             "value" : "Toon in bestandskiezer"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokaż w Przeglądarce plików"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11799,6 +11937,12 @@
             "value" : "Bewaarde bereiken"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zapisane zakresy"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11891,6 +12035,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewaarde bereiken:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zapisane zakresy:"
           }
         },
         "pt" : {
@@ -12094,6 +12244,12 @@
             "value" : "Zoeken in map"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szukaj w folderze"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12187,6 +12343,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Zoekmethode"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metoda wyszukiwania"
           }
         },
         "pt" : {
@@ -13052,8 +13214,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Znajdź"
+            "state" : "translated",
+            "value" : "Znajdź w folderze"
           }
         },
         "pt" : {
@@ -14453,6 +14615,12 @@
             "value" : "Ga naar het volgende document"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przejdź do następnego dokumentu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14768,6 +14936,12 @@
             "value" : "Ga naar het vorige document"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przejdź do poprzedniego dokumentu"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14867,6 +15041,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ga terug of vooruit in de documentgeschiedenis"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wróć lub przejdź dalej w historii dokumentów"
           }
         },
         "pt" : {

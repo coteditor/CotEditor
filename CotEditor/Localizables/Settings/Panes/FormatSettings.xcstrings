@@ -163,6 +163,12 @@
             "value" : "Pas syntaxismenu aan…"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dostosuj menu składni…"
+          }
+        },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
