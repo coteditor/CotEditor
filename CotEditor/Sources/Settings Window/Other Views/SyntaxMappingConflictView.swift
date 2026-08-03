@@ -82,7 +82,7 @@ struct SyntaxMappingConflictView: View {
             HStack {
                 HelpLink(anchor: "syntax_file_mapping")
                 Spacer()
-                Button(.ok) {
+                Button(.ok, role: .close) {
                     self.dismiss()
                 }.keyboardShortcut(.defaultAction)
             }
