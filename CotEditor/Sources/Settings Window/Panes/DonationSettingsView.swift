@@ -158,6 +158,7 @@ private struct AppPurchaseView: View {
                     Text("As proof of your kind support, a coffee badge appears on the status bar during continuous support.", tableName: "DonationSettings")
                         .foregroundStyle(.secondary)
                         .controlSize(.small)
+                        .fixedSize(horizontal: false, vertical: true)
                 }.disabled(!self.hasDonated)
             }
             .accessibilityElement(children: .contain)
