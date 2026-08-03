@@ -244,6 +244,7 @@ private struct ModeOptionsView: View {
                     Toggle(.init("Automatically insert closing brackets and quotes", table: "ModeSettings"),
                            isOn: $options.automaticSymbolBalancing)
                 }
+                .fixedSize(horizontal: false, vertical: true)  // allow line break in Toggle
             }
             .padding(.bottom, 12)
             
@@ -256,6 +257,7 @@ private struct ModeOptionsView: View {
                     Toggle(.init("Correct spelling automatically", table: "ModeSettings", comment: "use localization provided by Apple"),
                            isOn: $options.automaticSpellingCorrection)
                 }
+                .fixedSize(horizontal: false, vertical: true)  // allow line break in Toggle
             }
             .padding(.bottom, 12)
             
