@@ -84,6 +84,7 @@ private struct NoAppPurchaseView: View {
             
         } description: {
             Text("The In-App donation feature is available only in CotEditor distributed in the App Store.", tableName: "DonationSettings")
+                .font(.body)
             
         } actions: {
             Link(.init("Open in App Store", table: "DonationSettings"),
