@@ -329,6 +329,7 @@
       }
     },
     "%lld selected" : {
+      "comment" : "short accessibility label for the selected text count",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -2808,7 +2809,7 @@
       }
     },
     "Action.save.label" : {
-      "extractionState" : "manual",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "bg" : {
           "stringUnit" : {

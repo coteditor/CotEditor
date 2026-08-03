@@ -104,7 +104,7 @@ private extension EditorCounter.Count {
     func formatted(forAccessibility: Bool) -> String? {
         
         if let entire, self.selected > 0 {
-            "\(entire.formatted()) (\(forAccessibility ? String(localized: "\(self.selected) selected") : self.selected.formatted()))"
+            "\(entire.formatted()) (\(forAccessibility ? String(localized: "\(self.selected) selected", comment: "short accessibility label for the selected text count") : self.selected.formatted()))"
         } else {
             self.entire?.formatted()
         }
