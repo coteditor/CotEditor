@@ -1,5 +1,5 @@
 //
-//  KeyBindingsSettingsView.swift
+//  ShortcutsSettingsView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -28,7 +28,7 @@ import AppKit
 import OSLog
 import Shortcut
 
-struct KeyBindingsSettingsView: View {
+struct ShortcutsSettingsView: View {
     
     @State private var model = KeyBindingModel()
     
@@ -36,11 +36,11 @@ struct KeyBindingsSettingsView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Text("To change a shortcut, click the key column, then type the new keys.", tableName: "KeyBindingsSettings")
+            Text("To change a shortcut, click the key column, then type the new keys.", tableName: "ShortcutsSettings")
                 .lineLimit(10)
                 .fixedSize(horizontal: false, vertical: true)
             
-            KeyBindingTreeView(model: $model)
+            ShortcutTreeView(model: $model)
                 .frame(height: 260)
             
             HStack(alignment: .firstTextBaseline) {
@@ -54,7 +54,7 @@ struct KeyBindingsSettingsView: View {
                         .foregroundStyle(.red)
                         .controlSize(.small)
                 }
-                HelpLink(anchor: "settings_keybindings")
+                HelpLink(anchor: "settings_shortcuts")
             }.frame(minHeight: 20)
         }
         .onAppear {
@@ -85,7 +85,7 @@ struct KeyBindingsSettingsView: View {
     }
     
     
-    /// Restores key binding setting to default.
+    /// Restores shortcut settings to default.
     func restore() {
         
         try? self.manager.restoreDefaults()
@@ -110,7 +110,7 @@ struct KeyBindingsSettingsView: View {
 }
 
 
-private struct KeyBindingTreeView: NSViewControllerRepresentable {
+private struct ShortcutTreeView: NSViewControllerRepresentable {
     
     typealias NSViewControllerType = NSViewController
     
@@ -120,8 +120,8 @@ private struct KeyBindingTreeView: NSViewControllerRepresentable {
     
     func makeNSViewController(context: Context) -> NSViewController {
         
-        NSStoryboard(name: "KeyBindingTreeView", bundle: nil).instantiateInitialController { coder in
-            KeyBindingTreeViewController(model: self.model, coder: coder)
+        NSStoryboard(name: "ShortcutTreeView", bundle: nil).instantiateInitialController { coder in
+            ShortcutTreeViewController(model: self.model, coder: coder)
         }!
     }
     
@@ -142,7 +142,7 @@ private extension NSUserInterfaceItemIdentifier {
 }
 
 
-final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
+final class ShortcutTreeViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
     
     // MARK: Private Properties
     
@@ -314,7 +314,7 @@ final class KeyBindingTreeViewController: NSViewController, NSOutlineViewDataSou
 }
 
 
-extension KeyBindingTreeViewController: NSTableViewDataSource, NSTableViewDelegate {
+extension ShortcutTreeViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         
@@ -342,6 +342,6 @@ extension KeyBindingTreeViewController: NSTableViewDataSource, NSTableViewDelega
 // MARK: - Preview
 
 #Preview {
-    KeyBindingsSettingsView()
+    ShortcutsSettingsView()
         .scenePadding()
 }

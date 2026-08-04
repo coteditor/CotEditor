@@ -90,7 +90,7 @@ import XCTest
         app.buttons["Mode"].firstMatch.click()
         app.buttons["Format"].firstMatch.click()
         app.buttons["Snippets"].firstMatch.click()
-        app.buttons["Key Bindings"].firstMatch.click()
+        app.buttons["Shortcuts"].firstMatch.click()
         app.buttons["Donation"].firstMatch.click()
     }
     

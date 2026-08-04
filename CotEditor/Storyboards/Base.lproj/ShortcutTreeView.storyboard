@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sBQ-LT-Rwm">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="25094" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sBQ-LT-Rwm">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="25094"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Key Binding Tree View Controller-->
+        <!--Shortcut Tree View Controller-->
         <scene sceneID="fv7-Li-pVg">
             <objects>
-                <viewController id="sBQ-LT-Rwm" customClass="KeyBindingTreeViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sBQ-LT-Rwm" customClass="ShortcutTreeViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="DCK-MH-F2c">
                         <rect key="frame" x="0.0" y="0.0" width="560" height="260"/>
                         <autoresizingMask key="autoresizingMask"/>

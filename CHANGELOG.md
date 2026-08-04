@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Rename the Key Bindings feature to “Shortcuts.”
 - [beta] Improve the drawing performance.
 - [beta] Update Polish localization.
 

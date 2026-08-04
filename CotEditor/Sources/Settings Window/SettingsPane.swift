@@ -35,7 +35,7 @@ enum SettingsPane: String, ControlUI.SettingsPane {
     case mode
     case format
     case snippets
-    case keyBindings
+    case shortcuts
     case donation
     
     
@@ -74,9 +74,9 @@ enum SettingsPane: String, ControlUI.SettingsPane {
                 String(localized: "SettingsPane.snippets.label",
                        defaultValue: "Snippets",
                        table: "Settings")
-            case .keyBindings:
-                String(localized: "SettingsPane.keyBindings.label",
-                       defaultValue: "Key Bindings",
+            case .shortcuts:
+                String(localized: "SettingsPane.shortcuts.label",
+                       defaultValue: "Shortcuts",
                        table: "Settings")
             case .donation:
                 String(localized: "SettingsPane.donation.label",
@@ -97,7 +97,7 @@ enum SettingsPane: String, ControlUI.SettingsPane {
             case .mode: "switch.2"
             case .format: "text.document"
             case .snippets: "text.viewfinder"
-            case .keyBindings: "keyboard"
+            case .shortcuts: "keyboard"
             case .donation: "mug"
         }
     }
@@ -114,7 +114,7 @@ enum SettingsPane: String, ControlUI.SettingsPane {
             case .mode: ModeSettingsView()
             case .format: FormatSettingsView()
             case .snippets: SnippetsSettingsView()
-            case .keyBindings: KeyBindingsSettingsView()
+            case .shortcuts: ShortcutsSettingsView()
             case .donation: DonationSettingsView()
         }
     }

@@ -15187,7 +15187,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La combinazione “%@” non è supportata per la personalizzazione del key binding."
+            "value" : "La combinazione “%@” non è supportata per la personalizzazione dei comandi rapidi."
           }
         },
         "ja" : {
