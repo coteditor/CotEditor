@@ -330,9 +330,12 @@ extension ShortcutTreeViewController: NSTableViewDataSource, NSTableViewDelegate
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let tableView = notification.object as? NSTableView else { return }
+        guard
+            let tableView = notification.object as? NSTableView,
+            tableView.selectedRow >= 0
+        else { return }
         
-        tableView.window?.makeFirstResponderDiscardingMarkedText(nil)
+        tableView.window?.discardMarkedTextIfNeeded()
         self.model.rootIndex = tableView.selectedRow
         self.outlineView?.reloadData()
     }
