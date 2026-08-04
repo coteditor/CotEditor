@@ -689,7 +689,7 @@ private extension NSViewController {
     /// Safely ends the current editing.
     final func endEditing() {
         
-        self.viewIfLoaded?.window?.makeFirstResponderDiscardingMarkedText(nil)
+        self.viewIfLoaded?.window?.discardMarkedTextIfNeeded()
     }
 }
 
