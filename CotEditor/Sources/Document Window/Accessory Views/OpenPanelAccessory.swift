@@ -105,8 +105,6 @@ struct OpenPanelAccessory: View {
 // MARK: - Preview
 
 #Preview {
-    @Previewable @State var model = OpenPanelModel(fileEncodings: [.utf8])
-    
-    OpenPanelAccessory(model: model)
+    OpenPanelAccessory(model: OpenPanelModel(fileEncodings: [.utf8, nil, .init(encoding: .shiftJIS)]))
         .scenePadding()
 }
