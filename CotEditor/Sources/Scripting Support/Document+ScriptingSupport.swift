@@ -102,13 +102,8 @@ extension Document {
     /// The document string (text (NSTextStorage)).
     @objc var contents: Any {
         
-        get {
-            self.scriptTextStorage
-        }
-        
-        set {
-            self.scriptTextStorage = newValue
-        }
+        get { self.scriptTextStorage }
+        set { self.scriptTextStorage = newValue }
     }
     
     
@@ -171,52 +166,32 @@ extension Document {
     /// Syntax name (Unicode text).
     @objc var coloringStyle: String {
         
-        get {
-            self.syntaxName
-        }
-        
-        set {
-            self.setSyntax(name: newValue)
-        }
+        get { self.syntaxName }
+        set { self.setSyntax(name: newValue) }
     }
     
     
     /// State of text wrapping (bool).
     @objc var wrapsLines: Bool {
         
-        get {
-            self.viewController?.wrapsLines ?? false
-        }
-        
-        set {
-            self.setViewControllerValue(.wrapsLines(newValue))
-        }
+        get { self.viewController?.wrapsLines ?? false }
+        set { self.setViewControllerValue(.wrapsLines(newValue)) }
     }
     
     
     /// Tab width (integer).
     @objc var tabWidth: Int {
         
-        get {
-            self.viewController?.tabWidth ?? 0
-        }
-        
-        set {
-            self.setViewControllerValue(.tabWidth(newValue))
-        }
+        get { self.viewController?.tabWidth ?? 0 }
+        set { self.setViewControllerValue(.tabWidth(newValue)) }
     }
     
     
     /// Whether replace tab with spaces.
     @objc var expandsTab: Bool {
         
-        get {
-            self.viewController?.isAutoTabExpandEnabled ?? false
-        }
-        
-        set {
-            self.setViewControllerValue(.expandsTab(newValue))
-        }
+        get { self.viewController?.isAutoTabExpandEnabled ?? false }
+        set { self.setViewControllerValue(.expandsTab(newValue)) }
     }
     
     

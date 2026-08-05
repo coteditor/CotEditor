@@ -38,37 +38,23 @@ extension DirectoryDocument {
     /// Whole document string (text (NSTextStorage)).
     @objc var scriptTextStorage: Any {
         
-        get {
-            guard let document = self.scriptDocument() else { return NSTextStorage(string: "") }
-            return document.scriptTextStorage
-        }
-        
-        set {
-            guard let document = self.scriptDocument() else { return }
-            document.scriptTextStorage = newValue
-        }
+        get { self.scriptDocument()?.scriptTextStorage ?? NSTextStorage(string: "") }
+        set { self.scriptDocument()?.scriptTextStorage = newValue }
     }
     
     
     /// The document string (text (NSTextStorage)).
     @objc var contents: Any {
         
-        get {
-            self.scriptTextStorage
-        }
-        
-        set {
-            self.scriptTextStorage = newValue
-        }
+        get { self.scriptTextStorage }
+        set { self.scriptTextStorage = newValue }
     }
     
     
     /// Selection-object (`TextSelection`).
     @objc var selectionObject: TextSelection? {
         
-        guard let document = self.scriptDocument() else { return nil }
-        
-        return document.selectionObject
+        self.scriptDocument()?.selectionObject
     }
     
     
@@ -82,138 +68,76 @@ extension DirectoryDocument {
     /// Length of the document in UTF-16 (integer).
     @objc var length: Int {
         
-        guard let document = self.scriptDocument() else { return 0 }
-        
-        return document.length
+        self.scriptDocument()?.length ?? 0
     }
     
     
     /// New line code (enum type).
     @objc var lineEndingChar: FourCharCode {
         
-        get {
-            guard let document = self.scriptDocument() else { return FourCharCode(code: "leLF") }
-            
-            return document.lineEndingChar
-        }
-        
-        set {
-            guard let document = self.scriptDocument() else { return }
-            
-            document.lineEndingChar = newValue
-        }
+        get { self.scriptDocument()?.lineEndingChar ?? FourCharCode(code: "leLF") }
+        set { self.scriptDocument()?.lineEndingChar = newValue }
     }
     
     
     /// Encoding name (Unicode text).
     @objc var encodingName: String {
         
-        guard let document = self.scriptDocument() else { return "" }
-        
-        return document.encodingName
+        self.scriptDocument()?.encodingName ?? ""
     }
     
     
     /// Encoding in IANA CharSet name (Unicode text).
     @objc var IANACharSetName: String {
         
-        guard let document = self.scriptDocument() else { return "" }
-        
-        return document.IANACharSetName
+        self.scriptDocument()?.IANACharSetName ?? ""
     }
     
     
     /// Whether the document has an encoding BOM.
     @objc var hasBOM: Bool {
         
-        guard let document = self.scriptDocument() else { return false }
-        
-        return document.hasBOM
+        self.scriptDocument()?.hasBOM ?? false
     }
     
     
     /// Whether the document is editable.
     @objc var isEditable: Bool {
         
-        get {
-            guard let document = self.scriptDocument() else { return false }
-            
-            return document.isEditable
-        }
-        
-        set {
-            guard let document = self.scriptDocument() else { return }
-            
-            document.isEditable = newValue
-        }
+        get { self.scriptDocument()?.isEditable ?? false }
+        set { self.scriptDocument()?.isEditable = newValue }
     }
     
     
     /// Syntax name (Unicode text).
     @objc var coloringStyle: String {
         
-        get {
-            guard let document = self.scriptDocument() else { return "" }
-            
-            return document.coloringStyle
-        }
-        
-        set {
-            guard let document = self.scriptDocument() else { return }
-            
-            document.coloringStyle = newValue
-        }
+        get { self.scriptDocument()?.coloringStyle ?? "" }
+        set { self.scriptDocument()?.coloringStyle = newValue }
     }
     
     
     /// State of text wrapping (bool).
     @objc var wrapsLines: Bool {
         
-        get {
-            guard let document = self.scriptDocument() else { return false }
-            
-            return document.wrapsLines
-        }
-        
-        set {
-            guard let document = self.scriptDocument() else { return }
-            
-            document.wrapsLines = newValue
-        }
+        get { self.scriptDocument()?.wrapsLines ?? false }
+        set { self.scriptDocument()?.wrapsLines = newValue }
     }
     
     
     /// Tab width (integer).
     @objc var tabWidth: Int {
         
-        get {
-            guard let document = self.scriptDocument() else { return 0 }
-            
-            return document.tabWidth
-        }
-        
-        set {
-            guard let document = self.scriptDocument() else { return }
-            
-            document.tabWidth = newValue
-        }
+        get { self.scriptDocument()?.tabWidth ?? 0 }
+        set { self.scriptDocument()?.tabWidth = newValue }
     }
     
     
     /// Whether replace tab with spaces.
     @objc var expandsTab: Bool {
         
-        get {
-            guard let document = self.scriptDocument() else { return false }
-            
-            return document.expandsTab
-        }
-        
-        set {
-            guard let document = self.scriptDocument() else { return }
-            
-            document.expandsTab = newValue
-        }
+        get { self.scriptDocument()?.expandsTab ?? false }
+        set { self.scriptDocument()?.expandsTab = newValue }
     }
     
     
@@ -291,22 +215,14 @@ extension DirectoryDocument {
     private func scriptDocument(for command: NSScriptCommand? = nil) -> Document? {
         
         guard let document = self.currentDocument as? Document else {
-            Self.reportNoCurrentDocument(command)
+            // report an AppleScript error
+            let command = command ?? NSScriptCommand.current()
+            command?.scriptErrorNumber = errOSAGeneralError
+            command?.scriptErrorString = DirectoryDocument.ScriptError.noCurrentDocumentError.localizedDescription
             return nil
         }
         
         return document
-    }
-    
-    
-    /// Reports an AppleScript error for the command when no text document is selected.
-    ///
-    /// - Parameter command: The AppleScript command to report the error to.
-    private static func reportNoCurrentDocument(_ command: NSScriptCommand?) {
-        
-        let command = command ?? NSScriptCommand.current()
-        command?.scriptErrorNumber = errOSAGeneralError
-        command?.scriptErrorString = DirectoryDocument.ScriptError.noCurrentDocumentError.localizedDescription
     }
 }
 
