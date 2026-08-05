@@ -27,6 +27,7 @@
 import Foundation
 import AppKit.NSDocument
 import Shortcut
+import StringUtils
 import URLUtils
 
 struct UnixScript: Script {
@@ -45,32 +46,6 @@ struct UnixScript: Script {
         self.url = url
         self.name = name
         self.shortcut = shortcut
-    }
-    
-    
-    // MARK: Private Enum
-    
-    private enum OutputType: String, ScriptToken {
-        
-        case replaceSelection = "ReplaceSelection"
-        case replaceCurrentLine = "ReplaceCurrentLine"
-        case replaceAllText = "ReplaceAllText"
-        case insertAfterSelection = "InsertAfterSelection"
-        case appendToAllText = "AppendToAllText"
-        case newDocument = "NewDocument"
-        case pasteboard = "Pasteboard"
-        
-        static let token = "CotEditorXOutput"
-    }
-    
-    
-    private enum InputType: String, ScriptToken {
-        
-        case selection = "Selection"
-        case currentLine = "CurrentLine"
-        case allText = "AllText"
-        
-        static let token = "CotEditorXInput"
     }
     
     
@@ -122,7 +97,31 @@ struct UnixScript: Script {
 
 // MARK: Private Methods
 
-@MainActor extension UnixScript {
+@MainActor private extension UnixScript {
+    
+    enum InputType: String, ScriptToken {
+        
+        case selection = "Selection"
+        case currentLine = "CurrentLine"
+        case allText = "AllText"
+        
+        static let token = "CotEditorXInput"
+    }
+    
+    
+    enum OutputType: String, ScriptToken {
+        
+        case replaceSelection = "ReplaceSelection"
+        case replaceCurrentLine = "ReplaceCurrentLine"
+        case replaceAllText = "ReplaceAllText"
+        case insertAfterSelection = "InsertAfterSelection"
+        case appendToAllText = "AppendToAllText"
+        case newDocument = "NewDocument"
+        case pasteboard = "Pasteboard"
+        
+        static let token = "CotEditorXOutput"
+    }
+    
     
     /// Reads the document content.
     ///
@@ -130,6 +129,7 @@ struct UnixScript: Script {
     ///   - type: The type of input target.
     ///   - editor: The editor to read the input.
     /// - Returns: The read string.
+    /// - Throws: `ScriptError`. 
     private static func readInput(type: InputType, editor: NSTextView?) throws(ScriptError) -> String {
         
         guard let editor else { throw .noInputTarget }
@@ -152,49 +152,64 @@ struct UnixScript: Script {
     ///   - output: The output string.
     ///   - type: The type of output target.
     ///   - editor: The textView to write the output.
-    /// - Throws: `ScriptError`, or error by NSDocumentController.
-    private static func applyOutput(_ output: String, type: OutputType, editor: NSTextView?) throws {
+    /// - Throws: `ScriptError`.
+    private static func applyOutput(_ output: String, type: OutputType, editor: NSTextView?) throws(ScriptError) {
         
         switch type {
-            case .replaceSelection:
-                try self.insert(output, to: editor, at: .replaceSelection)
+            case .replaceSelection,
+                 .replaceCurrentLine,
+                 .replaceAllText,
+                 .insertAfterSelection,
+                 .appendToAllText:
+                guard let editor else { throw .noOutputTarget }
+                guard editor.isEditable else { throw .notEditable }
                 
-            case .replaceCurrentLine:
-                try self.insert(output, to: editor, at: .replaceCurrentLine)
+                let string = editor.string as NSString
+                let replacementRange = type.range(in: string, selectedRange: editor.selectedRange)
+                let selectedRange = NSRange(location: replacementRange.location, length: output.length)
                 
-            case .replaceAllText:
-                try self.insert(output, to: editor, at: .replaceAll)
-                
-            case .insertAfterSelection:
-                try self.insert(output, to: editor, at: .afterSelection)
-                
-            case .appendToAllText:
-                try self.insert(output, to: editor, at: .afterAll)
+                editor.replace(with: output, range: replacementRange, selectedRange: selectedRange)
                 
             case .newDocument:
                 guard !output.isEmpty else { return }  // create document only when output is available
-                try (DocumentController.shared as! DocumentController).openUntitledDocument(content: output, display: true)
+                do {
+                    try (DocumentController.shared as! DocumentController).openUntitledDocument(content: output, display: true)
+                } catch {
+                    throw .standardError(error.localizedDescription)
+                }
                 
             case .pasteboard:
                 NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(output, forType: .string)
         }
     }
+}
+
+
+private extension UnixScript.OutputType {
     
-    
-    /// Inserts the string into the editor at the desired location.
+    /// Returns the range to replace when applying this output type.
     ///
     /// - Parameters:
-    ///   - string: The string to insert.
-    ///   - editor: The editor to insert the string into.
-    ///   - location: The insertion location.
-    /// - Throws: `ScriptError` if the target is not valid.
-    private static func insert(_ string: String, to editor: NSTextView?, at location: InsertionLocation) throws(ScriptError) {
+    ///   - string: The current editor content.
+    ///   - selectedRange: The current selection in `string`.
+    /// - Returns: The range in `string` to replace with the script output.
+    func range(in string: NSString, selectedRange: NSRange) -> NSRange {
         
-        guard let editor else { throw .noOutputTarget }
-        guard editor.isEditable else { throw .notEditable }
-        
-        editor.insert(string: string, at: location)
+        switch self {
+            case .replaceSelection:
+                selectedRange
+            case .replaceCurrentLine:
+                string.lineRange(for: selectedRange)
+            case .replaceAllText:
+                string.range
+            case .insertAfterSelection:
+                NSRange(location: selectedRange.location, length: 0)
+            case .appendToAllText:
+                NSRange(location: string.length, length: 0)
+            case .newDocument, .pasteboard:
+                preconditionFailure()
+        }
     }
 }
 
@@ -214,7 +229,7 @@ private extension ScriptToken where Self: RawRepresentable, Self.RawValue == Str
     /// - Parameter script: The script source.
     init?(scanning script: String) {
         
-        let regex = try! Regex("%%%\\{\(Self.token)=(?<value>.+)\\}%%%", as: (Substring, value: Substring).self)
+        let regex = try! Regex("%%%\\{\(Self.token)=(?<value>\\w+)\\}%%%", as: (Substring, value: Substring).self)
         
         guard let result = script.firstMatch(of: regex) else { return nil }
         

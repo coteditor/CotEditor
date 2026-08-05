@@ -77,7 +77,9 @@ extension Document {
             let textStorage = NSTextStorage(string: self.textStorage.string)
             if self.isEditable {
                 textStorage.observeDirectEditing { [weak self] editedString in
-                    self?.textView?.insert(string: editedString, at: .replaceAll)
+                    guard let textView = self?.textView else { return }
+                    textView.replace(with: editedString, range: textView.string.nsRange,
+                                     selectedRange: NSRange(0..<editedString.length))
                 }
             }
             
@@ -87,10 +89,12 @@ extension Document {
         set {
             guard
                 self.isEditable,
-                let string = String(anyString: newValue)
+                let string = String(anyString: newValue),
+                let textView
             else { return }
             
-            self.textView?.insert(string: string, at: .replaceAll)
+            textView.replace(with: string, range: textView.string.nsRange,
+                             selectedRange: NSRange(0..<string.length))
         }
     }
     
@@ -365,8 +369,7 @@ extension Document {
             
             guard count > 0 else { return 0 }
             
-            textView.insert(string: mutableString as String, at: .replaceAll)
-            textView.selectedRange = NSRange()
+            textView.replace(with: mutableString as String, range: textView.string.nsRange, selectedRange: NSRange())
             
             return count as NSNumber
             
@@ -383,9 +386,9 @@ extension Document {
             } else {
                 replacedString = replacementString
             }
+            let selectedRange = NSRange(location: foundRange.location, length: replacedString.length)
             
-            textView.selectedRange = foundRange
-            textView.insert(string: replacedString, at: .replaceSelection)
+            textView.replace(with: replacedString, range: foundRange, selectedRange: selectedRange)
             
             return 1
         }

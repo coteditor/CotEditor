@@ -110,7 +110,9 @@ private enum OSAUnicodeNormalizationType: String {
             let textStorage = NSTextStorage(string: string)
             if self.isEditable {
                 textStorage.observeDirectEditing { [weak textView] editedString in
-                    textView?.insert(string: editedString, at: .replaceSelection)
+                    guard let textView else { return }
+                    let selectedRange = NSRange(location: textView.selectedRange.location, length: editedString.length)
+                    textView.replace(with: editedString, range: textView.selectedRange, selectedRange: selectedRange)
                 }
             }
             
@@ -121,10 +123,12 @@ private enum OSAUnicodeNormalizationType: String {
             guard
                 self.isEditable,
                 let newValue,
-                let string = String(anyString: newValue)
+                let string = String(anyString: newValue),
+                let textView
             else { return }
             
-            self.textView?.insert(string: string, at: .replaceSelection)
+            let selectedRange = NSRange(location: textView.selectedRange.location, length: string.length)
+            textView.replace(with: string, range: textView.selectedRange, selectedRange: selectedRange)
         }
     }
     
