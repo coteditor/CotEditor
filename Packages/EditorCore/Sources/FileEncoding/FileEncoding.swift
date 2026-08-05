@@ -57,4 +57,11 @@ public struct FileEncoding: Equatable, Hashable, Sendable {
                      comment: "encoding name for UTF-8 with BOM (%@ is the system localized name for UTF-8)")
             : localizedName
     }
+    
+    
+    /// Whether this file encoding includes a byte-order mark (BOM).
+    public var hasBOM: Bool {
+        
+        self.withUTF8BOM || self.encoding == .utf16 || self.encoding == .utf32
+    }
 }

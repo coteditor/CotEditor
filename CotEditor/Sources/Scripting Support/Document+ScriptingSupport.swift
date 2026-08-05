@@ -157,9 +157,7 @@ extension Document {
     /// Whether the document has an encoding BOM.
     @objc var hasBOM: Bool {
         
-        self.fileEncoding.withUTF8BOM ||
-        self.fileEncoding.encoding == .utf16 ||
-        self.fileEncoding.encoding == .utf32
+        self.fileEncoding.hasBOM
     }
     
     
