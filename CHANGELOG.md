@@ -12,6 +12,7 @@
 
 ## Fixes
 
+- [beta] Fix an issue where Bulgarian localizations were missing in the Window settings.
 - [beta] Fix an issue where some labels in the Settings were truncated when they were too long.
 
 
