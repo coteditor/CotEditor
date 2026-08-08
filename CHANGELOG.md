@@ -10,8 +10,9 @@
 - [beta] Update Polish localization.
 
 
-## Fixes
+### Fixes
 
+- Fix an issue in the regular expression replacement with the “Unescape replacement text” option where escaped backslashes in the replacement string were unexpectedly removed instead of being unescaped to literal backslashes.
 - [beta] Fix an issue where Bulgarian localizations were missing in the Window settings.
 - [beta] Fix an issue where some labels in the Settings were truncated when they were too long.
 

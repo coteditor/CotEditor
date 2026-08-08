@@ -372,16 +372,16 @@ public struct TextFind: Equatable, Sendable {
     
     // MARK: Private Methods
     
-    /// Unescapes the given string for replacement string as needed.
+    /// Unescapes the given string for use as the replacement template as needed.
     ///
     /// - Parameters:
     ///   - string: The string to use as the replacement template.
-    /// - Returns: Unescaped replacement string.
+    /// - Returns: Unescaped replacement template string.
     private func replacementString(from string: String) -> String {
         
         switch self.mode {
             case .regularExpression(_, let unescapes) where unescapes:
-                string.unescaped
+                string.unescapedTemplate
             case .regularExpression, .textual:
                 string
         }
@@ -467,6 +467,33 @@ public struct TextFind: Equatable, Sendable {
             
             if ioStop {
                 unsafe stop.pointee = ObjCBool(ioStop)
+            }
+        }
+    }
+}
+
+
+private extension String {
+    
+    /// Unescaped version of the string for use as the ICU replacement template.
+    ///
+    /// Unlike `unescaped`, escaped backslashes remain escaped
+    /// so that the ICU template engine, which consumes backslashes as the escape character,
+    /// interprets them as literal backslashes.
+    var unescapedTemplate: String {
+        
+        self.replacing(/\\([0tnr"'\\])/) { match in
+            // -> According to the Swift documentation, these are the all combinations with backslash.
+            //    cf. https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID295
+            switch match.1 {
+                case "0": "\0"  // null character
+                case "t": "\t"  // horizontal tab
+                case "n": "\n"  // line feed
+                case "r": "\r"  // carriage return
+                case "\"": "\""  // double quotation mark
+                case "'": "'"  // single quotation mark
+                case "\\": #"\\"#  // escaped backslash (keep escaped for the template)
+                default: fatalError()
             }
         }
     }
