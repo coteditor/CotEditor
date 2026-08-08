@@ -8,6 +8,11 @@
 - [non-AppStore ver.] Update Sparkle from 2.9.5 to 2.9.6.
 
 
+### Fixes
+
+- Fix an issue in the regular expression replacement with the “Unescape replacement text” option where escaped backslashes in the replacement string were unexpectedly removed instead of being unescaped to literal backslashes.
+
+
 
 7.0.8 (2026-08-07)
 --------------------------

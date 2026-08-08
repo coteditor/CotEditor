@@ -238,6 +238,21 @@ struct TextFindTests {
     }
     
     
+    @Test func unescapedRegexReplacement() throws {
+        
+        let mode: TextFind.Mode = .regularExpression(options: [], unescapesReplacement: true)
+        let pattern = try TextFind.Pattern(findString: #"\n"#, mode: mode)
+        let textFind = try TextFind(for: "a\nb", pattern: pattern, selectedRanges: [NSRange(0..<3)])
+        
+        #expect(textFind.replace(with: #"\n"#)?.value == "\n")
+        #expect(textFind.replace(with: #"\\n"#)?.value == #"\n"#)
+        #expect(textFind.replace(with: #"\\\\n"#)?.value == #"\\n"#)
+        #expect(textFind.replace(with: #"\t"#)?.value == "\t")
+        #expect(textFind.replace(with: #"\$0"#)?.value == "$0")
+        #expect(textFind.replace(with: "$0")?.value == "\n")
+    }
+    
+    
     @Test func findAndReplaceSingleRegex() throws {
         
         let findString = "(?!=a)b(c)(?=d)"
