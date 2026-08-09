@@ -325,9 +325,11 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 (item as? NSMenuItem)?.title = self.showsInvisibles
                     ? String(localized: "Hide Invisibles", table: "MainMenu")
                     : String(localized: "Show Invisibles", table: "MainMenu")
-                (item as? NSMenuItem)?.image = self.showsInvisibles
-                    ? NSImage(resource: .paragraphsignSlash)
-                    : NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: nil)
+                if #unavailable(macOS 27) {
+                    (item as? NSMenuItem)?.image = self.showsInvisibles
+                        ? NSImage(resource: .paragraphsignSlash)
+                        : NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: nil)
+                }
                 (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
                 
                 // disable if item cannot be enabled
