@@ -6,6 +6,7 @@
 ### Improvements
 
 - Rename the Key Bindings feature to “Shortcuts.”
+- Update tree-sitter-scala to 0.26.2.
 - [beta] Improve the drawing performance.
 - [beta] Update Polish localization.
 
