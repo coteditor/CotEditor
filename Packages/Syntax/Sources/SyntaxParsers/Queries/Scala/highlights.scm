@@ -21,7 +21,6 @@
   "derives"
   "do"
   "else"
-  "end"
   "enum"
   "export"
   "extends"
@@ -37,7 +36,6 @@
   "match"
   "new"
   "object"
-  "opaque"
   "override"
   "package"
   "private"
@@ -64,6 +62,8 @@
   (open_modifier)
   (inline_modifier)
 ] @keywords
+
+(end_marker) @keywords
 
 ((identifier) @keywords
   (#match? @keywords "^this$|^super$"))
