@@ -151,8 +151,9 @@ struct ImportSettingsView: View {
                     Text(self.error.localizedDescription)
                 }
             } icon: {
-                Image(systemName: "exclamationmark.triangle.fill")
+                Image(systemName: "exclamationmark.triangle")
             }
+            .symbolVariant(.fill)
             .symbolRenderingMode(.multicolor)
             .fixedSize(horizontal: false, vertical: true)
             .controlSize(.small)

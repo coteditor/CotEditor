@@ -90,17 +90,9 @@ struct FolderFindFileScopeView: View {
             ConjunctionPicker(selection: $fileScope.conjunction)
             RuleEditor(rules: $fileScope.rules)
             
-            Group {
-                if let validationError {
-                    Label(validationError.localizedDescription, systemImage: "exclamationmark.triangle.fill")
-                        .symbolRenderingMode(.multicolor)
-                        .lineLimit(1)
-                } else {
-                    Color.clear
-                }
-            }
-            .frame(height: 10)
-            .padding(.vertical, 4)
+            ErrorMessageView(error: self.validationError)
+                .frame(height: 10)
+                .padding(.vertical, 4)
             
             SubmitButtonGroup(helpAnchor: "howto_find_in_folder", action: self.apply, supplementalButton: {
                 if self.originalName == nil {
@@ -233,17 +225,9 @@ private struct ScopeSaveView: View {
                 .onSubmit(self.submit)
             }
             
-            Group {
-                if let validationError {
-                    Label(validationError.localizedDescription, systemImage: "exclamationmark.triangle.fill")
-                        .symbolRenderingMode(.multicolor)
-                        .lineLimit(1)
-                } else {
-                    Color.clear
-                }
-            }
-            .frame(height: 10)
-            .padding(.vertical, 4)
+            ErrorMessageView(error: self.validationError)
+                .frame(height: 10)
+                .padding(.vertical, 4)
             
             SubmitButtonGroup(.init("Action.save.label", defaultValue: "Save"), action: self.submit)
         }
@@ -293,6 +277,25 @@ private extension Set where Element == String {
         
         guard name == originalName || !self.contains(name) else {
             throw .duplicated(name: name)
+        }
+    }
+}
+
+
+private struct ErrorMessageView: View {
+    
+    var error: any Error?
+    
+    
+    var body: some View {
+        
+        if let error {
+            Label(error.localizedDescription, systemImage: "exclamationmark.triangle")
+                .symbolVariant(.fill)
+                .symbolRenderingMode(.multicolor)
+                .lineLimit(1)
+        } else {
+            Color.clear
         }
     }
 }

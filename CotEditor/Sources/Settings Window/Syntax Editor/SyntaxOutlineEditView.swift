@@ -63,7 +63,8 @@ struct SyntaxOutlineEditView: View {
                             .style(.table)
                             .focused($focusedField, equals: item.id)
                         if (try? NSRegularExpression(pattern: item.value.pattern)) == nil {
-                            Image(systemName: "exclamationmark.triangle.fill")
+                            Image(systemName: "exclamationmark.triangle")
+                                .symbolVariant(.fill)
                                 .symbolRenderingMode(.multicolor)
                                 .help(Syntax.Error.Code.regularExpression.localizedDescription)
                         }

@@ -143,7 +143,7 @@ private struct CommandSnippetsView: View {
             }
             .padding(.bottom)
             
-            InsertionFormatView<Snippet.Variable, _>(text: $format, count: self.selection.count) {
+            InsertionFormatView(for: Snippet.Variable.self, text: $format, count: self.selection.count) {
                 InsertionMenuContent(items: Snippet.Variable.allCases)
             }
         }
@@ -232,7 +232,7 @@ private struct FileDropView: View {
             }
             .padding(.bottom)
             
-            InsertionFormatView<FileDropItem.Variable, _>(text: $format, count: self.selection.count) {
+            InsertionFormatView(for: FileDropItem.Variable.self, text: $format, count: self.selection.count) {
                 InsertionMenuContent(items: FileDropItem.Variable.pathTokens)
                 
                 Section(.init("Text File", table: "SnippetsSettings", comment: "menu item header")) {
@@ -323,6 +323,7 @@ private struct SyntaxPicker: View {
 
 private struct InsertionFormatView<Variable: TokenRepresentable, MenuContent: View>: View {
     
+    var `for`: Variable.Type
     @Binding var text: String?
     var count: Int
     @ContentBuilder var menuContent: MenuContent
@@ -380,7 +381,7 @@ private struct InsertionMenuContent<Item: TokenRepresentable>: View {
                 menuItem.representedObject = item.token
                 NSApp.sendAction(#selector(NSTextView.insertVariable), to: nil, from: menuItem)
             } label: {
-                Text(item.token)
+                Text(item.rawValue)
                 Text(item.localizedDescription)
             }
         }

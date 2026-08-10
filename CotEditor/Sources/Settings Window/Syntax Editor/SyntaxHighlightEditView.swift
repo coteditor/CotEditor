@@ -89,12 +89,12 @@ struct SyntaxHighlightEditView: View {
                             RegexTextField(text: item.value.begin)
                                 .regexHighlighted(item.value.isRegularExpression.wrappedValue)
                                 .style(.table)
-                                .focused($focusedField, equals: item.id)
                             
                             if wrappedItem.value.isRegularExpression {
                                 RegexValidationMark(pattern: wrappedItem.value.begin)
                             }
                         }
+                        .focused($focusedField, equals: item.id)
                     }
                 }
                 
@@ -176,7 +176,8 @@ private struct RegexValidationMark: View {
     var body: some View {
         
         if (try? NSRegularExpression(pattern: self.pattern)) == nil {
-            Image(systemName: "exclamationmark.triangle.fill")
+            Image(systemName: "exclamationmark.triangle")
+                .symbolVariant(.fill)
                 .symbolRenderingMode(.multicolor)
                 .help(Syntax.Error.Code.regularExpression.localizedDescription)
         }

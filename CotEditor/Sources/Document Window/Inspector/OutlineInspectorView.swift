@@ -194,6 +194,8 @@ struct OutlineInspectorView: View, HostedPaneView {
                     .font(.system(size: self.fontSize))
                     .listRowSeparator(.hidden)
             }
+            .border(.separator)
+            .environment(\.defaultMinListRowHeight, self.fontSize)
             .onChange(of: self.model.outlineAllIDs, initial: true) { oldValue, newValue in
                 if self.model.filterString.isEmpty {
                     let newIDs = Set(newValue)
@@ -219,8 +221,6 @@ struct OutlineInspectorView: View, HostedPaneView {
             .onCommand(#selector((any TextSizeChanging).biggerFont), perform: self.biggerFont)
             .onCommand(#selector((any TextSizeChanging).smallerFont), perform: self.smallerFont)
             .onCommand(#selector((any TextSizeChanging).resetFont), perform: self.resetFont)
-            .border(.separator)
-            .environment(\.defaultMinListRowHeight, self.fontSize)
             
             FilterField(text: $model.filterString)
                 .autosaveName("OutlineSearch")

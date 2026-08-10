@@ -99,7 +99,7 @@ struct CustomSurroundView: View {
         
         guard !self.pair.begin.isEmpty else { return NSSound.beep() }
         
-        // use beginString also for end delimiter if endString is empty
+        // use beginString also for the end delimiter if endString is empty
         let endString = self.pair.end.isEmpty ? self.pair.begin : self.pair.end
         
         self.completionHandler(Pair(self.pair.begin, endString))

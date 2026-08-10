@@ -89,7 +89,7 @@ struct FindPanelResultView: View {
             }
             .environment(\.defaultMinListRowHeight, 20)
             .tableStyle(.bordered)
-            .border(Color(nsColor: .gridColor), width: 1)
+            .border(Color(nsColor: .gridColor))
             .padding(-1)
             .font(.system(size: self.fontSize))
             .copyable(self.model.matches
@@ -103,8 +103,8 @@ struct FindPanelResultView: View {
                         self.selection.remove(id)
                     }
                 }
-                
                 guard newValue.count == 1 else { return }
+                
                 self.selectMatch(newValue.first)
             }
             .onChange(of: self.sortOrder) { _, newValue in
