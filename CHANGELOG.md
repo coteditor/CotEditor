@@ -9,6 +9,7 @@
 - Update tree-sitter-scala to 0.26.2.
 - [beta] Improve the drawing performance.
 - [beta] Update Polish localization.
+- [beta][dev] Update the build environment to Xcode 27 Beta 5 (Swift 6.4, macOS 27 SDK).
 
 
 ### Fixes
