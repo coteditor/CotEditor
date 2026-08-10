@@ -14766,7 +14766,7 @@
         }
       }
     },
-    "Toolbar.documentHistory.previous.label" : {
+    "Toolbar.documentHistory.back.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -14873,7 +14873,7 @@
         }
       }
     },
-    "Toolbar.documentHistory.previous.tooltip" : {
+    "Toolbar.documentHistory.back.tooltip" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

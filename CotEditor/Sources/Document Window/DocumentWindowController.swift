@@ -523,7 +523,7 @@ private extension NSToolbarItem.Identifier {
     
     
     static let documentHistory = Self(Self.prefix + "documentHistory")
-    static let previousDocumentHistory = Self(Self.prefix + "previousDocumentHistory")
+    static let backDocumentHistory = Self(Self.prefix + "backDocumentHistory")
     static let forwardDocumentHistory = Self(Self.prefix + "forwardDocumentHistory")
     
     static let syntax = Self(Self.prefix + "syntaxStyle")
@@ -645,10 +645,10 @@ extension DocumentWindowController: NSToolbarDelegate {
                 previousMenu.identifier = .backDocumentHistoryMenu
                 previousMenu.delegate = self
                 
-                let backItem = NSMenuToolbarItem(itemIdentifier: .previousDocumentHistory)
-                backItem.label = String(localized: "Toolbar.documentHistory.previous.label",
+                let backItem = NSMenuToolbarItem(itemIdentifier: .backDocumentHistory)
+                backItem.label = String(localized: "Toolbar.documentHistory.back.label",
                                         defaultValue: "Back", table: "Document")
-                backItem.toolTip = String(localized: "Toolbar.documentHistory.previous.tooltip",
+                backItem.toolTip = String(localized: "Toolbar.documentHistory.back.tooltip",
                                           defaultValue: "Go to the previous document", table: "Document")
                 backItem.image = NSImage(systemSymbolName: "chevron.backward", accessibilityDescription: backItem.label)
                 backItem.action = #selector(DirectoryDocument.navigateBackDocumentHistory)
