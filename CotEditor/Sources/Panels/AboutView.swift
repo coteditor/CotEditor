@@ -143,7 +143,7 @@ private struct CreditsView: View {
     
     var body: some View {
         
-        VStack(spacing: 6) {
+        LazyVStack(spacing: 6) {
             SectionView(.init("The CotEditor Project", table: "About", comment: "section heading")) {
                 ForEach(self.credits.project, id: \.name) {
                     ContributorView(contributor: $0)
