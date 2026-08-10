@@ -99,14 +99,10 @@ struct LiveTextInsertionView: View {
                         .modifier(HUDStyle())
                     
                 case .failure(let error):
-                    VStack(spacing: 4) {
-                        Label(.init("Detection failed", table: "LiveTextInsertion"), systemImage: "exclamationmark.triangle")
-                            .symbolVariant(.fill)
-                        Text(error.localizedDescription)
-                            .lineLimit(nil)
-                            .controlSize(.small)
-                    }
-                    .padding(.horizontal, 4)
+                    ContentUnavailableView(.init("Detection failed", table: "LiveTextInsertion"),
+                                           systemImage: "exclamationmark.triangle",
+                                           description: Text(error.localizedDescription).font(.subheadline))
+                    .symbolVariant(.fill)
                     .modifier(HUDStyle())
                     
                 case nil:
@@ -167,4 +163,8 @@ private extension NSImage {
 
 #Preview {
     LiveTextInsertionView(image: NSApp.applicationIconImage, length: 200) { _ in }
+}
+
+#Preview("error") {
+    LiveTextInsertionView(image: .init(), length: 400) { _ in }
 }
