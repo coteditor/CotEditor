@@ -1,5 +1,16 @@
 # Change Log
 
+7.1.0-beta.4 (unreleased)
+--------------------------
+
+### Known Issues
+
+- The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).
+- In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
+- The text added in CotEditor 7.1.0 is not yet localized in Bulgarian.
+
+
+
 7.1.0-beta.3 (2026-08-11)
 --------------------------
 
@@ -17,13 +28,6 @@
 - Fix an issue in the regular expression replacement with the “Unescape replacement text” option where escaped backslashes in the replacement text were unexpectedly removed.
 - [beta] Fix an issue where Bulgarian localizations were missing in the Window settings.
 - [beta] Fix an issue where some labels in the Settings were truncated when they were too long.
-
-
-### Known Issues
-
-- The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).
-- In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
-- The text added in CotEditor 7.1.0 is not yet localized in Bulgarian.
 
 
 
