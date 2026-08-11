@@ -88,8 +88,8 @@ struct NavigationBar: View {
         .buttonStyle(.borderless)
         .controlSize(.small)
         .padding(.horizontal, 4)
-        .background(.windowBackground)
         .frame(height: 24)
+        .background(.windowBackground)
         .accessibilityElement(children: .contain)
         .accessibilityLabel(.init("Navigation Bar", table: "Document", comment: "accessibility label"))
     }

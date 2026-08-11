@@ -81,9 +81,9 @@ struct CommandBarView: View {
                             ActionCommandView(command: candidate.command, matches: candidate.matches)
                                 .selected(candidate.id == self.selection)
                                 .focused($focus, equals: candidate.id)
-                                .accessibilityFocused($accessibilityFocus, equals: candidate.id)
                                 .id(candidate.id)
                                 .accessibilityElement(children: .combine)
+                                .accessibilityFocused($accessibilityFocus, equals: candidate.id)
                                 .accessibilityAddTraits(.isButton)
                                 .accessibilityAction {
                                     self.selection = candidate.id

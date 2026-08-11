@@ -85,7 +85,6 @@ private struct CommandSnippetsView: View {
                 TableColumn(.init("Syntax", table: "SnippetsSettings", comment: "table column header")) { $item in
                     SyntaxPicker(syntaxes: self.syntaxes, selection: $item.scope)
                         .buttonStyle(.borderless)
-                        .help(.init("Syntax in which this file drop setting is used.", table: "SnippetsSettings", comment: "tooltip"))
                 }.width(160)
                 
                 TableColumn(.init("Name", table: "SnippetsSettings", comment: "table column header")) { $item in

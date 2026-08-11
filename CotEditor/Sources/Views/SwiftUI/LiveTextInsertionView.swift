@@ -152,9 +152,10 @@ private struct LiveTextOverlayView: NSViewRepresentable {
 
 private extension NSImage {
     
+    /// Whether the image is in portrait orientation.
     var isPortrait: Bool {
         
-        self.size.width >= self.size.height
+        self.size.width < self.size.height
     }
 }
 

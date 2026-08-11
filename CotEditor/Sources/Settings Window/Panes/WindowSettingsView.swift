@@ -117,11 +117,11 @@ struct WindowSettingsView: View {
                                 .monospacedDigit()
                                 .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
                                 .frame(width: 64)
-                                .accessibilityLabeledPair(role: .label, id: "windowHeight", in: self.accessibility)
+                                .accessibilityLabeledPair(role: .content, id: "windowHeight", in: self.accessibility)
                             Text("Height", tableName: "WindowSettings")
                                 .controlSize(.small)
                                 .accessibilitySortPriority(1)
-                                .accessibilityLabeledPair(role: .content, id: "windowHeight", in: self.accessibility)
+                                .accessibilityLabeledPair(role: .label, id: "windowHeight", in: self.accessibility)
                         }
                         Text("px", tableName: "WindowSettings", comment: "length unit following an input field")
                             .accessibilityLabel(.init("pixels", table: "WindowSettings", comment: "accessibility label for “px”"))

@@ -142,7 +142,7 @@ struct GeneralSettingsView: View {
             GridRow {
                 Color.clear
                     .frame(width: 1, height: 1)
-                    .gridCellUnsizedAxes([.vertical, .vertical])
+                    .gridCellUnsizedAxes([.horizontal, .vertical])
                     .accessibilityHidden(true)
                 
                 Picker(selection: $documentConflictOption) {

@@ -45,6 +45,11 @@ struct FolderFindView: View {
                 }
             }
         }
+        .overlay {
+            FolderFindOverlayView(state: self.model.state)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .controlSize(.small)
+        }
         .safeAreaBar(edge: .top) {
             VStack(spacing: 0) {
                 FolderFindControlView(model: self.model)
@@ -55,11 +60,6 @@ struct FolderFindView: View {
         }
         .scrollContentBackground(.hidden)
         .scrollEdgeEffectStyle(.soft, for: .top)  // workaround for macOS 27.0 beta 5 (2026-08)
-        .overlay {
-            FolderFindOverlayView(state: self.model.state)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .controlSize(.small)
-        }
         .contextMenu(forSelectionType: FolderFind.ResultID.self) { selections in
             if selections.count == 1,
                let selection = selections.first,

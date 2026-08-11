@@ -52,7 +52,6 @@ struct OpacitySample: View {
             }
         }
         .aspectRatio(1, contentMode: .fit)
-        .frame(height: 20)
     }
     
     
@@ -79,6 +78,6 @@ struct OpacitySample: View {
 
 #Preview {
     OpacitySample(opacity: 0.5)
-        .frame(width: 16, height: 16)
+        .frame(height: 16)
         .scenePadding()
 }

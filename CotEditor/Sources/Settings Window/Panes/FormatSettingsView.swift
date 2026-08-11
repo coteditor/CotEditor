@@ -252,7 +252,7 @@ private struct SyntaxListView: View {
                 Circle()
                     .frame(width: 4)
                     .foregroundStyle(Color.secondary)
-                    .help(.init("This syntax is customized.", table: "FormatSettings"))
+                    .help(state.isCustomized ? String(localized: "This syntax is customized.", table: "FormatSettings") : "")
                     .opacity(state.isCustomized ? 1 : 0)
                     .accessibilityHidden(!state.isCustomized)
             }

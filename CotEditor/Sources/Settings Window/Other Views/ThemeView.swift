@@ -470,7 +470,7 @@ private struct ThemeEditorView: View {
                                       systemColor: .accentColor,
                                       supportsOpacity: false)
                 }.accessibilityElement(children: .contain)
-            }.accessibilityElement(children: .contain)
+            }
             
             GridRow {
                 Text("Syntax", tableName: "ThemeEditor")
@@ -506,7 +506,7 @@ private struct ThemeEditorView: View {
                     ColorPicker(LocalizedStringResource("\(SyntaxType.comments.label):"),
                                 selection: $theme.comments.binding)
                 }.accessibilityElement(children: .contain)
-            }.accessibilityElement(children: .contain)
+            }
             
             HStack {
                 Spacer()

@@ -166,9 +166,11 @@ struct AppearanceSettingsView: View {
                         Text(self.windowAlphaBinding.wrappedValue, format: .percent)
                     } minimumValueLabel: {
                         OpacitySample(opacity: 0.2)
+                            .frame(height: 20)
                             .help(.init("OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
                     } maximumValueLabel: {
                         OpacitySample(opacity: 1)
+                            .frame(height: 20)
                             .help(.init("OpacitySlider.maximumValue.label", defaultValue: "Opaque", table: "AppearanceSettings"))
                     } ticks: {
                         SliderTickContentForEach(Array(stride(from: 0.2, through: 1, by: 0.1)), id: \.self) { value in

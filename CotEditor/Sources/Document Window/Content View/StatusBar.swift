@@ -186,12 +186,12 @@ private struct CoffeeBadge: View {
             .fontWeight(.semibold)
             .labelStyle(.iconOnly)
             .fixedSize()
-            .padding(.trailing, 8)
             .popover(isPresented: $isMessagePresented) {
                 Text("Thank you for your kind support!", tableName: "Document", comment: "message for users who made a donation")
                     .padding(.vertical, 8)
                     .padding(.horizontal)
             }
+            .padding(.trailing, 8)
     }
 }
 
