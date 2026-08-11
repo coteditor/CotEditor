@@ -93,7 +93,8 @@ struct EncodingListView: View {
                             EncodingView(encoding: item.encoding)
                         }
                     }.listRowSeparator(.hidden)
-                }.onMove { indexes, index in
+                }
+                .onMove { indexes, index in
                     self.model.move(from: indexes, to: index)
                 }
             }
@@ -103,15 +104,11 @@ struct EncodingListView: View {
             .animation(.default, value: self.model.items)
             .scrollContentBackground(.hidden)
             .background(.fill.quaternary, in: .rect(cornerRadius: 8))
+            .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
             .environment(\.defaultMinListRowHeight, 14)
             .frame(minHeight: 100, idealHeight: 250)
             
             HStack(alignment: .firstTextBaseline) {
-                Button(.init("Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.model.restore)
-                    .disabled(!self.model.canRestore)
-                
-                Spacer()
-                
                 ControlGroup {
                     Menu(.init("Action.add.label", defaultValue: "Add"), systemImage: "plus") {
                         let listedEncodings = self.model.items.compactMap(\.encoding)
@@ -144,6 +141,11 @@ struct EncodingListView: View {
                 .menuStyle(.button)
                 .menuIndicator(.hidden)
                 .labelStyle(.iconOnly)
+                
+                Spacer()
+                
+                Button(.init("Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.model.restore)
+                    .disabled(!self.model.canRestore)
             }
             
             Text("This order is used for the Encoding menu and for encoding detection. Only the encodings listed here are considered during detection, with higher items taking priority.", tableName: "EncodingList")
@@ -176,7 +178,7 @@ private struct EncodingView: View {
             Text(self.name)
             Text(self.ianaCharsetName)
                 .foregroundStyle(.secondary)
-        }.frame(height: 14)
+        }
     }
     
     

@@ -41,6 +41,8 @@ struct ShortcutsSettingsView: View {
                 .fixedSize(horizontal: false, vertical: true)
             
             ShortcutTreeView(model: $model)
+                .clipShape(.rect(cornerRadius: 6, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
                 .frame(height: 260)
             
             HStack(alignment: .firstTextBaseline) {

@@ -269,13 +269,13 @@ private struct SyntaxListView: View {
             .tag(state)
         }
         .safeAreaBar(edge: .bottom) {
-            VStack(spacing: 0) {
-                Divider()
-                self.bottomAccessoryView
-                    .padding(6)
-            }
+            self.bottomAccessoryView
+                .padding(6)
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
+        .listStyle(.plain)
+        .clipShape(.rect(cornerRadius: 6, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
         .dragContainer { draggedItemIDs in
             draggedItemIDs.compactMap { name in
                 self.manager.urlForUserSetting(name: name)
@@ -317,8 +317,6 @@ private struct SyntaxListView: View {
         }
         .accessibilityRotor(.init("Customized Syntaxes", table: "FormatSettings"),
                             entries: self.settingStates.filter(\.isCustomized), entryID: \.id, entryLabel: \.name)
-        .listStyle(.plain)
-        .border(.separator)
         .onChange(of: self.settingNames, initial: true) { _, settingNames in
             self.settingStates = settingNames.compactMap(self.manager.state(of:))
         }

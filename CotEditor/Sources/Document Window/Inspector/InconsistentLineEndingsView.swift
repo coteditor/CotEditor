@@ -83,7 +83,8 @@ struct InconsistentLineEndingsView: View {
                     }
                 }
                 .tableStyle(.bordered)
-                .border(Color(nsColor: .gridColor))
+                .padding(-1)  // remove border
+                .clipShape(.rect(cornerRadius: 8, style: .continuous))
             }
         }
         .onChange(of: self.document?.lineEndingScanner.inconsistentLineEndings, initial: true) { _, newValue in

@@ -67,6 +67,9 @@ struct ThemeView: View {
                     }
                 }
         }
+        .background()
+        .clipShape(.rect(cornerRadius: 6, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
         .onAppear {
             self.selectDefaultTheme()
             
@@ -87,8 +90,6 @@ struct ThemeView: View {
         .onChange(of: self.selection) { _, newValue in
             self.setTheme(name: newValue)
         }
-        .background()
-        .border(.separator)
         .alert(error: $error)
         .accessibilityElement(children: .contain)
         .accessibilityLabel(.init("Theme", table: "ThemeEditor"))
@@ -186,11 +187,8 @@ private struct ThemeListView: View {
             .listRowSeparator(.hidden)
         }
         .safeAreaBar(edge: .bottom) {
-            VStack(spacing: 0) {
-                Divider()
-                self.bottomAccessoryView
-                    .padding(6)
-            }
+            self.bottomAccessoryView
+                .padding(6)
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
         .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))

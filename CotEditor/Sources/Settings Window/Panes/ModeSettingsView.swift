@@ -116,14 +116,12 @@ private struct ModeListView: View {
             }
         }
         .safeAreaBar(edge: .bottom) {
-            VStack(spacing: 0) {
-                Divider()
-                self.bottomAccessoryView
-                    .padding(6)
-            }
+            self.bottomAccessoryView
+                .padding(6)
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
-        .border(.separator)
+        .clipShape(.rect(cornerRadius: 6, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
         .contextMenu(forSelectionType: Mode.self) { selections in
             if let selection = selections.first {
                 self.contextMenu(for: selection)
@@ -133,7 +131,6 @@ private struct ModeListView: View {
             self.syntaxModes = self.manager.syntaxModes
         }
         .accessibilityLabel(.init("Mode", table: "ModeSettings"))
-        .background()
     }
     
     

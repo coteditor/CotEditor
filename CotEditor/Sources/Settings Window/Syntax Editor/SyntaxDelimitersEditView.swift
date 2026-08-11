@@ -144,11 +144,8 @@ private struct InlineCommentsEditView: View {
         .border(Color(nsColor: .gridColor))
         .frame(height: 100)
         
-        HStack {
-            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
-                self.focusedField = item.id
-            }
-            ItemCountView(count: self.items.count)
+        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+            self.focusedField = item.id
         }
     }
 }
@@ -190,11 +187,8 @@ private struct BlockCommentsEditView: View {
         .border(Color(nsColor: .gridColor))
         .frame(height: 100)
         
-        HStack {
-            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
-                self.focusedField = item.id
-            }
-            ItemCountView(count: self.items.count)
+        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+            self.focusedField = item.id
         }
     }
 }
@@ -251,11 +245,8 @@ private struct StringDelimitersEditView: View {
         .border(Color(nsColor: .gridColor))
         .frame(height: 100)
         
-        HStack {
-            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
-                self.focusedField = item.id
-            }
-            ItemCountView(count: self.items.count)
+        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+            self.focusedField = item.id
         }
     }
 }
@@ -298,11 +289,8 @@ private struct CharacterDelimitersEditView: View {
         .border(Color(nsColor: .gridColor))
         .frame(height: 100)
         
-        HStack {
-            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
-                self.focusedField = item.id
-            }
-            ItemCountView(count: self.items.count)
+        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+            self.focusedField = item.id
         }
     }
 }
@@ -352,11 +340,8 @@ private struct BlockEditView: View {
         .border(Color(nsColor: .gridColor))
         .frame(height: 100)
         
-        HStack {
-            AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
-                self.focusedField = item.id
-            }
-            ItemCountView(count: self.items.count)
+        AddRemoveButton($items, selection: $selection, newItem: Item()) { item in
+            self.focusedField = item.id
         }
     }
 }

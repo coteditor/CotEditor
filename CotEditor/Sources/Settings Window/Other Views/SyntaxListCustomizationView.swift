@@ -56,6 +56,7 @@ struct SyntaxListCustomizationView: View {
             }
             .scrollContentBackground(.hidden)
             .background(.fill.quaternary, in: .rect(cornerRadius: 8))
+            .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
             .frame(minHeight: 100, idealHeight: 250)
             
             HStack {

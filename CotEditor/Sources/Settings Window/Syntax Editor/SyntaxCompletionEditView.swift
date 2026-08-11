@@ -80,11 +80,11 @@ struct SyntaxCompletionEditView: View {
                 }
                 .width(100)
             }
+            .tableStyle(.bordered)
+            .border(Color(nsColor: .gridColor))
             .onChange(of: self.sortOrder) { _, newValue in
                 self.items.sort(using: newValue)
             }
-            .tableStyle(.bordered)
-            .border(Color(nsColor: .gridColor))
             
             HStack {
                 AddRemoveButton($items, selection: $selection, newItem: Item()) { item in

@@ -69,13 +69,13 @@ struct FolderFindSavedScopesView: View {
                 }
             }
             .safeAreaBar(edge: .bottom) {
-                VStack(spacing: 0) {
-                    Divider()
-                    self.bottomAccessoryView
-                        .padding(6)
-                }
+                self.bottomAccessoryView
+                    .padding(6)
             }
             .scrollEdgeEffectStyle(.hard, for: .bottom)
+            .listStyle(.plain)
+            .clipShape(.rect(cornerRadius: 6, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
             .contextMenu(forSelectionType: String.self) { selections in
                 if selections.count == 1, let selection = selections.first {
                     self.contextMenu(for: selection)
@@ -92,7 +92,6 @@ struct FolderFindSavedScopesView: View {
                 }
             }
             .animation(.default, value: self.scopes.keys)
-            .listStyle(.bordered)
             .frame(minWidth: 140, idealWidth: 240, minHeight: 180)
             
             HStack {

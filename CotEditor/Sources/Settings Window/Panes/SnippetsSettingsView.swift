@@ -333,7 +333,7 @@ private struct InsertionFormatView<Variable: TokenRepresentable, MenuContent: Vi
     var body: some View {
         
         VStack {
-            HStack(alignment: .firstTextBaseline) {
+            HStack(alignment: .bottom) {
                 Text("Insertion format:", tableName: "SnippetsSettings")
                     .accessibilityLabeledPair(role: .label, id: "insertionFormat", in: self.accessibility)
                 Spacer()
@@ -345,6 +345,8 @@ private struct InsertionFormatView<Variable: TokenRepresentable, MenuContent: Vi
             
             TokenTextEditor<Variable>(text: $text)
                 .accessibilityLabeledPair(role: .content, id: "insertionFormat", in: self.accessibility)
+                .clipShape(.rect(cornerRadius: 6, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
                 .frame(height: 100)
                 .overlay {
                     if let prompt {

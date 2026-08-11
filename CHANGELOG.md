@@ -3,6 +3,11 @@
 7.1.0-beta.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Tweak the appearance of scroll views.
+
+
 ### Known Issues
 
 - The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).

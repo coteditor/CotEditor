@@ -194,8 +194,8 @@ struct OutlineInspectorView: View, HostedPaneView {
                     .font(.system(size: self.fontSize))
                     .listRowSeparator(.hidden)
             }
-            .border(.separator)
             .environment(\.defaultMinListRowHeight, self.fontSize)
+            .clipShape(.rect(cornerRadius: 8, style: .continuous))
             .onChange(of: self.model.outlineAllIDs, initial: true) { oldValue, newValue in
                 if self.model.filterString.isEmpty {
                     let newIDs = Set(newValue)
