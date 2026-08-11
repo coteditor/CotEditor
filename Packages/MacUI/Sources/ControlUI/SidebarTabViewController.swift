@@ -89,7 +89,7 @@ open class SidebarTabViewController: NSTabViewController {
             view.topAnchor.constraint(equalTo: containerView.topAnchor),
             view.leadingAnchor.constraint(equalToSystemSpacingAfter: containerView.leadingAnchor, multiplier: 0.5),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: containerView.trailingAnchor, multiplier: -0.5),
-            view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            view.bottomAnchor.constraint(equalToSystemSpacingBelow: containerView.bottomAnchor, multiplier: -0.5),
         ])
         
         // present the pane selector inside the tab view controller's accessibility group

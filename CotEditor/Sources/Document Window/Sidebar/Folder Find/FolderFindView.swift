@@ -48,12 +48,13 @@ struct FolderFindView: View {
         .safeAreaBar(edge: .top) {
             VStack(spacing: 0) {
                 FolderFindControlView(model: self.model)
-                    .padding(10)
+                    .padding(.horizontal, 10)
+                    .padding(.bottom, 10)
                 FolderFindMetricsBarView(state: self.model.state)
             }
         }
         .scrollContentBackground(.hidden)
-        .scrollEdgeEffectStyle(.hard, for: .top)
+        .scrollEdgeEffectStyle(.soft, for: .top)  // workaround for macOS 27.0 beta 5 (2026-08)
         .overlay {
             FolderFindOverlayView(state: self.model.state)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
