@@ -134,8 +134,8 @@ final class LineNumberView: NSRulerView {
         
         NSGraphicsContext.saveGraphicsState()
         
-        // workaround opaque background on macOS 26 (2026-08, macOS 27 SDK)
-        if #unavailable(macOS 27), let textView, textView.isOpaque {
+        // workaround opaque background (2026-08, macOS 27 SDK)
+        if let textView, textView.isOpaque {
             textView.backgroundColor.setFill()
             rect.intersection(self.frame).fill()
         }
