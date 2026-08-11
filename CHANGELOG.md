@@ -1,6 +1,6 @@
 # Change Log
 
-7.1.0-beta.3 (unreleased)
+7.1.0-beta.3 (2026-08-11)
 --------------------------
 
 ### Improvements
@@ -9,7 +9,7 @@
 - Update tree-sitter-scala to 0.26.2.
 - [beta] Improve the drawing performance.
 - [beta] Update Polish localization.
-- [beta][dev] Update the build environment to Xcode 27 Beta 5 (Swift 6.4, macOS 27 SDK).
+- [beta][dev] Update the build environment to Xcode 27 Beta 5.
 
 
 ### Fixes
