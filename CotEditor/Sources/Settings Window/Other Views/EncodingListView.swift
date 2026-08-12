@@ -158,8 +158,11 @@ struct EncodingListView: View {
             }
             .padding(.top)
         }
-        .onAppear {
-            self.model.undoManager = self.undoManager
+        .onChange(of: self.undoManager, initial: true) { _, newValue in
+            self.model.undoManager = newValue
+        }
+        .onDisappear {
+            self.model.undoManager?.removeAllActions(withTarget: self.model)
         }
         .frame(minWidth: 360, idealWidth: 440)
     }
@@ -228,9 +231,14 @@ private extension EncodingListView.Model {
     ///   - destination: The destination index to move to.
     func move(from source: IndexSet, to destination: Int) {
         
+        var items = self.items
+        items.move(fromOffsets: source, toOffset: destination)
+        
+        guard items != self.items else { return }
+        
         self.registerUndo()
         
-        self.items.move(fromOffsets: source, toOffset: destination)
+        self.items = items
     }
     
     
@@ -246,10 +254,12 @@ private extension EncodingListView.Model {
     }
     
     
-    /// Restores the list to the default.
+    /// Restores the list to the default and resets the undo history.
     func restore() {
         
         self.items = self.defaults[initial: .encodingList].map(EncodingItem.init)
+        
+        self.undoManager?.removeAllActions(withTarget: self)
     }
     
     
@@ -303,9 +313,14 @@ private extension EncodingListView.Model {
     ///   - ids: The selection ids.
     func remove(ids: Set<Item.ID>) {
         
+        var items = self.items
+        items.removeAll { ids.contains($0.id) && (self.canRemove($0) == nil) }
+        
+        guard items != self.items else { return }
+        
         self.registerUndo()
         
-        self.items.removeAll { ids.contains($0.id) && (self.canRemove($0) == nil) }
+        self.items = items
     }
     
     
