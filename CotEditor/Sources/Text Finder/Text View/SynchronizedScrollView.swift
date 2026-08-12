@@ -27,7 +27,20 @@ import AppKit
 
 final class SynchronizedScrollView: NSScrollView {
     
+    // MARK: Public Properties
+    
+    var focusRingRadius: CGFloat = 0
+    
+    
     // MARK: Scroll View Methods
+    
+    override func drawFocusRingMask() {
+        
+        guard self.focusRingRadius > 0 else { return super.drawFocusRingMask() }
+        
+        NSBezierPath(roundedRect: self.bounds, xRadius: self.focusRingRadius, yRadius: self.focusRingRadius).fill()
+    }
+    
     
     /// Receives a pinch zoom event.
     override func magnify(with event: NSEvent) {

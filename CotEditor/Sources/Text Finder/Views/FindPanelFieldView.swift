@@ -72,6 +72,8 @@ struct FindPanelFieldView: View {
                 }
             }
             .onModifierKeysChanged(mask: .shift) { _, new in self.isPressingShift = new.contains(.shift) }
+            .clipShape(.rect(cornerRadius: 6))
+            .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(.separator))
             .overlay(alignment: .top) {
                 HStack(alignment: .firstTextBaseline) {
                     HistoryMenu(.init("Recent Searches", table: "TextFind", comment: "menu item header"),
@@ -93,6 +95,8 @@ struct FindPanelFieldView: View {
                           mode: .replacement(unescapes: self.unescapesReplacementString),
                           isRegularExpression: self.usesRegularExpression,
                           trailingInset: self.replaceMessageWidth)
+            .clipShape(.rect(cornerRadius: 6))
+            .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(.separator))
             .overlay(alignment: .top) {
                 HStack(alignment: .firstTextBaseline) {
                     HistoryMenu(.init("Recent Replacements", table: "TextFind", comment: "menu item header"),
@@ -345,13 +349,14 @@ private struct FindTextField: NSViewRepresentable {
         scrollView.contentView = FindPanelTextClipView()
         scrollView.documentView = textView
         scrollView.allowsMagnification = true
-        scrollView.borderType = .bezelBorder
+        scrollView.borderType = .noBorder
         scrollView.focusRingType = .exterior
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = true
         scrollView.verticalScroller?.controlSize = .small
         scrollView.horizontalScroller?.controlSize = .small
         scrollView.contentView.automaticallyAdjustsContentInsets = false
+        scrollView.focusRingRadius = 6
         
         return scrollView
     }
