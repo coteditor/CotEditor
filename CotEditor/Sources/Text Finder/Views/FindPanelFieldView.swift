@@ -349,14 +349,13 @@ private struct FindTextField: NSViewRepresentable {
         scrollView.contentView = FindPanelTextClipView()
         scrollView.documentView = textView
         scrollView.allowsMagnification = true
-        scrollView.borderType = .noBorder
         scrollView.focusRingType = .exterior
+        scrollView.focusRingRadius = 6
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = true
         scrollView.verticalScroller?.controlSize = .small
         scrollView.horizontalScroller?.controlSize = .small
         scrollView.contentView.automaticallyAdjustsContentInsets = false
-        scrollView.focusRingRadius = 6
         
         return scrollView
     }
