@@ -43,7 +43,7 @@ struct ShortcutsSettingsView: View {
             ShortcutTreeView(model: $model)
                 .clipShape(.rect(cornerRadius: 6, style: .continuous))
                 .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
-                .frame(height: 260)
+                .frame(height: 280)
             
             HStack(alignment: .firstTextBaseline) {
                 Button(.init("Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.model.restore)
