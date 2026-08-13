@@ -113,7 +113,7 @@ struct PropertyListValueTests {
             .int(1),
             .double(5.2),
             .bool(false),
-            .array([.int(2), .int(3)])
+            .array([.int(2), .int(3)]),
         ]))
         // use NSArray for equitability comparison
         #expect(value.any as? NSArray == array as NSArray)
@@ -140,7 +140,7 @@ struct PropertyListValueTests {
             "options": .dictionary([
                 "data": .data(Data([0xDE])),
                 "double": .double(2.0),
-            ])
+            ]),
         ]))
         // use NSDictionary for equitability comparison
         #expect(value.any as? NSDictionary == dictionary as NSDictionary)

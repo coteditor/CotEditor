@@ -148,7 +148,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         NSLayoutConstraint.activate([
             filterProgressIndicator.centerYAnchor.constraint(equalTo: filterField.centerYAnchor),
             filterProgressIndicator.trailingAnchor.constraint(equalTo: filterField.trailingAnchor, constant: -24),
-            filterProgressIndicator.heightAnchor.constraint(equalTo: filterField.heightAnchor, multiplier: 0.6)
+            filterProgressIndicator.heightAnchor.constraint(equalTo: filterField.heightAnchor, multiplier: 0.6),
         ])
         
         let footerView = NSStackView(views: [addButton, filterField])
