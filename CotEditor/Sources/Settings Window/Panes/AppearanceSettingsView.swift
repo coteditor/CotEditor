@@ -160,7 +160,7 @@ struct AppearanceSettingsView: View {
                     .accessibilityLabeledPair(role: .label, id: "windowAlpha", in: self.accessibility)
                 
                 HStack(alignment: .firstTextBaseline) {
-                    Slider(value: self.windowAlphaBinding, in: Self.windowAlphaRange) {
+                    Slider(value: self.windowAlphaBinding, enabledBounds: Self.windowAlphaRange) {
                         EmptyView()
                     } currentValueLabel: {
                         Text(self.windowAlphaBinding.wrappedValue, format: .percent)

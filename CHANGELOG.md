@@ -5,7 +5,7 @@
 
 ### Improvements
 
-- [beta] Tweak the appearance of scroll views.
+- [beta] Refine overall appearance details.
 
 
 ### Known Issues
