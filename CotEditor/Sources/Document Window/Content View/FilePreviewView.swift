@@ -323,9 +323,9 @@ private extension CGSize {
     /// The human-readable representation.
     var formatted: String {
         
-        func format(_ value: Double) -> String { Int(value).formatted(.number.grouping(.never)) }
+        let hairSpace = "\u{200A}"
         
-        return "\(format(self.width))×\(format(self.height))"
+        return "\(Int(self.width))\(hairSpace)×\(hairSpace)\(Int(self.height))"
     }
 }
 
