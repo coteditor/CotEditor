@@ -78,10 +78,11 @@ struct StatusBar: View {
             
             if let document = self.model.document {
                 FileSizeView(size: document.fileAttributes?.size)
-            }
-            
-            if let document = self.model.document as? Document {
-                DocumentStatusBar(document: document)
+                    .padding(.trailing, (document is Document) ? 0 : 8)
+                
+                if let document = document as? Document {
+                    DocumentStatusBar(document: document)
+                }
             }
         }
         .onAppear {
@@ -110,8 +111,8 @@ struct StatusBar: View {
         .buttonStyle(.borderless)
         .controlSize(.small)
         .lineLimit(1)
-        .frame(height: (ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 27) ? 12 : 16)
-        .padding(.vertical, 8)
+        .frame(height: (ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 27) ? nil : 18)
+        .padding(.vertical, 7)
         .padding(.leading)
         .padding(.trailing, (ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 27) ? 4 : 0)
         .containerCornerOffset(.horizontal, sizeToFit: true)
