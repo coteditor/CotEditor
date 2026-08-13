@@ -89,6 +89,9 @@ struct FolderFindFileScopeView: View {
             
             ConjunctionPicker(selection: $fileScope.conjunction)
             RuleEditor(rules: $fileScope.rules)
+                .padding(-1)  // remove border
+                .clipShape(.rect(cornerRadius: 6, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
             
             ErrorMessageView(error: self.validationError)
                 .frame(height: 10)
