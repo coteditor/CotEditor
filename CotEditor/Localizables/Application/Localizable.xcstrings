@@ -16599,6 +16599,7 @@
       }
     },
     "UpdatedByExternalProcessAlert.message" : {
+      "comment" : "AppKit has the same expression.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "bg" : {
