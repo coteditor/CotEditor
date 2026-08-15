@@ -274,8 +274,8 @@ private struct SyntaxListView: View {
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
         .listStyle(.plain)
-        .clipShape(.rect(cornerRadius: 6, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
+        .clipShape(.rect(cornerRadius: 7, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 7, style: .continuous).strokeBorder(.separator))
         .dragContainer { draggedItemIDs in
             draggedItemIDs.compactMap { name in
                 self.manager.urlForUserSetting(name: name)

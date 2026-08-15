@@ -120,8 +120,8 @@ private struct ModeListView: View {
                 .padding(6)
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
-        .clipShape(.rect(cornerRadius: 6, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
+        .clipShape(.rect(cornerRadius: 7, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 7, style: .continuous).strokeBorder(.separator))
         .contextMenu(forSelectionType: Mode.self) { selections in
             if let selection = selections.first {
                 self.contextMenu(for: selection)

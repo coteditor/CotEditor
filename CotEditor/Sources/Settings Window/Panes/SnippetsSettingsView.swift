@@ -345,8 +345,8 @@ private struct InsertionFormatView<Variable: TokenRepresentable, MenuContent: Vi
             
             TokenTextEditor<Variable>(text: $text)
                 .accessibilityLabeledPair(role: .content, id: "insertionFormat", in: self.accessibility)
-                .clipShape(.rect(cornerRadius: 6, style: .continuous))
-                .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
+                .clipShape(.rect(cornerRadius: 7, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: 7, style: .continuous).strokeBorder(.separator))
                 .frame(height: 100)
                 .overlay {
                     if let prompt {

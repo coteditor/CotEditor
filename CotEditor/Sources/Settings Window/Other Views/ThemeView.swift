@@ -68,8 +68,8 @@ struct ThemeView: View {
                 }
         }
         .background()
-        .clipShape(.rect(cornerRadius: 6, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
+        .clipShape(.rect(cornerRadius: 7, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 7, style: .continuous).strokeBorder(.separator))
         .onAppear {
             self.selectDefaultTheme()
             

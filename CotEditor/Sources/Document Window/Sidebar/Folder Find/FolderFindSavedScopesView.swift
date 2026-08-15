@@ -74,8 +74,8 @@ struct FolderFindSavedScopesView: View {
             }
             .scrollEdgeEffectStyle(.hard, for: .bottom)
             .listStyle(.plain)
-            .clipShape(.rect(cornerRadius: 6, style: .continuous))
-            .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
+            .clipShape(.rect(cornerRadius: 7, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: 7, style: .continuous).strokeBorder(.separator))
             .contextMenu(forSelectionType: String.self) { selections in
                 if selections.count == 1, let selection = selections.first {
                     self.contextMenu(for: selection)

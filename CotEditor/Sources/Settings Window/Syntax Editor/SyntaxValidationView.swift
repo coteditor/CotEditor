@@ -44,8 +44,8 @@ struct SyntaxValidationView: View {
                 List(self.errors.enumerated(), id: \.offset, selection: $selection) { _, error in
                     ErrorView(error: error)
                 }
-                .clipShape(.rect(cornerRadius: 6, style: .continuous))
-                .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
+                .clipShape(.rect(cornerRadius: 7, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: 7, style: .continuous).strokeBorder(.separator))
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)

@@ -104,7 +104,7 @@ struct EncodingListView: View {
             .animation(.default, value: self.model.items)
             .scrollContentBackground(.hidden)
             .background(.fill.quaternary, in: .rect(cornerRadius: 8))
-            .overlay(RoundedRectangle(cornerRadius: 6, style: .continuous).strokeBorder(.separator))
+            .overlay(RoundedRectangle(cornerRadius: 7, style: .continuous).strokeBorder(.separator))
             .environment(\.defaultMinListRowHeight, 14)
             .frame(minHeight: 100, idealHeight: 250)
             
