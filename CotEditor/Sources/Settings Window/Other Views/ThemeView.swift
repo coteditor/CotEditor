@@ -187,8 +187,16 @@ private struct ThemeListView: View {
             .listRowSeparator(.hidden)
         }
         .safeAreaBar(edge: .bottom) {
-            self.bottomAccessoryView
-                .padding(6)
+            if #available(macOS 27, *) {
+                self.bottomAccessoryView
+                    .padding(6)
+            } else {
+                VStack(spacing: 0) {
+                    Divider()
+                    self.bottomAccessoryView
+                        .padding(6)
+                }
+            }
         }
         .scrollEdgeEffectStyle(.hard, for: .bottom)
         .dragConfiguration(DragConfiguration(allowMove: false, allowDelete: true))

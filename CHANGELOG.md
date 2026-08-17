@@ -3,6 +3,10 @@
 7.1.0-beta.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Adjust the scroll view buttons appearance on macOS 26.
+
 
 
 7.1.0-beta.4 (2026-08-16)
