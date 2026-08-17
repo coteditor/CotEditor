@@ -111,11 +111,18 @@ struct StatusBar: View {
         .buttonStyle(.borderless)
         .controlSize(.small)
         .lineLimit(1)
-        .frame(height: (ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 27) ? nil : 18)
-        .padding(.vertical, 7)
-        .padding(.leading)
-        .padding(.trailing, (ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 27) ? 4 : 0)
-        .containerCornerOffset(.horizontal, sizeToFit: true)
+        .modifier { container in
+            if #available(macOS 27, *) {
+                container
+                    .frame(height: 13)
+            } else {
+                container
+                    .frame(height: 18)
+                    .padding(.vertical, 7)
+                    .padding(.leading)
+                    .containerCornerOffset(.horizontal, sizeToFit: true)
+            }
+        }
         .background(.windowBackground.opacity(self.prefersOpaqueBarBackground ? 1 : 0))
         .animation(.linear, value: self.prefersOpaqueBarBackground)
     }

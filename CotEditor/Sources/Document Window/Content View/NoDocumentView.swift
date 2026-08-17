@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,6 +29,20 @@ struct NoDocumentView: View {
     
     var body: some View {
         
+        ScrollView {
+            self.contentView
+                .scenePadding()
+                .frame(maxWidth: .infinity)
+                .containerRelativeFrame(.vertical)
+        }
+        .scrollBounceBehavior(.basedOnSize)
+        .background(.thickMaterial)
+    }
+    
+    
+    /// The content view.
+    @ContentBuilder private var contentView: some View {
+        
         ContentUnavailableView {
             Label {
                 Text("No document selected", tableName: "Document")
@@ -42,9 +56,6 @@ struct NoDocumentView: View {
                     .frame(height: 64)
             }
         }
-        .scenePadding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.thickMaterial)
     }
 }
 

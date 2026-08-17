@@ -5,7 +5,7 @@
 
 ### Improvements
 
-- [beta] Adjust the scroll view buttons appearance on macOS 26.
+- [beta] Refine overall appearance details.
 - [non-AppStore ver.] Update Sparkle from 2.9.5 to 2.9.6.
 
 

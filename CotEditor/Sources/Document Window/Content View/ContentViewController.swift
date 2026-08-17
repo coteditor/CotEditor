@@ -93,12 +93,25 @@ final class ContentViewController: NSViewController {
             case let document as Document:
                 DocumentViewController(document: document)
             case let document as PreviewDocument:
-                NSHostingController(rootView: FilePreviewView(item: document))
+                Self.hostingController(rootView: FilePreviewView(item: document))
             case .none:
-                NSHostingController(rootView: NoDocumentView())
+                Self.hostingController(rootView: NoDocumentView())
             default:
                 preconditionFailure()
         }
+    }
+    
+    
+    /// Creates a hosting controller that doesn’t propagate the SwiftUI content’s ideal size to the split view pane layout.
+    ///
+    /// - Parameter rootView: The SwiftUI view to host.
+    /// - Returns: A hosting controller.
+    private static func hostingController(rootView: some View) -> sending NSViewController {
+        
+        let controller = NSHostingController(rootView: rootView)
+        controller.sizingOptions = []
+        
+        return controller
     }
 }
 

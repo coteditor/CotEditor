@@ -33,6 +33,20 @@ struct FilePreviewView: View {
     
     var body: some View {
         
+        ScrollView {
+            self.contentView
+                .scenePadding()
+                .frame(maxWidth: .infinity)
+                .containerRelativeFrame(.vertical)
+        }
+        .scrollBounceBehavior(.basedOnSize)
+        .background(.thickMaterial)
+    }
+    
+    
+    /// The content view.
+    @ContentBuilder private var contentView: some View {
+        
         VStack {
             QuickLookView(item: self.item)
                 .frame(maxWidth: self.item.previewSize?.width, maxHeight: self.item.previewSize?.height, alignment: .center)
@@ -103,9 +117,6 @@ struct FilePreviewView: View {
             .frame(maxWidth: 400)
             .accessibilityLabel(.init("Information", table: "Document", comment: "accessibility label"))
         }
-        .scenePadding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.thickMaterial)
     }
 }
 
