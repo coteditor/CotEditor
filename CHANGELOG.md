@@ -9,6 +9,13 @@
 - [non-AppStore ver.] Update Sparkle from 2.9.5 to 2.9.6.
 
 
+### Known Issues
+
+- The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).
+- In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
+- The text added in CotEditor 7.1.0 is not yet localized in Bulgarian.
+
+
 
 7.1.0-beta.4 (2026-08-16)
 --------------------------
@@ -16,13 +23,6 @@
 ### Improvements
 
 - [beta] Refine overall appearance details.
-
-
-### Known Issues
-
-- The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).
-- In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
-- The text added in CotEditor 7.1.0 is not yet localized in Bulgarian.
 
 
 
