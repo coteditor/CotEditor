@@ -3,6 +3,10 @@
 7.0.9 (unreleased)
 --------------------------
 
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle from 2.9.5 to 2.9.6.
+
 
 
 7.0.8 (2026-08-07)
