@@ -303,16 +303,9 @@ private struct ModeIndentOptionsView: View {
                    isOn: self.usesCustomIndentation)
             
             Group {
-                HStack(alignment: .firstTextBaseline) {
-                    Text(.init("Prefer using", table: "EditSettings"))
-                        .accessibilityLabeledPair(role: .label, id: "expandsTab", in: self.accessibility)
-                    Picker(selection: self.expandsTab) {
-                        Text("Spaces", tableName: "EditSettings", comment: "indent style").tag(true)
-                        Text("Tabs", tableName: "EditSettings", comment: "indent style").tag(false)
-                    } label: {
-                        EmptyView()
-                    }
-                    .accessibilityLabeledPair(role: .content, id: "expandsTab", in: self.accessibility)
+                Picker(.init("Prefer using", table: "EditSettings"), selection: self.expandsTab) {
+                    Text("Spaces", tableName: "EditSettings", comment: "indent style").tag(true)
+                    Text("Tabs", tableName: "EditSettings", comment: "indent style").tag(false)
                 }
                 
                 HStack(alignment: .firstTextBaseline) {
@@ -323,7 +316,6 @@ private struct ModeIndentOptionsView: View {
                     Text("spaces", tableName: "EditSettings", comment: "unit for indentation")
                 }
             }
-            .labelsHidden()
             .disabled(self.options == nil)
             .foregroundStyle(self.options != nil ? .primary : .tertiary)
             .padding(.leading, 20)
@@ -336,11 +328,7 @@ private struct ModeIndentOptionsView: View {
         
         Binding(
             get: { self.options != nil },
-            set: { usesCustomIndentation in
-                self.options = usesCustomIndentation
-                    ? .init(expandsTab: self.defaultExpandsTab, width: self.defaultIndentWidth)
-                    : nil
-            })
+            set: { self.options = $0 ? .init(expandsTab: self.defaultExpandsTab, width: self.defaultIndentWidth) : nil })
     }
     
     
@@ -395,13 +383,9 @@ private extension FontType {
         
         switch self {
             case .standard:
-                .init("FontType.standard.label",
-                      defaultValue: "Standard",
-                      table: "ModeSettings")
+                .init("FontType.standard.label", defaultValue: "Standard", table: "ModeSettings")
             case .monospaced:
-                .init("FontType.monospaced.label",
-                      defaultValue: "Monospaced",
-                      table: "ModeSettings")
+                .init("FontType.monospaced.label", defaultValue: "Monospaced", table: "ModeSettings")
         }
     }
 }

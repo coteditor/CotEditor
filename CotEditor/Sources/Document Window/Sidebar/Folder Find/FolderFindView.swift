@@ -166,7 +166,7 @@ private struct FolderFindControlView: View {
                 
                 Toggle(isOn: Binding(get: { !self.ignoresCase }, set: { self.ignoresCase = !$0 })) {
                     Label {
-                        Text(.init("Case Sensitive", table: "TextFind", comment: "toggle button label"))
+                        Text("Case Sensitive", tableName: "TextFind", comment: "toggle button label")
                     } icon: {
                         Image(systemName: "textformat")
                             .environment(\.locale, Locale(script: .latin))
