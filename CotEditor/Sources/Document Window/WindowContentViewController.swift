@@ -103,10 +103,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         let contentViewController = ContentViewController(document: self.document)
         self.contentViewItem = NSSplitViewItem(viewController: contentViewController)
         let statusBarController = NSSplitViewItemAccessoryViewController()
-        statusBarController.view = NSHostingView(rootView: VStack(spacing: 0) {
-            Divider()
-            StatusBar(model: self.statusBarModel)
-        })
+        statusBarController.view = NSHostingView(rootView: StatusBar(model: self.statusBarModel))
         statusBarController.isHidden = !UserDefaults.standard[.showStatusBar]
         if #unavailable(macOS 27) {
             statusBarController.automaticallyAppliesContentInsets = false

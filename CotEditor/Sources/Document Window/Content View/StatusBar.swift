@@ -60,6 +60,19 @@ struct StatusBar: View {
     
     var body: some View {
         
+        if #available(macOS 27, *) {
+            self.contentView
+        } else {
+            VStack(spacing: 0) {
+                Divider()
+                self.contentView
+            }
+        }
+    }
+    
+    
+    @ContentBuilder private var contentView: some View {
+        
         HStack {
             if self.hasDonated, self.badgeType != .invisible {
                 CoffeeBadge(type: self.badgeType)
