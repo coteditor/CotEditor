@@ -165,20 +165,19 @@ struct AppearanceSettingsView: View {
                     } currentValueLabel: {
                         Text(self.windowAlphaBinding.wrappedValue, format: .percent)
                     } minimumValueLabel: {
-                        OpacitySample(opacity: 0.2)
+                        OpacitySample(opacity: Self.windowAlphaRange.lowerBound)
                             .frame(height: 20)
                             .help(.init("OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
                     } maximumValueLabel: {
-                        OpacitySample(opacity: 1)
+                        OpacitySample(opacity: Self.windowAlphaRange.upperBound)
                             .frame(height: 20)
                             .help(.init("OpacitySlider.maximumValue.label", defaultValue: "Opaque", table: "AppearanceSettings"))
                     } ticks: {
-                        SliderTickContentForEach(Array(stride(from: 0.2, through: 1, by: 0.1)), id: \.self) { value in
+                        SliderTickContentForEach(Array(stride(from: ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 27 ? 0.2 : 0, through: 1, by: 0.1)), id: \.self) { value in
                             SliderTick(value)
                         }
                     }
-                    .sensoryFeedback(.levelChange, trigger: self.windowAlpha == 1)
-                    .frame(width: 240)
+                    .frame(maxWidth: 260)
                     
                     TextField(value: self.windowAlphaBinding, format: .percent.precision(.fractionLength(0)), prompt: Text(1, format: .percent), label: EmptyView.init)
                         .monospacedDigit()
