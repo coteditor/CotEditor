@@ -38,7 +38,7 @@ struct LinkButton: View {
                     .symbolVariant(.circle)
             }
             .labelStyle(.iconOnly)
-            .buttonStyle(.plain)
+            .buttonStyle(.borderless)
             .help(self.url)
         }
     }

@@ -35,34 +35,32 @@ struct SyntaxMetadataEditView: View {
     
     var body: some View {
         
-        VStack {
-            Form {
-                TextField(.init("Version:", table: "SyntaxEditor", comment: "label"),
-                          text: $metadata.version ?? "")
-                TextField(.init("Last Modified:", table: "SyntaxEditor", comment: "label"),
-                          text: $metadata.lastModified ?? "")
-                LabeledContent(.init("Distribution URL:", table: "SyntaxEditor", comment: "label")) {
-                    InsetTextField(text: $metadata.distributionURL ?? "")
-                        .inset(.trailing, 32)
-                        .overlay(alignment: .trailing) {
-                            LinkButton(url: self.metadata.distributionURL ?? "")
-                                .foregroundStyle(.secondary)
-                                .padding(.trailing, 4)
-                        }
-                }
-                TextField(.init("Author:", table: "SyntaxEditor", comment: "label"),
-                          text: $metadata.author ?? "")
-                TextField(.init("License:", table: "SyntaxEditor", comment: "label"),
-                          text: $metadata.license ?? "")
-                TextField(.init("Description:", table: "SyntaxEditor", comment: "label"),
-                          text: $metadata.description ?? "", axis: .vertical)
-                .lineLimit(5, reservesSpace: true)
+        Form {
+            TextField(.init("Version:", table: "SyntaxEditor"),
+                      text: $metadata.version ?? "")
+            TextField(.init("Last Modified:", table: "SyntaxEditor"),
+                      text: $metadata.lastModified ?? "")
+            LabeledContent(.init("Distribution URL:", table: "SyntaxEditor")) {
+                InsetTextField(text: $metadata.distributionURL ?? "")
+                    .inset(.trailing, 32)
+                    .overlay(alignment: .trailing) {
+                        LinkButton(url: self.metadata.distributionURL ?? "")
+                            .padding(.trailing, 4)
+                    }
             }
+            TextField(.init("Author:", table: "SyntaxEditor"),
+                      text: $metadata.author ?? "")
+            TextField(.init("License:", table: "SyntaxEditor"),
+                      text: $metadata.license ?? "")
+            TextField(.init("Description:", table: "SyntaxEditor"),
+                      text: $metadata.description ?? "", axis: .vertical)
+            .lineLimit(5, reservesSpace: true)
+        }
+        
+        Spacer()
+        HStack {
             Spacer()
-            HStack {
-                Spacer()
-                HelpLink(anchor: "syntax_metadata_settings")
-            }
+            HelpLink(anchor: "syntax_metadata_settings")
         }
     }
 }

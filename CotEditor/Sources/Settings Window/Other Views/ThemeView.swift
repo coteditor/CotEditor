@@ -583,7 +583,6 @@ private struct ThemeMetadataView: View {
                 self.itemView(.init("URL", table: "ThemeEditor"), text: $metadata.distributionURL)
                     .textContentType(.URL)
                 LinkButton(url: self.metadata.distributionURL ?? "")
-                    .foregroundStyle(.secondary)
             }
             self.itemView(.init("License", table: "ThemeEditor"), text: $metadata.license)
             self.itemView(.init("Description", table: "ThemeEditor"), text: $metadata.description)
