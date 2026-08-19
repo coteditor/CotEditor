@@ -29,8 +29,7 @@ import Defaults
 struct AppearanceSettingsView: View {
     
     private static let windowAlphaRange = 0.2...1.0
-    
-    @Namespace private var accessibility
+    private static let verticalSpace: CGFloat = 6
     
     @Environment(\.layoutDirection) private var layoutDirection
     
@@ -52,21 +51,13 @@ struct AppearanceSettingsView: View {
     
     var body: some View {
         
-        Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 12) {
-            GridRow {
-                Text("Standard font:", tableName: "AppearanceSettings")
-                    .gridColumnAlignment(.trailing)
-                    .accessibilityLabeledPair(role: .label, id: "font", in: self.accessibility)
-                
+        Form {
+            LabeledContent(.init("Standard font:", table: "AppearanceSettings")) {
                 FontSettingView(data: $font, fallback: FontType.standard.systemFont(), antialias: $shouldAntialias, ligature: $ligature)
-                    .accessibilityLabeledPair(role: .content, id: "font", in: self.accessibility)
             }
+            .padding(.bottom, Self.verticalSpace)
             
-            GridRow {
-                Text("Monospaced font:", tableName: "AppearanceSettings")
-                    .gridColumnAlignment(.trailing)
-                    .accessibilityLabeledPair(role: .label, id: "monospacedFont", in: self.accessibility)
-                
+            LabeledContent(.init("Monospaced font:", table: "AppearanceSettings")) {
                 FontSettingView(data: $monospacedFont, fallback: FontType.monospaced.systemFont(), antialias: $monospacedShouldAntialias, ligature: $monospacedLigature)
                     .onChange(of: self.monospacedFont) { oldValue, newValue in
                         if self.isRestoringMonospacedFont {
@@ -87,7 +78,6 @@ struct AppearanceSettingsView: View {
                         
                         self.monospacedAlertFont = oldValue
                     }
-                    .accessibilityLabeledPair(role: .content, id: "monospacedFont", in: self.accessibility)
                     .alert(.init("MonospacedFontAlert.title", defaultValue: "The selected font doesn’t seem to be monospaced.", table: "AppearanceSettings"), item: $monospacedAlertFont) { font in
                         Button(.ok) { }
                         Button(role: .cancel) {
@@ -98,12 +88,9 @@ struct AppearanceSettingsView: View {
                         Text(.init("MonospacedFontAlert.message", defaultValue: "Do you want to use it for the monospaced font?", table: "AppearanceSettings", comment: "“it” is the selected font in the title."))
                     }
             }
+            .padding(.bottom, Self.verticalSpace)
             
-            GridRow {
-                Text("Line height:", tableName: "AppearanceSettings")
-                    .gridColumnAlignment(.trailing)
-                    .accessibilityLabeledPair(role: .label, id: "lineHeight", in: self.accessibility)
-                
+            LabeledContent(.init("Line height:", table: "AppearanceSettings")) {
                 HStack(alignment: .firstTextBaseline) {
                     Stepper(value: $lineHeight, in: 0.1...10, step: 0.1, format: .number.precision(.fractionLength(1...2)).numberLocale, label: EmptyView.init)
                         .monospacedDigit()
@@ -114,51 +101,30 @@ struct AppearanceSettingsView: View {
                     Text("times", tableName: "AppearanceSettings", comment: "unit for line height")
                         .accessibilityHidden(true)
                 }
-                .accessibilityLabeledPair(role: .content, id: "lineHeight", in: self.accessibility)
-            }
-            
-            GridRow {
-                Text("Appearance:", tableName: "AppearanceSettings")
-                    .gridColumnAlignment(.trailing)
-                    .accessibilityLabeledPair(role: .label, id: "documentAppearance", in: self.accessibility)
-                
-                Picker(selection: $documentAppearance) {
-                    ForEach(AppearanceMode.allCases, id: \.self) {
-                        Text($0.label)
-                    }
-                } label: {
-                    EmptyView()
-                }
-                .accessibilityLabeledPair(role: .content, id: "documentAppearance", in: self.accessibility)
-                .pickerStyle(.radioGroup)
-                .horizontalRadioGroupLayout()
                 .labelsHidden()
             }
+            .padding(.bottom, Self.verticalSpace)
             
-            GridRow {
-                Text("Status bar:", tableName: "AppearanceSettings")
-                    .gridColumnAlignment(.trailing)
-                    .accessibilityLabeledPair(role: .label, id: "prefersOpaqueBarBackground", in: self.accessibility)
-                
-                Picker(selection: $prefersOpaqueBarBackground) {
-                    Text("Tinted", tableName: "AppearanceSettings")
-                        .tag(false)
-                    Text("Opaque", tableName: "AppearanceSettings")
-                        .tag(true)
-                } label: {
-                    EmptyView()
+            Picker(.init("Appearance:", table: "AppearanceSettings"), selection: $documentAppearance) {
+                ForEach(AppearanceMode.allCases, id: \.self) {
+                    Text($0.label)
                 }
-                .accessibilityLabeledPair(role: .content, id: "prefersOpaqueBarBackground", in: self.accessibility)
-                .pickerStyle(.radioGroup)
-                .horizontalRadioGroupLayout()
-                .labelsHidden()
             }
+            .pickerStyle(.radioGroup)
+            .horizontalRadioGroupLayout()
+            .padding(.bottom, Self.verticalSpace)
             
-            GridRow(alignment: .firstTextBaseline) {
-                Text("Editor opacity:", tableName: "AppearanceSettings")
-                    .gridColumnAlignment(.trailing)
-                    .accessibilityLabeledPair(role: .label, id: "windowAlpha", in: self.accessibility)
-                
+            Picker(.init("Status bar:", table: "AppearanceSettings"), selection: $prefersOpaqueBarBackground) {
+                Text("Tinted", tableName: "AppearanceSettings")
+                    .tag(false)
+                Text("Opaque", tableName: "AppearanceSettings")
+                    .tag(true)
+            }
+            .pickerStyle(.radioGroup)
+            .horizontalRadioGroupLayout()
+            .padding(.bottom, Self.verticalSpace)
+            
+            LabeledContent(.init("Editor opacity:", table: "AppearanceSettings")) {
                 HStack(alignment: .firstTextBaseline) {
                     Slider(value: self.windowAlphaBinding, enabledBounds: Self.windowAlphaRange) {
                         EmptyView()
@@ -184,17 +150,17 @@ struct AppearanceSettingsView: View {
                         .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
                         .frame(width: 64)
                 }
-                .accessibilityLabeledPair(role: .content, id: "windowAlpha", in: self.accessibility)
+                .labelsHidden()
             }
             .accessibilityElement(children: .contain)
-            
-            ThemeView()
-                .padding(.top, 10)
-            
-            HStack {
-                Spacer()
-                HelpLink(anchor: "settings_appearance")
-            }
+        }
+        .padding(.bottom)
+        
+        ThemeView()
+        
+        HStack {
+            Spacer()
+            HelpLink(anchor: "settings_appearance")
         }
     }
     
@@ -237,6 +203,7 @@ private struct FontSettingView: View {
                 FontSizeStepper(.init("Font size", table: "AppearanceSettings"), font: self.font)
                     .accessibilityValue(.init("\(font.pointSize, format: .number) points",
                                               table: "AppearanceSettings", comment: "accessibility label for font size"))
+                    .labelsHidden()
                     .padding(.leading, -4)
                 FontPicker(.init("Select…", table: "AppearanceSettings", comment: "label for font picker button"), selection: self.font)
             }
