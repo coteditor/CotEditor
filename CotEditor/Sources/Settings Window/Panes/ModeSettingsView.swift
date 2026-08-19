@@ -311,9 +311,16 @@ private struct ModeIndentOptionsView: View {
                    isOn: self.usesCustomIndentation)
             
             Group {
-                Picker(.init("Prefer using", table: "EditSettings"), selection: self.expandsTab) {
-                    Text("Spaces", tableName: "EditSettings", comment: "indent style").tag(true)
-                    Text("Tabs", tableName: "EditSettings", comment: "indent style").tag(false)
+                HStack(alignment: .firstTextBaseline) {
+                    Text(.init("Prefer using", table: "EditSettings"))
+                        .accessibilityLabeledPair(role: .label, id: "expandsTab", in: self.accessibility)
+                    Picker(selection: self.expandsTab) {
+                        Text("Spaces", tableName: "EditSettings", comment: "indent style").tag(true)
+                        Text("Tabs", tableName: "EditSettings", comment: "indent style").tag(false)
+                    } label: {
+                        EmptyView()
+                    }
+                    .accessibilityLabeledPair(role: .content, id: "expandsTab", in: self.accessibility)
                 }
                 
                 HStack(alignment: .firstTextBaseline) {
@@ -324,6 +331,7 @@ private struct ModeIndentOptionsView: View {
                     Text("spaces", tableName: "EditSettings", comment: "unit for indentation")
                 }
             }
+            .labelsHidden()
             .disabled(self.options == nil)
             .foregroundStyle(self.options != nil ? .primary : .tertiary)
             .padding(.leading, 20)
