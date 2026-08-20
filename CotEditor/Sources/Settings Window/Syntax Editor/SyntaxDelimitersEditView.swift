@@ -49,13 +49,13 @@ struct SyntaxDelimitersEditView: View {
                 
                 HStack(alignment: .firstTextBaseline, spacing: 20) {
                     VStack(alignment: .leading) {
-                        Text("Inline comment:", tableName: "SyntaxEditor", comment: "label")
+                        Text("Inline comment:", tableName: "SyntaxEditor")
                             .accessibilityAddTraits(.isHeader)
                         InlineCommentsEditView(items: $inlineComments)
                     }.accessibilityElement(children: .contain)
                     
                     VStack(alignment: .leading) {
-                        Text("Block comment:", tableName: "SyntaxEditor", comment: "label")
+                        Text("Block comment:", tableName: "SyntaxEditor")
                             .accessibilityAddTraits(.isHeader)
                         BlockCommentsEditView(items: $blockComments)
                     }.accessibilityElement(children: .contain)
@@ -68,7 +68,7 @@ struct SyntaxDelimitersEditView: View {
                     .fontWeight(.semibold)
                     .padding(.bottom, 2)
                 
-                Text("String delimiters:", tableName: "SyntaxEditor", comment: "label")
+                Text("String delimiters:", tableName: "SyntaxEditor")
                     .accessibilityAddTraits(.isHeader)
                 StringDelimitersEditView(items: $stringDelimiters)
             }
@@ -79,7 +79,7 @@ struct SyntaxDelimitersEditView: View {
                     .fontWeight(.semibold)
                     .padding(.bottom, 2)
                 
-                Text("Character delimiters:", tableName: "SyntaxEditor", comment: "label")
+                Text("Character delimiters:", tableName: "SyntaxEditor")
                     .accessibilityAddTraits(.isHeader)
                 CharacterDelimitersEditView(items: $characterDelimiters)
             }
@@ -90,7 +90,7 @@ struct SyntaxDelimitersEditView: View {
                     .fontWeight(.semibold)
                     .padding(.bottom, 2)
                 
-                Text("Block delimiters:", tableName: "SyntaxEditor", comment: "label")
+                Text("Block delimiters:", tableName: "SyntaxEditor")
                     .accessibilityAddTraits(.isHeader)
                 BlockEditView(items: $indentations)
                 Text("The block delimiters are used for automatic indentation while typing.", tableName: "SyntaxEditor")

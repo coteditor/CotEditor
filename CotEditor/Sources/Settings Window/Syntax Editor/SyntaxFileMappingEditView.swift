@@ -48,14 +48,14 @@ struct SyntaxFileMappingEditView: View {
                 }
                 
                 EditTable($filenames) {
-                    Text("Filenames:", tableName: "SyntaxEditor", comment: "label")
+                    Text("Filenames:", tableName: "SyntaxEditor")
                 }
             }
             
             GridRow {
                 VStack(alignment: .leading, spacing: 0) {
                     EditTable($interpreters) {
-                        Text("Interpreters:", tableName: "SyntaxEditor", comment: "label")
+                        Text("Interpreters:", tableName: "SyntaxEditor")
                     }
                 
                     Text("The interpreters are used to determine the syntax from the `#!` header in the document.", tableName: "SyntaxEditor", comment: "description")

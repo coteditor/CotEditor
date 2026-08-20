@@ -1463,7 +1463,6 @@
       }
     },
     "Encoding:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -1891,7 +1890,6 @@
       }
     },
     "Normalization:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -2533,7 +2531,6 @@
       }
     },
     "Unit:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -2640,7 +2637,6 @@
       }
     },
     "Whitespace:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {

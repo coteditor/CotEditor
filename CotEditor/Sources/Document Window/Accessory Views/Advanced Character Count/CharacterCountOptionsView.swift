@@ -59,7 +59,7 @@ struct CharacterCountOptionsView: View {
         
         Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 18) {
             GridRow {
-                Text("Whitespace:", tableName: "AdvancedCharacterCount", comment: "label")
+                Text("Whitespace:", tableName: "AdvancedCharacterCount")
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
@@ -76,7 +76,7 @@ struct CharacterCountOptionsView: View {
             .accessibilityElement(children: .contain)
             
             GridRow {
-                Text("Unit:", tableName: "AdvancedCharacterCount", comment: "label")
+                Text("Unit:", tableName: "AdvancedCharacterCount")
                     .accessibilityLabeledPair(role: .label, id: "unit", in: self.accessibility)
                 
                 VStack(alignment: .leading) {
@@ -97,7 +97,7 @@ struct CharacterCountOptionsView: View {
                         .frame(width: max(300, self.contentWidth ?? 0), alignment: .leading)
                     
                     if self.unit == .byte {
-                        Picker(.init("Encoding:", table: "AdvancedCharacterCount", comment: "label"), selection: $encoding) {
+                        Picker(.init("Encoding:", table: "AdvancedCharacterCount"), selection: $encoding) {
                             ForEach(String.sortedAvailableStringEncodings.enumerated(), id: \.offset) { _, encoding in
                                 if let encoding {
                                     Text(String.localizedName(of: encoding))
@@ -112,8 +112,8 @@ struct CharacterCountOptionsView: View {
                     
                     if self.unit != .graphemeCluster {
                         HStack(alignment: .firstTextBaseline) {
-                            Toggle(.init("Normalization:", table: "AdvancedCharacterCount", comment: "label"), isOn: $normalizes)
-                            Picker(.init("Normalization:", table: "AdvancedCharacterCount", comment: "label"), selection: $normalizationForm) {
+                            Toggle(.init("Normalization:", table: "AdvancedCharacterCount"), isOn: $normalizes)
+                            Picker(.init("Normalization:", table: "AdvancedCharacterCount"), selection: $normalizationForm) {
                                 Section {
                                     ForEach(UnicodeNormalizationForm.standardForms, id: \.self) { form in
                                         Text(form.localizedName)

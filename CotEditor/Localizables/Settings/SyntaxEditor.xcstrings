@@ -886,7 +886,6 @@
       }
     },
     "Author:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -1100,7 +1099,6 @@
       }
     },
     "Block comment:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -1207,7 +1205,6 @@
       }
     },
     "Block delimiters:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -1528,7 +1525,6 @@
       }
     },
     "Character delimiters:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -2063,7 +2059,6 @@
       }
     },
     "Description:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -2277,7 +2272,6 @@
       }
     },
     "Distribution URL:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -3026,7 +3020,6 @@
       }
     },
     "Filenames:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -3774,7 +3767,6 @@
       }
     },
     "Inline comment:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -3881,7 +3873,6 @@
       }
     },
     "Interpreters:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -4201,7 +4192,6 @@
       }
     },
     "Last Modified:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -4308,7 +4298,6 @@
       }
     },
     "License:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -5489,7 +5478,6 @@
       }
     },
     "String delimiters:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -7141,7 +7129,6 @@
       }
     },
     "Version:" : {
-      "comment" : "label",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
