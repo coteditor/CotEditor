@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2025 1024jp
+//  © 2017-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -49,6 +49,6 @@ private extension NSTextView {
         let context = snippet.insertions(for: self.string, ranges: ranges)
         
         self.edit(with: context, actionName: String(localized: "Insert Snippet", table: "MainMenu"))
-        self.centerSelectionInVisibleArea(self)
+        self.scrollRangeToVisible(self.selectedRange)
     }
 }

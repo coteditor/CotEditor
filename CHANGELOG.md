@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Avoid unnecessary scroll after inserting a snippet when the range is already visible.
 - Update tree-sitter-scala to 0.26.2.
 - [non-AppStore ver.] Update Sparkle from 2.9.5 to 2.9.6.
 
