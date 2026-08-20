@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Avoid unnecessary scroll after inserting a snippet when the range is already visible.
 - [beta] Refine overall appearance details.
 - [non-AppStore ver.] Update Sparkle from 2.9.5 to 2.9.6.
 
