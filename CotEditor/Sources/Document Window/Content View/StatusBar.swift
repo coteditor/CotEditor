@@ -137,7 +137,9 @@ struct StatusBar: View {
             }
         }
         .background(.windowBackground.opacity(self.prefersOpaqueBarBackground ? 1 : 0))
-        .animation(.linear, value: self.prefersOpaqueBarBackground)
+        .animation(.default, value: self.prefersOpaqueBarBackground)
+        .animation(.default, value: self.hasDonated)
+        .animation(.default, value: self.badgeType)
     }
 }
 
