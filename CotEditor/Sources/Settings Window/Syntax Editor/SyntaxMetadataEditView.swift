@@ -48,6 +48,7 @@ struct SyntaxMetadataEditView: View {
                             .padding(.trailing, 4)
                     }
             }
+            .offset(y: 2)  // workaround for inconsistent alignment with LabeledContent (2026-08, macOS 26–27)
             TextField(.init("Author:", table: "SyntaxEditor"),
                       text: $metadata.author ?? "")
             TextField(.init("License:", table: "SyntaxEditor"),
@@ -69,6 +70,8 @@ struct SyntaxMetadataEditView: View {
 // MARK: - Preview
 
 #Preview {
-    SyntaxMetadataEditView(metadata: .constant(.init()))
+    @Previewable @State var metadata = SyntaxObject.Metadata()
+    
+    SyntaxMetadataEditView(metadata: $metadata)
         .scenePadding()
 }
