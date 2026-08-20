@@ -179,7 +179,7 @@ private struct RegexValidationMark: View {
             Image(systemName: "exclamationmark.triangle")
                 .symbolVariant(.fill)
                 .symbolRenderingMode(.multicolor)
-                .help(Syntax.Error.Code.regularExpression.localizedDescription)
+                .help(Syntax.Error.Code.regularExpression.descriptionResource)
         }
     }
 }

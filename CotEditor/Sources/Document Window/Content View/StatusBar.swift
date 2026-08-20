@@ -294,7 +294,7 @@ private struct DocumentStatusBar: View {
             
             Divider()
             
-            LineEndingPicker(String(localized: "Line Endings", table: "Document"), selection: $lineEnding) { lineEnding in
+            LineEndingPicker(.init("Line Endings", table: "Document"), selection: $lineEnding) { lineEnding in
                 self.document.changeLineEnding(to: lineEnding)
             }
             .disabled(!self.document.isEditable)
@@ -356,14 +356,14 @@ private struct LineEndingPicker: NSViewRepresentable {
     
     typealias NSViewType = NSPopUpButton
     
-    var label: String
+    var label: LocalizedStringResource
     @Binding var selection: LineEnding
     var onSelect: (LineEnding) -> Void
     
     
-    init(_ label: String, selection: Binding<LineEnding>, onSelect: @escaping (LineEnding) -> Void) {
+    init(_ titleResource: LocalizedStringResource, selection: Binding<LineEnding>, onSelect: @escaping (LineEnding) -> Void) {
         
-        self.label = label
+        self.label = titleResource
         self._selection = selection
         self.onSelect = onSelect
     }
@@ -371,9 +371,10 @@ private struct LineEndingPicker: NSViewRepresentable {
     
     func makeNSView(context: Context) -> NSPopUpButton {
         
-        let menu = OptionalMenu(title: self.label)
+        let label = String(localized: self.label)
+        let menu = OptionalMenu(title: label)
         menu.autoenablesItems = false
-        menu.items = [.sectionHeader(title: self.label)]
+        menu.items = [.sectionHeader(title: label)]
         menu.items += LineEnding.allCases.map { lineEnding in
             let item = NSMenuItem()
             item.title = lineEnding.label

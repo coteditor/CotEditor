@@ -99,16 +99,16 @@ private struct ConflictTable: View {
     
     typealias Item = FileMappingConflict
     
-    var name: LocalizedStringResource
+    var nameResource: LocalizedStringResource
     @State var items: [Item]
     
     @State private var selection: Item.ID?
     @State private var sortOrder = [KeyPathComparator(\Item.name)]
     
     
-    init(_ name: LocalizedStringResource, items: [Item]) {
+    init(_ nameResource: LocalizedStringResource, items: [Item]) {
         
-        self.name = name
+        self.nameResource = nameResource
         self.items = items
     }
     
@@ -117,7 +117,7 @@ private struct ConflictTable: View {
         
         Section {
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
-                TableColumn(self.name, value: \.name)
+                TableColumn(self.nameResource, value: \.name)
                 TableColumn(.init("Used syntax", table: "SyntaxMappingConflict", comment: "table column header"), value: \.primarySyntax) {
                     Text($0.primarySyntax).fontWeight(.semibold)
                 }
@@ -132,7 +132,7 @@ private struct ConflictTable: View {
             .frame(minHeight: 80, idealHeight: 120)
             
         } header: {
-            Text(self.name).fontWeight(.medium)
+            Text(self.nameResource).fontWeight(.medium)
         }
     }
 }

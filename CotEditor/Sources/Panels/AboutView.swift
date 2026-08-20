@@ -216,13 +216,13 @@ private struct CreditsView: View {
     
     private struct SectionView<Content: View>: View {
         
-        var label: LocalizedStringResource
+        var titleResource: LocalizedStringResource
         @ContentBuilder var content: Content
         
         
-        init(_ label: LocalizedStringResource, @ContentBuilder content: () -> Content) {
+        init(_ titleResource: LocalizedStringResource, @ContentBuilder content: () -> Content) {
             
-            self.label = label
+            self.titleResource = titleResource
             self.content = content()
         }
         
@@ -233,7 +233,7 @@ private struct CreditsView: View {
                 self.content
                     .padding(.bottom, 14)
             } header: {
-                Text(self.label)
+                Text(self.titleResource)
                     .fontWeight(.semibold)
                     .foregroundStyle(.secondary)
             }

@@ -96,7 +96,7 @@ struct SyntaxValidationView: View {
                             .help(self.error.value)
                             .lineLimit(1)
                     }
-                    Text(self.error.code.localizedDescription)
+                    Text(self.error.code.descriptionResource)
                         .controlSize(.small)
                         .foregroundStyle(.secondary)
                 }
@@ -113,29 +113,29 @@ struct SyntaxValidationView: View {
 
 extension Syntax.Error.Code {
     
-    var localizedDescription: String {
+    var descriptionResource: LocalizedStringResource {
         
         switch self {
             case .duplicated:
-                String(localized: "Syntax.Error.Code.duplicated",
-                       defaultValue: "The same word is registered multiple times.",
-                       table: "SyntaxEditor")
+                .init("Syntax.Error.Code.duplicated",
+                      defaultValue: "The same word is registered multiple times.",
+                      table: "SyntaxEditor")
             case .regularExpression:
-                String(localized: "Syntax.Error.Code.regularExpression",
-                       defaultValue: "Invalid regular expression.",
-                       table: "SyntaxEditor")
+                .init("Syntax.Error.Code.regularExpression",
+                      defaultValue: "Invalid regular expression.",
+                      table: "SyntaxEditor")
             case .blockComment:
-                String(localized: "Syntax.Error.Code.blockComment",
-                       defaultValue: "Block comment needs both begin and end delimiters.",
-                       table: "SyntaxEditor")
+                .init("Syntax.Error.Code.blockComment",
+                      defaultValue: "Block comment needs both begin and end delimiters.",
+                      table: "SyntaxEditor")
             case .nestableBlockComment:
-                String(localized: "Syntax.Error.Code.nestableBlockComment",
-                       defaultValue: "Nestable block comment must use different begin and end delimiters.",
-                       table: "SyntaxEditor")
+                .init("Syntax.Error.Code.nestableBlockComment",
+                      defaultValue: "Nestable block comment must use different begin and end delimiters.",
+                      table: "SyntaxEditor")
             case .invalidEscapeCharacter:
-                String(localized: "Syntax.Error.Code.invalidEscapeCharacter",
-                       defaultValue: "The escape character must be a single character in UTF-16 code unit.",
-                       table: "SyntaxEditor")
+                .init("Syntax.Error.Code.invalidEscapeCharacter",
+                      defaultValue: "The escape character must be a single character in UTF-16 code unit.",
+                      table: "SyntaxEditor")
         }
     }
 }
@@ -143,7 +143,7 @@ extension Syntax.Error.Code {
 
 private extension Syntax.Error.Scope {
     
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .highlight(let syntaxType):

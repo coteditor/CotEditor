@@ -84,15 +84,15 @@ extension Snippet {
         case cursor = "CURSOR"
         
         
-        var localizedDescription: String {
+        var descriptionResource: LocalizedStringResource {
             
             switch self {
                 case .selection:
-                    String(localized: "Snippet.Variable.selection.description",
-                           defaultValue: "The selected text.")
+                    .init("Snippet.Variable.selection.description",
+                          defaultValue: "The selected text.")
                 case .cursor:
-                    String(localized: "Snippet.Variable.cursor.description",
-                           defaultValue: "The insertion point after inserting the snippet.")
+                    .init("Snippet.Variable.cursor.description",
+                          defaultValue: "The insertion point after inserting the snippet.")
             }
         }
     }

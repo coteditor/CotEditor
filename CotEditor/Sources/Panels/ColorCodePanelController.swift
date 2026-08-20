@@ -255,53 +255,53 @@ private struct ColorCodePanelAccessory: View {
 
 private extension ColorCodeType {
     
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .hex:
-                String(localized: "ColorCodeType.hex.label",
-                       defaultValue: "Hexadecimal",
-                       table: "ColorCode")
+                .init("ColorCodeType.hex.label",
+                      defaultValue: "Hexadecimal",
+                      table: "ColorCode")
             case .hexWithAlpha:
-                String(localized: "ColorCodeType.hexWithAlpha.label",
-                       defaultValue: "Hexadecimal with Alpha",
-                       table: "ColorCode")
+                .init("ColorCodeType.hexWithAlpha.label",
+                      defaultValue: "Hexadecimal with Alpha",
+                      table: "ColorCode")
             case .shortHex:
-                String(localized: "ColorCodeType.shortHex.label",
-                       defaultValue: "Hexadecimal (Short)",
-                       table: "ColorCode")
+                .init("ColorCodeType.shortHex.label",
+                      defaultValue: "Hexadecimal (Short)",
+                      table: "ColorCode")
             case .shortHexWithAlpha:
-                String(localized: "ColorCodeType.shortHexWithAlpha.label",
-                       defaultValue: "Hexadecimal with Alpha (Short)",
-                       table: "ColorCode")
+                .init("ColorCodeType.shortHexWithAlpha.label",
+                      defaultValue: "Hexadecimal with Alpha (Short)",
+                      table: "ColorCode")
             case .cssRGB:
-                String(localized: "ColorCodeType.cssRGB.label",
-                       defaultValue: "CSS RGB",
-                       table: "ColorCode")
+                .init("ColorCodeType.cssRGB.label",
+                      defaultValue: "CSS RGB",
+                      table: "ColorCode")
             case .cssRGBa:
-                String(localized: "ColorCodeType.cssRGBa.label",
-                       defaultValue: "CSS RGBa",
-                       table: "ColorCode")
+                .init("ColorCodeType.cssRGBa.label",
+                      defaultValue: "CSS RGBa",
+                      table: "ColorCode")
             case .cssHSL:
-                String(localized: "ColorCodeType.cssHSL.label",
-                       defaultValue: "CSS HSL",
-                       table: "ColorCode")
+                .init("ColorCodeType.cssHSL.label",
+                      defaultValue: "CSS HSL",
+                      table: "ColorCode")
             case .cssHSLa:
-                String(localized: "ColorCodeType.cssHSLa.label",
-                       defaultValue: "CSS HSLa",
-                       table: "ColorCode")
+                .init("ColorCodeType.cssHSLa.label",
+                      defaultValue: "CSS HSLa",
+                      table: "ColorCode")
             case .cssHWB:
-                String(localized: "ColorCodeType.cssHWB.label",
-                       defaultValue: "CSS HWB",
-                       table: "ColorCode")
+                .init("ColorCodeType.cssHWB.label",
+                      defaultValue: "CSS HWB",
+                      table: "ColorCode")
             case .cssHWBWithAlpha:
-                String(localized: "ColorCodeType.cssHWBWithAlpha.label",
-                       defaultValue: "CSS HWB with Alpha",
-                       table: "ColorCode")
+                .init("ColorCodeType.cssHWBWithAlpha.label",
+                      defaultValue: "CSS HWB with Alpha",
+                      table: "ColorCode")
             case .cssKeyword:
-                String(localized: "ColorCodeType.cssKeyword.label",
-                       defaultValue: "CSS Keyword",
-                       table: "ColorCode")
+                .init("ColorCodeType.cssKeyword.label",
+                      defaultValue: "CSS Keyword",
+                      table: "ColorCode")
         }
     }
 }

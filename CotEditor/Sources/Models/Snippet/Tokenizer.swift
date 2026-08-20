@@ -32,7 +32,7 @@ protocol TokenRepresentable: RawRepresentable, Hashable, CaseIterable where Self
     static var suffix: String { get }
     
     var token: String { get }
-    var localizedDescription: String { get }
+    var descriptionResource: LocalizedStringResource { get }
 }
 
 

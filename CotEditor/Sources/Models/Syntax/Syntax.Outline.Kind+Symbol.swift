@@ -46,7 +46,7 @@ extension Syntax.Outline.Kind {
     /// Produces an AppKit `NSImage` for the kind symbol.
     var iconImage: NSImage {
         
-        self.symbol.nsImage(accessibilityDescription: self.label)!
+        self.symbol.nsImage(accessibilityDescription: String(localized: self.label))!
             .withSymbolConfiguration(.init(hierarchicalColor: self.color))!
     }
 }

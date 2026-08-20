@@ -536,7 +536,7 @@ private struct ThemeEditorView: View {
 
 private struct SystemColorPicker: View {
     
-    var label: LocalizedStringResource
+    var titleResource: LocalizedStringResource
     @Binding var selection: Theme.SystemDefaultStyle
     var systemColor: Color
     var supportsOpacity: Bool
@@ -544,9 +544,9 @@ private struct SystemColorPicker: View {
     @Namespace private var accessibility
     
     
-    init(_ label: LocalizedStringResource, selection: Binding<Theme.SystemDefaultStyle>, systemColor: Color, supportsOpacity: Bool = true) {
+    init(_ titleResource: LocalizedStringResource, selection: Binding<Theme.SystemDefaultStyle>, systemColor: Color, supportsOpacity: Bool = true) {
         
-        self.label = label
+        self.titleResource = titleResource
         self._selection = selection
         self.systemColor = systemColor
         self.supportsOpacity = supportsOpacity
@@ -557,7 +557,7 @@ private struct SystemColorPicker: View {
         
         VStack(alignment: .trailing, spacing: 4) {
             ColorPicker(selection: self.selection.usesSystemSetting ? .constant(self.systemColor) : $selection.binding, supportsOpacity: self.supportsOpacity) {
-                Text(self.label)
+                Text(self.titleResource)
                     .accessibilityLabeledPair(role: .label, id: "color", in: self.accessibility)
             }
             .disabled(self.selection.usesSystemSetting)
@@ -595,12 +595,12 @@ private struct ThemeMetadataView: View {
     }
     
     
-    @ContentBuilder private func itemView(_ title: LocalizedStringResource, text: Binding<String?>) -> some View {
+    @ContentBuilder private func itemView(_ titleResource: LocalizedStringResource, text: Binding<String?>) -> some View {
         
         if self.isEditable {
-            TextField(title, text: text ?? "", prompt: Text("Not defined", tableName: "ThemeEditor", comment: "placeholder"), axis: .vertical)
+            TextField(titleResource, text: text ?? "", prompt: Text("Not defined", tableName: "ThemeEditor", comment: "placeholder"), axis: .vertical)
         } else {
-            LabeledContent(title, value: text.wrappedValue ?? "")
+            LabeledContent(titleResource, value: text.wrappedValue ?? "")
                 .padding(.bottom, 2)
         }
     }

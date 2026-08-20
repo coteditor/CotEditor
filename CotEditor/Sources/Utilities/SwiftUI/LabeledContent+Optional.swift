@@ -30,11 +30,11 @@ extension LabeledContent where Label == Text, Content == _OptionalContent {
     /// Creates a labeled informational view showing “–” if the value is `nil`.
     ///
     /// - Parameters:
-    ///   - title: A string that describes the purpose of the view.
+    ///   - titleResource: Text resource for the view's localized title, that describes the purpose of the view.
     ///   - value: The optional value being labeled.
-    init(_ title: LocalizedStringResource, optional value: String?) {
+    init(_ titleResource: LocalizedStringResource, optional value: String?) {
         
-        self.init(title) {
+        self.init(titleResource) {
             _OptionalContent(value: value)
         }
     }

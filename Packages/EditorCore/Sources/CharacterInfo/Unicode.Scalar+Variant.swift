@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2025 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,12 +24,12 @@
 //  limitations under the License.
 //
 
-import Foundation
+public import Foundation
 
 public extension Unicode.Scalar {
     
     /// The description about the Unicode variant selector if the scalar is a variant selector.
-    var variantDescription: String? {
+    var variantDescription: LocalizedStringResource? {
         
         if let selector = EmojiVariationSelector(rawValue: self.value) {
             selector.label
@@ -38,9 +38,9 @@ public extension Unicode.Scalar {
             modifier.label
             
         } else if self.properties.isVariationSelector {
-            String(localized: "Variant",
-                   bundle: .module,
-                   comment: "label for general Unicode variation selectors")
+            .init("Variant",
+                  bundle: .module,
+                  comment: "label for general Unicode variation selectors")
             
         } else {
             nil
@@ -55,19 +55,19 @@ private enum EmojiVariationSelector: UInt32 {
     case emoji = 0xFE0F
     
     
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .emoji:
-                String(localized: "EmojiVariationSelector.emoji.label",
-                       defaultValue: "Emoji Style",
-                       bundle: .module,
-                       comment: "label for the Unicode variation selector that forces to draw the character in the emoji style")
+                .init("EmojiVariationSelector.emoji.label",
+                      defaultValue: "Emoji Style",
+                      bundle: .module,
+                      comment: "label for the Unicode variation selector that forces to draw the character in the emoji style")
             case .text:
-                String(localized: "EmojiVariationSelector.text.label",
-                       defaultValue: "Text Style",
-                       bundle: .module,
-                       comment: "label for the Unicode variation selector that forces to draw the character in the text style")
+                .init("EmojiVariationSelector.text.label",
+                      defaultValue: "Text Style",
+                      bundle: .module,
+                      comment: "label for the Unicode variation selector that forces to draw the character in the text style")
         }
     }
 }

@@ -27,22 +27,22 @@ import SwiftUI
 
 struct FontPicker: View {
     
-    private var label: LocalizedStringResource
+    private var titleResource: LocalizedStringResource
     @Binding private var font: NSFont
     
     @State private var delegate: Delegate?
     
     
-    init(_ label: LocalizedStringResource, selection: Binding<NSFont>) {
+    init(_ titleResource: LocalizedStringResource, selection: Binding<NSFont>) {
         
-        self.label = label
+        self.titleResource = titleResource
         self._font = selection
     }
     
     
     var body: some View {
         
-        Button(self.label) {
+        Button(self.titleResource) {
             self.delegate = Delegate { manager in
                 self.font = manager.convert(self.font)
             }

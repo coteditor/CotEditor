@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2025 1024jp
+//  © 2015-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,34 +35,34 @@ enum SkinToneModifier: UInt32, Sendable {
     case type6 = 0x1F3FF   // 🏿 Dark
     
     
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .type12:
-                String(localized: "SkinToneModifier.type12.label",
-                       defaultValue: "Skin Tone I-II",
-                       bundle: .module,
-                       comment: "label for Unicode emoji modifier applying the skin tone to the character")
+                .init("SkinToneModifier.type12.label",
+                      defaultValue: "Skin Tone I-II",
+                      bundle: .module,
+                      comment: "label for Unicode emoji modifier applying the skin tone to the character")
             case .type3:
-                String(localized: "SkinToneModifier.type3.label",
-                       defaultValue: "Skin Tone III",
-                       bundle: .module,
-                       comment: "label for Unicode emoji modifier applying the skin tone to the character")
+                .init("SkinToneModifier.type3.label",
+                      defaultValue: "Skin Tone III",
+                      bundle: .module,
+                      comment: "label for Unicode emoji modifier applying the skin tone to the character")
             case .type4:
-                String(localized: "SkinToneModifier.type4.label",
-                       defaultValue: "Skin Tone IV",
-                       bundle: .module,
-                       comment: "label for Unicode emoji modifier applying the skin tone to the character")
+                .init("SkinToneModifier.type4.label",
+                      defaultValue: "Skin Tone IV",
+                      bundle: .module,
+                      comment: "label for Unicode emoji modifier applying the skin tone to the character")
             case .type5:
-                String(localized: "SkinToneModifier.type5.label",
-                       defaultValue: "Skin Tone V",
-                       bundle: .module,
-                       comment: "label for Unicode emoji modifier applying the skin tone to the character")
+                .init("SkinToneModifier.type5.label",
+                      defaultValue: "Skin Tone V",
+                      bundle: .module,
+                      comment: "label for Unicode emoji modifier applying the skin tone to the character")
             case .type6:
-                String(localized: "SkinToneModifier.type6.label",
-                       defaultValue: "Skin Tone VI",
-                       bundle: .module,
-                       comment: "label for Unicode emoji modifier applying the skin tone to the character")
+                .init("SkinToneModifier.type6.label",
+                      defaultValue: "Skin Tone VI",
+                      bundle: .module,
+                      comment: "label for Unicode emoji modifier applying the skin tone to the character")
         }
     }
 }

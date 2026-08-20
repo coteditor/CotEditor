@@ -332,7 +332,7 @@ struct SyntaxEditView: View {
 extension SyntaxEditView.Pane {
     
     /// The localized label.
-    var label: String {
+    var label: LocalizedStringResource {
         
         switch self {
             case .keywords:
@@ -357,37 +357,37 @@ extension SyntaxEditView.Pane {
                 SyntaxType.comments.label
                 
             case .fileMapping:
-                String(localized: "File Mapping",
-                       table: "SyntaxEditor",
-                       comment: "menu item in sidebar")
+                .init("File Mapping",
+                      table: "SyntaxEditor",
+                      comment: "menu item in sidebar")
             case .delimiters:
-                String(localized: "Delimiters",
-                       table: "SyntaxEditor",
-                       comment: "syntax definition type")
+                .init("Delimiters",
+                      table: "SyntaxEditor",
+                      comment: "syntax definition type")
             case .outline:
-                String(localized: "Syntax.key.outlines.label",
-                       defaultValue: "Outline",
-                       table: "SyntaxEditor",
-                       comment: "syntax definition type")
+                .init("Syntax.key.outlines.label",
+                      defaultValue: "Outline",
+                      table: "SyntaxEditor",
+                      comment: "syntax definition type")
             case .completion:
-                String(localized: "Syntax.key.completions.label",
-                       defaultValue: "Completion",
-                       table: "SyntaxEditor",
-                       comment: "syntax definition type")
+                .init("Syntax.key.completions.label",
+                      defaultValue: "Completion",
+                      table: "SyntaxEditor",
+                      comment: "syntax definition type")
                 
             case .syntaxInfo:
-                String(localized: "Information",
-                       table: "SyntaxEditor",
-                       comment: "menu item in sidebar")
+                .init("Information",
+                      table: "SyntaxEditor",
+                      comment: "menu item in sidebar")
             case .validation:
-                String(localized: "Validation",
-                       table: "SyntaxEditor",
-                       comment: "menu item in sidebar")
+                .init("Validation",
+                      table: "SyntaxEditor",
+                      comment: "menu item in sidebar")
                 
             case .builtIn:
-                String(localized: "Built-in",
-                       table: "SyntaxEditor",
-                       comment: "menu item in sidebar")
+                .init("Built-in",
+                      table: "SyntaxEditor",
+                      comment: "menu item in sidebar")
         }
     }
 }

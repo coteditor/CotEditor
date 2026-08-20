@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Foundation
 import SyntaxFormat
 
 enum Mode: RawRepresentable, Equatable, Hashable {
@@ -54,7 +55,7 @@ enum Mode: RawRepresentable, Equatable, Hashable {
     var label: String {
         
         switch self {
-            case .kind(let kind): kind.label
+            case .kind(let kind): String(localized: kind.label)
             case .syntax(let string): string
         }
     }

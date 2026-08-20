@@ -383,7 +383,7 @@ private struct InsertionMenuContent<Item: TokenRepresentable>: View {
                 NSApp.sendAction(#selector(NSTextView.insertVariable), to: nil, from: menuItem)
             } label: {
                 Text(item.rawValue)
-                Text(item.localizedDescription)
+                Text(item.descriptionResource)
             }
         }
     }

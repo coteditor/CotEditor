@@ -32,7 +32,7 @@ struct FindProgressView: View {
     
     @State private var progress: FindProgress
     private var action: TextFind.Action
-    private var label: LocalizedStringResource
+    private var titleResource: LocalizedStringResource
     
     @State private var description: LocalizedStringResource?
     
@@ -42,16 +42,16 @@ struct FindProgressView: View {
     /// Initializes a view from a storyboard with given progress instance.
     ///
     /// - Parameters:
-    ///   - label: The text to display as the label of the indicator.
+    ///   - titleResource: Text resource for the progress view's localized title that describes the task in progress.
     ///   - progress: The progress instance to indicate.
     ///   - action: The find action type for count results in the description.
-    init(_ label: LocalizedStringResource, progress: FindProgress, action: TextFind.Action) {
+    init(_ titleResource: LocalizedStringResource, progress: FindProgress, action: TextFind.Action) {
         
         assert(!progress.state.isTerminated)
         
         self.progress = progress
         self.action = action
-        self.label = label
+        self.titleResource = titleResource
     }
     
     
@@ -59,7 +59,7 @@ struct FindProgressView: View {
         
         HStack {
             ProgressView(value: self.progress.fractionCompleted) {
-                Text(self.label)
+                Text(self.titleResource)
             } currentValueLabel: {
                 if let description {
                     Text(description)

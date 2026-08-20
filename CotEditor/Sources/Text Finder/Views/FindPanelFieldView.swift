@@ -260,19 +260,19 @@ private struct HistoryMenu: View {
     
     var defaultKey: DefaultKey<[String]>
     
-    var label: LocalizedStringResource
+    var titleResource: LocalizedStringResource
     var systemImage: String
-    var clearLabel: LocalizedStringResource
+    var clearTitleResource: LocalizedStringResource
     
     @Binding var value: String
     
     
-    init(_ label: LocalizedStringResource, defaultKey: DefaultKey<[String]>, systemImage: String, clearLabel: LocalizedStringResource, value: Binding<String>) {
+    init(_ titleResource: LocalizedStringResource, defaultKey: DefaultKey<[String]>, systemImage: String, clearLabel clearTitleResource: LocalizedStringResource, value: Binding<String>) {
         
         self.defaultKey = defaultKey
-        self.label = label
+        self.titleResource = titleResource
         self.systemImage = systemImage
-        self.clearLabel = clearLabel
+        self.clearTitleResource = clearTitleResource
         self._value = value
     }
     
@@ -283,7 +283,7 @@ private struct HistoryMenu: View {
             let histories = UserDefaults.standard[self.defaultKey]
             
             if !histories.isEmpty {
-                Section(self.label) {
+                Section(self.titleResource) {
                     ForEach(histories, id: \.self) { string in
                         let title = (string.count <= 64) ? string : (String(string.prefix(64)) + "…")
                         
@@ -293,11 +293,11 @@ private struct HistoryMenu: View {
                     }
                 }
             }
-            Button(self.clearLabel, systemImage: "trash") {
+            Button(self.clearTitleResource, systemImage: "trash") {
                 UserDefaults.standard.removeObject(forKey: self.defaultKey.rawValue)
             }.disabled(histories.isEmpty)
         } label: {
-            Label(self.label, systemImage: self.systemImage)
+            Label(self.titleResource, systemImage: self.systemImage)
                 .labelStyle(.iconOnly)
         }
         .buttonStyle(.borderless)
