@@ -1386,7 +1386,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "読み込むCotEditor設定アーカイブを選択"
+            "value" : "読み込むCotEditor設定アーカイブを選択してください。"
           }
         },
         "ko" : {
