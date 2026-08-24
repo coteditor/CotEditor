@@ -72,7 +72,7 @@ struct ShortcutsSettingsView: View {
     
     private(set) var tree: [Item] = []
     private(set) var isRestorable: Bool = false
-    var error: any Error?
+    var error: Shortcut.CustomizationError?
     
     var rootIndex: Int?
     

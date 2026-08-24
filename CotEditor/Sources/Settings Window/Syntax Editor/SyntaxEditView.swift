@@ -67,11 +67,11 @@ struct SyntaxEditView: View {
     private var isBundled: Bool = false
     private var customizableFeatures: ParserFeatures = .all
     private var saveAction: SaveAction
-    private var validationAction: NameValidationAction
+    private var nameValidationAction: NameValidationAction
     
     @State private var syntax: SyntaxObject
     @State private var name: String
-    @State private var message: String?
+    @State private var nameError: any Error?
     
     @State private var pane: Pane = .fileMapping
     @State private var errors: [Syntax.Error] = []
@@ -89,7 +89,7 @@ struct SyntaxEditView: View {
         self.isBundled = isBundled
         self.customizableFeatures = customizableFeatures
         self.saveAction = saveAction
-        self.validationAction = validationAction
+        self.nameValidationAction = validationAction
     }
     
     
@@ -148,8 +148,8 @@ struct SyntaxEditView: View {
                             }
                     }
                     
-                    if let message {
-                        Label(message, systemImage: "arrow.backward")
+                    if let nameError {
+                        Label(nameError.localizedDescription, systemImage: "arrow.backward")
                             .symbolVariant(.circle.fill)
                             .foregroundStyle(.secondary)
                             .controlSize(.small)
@@ -317,13 +317,13 @@ struct SyntaxEditView: View {
         if self.isBundled { return true }  // cannot edit syntax name
         
         do {
-            try self.validationAction(name)
+            try self.nameValidationAction(name)
         } catch {
-            self.message = error.localizedDescription
+            self.nameError = error
             return false
         }
         
-        self.message = nil
+        self.nameError = nil
         return true
     }
 }

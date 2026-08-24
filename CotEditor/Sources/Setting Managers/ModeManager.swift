@@ -101,7 +101,7 @@ import SyntaxFormat
     ///
     /// - Parameter syntaxName: The syntax name for the new setting to add.
     /// - Throws: `SettingFileError`
-    func addSetting(for syntaxName: String) throws {
+    func addSetting(for syntaxName: String) throws(SettingFileError) {
         
         let kind = try self.syntaxKind(name: syntaxName)
         let setting = self.setting(for: .kind(kind))
@@ -147,7 +147,7 @@ import SyntaxFormat
     ///
     /// - Parameter name: The name of the syntax.
     /// - Returns: Syntax.Kind.
-    private func syntaxKind(name: String) throws -> Syntax.Kind {
+    private func syntaxKind(name: String) throws(SettingFileError) -> Syntax.Kind {
         
         try SyntaxManager.shared.setting(name: name).kind
     }

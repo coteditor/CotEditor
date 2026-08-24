@@ -25,6 +25,7 @@
 
 import SwiftUI
 import Defaults
+import Shortcut
 
 struct SnippetsSettingsView: View {
     
@@ -72,7 +73,7 @@ private struct CommandSnippetsView: View {
     @State private var selection: Set<Item.ID> = []
     @State private var syntaxes: [String] = []
     
-    @State private var error: any Error?
+    @State private var error: Shortcut.CustomizationError?
     @State private var format: String?
     
     
