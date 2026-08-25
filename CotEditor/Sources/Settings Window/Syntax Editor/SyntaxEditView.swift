@@ -187,7 +187,7 @@ struct SyntaxEditView: View {
                 self.validationTask?.cancel()
                 self.validationTask = Task { [isInitial] in
                     if !isInitial {
-                        try await Task.sleep(for: .seconds(0.3))  // debounce
+                        try await Task.sleep(for: .seconds(0.3), tolerance: .seconds(0.1))  // debounce
                         try Task.checkCancellation()
                     }
                     self.errors = value.validate()

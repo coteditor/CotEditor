@@ -65,7 +65,7 @@
         
         self.task?.cancel()
         self.task = Task { [weak self] in
-            try await Task.sleep(for: delay)
+            try await Task.sleep(for: delay, tolerance: delay / 5)
             try Task.checkCancellation()
             
             guard let self else { return }

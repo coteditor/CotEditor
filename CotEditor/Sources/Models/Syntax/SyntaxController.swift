@@ -230,7 +230,7 @@ extension NSAttributedString.Key {
         self.highlightParseTask = Task { [weak self] in
             if withDelay {
                 // -> Perform not in the same run loop at least to give layoutManagers time to update their values.
-                try await Task.sleep(for: .seconds(0.05))  // debounce
+                try await Task.sleep(for: .seconds(0.05), tolerance: .seconds(0.02))  // debounce
             }
             
             guard let invalidRange = self?.invalidRanges.range else { return }
@@ -322,7 +322,7 @@ extension NSAttributedString.Key {
         
         self.outlineParseTask = Task { [weak self] in
             if withDelay {
-                try await Task.sleep(for: .seconds(0.6))  // debounce
+                try await Task.sleep(for: .seconds(0.6), tolerance: .seconds(0.2))  // debounce
             }
             // Highlight parsing is expected to run first to provide accurate invalidation ranges.
             try? await self?.highlightParseTask?.value
