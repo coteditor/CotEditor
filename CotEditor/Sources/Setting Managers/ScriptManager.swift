@@ -218,13 +218,13 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     /// Builds the Script menu and scan script handlers.
     ///
     /// - Throws: `CancellationError`.
-    private func updateMenu() async throws {
+    private func updateMenu() async throws(CancellationError) {
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
         
         let scriptMenuItems = try await Self.scriptMenuItems(at: directoryURL)
         
-        try Task.checkCancellation()
+        guard !Task.isCancelled else { throw CancellationError() }
         
         self.scriptHandlersTable.removeAll()
         
@@ -291,9 +291,9 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
     ///   - directoryURL: The directory where to find files recursively.
     /// - Returns: An array of `ScriptMenuItem` that represents scripts.
     /// - Throws: `CancellationError`.
-    @concurrent private static func scriptMenuItems(at directoryURL: URL) async throws -> [ScriptMenuItem] {
+    @concurrent private static func scriptMenuItems(at directoryURL: URL) async throws(CancellationError) -> [ScriptMenuItem] {
         
-        try Task.checkCancellation()
+        guard !Task.isCancelled else { throw CancellationError() }
         
         guard let directoryContents = try? FileManager.default
             .contentsOfDirectory(at: directoryURL,
@@ -308,7 +308,7 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
         var items: [ScriptMenuItem] = []
         
         for url in urls {
-            try Task.checkCancellation()
+            guard !Task.isCancelled else { throw CancellationError() }
             
             let name = url.deletingPathExtension().lastPathComponent
                 .replacing(/^\d+\)/.asciiOnlyDigits(), with: "", maxReplacements: 1)  // remove ordering prefix

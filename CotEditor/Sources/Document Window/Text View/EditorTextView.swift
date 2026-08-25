@@ -1624,7 +1624,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     
     
     /// Highlights all instances of the selection.
-    private func highlightInstances() async throws {
+    ///
+    /// - Throws: `CancellationError`.
+    private func highlightInstances() async throws(CancellationError) {
         
         guard
             self.highlightsSelectionInstance,
@@ -1638,7 +1640,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         let selectedRange = self.selectedRange
         let ranges = try await Self.instanceRanges(in: self.string.immutable, at: selectedRange)
         
-        try Task.checkCancellation()
+        guard !Task.isCancelled else { throw CancellationError() }
         
         guard
             self.highlightsSelectionInstance,
@@ -1647,10 +1649,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
             self.insertionLocations.isEmpty,
             self.selectedRanges.count == 1,
             let lower = ranges.first?.lowerBound,
-            let upper = ranges.last?.upperBound
+            let upper = ranges.last?.upperBound,
+            let layoutManager = self.layoutManager
         else { return }
-        
-        guard let layoutManager = self.layoutManager else { return }
         
         let color = self.textHighlightColor.withAlphaComponent(0.3)
         layoutManager.groupTemporaryAttributesUpdate(in: NSRange(lower..<upper)) {
@@ -1667,8 +1668,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     ///   - string: The string to find in.
     ///   - selectedRange: The range of the selected word.
     /// - Returns: The found ranges excluding the selected range itself.
-    /// - Throws: `CancellationError`
-    @concurrent private static func instanceRanges(in string: String, at selectedRange: NSRange) async throws -> [NSRange] {
+    /// - Throws: `CancellationError`.
+    @concurrent private static func instanceRanges(in string: String, at selectedRange: NSRange) async throws(CancellationError) -> [NSRange] {
         
         try string.instanceRangesOfWord(at: selectedRange)
             .filter { $0 != selectedRange }

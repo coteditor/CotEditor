@@ -105,7 +105,9 @@ import ValueRange
     
     
     /// Updates URLs around the edited ranges.
-    private func detectInvalidRanges() async throws {
+    ///
+    /// - Throws: `CancellationError`.
+    private func detectInvalidRanges() async throws(CancellationError) {
         
         guard let invalidRange = self.editedRanges.range else { return }
         
@@ -126,8 +128,8 @@ extension NSTextStorage {
     /// Links detected URLs in the content.
     ///
     /// - Parameter range: The range where links are detected, or nil to detect all.
-    /// - Throws: `CancellationError`
-    @MainActor final func linkURLs(in range: NSRange? = nil) async throws {
+    /// - Throws: `CancellationError`.
+    @MainActor final func linkURLs(in range: NSRange? = nil) async throws(CancellationError) {
         
         guard self.length > 0 else { return }
         
@@ -136,7 +138,7 @@ extension NSTextStorage {
         
         let links = try await Self.detectLinks(in: string, range: range)
         
-        try Task.checkCancellation()
+        guard !Task.isCancelled else { throw CancellationError() }
         
         guard self.string.length == string.length else {
             return assertionFailure("textStorage was edited after starting URL detection")
@@ -159,10 +161,12 @@ extension NSTextStorage {
     ///   - string: The string to detect URLs.
     ///   - range: The range where URLs are detected.
     /// - Returns: The detected URLs with their ranges.
-    /// - Throws: `CancellationError`
-    @concurrent private static func detectLinks(in string: String, range: NSRange) async throws -> [ValueRange<URL>] {
+    /// - Throws: `CancellationError`.
+    @concurrent private static func detectLinks(in string: String, range: NSRange) async throws(CancellationError) -> [ValueRange<URL>] {
         
-        try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        
+        return try detector
             .cancellableMatches(in: string, range: range)
             .compactMap { match in match.url.map { ValueRange(value: $0, range: match.range) } }
     }

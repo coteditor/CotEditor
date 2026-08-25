@@ -445,8 +445,8 @@ struct FindMatchesCache {
     ///   - textFind: The current find state.
     ///   - client: The text view used to create the find state.
     /// - Returns: Matched ranges.
-    /// - Throws: `CancellationError`
-    private func findMatches(for textFind: TextFind, in client: NSTextView) async throws -> [NSRange] {
+    /// - Throws: `CancellationError`.
+    private func findMatches(for textFind: TextFind, in client: NSTextView) async throws(CancellationError) -> [NSRange] {
         
         let options = self.findOptions(for: textFind)
         
@@ -456,7 +456,7 @@ struct FindMatchesCache {
         
         let matches = try await Self.matches(in: textFind)
         
-        try Task.checkCancellation()
+        guard !Task.isCancelled else { throw CancellationError() }
         
         guard
             let currentClient = self.client,
@@ -580,8 +580,8 @@ struct FindMatchesCache {
     /// - Parameters:
     ///   - forward: The flag whether finds forward or backward.
     ///   - isIncremental: Whether is the incremental search.
-    /// - Throws: `CancellationError`
-    private func find(forward: Bool, isIncremental: Bool = false) async throws {
+    /// - Throws: `CancellationError`.
+    private func find(forward: Bool, isIncremental: Bool = false) async throws(CancellationError) {
         
         assert(forward || !isIncremental)
         
@@ -638,7 +638,7 @@ struct FindMatchesCache {
     
     
     /// Selects all matched strings asynchronously.
-    private func selectAllMatches() async throws {
+    private func selectAllMatches() async throws(CancellationError) {
         
         guard let (textFind, client) = self.prepareTextFind() else { return }
         
@@ -784,8 +784,8 @@ struct FindMatchesCache {
     ///
     /// - Parameter textFind: The find state to use.
     /// - Returns: Matched ranges.
-    /// - Throws: `CancellationError`
-    @concurrent private static func matches(in textFind: TextFind) async throws -> [NSRange] {
+    /// - Throws: `CancellationError`.
+    @concurrent private static func matches(in textFind: TextFind) async throws(CancellationError) -> [NSRange] {
         
         try textFind.matches
     }

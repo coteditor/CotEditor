@@ -75,7 +75,7 @@ public struct Search {
     ///
     /// - Returns: The search summary.
     /// - Throws: `CancellationError` if the task is cancelled.
-    public mutating func run() async throws -> FolderFind.Summary {
+    public mutating func run() async throws(CancellationError) -> FolderFind.Summary {
         
         try await self.searchDirectory(at: self.rootURL)
         
@@ -89,9 +89,10 @@ public struct Search {
     ///
     /// - Parameter directoryURL: The directory URL to search.
     /// - Throws: `CancellationError` if the task is cancelled.
-    private mutating func searchDirectory(at directoryURL: URL) async throws {
+    private mutating func searchDirectory(at directoryURL: URL) async throws(CancellationError) {
         
-        try Task.checkCancellation()
+        guard !Task.isCancelled else { throw CancellationError() }
+        
         await Task.yield()
         
         // avoid following symbolic-link cycles back into an already-visited directory
@@ -110,7 +111,7 @@ public struct Search {
         }
         
         for candidate in candidates {
-            try Task.checkCancellation()
+            guard !Task.isCancelled else { throw CancellationError() }
             
             guard !self.options.excludedNames.contains(candidate.fileURL.lastPathComponent) else { continue }
             
@@ -127,7 +128,7 @@ public struct Search {
     ///
     /// - Parameter candidate: The file candidate to search.
     /// - Throws: `CancellationError` if the task is cancelled.
-    private mutating func searchFile(_ candidate: FolderFind.Candidate) throws {
+    private mutating func searchFile(_ candidate: FolderFind.Candidate) throws(CancellationError) {
         
         guard
             candidate.fileSize <= self.options.maximumFileSize,
@@ -178,7 +179,7 @@ public struct Search {
     ///   - maximumLineLength: The maximum UTF-16 length of each line fragment in results.
     /// - Returns: Matches for display.
     /// - Throws: `CancellationError` if the task is cancelled.
-    private func matches(in string: String, using textFind: TextFind, maximumLineLength: Int = 512) throws -> [FolderFind.Match] {
+    private func matches(in string: String, using textFind: TextFind, maximumLineLength: Int = 512) throws(CancellationError) -> [FolderFind.Match] {
         
         assert(maximumLineLength > 0)
         
@@ -200,7 +201,8 @@ public struct Search {
             
             matches.append(FolderFind.Match(range: range, line: line, rangeInLine: rangeInLine))
         }
-        try Task.checkCancellation()
+        
+        guard !Task.isCancelled else { throw CancellationError() }
         
         return matches
     }

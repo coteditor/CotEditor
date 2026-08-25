@@ -62,7 +62,7 @@ extension [NestableToken: SyntaxType] {
     ///   - string: The string to parse.
     ///   - range: The range where to parse.
     /// - Returns: The parsed highlight ranges.
-    /// - Throws: CancellationError.
+    /// - Throws: `CancellationError`.
     func parseHighlights(in string: String, range parseRange: NSRange) throws -> [SyntaxType: [NSRange]] {
         
         let positions: [NestableItem] = try self

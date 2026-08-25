@@ -36,7 +36,7 @@ extension NSTextView {
     ///   - definition: The text view where highlighting text.
     ///   - inSelection: Whether find string only in selectedRanges.
     /// - Returns: A result message.
-    /// - Throws: `CancellationError`
+    /// - Throws: `CancellationError`.
     final func highlight(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
         
         let wasEditable = self.isEditable
@@ -82,7 +82,7 @@ extension NSTextView {
     ///   - definition: The text view where highlighting text.
     ///   - inSelection: Whether find string only in selectedRanges.
     /// - Returns: A result message.
-    /// - Throws: `CancellationError`
+    /// - Throws: `CancellationError`.
     @discardableResult final func replaceAll(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
         
         let wasEditable = self.isEditable
@@ -131,7 +131,7 @@ extension NSTextView {
     ///   - inSelection: Whether find string only in the ranges.
     ///   - progress: The progress object to report the state.
     /// - Returns: Found ranges sorted by location.
-    /// - Throws: `CancellationError`
+    /// - Throws: `CancellationError`.
     @concurrent private static func find(_ definition: MultipleReplace, in string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress) async throws(CancellationError) -> [NSRange] {
         
         try definition.find(string: string, ranges: ranges, inSelection: inSelection, progress: progress)
@@ -148,7 +148,7 @@ extension NSTextView {
     ///   - inSelection: Whether replace matches only in the ranges.
     ///   - progress: The progress object to report the state.
     /// - Returns: The replacement result.
-    /// - Throws: `CancellationError`
+    /// - Throws: `CancellationError`.
     @concurrent private static func replace(_ definition: MultipleReplace, in string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress) async throws(CancellationError) -> MultipleReplace.Result {
         
         try definition.replace(string: string, ranges: ranges, inSelection: inSelection, progress: progress)

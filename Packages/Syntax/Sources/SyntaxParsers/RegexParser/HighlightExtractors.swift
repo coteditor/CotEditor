@@ -30,7 +30,7 @@ import StringUtils
 
 protocol HighlightExtractable: Sendable, Equatable {
     
-    func ranges(in string: String, range: NSRange) throws -> [NSRange]
+    func ranges(in string: String, range: NSRange) throws(CancellationError) -> [NSRange]
 }
 
 
@@ -74,7 +74,7 @@ struct BeginEndStringExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange) throws -> [NSRange] {
+    func ranges(in string: String, range: NSRange) throws(CancellationError) -> [NSRange] {
         
         var ranges: [NSRange] = []
         
@@ -100,7 +100,7 @@ struct BeginEndStringExtractor: HighlightExtractable {
             
             ranges.append(NSRange(beginRange.lowerBound..<endRange.upperBound))
             
-            try Task.checkCancellation()
+            guard !Task.isCancelled else { throw CancellationError() }
         }
         
         return ranges
@@ -123,7 +123,7 @@ struct RegularExpressionExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange) throws -> [NSRange] {
+    func ranges(in string: String, range: NSRange) throws(CancellationError) -> [NSRange] {
         
         try self.regex.cancellableMatchRanges(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range)
     }
@@ -148,7 +148,7 @@ struct BeginEndRegularExpressionExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange) throws -> [NSRange] {
+    func ranges(in string: String, range: NSRange) throws(CancellationError) -> [NSRange] {
         
         let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds]
         
@@ -156,7 +156,7 @@ struct BeginEndRegularExpressionExtractor: HighlightExtractable {
         var location = range.lowerBound
         
         while location < range.upperBound {
-            try Task.checkCancellation()
+            guard !Task.isCancelled else { throw CancellationError() }
             
             // find start pattern
             let beginRange = self.beginRegex.rangeOfFirstMatch(in: string, options: options, range: NSRange(location..<range.upperBound))

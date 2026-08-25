@@ -34,9 +34,9 @@ public extension NSRegularExpression {
     ///   - string: The string to search.
     ///   - options: The matching options to use.
     ///   - range: The range of the string to search.
-    /// - Throws: `CancellationError`
+    /// - Throws: `CancellationError`.
     /// - Returns: An array of all the matches.
-    final func cancellableMatches(in string: String, options: MatchingOptions = [], range: NSRange) throws -> [NSTextCheckingResult] {
+    final func cancellableMatches(in string: String, options: MatchingOptions = [], range: NSRange) throws(CancellationError) -> [NSTextCheckingResult] {
         
         var matches: [NSTextCheckingResult] = []
         unsafe self.enumerateMatches(in: string, options: options.union(.reportProgress), range: range) { match, _, stopPointer in
@@ -50,7 +50,7 @@ public extension NSRegularExpression {
             }
         }
         
-        try Task.checkCancellation()
+        guard !Task.isCancelled else { throw CancellationError() }
         
         return matches
     }
@@ -62,9 +62,9 @@ public extension NSRegularExpression {
     ///   - string: The string to search.
     ///   - options: The matching options to use.
     ///   - range: The range of the string to search.
-    /// - Throws: `CancellationError`
+    /// - Throws: `CancellationError`.
     /// - Returns: An array of all the matched ranges.
-    final func cancellableMatchRanges(in string: String, options: MatchingOptions = [], range: NSRange) throws -> [NSRange] {
+    final func cancellableMatchRanges(in string: String, options: MatchingOptions = [], range: NSRange) throws(CancellationError) -> [NSRange] {
         
         var ranges: [NSRange] = []
         unsafe self.enumerateMatches(in: string, options: options.union(.reportProgress), range: range) { match, _, stopPointer in
@@ -78,7 +78,7 @@ public extension NSRegularExpression {
             }
         }
         
-        try Task.checkCancellation()
+        guard !Task.isCancelled else { throw CancellationError() }
         
         return ranges
     }

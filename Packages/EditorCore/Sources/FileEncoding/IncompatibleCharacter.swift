@@ -59,7 +59,7 @@ public extension NSString {
     ///   - encoding: The string encoding to test compatibility.
     /// - Returns: An array of `ValueRange<IncompatibleCharacter>`.
     /// - Throws: `CancellationError` if the task is cancelled.
-    func charactersIncompatible(with encoding: String.Encoding) throws -> [ValueRange<IncompatibleCharacter>] {
+    func charactersIncompatible(with encoding: String.Encoding) throws(CancellationError) -> [ValueRange<IncompatibleCharacter>] {
         
         guard self.length > 0 else { return [] }
         
@@ -71,7 +71,7 @@ public extension NSString {
         
         // check compatibility chunk by chunk
         while location < self.length {
-            try Task.checkCancellation()
+            guard !Task.isCancelled else { throw CancellationError() }
             
             let length = min(chunkLength, self.length - location)
             let rawRange = NSRange(location: location, length: length)
@@ -102,12 +102,12 @@ private extension NSString {
     ///   - encoding: The encoding to check.
     /// - Returns: An array of value/range pairs for each incompatible character found.
     /// - Throws: `CancellationError` if the task is cancelled.
-    func findIncompatibles(in range: NSRange, encoding: String.Encoding) throws -> [ValueRange<IncompatibleCharacter>] {
+    func findIncompatibles(in range: NSRange, encoding: String.Encoding) throws(CancellationError) -> [ValueRange<IncompatibleCharacter>] {
         
         assert(range == self.rangeOfComposedCharacterSequences(for: range),
                "Range is expected to be already normalized to composed boundaries.")
         
-        try Task.checkCancellation()
+        guard !Task.isCancelled else { throw CancellationError() }
         
         let converted = self.roundTrip(in: range, encoding: encoding)
         

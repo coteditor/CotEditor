@@ -261,7 +261,8 @@ private extension IncompatibleCharactersView.Model {
             }
             
             let items = try await Self.scan(string, encoding: encoding)
-            try Task.checkCancellation()
+            
+            guard !Task.isCancelled else { throw CancellationError() }
             
             guard
                 self.scanRevision == scanRevision,
@@ -280,8 +281,8 @@ private extension IncompatibleCharactersView.Model {
     ///   - string: The string to scan.
     ///   - encoding: The target encoding.
     /// - Returns: An array of Item.
-    /// - Throws: `CancellationError`
-    @concurrent private static func scan(_ string: String, encoding: String.Encoding) async throws -> [Item] {
+    /// - Throws: `CancellationError`.
+    @concurrent private static func scan(_ string: String, encoding: String.Encoding) async throws(CancellationError) -> [Item] {
         
         try string.charactersIncompatible(with: encoding)
     }

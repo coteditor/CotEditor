@@ -654,10 +654,12 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         self.filterTask = Task { [weak self] in
             try await Task.sleep(for: .seconds(0.5))
             
-            if self?.isFiltering == true {
-                try await self?.updateFilter()
+            guard let self else { return }
+            
+            if self.isFiltering {
+                try await self.updateFilter()
             } else {
-                self?.endFilter()
+                self.endFilter()
             }
         }
     }

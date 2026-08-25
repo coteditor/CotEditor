@@ -171,10 +171,10 @@ public struct TextFind: Equatable, Sendable {
     
     /// All matched ranges.
     ///
-    /// - Throws: `CancellationError`
+    /// - Throws: `CancellationError`.
     public var matches: [NSRange] {
         
-        get throws {
+        get throws(CancellationError) {
             var ranges: [NSRange] = []
             for range in self.scopeRanges {
                 self.enumerateMatches(in: range) { matchedRange, _, stop in
@@ -184,7 +184,7 @@ public struct TextFind: Equatable, Sendable {
                     }
                     ranges.append(matchedRange)
                 }
-                try Task.checkCancellation()
+                guard !Task.isCancelled else { throw CancellationError() }
             }
             return ranges
         }

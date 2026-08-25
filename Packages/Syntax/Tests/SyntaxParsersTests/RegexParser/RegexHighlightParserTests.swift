@@ -38,7 +38,7 @@ struct RegexHighlightParserTests {
         
         let ranges: [NSRange]
         
-        func ranges(in string: String, range: NSRange) throws -> [NSRange] { self.ranges }
+        func ranges(in string: String, range: NSRange) -> [NSRange] { self.ranges }
     }
     
     

@@ -150,7 +150,7 @@ public extension String {
     /// - Parameter range: The word range in the receiver's UTF-16 based `NSRange`.
     /// - Returns: The ranges of word instances in the receiver, or an empty array if the range is not a word.
     /// - Throws: A cancellation error if the underlying match operation is cancelled.
-    func instanceRangesOfWord(at range: NSRange) throws -> [NSRange] {
+    func instanceRangesOfWord(at range: NSRange) throws(CancellationError) -> [NSRange] {
         
         guard
             (try! NSRegularExpression(pattern: #"\A\b\w.*\w\b\z"#))
