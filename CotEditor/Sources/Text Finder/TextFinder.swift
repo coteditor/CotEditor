@@ -505,15 +505,15 @@ struct FindMatchesCache {
         FindPanelController.shared.window?.attachedSheet?.close()
         
         let findString = self.findString(for: client)
-        let string = client.string.immutable
         let mode = self.settings.mode
         let inSelection = self.settings.inSelection
+        let string = client.string
         let selectedRanges = client.selectedRanges.map(\.rangeValue)
         
         let textFind: TextFind
         do {
             let pattern = try self.pattern(findString: findString, mode: mode)
-            textFind = try TextFind(for: string, pattern: pattern, inSelection: inSelection, selectedRanges: selectedRanges)
+            textFind = try TextFind(for: string.immutable, pattern: pattern, inSelection: inSelection, selectedRanges: selectedRanges)
         } catch {
             guard presentsError else { return nil }
             
