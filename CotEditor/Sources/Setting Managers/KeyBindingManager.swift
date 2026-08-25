@@ -37,12 +37,10 @@ import URLUtils
     
     let defaultKeyBindings: [KeyBinding]
     
-    private(set) var isCustomized: Bool = false
-    
     
     // MARK: Private Properties
     
-    private var userKeyBindings: [KeyBinding] = []  { didSet { self.isCustomized = !userKeyBindings.isEmpty } }
+    private var userKeyBindings: [KeyBinding] = []
     private var modifiedKeyBindings: Set<KeyBinding> = []
     
     
@@ -55,13 +53,20 @@ import URLUtils
         }
         
         self.defaultKeyBindings = Self.scanKeyBindings(in: mainMenu)
-        self.userKeyBindings = (try? self.loadSettings()) ?? []
         
+        self.userKeyBindings = (try? self.loadSettings()) ?? []
         self.modifiedKeyBindings.formUnion(self.userKeyBindings)
     }
     
     
     // MARK: Public Methods
+    
+    /// Whether the key bindings are customized.
+    var isCustomized: Bool {
+        
+        !self.userKeyBindings.isEmpty
+    }
+    
     
     /// A collection of the menu tree to display in the settings view.
     var menuTree: [Node<KeyBindingItem>] {
