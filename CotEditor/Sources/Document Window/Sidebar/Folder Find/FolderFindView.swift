@@ -59,8 +59,7 @@ struct FolderFindView: View {
             }
         }
         .scrollContentBackground(.hidden)
-        .scrollEdgeEffectStyle(ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 27 ? .hard : .soft,
-                               for: .top)  // workaround for macOS 27.0 beta 5 (2026-08)
+        .scrollEdgeEffectStyle(.hard, for: .top)
         .contextMenu(forSelectionType: FolderFind.ResultID.self) { selections in
             if selections.count == 1,
                let selection = selections.first,
