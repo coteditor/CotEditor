@@ -11,6 +11,11 @@
 - [beta][dev] Update the build environment to Xcode 27 Beta 5.
 
 
+### Fixes
+
+- [beta] Fix focus in the syntax editor.
+
+
 ### Known Issues
 
 - The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).

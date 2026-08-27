@@ -62,6 +62,13 @@ struct SyntaxEditView: View {
     }
     
     
+    private enum Focus {
+        
+        case nameField
+        case sidebar
+    }
+    
+    
     @Environment(\.dismiss) private var dismiss
     
     private var isBundled: Bool = false
@@ -78,7 +85,7 @@ struct SyntaxEditView: View {
     @State private var validationTask: Task<Void, any Error>?
     @State private var error: any Error?
     
-    @FocusState private var isNameFieldFocused: Bool
+    @FocusState private var focus: Focus?
     
     
     init(syntax: Syntax? = nil, name: String? = nil, isBundled: Bool = false, customizableFeatures: ParserFeatures = .all, saveAction: @escaping SaveAction, validationAction: @escaping NameValidationAction = { _ in }) {
@@ -128,7 +135,10 @@ struct SyntaxEditView: View {
                         }
                     }
                 }
-            }.environment(\.sidebarRowSize, .medium)
+            }
+            .focused($focus, equals: .sidebar)
+            .simultaneousGesture(TapGesture().onEnded { self.focus = .sidebar })  // workaround (2026-08, macOS 27)
+            .environment(\.sidebarRowSize, .medium)
             
         } detail: {
             VStack(spacing: 0) {
@@ -140,7 +150,7 @@ struct SyntaxEditView: View {
                                         comment: "tooltip for name field for bundled syntax"))
                     } else {
                         TextField(.init("Syntax name", table: "SyntaxEditor"), text: $name)
-                            .focused($isNameFieldFocused)
+                            .focused($focus, equals: .nameField)
                             .fontWeight(.medium)
                             .frame(minWidth: 80, maxWidth: 160)
                             .onChange(of: self.name) { _, newValue in
@@ -277,12 +287,14 @@ struct SyntaxEditView: View {
     private func submit() {
         
         // end editing
-        self.isNameFieldFocused = false
+        if self.focus == .nameField {
+            self.focus = nil
+        }
         
         // syntax name validation
         self.name = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
         guard self.validate(name: self.name) else {
-            self.isNameFieldFocused = true
+            self.focus = .nameField
             NSSound.beep()
             return
         }
