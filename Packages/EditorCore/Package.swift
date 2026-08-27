@@ -31,7 +31,7 @@ let package = Package(
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 62, 0)),
     ],
     targets: [
-        .target(name: "CharacterInfo", resources: [.process("Resources")]),
+        .target(name: "CharacterInfo"),
         .testTarget(name: "CharacterInfoTests", dependencies: ["CharacterInfo"]),
         
         .target(name: "Defaults"),
@@ -40,7 +40,7 @@ let package = Package(
         .target(name: "DocumentFile", dependencies: ["FileEncoding", "URLUtils"]),
         .testTarget(name: "DocumentFileTests", dependencies: ["DocumentFile"]),
         
-        .target(name: "FileEncoding", dependencies: ["ValueRange"], resources: [.process("Resources")]),
+        .target(name: "FileEncoding", dependencies: ["ValueRange"]),
         .testTarget(name: "FileEncodingTests", dependencies: ["FileEncoding"], resources: [.process("Resources")]),
         
         .target(name: "FolderFind", dependencies: ["DocumentFile", "FileEncoding", "LineEnding", "StringUtils", "TextFind"]),
@@ -48,7 +48,7 @@ let package = Package(
         
         .target(name: "Invisible"),
         
-        .target(name: "LineEnding", dependencies: ["StringUtils", "ValueRange"], resources: [.process("Resources")]),
+        .target(name: "LineEnding", dependencies: ["StringUtils", "ValueRange"]),
         .testTarget(name: "LineEndingTests", dependencies: ["LineEnding", "StringUtils"]),
         
         .target(name: "LineSort", dependencies: ["StringUtils"]),
@@ -57,7 +57,7 @@ let package = Package(
         .target(name: "SemanticVersioning"),
         .testTarget(name: "SemanticVersioningTests", dependencies: ["SemanticVersioning"]),
         
-        .target(name: "StringUtils", resources: [.process("Resources")]),
+        .target(name: "StringUtils"),
         .testTarget(name: "StringUtilsTests", dependencies: ["StringUtils"]),
         
         .target(name: "TextClipping"),

@@ -20,14 +20,14 @@ let package = Package(
         .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: Version(0, 62, 0)),
     ],
     targets: [
-        .target(name: "ControlUI", dependencies: ["EditorCore"], resources: [.process("Assets.xcassets")], swiftSettings: [
+        .target(name: "ControlUI", dependencies: ["EditorCore"], swiftSettings: [
             .defaultIsolation(MainActor.self),
         ]),
         
         .target(name: "RegexHighlighting", dependencies: ["EditorCore"]),
         .testTarget(name: "RegexHighlightingTests", dependencies: ["RegexHighlighting"]),
         
-        .target(name: "Shortcut", resources: [.process("Resources")]),
+        .target(name: "Shortcut"),
         .testTarget(name: "ShortcutTests", dependencies: ["Shortcut"]),
     ],
     swiftLanguageModes: [.v6]

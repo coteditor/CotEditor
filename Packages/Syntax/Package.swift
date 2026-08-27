@@ -48,8 +48,7 @@ let package = Package(
     targets: [
         .target(
             name: "SyntaxFormat",
-            dependencies: ["EditorCore", "Yams"],
-            resources: [.process("Resources")]
+            dependencies: ["EditorCore", "Yams"]
         ),
         .testTarget(
             name: "SyntaxFormatTests",
