@@ -143,8 +143,8 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         // forcibly collapse sidebar while version browse
         self.versionBrowserObservers.forEach(NotificationCenter.default.removeObserver)
-        if self.sidebarViewItem != nil, let window = self.view.window {
-            self.versionBrowserObservers = [
+        self.versionBrowserObservers = if self.sidebarViewItem != nil, let window = self.view.window {
+            [
                 NotificationCenter.default.addObserver(forName: NSWindow.willEnterVersionBrowserNotification, object: window, queue: .main) { [weak self] _ in
                     MainActor.assumeIsolated {
                         guard
@@ -170,7 +170,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
                 },
             ]
         } else {
-            self.versionBrowserObservers.removeAll()
+            []
         }
         
         // move focus to the editor
