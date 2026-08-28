@@ -13,6 +13,7 @@
 
 ### Fixes
 
+- [beta] Fix an issue where the app crashed repeatedly on launch when restoring documents with unsaved changes.
 - [beta] Fix focus in the syntax editor.
 
 

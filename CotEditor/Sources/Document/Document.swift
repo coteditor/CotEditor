@@ -781,20 +781,32 @@ extension NSTextView: EditorCounter.Source { }
     
     override func updateChangeCount(_ change: NSDocument.ChangeType) {
         
-        self.isTransient = false
+        // [caution] Despite lack of the `nonisolated` label, this method can be called
+        //           from a background thread when the document is reopened with unsaved contents.
+        
+        DispatchQueue.syncOnMain {
+            self.isTransient = false
+        }
         
         super.updateChangeCount(change)
         
-        NotificationCenter.default.post(DidUpdateChangeMessage(), subject: self)
+        DispatchQueue.syncOnMain {
+            NotificationCenter.default.post(DidUpdateChangeMessage(), subject: self)
+        }
     }
     
     
     override func updateChangeCount(withToken changeCountToken: Any, for saveOperation: NSDocument.SaveOperationType) {
         
+        // [caution] Despite lack of the `nonisolated` label, this method can be called
+        //           from a background thread in async-saving.
+        
         // This method updates the values in the .isDocumentEdited and .hasUnautosavedChanges properties.
         super.updateChangeCount(withToken: changeCountToken, for: saveOperation)
         
-        NotificationCenter.default.post(DidUpdateChangeMessage(), subject: self)
+        DispatchQueue.syncOnMain {
+            NotificationCenter.default.post(DidUpdateChangeMessage(), subject: self)
+        }
     }
     
     
