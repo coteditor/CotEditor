@@ -89,52 +89,65 @@
 
 (class_include
   command: _ @commands
-  path: (curly_group_path) @strings)
+  path: (curly_group_path
+    (_) @strings))
 
 (latex_include
   command: _ @commands
-  path: (curly_group_path) @strings)
+  path: (curly_group_path
+    (_) @strings))
 
 (verbatim_include
   command: _ @commands
-  path: (curly_group_path) @strings)
+  path: (curly_group_path
+    (_) @strings))
 
 (bibstyle_include
   command: _ @commands
-  path: (curly_group_path) @strings)
+  path: (curly_group_path
+    (_) @strings))
 
 (graphics_include
   command: _ @commands
-  path: (curly_group_path) @strings)
+  path: (curly_group_path
+    (_) @strings))
 
 (svg_include
   command: _ @commands
-  path: (curly_group_path) @strings)
+  path: (curly_group_path
+    (_) @strings))
 
 (inkscape_include
   command: _ @commands
-  path: (curly_group_path) @strings)
+  path: (curly_group_path
+    (_) @strings))
 
 (package_include
   command: _ @commands
-  paths: (curly_group_path_list) @strings)
+  paths: (curly_group_path_list
+    (_)? @strings))
 
 (bibtex_include
   command: _ @commands
-  paths: (curly_group_path_list) @strings)
+  paths: (curly_group_path_list
+    (_)? @strings))
 
 (tikz_library_import
   command: _ @commands
-  paths: (curly_group_path_list) @strings)
+  paths: (curly_group_path_list
+    (_)? @strings))
 
 (import_include
   command: _ @commands
-  directory: (curly_group_path) @strings
-  file: (curly_group_path) @strings)
+  directory: (curly_group_path
+    (_) @strings)
+  file: (curly_group_path
+    (_) @strings))
 
 (biblatex_include
   "\\addbibresource" @commands
-  glob: (curly_group_glob_pattern) @strings)
+  glob: (curly_group_glob_pattern
+    (_) @strings))
 
 
 ; MARK: Keywords
@@ -224,7 +237,8 @@
 (curly_group_spec
   (text) @variables.parameter)
 
-(brack_group_argc) @variables.parameter
+(brack_group_argc
+  (_) @variables.parameter)
 
 (counter_declaration
   command: _ @commands
@@ -328,7 +342,8 @@
 
 (citation
   command: _ @commands
-  keys: (curly_group_text_list) @strings)
+  keys: (curly_group_text_list
+    (_)? @strings))
 
 (hyperlink
   command: _ @commands
