@@ -3,6 +3,11 @@
 7.1.0-beta.6 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue in the LaTeX syntax where the opening braces of arguments of some commands, such as `\cite`, were highlighted in the wrong color.
+
+
 ### Known Issues
 
 - The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).

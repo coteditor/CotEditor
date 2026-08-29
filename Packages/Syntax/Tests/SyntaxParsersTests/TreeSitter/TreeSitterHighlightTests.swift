@@ -229,6 +229,35 @@ struct TreeSitterHighlightTests {
     }
     
     
+    @Test func highlightLaTeXArgumentBraces() async throws {
+        
+        let source = #"""
+            \cite{key}
+            \parencite{key}
+            \cite{}
+            \usepackage{amsmath,amssymb}
+            \newcommand{\foo}[2]{bar}
+            """#
+        
+        let config = try self.registry.configuration(for: .latex)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .latex)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        // -> Group delimiters must be captured alone so that both sides keep the same color:
+        //    capturing a whole curly group overrides the opening brace but not the closing one.
+        #expect(!captures.contains { $0.text.hasPrefix("{") && $0.text.count > 1 })
+        #expect(captures.filter { $0.type == .commands && $0.text == "{" }.count == 6)
+        #expect(captures.filter { $0.type == .commands && $0.text == "}" }.count == 6)
+        #expect(captures.filter { $0.type == .strings && $0.text == "key" }.count == 2)
+        #expect(captures.contains { $0.type == .commands && $0.text == #"\cite"# })
+        #expect(captures.contains { $0.type == .strings && $0.text == "amsmath" })
+        #expect(captures.contains { $0.type == .strings && $0.text == "amssymb" })
+        #expect(captures.contains { $0.type == .variables && $0.text == "2" })
+    }
+    
+    
     @Test func highlightRubyBareMethodCalls() async throws {
         
         let source = #"""
