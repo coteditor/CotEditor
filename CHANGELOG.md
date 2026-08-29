@@ -1,5 +1,17 @@
 # Change Log
 
+7.1.0-beta.6 (unreleased)
+--------------------------
+
+### Known Issues
+
+- The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).
+- In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
+- In full-screen mode, an unnecessary separator appears above the pane switcher in the Inspector (FB24552348).
+- The text added in CotEditor 7.1.0 is not yet localized in Bulgarian.
+
+
+
 7.1.0-beta.5 (2026-08-29)
 --------------------------
 
@@ -8,21 +20,13 @@
 - Avoid unnecessary scroll after inserting a snippet when the range is already visible.
 - [non-AppStore ver.] Update Sparkle from 2.9.5 to 2.9.6.
 - [beta] Refine overall appearance details.
-- [beta][dev] Update the build environment to Xcode 27 Beta 5.
+- [beta][dev] Update the build environment to Xcode 27 Beta 6.
 
 
 ### Fixes
 
 - [beta] Fix an issue where the app crashed repeatedly on launch when restoring documents with unsaved changes.
 - [beta] Fix focus in the syntax editor.
-
-
-### Known Issues
-
-- The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).
-- In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
-- In full-screen mode, an unnecessary separator appears above the pane switcher in the Inspector (FB24552348).
-- The text added in CotEditor 7.1.0 is not yet localized in Bulgarian.
 
 
 
