@@ -14,6 +14,7 @@
 
 - Fix an issue in the regular expression replacement with the “Unescape replacement text” option where escaped backslashes in the replacement string were unexpectedly removed instead of being unescaped to literal backslashes.
 - Fix an issue in the LaTeX syntax where the opening braces of arguments of some commands, such as `\cite`, were highlighted in the wrong color.
+- Fix an issue in the Scala syntax where string interpolators, such as `s` in `s"…"`, were highlighted in the same color as the string body.
 
 
 

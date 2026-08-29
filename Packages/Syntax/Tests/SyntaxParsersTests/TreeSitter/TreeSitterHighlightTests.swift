@@ -280,6 +280,26 @@ struct TreeSitterHighlightTests {
         #expect(captures.contains { $0.type == .commands && $0.text == "module_function" })
         #expect(captures.filter { $0.type == .commands && $0.text == "helper" }.count == 2)
     }
+    
+    
+    @Test func highlightScalaStringInterpolator() async throws {
+        
+        let source = #"""
+            val greeting = s"Hello, ${user.name}!"
+            """#
+        
+        let config = try self.registry.configuration(for: .scala)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .scala)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        // -> Highlights are applied in array order, so the interpolator capture
+        //    must come after the whole-string capture starting at the same position.
+        let interpolatorIndex = try #require(captures.firstIndex(of: Capture(type: .commands, text: "s")))
+        let stringIndex = try #require(captures.firstIndex { $0.type == .strings && $0.text.hasPrefix("s\"") })
+        #expect(stringIndex < interpolatorIndex)
+    }
 }
 
 

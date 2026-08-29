@@ -91,9 +91,6 @@
 (generic_function
   function: (identifier) @commands)
 
-(interpolated_string_expression
-  interpolator: (identifier) @commands)
-
 
 ; MARK: Types
 ; ----------------------------
@@ -185,6 +182,12 @@
   (character_literal)
   (interpolated_string_expression)
 ] @strings
+
+; -> Keep after the capture of the whole interpolated string:
+;    both captures start at the same position, and only a later pattern
+;    can repaint the interpolator over the whole-string capture.
+(interpolated_string_expression
+  interpolator: (identifier) @commands)
 
 
 ; MARK: Characters
