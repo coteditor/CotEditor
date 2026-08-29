@@ -1,6 +1,6 @@
 # Change Log
 
-7.1.0-beta.5 (unreleased)
+7.1.0-beta.5 (2026-08-29)
 --------------------------
 
 ### Improvements
