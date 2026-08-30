@@ -4,12 +4,6 @@
     "Clear Recents" : {
       "comment" : "button label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изчисти последните"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110,12 +104,6 @@
     },
     "Invalid code" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невалиден код"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -217,12 +205,6 @@
     "Recents" : {
       "comment" : "menu header",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Последни"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

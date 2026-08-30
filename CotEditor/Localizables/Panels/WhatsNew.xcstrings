@@ -4,12 +4,6 @@
     "Beta" : {
       "comment" : "label for when the app is a prerelease version",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бета"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110,12 +104,6 @@
     },
     "Continue" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Продължи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1286,12 +1274,6 @@
     },
     "Release Notes" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бележки по изданието"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1399,12 +1381,6 @@
     "What’s New in CotEditor %@" : {
       "comment" : "%@ is version number",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Какво е новото в CotEditor %@"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

@@ -4,12 +4,6 @@
     "Add period with double-space" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Добавете точка с двоен интервал"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110,12 +104,6 @@
     },
     "Automatically insert closing brackets and quotes" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автоматично вмъкване на затварящи скоби и кавички"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -217,12 +205,6 @@
     "Check grammar with spelling" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверка на граматика и правопис"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -324,12 +306,6 @@
     "Check spelling while typing" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Проверка на правопис по време на въвеждане на текст"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -430,12 +406,6 @@
     },
     "Completion list includes:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Списъкът за завършване включва:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -536,12 +506,6 @@
     },
     "Completion:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Завършване:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -643,12 +607,6 @@
     "Correct spelling automatically" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автоматична поправка на правопис"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -749,12 +707,6 @@
     },
     "Font:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шрифт:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -856,12 +808,6 @@
     "FontType.monospaced.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Еднопространствен"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -969,12 +915,6 @@
     "FontType.standard.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стандартен"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1081,12 +1021,6 @@
     },
     "Indentation:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "отстъп:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1187,12 +1121,6 @@
     },
     "Mode" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Режим"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1294,12 +1222,6 @@
     "Not found" : {
       "comment" : "accessibility label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не е намерено"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1401,12 +1323,6 @@
     "Smart copy/paste" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Интелигентно Копиране/Поставяне"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1508,12 +1424,6 @@
     "Smart dashes" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Интелигентни тирета"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1615,12 +1525,6 @@
     "Smart quotes" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Интелигентни кавички"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1721,12 +1625,6 @@
     },
     "Spelling:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Правопис:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1827,12 +1725,6 @@
     },
     "Standard words" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стандартни думи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1933,12 +1825,6 @@
     },
     "Substitution:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замяна:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2039,12 +1925,6 @@
     },
     "Suggest completions while typing" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Предлагайте завършвания, докато пишете"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2145,12 +2025,6 @@
     },
     "Syntax" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксис"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2252,12 +2126,6 @@
     "Text replacement" : {
       "comment" : "use localization provided by Apple",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замяна на текст"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2359,12 +2227,6 @@
     "This syntax does not exist" : {
       "comment" : "tooltip",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Този синтаксис не съществува"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2465,12 +2327,6 @@
     },
     "Use custom settings" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Използвай персонализирани настройки"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2571,12 +2427,6 @@
     },
     "Words defined in syntax" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Думи, дефинирани в синтаксиса"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2677,12 +2527,6 @@
     },
     "Words in document" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Думи в документа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

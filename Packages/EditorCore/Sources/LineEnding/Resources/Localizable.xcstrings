@@ -4,12 +4,6 @@
     "LineEnding.cr.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Класически Mac OS"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117,12 +111,6 @@
     "LineEnding.crlf.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Windows"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -230,12 +218,6 @@
     "LineEnding.lf.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "macOS / Unix"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -344,12 +326,6 @@
       "comment" : "Since this is a technical term, it should be left as-is.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разделител на редове в Unix"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -458,12 +434,6 @@
       "comment" : "Since this is a technical term, it should be left as-is.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Следващ ред в Unix"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -572,12 +542,6 @@
       "comment" : "Since this is a technical term, it should be left as-is.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разделител на абзаци в Unix"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

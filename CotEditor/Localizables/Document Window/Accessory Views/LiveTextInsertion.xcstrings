@@ -3,12 +3,6 @@
   "strings" : {
     "Detection failed" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разпознаването е неуспешно"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110,12 +104,6 @@
     "Insert" : {
       "comment" : "button label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вмъкни"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -216,12 +204,6 @@
     },
     "No text detected" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Няма открит текст"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

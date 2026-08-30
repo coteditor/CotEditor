@@ -4,12 +4,6 @@
     "SettingsPane.appearance.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Основни"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117,12 +111,6 @@
     "SettingsPane.donation.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дарение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -230,12 +218,6 @@
     "SettingsPane.edit.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактиране"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -343,12 +325,6 @@
     "SettingsPane.format.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Форматиране"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -456,12 +432,6 @@
     "SettingsPane.general.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Общи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -569,12 +539,6 @@
     "SettingsPane.mode.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Режим"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -682,12 +646,6 @@
     "SettingsPane.shortcuts.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Команди"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -795,12 +753,6 @@
     "SettingsPane.snippets.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Откъси"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -908,12 +860,6 @@
     "SettingsPane.window.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Прозорец"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

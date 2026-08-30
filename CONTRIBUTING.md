@@ -82,7 +82,6 @@ Localization updates generally occur once every few months. If a localization ma
 Currently, we already have maintainers for:
 
 - English (UK)
-- Bulgarian
 - Chinese, Simplified
 - Chinese, Traditional
 - Chinese (Hong Kong)

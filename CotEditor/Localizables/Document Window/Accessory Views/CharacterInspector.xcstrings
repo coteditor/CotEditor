@@ -4,12 +4,6 @@
     "<a letter consisting of %lld characters>" : {
       "comment" : "%lld is always 2 or more.",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "<буква, съставена от %lld знака>"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110,12 +104,6 @@
     },
     "Block:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Блок:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -216,12 +204,6 @@
     },
     "Category:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "категория:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -322,12 +304,6 @@
     },
     "Code Point:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодова точка:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -429,12 +405,6 @@
     "deprecated" : {
       "comment" : "badge for when the inspected character is deprecated in the latest Unicode specification",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "отхвърлено"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -535,12 +505,6 @@
     },
     "No Block" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Без блок"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -641,12 +605,6 @@
     },
     "Unknown" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Неизвестно"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -747,12 +705,6 @@
     },
     "Version:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Версия:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

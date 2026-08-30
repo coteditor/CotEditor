@@ -4,12 +4,6 @@
     "Make file executable" : {
       "comment" : "toggle button label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Направи файла изпълним"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

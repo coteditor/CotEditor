@@ -5,12 +5,6 @@
       "comment" : "Class = \"NSButtonCell\"; title = \"In Selection\"; ObjectID = \"4lm-Fu-Fcf\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "В Избор"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -119,12 +113,6 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Perform replacement using these rules in succession from the top down:\"; ObjectID = \"5Ey-vx-5Sm\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Извършете подмяна, като използвате тези правила последователно отгоре надолу:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -233,12 +221,6 @@
       "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Highlight all matches of the replacement rules.\"; ObjectID = \"99C-Bz-ySi\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отбележи всички съвпадения по правилата за замяна."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -347,12 +329,6 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"IC\"; ObjectID = \"d3o-yf-jB4\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "IC"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -461,12 +437,6 @@
       "comment" : "Class = \"NSTableColumn\"; headerToolTip = \"Ignore Cases\"; ObjectID = \"d3o-yf-jB4\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Игнориране на регистъра"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -575,12 +545,6 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Invalid rules will be skipped.\"; ObjectID = \"gRf-KM-GZo\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невалидните правила ще бъдат пропуснати."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -689,12 +653,6 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"5 REPLACED\"; ObjectID = \"HU0-YI-OIX\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "5 ЗАМЕНЕН"
-          }
-        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -708,12 +666,6 @@
       "comment" : "Class = \"NSButton\"; ibExternalAccessibilityDescription = \"Advanced options\"; ObjectID = \"i8z-Xa-PxI\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширени опции"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -822,12 +774,6 @@
       "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Show advanced options\"; ObjectID = \"i8z-Xa-PxI\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи разширените опции"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -936,12 +882,6 @@
       "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Select to ignore character case on search.\"; ObjectID = \"I23-3I-yq5\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете, за да игнорирате главните и главни букви при търсене."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1050,12 +990,6 @@
       "comment" : "Class = \"NSButtonCell\"; title = \"Highlight All\"; ObjectID = \"kdu-Ni-M64\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Маркирай всички"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1164,12 +1098,6 @@
       "comment" : "Class = \"NSTableColumn\"; headerToolTip = \"Enable\"; ObjectID = \"KTe-1r-oHM\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Активиране"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1278,12 +1206,6 @@
       "comment" : "Class = \"NSButtonCell\"; title = \"Replace All\"; ObjectID = \"LI2-Hh-D6g\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Замени всички"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1392,12 +1314,6 @@
       "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Select to search with regular expression.\"; ObjectID = \"Lk4-Ym-IrV\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете за търсене с регулярен израз."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1506,12 +1422,6 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Replace With\"; ObjectID = \"nRC-aM-NZ2\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Заменете с"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1620,12 +1530,6 @@
       "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Replace all matches according to the replacement rules.\"; ObjectID = \"Nth-za-4Ad\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Заменете всички съвпадения според правилата за замяна."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1734,12 +1638,6 @@
       "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Select to replace text only in selection.\"; ObjectID = \"pfM-xk-MrN\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете, за да замените текст само в селекцията."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1848,12 +1746,6 @@
       "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Select to use this replacement rule.\"; ObjectID = \"PuQ-No-wC1\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете, за да използвате това правило за заместване."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1962,12 +1854,6 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Description\"; ObjectID = \"Rhy-iE-CIC\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Описание"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2076,12 +1962,6 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"RE\"; ObjectID = \"VtR-Qz-MBf\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "RE"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2190,12 +2070,6 @@
       "comment" : "Class = \"NSTableColumn\"; headerToolTip = \"Regular Expression\"; ObjectID = \"VtR-Qz-MBf\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редовен израз"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2304,12 +2178,6 @@
       "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Find\"; ObjectID = \"zee-UW-TVR\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Търсене"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

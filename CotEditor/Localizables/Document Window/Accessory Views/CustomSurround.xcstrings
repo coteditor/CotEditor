@@ -3,12 +3,6 @@
   "strings" : {
     "Begin:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Начало:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -109,12 +103,6 @@
     },
     "End:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Край:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -215,12 +203,6 @@
     },
     "Surround with:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Огради с:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

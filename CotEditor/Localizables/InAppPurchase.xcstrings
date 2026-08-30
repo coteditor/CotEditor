@@ -4,12 +4,6 @@
     "donation.onetime.description" : {
       "extractionState" : "manual",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вкусна чаша"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117,12 +111,6 @@
     "donation.onetime.displayName" : {
       "extractionState" : "manual",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Еспресо"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -230,12 +218,6 @@
     "donation.subscription.yearly.description" : {
       "extractionState" : "manual",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кафе за ежедневно развитие"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -343,12 +325,6 @@
     "donation.subscription.yearly.displayName" : {
       "extractionState" : "manual",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кафе на зърна"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

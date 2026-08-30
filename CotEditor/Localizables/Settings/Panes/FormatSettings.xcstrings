@@ -3,12 +3,6 @@
   "strings" : {
     "Available syntaxes:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Налични синтаксиси:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -209,12 +203,6 @@
     },
     "Customized Syntaxes" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Персонализирани синтаксиси"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -315,12 +303,6 @@
     },
     "Default line endings:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Краища на редове по подразбиране:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -421,12 +403,6 @@
     },
     "Default syntax:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксис по подразбиране:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -527,12 +503,6 @@
     },
     "Default text encoding:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодиране на текста по подразбиране:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -633,12 +603,6 @@
     },
     "Edit List…" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактирай списъка…"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -739,12 +703,6 @@
     },
     "Encoding priorities:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Приоритети на кодиране:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -845,12 +803,6 @@
     },
     "Refer to encoding declaration in document" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Обърнете се към декларацията за кодиране в документа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -951,12 +903,6 @@
     },
     "Reload All Syntaxes" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Презареди всички синтаксиси"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1063,12 +1009,6 @@
     },
     "Show File Mapping Conflicts" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи конфликтите при съпоставяне на файлове"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1176,12 +1116,6 @@
     "This syntax does not exist" : {
       "comment" : "tooltip",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Този синтаксис не съществува"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1282,12 +1216,6 @@
     },
     "This syntax is customized." : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Този синтаксис е персонализиран."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

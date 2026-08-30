@@ -651,12 +651,6 @@
       "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "съдържа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -765,12 +759,6 @@
       "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "не съдържа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -879,12 +867,6 @@
       "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "завършва с"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -993,12 +975,6 @@
       "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "е"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1107,12 +1083,6 @@
       "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "не е"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1329,12 +1299,6 @@
       "comment" : "This is immediately followed by the value field.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "започва с"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1442,12 +1406,6 @@
     "FileScope.Rule.Target.fileExtension.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширение на файл"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1555,12 +1513,6 @@
     "FileScope.Rule.Target.filename.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Име на файл"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1668,12 +1620,6 @@
     "FileScope.Rule.Target.filePath.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Път към файл"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1881,12 +1827,6 @@
     "ScopeSaveView.field.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Име"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1994,12 +1934,6 @@
     "ScopeSaveView.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запази като:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

@@ -103,12 +103,6 @@
     },
     "Select All" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Избери всички"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

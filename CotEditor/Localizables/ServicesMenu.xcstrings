@@ -5,12 +5,6 @@
       "comment" : "Refer to how Apple translates “New TextEdit Window Containing Selection”",
       "extractionState" : "manual",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нов CotEditor прозорец, съдържащ селекция"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -112,12 +106,6 @@
     "Open in CotEditor" : {
       "extractionState" : "manual",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори в CotEditor"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

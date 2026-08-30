@@ -5,12 +5,6 @@
       "comment" : "description for Modified NFC",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нестандартна NFC-базирана форма за нормализация, съответстваща на модифицирана NFD"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -118,12 +112,6 @@
     "UnicodeNormalization.modifiedNFC.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Модифицирана NFC"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -226,12 +214,6 @@
       "comment" : "description for Modified NFD",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нестандартна NFD-базирана форма за нормализация, използвана в HFS+"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -339,12 +321,6 @@
     "UnicodeNormalization.modifiedNFD.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Модифицирана NFD"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -447,12 +423,6 @@
       "comment" : "description for NFC",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Канонично разлагане, последвано от канонично съставяне"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -560,12 +530,6 @@
     "UnicodeNormalization.nfc.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NFC"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -668,12 +632,6 @@
       "comment" : "description for NFD",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Канонично разлагане"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -781,12 +739,6 @@
     "UnicodeNormalization.nfd.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NFD"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -889,12 +841,6 @@
       "comment" : "description for NFKC",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разлагане по съвместимост, последвано от канонично съставяне"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1002,12 +948,6 @@
     "UnicodeNormalization.nfkc.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NFKC"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1110,12 +1050,6 @@
       "comment" : "description for NFKC case-fold",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Прилага NFKC, уеднаквяване на регистъра и премахване на игнорируемите по подразбиране кодови точки"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1223,12 +1157,6 @@
     "UnicodeNormalization.nfkcCaseFold.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NFKC с уеднаквяване на регистъра"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1331,12 +1259,6 @@
       "comment" : "description for NFKD",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разлагане по съвместимост"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1444,12 +1366,6 @@
     "UnicodeNormalization.nfkd.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "NFKD"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

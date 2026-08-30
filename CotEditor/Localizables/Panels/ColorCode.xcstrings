@@ -4,12 +4,6 @@
     "Color Code" : {
       "comment" : "placeholder",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Цветен код"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111,12 +105,6 @@
     "ColorCodeType.cssHSL.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CSS HSL"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -224,12 +212,6 @@
     "ColorCodeType.cssHSLa.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CSS HSLa"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -337,12 +319,6 @@
     "ColorCodeType.cssHWB.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CSS HWB"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -450,12 +426,6 @@
     "ColorCodeType.cssHWBWithAlpha.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CSS HWB с алфа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -563,12 +533,6 @@
     "ColorCodeType.cssKeyword.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CSS ключова дума"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -676,12 +640,6 @@
     "ColorCodeType.cssRGB.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CSS RGB"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -789,12 +747,6 @@
     "ColorCodeType.cssRGBa.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CSS RGBa"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -902,12 +854,6 @@
     "ColorCodeType.hex.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шестнадесетичен"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1015,12 +961,6 @@
     "ColorCodeType.hexWithAlpha.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шестнадесетичен с алфа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1128,12 +1068,6 @@
     "ColorCodeType.shortHex.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шестнадесетичен (кратък)"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1241,12 +1175,6 @@
     "ColorCodeType.shortHexWithAlpha.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шестнадесетичен с алфа (кратък)"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1354,12 +1282,6 @@
     "Insert" : {
       "comment" : "button label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Поставете"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1461,12 +1383,6 @@
     "Stylesheet Keywords" : {
       "comment" : "color list name",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ключови думи в таблицата със стилове"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

@@ -6,13 +6,13 @@
 ### Improvements
 
 - Apply the current theme’s text color to the text restored by undo even when the theme has changed since the deletion.
+- Remove the Bulgarian localization.
 
 
 ### Known Issues
 
 - In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
 - In full-screen mode, an unnecessary separator appears above the pane switcher in the Inspector (FB24552348).
-- The text added in CotEditor 7.1.0 is not yet localized in Bulgarian.
 
 
 

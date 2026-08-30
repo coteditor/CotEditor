@@ -4,12 +4,6 @@
     "Syntax.Kind.code.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Код"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117,12 +111,6 @@
     "Syntax.Kind.general.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Общи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -230,12 +218,6 @@
     "Syntax.Outline.Kind.container.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Контейнер"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -343,12 +325,6 @@
     "Syntax.Outline.Kind.function.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Функция"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -456,12 +432,6 @@
     "Syntax.Outline.Kind.heading.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Заглавие"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -569,12 +539,6 @@
     "Syntax.Outline.Kind.heading.level.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Заглавие %lld"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -682,12 +646,6 @@
     "Syntax.Outline.Kind.mark.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Маркер"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -795,12 +753,6 @@
     "Syntax.Outline.Kind.separator.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разделител"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -908,12 +860,6 @@
     "Syntax.Outline.Kind.title.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Заглавие"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1021,12 +967,6 @@
     "Syntax.Outline.Kind.value.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стойност"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1134,12 +1074,6 @@
     "SyntaxType.attributes.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Атрибути"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1247,12 +1181,6 @@
     "SyntaxType.characters.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1360,12 +1288,6 @@
     "SyntaxType.commands.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Команди"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1473,12 +1395,6 @@
     "SyntaxType.comments.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Коментари"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1586,12 +1502,6 @@
     "SyntaxType.keywords.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ключови думи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1699,12 +1609,6 @@
     "SyntaxType.numbers.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Числа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1812,12 +1716,6 @@
     "SyntaxType.strings.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Низове"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1925,12 +1823,6 @@
     "SyntaxType.types.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Типове"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2038,12 +1930,6 @@
     "SyntaxType.values.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стойности"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2151,12 +2037,6 @@
     "SyntaxType.variables.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Променливи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

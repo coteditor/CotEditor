@@ -4,24 +4,6 @@
     "%lld cups" : {
       "comment" : "accessibility label for item quantity",
       "localizations" : {
-        "bg" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld чаша"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld чаши"
-                }
-              }
-            }
-          }
-        },
         "cs" : {
           "variations" : {
             "plural" : {
@@ -339,12 +321,6 @@
     "× %lld" : {
       "comment" : "multiple sign for the quantity of items to purchase",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "× %lld"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -446,12 +422,6 @@
     "An internet connection is required to donate." : {
       "comment" : "error message",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изисква се интернет връзка за дарение."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -552,12 +522,6 @@
     },
     "As proof of your kind support, a coffee badge appears on the status bar during continuous support." : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Като доказателство за вашата любезна подкрепа, значка за кафе се появява в лентата на състоянието по време на непрекъсната поддръжка."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -658,12 +622,6 @@
     },
     "Badge type:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тип значка:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -764,12 +722,6 @@
     },
     "Continuous support" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Непрекъсната поддръжка"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -870,12 +822,6 @@
     },
     "CotEditor provides all features for free to everyone. You can support this project by offering coffee." : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor предоставя всички функции безплатно на всички. Можете да подкрепите този проект, като предложите кафе."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -976,12 +922,6 @@
     },
     "Donation is currently not available." : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дарение в момента не е налично."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1082,12 +1022,6 @@
     },
     "Manage Subscriptions" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Управление на абонаменти"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1188,12 +1122,6 @@
     },
     "One-time donation" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Еднократно дарение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1295,12 +1223,6 @@
     "Open GitHub Sponsors" : {
       "comment" : "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization.",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори GitHub Sponsors"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1401,12 +1323,6 @@
     },
     "Open in App Store" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отвори в App Store"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1507,12 +1423,6 @@
     },
     "Privacy Policy" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Политика за поверителност"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1614,12 +1524,6 @@
     "Quantity" : {
       "comment" : "accessibility label for item quantity stepper",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Количество"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1720,12 +1624,6 @@
     },
     "Restore Subscription" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Възстановяване на абонамента"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1826,12 +1724,6 @@
     },
     "Terms of Service" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Условия за ползване"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1932,12 +1824,6 @@
     },
     "The In-App donation feature is available only in CotEditor distributed in the App Store." : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Функцията за дарение в приложението е достъпна само в CotEditor, разпространяван в App Store."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

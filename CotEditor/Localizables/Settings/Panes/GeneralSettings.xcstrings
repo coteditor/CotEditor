@@ -3,12 +3,6 @@
   "strings" : {
     "A system feature that automatically overwrites your files while editing. Even if turned off, CotEditor covertly creates a backup in case it unexpectedly quits." : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Системна функция, която автоматично презаписва вашите файлове, докато редактирате. Дори да е изключен, CotEditor скрито създава резервно копие, в случай че неочаквано се затвори."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -109,12 +103,6 @@
     },
     "Check for updates automatically" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автоматично проверявайте за актуализации"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -215,12 +203,6 @@
     },
     "Command-line tool:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Инструмент за команден ред:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -322,12 +304,6 @@
     "CommandLineToolManager.Status.differentTarget.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текущата символна връзка `cot` не е насочена към работещия CotEditor."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -435,12 +411,6 @@
     "CommandLineToolManager.Status.invalidTarget.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текущата символна връзка `cot` може да е насочена към невалиден път."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -547,12 +517,6 @@
     },
     "Dialog warnings:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Диалогови предупреждения:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -653,12 +617,6 @@
     },
     "Document save:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запазване на документ:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -760,12 +718,6 @@
     "DocumentConflictOption.ignore.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запазете версията на CotEditor"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -873,12 +825,6 @@
     "DocumentConflictOption.notify.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Попитайте как да разрешите"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -986,12 +932,6 @@
     "DocumentConflictOption.revert.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Актуализиране до модифицирана версия"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1098,12 +1038,6 @@
     },
     "Enable Auto Save with Versions" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Активиране на автоматичното запазване с версии"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1204,12 +1138,6 @@
     },
     "Inconsistent line endings" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Непоследователни краища на редове"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1310,12 +1238,6 @@
     },
     "installed at %@" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "инсталиран на %@"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1417,12 +1339,6 @@
     "Later" : {
       "comment" : "button label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "по-късно"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1523,12 +1439,6 @@
     },
     "Learn More…" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Научете повече…"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1629,12 +1539,6 @@
     },
     "Manage Warnings…" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Управление на предупрежденията…"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1736,12 +1640,6 @@
     "NextSessionApplicationConfirmation.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Искате ли да рестартирате CotEditor сега?"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1849,12 +1747,6 @@
     "NextSessionApplicationConfirmation.nextAfterNext.message" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Поведението на приложението ще се промени от следващото стартиране след това."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1962,12 +1854,6 @@
     "NextSessionApplicationConfirmation.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Промяната ще бъде приложена първо при следващото стартиране."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2075,12 +1961,6 @@
     "NoDocumentOnLaunchOption.none.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не правете нищо"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2188,12 +2068,6 @@
     "NoDocumentOnLaunchOption.openPanel.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи диалогов прозорец за отваряне"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2301,12 +2175,6 @@
     "NoDocumentOnLaunchOption.untitledDocument.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Създаване на нов документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2413,12 +2281,6 @@
     },
     "On startup:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "При стартиране:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2519,12 +2381,6 @@
     },
     "Regardless of this setting, new prereleases are always included while using a prerelease." : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Независимо от тази настройка, новите предварителни версии винаги се включват при използване на предварителна версия."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2625,12 +2481,6 @@
     },
     "Reopen windows from last session" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Повторно отваряне на прозорци от последната сесия"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2732,12 +2582,6 @@
     "Restart Now" : {
       "comment" : "button label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Рестартирайте сега"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2838,12 +2682,6 @@
     },
     "Software update:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Актуализация на софтуера:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2944,12 +2782,6 @@
     },
     "Suppress the following warnings:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Потискане на следните предупреждения:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3050,12 +2882,6 @@
     },
     "Update to prereleases when available" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Актуализирайте до предварителните версии, когато са налични"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3156,12 +2982,6 @@
     },
     "When document is changed by another application:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Когато документът е променен от друго приложение:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3262,12 +3082,6 @@
     },
     "When nothing else is open:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Когато нищо друго не е отворено:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3368,12 +3182,6 @@
     },
     "With the `cot` command-line tool, you can launch CotEditor and let it open files from the command line." : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "С инструмента за команден ред `cot` можете да стартирате CotEditor и да му позволите да отваря файлове от командния ред."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

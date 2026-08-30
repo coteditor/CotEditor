@@ -4,12 +4,6 @@
     "Go" : {
       "comment" : "button label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Напред"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111,12 +105,6 @@
     "Line Number" : {
       "comment" : "placeholder",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Номер на ред"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

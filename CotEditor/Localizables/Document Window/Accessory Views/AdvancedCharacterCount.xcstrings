@@ -4,24 +4,6 @@
     "*%lld* character(s)" : {
       "comment" : "counter for advanced character count",
       "localizations" : {
-        "bg" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "*%lld* знак"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "*%lld* знака"
-                }
-              }
-            }
-          }
-        },
         "cs" : {
           "variations" : {
             "plural" : {
@@ -339,12 +321,6 @@
     "Advanced Character Count…" : {
       "comment" : "menu item",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширен брой знаци…"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -447,12 +423,6 @@
       "comment" : "description for byte",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преброяване на байтове от текста, кодиран с посоченото кодиране."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -561,12 +531,6 @@
       "comment" : "count unit",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Байт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -675,12 +639,6 @@
       "comment" : "description for grapheme cluster",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бройте по интуитивния начин, дефиниран в Unicode. Символ, състоящ се от множество Unicode кодови точки, като емотикони, се брои като един знак."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -789,12 +747,6 @@
       "comment" : "count unit (technical term defined in Unicode)",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Графемен клъстер"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -903,12 +855,6 @@
       "comment" : "description for unicode scalar",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преброяване на Unicode кодови точки. Същото като броенето на UTF-32."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1017,12 +963,6 @@
       "comment" : "count unit",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Уникод скалар"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1131,12 +1071,6 @@
       "comment" : "description for UTF-16",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бройте Unicode кодови точки, но сурогатна двойка като два знака."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1245,12 +1179,6 @@
       "comment" : "count unit",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "UTF-16"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1358,12 +1286,6 @@
     "Copy" : {
       "comment" : "menu item",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Копирай"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1464,12 +1386,6 @@
     },
     "Encoding:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодиране:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1571,12 +1487,6 @@
     "failed" : {
       "comment" : "error message when count failed",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "неуспешно"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1678,12 +1588,6 @@
     "Ignore line endings" : {
       "comment" : "setting option",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Игнорирай краищата на редовете"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1785,12 +1689,6 @@
     "Ignore whitespace" : {
       "comment" : "setting option",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Игнорирай интервалите"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1891,12 +1789,6 @@
     },
     "Normalization:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нормализация:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1998,12 +1890,6 @@
     "Show options" : {
       "comment" : "tooltip",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи опциите"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2105,12 +1991,6 @@
     "Start" : {
       "comment" : "button label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Старт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2212,12 +2092,6 @@
     "Stop Advanced Character Count" : {
       "comment" : "menu item",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Спиране на разширеното броене на символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2319,12 +2193,6 @@
     "Stop Count" : {
       "comment" : "menu item (This “Stop” should be translated the same as it is in the “Stop Advanced Character Count” menu label.)",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Спрете броенето"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2426,12 +2294,6 @@
     "Treat consecutive whitespace as one space" : {
       "comment" : "setting option",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Третирайте последователните интервали като един интервал"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2532,12 +2394,6 @@
     },
     "Unit:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Единица:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2638,12 +2494,6 @@
     },
     "Whitespace:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Интервали:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

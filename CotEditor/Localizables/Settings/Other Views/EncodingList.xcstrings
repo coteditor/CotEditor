@@ -3,12 +3,6 @@
   "strings" : {
     "Drag encodings to change the order:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Плъзнете кодировките, за да промените реда:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110,12 +104,6 @@
     "EncodingListView.Model.RemovalError.defaultEncoding.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодирането, зададено по подразбиране, не може да бъде премахнато."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -224,12 +212,6 @@
       "comment" : "%@ is a localized encoding name.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ не може да бъде премахнат."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -336,12 +318,6 @@
     },
     "Separator" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разделител"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -442,12 +418,6 @@
     },
     "Text Encoding" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кодиране на текст"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -548,12 +518,6 @@
     },
     "This order is used for the Encoding menu and for encoding detection. Only the encodings listed here are considered during detection, with higher items taking priority." : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Този ред е за менюто за кодиране и откриването на кодиране. Процесът на откриване взема предвид само елементите, изброени тук, като елементите с по-висок приоритет са с приоритет."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

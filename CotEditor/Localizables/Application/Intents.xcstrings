@@ -4,12 +4,6 @@
     "CreateDocumentIntent.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Създайте нов документ с посочения текст в CotEditor."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117,12 +111,6 @@
     "CreateDocumentIntent.Parameter.content" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Съдържание"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -230,12 +218,6 @@
     "CreateDocumentIntent.shortTitle" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Създаване на документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -343,12 +325,6 @@
     "CreateDocumentIntent.title" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Създаване на документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

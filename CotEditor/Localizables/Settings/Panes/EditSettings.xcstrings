@@ -3,12 +3,6 @@
   "strings" : {
     "Add a space to comment delimiters" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Добави интервал към разделителите на коментари"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -115,12 +109,6 @@
     },
     "Automatically indent while typing" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автоматичен отстъп, докато пишете"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -221,12 +209,6 @@
     },
     "Automatically trim trailing whitespace" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автоматично изрязване на белите интервали в края"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -327,12 +309,6 @@
     },
     "Comment:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "коментар:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -433,12 +409,6 @@
     },
     "Content parse:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Анализ на съдържанието:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -539,12 +509,6 @@
     },
     "Delay:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Закъснение:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -645,12 +609,6 @@
     },
     "Detect indent style on document opening" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Откриване на стил на отстъп при отваряне на документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -751,12 +709,6 @@
     },
     "Highlight instances of selected text" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отбелязвай съвпаденията на избрания текст"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -857,12 +809,6 @@
     },
     "Highlight matching braces" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отбелязвай съответстващите скоби"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -963,12 +909,6 @@
     },
     "Including whitespace-only lines" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Включително редове само с интервали"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1069,12 +1009,6 @@
     },
     "Indent selection with Tab key" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отстъп на избраното с клавиша Tab"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1175,12 +1109,6 @@
     },
     "Indent width:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ширина на отстъпа:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1281,12 +1209,6 @@
     },
     "Indentation:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "отстъп:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1387,12 +1309,6 @@
     },
     "Insert comment delimiters after indent" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вмъкване на разделители на коментари след отстъп"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1493,12 +1409,6 @@
     },
     "Link URLs in document" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "URLи на връзки в документа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1599,12 +1509,6 @@
     },
     "Prefer using" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Предпочитайте да използвате:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1706,12 +1610,6 @@
     "seconds" : {
       "comment" : "init for delay time",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "секунди"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1813,12 +1711,6 @@
     "spaces" : {
       "comment" : "unit for indentation",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "пространства"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1920,12 +1812,6 @@
     "Spaces" : {
       "comment" : "indent style",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пространства"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2027,12 +1913,6 @@
     "Tabs" : {
       "comment" : "indent style",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Раздели"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2133,12 +2013,6 @@
     },
     "Whitespace:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "интервал:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

@@ -4,12 +4,6 @@
     "Delete Rules" : {
       "comment" : "action name",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изтриване на правила"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111,12 +105,6 @@
     "Edit Rule" : {
       "comment" : "action name",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактиране на правило"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -219,12 +207,6 @@
       "comment" : "CotEditor Replace Definition is a proper file type name. Refer to InfoPlist.xcstrings.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изберете файлове на CotEditor Replace Definition или TSV (стойности, разделени с табулация)."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -332,12 +314,6 @@
     "Insert Rule" : {
       "comment" : "action name",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вмъкване на правило"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -439,12 +415,6 @@
     "Move Rules" : {
       "comment" : "action name",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Правила за преместване"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -546,12 +516,6 @@
     "Multiple Replace" : {
       "comment" : "window title",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Множествена замяна"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -652,12 +616,6 @@
     },
     "Reload All Definitions" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Презареди всички дефиниции"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -765,12 +723,6 @@
     "Sidebar" : {
       "comment" : "accessibility label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Странична лента"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

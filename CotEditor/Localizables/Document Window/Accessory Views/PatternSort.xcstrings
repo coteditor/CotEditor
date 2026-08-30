@@ -3,12 +3,6 @@
   "strings" : {
     "Clear Recents" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изчисти последните"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110,12 +104,6 @@
     "Column" : {
       "comment" : "pattern sort key option",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Колона"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -216,12 +204,6 @@
     },
     "Delimiter:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разделител:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -323,12 +305,6 @@
     "Empty pattern" : {
       "comment" : "error message (“pattern” is a regular expression pattern)",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Празен модел"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -430,12 +406,6 @@
     "Entire line" : {
       "comment" : "pattern sort key option",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Целият ред"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -536,12 +506,6 @@
     },
     "Ignore case" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Игнорирай главни букви"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -642,12 +606,6 @@
     },
     "In descending order" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "В низходящ ред"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -749,12 +707,6 @@
     "Invalid pattern" : {
       "comment" : "error message (“pattern” is a regular expression pattern)",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невалиден шаблон"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -855,12 +807,6 @@
     },
     "Keep the first line at the top" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запазете първия ред отгоре"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -961,12 +907,6 @@
     },
     "Pattern:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шаблон:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1067,12 +1007,6 @@
     },
     "Position:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Позиция:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1174,12 +1108,6 @@
     "Recents" : {
       "comment" : "menu header",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Последни"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1281,12 +1209,6 @@
     "Regular expression" : {
       "comment" : "pattern sort key option",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Регулярен израз"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1388,12 +1310,6 @@
     "Regular Expression" : {
       "comment" : "placeholder for regular expression pattern field",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Регулярен израз"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1494,12 +1410,6 @@
     },
     "Respect language rules" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Уважавайте езиковите правила"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1601,12 +1511,6 @@
     "Sample line to check which part of a line will be used for sorting." : {
       "comment" : "tooltip",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Примерен ред, за да проверите коя част от ред ще се използва за сравнение на сортиране."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1707,12 +1611,6 @@
     },
     "Sample:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пример:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1814,12 +1712,6 @@
     "Sort" : {
       "comment" : "button label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сортиране"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1920,12 +1812,6 @@
     },
     "Sort key:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ключ за сортиране:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2026,12 +1912,6 @@
     },
     "Sort option:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Опция за сортиране:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2132,12 +2012,6 @@
     },
     "Treat numbers as numeric values" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Третирайте числата като числови стойности"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2238,12 +2112,6 @@
     },
     "Use captured group:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Използвай прихваната група:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

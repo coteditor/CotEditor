@@ -4,12 +4,6 @@
     "Duplicated syntaxes" : {
       "comment" : "table column header",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дублиран синтаксис"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111,12 +105,6 @@
     "Extension" : {
       "comment" : "heading",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -218,12 +206,6 @@
     "Filename" : {
       "comment" : "heading",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Име на файл"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -325,12 +307,6 @@
     "Interpreter" : {
       "comment" : "heading",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Преводач"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -432,12 +408,6 @@
     "Syntax Mapping Conflicts" : {
       "comment" : "heading",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Конфликти при картографиране на синтаксис"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -538,12 +508,6 @@
     },
     "The following file mapping rules are registered in multiple syntaxes. CotEditor uses the first syntax automatically. To resolve conflicts, edit each syntax definition." : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Следните правила за съпоставяне на файлове са регистрирани в множество синтаксиси. CotEditor използва първия синтаксис автоматично. За да разрешите конфликти, редактирайте всяка дефиниция на синтаксис."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -645,12 +609,6 @@
     "Used syntax" : {
       "comment" : "table column header",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Използван синтаксис"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

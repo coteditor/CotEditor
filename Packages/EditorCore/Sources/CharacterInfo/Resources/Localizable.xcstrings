@@ -5,12 +5,6 @@
       "comment" : "label for the Unicode variation selector that forces to draw the character in the emoji style",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Емоджи стил"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -119,12 +113,6 @@
       "comment" : "label for the Unicode variation selector that forces to draw the character in the text style",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текстов стил"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -233,12 +221,6 @@
       "comment" : "label for Unicode emoji modifier applying the skin tone to the character",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тен на кожата III"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -347,12 +329,6 @@
       "comment" : "label for Unicode emoji modifier applying the skin tone to the character",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тен на кожата IV"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -461,12 +437,6 @@
       "comment" : "label for Unicode emoji modifier applying the skin tone to the character",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Цвят на кожата V"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -575,12 +545,6 @@
       "comment" : "label for Unicode emoji modifier applying the skin tone to the character",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Цвят на кожата VI"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -689,12 +653,6 @@
       "comment" : "label for Unicode emoji modifier applying the skin tone to the character",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Цвят на кожата I-II"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -802,12 +760,6 @@
     "Variant" : {
       "comment" : "label for general Unicode variation selectors",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вариант"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

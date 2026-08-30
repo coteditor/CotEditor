@@ -3,12 +3,6 @@
   "strings" : {
     "Adlam" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Адлам"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -109,12 +103,6 @@
     },
     "Aegean Numbers" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Егейски числа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -215,12 +203,6 @@
     },
     "Ahom" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ахом"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -321,12 +303,6 @@
     },
     "Alchemical Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Алхимични символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -427,12 +403,6 @@
     },
     "Alphabetic Presentation Forms" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Азбучни форми за представяне"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -533,12 +503,6 @@
     },
     "Anatolian Hieroglyphs" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Анатолийски йероглифи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -639,12 +603,6 @@
     },
     "Ancient Greek Musical Notation" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Древногръцка музикална нотация"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -745,12 +703,6 @@
     },
     "Ancient Greek Numbers" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Древногръцки числа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -851,12 +803,6 @@
     },
     "Ancient Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Древни символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -957,12 +903,6 @@
     },
     "Arabic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Арабски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1063,12 +1003,6 @@
     },
     "Arabic Extended-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Арабски, разширение A"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1169,12 +1103,6 @@
     },
     "Arabic Extended-B" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Арабски, разширение B"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1275,12 +1203,6 @@
     },
     "Arabic Extended-C" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Арабски, разширение C"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1381,12 +1303,6 @@
     },
     "Arabic Math Alphabetic Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Арабски математически азбучни символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1487,12 +1403,6 @@
     },
     "Arabic Presentation Forms-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Арабски форми за представяне-A"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1593,12 +1503,6 @@
     },
     "Arabic Presentation Forms-B" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Арабски форми за представяне-B"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1699,12 +1603,6 @@
     },
     "Arabic Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнение към арабската писменост"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1805,12 +1703,6 @@
     },
     "Armenian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Арменски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1911,12 +1803,6 @@
     },
     "Arrows" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стрелки"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2017,12 +1903,6 @@
     },
     "Avestan" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Авестан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2123,12 +2003,6 @@
     },
     "Balinese" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Балинесе"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2229,12 +2103,6 @@
     },
     "Bamum" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бамум"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2335,12 +2203,6 @@
     },
     "Bamum Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бамум допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2441,12 +2303,6 @@
     },
     "Basic Latin" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Основна латиница"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2547,12 +2403,6 @@
     },
     "Bassa Vah" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Басса Вах"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2653,12 +2503,6 @@
     },
     "Batak" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Батак"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2759,12 +2603,6 @@
     },
     "Bengali" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бенгалски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2881,12 +2719,6 @@
     },
     "Bhaiksuki" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бхаиксуки"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2987,12 +2819,6 @@
     },
     "Block Elements" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Блокови елементи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3093,12 +2919,6 @@
     },
     "Bopomofo" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бопомофо"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3199,12 +3019,6 @@
     },
     "Bopomofo Extended" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бопомофо разширение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3305,12 +3119,6 @@
     },
     "Box Drawing" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Рамки и линии"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3411,12 +3219,6 @@
     },
     "Brahmi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Брахми"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3517,12 +3319,6 @@
     },
     "Braille Patterns" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Брайлови шаблони"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3623,12 +3419,6 @@
     },
     "Buginese" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бугинесе"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3729,12 +3519,6 @@
     },
     "Buhid" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бухид"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3835,12 +3619,6 @@
     },
     "Byzantine Musical Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Византийски музикални символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3941,12 +3719,6 @@
     },
     "Carian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кариан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4047,12 +3819,6 @@
     },
     "Caucasian Albanian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каукасиан Албаниан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4153,12 +3919,6 @@
     },
     "Chakma" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Чакма"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4259,12 +4019,6 @@
     },
     "Cham" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Чам"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4365,12 +4119,6 @@
     },
     "Cherokee" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Чероки"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4471,12 +4219,6 @@
     },
     "Cherokee Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Чероки допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4577,12 +4319,6 @@
     },
     "Chess Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шахматни символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4683,12 +4419,6 @@
     },
     "Chorasmian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Чорасмиан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4789,12 +4519,6 @@
     },
     "CJK Compatibility" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кджк съвместимост"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4895,12 +4619,6 @@
     },
     "CJK Compatibility Forms" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Форми за съвместимост CJK"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5001,12 +4719,6 @@
     },
     "CJK Compatibility Ideographs" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Идеограми за съвместимост CJK"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5107,12 +4819,6 @@
     },
     "CJK Compatibility Ideographs Supp." : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Идеограми за съвместимост CJK, допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5213,12 +4919,6 @@
     },
     "CJK Radicals Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнение към радикалите CJK"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5319,12 +5019,6 @@
     },
     "CJK Strokes" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Щрихи CJK"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5425,12 +5119,6 @@
     },
     "CJK Symbols and Punctuation" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Символи и пунктуация CJK"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5531,12 +5219,6 @@
     },
     "CJK Unified Ideographs" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Унифицирани идеограми CJK"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5637,12 +5319,6 @@
     },
     "CJK Unified Ideographs Ext. A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Унифицирани идеограми CJK, разширение A"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5743,12 +5419,6 @@
     },
     "CJK Unified Ideographs Ext. B" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Унифицирани идеограми CJK, разширение B"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5849,12 +5519,6 @@
     },
     "CJK Unified Ideographs Ext. C" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Унифицирани идеограми CJK, разширение C"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5955,12 +5619,6 @@
     },
     "CJK Unified Ideographs Ext. D" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Унифицирани идеограми CJK, разширение D"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6061,12 +5719,6 @@
     },
     "CJK Unified Ideographs Ext. E" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Унифицирани идеограми CJK, разширение E"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6167,12 +5819,6 @@
     },
     "CJK Unified Ideographs Ext. F" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Унифицирани идеограми CJK, разширение F"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6273,12 +5919,6 @@
     },
     "CJK Unified Ideographs Ext. G" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Унифицирани идеограми CJK, разширение G"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6379,12 +6019,6 @@
     },
     "CJK Unified Ideographs Ext. H" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Унифицирани идеограми CJK, разширение H"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6485,12 +6119,6 @@
     },
     "CJK Unified Ideographs Ext. I" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Унифицирани идеограми CJK, разширение I"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6591,12 +6219,6 @@
     },
     "CJK Unified Ideographs Ext. J" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Унифицирани идеограми CJK, разширение J"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6697,12 +6319,6 @@
     },
     "Combining Diacritical Marks" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Комбиниращи диакритични знаци"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6803,12 +6419,6 @@
     },
     "Combining Diacritical Marks Extended" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширени комбиниращи диакритични знаци"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6909,12 +6519,6 @@
     },
     "Combining Diacritical Marks for Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Комбиниращи диакритични знаци за символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7015,12 +6619,6 @@
     },
     "Combining Diacritical Marks Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнение към комбиниращите диакритични знаци"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7121,12 +6719,6 @@
     },
     "Combining Half Marks" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Комбининг половин знаци"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7227,12 +6819,6 @@
     },
     "Common Indic Number Forms" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Общи индийски число форми"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7333,12 +6919,6 @@
     },
     "Control Pictures" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Контролни изображения"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7439,12 +7019,6 @@
     },
     "Coptic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Коптски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7545,12 +7119,6 @@
     },
     "Coptic Epact Numbers" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Коптик Епакт числа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7651,12 +7219,6 @@
     },
     "Counting Rod Numerals" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Броеве с пръчки"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7757,12 +7319,6 @@
     },
     "Cuneiform" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Клинопис"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7863,12 +7419,6 @@
     },
     "Cuneiform Numbers and Punctuation" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кунеиформ числа и пунктуация"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7969,12 +7519,6 @@
     },
     "Currency Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Валутни символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8075,12 +7619,6 @@
     },
     "Cypriot Syllabary" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кипърска сричкова писменост"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8181,12 +7719,6 @@
     },
     "Cypro-Minoan" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кйпро-Миноан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8287,12 +7819,6 @@
     },
     "Cyrillic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кирилица"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8393,12 +7919,6 @@
     },
     "Cyrillic Extended-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кирилица, разширение A"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8499,12 +8019,6 @@
     },
     "Cyrillic Extended-B" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кирилица, разширение B"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8605,12 +8119,6 @@
     },
     "Cyrillic Extended-C" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кирилица, разширение C"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8711,12 +8219,6 @@
     },
     "Cyrillic Extended-D" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кирилица, разширение D"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8817,12 +8319,6 @@
     },
     "Cyrillic Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнение към кирилицата"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8923,12 +8419,6 @@
     },
     "Deseret" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дезерет"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9029,12 +8519,6 @@
     },
     "Devanagari" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Деванагари"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9135,12 +8619,6 @@
     },
     "Devanagari Extended" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Деванагари разширение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9241,12 +8719,6 @@
     },
     "Devanagari Extended-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Деванагари разширение-А"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9347,12 +8819,6 @@
     },
     "Dingbats" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дингбати"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9453,12 +8919,6 @@
     },
     "Dives Akuru" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дивес Акуру"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9559,12 +9019,6 @@
     },
     "Dogra" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Догра"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9665,12 +9119,6 @@
     },
     "Domino Tiles" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Домино Тилес"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9771,12 +9219,6 @@
     },
     "Duployan" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дуплоян"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9877,12 +9319,6 @@
     },
     "Early Dynastic Cuneiform" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Еарлй Дйнастик Кунеиформ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9983,12 +9419,6 @@
     },
     "Egyptian Hieroglyph Format Controls" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Егйптиан Хиероглйф Формат Контролс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10089,12 +9519,6 @@
     },
     "Egyptian Hieroglyphs" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Егйптиан Хиероглйфс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10195,12 +9619,6 @@
     },
     "Egyptian Hieroglyphs Extended-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Егйптиан Хиероглйфс разширение-А"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10301,12 +9719,6 @@
     },
     "Elbasan" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Елбасан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10407,12 +9819,6 @@
     },
     "Elymaic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Елймаик"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10513,12 +9919,6 @@
     },
     "Emoticons" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Емотикони"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10619,12 +10019,6 @@
     },
     "Enclosed Alphanumeric Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнение към оградените буквено-цифрови знаци"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10725,12 +10119,6 @@
     },
     "Enclosed Alphanumerics" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Оградени Алфанумерикс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10831,12 +10219,6 @@
     },
     "Enclosed CJK Letters and Months" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Оградени букви и месеци CJK"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10937,12 +10319,6 @@
     },
     "Enclosed Ideographic Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнение към оградените идеографски знаци"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11043,12 +10419,6 @@
     },
     "Ethiopic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Етиопски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11149,12 +10519,6 @@
     },
     "Ethiopic Extended" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Етиопик разширение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11255,12 +10619,6 @@
     },
     "Ethiopic Extended-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Етиопик разширение-А"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11361,12 +10719,6 @@
     },
     "Ethiopic Extended-B" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Етиопик разширение-Б"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11467,12 +10819,6 @@
     },
     "Ethiopic Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Етиопик допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11573,12 +10919,6 @@
     },
     "Garay" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Гарай"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11679,12 +11019,6 @@
     },
     "General Punctuation" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Обща пунктуация"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11785,12 +11119,6 @@
     },
     "Geometric Shapes" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Геометрични фигури"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11891,12 +11219,6 @@
     },
     "Geometric Shapes Extended" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширени геометрични фигури"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11997,12 +11319,6 @@
     },
     "Georgian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Грузински"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12103,12 +11419,6 @@
     },
     "Georgian Extended" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Георгиан разширение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12209,12 +11519,6 @@
     },
     "Georgian Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Георгиан допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12315,12 +11619,6 @@
     },
     "Glagolitic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Глаголица"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12421,12 +11719,6 @@
     },
     "Glagolitic Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Глаголитик допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12527,12 +11819,6 @@
     },
     "Gothic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Готски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12633,12 +11919,6 @@
     },
     "Grantha" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Гранта"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12739,12 +12019,6 @@
     },
     "Greek and Coptic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Гръцки и коптски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12845,12 +12119,6 @@
     },
     "Greek Extended" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Гръцки, разширение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12951,12 +12219,6 @@
     },
     "Gujarati" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Гуджарати"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13057,12 +12319,6 @@
     },
     "Gunjala Gondi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Гунджала Гонди"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13163,12 +12419,6 @@
     },
     "Gurmukhi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Гурмукхи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13269,12 +12519,6 @@
     },
     "Gurung Khema" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Гурунг Хема"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13375,12 +12619,6 @@
     },
     "Halfwidth and Fullwidth Forms" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Полуширинни и пълноширинни форми"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13481,12 +12719,6 @@
     },
     "Hangul Compatibility Jamo" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хангул съвместимост Джамо"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13587,12 +12819,6 @@
     },
     "Hangul Jamo" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хангул Джамо"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13693,12 +12919,6 @@
     },
     "Hangul Jamo Extended-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хангул Джамо разширение-А"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13799,12 +13019,6 @@
     },
     "Hangul Jamo Extended-B" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хангул Джамо разширение-Б"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13905,12 +13119,6 @@
     },
     "Hangul Syllables" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хангул Сйллаблес"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14011,12 +13219,6 @@
     },
     "Hanifi Rohingya" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ханифи рохингия"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14117,12 +13319,6 @@
     },
     "Hanunoo" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хануну"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14223,12 +13419,6 @@
     },
     "Hatran" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хатран"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14329,12 +13519,6 @@
     },
     "Hebrew" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Иврит"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14435,12 +13619,6 @@
     },
     "High Private Use Surrogates" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хигх частна употреба Суррогатес"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14541,12 +13719,6 @@
     },
     "High Surrogates" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хигх Суррогатес"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14647,12 +13819,6 @@
     },
     "Hiragana" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хирагана"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14753,12 +13919,6 @@
     },
     "Ideographic Desc. Characters" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Идеографик Деск. Чарактерс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14859,12 +14019,6 @@
     },
     "Ideographic Symbols and Punctuation" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Идеографик символи и пунктуация"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14965,12 +14119,6 @@
     },
     "Imperial Aramaic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Империал Арамаик"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15071,12 +14219,6 @@
     },
     "Indic Siyaq Numbers" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Индийски Сияк числа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15177,12 +14319,6 @@
     },
     "Inscriptional Pahlavi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Инскриптионал Пахлави"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15283,12 +14419,6 @@
     },
     "Inscriptional Parthian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Инскриптионал Партиан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15389,12 +14519,6 @@
     },
     "IPA Extensions" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ипа Екстенсионс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15495,12 +14619,6 @@
     },
     "Javanese" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Джаванесе"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15601,12 +14719,6 @@
     },
     "Kaithi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каити"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15707,12 +14819,6 @@
     },
     "Kaktovik Numerals" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кактовик числа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15813,12 +14919,6 @@
     },
     "Kana Extended-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кана разширение-А"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15919,12 +15019,6 @@
     },
     "Kana Extended-B" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кана разширение-Б"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16025,12 +15119,6 @@
     },
     "Kana Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кана допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16131,12 +15219,6 @@
     },
     "Kanbun" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Канбун"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16237,12 +15319,6 @@
     },
     "Kangxi Radicals" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кангкси Радикалс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16343,12 +15419,6 @@
     },
     "Kannada" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каннада"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16449,12 +15519,6 @@
     },
     "Katakana" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Катакана"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16555,12 +15619,6 @@
     },
     "Katakana Phonetic Extensions" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Катакана Фонетик Екстенсионс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16661,12 +15719,6 @@
     },
     "Kawi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кауи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16767,12 +15819,6 @@
     },
     "Kayah Li" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каях Ли"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16873,12 +15919,6 @@
     },
     "Kharoshthi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Харощхи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16979,12 +16019,6 @@
     },
     "Khitan Small Script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хитан Смалл Скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17085,12 +16119,6 @@
     },
     "Khmer" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кхмерски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17191,12 +16219,6 @@
     },
     "Khmer Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хмер символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17297,12 +16319,6 @@
     },
     "Khojki" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ходжки"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17403,12 +16419,6 @@
     },
     "Khudawadi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Худауади"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17509,12 +16519,6 @@
     },
     "Kirat Rai" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кират Раи"
-          }
-        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17525,12 +16529,6 @@
     },
     "Lao" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лаоски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17631,12 +16629,6 @@
     },
     "Latin Extended Additional" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Латин разширение Аддитионал"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17737,12 +16729,6 @@
     },
     "Latin Extended-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Латиница, разширение A"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17843,12 +16829,6 @@
     },
     "Latin Extended-B" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Латиница, разширение B"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17949,12 +16929,6 @@
     },
     "Latin Extended-C" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Латиница, разширение C"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18055,12 +17029,6 @@
     },
     "Latin Extended-D" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Латиница, разширение D"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18161,12 +17129,6 @@
     },
     "Latin Extended-E" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Латиница, разширение E"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18267,12 +17229,6 @@
     },
     "Latin Extended-F" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Латиница, разширение F"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18373,12 +17329,6 @@
     },
     "Latin Extended-G" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Латиница, разширение G"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18479,12 +17429,6 @@
     },
     "Latin-1 Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнителна латиница-1"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18585,12 +17529,6 @@
     },
     "Lepcha" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лепча"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18691,12 +17629,6 @@
     },
     "Letterlike Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Леттерлике символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18797,12 +17729,6 @@
     },
     "Limbu" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лимбу"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18903,12 +17829,6 @@
     },
     "Linear A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Линеар А"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19009,12 +17929,6 @@
     },
     "Linear B Ideograms" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Линеар Б Идеограмс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19115,12 +18029,6 @@
     },
     "Linear B Syllabary" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Линеар Б Сйллабарй"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19221,12 +18129,6 @@
     },
     "Lisu" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лису"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19327,12 +18229,6 @@
     },
     "Lisu Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лису допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19433,12 +18329,6 @@
     },
     "Low Surrogates" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лоу Суррогатес"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19539,12 +18429,6 @@
     },
     "Lycian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лйкиан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19645,12 +18529,6 @@
     },
     "Lydian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лйдиан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19751,12 +18629,6 @@
     },
     "Mahajani" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Махаджани"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19857,12 +18729,6 @@
     },
     "Mahjong Tiles" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Махджонг Тилес"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19963,12 +18829,6 @@
     },
     "Makasar" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Макасар"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20069,12 +18929,6 @@
     },
     "Malayalam" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Малаялам"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20175,12 +19029,6 @@
     },
     "Mandaic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мандаик"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20281,12 +19129,6 @@
     },
     "Manichaean" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Маничаеан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20387,12 +19229,6 @@
     },
     "Marchen" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Марчен"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20493,12 +19329,6 @@
     },
     "Masaram Gondi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Масарам Гонди"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20599,12 +19429,6 @@
     },
     "Math Alphanumeric Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Математически Алфанумерик символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20705,12 +19529,6 @@
     },
     "Mathematical Operators" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Математикал оператори"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20811,12 +19629,6 @@
     },
     "Mayan Numerals" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Маян числа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20917,12 +19729,6 @@
     },
     "Medefaidrin" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Медефаидрин"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21023,12 +19829,6 @@
     },
     "Meetei Mayek" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Митеи Майек"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21129,12 +19929,6 @@
     },
     "Meetei Mayek Extensions" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Митеи Майек Екстенсионс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21235,12 +20029,6 @@
     },
     "Mende Kikakui" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Менде Кикакуи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21341,12 +20129,6 @@
     },
     "Meroitic Cursive" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мероитик Курсиве"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21447,12 +20229,6 @@
     },
     "Meroitic Hieroglyphs" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мероитик Хиероглйфс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21553,12 +20329,6 @@
     },
     "Miao" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Миао"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21659,12 +20429,6 @@
     },
     "Miscellaneous Math Symbols-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разни математически символи-А"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21765,12 +20529,6 @@
     },
     "Miscellaneous Math Symbols-B" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разни математически символи-Б"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21871,12 +20629,6 @@
     },
     "Miscellaneous Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разни символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21977,12 +20729,6 @@
     },
     "Miscellaneous Symbols and Arrows" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разни символи и стрелки"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22083,12 +20829,6 @@
     },
     "Miscellaneous Symbols And Pictographs" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разни символи Анд Пиктографс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22205,12 +20945,6 @@
     },
     "Miscellaneous Technical" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разни Течникал"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22311,12 +21045,6 @@
     },
     "Modi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Моди"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22417,12 +21145,6 @@
     },
     "Modifier Tone Letters" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Модифиер Тоне букви"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22523,12 +21245,6 @@
     },
     "Mongolian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Монголски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22629,12 +21345,6 @@
     },
     "Mongolian Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Монголиан допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22735,12 +21445,6 @@
     },
     "Mro" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мро"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22841,12 +21545,6 @@
     },
     "Multani" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мултани"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22947,12 +21645,6 @@
     },
     "Musical Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Музикални символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23053,12 +21745,6 @@
     },
     "Myanmar" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мианмарски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23159,12 +21845,6 @@
     },
     "Myanmar Extended-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мянмар разширение-А"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23265,12 +21945,6 @@
     },
     "Myanmar Extended-B" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мянмар разширение-Б"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23371,12 +22045,6 @@
     },
     "Myanmar Extended-C" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мянмар разширение-К"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23477,12 +22145,6 @@
     },
     "N'Ko" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Н'ко"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23583,12 +22245,6 @@
     },
     "Nabataean" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Набатаеан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23689,12 +22345,6 @@
     },
     "Nag Mundari" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Наг Мундари"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23795,12 +22445,6 @@
     },
     "Nandinagari" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нандинагари"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23901,12 +22545,6 @@
     },
     "New Tai Lue" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Неу Таи Луе"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24007,12 +22645,6 @@
     },
     "Newa" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Неуа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24113,12 +22745,6 @@
     },
     "Number Forms" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Число форми"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24219,12 +22845,6 @@
     },
     "Nushu" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нушу"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24325,12 +22945,6 @@
     },
     "Nyiakeng Puachue Hmong" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нйиакенг Пуачуе Хмонг"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24431,12 +23045,6 @@
     },
     "Ogham" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Огам"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24537,12 +23145,6 @@
     },
     "Ol Chiki" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ол Чики"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24643,12 +23245,6 @@
     },
     "Ol Onal" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ол Онал"
-          }
-        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24659,12 +23255,6 @@
     },
     "Old Hungarian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Олд Хунгариан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24765,12 +23355,6 @@
     },
     "Old Italic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Староиталийски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24871,12 +23455,6 @@
     },
     "Old North Arabian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Олд Норт Арабиан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24977,12 +23555,6 @@
     },
     "Old Permic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Олд Пермик"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25083,12 +23655,6 @@
     },
     "Old Persian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Староперсийски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25189,12 +23755,6 @@
     },
     "Old Sogdian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Олд Согдиан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25295,12 +23855,6 @@
     },
     "Old South Arabian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Олд Сут Арабиан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25401,12 +23955,6 @@
     },
     "Old Turkic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Олд Туркик"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25507,12 +24055,6 @@
     },
     "Old Uyghur" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Олд Уйгхур"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25613,12 +24155,6 @@
     },
     "Optical Character Recognition" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Оптикал Чарактер Рекогнитион"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25719,12 +24255,6 @@
     },
     "Oriya" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ория"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25825,12 +24355,6 @@
     },
     "Ornamental Dingbats" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Орнаментал Дингбац"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25931,12 +24455,6 @@
     },
     "Osage" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Осаге"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26037,12 +24555,6 @@
     },
     "Osmanya" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Османя"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26143,12 +24655,6 @@
     },
     "Ottoman Siyaq Numbers" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Оттоман Сияк числа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26249,12 +24755,6 @@
     },
     "Pahawh Hmong" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пахаух Хмонг"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26355,12 +24855,6 @@
     },
     "Palmyrene" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Палмйрене"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26461,12 +24955,6 @@
     },
     "Pau Cin Hau" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пау Кин Хау"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26567,12 +25055,6 @@
     },
     "Phags-pa" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Фагс-Па"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26673,12 +25155,6 @@
     },
     "Phaistos Disc" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Фаистос Диск"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26779,12 +25255,6 @@
     },
     "Phoenician" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Фоеникиан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26885,12 +25355,6 @@
     },
     "Phonetic Extensions" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Фонетик Екстенсионс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26991,12 +25455,6 @@
     },
     "Phonetic Extensions Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Фонетик Екстенсионс допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27097,12 +25555,6 @@
     },
     "Playing Cards" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Плайинг Кардс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27203,12 +25655,6 @@
     },
     "Private Use Area" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Частна употреба област"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27309,12 +25755,6 @@
     },
     "Psalter Pahlavi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Псалтер Пахлави"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27415,12 +25855,6 @@
     },
     "Rejang" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Реджанг"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27521,12 +25955,6 @@
     },
     "Rumi Numeral Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Руми Нумерал символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27627,12 +26055,6 @@
     },
     "Runic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Рунически"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27733,12 +26155,6 @@
     },
     "Samaritan" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Самаритан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27839,12 +26255,6 @@
     },
     "Saurashtra" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сауращра"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27945,12 +26355,6 @@
     },
     "Sharada" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шарада"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28067,12 +26471,6 @@
     },
     "Shavian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шавиан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28173,12 +26571,6 @@
     },
     "Shorthand Format Controls" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шортанд Формат Контролс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28279,12 +26671,6 @@
     },
     "Siddham" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сиддхам"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28401,12 +26787,6 @@
     },
     "Sinhala" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синхалски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28507,12 +26887,6 @@
     },
     "Sinhala Archaic Numbers" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синхала Арчаик числа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28613,12 +26987,6 @@
     },
     "Small Form Variants" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Малки вариантни форми"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28719,12 +27087,6 @@
     },
     "Small Kana Extension" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Смалл Кана Екстенсион"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28825,12 +27187,6 @@
     },
     "Sogdian" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Согдиан"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28931,12 +27287,6 @@
     },
     "Sora Sompeng" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сора Сомпенг"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29037,12 +27387,6 @@
     },
     "Soyombo" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Соьомбо"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29143,12 +27487,6 @@
     },
     "Spacing Modifier Letters" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Спакинг Модифиер букви"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29249,12 +27587,6 @@
     },
     "Specials" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Спекиалс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29355,12 +27687,6 @@
     },
     "Sundanese" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сунданесе"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29461,12 +27787,6 @@
     },
     "Sundanese Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сунданесе допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29567,12 +27887,6 @@
     },
     "Sunuwar" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сунууар"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29673,12 +27987,6 @@
     },
     "Superscripts and Subscripts" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Суперскрипц и Субскрипц"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29779,12 +28087,6 @@
     },
     "Supplemental Arrows-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнителни стрелки-A"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29885,12 +28187,6 @@
     },
     "Supplemental Arrows-B" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнителни стрелки-B"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29991,12 +28287,6 @@
     },
     "Supplemental Arrows-C" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнителни стрелки-C"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30097,12 +28387,6 @@
     },
     "Supplemental Math Operators" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Супплементал математически оператори"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30203,12 +28487,6 @@
     },
     "Supplemental Punctuation" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнителна пунктуация"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30309,12 +28587,6 @@
     },
     "Supplemental Symbols and Pictographs" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Супплементал символи и Пиктографс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30415,12 +28687,6 @@
     },
     "Supplementary Private Use Area-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнителна област за частна употреба-A"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30521,12 +28787,6 @@
     },
     "Supplementary Private Use Area-B" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнителна област за частна употреба-B"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30627,12 +28887,6 @@
     },
     "Sutton SignWriting" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Суттон Сигнуритинг"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30733,12 +28987,6 @@
     },
     "Syloti Nagri" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сйлоти Нагри"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30839,12 +29087,6 @@
     },
     "Symbols and Pictographs Extended-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширени символи и пиктограми-A"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30945,12 +29187,6 @@
     },
     "Symbols for Legacy Computing" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Символи Фор Легакй Компутинг"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31051,12 +29287,6 @@
     },
     "Symbols for Legacy Computing Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнение към символите за наследени компютърни системи"
-          }
-        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31067,12 +29297,6 @@
     },
     "Syriac" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сирийски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31173,12 +29397,6 @@
     },
     "Syriac Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сйриак допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31279,12 +29497,6 @@
     },
     "Tagalog" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тагалог"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31385,12 +29597,6 @@
     },
     "Tagbanwa" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тагбануа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31491,12 +29697,6 @@
     },
     "Tags" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тагс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31597,12 +29797,6 @@
     },
     "Tai Le" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Таи Ле"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31703,12 +29897,6 @@
     },
     "Tai Tham" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Таи Там"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31809,12 +29997,6 @@
     },
     "Tai Viet" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Таи Виет"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31915,12 +30097,6 @@
     },
     "Tai Xuan Jing Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Таи Ксуан Джинг символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32037,12 +30213,6 @@
     },
     "Takri" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Такри"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32143,12 +30313,6 @@
     },
     "Tamil" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тамилски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32249,12 +30413,6 @@
     },
     "Tamil Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тамил допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32355,12 +30513,6 @@
     },
     "Tangsa" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тангса"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32461,12 +30613,6 @@
     },
     "Tangut" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тангут"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32567,12 +30713,6 @@
     },
     "Tangut Components" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тангут Компоненц"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32689,12 +30829,6 @@
     },
     "Tangut Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тангут допълнение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32795,12 +30929,6 @@
     },
     "Telugu" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Телугу"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32901,12 +31029,6 @@
     },
     "Thaana" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Таана"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33007,12 +31129,6 @@
     },
     "Thai" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тайландски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33113,12 +31229,6 @@
     },
     "Tibetan" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тибетски"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33219,12 +31329,6 @@
     },
     "Tifinagh" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тифинагх"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33325,12 +31429,6 @@
     },
     "Tirhuta" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тирхута"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33431,12 +31529,6 @@
     },
     "Todhri" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тодхри"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33553,12 +31645,6 @@
     },
     "Toto" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тото"
-          }
-        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33569,12 +31655,6 @@
     },
     "Transport And Map Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Транспорт Анд Мап символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33675,12 +31755,6 @@
     },
     "Tulu-Tigalari" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тулу-Тигалари"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33781,12 +31855,6 @@
     },
     "Ugaritic" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Угаритик"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33887,12 +31955,6 @@
     },
     "Unified Canadian Aboriginal Syllabics" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Унифицирани сричкови знаци на канадските аборигени"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33993,12 +32055,6 @@
     },
     "Unified Canadian Aboriginal Syllabics Extended" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширени унифицирани сричкови знаци на канадските аборигени"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34099,12 +32155,6 @@
     },
     "Unified Canadian Aboriginal Syllabics Extended-A" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширени унифицирани сричкови знаци на канадските аборигени-A"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34205,12 +32255,6 @@
     },
     "Vai" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ваи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34311,12 +32355,6 @@
     },
     "Variation Selectors" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вариатион Селекторс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34417,12 +32455,6 @@
     },
     "Variation Selectors Supplement" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допълнение към селекторите на варианти"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34523,12 +32555,6 @@
     },
     "Vedic Extensions" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ведик Екстенсионс"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34629,12 +32655,6 @@
     },
     "Vertical Forms" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вертикални форми"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34735,12 +32755,6 @@
     },
     "Vithkuqi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Виткуки"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34841,12 +32855,6 @@
     },
     "Wancho" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Уанчо"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34947,12 +32955,6 @@
     },
     "Warang Citi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Уаранг Кити"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35053,12 +33055,6 @@
     },
     "Yezidi" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Йезиди"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35159,12 +33155,6 @@
     },
     "Yi Radicals" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Радикали И"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35265,12 +33255,6 @@
     },
     "Yi Syllables" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Срички И"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35371,12 +33355,6 @@
     },
     "Yijing Hexagram Symbols" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Йиджинг Хексаграм символи"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35477,12 +33455,6 @@
     },
     "Zanabazar Square" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Занабазар Скуаре"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35583,12 +33555,6 @@
     },
     "Znamenny Musical Notation" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Знаменнй музикални нотация"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

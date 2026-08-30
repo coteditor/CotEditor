@@ -3,12 +3,6 @@
   "strings" : {
     "All" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Всички"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110,12 +104,6 @@
     "Command" : {
       "comment" : "tab label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "командване"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -217,12 +205,6 @@
     "Description" : {
       "comment" : "table column header",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Описание"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -324,12 +306,6 @@
     "Extensions" : {
       "comment" : "table column header",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Разширения"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -431,12 +407,6 @@
     "File Drop" : {
       "comment" : "tab label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пускане на файл"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -538,12 +508,6 @@
     "File extensions of dropped file (comma-separated)." : {
       "comment" : "tooltip",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файлови разширения на изпуснат файл (разделени със запетая)."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -645,12 +609,6 @@
     "Image File" : {
       "comment" : "menu item header",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Файл с изображение"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -752,12 +710,6 @@
     "Insert Variable" : {
       "comment" : "button label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вмъкване на променлива"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -858,12 +810,6 @@
     },
     "Insertion format:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Формат на вмъкване:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -965,12 +911,6 @@
     "Key" : {
       "comment" : "table column header",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ключ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1078,12 +1018,6 @@
     "Name" : {
       "comment" : "table column header",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Име"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1191,12 +1125,6 @@
     "Syntax" : {
       "comment" : "table column header",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксис"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1298,12 +1226,6 @@
     "Syntax in which this file drop setting is used." : {
       "comment" : "tooltip",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксис, в който се използва тази настройка за изпускане на файл."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1405,12 +1327,6 @@
     "Text File" : {
       "comment" : "menu item header",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текстов файл"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1511,12 +1427,6 @@
     },
     "Text to be inserted by a command in the menu or by keyboard shortcut:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текст за вмъкване чрез команда в менюто или чрез клавишна комбинация:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1617,12 +1527,6 @@
     },
     "Text to be inserted by dropping files to the editor:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текст за вмъкване чрез пускане на файлове в редактора:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

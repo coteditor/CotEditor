@@ -4,30 +4,6 @@
     "%lld commands found" : {
       "comment" : "VoiceOver announcement for when incrementally updating the command search result.",
       "localizations" : {
-        "bg" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Намерена е %lld команда"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Намерени са %lld команди"
-                }
-              },
-              "zero" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Няма намерени команди"
-                }
-              }
-            }
-          }
-        },
         "cs" : {
           "variations" : {
             "plural" : {
@@ -447,12 +423,6 @@
     "Command" : {
       "comment" : "command type",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "командване"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -553,12 +523,6 @@
     },
     "Quick Actions" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бързи действия"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -660,12 +624,6 @@
     "Script" : {
       "comment" : "command type",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

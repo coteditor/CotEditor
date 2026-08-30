@@ -3,12 +3,6 @@
   "strings" : {
     "AWK script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "AWK скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -109,12 +103,6 @@
     },
     "BibTeX bibliography" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BibTeX библиография"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -215,12 +203,6 @@
     },
     "C header" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C заглавка"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -321,12 +303,6 @@
     },
     "C source" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C източник"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -427,12 +403,6 @@
     },
     "C# source" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C# източник"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -533,12 +503,6 @@
     },
     "C++ header" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C++ заглавка"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -639,12 +603,6 @@
     },
     "C++ source" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "C++ източник"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -745,12 +703,6 @@
     },
     "Cascading Style Sheet" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каскаден стилов лист"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -853,12 +805,6 @@
       "comment" : "Bundle name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -956,12 +902,6 @@
       "comment" : "Accessibility Bundle Name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактор на детско легло"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1068,12 +1008,6 @@
     },
     "Configuration" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Конфигурация"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1174,12 +1108,6 @@
     },
     "CotEditor Replace Definition" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor Замени дефиницията"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1280,12 +1208,6 @@
     },
     "CotEditor Settings Archive" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor Архив на настройките"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1386,12 +1308,6 @@
     },
     "CotEditor Syntax" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor Синтаксис"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1492,12 +1408,6 @@
     },
     "CotEditor Theme" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor Тема"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1598,12 +1508,6 @@
     },
     "D source" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "D източник"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1704,12 +1608,6 @@
     },
     "Dart script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дартс скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1810,12 +1708,6 @@
     },
     "Diff" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "разл"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1916,12 +1808,6 @@
     },
     "Fortran source" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Източник на Fortran"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2022,12 +1908,6 @@
     },
     "Go script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Go скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2128,12 +2008,6 @@
     },
     "Haskell script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хаскел скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2234,12 +2108,6 @@
     },
     "HTML document" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HTML документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2340,12 +2208,6 @@
     },
     "INI" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "INI"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2446,12 +2308,6 @@
     },
     "Java source" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Източник на Java"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2552,12 +2408,6 @@
     },
     "JavaScript" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "JavaScript"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2658,12 +2508,6 @@
     },
     "JSON document" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "JSON документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2764,12 +2608,6 @@
     },
     "Julia script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сценарият на Джулия"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2870,12 +2708,6 @@
     },
     "Kotlin script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Котлин скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2976,12 +2808,6 @@
     },
     "Lisp script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lisp скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3082,12 +2908,6 @@
     },
     "Lua script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lua скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3188,12 +3008,6 @@
     },
     "Markdown document" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Markdown документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3294,12 +3108,6 @@
     },
     "Mojo script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mojo скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3402,12 +3210,6 @@
       "comment" : "Privacy - AppleEvents Sending Usage Description",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor се нуждае от вашето одобрение, за да контролира други приложения с AppleScript."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3516,12 +3318,6 @@
       "comment" : "Copyright (human-readable)",
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "© 2005-2009 nakamuxu\n© 2011, 2014 usami-k\n© 2013-2026 1024jp"
-          }
-        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -3533,12 +3329,6 @@
     },
     "Perl script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Perl скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3639,12 +3429,6 @@
     },
     "PHP script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PHP скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3745,12 +3529,6 @@
     },
     "Plain text document" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Обикновен текстов документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3851,12 +3629,6 @@
     },
     "Python script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Python скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3957,12 +3729,6 @@
     },
     "reStructured Text document" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Реструктуриран текстов документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4063,12 +3829,6 @@
     },
     "Ruby script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ruby скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4169,12 +3929,6 @@
     },
     "Rust script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rust скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4275,12 +4029,6 @@
     },
     "Scala source" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Източник на Scala"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4381,12 +4129,6 @@
     },
     "Scalable Vector Graphics" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мащабируема векторна графика"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4487,12 +4229,6 @@
     },
     "Scheme script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скрипт на схема"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4593,12 +4329,6 @@
     },
     "Shell script" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shell скрипт"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4699,12 +4429,6 @@
     },
     "SQL source" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "SQL източник"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4805,12 +4529,6 @@
     },
     "Swift source" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Бърз източник"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4911,12 +4629,6 @@
     },
     "TeX document" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "TeX документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5017,12 +4729,6 @@
     },
     "Textile document" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текстилен документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5123,12 +4829,6 @@
     },
     "TOML document" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "TOML документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5229,12 +4929,6 @@
     },
     "UUID" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "UUID"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5335,12 +5029,6 @@
     },
     "Verilog source" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Източник на Verilog"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5441,12 +5129,6 @@
     },
     "VHDL source" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "VHDL източник"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5547,12 +5229,6 @@
     },
     "XML document" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "XML документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5653,12 +5329,6 @@
     },
     "YAML document" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "YAML документ"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

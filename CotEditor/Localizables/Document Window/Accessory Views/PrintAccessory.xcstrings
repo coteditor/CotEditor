@@ -4,12 +4,6 @@
     "%@ pt" : {
       "comment" : "font size with unit",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ т"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111,12 +105,6 @@
     "AlignmentType.center.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Център"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -224,12 +212,6 @@
     "AlignmentType.left.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подравняване вляво"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -337,12 +319,6 @@
     "AlignmentType.right.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подравняване вдясно"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -450,12 +426,6 @@
     "Black and White" : {
       "comment" : "coloring option",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Черно и бяло"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -557,12 +527,6 @@
     "Color" : {
       "comment" : "summary item name",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Цвят"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -664,12 +628,6 @@
     "Font Size" : {
       "comment" : "summary item name",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Размер на шрифта"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -771,12 +729,6 @@
     "Footer" : {
       "comment" : "summary item name",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Долен колонтитул"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -878,12 +830,6 @@
     "Header" : {
       "comment" : "summary item name",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Горен колонтитул"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -985,12 +931,6 @@
     "Invisibles" : {
       "comment" : "summary item name",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невидими"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1092,12 +1032,6 @@
     "Line Number" : {
       "comment" : "summary item name",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Номер на ред"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1198,12 +1132,6 @@
     },
     "On" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Вкл."
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1305,12 +1233,6 @@
     "Print Backgrounds" : {
       "comment" : "summary item name",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Печатай фона"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1412,12 +1334,6 @@
     "PrintInfoType.documentName.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Име на документа"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1525,12 +1441,6 @@
     "PrintInfoType.filePath.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Път на файла"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1638,12 +1548,6 @@
     "PrintInfoType.lastModifiedDate.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дата на последна промяна"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1751,12 +1655,6 @@
     "PrintInfoType.none.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Няма"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1864,12 +1762,6 @@
     "PrintInfoType.pageNumber.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Номер на страницата"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1977,12 +1869,6 @@
     "PrintInfoType.printDate.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отпечатайте дата"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2090,12 +1976,6 @@
     "PrintInfoType.syntaxName.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Име на синтаксиса"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2203,12 +2083,6 @@
     "Theme" : {
       "comment" : "menu header",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тема"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

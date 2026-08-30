@@ -3,12 +3,6 @@
   "strings" : {
     "Author" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Автор"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -109,12 +103,6 @@
     },
     "Background:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "фон:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -215,12 +203,6 @@
     },
     "Current Line:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текущ ред:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -321,12 +303,6 @@
     },
     "Cursor:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Курсор:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -427,12 +403,6 @@
     },
     "Description" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Описание"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -533,12 +503,6 @@
     },
     "Highlight:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Акцент:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -639,12 +603,6 @@
     },
     "Invisibles:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Невидими:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -745,12 +703,6 @@
     },
     "License" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лиценз"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -852,12 +804,6 @@
     "Not defined" : {
       "comment" : "placeholder",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не е дефинирано"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -958,12 +904,6 @@
     },
     "Reload All Themes" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Презареди всички теми"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1064,12 +1004,6 @@
     },
     "Selection:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Избор:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1170,12 +1104,6 @@
     },
     "Show theme file information" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Покажи информация за файла на темата"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1276,12 +1204,6 @@
     },
     "Syntax" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синтаксис"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1382,12 +1304,6 @@
     },
     "Text:" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текст:"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1488,12 +1404,6 @@
     },
     "Theme" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тема"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1600,12 +1510,6 @@
     },
     "Theme Editor" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Редактор на теми"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1706,12 +1610,6 @@
     },
     "URL" : {
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "URL"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1813,12 +1711,6 @@
     "Use system color" : {
       "comment" : "toggle button label",
       "localizations" : {
-        "bg" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Използвай системния цвят"
-          }
-        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
