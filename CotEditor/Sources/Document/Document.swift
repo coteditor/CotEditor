@@ -714,9 +714,18 @@ extension NSTextView: EditorCounter.Source { }
             syntaxName: self.syntaxName
         )
         
+        let defaults = UserDefaults.standard
+        let options = PrintTextView.Options(
+            lineHeight: defaults[.lineHeight],
+            enablesHangingIndent: defaults[.enablesHangingIndent],
+            hangingIndentWidth: defaults[.hangingIndentWidth],
+            shownInvisible: defaults.shownInvisible,
+            autoLinkDetection: defaults[.autoLinkDetection]
+        )
+        
         // create printView
         let textStorage = NSTextStorage(string: self.textStorage.string)
-        let printView = PrintTextView(textStorage: textStorage, lineEndingScanner: self.lineEndingScanner, info: info)
+        let printView = PrintTextView(textStorage: textStorage, lineEndingScanner: self.lineEndingScanner, info: info, options: options)
         if let selectedRanges = self.textView?.selectedRanges {
             printView.selectedRanges = selectedRanges
         }

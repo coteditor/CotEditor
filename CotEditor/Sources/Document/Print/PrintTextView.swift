@@ -26,6 +26,7 @@
 
 import AppKit
 import Defaults
+import Invisible
 import StringUtils
 import URLUtils
 
@@ -37,6 +38,16 @@ final class PrintTextView: NSTextView {
         var fileURL: URL?
         var lastModifiedDate: Date?
         var syntaxName: String
+    }
+    
+    
+    struct Options {
+        
+        var lineHeight: Double
+        var enablesHangingIndent: Bool
+        var hangingIndentWidth: Int
+        var shownInvisible: Set<Invisible>
+        var autoLinkDetection: Bool
     }
     
     
@@ -73,22 +84,22 @@ final class PrintTextView: NSTextView {
     ///   - textStorage: The text storage to print.
     ///   - lineEndingScanner: The line ending scanner for the document.
     ///   - info: The document information to display in headers and footers.
-    init(textStorage: NSTextStorage, lineEndingScanner: LineEndingScanner, info: DocumentInfo) {
+    init(textStorage: NSTextStorage, lineEndingScanner: LineEndingScanner, info: DocumentInfo, options: Options) {
         
         self.documentInfo = info
-        self.lineHeight = (UserDefaults.standard[.lineHeight] > 0) ? UserDefaults.standard[.lineHeight] : 1
+        self.lineHeight = (options.lineHeight > 0) ? options.lineHeight : 1
         
         // setup textContainer
         let textContainer = TextContainer()
         textContainer.widthTracksTextView = true
-        textContainer.isHangingIndentEnabled = UserDefaults.standard[.enablesHangingIndent]
-        textContainer.hangingIndentWidth = UserDefaults.standard[.hangingIndentWidth]
+        textContainer.isHangingIndentEnabled = options.enablesHangingIndent
+        textContainer.hangingIndentWidth = options.hangingIndentWidth
         textContainer.lineFragmentPadding = self.lineFragmentPadding
         // -> If padding is changed while printing, the print area can be cropped due to text wrapping.
         
         // setup textView components
         let layoutManager = PrintLayoutManager(lineEndingScanner: lineEndingScanner)
-        layoutManager.shownInvisibles = UserDefaults.standard.shownInvisible
+        layoutManager.shownInvisibles = options.shownInvisible
         textStorage.addLayoutManager(layoutManager)
         layoutManager.addTextContainer(textContainer)
         
@@ -98,7 +109,7 @@ final class PrintTextView: NSTextView {
         self.isHorizontallyResizable = false
         self.isVerticallyResizable = true
         
-        self.linkTextAttributes = UserDefaults.standard[.autoLinkDetection]
+        self.linkTextAttributes = options.autoLinkDetection
             ? [.underlineStyle: NSUnderlineStyle.single.rawValue]
             : [:]
     }
