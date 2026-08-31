@@ -82,7 +82,7 @@ public struct Syntax: Equatable, Sendable {
     
     public struct Outline: Equatable, Sendable {
         
-        public enum Kind: RawRepresentable, Sendable, Hashable, CaseIterable {
+        public enum Kind: RawRepresentable, Hashable, CaseIterable, Sendable {
             
             case container
             case value

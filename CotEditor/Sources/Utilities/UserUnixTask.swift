@@ -30,7 +30,7 @@ actor UserUnixTask {
     
     // MARK: Private Types
     
-    private enum State: Equatable {
+    private enum State {
         
         case ready
         case executing

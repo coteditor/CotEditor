@@ -31,7 +31,7 @@ public extension Syntax {
     
     struct Error: Swift.Error, Equatable {
         
-        public enum Code: Equatable, Sendable {
+        public enum Code: Sendable {
             
             case duplicated
             case regularExpression

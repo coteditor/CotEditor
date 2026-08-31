@@ -31,7 +31,7 @@ import LineEnding
 import StringUtils
 
 /// A folder search configured with a compiled text find pattern.
-public struct Search {
+public struct Search: Sendable {
     
     var rootURL: URL
     var pattern: TextFind.Pattern

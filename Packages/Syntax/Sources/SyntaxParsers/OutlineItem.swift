@@ -27,7 +27,7 @@
 public import Foundation
 public import SyntaxFormat
 
-public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
+public struct OutlineItem: Hashable, Sendable, Identifiable {
     
     public struct Style: OptionSet, Hashable, Sendable {
         
@@ -44,7 +44,7 @@ public struct OutlineItem: Hashable, Equatable, Sendable, Identifiable {
     }
     
     
-    public enum Indent: Hashable, Equatable, Sendable {
+    public enum Indent: Hashable, Sendable {
         
         case string(String)
         case level(Int)

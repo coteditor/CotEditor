@@ -135,7 +135,7 @@ extension MultipleReplace {
     }
     
     
-    public enum Status: Equatable, Sendable {
+    public enum Status: Sendable {
         
         case processed
         case unitChanged

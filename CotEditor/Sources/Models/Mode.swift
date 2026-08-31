@@ -26,7 +26,7 @@
 import Foundation
 import SyntaxFormat
 
-enum Mode: RawRepresentable, Equatable, Hashable {
+enum Mode: RawRepresentable, Hashable {
     
     case kind(Syntax.Kind)
     case syntax(String)

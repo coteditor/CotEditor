@@ -32,7 +32,7 @@ import URLUtils
 typealias SettingChange = ItemChange<String>
 
 
-struct SettingState: Equatable, Hashable {
+struct SettingState: Hashable {
     
     var name: String
     var isBundled: Bool

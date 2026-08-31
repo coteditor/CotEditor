@@ -28,7 +28,7 @@
 public import Foundation
 public import ValueRange
 
-public struct IncompatibleCharacter: Equatable, Hashable, Sendable {
+public struct IncompatibleCharacter: Hashable, Sendable {
     
     public var character: Character
     public var converted: String?

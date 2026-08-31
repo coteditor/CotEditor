@@ -26,7 +26,7 @@
 
 public import Foundation
 
-public struct FileEncoding: Equatable, Hashable, Sendable {
+public struct FileEncoding: Hashable, Sendable {
     
     public static let utf8 = FileEncoding(encoding: .utf8)
     

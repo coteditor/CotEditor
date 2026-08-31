@@ -157,7 +157,7 @@ final class FileNode {
 }
 
 
-extension FileNode: Equatable, Hashable {
+extension FileNode: Hashable {
     
     static func == (lhs: FileNode, rhs: FileNode) -> Bool {
         

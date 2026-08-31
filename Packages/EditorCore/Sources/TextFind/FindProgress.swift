@@ -28,7 +28,7 @@ import Synchronization
 
 @Observable public final class FindProgress: Sendable {
     
-    public enum State: Equatable, Sendable {
+    public enum State: Sendable {
         
         case ready
         case processing

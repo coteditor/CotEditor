@@ -27,7 +27,7 @@
 public import Foundation
 import StringUtils
 
-public enum IndentStyle: Equatable, Sendable {
+public enum IndentStyle: Sendable {
     
     case tab
     case space

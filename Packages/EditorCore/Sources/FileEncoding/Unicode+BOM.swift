@@ -29,7 +29,7 @@ import Foundation
 public extension Unicode {
     
     /// Byte order mark.
-    enum BOM: Sendable, CaseIterable {
+    enum BOM: CaseIterable, Sendable {
         
         case utf8
         case utf32BigEndian

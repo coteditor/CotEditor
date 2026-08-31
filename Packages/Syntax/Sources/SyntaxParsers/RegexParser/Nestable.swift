@@ -29,7 +29,7 @@ import Foundation
 import SyntaxFormat
 import StringUtils
 
-enum NestableToken: Equatable, Hashable, Sendable {
+enum NestableToken: Hashable, Sendable {
     
     case inline(String, leadingOnly: Bool = false)
     case pair(Pair<String>, prefixes: [String] = [], isMultiline: Bool, isNestable: Bool, escapeCharacter: Character? = nil)
