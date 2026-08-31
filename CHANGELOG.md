@@ -11,7 +11,6 @@
 
 ### Known Issues
 
-- The status bar text can appear with an unreadable color with certain combinations of the system appearance, window appearance, and theme on macOS 26 (FB23611796).
 - In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
 - In full-screen mode, an unnecessary separator appears above the pane switcher in the Inspector (FB24552348).
 - The text added in CotEditor 7.1.0 is not yet localized in Bulgarian.
