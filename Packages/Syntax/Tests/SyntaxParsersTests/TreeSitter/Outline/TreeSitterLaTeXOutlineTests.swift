@@ -118,6 +118,29 @@ struct TreeSitterLaTeXOutlineTests {
     }
     
     
+    @Test func outlineSkipsEnvironmentDefinitions() async throws {
+        
+        let source = #"""
+            \newenvironment{publicationlist}[1]{%
+              \begin{list}{[#1]}{}%
+            }{%
+              \end{list}%
+            }
+            \renewenvironment{description}{%
+              \begin{list}{}{}%
+            }{%
+              \end{list}%
+            }
+            \section{Publications}
+            """#
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == ["Publications"])
+        #expect(outline.map(\.kind) == [.heading(nil)])
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {
