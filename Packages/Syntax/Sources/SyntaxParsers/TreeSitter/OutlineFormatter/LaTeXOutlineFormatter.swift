@@ -76,8 +76,6 @@ private extension LaTeXOutlineFormatter {
                 "text"
             case "caption":
                 "long"
-            case "environment_definition":
-                "name"
             default:
                 nil
         }

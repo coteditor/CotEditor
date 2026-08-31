@@ -41,7 +41,3 @@
 
 (subparagraph
   text: (curly_group)) @outline.heading.7
-
-; Conainers
-(environment_definition
-  name: (curly_group_text)) @outline.container
