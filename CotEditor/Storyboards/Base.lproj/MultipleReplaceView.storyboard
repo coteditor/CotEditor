@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24408" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uzB-9o-Idl">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uzB-9o-Idl">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24408"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="25098"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -175,7 +175,7 @@
                                                             <rect key="frame" x="243" y="1" width="28" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <button identifier="regularExpression" toolTip="Select to search with regular expression." translatesAutoresizingMaskIntoConstraints="NO" id="Lk4-Ym-IrV">
+                                                                <button toolTip="Select to search with regular expression." translatesAutoresizingMaskIntoConstraints="NO" id="Lk4-Ym-IrV">
                                                                     <rect key="frame" x="7" y="2" width="14" height="14"/>
                                                                     <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="8bJ-6A-O0R">
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -210,7 +210,7 @@
                                                             <rect key="frame" x="274" y="1" width="28" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <button identifier="regularExpression" toolTip="Select to ignore character case on search." translatesAutoresizingMaskIntoConstraints="NO" id="I23-3I-yq5">
+                                                                <button toolTip="Select to ignore character case on search." translatesAutoresizingMaskIntoConstraints="NO" id="I23-3I-yq5">
                                                                     <rect key="frame" x="7" y="2" width="14" height="14"/>
                                                                     <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" alignment="center" controlSize="small" inset="2" id="0a8-wL-sx5">
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -399,7 +399,7 @@
                                 </textFieldCell>
                             </textField>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ipw-p6-L9Z">
-                                <rect key="frame" x="20" y="64" width="49" height="24"/>
+                                <rect key="frame" x="20" y="64" width="48" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="HY7-ji-LGa">
                                     <font key="font" metaFont="system"/>
                                     <segments>
