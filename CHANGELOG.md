@@ -3,6 +3,12 @@
 7.1.0-beta.6 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix typos in Dutch and French localizations.
+
+
+
 ### Known Issues
 
 - In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
