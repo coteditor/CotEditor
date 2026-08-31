@@ -17,6 +17,7 @@
 - Fix an issue in the LaTeX syntax where custom environment definitions were incorrectly extracted as outline items.
 - Fix an issue in the LaTeX syntax where the opening braces of arguments of some commands, such as `\cite`, were highlighted in the wrong color.
 - Fix an issue in the Scala syntax where string interpolators, such as `s` in `s"…"`, were highlighted in the same color as the string body.
+- Fix typos in Dutch and French localizations.
 
 
 
