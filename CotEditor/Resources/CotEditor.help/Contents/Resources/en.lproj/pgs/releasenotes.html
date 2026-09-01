@@ -21,6 +21,36 @@
 
 <article headingoffset="1">
 	<header>
+		<h1>CotEditor 7.0.9</h1>
+		<p>release: <time>2026-09</time></p>
+	</header>
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Avoid unnecessary scroll after inserting a snippet when the range is already visible.</li>
+			<li>Update tree-sitter-scala to 0.26.2.</li>
+			<li><span class="label">non-AppStore ver.</span>: Update Sparkle from 2.9.5 to 2.9.6.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue in the regular expression replacement with the “Unescape replacement text” option where escaped backslashes in the replacement string were unexpectedly removed instead of being unescaped to literal backslashes.</li>
+			<li>Fix an issue in the LaTeX syntax where custom environment definitions were incorrectly extracted as outline items.</li>
+			<li>Fix an issue in the LaTeX syntax where the opening braces of arguments of some commands, such as <code>\cite</code>, were highlighted in the wrong color.</li>
+			<li>Fix an issue in the Scala syntax where string interpolators, such as <code>s</code> in <code>s&quot;…&quot;</code>, were highlighted in the same color as the string body.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article headingoffset="1">
+	<header>
 		<h1>CotEditor 7.0.8</h1>
 		<p>release: <time>2026-08-07</time></p>
 	</header>
