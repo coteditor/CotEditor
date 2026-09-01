@@ -3,13 +3,6 @@
 7.1.0-beta.6 (unreleased)
 --------------------------
 
-### Fixes
-
-- Fix an issue in the LaTeX syntax where custom environment definitions were incorrectly extracted as outline items.
-- Fix an issue in the LaTeX syntax where the opening braces of arguments of some commands, such as `\cite`, were highlighted in the wrong color.
-- Fix an issue in the Scala syntax where string interpolators, such as `s` in `s"…"`, were highlighted in the same color as the string body.
-
-
 ### Known Issues
 
 - In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).
@@ -23,8 +16,6 @@
 
 ### Improvements
 
-- Avoid unnecessary scroll after inserting a snippet when the range is already visible.
-- [non-AppStore ver.] Update Sparkle from 2.9.5 to 2.9.6.
 - [beta] Refine overall appearance details.
 - [beta][dev] Update the build environment to Xcode 27 Beta 6.
 
@@ -51,7 +42,6 @@
 ### Improvements
 
 - Rename the Key Bindings feature to “Shortcuts.”
-- Update tree-sitter-scala to 0.26.2.
 - [beta] Improve the drawing performance.
 - [beta] Update Polish localization.
 - [beta][dev] Update the build environment to Xcode 27 Beta 5.
@@ -59,7 +49,6 @@
 
 ### Fixes
 
-- Fix an issue in the regular expression replacement with the “Unescape replacement text” option where escaped backslashes in the replacement text were unexpectedly removed.
 - [beta] Fix an issue where Bulgarian localizations were missing in the Window settings.
 - [beta] Fix an issue where some labels in the Settings were truncated when they were too long.
 
@@ -117,6 +106,25 @@
 - Improve overall stability and performance.
 - [dev] Tweak the accent color.
 - [dev] Update the build environment to Xcode 27 Beta 4 (Swift 6.4, macOS 27 SDK).
+
+
+
+7.0.9 (unreleased)
+--------------------------
+
+### Improvements
+
+- Avoid unnecessary scroll after inserting a snippet when the range is already visible.
+- Update tree-sitter-scala to 0.26.2.
+- [non-AppStore ver.] Update Sparkle from 2.9.5 to 2.9.6.
+
+
+### Fixes
+
+- Fix an issue in the regular expression replacement with the “Unescape replacement text” option where escaped backslashes in the replacement string were unexpectedly removed instead of being unescaped to literal backslashes.
+- Fix an issue in the LaTeX syntax where custom environment definitions were incorrectly extracted as outline items.
+- Fix an issue in the LaTeX syntax where the opening braces of arguments of some commands, such as `\cite`, were highlighted in the wrong color.
+- Fix an issue in the Scala syntax where string interpolators, such as `s` in `s"…"`, were highlighted in the same color as the string body.
 
 
 
