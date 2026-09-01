@@ -181,7 +181,7 @@ private struct ActionCommandView: View {
         HStack {
             Image(systemName: self.command.kind.systemImage)
                 .resizable()
-                .aspectRatio(contentMode: .fit)
+                .scaledToFit()
                 .font(.system(size: 23))
                 .fontWeight(.light)
                 .foregroundStyle(self.isSelected ? .primary : .secondary)
