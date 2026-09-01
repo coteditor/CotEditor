@@ -26,7 +26,7 @@
 
 - Prevent the file browser from opening UNIX executable files as plain text.
 - Display more accurate error messages in dialogs.
-- Updated the SON syntax to change the file mapping for `Package.resolved` from file extensions to filenames.
+- Update the JSON syntax to change the file mapping for `Package.resolved` from file extensions to filenames.
 - Improve cancellation handling for syntax highlighting with computationally intensive regular expressions.
 - Improve localization.
 - Improve overall stability.
