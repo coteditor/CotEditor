@@ -144,7 +144,7 @@
       "regularExpression" : true
     },
     {
-      "begin" : "^.+\\R\\-+[\\t ]*$",
+      "begin" : "^(?!-(?:[\\t ]|$)|(?:-[\\t ]*){3,}$).+\\R\\-+[\\t ]*$",
       "description" : "h2",
       "regularExpression" : true
     },
