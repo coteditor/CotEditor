@@ -115,6 +115,7 @@
 ### Improvements
 
 - Avoid unnecessary scroll after inserting a snippet when the range is already visible.
+- Update the Markdown syntax to improve headings highlight.
 - Update tree-sitter-scala to 0.26.2.
 - [non-AppStore ver.] Update Sparkle from 2.9.5 to 2.9.6.
 
@@ -135,7 +136,7 @@
 
 - Prevent the file browser from opening UNIX executable files as plain text.
 - Display more accurate error messages in dialogs.
-- Updated the SON syntax to change the file mapping for `Package.resolved` from file extensions to filenames.
+- Update the JSON syntax to change the file mapping for `Package.resolved` from file extensions to filenames.
 - Improve cancellation handling for syntax highlighting with computationally intensive regular expressions.
 - Improve localization.
 - Improve overall stability.
