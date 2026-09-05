@@ -433,17 +433,25 @@ struct FolderFindTests {
     }
     
     
-    @Test func symbolicLinkCycleIsNotFollowedInfinitely() async throws {
+    @Test(arguments: [false, true])
+    func symbolicLinksAreNotFollowed(includesOtherFileTypes: Bool) async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: rootURL) }
+        let outsideURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: outsideURL) }
         
         try Data("needle".utf8).write(to: rootURL.appending(path: "a.txt"))
+        try Data("needle".utf8).write(to: outsideURL.appending(path: "b.txt"))
         let subURL = rootURL.appending(path: "sub", directoryHint: .isDirectory)
         try FileManager.default.createDirectory(at: subURL, withIntermediateDirectories: true)
         try FileManager.default.createSymbolicLink(at: subURL.appending(path: "loop"), withDestinationURL: rootURL)
+        try FileManager.default.createSymbolicLink(at: rootURL.appending(path: "outside"), withDestinationURL: outsideURL)
+        try FileManager.default.createSymbolicLink(at: rootURL.appending(path: "link.txt"), withDestinationURL: rootURL.appending(path: "a.txt"))
         
-        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern())
+        // links are skipped even when the file type checks would include them
+        let options = FolderFind.Options(includesOtherFileTypes: includesOtherFileTypes)
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern(), options: options) { _ in true }
         let summary = try await search.run()
         
         #expect(summary.metrics.matchCount == 1)

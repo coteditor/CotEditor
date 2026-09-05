@@ -26,6 +26,7 @@
 
 public import Foundation
 public import TextFind
+import UniformTypeIdentifiers
 import LineEnding
 import StringUtils
 
@@ -41,8 +42,6 @@ public struct Search: Sendable {
     private var fileScopeMatcher: FileScope.Matcher?
     private var metrics: FolderFind.Metrics
     private var files: [FolderFind.FileResult] = []
-    
-    private var visitedDirectories: Set<URL> = []
     
     
     /// Initializes a folder find search.
@@ -94,9 +93,6 @@ public struct Search: Sendable {
         
         await Task.yield()
         
-        // avoid following symbolic-link cycles back into an already-visited directory
-        guard self.visitedDirectories.insert(directoryURL.resolvingSymlinksInPath()).inserted else { return }
-        
         let enumerationOptions: FileManager.DirectoryEnumerationOptions = self.options.includesHiddenFiles ? [] : [.skipsHiddenFiles]
         guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: Array(FolderFind.Candidate.metadataResourceKeys), options: enumerationOptions) else { return }
         
@@ -107,6 +103,7 @@ public struct Search: Sendable {
             guard
                 !self.options.excludedNames.contains(url.lastPathComponent),
                 let candidate = try? FolderFind.Candidate(at: url),
+                !candidate.contentType.conforms(to: .resolvable),  // never follow aliases and symbolic links
                 candidate.isDirectory || self.includes(candidate)
             else { continue }
             
