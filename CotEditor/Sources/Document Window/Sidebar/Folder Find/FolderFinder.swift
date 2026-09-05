@@ -54,11 +54,25 @@ import TextFind
     
     let document: DirectoryDocument
     
-    private(set) var state: SearchState = .idle  { didSet { self.updateTextStorageObservation() } }
+    private(set) var state: SearchState = .idle {
+        
+        didSet {
+            if case .finished = self.state { } else {
+                self.liveSummary = nil
+            }
+            self.updateTextStorageObservation()
+        }
+    }
     private(set) var resultRevision = 0
     
     
     // MARK: Private Properties
+    
+    /// The search results whose match ranges follow document edits.
+    ///
+    /// The ranges are used only to reveal matches, so they are kept apart from the displayed results
+    /// to avoid updating the results view on every edit.
+    private var liveSummary: FolderFind.Summary?
     
     private var searchTask: Task<Void, Never>?
     private var selectionTask: Task<Void, Never>?
@@ -161,6 +175,7 @@ import TextFind
                 
                 try Task.checkCancellation()
                 
+                self?.liveSummary = summary
                 self?.state = .finished(summary)
                 self?.resultRevision += 1
                 
@@ -177,22 +192,32 @@ import TextFind
     }
     
     
-    /// Opens the file for the selected result and selects the matched range if supplied.
+    /// Returns the search result for the given ID with the match range following document edits.
     ///
-    /// - Parameters:
-    ///   - fileURL: The file URL to open.
-    ///   - range: The matched character range to select.
-    func selectResult(fileURL: URL, range: NSRange?) {
+    /// - Parameter id: The result ID to resolve.
+    /// - Returns: The resolved search result, or `nil` if not found.
+    func result(for id: FolderFind.ResultID) -> FolderFind.Result? {
+        
+        self.liveSummary?.result(for: id)
+    }
+    
+    
+    /// Opens the file for the result and selects the matched range if the result is a match.
+    ///
+    /// - Parameter id: The result ID to select.
+    func selectResult(for id: FolderFind.ResultID) {
+        
+        guard let result = self.result(for: id) else { return }
         
         self.selectionTask?.cancel()
         self.selectionTask = Task { @MainActor in
             guard
-                await self.document.openDocument(at: fileURL),
+                await self.document.openDocument(at: result.file.fileURL),
                 !Task.isCancelled
             else { return }
             
             guard
-                let range,
+                let range = result.match?.range,
                 let document = self.document.currentDocument as? Document,
                 let textView = document.textView,
                 range.upperBound <= textView.string.utf16.count
@@ -219,6 +244,7 @@ import TextFind
         else { return }
         
         summary.removeResults(for: ids)
+        self.liveSummary?.removeResults(for: ids)
         self.selectionTask?.cancel()
         self.selectionTask = nil
         self.state = .finished(summary)
@@ -257,23 +283,20 @@ import TextFind
     }
     
     
-    /// Updates match ranges after the text of an open document changes.
+    /// Updates the live match ranges after the text of an open document changes.
     ///
     /// - Parameters:
     ///   - textStorage: The edited text storage.
     private func documentTextDidChange(textStorage: NSTextStorage) {
         
         guard
-            case .finished(var summary) = self.state,
             let document = NSDocumentController.shared.documents
                 .compactMap({ $0 as? Document })
                 .first(where: { $0.textStorage === textStorage }),
             let fileURL = document.fileURL
         else { return }
         
-        guard summary.updateMatchRanges(in: fileURL, editedRange: textStorage.editedRange, changeInLength: textStorage.changeInLength, length: textStorage.length) else { return }
-        
-        self.state = .finished(summary)
+        self.liveSummary?.updateMatchRanges(in: fileURL, editedRange: textStorage.editedRange, changeInLength: textStorage.changeInLength, length: textStorage.length)
     }
     
     

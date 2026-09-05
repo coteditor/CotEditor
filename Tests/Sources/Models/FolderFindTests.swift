@@ -92,6 +92,8 @@ import UniformTypeIdentifiers
                 Issue.record("Unexpected state: \(model.state)")
                 throw WaitError.unexpectedState
         }
+        #expect(model.result(for: .match(fileID: file.id, matchID: file.matches[0].id)) == nil)
+        #expect(model.result(for: .match(fileID: file.id, matchID: file.matches[1].id))?.match == file.matches[1])
         
         model.removeResults(for: [.file(file.id)])
         
@@ -119,7 +121,11 @@ import UniformTypeIdentifiers
         model.find(findString: "needle", usesRegularExpression: false, ignoresCase: false, includesHiddenFiles: false)
         
         let summary = try await Self.finishedSummary(from: model)
-        #expect(summary.files.first?.matches.map(\.range) == [NSRange(location: 4, length: 6)])
+        let file = try #require(summary.files.first)
+        let match = try #require(file.matches.first)
+        let id = FolderFind.ResultID.match(fileID: file.id, matchID: match.id)
+        #expect(match.range == NSRange(location: 4, length: 6))
+        #expect(model.result(for: id)?.match?.range == NSRange(location: 4, length: 6))
         
         // edit the file in a document that is not part of the directory document
         let document = try Document(contentsOf: fileURL, ofType: UTType.plainText.identifier)
@@ -128,14 +134,11 @@ import UniformTypeIdentifiers
         
         document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: "!!")
         
-        for await state in Observations({ model.state }) {
-            guard
-                case .finished(let updated) = state,
-                updated.files.first?.matches.map(\.range) == [NSRange(location: 6, length: 6)]
-            else { continue }
-            
-            break
+        // the live result follows the edit while the displayed results stay unchanged
+        while model.result(for: id)?.match?.range != NSRange(location: 6, length: 6) {
+            try await Task.sleep(for: .milliseconds(10))
         }
+        #expect(model.state == .finished(summary))
     }
     
     

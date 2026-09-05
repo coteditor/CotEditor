@@ -73,13 +73,9 @@ struct FolderFindView: View {
             self.selection.removeAll()
         }
         .onChange(of: self.selection) { _, newValue in
-            guard
-                newValue.count == 1,
-                let selection = newValue.first,
-                let result = self.summary?.result(for: selection)
-            else { return }
+            guard newValue.count == 1, let selection = newValue.first else { return }
             
-            self.model.selectResult(fileURL: result.file.fileURL, range: result.match?.range)
+            self.model.selectResult(for: selection)
         }
         .onDeleteCommand {
             withAnimation {
