@@ -46,8 +46,7 @@ struct FolderFindSavedScopesView: View {
     }
     
     
-    var scopes: [String: FileScope]
-    var savedScopeNames: Set<String>
+    var savedScopes: FolderFindSavedScopes
     var changeHandler: (_ change: Change) -> Void = { _ in }
     
     @Environment(\.dismiss) private var dismiss
@@ -63,7 +62,7 @@ struct FolderFindSavedScopesView: View {
             Text("Saved scopes:", tableName: "Document")
             
             List(selection: $selection) {
-                ForEach(self.scopes.keys.sorted(using: .localizedStandard), id: \.self) { name in
+                ForEach(self.savedScopes.sortedNames, id: \.self) { name in
                     Text(name)
                         .listRowSeparator(.hidden)
                 }
@@ -89,7 +88,7 @@ struct FolderFindSavedScopesView: View {
                     self.contextMenu(for: selection)
                 }
             } primaryAction: { selections in
-                if let name = selections.first, let scope = self.scopes[name] {
+                if let name = selections.first, let scope = self.savedScopes.scopes[name] {
                     self.editingItem = EditingScope(name: name, scope: scope)
                 }
             }
@@ -99,7 +98,7 @@ struct FolderFindSavedScopesView: View {
                     self.selection = nil
                 }
             }
-            .animation(.default, value: self.scopes.keys)
+            .animation(.default, value: self.savedScopes.sortedNames)
             .frame(minWidth: 140, idealWidth: 240, minHeight: 180)
             
             HStack {
@@ -112,7 +111,7 @@ struct FolderFindSavedScopesView: View {
             }
         }
         .sheet(isPresented: $isAddingScope) {
-            FolderFindFileScopeView(fileScope: FileScope(), name: "", savedScopeNames: self.savedScopeNames) { fileScope, name in
+            FolderFindFileScopeView(fileScope: FileScope(), name: "", savedScopeNames: self.savedScopes.reservedNames) { fileScope, name in
                 guard let name else { return assertionFailure() }
                 
                 self.changeHandler(.add(name: name, fileScope: fileScope))
@@ -122,7 +121,7 @@ struct FolderFindSavedScopesView: View {
             .presentationSizing(FolderFindFileScopeView.sheetPresentationSizing)
         }
         .sheet(item: $editingItem) { item in
-            FolderFindFileScopeView(fileScope: item.scope, name: item.name, savedScopeNames: self.savedScopeNames) { fileScope, name in
+            FolderFindFileScopeView(fileScope: item.scope, name: item.name, savedScopeNames: self.savedScopes.reservedNames) { fileScope, name in
                 guard let name else { return assertionFailure() }
                 
                 self.selection = name
@@ -161,7 +160,7 @@ struct FolderFindSavedScopesView: View {
             .disabled(self.selection == nil)
             
             Button {
-                if let name = self.selection, let scope = self.scopes[name] {
+                if let name = self.selection, let scope = self.savedScopes.scopes[name] {
                     self.editingItem = EditingScope(name: name, scope: scope)
                 }
             } label: {
@@ -201,9 +200,9 @@ struct FolderFindSavedScopesView: View {
     /// - Parameter name: The name of the scope to duplicate.
     private func duplicateScope(_ name: String) {
         
-        guard let scope = self.scopes[name] else { return }
+        guard let scope = self.savedScopes.scopes[name] else { return }
         
-        let newName = name.appendingUniqueNumber(in: self.savedScopeNames)
+        let newName = name.appendingUniqueNumber(in: self.savedScopes.reservedNames)
         
         self.changeHandler(.add(name: newName, fileScope: scope))
         self.selection = newName
@@ -218,7 +217,9 @@ struct FolderFindSavedScopesView: View {
         "Swift": FileScope(rules: [.init(target: .fileExtension, comparison: .isEqualTo, value: "swift")]),
         "No Builds": FileScope(rules: [.init(target: .filePath, comparison: .doesNotContain, value: "build")]),
     ]
+    let savedScopes = FolderFindSavedScopes()
+    savedScopes.update(scopes.mapValues { try! JSONEncoder().encode($0) })
     
-    FolderFindSavedScopesView(scopes: scopes, savedScopeNames: Set(scopes.keys))
+    return FolderFindSavedScopesView(savedScopes: savedScopes)
         .scenePadding()
 }

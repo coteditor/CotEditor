@@ -218,14 +218,12 @@ private struct FileScopeMenu: View {
     
     @Environment(\.accessibilityDifferentiateWithoutColor) private var differentiateWithoutColor
     
-    @State private var savedScopesData: [String: Data] = [:]
+    @State private var savedScopes = FolderFindSavedScopes()
     @State private var isFileScopeEditorPresented = false
     @State private var isSavedScopesEditorPresented = false
     
     
     var body: some View {
-        
-        let savedScopes = self.savedScopesData.compactMapValues { try? JSONDecoder().decode(FileScope.self, from: $0) }
         
         Menu {
             Section {
@@ -241,9 +239,9 @@ private struct FileScopeMenu: View {
             }
             .disabled(self.selection.fileScope.isEmpty)
             
-            if !savedScopes.isEmpty {
+            if !self.savedScopes.scopes.isEmpty {
                 Picker(.init("Saved Scopes", table: "Document"), selection: $selection.name) {
-                    ForEach(savedScopes.keys.sorted(using: .localizedStandard), id: \.self) { name in
+                    ForEach(self.savedScopes.sortedNames, id: \.self) { name in
                         Label(name, systemImage: "text.magnifyingglass")
                             .tag(name)
                     }
@@ -266,29 +264,28 @@ private struct FileScopeMenu: View {
         .onChange(of: self.selection.name) { _, newValue in
             // fired also on programmatic selection updates, in which case the reassignment below
             // is harmless because the looked-up scope is identical to the one already assigned
-            if let newValue, let fileScope = savedScopes[newValue] {
+            if let newValue, let fileScope = self.savedScopes.scopes[newValue] {
                 self.selection.fileScope = fileScope
             }
         }
         .sheet(isPresented: $isFileScopeEditorPresented) {
-            FolderFindFileScopeView(fileScope: self.selection.fileScope, name: self.selection.name, savedScopeNames: Set(self.savedScopesData.keys)) { fileScope, name in
+            FolderFindFileScopeView(fileScope: self.selection.fileScope, name: self.selection.name, savedScopeNames: self.savedScopes.reservedNames) { fileScope, name in
                 self.apply(fileScope, name: name)
             }
             .scenePadding()
             .presentationSizing(FolderFindFileScopeView.sheetPresentationSizing)
         }
         .sheet(isPresented: $isSavedScopesEditorPresented) {
-            FolderFindSavedScopesView(scopes: savedScopes,
-                                      savedScopeNames: Set(self.savedScopesData.keys),
+            FolderFindSavedScopesView(savedScopes: self.savedScopes,
                                       changeHandler: self.handleSavedScopesChange)
             .scenePadding()
             .presentationSizing(.fitted)
         }
         .onReceive(UserDefaults.standard.publisher(for: .folderFindSavedScopes, initial: true)) { scopesData in
-            self.savedScopesData = scopesData
+            self.savedScopes.update(scopesData)
             
             if let name = self.selection.name {
-                if let data = scopesData[name], let fileScope = try? JSONDecoder().decode(FileScope.self, from: data) {
+                if let fileScope = self.savedScopes.scopes[name] {
                     self.selection.fileScope = fileScope
                 } else {
                     self.selection.name = nil
@@ -305,14 +302,11 @@ private struct FileScopeMenu: View {
     ///   - name: The name under which the file scope is saved, or `nil` for an unnamed scope.
     private func apply(_ fileScope: FileScope, name: String?) {
         
-        if let name {
-            self.save(fileScope, name: name, replacing: self.selection.name)
-        }
-        
+        let originalName = self.selection.name
         self.selection = FileScopeSelection(name: name, fileScope: fileScope)
         
-        if name != nil {
-            self.persistSavedScopes()
+        if let name {
+            self.savedScopes.save(fileScope, name: name, replacing: originalName)
         }
     }
     
@@ -324,54 +318,20 @@ private struct FileScopeMenu: View {
         
         switch change {
             case .add(let name, let fileScope):
-                self.save(fileScope, name: name)
+                self.savedScopes.save(fileScope, name: name)
                 
             case .update(let originalName, let name, let fileScope):
-                self.save(fileScope, name: name, replacing: originalName)
-                
                 if self.selection.name == originalName {
                     self.selection = FileScopeSelection(name: name, fileScope: fileScope)
                 }
+                self.savedScopes.save(fileScope, name: name, replacing: originalName)
                 
             case .delete(let name):
-                self.savedScopesData[name] = nil
-                
                 if self.selection.name == name {
                     self.selection.name = nil
                 }
+                self.savedScopes.remove(name: name)
         }
-        
-        self.persistSavedScopes()
-    }
-    
-    
-    /// Saves a file scope in the persisted representation.
-    ///
-    /// - Parameters:
-    ///   - fileScope: The file scope to save.
-    ///   - name: The name under which to save the file scope.
-    ///   - originalName: The current name to remove, or `nil` when adding a scope.
-    private func save(_ fileScope: FileScope, name: String, replacing originalName: String? = nil) {
-        
-        let data: Data
-        do {
-            data = try JSONEncoder().encode(fileScope)
-        } catch {
-            assertionFailure("Failed to encode a saved file scope: \(error)")
-            return
-        }
-        
-        if let originalName {
-            self.savedScopesData[originalName] = nil
-        }
-        self.savedScopesData[name] = data
-    }
-    
-    
-    /// Writes the saved scopes to the user defaults.
-    private func persistSavedScopes() {
-        
-        UserDefaults.standard[.folderFindSavedScopes] = self.savedScopesData
     }
 }
 
