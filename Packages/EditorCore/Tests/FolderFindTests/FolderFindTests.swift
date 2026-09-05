@@ -26,6 +26,7 @@
 
 import Foundation
 import Testing
+import FileEncoding
 import TextFind
 import UniformTypeIdentifiers
 @testable import FolderFind
@@ -467,6 +468,26 @@ struct FolderFindTests {
         
         #expect(summary.metrics.matchCount == 1)
         #expect(summary.files.map(\.filename) == ["xml.plist"])
+    }
+    
+    
+    @Test func binaryFileIsSkipped() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        // extensionless files are searched as text unless their leading bytes look like binary
+        let utf16Data = try #require("needle".data(using: .utf16LittleEndian))
+        try Data("needle".utf8).write(to: rootURL.appending(path: "script"))
+        try (Data("needle".utf8) + Data([0x00, 0x01, 0x02])).write(to: rootURL.appending(path: "executable"))
+        try (Data([0xFF, 0xFE]) + utf16Data).write(to: rootURL.appending(path: "utf16"))
+        
+        let options = FolderFind.Options(decodingOptions: .init(candidates: [.utf8, .utf16]))
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern(), options: options)
+        let summary = try await search.run()
+        
+        #expect(summary.files.map(\.filename) == ["script", "utf16"])
+        #expect(summary.metrics.matchCount == 2)
     }
     
     

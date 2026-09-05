@@ -26,7 +26,6 @@
 
 public import Foundation
 public import TextFind
-import UniformTypeIdentifiers
 import LineEnding
 import StringUtils
 
@@ -142,7 +141,7 @@ public struct Search: Sendable {
         
         guard
             candidate.fileSize <= self.options.maximumFileSize,
-            !candidate.contentType.conforms(to: .propertyList) || !Self.isBinaryPropertyList(at: candidate.fileURL)
+            (try? candidate.fileURL.isBinary) == false
         else { return }
         
         guard
@@ -224,17 +223,5 @@ public struct Search: Sendable {
         self.metrics.matchedFileCount += 1
         
         self.progress?.update(snapshot: self.metrics)
-    }
-    
-    
-    /// Returns whether the given property list file is binary.
-    ///
-    /// - Parameter url: The file URL to inspect.
-    /// - Returns: `true` if the property list is binary.
-    private static func isBinaryPropertyList(at url: URL) -> Bool {
-        
-        guard let data = try? Data(contentsOf: url, options: .mappedIfSafe) else { return false }
-        
-        return data.starts(with: Data("bplist".utf8))
     }
 }
