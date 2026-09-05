@@ -240,23 +240,32 @@ public extension FolderFind.Summary {
     }
     
     
-    /// Removes the search result for the given ID.
+    /// Removes the search results for the given IDs.
     ///
-    /// - Parameter id: The result ID to remove.
-    mutating func removeResult(for id: FolderFind.ResultID) {
+    /// - Parameter ids: The result IDs to remove.
+    mutating func removeResults(for ids: Set<FolderFind.ResultID>) {
         
-        switch id {
-            case .file(let fileID):
-                self.files.removeAll { $0.id == fileID }
-                
-            case .match(let fileID, let matchID):
-                guard let fileIndex = self.files.firstIndex(where: { $0.id == fileID }) else { return }
-                
-                self.files[fileIndex].matches.removeAll { $0.id == matchID }
-                
-                if self.files[fileIndex].matches.isEmpty {
-                    self.files.remove(at: fileIndex)
-                }
+        guard !ids.isEmpty else { return }
+        
+        var fileIDs: Set<FolderFind.FileResult.ID> = []
+        var matchIDs: [FolderFind.FileResult.ID: Set<FolderFind.Match.ID>] = [:]
+        for id in ids {
+            switch id {
+                case .file(let fileID):
+                    fileIDs.insert(fileID)
+                case .match(let fileID, let matchID):
+                    matchIDs[fileID, default: []].insert(matchID)
+            }
+        }
+        
+        self.files = self.files.compactMap { file in
+            guard !fileIDs.contains(file.id) else { return nil }
+            guard let removedMatchIDs = matchIDs[file.id] else { return file }
+            
+            var file = file
+            file.matches.removeAll { removedMatchIDs.contains($0.id) }
+            
+            return file.matches.isEmpty ? nil : file
         }
     }
     

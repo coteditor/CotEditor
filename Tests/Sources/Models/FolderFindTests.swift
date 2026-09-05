@@ -65,32 +65,35 @@ import UniformTypeIdentifiers
     
     
     @Test(.timeLimit(.minutes(1)))
-    func removeResultUpdatesStateWithSummary() async throws {
+    func removeResultsUpdatesStateWithSummary() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: rootURL) }
         
-        try Data("needle\nneedle\n".utf8).write(to: rootURL.appending(path: "a.txt"))
+        try Data("needle\nneedle\nneedle\n".utf8).write(to: rootURL.appending(path: "a.txt"))
         
         let model = try Self.makeModel(rootURL: rootURL)
         model.find(findString: "needle", usesRegularExpression: false, ignoresCase: false, includesHiddenFiles: false)
         
         let summary = try await Self.finishedSummary(from: model)
         let file = try #require(summary.files.first)
-        let match = try #require(file.matches.first)
+        try #require(file.matches.count == 3)
         
-        model.removeResult(for: .match(fileID: file.id, matchID: match.id))
+        model.removeResults(for: [
+            .match(fileID: file.id, matchID: file.matches[0].id),
+            .match(fileID: file.id, matchID: file.matches[2].id),
+        ])
         
         switch model.state {
             case .finished(let summary):
                 #expect(summary.metrics.matchCount == 1)
-                #expect(summary.files.first?.matches.count == 1)
+                #expect(summary.files.first?.matches == [file.matches[1]])
             default:
                 Issue.record("Unexpected state: \(model.state)")
                 throw WaitError.unexpectedState
         }
         
-        model.removeResult(for: .file(file.id))
+        model.removeResults(for: [.file(file.id)])
         
         switch model.state {
             case .finished(let summary):

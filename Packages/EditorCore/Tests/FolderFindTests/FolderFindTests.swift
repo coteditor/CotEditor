@@ -118,7 +118,7 @@ struct FolderFindTests {
         let firstFile = try #require(summary.files.first { $0.filename == "a.txt" })
         let firstMatch = try #require(firstFile.matches.first)
         
-        summary.removeResult(for: .match(fileID: firstFile.id, matchID: firstMatch.id))
+        summary.removeResults(for: [.match(fileID: firstFile.id, matchID: firstMatch.id)])
         
         let updatedFirstFile = try #require(summary.files.first { $0.filename == "a.txt" })
         #expect(updatedFirstFile.matches.map(\.range.location) == [11])
@@ -128,17 +128,60 @@ struct FolderFindTests {
         let secondFile = try #require(summary.files.first { $0.filename == "b.txt" })
         let onlyMatch = try #require(secondFile.matches.first)
         
-        summary.removeResult(for: .match(fileID: secondFile.id, matchID: onlyMatch.id))
+        summary.removeResults(for: [.match(fileID: secondFile.id, matchID: onlyMatch.id)])
         
         #expect(summary.files.map(\.filename) == ["a.txt"])
         #expect(summary.metrics.matchedFileCount == 1)
         #expect(summary.metrics.matchCount == 1)
         
-        summary.removeResult(for: .file(updatedFirstFile.id))
+        summary.removeResults(for: [.file(updatedFirstFile.id)])
         
         #expect(summary.files.isEmpty)
         #expect(summary.metrics.matchedFileCount == 0)
         #expect(summary.metrics.matchCount == 0)
+    }
+    
+    
+    @Test func summaryRemovesMixedSelection() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        for name in ["a.txt", "b.txt", "c.txt", "d.txt"] {
+            try Data("needle\nneedle\nneedle\n".utf8).write(to: rootURL.appending(path: name))
+        }
+        
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern())
+        var summary = try await search.run()
+        let files = summary.files
+        #expect(files.map(\.filename) == ["a.txt", "b.txt", "c.txt", "d.txt"])
+        try #require(files.count == 4)
+        
+        summary.removeResults(for: [])
+        #expect(summary.files == files)
+        
+        summary.removeResults(for: [
+            .file(rootURL.appending(path: "missing.txt")),
+            .match(fileID: files[0].id, matchID: UUID()),
+        ])
+        #expect(summary.files == files)
+        #expect(summary.metrics.matchCount == 12)
+        
+        var selection: Set<FolderFind.ResultID> = [
+            .file(files[0].id),
+            .match(fileID: files[0].id, matchID: files[0].matches[0].id),
+            .match(fileID: files[1].id, matchID: files[1].matches[0].id),
+            .match(fileID: files[1].id, matchID: files[1].matches[2].id),
+        ]
+        selection.formUnion(files[2].matches.map { .match(fileID: files[2].id, matchID: $0.id) })
+        summary.removeResults(for: selection)
+        
+        var remainingFile = files[1]
+        remainingFile.matches = [files[1].matches[1]]
+        #expect(summary.files == [remainingFile, files[3]])
+        #expect(summary.metrics.matchCount == 4)
+        #expect(summary.metrics.matchedFileCount == 2)
+        #expect(summary.metrics.findString == "needle")
     }
     
     

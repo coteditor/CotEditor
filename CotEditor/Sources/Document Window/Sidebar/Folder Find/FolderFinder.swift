@@ -208,14 +208,17 @@ import TextFind
     }
     
     
-    /// Removes the selected result from the current search results.
+    /// Removes the selected results from the current search results.
     ///
-    /// - Parameter id: The result ID to remove.
-    func removeResult(for id: FolderFind.ResultID) {
+    /// - Parameter ids: The result IDs to remove.
+    func removeResults(for ids: Set<FolderFind.ResultID>) {
         
-        guard case .finished(var summary) = self.state else { return }
+        guard
+            !ids.isEmpty,
+            case .finished(var summary) = self.state
+        else { return }
         
-        summary.removeResult(for: id)
+        summary.removeResults(for: ids)
         self.selectionTask?.cancel()
         self.selectionTask = nil
         self.state = .finished(summary)

@@ -3,6 +3,10 @@
 7.1.0-beta.7 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Improve the performance of the folder find pane.
+
 
 ### Known Issues
 

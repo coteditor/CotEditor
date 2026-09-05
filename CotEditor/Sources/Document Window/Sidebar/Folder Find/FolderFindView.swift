@@ -83,9 +83,7 @@ struct FolderFindView: View {
         }
         .onDeleteCommand {
             withAnimation {
-                for resultID in self.selection {
-                    self.model.removeResult(for: resultID)
-                }
+                self.model.removeResults(for: self.selection)
             } completion: {
                 self.selection.removeAll()
             }
