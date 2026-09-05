@@ -40,8 +40,8 @@ struct FolderFindView: View {
         
         List(selection: $selection) {
             if case .finished(let summary) = self.model.state {
-                ForEach(summary.files) { file in
-                    FolderFindFileResultView(file: file, revision: self.model.resultRevision)
+                ForEach(summary.files, id: \.resultID) { file in
+                    FolderFindFileResultView(file: file)
                 }
             }
         }
@@ -63,7 +63,7 @@ struct FolderFindView: View {
         .contextMenu(forSelectionType: FolderFind.ResultID.self) { selections in
             if selections.count == 1,
                let selection = selections.first,
-               let result = self.summary?.result(for: selection)
+               let result = self.model.result(for: selection)
             {
                 self.contextMenu(for: result.file)
             }
@@ -86,15 +86,6 @@ struct FolderFindView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(SidebarPane.find.label)
-    }
-    
-    
-    /// The current search summary if results are available.
-    private var summary: FolderFind.Summary? {
-        
-        guard case .finished(let summary) = self.model.state else { return nil }
-        
-        return summary
     }
     
     
@@ -413,7 +404,6 @@ private struct FolderFindOverlayView: View {
 private struct FolderFindFileResultView: View {
     
     var file: FolderFind.FileResult
-    var revision: Int
     
     @State private var isExpanded = true
     
@@ -421,9 +411,8 @@ private struct FolderFindFileResultView: View {
     var body: some View {
         
         DisclosureGroup(isExpanded: $isExpanded) {
-            ForEach(self.file.matches) { match in
-                ItemView(line: match.line, rangeInLine: match.rangeInLine)
-                    .tag(FolderFind.ResultID.match(fileID: self.file.id, matchID: match.id))
+            ForEach(self.file.matchRows) { row in
+                ItemView(line: row.match.line, rangeInLine: row.match.rangeInLine)
             }
         } label: {
             Label {
@@ -447,8 +436,7 @@ private struct FolderFindFileResultView: View {
         }
         .labelIconToTitleSpacing(4)
         .listRowSeparator(.hidden)
-        .tag(FolderFind.ResultID.file(self.file.id))
-        .onChange(of: self.revision) {
+        .onChange(of: self.file) {
             self.isExpanded = true
         }
     }
@@ -570,6 +558,23 @@ extension FolderFinder.Error: LocalizedError {
                 message
         }
     }
+}
+
+
+private extension FolderFind.FileResult {
+    
+    struct MatchRow: Identifiable {
+        
+        var id: FolderFind.ResultID
+        var match: FolderFind.Match
+    }
+    
+    
+    /// The identity of the file row in search results.
+    var resultID: FolderFind.ResultID  { .file(self.id) }
+    
+    /// The match rows identified by result IDs.
+    var matchRows: [MatchRow]  { self.matches.map { MatchRow(id: .match(fileID: self.id, matchID: $0.id), match: $0) } }
 }
 
 
