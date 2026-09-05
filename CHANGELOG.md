@@ -8,6 +8,11 @@
 - [beta] Improve the performance of the folder find pane.
 
 
+### Fixes
+
+- [beta] Fix an issue where long matches were not highlighted in folder search results.
+
+
 ### Known Issues
 
 - In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).

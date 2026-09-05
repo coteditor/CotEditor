@@ -66,6 +66,70 @@ struct FolderFindTests {
     }
     
     
+    @Test(arguments: [String(repeating: "a", count: 600), String(repeating: "あ", count: 600), String(repeating: "ab\n", count: 200)])
+    func longMatchIsClippedToDisplayedFragment(needle: String) async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        let prefix = String(repeating: "x", count: 80)
+        try Data((prefix + needle + "tail").utf8).write(to: rootURL.appending(path: "a.txt"))
+        var search = try Search(rootURL: rootURL, pattern: Self.query(needle).pattern())
+        let summary = try await search.run()
+        let match = try #require(summary.files.first?.matches.first)
+        
+        #expect(summary.metrics.matchCount == 1)
+        #expect(match.range == NSRange(location: 80, length: needle.utf16.count))
+        #expect(match.line.utf16.count == 512)
+        #expect(match.rangeInLine == NSRange(location: 64, length: 448))
+        #expect(Range(match.rangeInLine, in: AttributedString(match.line)) != nil)
+    }
+    
+    
+    @Test(arguments: ["😀", "e\u{0301}", "👨‍👩‍👧‍👦", "a" + String(repeating: "\u{0301}", count: 1000)])
+    func displayedFragmentPreservesGraphemeClusters(cluster: String) async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        let prefix = String(repeating: cluster, count: 80) + "x"
+        let string = prefix + "match" + String(repeating: cluster, count: 300)
+        try Data(string.utf8).write(to: rootURL.appending(path: "a.txt"))
+        var search = try Search(rootURL: rootURL, pattern: Self.query("match").pattern())
+        let summary = try await search.run()
+        let match = try #require(summary.files.first?.matches.first)
+        
+        let clusterLength = cluster.utf16.count
+        let leadingClusters = (63 + clusterLength - 1) / clusterLength
+        let trailingClusters = (443 + clusterLength - 1) / clusterLength
+        let expectedPrefix = String(repeating: cluster, count: leadingClusters) + "x"
+        let expectedLine = expectedPrefix + "match" + String(repeating: cluster, count: trailingClusters)
+        #expect(match.line == expectedLine)
+        #expect(match.range == NSRange(location: prefix.utf16.count, length: 5))
+        #expect(match.rangeInLine == NSRange(location: expectedPrefix.utf16.count, length: 5))
+        #expect(!match.line.contains("\u{FFFD}"))
+        #expect(Range(match.rangeInLine, in: AttributedString(match.line)) != nil)
+    }
+    
+    
+    @Test func zeroLengthMatchAtEndOfLongLine() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data(String(repeating: "a", count: 600).utf8).write(to: rootURL.appending(path: "a.txt"))
+        let pattern = try FolderFind.Query(findString: "$", mode: .regularExpression(options: [], unescapesReplacement: false)).pattern()
+        var search = try Search(rootURL: rootURL, pattern: pattern)
+        let summary = try await search.run()
+        let match = try #require(summary.files.first?.matches.first)
+        
+        #expect(summary.metrics.matchCount == 1)
+        #expect(match.range == NSRange(location: 600, length: 0))
+        #expect(match.rangeInLine == NSRange(location: match.line.utf16.count, length: 0))
+        #expect(Range(match.rangeInLine, in: AttributedString(match.line)) != nil)
+    }
+    
+    
     @Test func filteredSearchPreservesDirectoryTraversalAndOrdering() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()

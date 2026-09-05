@@ -186,7 +186,7 @@ public struct Search: Sendable {
     /// - Parameters:
     ///   - string: The searched string.
     ///   - textFind: The text find instance.
-    ///   - maximumLineLength: The maximum UTF-16 length of each line fragment in results.
+    ///   - maximumLineLength: The preferred maximum UTF-16 length of each line fragment, extended to preserve whole grapheme clusters.
     /// - Returns: Matches for display.
     /// - Throws: `CancellationError` if the task is cancelled.
     private func matches(in string: String, using textFind: TextFind, maximumLineLength: Int = 512) throws(CancellationError) -> [FolderFind.Match] {
@@ -204,10 +204,12 @@ public struct Search: Sendable {
             }
             
             let range = ranges[0]
-            let lineRange = lineCounter.lineContentsRange(for: range)
+            let clampedLineRange = lineCounter.lineContentsRange(for: range)
                 .clamped(around: range, maxLength: maximumLineLength)
+            let lineRange = nsString.rangeOfComposedCharacterSequences(for: clampedLineRange)
             let line = nsString.substring(with: lineRange)
-            let rangeInLine = range.shifted(by: -lineRange.location)
+            let rangeInLine = NSRange(location: range.location - lineRange.location,
+                                      length: min(range.upperBound, lineRange.upperBound) - range.location)
             
             matches.append(FolderFind.Match(range: range, line: line, rangeInLine: rangeInLine))
         }
