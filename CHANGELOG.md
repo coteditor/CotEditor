@@ -3,6 +3,11 @@
 7.1.0-beta.6 (unreleased)
 --------------------------
 
+### Improvements
+
+- Apply the current theme’s text color to the text restored by undo even when the theme has changed since the deletion.
+
+
 ### Known Issues
 
 - In some cases, a sandboxed URL is passed when folder search results are dropped onto another app (FB23578716).

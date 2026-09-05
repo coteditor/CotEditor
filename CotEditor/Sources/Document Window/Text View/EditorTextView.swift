@@ -176,6 +176,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     private var fontObservers: Set<AnyCancellable> = []
     private var windowOpacityObserver: NSKeyValueObservation?
     private var keyStateObservers: [any NSObjectProtocol] = []
+    private var undoObservers: [any NSObjectProtocol] = []
     
     
     // MARK: Lifecycle
@@ -355,9 +356,25 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                     }
                 },
             ]
+            
+            // observe undo/redo to correct the color of restored texts
+            self.undoObservers.forEach(NotificationCenter.default.removeObserver)
+            self.undoObservers = if let undoManager = self.undoManager {
+                [NSNotification.Name.NSUndoManagerDidUndoChange, .NSUndoManagerDidRedoChange].map { name in
+                    NotificationCenter.default.addObserver(forName: name, object: undoManager, queue: .main) { [unowned self] _ in
+                        MainActor.assumeIsolated { [unowned self] in
+                            self.normalizeTextColor()
+                        }
+                    }
+                }
+            } else {
+                []
+            }
         } else {
             self.keyStateObservers.forEach(NotificationCenter.default.removeObserver)
             self.keyStateObservers.removeAll()
+            self.undoObservers.forEach(NotificationCenter.default.removeObserver)
+            self.undoObservers.removeAll()
             self.windowOpacityObserver = nil
             self.instanceHighlightTask?.cancel()
             self.instanceHighlightTask = nil
@@ -1512,6 +1529,25 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .dark
         
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+    }
+    
+    
+    /// Updates the color of the text restored by undo/redo to the current theme color.
+    ///
+    /// The standard undo operation restores texts with the attributes attached at the time they were removed,
+    /// in which the text color can be outdated if the theme has changed since then.
+    private func normalizeTextColor() {
+        
+        guard
+            let textStorage = self.textStorage,
+            let textColor = self.theme?.text.color
+        else { return }
+        
+        textStorage.enumerateAttribute(.foregroundColor, in: textStorage.range) { value, range, _ in
+            guard value as? NSColor != textColor else { return }
+            
+            textStorage.addAttribute(.foregroundColor, value: textColor, range: range)
+        }
     }
     
     
