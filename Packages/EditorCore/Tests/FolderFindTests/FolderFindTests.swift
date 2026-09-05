@@ -158,6 +158,102 @@ struct FolderFindTests {
     }
     
     
+    @Test func matchCountPerFileIsLimited() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("needle needle needle needle".utf8).write(to: rootURL.appending(path: "a.txt"))
+        try Data("needle".utf8).write(to: rootURL.appending(path: "b.txt"))
+        
+        let options = FolderFind.Options(maximumMatchCountPerFile: 3)
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern(), options: options)
+        let summary = try await search.run()
+        
+        #expect(summary.files.map(\.filename) == ["a.txt", "b.txt"])
+        #expect(summary.files.map(\.matches.count) == [3, 1])
+        #expect(summary.files.map(\.isTruncated) == [true, false])
+        #expect(summary.metrics.matchCount == 4)
+        #expect(summary.metrics.matchedFileCount == 2)
+        #expect(summary.isTruncated)
+        #expect(!summary.metrics.hasUnsearchedFiles)
+    }
+    
+    
+    @Test func totalMatchCountIsLimited() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        for name in ["a.txt", "b.txt", "c.txt"] {
+            try Data("needle needle".utf8).write(to: rootURL.appending(path: name))
+        }
+        
+        let progress = FolderFindProgress(findString: "needle")
+        let options = FolderFind.Options(maximumMatchCount: 3)
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern(), options: options, progress: progress)
+        var summary = try await search.run()
+        
+        // the third file is not searched
+        #expect(summary.files.map(\.filename) == ["a.txt", "b.txt"])
+        #expect(summary.files.map(\.matches.count) == [2, 1])
+        #expect(summary.files.map(\.isTruncated) == [false, true])
+        #expect(summary.metrics.matchCount == 3)
+        #expect(summary.metrics.matchedFileCount == 2)
+        #expect(summary.isTruncated)
+        #expect(summary.metrics.hasUnsearchedFiles)
+        #expect(progress.snapshot.hasUnsearchedFiles)
+        
+        // the truncation is kept after removing results
+        summary.removeResults(for: [.file(summary.files[0].id)])
+        #expect(summary.metrics.matchCount == 1)
+        #expect(summary.isTruncated)
+        #expect(summary.metrics.hasUnsearchedFiles)
+    }
+    
+    
+    @Test func reachingTotalMatchCountStopsSearchingRemainingFiles() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        for name in ["a.txt", "b.txt", "c.txt"] {
+            try Data("needle needle".utf8).write(to: rootURL.appending(path: name))
+        }
+        
+        // the maximum is reached exactly at the end of the second file
+        let options = FolderFind.Options(maximumMatchCount: 4)
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern(), options: options)
+        let summary = try await search.run()
+        
+        #expect(summary.files.map(\.filename) == ["a.txt", "b.txt"])
+        #expect(summary.files.map(\.isTruncated) == [false, false])
+        #expect(summary.metrics.matchCount == 4)
+        #expect(summary.isTruncated)
+        #expect(summary.metrics.hasUnsearchedFiles)
+    }
+    
+    
+    @Test func reachingTotalMatchCountAtLastFileSearchesAllFiles() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        for name in ["a.txt", "b.txt"] {
+            try Data("needle needle".utf8).write(to: rootURL.appending(path: name))
+        }
+        
+        let options = FolderFind.Options(maximumMatchCount: 4)
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern(), options: options)
+        let summary = try await search.run()
+        
+        #expect(summary.files.map(\.filename) == ["a.txt", "b.txt"])
+        #expect(summary.metrics.matchCount == 4)
+        #expect(!summary.isTruncated)
+        #expect(!summary.metrics.hasUnsearchedFiles)
+    }
+    
+    
     @Test func progressTracksSearchMetrics() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()

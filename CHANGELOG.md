@@ -6,6 +6,7 @@
 ### Improvements
 
 - [beta] Improve the performance of the folder find pane.
+- [beta] Limit folder find results to 5,000 matches per file and 500,000 matches in total, and indicate when the limit is reached.
 
 
 ### Fixes

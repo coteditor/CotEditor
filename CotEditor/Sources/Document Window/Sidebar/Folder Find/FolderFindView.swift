@@ -43,6 +43,17 @@ struct FolderFindView: View {
                 ForEach(summary.files, id: \.resultID) { file in
                     FolderFindFileResultView(file: file)
                 }
+                
+                if summary.metrics.hasUnsearchedFiles {
+                    Text(.init("FolderFind.Metrics.hasUnsearchedFiles.label",
+                               defaultValue: "Search Limit Reached", table: "Document",
+                               comment: "shown when the search stopped before searching all files"))
+                    .fontWeight(.medium)
+                    .foregroundStyle(.secondary)
+                    .selectionDisabled()
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.top)
+                }
             }
         }
         .overlay {
@@ -333,11 +344,12 @@ private struct FolderFindMetricsBarView: View {
         switch self.state {
             case .searching(let progress):
                 TimelineView(.periodic(from: .now, by: 0.1)) { _ in
-                    MessageView(metrics: progress.snapshot)
+                    let metrics = progress.snapshot
+                    MessageView(metrics: metrics, isTruncated: metrics.hasUnsearchedFiles)
                 }
                 
             case .finished(let summary):
-                MessageView(metrics: summary.metrics)
+                MessageView(metrics: summary.metrics, isTruncated: summary.isTruncated)
                 
             case .idle, .failed:
                 EmptyView()
@@ -348,13 +360,14 @@ private struct FolderFindMetricsBarView: View {
     private struct MessageView: View {
         
         var metrics: FolderFind.Metrics
+        var isTruncated: Bool
         
         
         var body: some View {
             
             VStack(spacing: 6) {
                 Divider()
-                Text(self.metrics.message)
+                Text(self.metrics.message(isTruncated: self.isTruncated))
                     .foregroundStyle(.secondary)
                     .monospacedDigit()
                     .controlSize(.small)
@@ -413,6 +426,13 @@ private struct FolderFindFileResultView: View {
         DisclosureGroup(isExpanded: $isExpanded) {
             ForEach(self.file.matchRows) { row in
                 ItemView(line: row.match.line, rangeInLine: row.match.rangeInLine)
+            }
+            
+            if self.file.isTruncated {
+                Text(.init("FolderFind.FileResult.truncated.label", defaultValue: "Only the first \(self.file.matches.count) matches were found.", table: "Document",
+                           comment: "shown at the end of the matches in a file when the search stopped listing further matches in the file"))
+                .foregroundStyle(.secondary)
+                .selectionDisabled()
             }
         } label: {
             Label {
@@ -580,12 +600,21 @@ private extension FolderFind.FileResult {
 
 private extension FolderFind.Metrics {
     
-    /// The localized summary message.
-    var message: LocalizedStringResource {
+    /// Returns the localized summary message.
+    ///
+    /// - Parameter isTruncated: Whether the match count is a lower bound.
+    /// - Returns: The summary message.
+    func message(isTruncated: Bool) -> LocalizedStringResource {
         
-        .init("FolderFind.Metrics.message",
-              defaultValue: "\(self.matchCount) matches in \(self.matchedFileCount) files",
-              table: "Document", comment: "folder find result summary")
+        if isTruncated {
+            .init("FolderFind.Metrics.message.truncated",
+                  defaultValue: "\(self.matchCount)+ matches in \(self.matchedFileCount) files",
+                  table: "Document", comment: "folder find result summary when the search stopped at the maximum number of matches; the match count is a lower bound")
+        } else {
+            .init("FolderFind.Metrics.message",
+                  defaultValue: "\(self.matchCount) matches in \(self.matchedFileCount) files",
+                  table: "Document", comment: "folder find result summary")
+        }
     }
 }
 

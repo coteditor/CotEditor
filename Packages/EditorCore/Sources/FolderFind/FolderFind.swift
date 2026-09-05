@@ -65,6 +65,8 @@ public enum FolderFind {
         public var includesHiddenFiles: Bool
         public var excludedNames: Set<String>
         public var maximumFileSize: Int
+        public var maximumMatchCount: Int
+        public var maximumMatchCountPerFile: Int
         public var fileScope: FileScope?
         public var decodingOptions: String.DetectionOptions
         
@@ -76,6 +78,8 @@ public enum FolderFind {
         ///   - includesHiddenFiles: Whether hidden files should be included.
         ///   - excludedNames: File or folder names to exclude from traversal.
         ///   - maximumFileSize: The maximum file size in bytes to search. Files larger than this size are skipped.
+        ///   - maximumMatchCount: The maximum number of matches to collect in total. The search stops when it is reached.
+        ///   - maximumMatchCountPerFile: The maximum number of matches to collect per file. The remaining matches in the file are neither listed nor counted.
         ///   - fileScope: The file scope to search.
         ///   - decodingOptions: The text decoding options to use for reading files.
         public init(
@@ -83,6 +87,8 @@ public enum FolderFind {
             includesHiddenFiles: Bool = false,
             excludedNames: Set<String> = [".DS_Store", ".git"],
             maximumFileSize: Int = 1_000_000_000,  // 1 GB
+            maximumMatchCount: Int = 500_000,
+            maximumMatchCountPerFile: Int = 5_000,
             fileScope: FileScope? = nil,
             decodingOptions: String.DetectionOptions = .init(candidates: [.utf8])
         ) {
@@ -91,6 +97,8 @@ public enum FolderFind {
             self.includesHiddenFiles = includesHiddenFiles
             self.excludedNames = excludedNames
             self.maximumFileSize = maximumFileSize
+            self.maximumMatchCount = maximumMatchCount
+            self.maximumMatchCountPerFile = maximumMatchCountPerFile
             self.fileScope = fileScope
             self.decodingOptions = decodingOptions
         }
@@ -128,6 +136,7 @@ public enum FolderFind {
         public var findString: String
         public var matchCount: Int = 0
         public var matchedFileCount: Int = 0
+        public var hasUnsearchedFiles = false
     }
     
     
@@ -135,6 +144,7 @@ public enum FolderFind {
         
         public private(set) var metrics: Metrics
         public private(set) var files: [FileResult]
+        
         
         /// Initializes a folder find summary.
         ///
@@ -147,6 +157,13 @@ public enum FolderFind {
             self.files = files
             
             self.updateMatchCounts()
+        }
+        
+        
+        /// Whether more matches exist than counted, so that the metrics are lower bounds.
+        public var isTruncated: Bool {
+            
+            self.metrics.hasUnsearchedFiles || self.files.contains(where: \.isTruncated)
         }
         
         
@@ -164,6 +181,9 @@ public enum FolderFind {
         public var fileURL: URL
         public var directoryPathComponents: [String]
         public var matches: [Match]
+        
+        /// Whether the file has more matches than listed.
+        public var isTruncated = false
         
         /// The stable identity of the file result.
         public var id: URL  { self.fileURL }

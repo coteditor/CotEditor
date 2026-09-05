@@ -55,6 +55,9 @@ public struct Search: Sendable {
     /// - Throws: `FileScope.Error` if the file scope is invalid.
     public init(rootURL: URL, pattern: TextFind.Pattern, options: FolderFind.Options = .init(), progress: FolderFindProgress? = nil, isIncluded: (@Sendable (FolderFind.Candidate) -> Bool)? = nil) throws(FileScope.Error) {
         
+        assert(options.maximumMatchCount > 0)
+        assert(options.maximumMatchCountPerFile > 0)
+        
         self.rootURL = rootURL
         self.pattern = pattern
         self.options = options
@@ -121,6 +124,13 @@ public struct Search: Sendable {
         for candidate in candidates {
             guard !Task.isCancelled else { throw CancellationError() }
             
+            guard self.metrics.matchCount < self.options.maximumMatchCount else {
+                // -> The remaining candidates are not searched, so the counts are lower bounds.
+                self.metrics.hasUnsearchedFiles = true
+                self.progress?.update(snapshot: self.metrics)
+                return
+            }
+            
             if candidate.isDirectory {
                 try await self.searchDirectory(at: candidate.fileURL)
             } else {
@@ -146,7 +156,8 @@ public struct Search: Sendable {
         else { return }
         
         let textFind = TextFind(for: string, pattern: self.pattern)
-        let matches = try self.matches(in: string, using: textFind)
+        let maximumCount = min(self.options.maximumMatchCountPerFile, self.options.maximumMatchCount - self.metrics.matchCount)
+        let (matches, isTruncated) = try self.matches(in: string, using: textFind, maximumCount: maximumCount)
         
         guard !matches.isEmpty else { return }
         
@@ -159,7 +170,8 @@ public struct Search: Sendable {
         
         self.files.append(FolderFind.FileResult(fileURL: candidate.fileURL,
                                                 directoryPathComponents: Array(directoryPathComponents.dropFirst(rootPathComponents.count)),
-                                                matches: matches))
+                                                matches: matches,
+                                                isTruncated: isTruncated))
     }
     
     
@@ -182,18 +194,27 @@ public struct Search: Sendable {
     /// - Parameters:
     ///   - string: The searched string.
     ///   - textFind: The text find instance.
+    ///   - maximumCount: The maximum number of matches to collect.
     ///   - maximumLineLength: The preferred maximum UTF-16 length of each line fragment, extended to preserve whole grapheme clusters.
-    /// - Returns: Matches for display.
+    /// - Returns: Matches for display, and whether the string has more matches than collected.
     /// - Throws: `CancellationError` if the task is cancelled.
-    private func matches(in string: String, using textFind: TextFind, maximumLineLength: Int = 512) throws(CancellationError) -> [FolderFind.Match] {
+    private func matches(in string: String, using textFind: TextFind, maximumCount: Int, maximumLineLength: Int = 512) throws(CancellationError) -> (matches: [FolderFind.Match], isTruncated: Bool) {
         
+        assert(maximumCount > 0)
         assert(maximumLineLength > 0)
         
         let lineCounter = LineCounter(string: string)
         let nsString = string as NSString
         var matches: [FolderFind.Match] = []
+        var isTruncated = false
         
-        try textFind.findAll { ranges, _ in
+        try textFind.findAll { ranges, stop in
+            guard matches.count < maximumCount else {
+                isTruncated = true
+                stop = true
+                return
+            }
+            
             let range = ranges[0]
             let clampedLineRange = lineCounter.lineContentsRange(for: range)
                 .clamped(around: range, maxLength: maximumLineLength)
@@ -205,13 +226,13 @@ public struct Search: Sendable {
             matches.append(FolderFind.Match(range: range, line: line, rangeInLine: rangeInLine))
         }
         
-        return matches
+        return (matches, isTruncated)
     }
     
     
     /// Records a searched file.
     ///
-    /// - Parameter matchCount: The number of matches found in the file.
+    /// - Parameter matchCount: The number of matches collected in the file.
     private mutating func recordSearchedFile(matchCount: Int) {
         
         assert(matchCount > 0)
