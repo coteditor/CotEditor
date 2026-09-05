@@ -152,6 +152,7 @@ extension MultipleReplace {
     ///   - inSelection: Whether find only in selection.
     ///   - progress: The progress object to observe cancellation by the user and notify the find progress.
     /// - Returns: The found ranges. This method will return once all search is finished.
+    /// - Throws: `CancellationError` if the search is cancelled by the user or the task.
     public func find(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws(CancellationError) -> [NSRange] {
         
         var result: [NSRange] = []
@@ -175,7 +176,7 @@ extension MultipleReplace {
             }
             
             // finish if cancelled
-            guard progress?.state != .cancelled else { throw CancellationError() }
+            guard progress?.state != .cancelled, !Task.isCancelled else { throw CancellationError() }
             
             // notify
             progress?.incrementCompletedUnit()
@@ -193,6 +194,7 @@ extension MultipleReplace {
     ///   - inSelection: Whether replace only in selection.
     ///   - progress: The progress object to observe cancellation by the user and notify the replacement progress.
     /// - Returns: The result of the replacement. This method will return once all replacement is finished.
+    /// - Throws: `CancellationError` if the replacement is cancelled by the user or the task.
     public func replace(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws(CancellationError) -> Result {
         
         var result = Result(string: string, selectedRanges: ranges)
@@ -217,7 +219,7 @@ extension MultipleReplace {
             }
             
             // finish if cancelled
-            guard progress?.state != .cancelled else { throw CancellationError() }
+            guard progress?.state != .cancelled, !Task.isCancelled else { throw CancellationError() }
             
             // update string
             if !replacementItems.isEmpty {

@@ -150,6 +150,30 @@ struct TextFindTests {
     }
     
     
+    @Test(.timeLimit(.minutes(1)))
+    func regularExpressionCancellationBetweenMatches() async throws {
+        
+        // The first match cancels the task; the remaining input would take seconds of quadratic backtracking without cancellation.
+        let string = "!" + String(repeating: "a", count: 15_000) + "?"
+        let pattern = try TextFind.Pattern(findString: "!|a+b", mode: .regularExpression(options: [], unescapesReplacement: false))
+        let textFind = TextFind(for: string, pattern: pattern)
+        
+        let task = Task {
+            var matches: [NSRange] = []
+            let duration = ContinuousClock().measure {
+                textFind.findAll { ranges, _ in
+                    matches.append(ranges[0])
+                    unsafe withUnsafeCurrentTask { unsafe $0?.cancel() }
+                }
+            }
+            
+            #expect(matches == [NSRange(location: 0, length: 1)])
+            #expect(duration < .seconds(1))
+        }
+        await task.value
+    }
+    
+    
     @Test func countCaptureGroup() throws {
         
         let mode = TextFind.Mode.regularExpression(options: [], unescapesReplacement: false)

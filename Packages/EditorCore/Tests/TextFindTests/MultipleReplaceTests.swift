@@ -203,6 +203,44 @@ struct MultipleReplaceTests {
     }
     
     
+    @Test func replaceCancellationByTask() async throws {
+        
+        let definition = MultipleReplace(replacements: [
+            .init(findString: "a", replacementString: "b", usesRegularExpression: true),
+        ])
+        
+        let task = Task {
+            while !Task.isCancelled {
+                await Task.yield()
+            }
+            
+            _ = try definition.replace(string: "aaa", ranges: [NSRange(0..<0)], inSelection: false)
+        }
+        task.cancel()
+        
+        await #expect(throws: CancellationError.self) { try await task.value }
+    }
+    
+    
+    @Test func findCancellationByTask() async throws {
+        
+        let definition = MultipleReplace(replacements: [
+            .init(findString: "a", usesRegularExpression: true),
+        ])
+        
+        let task = Task {
+            while !Task.isCancelled {
+                await Task.yield()
+            }
+            
+            _ = try definition.find(string: "aaa", ranges: [NSRange(0..<0)], inSelection: false)
+        }
+        task.cancel()
+        
+        await #expect(throws: CancellationError.self) { try await task.value }
+    }
+    
+    
     @Suite struct TSVParse {
         
         @Test func emptyInput() throws {

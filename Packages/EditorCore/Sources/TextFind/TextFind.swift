@@ -281,6 +281,8 @@ public struct TextFind: Equatable, Sendable {
     
     /// Finds all matches in the scopes.
     ///
+    /// The enumeration stops silently when the current task is cancelled; check `Task.isCancelled` afterward when running in a cancellable task.
+    ///
     /// - Parameters:
     ///   - block: The block enumerates the matches.
     ///   - matches: The array of matches including group matches.
@@ -302,6 +304,8 @@ public struct TextFind: Equatable, Sendable {
     
     
     /// Replaces all matches in the scopes.
+    ///
+    /// The enumeration stops silently when the current task is cancelled; check `Task.isCancelled` afterward when running in a cancellable task.
     ///
     /// - Parameters:
     ///   - replacementString: The string with which to replace.
@@ -457,9 +461,21 @@ public struct TextFind: Equatable, Sendable {
     private func enumerateRegularExpressionMatches(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         let string = self.string
-        let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds]
+        let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds, .reportProgress]
+        var progressCount = 0
         
         unsafe self.pattern.regex!.enumerateMatches(in: string, options: options, range: range) { result, _, stop in
+            if result == nil {
+                // -> Progress callbacks arrive at every scan position, so check cancellation only occasionally to keep the overhead low.
+                progressCount &+= 1
+                guard progressCount.isMultiple(of: 256) else { return }
+            }
+            
+            guard !Task.isCancelled else {
+                unsafe stop.pointee = true
+                return
+            }
+            
             guard let result else { return }
             
             var ioStop = false
