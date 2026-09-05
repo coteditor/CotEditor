@@ -205,10 +205,12 @@ struct FolderFindTests {
         let secondID = summary.files[0].matches[1].id
         let line = summary.files[0].matches[0].line
         let rangeInLine = summary.files[0].matches[0].rangeInLine
+        let metrics = summary.metrics
         
         let didUpdate = summary.updateMatchRanges(in: fileURL, editedRange: NSRange(location: 3, length: 4), changeInLength: 4, length: 80)
         
         #expect(didUpdate)
+        #expect(summary.metrics == metrics)
         
         #expect(summary.files[0].matches.map(\.range) == [
             NSRange(location: 14, length: 6),
@@ -223,6 +225,7 @@ struct FolderFindTests {
         let didUpdateBehind = summary.updateMatchRanges(in: fileURL, editedRange: NSRange(location: 70, length: 2), changeInLength: 2, length: 82)
         
         #expect(!didUpdateBehind)
+        #expect(summary.metrics == metrics)
         #expect(summary.files[0].matches.map(\.range) == [
             NSRange(location: 14, length: 6),
             NSRange(location: 34, length: 6),

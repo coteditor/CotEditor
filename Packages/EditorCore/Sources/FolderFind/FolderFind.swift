@@ -133,8 +133,8 @@ public enum FolderFind {
     
     public struct Summary: Equatable, Sendable {
         
-        public var metrics: Metrics
-        public var files: [FileResult]  { didSet { self.updateMatchCounts() } }
+        public private(set) var metrics: Metrics
+        public private(set) var files: [FileResult]
         
         /// Initializes a folder find summary.
         ///
@@ -267,6 +267,7 @@ public extension FolderFind.Summary {
             
             return file.matches.isEmpty ? nil : file
         }
+        self.updateMatchCounts()
     }
     
     
@@ -284,7 +285,6 @@ public extension FolderFind.Summary {
         
         guard let fileIndex = self.files.firstIndex(where: { $0.fileURL == fileURL }) else { return false }
         
-        // update a local copy to avoid invoking `didSet` of `files` for every single match
         var file = self.files[fileIndex]
         var didUpdate = false
         for matchIndex in file.matches.indices {
