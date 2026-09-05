@@ -66,6 +66,32 @@ struct FolderFindTests {
     }
     
     
+    @Test func filteredSearchPreservesDirectoryTraversalAndOrdering() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        for name in ["Z10", "Z2", "Skip"] {
+            try FileManager.default.createDirectory(at: rootURL.appending(path: name), withIntermediateDirectories: true)
+        }
+        for path in ["a10.txt", "a2.txt", "ignore.txt", "note.md", "image.png", "Z10/b.txt", "Z2/c.txt", "Skip/d.txt"] {
+            try Data("needle".utf8).write(to: rootURL.appending(path: path))
+        }
+        
+        let fileScope = FileScope(rules: [
+            .init(target: .fileExtension, comparison: .isEqualTo, value: "txt"),
+        ])
+        let options = FolderFind.Options(excludedNames: ["Skip", "ignore.txt"], fileScope: fileScope)
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern(), options: options)
+        let summary = try await search.run()
+        
+        #expect(summary.files.map(\.filename) == ["c.txt", "b.txt", "a2.txt", "a10.txt"])
+        #expect(summary.files.map(\.directoryPathComponents) == [["Z2"], ["Z10"], [], []])
+        #expect(summary.metrics.matchCount == 4)
+        #expect(summary.metrics.matchedFileCount == 4)
+    }
+    
+    
     @Test func progressTracksSearchMetrics() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()

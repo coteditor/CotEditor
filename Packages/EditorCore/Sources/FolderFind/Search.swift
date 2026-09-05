@@ -101,10 +101,22 @@ public struct Search: Sendable {
         let enumerationOptions: FileManager.DirectoryEnumerationOptions = self.options.includesHiddenFiles ? [] : [.skipsHiddenFiles]
         guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: Array(FolderFind.Candidate.metadataResourceKeys), options: enumerationOptions) else { return }
         
-        var candidates = urls.compactMap { try? FolderFind.Candidate(at: $0) }
+        var candidates: [FolderFind.Candidate] = []
+        for url in urls {
+            guard !Task.isCancelled else { throw CancellationError() }
+            
+            guard
+                !self.options.excludedNames.contains(url.lastPathComponent),
+                let candidate = try? FolderFind.Candidate(at: url),
+                candidate.isDirectory || self.includes(candidate)
+            else { continue }
+            
+            candidates.append(candidate)
+        }
+        
         candidates.sort { lhs, rhs in
             if lhs.isDirectory != rhs.isDirectory {
-                lhs.isDirectory && !rhs.isDirectory
+                lhs.isDirectory
             } else {
                 lhs.fileURL.lastPathComponent.localizedStandardCompare(rhs.fileURL.lastPathComponent) == .orderedAscending
             }
@@ -113,11 +125,9 @@ public struct Search: Sendable {
         for candidate in candidates {
             guard !Task.isCancelled else { throw CancellationError() }
             
-            guard !self.options.excludedNames.contains(candidate.fileURL.lastPathComponent) else { continue }
-            
             if candidate.isDirectory {
                 try await self.searchDirectory(at: candidate.fileURL)
-            } else if self.includes(candidate) {
+            } else {
                 try self.searchFile(candidate)
             }
         }
