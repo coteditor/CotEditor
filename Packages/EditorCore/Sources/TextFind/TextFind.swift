@@ -177,11 +177,7 @@ public struct TextFind: Equatable, Sendable {
         get throws(CancellationError) {
             var ranges: [NSRange] = []
             for range in self.scopeRanges {
-                self.enumerateMatches(in: range) { matchedRange, _, stop in
-                    if Task.isCancelled {
-                        stop = true
-                        return
-                    }
+                self.enumerateMatches(in: range) { matchedRange, _, _ in
                     ranges.append(matchedRange)
                 }
                 guard !Task.isCancelled else { throw CancellationError() }
@@ -281,13 +277,12 @@ public struct TextFind: Equatable, Sendable {
     
     /// Finds all matches in the scopes.
     ///
-    /// The enumeration stops silently when the current task is cancelled; check `Task.isCancelled` afterward when running in a cancellable task.
-    ///
     /// - Parameters:
     ///   - block: The block enumerates the matches.
     ///   - matches: The array of matches including group matches.
     ///   - stop: The `block` can set the value to true to stop further processing.
-    public func findAll(using block: (_ matches: [NSRange], _ stop: inout Bool) -> Void) {
+    /// - Throws: `CancellationError` if the task is cancelled.
+    public func findAll(using block: (_ matches: [NSRange], _ stop: inout Bool) -> Void) throws(CancellationError) {
         
         for range in self.scopeRanges {
             self.enumerateMatches(in: range) { matchedRange, match, stop in
@@ -299,13 +294,13 @@ public struct TextFind: Equatable, Sendable {
                 
                 block(matches, &stop)
             }
+            
+            guard !Task.isCancelled else { throw CancellationError() }
         }
     }
     
     
     /// Replaces all matches in the scopes.
-    ///
-    /// The enumeration stops silently when the current task is cancelled; check `Task.isCancelled` afterward when running in a cancellable task.
     ///
     /// - Parameters:
     ///   - replacementString: The string with which to replace.
@@ -315,7 +310,8 @@ public struct TextFind: Equatable, Sendable {
     /// - Returns:
     ///   - replacementItems: ReplacementItem per selectedRange.
     ///   - selectedRanges: New selections for textView only if the replacement is performed within selection. Otherwise, `nil`.
-    public func replaceAll(with replacementString: String, using block: @escaping (_ range: NSRange, _ count: Int, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
+    /// - Throws: `CancellationError` if the task is cancelled.
+    public func replaceAll(with replacementString: String, using block: @escaping (_ range: NSRange, _ count: Int, _ stop: inout Bool) -> Void) throws(CancellationError) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
         
         let replacementString = self.replacementString(from: replacementString)
         var replacementItems: [ReplacementItem] = []
@@ -351,6 +347,7 @@ public struct TextFind: Equatable, Sendable {
                     }
             }
             
+            guard !Task.isCancelled else { throw CancellationError() }
             guard !ioStop else { break }
             
             // append only when actually modified
@@ -436,6 +433,8 @@ public struct TextFind: Equatable, Sendable {
         var searchRange = range
         
         while searchRange.location != NSNotFound {
+            guard !Task.isCancelled else { return }
+            
             searchRange.length = range.upperBound - searchRange.location
             let foundRange = string.range(of: self.findString, options: options, range: searchRange)
             

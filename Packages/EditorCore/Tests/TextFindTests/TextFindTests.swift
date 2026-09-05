@@ -150,6 +150,27 @@ struct TextFindTests {
     }
     
     
+    @Test(arguments: [false, true])
+    func textualCancellationBetweenMatches(fullWord: Bool) async throws {
+        
+        let pattern = try TextFind.Pattern(findString: "a", mode: .textual(options: [], fullWord: fullWord))
+        let textFind = TextFind(for: "a a a", pattern: pattern)
+        
+        let task = Task {
+            var matches: [NSRange] = []
+            #expect(throws: CancellationError.self) {
+                try textFind.findAll { ranges, _ in
+                    matches.append(ranges[0])
+                    unsafe withUnsafeCurrentTask { unsafe $0?.cancel() }
+                }
+            }
+            
+            #expect(matches == [NSRange(location: 0, length: 1)])
+        }
+        await task.value
+    }
+    
+    
     @Test(.timeLimit(.minutes(1)))
     func regularExpressionCancellationBetweenMatches() async throws {
         
@@ -160,15 +181,16 @@ struct TextFindTests {
         
         let task = Task {
             var matches: [NSRange] = []
-            let duration = ContinuousClock().measure {
-                textFind.findAll { ranges, _ in
+            let start = ContinuousClock.now
+            #expect(throws: CancellationError.self) {
+                try textFind.findAll { ranges, _ in
                     matches.append(ranges[0])
                     unsafe withUnsafeCurrentTask { unsafe $0?.cancel() }
                 }
             }
             
             #expect(matches == [NSRange(location: 0, length: 1)])
-            #expect(duration < .seconds(1))
+            #expect(ContinuousClock.now - start < .seconds(1))
         }
         await task.value
     }
@@ -362,7 +384,7 @@ struct TextFindTests {
         textFind = TextFind(for: "abcdefg ABCDEFG", pattern: pattern)
         
         var matches = [[NSRange]]()
-        textFind.findAll { matchedRanges, _ in
+        try textFind.findAll { matchedRanges, _ in
             matches.append(matchedRanges)
         }
         #expect(matches.count == 2)
@@ -378,7 +400,7 @@ struct TextFindTests {
         textFind = TextFind(for: "abcdefg ABCDEFG", pattern: pattern)
         
         matches = [[NSRange]]()
-        textFind.findAll { matchedRanges, _ in
+        try textFind.findAll { matchedRanges, _ in
             matches.append(matchedRanges)
         }
         #expect(matches.count == 2)
@@ -400,7 +422,7 @@ struct TextFindTests {
                                        mode: .regularExpression(options: .caseInsensitive, unescapesReplacement: false))
         textFind = TextFind(for: "abcdefg ABCDEFG", pattern: pattern)
         
-        (replacementItems, selectedRanges) = textFind.replaceAll(with: "$1\\\\t") { _, _, _ in }
+        (replacementItems, selectedRanges) = try textFind.replaceAll(with: "$1\\\\t") { _, _, _ in }
         #expect(replacementItems.count == 1)
         #expect(replacementItems[0].value == "ac\\tdefg AC\\tDEFG")
         #expect(replacementItems[0].range == NSRange(location: 0, length: 15))
@@ -413,7 +435,7 @@ struct TextFindTests {
                                 selectedRanges: [NSRange(location: 1, length: 14),
                                                  NSRange(location: 16, length: 7)])
         
-        (replacementItems, selectedRanges) = textFind.replaceAll(with: "_") { _, _, _ in }
+        (replacementItems, selectedRanges) = try textFind.replaceAll(with: "_") { _, _, _ in }
         #expect(replacementItems.count == 2)
         #expect(replacementItems[0].value == "bcdefg _defg")
         #expect(replacementItems[0].range == NSRange(location: 1, length: 14))
@@ -429,7 +451,7 @@ struct TextFindTests {
                                 selectedRanges: [NSRange(location: 0, length: 4),
                                                  NSRange(location: 7, length: 3)])
         
-        (replacementItems, selectedRanges) = textFind.replaceAll(with: "_") { _, _, _ in }
+        (replacementItems, selectedRanges) = try textFind.replaceAll(with: "_") { _, _, _ in }
         #expect(replacementItems.count == 1)
         #expect(replacementItems[0].value == "_x")
         #expect(replacementItems[0].range == NSRange(location: 0, length: 4))
@@ -443,7 +465,7 @@ struct TextFindTests {
         let pattern = try TextFind.Pattern(findString: "\u{00B7}", mode: .textual(options: [], fullWord: false))
         let textFind = TextFind(for: "\u{00B7}", pattern: pattern)
         
-        let (replacementItems, selectedRanges) = textFind.replaceAll(with: "\u{0387}") { _, _, _ in }
+        let (replacementItems, selectedRanges) = try textFind.replaceAll(with: "\u{0387}") { _, _, _ in }
         
         #expect(replacementItems.count == 1)
         #expect(replacementItems[0].value.unicodeScalars.map(\.value) == [0x0387])

@@ -698,7 +698,15 @@ struct FindMatchesCache {
         }
         
         // perform
-        let (highlights, matches) = await findResult
+        let highlights: [ValueRange<NSColor>]
+        let matches: [FindAllMatch]
+        do {
+            (highlights, matches) = try await findResult
+        } catch {
+            // -> Mark the progress as cancelled to dismiss the progress sheet.
+            progress.cancel()
+            return
+        }
         
         guard progress.state != .cancelled else { return }
         
@@ -743,7 +751,15 @@ struct FindMatchesCache {
         }
         
         // perform
-        let (replacementItems, selectedRanges) = await replacementResult
+        let replacementItems: [TextFind.ReplacementItem]
+        let selectedRanges: [NSRange]?
+        do {
+            (replacementItems, selectedRanges) = try await replacementResult
+        } catch {
+            // -> Mark the progress as cancelled to dismiss the progress sheet.
+            progress.cancel()
+            return
+        }
         
         client.isEditable = true
         
@@ -798,7 +814,8 @@ struct FindMatchesCache {
     ///   - showsList: Whether builds the matched line entries for the result table.
     ///   - progress: The progress object to report the state.
     /// - Returns: The ranges to highlight and the matched line entries for the result table.
-    @concurrent private static func findAll(for textFind: TextFind, showsList: Bool, progress: FindProgress) async -> (highlights: [ValueRange<NSColor>], matches: [FindAllMatch]) {
+    /// - Throws: `CancellationError` if the task is cancelled.
+    @concurrent private static func findAll(for textFind: TextFind, showsList: Bool, progress: FindProgress) async throws(CancellationError) -> (highlights: [ValueRange<NSColor>], matches: [FindAllMatch]) {
         
         let highlightColors = NSColor.textHighlighterColor.decompose(into: textFind.numberOfCaptureGroups + 1)
         let lineCounter = LineCounter(string: textFind.string)
@@ -806,7 +823,7 @@ struct FindMatchesCache {
         var highlights: [ValueRange<NSColor>] = []
         var resultMatches: [FindAllMatch] = []  // not used if showsList is false
         
-        textFind.findAll { matches, stop in
+        try textFind.findAll { matches, stop in
             guard progress.state != .cancelled else {
                 stop = true
                 return
@@ -852,9 +869,10 @@ struct FindMatchesCache {
     ///   - replacementString: The string to replace matches with.
     ///   - progress: The progress object to report the state.
     /// - Returns: The replacement items and the selected ranges after the replacement.
-    @concurrent private static func replaceAll(for textFind: TextFind, with replacementString: String, progress: FindProgress) async -> (replacementItems: [TextFind.ReplacementItem], selectedRanges: [NSRange]?) {
+    /// - Throws: `CancellationError` if the task is cancelled.
+    @concurrent private static func replaceAll(for textFind: TextFind, with replacementString: String, progress: FindProgress) async throws(CancellationError) -> (replacementItems: [TextFind.ReplacementItem], selectedRanges: [NSRange]?) {
         
-        textFind.replaceAll(with: replacementString) { range, count, stop in
+        try textFind.replaceAll(with: replacementString) { range, count, stop in
             guard progress.state != .cancelled else {
                 stop = true
                 return

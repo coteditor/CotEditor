@@ -165,7 +165,7 @@ extension MultipleReplace {
             else { continue }
             
             // process find
-            textFind.findAll { ranges, stop in
+            try textFind.findAll { ranges, stop in
                 guard progress?.state != .cancelled else {
                     stop = true
                     return
@@ -176,7 +176,7 @@ extension MultipleReplace {
             }
             
             // finish if cancelled
-            guard progress?.state != .cancelled, !Task.isCancelled else { throw CancellationError() }
+            guard progress?.state != .cancelled else { throw CancellationError() }
             
             // notify
             progress?.incrementCompletedUnit()
@@ -209,7 +209,7 @@ extension MultipleReplace {
             else { continue }
             
             // process replacement
-            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { _, count, stop in
+            let (replacementItems, selectedRanges) = try textFind.replaceAll(with: replacement.replacementString) { _, count, stop in
                 guard progress?.state != .cancelled else {
                     stop = true
                     return
@@ -219,7 +219,7 @@ extension MultipleReplace {
             }
             
             // finish if cancelled
-            guard progress?.state != .cancelled, !Task.isCancelled else { throw CancellationError() }
+            guard progress?.state != .cancelled else { throw CancellationError() }
             
             // update string
             if !replacementItems.isEmpty {

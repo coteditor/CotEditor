@@ -197,12 +197,7 @@ public struct Search: Sendable {
         let nsString = string as NSString
         var matches: [FolderFind.Match] = []
         
-        textFind.findAll { ranges, stop in
-            guard !Task.isCancelled else {
-                stop = true
-                return
-            }
-            
+        try textFind.findAll { ranges, _ in
             let range = ranges[0]
             let clampedLineRange = lineCounter.lineContentsRange(for: range)
                 .clamped(around: range, maxLength: maximumLineLength)
@@ -213,8 +208,6 @@ public struct Search: Sendable {
             
             matches.append(FolderFind.Match(range: range, line: line, rangeInLine: rangeInLine))
         }
-        
-        guard !Task.isCancelled else { throw CancellationError() }
         
         return matches
     }
