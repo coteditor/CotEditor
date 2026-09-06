@@ -27,6 +27,7 @@
 import Foundation
 import Testing
 import FileEncoding
+import DocumentFile
 import TextFind
 import UniformTypeIdentifiers
 @testable import FolderFind
@@ -496,6 +497,31 @@ struct FolderFindTests {
         
         #expect(summary.files.map(\.filename) == ["script", "utf16"])
         #expect(summary.metrics.matchCount == 2)
+    }
+    
+    
+    @Test(arguments: [String.Encoding.utf16LittleEndian, .utf16BigEndian, .utf32LittleEndian, .utf32BigEndian], [false, true])
+    func bomlessUnicodeIsSearched(encoding: String.Encoding, usesExtendedAttribute: Bool) async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        // The first 8 KiB end within the emoji's surrogate pair for UTF-16.
+        let string = String(repeating: "a", count: 4_095) + "🐈needle"
+        let url = rootURL.appending(path: "text.txt")
+        try #require(string.data(using: encoding)).write(to: url)
+        if usesExtendedAttribute {
+            let encodingData = try #require(encoding.xattrEncodingData)
+            try FileManager.default.setAttributes([.extendedAttributes: [ExtendedFileAttributeName.encoding: encodingData]], ofItemAtPath: url.path(percentEncoded: false))
+        }
+        
+        let decodingOptions = String.DetectionOptions(candidates: usesExtendedAttribute ? [.utf8] : [encoding])
+        #expect(try String(contentsOf: url, decodingOptions: decodingOptions) == string)
+        
+        var search = try Search(rootURL: rootURL, pattern: Self.query("needle").pattern(), options: .init(decodingOptions: decodingOptions))
+        let summary = try await search.run()
+        
+        #expect(summary.metrics.matchCount == 1)
     }
     
     

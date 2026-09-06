@@ -51,7 +51,7 @@ struct URLTests {
     
     @Test func nulByteWithinLeadingBytesIsBinary() throws {
         
-        let url = try Self.makeTemporaryFile(Data(repeating: 0x61, count: 8_191) + Data([0x00]))
+        let url = try Self.makeTemporaryFile(Data(repeating: 0x61, count: 8_188) + Data(repeating: 0, count: 4))
         defer { try? FileManager.default.removeItem(at: url) }
         
         #expect(try url.isBinary)
@@ -74,6 +74,26 @@ struct URLTests {
         defer { try? FileManager.default.removeItem(at: url) }
         
         #expect(try !url.isBinary)
+    }
+    
+    
+    @Test(arguments: [String.Encoding.utf16LittleEndian, .utf16BigEndian, .utf32LittleEndian, .utf32BigEndian])
+    func textWithoutByteOrderMarkIsNotBinary(encoding: String.Encoding) throws {
+        
+        let url = try Self.makeTemporaryFile(#require("needle".data(using: encoding)))
+        defer { try? FileManager.default.removeItem(at: url) }
+        
+        #expect(try !url.isBinary)
+    }
+    
+    
+    @Test(arguments: [4, 64, 8_192])
+    func zeroFilledDataIsBinary(count: Int) throws {
+        
+        let url = try Self.makeTemporaryFile(Data(repeating: 0, count: count))
+        defer { try? FileManager.default.removeItem(at: url) }
+        
+        #expect(try url.isBinary)
     }
     
     

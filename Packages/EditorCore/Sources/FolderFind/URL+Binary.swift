@@ -31,22 +31,38 @@ extension URL {
     
     /// Whether the file at the URL looks like binary.
     ///
-    /// A file is treated as binary if it is a binary property list,
-    /// or if its leading bytes contain a NUL byte unless it starts with a Unicode byte order mark.
+    /// A file is treated as binary if it is a binary property list, or if its leading bytes
+    /// contain a NUL byte unless they have a Unicode byte order mark or decode as UTF-16/UTF-32 without NUL characters.
     ///
     /// - Throws: An error if the file cannot be opened or read.
     var isBinary: Bool {
         
         get throws {
-            // read first 8 KiB
-            let head = try self.leadingBytes(upToCount: 8_192)
+            let sampleByteCount = 8_192  // 8 KiB
+            let head = try self.leadingBytes(upToCount: sampleByteCount)
             
             if head.starts(with: Data("bplist".utf8)) { return true }
             
             // -> Same heuristic as grep and Git: a NUL byte within the first 8 KiB.
             guard head.contains(0) else { return false }
+            guard !Unicode.BOM.allCases.contains(where: { head.starts(with: $0.sequence) }) else { return false }
             
-            return !Unicode.BOM.allCases.contains { head.starts(with: $0.sequence) }
+            let encodings: [(String.Encoding, Int)] = [(.utf16LittleEndian, 2), (.utf16BigEndian, 2), (.utf32LittleEndian, 4), (.utf32BigEndian, 4)]
+            
+            // A full sample may end within a UTF-16 surrogate pair.
+            for trailingByteCount in stride(from: 0, through: head.count == sampleByteCount ? 2 : 0, by: 2) {
+                for (encoding, codeUnitSize) in encodings {
+                    guard (head.count - trailingByteCount).isMultiple(of: codeUnitSize) else { continue }
+                    
+                    if let string = String(data: head.dropLast(trailingByteCount), encoding: encoding),
+                       !string.contains("\0")
+                    {
+                        return false
+                    }
+                }
+            }
+            
+            return true
         }
     }
     
