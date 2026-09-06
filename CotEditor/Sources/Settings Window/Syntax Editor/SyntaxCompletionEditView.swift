@@ -45,17 +45,21 @@ struct SyntaxCompletionEditView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
+            // pre-calculate the item positions to avoid a linear search for each cell
+            let itemIndexes: [Item.ID: Int] = self.items.enumerated()
+                .reduce(into: [:]) { indexes, item in indexes[item.element.id] = item.offset }
+            
             // create a table with wrapped values and then find the editable item again in each column to enable sorting (2025-07, macOS 26)
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
                 TableColumn(.init("Completion", table: "SyntaxEditor", comment: "table column header"), value: \.value.text) { wrappedItem in
-                    if let item = $items[id: wrappedItem.id] {
+                    if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         TextField(text: item.value.text, label: EmptyView.init)
                             .focused($focusedField, equals: item.id)
                     }
                 }
                 
                 TableColumn(.init("Type", table: "SyntaxEditor", comment: "table column header"), value: \.value.type.sortValue) { wrappedItem in
-                    if let item = $items[id: wrappedItem.id] {
+                    if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         Picker(selection: item.value.type) {
                             Text("None", tableName: "SyntaxEditor")
                                 .tag(Optional<SyntaxType>.none)
@@ -104,6 +108,20 @@ struct SyntaxCompletionEditView: View {
                 HelpLink(anchor: "syntax_completion_settings")
             }
         }
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Returns the binding to the item with the given ID.
+    ///
+    /// - Parameters:
+    ///   - id: The ID of the item to find.
+    ///   - indexes: The pre-calculated table of the item positions.
+    /// - Returns: The binding to the item, or `nil` if not found.
+    private func item(with id: Item.ID, in indexes: [Item.ID: Int]) -> Binding<Item>? {
+        
+        indexes[id].map { self.$items[$0] }
     }
 }
 
