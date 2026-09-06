@@ -1,0 +1,103 @@
+{
+  "attributes" : [
+    {
+      "begin" : "\\b[\\w$.]+(?:Exception|Error)\\b",
+      "regularExpression" : true
+    }
+  ],
+  "characters" : [
+    {
+      "begin" : "\\b(INFO|Info|INFORMATION|Information|INF|NOTICE|Notice)\\b",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "(?i)\\b(info(rmation)?|notice)\\s*:",
+      "regularExpression" : true
+    }
+  ],
+  "comments" : [
+    {
+      "begin" : "\\b(DEBUG|Debug|DBG|TRACE|Trace|VERBOSE|Verbose|VRB)\\b",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "(?i)\\b(debug|trace|verbose)\\s*:",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "\\b\\d{4}[-/.]\\d{2}[-/.]\\d{2}(?=T|\\b)([T ][\\d:,.+Z-]+)?",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "\\b\\d{1,2}[-/.]\\d{1,2}[-/.]\\d{4}\\b",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "\\b\\d{1,2}:\\d{2}(:\\d{2}([.,]\\d{1,})?)?(Z|[+-]\\d{1,2}:?\\d{2})?\\b",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "^\\s+at\\s",
+      "end" : "$",
+      "regularExpression" : true
+    }
+  ],
+  "numbers" : [
+    {
+      "begin" : "\\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "\\b(?:[0-9a-f]{2}[:-]){5}[0-9a-f]{2}\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "[a-z][a-z0-9+.-]*://\\S+",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    },
+    {
+      "begin" : "\\b(?:true|false|null|nil|none)\\b",
+      "ignoreCase" : true,
+      "regularExpression" : true
+    }
+  ],
+  "strings" : [
+    {
+      "begin" : "(?<![\\w'])\"[^\"\\r\\n]+\"(?![\\w'])",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "(?<![\\w'])'[^'\\r\\n]+'(?![\\w'])",
+      "regularExpression" : true
+    }
+  ],
+  "types" : [
+    {
+      "begin" : "\\b(WARN|Warn|WARNING|Warning|WRN)\\b",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "(?i)\\bwarn(ing)?\\s*:",
+      "regularExpression" : true
+    }
+  ],
+  "values" : [
+    {
+      "begin" : "\\b(ALERT|CRITICAL|EMERG(ENCY)?|ERROR|Error|FATAL|Fatal|SEVERE|PANIC|Panic|FAIL(ED|URE)?)\\b",
+      "regularExpression" : true
+    },
+    {
+      "begin" : "(?i)\\b(error|fatal|severe|panic)\\s*:",
+      "regularExpression" : true
+    }
+  ],
+  "variables" : [
+    {
+      "begin" : "(?<![:/\\w])/[\\w.\\-]*[a-zA-Z][\\w.\\-]*(?:/[\\w.\\-]+)+",
+      "regularExpression" : true
+    }
+  ]
+}
