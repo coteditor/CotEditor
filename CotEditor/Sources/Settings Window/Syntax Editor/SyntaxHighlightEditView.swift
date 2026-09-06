@@ -168,23 +168,6 @@ struct SyntaxHighlightEditView: View {
 }
 
 
-private struct RegexValidationMark: View {
-    
-    var pattern: String
-    
-    
-    var body: some View {
-        
-        if (try? NSRegularExpression(pattern: self.pattern)) == nil {
-            Image(systemName: "exclamationmark.triangle")
-                .symbolVariant(.fill)
-                .symbolRenderingMode(.multicolor)
-                .help(Syntax.Error.Code.regularExpression.descriptionResource)
-        }
-    }
-}
-
-
 // MARK: - Preview
 
 #Preview {

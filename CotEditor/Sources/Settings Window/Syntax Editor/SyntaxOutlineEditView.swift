@@ -62,12 +62,7 @@ struct SyntaxOutlineEditView: View {
                         RegexTextField(text: $item.value.pattern)
                             .style(.table)
                             .focused($focusedField, equals: item.id)
-                        if (try? NSRegularExpression(pattern: item.value.pattern)) == nil {
-                            Image(systemName: "exclamationmark.triangle")
-                                .symbolVariant(.fill)
-                                .symbolRenderingMode(.multicolor)
-                                .help(Syntax.Error.Code.regularExpression.descriptionResource)
-                        }
+                        RegexValidationMark(pattern: item.value.pattern)
                     }
                 }
                 .width(min: 180, ideal: 240)
