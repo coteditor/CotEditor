@@ -100,17 +100,7 @@ public extension FileScope {
         /// - Throws: `Error.emptyValue` if the rule value is empty, or `Error.invalidRegularExpression` if the regular expression pattern is invalid.
         public func validate() throws(Error) {
             
-            guard !self.value.isEmpty else {
-                throw .emptyValue
-            }
-            
-            guard self.comparison == .matchesRegularExpression else { return }
-            
-            do {
-                _ = try NSRegularExpression(pattern: self.value)
-            } catch {
-                throw .invalidRegularExpression(pattern: self.value)
-            }
+            try FileScope(rules: [self]).validate()
         }
     }
 }
@@ -212,7 +202,8 @@ private extension FileScope.Matcher {
             
             do {
                 // wrap in anchors to require matching the whole target value
-                self.regularExpression = try NSRegularExpression(pattern: #"\A(?:"# + rule.value + #")\z"#)
+                // enable extended mode only at the end to terminate a trailing comment without matching the newline
+                self.regularExpression = try NSRegularExpression(pattern: #"\A(?:"# + rule.value + "(?x)\n" + #")\z"#)
             } catch {
                 throw .invalidRegularExpression(pattern: rule.value)
             }

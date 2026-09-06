@@ -743,6 +743,36 @@ struct FolderFindTests {
     }
     
     
+    @Test(arguments: [
+        ("(?x)foo # comment", "foo"),
+        ("(?x)foo # comment\n", "foo"),
+        ("(?x)foo(?-x) # literal", "foo # literal"),
+        ("foo # literal", "foo # literal"),
+        ("foo ", "foo "),
+        ("foo|foobar", "foobar"),
+    ])
+    func fileScopeRegularExpressionValidationAndMatching(pattern: String, filename: String) throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        let rule = FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: pattern)
+        let scope = FileScope(rules: [rule])
+        
+        #expect(rule.isValid)
+        try rule.validate()
+        try scope.validate()
+        
+        for name in [filename, "x" + filename, filename + "x"] {
+            let fileURL = rootURL.appending(path: name)
+            try Data().write(to: fileURL)
+            let candidate = try FolderFind.Candidate(at: fileURL)
+            
+            #expect(try scope.contains(candidate, relativeTo: rootURL) == (name == filename))
+        }
+    }
+    
+    
     @Test func fileScopeConjunctionCombinesRules() throws {
         
         let rootURL = try Self.makeTemporaryDirectory()
