@@ -489,19 +489,7 @@ final class DirectoryDocument: NSDocument {
         let destinationURL = destinationNode.file.fileURL.appending(component: fileURL.lastPathComponent)
             .appendingUniqueNumber()
         
-        var coordinationError: NSError?
-        var copyingError: any Error?
-        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, writingItemAt: destinationURL, error: &coordinationError) { newSourceURL, newDestinationURL in
-            do {
-                try FileManager.default.copyItem(at: newSourceURL, to: newDestinationURL)
-            } catch {
-                copyingError = error
-            }
-        }
-        
-        if let error = coordinationError ?? copyingError {
-            throw error
-        }
+        try self.copyFile(from: fileURL, to: destinationURL)
         
         let file = try File(at: destinationURL)
         let node = FileNode(file: file, parent: destinationNode)
@@ -527,19 +515,7 @@ final class DirectoryDocument: NSDocument {
         }
         let duplicatedURL = node.file.fileURL.appendingUniqueNumber(format: format)
         
-        var coordinationError: NSError?
-        var copyError: any Error?
-        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: node.file.fileURL, options: .withoutChanges, writingItemAt: duplicatedURL, error: &coordinationError) { newSourceURL, newDestinationURL in
-            do {
-                try FileManager.default.copyItem(at: newSourceURL, to: newDestinationURL)
-            } catch {
-                copyError = error
-            }
-        }
-        
-        if let error = coordinationError ?? copyError {
-            throw error
-        }
+        try self.copyFile(from: node.file.fileURL, to: duplicatedURL)
         
         let file = try File(at: duplicatedURL)
         let duplicatedNode = FileNode(file: file, parent: node.parent)
@@ -786,6 +762,32 @@ final class DirectoryDocument: NSDocument {
             self.documents.removeFirst(document)
         }
         self.invalidateRestorableState()
+    }
+    
+    
+    /// Copies the file to a new destination inside the directory.
+    ///
+    /// - Note: This method doesn't update the file node.
+    ///
+    /// - Parameters:
+    ///   - sourceURL: The source file URL.
+    ///   - destinationURL: The destination.
+    /// - Throws: A file coordination or copying error.
+    private func copyFile(from sourceURL: URL, to destinationURL: URL) throws {
+        
+        var coordinationError: NSError?
+        var copyingError: any Error?
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: sourceURL, options: .withoutChanges, writingItemAt: destinationURL, error: &coordinationError) { newSourceURL, newDestinationURL in
+            do {
+                try FileManager.default.copyItem(at: newSourceURL, to: newDestinationURL)
+            } catch {
+                copyingError = error
+            }
+        }
+        
+        if let error = coordinationError ?? copyingError {
+            throw error
+        }
     }
     
     
