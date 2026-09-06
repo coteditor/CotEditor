@@ -2702,20 +2702,7 @@
       }
     },
     "Beria Erfe" : {
-      "localizations" : {
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beria Erfe"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beria Erfe"
-          }
-        }
-      }
+
     },
     "Bhaiksuki" : {
       "localizations" : {
@@ -6228,7 +6215,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CJK Ideografen (Unified Ext. J)"
+            "value" : "CJK Unified Ideographs Ext. J"
           }
         },
         "en-GB" : {
@@ -20929,12 +20916,6 @@
     },
     "Miscellaneous Symbols Supplement" : {
       "localizations" : {
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Miscellaneous Symbols Supplement"
-          }
-        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26455,12 +26436,6 @@
     },
     "Sharada Supplement" : {
       "localizations" : {
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sharada Supplement"
-          }
-        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26770,20 +26745,7 @@
       }
     },
     "Sidetic" : {
-      "localizations" : {
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sidetic"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sidetic"
-          }
-        }
-      }
+
     },
     "Sinhala" : {
       "localizations" : {
@@ -28896,7 +28858,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sutton-Zeichenschrift"
+            "value" : "Sutton-Gebärdenschrift"
           }
         },
         "en-GB" : {
@@ -30806,19 +30768,13 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "西夏文組件"
+            "value" : "西夏文補充"
           }
         }
       }
     },
     "Tangut Components Supplement" : {
       "localizations" : {
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tangut Components Supplement"
-          }
-        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
