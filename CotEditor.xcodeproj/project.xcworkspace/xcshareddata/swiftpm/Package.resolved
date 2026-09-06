@@ -1,5 +1,5 @@
 {
-  "originHash" : "cc0841bc576d16c37ddf99aada5f8d4c2f1d74064f9cd77b603cf33871bd7b98",
+  "originHash" : "95f98c06254adb44b94138eb244b91bb6303a795ab093eca9e1dd4cddb1b4cd2",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -232,7 +232,7 @@
       "location" : "https://github.com/DerekStride/tree-sitter-sql",
       "state" : {
         "branch" : "gh-pages",
-        "revision" : "851e9cb257ba7c66cc8c14214a31c44d2f1e954e"
+        "revision" : "b2bd686bb5f258506be69cddf76e49aa6b9de2c3"
       }
     },
     {
