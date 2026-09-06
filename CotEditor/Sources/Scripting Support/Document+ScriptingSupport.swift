@@ -333,11 +333,10 @@ extension Document {
         // perform replacement
         if isAll {
             let mutableString = NSMutableString(string: string)
-            let count: Int
-            if let regex {
-                count = regex.replaceMatches(in: mutableString, range: string.nsRange, withTemplate: replacementString)
+            let count: Int = if let regex {
+                regex.replaceMatches(in: mutableString, range: string.nsRange, withTemplate: replacementString)
             } else {
-                count = mutableString.replaceOccurrences(of: searchString, with: replacementString, options: options, range: string.nsRange)
+                mutableString.replaceOccurrences(of: searchString, with: replacementString, options: options, range: string.nsRange)
             }
             
             guard count > 0 else { return 0 }

@@ -90,10 +90,10 @@ final class HoleContentView<HoleView: NSView>: NSView {
     /// - Parameter isOpaque: The opacity of the parent window.
     private func invalidateHoles(isOpaque: Bool) {
         
-        if isOpaque {
-            self.holes.removeAll()
+        self.holes = if isOpaque {
+            []
         } else {
-            self.holes = self.descendants(type: HoleView.self)
+            self.descendants(type: HoleView.self)
                 .map { $0.convert($0.safeAreaRect, to: self) }
                 .filter { !$0.isEmpty }
         }

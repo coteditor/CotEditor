@@ -212,7 +212,8 @@ final class PrintTextView: NSTextView {
                     dirtyRange.intersection(visibleRange)
                 } else {
                     dirtyRange
-                } else { return }
+                }
+            else { return }
             
             // prepare text attributes for line numbers
             let numberFontSize = (0.9 * (self.font?.pointSize ?? 12)).rounded()
