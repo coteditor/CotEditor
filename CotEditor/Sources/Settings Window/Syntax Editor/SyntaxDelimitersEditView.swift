@@ -172,14 +172,7 @@ private struct BlockCommentsEditView: View {
                 TextField(text: $item.value.end, label: EmptyView.init)
             }
             TableColumn(.init("Nest", table: "SyntaxEditor", comment: "table column header, keep short")) { $item in
-                Toggle(isOn: $item.value.isNestable, label: EmptyView.init)
-                    .onChange(of: item.value.isNestable) { _, newValue in
-                        guard self.selection.contains(item.id) else { return }
-                        $items
-                            .filter(with: self.selection)
-                            .filter { $0.id != item.id }
-                            .forEach { $0.value.isNestable.wrappedValue = newValue }
-                    }
+                Toggle(isOn: $items.selectionBinding(for: $item, selection: $selection, keyPath: \.value.isNestable), label: EmptyView.init)
             }
             .alignment(.center)
         }
@@ -220,14 +213,7 @@ private struct StringDelimitersEditView: View {
                 TextField(value: $item.value.prefixes ?? [], format: .csv(omittingEmptyItems: true), label: EmptyView.init)
             }
             TableColumn(.init("Multiline", table: "SyntaxEditor", comment: "table column header, keep short")) { $item in
-                Toggle(isOn: $item.value.isMultiline, label: EmptyView.init)
-                    .onChange(of: item.value.isMultiline) { _, newValue in
-                        guard self.selection.contains(item.id) else { return }
-                        $items
-                            .filter(with: self.selection)
-                            .filter { $0.id != item.id }
-                            .forEach { $0.value.isMultiline.wrappedValue = newValue }
-                    }
+                Toggle(isOn: $items.selectionBinding(for: $item, selection: $selection, keyPath: \.value.isMultiline), label: EmptyView.init)
             }
             .alignment(.center)
             TableColumn(.init("Escape Character", defaultValue: "Escape Character", table: "SyntaxEditor", comment: "table column header")) { $item in
@@ -312,16 +298,9 @@ private struct BlockEditView: View {
         
         Table($items, selection: $selection) {
             TableColumn(.init("IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)")) { $item in
-                Toggle(isOn: $item.value.ignoreCase, label: EmptyView.init)
+                Toggle(isOn: $items.selectionBinding(for: $item, selection: $selection, keyPath: \.value.ignoreCase), label: EmptyView.init)
                     .help(.init("Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                     .accessibilityLabel(.init("Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
-                    .onChange(of: item.value.ignoreCase) { _, newValue in
-                        guard self.selection.contains(item.id) else { return }
-                        $items
-                            .filter(with: self.selection)
-                            .filter { $0.id != item.id }
-                            .forEach { $0.value.ignoreCase.wrappedValue = newValue }
-                    }
             }
             .width(34)
             .alignment(.center)

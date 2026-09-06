@@ -77,6 +77,36 @@ extension Binding {
 }
 
 
+// MARK: Selection
+
+extension Binding {
+    
+    /// Returns a Boolean binding that applies edits to the selected items when the given item is selected.
+    ///
+    /// - Parameters:
+    ///   - item: The item whose value is displayed.
+    ///   - selection: The selected item IDs.
+    ///   - keyPath: The Boolean property to edit.
+    /// - Returns: A binding that updates the selected items, or only the given item if it is not selected.
+    func selectionBinding<Element: Identifiable & Sendable>(for item: Binding<Element>, selection: Binding<Set<Element.ID>>, keyPath: any WritableKeyPath<Element, Bool> & Sendable) -> Binding<Bool> where Value == [Element], Element.ID: Sendable {
+        
+        Binding<Bool>(
+            get: { item.wrappedValue[keyPath: keyPath] },
+            set: { newValue, transaction in
+                let id = item.wrappedValue.id
+                let selection = selection.wrappedValue
+                let ids: Set<Element.ID> = selection.contains(id) ? selection : [id]
+                var items = self.wrappedValue
+                for index in items.indices where ids.contains(items[index].id) {
+                    items[index][keyPath: keyPath] = newValue
+                }
+                self.transaction(transaction).wrappedValue = items
+            }
+        )
+    }
+}
+
+
 // MARK: Optional Binding
 
 func ?? <T: Sendable>(lhs: Binding<T?>, rhs: T) -> Binding<T> {

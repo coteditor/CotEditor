@@ -51,16 +51,9 @@ struct SyntaxHighlightEditView: View {
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
                 TableColumn(.init("RE", table: "SyntaxEditor", comment: "table column header (RE for Regular Expression)"), value: \.value.isRegularExpression, comparator: BoolComparator()) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
-                        Toggle(isOn: item.value.isRegularExpression, label: EmptyView.init)
+                        Toggle(isOn: $items.selectionBinding(for: item, selection: $selection, keyPath: \.value.isRegularExpression), label: EmptyView.init)
                             .help(.init("Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
                             .accessibilityLabel(.init("Regular Expression", table: "SyntaxEditor", comment: "tooltip for RE checkbox"))
-                            .onChange(of: item.value.isRegularExpression.wrappedValue) { _, newValue in
-                                guard self.selection.contains(item.id) else { return }
-                                $items
-                                    .filter(with: self.selection)
-                                    .filter { $0.id != item.id }
-                                    .forEach { $0.value.isRegularExpression.wrappedValue = newValue }
-                            }
                     }
                 }
                 .width(24)
@@ -68,16 +61,9 @@ struct SyntaxHighlightEditView: View {
                 
                 TableColumn(.init("IC", table: "SyntaxEditor", comment: "table column header (IC for Ignore Case)"), value: \.value.ignoreCase, comparator: BoolComparator()) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
-                        Toggle(isOn: item.value.ignoreCase, label: EmptyView.init)
+                        Toggle(isOn: $items.selectionBinding(for: item, selection: $selection, keyPath: \.value.ignoreCase), label: EmptyView.init)
                             .help(.init("Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
                             .accessibilityLabel(.init("Ignore Case", table: "SyntaxEditor", comment: "tooltip for IC checkbox"))
-                            .onChange(of: item.value.ignoreCase.wrappedValue) { _, newValue in
-                                guard self.selection.contains(item.id) else { return }
-                                $items
-                                    .filter(with: self.selection)
-                                    .filter { $0.id != item.id }
-                                    .forEach { $0.value.ignoreCase.wrappedValue = newValue }
-                            }
                     }
                 }
                 .width(24)
@@ -114,14 +100,7 @@ struct SyntaxHighlightEditView: View {
                 
                 TableColumn(.init("Multiline", table: "SyntaxEditor", comment: "table column header, keep short"), value: \.value.isMultiline, comparator: BoolComparator()) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
-                        Toggle(isOn: item.value.isMultiline, label: EmptyView.init)
-                            .onChange(of: item.value.isMultiline.wrappedValue) { _, newValue in
-                                guard self.selection.contains(item.id) else { return }
-                                $items
-                                    .filter(with: self.selection)
-                                    .filter { $0.id != item.id }
-                                    .forEach { $0.value.isMultiline.wrappedValue = newValue }
-                            }
+                        Toggle(isOn: $items.selectionBinding(for: item, selection: $selection, keyPath: \.value.isMultiline), label: EmptyView.init)
                     }
                 }
                 .alignment(.center)
