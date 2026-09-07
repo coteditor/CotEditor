@@ -4619,8 +4619,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "只找到頭%lld個符合項目。"
+                  "state" : "translated",
+                  "value" : "只找到了頭%lld個符合項目。"
                 }
               }
             }
@@ -4730,7 +4730,7 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "已達到搜尋上限"
           }
         }
