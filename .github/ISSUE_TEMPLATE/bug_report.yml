@@ -53,3 +53,10 @@ body:
       label: Additional context
       description: >-
         Add any other context about the problem here.
+
+  - type: checkboxes
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have confirmed that this issue persists with the latest version of CotEditor and the latest updates for my current major version of macOS.
+          required: false
