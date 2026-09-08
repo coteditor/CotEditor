@@ -45,6 +45,7 @@ public struct Version: Sendable {
     public var prereleaseIdentifier: String?
     
     public var isPrerelease: Bool  { self.prereleaseIdentifier != nil }
+    public var prerelease: Prerelease?  { self.prereleaseIdentifier.flatMap(Prerelease.init(rawValue:)) }
     
     
     public init(_ major: Int, _ minor: Int, _ patch: Int, prereleaseIdentifier: String? = nil) {
