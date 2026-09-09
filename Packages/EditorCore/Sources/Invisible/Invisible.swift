@@ -56,7 +56,7 @@ public enum Invisible: Sendable, CaseIterable {
                  0x2007,  // FIGURE SPACE (Zs)
                  0x202F:  // NARROW NO-BREAK SPACE (Zs)
                  self = .noBreakSpace
-            case 0x3000:  // IDEOGRAPHIC SPACE (Zs) a.k.a. Japanese full-width space
+            case 0x3000:  // IDEOGRAPHIC SPACE (Zs) a.k.a. full-width space
                  self = .fullwidthSpace
             case 0x2000...0x200A,  // (Zs) various width spaces, such as THREE-PER-EM SPACE
                  0x205F:  // MEDIUM MATHEMATICAL SPACE (Zs)
