@@ -155,7 +155,7 @@ private extension Version.Prerelease {
 enum NewFeature: CaseIterable {
     
     static let version = Version(7, 1, 0)
-    static let buildNumber = 844
+    static let buildNumber = 847
     
     case folderFind
     case macOS27
