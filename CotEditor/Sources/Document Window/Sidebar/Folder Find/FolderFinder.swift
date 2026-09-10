@@ -224,7 +224,8 @@ import TextFind
             else { return }
             
             // ensure the newly swapped-in editor has its final visible rect before scrolling
-            textView.window?.contentView?.layoutSubtreeIfNeeded()
+            // and prevent the find indicator effect from cutting out (2026-09, macOS 26)
+            await Task.yield()
             
             textView.selectedRange = range
             textView.scrollRangeToVisible(range)

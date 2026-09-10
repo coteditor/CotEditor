@@ -15,6 +15,7 @@
 - [beta] Fix an issue where long matches were not highlighted in folder search results.
 - [beta] Fix an issue where binary files, such as executables without a filename extension, were searched in the folder find.
 - [beta] Fix an issue where the folder find could follow symbolic links to files.
+- [beta] Fix an issue where the find indicator effect was occasionally cut out when selecting an item in the result of folder find.
 
 
 ### Known Issues
