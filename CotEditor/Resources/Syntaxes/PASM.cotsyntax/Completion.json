@@ -1,0 +1,658 @@
+[
+  {
+    "text": "ABS",
+    "type": "commands"
+  },
+  {
+    "text": "ABSNEG",
+    "type": "commands"
+  },
+  {
+    "text": "ADD",
+    "type": "commands"
+  },
+  {
+    "text": "ADDABS",
+    "type": "commands"
+  },
+  {
+    "text": "ADDS",
+    "type": "commands"
+  },
+  {
+    "text": "ADDSX",
+    "type": "commands"
+  },
+  {
+    "text": "ADDX",
+    "type": "commands"
+  },
+  {
+    "text": "AND",
+    "type": "commands"
+  },
+  {
+    "text": "ANDN",
+    "type": "commands"
+  },
+  {
+    "text": "CALL",
+    "type": "commands"
+  },
+  {
+    "text": "CLKSET",
+    "type": "commands"
+  },
+  {
+    "text": "CMP",
+    "type": "commands"
+  },
+  {
+    "text": "CMPS",
+    "type": "commands"
+  },
+  {
+    "text": "CMPSUB",
+    "type": "commands"
+  },
+  {
+    "text": "CMPSX",
+    "type": "commands"
+  },
+  {
+    "text": "CMPX",
+    "type": "commands"
+  },
+  {
+    "text": "COGID",
+    "type": "commands"
+  },
+  {
+    "text": "COGINIT",
+    "type": "commands"
+  },
+  {
+    "text": "COGSTOP",
+    "type": "commands"
+  },
+  {
+    "text": "DJNZ",
+    "type": "commands"
+  },
+  {
+    "text": "HUBOP",
+    "type": "commands"
+  },
+  {
+    "text": "JMP",
+    "type": "commands"
+  },
+  {
+    "text": "JMPRET",
+    "type": "commands"
+  },
+  {
+    "text": "LOCKCLR",
+    "type": "commands"
+  },
+  {
+    "text": "LOCKNEW",
+    "type": "commands"
+  },
+  {
+    "text": "LOCKRET",
+    "type": "commands"
+  },
+  {
+    "text": "LOCKSET",
+    "type": "commands"
+  },
+  {
+    "text": "MAX",
+    "type": "commands"
+  },
+  {
+    "text": "MAXS",
+    "type": "commands"
+  },
+  {
+    "text": "MIN",
+    "type": "commands"
+  },
+  {
+    "text": "MINS",
+    "type": "commands"
+  },
+  {
+    "text": "MOV",
+    "type": "commands"
+  },
+  {
+    "text": "MOVD",
+    "type": "commands"
+  },
+  {
+    "text": "MOVI",
+    "type": "commands"
+  },
+  {
+    "text": "MOVS",
+    "type": "commands"
+  },
+  {
+    "text": "MUXC",
+    "type": "commands"
+  },
+  {
+    "text": "MUXNC",
+    "type": "commands"
+  },
+  {
+    "text": "MUXNZ",
+    "type": "commands"
+  },
+  {
+    "text": "MUXZ",
+    "type": "commands"
+  },
+  {
+    "text": "NEG",
+    "type": "commands"
+  },
+  {
+    "text": "NEGC",
+    "type": "commands"
+  },
+  {
+    "text": "NEGNC",
+    "type": "commands"
+  },
+  {
+    "text": "NEGNZ",
+    "type": "commands"
+  },
+  {
+    "text": "NEGZ",
+    "type": "commands"
+  },
+  {
+    "text": "NOP",
+    "type": "commands"
+  },
+  {
+    "text": "OR",
+    "type": "commands"
+  },
+  {
+    "text": "RCL",
+    "type": "commands"
+  },
+  {
+    "text": "RCR",
+    "type": "commands"
+  },
+  {
+    "text": "RDBYTE",
+    "type": "commands"
+  },
+  {
+    "text": "RDLONG",
+    "type": "commands"
+  },
+  {
+    "text": "RDWORD",
+    "type": "commands"
+  },
+  {
+    "text": "RET",
+    "type": "commands"
+  },
+  {
+    "text": "REV",
+    "type": "commands"
+  },
+  {
+    "text": "ROL",
+    "type": "commands"
+  },
+  {
+    "text": "ROR",
+    "type": "commands"
+  },
+  {
+    "text": "SAR",
+    "type": "commands"
+  },
+  {
+    "text": "SHL",
+    "type": "commands"
+  },
+  {
+    "text": "SHR",
+    "type": "commands"
+  },
+  {
+    "text": "SUB",
+    "type": "commands"
+  },
+  {
+    "text": "SUBABS",
+    "type": "commands"
+  },
+  {
+    "text": "SUBS",
+    "type": "commands"
+  },
+  {
+    "text": "SUBSX",
+    "type": "commands"
+  },
+  {
+    "text": "SUBX",
+    "type": "commands"
+  },
+  {
+    "text": "SUMC",
+    "type": "commands"
+  },
+  {
+    "text": "SUMNC",
+    "type": "commands"
+  },
+  {
+    "text": "SUMNZ",
+    "type": "commands"
+  },
+  {
+    "text": "SUMZ",
+    "type": "commands"
+  },
+  {
+    "text": "TEST",
+    "type": "commands"
+  },
+  {
+    "text": "TESTN",
+    "type": "commands"
+  },
+  {
+    "text": "TJNZ",
+    "type": "commands"
+  },
+  {
+    "text": "TJZ",
+    "type": "commands"
+  },
+  {
+    "text": "WAITCNT",
+    "type": "commands"
+  },
+  {
+    "text": "WAITPEQ",
+    "type": "commands"
+  },
+  {
+    "text": "WAITPNE",
+    "type": "commands"
+  },
+  {
+    "text": "WAITVID",
+    "type": "commands"
+  },
+  {
+    "text": "WRBYTE",
+    "type": "commands"
+  },
+  {
+    "text": "WRLONG",
+    "type": "commands"
+  },
+  {
+    "text": "WRWORD",
+    "type": "commands"
+  },
+  {
+    "text": "XOR",
+    "type": "commands"
+  },
+  {
+    "text": "IF_ALWAYS",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_NEVER",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_E",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_NE",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_A",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_B",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_AE",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_BE",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_C",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_NC",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_Z",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_NZ",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_C_EQ_Z",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_Z_EQ_C",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_C_NE_Z",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_Z_NE_C",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_C_AND_Z",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_Z_AND_C",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_C_AND_NZ",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_NZ_AND_C",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_NC_AND_Z",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_Z_AND_NC",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_NC_AND_NZ",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_NZ_AND_NC",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_C_OR_Z",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_Z_OR_C",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_C_OR_NZ",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_NZ_OR_C",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_NC_OR_Z",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_Z_OR_NC",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_NC_OR_NZ",
+    "type": "attributes"
+  },
+  {
+    "text": "IF_NZ_OR_NC",
+    "type": "attributes"
+  },
+  {
+    "text": "WC",
+    "type": "attributes"
+  },
+  {
+    "text": "WZ",
+    "type": "attributes"
+  },
+  {
+    "text": "WR",
+    "type": "attributes"
+  },
+  {
+    "text": "NR",
+    "type": "attributes"
+  },
+  {
+    "text": "ANDC",
+    "type": "attributes"
+  },
+  {
+    "text": "ANDZ",
+    "type": "attributes"
+  },
+  {
+    "text": "ORC",
+    "type": "attributes"
+  },
+  {
+    "text": "ORZ",
+    "type": "attributes"
+  },
+  {
+    "text": "XORC",
+    "type": "attributes"
+  },
+  {
+    "text": "XORZ",
+    "type": "attributes"
+  },
+  {
+    "text": "ORG",
+    "type": "keywords"
+  },
+  {
+    "text": "FIT",
+    "type": "keywords"
+  },
+  {
+    "text": "RES",
+    "type": "keywords"
+  },
+  {
+    "text": "BYTE",
+    "type": "types"
+  },
+  {
+    "text": "WORD",
+    "type": "types"
+  },
+  {
+    "text": "LONG",
+    "type": "types"
+  },
+  {
+    "text": "INA",
+    "type": "variables"
+  },
+  {
+    "text": "INB",
+    "type": "variables"
+  },
+  {
+    "text": "OUTA",
+    "type": "variables"
+  },
+  {
+    "text": "OUTB",
+    "type": "variables"
+  },
+  {
+    "text": "DIRA",
+    "type": "variables"
+  },
+  {
+    "text": "DIRB",
+    "type": "variables"
+  },
+  {
+    "text": "CNT",
+    "type": "variables"
+  },
+  {
+    "text": "CTRA",
+    "type": "variables"
+  },
+  {
+    "text": "CTRB",
+    "type": "variables"
+  },
+  {
+    "text": "FRQA",
+    "type": "variables"
+  },
+  {
+    "text": "FRQB",
+    "type": "variables"
+  },
+  {
+    "text": "PHSA",
+    "type": "variables"
+  },
+  {
+    "text": "PHSB",
+    "type": "variables"
+  },
+  {
+    "text": "VCFG",
+    "type": "variables"
+  },
+  {
+    "text": "VSCL",
+    "type": "variables"
+  },
+  {
+    "text": "PAR",
+    "type": "variables"
+  },
+  {
+    "text": "SPR",
+    "type": "variables"
+  },
+  {
+    "text": "RESULT",
+    "type": "variables"
+  },
+  {
+    "text": "TRUE",
+    "type": "values"
+  },
+  {
+    "text": "FALSE",
+    "type": "values"
+  },
+  {
+    "text": "POSX",
+    "type": "values"
+  },
+  {
+    "text": "NEGX",
+    "type": "values"
+  },
+  {
+    "text": "PI",
+    "type": "values"
+  },
+  {
+    "text": "XTAL1",
+    "type": "values"
+  },
+  {
+    "text": "XTAL2",
+    "type": "values"
+  },
+  {
+    "text": "XTAL3",
+    "type": "values"
+  },
+  {
+    "text": "XINPUT",
+    "type": "values"
+  },
+  {
+    "text": "RCSLOW",
+    "type": "values"
+  },
+  {
+    "text": "RCFAST",
+    "type": "values"
+  },
+  {
+    "text": "PLL1X",
+    "type": "values"
+  },
+  {
+    "text": "PLL2X",
+    "type": "values"
+  },
+  {
+    "text": "PLL4X",
+    "type": "values"
+  },
+  {
+    "text": "PLL8X",
+    "type": "values"
+  },
+  {
+    "text": "PLL16X",
+    "type": "values"
+  },
+  {
+    "text": "_clkmode",
+    "type": "values"
+  },
+  {
+    "text": "_xinfreq",
+    "type": "values"
+  },
+  {
+    "text": "_clkfreq",
+    "type": "values"
+  }
+]

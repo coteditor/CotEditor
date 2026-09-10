@@ -1,0 +1,22 @@
+[
+  {
+    "description": "ORG",
+    "ignoreCase": true,
+    "kind": "container",
+    "pattern": "^[\\t ]*org\\b.*",
+    "template": "$0"
+  },
+  {
+    "description": "FIT",
+    "ignoreCase": true,
+    "kind": "container",
+    "pattern": "^[\\t ]*fit\\b.*",
+    "template": "$0"
+  },
+  {
+    "description": "Label",
+    "kind": "function",
+    "pattern": "^([A-Za-z_][A-Za-z0-9_]*)\\b",
+    "template": "$1"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "comment": {
+    "blocks": [
+      {
+        "begin": "{",
+        "end": "}",
+        "isNestable": true
+      }
+    ],
+    "inlines": [
+      {
+        "begin": "'"
+      }
+    ]
+  },
+  "stringDelimiters": [
+    {
+      "begin": "\"",
+      "end": "\""
+    }
+  ]
+}

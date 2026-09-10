@@ -1,0 +1,16 @@
+{
+  "fileMap": {
+    "extensions": [
+      "spin"
+    ]
+  },
+  "kind": "code",
+  "metadata": {
+    "author": "Phillip Stevens",
+    "description": "Parallax Propeller 1 (P8X32A) Spin with PASM in DAT. Not Spin2. Keywords from the Propeller Manual; opcodes from the P1 quick reference.",
+    "distributionURL": "https://coteditor.com",
+    "lastModified": "2026-09-10",
+    "license": "Same as CotEditor",
+    "version": "1.0.0"
+  }
+}

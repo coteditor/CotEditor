@@ -1,0 +1,16 @@
+[
+  {
+    "description": "Block",
+    "ignoreCase": true,
+    "kind": "container",
+    "pattern": "^[\\t ]*(CON|VAR|OBJ|DAT)\\b",
+    "template": "$1"
+  },
+  {
+    "description": "Method",
+    "ignoreCase": true,
+    "kind": "function",
+    "pattern": "^[\\t ]*(PUB|PRI)[\\t ]+([A-Za-z_][A-Za-z0-9_]*)",
+    "template": "$1 $2"
+  }
+]

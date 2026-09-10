@@ -1,0 +1,16 @@
+{
+  "fileMap": {
+    "extensions": [
+      "pasm"
+    ]
+  },
+  "kind": "code",
+  "metadata": {
+    "author": "Phillip Stevens",
+    "description": "Parallax Propeller 1 (P8X32A) assembly (PASM). Not PASM2. Mnemonics, conditions, and effects from the P1 quick reference.",
+    "distributionURL": "https://coteditor.com",
+    "lastModified": "2026-09-10",
+    "license": "Same as CotEditor",
+    "version": "1.0.0"
+  }
+}

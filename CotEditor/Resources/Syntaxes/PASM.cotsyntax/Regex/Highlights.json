@@ -1,0 +1,728 @@
+{
+  "keywords": [
+    {
+      "begin": "ORG",
+      "ignoreCase": true
+    },
+    {
+      "begin": "FIT",
+      "ignoreCase": true
+    },
+    {
+      "begin": "RES",
+      "ignoreCase": true
+    },
+    {
+      "begin": "CON",
+      "ignoreCase": true
+    },
+    {
+      "begin": "VAR",
+      "ignoreCase": true
+    },
+    {
+      "begin": "OBJ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "PUB",
+      "ignoreCase": true
+    },
+    {
+      "begin": "PRI",
+      "ignoreCase": true
+    },
+    {
+      "begin": "DAT",
+      "ignoreCase": true
+    }
+  ],
+  "commands": [
+    {
+      "begin": "ABS",
+      "ignoreCase": true
+    },
+    {
+      "begin": "ABSNEG",
+      "ignoreCase": true
+    },
+    {
+      "begin": "ADD",
+      "ignoreCase": true
+    },
+    {
+      "begin": "ADDABS",
+      "ignoreCase": true
+    },
+    {
+      "begin": "ADDS",
+      "ignoreCase": true
+    },
+    {
+      "begin": "ADDSX",
+      "ignoreCase": true
+    },
+    {
+      "begin": "ADDX",
+      "ignoreCase": true
+    },
+    {
+      "begin": "AND",
+      "ignoreCase": true
+    },
+    {
+      "begin": "ANDN",
+      "ignoreCase": true
+    },
+    {
+      "begin": "CALL",
+      "ignoreCase": true
+    },
+    {
+      "begin": "CLKSET",
+      "ignoreCase": true
+    },
+    {
+      "begin": "CMP",
+      "ignoreCase": true
+    },
+    {
+      "begin": "CMPS",
+      "ignoreCase": true
+    },
+    {
+      "begin": "CMPSUB",
+      "ignoreCase": true
+    },
+    {
+      "begin": "CMPSX",
+      "ignoreCase": true
+    },
+    {
+      "begin": "CMPX",
+      "ignoreCase": true
+    },
+    {
+      "begin": "COGID",
+      "ignoreCase": true
+    },
+    {
+      "begin": "COGINIT",
+      "ignoreCase": true
+    },
+    {
+      "begin": "COGSTOP",
+      "ignoreCase": true
+    },
+    {
+      "begin": "DJNZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "HUBOP",
+      "ignoreCase": true
+    },
+    {
+      "begin": "JMP",
+      "ignoreCase": true
+    },
+    {
+      "begin": "JMPRET",
+      "ignoreCase": true
+    },
+    {
+      "begin": "LOCKCLR",
+      "ignoreCase": true
+    },
+    {
+      "begin": "LOCKNEW",
+      "ignoreCase": true
+    },
+    {
+      "begin": "LOCKRET",
+      "ignoreCase": true
+    },
+    {
+      "begin": "LOCKSET",
+      "ignoreCase": true
+    },
+    {
+      "begin": "MAX",
+      "ignoreCase": true
+    },
+    {
+      "begin": "MAXS",
+      "ignoreCase": true
+    },
+    {
+      "begin": "MIN",
+      "ignoreCase": true
+    },
+    {
+      "begin": "MINS",
+      "ignoreCase": true
+    },
+    {
+      "begin": "MOV",
+      "ignoreCase": true
+    },
+    {
+      "begin": "MOVD",
+      "ignoreCase": true
+    },
+    {
+      "begin": "MOVI",
+      "ignoreCase": true
+    },
+    {
+      "begin": "MOVS",
+      "ignoreCase": true
+    },
+    {
+      "begin": "MUXC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "MUXNC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "MUXNZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "MUXZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "NEG",
+      "ignoreCase": true
+    },
+    {
+      "begin": "NEGC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "NEGNC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "NEGNZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "NEGZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "NOP",
+      "ignoreCase": true
+    },
+    {
+      "begin": "OR",
+      "ignoreCase": true
+    },
+    {
+      "begin": "RCL",
+      "ignoreCase": true
+    },
+    {
+      "begin": "RCR",
+      "ignoreCase": true
+    },
+    {
+      "begin": "RDBYTE",
+      "ignoreCase": true
+    },
+    {
+      "begin": "RDLONG",
+      "ignoreCase": true
+    },
+    {
+      "begin": "RDWORD",
+      "ignoreCase": true
+    },
+    {
+      "begin": "RET",
+      "ignoreCase": true
+    },
+    {
+      "begin": "REV",
+      "ignoreCase": true
+    },
+    {
+      "begin": "ROL",
+      "ignoreCase": true
+    },
+    {
+      "begin": "ROR",
+      "ignoreCase": true
+    },
+    {
+      "begin": "SAR",
+      "ignoreCase": true
+    },
+    {
+      "begin": "SHL",
+      "ignoreCase": true
+    },
+    {
+      "begin": "SHR",
+      "ignoreCase": true
+    },
+    {
+      "begin": "SUB",
+      "ignoreCase": true
+    },
+    {
+      "begin": "SUBABS",
+      "ignoreCase": true
+    },
+    {
+      "begin": "SUBS",
+      "ignoreCase": true
+    },
+    {
+      "begin": "SUBSX",
+      "ignoreCase": true
+    },
+    {
+      "begin": "SUBX",
+      "ignoreCase": true
+    },
+    {
+      "begin": "SUMC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "SUMNC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "SUMNZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "SUMZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "TEST",
+      "ignoreCase": true
+    },
+    {
+      "begin": "TESTN",
+      "ignoreCase": true
+    },
+    {
+      "begin": "TJNZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "TJZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "WAITCNT",
+      "ignoreCase": true
+    },
+    {
+      "begin": "WAITPEQ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "WAITPNE",
+      "ignoreCase": true
+    },
+    {
+      "begin": "WAITVID",
+      "ignoreCase": true
+    },
+    {
+      "begin": "WRBYTE",
+      "ignoreCase": true
+    },
+    {
+      "begin": "WRLONG",
+      "ignoreCase": true
+    },
+    {
+      "begin": "WRWORD",
+      "ignoreCase": true
+    },
+    {
+      "begin": "XOR",
+      "ignoreCase": true
+    }
+  ],
+  "types": [
+    {
+      "begin": "BYTE",
+      "ignoreCase": true
+    },
+    {
+      "begin": "WORD",
+      "ignoreCase": true
+    },
+    {
+      "begin": "LONG",
+      "ignoreCase": true
+    }
+  ],
+  "attributes": [
+    {
+      "begin": "IF_ALWAYS",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_NEVER",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_E",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_NE",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_A",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_B",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_AE",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_BE",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_C",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_NC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_Z",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_NZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_C_EQ_Z",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_Z_EQ_C",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_C_NE_Z",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_Z_NE_C",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_C_AND_Z",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_Z_AND_C",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_C_AND_NZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_NZ_AND_C",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_NC_AND_Z",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_Z_AND_NC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_NC_AND_NZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_NZ_AND_NC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_C_OR_Z",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_Z_OR_C",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_C_OR_NZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_NZ_OR_C",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_NC_OR_Z",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_Z_OR_NC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_NC_OR_NZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "IF_NZ_OR_NC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "WC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "WZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "WR",
+      "ignoreCase": true
+    },
+    {
+      "begin": "NR",
+      "ignoreCase": true
+    },
+    {
+      "begin": "ANDC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "ANDZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "ORC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "ORZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": "XORC",
+      "ignoreCase": true
+    },
+    {
+      "begin": "XORZ",
+      "ignoreCase": true
+    },
+    {
+      "begin": ":[A-Za-z_][A-Za-z0-9_]*",
+      "regularExpression": true,
+      "description": "local label"
+    }
+  ],
+  "variables": [
+    {
+      "begin": "INA",
+      "ignoreCase": true
+    },
+    {
+      "begin": "INB",
+      "ignoreCase": true
+    },
+    {
+      "begin": "OUTA",
+      "ignoreCase": true
+    },
+    {
+      "begin": "OUTB",
+      "ignoreCase": true
+    },
+    {
+      "begin": "DIRA",
+      "ignoreCase": true
+    },
+    {
+      "begin": "DIRB",
+      "ignoreCase": true
+    },
+    {
+      "begin": "CNT",
+      "ignoreCase": true
+    },
+    {
+      "begin": "CTRA",
+      "ignoreCase": true
+    },
+    {
+      "begin": "CTRB",
+      "ignoreCase": true
+    },
+    {
+      "begin": "FRQA",
+      "ignoreCase": true
+    },
+    {
+      "begin": "FRQB",
+      "ignoreCase": true
+    },
+    {
+      "begin": "PHSA",
+      "ignoreCase": true
+    },
+    {
+      "begin": "PHSB",
+      "ignoreCase": true
+    },
+    {
+      "begin": "VCFG",
+      "ignoreCase": true
+    },
+    {
+      "begin": "VSCL",
+      "ignoreCase": true
+    },
+    {
+      "begin": "PAR",
+      "ignoreCase": true
+    },
+    {
+      "begin": "SPR",
+      "ignoreCase": true
+    },
+    {
+      "begin": "RESULT",
+      "ignoreCase": true
+    }
+  ],
+  "values": [
+    {
+      "begin": "TRUE",
+      "ignoreCase": true
+    },
+    {
+      "begin": "FALSE",
+      "ignoreCase": true
+    },
+    {
+      "begin": "POSX",
+      "ignoreCase": true
+    },
+    {
+      "begin": "NEGX",
+      "ignoreCase": true
+    },
+    {
+      "begin": "PI",
+      "ignoreCase": true
+    },
+    {
+      "begin": "XTAL1",
+      "ignoreCase": true
+    },
+    {
+      "begin": "XTAL2",
+      "ignoreCase": true
+    },
+    {
+      "begin": "XTAL3",
+      "ignoreCase": true
+    },
+    {
+      "begin": "XINPUT",
+      "ignoreCase": true
+    },
+    {
+      "begin": "RCSLOW",
+      "ignoreCase": true
+    },
+    {
+      "begin": "RCFAST",
+      "ignoreCase": true
+    },
+    {
+      "begin": "PLL1X",
+      "ignoreCase": true
+    },
+    {
+      "begin": "PLL2X",
+      "ignoreCase": true
+    },
+    {
+      "begin": "PLL4X",
+      "ignoreCase": true
+    },
+    {
+      "begin": "PLL8X",
+      "ignoreCase": true
+    },
+    {
+      "begin": "PLL16X",
+      "ignoreCase": true
+    },
+    {
+      "begin": "_clkmode",
+      "ignoreCase": true
+    },
+    {
+      "begin": "_xinfreq",
+      "ignoreCase": true
+    },
+    {
+      "begin": "_clkfreq",
+      "ignoreCase": true
+    }
+  ],
+  "numbers": [
+    {
+      "begin": "%%[0-3][0-3_]*",
+      "regularExpression": true,
+      "description": "quaternary"
+    },
+    {
+      "begin": "%[01][01_]*",
+      "regularExpression": true,
+      "description": "binary"
+    },
+    {
+      "begin": "\\$[0-9A-Fa-f][0-9A-Fa-f_]*",
+      "regularExpression": true,
+      "description": "hex"
+    },
+    {
+      "begin": "\\b[0-9][0-9_]*\\b",
+      "regularExpression": true,
+      "description": "decimal"
+    }
+  ],
+  "characters": [
+    {
+      "begin": "#\"[^\"]\"",
+      "regularExpression": true,
+      "description": "character literal"
+    }
+  ]
+}

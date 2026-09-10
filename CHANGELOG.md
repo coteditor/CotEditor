@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Add Spin and PASM syntaxes for Parallax Propeller 1 (P8X32A).
 - [beta] Improve the performance of the folder find pane.
 - [beta] Limit folder find results to 5,000 matches per file and 500,000 matches in total, and indicate when the limit is reached.
 - [beta][dev] Update the build environment to Xcode 27 RC.
