@@ -4748,7 +4748,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "巨大なファイルを開くと、アプリの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか?"
+            "value" : "大きなサイズのファイルを開くと、アプリの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか?"
           }
         },
         "ko" : {
@@ -5453,6 +5453,7 @@
       }
     },
     "EncodingChangeAlert.informativeText" : {
+      "comment" : "%@ is an encoding name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
