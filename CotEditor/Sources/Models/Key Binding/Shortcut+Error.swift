@@ -68,7 +68,7 @@ extension Shortcut {
         // throw unsupported combinations
         if self.keyEquivalent == "\u{9}" ||  // Tab
             self.keyEquivalent == "\u{19}" ||  // Backtab
-            self == Shortcut(.newline, modifiers: .shift)  // Shift+Return
+            self == Shortcut(.newline, modifiers: .shift)  // Shift-Return
         {
             throw .unsupported(self)
         }

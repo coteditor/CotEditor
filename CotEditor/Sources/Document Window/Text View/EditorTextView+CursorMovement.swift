@@ -151,7 +151,7 @@ extension EditorTextView {
     }
     
     
-    // MARK: Text View Methods - Option+Arrow
+    // MARK: Text View Methods - Option-Arrow
     
     /// Moves the cursor to the beginning of the word repeatedly (⌥←).
     override func moveWordLeft(_ sender: Any?) {
@@ -303,7 +303,7 @@ extension EditorTextView {
     }
     
     
-    // MARK: Text View Methods - Command+Arrow
+    // MARK: Text View Methods - Command-Arrow
     
     /// Moves the cursor to the beginning of the current visual line (⌘←).
     override func moveToBeginningOfLine(_ sender: Any?) {

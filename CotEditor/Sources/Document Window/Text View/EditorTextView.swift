@@ -1028,10 +1028,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         // scroll line by line if an arrow key is pressed
         // -> Perform only when the scroll target is nearby the visible area.
-        //    Otherwise, the scroll doesn't reach the bottom with command+down arrow
+        //    Otherwise, the scroll doesn't reach the bottom with command-Down Arrow
         //    in the noncontiguous layout mode. (2018-12, macOS 10.14)
         guard NSEvent.modifierFlags.contains(.numericPad),
-              range.upperBound < self.string.length,  // workaround for Command+Down arrow
+              range.upperBound < self.string.length,  // workaround for Command-Down Arrow
               let rect = self.boundingRect(for: range)
         else { return super.scrollRangeToVisible(range) }
         
