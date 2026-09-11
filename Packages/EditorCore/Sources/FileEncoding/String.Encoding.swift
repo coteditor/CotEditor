@@ -28,6 +28,23 @@ public import Foundation
 
 public extension String.Encoding {
     
+    /// Initializes String.Encoding from an encoding name.
+    ///
+    /// - Note: Concurrent calls can crash in Foundation's localized encoding name lookup.
+    ///         Call this initializer serially.
+    ///
+    /// - Parameter localizedName: The localized name of the encoding to find.
+    init?(localizedName: String) {
+        
+        guard
+            let encoding = String.availableStringEncodings.lazy
+                .first(where: { String.localizedName(of: $0) == localizedName })
+        else { return nil }
+        
+        self = encoding
+    }
+    
+    
     /// Initializes String.Encoding most closely to a given Core Foundation encoding constant.
     ///
     /// - Parameter cfEncoding: The Core Foundation encoding constant.

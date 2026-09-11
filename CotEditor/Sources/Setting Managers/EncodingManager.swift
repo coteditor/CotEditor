@@ -94,17 +94,6 @@ import FileEncoding
     }
     
     
-    /// Returns corresponding String.Encoding from an encoding name.
-    ///
-    /// - Parameter encodingName: The name of the encoding to find.
-    /// - Returns: A string encoding or nil.
-    static func encoding(name encodingName: String) -> String.Encoding? {
-        
-        String.availableStringEncodings.lazy
-            .first { encodingName == String.localizedName(of: $0) }
-    }
-    
-    
     /// Returns corresponding String.Encoding from an IANA charset name.
     ///
     /// - Parameter ianaCharSetName: The IANA charset name of the encoding to find.

@@ -31,9 +31,6 @@ struct EncodingManagerTests {
     
     @Test func scriptableEncodingLookupIncludesUnlistedEncodings() throws {
         
-        let localizedName = String.localizedName(of: .shiftJIS)
-        
-        #expect(EncodingManager.encoding(name: localizedName) == .shiftJIS)
         #expect(EncodingManager.encoding(ianaCharSetName: "iso-8859-2") == .isoLatin2)
     }
 }

@@ -30,6 +30,26 @@ import Testing
 
 struct StringEncodingTests {
     
+    // Foundation's localized encoding name lookup can crash when called concurrently.
+    @Suite(.serialized) struct LocalizedNameTests {
+        
+        @Test(arguments: [String.Encoding.utf8, .shiftJIS, .iso2022JP])
+        func encodingName(encoding: String.Encoding) {
+            
+            let localizedName = String.localizedName(of: encoding)
+            
+            #expect(String.Encoding(localizedName: localizedName) == encoding)
+        }
+        
+        
+        @Test func invalidEncodingName() {
+            
+            #expect(String.Encoding(localizedName: "") == nil)
+            #expect(String.Encoding(localizedName: "🐕") == nil)
+        }
+    }
+    
+    
     @Test func ianaCharsetName() {
         
         #expect(String.Encoding.utf8.ianaCharSetName == "utf-8")
