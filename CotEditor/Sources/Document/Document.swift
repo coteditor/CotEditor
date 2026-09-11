@@ -360,7 +360,7 @@ extension NSTextView: EditorCounter.Source { }
             
             return .automatic(.init(candidates: encodingCandidates,
                                     xattrEncoding: extendedAttributes.encoding,
-                                    considersDeclaration: UserDefaults.standard[.referToEncodingTag]))
+                                    respectsDeclaration: UserDefaults.standard[.referToEncodingTag]))
         }()
         
         // .readingEncoding is only valid once

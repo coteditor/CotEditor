@@ -45,14 +45,14 @@ public extension String {
         public var xattrEncoding: String.Encoding?
         
         /// Whether to scan for and prioritize an encoding declaration in the contents.
-        public var considersDeclaration: Bool
+        public var respectsDeclaration: Bool
         
         
-        public init(candidates: [String.Encoding], xattrEncoding: String.Encoding? = nil, considersDeclaration: Bool = false) {
+        public init(candidates: [String.Encoding], xattrEncoding: String.Encoding? = nil, respectsDeclaration: Bool = false) {
             
             self.candidates = candidates
             self.xattrEncoding = xattrEncoding
-            self.considersDeclaration = considersDeclaration
+            self.respectsDeclaration = respectsDeclaration
         }
     }
     
@@ -144,7 +144,7 @@ extension String {
         }
         
         // try reading encoding declaration and take priority of it if it seems well
-        if options.considersDeclaration,
+        if options.respectsDeclaration,
            let encoding = data.scanEncodingDeclaration(),
            options.candidates.contains(encoding),
            let string = String(data: data, encoding: encoding)

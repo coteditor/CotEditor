@@ -220,7 +220,7 @@ struct EncodingDetectionTests {
     @Test func detectionOptionsDeclarationPriority() throws {
         
         let data = Data("# coding: utf-8".utf8)
-        let options = String.DetectionOptions(candidates: [.utf16, .utf8], considersDeclaration: true)
+        let options = String.DetectionOptions(candidates: [.utf16, .utf8], respectsDeclaration: true)
         let (string, encoding) = try String.string(data: data, options: options)
         
         #expect(string == "# coding: utf-8")
