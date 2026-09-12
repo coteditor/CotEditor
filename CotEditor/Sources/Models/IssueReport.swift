@@ -69,7 +69,7 @@ struct IssueReport {
     private var environment: String {
         
         """
-        - CotEditor: \(Bundle.main.shortVersion) (\(Bundle.main.bundleVersion))
+        - CotEditor: \(Bundle.main.shortVersion!) (\(Bundle.main.bundleVersion!))
         - System: macOS \(ProcessInfo.processInfo.operatingSystemVersionString)
         - Language: \(self.appLanguage, default: "–")
         """

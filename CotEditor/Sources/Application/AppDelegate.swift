@@ -184,7 +184,7 @@ extension Logger {
         
         // store the latest version
         // -> Migration processes should be completed up to this point.
-        let thisVersion = Bundle.main.bundleVersion
+        let thisVersion = Bundle.main.bundleVersion!
         if lastVersion == nil || Int(thisVersion)! > lastVersion! {
             UserDefaults.standard[.lastVersion] = thisVersion
         }

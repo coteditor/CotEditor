@@ -56,14 +56,14 @@ struct AboutView: View {
                     .accessibilityLabel(.init("\(Bundle.main.bundleName) icon", table: "About", comment: "%@ is application name"))
                 Text(Bundle.main.bundleName)
                     .font(.title)
-                Text("Version \(Bundle.main.shortVersion) (\(Bundle.main.bundleVersion))",
+                Text("Version \(Bundle.main.shortVersion!) (\(Bundle.main.bundleVersion!))",
                      tableName: "About",
                      comment: "%1$@ is version number and %2$@ is build number")
                 
                 Link(String("coteditor.com"), destination: URL(string: "https://coteditor.com")!)
                     .foregroundStyle(.tint)
                 
-                Text(Bundle.main.copyright)
+                Text(Bundle.main.copyright!)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }

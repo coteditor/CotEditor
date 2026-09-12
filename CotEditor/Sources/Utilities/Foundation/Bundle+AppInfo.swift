@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2024 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,28 +38,28 @@ extension Bundle {
     /// The application version.
     final var version: Version? {
         
-        Version(self.shortVersion)
+        self.shortVersion.flatMap(Version.init)
     }
     
     
     /// The human-friendly version expression (semantic versioning).
-    final var shortVersion: String {
+    final var shortVersion: String? {
         
-        self.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        self.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }
     
     
     /// The build number.
-    final var bundleVersion: String {
+    final var bundleVersion: String? {
         
-        self.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+        self.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
     }
     
     
     /// The human-readable copyright.
-    final var copyright: String {
+    final var copyright: String? {
         
-        self.object(forInfoDictionaryKey: "NSHumanReadableCopyright" as String) as! String
+        self.object(forInfoDictionaryKey: "NSHumanReadableCopyright" as String) as? String
     }
     
     
