@@ -245,13 +245,16 @@ private struct OpenWithExternalEditorMenu: View {
         Menu(.init("Open with External Editor", table: "Document")) {
             let editors = NSWorkspace.shared.urlsForApplications(toOpen: self.url)
                 .map(Editor.init(url:))
+            let duplicateNames = Dictionary(grouping: editors.filter { $0.url != Bundle.main.bundleURL }, by: \.displayName)
+                .filter { $0.value.count > 1 }
+                .keys
             
             if let editor = editors.first, editor.url != Bundle.main.bundleURL {
                 Button {
                     self.openURL(with: editor.url)
                 } label: {
                     Label {
-                        Text(AttributedString(editor.displayName) +
+                        Text(editor.attributedName(includesVersion: duplicateNames.contains(editor.displayName)) +
                              AttributedString(String(localized: " (default)", table: "Document"),
                                               attributes: .init().foregroundColor(.secondary)))
                     } icon: {
@@ -271,7 +274,7 @@ private struct OpenWithExternalEditorMenu: View {
                     self.openURL(with: editor.url)
                 } label: {
                     Label {
-                        Text(editor.displayName)
+                        Text(editor.attributedName(includesVersion: duplicateNames.contains(editor.displayName)))
                     } icon: {
                         Image(nsImage: editor.icon)
                     }
@@ -310,9 +313,27 @@ private struct OpenWithExternalEditorMenu: View {
         init(url: URL) {
             
             self.url = url
-            self.displayName = FileManager.default.displayName(atPath: url.path)
+            self.displayName = FileManager.default.displayName(atPath: url.path).replacing(/\.app$/, with: "")
             self.icon = NSWorkspace.shared.icon(forFile: url.path)
             self.icon.size = NSSize(width: 16, height: 16)
+        }
+        
+        
+        /// Returns the application name with an optional version suffix.
+        ///
+        /// - Parameter includesVersion: Whether to append the application version, if available.
+        /// - Returns: The application name with the version styled as secondary text.
+        func attributedName(includesVersion: Bool) -> AttributedString {
+            
+            let name = AttributedString(self.displayName)
+            
+            guard
+                includesVersion,
+                let version = Bundle(url: self.url)?.shortVersion,
+                !version.isEmpty
+            else { return name }
+            
+            return name + AttributedString(" (\(version))", attributes: .init().foregroundColor(.secondary))
         }
     }
     

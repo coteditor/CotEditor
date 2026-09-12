@@ -3,6 +3,10 @@
 7.1.1-alpha (unreleased)
 --------------------------
 
+### Improvements
+
+- Improve the External Editor button in the file preview view.
+
 
 
 7.1.0 (2026-09-13)
