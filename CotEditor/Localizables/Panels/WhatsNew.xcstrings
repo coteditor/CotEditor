@@ -845,7 +845,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用工具列在資料夾中最近檢視過的文件間前後切換。"
+            "value" : "使用工具列在資料夾中最近檢視過的文件之間前後切換。"
           }
         }
       }
@@ -952,7 +952,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "於資料夾之間前後切換"
+            "value" : "在資料夾內前後切換"
           }
         }
       }

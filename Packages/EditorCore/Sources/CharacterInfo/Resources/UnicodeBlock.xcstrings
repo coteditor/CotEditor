@@ -2702,7 +2702,14 @@
       }
     },
     "Beria Erfe" : {
-
+      "localizations" : {
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beria Erfe"
+          }
+        }
+      }
     },
     "Bhaiksuki" : {
       "localizations" : {
@@ -26745,7 +26752,14 @@
       }
     },
     "Sidetic" : {
-
+      "localizations" : {
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sidetic"
+          }
+        }
+      }
     },
     "Sinhala" : {
       "localizations" : {
