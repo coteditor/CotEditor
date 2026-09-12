@@ -1,6 +1,6 @@
 # Change Log
 
-7.1.1-alpha (unreleased)
+7.1.1 (unreleased)
 --------------------------
 
 ### Improvements
