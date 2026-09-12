@@ -32,7 +32,7 @@ struct WhatsNewView: View {
     
     @Namespace private var namespace
     
-    @State private var isPrerelease: Bool = false
+    @State private var prerelease: Version.Prerelease?
     
     
     var body: some View {
@@ -44,8 +44,8 @@ struct WhatsNewView: View {
                         .fontWeight(.bold)
                         .accessibilityHeading(.h1)
                     
-                    if self.isPrerelease {
-                        Text("Beta", tableName: "WhatsNew", comment: "label for when the app is a prerelease version")
+                    if let prerelease = self.prerelease {
+                        Text(prerelease.label)
                             .fontDesign(.rounded)
                             .kerning(0.5)
                             .padding(.horizontal, 4)
@@ -116,7 +116,7 @@ struct WhatsNewView: View {
         }
         .onAppear {
             if let version = Bundle.main.version, version < NewFeature.version {
-                self.isPrerelease = true
+                self.prerelease = version.prerelease
             }
         }
         .focusScope(self.namespace)
@@ -134,10 +134,28 @@ struct WhatsNewView: View {
 }
 
 
+private extension Version.Prerelease {
+    
+    var label: String {
+        
+        switch self {
+            case .alpha:
+                String(localized: "Version.Prerelease.alpha.label", defaultValue: "Alpha", table: "WhatsNew")
+            case .beta:
+                String(localized: "Version.Prerelease.beta.label", defaultValue: "Beta", table: "WhatsNew")
+            case .rc:
+                String(localized: "Version.Prerelease.rc.label", defaultValue: "RC", table: "WhatsNew")
+            case .other(let string):
+                string
+        }
+    }
+}
+
+
 enum NewFeature: CaseIterable {
     
     static let version = Version(7, 1, 0)
-    static let buildNumber = 844
+    static let buildNumber = 847
     
     case folderFind
     case macOS27

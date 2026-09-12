@@ -162,6 +162,16 @@ struct VersionTests {
     }
     
     
+    @Test func prereleaseProperty() {
+        
+        #expect(Version(5, 0, 1).prerelease == nil)
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "alpha").prerelease == .alpha)
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "beta.2").prerelease == .beta(2))
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "rc.1").prerelease == .rc(1))
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "dogcow").prerelease == .other("dogcow"))
+    }
+    
+    
     @Test func decodeInvalidValue() throws {
         
         let data = try JSONEncoder().encode("5.0")

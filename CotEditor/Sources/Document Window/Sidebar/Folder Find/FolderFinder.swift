@@ -59,6 +59,7 @@ import TextFind
         didSet {
             if case .finished = self.state { } else {
                 self.liveSummary = nil
+                self.unhighlight()
             }
             self.updateTextStorageObservation()
         }
@@ -70,13 +71,15 @@ import TextFind
     
     /// The search results whose match ranges follow document edits.
     ///
-    /// The ranges are used only to reveal matches, so they are kept apart from the displayed results
+    /// The ranges are used only to reveal and highlight matches, so they are kept apart from the displayed results
     /// to avoid updating the results view on every edit.
     private var liveSummary: FolderFind.Summary?
     
     private var searchTask: Task<Void, Never>?
     private var selectionTask: Task<Void, Never>?
     private var textEditingObserver: any NSObjectProtocol?
+    private var highlightObserver: NotificationCenter.ObservationToken?
+    private weak var highlightedTextView: NSTextView?
     private var submittedFindString = ""
     
     
@@ -96,6 +99,7 @@ import TextFind
         self.searchTask?.cancel()
         self.selectionTask?.cancel()
         self.textEditingObserver.map(NotificationCenter.default.removeObserver)
+        self.unhighlight()
     }
     
     
@@ -202,7 +206,7 @@ import TextFind
     }
     
     
-    /// Opens the file for the result and selects the matched range if the result is a match.
+    /// Opens the file for the result, highlights all its matches until the editor gains focus, and selects the matched range if the result is a match.
     ///
     /// - Parameter id: The result ID to select.
     func selectResult(for id: FolderFind.ResultID) {
@@ -210,21 +214,37 @@ import TextFind
         guard let result = self.result(for: id) else { return }
         
         self.selectionTask?.cancel()
-        self.selectionTask = Task { @MainActor in
+        self.unhighlight()
+        self.selectionTask = Task { @MainActor [self] in
             guard
                 await self.document.openDocument(at: result.file.fileURL),
                 !Task.isCancelled
             else { return }
             
             guard
-                let range = result.match?.range,
                 let document = self.document.currentDocument as? Document,
-                let textView = document.textView,
-                range.upperBound <= textView.string.utf16.count
+                let textView = document.textView
             else { return }
             
+            let length = textView.string.utf16.count
+            let ranges = result.file.matches.map(\.range)
+                .filter { $0.length > 0 && $0.upperBound <= length }
+            
+            textView.updateBackgroundColor(.unemphasizedSelectedTextBackgroundColor, ranges: ranges)
+            self.highlightedTextView = textView
+            
+            self.highlightObserver.map(NotificationCenter.default.removeObserver)
+            self.highlightObserver = NotificationCenter.default.addObserver(for: EditorTextView.DidBecomeFirstResponderMessage.self) { [weak self, weak document] message in
+                guard document?.textViews.contains(where: { ObjectIdentifier($0) == message.subjectIdentifier }) == true else { return }
+                
+                self?.unhighlight()
+            }
+            
+            guard let range = result.match?.range, range.upperBound <= length else { return }
+            
             // ensure the newly swapped-in editor has its final visible rect before scrolling
-            textView.window?.contentView?.layoutSubtreeIfNeeded()
+            // and prevent the find indicator effect from cutting out (2026-09, macOS 26)
+            await Task.yield()
             
             textView.selectedRange = range
             textView.scrollRangeToVisible(range)
@@ -247,11 +267,22 @@ import TextFind
         self.liveSummary?.removeResults(for: ids)
         self.selectionTask?.cancel()
         self.selectionTask = nil
+        self.unhighlight()
         self.state = .finished(summary)
     }
     
     
     // MARK: Private Methods
+    
+    /// Removes the folder find highlights and stops observing editor focus.
+    private func unhighlight() {
+        
+        self.highlightObserver.map(NotificationCenter.default.removeObserver)
+        self.highlightObserver = nil
+        self.highlightedTextView?.unhighlight(nil)
+        self.highlightedTextView = nil
+    }
+    
     
     /// Starts or stops observing text editing according to the current search state.
     private func updateTextStorageObservation() {

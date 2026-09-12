@@ -184,10 +184,10 @@ extension NSLayoutManager {
         
         guard self.isValidGlyphIndex(glyphIndex) else { return false }
         
-        var bidiLevels: [UInt8] = [0]
-        self.getGlyphs(in: NSRange(location: glyphIndex, length: 1), glyphs: nil, properties: nil, characterIndexes: nil, bidiLevels: &bidiLevels)
+        var bidiLevel: UInt8 = 0
+        self.getGlyphs(in: NSRange(location: glyphIndex, length: 1), glyphs: nil, properties: nil, characterIndexes: nil, bidiLevels: &bidiLevel)
         
-        return !bidiLevels[0].isMultiple(of: 2)
+        return !bidiLevel.isMultiple(of: 2)
     }
     
     

@@ -360,7 +360,7 @@ extension NSTextView: EditorCounter.Source { }
             
             return .automatic(.init(candidates: encodingCandidates,
                                     xattrEncoding: extendedAttributes.encoding,
-                                    considersDeclaration: UserDefaults.standard[.referToEncodingTag]))
+                                    respectsDeclaration: UserDefaults.standard[.referToEncodingTag]))
         }()
         
         // .readingEncoding is only valid once
@@ -1433,7 +1433,8 @@ extension NSTextView: EditorCounter.Source { }
             alert.messageText = String(localized: "EncodingChangeAlert.message",
                                        defaultValue: "Text encoding change")
             alert.informativeText = String(localized: "EncodingChangeAlert.informativeText",
-                                           defaultValue: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?")
+                                           defaultValue: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?",
+                                           comment: "%@ is an encoding name")
             alert.addButton(withTitle: String(localized: "EncodingChangeAlert.button.convert",
                                               defaultValue: "Convert"))
             alert.addButton(withTitle: String(localized: "EncodingChangeAlert.button.reinterpret",

@@ -161,34 +161,28 @@ private extension NSString {
         let maxCapacity = 4 * 1024 * 1024  // 4MB cap for a single chunk
         
         while capacity <= maxCapacity {
-            // avoid Data by reusing a byte buffer, growing if needed
-            var buffer = [UInt8](repeating: 0, count: capacity)
-            var usedLength = 0
-            var remaining = NSRange(location: NSNotFound, length: 0)
-            
-            let ok = buffer.withUnsafeMutableBytes { raw -> Bool in
-                guard let base = raw.baseAddress else { return false }
+            var needsMoreCapacity = false
+            let decoded = withUnsafeTemporaryAllocation(of: UInt8.self, capacity: capacity) { buffer -> String? in
+                var usedLength = 0
+                var remaining = NSRange(location: NSNotFound, length: 0)
                 
-                return unsafe self.getBytes(base, maxLength: raw.count, usedLength: &usedLength, encoding: encoding.rawValue, options: .allowLossy, range: range, remaining: &remaining)
-            }
-            
-            guard ok else { return nil }
-            
-            // grow and retry, as buffer was too small
-            if remaining.length > 0 {
-                capacity *= 2
-                continue
-            }
-            
-            // decode back
-            return buffer.withUnsafeBytes { raw -> String? in
-                guard
-                    let base = raw.baseAddress,
-                    let decoded = unsafe NSString(bytes: base, length: usedLength, encoding: encoding.rawValue)
-                else { return nil }
+                guard unsafe self.getBytes(buffer.baseAddress, maxLength: buffer.count, usedLength: &usedLength, encoding: encoding.rawValue, options: .allowLossy, range: range, remaining: &remaining) else { return nil }
+                
+                if remaining.length > 0 {
+                    needsMoreCapacity = true
+                    return nil
+                }
+                
+                // decode back
+                guard let decoded = unsafe NSString(bytes: buffer.baseAddress!, length: usedLength, encoding: encoding.rawValue) else { return nil }
                 
                 return decoded as String
             }
+            
+            guard needsMoreCapacity else { return decoded }
+            
+            // grow and retry, as buffer was too small
+            capacity *= 2
         }
         
         return nil  // -> Buffer growth cap was reached.

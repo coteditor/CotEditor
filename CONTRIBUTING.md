@@ -13,7 +13,7 @@ Create a new issue using the “Bug report” template.
 
 Before submitting an issue, please do the following:
 
-- Confirm that you are using the latest versions of both CotEditor and macOS, and that the issue still occurs in those versions.
+- Confirm that the issue persists with the latest version of CotEditor and the latest updates for your current major version of macOS.
 - Confirm that the issue is specific to CotEditor. If possible, try performing the same steps in TextEdit and verify that the issue does not occur there.
 - Search for existing issues related to your problem. If you find a similar issue, add your case to that thread instead of creating a new issue. Multiple reports of the same issue can be very helpful in identifying the cause. When adding your case, please include your environment details, such as the versions of CotEditor and macOS you are using.
 
@@ -64,8 +64,9 @@ You have two options for adding a new localization to CotEditor. Choose one of t
         - Packages/EditorCore/Sources/FileEncoding/Resources/
         - Packages/EditorCore/Sources/LineEnding/Resources/
         - Packages/EditorCore/Sources/StringUtils/Resources/
+        - Packages/MacUI/Sources/Shortcut/Resources/
         - Packages/Syntax/Sources/SyntaxFormat/Resources/
-    - Note that you don’t need to localize the UnicodeBlock.xcstrings file in Packages/EditorCore/Sources/CharacterInfo/. It will be handled by @1024jp based on Apple’s localization data.
+    - Note that you don’t need to localize the UnicodeBlock.xcstrings file in Packages/EditorCore/Sources/CharacterInfo/Resources/. It will be handled by @1024jp based on Apple’s localization data.
 - Option 2: Contact the maintainer directly and work with a provided localization template (.xcloc file):
     - Ask the maintainer (@1024jp) for the localization template (.xcloc file) for your language, either by creating a new issue on GitHub or by email. Upon receiving the .xcloc file, open it in Xcode and fill in each cell in your language’s column. Once you have completed it, send the template file back to the maintainer.
 
@@ -152,7 +153,7 @@ Please follow the style of the existing code in CotEditor.
 - Respect the existing coding style.
 - Leave reasonable comments.
 - Never omit `self` except in `willSet`/`didSet`.
-- Add `final` to classes and extension methods by default.
+- Add `final` to classes and methods in class extensions by default.
 - Insert a blank line after a class or function declaration.
   ```swift
   /// Says moof.

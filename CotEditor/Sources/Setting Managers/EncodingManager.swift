@@ -59,7 +59,7 @@ import FileEncoding
         }
         
         self.defaultObserver = defaults.publisher(for: .encodingList, initial: true)
-            .map { Self.fileEncodings(from: $0) }
+            .map(Self.fileEncodings(from:))
             .sink { [weak self] in self?.fileEncodings = $0 }
     }
     
@@ -90,29 +90,10 @@ import FileEncoding
     /// This avoids reading the observable `fileEncodings` cache from background.
     var fileEncodingCandidates: [String.Encoding] {
         
-        Self.fileEncodings(from: self.defaults[.encodingList]).compactMap(\.self?.encoding)
-    }
-    
-    
-    /// Returns corresponding String.Encoding from an encoding name.
-    ///
-    /// - Parameter encodingName: The name of the encoding to find.
-    /// - Returns: A string encoding or nil.
-    static func encoding(name encodingName: String) -> String.Encoding? {
-        
-        String.availableStringEncodings.lazy
-            .first { encodingName == String.localizedName(of: $0) }
-    }
-    
-    
-    /// Returns corresponding String.Encoding from an IANA charset name.
-    ///
-    /// - Parameter ianaCharSetName: The IANA charset name of the encoding to find.
-    /// - Returns: A string encoding or nil.
-    static func encoding(ianaCharSetName: String) -> String.Encoding? {
-        
-        String.availableStringEncodings.lazy
-            .first { $0.ianaCharSetName?.caseInsensitiveCompare(ianaCharSetName) == .orderedSame }
+        self.defaults[.encodingList]
+            .filter { $0 != kCFStringEncodingInvalidId }
+            .compactMap(String.Encoding.init(cfEncoding:))
+            .filter(String.availableStringEncodings.contains)
     }
     
     
@@ -122,11 +103,12 @@ import FileEncoding
     ///
     /// - Parameter encodings: The Core Foundation encoding list.
     /// - Returns: File encoding entries.
-    private static func fileEncodings(from encodings: [CFStringEncoding]) -> [FileEncoding?] {
+    private nonisolated static func fileEncodings(from encodings: [CFStringEncoding]) -> [FileEncoding?] {
         
         encodings
-            .map { $0 != kCFStringEncodingInvalidId ? FileEncoding(encoding: String.Encoding(cfEncoding: $0)) : nil }
-            .filter { $0.map { String.availableStringEncodings.contains($0.encoding) } ?? true }
+            .map { $0 != kCFStringEncodingInvalidId ? String.Encoding(cfEncoding: $0) : nil }
+            .filter { $0.map(String.availableStringEncodings.contains) ?? true }
+            .map { $0.map { FileEncoding(encoding: $0) } }
             .flatMap {
                 // add "UTF-8 with BOM" item just after the normal UTF-8
                 ($0?.encoding == .utf8) ? [$0, FileEncoding(encoding: .utf8, withUTF8BOM: true)] : [$0]

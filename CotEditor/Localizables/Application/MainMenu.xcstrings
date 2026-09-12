@@ -72,7 +72,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Разрешить изменение"
+            "value" : "Разрешить правку"
           }
         },
         "tr" : {
@@ -2782,7 +2782,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Запретить изменение"
+            "value" : "Запретить правку"
           }
         },
         "tr" : {
