@@ -243,42 +243,18 @@ private struct OpenWithExternalEditorMenu: View {
     var body: some View {
         
         Menu(.init("Open with External Editor", table: "Document")) {
-            let editors = NSWorkspace.shared.urlsForApplications(toOpen: self.url)
-                .map(Editor.init(url:))
-            let duplicateNames = Dictionary(grouping: editors.filter { $0.url != Bundle.main.bundleURL }, by: \.displayName)
-                .filter { $0.value.count > 1 }
-                .keys
+            let (defaultEditor, remainingEditors, duplicateNames) = self.editors
             
-            if let editor = editors.first, editor.url != Bundle.main.bundleURL {
-                Button {
+            if let editor = defaultEditor {
+                EditorButton(editor: editor, includesVersion: duplicateNames.contains(editor.displayName), isDefault: true) {
                     self.openURL(with: editor.url)
-                } label: {
-                    Label {
-                        Text(editor.attributedName(includesVersion: duplicateNames.contains(editor.displayName)) +
-                             AttributedString(String(localized: " (default)", table: "Document"),
-                                              attributes: .init().foregroundColor(.secondary)))
-                    } icon: {
-                        Image(nsImage: editor.icon)
-                    }
-                    .labelStyle(.titleAndIcon)
                 }
                 Divider()
             }
             
-            let remainingEditors = editors
-                .dropFirst()  // omit default
-                .filter { $0.url != Bundle.main.bundleURL }  // omit self
-                .sorted(using: KeyPathComparator(\.displayName, comparator: .localizedStandard))
             ForEach(remainingEditors, id: \.url) { editor in
-                Button {
+                EditorButton(editor: editor, includesVersion: duplicateNames.contains(editor.displayName)) {
                     self.openURL(with: editor.url)
-                } label: {
-                    Label {
-                        Text(editor.attributedName(includesVersion: duplicateNames.contains(editor.displayName)))
-                    } icon: {
-                        Image(nsImage: editor.icon)
-                    }
-                    .labelStyle(.titleAndIcon)
                 }
             }
             
@@ -303,11 +279,72 @@ private struct OpenWithExternalEditorMenu: View {
     }
     
     
+    /// The default external editor, the remaining editors sorted by display name, and their duplicate names.
+    private var editors: (defaultEditor: Editor?, remainingEditors: [Editor], duplicateNames: Set<String>) {
+        
+        let urls = NSWorkspace.shared.urlsForApplications(toOpen: self.url)
+        let defaultURL = urls.first
+        let editors = urls
+            .filter { $0 != Bundle.main.bundleURL }
+            .map(Editor.init(url:))
+        let duplicateNames = Dictionary(grouping: editors, by: \.displayName)
+            .filter { $0.value.count > 1 }
+            .keys
+        
+        let defaultEditor = editors.first { $0.url == defaultURL }
+        let remainingEditors = editors
+            .filter { $0.url != defaultURL }
+            .sorted(using: KeyPathComparator(\.displayName, comparator: .localizedStandard))
+        
+        return (defaultEditor, remainingEditors, Set(duplicateNames))
+    }
+    
+    
+    private struct EditorButton: View {
+        
+        var editor: Editor
+        var includesVersion: Bool = false
+        var isDefault: Bool = false
+        var action: () -> Void
+        
+        
+        var body: some View {
+            
+            Button(action: self.action) {
+                Label {
+                    Text(self.title)
+                } icon: {
+                    Image(nsImage: self.editor.icon)
+                }
+                .labelStyle(.titleAndIcon)
+            }
+        }
+        
+        
+        /// The Attributed title to display.
+        private var title: AttributedString {
+            
+            var title = AttributedString(self.editor.displayName)
+            if self.isDefault {
+                title += AttributedString(String(localized: " (default)", table: "Document"),
+                                          attributes: .init().foregroundColor(.secondary))
+            }
+            if self.includesVersion, let version = self.editor.version, !version.isEmpty {
+                title += AttributedString(" (\(version))", attributes: .init().foregroundColor(.secondary))
+            }
+            
+            return title
+        }
+    }
+    
+    
     private struct Editor {
         
         var url: URL
         var displayName: String
         var icon: NSImage
+        
+        var version: String?  { Bundle(url: self.url)?.shortVersion }
         
         
         init(url: URL) {
@@ -316,24 +353,6 @@ private struct OpenWithExternalEditorMenu: View {
             self.displayName = FileManager.default.displayName(atPath: url.path).replacing(/\.app$/, with: "")
             self.icon = NSWorkspace.shared.icon(forFile: url.path)
             self.icon.size = NSSize(width: 16, height: 16)
-        }
-        
-        
-        /// Returns the application name with an optional version suffix.
-        ///
-        /// - Parameter includesVersion: Whether to append the application version, if available.
-        /// - Returns: The application name with the version styled as secondary text.
-        func attributedName(includesVersion: Bool) -> AttributedString {
-            
-            let name = AttributedString(self.displayName)
-            
-            guard
-                includesVersion,
-                let version = Bundle(url: self.url)?.shortVersion,
-                !version.isEmpty
-            else { return name }
-            
-            return name + AttributedString(" (\(version))", attributes: .init().foregroundColor(.secondary))
         }
     }
     
