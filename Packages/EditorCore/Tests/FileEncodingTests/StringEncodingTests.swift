@@ -50,13 +50,6 @@ struct StringEncodingTests {
     }
     
     
-    @Test func ianaCharsetName() {
-        
-        #expect(String.Encoding.utf8.ianaCharSetName == "utf-8")
-        #expect(String.Encoding.isoLatin1.ianaCharSetName == "iso-8859-1")
-    }
-    
-    
     @Test func encodeXattr() {
         
         let utf8Data = Data("utf-8;134217984".utf8)

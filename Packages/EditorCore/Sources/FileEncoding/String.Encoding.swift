@@ -45,6 +45,20 @@ public extension String.Encoding {
     }
     
     
+    /// Initializes corresponding String.Encoding from an IANA charset name.
+    ///
+    /// - Parameter ianaCharSetName: The IANA charset name of the encoding to find.
+    init?(ianaCharSetName: String) {
+        
+        guard
+            let encoding = String.availableStringEncodings.lazy
+                .first(where: { $0.ianaCharSetName?.caseInsensitiveCompare(ianaCharSetName) == .orderedSame })
+            else { return nil }
+        
+        self = encoding
+    }
+    
+    
     /// Initializes String.Encoding most closely to a given Core Foundation encoding constant.
     ///
     /// - Parameter cfEncoding: The Core Foundation encoding constant.

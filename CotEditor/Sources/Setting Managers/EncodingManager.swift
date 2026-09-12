@@ -94,17 +94,6 @@ import FileEncoding
     }
     
     
-    /// Returns corresponding String.Encoding from an IANA charset name.
-    ///
-    /// - Parameter ianaCharSetName: The IANA charset name of the encoding to find.
-    /// - Returns: A string encoding or nil.
-    static func encoding(ianaCharSetName: String) -> String.Encoding? {
-        
-        String.availableStringEncodings.lazy
-            .first { $0.ianaCharSetName?.caseInsensitiveCompare(ianaCharSetName) == .orderedSame }
-    }
-    
-    
     // MARK: Private Methods
     
     /// Creates file encoding entries from the encoding list setting.
