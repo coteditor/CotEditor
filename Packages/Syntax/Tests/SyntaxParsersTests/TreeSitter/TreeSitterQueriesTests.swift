@@ -39,7 +39,7 @@ struct TreeSitterQueriesTests {
         let highlightsURL = LanguageRegistry.shared.queriesURL(for: syntax)
             .appending(component: "highlights.scm")
         let lines = try String(contentsOf: highlightsURL, encoding: .utf8)
-            .components(separatedBy: .newlines)
+            .split(separator: "\n", omittingEmptySubsequences: false)
         
         let allowedRoots = Set(SyntaxType.allCases.map(\.rawValue))
         for (index, line) in lines.enumerated() {

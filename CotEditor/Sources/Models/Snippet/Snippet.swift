@@ -139,7 +139,7 @@ extension Snippet {
         // so that a cursor token contained in the selection is kept as is
         let parts = self.format
             .replacing(/\R/) { $0.output + indent }  // indent
-            .components(separatedBy: Variable.cursor.token)
+            .split(separator: Variable.cursor.token, omittingEmptySubsequences: false)
             .map { $0.replacing(Variable.selection.token, with: selectedString) }  // selection
         
         var text = ""

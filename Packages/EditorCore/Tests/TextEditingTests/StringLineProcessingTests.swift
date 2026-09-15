@@ -317,8 +317,8 @@ struct StringLineProcessingTests {
         #expect(string.shuffleLines(in: NSRange(4, 1)) == nil)
         
         let context = try #require(string.shuffleLines(in: string.range))
-        let shuffledLines = context.strings[0].components(separatedBy: .newlines)
-        let originalLines = string.components(separatedBy: .newlines)
+        let shuffledLines = context.strings[0].split(separator: "\n")
+        let originalLines = string.split(separator: "\n")
         
         #expect(shuffledLines.sorted() == originalLines.sorted())
         #expect(context.ranges == [NSRange(0, 11)])
