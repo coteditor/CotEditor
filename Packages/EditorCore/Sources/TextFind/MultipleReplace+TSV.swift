@@ -48,7 +48,7 @@ public extension MultipleReplace {
     /// - Throws: `TSVParseError.invalidFormat` if an invalid line is encountered and `.failsOnInvalidValue` is specified.
     init(tabSeparatedText: String, options: TSVParseOptions = []) throws {
         
-        let replacements = try tabSeparatedText.split(separator: /\R/)
+        let replacements = try tabSeparatedText.split(whereSeparator: \.isNewline)
             .filter { !$0.isEmpty }
             .compactMap {
                 do {

@@ -208,7 +208,7 @@ extension Data {
             .map { EncodingDeclaration(range: $0.range, encodingName: $0.encoding) }
         
         let commentDeclaration = string
-            .split(separator: /\R/, maxSplits: 3, omittingEmptySubsequences: false)
+            .split(maxSplits: 3, omittingEmptySubsequences: false, whereSeparator: \.isNewline)
             .prefix(2)  // first 2 lines
             .lazy
             .compactMap { line in
