@@ -231,7 +231,7 @@ struct PortableSettingsDocument: FileDocument {
         }
         
         self.defaults = userDefaults.dictionaryWithValues(forKeys: keys.map(\.rawValue))
-                .compactMapValues { ($0 is NSNull) ? nil : PropertyListValue($0) }
+            .compactMapValues { ($0 is NSNull) ? nil : PropertyListValue($0) }
         
         if types.contains(.settings) {
             self.keyBindings = try KeyBindingManager.shared.userSettingsData()

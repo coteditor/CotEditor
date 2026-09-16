@@ -46,7 +46,7 @@ struct ExportSettingsView: View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading, spacing: 6) {
                 Text("Export Settings", tableName: "SettingsPorting")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.system(size: 14, weight: .bold))
                 Text("Export selected settings as an archive to allow importing into other computers.", tableName: "SettingsPorting")
             }
             .padding(.bottom, 12)
@@ -102,7 +102,7 @@ struct ImportSettingsView: View {
         
         VStack(alignment: .leading, spacing: 8) {
             Text(self.name)
-                .font(.system(size: 14, weight: .semibold))
+                .font(.system(size: 14, weight: .bold))
             
             if let documentError {
                 DocumentErrorView(error: documentError)
@@ -178,7 +178,7 @@ private struct PortableTypesView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 8) {
+        Form {
             Toggle(isOn: $types.bind(.settings)) {
                 Text(.init("SettingTypes.settings.label", defaultValue: "Settings", table: "SettingsPorting"))
                 Text(.init("SettingTypes.settings.description", defaultValue: "All settings in the Settings window", table: "SettingsPorting"))
@@ -215,6 +215,9 @@ private struct PortableTypesView: View {
             }
         }
         .monospacedDigit()
+        .formStyle(.grouped)
+        .scrollBounceBehavior(.basedOnSize)
+        .padding(-20)  // cancel paddings automatically added to grouped form (2026-09, macOS 26)
     }
 }
 

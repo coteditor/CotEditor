@@ -6,6 +6,7 @@
 ### Improvements
 
 - Improve the External Editor button in the file preview view.
+- [trivial] Tweak the appearance of the Import/Export Settings windows.
 
 
 
