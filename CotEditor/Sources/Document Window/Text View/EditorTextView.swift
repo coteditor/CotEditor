@@ -1845,7 +1845,7 @@ extension EditorTextView {
             self.partialCompletionWord = (self.string as NSString).substring(with: charRange)
         }
         
-        // fix that underscore is treated as the right arrow key
+        // fix that underscore is treated as the Right Arrow key
         let movement = if flag,
                           let event = self.window?.currentEvent,
                           event.type == .keyDown,
