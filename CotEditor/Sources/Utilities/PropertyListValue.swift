@@ -42,23 +42,13 @@ enum PropertyListValue: Equatable, Sendable {
     
     /// Creates a property list value from a raw property list object.
     ///
-    /// - Parameter any: The raw property list object.
-    init(_ any: Any) {
-        
-        guard let value = Self(propertyList: any) else {
-            fatalError()
-        }
-        
-        self = value
-    }
-    
-    
-    /// Creates a property list value from a raw object if it is supported.
-    ///
     /// - Parameter any: The raw object.
-    init?(propertyList any: Any) {
+    init?(_ any: Any) {
         
         switch any {
+            case is NSNull:
+                return nil
+                
             case let value as String:
                 self = .string(value)
                 
@@ -80,7 +70,7 @@ enum PropertyListValue: Equatable, Sendable {
             case let value as [Any]:
                 var array: [Self] = []
                 for element in value {
-                    guard let value = Self(propertyList: element) else { return nil }
+                    guard let value = Self(element) else { return nil }
                     array.append(value)
                 }
                 self = .array(array)
@@ -88,7 +78,7 @@ enum PropertyListValue: Equatable, Sendable {
             case let value as [String: Any]:
                 var dictionary: [String: Self] = [:]
                 for (key, element) in value {
-                    guard let value = Self(propertyList: element) else { return nil }
+                    guard let value = Self(element) else { return nil }
                     dictionary[key] = value
                 }
                 self = .dictionary(dictionary)

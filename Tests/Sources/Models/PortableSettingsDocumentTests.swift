@@ -93,8 +93,8 @@ import SyntaxFormat
         
         var document = try PortableSettingsDocument(including: [])
         document.defaults = [
-            windowWidthKey: PropertyListValue(importedWindowWidth),
-            fileScopesKey: PropertyListValue(importedFileScopes),
+            windowWidthKey: try #require(PropertyListValue(importedWindowWidth)),
+            fileScopesKey: try #require(PropertyListValue(importedFileScopes)),
         ]
         
         try document.applySettings(types: fileScopes ? .fileScopes : .settings, to: userDefaults)
@@ -116,7 +116,7 @@ import SyntaxFormat
         userDefaults.set(currentFileScopes, forKey: fileScopesKey)
         
         var document = try PortableSettingsDocument(including: [])
-        document.defaults = [fileScopesKey: PropertyListValue([String: Data]())]
+        document.defaults = [fileScopesKey: try #require(PropertyListValue([String: Data]()))]
         
         try document.applySettings(types: .fileScopes, to: userDefaults)
         
@@ -132,12 +132,13 @@ import SyntaxFormat
         
         let fileScopesKey = DefaultKeys.folderFindSavedScopes.rawValue
         let validData = try self.scopeData(value: "valid")
-        
-        var document = try PortableSettingsDocument(including: [])
-        document.defaults = [fileScopesKey: PropertyListValue([
+        let fileScopes = try #require(PropertyListValue([
             "Valid": validData,
             "Broken": Data([0x01]),
-        ])]
+        ]))
+        
+        var document = try PortableSettingsDocument(including: [])
+        document.defaults = [fileScopesKey: fileScopes]
         
         try document.applySettings(types: .fileScopes, to: userDefaults)
         

@@ -120,7 +120,7 @@ struct PortableSettingsDocument: FileDocument {
             let plist = try PropertyListSerialization.propertyList(from: defaultsData, format: nil) as? [String: Any]
         else { throw CocoaError(.propertyListReadCorrupt) }
         
-        self.defaults = plist.mapValues(PropertyListValue.init)
+        self.defaults = plist.compactMapValues(PropertyListValue.init)
         
         self.keyBindings = fileWrappers[WrapperKey.keyBindings]?.fileWrappers?[WrapperKey.shortcuts]?.regularFileContents
         self.replacements = fileWrappers[WrapperKey.replacements]?.fileWrappers?.compactMapValues(\.persistable) ?? [:]
@@ -231,7 +231,7 @@ struct PortableSettingsDocument: FileDocument {
         }
         
         self.defaults = userDefaults.dictionaryWithValues(forKeys: keys.map(\.rawValue))
-            .compactMapValues { ($0 is NSNull) ? nil : PropertyListValue($0) }
+            .compactMapValues(PropertyListValue.init)
         
         if types.contains(.settings) {
             self.keyBindings = try KeyBindingManager.shared.userSettingsData()

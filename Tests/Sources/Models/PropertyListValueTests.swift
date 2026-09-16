@@ -29,40 +29,40 @@ import Testing
 
 struct PropertyListValueTests {
     
-    @Test func string() {
+    @Test func string() throws {
         
         let string = "Dogcow"
-        let value = PropertyListValue(string)
+        let value = try #require(PropertyListValue(string))
         
         #expect(value == .string(string))
         #expect(value.any as? String == string)
     }
     
     
-    @Test func bool() {
+    @Test func bool() throws {
         
         let bool = true
-        let value = PropertyListValue(bool)
+        let value = try #require(PropertyListValue(bool))
         
         #expect(value == .bool(bool))
         #expect(value.any as? Bool == bool)
     }
     
     
-    @Test func int() {
+    @Test func int() throws {
         
         let int = 42
-        let value = PropertyListValue(int)
+        let value = try #require(PropertyListValue(int))
         
         #expect(value == .int(int))
         #expect(value.any as? Int == int)
     }
     
     
-    @Test func double() {
+    @Test func double() throws {
         
         let double = -1.0
-        let value = PropertyListValue(double)
+        let value = try #require(PropertyListValue(double))
         
         #expect(value == .double(double))
         #expect(value.any as? Double == double)
@@ -71,33 +71,33 @@ struct PropertyListValueTests {
     
     @Test func bridgedNumbers() {
         
-        #expect(PropertyListValue(propertyList: NSNumber(value: true)) == .bool(true))
-        #expect(PropertyListValue(propertyList: NSNumber(value: 1)) == .int(1))
-        #expect(PropertyListValue(propertyList: NSNumber(value: 1.0)) == .double(1.0))
+        #expect(PropertyListValue(NSNumber(value: true)) == .bool(true))
+        #expect(PropertyListValue(NSNumber(value: 1)) == .int(1))
+        #expect(PropertyListValue(NSNumber(value: 1.0)) == .double(1.0))
     }
     
     
-    @Test func data() {
+    @Test func data() throws {
         
         let data = Data([0xDE, 0xAD, 0xBE, 0xEF])
-        let value = PropertyListValue(data)
+        let value = try #require(PropertyListValue(data))
         
         #expect(value == .data(data))
         #expect(value.any as? Data == data)
     }
     
     
-    @Test func date() {
+    @Test func date() throws {
         
         let date = Date.now
-        let value = PropertyListValue(date)
+        let value = try #require(PropertyListValue(date))
         
         #expect(value == .date(date))
         #expect(value.any as? Date == date)
     }
     
     
-    @Test func array() {
+    @Test func array() throws {
         
         let array: [Any] = [
             "A",
@@ -106,7 +106,7 @@ struct PropertyListValueTests {
             false,
             [2, 3],
         ]
-        let value = PropertyListValue(array)
+        let value = try #require(PropertyListValue(array))
         
         #expect(value == .array([
             .string("A"),
@@ -120,7 +120,7 @@ struct PropertyListValueTests {
     }
     
     
-    @Test func dictionary() {
+    @Test func dictionary() throws {
         
         let dictionary: [String: Any] = [
             "title": "Dogcow",
@@ -131,7 +131,7 @@ struct PropertyListValueTests {
                 "double": 2.0,
             ],
         ]
-        let value = PropertyListValue(dictionary)
+        let value = try #require(PropertyListValue(dictionary))
         
         #expect(value == .dictionary([
             "title": .string("Dogcow"),
@@ -149,8 +149,8 @@ struct PropertyListValueTests {
     
     @Test func invalidValue() {
         
-        #expect(PropertyListValue(propertyList: NSObject()) == nil)
-        #expect(PropertyListValue(propertyList: ["invalid": NSObject()]) == nil)
+        #expect(PropertyListValue(NSObject()) == nil)
+        #expect(PropertyListValue(["invalid": NSObject()]) == nil)
     }
     
     
@@ -189,6 +189,6 @@ struct PropertyListValueTests {
         let data = try PropertyListSerialization.data(fromPropertyList: value.any, format: .xml, options: 0)
         let plist = try PropertyListSerialization.propertyList(from: data, format: nil)
         
-        #expect(PropertyListValue(propertyList: plist) == value)
+        #expect(PropertyListValue(plist) == value)
     }
 }
