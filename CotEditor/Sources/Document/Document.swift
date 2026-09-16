@@ -862,7 +862,7 @@ extension NSTextView: EditorCounter.Source { }
                     self.allowsLossySaving = true
                 }
             case 1:  // == Show Incompatible Characters
-                Task {
+                Task(priority: .userInitiated) {
                     await self.showWarningInspector()
                 }
             case 2:  // == Cancel

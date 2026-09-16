@@ -47,7 +47,7 @@ import ValueRange
         
         self.editedRanges = EditedRangeSet(range: textStorage.range)
         self.textEditingObserver = self.observeTextStorage(textStorage)
-        self.task = Task { try await self.detectInvalidRanges() }
+        self.task = Task(priority: .utility) { try await self.detectInvalidRanges() }
     }
     
     
@@ -97,7 +97,7 @@ import ValueRange
         self.editedRanges.append(editedRange: editedRange, changeInLength: delta)
         
         self.task?.cancel()
-        self.task = Task {
+        self.task = Task(priority: .utility) {
             try await Task.sleep(for: self.delay, tolerance: self.delay * 0.5)
             try await self.detectInvalidRanges()
         }

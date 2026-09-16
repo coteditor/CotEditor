@@ -193,7 +193,7 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
         self.isUpdatingMenu = !waitsForActivation
         
         self.menuUpdateTask?.cancel()
-        self.menuUpdateTask = Task {
+        self.menuUpdateTask = Task(priority: .medium) {
             if waitsForActivation {
                 for await _ in NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
                     break

@@ -163,7 +163,7 @@ struct FindMatchesCache {
     func incrementalSearch() {
         
         self.findTask?.cancel()
-        self.findTask = Task(priority: .userInitiated) {
+        self.findTask = Task {
             try await Task.sleep(for: .seconds(0.2), tolerance: .seconds(0.05))  // debounce
             try await self.find(forward: true, isIncremental: true)
         }
@@ -278,7 +278,7 @@ struct FindMatchesCache {
     private func nextMatch() {
         
         self.findTask?.cancel()
-        self.findTask = Task(priority: .userInitiated) {
+        self.findTask = Task {
             try await self.find(forward: true)
         }
     }
@@ -288,7 +288,7 @@ struct FindMatchesCache {
     private func previousMatch() {
         
         self.findTask?.cancel()
-        self.findTask = Task(priority: .userInitiated) {
+        self.findTask = Task {
             try await self.find(forward: false)
         }
     }
@@ -298,7 +298,7 @@ struct FindMatchesCache {
     private func selectAll() {
         
         self.findTask?.cancel()
-        self.findTask = Task(priority: .userInitiated) {
+        self.findTask = Task {
             try await self.selectAllMatches()
         }
     }
@@ -351,7 +351,7 @@ struct FindMatchesCache {
         self.replaceSelected()
         
         self.findTask?.cancel()
-        self.findTask = Task(priority: .userInitiated) {
+        self.findTask = Task {
             try await self.find(forward: true)
         }
         
