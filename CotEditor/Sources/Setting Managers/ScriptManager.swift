@@ -311,7 +311,7 @@ extension NSAppleEventDescriptor: @retroactive @unchecked Sendable { }
             guard !Task.isCancelled else { throw CancellationError() }
             
             let name = url.deletingPathExtension().lastPathComponent
-                .replacing(/^\d+\)/.asciiOnlyDigits(), with: "", maxReplacements: 1)  // remove ordering prefix
+                .replacing(/^[0-9]+\)/, with: "", maxReplacements: 1)  // remove ordering prefix
             
             let item: ScriptMenuItem? = if name == "-" {
                 .separator
