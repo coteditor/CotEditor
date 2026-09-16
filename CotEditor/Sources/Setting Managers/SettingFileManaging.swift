@@ -51,9 +51,6 @@ extension SettingState: Identifiable {
 /// A message posted when a setting file is updated, with the new and/or previous setting names.
 struct DidManagerUpdateSettingMessage<Subject: SettingFileManaging>: NotificationCenter.MainActorMessage {
     
-    static var name: Notification.Name { Notification.Name("SettingFileManaging.didUpdateSettingNotification") }
-    
-    
     var change: SettingChange
     
     
