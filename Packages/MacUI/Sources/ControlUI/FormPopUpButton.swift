@@ -94,11 +94,11 @@ public final class FormPopUpButtonCell: NSPopUpButtonCell {
             return super.drawBezel(withFrame: cellFrame, in: controlView)
         }
         
-        let width = cellFrame.height - 6
+        let width = cellFrame.height - double(4, macOS26: 6)
         let x = (self.userInterfaceLayoutDirection == .rightToLeft)
-                ? cellFrame.minX + 5
-                : cellFrame.maxX - width - 5
-        let rect = NSRect(x: x, y: cellFrame.minY + 3, width: width, height: width)
+                ? cellFrame.minX + double(4, macOS26: 5)
+                : cellFrame.maxX - width - double(4, macOS26: 5)
+        let rect = NSRect(x: x, y: cellFrame.minY + double(2, macOS26: 3), width: width, height: width)
         
         // draw capsule
         let path = NSBezierPath(ovalIn: rect)
@@ -115,11 +115,22 @@ public final class FormPopUpButtonCell: NSPopUpButtonCell {
         
         // draw chevron
         let chevron = NSImage(resource: ImageResource(name: "chevron.up.chevron.down.narrow", bundle: .module))
-        chevron.tinted(with: labelColor)
-            .draw(in: rect.insetBy(dx: (rect.width - chevron.size.width) / 2,
-                                   dy: (rect.height - chevron.size.height) / 2))
+        let chevronRect = rect.insetBy(dx: (rect.width - chevron.size.width) / 2,
+                                       dy: (rect.height - chevron.size.height) / 2)
+        
+        chevron.draw(in: chevronRect)
+        labelColor.setFill()
+        chevronRect.fill(using: .sourceIn)
     }
 }
+
+
+@available(macOS, deprecated: 27)
+private func double<Value: FloatingPoint>(_ value: Value, macOS26 legacyValue: Value) -> Value {
+    
+    if #available(macOS 27, *) { value } else { legacyValue }
+}
+
 
 // MARK: - Preview
 
