@@ -41,6 +41,7 @@ extension NSDocument {
     }
 }
 
+
 // MARK: Extensions
 
 extension NSDocument.SaveOperationType {
