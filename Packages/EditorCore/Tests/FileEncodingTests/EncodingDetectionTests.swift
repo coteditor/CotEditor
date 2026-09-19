@@ -228,16 +228,6 @@ struct EncodingDetectionTests {
     }
     
     
-    @Test func sortedAvailableStringEncodings() {
-        
-        let encodings = String.sortedAvailableStringEncodings
-        let compact = encodings.compactMap(\.self)
-        
-        #expect(encodings.contains(nil))
-        #expect(compact.count == String.availableStringEncodings.count)
-    }
-    
-    
     /// Tests testing helper APIs.
     @Test func initializeEncoding() {
         

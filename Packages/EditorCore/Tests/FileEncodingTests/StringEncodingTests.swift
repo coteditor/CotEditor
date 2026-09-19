@@ -30,7 +30,7 @@ import Testing
 
 struct StringEncodingTests {
     
-    // Foundation's localized encoding name lookup can crash when called concurrently.
+    // Keep localized encoding name lookup and sorting together because concurrent calls can crash in Foundation.
     @Suite(.serialized) struct LocalizedNameTests {
         
         @Test(arguments: [String.Encoding.utf8, .shiftJIS, .iso2022JP])
@@ -46,6 +46,17 @@ struct StringEncodingTests {
             
             #expect(String.Encoding(localizedName: "") == nil)
             #expect(String.Encoding(localizedName: "🐕") == nil)
+        }
+        
+        
+        /// Checks the sorted encoding list, which also looks up localized encoding names.
+        @Test func sortedAvailableStringEncodings() {
+            
+            let encodings = String.sortedAvailableStringEncodings
+            let compact = encodings.compactMap(\.self)
+            
+            #expect(encodings.contains(nil))
+            #expect(compact.count == String.availableStringEncodings.count)
         }
     }
     
