@@ -130,6 +130,11 @@
 			path = Scripts;
 			sourceTree = "<group>";
 		};
+		81C42F976E1B4920B7316461 /* Test Plans */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Test Plans";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +167,7 @@
 				2ACA39662D6DFE11000A78E2 /* CotEditor */,
 				2A7041012CA1B7AB009435BA /* Tests */,
 				2AE45D322C9C8341003CB621 /* UI Tests */,
+				81C42F976E1B4920B7316461 /* Test Plans */,
 				2AE46EEA2C9C8B44003CB621 /* Scripts */,
 				2AE44B462C9C7BD4003CB621 /* Packages */,
 				2A7380232CAD911F00E870E5 /* Products */,
@@ -551,6 +557,7 @@
 			baseConfigurationReferenceRelativePath = Tests.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				ENABLE_HARDWARE_CHECKED_POINTER_ARITHMETIC_SLICE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -563,6 +570,7 @@
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = "UI-Tests.xcconfig";
 			buildSettings = {
+				ENABLE_HARDWARE_CHECKED_POINTER_ARITHMETIC_SLICE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.CotEditorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -573,6 +581,7 @@
 		2A36F04B2C931B7A00C0F3C4 /* Debug-Sparkle configuration for PBXAggregateTarget "Update Help Index" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_HARDWARE_CHECKED_POINTER_ARITHMETIC_SLICE = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				PRODUCT_NAME = "Update Help Index";
 			};
@@ -681,6 +690,7 @@
 			baseConfigurationReferenceRelativePath = Tests.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				ENABLE_HARDWARE_CHECKED_POINTER_ARITHMETIC_SLICE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -693,6 +703,7 @@
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = "UI-Tests.xcconfig";
 			buildSettings = {
+				ENABLE_HARDWARE_CHECKED_POINTER_ARITHMETIC_SLICE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.CotEditorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -703,6 +714,7 @@
 		2A36F0512C931B9600C0F3C4 /* Release-Sparkle configuration for PBXAggregateTarget "Update Help Index" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_HARDWARE_CHECKED_POINTER_ARITHMETIC_SLICE = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				PRODUCT_NAME = "Update Help Index";
 			};
@@ -711,6 +723,7 @@
 		2A3E847E1D07296200070A54 /* Debug configuration for PBXAggregateTarget "Update Help Index" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_HARDWARE_CHECKED_POINTER_ARITHMETIC_SLICE = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				PRODUCT_NAME = "Update Help Index";
 			};
@@ -719,6 +732,7 @@
 		2A3E847F1D07296200070A54 /* Release configuration for PBXAggregateTarget "Update Help Index" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_HARDWARE_CHECKED_POINTER_ARITHMETIC_SLICE = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				PRODUCT_NAME = "Update Help Index";
 			};
@@ -729,6 +743,7 @@
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = "UI-Tests.xcconfig";
 			buildSettings = {
+				ENABLE_HARDWARE_CHECKED_POINTER_ARITHMETIC_SLICE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.CotEditorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -741,6 +756,7 @@
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
 			baseConfigurationReferenceRelativePath = "UI-Tests.xcconfig";
 			buildSettings = {
+				ENABLE_HARDWARE_CHECKED_POINTER_ARITHMETIC_SLICE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.CotEditorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -816,6 +832,7 @@
 			baseConfigurationReferenceRelativePath = Tests.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				ENABLE_HARDWARE_CHECKED_POINTER_ARITHMETIC_SLICE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -829,6 +846,7 @@
 			baseConfigurationReferenceRelativePath = Tests.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				ENABLE_HARDWARE_CHECKED_POINTER_ARITHMETIC_SLICE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

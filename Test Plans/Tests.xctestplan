@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "27FF79CD-BC76-4C2A-BBD8-3382B868CAB8",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : true,
+    "testLanguage" : "en"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CotEditor.xcodeproj",
+        "identifier" : "2AC71DDE1BF0BDBC002E1434",
+        "name" : "Tests"
+      }
+    }
+  ],
+  "version" : 1
+}

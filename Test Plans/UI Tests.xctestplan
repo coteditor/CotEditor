@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "7584A149-2743-41F8-BEC8-C25BF78185C3",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testLanguage" : "en"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CotEditor.xcodeproj",
+        "identifier" : "2A3F18F6203270BE002F1CA7",
+        "name" : "UI Tests"
+      }
+    }
+  ],
+  "version" : 1
+}
