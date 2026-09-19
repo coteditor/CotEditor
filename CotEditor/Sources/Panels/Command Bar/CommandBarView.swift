@@ -340,7 +340,7 @@ private extension Color {
               score: 0),
     ]
     
-    return CommandBarView(model: .init(), candidates: candidates)
+    CommandBarView(model: .init(), candidates: candidates)
 }
 
 

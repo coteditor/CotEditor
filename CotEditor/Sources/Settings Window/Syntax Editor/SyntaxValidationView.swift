@@ -171,7 +171,7 @@ private extension Syntax.Error.Scope {
         .init(.nestableBlockComment, scope: .blockComment, value: "/*"),
     ]
     
-    return SyntaxValidationView(errors: errors)
+    SyntaxValidationView(errors: errors)
         .scenePadding()
         .frame(width: 400)
 }

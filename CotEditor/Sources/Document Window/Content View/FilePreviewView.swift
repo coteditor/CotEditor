@@ -397,7 +397,7 @@ private extension Duration {
     let url = Bundle.main.url(forResource: "AppIcon", withExtension: "icns")!
     let item = try! PreviewDocument(contentsOf: url, ofType: UTType.icns.identifier)
     
-    return FilePreviewView(item: item)
+    FilePreviewView(item: item)
 }
 
 #Preview("ImageAttributesView") {
