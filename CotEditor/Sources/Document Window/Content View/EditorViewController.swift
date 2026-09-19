@@ -60,6 +60,7 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")

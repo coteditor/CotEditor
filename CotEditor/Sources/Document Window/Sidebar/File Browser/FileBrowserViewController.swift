@@ -69,6 +69,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     }
     
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")

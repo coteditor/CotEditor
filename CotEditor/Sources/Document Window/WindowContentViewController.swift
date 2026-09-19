@@ -67,6 +67,7 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
     }
     
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
