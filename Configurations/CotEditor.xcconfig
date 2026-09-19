@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2024 CotEditor Project
+//  © 2020-2026 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,8 +28,8 @@
 
 CODE_SIGN_ENTITLEMENTS = CotEditor/$(PRODUCT_NAME)$(CODE_SIGN_ENTITLEMENTS_SUFFIX).entitlements
 
+EXCLUDED_SOURCE_FILE_NAMES = $(inherited) Sparkle*
+
 // Code signing may need to override any predefined values.
 // Therefore, it should be included at the end.
 #include "CodeSigning.xcconfig"
-
-EXCLUDED_SOURCE_FILE_NAMES = $(inherited) Sparkle*

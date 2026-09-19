@@ -74,7 +74,6 @@ For those people who just want to build and play with CotEditor locally.
 1. Open `CotEditor.xcodeproj` in Xcode.
 1. Switch to ad-hoc build mode:
     1. Open `Configurations/CodeSigning.xcconfig`.
-    1. Comment out `#include "CodeSigning-Default.xcconfig"`.
     1. Uncomment `#include "CodeSigning-AdHoc.xcconfig"`.
 1. Build the “CotEditor” scheme.
 

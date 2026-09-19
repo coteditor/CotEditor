@@ -556,7 +556,7 @@
 		2A36F0492C931B7A00C0F3C4 /* Debug-Sparkle configuration for PBXNativeTarget "Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
-			baseConfigurationReferenceRelativePath = Tests.xcconfig;
+			baseConfigurationReferenceRelativePath = CodeSigning.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -569,7 +569,7 @@
 		2A36F04A2C931B7A00C0F3C4 /* Debug-Sparkle configuration for PBXNativeTarget "UI Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
-			baseConfigurationReferenceRelativePath = "UI-Tests.xcconfig";
+			baseConfigurationReferenceRelativePath = CodeSigning.xcconfig;
 			buildSettings = {
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.CotEditorUITests;
@@ -688,7 +688,7 @@
 		2A36F04F2C931B9600C0F3C4 /* Release-Sparkle configuration for PBXNativeTarget "Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
-			baseConfigurationReferenceRelativePath = Tests.xcconfig;
+			baseConfigurationReferenceRelativePath = CodeSigning.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -701,7 +701,7 @@
 		2A36F0502C931B9600C0F3C4 /* Release-Sparkle configuration for PBXNativeTarget "UI Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
-			baseConfigurationReferenceRelativePath = "UI-Tests.xcconfig";
+			baseConfigurationReferenceRelativePath = CodeSigning.xcconfig;
 			buildSettings = {
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.CotEditorUITests;
@@ -737,7 +737,7 @@
 		2A3F18FF203270BE002F1CA7 /* Debug configuration for PBXNativeTarget "UI Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
-			baseConfigurationReferenceRelativePath = "UI-Tests.xcconfig";
+			baseConfigurationReferenceRelativePath = CodeSigning.xcconfig;
 			buildSettings = {
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.CotEditorUITests;
@@ -749,7 +749,7 @@
 		2A3F1900203270BE002F1CA7 /* Release configuration for PBXNativeTarget "UI Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
-			baseConfigurationReferenceRelativePath = "UI-Tests.xcconfig";
+			baseConfigurationReferenceRelativePath = CodeSigning.xcconfig;
 			buildSettings = {
 				GENERATE_INFOPLIST_FILE = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.CotEditorUITests;
@@ -825,7 +825,7 @@
 		2AC71DE61BF0BDBC002E1434 /* Debug configuration for PBXNativeTarget "Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
-			baseConfigurationReferenceRelativePath = Tests.xcconfig;
+			baseConfigurationReferenceRelativePath = CodeSigning.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -838,7 +838,7 @@
 		2AC71DE71BF0BDBC002E1434 /* Release configuration for PBXNativeTarget "Tests" */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 2A1AFDC32C92990300BF2C32 /* Configurations */;
-			baseConfigurationReferenceRelativePath = Tests.xcconfig;
+			baseConfigurationReferenceRelativePath = CodeSigning.xcconfig;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GENERATE_INFOPLIST_FILE = YES;
