@@ -141,10 +141,9 @@ struct FolderFindSavedScopesView: View {
                 self.isAddingScope = true
             } label: {
                 Label(.init("Action.add.label", defaultValue: "Add"), systemImage: "plus")
-                    .padding(2)
+                    .frame(width: 16, height: 16)
             }
             .help(.init("Action.add.tooltip", defaultValue: "Add new item"))
-            .frame(width: 16)
             
             Button {
                 if let name = self.selection {
@@ -153,10 +152,9 @@ struct FolderFindSavedScopesView: View {
                 }
             } label: {
                 Label(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
-                    .padding(2)
+                    .frame(width: 16, height: 16)
             }
             .help(.init("Action.delete.tooltip", defaultValue: "Delete selected items"))
-            .frame(width: 16)
             .disabled(self.selection == nil)
             
             Button {
@@ -165,10 +163,9 @@ struct FolderFindSavedScopesView: View {
                 }
             } label: {
                 Label(.init("Action.edit.ellipsis.label", defaultValue: "Edit…"), systemImage: "pencil")
-                    .padding(2)
+                    .frame(width: 16, height: 16)
             }
             .help(.init("Action.edit.tooltip", defaultValue: "Edit selected item"))
-            .frame(width: 16)
             .disabled(self.selection == nil)
             
             Spacer()

@@ -420,32 +420,29 @@ private struct SyntaxListView: View {
                 self.editingMode = .new
             } label: {
                 Label(.init("Action.add.label", defaultValue: "Add"), systemImage: "plus")
-                    .padding(2)
+                    .frame(width: 16, height: 16)
             }
             .help(.init("Action.add.tooltip", defaultValue: "Add new item"))
             .labelStyle(.iconOnly)
-            .frame(width: 16)
             
             Button {
                 self.deletingItem = self.selection?.name
             } label: {
                 Label(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
-                    .padding(2)
+                    .frame(width: 16, height: 16)
             }
             .help(.init("Action.delete.tooltip", defaultValue: "Delete selected items"))
             .labelStyle(.iconOnly)
-            .frame(width: 16)
             .disabled(self.selection?.isBundled != false)
             
             Button {
                 self.editingMode = .edit(self.selection!)
             } label: {
                 Label(.init("Action.edit.label", defaultValue: "Edit"), systemImage: "pencil")
-                    .padding(2)
+                    .frame(width: 16, height: 16)
             }
             .help(.init("Action.edit.tooltip", defaultValue: "Edit selected item"))
             .labelStyle(.iconOnly)
-            .frame(width: 16)
             .disabled(self.selection == nil)
             
             Spacer()

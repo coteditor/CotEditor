@@ -278,21 +278,19 @@ private struct ThemeListView: View {
                 }
             } label: {
                 Label(.init("Action.add.label", defaultValue: "Add"), systemImage: "plus")
-                    .padding(2)
+                    .frame(width: 16, height: 16)
             }
             .help(.init("Action.add.tooltip", defaultValue: "Add new item"))
             .labelStyle(.iconOnly)
-            .frame(width: 16)
             
             Button {
                 self.deletingItem = self.selection
             } label: {
                 Label(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
-                    .padding(2)
+                    .frame(width: 16, height: 16)
             }
             .help(.init("Action.delete.tooltip", defaultValue: "Delete selected items"))
             .labelStyle(.iconOnly)
-            .frame(width: 16)
             .disabled(self.manager.state(of: self.selection)?.isBundled != false)
             
             Spacer()

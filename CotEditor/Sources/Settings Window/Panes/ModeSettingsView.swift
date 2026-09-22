@@ -165,7 +165,6 @@ private struct ModeListView: View {
                 }
             } label: {
                 Label(.init("Action.add.label", defaultValue: "Add"), systemImage: "plus")
-                    .padding(2)
             }
             .help(.init("Action.add.tooltip", defaultValue: "Add new item"))
             .menuIndicator(.hidden)
@@ -180,11 +179,10 @@ private struct ModeListView: View {
                 }
             } label: {
                 Label(.init("Action.delete.label", defaultValue: "Delete"), systemImage: "minus")
-                    .padding(2)
                     .fontWeight(.medium)
+                    .frame(width: 16, height: 16)
             }
             .help(.init("Action.delete.tooltip", defaultValue: "Delete selected items"))
-            .frame(width: 16)
             .disabled(self.selection.syntaxName == nil)
             
             Spacer()
