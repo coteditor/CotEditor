@@ -81,6 +81,12 @@
             "value" : "Tümü"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Усі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -180,6 +186,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Komut"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Команда"
           }
         },
         "zh-Hans" : {
@@ -283,6 +295,12 @@
             "value" : "Açıklama"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Опис"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -382,6 +400,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uzantılar"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розширення"
           }
         },
         "zh-Hans" : {
@@ -485,6 +509,12 @@
             "value" : "Dosya Bırak"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перетягування файлів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -584,6 +614,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bırakılan dosyanın uzantıları (virgülle ayrılmış)."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розширення перетягнутого файлу (через кому)."
           }
         },
         "zh-Hans" : {
@@ -687,6 +723,12 @@
             "value" : "Resim Dosyası"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл зображення"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -788,6 +830,12 @@
             "value" : "Değişken Ekle"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставити змінну"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -886,6 +934,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ekleme biçimi:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Формат вставлення:"
           }
         },
         "zh-Hans" : {
@@ -995,6 +1049,12 @@
             "value" : "Düğme"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключ"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1102,6 +1162,12 @@
             "value" : "Ad"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Назва"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1201,6 +1267,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sözdizimi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
           }
         },
         "zh-Hans" : {
@@ -1304,6 +1376,12 @@
             "value" : "Bu dosya bırakma ayarının etkinleştirildiği sözdizimi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис, у якому використовується це налаштування перетягування файлів."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1403,6 +1481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Metin Dosyası"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текстовий файл"
           }
         },
         "zh-Hans" : {
@@ -1505,6 +1589,12 @@
             "value" : "Menüdeki bir komut veya klavye kestirmesi ile eklenecek metin:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст, який вставлятиметься командою з меню або клавіатурним скороченням:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1603,6 +1693,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Düzenleyiciye dosya bırakılarak eklenecek metin:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст, який вставлятиметься під час перетягування файлів до редактора:"
           }
         },
         "zh-Hans" : {

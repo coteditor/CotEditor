@@ -81,6 +81,12 @@
             "value" : "Bir kestirmeyi değiştirmek için düğme sütununa tıklayın ve yeni düğmeleri girin."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Щоб змінити скорочення, клацніть стовпець «Ключ» і введіть нове сполучення клавіш."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

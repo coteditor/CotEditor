@@ -81,6 +81,12 @@
             "value" : "Sürdür"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продовжити"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -186,6 +192,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mod ayarlarını kullanarak, istediğiniz gibi her bir sözdizimi için girintileme stilini özelleştirebilirsiniz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Використовуйте налаштування режиму, щоб окремо налаштувати стиль відступів для кожного синтаксису."
           }
         },
         "zh-Hans" : {
@@ -295,6 +307,12 @@
             "value" : "Her bir sözdizimine uyan girintileme"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відступи для кожного синтаксису"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -400,6 +418,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "macOS 27 ile, başlıksız belgeler kendiliğinden içeriklerinden önerilen bir taslak adı alır."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У macOS 27 документи без назви автоматично отримують чернеткову назву на основі свого вмісту."
           }
         },
         "zh-Hans" : {
@@ -509,6 +533,12 @@
             "value" : "Belgelerin kendilerini adlandırmalarına izin verin"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозвольте документу назвати себе"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -614,6 +644,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Açık bir klasördeki dosyalar arasında metin aramayı doğrudan kenar çubuğundan yapabilirsiniz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шукайте текст у файлах відкритої папки безпосередньо з бічної панелі."
           }
         },
         "zh-Hans" : {
@@ -723,6 +759,12 @@
             "value" : "Klasörlerde bulun"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Знайдіть у папці"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -828,6 +870,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Klasör içindeki belgelerde yakın zamanda görüntülenen belgeler arasında ileri ve geri gitmek için araç çubuğunu kullanın."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Використовуйте панель інструментів, щоб переходити назад і вперед між нещодавно переглянутими документами в папці."
           }
         },
         "zh-Hans" : {
@@ -937,6 +985,12 @@
             "value" : "Klasörlerde ileri ve geri gidin"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Назад і вперед у папках"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1042,6 +1096,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor artık macOS 27 Golden Gate’i destekliyor ve bu en yeni işletim sistemi için yenilenmiş bir görünüşe kavuştu."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor тепер підтримує macOS 27 Golden Gate, зокрема оновлений вигляд для нової системи."
           }
         },
         "zh-Hans" : {
@@ -1151,6 +1211,12 @@
             "value" : "macOS 27 için hazır"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готовий до macOS 27"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1255,6 +1321,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sürüm Notları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Примітки до випуску"
           }
         },
         "zh-Hans" : {
@@ -1364,6 +1436,12 @@
             "value" : "Alfa"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Альфа"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1469,6 +1547,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Beta"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бета"
           }
         },
         "zh-Hans" : {
@@ -1578,6 +1662,12 @@
             "value" : "RC"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RC"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1677,6 +1767,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor %@ sürümünde neler yeni"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Що нового в CotEditor %@"
           }
         },
         "zh-Hans" : {

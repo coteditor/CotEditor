@@ -81,6 +81,12 @@
             "value" : "Yazar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автор"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -179,6 +185,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arka plan:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тло:"
           }
         },
         "zh-Hans" : {
@@ -281,6 +293,12 @@
             "value" : "Geçerli satır:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поточний рядок:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -379,6 +397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "İmleç:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Курсор:"
           }
         },
         "zh-Hans" : {
@@ -481,6 +505,12 @@
             "value" : "Açıklama"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Опис"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -579,6 +609,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vurgu:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Підсвічування:"
           }
         },
         "zh-Hans" : {
@@ -681,6 +717,12 @@
             "value" : "Görünmez karakterler:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидимі символи:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -779,6 +821,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lisans"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ліцензія"
           }
         },
         "zh-Hans" : {
@@ -882,6 +930,12 @@
             "value" : "Tanımlanmamış"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не визначено"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -980,6 +1034,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tüm Temaları Yeniden Yükle"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перезавантажити всі теми"
           }
         },
         "zh-Hans" : {
@@ -1082,6 +1142,12 @@
             "value" : "Seçim:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виділення:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1180,6 +1246,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tema dosyası bilgisini göster"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показати інформацію про файл теми"
           }
         },
         "zh-Hans" : {
@@ -1282,6 +1354,12 @@
             "value" : "Sözdizimi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1380,6 +1458,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Metin:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст:"
           }
         },
         "zh-Hans" : {
@@ -1488,6 +1572,12 @@
             "value" : "Tema"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1588,6 +1678,12 @@
             "value" : "Tema Düzenleyicisi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактор тем"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1683,6 +1779,12 @@
           }
         },
         "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        },
+        "uk" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL"
@@ -1787,6 +1889,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sistem rengini kullan"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Використовувати системний колір"
           }
         },
         "zh-Hans" : {

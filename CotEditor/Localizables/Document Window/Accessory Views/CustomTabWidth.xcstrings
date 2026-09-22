@@ -81,6 +81,12 @@
             "value" : "Sekme genişliği:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ширина стовпця:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

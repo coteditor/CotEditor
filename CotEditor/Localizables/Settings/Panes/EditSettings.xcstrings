@@ -87,6 +87,12 @@
             "value" : "Yorum sınırlayıcılarına bir boşluk ekle"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додавати пробіл до роздільників коментарів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -185,6 +191,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yazarken kendiliğinden girintile"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматично додавати відступи під час введення"
           }
         },
         "zh-Hans" : {
@@ -287,6 +299,12 @@
             "value" : "Sondaki boşlukları kendiliğinden kırp"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматично видаляти кінцеві пробіли"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -385,6 +403,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yorum:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коментар:"
           }
         },
         "zh-Hans" : {
@@ -487,6 +511,12 @@
             "value" : "İçerik ayrıştırma:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аналіз вмісту:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -585,6 +615,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gecikme:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Затримка:"
           }
         },
         "zh-Hans" : {
@@ -687,6 +723,12 @@
             "value" : "Belge açılışında girintileme biçemini algıla"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Визначати стиль відступів під час відкриття документа"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -785,6 +827,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Seçili metni vurgula"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Підсвічувати входження виділеного тексту"
           }
         },
         "zh-Hans" : {
@@ -887,6 +935,12 @@
             "value" : "Eşleşen ayraçlarını vurgula"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Підсвічувати парні дужки"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -985,6 +1039,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yalnızca boşluk olan satırlar içeriliyor"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включно з рядками, що містять лише пробіли"
           }
         },
         "zh-Hans" : {
@@ -1087,6 +1147,12 @@
             "value" : "Seçimi Sekme düğmesi ile girintile"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додавати відступ до виділеного клавішею Tab"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1185,6 +1251,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Girintileme genişliği:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ширина відступу:"
           }
         },
         "zh-Hans" : {
@@ -1287,6 +1359,12 @@
             "value" : "Girintileme:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відступи:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1385,6 +1463,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Girinti sonrası yorum sınırlayıcıları gir"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставляти роздільники коментарів після відступу"
           }
         },
         "zh-Hans" : {
@@ -1487,6 +1571,12 @@
             "value" : "Belgedeki URL’leri bağlantıya dönüştür"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Робити URL у документі посиланнями"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1585,6 +1675,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Şunu tercih et"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Надавати перевагу"
           }
         },
         "zh-Hans" : {
@@ -1688,6 +1784,12 @@
             "value" : "saniye"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "секунд"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1787,6 +1889,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "boşluk"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "пробілів"
           }
         },
         "zh-Hans" : {
@@ -1890,6 +1998,12 @@
             "value" : "Boşluklar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пробіли"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1991,6 +2105,12 @@
             "value" : "Sekmeler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Табуляції"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2089,6 +2209,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Boş alan:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пробіли:"
           }
         },
         "zh-Hans" : {

@@ -88,6 +88,12 @@
             "value" : "Lezzetli bir kupa"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Смачне горнятко"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -193,6 +199,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Espresso"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Еспресо"
           }
         },
         "zh-Hans" : {
@@ -302,6 +314,12 @@
             "value" : "Günlük geliştirme için kahve"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кава для повсякденної розробки"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -407,6 +425,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kahve Çekirdekleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кавові зерна"
           }
         },
         "zh-Hans" : {

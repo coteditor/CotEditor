@@ -83,6 +83,12 @@
             "value" : "Seçimi İçeren Yeni CotEditor Belgesi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нове вікно CotEditor з вибраним"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -182,6 +188,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor’de Aç"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відкрити в CotEditor"
           }
         },
         "zh-Hans" : {

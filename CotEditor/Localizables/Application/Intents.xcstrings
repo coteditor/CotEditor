@@ -88,6 +88,12 @@
             "value" : "Belirtilen metin ile CotEditor’da yeni bir belge oluşturun."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Створити новий документ із указаним текстом у CotEditor."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -193,6 +199,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "İçerik"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вміст"
           }
         },
         "zh-Hans" : {
@@ -302,6 +314,12 @@
             "value" : "Belge Oluştur"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Створити документ"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -407,6 +425,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Belge Oluştur"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Створити документ"
           }
         },
         "zh-Hans" : {

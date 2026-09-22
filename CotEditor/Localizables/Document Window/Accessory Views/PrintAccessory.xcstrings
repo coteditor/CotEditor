@@ -82,6 +82,12 @@
             "value" : "%@ punto"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pt"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -187,6 +193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ortala"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По центру"
           }
         },
         "zh-Hans" : {
@@ -296,6 +308,12 @@
             "value" : "Sola Hizala"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вирівняти ліворуч"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -403,6 +421,12 @@
             "value" : "Sağa Hizala"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вирівняти праворуч"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -502,6 +526,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Siyah–Beyaz"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чорно-білий"
           }
         },
         "zh-Hans" : {
@@ -605,6 +635,12 @@
             "value" : "Renk"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Колір"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -704,6 +740,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Font Puntosu"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розмір шрифту"
           }
         },
         "zh-Hans" : {
@@ -807,6 +849,12 @@
             "value" : "Altbilgi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нижній колонтитул"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -906,6 +954,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Üstbilgi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Верхній колонтитул"
           }
         },
         "zh-Hans" : {
@@ -1009,6 +1063,12 @@
             "value" : "Görünmez Karakterler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидимі символи"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1108,6 +1168,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Satır Numarası"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номер рядка"
           }
         },
         "zh-Hans" : {
@@ -1210,6 +1276,12 @@
             "value" : "Açık"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Увімкнено"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1309,6 +1381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arka Planları Yazdır"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Друкувати тло"
           }
         },
         "zh-Hans" : {
@@ -1418,6 +1496,12 @@
             "value" : "Belge Adı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Назва документа"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1523,6 +1607,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dosya Yolu"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шлях до файлу"
           }
         },
         "zh-Hans" : {
@@ -1632,6 +1722,12 @@
             "value" : "Son Değişiklik Tarihi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата останньої зміни"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1737,6 +1833,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yok"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає"
           }
         },
         "zh-Hans" : {
@@ -1846,6 +1948,12 @@
             "value" : "Sayfa Numarası"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1951,6 +2059,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yazdırma Tarihi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата друку"
           }
         },
         "zh-Hans" : {
@@ -2060,6 +2174,12 @@
             "value" : "Sözdizimi Adı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Назва синтаксису"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2159,6 +2279,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tema"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
           }
         },
         "zh-Hans" : {

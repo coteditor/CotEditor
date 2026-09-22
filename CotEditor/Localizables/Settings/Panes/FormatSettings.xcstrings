@@ -81,6 +81,12 @@
             "value" : "Kullanılabilir sözdizimleri:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступні синтаксиси:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -179,6 +185,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sözdizimi Menüsünü Özelleştir…"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Налаштувати меню синтаксисів…"
           }
         },
         "zh-Hans" : {
@@ -281,6 +293,12 @@
             "value" : "Özelleştirilmiş sözdizimleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Налаштовані синтаксиси"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -379,6 +397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Öntanımlı satır sonları:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Типові закінчення рядків:"
           }
         },
         "zh-Hans" : {
@@ -481,6 +505,12 @@
             "value" : "Öntanımlı sözdizimi:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Типовий синтаксис:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -579,6 +609,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Öntanımlı metin kodlaması:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Типове кодування тексту:"
           }
         },
         "zh-Hans" : {
@@ -681,6 +717,12 @@
             "value" : "Listeyi Düzenle…"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редагувати список…"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -781,6 +823,12 @@
             "value" : "Kodlama önceliği:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пріоритети кодувань:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -879,6 +927,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Belgedeki kodlama beyanına başvur"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Враховувати оголошення кодування в документі"
           }
         },
         "zh-Hans" : {
@@ -987,6 +1041,12 @@
             "value" : "Tüm Sözdizimlerini Yeniden Yükle"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перезавантажити всі синтаксиси"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1093,6 +1153,12 @@
             "value" : "Dosya Eşlemleme Çakışmalarını Göster"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показати конфлікти зіставлення файлів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1192,6 +1258,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bu sözdizimi yok"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цього синтаксису не існує"
           }
         },
         "zh-Hans" : {
@@ -1298,6 +1370,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bu sözdizimi özelleştirilmiş."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цей синтаксис налаштовано."
           }
         },
         "zh-Hans" : {

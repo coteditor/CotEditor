@@ -82,6 +82,12 @@
             "value" : "<%lld karakterden oluşan bir harf>"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "<літера, що складається з %lld символів>"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -180,6 +186,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Blok:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Блок:"
           }
         },
         "zh-Hans" : {
@@ -282,6 +294,12 @@
             "value" : "Kategori:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Категорія:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -380,6 +398,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kod noktası:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодова точка:"
           }
         },
         "zh-Hans" : {
@@ -483,6 +507,12 @@
             "value" : "kullanımdan kaldırıldı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "застарілий"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -581,6 +611,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Blok Yok"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без блоку"
           }
         },
         "zh-Hans" : {
@@ -683,6 +719,12 @@
             "value" : "Bilinmeyen"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невідомо"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -781,6 +823,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sürüm:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версія:"
           }
         },
         "zh-Hans" : {

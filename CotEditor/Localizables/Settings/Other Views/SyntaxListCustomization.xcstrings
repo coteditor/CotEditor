@@ -81,6 +81,12 @@
             "value" : "Gizlenmiş sözdizimleri yine de otomatik algılama için kullanılırlar."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приховані синтаксиси все одно використовуються для автоматичного визначення."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -181,6 +187,12 @@
             "value" : "Tümünü Seç"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибрати все"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -279,6 +291,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sözdizimi menüsünde görünmesini istediğiniz sözdizimlerini seçin:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виберіть синтаксиси, які мають відображатися в меню синтаксисів:"
           }
         },
         "zh-Hans" : {

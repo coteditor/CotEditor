@@ -280,6 +280,36 @@
             }
           }
         },
+        "uk" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* символи"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* символів"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* символ"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* символів"
+                }
+              }
+            }
+          }
+        },
         "zh-Hans" : {
           "variations" : {
             "plural" : {
@@ -399,6 +429,12 @@
             "value" : "Gelişmiş Karakter Sayımı…"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розширений підрахунок символів…"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -505,6 +541,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Belirtilen kodlama ile kodlanmış metnin baytlarını sayın."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Підраховує байти тексту, закодованого у вказаному кодуванні."
           }
         },
         "zh-Hans" : {
@@ -615,6 +657,12 @@
             "value" : "Bayt"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Байт"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -721,6 +769,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicode’da tanımlandığı üzere sezgisel olarak sayın. Birden çok Unicode kod noktasından oluşan bir karakter; örneğin Emojiler, bir karakter olarak sayılır."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Підраховує символи у звичний спосіб, визначений Unicode. Символ, що складається з кількох кодових точок Unicode, наприклад емодзі, рахується як один символ."
           }
         },
         "zh-Hans" : {
@@ -831,6 +885,12 @@
             "value" : "Yazıbirim demeti"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Графемний кластер"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -937,6 +997,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicode kod noktalarını sayın. UTF-32 sayma ile aynıdır."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Підраховує кодові точки Unicode. Відповідає підрахунку UTF-32."
           }
         },
         "zh-Hans" : {
@@ -1047,6 +1113,12 @@
             "value" : "Unicode sayılı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скаляр Unicode"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1153,6 +1225,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unicode kod noktalarını sayın; ancak vekil çifti iki karakter olarak sayın."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Підраховує кодові точки Unicode, але сурогатну пару рахує як два символи."
           }
         },
         "zh-Hans" : {
@@ -1263,6 +1341,12 @@
             "value" : "UTF-16"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1364,6 +1448,12 @@
             "value" : "Kopyala"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копіювати"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1462,6 +1552,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kodlama:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодування:"
           }
         },
         "zh-Hans" : {
@@ -1565,6 +1661,12 @@
             "value" : "başarısız"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "помилка"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1664,6 +1766,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Satır sonlarını yok say"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ігнорувати закінчення рядків"
           }
         },
         "zh-Hans" : {
@@ -1767,6 +1875,12 @@
             "value" : "Boşlukları yok say"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ігнорувати пробільні символи"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1865,6 +1979,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Olağanlaştırma:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нормалізація:"
           }
         },
         "zh-Hans" : {
@@ -1968,6 +2088,12 @@
             "value" : "Seçenekleri göster"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показати параметри"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2067,6 +2193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Başlangıç"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Почати"
           }
         },
         "zh-Hans" : {
@@ -2170,6 +2302,12 @@
             "value" : "Gelişmiş Karakter Sayımını Durdur"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зупинити розширений підрахунок символів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2269,6 +2407,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sayımı Durdur"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зупинити підрахунок"
           }
         },
         "zh-Hans" : {
@@ -2372,6 +2516,12 @@
             "value" : "Ardışık boşluklara tek boşluk olarak davran"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вважати послідовні пробільні символи одним пробілом"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2472,6 +2622,12 @@
             "value" : "Birim:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Одиниця:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2570,6 +2726,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Boşluk:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пробільні символи:"
           }
         },
         "zh-Hans" : {

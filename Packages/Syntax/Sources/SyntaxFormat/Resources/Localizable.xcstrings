@@ -88,6 +88,12 @@
             "value" : "Kod"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Код"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -193,6 +199,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genel"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загальне"
           }
         },
         "zh-Hans" : {
@@ -302,6 +314,12 @@
             "value" : "Kapsayıcı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Контейнер"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -407,6 +425,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "İşlev"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Функція"
           }
         },
         "zh-Hans" : {
@@ -516,6 +540,12 @@
             "value" : "Başlık"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заголовок"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -621,6 +651,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Başlık %lld"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заголовок %lld"
           }
         },
         "zh-Hans" : {
@@ -730,6 +766,12 @@
             "value" : "İm"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позначка"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -835,6 +877,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ayırıcı"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Роздільник"
           }
         },
         "zh-Hans" : {
@@ -944,6 +992,12 @@
             "value" : "Başlık"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Назва"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1049,6 +1103,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Değer"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Значення"
           }
         },
         "zh-Hans" : {
@@ -1158,6 +1218,12 @@
             "value" : "Öznitelikler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Атрибути"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1263,6 +1329,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Karakterler"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи"
           }
         },
         "zh-Hans" : {
@@ -1372,6 +1444,12 @@
             "value" : "Komutlar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Команди"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1477,6 +1555,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yorumlar"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коментарі"
           }
         },
         "zh-Hans" : {
@@ -1586,6 +1670,12 @@
             "value" : "Anahtar sözcükler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключові слова"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1691,6 +1781,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sayılar"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Числа"
           }
         },
         "zh-Hans" : {
@@ -1800,6 +1896,12 @@
             "value" : "Diziler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рядки"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1905,6 +2007,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Türler"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Типи"
           }
         },
         "zh-Hans" : {
@@ -2014,6 +2122,12 @@
             "value" : "Değerler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Значення"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2119,6 +2233,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Değişkenler"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Змінні"
           }
         },
         "zh-Hans" : {

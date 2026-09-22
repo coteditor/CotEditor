@@ -82,6 +82,12 @@
             "value" : "Kuralı Sil"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Видалити правило"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -181,6 +187,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kuralı Düzenle"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Змінити правило"
           }
         },
         "zh-Hans" : {
@@ -291,6 +303,12 @@
             "value" : "Dosyalardan CotEditor Değişiklik Tanımları veya Tab ile Ayrılmış Değerler seçin."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виберіть файл замін CotEditor або TSV (файл значень, розділених символом табуляції)"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -390,6 +408,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kural Ekle"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставити правило"
           }
         },
         "zh-Hans" : {
@@ -493,6 +517,12 @@
             "value" : "Kuralı Taşı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перемістити правило"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -592,6 +622,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Çoklu Değiştir"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Множинна заміна"
           }
         },
         "zh-Hans" : {
@@ -700,6 +736,12 @@
             "value" : "Tüm Tanımları Yeniden Yükle"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перезавантажити всі визначення"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -799,6 +841,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kenar çubuğu"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бічна панель"
           }
         },
         "zh-Hans" : {

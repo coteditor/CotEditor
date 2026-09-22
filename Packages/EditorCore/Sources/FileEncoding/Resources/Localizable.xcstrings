@@ -82,6 +82,12 @@
             "value" : "BOM ile %@"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ з BOM"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
