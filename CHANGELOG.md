@@ -6,6 +6,7 @@
 ### Improvements
 
 - Improve the External Editor button in the file preview view.
+- Update tree-sitter-sql.
 - [trivial] Tweak the appearance of the Import/Export Settings windows.
 - [trivial] Tweak the layout of the CotEditor section in the print window.
 - [non-AppStore ver.] Update Sparkle from 2.9.6 to 2.10.0.
