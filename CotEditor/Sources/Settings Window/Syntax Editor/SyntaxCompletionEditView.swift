@@ -60,7 +60,7 @@ struct SyntaxCompletionEditView: View {
                 
                 TableColumn(.init("Type", table: "SyntaxEditor", comment: "table column header"), value: \.value.type.sortValue) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
-                        Picker(selection: item.value.type) {
+                        Picker(.init("Type", table: "SyntaxEditor"), selection: item.value.type) {
                             Text("None", tableName: "SyntaxEditor")
                                 .tag(Optional<SyntaxType>.none)
                             Divider()
@@ -68,8 +68,6 @@ struct SyntaxCompletionEditView: View {
                                 Text(type.label)
                                     .tag(type, includeOptional: true)
                             }
-                        } label: {
-                            Text("Type", tableName: "SyntaxEditor")
                         } currentValueLabel: {
                             if let type = wrappedItem.value.type {
                                 Text(type.label)

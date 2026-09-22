@@ -292,7 +292,10 @@ private struct CharacterPaneView: View {
         DisclosureGroup(.init("Character", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
             Form {
                 if let scalars = self.character?.unicodeScalars {
-                    LabeledContent {
+                    LabeledContent((scalars.count == 1)
+                                   ? .init("Code Point", table: "Document", comment: "label in document inspector")
+                                   : .init("Code Points", table: "Document", comment: "label in document inspector"))
+                    {
                         WrappingHStack(alignment: .trailing) {
                             ForEach(Array(scalars).enumerated(), id: \.offset) { _, scalar in
                                 Text(scalar.codePoint)
@@ -303,10 +306,6 @@ private struct CharacterPaneView: View {
                                         .strokeBorder(.tertiary))
                             }
                         }
-                    } label: {
-                        (scalars.count == 1)
-                            ? Text("Code Point", tableName: "Document", comment: "label in document inspector")
-                            : Text("Code Points", tableName: "Document", comment: "label in document inspector")
                     }
                     if scalars.count == 1, let scalar = scalars.first {
                         LabeledContent(.init("Name", table: "Document", comment: "label in document inspector"),

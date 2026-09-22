@@ -136,7 +136,7 @@ struct FolderFindSavedScopesView: View {
     /// The action buttons to place at the bottom of the list.
     @ContentBuilder private var bottomAccessoryView: some View {
         
-        HStack(alignment: .firstTextBaseline) {
+        HStack {
             Button {
                 self.isAddingScope = true
             } label: {
@@ -173,8 +173,8 @@ struct FolderFindSavedScopesView: View {
             
             Spacer()
         }
-        .labelStyle(.iconOnly)
         .buttonStyle(.borderless)
+        .labelStyle(.iconOnly)
     }
     
     
