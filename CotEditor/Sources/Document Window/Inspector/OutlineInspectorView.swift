@@ -32,7 +32,13 @@ import StringUtils
 
 @MainActor @Observable private final class OutlineInspectorViewModel: OutlineInspectorView.ModelProtocol {
     
-    var isPresented = false  { didSet { self.invalidateObservation() } }
+    var isPresented = false {
+        
+        didSet {
+            guard oldValue != self.isPresented else { return }
+            self.invalidateObservation()
+        }
+    }
     var document: Document?  { didSet { self.invalidateObservation() } }
     
     var items: [Item] = []  { didSet { self.rebuildOutline() } }

@@ -28,11 +28,24 @@ import AppKit
 
 protocol HostedPaneView: View {
     
+    var document: DataDocument? { get set }
     var isPresented: Bool { get set }
 }
 
 
-final class InspectorPaneHostingController<Content>: NSHostingController<Content> where Content: HostedPaneView {
+@MainActor protocol InspectorPaneHosting: AnyObject {
+    
+    var document: DataDocument? { get set }
+}
+
+
+final class InspectorPaneHostingController<Content>: NSHostingController<Content>, InspectorPaneHosting where Content: HostedPaneView {
+    
+    var document: DataDocument? {
+        
+        get { self.rootView.document }
+        set { self.rootView.document = newValue }
+    }
     
     override func viewWillAppear() {
         

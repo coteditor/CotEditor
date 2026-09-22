@@ -33,7 +33,14 @@ import SyntaxFormat
 
 @MainActor @Observable private final class DocumentInspectorViewModel: DocumentInspectorView.ModelProtocol {
     
-    var isPresented = false  { didSet { self.invalidateObservation() } }
+    var isPresented = false {
+        
+        didSet {
+            guard oldValue != self.isPresented else { return }
+            self.invalidateObservation()
+        }
+    }
+    
     var document: DataDocument?  { willSet { self.cancelObservation() } didSet { self.didUpdateDocument() } }
     
     var attributes: FileAttributes?  { self.document?.fileAttributes }

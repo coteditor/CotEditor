@@ -119,16 +119,9 @@ final class InspectorViewController: NSTabViewController {
     private func updateDocument() {
         
         for item in self.tabViewItems {
-            switch item.viewController {
-                case let viewController as InspectorPaneHostingController<DocumentInspectorView>:
-                    viewController.rootView.document = self.document
-                case let viewController as InspectorPaneHostingController<OutlineInspectorView>:
-                    viewController.rootView.document = self.document
-                case let viewController as InspectorPaneHostingController<WarningInspectorView>:
-                    viewController.rootView.document = self.document
-                default:
-                    preconditionFailure()
-            }
+            guard let viewController = item.viewController as? any InspectorPaneHosting else { preconditionFailure() }
+            
+            viewController.document = self.document
         }
     }
 }
@@ -168,7 +161,7 @@ private extension InspectorPane {
     ///
     /// - Parameter document: The document to inspect.
     /// - Returns: A view controller for the pane.
-    @MainActor func viewController(document: DataDocument?) -> sending NSViewController {
+    @MainActor func viewController(document: DataDocument?) -> sending any NSViewController & InspectorPaneHosting {
         
         switch self {
             case .document:
