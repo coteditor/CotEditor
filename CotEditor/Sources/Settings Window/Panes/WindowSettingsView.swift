@@ -182,13 +182,13 @@ struct WindowSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Toggle(.init("Wrap lines to editor width", table: "WindowSettings"), isOn: $wrapLines)
+                    Toggle(.init("Wrap lines to editor width", table: "WindowSettings", comment: "Refer to the same expression in Script Editor.app"), isOn: $wrapLines)
                     HStack(alignment: .firstTextBaseline) {
-                        Toggle(.init("Indent wrapped lines by", table: "WindowSettings"), isOn: $enablesHangingIndent)
+                        Toggle(.init("Indent wrapped lines by", table: "WindowSettings", comment: "Refer to the same expression in Script Editor.app"), isOn: $enablesHangingIndent)
                         StepperNumberField(value: $hangingIndentWidth, default: UserDefaults.standard[initial: .hangingIndentWidth], in: 0...99)
                             .disabled(!self.enablesHangingIndent)
-                            .accessibilityLabel(.init("wrapped line indent spaces", table: "WindowSettings", comment: "accessibility label"))
-                        Text("spaces", tableName: "WindowSettings", comment: "unit for indentation")
+                            .accessibilityLabel(.init("wrapped line indent spaces", table: "WindowSettings", comment: "accessibility label (Refer to the same expression in Script Editor.app)"))
+                        Text("spaces", tableName: "WindowSettings", comment: "unit for indentation (Refer to the same expression in Script Editor.app)")
                     }
                 }
             }

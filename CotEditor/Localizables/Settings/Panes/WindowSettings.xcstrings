@@ -1065,6 +1065,7 @@
       }
     },
     "Indent wrapped lines by" : {
+      "comment" : "Refer to the same expression in Script Editor.app",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1147,7 +1148,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Відступ перенесених рядків на"
+            "value" : "відступ для перенесених рядків"
           }
         },
         "zh-Hans" : {
@@ -2981,7 +2982,7 @@
       }
     },
     "spaces" : {
-      "comment" : "unit for indentation",
+      "comment" : "unit for indentation (Refer to the same expression in Script Editor.app)",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3064,7 +3065,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "пробілів"
+            "value" : "пробіли"
           }
         },
         "zh-Hans" : {
@@ -3619,6 +3620,7 @@
       }
     },
     "Wrap lines to editor width" : {
+      "comment" : "Refer to the same expression in Script Editor.app",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3701,7 +3703,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Переносити рядки за шириною редактора"
+            "value" : "Переносити рядки відповідно до розмірів вікна"
           }
         },
         "zh-Hans" : {
@@ -3725,7 +3727,7 @@
       }
     },
     "wrapped line indent spaces" : {
-      "comment" : "accessibility label",
+      "comment" : "accessibility label (Refer to the same expression in Script Editor.app)",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3808,7 +3810,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "пробілів відступу перенесеного рядка"
+            "value" : "відступи навколо перенесених рядків"
           }
         },
         "zh-Hans" : {
