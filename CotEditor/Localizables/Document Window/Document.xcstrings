@@ -285,7 +285,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ссылка"
+            "value" : "Псевдоним"
           }
         },
         "tr" : {
@@ -2671,7 +2671,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Дубликат"
+            "value" : "Дублировать"
           }
         },
         "tr" : {
@@ -7025,7 +7025,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Совпадения для “%@” не найдены."
+            "value" : "Совпадения для «%@» не найдены."
           }
         },
         "tr" : {
@@ -10657,7 +10657,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вы хотите переместить“%@” в корзину?"
+            "value" : "Вы хотите переместить «%@» в корзину?"
           }
         },
         "tr" : {
@@ -22879,7 +22879,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перенести строки"
+            "value" : "Включить перенос строк"
           }
         },
         "tr" : {
@@ -22992,7 +22992,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Не переносить строки"
+            "value" : "Выключить перенос строк"
           }
         },
         "tr" : {

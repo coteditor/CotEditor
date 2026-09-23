@@ -72,7 +72,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AWK"
+            "value" : "Скрипт AWK"
           }
         },
         "tr" : {
@@ -178,7 +178,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "BibTeX"
+            "value" : "Библиография BibTeX"
           }
         },
         "tr" : {
@@ -284,7 +284,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Заголовок C"
+            "value" : "Заголовочный файл C"
           }
         },
         "tr" : {
@@ -390,7 +390,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Исходник C"
+            "value" : "Исходный код C"
           }
         },
         "tr" : {
@@ -496,7 +496,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Исходник C#"
+            "value" : "Исходный код C#"
           }
         },
         "tr" : {
@@ -602,7 +602,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Заголовок C++"
+            "value" : "Заголовочный файл C++"
           }
         },
         "tr" : {
@@ -708,7 +708,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Исходник C++"
+            "value" : "Исходный код C++"
           }
         },
         "tr" : {
@@ -814,7 +814,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CSS"
+            "value" : "Каскадная таблица стилей"
           }
         },
         "tr" : {
@@ -1449,7 +1449,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor Синтаксис"
+            "value" : "Синтаксис CotEditor"
           }
         },
         "tr" : {
@@ -1661,7 +1661,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Исходник D"
+            "value" : "Исходный код D"
           }
         },
         "tr" : {
@@ -1767,7 +1767,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dart"
+            "value" : "Скрипт Dart"
           }
         },
         "tr" : {
@@ -1979,7 +1979,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fortran"
+            "value" : "Исходный код Fortran"
           }
         },
         "tr" : {
@@ -2085,7 +2085,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GO"
+            "value" : "Скрипт Go"
           }
         },
         "tr" : {
@@ -2191,7 +2191,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Haskell"
+            "value" : "Скрипт Haskell"
           }
         },
         "tr" : {
@@ -2297,7 +2297,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HTML"
+            "value" : "Документ HTML"
           }
         },
         "tr" : {
@@ -2509,7 +2509,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Java"
+            "value" : "Исходный код Java"
           }
         },
         "tr" : {
@@ -2721,7 +2721,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "JSON"
+            "value" : "Документ JSON"
           }
         },
         "tr" : {
@@ -2827,7 +2827,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Julia"
+            "value" : "Скрипт Julia"
           }
         },
         "tr" : {
@@ -2933,7 +2933,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kotlin"
+            "value" : "Скрипт Kotlin"
           }
         },
         "tr" : {
@@ -3039,7 +3039,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "LISP"
+            "value" : "Скрипт Lisp"
           }
         },
         "tr" : {
@@ -3145,7 +3145,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "LUA"
+            "value" : "Скрипт Lua"
           }
         },
         "tr" : {
@@ -3251,7 +3251,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Markdown"
+            "value" : "Документ Markdown"
           }
         },
         "tr" : {
@@ -3357,7 +3357,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mojo"
+            "value" : "Скрипт Mojo"
           }
         },
         "tr" : {
@@ -3590,7 +3590,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Perl"
+            "value" : "Скрипт Perl"
           }
         },
         "tr" : {
@@ -3696,7 +3696,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "PHP"
+            "value" : "Скрипт PHP"
           }
         },
         "tr" : {
@@ -3802,7 +3802,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Текстовой документ"
+            "value" : "Документ простого текста"
           }
         },
         "tr" : {
@@ -3908,7 +3908,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Python"
+            "value" : "Скрипт Python"
           }
         },
         "tr" : {
@@ -4014,7 +4014,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Текст в формате reStructured"
+            "value" : "Документ reStructuredText"
           }
         },
         "tr" : {
@@ -4120,7 +4120,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ruby"
+            "value" : "Скрипт Ruby"
           }
         },
         "tr" : {
@@ -4226,7 +4226,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rust"
+            "value" : "Скрипт Rust"
           }
         },
         "tr" : {
@@ -4332,7 +4332,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scala"
+            "value" : "Исходный код Scala"
           }
         },
         "tr" : {
@@ -4438,7 +4438,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SVG"
+            "value" : "Масштабируемая векторная графика"
           }
         },
         "tr" : {
@@ -4544,7 +4544,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scheme"
+            "value" : "Скрипт Scheme"
           }
         },
         "tr" : {
@@ -4650,7 +4650,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shell"
+            "value" : "Скрипт командной оболочки"
           }
         },
         "tr" : {
@@ -4756,7 +4756,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SQL"
+            "value" : "Исходный код SQL"
           }
         },
         "tr" : {
@@ -4862,7 +4862,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Swift"
+            "value" : "Исходный код Swift"
           }
         },
         "tr" : {
@@ -4968,7 +4968,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "TeX"
+            "value" : "Документ TeX"
           }
         },
         "tr" : {
@@ -5074,7 +5074,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Textile"
+            "value" : "Документ Textile"
           }
         },
         "tr" : {
@@ -5180,7 +5180,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "TOML"
+            "value" : "Документ TOML"
           }
         },
         "tr" : {
@@ -5392,7 +5392,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verilog"
+            "value" : "Исходный код Verilog"
           }
         },
         "tr" : {
@@ -5498,7 +5498,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "VHDL"
+            "value" : "Исходный код VHDL"
           }
         },
         "tr" : {
@@ -5604,7 +5604,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "XML"
+            "value" : "Документ XML"
           }
         },
         "tr" : {
@@ -5710,7 +5710,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "YAML"
+            "value" : "Документ YAML"
           }
         },
         "tr" : {

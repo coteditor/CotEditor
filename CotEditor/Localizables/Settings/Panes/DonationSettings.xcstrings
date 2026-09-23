@@ -1482,7 +1482,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Открыть в App Store"
+            "value" : "Открыть в App Store"
           }
         },
         "tr" : {
@@ -2013,7 +2013,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Функция поддержки внутри приложения доступна только в CotEditor, распространяемом в App Store."
+            "value" : "Функция поддержки внутри приложения доступна только в CotEditor, распространяемом в App Store."
           }
         },
         "tr" : {

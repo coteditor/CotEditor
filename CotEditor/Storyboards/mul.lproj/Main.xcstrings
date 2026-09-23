@@ -1334,7 +1334,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Все окна — на передний план"
+            "value" : "Все окна — на передний план"
           }
         },
         "tr" : {
@@ -5552,7 +5552,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вернуться к предыдущему сохранению"
+            "value" : "Вернуться к сохраненному"
           }
         },
         "tr" : {
@@ -6350,7 +6350,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hide CotEditor"
+            "value" : "Скрыть CotEditor"
           }
         },
         "tr" : {
@@ -7832,7 +7832,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отменить"
+            "value" : "Повторить"
           }
         },
         "tr" : {
@@ -8288,7 +8288,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перенос строк"
+            "value" : "Включить перенос строк"
           }
         },
         "tr" : {
@@ -10682,7 +10682,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сбросить до настроек по умолчанию"
+            "value" : "Восстановить настройки по умолчанию"
           }
         },
         "tr" : {
@@ -11480,7 +11480,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Спрятать панель инструментов"
+            "value" : "Скрыть панель инструментов"
           }
         },
         "tr" : {
@@ -23108,7 +23108,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Завершить"
+            "value" : "Закончить слово"
           }
         },
         "tr" : {
@@ -23336,7 +23336,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать в Finder…"
+            "value" : "Показать в Finder"
           }
         },
         "tr" : {
