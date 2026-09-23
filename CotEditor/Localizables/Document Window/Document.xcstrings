@@ -1020,7 +1020,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Codepunkten"
+            "value" : "Codepunkte"
           }
         },
         "en-GB" : {
@@ -6982,7 +6982,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld inkompatiblen Zeichen gefunden."
+                  "value" : "%lld inkompatible Zeichen gefunden."
                 }
               }
             }
@@ -8607,7 +8607,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorwarnungen"
+            "value" : "Warnungen"
           }
         },
         "en" : {

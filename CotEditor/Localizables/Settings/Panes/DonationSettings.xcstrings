@@ -46,7 +46,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Tasse"
+                  "value" : "%lld Tassen"
                 }
               }
             }

@@ -14,7 +14,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inoffizielles NFC-basiertes Normalisierungsformular entsprechend der modifizierten NFC"
+            "value" : "Inoffizielle NFC-basierte Normalisierungsform entsprechend der modifizierten NFD"
           }
         },
         "en" : {
@@ -223,7 +223,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inoffizielles NFD-basiertes Normalisierungsformular, das im HFS+ verwendet wird"
+            "value" : "Inoffizielle NFD-basierte Normalisierungsform, die in HFS+ verwendet wird"
           }
         },
         "en" : {
@@ -1059,7 +1059,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC anwenden, in Kleinbuchstaben umwandeln und standardmäßig ignorierbaren Codepunkten entfernen"
+            "value" : "NFKC und Case-Folding anwenden und standardmäßig ignorierbare Codepunkte entfernen"
           }
         },
         "en" : {

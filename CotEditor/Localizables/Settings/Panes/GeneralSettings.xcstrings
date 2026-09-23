@@ -313,7 +313,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der aktuelle `cot` symbolische Link zielt nicht auf den laufenden CotEditor."
+            "value" : "Der aktuelle symbolische Link `cot` verweist nicht auf die laufende Version von CotEditor."
           }
         },
         "en" : {
@@ -420,7 +420,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der aktuelle `cot` symbolische Link könnte auf einen ungültigen Pfad zielen."
+            "value" : "Der aktuelle symbolische Link `cot` könnte auf einen ungültigen Pfad verweisen."
           }
         },
         "en" : {

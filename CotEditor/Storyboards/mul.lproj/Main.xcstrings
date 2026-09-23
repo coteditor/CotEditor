@@ -662,7 +662,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL-Decodierung"
+            "value" : "URL decodieren"
           }
         },
         "en" : {
@@ -11786,7 +11786,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorwarnungen"
+            "value" : "Warnungen"
           }
         },
         "en" : {
@@ -12434,7 +12434,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fokus in vorherigen Editor"
+            "value" : "Fokus in nächsten Editor"
           }
         },
         "en" : {
@@ -12542,7 +12542,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fokus in nächsten Editor"
+            "value" : "Fokus in vorherigen Editor"
           }
         },
         "en" : {
@@ -19778,7 +19778,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zufällig wiedergeben"
+            "value" : "Zufällig anordnen"
           }
         },
         "en" : {
@@ -25610,7 +25610,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL-Codierung"
+            "value" : "URL codieren"
           }
         },
         "en" : {

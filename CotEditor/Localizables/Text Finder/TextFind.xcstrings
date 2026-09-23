@@ -1341,7 +1341,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Suchergebnis schließen."
+            "value" : "Schließe das Suchergebnis."
           }
         },
         "en-GB" : {
@@ -1745,7 +1745,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Suchen und alle Treffer auflisten."
+            "value" : "Suche alle Treffer und liste sie auf."
           }
         },
         "en-GB" : {
@@ -1947,7 +1947,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nächsten Treffer suchen."
+            "value" : "Suche den nächsten Treffer."
           }
         },
         "en-GB" : {
@@ -2149,7 +2149,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorherigen Treffer suchen."
+            "value" : "Suche den vorherigen Treffer."
           }
         },
         "en-GB" : {
@@ -3488,7 +3488,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gesamtes Dokument"
+            "value" : "Zyklisch suchen"
           }
         },
         "en" : {
@@ -3704,7 +3704,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Suche ignoriert diakritische Zeichen (z. B. ö = o)."
+            "value" : "Suche ignoriert diakritische Zeichen (z. B. ö = o)."
           }
         },
         "en" : {
@@ -3920,7 +3920,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Suche ignoriert den Unterschied der Breite der Zeichenform (z. B. ａ = a)."
+            "value" : "Suche ignoriert den Unterschied der Breite der Zeichenform (z. B. ａ = a)."
           }
         },
         "en" : {
@@ -4136,7 +4136,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Äquivalenz Zeichen für Zeichen vergleichen."
+            "value" : "Exakte Übereinstimmung Zeichen für Zeichen."
           }
         },
         "en" : {
@@ -4352,7 +4352,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "^ und $ auch mit Zeilenanfang und -ende übereinstimmen lassen (multiline)."
+            "value" : "Die Anker ^ und $ stimmen auch mit Zeilenanfang und -ende überein (multiline)."
           }
         },
         "en" : {
@@ -4568,7 +4568,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ". mit jedem Zeichen einschließlich Zeilenumbrüchen übereinstimmen lassen (singleline)."
+            "value" : "Der Punkt (.) stimmt mit jedem Zeichen einschließlich Zeilenumbrüchen überein (singleline)."
           }
         },
         "en" : {
@@ -4784,7 +4784,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Suchergebnisse auf ganze Wörter beschränken."
+            "value" : "Beschränkt die Suchergebnisse auf ganze Wörter."
           }
         },
         "en" : {
@@ -5000,7 +5000,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Backslash im Ersetzungstext als Maskierungszeichen interpretieren."
+            "value" : "Entfernt mit Backslash eingeleitete Escape-Sequenzen im Ersetzungstext."
           }
         },
         "en" : {
@@ -5108,7 +5108,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ersetzungstext maskieren"
+            "value" : "Escape-Sequenzen im Ersetzungstext entfernen"
           }
         },
         "en" : {
@@ -5216,7 +5216,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode TR#29 verwenden, um Wortgrenzen zu spezifizieren."
+            "value" : "Legt Wortgrenzen nach Unicode TR#29 fest."
           }
         },
         "en" : {
@@ -6949,7 +6949,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alle Treffer durch den Ersetzungstext ersetzen."
+            "value" : "Ersetze alle Treffer durch den Ersetzungstext."
           }
         },
         "en-GB" : {
@@ -7050,7 +7050,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die aktuelle Auswahl durch den Ersetzungstext ersetzen, dann den nächsten Treffer suchen."
+            "value" : "Ersetze die aktuelle Auswahl durch den Ersetzungstext und suche dann den nächsten Treffer."
           }
         },
         "en-GB" : {
@@ -7554,7 +7554,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auswählen, um beim Suchen Groß-/Kleinschreibung zu ignorieren."
+            "value" : "Wähle diese Option, um beim Suchen Groß-/Kleinschreibung zu ignorieren."
           }
         },
         "en-GB" : {
@@ -7655,7 +7655,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auswählen, um nur in der Auswahl zu suchen."
+            "value" : "Wähle diese Option, um nur in der Auswahl zu suchen."
           }
         },
         "en-GB" : {
@@ -7756,7 +7756,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auswählen, um mit regulärem Ausdruck zu suchen."
+            "value" : "Wähle diese Option, um mit einem regulären Ausdruck zu suchen."
           }
         },
         "en-GB" : {
@@ -7958,7 +7958,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kurzreferenz des regulären Ausdrucks anzeigen."
+            "value" : "Zeige die Kurzreferenz für die Syntax regulärer Ausdrücke an."
           }
         },
         "en-GB" : {
@@ -8795,7 +8795,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ersetzungstext für den gefundenen Suchbegriff eingeben."
+            "value" : "Gib den Ersetzungstext für den gefundenen Text ein."
           }
         },
         "en-GB" : {

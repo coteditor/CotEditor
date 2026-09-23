@@ -122,7 +122,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unter Verwendung dieser Regeln nacheinander von oben nach unten durch ersetzen:"
+            "value" : "Ersetzungen mit den folgenden Regeln von oben nach unten durchführen:"
           }
         },
         "en" : {
@@ -230,7 +230,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alle Treffer der Ersetzungsregeln markieren."
+            "value" : "Markiere alle Treffer der Ersetzungsregeln."
           }
         },
         "en" : {
@@ -675,7 +675,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erweitere Optionen"
+            "value" : "Erweiterte Optionen"
           }
         },
         "en" : {
@@ -783,7 +783,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erweitere Optionen einblenden"
+            "value" : "Erweiterte Optionen einblenden"
           }
         },
         "en" : {
@@ -891,7 +891,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auswählen, um beim Suchen Groß-/Kleinschreibung zu ignorieren."
+            "value" : "Wähle diese Option, um beim Suchen Groß-/Kleinschreibung zu ignorieren."
           }
         },
         "en" : {
@@ -1323,7 +1323,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auswählen, um mit regulärem Ausdruck zu suchen."
+            "value" : "Wähle diese Option, um mit einem regulären Ausdruck zu suchen."
           }
         },
         "en" : {
@@ -1539,7 +1539,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alle Treffer gemäß den Ersetzungsregeln ersetzen."
+            "value" : "Ersetze alle Treffer gemäß den Ersetzungsregeln."
           }
         },
         "en" : {
@@ -1647,7 +1647,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auswählen, um nur in der Auswahl zu suchen."
+            "value" : "Wähle diese Option, um nur Text in der Auswahl zu ersetzen."
           }
         },
         "en" : {
@@ -1755,7 +1755,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auswählen, um diese Regel zu benutzen."
+            "value" : "Wähle diese Option, um diese Regel zu benutzen."
           }
         },
         "en" : {

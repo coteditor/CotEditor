@@ -2317,7 +2317,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "kein Leerzeichen"
+            "value" : "kein Leerraumzeichen"
           }
         },
         "en-GB" : {
@@ -2619,7 +2619,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Syntax entspricht den Spezifikationen der %@."
+            "value" : "Die Syntax entspricht den Spezifikationen für %@."
           }
         },
         "en-GB" : {
@@ -2719,7 +2719,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leerzeichen"
+            "value" : "Leerraumzeichen"
           }
         },
         "en-GB" : {
@@ -2919,7 +2919,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buchstabe"
+            "value" : "Wortzeichen"
           }
         },
         "en-GB" : {

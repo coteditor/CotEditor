@@ -415,7 +415,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gesamte Linie"
+            "value" : "Gesamte Zeile"
           }
         },
         "en-GB" : {
@@ -1520,7 +1520,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Probe linie zu prüfen, welchen Teil einer Linie für den Vergleich verwendet wird."
+            "value" : "Prüfe anhand einer Beispielzeile, welcher Teil der Zeile zum Sortieren verwendet wird."
           }
         },
         "en-GB" : {

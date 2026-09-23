@@ -15099,7 +15099,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Dokument hat ungespeicherte Änderungen."
+            "value" : "Das Dokument hat ungesicherte Änderungen."
           }
         },
         "en" : {
@@ -15837,7 +15837,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Datei wurde von einem anderen Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor."
+            "value" : "Die Datei wurde von einem anderen Programm geändert. Es gibt auch ungesicherte Änderungen in CotEditor."
           }
         },
         "en" : {

@@ -432,7 +432,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bytes des mit der angegebenen Codierung codierten Textes zählen."
+            "value" : "Zählt die Bytes des mit der angegebenen Codierung codierten Textes."
           }
         },
         "en" : {
@@ -648,7 +648,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auf intuitive Weise, die in Unicode definiert ist, zählen. Das aus mehreren Unicode-Codepunkten bestehende Zeichen, wie Emojis, wird als ein Zeichen gezählt."
+            "value" : "Zählt auf die in Unicode definierte intuitive Weise. Ein Zeichen, das aus mehreren Unicode-Codepunkten besteht, etwa ein Emoji, wird als ein Zeichen gezählt."
           }
         },
         "en" : {
@@ -756,7 +756,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Graphemhaufen"
+            "value" : "Graphemcluster"
           }
         },
         "en" : {
@@ -864,7 +864,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode-Codepunkte zählen. Entspricht der UTF-32-Zählung."
+            "value" : "Zählt Unicode-Codepunkte. Entspricht der UTF-32-Zählung."
           }
         },
         "en" : {
@@ -1080,7 +1080,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode-Codepunkte aber Surrogate-Paare als zwei Zeichen zählen."
+            "value" : "Zählt Unicode-Codepunkte, wobei ein Surrogatpaar als zwei Zeichen zählt."
           }
         },
         "en" : {

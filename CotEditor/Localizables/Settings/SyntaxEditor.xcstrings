@@ -3165,7 +3165,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wenn nichts angegeben ist, werden die Vervollständigungswörter für den Syntax aus den Einstellungen für das Hervorheben erstellt."
+            "value" : "Wenn nichts angegeben ist, werden die Vervollständigungswörter für die Syntax aus den Einstellungen für das Hervorheben erstellt."
           }
         },
         "en-GB" : {
@@ -3366,7 +3366,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Einrückung:"
+            "value" : "Einrückung"
           }
         },
         "en-GB" : {
@@ -5082,7 +5082,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Muster des reguläreren Ausdrucks"
+            "value" : "Muster des regulären Ausdrucks"
           }
         },
         "en-GB" : {

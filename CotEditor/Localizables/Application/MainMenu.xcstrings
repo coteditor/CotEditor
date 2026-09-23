@@ -2622,7 +2622,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Option-Taste klicken, um das Skript im Editor zu öffnen."
+            "value" : "Mit gedrückter Option-Taste klicken, um das Skript im Editor zu öffnen."
           }
         },
         "en-GB" : {
@@ -4530,7 +4530,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeilen zufällig wiedergeben"
+            "value" : "Zeilen zufällig anordnen"
           }
         },
         "en-GB" : {
