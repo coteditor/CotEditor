@@ -4022,7 +4022,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wyszukiwanie ignoruje znaki diakrytyczne (np. ą = a)."
+            "value" : "Ignoruj znaki diakrytyczne podczas wyszukiwania (np. ą = a)"
           }
         },
         "pt" : {
@@ -4250,7 +4250,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wyszukiwanie ignoruje różnice szerokości w formach znaków (np. ａ = a)."
+            "value" : "Ignoruj różnice szerokości znaków podczas wyszukiwania (np. ａ = a)"
           }
         },
         "pt" : {
@@ -4478,7 +4478,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokładna równoważność poszczególnych znaków."
+            "value" : "Dopasowuj dokładnie znak po znaku"
           }
         },
         "pt" : {
@@ -4706,7 +4706,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pozwól by ^ i $ dopasowały do początku i końca wiersza (tryb wielowierszowy)."
+            "value" : "Dopasowuj ^ i $ do początku i końca wierszy (tryb wielowierszowy)"
           }
         },
         "pt" : {
@@ -4934,7 +4934,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pozwól by . dopasowała do dowolnego znaku, włączając znaki nowego wiersza (tryb jednowierszowy)."
+            "value" : "Dopasowuj . do dowolnego znaku, także znaku nowego wiersza (tryb jednowierszowy)"
           }
         },
         "pt" : {
@@ -7886,7 +7886,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wyszukiwanie w tekście…"
+            "value" : "Szukam w tekście…"
           }
         },
         "pt" : {
@@ -8100,7 +8100,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wybierz, aby ignorować wielkość liter podczas wyszukiwania."
+            "value" : "Zaznacz, aby ignorować wielkość liter podczas wyszukiwania"
           }
         },
         "pt" : {
@@ -8207,7 +8207,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wybierz, aby wyszukiwać tekst tylko z zaznaczenia."
+            "value" : "Zaznacz, aby wyszukiwać tekst tylko w zaznaczeniu"
           }
         },
         "pt" : {
@@ -8314,7 +8314,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wybierz, aby szukać z użyciem wyrażenia regularnego."
+            "value" : "Zaznacz, aby szukać z użyciem wyrażenia regularnego"
           }
         },
         "pt" : {
@@ -8973,7 +8973,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wybrano opcję „w zaznaczeniu”, chociaż nic nie jest zaznaczone."
+            "value" : "Opcja W zaznaczeniu jest włączona, chociaż nic nie jest zaznaczone."
           }
         },
         "pt" : {
@@ -9086,7 +9086,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wybierz zakres wyszukiwania w dokumencie lub wyłącz opcję „w zaznaczeniu”."
+            "value" : "Zaznacz zakres wyszukiwania w dokumencie lub wyłącz opcję W zaznaczeniu."
           }
         },
         "pt" : {

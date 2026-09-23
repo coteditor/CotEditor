@@ -168,7 +168,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auto"
+            "value" : "Automatycznie"
           }
         },
         "pt" : {
@@ -1975,7 +1975,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otwórz dokumenty w kartach:"
+            "value" : "Otwieraj dokumenty w kartach:"
           }
         },
         "pt" : {
@@ -2189,7 +2189,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pozostałe niedrukowane"
+            "value" : "Pozostałe znaki odstępu"
           }
         },
         "pt" : {

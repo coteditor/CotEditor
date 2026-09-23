@@ -2294,7 +2294,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wstaw znak"
+            "value" : "Sprawdź znak"
           }
         },
         "pt" : {
@@ -5704,7 +5704,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aby wyświetlić znaki niewidoczne, ustaw je w ustawieniach okna"
+            "value" : "Aby wyświetlić znaki niewidoczne, ustaw je w ustawieniach Okno"
           }
         },
         "pt" : {
@@ -5810,7 +5810,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Przytnij końcowe znaki niedrukowane"
+            "value" : "Przytnij końcowe znaki odstępu"
           }
         },
         "pt" : {

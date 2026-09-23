@@ -3191,7 +3191,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wyodrębnianie konspektu…"
+            "value" : "Wyodrębniam konspekt…"
           }
         },
         "pt" : {
@@ -8687,7 +8687,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Niezgodne końce wierszy"
+            "value" : "Niespójne końce wierszy"
           }
         },
         "pt" : {
@@ -9884,7 +9884,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Końce wiersza"
+            "value" : "Końce wierszy"
           }
         },
         "pt" : {
@@ -11992,7 +11992,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nie zaznaczone"
+            "value" : "Niezaznaczone"
           }
         },
         "pt" : {
@@ -13698,7 +13698,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wyszukiwanie niezgodnych znaków…"
+            "value" : "Szukam niezgodnych znaków…"
           }
         },
         "pt" : {
@@ -14018,7 +14018,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wyszukiwanie w folderze…"
+            "value" : "Szukam w folderze…"
           }
         },
         "pt" : {

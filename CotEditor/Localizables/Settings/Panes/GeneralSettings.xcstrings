@@ -166,7 +166,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sprawdź dostępność aktualizacji automatycznie"
+            "value" : "Sprawdzaj dostępność aktualizacji automatycznie"
           }
         },
         "pt" : {
@@ -1912,7 +1912,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zachowanie aplikacji zmieni się od następnego uruchomienia."
+            "value" : "Zachowanie aplikacji zmieni się dopiero przy drugim kolejnym uruchomieniu."
           }
         },
         "pt" : {

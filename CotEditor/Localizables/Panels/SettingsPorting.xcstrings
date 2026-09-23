@@ -1884,7 +1884,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eksportuj ustawienia"
+            "value" : "Eksport ustawień"
           }
         },
         "pt" : {
@@ -1990,7 +1990,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Importuj ustawienia"
+            "value" : "Import ustawień"
           }
         },
         "pt" : {

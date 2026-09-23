@@ -993,7 +993,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zaznacz, aby ignorować wielkość liter przy wyszukiwaniu."
+            "value" : "Zaznacz, aby ignorować wielkość liter podczas wyszukiwania"
           }
         },
         "pt" : {

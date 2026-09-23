@@ -9561,7 +9561,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wybież inną zazwę."
+            "value" : "Wybierz inną nazwę."
           }
         },
         "pt" : {
@@ -10014,7 +10014,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wypełnij następujący szablon i opublikuj go na %1$@ lub wyślij na adres %2$@. Pamiętaj, że treść wysłanego e-maila może zostać udostępniona na stronie zgłaszania problemów. Treść wpisz proszę w języku angielskim lub japońskim."
+            "value" : "Wypełnij następujący szablon i opublikuj go na %1$@ lub wyślij na adres %2$@. Pamiętaj, że treść wysłanego e-maila może zostać udostępniona na stronie zgłaszania problemów. Treść wpisz w języku angielskim lub japońskim."
           }
         },
         "pt" : {
@@ -10580,7 +10580,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zgłoś problem"
+            "value" : "Zgłoszenie problemu"
           }
         },
         "pt" : {
@@ -11367,7 +11367,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Niezgodne znaki zostaną zastąpione lub usunięte przy zachowaniu. Czy chcesz zmienić kodowanie tekstu lub przejrzeć niezgodne znaki?"
+            "value" : "Niezgodne znaki zostaną zastąpione lub usunięte przy zachowaniu. Czy chcesz zmienić kodowanie tekstu i przejrzeć niezgodne znaki?"
           }
         },
         "pt" : {
@@ -15093,7 +15093,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pojedynczy klawisz jest nieprawidłowy jako skrót."
+            "value" : "Tego klawisza nie można użyć samodzielnie w skrócie."
           }
         },
         "pt" : {
@@ -16552,7 +16552,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Czy chcesz zachować wersję CotEditora czy uaktualnić go do zmienionej wersji?"
+            "value" : "Czy chcesz zachować wersję CotEditora czy uaktualnić ją do zmienionej wersji?"
           }
         },
         "pt" : {

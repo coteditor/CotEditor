@@ -2006,7 +2006,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zastąp cydzysłowy"
+            "value" : "Zastąp cudzysłowy"
           }
         },
         "pt" : {
@@ -8390,7 +8390,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Koniec wiersza"
+            "value" : "Końce wierszy"
           }
         },
         "pt" : {
@@ -8504,7 +8504,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Koniec wiersza"
+            "value" : "Końce wierszy"
           }
         },
         "pt" : {
@@ -17510,7 +17510,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wielokrotnie zastąp"
+            "value" : "Wielokrotne zastąpienia"
           }
         },
         "pt" : {
@@ -17624,7 +17624,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Przytnij końcowe znaki niedrukowane"
+            "value" : "Przytnij końcowe znaki odstępu"
           }
         },
         "pt" : {
@@ -21956,7 +21956,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wielokrotnie zastąp"
+            "value" : "Wielokrotne zastąpienia"
           }
         },
         "pt" : {

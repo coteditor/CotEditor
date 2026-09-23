@@ -378,7 +378,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Domyślny koniec wierszy:"
+            "value" : "Domyślne końce wierszy:"
           }
         },
         "pt" : {
@@ -908,7 +908,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odwołaj się do deklaracji kodowania w dokumencie"
+            "value" : "Uwzględniaj deklarację kodowania w dokumencie"
           }
         },
         "pt" : {

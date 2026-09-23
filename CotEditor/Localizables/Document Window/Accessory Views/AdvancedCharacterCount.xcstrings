@@ -1747,7 +1747,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignoruj koniec wierszy"
+            "value" : "Ignoruj końce wierszy"
           }
         },
         "pt" : {
@@ -1854,7 +1854,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignoruj znaki niedrukowane"
+            "value" : "Ignoruj znaki odstępu"
           }
         },
         "pt" : {
@@ -2495,7 +2495,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Traktuj sąsiadujące znaki niedrukowane jako pojedynczą spację"
+            "value" : "Traktuj sąsiadujące znaki odstępu jako pojedynczą spację"
           }
         },
         "pt" : {
@@ -2707,7 +2707,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Znaki niedrukowane:"
+            "value" : "Znaki odstępu:"
           }
         },
         "pt" : {

@@ -278,7 +278,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Automatycznie przycinaj końcowe znaki niedrukowane"
+            "value" : "Automatycznie przycinaj końcowe znaki odstępu"
           }
         },
         "pt" : {
@@ -1020,7 +1020,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Również wiersze wyłącznie znaków niedrukowanych"
+            "value" : "Również wiersze zawierające tylko znaki odstępu"
           }
         },
         "pt" : {
@@ -1550,7 +1550,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktywne łącza adresów URL w dokumencie"
+            "value" : "Twórz łącza z adresów URL w dokumencie"
           }
         },
         "pt" : {
@@ -2190,7 +2190,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Znaki niedrukowane:"
+            "value" : "Znaki odstępu:"
           }
         },
         "pt" : {
