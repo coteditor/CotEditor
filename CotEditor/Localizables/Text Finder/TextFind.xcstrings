@@ -2488,7 +2488,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "\\(%2$lld)件中\\(%1$lld)件目"
+            "value" : "%2$lld件中%1$lld件目"
           }
         },
         "ko" : {
@@ -3740,7 +3740,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文字の発音記号を無視して検索（例: ö = o）"
+            "value" : "発音区別記号を無視して検索（例: ö = o）"
           }
         },
         "ko" : {
@@ -4172,7 +4172,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "バイトレベルで完全一致する文字列にのみ一致"
+            "value" : "文字単位で厳密に比較"
           }
         },
         "ko" : {

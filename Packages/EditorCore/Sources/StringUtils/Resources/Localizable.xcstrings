@@ -1095,7 +1095,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKCを適用しすべて小文字に変換（case folding）したのち、デフォルトの無視できるコードポイントを削除"
+            "value" : "NFKCとケースフォールディングを適用し、デフォルトで無視可能なコードポイントを削除"
           }
         },
         "ko" : {

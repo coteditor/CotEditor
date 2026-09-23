@@ -446,7 +446,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditorはオープンソースプログラムとして\nApache License, Version 2.0でライセンスされてます。"
+            "value" : "CotEditorはオープンソースプログラムとして\nApache License, Version 2.0でライセンスされています。"
           }
         },
         "ko" : {

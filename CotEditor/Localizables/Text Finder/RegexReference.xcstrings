@@ -2849,7 +2849,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "非単語境界"
+            "value" : "単語境界"
           }
         },
         "ko" : {

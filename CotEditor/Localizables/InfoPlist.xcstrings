@@ -4068,7 +4068,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scalaスクリプト"
+            "value" : "Scalaソース"
           }
         },
         "ko" : {
