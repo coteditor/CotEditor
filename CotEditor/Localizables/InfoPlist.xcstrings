@@ -112,7 +112,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "BibTeX Bibliografie"
+            "value" : "BibTeX bibliografie"
           }
         },
         "de" : {
@@ -218,7 +218,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "C header"
+            "value" : "Hlavičkový soubor C"
           }
         },
         "de" : {
@@ -536,7 +536,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "C++ header"
+            "value" : "Hlavičkový soubor C++"
           }
         },
         "de" : {
@@ -3736,7 +3736,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prostý text dokument"
+            "value" : "Prostý textový dokument"
           }
         },
         "de" : {

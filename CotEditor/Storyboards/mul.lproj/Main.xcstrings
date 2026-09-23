@@ -11522,7 +11522,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přizpůsobit panel nástrojů…"
+            "value" : "Upravit panel nástrojů…"
           }
         },
         "de" : {
@@ -18248,7 +18248,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Použít výběr pro hledání"
+            "value" : "Hledat výběr"
           }
         },
         "de" : {
@@ -22466,7 +22466,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přejít na výběr"
+            "value" : "Zobrazit výběr"
           }
         },
         "de" : {
@@ -23036,7 +23036,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Doplnit"
+            "value" : "Dokončit"
           }
         },
         "de" : {
