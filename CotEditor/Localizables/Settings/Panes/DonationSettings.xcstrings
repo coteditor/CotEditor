@@ -627,7 +627,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Como prova do seu apoio, um emblema de café aparece na barra de status durante o apoio contínuo."
+            "value" : "Como sinal de agradecimento pelo apoio, um emblema de café aparece na barra de estado durante o apoio contínuo."
           }
         },
         "ru" : {
@@ -839,7 +839,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apoio contínuo"
+            "value" : "Apoio Contínuo"
           }
         },
         "ru" : {
@@ -945,7 +945,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor fornece todos os recursos gratuitamente para todos. Você pode apoiar este projeto pagando um cafézinho."
+            "value" : "O CotEditor fornece todos os recursos gratuitamente para todos. Você pode apoiar este projeto oferecendo um cafezinho."
           }
         },
         "ru" : {
@@ -1263,7 +1263,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Doação única"
+            "value" : "Doação Única"
           }
         },
         "ru" : {

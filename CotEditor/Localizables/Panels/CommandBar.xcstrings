@@ -298,7 +298,7 @@
               "zero" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Comando não encontrado"
+                  "value" : "Nenhum comando encontrado"
                 }
               }
             }

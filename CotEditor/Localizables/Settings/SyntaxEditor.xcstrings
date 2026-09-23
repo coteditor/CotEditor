@@ -1507,7 +1507,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não é possível renomear pacotes de sintaxe."
+            "value" : "Não é possível renomear sintaxes integradas."
           }
         },
         "ru" : {
@@ -3429,7 +3429,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se não especificado, as palavras de conclusão de sintaxe são geradas com base nas configurações de destaque."
+            "value" : "Se não forem especificadas, as palavras de preenchimento da sintaxe são geradas com base nos ajustes de destaque."
           }
         },
         "ru" : {
@@ -3642,7 +3642,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recuo:"
+            "value" : "Recuo"
           }
         },
         "ru" : {
@@ -3855,7 +3855,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comentário incorporado:"
+            "value" : "Comentário em linha:"
           }
         },
         "ru" : {
@@ -4068,7 +4068,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kind"
+            "value" : "Tipo"
           }
         },
         "ru" : {
@@ -4174,7 +4174,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kind:"
+            "value" : "Tipo:"
           }
         },
         "ru" : {
@@ -6011,7 +6011,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O caractere de escape deve ser um único caractere em unidade de código UTF-16."
+            "value" : "O caractere de escape deve ocupar uma única unidade de código UTF-16."
           }
         },
         "ru" : {
@@ -6351,7 +6351,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conclusão"
+            "value" : "Preenchimento"
           }
         },
         "ru" : {
@@ -6465,7 +6465,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Plano"
+            "value" : "Esboço"
           }
         },
         "ru" : {
@@ -6684,7 +6684,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Os delimitadores de bloco são usados para indentação automática durante a digitação."
+            "value" : "Os delimitadores de bloco são usados para recuo automático durante a digitação."
           }
         },
         "ru" : {
@@ -6790,7 +6790,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Os delimitadores definidos aqui também são usados para realce de sintaxe."
+            "value" : "Os delimitadores definidos aqui também são usados para destaque de sintaxe."
           }
         },
         "ru" : {

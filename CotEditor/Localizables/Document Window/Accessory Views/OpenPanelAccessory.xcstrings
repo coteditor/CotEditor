@@ -174,7 +174,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir como somente leitura"
+            "value" : "Abrir como Somente Leitura"
           }
         },
         "ru" : {
@@ -281,7 +281,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar arquivos ocultos"
+            "value" : "Mostrar Arquivos Ocultos"
           }
         },
         "ru" : {

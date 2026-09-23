@@ -387,7 +387,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alterar cor do fundo"
+            "value" : "Alterar Cor do Fundo"
           }
         },
         "ru" : {
@@ -493,7 +493,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contagem de caracteres"
+            "value" : "Contagem de Caracteres"
           }
         },
         "ru" : {
@@ -599,7 +599,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Coluna atual"
+            "value" : "Coluna Atual"
           }
         },
         "ru" : {
@@ -705,7 +705,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Linha atual"
+            "value" : "Linha Atual"
           }
         },
         "ru" : {
@@ -1023,7 +1023,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guias de recuo"
+            "value" : "Guias de Recuo"
           }
         },
         "ru" : {
@@ -1130,7 +1130,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recuar linhas ajustadas com"
+            "value" : "Recuar linhas ajustadas por"
           }
         },
         "ru" : {
@@ -1236,7 +1236,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Caracteres invisíveis"
+            "value" : "Caracteres Invisíveis"
           }
         },
         "ru" : {
@@ -1342,7 +1342,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contagem de linhas"
+            "value" : "Contagem de Linhas"
           }
         },
         "ru" : {
@@ -1449,7 +1449,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Final de linha"
+            "value" : "Final de Linha"
           }
         },
         "ru" : {
@@ -1555,7 +1555,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Números das linhas"
+            "value" : "Números das Linhas"
           }
         },
         "ru" : {
@@ -1981,7 +1981,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir em abas:"
+            "value" : "Abrir em Abas:"
           }
         },
         "ru" : {
@@ -2088,7 +2088,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Outros caracteres de controle"
+            "value" : "Outros Caracteres de Controle"
           }
         },
         "ru" : {
@@ -2195,7 +2195,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Outros espaços em branco"
+            "value" : "Outros Espaços em Branco"
           }
         },
         "ru" : {
@@ -2407,7 +2407,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guia da página na coluna:"
+            "value" : "Guia da Página na Coluna:"
           }
         },
         "ru" : {
@@ -3578,7 +3578,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contagem de palavras"
+            "value" : "Contagem de Palavras"
           }
         },
         "ru" : {
@@ -4012,7 +4012,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Da esquerda para a direita"
+            "value" : "Da Esquerda para a Direita"
           }
         },
         "ru" : {
@@ -4126,7 +4126,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Da direita para a esquerda"
+            "value" : "Da Direita para a Esquerda"
           }
         },
         "ru" : {

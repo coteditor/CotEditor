@@ -1179,7 +1179,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aplicando NFKC, case-folding e remoção de pontos de código ignorados por padrão"
+            "value" : "Aplicação de NFKC e case folding, com remoção dos pontos de código ignoráveis por padrão"
           }
         },
         "ru" : {

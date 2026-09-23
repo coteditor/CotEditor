@@ -188,7 +188,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usar estas regras consecutivamente para substituir:"
+            "value" : "Substitua o texto usando estas regras em sequência, de cima para baixo:"
           }
         },
         "ru" : {
@@ -885,7 +885,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar opções avançadas"
+            "value" : "Mostrar Opções Avançadas"
           }
         },
         "ru" : {
@@ -1227,7 +1227,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ative"
+            "value" : "Ativar"
           }
         },
         "ru" : {
@@ -1797,7 +1797,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecione para buscar apenas no texto da seleção."
+            "value" : "Selecione para substituir o texto apenas na seleção."
           }
         },
         "ru" : {
@@ -1911,7 +1911,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecione esta regra na para usar na substituição"
+            "value" : "Selecione para usar esta regra de substituição."
           }
         },
         "ru" : {

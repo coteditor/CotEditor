@@ -394,7 +394,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld selecionado"
+            "value" : "Seleção: %lld"
           }
         },
         "ru" : {
@@ -620,7 +620,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Adicionar Novo Item"
+            "value" : "Adicione um novo item"
           }
         },
         "ru" : {
@@ -846,7 +846,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apagar Items Selecionados"
+            "value" : "Apague os itens selecionados"
           }
         },
         "ru" : {
@@ -1298,7 +1298,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Edite"
+            "value" : "Editar"
           }
         },
         "ru" : {
@@ -1411,7 +1411,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editar item selecionado"
+            "value" : "Edite o item selecionado"
           }
         },
         "ru" : {
@@ -3787,7 +3787,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Para abrir esta janela, feche a atual primeiro."
+            "value" : "Para abri-lo nesta janela, feche primeiro a janela em que ele já está aberto."
           }
         },
         "ru" : {
@@ -5150,7 +5150,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Revisão de Caracteres Incompatíveis"
+            "value" : "Revisar Caracteres Incompatíveis"
           }
         },
         "ru" : {
@@ -5264,7 +5264,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salvar Texto Disponíveis"
+            "value" : "Salvar Texto Disponível"
           }
         },
         "ru" : {
@@ -7867,7 +7867,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nenhum filtro recente"
+            "value" : "Nenhum Filtro Recente"
           }
         },
         "ru" : {
@@ -8209,7 +8209,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uma configuração personalizada com o mesmo nome já existe. Substituí-la irá sobrescrever seu conteúdo atual."
+            "value" : "Já existe um ajuste personalizado com o mesmo nome. Substituí-lo sobrescreverá o conteúdo atual."
           }
         },
         "ru" : {
@@ -9001,7 +9001,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não pergunte novamente para este arquivo"
+            "value" : "Não Perguntar Novamente para Este Documento"
           }
         },
         "ru" : {
@@ -11033,7 +11033,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Visite o URL"
+            "value" : "Ir para o URL"
           }
         },
         "ru" : {
@@ -12726,7 +12726,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A codificação de texto “%@” não pôde ser usada para reinterpretar o documento"
+            "value" : "Não foi possível reinterpretar o documento com a codificação de texto “%@”."
           }
         },
         "ru" : {
@@ -13404,7 +13404,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O arquivo de script “%@” não pôde ser aberto."
+            "value" : "Não foi possível abrir o arquivo de script “%@”."
           }
         },
         "ru" : {
@@ -13743,7 +13743,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O script “%@” não pôde ser lido."
+            "value" : "Não foi possível ler o script “%@”."
           }
         },
         "ru" : {
@@ -14308,7 +14308,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” não pôde ser apagado."
+            "value" : "Não foi possível apagar “%@”."
           }
         },
         "ru" : {
@@ -14421,7 +14421,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” não pôde ser importado."
+            "value" : "Não foi possível importar “%@”."
           }
         },
         "ru" : {
@@ -14534,7 +14534,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” não pôde ser carregado."
+            "value" : "Não foi possível carregar “%@”."
           }
         },
         "ru" : {
@@ -14760,7 +14760,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O arquivo original de “%@” não foi encontrado."
+            "value" : "Não foi possível encontrar o arquivo original de “%@”."
           }
         },
         "ru" : {
@@ -14873,7 +14873,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” já está sendo usado pelo comando “%@”."
+            "value" : "“%1$@” já está sendo usado pelo comando “%2$@”."
           }
         },
         "ru" : {
@@ -15212,7 +15212,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A combinação “%@” não é suportada pela customização de combinações de teclas."
+            "value" : "A combinação “%@” não é compatível com a personalização de atalhos."
           }
         },
         "ru" : {
@@ -16332,7 +16332,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Manter Edição do CotEditor"
+            "value" : "Manter Versão do CotEditor"
           }
         },
         "ru" : {
@@ -16558,7 +16558,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deseja manter a edição do CotEditor ou atualizar para a edição modificada?"
+            "value" : "Deseja manter a versão do CotEditor ou atualizar para a versão modificada?"
           }
         },
         "ru" : {

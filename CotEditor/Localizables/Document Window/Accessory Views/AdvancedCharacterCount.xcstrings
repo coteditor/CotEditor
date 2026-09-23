@@ -414,7 +414,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contagem avançada de caracteres…"
+            "value" : "Contagem Avançada de Caracteres…"
           }
         },
         "ru" : {
@@ -528,7 +528,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contar bytes do texto codificado com a codificação especificada."
+            "value" : "Conte os bytes do texto codificado com a codificação especificada."
           }
         },
         "ru" : {
@@ -870,7 +870,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Agrupamentos de Grapheme"
+            "value" : "Agrupamento de Grafemas"
           }
         },
         "ru" : {
@@ -984,7 +984,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contar pontos de código Unicode. O mesmo que contar UTF-32."
+            "value" : "Conte os pontos de código Unicode. Equivale à contagem em UTF-32."
           }
         },
         "ru" : {
@@ -1098,7 +1098,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode escalar"
+            "value" : "Escalar Unicode"
           }
         },
         "ru" : {
@@ -1212,7 +1212,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conte os pontos de código Unicode, mas um par substituto como dois caracteres."
+            "value" : "Conte os pontos de código Unicode, considerando cada par substituto como dois caracteres."
           }
         },
         "ru" : {
@@ -1753,7 +1753,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignorar finais de linha"
+            "value" : "Ignorar Finais de Linha"
           }
         },
         "ru" : {
@@ -1860,7 +1860,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignorar espaços em branco"
+            "value" : "Ignorar Espaços em Branco"
           }
         },
         "ru" : {
@@ -2073,7 +2073,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar opções"
+            "value" : "Mostrar Opções"
           }
         },
         "ru" : {
@@ -2501,7 +2501,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tratar espaços em branco consecutivos como um espaço"
+            "value" : "Tratar Espaços em Branco Consecutivos como um Espaço"
           }
         },
         "ru" : {

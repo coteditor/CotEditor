@@ -173,7 +173,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserir chaves e aspas finais automaticamente"
+            "value" : "Fechar Delimitadores e Aspas Automaticamente"
           }
         },
         "ru" : {
@@ -1890,7 +1890,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Palavras padrão"
+            "value" : "Palavras Padrão"
           }
         },
         "ru" : {
@@ -2102,7 +2102,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sugerir preenchimento ao digitar"
+            "value" : "Sugerir Preenchimento ao Digitar"
           }
         },
         "ru" : {
@@ -2634,7 +2634,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Palavras definidas na sintaxe"
+            "value" : "Palavras Definidas na Sintaxe"
           }
         },
         "ru" : {
@@ -2740,7 +2740,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Palavras no documento"
+            "value" : "Palavras no Documento"
           }
         },
         "ru" : {

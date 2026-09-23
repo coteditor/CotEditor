@@ -494,7 +494,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Arquivos Soltos"
+            "value" : "Soltar Arquivos"
           }
         },
         "ru" : {
@@ -708,7 +708,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Arquivo de imagem"
+            "value" : "Arquivo de Imagem"
           }
         },
         "ru" : {
@@ -1361,7 +1361,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sintaxe na qual essa configuração de soltar arquivo é usada."
+            "value" : "Sintaxe na qual este ajuste de soltar arquivos é usado."
           }
         },
         "ru" : {
@@ -1468,7 +1468,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Arquivo de texto"
+            "value" : "Arquivo de Texto"
           }
         },
         "ru" : {

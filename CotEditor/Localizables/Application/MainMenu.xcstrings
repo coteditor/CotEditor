@@ -2832,7 +2832,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opção-clique para abrir o script no editor."
+            "value" : "Clique com a tecla Option pressionada para abrir o script no editor."
           }
         },
         "ru" : {
@@ -4854,7 +4854,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Linhas Aleatórias"
+            "value" : "Embaralhar Linhas"
           }
         },
         "ru" : {
@@ -5390,7 +5390,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Straighten Quotes"
+            "value" : "Converter em Aspas Retas"
           }
         },
         "ru" : {
@@ -5710,7 +5710,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Para exibir caracteres invisíveis, configure-os na janela de Configurações"
+            "value" : "Para mostrar caracteres invisíveis, ative-os nos ajustes de Janela"
           }
         },
         "ru" : {

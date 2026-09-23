@@ -74,7 +74,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "todas"
+            "value" : "todas as"
           }
         },
         "ru" : {
@@ -188,7 +188,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "qualquer uma"
+            "value" : "qualquer uma das"
           }
         },
         "ru" : {
@@ -416,7 +416,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "das condições a seguir:"
+            "value" : "condições a seguir:"
           }
         },
         "ru" : {

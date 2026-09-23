@@ -67,7 +67,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "código de Cor"
+            "value" : "Código de cor"
           }
         },
         "ru" : {
@@ -971,7 +971,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hexa"
+            "value" : "Hexadecimal"
           }
         },
         "ru" : {
@@ -1084,7 +1084,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hexa com Alfa"
+            "value" : "Hexadecimal com Alfa"
           }
         },
         "ru" : {
@@ -1197,7 +1197,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hexa (Curto)"
+            "value" : "Hexadecimal (Curto)"
           }
         },
         "ru" : {
@@ -1310,7 +1310,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hexa com Alfa (Curto)"
+            "value" : "Hexadecimal com Alfa (Curto)"
           }
         },
         "ru" : {

@@ -493,7 +493,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toda a linha"
+            "value" : "Toda a Linha"
           }
         },
         "ru" : {
@@ -599,7 +599,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignorar maiúsculas/minúsculas"
+            "value" : "Ignorar Maiúsculas/Minúsculas"
           }
         },
         "ru" : {
@@ -705,7 +705,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Em ordem decrescente"
+            "value" : "Em Ordem Decrescente"
           }
         },
         "ru" : {
@@ -918,7 +918,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Manter primeira linha no topo"
+            "value" : "Manter Primeira Linha no Topo"
           }
         },
         "ru" : {
@@ -1344,7 +1344,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Expressão regular"
+            "value" : "Expressão Regular"
           }
         },
         "ru" : {
@@ -1557,7 +1557,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Respeitar regras do idioma"
+            "value" : "Respeitar Regras do Idioma"
           }
         },
         "ru" : {
@@ -1664,7 +1664,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Linha de amostra para verificar qual parte de uma linha será usada ao ordenar a comparação."
+            "value" : "Linha de exemplo para verificar qual parte de uma linha será usada na ordenação."
           }
         },
         "ru" : {
@@ -2195,7 +2195,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tratar números como valor numérico"
+            "value" : "Tratar Números como Valores Numéricos"
           }
         },
         "ru" : {
@@ -2301,7 +2301,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usar grupo capturado:"
+            "value" : "Usar Grupo Capturado:"
           }
         },
         "ru" : {

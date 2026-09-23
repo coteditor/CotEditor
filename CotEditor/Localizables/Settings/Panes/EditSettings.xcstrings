@@ -72,7 +72,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Adicionar um espaço aos delimitadores de comentário"
+            "value" : "Adicionar um Espaço aos Delimitadores de Comentário"
           }
         },
         "ru" : {
@@ -178,7 +178,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indentar automaticamente ao escrever"
+            "value" : "Recuar Automaticamente ao Digitar"
           }
         },
         "ru" : {
@@ -284,7 +284,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apagar espaço em branco à direita automaticamente"
+            "value" : "Apagar Espaço em Branco à Direita Automaticamente"
           }
         },
         "ru" : {
@@ -708,7 +708,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detectar estilo de recuo ao abrir documentos"
+            "value" : "Detectar Estilo de Recuo ao Abrir Documentos"
           }
         },
         "ru" : {
@@ -814,7 +814,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Destacar instâncias do texto selecionado"
+            "value" : "Destacar Instâncias do Texto Selecionado"
           }
         },
         "ru" : {
@@ -920,7 +920,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Destacar pares de chaves"
+            "value" : "Destacar Pares de Delimitadores"
           }
         },
         "ru" : {
@@ -1026,7 +1026,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Incluindo linhas somente com espaços em branco"
+            "value" : "Incluir Linhas Somente com Espaços em Branco"
           }
         },
         "ru" : {
@@ -1132,7 +1132,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recuar seleção com a tecla Tab"
+            "value" : "Recuar Seleção com a Tecla Tab"
           }
         },
         "ru" : {
@@ -1450,7 +1450,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserir delimitadores de comentário após a indentação"
+            "value" : "Inserir Delimitadores de Comentário após o Recuo"
           }
         },
         "ru" : {
@@ -1556,7 +1556,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Criar links de URLs no documento"
+            "value" : "Criar Links de URLs no Documento"
           }
         },
         "ru" : {
@@ -1662,7 +1662,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Preferir usando:"
+            "value" : "Preferir Usar:"
           }
         },
         "ru" : {

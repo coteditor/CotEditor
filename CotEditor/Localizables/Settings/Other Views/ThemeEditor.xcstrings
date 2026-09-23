@@ -1233,7 +1233,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostre o arquivo de informações do tema"
+            "value" : "Mostrar Informações do Arquivo de Tema"
           }
         },
         "ru" : {
@@ -1876,7 +1876,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usar cor do sistema"
+            "value" : "Usar Cor do Sistema"
           }
         },
         "ru" : {

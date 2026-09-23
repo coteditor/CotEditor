@@ -278,7 +278,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sintaxes customizadas"
+            "value" : "Sintaxes Personalizadas"
           }
         },
         "ru" : {
@@ -914,7 +914,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Consultar declaração da codificação no documento"
+            "value" : "Consultar Declaração da Codificação no Documento"
           }
         },
         "ru" : {
@@ -1026,7 +1026,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regarregar todas as sintaxes"
+            "value" : "Recarregar Todas as Sintaxes"
           }
         },
         "ru" : {
@@ -1357,7 +1357,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esta sintaxe é customizada."
+            "value" : "Esta sintaxe é personalizada."
           }
         },
         "ru" : {

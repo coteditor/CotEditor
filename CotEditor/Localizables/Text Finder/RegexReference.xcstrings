@@ -703,7 +703,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "qualquer caractere fora de A a Z"
+            "value" : "qualquer caractere fora do intervalo de A a Z"
           }
         },
         "ru" : {
@@ -1554,7 +1554,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "número decimal"
+            "value" : "dígito decimal"
           }
         },
         "ru" : {
@@ -2509,7 +2509,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "caractere de espaço não em branco"
+            "value" : "caractere que não é espaço em branco"
           }
         },
         "ru" : {

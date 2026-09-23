@@ -1452,7 +1452,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Escolha um arquivo de configurações do CotEditor para importar."
+            "value" : "Escolha um arquivo de ajustes do CotEditor para importar."
           }
         },
         "ru" : {
@@ -1565,7 +1565,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este arquivo de configurações foi criado por uma versão diferente do CotEditor (%@)."
+            "value" : "Este arquivo de ajustes foi criado por uma versão diferente do CotEditor (%@)."
           }
         },
         "ru" : {
@@ -1678,7 +1678,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Você ainda pode importar estes itens, mas algumas configurações podem ser incompatíveis."
+            "value" : "Você ainda pode importar estes itens, mas alguns ajustes podem ser incompatíveis."
           }
         },
         "ru" : {
@@ -1784,7 +1784,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exporte as configurações selecionadas como um arquivo para permitir a importação em outros computadores."
+            "value" : "Exporte os ajustes selecionados como um arquivo para permitir a importação em outros computadores."
           }
         },
         "ru" : {
@@ -2441,7 +2441,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Todas as configurações na janela de Configurações"
+            "value" : "Todos os ajustes na janela de Ajustes"
           }
         },
         "ru" : {

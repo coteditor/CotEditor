@@ -962,7 +962,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Faz distinção entre maiúsculas e minúsculas"
+            "value" : "Distinguir Maiúsculas e Minúsculas"
           }
         },
         "ru" : {
@@ -3800,7 +3800,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voltar busca ao início"
+            "value" : "Voltar ao Início"
           }
         },
         "ru" : {
@@ -3914,7 +3914,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buscar incrementalmente"
+            "value" : "Buscar Incrementalmente"
           }
         },
         "ru" : {
@@ -4142,7 +4142,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignorar sinais diacríticos"
+            "value" : "Ignorar Sinais Diacríticos"
           }
         },
         "ru" : {
@@ -4370,7 +4370,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignorar diferenças de largura"
+            "value" : "Ignorar Diferenças de Largura"
           }
         },
         "ru" : {
@@ -4598,7 +4598,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Distinguir caracteres estritamente"
+            "value" : "Distinguir Caracteres Estritamente"
           }
         },
         "ru" : {
@@ -4712,7 +4712,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Permite que ^ e $ correspondam ao início e final de linhas (multilinha)."
+            "value" : "Permita que ^ e $ correspondam ao início e ao final das linhas (multilinha)."
           }
         },
         "ru" : {
@@ -4826,7 +4826,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Âncoras correspondem a linhas"
+            "value" : "Âncoras Correspondem aos Limites das Linhas"
           }
         },
         "ru" : {
@@ -4940,7 +4940,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Permite que . corresponda a qualquer caractere, incluindo caracteres de nova linha (linha única)."
+            "value" : "Permita que . corresponda a qualquer caractere, incluindo caracteres de nova linha (linha única)."
           }
         },
         "ru" : {
@@ -5054,7 +5054,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ponto corresponde a separadores de linha"
+            "value" : "Ponto Corresponde Também a Separadores de Linha"
           }
         },
         "ru" : {
@@ -5282,7 +5282,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apenas ocorrências de palavras completas"
+            "value" : "Apenas Ocorrências de Palavras Completas"
           }
         },
         "ru" : {
@@ -5396,7 +5396,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desescapar metacaracteres com barra invertida no texto de substituição."
+            "value" : "Interprete as sequências de escape com barra invertida no texto de substituição."
           }
         },
         "ru" : {
@@ -5510,7 +5510,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Texto de substituição sem caractere de escape"
+            "value" : "Remover Escape do Texto de Substituição"
           }
         },
         "ru" : {
@@ -5624,7 +5624,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usa o TR#29 do Unicode para especificar os limites de palavras"
+            "value" : "Use o TR#29 do Unicode para definir os limites de palavras"
           }
         },
         "ru" : {
@@ -5738,7 +5738,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usar limite de palavra Unicode"
+            "value" : "Usar Limites de Palavra Unicode"
           }
         },
         "ru" : {
@@ -6058,19 +6058,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Encontrada uma correspondência em “%2$@.”"
+                  "value" : "Encontrada uma correspondência em “%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Encontradas %1$lld correspondências em “%2$@.”"
+                  "value" : "Encontradas %1$lld correspondências em “%2$@”."
                 }
               },
               "zero" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Nenhuma correspondência encontrada em “%2$@.”"
+                  "value" : "Nenhuma correspondência encontrada em “%2$@”."
                 }
               }
             }
@@ -7786,7 +7786,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A busca voltou ao início."
+            "value" : "A busca recomeçou na outra extremidade do documento."
           }
         },
         "ru" : {
@@ -7892,7 +7892,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buscando no texto…"
+            "value" : "Busca no texto…"
           }
         },
         "ru" : {
@@ -8427,7 +8427,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar opções avançadas"
+            "value" : "Mostrar Opções Avançadas"
           }
         },
         "ru" : {
@@ -8979,7 +8979,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A opção “Na Seleção” está habilitada, porém nada está selecionado."
+            "value" : "A opção “Na Seleção” está ativada, mas nada está selecionado."
           }
         },
         "ru" : {

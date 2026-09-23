@@ -413,7 +413,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unix line separator"
+            "value" : "Unix Line Separator"
           }
         },
         "ru" : {
@@ -527,7 +527,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unix next line"
+            "value" : "Unix Next Line"
           }
         },
         "ru" : {
@@ -641,7 +641,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unix paragraph separator"
+            "value" : "Unix Paragraph Separator"
           }
         },
         "ru" : {

@@ -1231,7 +1231,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Substituição de definição do CotEditor"
+            "value" : "Definição de Substituição do CotEditor"
           }
         },
         "ru" : {
@@ -1337,7 +1337,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Arquivo de Configurações do CotEditor"
+            "value" : "Arquivo de Ajustes do CotEditor"
           }
         },
         "ru" : {
@@ -3465,7 +3465,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O CotEditor precisa de aprovação do usuário para controlar outros aplicativos via AppleScript."
+            "value" : "O CotEditor precisa da sua aprovação para controlar outros aplicativos via AppleScript."
           }
         },
         "ru" : {

@@ -172,7 +172,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buscar atualizações automaticamente"
+            "value" : "Buscar Atualizações Automaticamente"
           }
         },
         "ru" : {
@@ -391,7 +391,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O destino do link simbólico ‘cot’ atual não é o CotEditor em execução."
+            "value" : "O link simbólico `cot` atual não aponta para o CotEditor em execução."
           }
         },
         "ru" : {
@@ -504,7 +504,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O destino do link simbólico ‘cot’ atual pode ser um caminho inválido."
+            "value" : "O link simbólico `cot` atual pode apontar para um caminho inválido."
           }
         },
         "ru" : {
@@ -610,7 +610,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diálogo de avisos:"
+            "value" : "Avisos em diálogos:"
           }
         },
         "ru" : {
@@ -829,7 +829,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Manter edição do CotEditor"
+            "value" : "Manter Versão do CotEditor"
           }
         },
         "ru" : {
@@ -942,7 +942,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Solicitar resolução"
+            "value" : "Perguntar Como Resolver"
           }
         },
         "ru" : {
@@ -1055,7 +1055,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atualizar para edição modificada"
+            "value" : "Atualizar para Versão Modificada"
           }
         },
         "ru" : {
@@ -1267,7 +1267,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fim de linha inconsistente"
+            "value" : "Finais de Linha Inconsistentes"
           }
         },
         "ru" : {
@@ -1586,7 +1586,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mais Informações"
+            "value" : "Mais Informações…"
           }
         },
         "ru" : {
@@ -1692,7 +1692,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gerenciar Alertas…"
+            "value" : "Gerenciar Avisos…"
           }
         },
         "ru" : {
@@ -2688,7 +2688,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reabrir as janelas da última sessão"
+            "value" : "Reabrir as Janelas da Última Sessão"
           }
         },
         "ru" : {
@@ -3113,7 +3113,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atualizar para pré-lançamentos quando disponíveis"
+            "value" : "Atualizar para Pré-Lançamentos Quando Disponíveis"
           }
         },
         "ru" : {
@@ -3431,7 +3431,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Com a ferramenta ‘cot’, você pode iniciar o CotEditor e abrir arquivos na linha de comando."
+            "value" : "Com a ferramenta de linha de comando `cot`, você pode iniciar o CotEditor e abrir arquivos pela linha de comando."
           }
         },
         "ru" : {

@@ -67,7 +67,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ ponto"
+            "value" : "%@ pt"
           }
         },
         "ru" : {
@@ -499,7 +499,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mesma do sistema"
+            "value" : "Mesma do Sistema"
           }
         },
         "ru" : {
@@ -1043,7 +1043,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ligadures"
+            "value" : "Ligaduras"
           }
         },
         "ru" : {
@@ -1482,7 +1482,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A fonte selecionada não parace ser monoespaçada."
+            "value" : "A fonte selecionada não parece ser monoespaçada."
           }
         },
         "ru" : {

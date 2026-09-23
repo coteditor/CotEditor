@@ -179,7 +179,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O conjunto de codificação definido como padrão não pode ser removido."
+            "value" : "Não é possível remover a codificação definida como padrão."
           }
         },
         "ru" : {
@@ -293,7 +293,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ não pode ser removido."
+            "value" : "Não é possível remover %@."
           }
         },
         "ru" : {

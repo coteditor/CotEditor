@@ -3197,7 +3197,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Extraindo Plano…"
+            "value" : "Extração do esboço…"
           }
         },
         "ru" : {
@@ -7245,7 +7245,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buscando na pasta…"
+            "value" : "Busca na pasta…"
           }
         },
         "ru" : {
@@ -7618,7 +7618,7 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Encontrado caracter incompatível."
+                  "value" : "Encontrado um caractere incompatível."
                 }
               },
               "other" : {
@@ -9135,7 +9135,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Plano"
+            "value" : "Esboço"
           }
         },
         "ru" : {
@@ -9356,7 +9356,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salte para o item seguinte do plano"
+            "value" : "Vá para o próximo item do esboço"
           }
         },
         "ru" : {
@@ -9463,7 +9463,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salte para o item anterior do plano"
+            "value" : "Vá para o item anterior do esboço"
           }
         },
         "ru" : {
@@ -10651,7 +10651,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deseja mover “%@” para a lixeira?"
+            "value" : "Deseja mover “%@” para o Lixo?"
           }
         },
         "ru" : {
@@ -10856,7 +10856,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Deseja mover os %lld itens selecionados para a lixeira?"
+                  "value" : "Deseja mover os %lld itens selecionados para o Lixo?"
                 }
               }
             }
@@ -11466,7 +11466,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Item do Próximo Esboço"
+            "value" : "Próximo Item do Esboço"
           }
         },
         "ru" : {
@@ -12851,7 +12851,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Plano"
+            "value" : "Esboço"
           }
         },
         "ru" : {
@@ -13279,7 +13279,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Item de Esboço Anterior"
+            "value" : "Item Anterior do Esboço"
           }
         },
         "ru" : {
@@ -13704,7 +13704,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Escaneando caracteres incompatíveis…"
+            "value" : "Verificação de caracteres incompatíveis…"
           }
         },
         "ru" : {
@@ -14024,7 +14024,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Procurando na pasta…"
+            "value" : "Busca na pasta…"
           }
         },
         "ru" : {
@@ -14345,7 +14345,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar Arquivos Escondidos"
+            "value" : "Mostrar Arquivos Ocultos"
           }
         },
         "ru" : {
@@ -14672,7 +14672,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Navegador de ficheiros"
+            "value" : "Navegador de Arquivos"
           }
         },
         "ru" : {
@@ -14999,7 +14999,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editor dividido"
+            "value" : "Divida o editor"
           }
         },
         "ru" : {
@@ -15106,7 +15106,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editor Dividido"
+            "value" : "Dividir Editor"
           }
         },
         "ru" : {
@@ -15861,7 +15861,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comentário"
+            "value" : "Comentar"
           }
         },
         "ru" : {
@@ -16200,7 +16200,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ir para o documento anterior"
+            "value" : "Vá para o documento anterior"
           }
         },
         "ru" : {
@@ -16426,7 +16426,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ir para o documento seguinte"
+            "value" : "Vá para o documento seguinte"
           }
         },
         "ru" : {
@@ -16878,7 +16878,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impedir que o documento seja editado"
+            "value" : "Impeça a edição do documento"
           }
         },
         "ru" : {
@@ -16991,7 +16991,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Permitir a edição do documento"
+            "value" : "Permita a edição do documento"
           }
         },
         "ru" : {
@@ -17443,7 +17443,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra o campo Buscar e Substituir"
+            "value" : "Mostre Buscar e Substituir"
           }
         },
         "ru" : {
@@ -17896,7 +17896,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar tipos de letra"
+            "value" : "Mostre as fontes"
           }
         },
         "ru" : {
@@ -19026,7 +19026,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostre a linha de guia da página"
+            "value" : "Mostre as guias de recuo"
           }
         },
         "ru" : {
@@ -19139,7 +19139,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oculte a linha de guia da página"
+            "value" : "Oculte as guias de recuo"
           }
         },
         "ru" : {
@@ -19365,7 +19365,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar invisíveis"
+            "value" : "Mostre os caracteres invisíveis"
           }
         },
         "ru" : {
@@ -19478,7 +19478,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ocultar invisíveis"
+            "value" : "Oculte os caracteres invisíveis"
           }
         },
         "ru" : {
@@ -19704,7 +19704,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Manter janela sempre no topo"
+            "value" : "Mantenha a janela sempre em primeiro plano"
           }
         },
         "ru" : {
@@ -20498,7 +20498,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alterar sintaxe"
+            "value" : "Altere a sintaxe"
           }
         },
         "ru" : {
@@ -20951,7 +20951,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use espaços para Indentação"
+            "value" : "Usar Espaços para Recuo"
           }
         },
         "ru" : {
@@ -21064,7 +21064,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use espaços para indentação"
+            "value" : "Use espaços para recuo"
           }
         },
         "ru" : {
@@ -21177,7 +21177,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use tabulações para indentação"
+            "value" : "Use tabulações para recuo"
           }
         },
         "ru" : {
@@ -22873,7 +22873,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajustar linhas"
+            "value" : "Ajuste as linhas"
           }
         },
         "ru" : {
@@ -22986,7 +22986,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desajustar linhas"
+            "value" : "Desative o ajuste de linhas"
           }
         },
         "ru" : {

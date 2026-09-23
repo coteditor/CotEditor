@@ -74,7 +74,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecionar palavra"
+            "value" : "Selecionar Palavra"
           }
         },
         "ru" : {
@@ -2468,7 +2468,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Colocar Seleção entre"
+            "value" : "Colocar Seleção Entre"
           }
         },
         "ru" : {
@@ -2696,7 +2696,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Endireitar Citações"
+            "value" : "Converter em Aspas Retas"
           }
         },
         "ru" : {
@@ -2810,7 +2810,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecionar Item Anterior do Plano"
+            "value" : "Selecionar Item Anterior do Esboço"
           }
         },
         "ru" : {
@@ -11017,8 +11017,8 @@
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Converter texto alfanumérico para largura total"
+            "state" : "translated",
+            "value" : "Converter Texto Alfanumérico para Largura Total"
           }
         },
         "ru" : {
@@ -11132,7 +11132,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Converter texto alfanumérico para metade da largura"
+            "value" : "Converter Texto Alfanumérico para Metade da Largura"
           }
         },
         "ru" : {
@@ -13070,7 +13070,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editor Dividido"
+            "value" : "Dividir Editor"
           }
         },
         "ru" : {
@@ -13640,7 +13640,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Colocar Seleção entre"
+            "value" : "Colocar Seleção Entre"
           }
         },
         "ru" : {
@@ -16490,7 +16490,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comentário Incorporado"
+            "value" : "Comentar em Linha"
           }
         },
         "ru" : {
@@ -17060,7 +17060,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Plano"
+            "value" : "Esboço"
           }
         },
         "ru" : {
@@ -18200,7 +18200,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use espaços para Indentação"
+            "value" : "Usar Espaços para Recuo"
           }
         },
         "ru" : {
@@ -20936,7 +20936,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aleatório"
+            "value" : "Embaralhar"
           }
         },
         "ru" : {
@@ -22304,7 +22304,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editar Snippets…"
+            "value" : "Editar Fragmentos…"
           }
         },
         "ru" : {
@@ -22646,7 +22646,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Menu de Plano"
+            "value" : "Abrir Menu de Esboço"
           }
         },
         "ru" : {
@@ -22874,7 +22874,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecionar Item Seguinte do Plano"
+            "value" : "Selecionar Próximo Item do Esboço"
           }
         },
         "ru" : {
@@ -23102,7 +23102,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Preencher"
+            "value" : "Completar"
           }
         },
         "ru" : {
@@ -24470,7 +24470,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contagem avançada de caracteres…"
+            "value" : "Contagem Avançada de Caracteres…"
           }
         },
         "ru" : {
@@ -25382,7 +25382,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserir nos Pontos de Código do Unicode…"
+            "value" : "Inserir por Ponto de Código Unicode…"
           }
         },
         "ru" : {
@@ -25610,7 +25610,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comentário em Bloco"
+            "value" : "Comentar em Bloco"
           }
         },
         "ru" : {
@@ -26408,7 +26408,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ligadures"
+            "value" : "Ligaduras"
           }
         },
         "ru" : {
