@@ -598,8 +598,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Deze volgorde wordt gebruikt voor het coderingsmenu en voor coderingsdetectie. Bij detectie worden alleen de hier vermelde coderingen meegenomen; items hoger in de lijst hebben voorrang."
+            "state" : "translated",
+            "value" : "Deze volgorde wordt gebruikt voor het coderingsmenu en voor coderingsdetectie. Bij detectie worden alleen de hier vermelde coderingen meegenomen. Items hoger in de lijst hebben voorrang."
           }
         },
         "pl" : {

@@ -2597,7 +2597,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Javscript"
+            "value" : "JavaScript"
           }
         },
         "pl" : {
@@ -5056,7 +5056,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Textile-dcoument"
+            "value" : "Textile-document"
           }
         },
         "pl" : {

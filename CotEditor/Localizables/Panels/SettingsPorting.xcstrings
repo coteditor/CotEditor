@@ -176,8 +176,8 @@
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld aangepaste syntaxis"
+                  "state" : "translated",
+                  "value" : "%lld aangepaste syntaxen"
                 }
               }
             }
@@ -2428,8 +2428,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Alle instellingen in het venster ‘Instellingen’"
+            "state" : "translated",
+            "value" : "Alle instellingen in het venster 'Instellingen'"
           }
         },
         "pl" : {

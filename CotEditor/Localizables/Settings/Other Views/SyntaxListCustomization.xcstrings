@@ -265,8 +265,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Selecteer de syntaxen die je in de Syntaxismenu’s wilt weergeven:"
+            "state" : "translated",
+            "value" : "Selecteer de syntaxen die je in de syntaxismenu’s wilt weergeven:"
           }
         },
         "pl" : {

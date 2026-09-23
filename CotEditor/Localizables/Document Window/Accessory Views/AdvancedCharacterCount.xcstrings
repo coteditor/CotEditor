@@ -1848,7 +1848,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Negeer wituimte"
+            "value" : "Negeer witruimte"
           }
         },
         "pl" : {
@@ -2489,7 +2489,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Behandel opeenvolgende witruimtes als één ruimte"
+            "value" : "Behandel opeenvolgende witruimtes als één spatie"
           }
         },
         "pl" : {

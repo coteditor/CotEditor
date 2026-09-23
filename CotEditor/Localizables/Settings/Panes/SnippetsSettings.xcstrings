@@ -1022,7 +1022,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sleutel"
+            "value" : "Toets"
           }
         },
         "pl" : {
@@ -1242,7 +1242,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tekst die moet worden ingevoegd via een commando in het menu of via een sneltoets op het toetsenbord:"
+            "value" : "Syntaxis"
           }
         },
         "pl" : {

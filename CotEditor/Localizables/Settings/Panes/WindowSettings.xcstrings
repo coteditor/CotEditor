@@ -3035,7 +3035,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ruimtes"
+            "value" : "spaties"
           }
         },
         "pl" : {
@@ -3886,7 +3886,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schriftrichting"
+            "value" : "Schriftrichting:"
           }
         },
         "pl" : {

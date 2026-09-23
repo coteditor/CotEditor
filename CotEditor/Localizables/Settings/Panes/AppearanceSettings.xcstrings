@@ -55,7 +55,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@-punts"
+            "value" : "%@ punten"
           }
         },
         "pl" : {
@@ -819,7 +819,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Doorzichtigheid bewerker"
+            "value" : "Doorzichtigheid bewerker:"
           }
         },
         "pl" : {

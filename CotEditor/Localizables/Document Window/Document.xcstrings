@@ -374,7 +374,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Block"
+            "value" : "Blok"
           }
         },
         "pl" : {
@@ -2546,7 +2546,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Document heeft niet-bewaarde wijzigingen"
+            "value" : "Document heeft niet-bewaarde wijzigingen."
           }
         },
         "pl" : {
@@ -3185,7 +3185,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Omtrek uitpakken…"
+            "value" : "Overzicht opbouwen…"
           }
         },
         "pl" : {
@@ -7006,8 +7006,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Geen overeenkomsten voor ‘%@’ gevonden."
+            "state" : "translated",
+            "value" : "Geen overeenkomsten voor '%@' gevonden."
           }
         },
         "pl" : {
@@ -8147,7 +8147,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Volledige pad"
+            "value" : "Volledig pad"
           }
         },
         "pl" : {
@@ -8359,8 +8359,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Verborgen bestanden opnemen"
+            "state" : "translated",
+            "value" : "Neem verborgen bestanden op"
           }
         },
         "pl" : {
@@ -8466,8 +8466,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Andere bestandstypen opnemen"
+            "state" : "translated",
+            "value" : "Neem andere bestandstypen op"
           }
         },
         "pl" : {
@@ -9123,7 +9123,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Countour"
+            "value" : "Overzicht"
           }
         },
         "pl" : {
@@ -9344,7 +9344,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ga naar het volgende onderwerp"
+            "value" : "Ga naar het volgende overzichtsonderdeel"
           }
         },
         "pl" : {
@@ -9451,7 +9451,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ga naar het vorige onderwerp"
+            "value" : "Ga naar het vorige overzichtsonderdeel"
           }
         },
         "pl" : {
@@ -9771,7 +9771,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regeleide"
+            "value" : "Regeleinde"
           }
         },
         "pl" : {
@@ -10638,8 +10638,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Wil je ‘%@’ naar de prullenmand verplaatsen?"
+            "state" : "translated",
+            "value" : "Wil je '%@' naar de prullenmand verplaatsen?"
           }
         },
         "pl" : {
@@ -11454,7 +11454,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Volgende contouritem"
+            "value" : "Volgend overzichtsonderdeel"
           }
         },
         "pl" : {
@@ -12839,7 +12839,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Countour"
+            "value" : "Overzicht"
           }
         },
         "pl" : {
@@ -12946,7 +12946,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contourmenu"
+            "value" : "Overzichtsmenu"
           }
         },
         "pl" : {
@@ -13267,7 +13267,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorige contouritem"
+            "value" : "Vorig overzichtsonderdeel"
           }
         },
         "pl" : {
@@ -15962,7 +15962,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zet selectie om in commentaar of verwijder"
+            "value" : "Voeg commentaartekens toe aan de selectie of verwijder ze"
           }
         },
         "pl" : {
@@ -17205,7 +17205,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toon ‘Emoji’s en symbolen’"
+            "value" : "Toon 'Emoji’s en symbolen'"
           }
         },
         "pl" : {
@@ -18675,7 +18675,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verplaats regels naar rights"
+            "value" : "Verplaats regels naar rechts"
           }
         },
         "pl" : {
@@ -18901,7 +18901,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spring gids in"
+            "value" : "Inspringgidsen"
           }
         },
         "pl" : {
@@ -19240,7 +19240,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Onzichtbaren"
+            "value" : "Onzichtbare tekens"
           }
         },
         "pl" : {
@@ -20373,7 +20373,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Onlangs Gebruikt"
+            "value" : "Onlangs gebruikt"
           }
         },
         "pl" : {
@@ -20599,7 +20599,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabbladstijl"
+            "value" : "Tabstijl"
           }
         },
         "pl" : {
@@ -20826,7 +20826,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabbladbreedte"
+            "value" : "Tabbreedte"
           }
         },
         "pl" : {
@@ -21165,7 +21165,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gebruik tabbladen voor inspringing"
+            "value" : "Gebruik tabs voor inspringing"
           }
         },
         "pl" : {
@@ -22861,7 +22861,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pak regels in"
+            "value" : "Schakel regelterugloop in"
           }
         },
         "pl" : {
@@ -22974,7 +22974,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pak regels uit"
+            "value" : "Schakel regelterugloop uit"
           }
         },
         "pl" : {

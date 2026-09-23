@@ -54,7 +54,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Een systeemfunctie die automatisch uw bestanden overschrijft tijdens het bewerken. Zelfs als deze functie is uitgeschakeld, maakt CotEditor heimelijk een back-up voor het geval het programma onverwacht wordt afgesloten."
+            "value" : "Een systeemfunctie die automatisch je bestanden overschrijft tijdens het bewerken. Zelfs als deze functie is uitgeschakeld, maakt CotEditor op de achtergrond een back-up voor het geval het programma onverwacht wordt afgesloten."
           }
         },
         "pl" : {
@@ -817,7 +817,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bewaar de versie van CotEditor"
+            "value" : "Behoud de versie van CotEditor"
           }
         },
         "pl" : {
@@ -1043,7 +1043,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Update naar gewijzigde editie"
+            "value" : "Werk bij naar gewijzigde versie"
           }
         },
         "pl" : {
@@ -2019,7 +2019,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De wijziging wordt als eerste toegepast wanneer je de volgende keer opstart."
+            "value" : "De wijziging wordt pas toegepast wanneer je de app opnieuw start."
           }
         },
         "pl" : {
@@ -3101,7 +3101,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Updaten naar prereleases wanneer beschikbaar"
+            "value" : "Werk bij naar prereleases wanneer beschikbaar"
           }
         },
         "pl" : {

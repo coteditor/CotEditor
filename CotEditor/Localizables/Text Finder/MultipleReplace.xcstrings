@@ -55,7 +55,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verwijder linialen"
+            "value" : "Verwijder regels"
           }
         },
         "pl" : {
@@ -162,7 +162,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bewerk liniaal"
+            "value" : "Bewerk regel"
           }
         },
         "pl" : {
@@ -383,7 +383,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voeg liniaal in"
+            "value" : "Voeg regel in"
           }
         },
         "pl" : {
@@ -490,7 +490,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verplaats liniaal"
+            "value" : "Verplaats regels"
           }
         },
         "pl" : {

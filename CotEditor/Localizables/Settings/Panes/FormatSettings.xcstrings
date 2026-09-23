@@ -690,7 +690,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bewerklijst…"
+            "value" : "Bewerk lijst…"
           }
         },
         "pl" : {
@@ -902,7 +902,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zie coderingsverklaring in document"
+            "value" : "Gebruik de coderingsdeclaratie in het document"
           }
         },
         "pl" : {
@@ -1233,7 +1233,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deze syntaxis bestaat niet"
+            "value" : "Deze syntaxis bestaat niet."
           }
         },
         "pl" : {

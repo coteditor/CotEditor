@@ -379,7 +379,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Commentaarteken"
+            "value" : "Voeg commentaartekens toe"
           }
         },
         "pl" : {
@@ -485,7 +485,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Converteer inspring"
+            "value" : "Converteer inspringing"
           }
         },
         "pl" : {
@@ -1122,7 +1122,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Codering naar ‘%@’"
+            "value" : "Codering naar '%@'"
           }
         },
         "pl" : {
@@ -1440,7 +1440,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verberg onzichtbaarheden"
+            "value" : "Verberg onzichtbare tekens"
           }
         },
         "pl" : {
@@ -2713,7 +2713,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Scriptmap"
+            "value" : "Open scriptmap"
           }
         },
         "pl" : {
@@ -4206,7 +4206,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toon onzichtbaren"
+            "value" : "Toon onzichtbare tekens"
           }
         },
         "pl" : {
@@ -5698,7 +5698,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stel de onzichtbare tekens in bij de Vensterinstellingen om ze weer te geven"
+            "value" : "Stel de onzichtbare tekens in bij de Vensterinstellingen om ze weer te geven."
           }
         },
         "pl" : {
@@ -5804,7 +5804,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trim witruimte"
+            "value" : "Verwijder witruimte aan regeleinden"
           }
         },
         "pl" : {
@@ -6016,7 +6016,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pak regels uit"
+            "value" : "Schakel regelterugloop uit"
           }
         },
         "pl" : {
@@ -6122,7 +6122,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pak regels in"
+            "value" : "Schakel regelterugloop in"
           }
         },
         "pl" : {

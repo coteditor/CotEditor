@@ -802,7 +802,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Markeer geselecteerde tekst"
+            "value" : "Markeer overeenkomsten met geselecteerde tekst"
           }
         },
         "pl" : {

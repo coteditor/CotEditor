@@ -736,7 +736,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geavanceerde Zoekopties"
+            "value" : "Geavanceerde zoekopties"
           }
         },
         "pl" : {
@@ -1699,7 +1699,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zoek en verplaats"
+            "value" : "Zoek en vervang"
           }
         },
         "pl" : {
@@ -2448,7 +2448,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zoek resultaat"
+            "value" : "Zoekresultaat"
           }
         },
         "pl" : {
@@ -3788,7 +3788,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zoek van het begin"
+            "value" : "Zoek verder vanaf het andere uiteinde"
           }
         },
         "pl" : {
@@ -4016,7 +4016,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zoeken negeert diakritische tekens (bijv. ö = o)."
+            "value" : "Zoeken negeert diakritische tekens (bijvoorbeeld ö = o)."
           }
         },
         "pl" : {
@@ -4244,7 +4244,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zoeken negeert breedteverschillen in tekenvormen (bijv. ａ = a)."
+            "value" : "Zoeken negeert breedteverschillen in tekenvormen (bijvoorbeeld ａ = a)."
           }
         },
         "pl" : {
@@ -4586,7 +4586,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Onderscheid karakters strikt"
+            "value" : "Onderscheid tekens strikt"
           }
         },
         "pl" : {
@@ -4814,7 +4814,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ankers passen bij lijnen"
+            "value" : "Ankers gelden per regel"
           }
         },
         "pl" : {
@@ -4928,7 +4928,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Laat . overeenkomen met elk teken, inclusief tekens met nieuwe regels (singleline)."
+            "value" : "Laat . overeenkomen met elk teken, inclusief regeleindetekens (singleline)."
           }
         },
         "pl" : {
@@ -5042,7 +5042,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Punt komt overeen met lijnscheidingstekens"
+            "value" : "Punt komt overeen met regeleindetekens"
           }
         },
         "pl" : {
@@ -5612,7 +5612,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gebruik Unicode TR#29 om woordgrenzen op te geven"
+            "value" : "Gebruik Unicode TR#29 om woordgrenzen op te geven."
           }
         },
         "pl" : {
@@ -5998,19 +5998,19 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Eén overeenkomst gevonden in ‘%2$@’."
+                  "value" : "Eén overeenkomst gevonden in '%2$@'."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%1$lld overeenkomsten gevonden in ‘%2$@’."
+                  "value" : "%1$lld overeenkomsten gevonden in '%2$@'."
                 }
               },
               "zero" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Geen overeenkomsten gevonden in ‘%2$@’."
+                  "value" : "Geen overeenkomsten gevonden in '%2$@'."
                 }
               }
             }
@@ -7025,7 +7025,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reguliere Expressie"
+            "value" : "Reguliere expressie"
           }
         },
         "pl" : {
@@ -7239,7 +7239,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verplaats"
+            "value" : "Vervang"
           }
         },
         "pl" : {
@@ -7774,7 +7774,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zoek teruggelopen."
+            "value" : "Zoeken hervat aan het andere uiteinde."
           }
         },
         "pl" : {
@@ -8741,7 +8741,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leeg zoektekst"
+            "value" : "Lege zoektekst"
           }
         },
         "pl" : {
@@ -8967,7 +8967,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De optie ‘in selectie’ is geselecteerd, hoewel er niets is geselecteerd."
+            "value" : "De optie 'in selectie' is geselecteerd, hoewel er niets is geselecteerd."
           }
         },
         "pl" : {
@@ -9080,7 +9080,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecteer het zoekbereik in het document of schakel de optie ‘in selectie’ uit."
+            "value" : "Selecteer het zoekbereik in het document of schakel de optie 'in selectie' uit."
           }
         },
         "pl" : {

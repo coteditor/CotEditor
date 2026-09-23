@@ -1185,7 +1185,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hexadecimaal (Kort)"
+            "value" : "Hexadecimaal (kort)"
           }
         },
         "pl" : {
@@ -1298,7 +1298,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hexadecimaal met alpha (Kort)"
+            "value" : "Hexadecimaal met alpha (kort)"
           }
         },
         "pl" : {
@@ -1405,7 +1405,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Invoegen"
+            "value" : "Voeg in"
           }
         },
         "pl" : {

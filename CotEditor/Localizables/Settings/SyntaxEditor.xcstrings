@@ -1815,7 +1815,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Definitie bestand"
+            "value" : "Definitiebestand"
           }
         },
         "pl" : {
@@ -2990,7 +2990,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mapkoppeling"
+            "value" : "Bestandskoppeling"
           }
         },
         "pl" : {
@@ -5448,7 +5448,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regulier expressiepatroon"
+            "value" : "Patroon voor reguliere expressie"
           }
         },
         "pl" : {
@@ -5886,7 +5886,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hetzelfde woord wordt meerdere keren geregistreerd."
+            "value" : "Hetzelfde woord is meerdere keren geregistreerd."
           }
         },
         "pl" : {
@@ -6111,8 +6111,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Geneste blokcommentaren moeten verschillende begin- en eindtekens gebruiken."
+            "state" : "translated",
+            "value" : "Nestbare blokcommentaren moeten verschillende begin- en eindtekens gebruiken."
           }
         },
         "pl" : {
@@ -6453,7 +6453,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contour"
+            "value" : "Overzicht"
           }
         },
         "pl" : {

@@ -1542,7 +1542,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "decimaal getal"
+            "value" : "decimaal cijfer"
           }
         },
         "pl" : {
@@ -2391,7 +2391,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "nieuwe regel"
+            "value" : "regeleindeteken"
           }
         },
         "pl" : {
@@ -2497,7 +2497,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "teken zonder witruimte"
+            "value" : "geen witruimteteken"
           }
         },
         "pl" : {
@@ -2604,7 +2604,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Factoren"
+            "value" : "Kwantoren"
           }
         },
         "pl" : {
@@ -2923,7 +2923,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "teken met witruimte"
+            "value" : "witruimteteken"
           }
         },
         "pl" : {

@@ -2798,7 +2798,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecteer vorige omtrekitem"
+            "value" : "Selecteer vorig overzichtsonderdeel"
           }
         },
         "pl" : {
@@ -4850,7 +4850,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bestand"
+            "value" : "Archief"
           }
         },
         "pl" : {
@@ -5078,7 +5078,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bestand"
+            "value" : "Archief"
           }
         },
         "pl" : {
@@ -8270,7 +8270,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regelomloop"
+            "value" : "Schakel regelterugloop in"
           }
         },
         "pl" : {
@@ -10208,7 +10208,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verplaats link"
+            "value" : "Verplaats links"
           }
         },
         "pl" : {
@@ -12032,7 +12032,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voer schuine streep in"
+            "value" : "Voeg backslash in"
           }
         },
         "pl" : {
@@ -12944,7 +12944,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toon onzichtbaren"
+            "value" : "Toon onzichtbare tekens"
           }
         },
         "pl" : {
@@ -13172,7 +13172,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Focus op volgend bewerker"
+            "value" : "Focus op volgende bewerker"
           }
         },
         "pl" : {
@@ -13856,7 +13856,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verwijder kopieën"
+            "value" : "Verwijder dubbele regels"
           }
         },
         "pl" : {
@@ -14882,7 +14882,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Haakjes"
+            "value" : "Vierkante haakjes"
           }
         },
         "pl" : {
@@ -17048,7 +17048,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Omtrek"
+            "value" : "Overzicht"
           }
         },
         "pl" : {
@@ -17618,7 +17618,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trim witruimte"
+            "value" : "Verwijder witruimte aan regeleinden"
           }
         },
         "pl" : {
@@ -19556,7 +19556,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Splits selectie door lijnen"
+            "value" : "Splits selectie per regel"
           }
         },
         "pl" : {
@@ -20468,7 +20468,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schake opmerking"
+            "value" : "Schakel commentaar in of uit"
           }
         },
         "pl" : {
@@ -20810,7 +20810,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor gids voor scripting"
+            "value" : "CotEditor-gids voor scripting"
           }
         },
         "pl" : {
@@ -21038,7 +21038,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dubbele regel"
+            "value" : "Dupliceer regel"
           }
         },
         "pl" : {
@@ -21722,7 +21722,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beheer Verplaats meerdere…"
+            "value" : "Beheer meerdere vervangingen…"
           }
         },
         "pl" : {
@@ -22178,7 +22178,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor gids voor scripting"
+            "value" : "CotEditor-gids voor scripting"
           }
         },
         "pl" : {
@@ -22634,7 +22634,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open omtrekmenu"
+            "value" : "Open overzichtsmenu"
           }
         },
         "pl" : {
@@ -22862,7 +22862,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecteer volgende omtrekitem"
+            "value" : "Selecteer volgend overzichtsonderdeel"
           }
         },
         "pl" : {
@@ -23660,7 +23660,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nieuwe document"
+            "value" : "Nieuw document"
           }
         },
         "pl" : {
@@ -24458,7 +24458,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geavanceerde Tekentelling…"
+            "value" : "Geavanceerde tekentelling…"
           }
         },
         "pl" : {
@@ -25484,7 +25484,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Over Scripting"
+            "value" : "Over scripting"
           }
         },
         "pl" : {
@@ -27080,7 +27080,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Coder URL"
+            "value" : "Codeer URL"
           }
         },
         "pl" : {
@@ -27536,7 +27536,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecteer colom omhoog"
+            "value" : "Selecteer kolom omhoog"
           }
         },
         "pl" : {

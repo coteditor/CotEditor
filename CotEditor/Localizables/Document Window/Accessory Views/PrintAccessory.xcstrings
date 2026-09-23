@@ -1036,7 +1036,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Onzichtbaren"
+            "value" : "Onzichtbare tekens"
           }
         },
         "pl" : {
@@ -1249,7 +1249,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Op"
+            "value" : "Ingeschakeld"
           }
         },
         "pl" : {

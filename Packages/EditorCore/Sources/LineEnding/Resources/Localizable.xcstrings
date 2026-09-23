@@ -61,7 +61,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Classic Mac OS"
+            "value" : "Classic Mac OS"
           }
         },
         "pl" : {
@@ -287,7 +287,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "MacOS / Unix"
+            "value" : "macOS / Unix"
           }
         },
         "pl" : {

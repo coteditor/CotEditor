@@ -376,7 +376,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Code Bijdragers"
+            "value" : "Codebijdragers"
           }
         },
         "pl" : {
@@ -482,7 +482,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor is een open source programma\ngelicentieerd onder de Apache-licentie, versie 2.0."
+            "value" : "CotEditor is een opensourceprogramma\ngelicentieerd onder de Apache-licentie, versie 2.0."
           }
         },
         "pl" : {
@@ -1122,7 +1122,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "alleen op niet-AppStore versie"
+            "value" : "alleen in de versie buiten de App Store"
           }
         },
         "pl" : {

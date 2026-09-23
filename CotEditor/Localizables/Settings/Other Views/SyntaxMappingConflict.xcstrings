@@ -589,7 +589,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De volgende regels voor bestandskoppeling zijn geregistreerd in meerdere syntaxis. CotEditor gebruikt automatisch de eerste syntaxis. Bewerk elke syntaxdefinitie om conflicten op te lossen."
+            "value" : "De volgende regels voor bestandskoppeling zijn geregistreerd in meerdere syntaxen. CotEditor gebruikt automatisch de eerste syntaxis. Bewerk elke syntaxdefinitie om conflicten op te lossen."
           }
         },
         "pl" : {

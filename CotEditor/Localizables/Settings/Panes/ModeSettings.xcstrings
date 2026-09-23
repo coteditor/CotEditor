@@ -161,7 +161,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voeg automatisch haakjes en aanhalingstekens in"
+            "value" : "Voeg automatisch afsluitende haakjes en aanhalingstekens in"
           }
         },
         "pl" : {
@@ -2410,7 +2410,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deze syntaxis bestaat niet"
+            "value" : "Deze syntaxis bestaat niet."
           }
         },
         "pl" : {

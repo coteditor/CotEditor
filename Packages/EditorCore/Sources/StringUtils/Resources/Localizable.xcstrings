@@ -1167,7 +1167,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toepassing van NFKC, omzetten naar kleine letters en verwijdering van codepunten die standaard kunnen worden genegeerd."
+            "value" : "Toepassing van NFKC en casefolding, en verwijdering van codepunten die standaard kunnen worden genegeerd"
           }
         },
         "pl" : {
