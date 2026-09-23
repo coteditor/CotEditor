@@ -1725,7 +1725,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "选中仅在选择范围内进行文本查找。"
+            "value" : "选中后，仅替换所选范围内的文本。"
           }
         },
         "zh-Hant" : {

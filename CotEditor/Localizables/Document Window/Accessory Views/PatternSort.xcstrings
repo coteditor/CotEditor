@@ -2093,7 +2093,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "将数组视为数值"
+            "value" : "将数字视为数值"
           }
         },
         "zh-Hant" : {

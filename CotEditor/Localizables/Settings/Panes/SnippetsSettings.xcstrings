@@ -1307,7 +1307,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "语法中的文件拖拽设置已启用"
+            "value" : "应用此文件拖放设置的语法。"
           }
         },
         "zh-Hant" : {

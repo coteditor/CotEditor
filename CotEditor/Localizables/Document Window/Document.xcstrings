@@ -10009,7 +10009,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您确定要将“%@”移到废纸篓吗？"
+            "value" : "你确定要将“%@”移到废纸篓吗？"
           }
         },
         "zh-Hant" : {
@@ -10244,7 +10244,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "您确定要将这%lld个所选项目移到废纸篓吗？"
+                  "value" : "你确定要将这%lld个所选项目移到废纸篓吗？"
                 }
               }
             }
@@ -14705,7 +14705,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "感谢您的支持！"
+            "value" : "感谢你的支持！"
           }
         },
         "zh-Hant" : {

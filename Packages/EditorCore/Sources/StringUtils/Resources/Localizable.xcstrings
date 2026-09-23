@@ -92,7 +92,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "非官方的基于NFD的标准化形式与修改后的NFD对应"
+            "value" : "非官方的基于NFC的标准化形式与修改后的NFD对应"
           }
         },
         "zh-Hant" : {
@@ -510,7 +510,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "以標準等價方式來分解，然後以標準等價重組之"
+            "value" : "以标准等价方式来分解，然后以标准等价重组之"
           }
         },
         "zh-Hant" : {
@@ -719,7 +719,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "以標準等價方式來分解"
+            "value" : "以标准等价方式来分解"
           }
         },
         "zh-Hant" : {
@@ -928,7 +928,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "以相容等價方式來分解，然後以標準等價重組之"
+            "value" : "以相容等价方式来分解，然后以标准等价重组之"
           }
         },
         "zh-Hant" : {
@@ -1137,7 +1137,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "正在NFKC, Case Folding, 并移除默认可忽略编码点"
+            "value" : "应用NFKC、进行大小写折叠，并移除默认可忽略的码点"
           }
         },
         "zh-Hant" : {
@@ -1346,7 +1346,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "以相容等價方式來分解"
+            "value" : "以相容等价方式来分解"
           }
         },
         "zh-Hant" : {

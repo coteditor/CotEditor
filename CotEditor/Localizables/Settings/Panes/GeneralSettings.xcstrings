@@ -84,7 +84,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "编辑文件时自动覆盖保存文件的系统特性。即使被禁用，CotEditor也会在程序退出时自动保存备份。"
+            "value" : "编辑文件时自动覆盖保存文件的系统特性。即使关闭此功能，CotEditor仍会在后台创建备份，以防程序意外退出。"
           }
         },
         "zh-Hant" : {
@@ -3163,7 +3163,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当无项目可以打开时："
+            "value" : "当没有打开任何文稿时："
           }
         },
         "zh-Hant" : {
@@ -3263,7 +3263,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "`cot`命令行工具可以让您使用命令行来启动CotEditor并打开文件。"
+            "value" : "`cot`命令行工具可以让你使用命令行来启动CotEditor并打开文件。"
           }
         },
         "zh-Hant" : {

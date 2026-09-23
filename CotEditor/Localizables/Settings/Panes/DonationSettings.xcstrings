@@ -603,7 +603,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "作为您慷慨支持的证明，在持续支持期间，状态栏中会显示咖啡徽章。"
+            "value" : "作为你慷慨支持的证明，在持续支持期间，状态栏中会显示咖啡徽章。"
           }
         },
         "zh-Hant" : {
@@ -903,7 +903,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor向所有人免费提供所有功能。您可以通过赠送咖啡来支持这个项目。"
+            "value" : "CotEditor向所有人免费提供所有功能。你可以通过赠送咖啡来支持这个项目。"
           }
         },
         "zh-Hant" : {

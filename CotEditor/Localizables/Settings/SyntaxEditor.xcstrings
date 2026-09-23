@@ -3438,7 +3438,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "缩进："
+            "value" : "缩进"
           }
         },
         "zh-Hant" : {
@@ -5461,7 +5461,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "塊註釋需要同時有起始分界符和終止分界符。"
+            "value" : "块注释需要同时有起始分界符和终止分界符。"
           }
         },
         "zh-Hant" : {

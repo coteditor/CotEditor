@@ -3566,7 +3566,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "折行查找"
+            "value" : "循环查找"
           }
         },
         "zh-Hant" : {
@@ -8451,7 +8451,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“在选择中搜索”选项被激活，但是并没有内容被选中。"
+            "value" : "“所选内容”选项被激活，但是并没有内容被选中。"
           }
         },
         "zh-Hant" : {
@@ -8558,7 +8558,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在文稿中选择搜索范围，或者禁用“在选择中搜索”。"
+            "value" : "在文稿中选择搜索范围，或者禁用“所选内容”。"
           }
         },
         "zh-Hant" : {

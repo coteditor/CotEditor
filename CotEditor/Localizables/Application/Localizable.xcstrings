@@ -6615,7 +6615,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "拖拽的文件的檔案名稱以及扩展名（如果存在）"
+            "value" : "拖拽的文件的文件名以及扩展名（如果存在）"
           }
         },
         "zh-Hant" : {
@@ -6722,7 +6722,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不带扩展名的檔案名稱"
+            "value" : "不带扩展名的文件名"
           }
         },
         "zh-Hant" : {
@@ -9295,7 +9295,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "名称不能含有“.”。"
+            "value" : "名称不能以“.”开头。"
           }
         },
         "zh-Hant" : {
@@ -10791,7 +10791,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "保存时将替换或删除不兼容的字符。您想要改变文本编码并检查不兼容字符吗？"
+            "value" : "保存时将替换或删除不兼容的字符。你想要改变文本编码并检查不兼容字符吗？"
           }
         },
         "zh-Hant" : {
@@ -15070,7 +15070,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "确定放弃您的修改并使用“%@”编码重新打开文档吗？"
+            "value" : "确定放弃你的修改并使用“%@”编码重新打开文档吗？"
           }
         },
         "zh-Hant" : {
