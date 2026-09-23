@@ -112,7 +112,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ pixelů/palec"
+            "value" : "%@ pixelů/palec"
           }
         },
         "de" : {
@@ -5030,7 +5030,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ v %#@arg2@"
+            "value" : "%#@arg1@ v %#@arg2@"
           },
           "substitutions" : {
             "arg1" : {
@@ -5935,7 +5935,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "%#@arg1@ v %#@arg2@"
+            "value" : "%#@arg1@ v %#@arg2@"
           },
           "substitutions" : {
             "arg1" : {
@@ -12151,7 +12151,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít v novém okně"
+            "value" : "Otevřít v novém okně"
           }
         },
         "de" : {
@@ -12365,7 +12365,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít v externím editoru"
+            "value" : "Otevřít v externím editoru"
           }
         },
         "de" : {
@@ -13326,7 +13326,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zobrazit v prohlížeči souborů"
+            "value" : "Zobrazit v prohlížeči souborů"
           }
         },
         "de" : {
@@ -16586,7 +16586,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přejít zpět nebo vpřed v historii dokumentu"
+            "value" : "Přejít zpět nebo vpřed v historii dokumentu"
           }
         },
         "de" : {
@@ -17038,7 +17038,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Emotikony a symboly"
+            "value" : "Emotikony a symboly"
           }
         },
         "de" : {
@@ -17151,7 +17151,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zobrazit Emotikony a symboly"
+            "value" : "Zobrazit Emotikony a symboly"
           }
         },
         "de" : {
@@ -19978,7 +19978,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zobrazit pravopis a gramatiku"
+            "value" : "Zobrazit pravopis a gramatiku"
           }
         },
         "de" : {

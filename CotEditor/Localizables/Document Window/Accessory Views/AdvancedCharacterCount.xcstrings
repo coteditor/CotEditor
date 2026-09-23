@@ -690,7 +690,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Počítat intuitivním způsobem definovaným v Unicode. Znak složený z více kódových bodů Unicode, například emotikony, se počítá jako jeden znak."
+            "value" : "Počítat intuitivním způsobem definovaným v Unicode. Znak složený z více kódových bodů Unicode, například emotikony, se počítá jako jeden znak."
           }
         },
         "de" : {

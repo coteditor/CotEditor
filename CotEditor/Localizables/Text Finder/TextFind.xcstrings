@@ -902,7 +902,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozlišovat velká a malá písmena"
+            "value" : "Rozlišovat velká a malá písmena"
           }
         },
         "de" : {
@@ -1651,7 +1651,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hledat a nahradit"
+            "value" : "Hledat a nahradit"
           }
         },
         "de" : {
@@ -1865,7 +1865,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vyhledat a vypsat všechny shody."
+            "value" : "Vyhledat a vypsat všechny shody."
           }
         },
         "de" : {
@@ -4646,7 +4646,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Povolit ^ a $ tak, aby odpovídaly začátku a konci řádků (víceřádkové)."
+            "value" : "Povolit ^ a $ tak, aby odpovídaly začátku a konci řádků (víceřádkové)."
           }
         },
         "de" : {
@@ -5788,25 +5788,25 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "V „%2$@“ nalezeny %1$lld shody."
+                  "value" : "V „%2$@“ nalezeny %1$lld shody."
                 }
               },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "V „%2$@“ nalezena jedna shoda."
+                  "value" : "V „%2$@“ nalezena jedna shoda."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "V „%2$@“ nalezeno %1$lld shod."
+                  "value" : "V „%2$@“ nalezeno %1$lld shod."
                 }
               },
               "zero" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "V „%2$@“ nenalezeny žádné shody."
+                  "value" : "V „%2$@“ nenalezeny žádné shody."
                 }
               }
             }
@@ -7512,7 +7512,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nahradit aktuální výběr nahrazovacím textem a poté najít další shodu."
+            "value" : "Nahradit aktuální výběr nahrazovacím textem a poté najít další shodu."
           }
         },
         "de" : {
@@ -7832,7 +7832,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hledání v textu…"
+            "value" : "Hledání v textu…"
           }
         },
         "de" : {
@@ -9026,7 +9026,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vyberte v dokumentu rozsah hledání, nebo zrušte volbu „Ve výběru“."
+            "value" : "Vyberte v dokumentu rozsah hledání, nebo zrušte volbu „Ve výběru“."
           }
         },
         "de" : {
@@ -9252,7 +9252,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hledání v textu"
+            "value" : "Hledání v textu"
           }
         },
         "de" : {

@@ -339,7 +339,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "V macOS 27 získají nepojmenované dokumenty automaticky pracovní název navržený podle svého obsahu."
+            "value" : "V macOS 27 získají nepojmenované dokumenty automaticky pracovní název navržený podle svého obsahu."
           }
         },
         "de" : {
@@ -565,7 +565,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vyhledávejte text napříč soubory v otevřené složce přímo z bočního panelu."
+            "value" : "Vyhledávejte text napříč soubory v otevřené složce přímo z bočního panelu."
           }
         },
         "de" : {
@@ -791,7 +791,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pomocí panelu nástrojů můžete přecházet zpět a vpřed mezi naposledy zobrazenými dokumenty v otevřené složce."
+            "value" : "Pomocí panelu nástrojů můžete přecházet zpět a vpřed mezi naposledy zobrazenými dokumenty v otevřené složce."
           }
         },
         "de" : {
@@ -904,7 +904,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zpět a vpřed ve složkách"
+            "value" : "Zpět a vpřed ve složkách"
           }
         },
         "de" : {
@@ -1017,7 +1017,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor nyní podporuje macOS 27 Golden Gate a přebírá jeho nový vzhled."
+            "value" : "CotEditor nyní podporuje macOS 27 Golden Gate a přebírá jeho nový vzhled."
           }
         },
         "de" : {
@@ -1242,7 +1242,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Poznámky k verzi"
+            "value" : "Poznámky k verzi"
           }
         },
         "de" : {
@@ -1694,7 +1694,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Co je nového v aplikaci CotEditor %@"
+            "value" : "Co je nového v aplikaci CotEditor %@"
           }
         },
         "de" : {

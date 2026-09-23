@@ -114,7 +114,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O aplikaci %@"
+            "value" : "O aplikaci %@"
           }
         },
         "de" : {
@@ -221,7 +221,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "a všem, kteří podporují CotEditor!"
+            "value" : "a všem, kteří podporují CotEditor!"
           }
         },
         "de" : {
@@ -1074,7 +1074,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "pouze u verzí mimo App Store"
+            "value" : "pouze u verzí mimo App Store"
           }
         },
         "de" : {

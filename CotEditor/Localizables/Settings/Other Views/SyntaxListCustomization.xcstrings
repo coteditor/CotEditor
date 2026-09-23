@@ -6,7 +6,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skryté syntaxe se budou i nadále používat pro automatické rozpoznávání."
+            "value" : "Skryté syntaxe se budou i nadále používat pro automatické rozpoznávání."
           }
         },
         "de" : {
@@ -218,7 +218,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vyberte syntaxe, které se mají zobrazovat v nabídkách syntaxí:"
+            "value" : "Vyberte syntaxe, které se mají zobrazovat v nabídkách syntaxí:"
           }
         },
         "de" : {

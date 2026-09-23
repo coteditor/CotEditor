@@ -645,7 +645,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "V sestupném pořadí"
+            "value" : "V sestupném pořadí"
           }
         },
         "de" : {
@@ -2135,7 +2135,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zacházet s čísly jako s číselnou hodnotou"
+            "value" : "Zacházet s čísly jako s číselnou hodnotou"
           }
         },
         "de" : {

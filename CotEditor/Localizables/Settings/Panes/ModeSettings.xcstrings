@@ -113,7 +113,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Automaticky vkládat uzavírací závorky a uvozovky"
+            "value" : "Automaticky vkládat uzavírací závorky a uvozovky"
           }
         },
         "de" : {
@@ -220,7 +220,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kontrolovat gramatiku a pravopis"
+            "value" : "Kontrolovat gramatiku a pravopis"
           }
         },
         "de" : {
@@ -2574,7 +2574,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Slova definovaná v syntaxi"
+            "value" : "Slova definovaná v syntaxi"
           }
         },
         "de" : {
@@ -2680,7 +2680,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Slova v dokumentu"
+            "value" : "Slova v dokumentu"
           }
         },
         "de" : {

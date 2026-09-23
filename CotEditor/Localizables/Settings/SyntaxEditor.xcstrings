@@ -6730,7 +6730,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zde definované oddělovače se používají i pro zvýrazňování syntaxe."
+            "value" : "Zde definované oddělovače se používají i pro zvýrazňování syntaxe."
           }
         },
         "de" : {
@@ -6837,7 +6837,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Interpretery se používají k určení syntaxe z hlavičky `#!` v dokumentu."
+            "value" : "Interpretery se používají k určení syntaxe z hlavičky `#!` v dokumentu."
           }
         },
         "de" : {

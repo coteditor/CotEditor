@@ -3607,7 +3607,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Soubor „%@“ je již otevřen v jiném okně."
+            "value" : "Soubor „%@“ je již otevřen v jiném okně."
           }
         },
         "de" : {
@@ -3721,7 +3721,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chcete-li soubor otevřít v tomto okně, nejprve zavřete stávající okno."
+            "value" : "Chcete-li soubor otevřít v tomto okně, nejprve zavřete stávající okno."
           }
         },
         "de" : {
@@ -4063,7 +4063,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chcete uložit změny provedené v dokumentu „%@“?"
+            "value" : "Chcete uložit změny provedené v dokumentu „%@“?"
           }
         },
         "de" : {
@@ -4289,7 +4289,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chcete-li provést změny v dokumentu, povolte nejprve jeho úpravy."
+            "value" : "Chcete-li provést změny v dokumentu, povolte nejprve jeho úpravy."
           }
         },
         "de" : {
@@ -7349,7 +7349,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Relativní cesta mezi přetaženým souborem a dokumentem."
+            "value" : "Relativní cesta mezi přetaženým souborem a dokumentem."
           }
         },
         "de" : {
@@ -8143,7 +8143,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vlastní nastavení se stejným názvem již existuje. Jeho nahrazením dojde k přepsání aktuálního obsahu."
+            "value" : "Vlastní nastavení se stejným názvem již existuje. Jeho nahrazením dojde k přepsání aktuálního obsahu."
           }
         },
         "de" : {
@@ -8595,7 +8595,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chcete převést všechny konce řádků na %@, což je nejčastější konec řádku v tomto dokumentu?"
+            "value" : "Chcete převést všechny konce řádků na %@, což je nejčastější konec řádku v tomto dokumentu?"
           }
         },
         "de" : {
@@ -8708,7 +8708,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nejčastější konec řádku v tomto dokumentu je %@."
+            "value" : "Nejčastější konec řádku v tomto dokumentu je %@."
           }
         },
         "de" : {
@@ -9954,7 +9954,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vyplňte následující šablonu a odešlete ji na %1$@, nebo ji odešlete na %2$@. Upozorňujeme, že obsah odeslaného e-mailu může být sdílen na stránce problému (Issue page). Obsah napište buď v angličtině nebo v japonštině."
+            "value" : "Vyplňte následující šablonu a odešlete ji na %1$@, nebo ji odešlete na %2$@. Upozorňujeme, že obsah odeslaného e-mailu může být sdílen na stránce problému (Issue page). Obsah napište buď v angličtině nebo v japonštině."
           }
         },
         "de" : {
@@ -10406,7 +10406,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kroky k reprodukci problému"
+            "value" : "Kroky k reprodukci problému"
           }
         },
         "de" : {
@@ -10520,7 +10520,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hlášení o problému"
+            "value" : "Hlášení o problému"
           }
         },
         "de" : {
@@ -11307,7 +11307,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Při ukládání jsou nahrazeny nebo odstraněny nekompatibilní znaky. Chcete změnit kódování textu a zkontrolovat nekompatibilní znaky?"
+            "value" : "Při ukládání jsou nahrazeny nebo odstraněny nekompatibilní znaky. Chcete změnit kódování textu a zkontrolovat nekompatibilní znaky?"
           }
         },
         "de" : {
@@ -12547,7 +12547,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokument nemá soubor k reinterpretaci."
+            "value" : "Dokument nemá soubor k reinterpretaci."
           }
         },
         "de" : {
@@ -12773,7 +12773,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokument byl pravděpodobně uložen pomocí jiného kódování textu, nebo se nejedná o textový soubor."
+            "value" : "Dokument byl pravděpodobně uložen pomocí jiného kódování textu, nebo se nejedná o textový soubor."
           }
         },
         "de" : {
@@ -12886,7 +12886,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Žádný dokument k získání vstupu."
+            "value" : "Žádný dokument k získání vstupu."
           }
         },
         "de" : {
@@ -14920,7 +14920,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Klávesu Shift lze použít pouze s jinou modifikační klávesou."
+            "value" : "Klávesu Shift lze použít pouze s jinou modifikační klávesou."
           }
         },
         "de" : {
@@ -15826,7 +15826,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Určitě chcete zahodit změny a znovu otevřít dokument pomocí „%@“?"
+            "value" : "Určitě chcete zahodit změny a znovu otevřít dokument pomocí „%@“?"
           }
         },
         "de" : {
@@ -16719,7 +16719,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Soubor byl změněn v jiné aplikaci. V CotEditoru jsou také neuložené změny."
+            "value" : "Soubor byl změněn v jiné aplikaci. V CotEditoru jsou také neuložené změny."
           }
         },
         "de" : {

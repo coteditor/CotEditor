@@ -1313,7 +1313,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "instalováno v %@"
+            "value" : "instalováno v %@"
           }
         },
         "de" : {
@@ -1526,7 +1526,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zjistit více"
+            "value" : "Další informace…"
           }
         },
         "de" : {
@@ -3053,7 +3053,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktualizovat na předběžné verze, pokud jsou k dispozici"
+            "value" : "Aktualizovat na předběžné verze, pokud jsou k dispozici"
           }
         },
         "de" : {
@@ -3371,7 +3371,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pomocí nástroje příkazového řádku `cot` můžete spustit CotEditor a nechat ho otevřít soubory z příkazového řádku."
+            "value" : "Pomocí nástroje příkazového řádku `cot` můžete spustit CotEditor a nechat ho otevřít soubory z příkazového řádku."
           }
         },
         "de" : {
