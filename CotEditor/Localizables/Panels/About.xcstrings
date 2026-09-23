@@ -512,7 +512,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor — програма з відкритим вихідним кодом, що розповсюджується за ліцензією Apache License, Version 2.0."
+            "value" : "CotEditor — програма з відкритим вихідним кодом, що розповсюджується за ліцензією Apache License, Version 2.0."
           }
         },
         "zh-Hans" : {
@@ -1152,7 +1152,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "лише у версії не з App Store"
+            "value" : "лише у версії не з App Store"
           }
         },
         "zh-Hans" : {

@@ -84,7 +84,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(типово)"
+            "value" : " (типово)"
           }
         },
         "zh-Hans" : {
@@ -190,7 +190,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ пікселів/дюйм"
+            "value" : "%@ пікселів/дюйм"
           }
         },
         "zh-Hans" : {
@@ -7696,7 +7696,7 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Знайдено несумісний символ."
+                  "value" : "Знайдено %lld несумісний символ."
                 }
               },
               "other" : {
@@ -10556,7 +10556,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Цю операцію неможливо скасувати."
+            "value" : "Цю дію не можна відмінити."
           }
         },
         "zh-Hans" : {
@@ -14256,7 +14256,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Поділитися…"
+            "value" : "Поширити…"
           }
         },
         "zh-Hans" : {
@@ -15231,7 +15231,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Рядок стану"
+            "value" : "Панель стану"
           }
         },
         "zh-Hans" : {
@@ -15552,7 +15552,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Налаштування тексту"
+            "value" : "Параметри тексту"
           }
         },
         "zh-Hans" : {
@@ -15992,7 +15992,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Закоментувати або розкоментувати виділене"
+            "value" : "Закоментувати або розкоментувати вибране"
           }
         },
         "zh-Hans" : {
@@ -17122,7 +17122,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Емоджі та символи"
+            "value" : "Емодзі та символи"
           }
         },
         "zh-Hans" : {
@@ -17235,7 +17235,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показати емоджі та символи"
+            "value" : "Показати емодзі та символи"
           }
         },
         "zh-Hans" : {
@@ -17348,7 +17348,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Знайти"
+            "value" : "Пошук"
           }
         },
         "zh-Hans" : {
@@ -17914,7 +17914,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показати шрифти"
+            "value" : "Показати Шрифти"
           }
         },
         "zh-Hans" : {
@@ -18818,7 +18818,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Додати відступ до виділеного"
+            "value" : "Додати відступ до вибраного"
           }
         },
         "zh-Hans" : {
@@ -19157,7 +19157,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Приховати напрямні відступів"
+            "value" : "Сховати напрямні відступів"
           }
         },
         "zh-Hans" : {
@@ -19496,7 +19496,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Приховати невидимі символи"
+            "value" : "Сховати невидимі символи"
           }
         },
         "zh-Hans" : {
@@ -19836,7 +19836,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Поділитися файлом документа"
+            "value" : "Поширити файл документа"
           }
         },
         "zh-Hans" : {
@@ -22100,7 +22100,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Збільшити"
+            "value" : "Більший"
           }
         },
         "zh-Hans" : {
@@ -22439,7 +22439,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Зменшити"
+            "value" : "Менший"
           }
         },
         "zh-Hans" : {
@@ -23117,7 +23117,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Напрям письма"
+            "value" : "Напрямок письма"
           }
         },
         "zh-Hans" : {
@@ -23682,7 +23682,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Змінити напрям письма"
+            "value" : "Змінити напрямок письма"
           }
         },
         "zh-Hans" : {

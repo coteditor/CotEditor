@@ -85,7 +85,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Видалити правило"
+            "value" : "Видалити правила"
           }
         },
         "zh-Hans" : {
@@ -520,7 +520,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перемістити правило"
+            "value" : "Перемістити правила"
           }
         },
         "zh-Hans" : {

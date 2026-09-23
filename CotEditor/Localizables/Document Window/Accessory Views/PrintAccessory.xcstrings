@@ -85,7 +85,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ pt"
+            "value" : "%@ пт"
           }
         },
         "zh-Hans" : {
@@ -311,7 +311,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вирівняти ліворуч"
+            "value" : "Вирівняти за лівим краєм"
           }
         },
         "zh-Hans" : {
@@ -424,7 +424,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вирівняти праворуч"
+            "value" : "Вирівняти за правим краєм"
           }
         },
         "zh-Hans" : {

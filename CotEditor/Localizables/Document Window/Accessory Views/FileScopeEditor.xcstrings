@@ -92,7 +92,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "усі"
+            "value" : "усім"
           }
         },
         "zh-Hans" : {
@@ -206,7 +206,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "будь-які"
+            "value" : "будь-якій"
           }
         },
         "zh-Hans" : {
@@ -1684,7 +1684,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ім’я файлу"
+            "value" : "Імʼя файлу"
           }
         },
         "zh-Hans" : {

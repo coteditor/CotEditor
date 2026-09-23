@@ -85,7 +85,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ пунктів"
+            "value" : "%@ пунктів"
           }
         },
         "zh-Hans" : {
@@ -849,7 +849,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Прозорість редактора:"
+            "value" : "Непрозорість редактора:"
           }
         },
         "zh-Hans" : {
@@ -2151,7 +2151,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Рядок стану:"
+            "value" : "Панель стану:"
           }
         },
         "zh-Hans" : {

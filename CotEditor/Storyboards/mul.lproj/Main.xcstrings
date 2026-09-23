@@ -320,7 +320,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перейти в повноекранний режим"
+            "value" : "Увійти до повноекранного режиму"
           }
         },
         "zh-Hans" : {
@@ -548,7 +548,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Зупинити озвучення"
+            "value" : "Зупинити читання"
           }
         },
         "zh-Hans" : {
@@ -1118,7 +1118,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Почати озвучення"
+            "value" : "Розпочати читання"
           }
         },
         "zh-Hans" : {
@@ -1346,7 +1346,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перемістити всі на передній план"
+            "value" : "Усі наперед"
           }
         },
         "zh-Hans" : {
@@ -1460,7 +1460,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перевіряти граматику разом із правописом"
+            "value" : "Перевіряти граматику із правописом"
           }
         },
         "zh-Hans" : {
@@ -1574,7 +1574,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Замінити все"
+            "value" : "Замінити всі"
           }
         },
         "zh-Hans" : {
@@ -2486,7 +2486,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Оточити виділене"
+            "value" : "Оточити вибране"
           }
         },
         "zh-Hans" : {
@@ -3056,7 +3056,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Копіювати шлях до файлу"
+            "value" : "Скопіювати шлях до файлу"
           }
         },
         "zh-Hans" : {
@@ -5564,7 +5564,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Повернутися до збереженої версії"
+            "value" : "Повернутися до збереженого"
           }
         },
         "zh-Hans" : {
@@ -6020,7 +6020,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Налаштування…"
+            "value" : "Параметри…"
           }
         },
         "zh-Hans" : {
@@ -6590,7 +6590,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сховати інші"
+            "value" : "Сховати решту"
           }
         },
         "zh-Hans" : {
@@ -6818,7 +6818,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Копіювати"
+            "value" : "Скопіювати"
           }
         },
         "zh-Hans" : {
@@ -6932,7 +6932,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Скасувати"
+            "value" : "Відмінити"
           }
         },
         "zh-Hans" : {
@@ -7160,7 +7160,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Редагувати"
+            "value" : "Редагування"
           }
         },
         "zh-Hans" : {
@@ -7502,7 +7502,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Редагувати"
+            "value" : "Редагування"
           }
         },
         "zh-Hans" : {
@@ -9098,7 +9098,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вигляд"
+            "value" : "Перегляд"
           }
         },
         "zh-Hans" : {
@@ -9326,7 +9326,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вигляд"
+            "value" : "Перегляд"
           }
         },
         "zh-Hans" : {
@@ -9440,7 +9440,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показати рядок стану"
+            "value" : "Показати панель стану"
           }
         },
         "zh-Hans" : {
@@ -9554,7 +9554,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Зменшити"
+            "value" : "Менший"
           }
         },
         "zh-Hans" : {
@@ -9668,7 +9668,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Збільшити"
+            "value" : "Більший"
           }
         },
         "zh-Hans" : {
@@ -10010,7 +10010,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показати шрифти"
+            "value" : "Показати Шрифти"
           }
         },
         "zh-Hans" : {
@@ -10466,7 +10466,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Знайти"
+            "value" : "Пошук"
           }
         },
         "zh-Hans" : {
@@ -11150,7 +11150,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перетворити алфавітно-цифровий текст на напівширинний"
+            "value" : "Перетворити алфавітно-цифровий текст на півширинний"
           }
         },
         "zh-Hans" : {
@@ -11492,7 +11492,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Приховати панель інструментів"
+            "value" : "Сховати панель інструментів"
           }
         },
         "zh-Hans" : {
@@ -11606,7 +11606,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Налаштувати панель інструментів…"
+            "value" : "Настроїти панель інструментів…"
           }
         },
         "zh-Hans" : {
@@ -13658,7 +13658,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Оточити виділене"
+            "value" : "Оточити вибране"
           }
         },
         "zh-Hans" : {
@@ -14684,7 +14684,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Розумні тире"
+            "value" : "Динамічні тире"
           }
         },
         "zh-Hans" : {
@@ -15596,7 +15596,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Імпортувати налаштування…"
+            "value" : "Імпортувати параметри…"
           }
         },
         "zh-Hans" : {
@@ -15710,7 +15710,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перетворити на повноширинні"
+            "value" : "Перетворити на повноширинний"
           }
         },
         "zh-Hans" : {
@@ -16166,7 +16166,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Знайти…"
+            "value" : "Пошук…"
           }
         },
         "zh-Hans" : {
@@ -16964,7 +16964,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Мовлення"
+            "value" : "Читання вголос"
           }
         },
         "zh-Hans" : {
@@ -17648,7 +17648,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Видалити кінцеві пробіли"
+            "value" : "Видалити кінцеві пробільні символи"
           }
         },
         "zh-Hans" : {
@@ -18332,7 +18332,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Використати виділене для пошуку"
+            "value" : "Використати вибране для пошуку"
           }
         },
         "zh-Hans" : {
@@ -18446,7 +18446,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Напрям письма"
+            "value" : "Напрямок письма"
           }
         },
         "zh-Hans" : {
@@ -18674,7 +18674,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Мовлення"
+            "value" : "Читання вголос"
           }
         },
         "zh-Hans" : {
@@ -18902,7 +18902,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Напрям"
+            "value" : "Напрямок"
           }
         },
         "zh-Hans" : {
@@ -19130,7 +19130,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Копіювати як форматований текст"
+            "value" : "Скопіювати як форматований текст"
           }
         },
         "zh-Hans" : {
@@ -19244,7 +19244,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Експортувати налаштування…"
+            "value" : "Експортувати параметри…"
           }
         },
         "zh-Hans" : {
@@ -19586,7 +19586,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Розділити виділене за рядками"
+            "value" : "Розділити вибране за рядками"
           }
         },
         "zh-Hans" : {
@@ -19928,7 +19928,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Знайти"
+            "value" : "Пошук"
           }
         },
         "zh-Hans" : {
@@ -20156,7 +20156,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Замінити й знайти далі"
+            "value" : "Замінити й знайти наступне"
           }
         },
         "zh-Hans" : {
@@ -20270,7 +20270,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Використати виділене для заміни"
+            "value" : "Використати вибране для заміни"
           }
         },
         "zh-Hans" : {
@@ -21182,7 +21182,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Напрям письма"
+            "value" : "Напрямок письма"
           }
         },
         "zh-Hans" : {
@@ -21638,7 +21638,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Знайти далі"
+            "value" : "Знайти наступне"
           }
         },
         "zh-Hans" : {
@@ -22550,7 +22550,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перейти до виділеного"
+            "value" : "Перейти до вибраного"
           }
         },
         "zh-Hans" : {
@@ -22778,7 +22778,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Заміна тексту"
+            "value" : "Замінення тексту"
           }
         },
         "zh-Hans" : {
@@ -23234,7 +23234,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Розумне копіювання/вставлення"
+            "value" : "Динамічне копіювання/вставлення"
           }
         },
         "zh-Hans" : {
@@ -24374,7 +24374,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перетворити на напівширинні"
+            "value" : "Перетворити на півширинний"
           }
         },
         "zh-Hans" : {
@@ -24944,7 +24944,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Розумні лапки"
+            "value" : "Динамічні лапки"
           }
         },
         "zh-Hans" : {
@@ -25058,7 +25058,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Об’єднати рядки"
+            "value" : "Обʼєднати рядки"
           }
         },
         "zh-Hans" : {
@@ -25172,7 +25172,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Поділитися…"
+            "value" : "Поширити…"
           }
         },
         "zh-Hans" : {
@@ -26654,7 +26654,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Знайти попередній"
+            "value" : "Знайти попереднє"
           }
         },
         "zh-Hans" : {

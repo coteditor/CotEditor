@@ -645,7 +645,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "На знак вдячності за регулярну підтримку в рядку стану відображатиметься значок кави."
+            "value" : "На знак вдячності за регулярну підтримку на панелі стану відображатиметься значок кави."
           }
         },
         "zh-Hans" : {
@@ -1388,7 +1388,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Відкрити GitHub Sponsors"
+            "value" : "Відкрити GitHub Sponsors"
           }
         },
         "zh-Hans" : {
@@ -1494,7 +1494,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Відкрити в App Store"
+            "value" : "Відкрити в App Store"
           }
         },
         "zh-Hans" : {
@@ -2025,7 +2025,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Підтримка в програмі доступна лише у версії CotEditor, що розповсюджується через App Store."
+            "value" : "Підтримка в програмі доступна лише у версії CotEditor, що розповсюджується через App Store."
           }
         },
         "zh-Hans" : {

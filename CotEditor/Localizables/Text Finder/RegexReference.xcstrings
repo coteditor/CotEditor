@@ -2527,7 +2527,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "символ непробілу"
+            "value" : "непробільний символ"
           }
         },
         "zh-Hans" : {
@@ -2953,7 +2953,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "символ пробілу"
+            "value" : "пробільний символ"
           }
         },
         "zh-Hans" : {

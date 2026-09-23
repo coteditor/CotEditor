@@ -1355,7 +1355,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Архів налаштувань CotEditor"
+            "value" : "Архів параметрів CotEditor"
           }
         },
         "zh-Hans" : {
@@ -3814,7 +3814,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Звичайний текст"
+            "value" : "Документ простого тексту"
           }
         },
         "zh-Hans" : {

@@ -1145,7 +1145,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Виділення:"
+            "value" : "Вибране:"
           }
         },
         "zh-Hans" : {
@@ -1894,7 +1894,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Використовувати системний колір"
+            "value" : "Системний колір"
           }
         },
         "zh-Hans" : {

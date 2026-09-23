@@ -92,7 +92,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "У виділеному"
+            "value" : "У вибраному"
           }
         },
         "zh-Hans" : {
@@ -1359,7 +1359,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Замінити все"
+            "value" : "Замінити всі"
           }
         },
         "zh-Hans" : {
@@ -1815,7 +1815,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Увімкніть, щоб замінювати текст лише у виділеному."
+            "value" : "Увімкніть, щоб замінювати текст лише у вибраному."
           }
         },
         "zh-Hans" : {
@@ -2385,7 +2385,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Знайти"
+            "value" : "Пошук"
           }
         },
         "zh-Hans" : {

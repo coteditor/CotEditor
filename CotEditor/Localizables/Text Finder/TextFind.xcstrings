@@ -1301,7 +1301,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Очистити недавні пошуки"
+            "value" : "Очистити список останніх запитів"
           }
         },
         "zh-Hans" : {
@@ -1622,7 +1622,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Знайти"
+            "value" : "Пошук"
           }
         },
         "zh-Hans" : {
@@ -1729,7 +1729,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Знайти й замінити"
+            "value" : "Пошук і заміна"
           }
         },
         "zh-Hans" : {
@@ -2050,7 +2050,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Знайти далі"
+            "value" : "Знайти наступне"
           }
         },
         "zh-Hans" : {
@@ -2264,7 +2264,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Знайти попередній"
+            "value" : "Знайти попереднє"
           }
         },
         "zh-Hans" : {
@@ -6520,7 +6520,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "У виділеному"
+            "value" : "У вибраному"
           }
         },
         "zh-Hans" : {
@@ -6948,7 +6948,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Недавні пошуки"
+            "value" : "Останні запити"
           }
         },
         "zh-Hans" : {
@@ -7376,7 +7376,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Замінити все"
+            "value" : "Замінити всі"
           }
         },
         "zh-Hans" : {
@@ -7590,7 +7590,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Замінити поточне виділення текстом заміни, а потім знайти наступний збіг."
+            "value" : "Замінити поточний вибраний текст текстом заміни, а потім знайти наступний збіг."
           }
         },
         "zh-Hans" : {
@@ -7721,7 +7721,7 @@
       }
     },
     "Search wrapped." : {
-      "comment" : "Announced when the search restarted from the beginning.",
+      "comment" : "Announced when the search wraps to the other end of the document.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -7804,7 +7804,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Пошук продовжено з початку."
+            "value" : "Пошук продовжено з іншого кінця документа."
           }
         },
         "zh-Hans" : {
@@ -8231,7 +8231,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Увімкніть, щоб шукати лише у виділеному тексті."
+            "value" : "Увімкніть, щоб шукати лише у вибраному тексті."
           }
         },
         "zh-Hans" : {
@@ -8997,7 +8997,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Параметр «У виділеному» увімкнено, але нічого не виділено."
+            "value" : "Параметр «У вибраному» увімкнено, але нічого не вибрано."
           }
         },
         "zh-Hans" : {
@@ -9110,7 +9110,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Виберіть область пошуку в документі або вимкніть параметр «У виділеному»."
+            "value" : "Виберіть область пошуку в документі або вимкніть параметр «У вибраному»."
           }
         },
         "zh-Hans" : {

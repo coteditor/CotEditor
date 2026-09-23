@@ -622,7 +622,7 @@ struct FindMatchesCache {
             
             if result.wrapped {
                 client.enclosingScrollView?.superview?.showHUD(symbol: .wrap(flipped: !forward))
-                AccessibilityNotification.Announcement(String(localized: "Search wrapped.", table: "TextFind", comment: "Announced when the search restarted from the beginning.")).post()
+                AccessibilityNotification.Announcement(String(localized: "Search wrapped.", table: "TextFind", comment: "Announced when the search wraps to the other end of the document.")).post()
             }
         } else if !isIncremental {
             client.enclosingScrollView?.superview?.showHUD(symbol: forward ? .reachBottom : .reachTop)

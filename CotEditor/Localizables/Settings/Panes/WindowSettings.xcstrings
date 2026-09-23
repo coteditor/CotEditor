@@ -2638,7 +2638,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "px"
+            "value" : "пкс"
           }
         },
         "zh-Hans" : {
@@ -2744,7 +2744,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Враховувати системне налаштування"
+            "value" : "Враховувати системний параметр"
           }
         },
         "zh-Hans" : {
@@ -3170,7 +3170,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "У рядку стану показувати:"
+            "value" : "На панелі стану показувати:"
           }
         },
         "zh-Hans" : {
@@ -3914,7 +3914,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Напрям письма:"
+            "value" : "Напрямок письма:"
           }
         },
         "zh-Hans" : {
