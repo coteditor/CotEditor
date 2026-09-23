@@ -122,7 +122,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "Створити документ в${applicationName}"
+              "Створити документ в ${applicationName}"
             ]
           }
         },

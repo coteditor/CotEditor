@@ -499,25 +499,25 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Знайдено %1$lld помилки."
+                  "value" : "Знайдено %lld помилки."
                 }
               },
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Знайдено %1$lld помилок."
+                  "value" : "Знайдено %lld помилок."
                 }
               },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Знайдено одну помилку."
+                  "value" : "Знайдено %lld помилку."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Знайдено %1$lld помилок."
+                  "value" : "Знайдено %lld помилок."
                 }
               }
             }
@@ -847,25 +847,25 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%1$lld елементи"
+                  "value" : "%lld елементи"
                 }
               },
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%1$lld елементів"
+                  "value" : "%lld елементів"
                 }
               },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%1$lld елемент"
+                  "value" : "%lld елемент"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%1$lld елементів"
+                  "value" : "%lld елементів"
                 }
               }
             }

@@ -84,7 +84,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ширина стовпця:"
+            "value" : "Ширина табуляції:"
           }
         },
         "zh-Hans" : {

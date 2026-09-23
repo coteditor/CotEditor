@@ -4848,25 +4848,25 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Знайдено лише перші %1$lld збіги."
+                  "value" : "Знайдено лише перші %lld збіги."
                 }
               },
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Знайдено лише перші %1$lld збігів."
+                  "value" : "Знайдено лише перші %lld збігів."
                 }
               },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Знайдено лише перший збіг."
+                  "value" : "Знайдено лише %lld збіг."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Знайдено лише перші %1$lld збігів."
+                  "value" : "Знайдено лише перші %lld збігів."
                 }
               }
             }
@@ -8043,7 +8043,7 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Знайдено закінчення рядка, відмінне від %2$@."
+                  "value" : "Знайдено %1$lld закінчення рядка, відмінне від %2$@."
                 }
               },
               "other" : {

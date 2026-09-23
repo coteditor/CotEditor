@@ -1470,7 +1470,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Виберіть архів налаштувань CotEditor для імпорту."
+            "value" : "Оберіть архів налаштувань CotEditor для імпорту."
           }
         },
         "zh-Hans" : {
