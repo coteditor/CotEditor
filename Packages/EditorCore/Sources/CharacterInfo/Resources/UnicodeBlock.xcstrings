@@ -81,6 +81,12 @@
             "value" : "Adlam"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Адлам"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -179,6 +185,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aegean Numbers"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Егейські цифри"
           }
         },
         "zh-Hans" : {
@@ -281,6 +293,12 @@
             "value" : "Ahom"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ахом"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -379,6 +397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Simya Sembolleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Алхімічні символи"
           }
         },
         "zh-Hans" : {
@@ -481,6 +505,12 @@
             "value" : "Alfabetik Gösterim Formları"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Декоративні варіанти літер"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -579,6 +609,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anadolu Hiyeroglifleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Анатолійські ієрогліфи"
           }
         },
         "zh-Hans" : {
@@ -681,6 +717,12 @@
             "value" : "Antik Yunanca Müzik Gösterimi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Давньогрецький нотний запис"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -779,6 +821,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Antik Yunanca Sayıları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Давньогрецькі цифри"
           }
         },
         "zh-Hans" : {
@@ -881,6 +929,12 @@
             "value" : "Antik Semboller"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Давні символи"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -979,6 +1033,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arapça"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабські"
           }
         },
         "zh-Hans" : {
@@ -1081,6 +1141,12 @@
             "value" : "Arapça Genişletilmiş-A"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабські розширені А"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1179,6 +1245,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arapça Genişletilmiş-B"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабські розширені Б"
           }
         },
         "zh-Hans" : {
@@ -1281,6 +1353,12 @@
             "value" : "Arapça Genişletilmiş-C"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабські розширені В"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1379,6 +1457,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arapça Alfabetik Matematik Sembolleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабські математичні буквенні та цифрові символи"
           }
         },
         "zh-Hans" : {
@@ -1481,6 +1565,12 @@
             "value" : "Arapça Gösterim Formları-A"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабське декоративне письмо А"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1579,6 +1669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arapça Gösterim Formları-B"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабське декоративне письмо Б"
           }
         },
         "zh-Hans" : {
@@ -1681,6 +1777,12 @@
             "value" : "Arapça Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арабські додаткові"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1779,6 +1881,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ermenice"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вірменські"
           }
         },
         "zh-Hans" : {
@@ -1881,6 +1989,12 @@
             "value" : "Oklar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стрілки"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1979,6 +2093,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Avestçe"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Авестійські"
           }
         },
         "zh-Hans" : {
@@ -2081,6 +2201,12 @@
             "value" : "Bali Dili"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Балійські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2179,6 +2305,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bamum"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бамум"
           }
         },
         "zh-Hans" : {
@@ -2281,6 +2413,12 @@
             "value" : "Bamum Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доповнення бамум"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2379,6 +2517,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Temel Latin"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латинські базові"
           }
         },
         "zh-Hans" : {
@@ -2481,6 +2625,12 @@
             "value" : "Bassa Vah"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Васса вах"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2581,6 +2731,12 @@
             "value" : "Batak"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Батак"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2679,6 +2835,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bengalce"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бенгалі"
           }
         },
         "zh-Hans" : {
@@ -2791,6 +2953,12 @@
             "value" : "Bhaiksuki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бхайксукі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2889,6 +3057,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Blok Öğeleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи заповнення"
           }
         },
         "zh-Hans" : {
@@ -2991,6 +3165,12 @@
             "value" : "Bopomofo"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бопомофо"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3089,6 +3269,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bopomofo Genişletilmiş"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бопомофо розширені"
           }
         },
         "zh-Hans" : {
@@ -3191,6 +3377,12 @@
             "value" : "Kutu Çizimi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Псевдографіка"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3289,6 +3481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Brahmi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Брахма"
           }
         },
         "zh-Hans" : {
@@ -3391,6 +3589,12 @@
             "value" : "Braille Desenleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шрифт Брайля"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3489,6 +3693,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bugis"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бугійські"
           }
         },
         "zh-Hans" : {
@@ -3591,6 +3801,12 @@
             "value" : "Buhid"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бухідські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3689,6 +3905,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bizans Müzik Sembolleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Візантійські музичні символи"
           }
         },
         "zh-Hans" : {
@@ -3791,6 +4013,12 @@
             "value" : "Karya Dili"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Карійські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3889,6 +4117,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kafkas Albanyası"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кавказькі албанські"
           }
         },
         "zh-Hans" : {
@@ -3991,6 +4225,12 @@
             "value" : "Chakma"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чакма"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4089,6 +4329,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cham"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чам"
           }
         },
         "zh-Hans" : {
@@ -4191,6 +4437,12 @@
             "value" : "Çeroki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Черокі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4289,6 +4541,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Çeroki Eki"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Черокське доповнення"
           }
         },
         "zh-Hans" : {
@@ -4391,6 +4649,12 @@
             "value" : "Satranç Sembolleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шахові символи"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4489,6 +4753,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Harezmce"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Корасміан"
           }
         },
         "zh-Hans" : {
@@ -4591,6 +4861,12 @@
             "value" : "CJK Uyumluluğu"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сумісні з ієрогліфічними символами"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4689,6 +4965,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK Uyumluluk Formları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сумісні форми ієрогліфічних символів"
           }
         },
         "zh-Hans" : {
@@ -4791,6 +5073,12 @@
             "value" : "CJK Uyumluluk İdeogramları"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сумісні ідеограми ієрогліфічних символів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4889,6 +5177,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK Uyumluluk İdeogramları Eki"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Підтримка сумісності ідеограм ієрогліфічних символів"
           }
         },
         "zh-Hans" : {
@@ -4991,6 +5285,12 @@
             "value" : "CJK Kökleri Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додаткові ключі до ієрогліфічних символів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5089,6 +5389,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK Çizgileri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Риски ієрогліфічних символів"
           }
         },
         "zh-Hans" : {
@@ -5191,6 +5497,12 @@
             "value" : "CJK Sembolleri ve Noktalama"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ієрогліфічні символи та знаки пунктуації"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5289,6 +5601,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK Birleştirilmiş İdeogramları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уніфіковані ідеограми ієрогліфічних символів"
           }
         },
         "zh-Hans" : {
@@ -5391,6 +5709,12 @@
             "value" : "CJK Birleştirilmiş İdeogramları Ek A"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уніфіковані ідеограми ієрогліфічних символів розш. А"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5489,6 +5813,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK Birleştirilmiş İdeogramları Ek B"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уніфіковані ідеограми ієрогліфічних символів розш. Б"
           }
         },
         "zh-Hans" : {
@@ -5591,6 +5921,12 @@
             "value" : "CJK Birleştirilmiş İdeogramları Ek C"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уніфіковані ідеограми ієрогліфічних символів розш. В"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5689,6 +6025,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK Birleştirilmiş İdeogramları Ek D"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уніфіковані ідеограми ієрогліфічних символів розш. Г"
           }
         },
         "zh-Hans" : {
@@ -5791,6 +6133,12 @@
             "value" : "CJK Birleştirilmiş İdeogramları Ek E"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уніфіковані ідеограми ієрогліфічних символів розш. Ґ"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5889,6 +6237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK Birleştirilmiş İdeogramları Ek F"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уніфіковані ідеограми ієрогліфічних символів розш. Д"
           }
         },
         "zh-Hans" : {
@@ -5991,6 +6345,12 @@
             "value" : "CJK Birleştirilmiş İdeogramları Ek G"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уніфіковані ідеограми ієрогліфічних символів розш. Е"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6089,6 +6449,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK Birleştirilmiş İdeogramları Ek H"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уніфіковані ідеограми ієрогліфічних символів розш. Є"
           }
         },
         "zh-Hans" : {
@@ -6191,6 +6557,12 @@
             "value" : "CJK Birleştirilmiş İdeogramları Ek I"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уніфіковані ідеограми ієрогліфічних символів розш. Ж"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6289,6 +6661,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CJK Birleştirilmiş İdeogramları Ek J"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уніфіковані ідеограми ієрогліфічних символів розш. З"
           }
         },
         "zh-Hans" : {
@@ -6391,6 +6769,12 @@
             "value" : "Birleştirici Aksan İşaretleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Діакритичні знаки"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6489,6 +6873,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Birleştirici Aksan İşaretleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комбіновані розширені діакритичні знаки"
           }
         },
         "zh-Hans" : {
@@ -6591,6 +6981,12 @@
             "value" : "Semboller İçin Birleştirici Aksan İşaretleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комбіновані діакритичні знаки для символів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6689,6 +7085,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Birleştirici Aksan İşaretleri Eki"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комбіновані додаткові діакритичні знаки"
           }
         },
         "zh-Hans" : {
@@ -6791,6 +7193,12 @@
             "value" : "Birleştirici Yarı İşaretler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Півширинні діакритики"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6889,6 +7297,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yaygın Hintçe Sayı Formları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загальні форми індійських цифр"
           }
         },
         "zh-Hans" : {
@@ -6991,6 +7405,12 @@
             "value" : "Kontrol Resimleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Службові знаки"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7089,6 +7509,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kıpti"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коптські"
           }
         },
         "zh-Hans" : {
@@ -7191,6 +7617,12 @@
             "value" : "Kıpti Epakt Sayıları"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Номери коптської епакти"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7289,6 +7721,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sayma Çubukları Rakamları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Числова система Род"
           }
         },
         "zh-Hans" : {
@@ -7391,6 +7829,12 @@
             "value" : "Çivi Yazısı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клинопис"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7489,6 +7933,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Çivi Yazısı Sayıları ve Noktalamaları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цифри та знаки пунктуації клинопису"
           }
         },
         "zh-Hans" : {
@@ -7591,6 +8041,12 @@
             "value" : "Para Birimleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи валют"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7689,6 +8145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kıbrıs Heceleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кіпрське складове письмо"
           }
         },
         "zh-Hans" : {
@@ -7791,6 +8253,12 @@
             "value" : "Kibro-Minoan"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кіпро-мінойське письмо"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7889,6 +8357,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kiril"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кириличні"
           }
         },
         "zh-Hans" : {
@@ -7991,6 +8465,12 @@
             "value" : "Genişletilmiş Kiril A"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кириличні розширені А"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8089,6 +8569,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Kiril B"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кириличні розширені Б"
           }
         },
         "zh-Hans" : {
@@ -8191,6 +8677,12 @@
             "value" : "Genişletilmiş Kiril C"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кириличні розширені В"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8289,6 +8781,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Kiril-D"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кириличні розширені Г"
           }
         },
         "zh-Hans" : {
@@ -8391,6 +8889,12 @@
             "value" : "Kiril Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кириличні додаткові"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8489,6 +8993,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deseret"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дезерет"
           }
         },
         "zh-Hans" : {
@@ -8591,6 +9101,12 @@
             "value" : "Devanagari"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Деванагарі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8689,6 +9205,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Devanagari"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Деванагарі розширені"
           }
         },
         "zh-Hans" : {
@@ -8791,6 +9313,12 @@
             "value" : "Genişletilmiş Devanagari-A"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Деванагарі розширені А"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8889,6 +9417,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dingbats"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поліграфічні значки"
           }
         },
         "zh-Hans" : {
@@ -8991,6 +9525,12 @@
             "value" : "Dives Akuru"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дівехі акуру"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9089,6 +9629,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dogra"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Догра"
           }
         },
         "zh-Hans" : {
@@ -9191,6 +9737,12 @@
             "value" : "Domino Taşları"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доміно"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9289,6 +9841,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Duploye"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дюплое"
           }
         },
         "zh-Hans" : {
@@ -9391,6 +9949,12 @@
             "value" : "Erken Hanedanlar Dönemi Çivi Yazısı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ранній династичний клинопис"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9489,6 +10053,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mısır Hiyeroglifleri Biçim Denetimleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Інструменти формату єгипетських ієрогліфів"
           }
         },
         "zh-Hans" : {
@@ -9591,6 +10161,12 @@
             "value" : "Mısır Hiyeroglifleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Єгипетські ієрогліфи"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9689,6 +10265,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mısır Hiyeroglifleri Genişletilmiş A"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Єгипетські ієрогліфи розширені А"
           }
         },
         "zh-Hans" : {
@@ -9791,6 +10373,12 @@
             "value" : "Elbasan"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ельбасан"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9889,6 +10477,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elamca"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Елімайські"
           }
         },
         "zh-Hans" : {
@@ -9991,6 +10585,12 @@
             "value" : "Duygu simgeleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Емограми"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10089,6 +10689,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Etrafı Çevrilmiş Alfasayısallar Eki"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обведені літери та цифри — додаткові"
           }
         },
         "zh-Hans" : {
@@ -10191,6 +10797,12 @@
             "value" : "Etrafı Çevrilmiş Alfasayısallar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обведені літери та цифри"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10289,6 +10901,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Etrafı Çevrilmiş CJK Harfleri ve Ayları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обведені літери та місяці ієрогліфічних символів"
           }
         },
         "zh-Hans" : {
@@ -10391,6 +11009,12 @@
             "value" : "Etrafı Çevrilmiş İdeogram Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обведена писемність — додаткові"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10489,6 +11113,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Etiyopya"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ефіопські"
           }
         },
         "zh-Hans" : {
@@ -10591,6 +11221,12 @@
             "value" : "Genişletilmiş Etiyopyaca"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ефіопські розширені"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10689,6 +11325,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Etiyopyaca-A"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ефіопські розширені-A"
           }
         },
         "zh-Hans" : {
@@ -10791,6 +11433,12 @@
             "value" : "Genişletilmiş Etiyopyaca-B"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ефіопські розширені-Б"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10889,6 +11537,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Etiyopyaca Eki"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ефіопські додаткові"
           }
         },
         "zh-Hans" : {
@@ -10991,6 +11645,12 @@
             "value" : "Garay"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ґарай"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11089,6 +11749,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genel Noktalama"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Знаки пунктуації"
           }
         },
         "zh-Hans" : {
@@ -11191,6 +11857,12 @@
             "value" : "Geometrik Şekiller"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Геометричні фігури"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11289,6 +11961,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Geometrik Şekiller"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розширені геометричні фігури"
           }
         },
         "zh-Hans" : {
@@ -11391,6 +12069,12 @@
             "value" : "Gürcüce"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грузинські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11489,6 +12173,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Gürcüce"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грузинські розширені"
           }
         },
         "zh-Hans" : {
@@ -11591,6 +12281,12 @@
             "value" : "Gürcüce Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грузинські додаткові"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11689,6 +12385,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Glagol"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Глаголиця"
           }
         },
         "zh-Hans" : {
@@ -11791,6 +12493,12 @@
             "value" : "Glagol Alfabesi Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Глаголичні додаткові"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11889,6 +12597,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gotik"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готика"
           }
         },
         "zh-Hans" : {
@@ -11991,6 +12705,12 @@
             "value" : "Grantha"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грантха"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12089,6 +12809,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yunanca ve Kıptice"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грецькі та коптські"
           }
         },
         "zh-Hans" : {
@@ -12191,6 +12917,12 @@
             "value" : "Genişletilmiş Yunanca"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грецькі розширені"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12289,6 +13021,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Güceratça"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гуджараті"
           }
         },
         "zh-Hans" : {
@@ -12391,6 +13129,12 @@
             "value" : "Gunjala Gondi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гунджала гонді"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12489,6 +13233,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gurmukhi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гурмукхі"
           }
         },
         "zh-Hans" : {
@@ -12591,6 +13341,12 @@
             "value" : "Gurung Khema"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гурунг Хема"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12689,6 +13445,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yarım Genişlikteki ve Tam Genişlikteki Formlar"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Півширинні та повноширинні форми"
           }
         },
         "zh-Hans" : {
@@ -12791,6 +13553,12 @@
             "value" : "Hangıl Uyumluluğu Jamo"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сумісні з хангиль джамо"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12889,6 +13657,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hangıl Jamo"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хангиль джамо"
           }
         },
         "zh-Hans" : {
@@ -12991,6 +13765,12 @@
             "value" : "Genişletilmiş Hangıl Jamo A"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хангиль джамо розширені A"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13089,6 +13869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Hangıl Jamo B"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хангиль джамо розширені Б"
           }
         },
         "zh-Hans" : {
@@ -13191,6 +13977,12 @@
             "value" : "Hangıl Heceleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Складове письмо хангиль"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13289,6 +14081,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hanifi Rohingya"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ханіфі рогінджа"
           }
         },
         "zh-Hans" : {
@@ -13391,6 +14189,12 @@
             "value" : "Hanunoo"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хануноо"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13489,6 +14293,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hatran"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ґатран"
           }
         },
         "zh-Hans" : {
@@ -13591,6 +14401,12 @@
             "value" : "İbranice"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Іврит"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13689,6 +14505,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Üst Özel Kullanım Vekilleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Високі приватні символи-замінники"
           }
         },
         "zh-Hans" : {
@@ -13791,6 +14613,12 @@
             "value" : "Üst Vekiller"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Високі символи-замінники"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13889,6 +14717,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hiragana"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хірагана"
           }
         },
         "zh-Hans" : {
@@ -13991,6 +14825,12 @@
             "value" : "İdeogram Açıklama Karakterleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Опис ідеограм"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14089,6 +14929,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "İdeogram Sembolleri ve Noktalama"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ідеографічні символи та пунктуація"
           }
         },
         "zh-Hans" : {
@@ -14191,6 +15037,12 @@
             "value" : "İmparatorluk Aramicesi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Арамейські імператорські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14289,6 +15141,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hintçe Siyak Rakamları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Індійські цифри сіяк"
           }
         },
         "zh-Hans" : {
@@ -14391,6 +15249,12 @@
             "value" : "Pehlevi Kitabe Dili"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Середньоперські письмена"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14489,6 +15353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Partça Kitabe Dili"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Парфянські письмена"
           }
         },
         "zh-Hans" : {
@@ -14591,6 +15461,12 @@
             "value" : "IPA Genişletmeleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фонетичні знаки"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14689,6 +15565,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cava Dili"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Яванські"
           }
         },
         "zh-Hans" : {
@@ -14791,6 +15673,12 @@
             "value" : "Kaithi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каїті"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14889,6 +15777,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kaktovik Rakamları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кактовікські цифри"
           }
         },
         "zh-Hans" : {
@@ -14991,6 +15885,12 @@
             "value" : "Genişletilmiş Kana A"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кана розширена А"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15089,6 +15989,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Kana-B"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кана розширена Б"
           }
         },
         "zh-Hans" : {
@@ -15191,6 +16097,12 @@
             "value" : "Kana Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доповнення кана"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15289,6 +16201,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kanbun"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Камбун"
           }
         },
         "zh-Hans" : {
@@ -15391,6 +16309,12 @@
             "value" : "Kangxi Kökleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключі ієрогліфів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15489,6 +16413,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kannada"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каннада"
           }
         },
         "zh-Hans" : {
@@ -15591,6 +16521,12 @@
             "value" : "Katakana"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Катакана"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15689,6 +16625,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Katakana Fonetik Genişletmeleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фонетичні знаки катакана"
           }
         },
         "zh-Hans" : {
@@ -15791,6 +16733,12 @@
             "value" : "Kavice"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каві"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15889,6 +16837,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kayah Li"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кая"
           }
         },
         "zh-Hans" : {
@@ -15991,6 +16945,12 @@
             "value" : "Kharoshthi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кхароштхі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16089,6 +17049,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hitayca Küçük Yazı"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Малі письмена хітан"
           }
         },
         "zh-Hans" : {
@@ -16191,6 +17157,12 @@
             "value" : "Kmer Dili"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кхмерські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16289,6 +17261,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kmer Dili Sembolleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кхмерські символи"
           }
         },
         "zh-Hans" : {
@@ -16391,6 +17369,12 @@
             "value" : "Khojki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хойкі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16489,6 +17473,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Khudawadi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кхудаваді"
           }
         },
         "zh-Hans" : {
@@ -16601,6 +17591,12 @@
             "value" : "Laos Dili"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лаоські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16699,6 +17695,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Latin Eki"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латинські розширені додаткові"
           }
         },
         "zh-Hans" : {
@@ -16801,6 +17803,12 @@
             "value" : "Genişletilmiş Latin-A"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латинські розширені А"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16899,6 +17907,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Latin-B"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латинські розширені Б"
           }
         },
         "zh-Hans" : {
@@ -17001,6 +18015,12 @@
             "value" : "Genişletilmiş Latin-C"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латинські розширені В"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17099,6 +18119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Latin-D"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латинські розширені Г"
           }
         },
         "zh-Hans" : {
@@ -17201,6 +18227,12 @@
             "value" : "Genişletilmiş Latin-E"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латинські розширені Ґ"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17299,6 +18331,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Latin-F"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латинські розширені Д"
           }
         },
         "zh-Hans" : {
@@ -17401,6 +18439,12 @@
             "value" : "Genişletilmiş Latin-G"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Латинські розширені Е"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17499,6 +18543,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latin-1 Eki"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додаткові до Latin-1"
           }
         },
         "zh-Hans" : {
@@ -17601,6 +18651,12 @@
             "value" : "Lepcha"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лепча"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17699,6 +18755,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Harf Gibi Semboller"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Літероподібні символи"
           }
         },
         "zh-Hans" : {
@@ -17801,6 +18863,12 @@
             "value" : "Limbu"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лімбу"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17899,6 +18967,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lineer A"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лінійне письмо A"
           }
         },
         "zh-Hans" : {
@@ -18001,6 +19075,12 @@
             "value" : "Lineer B İdeogramları"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ідеограми лінійного письма Б"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18099,6 +19179,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lineer B Heceleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Складове лінійне письмо Б"
           }
         },
         "zh-Hans" : {
@@ -18201,6 +19287,12 @@
             "value" : "Lisu"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лісу"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18299,6 +19391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lisu Eki"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доповнення Лісу"
           }
         },
         "zh-Hans" : {
@@ -18401,6 +19499,12 @@
             "value" : "Alt Vekiller"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Низькі символи-замінники"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18499,6 +19603,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Likya"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лікійські"
           }
         },
         "zh-Hans" : {
@@ -18601,6 +19711,12 @@
             "value" : "Lidya"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лідійські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18699,6 +19815,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mahajani"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Махаджані"
           }
         },
         "zh-Hans" : {
@@ -18801,6 +19923,12 @@
             "value" : "Mahjong Taşları"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Маджонг"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18899,6 +20027,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Makasar"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Макасар"
           }
         },
         "zh-Hans" : {
@@ -19001,6 +20135,12 @@
             "value" : "Malayalam"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Малаялам"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19099,6 +20239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mandenik"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мандійські"
           }
         },
         "zh-Hans" : {
@@ -19201,6 +20347,12 @@
             "value" : "Manici"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Маніхейські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19299,6 +20451,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Marchen"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Марчен"
           }
         },
         "zh-Hans" : {
@@ -19401,6 +20559,12 @@
             "value" : "Masaram Gondi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Масарам гонді"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19499,6 +20663,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Matematik Alfasayısal Sembolleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Математичні буквенні та цифрові символи"
           }
         },
         "zh-Hans" : {
@@ -19601,6 +20771,12 @@
             "value" : "Matematik İşleçleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Математичні оператори"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19699,6 +20875,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Maya Rakamları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цифри майя"
           }
         },
         "zh-Hans" : {
@@ -19801,6 +20983,12 @@
             "value" : "Medefaidrin"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Медефідрін"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19899,6 +21087,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Meetei Mayek"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мейтей майєк"
           }
         },
         "zh-Hans" : {
@@ -20001,6 +21195,12 @@
             "value" : "Meetei Mayek Genişletmeleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розширення Маніпурі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20099,6 +21299,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mende Kikakui"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Менде кікакуй"
           }
         },
         "zh-Hans" : {
@@ -20201,6 +21407,12 @@
             "value" : "Meroitik Bitişik El Yazısı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мероїтські курсивні"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20299,6 +21511,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Meroitik Hiyeroglifler"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мероїтські ієрогліфи"
           }
         },
         "zh-Hans" : {
@@ -20401,6 +21619,12 @@
             "value" : "Miao"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мяо"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20499,6 +21723,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Çeşitli Matematik Sembolleri-A"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Різноманітні математичні символи A"
           }
         },
         "zh-Hans" : {
@@ -20601,6 +21831,12 @@
             "value" : "Çeşitli Matematik Sembolleri-B"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Різноманітні математичні символи Б"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20699,6 +21935,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Çeşitli Semboller"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Різноманітні символи"
           }
         },
         "zh-Hans" : {
@@ -20801,6 +22043,12 @@
             "value" : "Çeşitli Semboller ve Oklar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Різноманітні символи і стрілки"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20899,6 +22147,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Çeşitli Semboller ve Piktograflar"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Різноманітні символи й піктограми"
           }
         },
         "zh-Hans" : {
@@ -21011,6 +22265,12 @@
             "value" : "Çeşitli Teknik"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Технічні символи"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21109,6 +22369,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Моді"
           }
         },
         "zh-Hans" : {
@@ -21211,6 +22477,12 @@
             "value" : "Değiştirici Ton Harfleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи модифікаторов тону"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21309,6 +22581,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Moğolca"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Монгольські"
           }
         },
         "zh-Hans" : {
@@ -21411,6 +22689,12 @@
             "value" : "Moğolca Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Монгольські додаткові"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21509,6 +22793,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mro"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мро"
           }
         },
         "zh-Hans" : {
@@ -21611,6 +22901,12 @@
             "value" : "Multani"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мультані"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21709,6 +23005,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Müzik Sembolleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Музичні символи"
           }
         },
         "zh-Hans" : {
@@ -21811,6 +23113,12 @@
             "value" : "Myanmar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мʼянмські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21909,6 +23217,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Myanmar A"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мʼянмарські розширені A"
           }
         },
         "zh-Hans" : {
@@ -22011,6 +23325,12 @@
             "value" : "Genişletilmiş Myanmar B"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бірманські розширені Б"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22109,6 +23429,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genişletilmiş Myanmar C"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мʼянмарські розширені С"
           }
         },
         "zh-Hans" : {
@@ -22211,6 +23537,12 @@
             "value" : "N’Ko"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нко"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22309,6 +23641,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nebati Dili"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Набатейські"
           }
         },
         "zh-Hans" : {
@@ -22411,6 +23749,12 @@
             "value" : "Nag Mundari"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наг Мундарі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22509,6 +23853,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nandinagari"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нандінагарі"
           }
         },
         "zh-Hans" : {
@@ -22611,6 +23961,12 @@
             "value" : "Yeni Tai Lue"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нові Тай-лю"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22709,6 +24065,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Newa"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нева"
           }
         },
         "zh-Hans" : {
@@ -22811,6 +24173,12 @@
             "value" : "Sayı Formları"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Числові символи"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22909,6 +24277,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nushu"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нушу"
           }
         },
         "zh-Hans" : {
@@ -23011,6 +24385,12 @@
             "value" : "Nyiakeng Puachue Hmong"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ньякенг пуахе хмонг"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23111,6 +24491,12 @@
             "value" : "Ogham"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Огам"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23209,6 +24595,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ol Chiki"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сантальські"
           }
         },
         "zh-Hans" : {
@@ -23321,6 +24713,12 @@
             "value" : "Eski Macarca"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стара угорська"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23419,6 +24817,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eski İtalik"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Давньоіталійське письмо"
           }
         },
         "zh-Hans" : {
@@ -23521,6 +24925,12 @@
             "value" : "Eski Kuzey Arabistan Dili"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Давньопівнічноаравійські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23619,6 +25029,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eski Permik"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Давньопермські"
           }
         },
         "zh-Hans" : {
@@ -23721,6 +25137,12 @@
             "value" : "Eski Farsça"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Давньоперські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23819,6 +25241,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eski Soğdca"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старе согдійське письмо"
           }
         },
         "zh-Hans" : {
@@ -23921,6 +25349,12 @@
             "value" : "Eski Güney Arabistan Dili"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Давньопівденноаравійські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24019,6 +25453,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eski Türkçe"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Давньотюркські"
           }
         },
         "zh-Hans" : {
@@ -24121,6 +25561,12 @@
             "value" : "Eski Uygurca"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Давньоуйгурські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24219,6 +25665,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Optik Karakter Tanıma"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оптичне розпізнавання образів"
           }
         },
         "zh-Hans" : {
@@ -24321,6 +25773,12 @@
             "value" : "Oriya"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Орія"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24419,6 +25877,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Süslü Şekiller"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Декоративні значки"
           }
         },
         "zh-Hans" : {
@@ -24521,6 +25985,12 @@
             "value" : "Osage"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Осаге"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24619,6 +26089,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Osmanya"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сомалійські"
           }
         },
         "zh-Hans" : {
@@ -24721,6 +26197,12 @@
             "value" : "Osmanlıca Siyak Rakamları"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Османські цифри сіяк"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24819,6 +26301,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pahawh Hmong"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пахау хмонг"
           }
         },
         "zh-Hans" : {
@@ -24921,6 +26409,12 @@
             "value" : "Palmira Dili"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пальмірські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25019,6 +26513,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pau Cin Hau"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пау чін хау"
           }
         },
         "zh-Hans" : {
@@ -25121,6 +26621,12 @@
             "value" : "Phags-pa"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пхагс-па"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25219,6 +26725,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Phaistos Diski"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фетський диск"
           }
         },
         "zh-Hans" : {
@@ -25321,6 +26833,12 @@
             "value" : "Fenikece"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фінікійські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25419,6 +26937,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fonetik Genişletmeler"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фонетичні розширення"
           }
         },
         "zh-Hans" : {
@@ -25521,6 +27045,12 @@
             "value" : "Fonetik Genişletmeler Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додаткові фонетичні розширення"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25619,6 +27149,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Oyun Kâğıtları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гральні карти"
           }
         },
         "zh-Hans" : {
@@ -25721,6 +27257,12 @@
             "value" : "Özel Kullanım Alanı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Область приватних символів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25819,6 +27361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Psalter Pehlevi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пехлеві релігійний"
           }
         },
         "zh-Hans" : {
@@ -25921,6 +27469,12 @@
             "value" : "Rejang"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Реджанг"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26019,6 +27573,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rumi Sayı Sembolleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Числові символи румі"
           }
         },
         "zh-Hans" : {
@@ -26121,6 +27681,12 @@
             "value" : "Runik"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рунічне письмо"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26219,6 +27785,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Samarit"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Самаритянські"
           }
         },
         "zh-Hans" : {
@@ -26321,6 +27893,12 @@
             "value" : "Saurashtra"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Саураштра"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26419,6 +27997,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sharada"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шарада"
           }
         },
         "zh-Hans" : {
@@ -26531,6 +28115,12 @@
             "value" : "Shaw Alfabesi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Алфавіт Шоу"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26631,6 +28221,12 @@
             "value" : "Steno Biçimi Denetimleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Інструменти формату скоропису"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26729,6 +28325,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Siddham"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сідхам"
           }
         },
         "zh-Hans" : {
@@ -26841,6 +28443,12 @@
             "value" : "Sinhal Dili"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сингальські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26939,6 +28547,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arkaik Seylanca Rakamları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сингальські архаїчні номери"
           }
         },
         "zh-Hans" : {
@@ -27041,6 +28655,12 @@
             "value" : "Küçük Form Varyantları"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Малі варіанти символів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27139,6 +28759,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Küçük Kana Genişletmesi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додаткові малі варіанти символів кани"
           }
         },
         "zh-Hans" : {
@@ -27241,6 +28867,12 @@
             "value" : "Soğdca"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Согдійські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27339,6 +28971,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sora Sompeng"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Савара"
           }
         },
         "zh-Hans" : {
@@ -27441,6 +29079,12 @@
             "value" : "Soyombo"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сойомбо"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27539,6 +29183,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aralık Değiştirici Harfler"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи модифікації пробілу"
           }
         },
         "zh-Hans" : {
@@ -27641,6 +29291,12 @@
             "value" : "Özel"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спеціальні символи"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27739,6 +29395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sunda Dili"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сунданські"
           }
         },
         "zh-Hans" : {
@@ -27841,6 +29503,12 @@
             "value" : "Sundaca Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сунданські доповнення"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27939,6 +29607,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sunuwar"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сунувар"
           }
         },
         "zh-Hans" : {
@@ -28041,6 +29715,12 @@
             "value" : "Üsler ve İndisler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Надрядкові та підрядкові"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28139,6 +29819,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ek Oklar-A"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додаткові стрілки А"
           }
         },
         "zh-Hans" : {
@@ -28241,6 +29927,12 @@
             "value" : "Ek Oklar-B"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додаткові стрілки Б"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28339,6 +30031,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ek Oklar-C"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додаткові стрілки В"
           }
         },
         "zh-Hans" : {
@@ -28441,6 +30139,12 @@
             "value" : "Ek Matematik İşleçleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додаткові математичні оператори"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28539,6 +30243,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ek Noktalamalar"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додаткова пунктуація"
           }
         },
         "zh-Hans" : {
@@ -28641,6 +30351,12 @@
             "value" : "Ek Semboller ve Piktograflar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додаткові символи й піктограми"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28739,6 +30455,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ek Özel Kullanım Alanı-A"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додаткова область приватних символів А"
           }
         },
         "zh-Hans" : {
@@ -28841,6 +30563,12 @@
             "value" : "Ek Özel Kullanım Alanı-B"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додаткова область приватних символів Б"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28939,6 +30667,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sutton İşaret Dili Yazısı"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Жестове письмо"
           }
         },
         "zh-Hans" : {
@@ -29041,6 +30775,12 @@
             "value" : "Syloti Nagri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Силоті нагрі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29141,6 +30881,12 @@
             "value" : "Semboller ve Piktograflar Genişletilmiş A"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи та піктограми розширення A"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29239,6 +30985,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eski İşlemler İçin Semboller"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи застарілої обчислювальної техніки"
           }
         },
         "zh-Hans" : {
@@ -29351,6 +31103,12 @@
             "value" : "Süryanice"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сирійські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29449,6 +31207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Süryanice Eki"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сирійські додаткові"
           }
         },
         "zh-Hans" : {
@@ -29551,6 +31315,12 @@
             "value" : "Tagalogca"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тагальські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29649,6 +31419,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tagbanwa"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тагбанва"
           }
         },
         "zh-Hans" : {
@@ -29751,6 +31527,12 @@
             "value" : "Etiketler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Теги"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29849,6 +31631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tai Le"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тай-Ле"
           }
         },
         "zh-Hans" : {
@@ -29951,6 +31739,12 @@
             "value" : "Tai Tham"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тай-там"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30051,6 +31845,12 @@
             "value" : "Tai Viet"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тай-Вʼєт"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30149,6 +31949,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tai Xuan Jing Sembolleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Даоські символи"
           }
         },
         "zh-Hans" : {
@@ -30267,6 +32073,12 @@
             "value" : "Takri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Такрі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30365,6 +32177,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tamilce"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тамільські"
           }
         },
         "zh-Hans" : {
@@ -30467,6 +32285,12 @@
             "value" : "Tamilce Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тамільські додаткові"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30565,6 +32389,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tangsa"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тангса"
           }
         },
         "zh-Hans" : {
@@ -30667,6 +32497,12 @@
             "value" : "Tangut Dili"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тангут"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30765,6 +32601,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tangut Dili Bileşenleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Складники тангут"
           }
         },
         "zh-Hans" : {
@@ -30877,6 +32719,12 @@
             "value" : "Tangut Dili Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тангут додаткові"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30975,6 +32823,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Telugu"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Телугу"
           }
         },
         "zh-Hans" : {
@@ -31077,6 +32931,12 @@
             "value" : "Thaana"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тана"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31175,6 +33035,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tayca"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тайські"
           }
         },
         "zh-Hans" : {
@@ -31277,6 +33143,12 @@
             "value" : "Tibetçe"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тібетські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31375,6 +33247,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tifinagh"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тифінаг"
           }
         },
         "zh-Hans" : {
@@ -31477,6 +33355,12 @@
             "value" : "Tirhuta"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тірхута"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31575,6 +33459,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Todhri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тодрі"
           }
         },
         "zh-Hans" : {
@@ -31703,6 +33593,12 @@
             "value" : "Ulaşım ve Harita Sembolleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи транспорту і карт"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31801,6 +33697,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tulu-Tigalari"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тулу-Тігаларі"
           }
         },
         "zh-Hans" : {
@@ -31903,6 +33805,12 @@
             "value" : "Ugarit"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Угаритські"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32001,6 +33909,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Birleştirilmiş Kanada Yerli Heceleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Універсальне канадське складове письмо"
           }
         },
         "zh-Hans" : {
@@ -32103,6 +34017,12 @@
             "value" : "Birleştirilmiş Kanada Yerli Heceleri - Genişletilmiş"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розширене універсальне канадське складове письмо"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32201,6 +34121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Birleştirilmiş Kanada Yerli Heceleri - Genişletilmiş-A"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розширене універсальне канадське складове письмо А"
           }
         },
         "zh-Hans" : {
@@ -32303,6 +34229,12 @@
             "value" : "Vai"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваї"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32401,6 +34333,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Varyasyon Seçiciler"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи варіацій"
           }
         },
         "zh-Hans" : {
@@ -32503,6 +34441,12 @@
             "value" : "Varyasyon Seçiciler Eki"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додаткові символи варіацій"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32601,6 +34545,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vedic Genişletmeleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ведичні розширені"
           }
         },
         "zh-Hans" : {
@@ -32703,6 +34653,12 @@
             "value" : "Düşey Formlar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вертикальні форми"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32801,6 +34757,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vitkuk"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віткуті"
           }
         },
         "zh-Hans" : {
@@ -32903,6 +34865,12 @@
             "value" : "Wancho"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ванчо"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33001,6 +34969,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Warang Citi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Варанг кшиті"
           }
         },
         "zh-Hans" : {
@@ -33103,6 +35077,12 @@
             "value" : "Yezidi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Єзіді"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33201,6 +35181,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yi Kökleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключі ієрогліфів ї"
           }
         },
         "zh-Hans" : {
@@ -33303,6 +35289,12 @@
             "value" : "Yi Heceleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Складове письмо ї"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33401,6 +35393,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yijing Altı Köşeli Yıldız Sembolleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гексаграми І-Цзин"
           }
         },
         "zh-Hans" : {
@@ -33503,6 +35501,12 @@
             "value" : "Kare Zanabazar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Квадратне письмо Занабазара"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33601,6 +35605,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Znamenny Müzik Gösterimi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Знаменний нотний запис"
           }
         },
         "zh-Hans" : {
