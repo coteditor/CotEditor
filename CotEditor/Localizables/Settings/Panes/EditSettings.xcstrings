@@ -826,7 +826,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seçili metni vurgula"
+            "value" : "Seçili metnin eşleşmelerini vurgula"
           }
         },
         "uk" : {
@@ -932,7 +932,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eşleşen ayraçlarını vurgula"
+            "value" : "Eşleşen ayraçları vurgula"
           }
         },
         "uk" : {
@@ -1038,7 +1038,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yalnızca boşluk olan satırlar içeriliyor"
+            "value" : "Yalnızca boşluk içeren satırları da dahil et"
           }
         },
         "uk" : {
@@ -1144,7 +1144,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seçimi Sekme düğmesi ile girintile"
+            "value" : "Seçimi Tab tuşuyla girintile"
           }
         },
         "uk" : {

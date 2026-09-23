@@ -78,7 +78,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bir kestirmeyi değiştirmek için düğme sütununa tıklayın ve yeni düğmeleri girin."
+            "value" : "Bir kestirmeyi değiştirmek için tuş sütununa tıklayın, ardından yeni tuşlara basın."
           }
         },
         "uk" : {

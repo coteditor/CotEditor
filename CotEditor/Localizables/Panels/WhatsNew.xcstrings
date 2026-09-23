@@ -417,7 +417,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "macOS 27 ile, başlıksız belgeler kendiliğinden içeriklerinden önerilen bir taslak adı alır."
+            "value" : "macOS 27’de adsız belgeler otomatik olarak içeriklerinden önerilen bir taslak adı alır."
           }
         },
         "uk" : {

@@ -998,7 +998,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Girintile"
+            "value" : "Girintileme"
           }
         },
         "uk" : {
@@ -8864,7 +8864,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizim"
+            "value" : "Sözdizimi"
           }
         },
         "uk" : {
@@ -8978,7 +8978,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizim"
+            "value" : "Sözdizimi"
           }
         },
         "uk" : {
@@ -10346,7 +10346,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizim Analizini Sıfırla"
+            "value" : "Sözdizimi Analizini Sıfırla"
           }
         },
         "uk" : {
@@ -12626,7 +12626,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dolaşım Çubuğunu Göster"
+            "value" : "Dolaşma Çubuğunu Göster"
           }
         },
         "uk" : {
@@ -13082,7 +13082,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bölünmüş Düzenleyici"
+            "value" : "Düzenleyiciyi Böl"
           }
         },
         "uk" : {
@@ -13880,7 +13880,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Çoğaltılanları Sil"
+            "value" : "Yinelenenleri Sil"
           }
         },
         "uk" : {
@@ -16502,7 +16502,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "İç Yorum"
+            "value" : "Satır İçi Yorum"
           }
         },
         "uk" : {
@@ -17528,7 +17528,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Çoklu Değiştir"
+            "value" : "Çoklu Değiştirme"
           }
         },
         "uk" : {
@@ -17642,7 +17642,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sondaki Boşlukları Sil"
+            "value" : "Sondaki Boşlukları Kırp"
           }
         },
         "uk" : {
@@ -20606,7 +20606,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dizgiye Göre Sırala…"
+            "value" : "Örüntüye Göre Sırala…"
           }
         },
         "uk" : {
@@ -21746,7 +21746,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Birden Çok Değiştirmeyi Yönet…"
+            "value" : "Çoklu Değiştirmeyi Yönet…"
           }
         },
         "uk" : {
@@ -21974,7 +21974,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Çoklu Değiştir"
+            "value" : "Çoklu Değiştirme"
           }
         },
         "uk" : {
@@ -22316,7 +22316,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kod Parçacıklarını Düzenle…"
+            "value" : "Kırpıntıları Düzenle…"
           }
         },
         "uk" : {
@@ -25394,7 +25394,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode Kod Noktası Olarak Gir…"
+            "value" : "Unicode Kod Noktasıyla Ekle…"
           }
         },
         "uk" : {
@@ -25850,7 +25850,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Metin Değişimi"
+            "value" : "Metni Değiştir"
           }
         },
         "uk" : {
@@ -25964,7 +25964,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Klasör Bul"
+            "value" : "Klasörde Bul"
           }
         },
         "uk" : {
@@ -26876,7 +26876,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ters"
+            "value" : "Tersine Çevir"
           }
         },
         "uk" : {
@@ -27332,7 +27332,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Girintile"
+            "value" : "Girintileme"
           }
         },
         "uk" : {

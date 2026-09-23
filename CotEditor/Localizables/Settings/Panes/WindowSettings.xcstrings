@@ -186,7 +186,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otom."
+            "value" : "Otomatik"
           }
         },
         "uk" : {
@@ -1142,7 +1142,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kaydırılan satırları girintile:"
+            "value" : "Kaydırılan satırları girintile"
           }
         },
         "uk" : {
@@ -2633,7 +2633,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "piks."
+            "value" : "px"
           }
         },
         "uk" : {
@@ -2739,7 +2739,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sistem Ayarını Koru"
+            "value" : "Sistem Ayarını Kullan"
           }
         },
         "uk" : {
@@ -3590,7 +3590,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözcük sayımı"
+            "value" : "Sözcük sayısı"
           }
         },
         "uk" : {

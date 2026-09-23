@@ -632,7 +632,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yeni Öğe Ekle"
+            "value" : "Yeni öğe ekle"
           }
         },
         "uk" : {
@@ -858,7 +858,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seçili Öğeleri Sil"
+            "value" : "Seçili öğeleri sil"
           }
         },
         "uk" : {
@@ -4935,7 +4935,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%1$@” dosyasının boyutu %2$@."
+            "value" : "“%1$@” dosyasının büyüklüğü %2$@."
           }
         },
         "uk" : {
@@ -6297,7 +6297,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bırakılan dosya mutlak yolu."
+            "value" : "Bırakılan dosyanın mutlak yolu."
           }
         },
         "uk" : {
@@ -10032,7 +10032,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aşağıdaki şablonu doldurun ve %1$@ üzerinde bir kayıt açın veya %2$@ adresine gönderin. Bu e-postanın içeriğinin “Issues” sayfasında paylaşılacağını not edin. Lütfen içeriği İngilizce veya Japonca yazın."
+            "value" : "Aşağıdaki şablonu doldurun, ardından %1$@ üzerinde paylaşın veya %2$@ adresine gönderin. E-postanızın içeriğinin sorun sayfasında paylaşılabileceğini unutmayın. İletinizi İngilizce veya Japonca yazın."
           }
         },
         "uk" : {
@@ -10484,7 +10484,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sorunu Canlandırma Adımları"
+            "value" : "Sorunu Yeniden Oluşturma Adımları"
           }
         },
         "uk" : {
@@ -10598,7 +10598,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hata Bildir"
+            "value" : "Hata Raporu"
           }
         },
         "uk" : {
@@ -12625,7 +12625,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Belge yeniden yorumlanacak bir dosya yok."
+            "value" : "Belgenin yeniden yorumlanacak bir dosyası yok."
           }
         },
         "uk" : {
@@ -14885,7 +14885,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@”, halihazırda “%@” komutu tarafından alınmış."
+            "value" : "“%1$@” zaten “%2$@” komutu tarafından kullanılıyor."
           }
         },
         "uk" : {
@@ -14998,7 +14998,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shift düğmesi yalnızca başka bir değiştirici düğme ile kullanılabilir."
+            "value" : "Shift tuşu yalnızca başka bir niteleme tuşuyla birlikte kullanılabilir."
           }
         },
         "uk" : {
@@ -15111,7 +15111,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bir kısayol için tekli tür geçersizdir."
+            "value" : "Bu tuş tek başına kestirme olarak kullanılamaz."
           }
         },
         "uk" : {
@@ -15224,7 +15224,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” kombinasyonu, düğme bağıntısı özelleştirmesi için desteklenmiyor."
+            "value" : "“%@” tuş birleşimi kestirme özelleştirmesi için desteklenmiyor."
           }
         },
         "uk" : {
@@ -16344,7 +16344,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor Değişikliklerini Tut"
+            "value" : "CotEditor Sürümünü Tut"
           }
         },
         "uk" : {
@@ -16570,7 +16570,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor’da yapılan değişiklikler mi kullanılsın veya daha önce değiştirilen sürüme mi güncellensin?"
+            "value" : "CotEditor sürümünü tutmak mı, yoksa değiştirilmiş sürüme güncellemek mi istiyorsunuz?"
           }
         },
         "uk" : {

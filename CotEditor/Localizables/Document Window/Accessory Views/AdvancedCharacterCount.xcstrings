@@ -768,7 +768,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode’da tanımlandığı üzere sezgisel olarak sayın. Birden çok Unicode kod noktasından oluşan bir karakter; örneğin Emojiler, bir karakter olarak sayılır."
+            "value" : "Unicode’da tanımlanan sezgisel yöntemle sayın. Emoji gibi birden çok Unicode kod noktasından oluşan karakterler tek karakter olarak sayılır."
           }
         },
         "uk" : {
@@ -1110,7 +1110,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode sayılı"
+            "value" : "Unicode skaler değeri"
           }
         },
         "uk" : {
@@ -2192,7 +2192,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Başlangıç"
+            "value" : "Başlat"
           }
         },
         "uk" : {

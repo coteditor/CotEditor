@@ -2008,7 +2008,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ayarlar İçe Aktar"
+            "value" : "Ayarları İçe Aktar"
           }
         },
         "uk" : {
@@ -2340,7 +2340,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Birden çok değişiklik tanımı"
+            "value" : "Çoklu Değiştirme Tanımları"
           }
         },
         "uk" : {

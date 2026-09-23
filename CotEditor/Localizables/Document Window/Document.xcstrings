@@ -2783,7 +2783,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uzunluk"
+            "value" : "Süre"
           }
         },
         "uk" : {
@@ -5702,7 +5702,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@arg2@ içinde %#@arg1@"
           },
           "substitutions" : {
             "arg1" : {
@@ -6607,7 +6607,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@arg2@ içinde %#@arg1@"
           },
           "substitutions" : {
             "arg1" : {
@@ -14797,7 +14797,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Klasör Bul"
+            "value" : "Klasörde Bul"
           }
         },
         "uk" : {
@@ -14904,7 +14904,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Boyut"
+            "value" : "Büyüklük"
           }
         },
         "uk" : {
@@ -15986,7 +15986,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seçimi yoruma dönüştürür veya kaldır"
+            "value" : "Seçimi yoruma dönüştür veya yorumu kaldır"
           }
         },
         "uk" : {
@@ -16777,7 +16777,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Düzen"
+            "value" : "Düzenle"
           }
         },
         "uk" : {
@@ -17229,7 +17229,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Emoji ve Semboller’i Göster"
+            "value" : "Emoji ve Semboller’i göster"
           }
         },
         "uk" : {
@@ -18134,7 +18134,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fontu Değiştir"
+            "value" : "Fontu değiştir"
           }
         },
         "uk" : {
@@ -20169,7 +20169,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizim"
+            "value" : "Sözdizimi"
           }
         },
         "uk" : {

@@ -396,7 +396,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öntanımlı satır sonları:"
+            "value" : "Saptanmış satır sonları:"
           }
         },
         "uk" : {
@@ -502,7 +502,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öntanımlı sözdizimi:"
+            "value" : "Saptanmış sözdizimi:"
           }
         },
         "uk" : {
@@ -608,7 +608,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öntanımlı metin kodlaması:"
+            "value" : "Saptanmış metin kodlaması:"
           }
         },
         "uk" : {

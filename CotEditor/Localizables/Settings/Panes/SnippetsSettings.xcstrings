@@ -506,7 +506,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dosya Bırak"
+            "value" : "Dosya Bırakma"
           }
         },
         "uk" : {
@@ -1046,7 +1046,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Düğme"
+            "value" : "Tuş"
           }
         },
         "uk" : {

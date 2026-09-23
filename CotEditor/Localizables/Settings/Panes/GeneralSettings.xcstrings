@@ -2594,7 +2594,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bu ayardan bağımsız olarak, yeni ön sürümler her zaman ön sürümleri kullanırken içerilir."
+            "value" : "Ön sürüm kullanırken bu ayardan bağımsız olarak yeni ön sürümler her zaman dahil edilir."
           }
         },
         "uk" : {

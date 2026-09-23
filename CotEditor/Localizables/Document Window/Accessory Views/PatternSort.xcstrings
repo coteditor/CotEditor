@@ -398,7 +398,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Boş dizgi"
+            "value" : "Boş örüntü"
           }
         },
         "uk" : {
@@ -824,7 +824,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geçersiz dizgi"
+            "value" : "Geçersiz örüntü"
           }
         },
         "uk" : {
@@ -1036,7 +1036,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dizgi:"
+            "value" : "Örüntü:"
           }
         },
         "uk" : {

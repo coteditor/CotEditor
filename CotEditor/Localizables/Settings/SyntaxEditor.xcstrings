@@ -1093,7 +1093,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Başlangıç Dizisi"
+            "value" : "Başlangıç Dizgisi"
           }
         },
         "uk" : {
@@ -2266,7 +2266,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Görüntüleme Dizgisi"
+            "value" : "Görüntüleme Örüntüsü"
           }
         },
         "uk" : {
@@ -2479,7 +2479,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bitiş Dizisi"
+            "value" : "Bitiş Dizgisi"
           }
         },
         "uk" : {
@@ -5472,7 +5472,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Düzenli İfade Dizgisi"
+            "value" : "Düzenli İfade Örüntüsü"
           }
         },
         "uk" : {
@@ -5578,7 +5578,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dizi sınırlayıcıları:"
+            "value" : "Dizgi sınırlayıcıları:"
           }
         },
         "uk" : {

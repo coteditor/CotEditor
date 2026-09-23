@@ -827,7 +827,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Çoğaltılan Satırları Sil"
+            "value" : "Yinelenen Satırları Sil"
           }
         },
         "uk" : {
@@ -1039,7 +1039,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Satırı Yinele"
+            "value" : "Satırı Çoğalt"
           }
         },
         "uk" : {
@@ -1252,7 +1252,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Girintileme Kılavuzunu Gizle"
+            "value" : "Girintileme Kılavuzlarını Gizle"
           }
         },
         "uk" : {
@@ -2844,7 +2844,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Option-tık, betiği düzenleyicide açar."
+            "value" : "Betiği düzenleyicide açmak için Option tuşunu basılı tutarak tıklayın."
           }
         },
         "uk" : {
@@ -4018,7 +4018,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Girintileme Kılavuzunu Göster"
+            "value" : "Girintileme Kılavuzlarını Göster"
           }
         },
         "uk" : {
@@ -5828,7 +5828,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "İzleyen Boşluğu Kırp"
+            "value" : "Sondaki Boşlukları Kırp"
           }
         },
         "uk" : {

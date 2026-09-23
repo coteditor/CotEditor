@@ -79,7 +79,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kuralı Sil"
+            "value" : "Kuralları Sil"
           }
         },
         "uk" : {
@@ -300,7 +300,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dosyalardan CotEditor Değişiklik Tanımları veya Tab ile Ayrılmış Değerler seçin."
+            "value" : "CotEditor Değiştirme Tanımı veya TSV (sekmeyle ayrılmış değerler) dosyalarını seçin."
           }
         },
         "uk" : {
@@ -514,7 +514,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kuralı Taşı"
+            "value" : "Kuralları Taşı"
           }
         },
         "uk" : {
@@ -621,7 +621,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Çoklu Değiştir"
+            "value" : "Çoklu Değiştirme"
           }
         },
         "uk" : {

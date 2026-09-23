@@ -1295,7 +1295,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Son Aramaları Temizle"
+            "value" : "Son Aramaları Sil"
           }
         },
         "uk" : {
@@ -1509,7 +1509,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bulma sonucunu kapatın."
+            "value" : "Bulma sonucunu kapat"
           }
         },
         "uk" : {
@@ -1937,7 +1937,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tüm eşleşmeleri bulun ve listeleyin."
+            "value" : "Tüm eşleşmeleri bul ve listele"
           }
         },
         "uk" : {
@@ -2151,7 +2151,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bir sonraki eşleşmeyi bulun."
+            "value" : "Sonraki eşleşmeyi bul"
           }
         },
         "uk" : {
@@ -2365,7 +2365,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bir önceki eşleşmeyi bulun."
+            "value" : "Önceki eşleşmeyi bul"
           }
         },
         "uk" : {
@@ -2692,7 +2692,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$lld / %2$lld eşleşme bulundu."
+            "value" : "Toplam %2$lld eşleşme. Geçerli eşleşme: %1$lld."
           }
         },
         "uk" : {
@@ -3066,13 +3066,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld eşleşen"
+                  "value" : "%lld eşleşme"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld eşleşen"
+                  "value" : "%lld eşleşme"
                 }
               },
               "zero" : {
@@ -5180,7 +5180,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Arama sonuçlarını tam sonuçlarla sınırla."
+            "value" : "Arama sonuçlarını tam sözcüklerle sınırla"
           }
         },
         "uk" : {
@@ -5408,7 +5408,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "İkâme metinde meta karakterlerin kaçırılmasını ters eğik çizgi ile kaldırın."
+            "value" : "Değişim metninde ters eğik çizgiyle belirtilen kaçış dizilerini çöz"
           }
         },
         "uk" : {
@@ -5522,7 +5522,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "İkâme metnin kaçırılmasını kaldır"
+            "value" : "Değişim metnindeki kaçışları kaldır"
           }
         },
         "uk" : {
@@ -6514,7 +6514,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seçimde Bul"
+            "value" : "Seçimde"
           }
         },
         "uk" : {
@@ -7477,7 +7477,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tüm eşleşmeleri değişim metniyle değiştir."
+            "value" : "Tüm eşleşmeleri değişim metniyle değiştir"
           }
         },
         "uk" : {
@@ -7584,7 +7584,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geçerli seçimi değiştirilecek metinle değiştir, sonrasında bir sonraki eşleşmeyi bul."
+            "value" : "Geçerli seçimi değişim metniyle değiştir, ardından sonraki eşleşmeyi bul"
           }
         },
         "uk" : {
@@ -7798,7 +7798,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Arama baştan sürüyor"
+            "value" : "Arama belgenin diğer ucundan sürüyor."
           }
         },
         "uk" : {
@@ -8118,7 +8118,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seçimde BÜYÜK/küçük harf yok saymak için seçin."
+            "value" : "Aramada büyük-küçük harf farkını yok say"
           }
         },
         "uk" : {
@@ -8225,7 +8225,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yalnızca seçimden arama yapmak için seçin."
+            "value" : "Yalnızca seçili metinde ara"
           }
         },
         "uk" : {
@@ -8332,7 +8332,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Düzenli ifade kullanarak aramak için seçin."
+            "value" : "Düzenli ifadeyle ara"
           }
         },
         "uk" : {
@@ -8546,7 +8546,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Düzenli ifade sözdizimi için hızlı başvuruyu göster."
+            "value" : "Düzenli ifade sözdizimi için hızlı başvuruyu göster"
           }
         },
         "uk" : {
@@ -8878,7 +8878,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bulunacak girdi metni"
+            "value" : "Aranacak metni girin."
           }
         },
         "uk" : {
@@ -8991,7 +8991,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“seçimde” seçeneği etkin; ancak hiçbir şey seçilmemiş."
+            "value" : "“Seçimde” seçeneği etkin; ancak hiçbir şey seçilmemiş."
           }
         },
         "uk" : {
@@ -9104,7 +9104,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Belgedeki arama kapsamını seçin veya “seçimde” seçeneğinin işaretini kaldırın."
+            "value" : "Belgedeki arama kapsamını seçin veya “Seçimde” seçeneğinin işaretini kaldırın."
           }
         },
         "uk" : {
@@ -9431,7 +9431,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bulunan metni değiştirecek metni girin."
+            "value" : "Bulunan metnin yerine kullanılacak metni gir"
           }
         },
         "uk" : {
@@ -9538,7 +9538,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aranacak metni girin."
+            "value" : "Aranacak metni gir"
           }
         },
         "uk" : {

@@ -86,7 +86,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Değiştirilmiş NFD’ye karşılık gelen resmi olmayan NFC tabanlı olağanlaştırma biçimi"
+            "value" : "Değiştirilmiş NFD’ye karşılık gelen resmî olmayan NFC tabanlı olağanlaştırma biçimi"
           }
         },
         "uk" : {
@@ -307,7 +307,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HFS+’da resmi olmayan NFD tabanlı olağanlaştırma biçimi kullanılır"
+            "value" : "HFS+’da kullanılan resmî olmayan NFD tabanlı olağanlaştırma biçimi"
           }
         },
         "uk" : {
@@ -528,7 +528,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kurallara Uygun Dekompozisyon, sonrasında Kurallara Uygun Kompozisyon"
+            "value" : "Kurallara uygun dekompozisyon, ardından kurallara uygun kompozisyon"
           }
         },
         "uk" : {
@@ -749,7 +749,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kurallara Uygun Kompozisyon"
+            "value" : "Kurallara uygun dekompozisyon"
           }
         },
         "uk" : {
@@ -970,7 +970,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uyumluluk Dekompozisyonu, sonrasında Kurallara Uygun Kompozisyon"
+            "value" : "Uyumluluk dekompozisyonu, ardından kurallara uygun kompozisyon"
           }
         },
         "uk" : {
@@ -1191,7 +1191,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC, Biçim Kıvırması ve öntanımlı olarak yok sayılabilen kod noktalarının kaldırılması uygulanıyor"
+            "value" : "NFKC uygulanır, büyük-küçük harf ayrımı kaldırılır ve saptanmış olarak yok sayılabilen kod noktaları silinir."
           }
         },
         "uk" : {
@@ -1298,7 +1298,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC Biçim Kıvır"
+            "value" : "NFKC Case-Fold"
           }
         },
         "uk" : {
@@ -1412,7 +1412,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uyumluluk Dekompozisyonu"
+            "value" : "Uyumluluk dekompozisyonu"
           }
         },
         "uk" : {

@@ -86,7 +86,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "tümü"
+            "value" : "tümüyle"
           }
         },
         "uk" : {
@@ -200,7 +200,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "herhangi biri"
+            "value" : "herhangi biriyle"
           }
         },
         "uk" : {
@@ -314,7 +314,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aşağıdaki koşullardan"
+            "value" : "Aşağıdaki koşulların"
           }
         },
         "uk" : {
@@ -428,7 +428,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ile eşleştir:"
+            "value" : "eşleştir:"
           }
         },
         "uk" : {

@@ -821,7 +821,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "en az 0; ancak n’den fazla değil"
+            "value" : "en az 0, en çok n kez"
           }
         },
         "uk" : {
@@ -927,7 +927,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "en az n; ancak m’den fazla değil"
+            "value" : "en az n, en çok m kez"
           }
         },
         "uk" : {
@@ -1566,7 +1566,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "onluk sayı"
+            "value" : "ondalık rakam"
           }
         },
         "uk" : {
@@ -2841,7 +2841,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdizim, %@ belirtimine uyar."
+            "value" : "Sözdizimi, %@ belirtimine uyar."
           }
         },
         "uk" : {
