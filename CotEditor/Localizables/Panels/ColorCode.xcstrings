@@ -73,7 +73,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Цвет кода"
+            "value" : "Код цвета"
           }
         },
         "tr" : {
@@ -525,7 +525,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CSS HWB с альфоканалом"
+            "value" : "CSS HWB с альфа-каналом"
           }
         },
         "tr" : {
@@ -638,7 +638,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CSS ключи"
+            "value" : "Ключевое слово CSS"
           }
         },
         "tr" : {
@@ -977,7 +977,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hexadecimal"
+            "value" : "Шестнадцатеричный"
           }
         },
         "tr" : {
@@ -1090,7 +1090,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hexadecimal с альфоканалом"
+            "value" : "Шестнадцатеричный с альфа-каналом"
           }
         },
         "tr" : {
@@ -1203,7 +1203,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hexadecimal (сокращенное)"
+            "value" : "Шестнадцатеричный (краткий)"
           }
         },
         "tr" : {
@@ -1316,7 +1316,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hexadecimal с альфоканалом (сокращенное)"
+            "value" : "Шестнадцатеричный с альфа-каналом (краткий)"
           }
         },
         "tr" : {

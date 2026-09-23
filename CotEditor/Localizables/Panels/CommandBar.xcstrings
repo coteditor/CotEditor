@@ -310,25 +310,25 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld комманд не найдено"
+                  "value" : "Найдено %lld команды"
                 }
               },
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld комманд не найдено"
+                  "value" : "Найдено %lld команд"
                 }
               },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld комманда не найдена"
+                  "value" : "Найдена %lld команда"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld комманд не найдено"
+                  "value" : "Найдено %lld команд"
                 }
               },
               "zero" : {
@@ -528,7 +528,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Комманда"
+            "value" : "Команда"
           }
         },
         "tr" : {

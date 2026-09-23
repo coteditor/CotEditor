@@ -80,7 +80,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Неофициальная форма нормализации на основе NFC, соответствующая Модифицированному NFD"
+            "value" : "Неофициальная форма нормализации на основе NFC, соответствующая модифицированной NFD"
           }
         },
         "tr" : {
@@ -188,6 +188,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFC Modificado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Модифицированная NFC"
           }
         },
         "tr" : {
@@ -411,6 +417,12 @@
             "value" : "NFD Modificado"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Модифицированная NFD"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -627,6 +639,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFC"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFC"
@@ -853,6 +871,12 @@
             "value" : "NFD"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFD"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1069,6 +1093,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC"
@@ -1295,6 +1325,12 @@
             "value" : "NFKC Case-Fold"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC Case-Fold"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1511,6 +1547,12 @@
           }
         },
         "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKD"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKD"

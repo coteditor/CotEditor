@@ -80,7 +80,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Стиль Emoji"
+            "value" : "Стиль эмодзи"
           }
         },
         "tr" : {
@@ -194,7 +194,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Стиль Текста"
+            "value" : "Стиль текста"
           }
         },
         "tr" : {

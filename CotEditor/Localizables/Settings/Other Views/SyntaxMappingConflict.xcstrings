@@ -73,7 +73,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Дублирующий синтаксис"
+            "value" : "Дублирующиеся синтаксисы"
           }
         },
         "tr" : {
@@ -394,7 +394,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Переводчик"
+            "value" : "Интерпретатор"
           }
         },
         "tr" : {

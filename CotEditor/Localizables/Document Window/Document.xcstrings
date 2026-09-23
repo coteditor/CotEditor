@@ -72,7 +72,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(по умолчанию)"
+            "value" : " (по умолчанию)"
           }
         },
         "tr" : {
@@ -178,7 +178,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ пикселей на дюйм"
+            "value" : "%@ пикс./дюйм"
           }
         },
         "tr" : {
@@ -819,7 +819,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Закрыть разделение редактора"
+            "value" : "Закрыть разделенный редактор"
           }
         },
         "tr" : {
@@ -926,7 +926,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Закрыть Разделение Редактора"
+            "value" : "Закрыть разделенный редактор"
           }
         },
         "tr" : {
@@ -1033,7 +1033,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Точка Кода"
+            "value" : "Кодовая точка"
           }
         },
         "tr" : {
@@ -1140,7 +1140,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Точки Кода"
+            "value" : "Кодовые точки"
           }
         },
         "tr" : {
@@ -1792,7 +1792,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Столбцов"
+            "value" : "Столбец"
           }
         },
         "tr" : {
@@ -2564,7 +2564,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "В документе есть не сохраненные изменения"
+            "value" : "В документе есть несохраненные изменения"
           }
         },
         "tr" : {
@@ -4421,7 +4421,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Кино"
+            "value" : "Видео"
           }
         },
         "tr" : {
@@ -4800,25 +4800,25 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Найдены только первые %lld совпадения."
+                  "value" : "Найдены только первые совпадения (%lld)."
                 }
               },
               "many" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Найдены только первые %lld совпадений."
+                  "value" : "Найдены только первые совпадения (%lld)."
                 }
               },
               "one" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Найдено только первое совпадение."
+                  "value" : "Найдены только первые совпадения (%lld)."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "needs_review",
-                  "value" : "Найдены только первые %lld совпадений."
+                  "value" : "Найдены только первые совпадения (%lld)."
                 }
               }
             }
@@ -5641,7 +5641,7 @@
                   "few" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg совпадений"
+                      "value" : "%arg совпадения"
                     }
                   },
                   "many" : {
@@ -5673,25 +5673,25 @@
                   "few" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg файлов"
+                      "value" : "%arg файлах"
                     }
                   },
                   "many" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg файлов"
+                      "value" : "%arg файлах"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg файл"
+                      "value" : "%arg файле"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg файлов"
+                      "value" : "%arg файлах"
                     }
                   }
                 }
@@ -6546,7 +6546,7 @@
                   "few" : {
                     "stringUnit" : {
                       "state" : "needs_review",
-                      "value" : "%arg+ совпадений"
+                      "value" : "%arg+ совпадения"
                     }
                   },
                   "many" : {
@@ -6578,25 +6578,25 @@
                   "few" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg файлов"
+                      "value" : "%arg файлах"
                     }
                   },
                   "many" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg файлов"
+                      "value" : "%arg файлах"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg файл"
+                      "value" : "%arg файле"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg файлов"
+                      "value" : "%arg файлах"
                     }
                   }
                 }
@@ -6912,7 +6912,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Поиск не дал результатов"
+            "value" : "Ошибка поиска"
           }
         },
         "tr" : {
@@ -7636,25 +7636,25 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Найдено %lld некорректных символа."
+                  "value" : "Найдено %lld несовместимых символа."
                 }
               },
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Найдено %lld некорректных символа."
+                  "value" : "Найдено %lld несовместимых символов."
                 }
               },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Найден некорректный символ."
+                  "value" : "Найден %lld несовместимый символ."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Найдено %lld некорректных символа."
+                  "value" : "Найдено %lld несовместимых символов."
                 }
               }
             }
@@ -7983,25 +7983,25 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Найдено %1$lld символов окончания строки отличных от %2$@."
+                  "value" : "Найдено %1$lld окончания строки, отличных от %2$@."
                 }
               },
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Найдено %1$lld символов окончания строки отличных от %2$@."
+                  "value" : "Найдено %1$lld окончаний строки, отличных от %2$@."
                 }
               },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Наден символ окончания строки отличный от %2$@."
+                  "value" : "Найдено %1$lld окончание строки, отличное от %2$@."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Найдено %1$lld символов окончания строки отличных от %2$@."
+                  "value" : "Найдено %1$lld окончаний строки, отличных от %2$@."
                 }
               }
             }
@@ -8592,7 +8592,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Некорректные символы"
+            "value" : "Несовместимые символы"
           }
         },
         "tr" : {
@@ -8699,7 +8699,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Непоследовательные окончания строк"
+            "value" : "Разные окончания строк"
           }
         },
         "tr" : {
@@ -8913,7 +8913,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Анализатор"
+            "value" : "Инспектор"
           }
         },
         "tr" : {
@@ -9027,7 +9027,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Анализатор документа"
+            "value" : "Инспектор документа"
           }
         },
         "tr" : {
@@ -9362,7 +9362,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перейти к следующему элементу плана"
+            "value" : "Перейти к следующему элементу структуры"
           }
         },
         "tr" : {
@@ -9469,7 +9469,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перейти к предыдущему элементу плана"
+            "value" : "Перейти к предыдущему элементу структуры"
           }
         },
         "tr" : {
@@ -9896,7 +9896,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Окончание строк"
+            "value" : "Окончания строк"
           }
         },
         "tr" : {
@@ -10003,7 +10003,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Количество строк"
+            "value" : "Номера строк"
           }
         },
         "tr" : {
@@ -10868,7 +10868,7 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Вы хотите переместить %lld выбранных элементов в корзину?"
+                  "value" : "Вы хотите переместить %lld выбранных элемента в корзину?"
                 }
               },
               "many" : {
@@ -11151,7 +11151,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Навигационная строка"
+            "value" : "Панель навигации"
           }
         },
         "tr" : {
@@ -11685,7 +11685,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ничего не отфильтровано"
+            "value" : "Нет результатов фильтрации"
           }
         },
         "tr" : {
@@ -12964,7 +12964,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Меню „Структура“"
+            "value" : "Меню «Структура»"
           }
         },
         "tr" : {
@@ -13392,7 +13392,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать в проводнике файлов"
+            "value" : "Показать в обозревателе файлов"
           }
         },
         "tr" : {
@@ -14137,7 +14137,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Выберите одинарный символ чтобы посмотреть информацию"
+            "value" : "Выберите один символ, чтобы просмотреть информацию Unicode."
           }
         },
         "tr" : {
@@ -15005,7 +15005,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Редактор разделов"
+            "value" : "Разделить редактор"
           }
         },
         "tr" : {
@@ -15112,7 +15112,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Редактор Разделов"
+            "value" : "Разделить редактор"
           }
         },
         "tr" : {
@@ -15647,7 +15647,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Спасибо за вашу поддержку!"
+            "value" : "Спасибо за Вашу поддержку!"
           }
         },
         "tr" : {
@@ -16319,7 +16319,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "вперед"
+            "value" : "Вперед"
           }
         },
         "tr" : {
@@ -16771,7 +16771,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Редактор"
+            "value" : "Правка"
           }
         },
         "tr" : {
@@ -18128,7 +18128,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Символьный шрифт"
+            "value" : "Изменить шрифт"
           }
         },
         "tr" : {
@@ -18467,7 +18467,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сдвиг строк влево"
+            "value" : "Сдвинуть строки влево"
           }
         },
         "tr" : {
@@ -18693,7 +18693,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сдвиг строк вправо"
+            "value" : "Сдвинуть строки вправо"
           }
         },
         "tr" : {
@@ -18806,7 +18806,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отступ выделенного"
+            "value" : "Добавить отступ к выделенному тексту"
           }
         },
         "tr" : {
@@ -19597,7 +19597,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Всегда на верху"
+            "value" : "Поверх всех окон"
           }
         },
         "tr" : {
@@ -19710,7 +19710,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Держать окно всегда на верху"
+            "value" : "Держать окно поверх всех окон"
           }
         },
         "tr" : {
@@ -20163,7 +20163,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Синтакс"
+            "value" : "Синтаксис"
           }
         },
         "tr" : {
@@ -20617,7 +20617,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Стиль вкладок"
+            "value" : "Стиль табуляции"
           }
         },
         "tr" : {
@@ -20957,7 +20957,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Используйте Пробелы для Отступов"
+            "value" : "Использовать пробелы для отступов"
           }
         },
         "tr" : {
@@ -21070,7 +21070,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Используйте пробелы для отступов"
+            "value" : "Использовать пробелы для отступов"
           }
         },
         "tr" : {
@@ -21183,7 +21183,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Используйте табуляцию для отступов"
+            "value" : "Использовать табуляцию для отступов"
           }
         },
         "tr" : {
@@ -21975,7 +21975,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Текущий размер"
+            "value" : "Реальный размер"
           }
         },
         "tr" : {
@@ -22314,7 +22314,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Раззмер текста"
+            "value" : "Размер текста"
           }
         },
         "tr" : {

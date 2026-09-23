@@ -391,7 +391,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Точка в коде:"
+            "value" : "Кодовая точка:"
           }
         },
         "tr" : {
@@ -498,7 +498,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "запрещен"
+            "value" : "не рекомендуется"
           }
         },
         "tr" : {

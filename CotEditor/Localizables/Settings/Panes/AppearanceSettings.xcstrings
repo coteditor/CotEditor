@@ -73,7 +73,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ точек"
+            "value" : "%@ пт"
           }
         },
         "tr" : {
@@ -180,7 +180,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ раз"
+            "value" : "Множитель: %@"
           }
         },
         "tr" : {
@@ -286,7 +286,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Размытие"
+            "value" : "Сглаживание"
           }
         },
         "tr" : {
@@ -837,7 +837,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Прозрачность редактора:"
+            "value" : "Непрозрачность редактора:"
           }
         },
         "tr" : {
@@ -2246,7 +2246,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "раз"
+            "value" : "×"
           }
         },
         "tr" : {
@@ -2352,7 +2352,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Однотонное"
+            "value" : "С оттенком"
           }
         },
         "tr" : {

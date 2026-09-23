@@ -73,7 +73,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Удалить правило"
+            "value" : "удаление правил"
           }
         },
         "tr" : {
@@ -180,7 +180,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Изменить правило"
+            "value" : "изменение правила"
           }
         },
         "tr" : {
@@ -401,7 +401,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вставить правило"
+            "value" : "вставку правила"
           }
         },
         "tr" : {
@@ -508,7 +508,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Переместить правило"
+            "value" : "перемещение правил"
           }
         },
         "tr" : {

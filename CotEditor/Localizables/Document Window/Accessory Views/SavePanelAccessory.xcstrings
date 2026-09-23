@@ -73,7 +73,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сделать выполняемым"
+            "value" : "Сделать файл исполняемым"
           }
         },
         "tr" : {

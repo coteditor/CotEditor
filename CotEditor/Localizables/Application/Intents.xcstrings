@@ -79,7 +79,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Создать новый документа с выбранным текстом в CotEditor"
+            "value" : "Создать новый документ с указанным текстом в CotEditor."
           }
         },
         "tr" : {

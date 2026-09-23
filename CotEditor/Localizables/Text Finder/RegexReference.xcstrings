@@ -72,7 +72,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "0 раз"
+            "value" : "0 или более раз"
           }
         },
         "tr" : {
@@ -391,7 +391,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Якорь"
+            "value" : "Якоря"
           }
         },
         "tr" : {
@@ -603,7 +603,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "любой символ от А до Я"
+            "value" : "любой символ в диапазоне от A до Z"
           }
         },
         "tr" : {
@@ -709,7 +709,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "любой символ кроме от А до Я"
+            "value" : "любой символ вне диапазона от A до Z"
           }
         },
         "tr" : {
@@ -815,7 +815,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "больше 0 но не больше N раз"
+            "value" : "не менее 0 и не более n раз"
           }
         },
         "tr" : {
@@ -921,7 +921,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "больше N но не больше M раз"
+            "value" : "не менее n и не более m раз"
           }
         },
         "tr" : {
@@ -1027,7 +1027,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "больше N раз"
+            "value" : "не менее n раз"
           }
         },
         "tr" : {
@@ -1134,7 +1134,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Обратно к описанию"
+            "value" : "Обратная ссылка"
           }
         },
         "tr" : {
@@ -1241,7 +1241,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Базовый синтаксис"
+            "value" : "Основы синтаксиса регулярных выражений"
           }
         },
         "tr" : {
@@ -1454,7 +1454,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Символов"
+            "value" : "Символы"
           }
         },
         "tr" : {
@@ -1560,7 +1560,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "числовое значение"
+            "value" : "десятичная цифра"
           }
         },
         "tr" : {
@@ -1773,7 +1773,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Группа"
+            "value" : "Расширенные группы"
           }
         },
         "tr" : {
@@ -1985,7 +1985,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ICU регулярное выражение"
+            "value" : "Регулярные выражения ICU"
           }
         },
         "tr" : {
@@ -2091,7 +2091,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "вокруг"
+            "value" : "опережающая проверка"
           }
         },
         "tr" : {
@@ -2197,7 +2197,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "за"
+            "value" : "ретроспективная проверка"
           }
         },
         "tr" : {
@@ -2303,7 +2303,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "N раз"
+            "value" : "n раз"
           }
         },
         "tr" : {
@@ -2515,7 +2515,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "символ «без пробела»"
+            "value" : "непробельный символ"
           }
         },
         "tr" : {
@@ -2728,7 +2728,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "символ  TAB"
+            "value" : "символ табуляции"
           }
         },
         "tr" : {
@@ -2835,7 +2835,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Фортам соответсвует %@ спецификации."
+            "value" : "Синтаксис соответствует спецификации %@."
           }
         },
         "tr" : {
@@ -2941,7 +2941,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "пробел"
+            "value" : "пробельный символ"
           }
         },
         "tr" : {
@@ -3047,7 +3047,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "слово целиком"
+            "value" : "граница слова"
           }
         },
         "tr" : {
@@ -3153,7 +3153,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "часть слова"
+            "value" : "символ слова"
           }
         },
         "tr" : {

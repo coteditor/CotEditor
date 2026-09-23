@@ -80,7 +80,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "все"
+            "value" : "всем"
           }
         },
         "tr" : {
@@ -194,7 +194,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "любые"
+            "value" : "хотя бы одному"
           }
         },
         "tr" : {
@@ -1332,7 +1332,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "совпадает с регулярным выражением"
+            "value" : "соответствует регулярному выражению"
           }
         },
         "tr" : {

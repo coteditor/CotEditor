@@ -73,7 +73,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@"
+            "value" : "Значок %@"
           }
         },
         "tr" : {
@@ -287,7 +287,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "и все кто поддерживает CotEditor!"
+            "value" : "и всех, кто поддерживает CotEditor!"
           }
         },
         "tr" : {
@@ -500,7 +500,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor — программа с открытым исходным кодом,\nлицензированная Apache License, версия 2.0."
+            "value" : "CotEditor — программа с открытым исходным кодом,\nраспространяемая по лицензии Apache License, версия 2.0."
           }
         },
         "tr" : {
@@ -1140,7 +1140,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "только в версии не из AppStore"
+            "value" : "только в версии не из App Store"
           }
         },
         "tr" : {
@@ -1246,7 +1246,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "начальный разработчик"
+            "value" : "первоначальный разработчик"
           }
         },
         "tr" : {
@@ -1460,7 +1460,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Основной автор"
+            "value" : "Проект CotEditor"
           }
         },
         "tr" : {

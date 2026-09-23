@@ -237,7 +237,7 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld пользовательских синтаксисов"
+                  "value" : "%lld пользовательских синтаксиса"
                 }
               },
               "many" : {
@@ -583,7 +583,7 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld пользовательских тем"
+                  "value" : "%lld пользовательские темы"
                 }
               },
               "many" : {
@@ -930,7 +930,7 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld определений"
+                  "value" : "%lld определения"
                 }
               },
               "many" : {
@@ -1277,7 +1277,7 @@
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld штук"
+                  "value" : "%lld штуки"
                 }
               },
               "many" : {
@@ -1896,7 +1896,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Экспортировать настройки"
+            "value" : "Экспорт настроек"
           }
         },
         "tr" : {
@@ -2002,7 +2002,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Импортировать настройки"
+            "value" : "Импорт настроек"
           }
         },
         "tr" : {

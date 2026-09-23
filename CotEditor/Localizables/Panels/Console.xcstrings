@@ -73,7 +73,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отчистить лог"
+            "value" : "Очистить журнал"
           }
         },
         "tr" : {

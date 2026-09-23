@@ -73,7 +73,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ точек"
+            "value" : "%@ пт"
           }
         },
         "tr" : {
@@ -186,7 +186,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Середина"
+            "value" : "По центру"
           }
         },
         "tr" : {
@@ -299,7 +299,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Выровнять с лева"
+            "value" : "По левому краю"
           }
         },
         "tr" : {
@@ -412,7 +412,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Выровнять с права"
+            "value" : "По правому краю"
           }
         },
         "tr" : {
@@ -519,7 +519,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Черно-белая"
+            "value" : "Черно-белый"
           }
         },
         "tr" : {
@@ -947,7 +947,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Заголовок"
+            "value" : "Верхний колонтитул"
           }
         },
         "tr" : {
@@ -1600,7 +1600,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Путь файла"
+            "value" : "Путь к файлу"
           }
         },
         "tr" : {
@@ -2052,7 +2052,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Напечатать дату"
+            "value" : "Дата печати"
           }
         },
         "tr" : {

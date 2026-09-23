@@ -983,7 +983,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Должность"
+            "value" : "Заглавие"
           }
         },
         "tr" : {
@@ -1209,7 +1209,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Аттрибуты"
+            "value" : "Атрибуты"
           }
         },
         "tr" : {
@@ -1774,7 +1774,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Номера"
+            "value" : "Числа"
           }
         },
         "tr" : {

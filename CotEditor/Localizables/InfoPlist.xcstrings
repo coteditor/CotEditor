@@ -3471,7 +3471,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor необходимо разрешение на использование AppleScript."
+            "value" : "Для управления другими приложениями с помощью AppleScript приложению CotEditor требуется Ваше разрешение."
           }
         },
         "tr" : {

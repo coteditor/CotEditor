@@ -308,7 +308,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Заголовок"
+            "value" : "Верхний колонтитул"
           }
         },
         "tr" : {
@@ -1018,7 +1018,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "точек"
+            "value" : "пт"
           }
         },
         "tr" : {
