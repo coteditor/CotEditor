@@ -2150,7 +2150,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "顯示快速動作…"
+            "value" : "顯示快速動作⋯"
           }
         },
         "zh-HK" : {
@@ -17594,7 +17594,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "选择括号中的内容"
+            "value" : "選擇括號中的內容"
           }
         },
         "zh-HK" : {
@@ -20618,7 +20618,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "管理多重替換…"
+            "value" : "管理多重替換⋯"
           }
         },
         "zh-HK" : {

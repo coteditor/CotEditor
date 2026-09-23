@@ -1731,7 +1731,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選中僅在選擇範圍內進行文字尋找。"
+            "value" : "勾選後，僅取代所選範圍內的文字。"
           }
         },
         "zh-HK" : {

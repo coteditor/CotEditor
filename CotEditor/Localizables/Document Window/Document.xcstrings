@@ -10015,7 +10015,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您想將「%@」移到垃圾桶嗎？"
+            "value" : "你想將「%@」移到垃圾桶嗎？"
           }
         },
         "zh-HK" : {
@@ -10256,7 +10256,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "您想將%lld個選定項目移到垃圾桶嗎？"
+                  "value" : "你想將%lld個選定項目移到垃圾桶嗎？"
                 }
               }
             }
@@ -13184,7 +13184,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "正在資料夾中搜尋…"
+            "value" : "正在資料夾中搜尋⋯"
           }
         },
         "zh-HK" : {
@@ -14711,7 +14711,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "感謝您的熱心相助！"
+            "value" : "感謝你的熱心相助！"
           }
         },
         "zh-HK" : {

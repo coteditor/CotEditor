@@ -709,7 +709,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "過載全部定義"
+            "value" : "重新載入全部定義"
           }
         },
         "zh-HK" : {

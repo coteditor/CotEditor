@@ -90,7 +90,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "編輯檔案時自動覆蓋儲存檔案的系統特性。即使被禁用，CotEditor也會在程式退出時自動儲存備份。"
+            "value" : "編輯檔案時自動覆蓋儲存檔案的系統特性。即使關閉此功能，CotEditor仍會在背景建立備份，以防程式意外結束。"
           }
         },
         "zh-HK" : {
@@ -3169,7 +3169,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "當沒有可以開啟的檔案時："
+            "value" : "當沒有開啟任何文件時："
           }
         },
         "zh-HK" : {
@@ -3269,7 +3269,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "`cot`命令列工具可以讓您使用命令列來啟動CotEditor並開啟檔案。"
+            "value" : "`cot`命令列工具可以讓你使用命令列來啟動CotEditor並開啟檔案。"
           }
         },
         "zh-HK" : {

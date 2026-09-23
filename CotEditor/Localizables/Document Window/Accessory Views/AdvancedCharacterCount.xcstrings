@@ -516,7 +516,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "以文本自身的編碼、來統計該文本的位元組數量。"
+            "value" : "計算文字以指定編碼編碼後的位元組數。"
           }
         },
         "zh-HK" : {
@@ -732,7 +732,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "以萬國碼的直觀方式來統計文字數量。哪怕像是繪文字這樣的高萬字，也都按照單個文字來計算。"
+            "value" : "依照Unicode定義的直觀方式計數。由多個Unicode碼點組成的字元（例如表情符號）計為一個字元。"
           }
         },
         "zh-HK" : {

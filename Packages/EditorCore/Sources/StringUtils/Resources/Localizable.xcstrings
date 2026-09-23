@@ -98,7 +98,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "非官方的基於NFD的標準化形式與修改後的NFD對應"
+            "value" : "非官方的基於NFC的標準化形式與修改後的NFD對應"
           }
         },
         "zh-HK" : {
@@ -1143,7 +1143,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "正在NFKC, Case Folding, 並移除預設可忽略編碼點"
+            "value" : "套用NFKC、進行大小寫折疊，並移除預設可忽略的碼點"
           }
         },
         "zh-HK" : {

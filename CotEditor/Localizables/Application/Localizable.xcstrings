@@ -7156,7 +7156,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "濾波器"
+            "value" : "過濾"
           }
         },
         "zh-HK" : {
@@ -9301,7 +9301,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "名稱不能含有「.」。"
+            "value" : "名稱不能以「.」開頭。"
           }
         },
         "zh-HK" : {
@@ -10797,7 +10797,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "存檔時會自動置換或刪除不相容的字元。您真的要修改文字編碼、檢閱不相容的字元嗎？"
+            "value" : "存檔時會自動置換或刪除不相容的字元。你真的要修改文字編碼、檢閱不相容的字元嗎？"
           }
         },
         "zh-HK" : {
@@ -15076,7 +15076,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "這將捨棄對當前檔案的更動、且使用「%@」編碼重新載入當前檔案。您確定要這麼做嗎？"
+            "value" : "這將捨棄對當前檔案的更動、且使用「%@」編碼重新載入當前檔案。你確定要這麼做嗎？"
           }
         },
         "zh-HK" : {

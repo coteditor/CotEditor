@@ -2099,7 +2099,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將陣列視為數值"
+            "value" : "將數字視為數值"
           }
         },
         "zh-HK" : {

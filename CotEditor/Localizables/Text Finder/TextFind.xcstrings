@@ -3572,7 +3572,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "折行尋找"
+            "value" : "循環尋找"
           }
         },
         "zh-HK" : {
@@ -8457,7 +8457,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "「在選擇中搜索」選項被激活，但是並沒有內容被選中。"
+            "value" : "「所選範圍」選項被激活，但是並沒有內容被選中。"
           }
         },
         "zh-HK" : {
@@ -8564,7 +8564,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在文件中選擇搜索範圍，或者禁用「在選擇中搜索」。"
+            "value" : "在文件中選擇搜索範圍，或者禁用「所選範圍」。"
           }
         },
         "zh-HK" : {
