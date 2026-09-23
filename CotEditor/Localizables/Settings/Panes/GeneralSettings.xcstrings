@@ -1331,7 +1331,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已安装於%@"
+            "value" : "已安裝於%@"
           }
         }
       }

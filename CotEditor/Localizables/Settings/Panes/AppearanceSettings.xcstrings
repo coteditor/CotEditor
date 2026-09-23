@@ -1648,7 +1648,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不透明"
+            "value" : "透明"
           }
         }
       }

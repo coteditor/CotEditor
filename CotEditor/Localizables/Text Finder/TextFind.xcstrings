@@ -3578,7 +3578,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "換行搜尋"
+            "value" : "循環搜尋"
           }
         }
       }
@@ -8249,7 +8249,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "清空尋找的文字"
+            "value" : "未輸入尋找文字"
           }
         }
       }
@@ -8463,7 +8463,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已選擇「所選範圍」選項，但沒有可供選擇的項目。"
+            "value" : "已選擇「所選範圍」選項，但未選擇任何文字。"
           }
         }
       }

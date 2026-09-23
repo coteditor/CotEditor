@@ -11982,7 +11982,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "分享⋯"
+            "value" : "其他⋯"
           }
         }
       }
@@ -12989,7 +12989,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在Finder搜尋"
+            "value" : "在資料夾中搜尋"
           }
         }
       }
