@@ -46,7 +46,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld Tasse"
+                  "value" : "%lld Tassen"
                 }
               }
             }
@@ -651,13 +651,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "作为您慷慨支持的证明，在持续支持期间，状态栏中会显示咖啡徽章。"
+            "value" : "作为你慷慨支持的证明，在持续支持期间，状态栏中会显示咖啡徽章。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "作為您熱心支援的證明，軟體的狀態列會在整個在持續支援期間顯示一個咖啡徽章。"
+            "value" : "作為你熱心支援的證明，軟體的狀態列會在整個在持續支援期間顯示一個咖啡徽章。"
           }
         },
         "zh-HK" : {
@@ -969,13 +969,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor向所有人免费提供所有功能。您可以通过赠送咖啡来支持这个项目。"
+            "value" : "CotEditor向所有人免费提供所有功能。你可以通过赠送咖啡来支持这个项目。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor向所有人免費提供所有功能。您可以藉由捐贈咖啡費用的方式來聲援該專案。"
+            "value" : "CotEditor向所有人免費提供所有功能。你可以藉由捐贈咖啡費用的方式來聲援該專案。"
           }
         },
         "zh-HK" : {

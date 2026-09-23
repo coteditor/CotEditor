@@ -232,7 +232,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Check Grammar With Spelling"
+            "value" : "Check grammar with spelling"
           }
         },
         "es" : {
@@ -658,7 +658,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Correct Spelling Automatically"
+            "value" : "Correct spelling automatically"
           }
         },
         "es" : {
@@ -1410,7 +1410,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Intelligentes Kopieren/Ersetzen"
+            "value" : "Intelligentes Kopieren/Einsetzen"
           }
         },
         "en-GB" : {
@@ -2480,7 +2480,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use Custom Settings"
+            "value" : "Use custom settings"
           }
         },
         "es" : {

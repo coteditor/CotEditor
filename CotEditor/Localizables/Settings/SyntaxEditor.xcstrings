@@ -3375,7 +3375,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wenn nichts angegeben ist, werden die Vervollständigungswörter für den Syntax aus den Einstellungen für das Hervorheben erstellt."
+            "value" : "Wenn nichts angegeben ist, werden die Vervollständigungswörter für die Syntax aus den Einstellungen für das Hervorheben erstellt."
           }
         },
         "en-GB" : {
@@ -3588,13 +3588,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Einrückung:"
+            "value" : "Einrückung"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indentation:"
+            "value" : "Indentation"
           }
         },
         "es" : {
@@ -3618,7 +3618,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "インデント:"
+            "value" : "インデント"
           }
         },
         "ko" : {
@@ -3666,19 +3666,19 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "缩进："
+            "value" : "缩进"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "縮排："
+            "value" : "縮排"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "縮排："
+            "value" : "縮排"
           }
         }
       }
@@ -5406,7 +5406,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Muster des reguläreren Ausdrucks"
+            "value" : "Muster des regulären Ausdrucks"
           }
         },
         "en-GB" : {
@@ -5809,7 +5809,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "塊註釋需要同時有起始分界符和終止分界符。"
+            "value" : "块注释需要同时有起始分界符和终止分界符。"
           }
         },
         "zh-Hant" : {
@@ -6608,7 +6608,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此語言使用名為tree-sitter的基於結構的通用剖析器進行語法分析。\n因為擷取規則由應用程式管理，您無法自訂它們。"
+            "value" : "此語言使用名為tree-sitter的基於結構的通用剖析器進行語法分析。\n因為擷取規則由應用程式管理，你無法自訂它們。"
           }
         },
         "zh-HK" : {

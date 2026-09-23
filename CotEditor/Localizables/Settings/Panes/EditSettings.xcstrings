@@ -790,7 +790,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選択した文字をハイライト"
+            "value" : "選択したテキストと一致する箇所をハイライト"
           }
         },
         "ko" : {

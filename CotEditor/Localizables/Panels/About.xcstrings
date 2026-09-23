@@ -334,7 +334,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Code-Beitragenden"
+            "value" : "Code-Beitragende"
           }
         },
         "en-GB" : {
@@ -470,7 +470,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditorはオープンソースプログラムとして\nApache License, Version 2.0でライセンスされてます。"
+            "value" : "CotEditorはオープンソースプログラムとして\nApache License, Version 2.0でライセンスされています。"
           }
         },
         "ko" : {
@@ -1080,7 +1080,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "nur bei der non-AppStore version"
+            "value" : "nur in der Version außerhalb des App Store"
           }
         },
         "en-GB" : {
@@ -1164,7 +1164,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "僅「非Mac App Store」發行版有使用到该模组"
+            "value" : "僅「非Mac App Store」發行版有使用到該模組"
           }
         },
         "zh-HK" : {

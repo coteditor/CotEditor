@@ -2455,7 +2455,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "kein Leerzeichen"
+            "value" : "kein Leerraumzeichen"
           }
         },
         "en-GB" : {
@@ -2775,7 +2775,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Syntax entspricht den Spezifikationen der %@."
+            "value" : "Die Syntax entspricht den Spezifikationen für %@."
           }
         },
         "en-GB" : {
@@ -2881,7 +2881,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leerzeichen"
+            "value" : "Leerraumzeichen"
           }
         },
         "en-GB" : {
@@ -3017,7 +3017,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "非単語境界"
+            "value" : "単語境界"
           }
         },
         "ko" : {
@@ -3093,7 +3093,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buchstabe"
+            "value" : "Wortzeichen"
           }
         },
         "en-GB" : {

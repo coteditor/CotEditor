@@ -6987,7 +6987,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "拖拽的文件的檔案名稱以及扩展名（如果存在）"
+            "value" : "拖拽的文件的文件名以及扩展名（如果存在）"
           }
         },
         "zh-Hant" : {
@@ -7100,7 +7100,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不带扩展名的檔案名稱"
+            "value" : "不带扩展名的文件名"
           }
         },
         "zh-Hant" : {
@@ -7558,7 +7558,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "濾波器"
+            "value" : "過濾"
           }
         },
         "zh-HK" : {
@@ -9817,13 +9817,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "名称不能含有“.”。"
+            "value" : "名称不能以“.”开头。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "名稱不能含有「.」。"
+            "value" : "名稱不能以「.」開頭。"
           }
         },
         "zh-HK" : {
@@ -9966,13 +9966,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Fill in the following template, then post it on %1$@ or send it to %2$@. Note that the content of your email may be shared on the Issue page. Please write your message in either English or Japanese."
+            "value" : "Fill in the following template, then post it on %1$@ or send it to %2$@. Note that the content of your email may be shared on the Issue page. Write your message in either English or Japanese."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fill in the following template, then post it on %1$@ or send it to %2$@. Note that the content of your email may be shared on the Issue page. Please write your message in either English or Japanese."
+            "value" : "Fill in the following template, then post it on %1$@ or send it to %2$@. Note that the content of your email may be shared on the Issue page. Write your message in either English or Japanese."
           }
         },
         "es" : {
@@ -11397,13 +11397,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "保存时将替换或删除不兼容的字符。您想要改变文本编码并检查不兼容字符吗？"
+            "value" : "保存时将替换或删除不兼容的字符。你想要改变文本编码并检查不兼容字符吗？"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "存檔時會自動置換或刪除不相容的字元。您真的要修改文字編碼、檢閱不相容的字元嗎？"
+            "value" : "存檔時會自動置換或刪除不相容的字元。你真的要修改文字編碼、檢閱不相容的字元嗎？"
           }
         },
         "zh-HK" : {
@@ -15916,13 +15916,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "确定放弃您的修改并使用“%@”编码重新打开文档吗？"
+            "value" : "确定放弃你的修改并使用“%@”编码重新打开文档吗？"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "這將捨棄對當前檔案的更動、且使用「%@」編碼重新載入當前檔案。您確定要這麼做嗎？"
+            "value" : "這將捨棄對當前檔案的更動、且使用「%@」編碼重新載入當前檔案。你確定要這麼做嗎？"
           }
         },
         "zh-HK" : {
@@ -15945,7 +15945,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Dokument hat ungespeicherte Änderungen."
+            "value" : "Das Dokument hat ungesicherte Änderungen."
           }
         },
         "en" : {
@@ -16725,7 +16725,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Datei wurde von einem anderen Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor."
+            "value" : "Die Datei wurde von einem anderen Programm geändert. Es gibt auch ungesicherte Änderungen in CotEditor."
           }
         },
         "en" : {

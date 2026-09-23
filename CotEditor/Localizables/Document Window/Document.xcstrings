@@ -1080,7 +1080,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Codepunkten"
+            "value" : "Codepunkte"
           }
         },
         "en-GB" : {
@@ -7444,7 +7444,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld inkompatiblen Zeichen gefunden."
+                  "value" : "%lld inkompatible Zeichen gefunden."
                 }
               }
             }
@@ -9189,7 +9189,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorwarnungen"
+            "value" : "Warnungen"
           }
         },
         "en" : {
@@ -10675,13 +10675,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您确定要将“%@”移到废纸篓吗？"
+            "value" : "你确定要将“%@”移到废纸篓吗？"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您想將「%@」移到垃圾桶嗎？"
+            "value" : "你想將「%@」移到垃圾桶嗎？"
           }
         },
         "zh-HK" : {
@@ -10940,7 +10940,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "您确定要将这%lld个所选项目移到废纸篓吗？"
+                  "value" : "你确定要将这%lld个所选项目移到废纸篓吗？"
                 }
               }
             }
@@ -10952,7 +10952,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "您想將%lld個選定項目移到垃圾桶嗎？"
+                  "value" : "你想將%lld個選定項目移到垃圾桶嗎？"
                 }
               }
             }
@@ -12780,7 +12780,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "分享⋯"
+            "value" : "其他⋯"
           }
         }
       }
@@ -13847,7 +13847,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在Finder搜尋"
+            "value" : "在資料夾中搜尋"
           }
         }
       }
@@ -14054,7 +14054,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "正在資料夾中搜尋…"
+            "value" : "正在資料夾中搜尋⋯"
           }
         },
         "zh-HK" : {
@@ -15665,13 +15665,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "感谢您的支持！"
+            "value" : "感谢你的支持！"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "感謝您的熱心相助！"
+            "value" : "感謝你的熱心相助！"
           }
         },
         "zh-HK" : {

@@ -1385,7 +1385,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "语法中的文件拖拽设置已启用"
+            "value" : "应用此文件拖放设置的语法。"
           }
         },
         "zh-Hant" : {
@@ -1716,7 +1716,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "透過將檔案拖放至编辑器中插入的文字："
+            "value" : "透過將檔案拖放至編輯器中插入的文字："
           }
         }
       }

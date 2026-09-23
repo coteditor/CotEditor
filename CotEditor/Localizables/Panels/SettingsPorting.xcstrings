@@ -1702,13 +1702,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您仍可继续导入这些项目，但部分设置可能不兼容。"
+            "value" : "你仍可继续导入这些项目，但部分设置可能不兼容。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您仍可匯入這些項目，但部分設定可能不相容。"
+            "value" : "你仍可匯入這些項目，但部分設定可能不相容。"
           }
         },
         "zh-HK" : {

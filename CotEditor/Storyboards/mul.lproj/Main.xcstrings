@@ -698,7 +698,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL-Decodierung"
+            "value" : "URL decodieren"
           }
         },
         "en" : {
@@ -2270,7 +2270,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "顯示快速動作…"
+            "value" : "顯示快速動作⋯"
           }
         },
         "zh-HK" : {
@@ -12440,7 +12440,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorwarnungen"
+            "value" : "Warnungen"
           }
         },
         "en" : {
@@ -13124,7 +13124,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fokus in vorherigen Editor"
+            "value" : "Fokus in nächsten Editor"
           }
         },
         "en" : {
@@ -13238,7 +13238,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fokus in nächsten Editor"
+            "value" : "Fokus in vorherigen Editor"
           }
         },
         "en" : {
@@ -18572,7 +18572,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "选择括号中的内容"
+            "value" : "選擇括號中的內容"
           }
         },
         "zh-HK" : {
@@ -20876,7 +20876,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zufällig wiedergeben"
+            "value" : "Zufällig anordnen"
           }
         },
         "en" : {
@@ -21764,7 +21764,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "管理多重替換…"
+            "value" : "管理多重替換⋯"
           }
         },
         "zh-HK" : {
@@ -24494,7 +24494,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "绘制分隔线"
+            "value" : "高级字符计数…"
           }
         },
         "zh-Hant" : {
@@ -27032,7 +27032,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL-Codierung"
+            "value" : "URL codieren"
           }
         },
         "en" : {

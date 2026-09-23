@@ -439,7 +439,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "System anpassen"
+            "value" : "Systemeinstellung übernehmen"
           }
         },
         "en" : {
@@ -1399,7 +1399,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您真的要將這個字體作為等寬字體來使用嗎？"
+            "value" : "你真的要將這個字體作為等寬字體來使用嗎？"
           }
         },
         "zh-HK" : {
@@ -1744,7 +1744,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不透明"
+            "value" : "透明"
           }
         }
       }
