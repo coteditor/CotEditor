@@ -146,7 +146,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tamaño letra"
+            "value" : "Tamaño de letra"
           }
         },
         "fr" : {
@@ -602,7 +602,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Imprimir Invisibles"
+            "value" : "Imprimir caracteres invisibles"
           }
         },
         "fr" : {

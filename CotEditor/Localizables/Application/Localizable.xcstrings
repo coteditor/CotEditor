@@ -352,7 +352,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se ha seleccionado %lld"
+            "value" : "Selección: %lld"
           }
         },
         "fr" : {
@@ -2612,7 +2612,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar en Finder"
+            "value" : "Mostrar en el Finder"
           }
         },
         "fr" : {
@@ -3745,7 +3745,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Para abrirla en esta ventana, cierre primero la ventana existente."
+            "value" : "Para abrirlo en esta ventana, cierra primero la ventana donde ya está abierto."
           }
         },
         "fr" : {
@@ -4313,7 +4313,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tienes que permitir editar este documento, para poder hacer cambios en él."
+            "value" : "Para hacer cambios en el documento, permite primero la edición."
           }
         },
         "fr" : {
@@ -4994,7 +4994,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir un archivo tan grande, puede hacer que la aplicación sea lenta, o que no responda.\n\n¿De verdad quieres abrir el archivo?"
+            "value" : "Abrir un archivo tan grande puede hacer que la aplicación sea lenta o que no responda.\n\n¿De verdad quieres abrir el archivo?"
           }
         },
         "fr" : {
@@ -5675,7 +5675,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reinterpretación"
+            "value" : "Reinterpretar"
           }
         },
         "fr" : {
@@ -5902,7 +5902,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cambiar codificación del texto"
+            "value" : "Cambio de codificación del texto"
           }
         },
         "fr" : {
@@ -6243,7 +6243,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La ruta absoluta del archivo eliminado."
+            "value" : "La ruta absoluta del archivo soltado."
           }
         },
         "fr" : {
@@ -6582,7 +6582,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La extensión del archivo eliminado."
+            "value" : "La extensión del archivo soltado."
           }
         },
         "fr" : {
@@ -6695,7 +6695,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La extensión del archivo eliminado (convertida a minúsculas)."
+            "value" : "La extensión del archivo soltado (convertida a minúsculas)."
           }
         },
         "fr" : {
@@ -6808,7 +6808,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La extensión del archivo eliminado (convertida a mayúsculas)."
+            "value" : "La extensión del archivo soltado (convertida a mayúsculas)."
           }
         },
         "fr" : {
@@ -7034,7 +7034,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El nombre del archivo eliminado sin extensión."
+            "value" : "El nombre del archivo soltado sin extensión."
           }
         },
         "fr" : {
@@ -7373,7 +7373,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La ruta relativa entre el archivo eliminado y el documento."
+            "value" : "La ruta relativa entre el archivo soltado y el documento."
           }
         },
         "fr" : {
@@ -8959,7 +8959,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No vuelvas a pedir este documento"
+            "value" : "No volver a preguntar por este documento"
           }
         },
         "fr" : {
@@ -9864,7 +9864,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El nombre és demasiado largo."
+            "value" : "El nombre es demasiado largo."
           }
         },
         "fr" : {
@@ -10204,7 +10204,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Resultado Esperado"
+            "value" : "Resultado esperado"
           }
         },
         "fr" : {
@@ -10657,7 +10657,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Varios items seleccionados"
+            "value" : "Varios ítems seleccionados"
           }
         },
         "fr" : {
@@ -10770,7 +10770,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ningún item seleccionado"
+            "value" : "Ningún ítem seleccionado"
           }
         },
         "fr" : {
@@ -12684,7 +12684,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo reinterpretar el documento usando la codificación de texto “%@”."
+            "value" : "No se ha podido reinterpretar el documento usando la codificación de texto “%@”."
           }
         },
         "fr" : {
@@ -13362,7 +13362,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El archivo del script “%@” no se puede abrir."
+            "value" : "No se ha podido abrir el archivo del script “%@”."
           }
         },
         "fr" : {
@@ -13588,7 +13588,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comprobar los permisos del archivo del script."
+            "value" : "Comprueba los permisos del archivo del script."
           }
         },
         "fr" : {
@@ -13701,7 +13701,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El script “%@” no se puede leer."
+            "value" : "No se ha podido leer el script “%@”."
           }
         },
         "fr" : {
@@ -13814,7 +13814,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comprobar el archivo del script."
+            "value" : "Comprueba el archivo del script."
           }
         },
         "fr" : {
@@ -14266,7 +14266,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” no se pudo eliminar."
+            "value" : "No se ha podido eliminar “%@”."
           }
         },
         "fr" : {
@@ -14379,7 +14379,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” no se podía importar."
+            "value" : "No se ha podido importar “%@”."
           }
         },
         "fr" : {
@@ -14492,7 +14492,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” no se pudo cargar."
+            "value" : "No se ha podido cargar “%@”."
           }
         },
         "fr" : {
@@ -14718,7 +14718,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se encontró ningún archivo original para “%@”."
+            "value" : "No se ha encontrado ningún archivo original para “%@”."
           }
         },
         "fr" : {
@@ -15057,7 +15057,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El tipo único no es válido para un atajo de teclado."
+            "value" : "Esta tecla no se puede usar sola como atajo de teclado."
           }
         },
         "fr" : {
@@ -15850,7 +15850,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¿Estás seguro de que quieres descartar los cambios y volver a abrir el documento usando “%@”?"
+            "value" : "¿Seguro que quieres descartar los cambios y volver a abrir el documento usando “%@”?"
           }
         },
         "fr" : {
@@ -16290,7 +16290,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conservar edición de Coteditor"
+            "value" : "Conservar la versión de CotEditor"
           }
         },
         "fr" : {
@@ -16516,7 +16516,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¿Quieres conservar la edición de CotEditor o actualizarla a la edición modificada?"
+            "value" : "¿Quieres conservar la versión de CotEditor o actualizarla a la versión modificada?"
           }
         },
         "fr" : {

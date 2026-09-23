@@ -92,14 +92,14 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld sintaxis personalizada"
+                  "state" : "translated",
+                  "value" : "%lld sintaxis personalizada"
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld sintaxis personalizadas"
+                  "state" : "translated",
+                  "value" : "%lld sintaxis personalizadas"
                 }
               }
             }
@@ -438,14 +438,14 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld tema personalizado"
+                  "state" : "translated",
+                  "value" : "%lld tema personalizado"
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld temas personalizados"
+                  "state" : "translated",
+                  "value" : "%lld temas personalizados"
                 }
               }
             }
@@ -785,14 +785,14 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld definición"
+                  "state" : "translated",
+                  "value" : "%lld definición"
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld definiciones"
+                  "state" : "translated",
+                  "value" : "%lld definiciones"
                 }
               }
             }
@@ -1133,13 +1133,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld ítem"
+                  "value" : "%lld ítem"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld ítems"
+                  "value" : "%lld ítems"
                 }
               }
             }
@@ -1522,8 +1522,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Este archivo de ajustes fue creado por otra versión de CotEditor (%@)."
+            "state" : "translated",
+            "value" : "Este archivo de ajustes se ha creado con otra versión de CotEditor (%@)."
           }
         },
         "fr" : {

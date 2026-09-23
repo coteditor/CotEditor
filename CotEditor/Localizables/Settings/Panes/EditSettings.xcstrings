@@ -1090,7 +1090,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selección de sangría con la tecla tabulación"
+            "value" : "Aplicar sangría a la selección con la tecla Tabulador"
           }
         },
         "fr" : {
@@ -1514,7 +1514,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enlaces URL en el documento"
+            "value" : "Crear enlaces para las URL del documento"
           }
         },
         "fr" : {
@@ -1620,7 +1620,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prefiero usar"
+            "value" : "Usar preferentemente"
           }
         },
         "fr" : {
@@ -1941,7 +1941,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Espacios"
+            "value" : "espacios"
           }
         },
         "fr" : {
@@ -2048,7 +2048,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pestañas"
+            "value" : "tabulaciones"
           }
         },
         "fr" : {

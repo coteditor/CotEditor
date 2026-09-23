@@ -1056,7 +1056,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "es/está"
+            "value" : "es"
           }
         },
         "fr" : {
@@ -1170,7 +1170,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "no es/está"
+            "value" : "no es"
           }
         },
         "fr" : {

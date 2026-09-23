@@ -93,14 +93,14 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld coincidencia encontrada."
+                  "state" : "translated",
+                  "value" : "%lld coincidencia encontrada."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld coincidencias encontradas."
+                  "state" : "translated",
+                  "value" : "%lld coincidencias encontradas."
                 }
               }
             }
@@ -434,14 +434,14 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld coincidencia reemplazada."
+                  "state" : "translated",
+                  "value" : "%lld coincidencia reemplazada."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "%lld coincidencias reemplazadas."
+                  "state" : "translated",
+                  "value" : "%lld coincidencias reemplazadas."
                 }
               }
             }
@@ -1776,7 +1776,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Encuentra todo"
+            "value" : "Buscar todo"
           }
         },
         "fr" : {
@@ -1883,7 +1883,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Busca y enumera todas las coincidencias."
+            "value" : "Buscar y enumerar todas las coincidencias."
           }
         },
         "fr" : {
@@ -2097,7 +2097,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Encuentra la siguiente coincidencia."
+            "value" : "Buscar la siguiente coincidencia."
           }
         },
         "fr" : {
@@ -2311,7 +2311,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Encuentra la coincidencia anterior."
+            "value" : "Buscar la coincidencia anterior."
           }
         },
         "fr" : {
@@ -2418,7 +2418,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buscar resultado"
+            "value" : "Resultado de búsqueda"
           }
         },
         "fr" : {
@@ -2838,13 +2838,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld resultado"
+                  "value" : "%lld resultado"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld resultados"
+                  "value" : "%lld resultados"
                 }
               },
               "zero" : {
@@ -3758,7 +3758,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Envolver la búsqueda"
+            "value" : "Continuar la búsqueda desde el otro extremo"
           }
         },
         "fr" : {
@@ -3986,7 +3986,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La búsqueda ignora las marcas diacríticas (P. ej., ö = o)."
+            "value" : "La búsqueda ignora las marcas diacríticas (por ejemplo, ö = o)."
           }
         },
         "fr" : {
@@ -4214,7 +4214,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La búsqueda ignora las diferencias de ancho en las formas de caracteres (P. ej., ａ = a)."
+            "value" : "La búsqueda ignora las diferencias de ancho en las formas de caracteres (por ejemplo, ａ = a)."
           }
         },
         "fr" : {
@@ -4784,7 +4784,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Los anclajes coinciden con las líneas"
+            "value" : "Anclas por línea"
           }
         },
         "fr" : {
@@ -5240,7 +5240,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Empareja solo la palabra completa"
+            "value" : "Buscar solo palabras completas"
           }
         },
         "fr" : {
@@ -5353,8 +5353,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Desescapar metacaracteres con barra invertida en el texto de reemplazo."
+            "state" : "translated",
+            "value" : "Eliminar los escapes de los metacaracteres precedidos por una barra invertida en el texto de reemplazo."
           }
         },
         "fr" : {
@@ -5467,8 +5467,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Desescapar texto de reemplazo"
+            "state" : "translated",
+            "value" : "Eliminar escapes del texto de reemplazo"
           }
         },
         "fr" : {
@@ -5582,7 +5582,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usa Unicode TR#29 para especificar los límites de las palabras"
+            "value" : "Usar Unicode TR#29 para especificar los límites de las palabras."
           }
         },
         "fr" : {
@@ -5696,7 +5696,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usa los límites de las palabras Unicode"
+            "value" : "Usar los límites de palabras de Unicode"
           }
         },
         "fr" : {
@@ -5889,20 +5889,20 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Se encontró una coincidencia en “%2$@”."
+                  "state" : "translated",
+                  "value" : "Se ha encontrado una coincidencia en “%2$@”."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Se encontraron %1$lld coincidencias en “%2$@”."
+                  "state" : "translated",
+                  "value" : "Se han encontrado %1$lld coincidencias en “%2$@”."
                 }
               },
               "zero" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "No se encontraron coincidencias en “%2$@”."
+                  "state" : "translated",
+                  "value" : "No se han encontrado coincidencias en “%2$@”."
                 }
               }
             }
@@ -7423,7 +7423,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reemplaza todas las coincidencias con el texto de reemplazo."
+            "value" : "Reemplazar todas las coincidencias con el texto de reemplazo."
           }
         },
         "fr" : {
@@ -7530,7 +7530,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reemplace la selección actual con el texto de reemplazo y, a continuación, busque la siguiente coincidencia."
+            "value" : "Reemplazar la selección actual con el texto de reemplazo y, a continuación, buscar la siguiente coincidencia."
           }
         },
         "fr" : {
@@ -7744,7 +7744,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Búsqueda terminada."
+            "value" : "La búsqueda ha continuado desde el otro extremo."
           }
         },
         "fr" : {
@@ -8064,7 +8064,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccione para ignorar las mayúsculas y minúsculas del carácter en la búsqueda."
+            "value" : "Seleccionar para ignorar las mayúsculas y minúsculas en la búsqueda."
           }
         },
         "fr" : {
@@ -8171,7 +8171,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccione para buscar texto solo de la selección."
+            "value" : "Seleccionar para buscar texto solo en la selección."
           }
         },
         "fr" : {
@@ -8278,7 +8278,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccione para buscar con expresión regular."
+            "value" : "Seleccionar para buscar con expresiones regulares."
           }
         },
         "fr" : {
@@ -8824,7 +8824,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Introduzca texto a encontrar."
+            "value" : "Introduce el texto que quieras buscar."
           }
         },
         "fr" : {
@@ -9484,7 +9484,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Escriba el texto para buscar."
+            "value" : "Escribir el texto que se desea buscar."
           }
         },
         "fr" : {

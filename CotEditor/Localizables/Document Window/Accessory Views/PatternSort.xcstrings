@@ -557,7 +557,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ignorar capitalización"
+            "value" : "Ignorar mayúsculas y minúsculas"
           }
         },
         "fr" : {
@@ -876,7 +876,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mantén la primera línea en la parte superior"
+            "value" : "Mantener la primera línea en la parte superior"
           }
         },
         "fr" : {
@@ -1515,7 +1515,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Respeta las reglas del lenguaje"
+            "value" : "Respetar las reglas del idioma"
           }
         },
         "fr" : {
@@ -1941,7 +1941,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ordenar clave:"
+            "value" : "Clave de ordenación:"
           }
         },
         "fr" : {
@@ -2047,7 +2047,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ordenar opción:"
+            "value" : "Opción de ordenación:"
           }
         },
         "fr" : {

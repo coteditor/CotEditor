@@ -32,7 +32,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Formulario de normalización no oficial basado en NFC correspondiente a NFD modificado"
+            "value" : "Forma de normalización no oficial basada en NFC correspondiente a NFD modificado"
           }
         },
         "fr" : {
@@ -145,7 +145,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFD modificado"
+            "value" : "NFC modificado"
           }
         },
         "fr" : {
@@ -253,7 +253,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Formulario de normalización no oficial basado en NFD utilizado en HFS+"
+            "value" : "Forma de normalización no oficial basada en NFD utilizada en HFS+"
           }
         },
         "fr" : {
@@ -366,7 +366,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFC modificado"
+            "value" : "NFD modificado"
           }
         },
         "fr" : {
@@ -1137,7 +1137,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aplicación de NFKC, plegado y eliminación de puntos de código ignorables por defecto"
+            "value" : "Aplicación de NFKC, plegado de mayúsculas y minúsculas y eliminación de puntos de código ignorables por defecto"
           }
         },
         "fr" : {
@@ -1250,7 +1250,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC plegado"
+            "value" : "NFKC Case-Fold"
           }
         },
         "fr" : {

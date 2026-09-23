@@ -243,7 +243,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comprueba si hay actualizaciones…"
+            "value" : "Comprobar si hay actualizaciones…"
           }
         },
         "fr" : {
@@ -1304,7 +1304,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ocultar Inspector"
+            "value" : "Ocultar inspector"
           }
         },
         "fr" : {
@@ -2790,7 +2790,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Haga clic con la tecla Opción pulsada para abrir el script en el editor."
+            "value" : "Hacer clic con la tecla Opción pulsada para abrir el script en el editor."
           }
         },
         "fr" : {
@@ -3008,7 +3008,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Valor por defecto"
+            "value" : "Restaurar tamaño por omisión"
           }
         },
         "fr" : {
@@ -4070,7 +4070,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar Inspector"
+            "value" : "Mostrar inspector"
           }
         },
         "fr" : {
@@ -4924,7 +4924,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Más pequeña"
+            "value" : "Más pequeño"
           }
         },
         "fr" : {
@@ -5668,7 +5668,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Para mostrar caracteres invisibles, configúralos en la configuración de Ventana"
+            "value" : "Para mostrar caracteres invisibles, configúralos en los ajustes de Ventana."
           }
         },
         "fr" : {

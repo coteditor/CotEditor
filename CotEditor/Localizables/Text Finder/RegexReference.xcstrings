@@ -1086,7 +1086,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Referencia posterior"
+            "value" : "Referencia inversa"
           }
         },
         "fr" : {
@@ -1512,7 +1512,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Número decimal"
+            "value" : "Dígito decimal"
           }
         },
         "fr" : {
@@ -1831,7 +1831,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Primer coincidencia"
+            "value" : "Primera coincidencia"
           }
         },
         "fr" : {
@@ -2467,7 +2467,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Carácter no espacios en blanco"
+            "value" : "Carácter que no sea un espacio en blanco"
           }
         },
         "fr" : {
@@ -2680,7 +2680,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Carácter tabulación"
+            "value" : "Carácter de tabulación"
           }
         },
         "fr" : {
@@ -2787,7 +2787,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La sintaxis se ajusta a las %@ especificaciones."
+            "value" : "La sintaxis se ajusta a las especificaciones de %@."
           }
         },
         "fr" : {
@@ -2999,7 +2999,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Límites de las palabras"
+            "value" : "Límite de palabra"
           }
         },
         "fr" : {
@@ -3105,7 +3105,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Carácter de la palabra"
+            "value" : "Carácter de palabra"
           }
         },
         "fr" : {

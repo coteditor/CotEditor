@@ -453,7 +453,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conflictos de mapeo de sintaxis"
+            "value" : "Conflictos de asignación de sintaxis"
           }
         },
         "fr" : {
@@ -559,7 +559,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Las siguientes reglas de asignación de archivos están registradas en varias sintaxis. CotEditor utiliza la primera sintaxis automáticamente. Para resolver conflictos, edite cada definición de sintaxis."
+            "value" : "Las siguientes reglas de asignación de archivos están registradas en varias sintaxis. CotEditor utiliza la primera sintaxis automáticamente. Para resolver conflictos, edita cada definición de sintaxis."
           }
         },
         "fr" : {

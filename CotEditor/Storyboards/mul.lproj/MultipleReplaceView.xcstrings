@@ -146,7 +146,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Realice el reemplazo utilizando estas reglas en sucesión de arriba hacia abajo:"
+            "value" : "Realiza el reemplazo utilizando estas reglas en sucesión de arriba hacia abajo:"
           }
         },
         "fr" : {
@@ -260,7 +260,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Resalte todas las coincidencias de las reglas de reemplazo."
+            "value" : "Resaltar todas las coincidencias de las reglas de reemplazo."
           }
         },
         "fr" : {
@@ -957,7 +957,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccione para ignorar las mayúsculas y minúsculas de los caracteres en la búsqueda."
+            "value" : "Seleccionar para ignorar las mayúsculas y minúsculas en la búsqueda."
           }
         },
         "fr" : {
@@ -1413,7 +1413,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccione para buscar con expresión regular."
+            "value" : "Seleccionar para buscar con expresiones regulares."
           }
         },
         "fr" : {
@@ -1527,7 +1527,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reemplazar Con"
+            "value" : "Reemplazar con"
           }
         },
         "fr" : {
@@ -1641,7 +1641,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reemplace todas las coincidencias de acuerdo con las reglas de reemplazo."
+            "value" : "Reemplazar todas las coincidencias según las reglas de reemplazo."
           }
         },
         "fr" : {
@@ -1755,7 +1755,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccione para reemplazar el texto solo en la selección."
+            "value" : "Seleccionar para reemplazar texto solo en la selección."
           }
         },
         "fr" : {
@@ -1869,7 +1869,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccione para usar esta regla de reemplazo."
+            "value" : "Seleccionar para usar esta regla de reemplazo."
           }
         },
         "fr" : {
@@ -2211,7 +2211,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Expresión Regular"
+            "value" : "Expresión regular"
           }
         },
         "fr" : {

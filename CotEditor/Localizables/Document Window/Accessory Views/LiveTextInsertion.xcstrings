@@ -24,7 +24,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La detección falló"
+            "value" : "La detección ha fallado"
           }
         },
         "fr" : {
@@ -131,7 +131,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserción"
+            "value" : "Insertar"
           }
         },
         "fr" : {

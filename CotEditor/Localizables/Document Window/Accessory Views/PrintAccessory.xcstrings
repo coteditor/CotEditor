@@ -25,7 +25,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ pt"
+            "value" : "%@ pt"
           }
         },
         "fr" : {
@@ -685,7 +685,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tamaño letra"
+            "value" : "Tamaño de letra"
           }
         },
         "fr" : {
@@ -1219,7 +1219,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Encendido"
+            "value" : "Activado"
           }
         },
         "fr" : {
@@ -2004,7 +2004,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Imprimir fecha"
+            "value" : "Fecha de impresión"
           }
         },
         "fr" : {

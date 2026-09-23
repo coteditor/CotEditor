@@ -94,13 +94,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld taza"
+                  "value" : "%lld taza"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld tazas"
+                  "value" : "%lld tazas"
                 }
               }
             }
@@ -585,7 +585,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Como prueba de su generosa ayuda, aparecerá una insignia de café en la barra de estado durante el soporte continuo."
+            "value" : "Como muestra de agradecimiento por tu apoyo, aparece una insignia de café en la barra de estado mientras mantienes el apoyo continuo."
           }
         },
         "fr" : {
@@ -797,7 +797,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Soporte continuo"
+            "value" : "Apoyo continuo"
           }
         },
         "fr" : {
@@ -1434,7 +1434,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir en App Store"
+            "value" : "Abrir en App Store"
           }
         },
         "fr" : {
@@ -1965,7 +1965,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La función de donación dentro de la app sólo está disponible en CotEditor distribuido en la App Store."
+            "value" : "La función de donación dentro de la app solo está disponible en CotEditor distribuido en App Store."
           }
         },
         "fr" : {

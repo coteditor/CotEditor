@@ -448,7 +448,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sintaxis predeterminado:"
+            "value" : "Sintaxis predeterminada:"
           }
         },
         "fr" : {
@@ -872,7 +872,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Consulte codificación hecha en el documento"
+            "value" : "Usar la declaración de codificación del documento"
           }
         },
         "fr" : {
@@ -984,7 +984,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recargue todas las sintaxis"
+            "value" : "Recargar todas las sintaxis"
           }
         },
         "fr" : {
@@ -1096,7 +1096,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar conflictos de mapeo de archivos"
+            "value" : "Mostrar conflictos de asignación de archivos"
           }
         },
         "fr" : {

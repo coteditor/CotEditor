@@ -131,7 +131,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserte automáticamente los corchetes de cierre y las comillas"
+            "value" : "Insertar automáticamente corchetes y comillas de cierre"
           }
         },
         "fr" : {

@@ -307,13 +307,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Se encontró un error."
+                  "value" : "Se ha encontrado un error."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld errores encontrados."
+                  "value" : "%lld errores encontrados."
                 }
               }
             }
@@ -655,13 +655,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld ítem"
+                  "value" : "%lld ítem"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld ítems"
+                  "value" : "%lld ítems"
                 }
               }
             }
@@ -1465,7 +1465,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pueden cambiar el nombre de los paquetes de sintaxis."
+            "value" : "No se puede cambiar el nombre de las sintaxis integradas."
           }
         },
         "fr" : {
@@ -2318,7 +2318,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Distribuir URL:"
+            "value" : "URL de distribución:"
           }
         },
         "fr" : {
@@ -2960,7 +2960,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mapeo de archivos"
+            "value" : "Asignación de archivos"
           }
         },
         "fr" : {
@@ -3173,7 +3173,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Resaltando"
+            "value" : "Resaltado"
           }
         },
         "fr" : {
@@ -3387,7 +3387,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si no se encuentra la palabra, la lista final se generará de los ajustes de coloración."
+            "value" : "Si no se especifican palabras de autocompletado, se generan a partir de los ajustes de resaltado de sintaxis."
           }
         },
         "fr" : {
@@ -3600,7 +3600,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sangría:"
+            "value" : "Sangría"
           }
         },
         "fr" : {
@@ -4770,8 +4770,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Anidado"
+            "state" : "translated",
+            "value" : "Anidable"
           }
         },
         "fr" : {
@@ -5856,7 +5856,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La misma palabra se registra varias veces."
+            "value" : "La misma palabra está registrada varias veces."
           }
         },
         "fr" : {

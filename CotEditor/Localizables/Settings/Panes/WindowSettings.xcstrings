@@ -1194,7 +1194,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Carácteres invisibles"
+            "value" : "Caracteres invisibles"
           }
         },
         "fr" : {
@@ -2259,7 +2259,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desplazarse:"
+            "value" : "Sobredesplazamiento:"
           }
         },
         "fr" : {
@@ -2685,7 +2685,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Respetar la configuración del sistema"
+            "value" : "Respetar los ajustes del sistema"
           }
         },
         "fr" : {

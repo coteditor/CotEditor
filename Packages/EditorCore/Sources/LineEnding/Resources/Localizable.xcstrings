@@ -31,7 +31,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mac OS clásico"
+            "value" : "Mac OS clásico"
           }
         },
         "fr" : {
@@ -371,7 +371,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Separador línea Unix"
+            "value" : "Unix Line Separator"
           }
         },
         "fr" : {
@@ -485,7 +485,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nueva línea Unix"
+            "value" : "Unix Next Line"
           }
         },
         "fr" : {
@@ -599,7 +599,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Separador párrafo Unix"
+            "value" : "Unix Paragraph Separator"
           }
         },
         "fr" : {

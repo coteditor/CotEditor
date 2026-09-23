@@ -26,7 +26,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir fichero en CotEditor"
+            "value" : "Ventana de CotEditor con selección"
           }
         },
         "fr" : {

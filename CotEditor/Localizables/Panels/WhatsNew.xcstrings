@@ -362,8 +362,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "En macOS 27, los documentos sin título reciben automáticamente un nombre provisional sugerido a partir de su contenido."
+            "state" : "translated",
+            "value" : "En macOS 27, los documentos sin título reciben automáticamente un nombre provisional sugerido a partir de su contenido."
           }
         },
         "fr" : {
@@ -1040,8 +1040,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "CotEditor ahora es compatible con macOS 27 Golden Gate, con un aspecto renovado para el sistema más reciente."
+            "state" : "translated",
+            "value" : "CotEditor ahora es compatible con macOS 27 Golden Gate, con un aspecto renovado para el sistema más reciente."
           }
         },
         "fr" : {
@@ -1153,8 +1153,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Listo para macOS 27"
+            "state" : "translated",
+            "value" : "Listo para macOS 27"
           }
         },
         "fr" : {

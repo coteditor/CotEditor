@@ -554,7 +554,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Resaltar:"
+            "value" : "Resaltado:"
           }
         },
         "fr" : {
@@ -1834,7 +1834,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usa el color del sistema"
+            "value" : "Usar el color del sistema"
           }
         },
         "fr" : {

@@ -130,7 +130,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ píxeles/pulgadas"
+            "value" : "%@ píxeles/pulgada"
           }
         },
         "fr" : {
@@ -771,7 +771,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerrar Editor Dividido"
+            "value" : "Cerrar editor dividido"
           }
         },
         "fr" : {
@@ -1411,7 +1411,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Convertida"
+            "value" : "Convertido"
           }
         },
         "fr" : {
@@ -1518,7 +1518,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuenta"
+            "value" : "Recuento"
           }
         },
         "fr" : {
@@ -3155,7 +3155,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Extraer esquema…"
+            "value" : "Extrayendo esquema…"
           }
         },
         "fr" : {
@@ -4661,8 +4661,8 @@
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "Solo se han encontrado las primeras %lld coincidencias."
+                  "state" : "translated",
+                  "value" : "Solo se han encontrado las primeras %lld coincidencias."
                 }
               }
             }
@@ -5256,14 +5256,14 @@
                 "plural" : {
                   "one" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg coincidencia"
+                      "state" : "translated",
+                      "value" : "%arg coincidencia"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg coincidencias"
+                      "state" : "translated",
+                      "value" : "%arg coincidencias"
                     }
                   }
                 }
@@ -5276,14 +5276,14 @@
                 "plural" : {
                   "one" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg archivo"
+                      "state" : "translated",
+                      "value" : "%arg archivo"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg archivos"
+                      "state" : "translated",
+                      "value" : "%arg archivos"
                     }
                   }
                 }
@@ -6161,14 +6161,14 @@
                 "plural" : {
                   "one" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ coincidencia"
+                      "state" : "translated",
+                      "value" : "%arg+ coincidencia"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ coincidencias"
+                      "state" : "translated",
+                      "value" : "%arg+ coincidencias"
                     }
                   }
                 }
@@ -6181,14 +6181,14 @@
                 "plural" : {
                   "one" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg archivo"
+                      "state" : "translated",
+                      "value" : "%arg archivo"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg archivos"
+                      "state" : "translated",
+                      "value" : "%arg archivos"
                     }
                   }
                 }
@@ -6976,8 +6976,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "No se encontraron coincidencias para “%@”."
+            "state" : "translated",
+            "value" : "No se han encontrado coincidencias para “%@”."
           }
         },
         "fr" : {
@@ -7492,13 +7492,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Se encontró un carácter incompatible."
+                  "value" : "Se ha encontrado un carácter incompatible."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Se encontraron %lld caracteres incompatibles."
+                  "value" : "Se han encontrado %lld caracteres incompatibles."
                 }
               }
             }
@@ -7839,13 +7839,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Se encontró un final de línea distinto de %2$@."
+                  "value" : "Se ha encontrado un final de línea distinto de %2$@."
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Se encontraron %1$lld finales de línea distintos de %2$@."
+                  "value" : "Se han encontrado %1$lld finales de línea distintos de %2$@."
                 }
               }
             }
@@ -9093,7 +9093,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabla de contenido"
+            "value" : "Esquema"
           }
         },
         "fr" : {
@@ -9421,7 +9421,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Saltar al elemento del esquema anterior"
+            "value" : "Saltar al elemento anterior del esquema"
           }
         },
         "fr" : {
@@ -10759,8 +10759,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "¿Quieres trasladar %lld elementos seleccionados a la papelera?"
+                  "state" : "translated",
+                  "value" : "¿Quieres trasladar %lld elementos seleccionados a la papelera?"
                 }
               }
             }
@@ -12809,7 +12809,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tabla de contenido"
+            "value" : "Esquema"
           }
         },
         "fr" : {
@@ -13237,7 +13237,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anterior elemento del esquema"
+            "value" : "Elemento anterior del esquema"
           }
         },
         "fr" : {
@@ -14089,7 +14089,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccione un solo carácter para mostrar la información de Unicode."
+            "value" : "Seleccionar un solo carácter para mostrar la información de Unicode."
           }
         },
         "fr" : {
@@ -15064,7 +15064,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dividir Editor"
+            "value" : "Dividir editor"
           }
         },
         "fr" : {
@@ -15492,7 +15492,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Configuración del texto"
+            "value" : "Ajustes del texto"
           }
         },
         "fr" : {
@@ -15599,7 +15599,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¡Muchas gracias por su apoyo!"
+            "value" : "¡Muchas gracias por tu apoyo!"
           }
         },
         "fr" : {
@@ -15932,7 +15932,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comentar ó descomentar selección"
+            "value" : "Comentar o descomentar la selección"
           }
         },
         "fr" : {
@@ -16497,7 +16497,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atrás/Adelante"
+            "value" : "Atrás y adelante"
           }
         },
         "fr" : {
@@ -17401,7 +17401,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar Buscar y reemplazar"
+            "value" : "Mostrar “Buscar y reemplazar”"
           }
         },
         "fr" : {
@@ -18306,7 +18306,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desplazamiento a la izquierda"
+            "value" : "Desplazar a la izquierda"
           }
         },
         "fr" : {
@@ -18419,7 +18419,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deplazar las líneas a la izquierda"
+            "value" : "Desplazar las líneas a la izquierda"
           }
         },
         "fr" : {
@@ -18532,7 +18532,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desplazamiento a la derecha"
+            "value" : "Desplazar a la derecha"
           }
         },
         "fr" : {
@@ -18758,7 +18758,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selección de sangría"
+            "value" : "Aplicar sangría a la selección"
           }
         },
         "fr" : {
@@ -19889,7 +19889,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comprobar ortográfia"
+            "value" : "Comprobar ortografía"
           }
         },
         "fr" : {
@@ -22944,7 +22944,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desajustar líneas"
+            "value" : "No ajustar líneas"
           }
         },
         "fr" : {

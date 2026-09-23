@@ -118,13 +118,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld comando encontrado"
+                  "value" : "%lld comando encontrado"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld comandos encontrados"
+                  "value" : "%lld comandos encontrados"
                 }
               },
               "zero" : {

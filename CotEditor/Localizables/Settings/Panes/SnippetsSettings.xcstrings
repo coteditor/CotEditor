@@ -452,7 +452,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entrega de archivos"
+            "value" : "Arrastre de archivos"
           }
         },
         "fr" : {
@@ -879,7 +879,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Insertar formato:"
+            "value" : "Formato de inserción:"
           }
         },
         "fr" : {
@@ -1319,7 +1319,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sintaxis utilizada si se utiliza soltar archivos."
+            "value" : "Sintaxis en la que se utiliza este ajuste de arrastre de archivos."
           }
         },
         "fr" : {

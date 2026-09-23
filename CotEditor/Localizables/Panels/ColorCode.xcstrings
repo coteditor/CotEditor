@@ -25,7 +25,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "código de color"
+            "value" : "Código de color"
           }
         },
         "fr" : {
@@ -590,7 +590,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CSS Palabra clave"
+            "value" : "Palabra clave CSS"
           }
         },
         "fr" : {
@@ -1375,7 +1375,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserción"
+            "value" : "Insertar"
           }
         },
         "fr" : {

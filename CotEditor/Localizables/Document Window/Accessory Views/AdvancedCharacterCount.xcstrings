@@ -88,13 +88,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "*%lld* carácter"
+                  "value" : "*%lld* carácter"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "*%lld* caracteres"
+                  "value" : "*%lld* caracteres"
                 }
               }
             }
@@ -828,7 +828,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Grupo de Grafemas"
+            "value" : "Clúster de grafemas"
           }
         },
         "fr" : {
@@ -1056,7 +1056,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode escalar"
+            "value" : "Escalar Unicode"
           }
         },
         "fr" : {
@@ -2352,7 +2352,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parar cuenta"
+            "value" : "Detener recuento"
           }
         },
         "fr" : {
@@ -2459,7 +2459,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trata los espacios en blanco consecutivos como un solo espacio"
+            "value" : "Tratar los espacios en blanco consecutivos como un solo espacio"
           }
         },
         "fr" : {

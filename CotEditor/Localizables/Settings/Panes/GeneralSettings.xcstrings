@@ -24,7 +24,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Una función del sistema que sobrescribe automáticamente sus archivos mientras los edita. Incluso si se apaga, CotEditor crea una copia de seguridad de forma encubierta ante un cierre inesperado."
+            "value" : "Una función del sistema que sobrescribe automáticamente los archivos mientras los editas. Incluso si está desactivada, CotEditor crea una copia de seguridad en segundo plano por si se cierra inesperadamente."
           }
         },
         "fr" : {
@@ -130,7 +130,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comprueba si hay actualizaciones automáticamente"
+            "value" : "Comprobar si hay actualizaciones automáticamente"
           }
         },
         "fr" : {
@@ -674,7 +674,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guardar documento:"
+            "value" : "Guardado de documentos:"
           }
         },
         "fr" : {
@@ -787,7 +787,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mantener la edición de CotEditor"
+            "value" : "Conservar la versión de CotEditor"
           }
         },
         "fr" : {
@@ -900,7 +900,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pregunta cómo resolver"
+            "value" : "Preguntar cómo resolver"
           }
         },
         "fr" : {
@@ -1013,7 +1013,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Actualización de la edición modificada"
+            "value" : "Actualizar a la versión modificada"
           }
         },
         "fr" : {
@@ -1875,8 +1875,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "El comportamiento de la aplicación cambiará a partir del siguiente reinicio."
+            "state" : "translated",
+            "value" : "El comportamiento de la app cambiará a partir del segundo inicio tras este cambio."
           }
         },
         "fr" : {
@@ -1989,7 +1989,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El cambio se aplicará primero en el próximo reinicio."
+            "value" : "El cambio se aplicará la próxima vez que se inicie la app."
           }
         },
         "fr" : {
@@ -2540,7 +2540,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Independientemente de esta configuración, siempre se incluyen nuevas versiones preliminares mientras se utiliza una versión preliminar."
+            "value" : "Independientemente de este ajuste, siempre se incluyen nuevas versiones preliminares mientras se utiliza una versión preliminar."
           }
         },
         "fr" : {
@@ -2646,7 +2646,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vuelva a abrir las ventanas de la última sesión"
+            "value" : "Volver a abrir las ventanas de la última sesión"
           }
         },
         "fr" : {
@@ -3071,7 +3071,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Actualizar a los pre-lanzamientos cuando estén disponibles"
+            "value" : "Actualizar a versiones preliminares cuando estén disponibles"
           }
         },
         "fr" : {

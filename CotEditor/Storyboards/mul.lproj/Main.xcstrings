@@ -602,7 +602,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Substituciones"
+            "value" : "Sustituciones"
           }
         },
         "fr" : {
@@ -944,7 +944,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sangria"
+            "value" : "Sangría"
           }
         },
         "fr" : {
@@ -1400,7 +1400,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comprobar gramática y ortografía"
+            "value" : "Comprobar gramática con la ortografía"
           }
         },
         "fr" : {
@@ -1970,7 +1970,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reemplazar Comillas"
+            "value" : "Reemplazar comillas"
           }
         },
         "fr" : {
@@ -2084,7 +2084,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Izquierda a Derecha"
+            "value" : "De izquierda a derecha"
           }
         },
         "fr" : {
@@ -2768,7 +2768,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccionar anterior elemento del esquema"
+            "value" : "Seleccionar elemento anterior del esquema"
           }
         },
         "fr" : {
@@ -5504,7 +5504,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Volver a lo Guardado"
+            "value" : "Volver a la versión guardada"
           }
         },
         "fr" : {
@@ -5732,7 +5732,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir reciente"
+            "value" : "Abrir recientes"
           }
         },
         "fr" : {
@@ -8240,7 +8240,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajustar línea"
+            "value" : "Ajustar líneas"
           }
         },
         "fr" : {
@@ -9494,7 +9494,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Más pequeña"
+            "value" : "Más pequeño"
           }
         },
         "fr" : {
@@ -10064,7 +10064,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A la derecha"
+            "value" : "Desplazar a la derecha"
           }
         },
         "fr" : {
@@ -10178,7 +10178,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A la izquierda"
+            "value" : "Desplazar a la izquierda"
           }
         },
         "fr" : {
@@ -10634,7 +10634,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Valor por defecto"
+            "value" : "Restaurar tamaño por omisión"
           }
         },
         "fr" : {
@@ -12002,7 +12002,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entrar barra inclinada"
+            "value" : "Insertar barra invertida"
           }
         },
         "fr" : {
@@ -12116,7 +12116,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entrar símbolo del Yen"
+            "value" : "Insertar símbolo del yen"
           }
         },
         "fr" : {
@@ -12800,7 +12800,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrar guia página"
+            "value" : "Mostrar guía de página"
           }
         },
         "fr" : {
@@ -13028,7 +13028,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dividir Editor"
+            "value" : "Dividir editor"
           }
         },
         "fr" : {
@@ -13142,7 +13142,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Foco en siguiente editor"
+            "value" : "Mover el foco al editor siguiente"
           }
         },
         "fr" : {
@@ -13256,7 +13256,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Foco en anterior editor"
+            "value" : "Mover el foco al editor anterior"
           }
         },
         "fr" : {
@@ -13940,7 +13940,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Informe del problema"
+            "value" : "Informar de un problema"
           }
         },
         "fr" : {
@@ -14738,7 +14738,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Derecha a izquierda"
+            "value" : "De derecha a izquierda"
           }
         },
         "fr" : {
@@ -15422,7 +15422,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deshacer comentario"
+            "value" : "Descomentar"
           }
         },
         "fr" : {
@@ -18044,7 +18044,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reeplazar guiones"
+            "value" : "Reemplazar guiones"
           }
         },
         "fr" : {
@@ -18956,7 +18956,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Crea informe de problemas"
+            "value" : "Crear informe de problemas"
           }
         },
         "fr" : {
@@ -19982,7 +19982,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Corrección ortográfica automática"
+            "value" : "Corregir ortografía automáticamente"
           }
         },
         "fr" : {
@@ -20438,7 +20438,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cambiar comentario"
+            "value" : "Comentar/descomentar"
           }
         },
         "fr" : {
@@ -20780,7 +20780,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guia de scripts en CotEditor"
+            "value" : "Guía de scripts en CotEditor"
           }
         },
         "fr" : {
@@ -21692,7 +21692,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reemplazo múltiple…"
+            "value" : "Gestionar reemplazos múltiples…"
           }
         },
         "fr" : {
@@ -22148,7 +22148,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guia de scripts en CotEditor"
+            "value" : "Guía de scripts en CotEditor"
           }
         },
         "fr" : {
@@ -22604,7 +22604,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir menu del esquema"
+            "value" : "Abrir menú del esquema"
           }
         },
         "fr" : {
@@ -24884,7 +24884,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comillas inteligentes"
+            "value" : "Comillas tipográficas"
           }
         },
         "fr" : {
@@ -25340,7 +25340,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Introduce código unicode…"
+            "value" : "Insertar por punto de código Unicode…"
           }
         },
         "fr" : {
@@ -27164,7 +27164,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Substituciones"
+            "value" : "Sustituciones"
           }
         },
         "fr" : {
@@ -27278,7 +27278,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sangria"
+            "value" : "Sangría"
           }
         },
         "fr" : {

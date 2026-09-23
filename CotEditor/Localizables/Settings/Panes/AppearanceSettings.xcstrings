@@ -25,7 +25,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ punto"
+            "value" : "%@ puntos"
           }
         },
         "fr" : {
@@ -132,7 +132,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ veces"
+            "value" : "%@ veces"
           }
         },
         "fr" : {
@@ -457,7 +457,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Como en el Sistema"
+            "value" : "Como en el sistema"
           }
         },
         "fr" : {
@@ -1327,7 +1327,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¿Quieres usarlo para la fuente monoespaciada?"
+            "value" : "¿Quieres usarla para la fuente monoespaciada?"
           }
         },
         "fr" : {

@@ -660,7 +660,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "fuente de C++"
+            "value" : "Fuente de C++"
           }
         },
         "fr" : {
@@ -2567,7 +2567,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Javascript"
+            "value" : "JavaScript"
           }
         },
         "fr" : {
@@ -3423,7 +3423,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor necesita tu aprobación para controlar otras aplicaciones con AppleScript"
+            "value" : "CotEditor necesita tu aprobación para controlar otras aplicaciones con AppleScript."
           }
         },
         "fr" : {
@@ -3860,7 +3860,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Script Puthon"
+            "value" : "Script Python"
           }
         },
         "fr" : {
@@ -3966,7 +3966,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Documento de texto reestructurado"
+            "value" : "Documento reStructuredText"
           }
         },
         "fr" : {
@@ -5026,7 +5026,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dcumento Textile"
+            "value" : "Documento Textile"
           }
         },
         "fr" : {
