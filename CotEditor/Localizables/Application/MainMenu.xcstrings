@@ -461,7 +461,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Convertir l’Indentation"
+            "value" : "Convertir l’indentation"
           }
         },
         "it" : {
@@ -2158,7 +2158,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Insérer un Snippet"
+            "value" : "Insérer un snippet"
           }
         },
         "it" : {
@@ -2796,7 +2796,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Option-clic pour ouvrir le script dans l’éditeur."
+            "value" : "Cliquez en maintenant la touche Option enfoncée pour ouvrir le script dans l’éditeur."
           }
         },
         "it" : {
@@ -3758,7 +3758,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Décaler à Gauche"
+            "value" : "Décaler à gauche"
           }
         },
         "it" : {
@@ -3864,7 +3864,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Décaler à Droite"
+            "value" : "Décaler à droite"
           }
         },
         "it" : {
@@ -5780,7 +5780,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rogner les espaces aux extrémités"
+            "value" : "Supprimer les espaces en fin de ligne"
           }
         },
         "it" : {

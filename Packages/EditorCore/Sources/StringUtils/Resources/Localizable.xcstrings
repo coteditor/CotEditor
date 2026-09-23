@@ -1143,7 +1143,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Application de NFKC, case folding et suppression des points de code ignorables."
+            "value" : "Application de NFKC et du pli de casse, avec suppression des points de code ignorables implicitement"
           }
         },
         "it" : {

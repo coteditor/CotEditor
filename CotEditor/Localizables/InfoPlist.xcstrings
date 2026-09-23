@@ -242,7 +242,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Header C"
+            "value" : "En-tête C"
           }
         },
         "it" : {
@@ -560,7 +560,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Header C++"
+            "value" : "En-tête C++"
           }
         },
         "it" : {
@@ -1300,8 +1300,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Archive des paramètres CotEditor"
+            "state" : "translated",
+            "value" : "Archive des réglages CotEditor"
           }
         },
         "it" : {
@@ -4290,7 +4290,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Script Scala"
+            "value" : "Source Scala"
           }
         },
         "it" : {
@@ -4608,7 +4608,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Source Shell"
+            "value" : "Script Shell"
           }
         },
         "it" : {
@@ -4714,7 +4714,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Script SQL"
+            "value" : "Source SQL"
           }
         },
         "it" : {

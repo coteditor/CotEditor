@@ -1791,7 +1791,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fichier de Définition"
+            "value" : "Fichier de définition"
           }
         },
         "it" : {
@@ -2538,7 +2538,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tout capturer"
+            "value" : "Correspondance entière"
           }
         },
         "it" : {
@@ -3393,7 +3393,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si non précisé, les mots de complétion de syntaxe sont générés à partir des paramètres de surlignage."
+            "value" : "Si non précisé, les mots de complétion de syntaxe sont générés à partir des réglages de surlignage."
           }
         },
         "it" : {
@@ -4456,8 +4456,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Uniquement début"
+            "state" : "translated",
+            "value" : "Début de ligne uniquement"
           }
         },
         "it" : {

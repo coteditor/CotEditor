@@ -350,7 +350,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pattern vide"
+            "value" : "Motif vide"
           }
         },
         "it" : {
@@ -776,7 +776,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pattern invalide"
+            "value" : "Motif invalide"
           }
         },
         "it" : {
@@ -988,7 +988,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pattern :"
+            "value" : "Motif :"
           }
         },
         "it" : {

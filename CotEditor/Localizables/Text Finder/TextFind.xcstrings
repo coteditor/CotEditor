@@ -1461,7 +1461,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ferme les résultats de recherche."
+            "value" : "Fermez les résultats de recherche."
           }
         },
         "it" : {
@@ -1675,7 +1675,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rechercher et Remplacer"
+            "value" : "Rechercher et remplacer"
           }
         },
         "it" : {
@@ -1889,7 +1889,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Liste tous les résultats."
+            "value" : "Recherchez et listez toutes les correspondances."
           }
         },
         "it" : {
@@ -2103,7 +2103,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recherche le résultat suivant."
+            "value" : "Recherchez le résultat suivant."
           }
         },
         "it" : {
@@ -2317,7 +2317,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recherche le résultat précédent."
+            "value" : "Recherchez le résultat précédent."
           }
         },
         "it" : {
@@ -3764,7 +3764,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Revenir en haut à la fin du document"
+            "value" : "Reprendre la recherche à l’autre extrémité du document"
           }
         },
         "it" : {
@@ -3992,7 +3992,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La recherche ignore les signes diacritiques (Ex. : ö = o)"
+            "value" : "La recherche ignore les signes diacritiques (par exemple, ö = o)."
           }
         },
         "it" : {
@@ -4448,7 +4448,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Exacte équivalence caractère par caractère"
+            "value" : "Équivalence exacte caractère par caractère."
           }
         },
         "it" : {
@@ -5132,7 +5132,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Restreint les résultats de recherche aux mots entiers."
+            "value" : "Limitez les résultats de recherche aux mots entiers."
           }
         },
         "it" : {
@@ -5360,7 +5360,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dé-échappe les métacaractères précédés d’un antislash dans le texte de remplacement."
+            "value" : "Annulez l’échappement des métacaractères précédés d’un antislash dans le texte de remplacement."
           }
         },
         "it" : {
@@ -5474,7 +5474,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dé-échapper le texte de remplacement"
+            "value" : "Annuler l’échappement du texte de remplacement"
           }
         },
         "it" : {
@@ -7429,7 +7429,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remplace tous les résultats par le texte de remplacement."
+            "value" : "Remplacez tous les résultats par le texte de remplacement."
           }
         },
         "it" : {
@@ -7536,7 +7536,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remplacer la sélection avec le texte de remplacement, puis chercher la prochaine correspondance."
+            "value" : "Remplacez la sélection par le texte de remplacement, puis recherchez la correspondance suivante."
           }
         },
         "it" : {
@@ -7643,7 +7643,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remplacer"
+            "value" : "Remplacer par"
           }
         },
         "it" : {
@@ -7750,7 +7750,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Retour au début."
+            "value" : "Recherche reprise à l’autre extrémité du document."
           }
         },
         "it" : {
@@ -8498,7 +8498,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Affiche un pense-bête pour les expressions régulières"
+            "value" : "Affichez un pense-bête pour les expressions régulières."
           }
         },
         "it" : {
@@ -8830,7 +8830,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Texte à rechercher"
+            "value" : "Saisissez le texte à rechercher."
           }
         },
         "it" : {

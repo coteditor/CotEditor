@@ -38,7 +38,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Style d’Emoji"
+            "value" : "Style d’emoji"
           }
         },
         "it" : {
@@ -152,7 +152,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Style de Texte"
+            "value" : "Style de texte"
           }
         },
         "it" : {

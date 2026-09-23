@@ -31,7 +31,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ pt"
+            "value" : "%@ pt"
           }
         },
         "it" : {
@@ -477,7 +477,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noir et Blanc"
+            "value" : "Noir et blanc"
           }
         },
         "it" : {

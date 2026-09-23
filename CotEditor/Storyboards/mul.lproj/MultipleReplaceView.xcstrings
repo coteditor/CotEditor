@@ -266,7 +266,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mettre en surbrillance toutes les correspondances des règles de remplacement."
+            "value" : "Mettez en surbrillance toutes les correspondances des règles de remplacement."
           }
         },
         "it" : {
@@ -1647,7 +1647,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remplace toutes les correspondances selon les règles de remplacement."
+            "value" : "Remplacez toutes les correspondances selon les règles de remplacement."
           }
         },
         "it" : {
@@ -1761,7 +1761,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sélectionnez pour rechercher le texte seulement dans la sélection."
+            "value" : "Sélectionnez pour remplacer le texte seulement dans la sélection."
           }
         },
         "it" : {

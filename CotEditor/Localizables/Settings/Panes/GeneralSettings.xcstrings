@@ -30,7 +30,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fonctionnalité du système qui enregistre automatiquement vos fichiers pendant que vous les éditez. Si vous désactivez cette option, CotEditor créera quand même des sauvegardes pour prévenir les arrêts imprévus."
+            "value" : "Fonctionnalité du système qui enregistre automatiquement vos fichiers pendant que vous les éditez. Si vous désactivez cette option, CotEditor créera quand même une sauvegarde en cas d’arrêt imprévu."
           }
         },
         "it" : {

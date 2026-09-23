@@ -483,7 +483,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CSS HWB avec Alpha"
+            "value" : "CSS HWB avec alpha"
           }
         },
         "it" : {
@@ -1048,7 +1048,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hexa avec Alpha"
+            "value" : "Hexa avec alpha"
           }
         },
         "it" : {
@@ -1161,7 +1161,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hexa (Court)"
+            "value" : "Hexa (court)"
           }
         },
         "it" : {
@@ -1274,7 +1274,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hexa avec Alpha (Court)"
+            "value" : "Hexa avec alpha (court)"
           }
         },
         "it" : {

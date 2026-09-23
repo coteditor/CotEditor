@@ -36,8 +36,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Créer un nouveau document avec le texte spécifié dans CotEditor."
+            "state" : "translated",
+            "value" : "Crée un nouveau document avec le texte spécifié dans CotEditor."
           }
         },
         "it" : {

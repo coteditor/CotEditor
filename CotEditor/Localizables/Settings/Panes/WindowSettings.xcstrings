@@ -1094,7 +1094,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indenter les lignes renvoyées avec"
+            "value" : "Retrait des retours à la ligne"
           }
         },
         "it" : {
@@ -2691,7 +2691,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Paramètres du système"
+            "value" : "Réglages du système"
           }
         },
         "it" : {
@@ -3649,7 +3649,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Renvoyer les lignes qui dépassent la largeur de l’éditeur"
+            "value" : "Adapter les lignes à la largeur de l’éditeur"
           }
         },
         "it" : {

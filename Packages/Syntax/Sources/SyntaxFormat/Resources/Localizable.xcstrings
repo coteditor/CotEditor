@@ -602,7 +602,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "En-tête %lld"
+            "value" : "Titre %lld"
           }
         },
         "it" : {

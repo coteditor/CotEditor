@@ -1415,8 +1415,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Choisissez une archive de paramètres CotEditor à importer."
+            "state" : "translated",
+            "value" : "Choisissez une archive de réglages CotEditor à importer."
           }
         },
         "it" : {
@@ -1747,8 +1747,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Exporter les réglages sélectionnés sous forme d’archive afin de pouvoir les importer sur d’autres ordinateurs."
+            "state" : "translated",
+            "value" : "Exportez les réglages sélectionnés sous forme d’archive afin de pouvoir les importer sur d’autres ordinateurs."
           }
         },
         "it" : {
@@ -2066,7 +2066,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sélectionner les éléments à importer :"
+            "value" : "Sélectionnez les éléments à importer :"
           }
         },
         "it" : {
@@ -2404,8 +2404,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Tous les paramètres dans la fenêtre Réglages"
+            "state" : "translated",
+            "value" : "Tous les réglages dans la fenêtre Réglages"
           }
         },
         "it" : {

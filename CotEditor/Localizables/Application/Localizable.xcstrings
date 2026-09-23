@@ -358,7 +358,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld sélectionnées"
+            "value" : "Sélection : %lld"
           }
         },
         "it" : {
@@ -5228,7 +5228,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sauvegarder les caractères disponibles"
+            "value" : "Enregistrer le texte disponible"
           }
         },
         "it" : {
@@ -5681,7 +5681,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ré-interpréter"
+            "value" : "Réinterpréter"
           }
         },
         "it" : {
@@ -9531,7 +9531,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Choisir un autre nom."
+            "value" : "Choisissez un autre nom."
           }
         },
         "it" : {
@@ -12803,7 +12803,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le document a peut-être été sauvegardé dans un encodage différent, ou bien il ne s’agit pas d’un fichier texte."
+            "value" : "Le document a peut-être été enregistré dans un encodage différent, ou bien il ne s’agit pas d’un fichier texte."
           }
         },
         "it" : {
@@ -15742,7 +15742,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Annuler les modifications"
+            "value" : "Éliminer les modifications"
           }
         },
         "it" : {
@@ -15856,7 +15856,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voulez-vous vraiment abandonner les modifications et réouvrir le document en utilisant « %@ » ?"
+            "value" : "Voulez-vous vraiment éliminer vos modifications et rouvrir le document en utilisant « %@ » ?"
           }
         },
         "it" : {
@@ -15969,7 +15969,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le document contient des modifications non sauvegardées."
+            "value" : "Le document contient des modifications non enregistrées."
           }
         },
         "it" : {
@@ -16409,7 +16409,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rafraîchir"
+            "value" : "Mettre à jour"
           }
         },
         "it" : {
@@ -16522,7 +16522,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voulez-vous garder la version dans CotEditor ou rafraîchir vers la version modifiée ?"
+            "value" : "Voulez-vous garder la version dans CotEditor ou la mettre à jour avec la version modifiée ?"
           }
         },
         "it" : {
@@ -16749,7 +16749,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le fichier a été modifié par une autre application. Il y a des modifications non sauvegardées dans CotEditor."
+            "value" : "Le fichier a été modifié par une autre application. Il y a des modifications non enregistrées dans CotEditor."
           }
         },
         "it" : {

@@ -251,8 +251,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Choisissez des fichiers de la liste de remplacements CotEditor ou des fichiers TSV (valeurs séparées par des tabulations)."
+            "state" : "translated",
+            "value" : "Choisissez des fichiers « Liste de remplacements CotEditor » ou des fichiers TSV (valeurs séparées par des tabulations)."
           }
         },
         "it" : {

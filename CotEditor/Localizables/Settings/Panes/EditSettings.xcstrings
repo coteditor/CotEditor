@@ -248,7 +248,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Retirer automatiquement les espaces en fin de ligne"
+            "value" : "Supprimer automatiquement les espaces en fin de ligne"
           }
         },
         "it" : {
@@ -460,7 +460,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parsing :"
+            "value" : "Analyse du contenu :"
           }
         },
         "it" : {

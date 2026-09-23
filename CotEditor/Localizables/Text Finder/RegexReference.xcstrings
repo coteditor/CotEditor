@@ -1092,7 +1092,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Références passées"
+            "value" : "Référence arrière"
           }
         },
         "it" : {
@@ -2473,7 +2473,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pas un espace"
+            "value" : "Caractère non blanc"
           }
         },
         "it" : {
@@ -2899,7 +2899,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Espace"
+            "value" : "Caractère blanc"
           }
         },
         "it" : {
@@ -3111,7 +3111,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mot"
+            "value" : "Caractère de mot"
           }
         },
         "it" : {

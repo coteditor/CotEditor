@@ -2888,7 +2888,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vérifier le document lors de la saisie"
+            "value" : "Vérifier l’orthographe lors de la saisie"
           }
         },
         "it" : {
@@ -3230,7 +3230,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Insérer un Snippet"
+            "value" : "Insérer un snippet"
           }
         },
         "it" : {
@@ -3458,7 +3458,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Placer dans le Dock"
+            "value" : "Minimiser"
           }
         },
         "it" : {
@@ -7106,7 +7106,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Edition"
+            "value" : "Édition"
           }
         },
         "it" : {
@@ -7448,7 +7448,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Edition"
+            "value" : "Édition"
           }
         },
         "it" : {
@@ -7676,7 +7676,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sélectionner tout"
+            "value" : "Tout sélectionner"
           }
         },
         "it" : {
@@ -12008,7 +12008,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Insérer un Backslash"
+            "value" : "Insérer un antislash"
           }
         },
         "it" : {
@@ -12122,7 +12122,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Insérer le symbole Yen"
+            "value" : "Insérer le symbole yen"
           }
         },
         "it" : {
@@ -12236,7 +12236,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editer le code couleur…"
+            "value" : "Éditer le code couleur…"
           }
         },
         "it" : {
@@ -13148,7 +13148,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Déplacer la cible sur l’éditeur suivante"
+            "value" : "Déplacer la cible vers l’éditeur suivant"
           }
         },
         "it" : {
@@ -13262,7 +13262,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Déplacer la cible vers l’éditeur précédente"
+            "value" : "Déplacer la cible vers l’éditeur précédent"
           }
         },
         "it" : {
@@ -14516,7 +14516,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gardar au premier plan"
+            "value" : "Garder au premier plan"
           }
         },
         "it" : {
@@ -15770,7 +15770,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Insérer un Snippet"
+            "value" : "Insérer un snippet"
           }
         },
         "it" : {
@@ -17594,7 +17594,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Supprimer les espaces aux extrémités (Trim)"
+            "value" : "Supprimer les espaces en fin de ligne"
           }
         },
         "it" : {
@@ -17822,7 +17822,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rechercher tout"
+            "value" : "Tout rechercher"
           }
         },
         "it" : {
@@ -17936,7 +17936,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vérifier le document"
+            "value" : "Vérifier le document maintenant"
           }
         },
         "it" : {
@@ -18164,7 +18164,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utiliser des Espaces pour l’Indentation"
+            "value" : "Utiliser des espaces pour l’indentation"
           }
         },
         "it" : {
@@ -18278,7 +18278,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utiliser la sélection pour Rechercher"
+            "value" : "Rechercher la sélection"
           }
         },
         "it" : {
@@ -20216,7 +20216,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utiliser la sélection pour Remplacer"
+            "value" : "Utiliser la sélection pour remplacer"
           }
         },
         "it" : {
@@ -20558,7 +20558,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trier avec un pattern…"
+            "value" : "Trier selon un motif…"
           }
         },
         "it" : {
@@ -21470,7 +21470,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Type de Police"
+            "value" : "Type de police"
           }
         },
         "it" : {
@@ -22268,7 +22268,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editer les Snippets…"
+            "value" : "Éditer les snippets…"
           }
         },
         "it" : {
@@ -25802,7 +25802,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remplacer texte"
+            "value" : "Remplacer du texte"
           }
         },
         "it" : {

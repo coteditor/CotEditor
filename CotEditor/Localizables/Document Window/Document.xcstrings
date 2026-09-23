@@ -136,7 +136,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ pixels/pouce"
+            "value" : "%@ pixels/pouce"
           }
         },
         "it" : {
@@ -991,7 +991,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Point de Code"
+            "value" : "Point de code"
           }
         },
         "it" : {
@@ -2522,7 +2522,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le document a des changements non sauvegardés"
+            "value" : "Le document contient des modifications non enregistrées."
           }
         },
         "it" : {
@@ -11643,7 +11643,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucun filtre trouvé"
+            "value" : "Aucun résultat pour ce filtre"
           }
         },
         "it" : {
@@ -15498,7 +15498,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Paramètres du texte"
+            "value" : "Réglages du texte"
           }
         },
         "it" : {
@@ -17068,7 +17068,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Emoji et Symboles"
+            "value" : "Emoji et symboles"
           }
         },
         "it" : {
@@ -17634,7 +17634,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Type de Police"
+            "value" : "Type de police"
           }
         },
         "it" : {
@@ -18086,7 +18086,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Changer la Police"
+            "value" : "Changer la police"
           }
         },
         "it" : {
@@ -20008,7 +20008,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vérifier l’orthographe et la grammaire"
+            "value" : "Afficher l’orthographe et la grammaire"
           }
         },
         "it" : {
@@ -21028,7 +21028,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utiliser des tabulations pour l’indentation"
+            "value" : "Utiliser des espaces pour l’indentation"
           }
         },
         "it" : {
@@ -21141,7 +21141,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utiliser des espaces pour l’indentation"
+            "value" : "Utiliser des tabulations pour l’indentation"
           }
         },
         "it" : {

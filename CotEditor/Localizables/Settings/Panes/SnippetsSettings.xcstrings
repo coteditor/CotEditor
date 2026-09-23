@@ -458,7 +458,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "File Drop"
+            "value" : "Dépôt de fichiers"
           }
         },
         "it" : {
@@ -1538,7 +1538,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Texte à insérer lors d’une commande de menu ou d’un raccourcis clavier :"
+            "value" : "Texte à insérer lors d’une commande de menu ou d’un raccourci clavier :"
           }
         },
         "it" : {

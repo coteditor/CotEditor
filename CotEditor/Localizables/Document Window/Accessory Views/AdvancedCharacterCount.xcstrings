@@ -492,7 +492,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compter les bytes de texte encodé selon l’encodage spécifié."
+            "value" : "Comptez les octets du texte encodé selon l’encodage spécifié."
           }
         },
         "it" : {
@@ -606,7 +606,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Byte"
+            "value" : "Octet"
           }
         },
         "it" : {
@@ -834,7 +834,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Grapheme cluster"
+            "value" : "Groupe graphémique"
           }
         },
         "it" : {
@@ -948,7 +948,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compter les points de code Unicode. Identique au comptage UTF-32."
+            "value" : "Comptez les points de code Unicode. Identique au comptage UTF-32."
           }
         },
         "it" : {
@@ -1176,7 +1176,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compter les points de code Unicode, mais les paires de caractères de substitution comme deux caractères."
+            "value" : "Comptez les points de code Unicode, mais comptez une paire de caractères de substitution comme deux caractères."
           }
         },
         "it" : {
