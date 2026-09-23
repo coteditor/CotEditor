@@ -3710,13 +3710,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Search ignores diacritical marks (e.g., ö = o)."
+            "value" : "Search ignores diacritical marks (for example, ö = o)."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search ignores diacritical marks (e.g. ö = o)."
+            "value" : "Search ignores diacritical marks (for example, ö = o)."
           }
         },
         "es" : {
@@ -3926,13 +3926,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Search ignores width differences in character forms (e.g., ａ = a)."
+            "value" : "Search ignores width differences in character forms (for example, ａ = a)."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Search ignores width differences in character forms (e.g. ａ = a)."
+            "value" : "Search ignores width differences in character forms (for example, ａ = a)."
           }
         },
         "es" : {
