@@ -3,6 +3,11 @@
 7.1.1 (unreleased)
 --------------------------
 
+### New Features
+
+- Add the Ukrainian localization (thanks to Yaroslav Savchenko!).
+
+
 ### Improvements
 
 - Improve the External Editor button in the file preview view.

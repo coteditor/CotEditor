@@ -94,6 +94,7 @@ Currently, we already have maintainers for:
 - Polish
 - Portuguese
 - Russian
+- Ukrainian
 - Turkish
 
 We are now looking for new maintainers for:
