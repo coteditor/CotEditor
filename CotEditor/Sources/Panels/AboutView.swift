@@ -109,7 +109,7 @@ struct AboutView: View {
             }
             .scrollEdgeEffectStyle(.soft, for: .top)
             .contentMargins(20, for: .scrollContent)
-            .frame(width: 340)
+            .frame(width: 350)
         }
         .controlSize(.small)
         .frame(height: 320)

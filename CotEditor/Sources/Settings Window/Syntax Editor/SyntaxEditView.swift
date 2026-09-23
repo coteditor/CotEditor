@@ -139,6 +139,7 @@ struct SyntaxEditView: View {
             .focused($focus, equals: .sidebar)
             .simultaneousGesture(TapGesture().onEnded { self.focus = .sidebar })  // workaround (2026-08, macOS 27)
             .environment(\.sidebarRowSize, .medium)
+            .navigationSplitViewColumnWidth(min: 80, ideal: 160)
             
         } detail: {
             VStack(spacing: 0) {
