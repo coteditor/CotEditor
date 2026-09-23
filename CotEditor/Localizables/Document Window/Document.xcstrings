@@ -795,7 +795,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "분리된 편집기 닫기"
+            "value" : "분할 편집기를 닫습니다."
           }
         },
         "nl" : {
@@ -902,7 +902,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "분리된 편집기 닫기"
+            "value" : "분할 편집기 닫기"
           }
         },
         "nl" : {
@@ -2540,7 +2540,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "문서에 저장하지 않은 변경사항이 있습니다"
+            "value" : "문서에 저장하지 않은 변경 사항이 있습니다."
           }
         },
         "nl" : {
@@ -4721,8 +4721,8 @@
             "plural" : {
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
-                  "value" : "처음 %lld개 일치만 발견되었습니다."
+                  "state" : "translated",
+                  "value" : "처음 %lld개의 일치 항목만 찾았습니다."
                 }
               }
             }
@@ -7558,7 +7558,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld개의 호환불가능한 문자를 발견함."
+                  "value" : "호환되지 않는 문자 %lld개를 찾았습니다."
                 }
               }
             }
@@ -7905,7 +7905,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%2$@가 아닌 줄바꿈 %1$lld을(를) 발견함."
+                  "value" : "%2$@ 이외의 줄바꿈 %1$lld개를 찾았습니다."
                 }
               }
             }
@@ -9338,7 +9338,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "다음 개요 항목으로 이동"
+            "value" : "다음 개요 항목으로 이동합니다."
           }
         },
         "nl" : {
@@ -9445,7 +9445,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이전 개요 항목으로 이동"
+            "value" : "이전 개요 항목으로 이동합니다."
           }
         },
         "nl" : {
@@ -11767,7 +11767,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "발견된 문제 없음."
+            "value" : "발견된 문제 없음"
           }
         },
         "nl" : {
@@ -13686,7 +13686,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "호환 불가능한 문자를 검색하는 중…"
+            "value" : "호환되지 않는 문자를 검색하는 중…"
           }
         },
         "nl" : {
@@ -14113,7 +14113,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unicode 정보를 보려는 문자 한 개를 선택하십시오."
+            "value" : "문자 한 개를 선택하면 유니코드 정보를 표시합니다."
           }
         },
         "nl" : {
@@ -14981,7 +14981,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "편집기 분리"
+            "value" : "편집기를 분할합니다."
           }
         },
         "nl" : {
@@ -15088,7 +15088,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "편집기 분리"
+            "value" : "편집기 분할"
           }
         },
         "nl" : {
@@ -15956,7 +15956,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "선택한 부분을 주석으로 처리하거나 해제합니다"
+            "value" : "선택한 부분을 주석으로 처리하거나 해제합니다."
           }
         },
         "nl" : {
@@ -16182,7 +16182,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이전 문서로 이동"
+            "value" : "이전 문서로 이동합니다."
           }
         },
         "nl" : {
@@ -16408,7 +16408,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "다음 문서로 이동"
+            "value" : "다음 문서로 이동합니다."
           }
         },
         "nl" : {
@@ -16634,7 +16634,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "문서 기록에서 뒤로 또는 앞으로 이동"
+            "value" : "문서 기록에서 뒤로 또는 앞으로 이동합니다."
           }
         },
         "nl" : {
@@ -16860,7 +16860,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "문서 편집 허용 안 함"
+            "value" : "문서를 편집할 수 없도록 합니다."
           }
         },
         "nl" : {
@@ -16973,7 +16973,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "문서 편집 허용"
+            "value" : "문서를 편집할 수 있도록 합니다."
           }
         },
         "nl" : {
@@ -17199,7 +17199,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이모지 및 기호 보기"
+            "value" : "이모지 및 기호를 표시합니다."
           }
         },
         "nl" : {
@@ -17425,7 +17425,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "찾기 및 대치 보기"
+            "value" : "찾기 및 대치를 표시합니다."
           }
         },
         "nl" : {
@@ -18104,7 +18104,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "서체 변경"
+            "value" : "서체를 변경합니다."
           }
         },
         "nl" : {
@@ -18443,7 +18443,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄을 왼쪽으로 이동"
+            "value" : "줄을 왼쪽으로 이동합니다."
           }
         },
         "nl" : {
@@ -18669,7 +18669,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄을 오른쪽으로 이동"
+            "value" : "줄을 오른쪽으로 이동합니다."
           }
         },
         "nl" : {
@@ -18782,7 +18782,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "선택한 부분 들여쓰기"
+            "value" : "선택한 부분을 들여씁니다."
           }
         },
         "nl" : {
@@ -19008,7 +19008,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "들여쓰기 가이드 보기"
+            "value" : "들여쓰기 가이드를 표시합니다."
           }
         },
         "nl" : {
@@ -19121,7 +19121,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "들여쓰기 가이드 숨기기"
+            "value" : "들여쓰기 가이드를 가립니다."
           }
         },
         "nl" : {
@@ -19347,7 +19347,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "보이지 않는 문자 보기"
+            "value" : "보이지 않는 문자를 표시합니다."
           }
         },
         "nl" : {
@@ -19460,7 +19460,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "보이지 않는 문자 숨기기"
+            "value" : "보이지 않는 문자를 가립니다."
           }
         },
         "nl" : {
@@ -19800,7 +19800,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "문서 공유"
+            "value" : "문서 파일을 공유합니다."
           }
         },
         "nl" : {
@@ -20026,7 +20026,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "맞춤법 및 문법 보기"
+            "value" : "맞춤법 및 문법을 표시합니다."
           }
         },
         "nl" : {
@@ -20480,7 +20480,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "구문 변경"
+            "value" : "구문을 변경합니다."
           }
         },
         "nl" : {
@@ -20820,7 +20820,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "탭 가로"
+            "value" : "탭 너비"
           }
         },
         "nl" : {
@@ -20933,7 +20933,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "스페이스로 들여쓰기"
+            "value" : "들여쓰기에 스페이스 사용"
           }
         },
         "nl" : {
@@ -21046,7 +21046,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "스페이스로 들여쓰기"
+            "value" : "들여쓰기에 스페이스를 사용합니다."
           }
         },
         "nl" : {
@@ -21159,7 +21159,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "탭으로 들여쓰기"
+            "value" : "들여쓰기에 탭을 사용합니다."
           }
         },
         "nl" : {
@@ -21385,7 +21385,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "가로"
+            "value" : "텍스트를 가로로 표시합니다."
           }
         },
         "nl" : {
@@ -21611,7 +21611,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "텍스트 방향 전환"
+            "value" : "텍스트 방향을 전환합니다."
           }
         },
         "nl" : {
@@ -21837,7 +21837,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "세로"
+            "value" : "텍스트를 세로로 표시합니다."
           }
         },
         "nl" : {
@@ -22064,7 +22064,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "확대"
+            "value" : "크게"
           }
         },
         "nl" : {
@@ -22177,7 +22177,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "텍스트 크게"
+            "value" : "텍스트 크기를 늘립니다."
           }
         },
         "nl" : {
@@ -22403,7 +22403,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "축소"
+            "value" : "작게"
           }
         },
         "nl" : {
@@ -22516,7 +22516,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "텍스트 크기 축소"
+            "value" : "텍스트 크기를 줄입니다."
           }
         },
         "nl" : {
@@ -22629,7 +22629,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "텍스트 크기 확대"
+            "value" : "텍스트 크기를 변경합니다."
           }
         },
         "nl" : {
@@ -22742,7 +22742,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄 바꿈"
+            "value" : "줄 바꾸기"
           }
         },
         "nl" : {
@@ -22855,7 +22855,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄바꿈"
+            "value" : "편집기 너비에 맞춰 줄을 바꿉니다."
           }
         },
         "nl" : {
@@ -22968,7 +22968,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄바꿈 끄기"
+            "value" : "줄 바꾸기를 해제합니다."
           }
         },
         "nl" : {
@@ -23307,7 +23307,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "왼쪽에서 오른쪽"
+            "value" : "텍스트를 왼쪽에서 오른쪽으로 작성합니다."
           }
         },
         "nl" : {
@@ -23533,7 +23533,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "오른쪽에서 왼쪽"
+            "value" : "텍스트를 오른쪽에서 왼쪽으로 작성합니다."
           }
         },
         "nl" : {
@@ -23646,7 +23646,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "작성 방향 변경"
+            "value" : "작성 방향을 변경합니다."
           }
         },
         "nl" : {

@@ -1326,7 +1326,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "정규표현식"
+            "value" : "정규 표현식"
           }
         },
         "nl" : {
@@ -1433,7 +1433,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "정규표현식"
+            "value" : "정규 표현식"
           }
         },
         "nl" : {

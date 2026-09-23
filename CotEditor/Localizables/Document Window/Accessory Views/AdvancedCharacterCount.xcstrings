@@ -738,7 +738,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "유니코드에서"
+            "value" : "유니코드에 정의된 직관적인 방식으로 문자를 셉니다. 이모지처럼 여러 유니코드 코드 포인트로 구성된 문자도 한 문자로 셉니다."
           }
         },
         "nl" : {
@@ -852,7 +852,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Grapheme cluster"
+            "value" : "문자소 클러스터"
           }
         },
         "nl" : {
@@ -1194,7 +1194,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "유니코드 코드 포인트를 세지만 대행 코드를 문자 두 개로 셉니다."
+            "value" : "유니코드 코드 포인트를 세되, 서로게이트 쌍은 두 문자로 셉니다."
           }
         },
         "nl" : {

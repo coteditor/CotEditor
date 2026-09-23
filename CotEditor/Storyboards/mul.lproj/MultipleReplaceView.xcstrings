@@ -512,7 +512,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "대소문자 무시"
+            "value" : "대소문자를 구분하지 않습니다."
           }
         },
         "nl" : {
@@ -867,7 +867,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "고급 옵션 보기"
+            "value" : "고급 옵션을 표시합니다."
           }
         },
         "nl" : {
@@ -981,7 +981,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "대소문자를 무시하고 검색하려면 선택하십시오."
+            "value" : "대소문자를 구분하지 않고 검색합니다."
           }
         },
         "nl" : {
@@ -1209,7 +1209,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "켜짐"
+            "value" : "대치 규칙을 활성화합니다."
           }
         },
         "nl" : {
@@ -1437,7 +1437,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "정규표현식으로 검색하려면 선택하십시오."
+            "value" : "정규 표현식으로 검색합니다."
           }
         },
         "nl" : {
@@ -1779,7 +1779,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "선택된 부분에서만 텍스트를 대치하려면 선택하십시오."
+            "value" : "선택한 부분에서만 텍스트를 대치합니다."
           }
         },
         "nl" : {
@@ -1893,7 +1893,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이 대치 규칙을 사용하려면 선택하십시오."
+            "value" : "이 대치 규칙을 사용합니다."
           }
         },
         "nl" : {
@@ -2235,7 +2235,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "정규표현식"
+            "value" : "정규 표현식을 사용합니다."
           }
         },
         "nl" : {

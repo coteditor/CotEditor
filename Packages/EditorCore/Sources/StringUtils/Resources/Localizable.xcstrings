@@ -56,7 +56,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "수정된 NFD에 대응되는 NFC 기반 비공식 정규화 형태"
+            "value" : "수정된 NFD에 대응하는 NFC 기반의 비공식 정규화 형식입니다."
           }
         },
         "nl" : {
@@ -277,7 +277,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HFS+에서 사용되는 NFD 기반 비공식 정규화 형태"
+            "value" : "HFS+에서 사용되는 NFD 기반의 비공식 정규화 형식입니다."
           }
         },
         "nl" : {
@@ -498,7 +498,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "표준 분해를 하고 난 뒤 표준 합성"
+            "value" : "표준 분해 후 표준 합성을 수행합니다."
           }
         },
         "nl" : {
@@ -719,7 +719,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "표준 분해"
+            "value" : "표준 분해를 수행합니다."
           }
         },
         "nl" : {
@@ -940,7 +940,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "호환 분해를 하고 난 뒤 표준 합성"
+            "value" : "호환 분해 후 표준 합성을 수행합니다."
           }
         },
         "nl" : {
@@ -1161,7 +1161,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFKC"
+            "value" : "NFKC와 케이스 폴딩을 적용하고 기본적으로 무시할 수 있는 코드 포인트를 제거합니다."
           }
         },
         "nl" : {
@@ -1382,7 +1382,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "호환 분해"
+            "value" : "호환 분해를 수행합니다."
           }
         },
         "nl" : {

@@ -369,7 +369,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "확장"
+            "value" : "확장자"
           }
         },
         "nl" : {
@@ -476,7 +476,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "파일 떨굼"
+            "value" : "파일 드롭"
           }
         },
         "nl" : {
@@ -583,7 +583,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "떨군 파일의 확장자(쉼표로 구분)."
+            "value" : "드롭한 파일의 확장자를 쉼표로 구분합니다."
           }
         },
         "nl" : {
@@ -1343,7 +1343,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이 파일 떨굼 설정이 사용될 구문입니다."
+            "value" : "이 파일 드롭 설정이 사용될 구문입니다."
           }
         },
         "nl" : {
@@ -1662,7 +1662,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "파일을 편집기에 떨굴 때 삽입될 텍스트:"
+            "value" : "파일을 편집기에 드롭할 때 삽입될 텍스트:"
           }
         },
         "nl" : {

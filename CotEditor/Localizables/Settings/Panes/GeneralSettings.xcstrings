@@ -154,7 +154,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "업데이트를 수동으로 확인"
+            "value" : "업데이트를 자동으로 확인"
           }
         },
         "nl" : {
@@ -811,7 +811,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor의 상태를 유지"
+            "value" : "CotEditor 버전 유지"
           }
         },
         "nl" : {
@@ -1037,7 +1037,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "수정된 상태로 업데이트"
+            "value" : "수정된 버전으로 업데이트"
           }
         },
         "nl" : {
@@ -1143,7 +1143,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "자동 저장 켜기"
+            "value" : "버전 기록과 함께 자동 저장 사용"
           }
         },
         "nl" : {
@@ -2670,7 +2670,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "지난 세션의 창 다시 열기"
+            "value" : "지난 세션의 윈도우 다시 열기"
           }
         },
         "nl" : {

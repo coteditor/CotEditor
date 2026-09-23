@@ -160,7 +160,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "확대"
+            "value" : "크게"
           }
         },
         "nl" : {
@@ -797,7 +797,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "중복된 줄 제거"
+            "value" : "중복된 줄 삭제"
           }
         },
         "nl" : {
@@ -903,7 +903,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄 제거"
+            "value" : "줄 삭제"
           }
         },
         "nl" : {
@@ -1116,7 +1116,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "‘%@’으로 인코딩"
+            "value" : "‘%@’ 인코딩으로 변경"
           }
         },
         "nl" : {
@@ -1222,7 +1222,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "들여쓰기 가이드 숨기기"
+            "value" : "들여쓰기 가이드 가리기"
           }
         },
         "nl" : {
@@ -1328,7 +1328,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "인스펙터 숨기기"
+            "value" : "인스펙터 가리기"
           }
         },
         "nl" : {
@@ -1434,7 +1434,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "보이지 않는 문자 숨기기"
+            "value" : "보이지 않는 문자 가리기"
           }
         },
         "nl" : {
@@ -1540,7 +1540,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄 번호 숨기기"
+            "value" : "줄 번호 가리기"
           }
         },
         "nl" : {
@@ -1646,7 +1646,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "탐색 막대 숨기기"
+            "value" : "탐색 막대 가리기"
           }
         },
         "nl" : {
@@ -1752,7 +1752,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "페이지 가이드 숨기기"
+            "value" : "페이지 가이드 가리기"
           }
         },
         "nl" : {
@@ -1964,7 +1964,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "상태 막대 숨기기"
+            "value" : "상태 막대 가리기"
           }
         },
         "nl" : {
@@ -2388,7 +2388,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄 연결"
+            "value" : "줄 합치기"
           }
         },
         "nl" : {
@@ -2495,7 +2495,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@로 줄바꿈"
+            "value" : "줄바꿈을 %@(으)로 변경"
           }
         },
         "nl" : {
@@ -2814,7 +2814,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Option-클릭하여 편집기에서 스크립트 열기."
+            "value" : "Option 키를 누른 상태로 클릭하면 편집기에서 스크립트를 엽니다."
           }
         },
         "nl" : {
@@ -3138,7 +3138,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄 반대로"
+            "value" : "줄 역순 정렬"
           }
         },
         "nl" : {
@@ -3350,7 +3350,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "아래 행 선택"
+            "value" : "아래 열 선택"
           }
         },
         "nl" : {
@@ -3457,7 +3457,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "왼쪽 행 선택"
+            "value" : "왼쪽 열 선택"
           }
         },
         "nl" : {
@@ -3564,7 +3564,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "오른쪽 행 선택"
+            "value" : "오른쪽 열 선택"
           }
         },
         "nl" : {
@@ -3670,7 +3670,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "위 행 선택"
+            "value" : "위 열 선택"
           }
         },
         "nl" : {
@@ -4948,7 +4948,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "축소"
+            "value" : "작게"
           }
         },
         "nl" : {
@@ -5160,7 +5160,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "편집기 수평 쌓기"
+            "value" : "편집기 가로로 쌓기"
           }
         },
         "nl" : {
@@ -5266,7 +5266,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "편집기 수직 쌓기"
+            "value" : "편집기 세로로 쌓기"
           }
         },
         "nl" : {
@@ -5692,7 +5692,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "보이지 않는 문자를 보려면, 윈도우 설정에서 설정하십시오."
+            "value" : "표시할 보이지 않는 문자는 ‘윈도우’ 설정에서 지정합니다."
           }
         },
         "nl" : {
@@ -6010,7 +6010,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄바꿈 끄기"
+            "value" : "줄 바꾸기 해제"
           }
         },
         "nl" : {
@@ -6116,7 +6116,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄바꿈 켜기"
+            "value" : "줄 바꾸기"
           }
         },
         "nl" : {

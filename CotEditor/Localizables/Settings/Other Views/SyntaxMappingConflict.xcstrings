@@ -49,7 +49,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "복제된 구문"
+            "value" : "중복된 구문"
           }
         },
         "nl" : {
@@ -156,7 +156,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "확장"
+            "value" : "확장자"
           }
         },
         "nl" : {

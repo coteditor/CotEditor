@@ -394,7 +394,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "서식"
+            "value" : "포맷"
           }
         },
         "nl" : {
@@ -733,7 +733,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "단축어"
+            "value" : "단축키"
           }
         },
         "nl" : {

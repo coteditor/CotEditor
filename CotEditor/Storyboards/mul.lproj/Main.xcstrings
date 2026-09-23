@@ -740,7 +740,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL 디코드"
+            "value" : "URL 디코딩"
           }
         },
         "nl" : {
@@ -9518,7 +9518,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "축소"
+            "value" : "작게"
           }
         },
         "nl" : {
@@ -9632,7 +9632,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "확대"
+            "value" : "크게"
           }
         },
         "nl" : {
@@ -11456,7 +11456,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "도구 막대 숨기기"
+            "value" : "도구 막대 가리기"
           }
         },
         "nl" : {
@@ -11912,7 +11912,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AppleScript 디렉토리"
+            "value" : "AppleScript 사전"
           }
         },
         "nl" : {
@@ -13508,7 +13508,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "릴리즈 노트"
+            "value" : "릴리스 노트"
           }
         },
         "nl" : {
@@ -15332,7 +15332,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "들여쓰기 크기"
+            "value" : "탭 너비"
           }
         },
         "nl" : {
@@ -25250,7 +25250,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "문자 조사"
+            "value" : "문자 검사"
           }
         },
         "nl" : {
@@ -25592,7 +25592,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "주석 블록"
+            "value" : "블록 주석"
           }
         },
         "nl" : {
@@ -26732,7 +26732,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "들여쓰기 크기"
+            "value" : "탭 너비"
           }
         },
         "nl" : {
@@ -27074,7 +27074,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL 인코드"
+            "value" : "URL 인코딩"
           }
         },
         "nl" : {

@@ -1227,7 +1227,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "존재하지 않는 구문"
+            "value" : "존재하지 않는 구문입니다."
           }
         },
         "nl" : {

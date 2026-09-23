@@ -476,7 +476,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor는 오픈소스 프로그램이며,\nApache License, Version 2.0으로 보호됩니다."
+            "value" : "CotEditor는 오픈 소스 프로그램이며,\nApache License, Version 2.0에 따라 배포됩니다."
           }
         },
         "nl" : {
@@ -582,7 +582,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor는 다음과 같은 멋진 기술을 활용합니다. 가치있는 작업물을 사용할 수 있게 해주신 분들께 매우 감사드립니다."
+            "value" : "CotEditor는 다음과 같은 멋진 기술을 활용합니다. 가치 있는 작업물을 사용할 수 있게 해주신 분들께 매우 감사드립니다."
           }
         },
         "nl" : {
@@ -1116,7 +1116,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "비 AppStore 버전에만 해당"
+            "value" : "App Store 외부에서 배포된 버전에만 해당"
           }
         },
         "nl" : {

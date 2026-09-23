@@ -372,7 +372,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "설명:"
+            "value" : "주석:"
           }
         },
         "nl" : {
@@ -796,7 +796,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "선택된 "
+            "value" : "선택한 텍스트와 일치하는 부분 강조"
           }
         },
         "nl" : {

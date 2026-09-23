@@ -609,7 +609,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "후원에 보답하는 마음으로, 지속 후원을 해주시는 동안 상태 바에 커피 뱃지가 나타납니다."
+            "value" : "후원에 보답하는 마음으로, 지속 후원을 해주시는 동안 상태 막대에 커피 배지가 나타납니다."
           }
         },
         "nl" : {
@@ -715,7 +715,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "뱃지 타입:"
+            "value" : "배지 유형:"
           }
         },
         "nl" : {
@@ -1564,7 +1564,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "개인정보 취급방침"
+            "value" : "개인정보 처리방침"
           }
         },
         "nl" : {

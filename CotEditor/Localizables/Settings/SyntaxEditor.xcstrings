@@ -373,7 +373,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld개 오류 발견됨."
+                  "value" : "오류 %lld개를 찾았습니다."
                 }
               }
             }
@@ -1169,7 +1169,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "주석 블록:"
+            "value" : "블록 주석:"
           }
         },
         "nl" : {
@@ -2556,7 +2556,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "모두 일치"
+            "value" : "일치한 전체 텍스트"
           }
         },
         "nl" : {
@@ -2770,7 +2770,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "확장:"
+            "value" : "확장자:"
           }
         },
         "nl" : {
@@ -4902,7 +4902,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "발견된 오류 없음."
+            "value" : "발견된 오류 없음"
           }
         },
         "nl" : {
@@ -5335,7 +5335,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "정규표현식"
+            "value" : "정규 표현식"
           }
         },
         "nl" : {
@@ -5442,7 +5442,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "정규표현식 "
+            "value" : "정규 표현식 패턴"
           }
         },
         "nl" : {
@@ -5767,7 +5767,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "주석 블록은 시작과 끝 구분자 모두 필요합니다."
+            "value" : "블록 주석에는 시작 구분자와 끝 구분자가 모두 필요합니다."
           }
         },
         "nl" : {
@@ -5880,7 +5880,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "같은 단어가 여러 번 등록됨."
+            "value" : "같은 단어가 여러 번 등록되어 있습니다."
           }
         },
         "nl" : {
@@ -6219,7 +6219,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "유효하지 않은 정규표현식."
+            "value" : "유효하지 않은 정규 표현식입니다."
           }
         },
         "nl" : {

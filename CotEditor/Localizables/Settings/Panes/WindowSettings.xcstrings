@@ -1112,7 +1112,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "자동으로 바뀐 줄을"
+            "value" : "줄바꿈 행 들여쓰기"
           }
         },
         "nl" : {
@@ -1537,7 +1537,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄 수"
+            "value" : "줄 번호"
           }
         },
         "nl" : {
@@ -1643,7 +1643,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "줄 바꿈:"
+            "value" : "줄 바꾸기:"
           }
         },
         "nl" : {
@@ -3029,7 +3029,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "칸 들여쓰기"
+            "value" : "칸"
           }
         },
         "nl" : {
@@ -3348,7 +3348,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "높이"
+            "value" : "너비"
           }
         },
         "nl" : {
@@ -3454,7 +3454,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "창 크기:"
+            "value" : "윈도우 크기:"
           }
         },
         "nl" : {
@@ -3667,7 +3667,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "편집기 너비로 자동 줄 바꿈"
+            "value" : "편집기 너비로 줄 바꾸기"
           }
         },
         "nl" : {

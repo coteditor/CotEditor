@@ -281,7 +281,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "새로운 문서"
+            "value" : "문서 생성"
           }
         },
         "nl" : {
@@ -394,7 +394,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "새로운 문서"
+            "value" : "문서 생성"
           }
         },
         "nl" : {

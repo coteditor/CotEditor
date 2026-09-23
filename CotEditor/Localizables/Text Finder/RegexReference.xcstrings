@@ -1003,7 +1003,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "n회 의상"
+            "value" : "n회 이상"
           }
         },
         "nl" : {
@@ -1217,7 +1217,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "기본 정규표현식 구문"
+            "value" : "기본 정규 표현식 구문"
           }
         },
         "nl" : {
@@ -1961,7 +1961,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ICU 정규표현식"
+            "value" : "ICU 정규 표현식"
           }
         },
         "nl" : {
@@ -2173,7 +2173,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "후색 탐색"
+            "value" : "후방 탐색"
           }
         },
         "nl" : {

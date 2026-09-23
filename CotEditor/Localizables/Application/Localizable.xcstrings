@@ -602,7 +602,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "새 아이템을 추가합니다"
+            "value" : "새 항목을 추가합니다."
           }
         },
         "nl" : {
@@ -828,7 +828,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "선택한 아이템을 삭제"
+            "value" : "선택한 항목을 삭제합니다."
           }
         },
         "nl" : {
@@ -1393,7 +1393,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "선택된 아이템 편집"
+            "value" : "선택한 항목을 편집합니다."
           }
         },
         "nl" : {
@@ -3542,7 +3542,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "정말 ‘%@’를 삭제하시겠습니까?"
+            "value" : "‘%@’을(를) 삭제하겠습니까?"
           }
         },
         "nl" : {
@@ -6267,7 +6267,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "떨군 파일의 절대 경로."
+            "value" : "드롭한 파일의 절대 경로"
           }
         },
         "nl" : {
@@ -6380,7 +6380,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "떨군 파일의 부모 디렉토리 이름."
+            "value" : "드롭한 파일의 상위 디렉토리 이름"
           }
         },
         "nl" : {
@@ -6493,7 +6493,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "파일 내용."
+            "value" : "파일 내용"
           }
         },
         "nl" : {
@@ -6606,7 +6606,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "떨군 파일의 확장자."
+            "value" : "드롭한 파일의 확장자"
           }
         },
         "nl" : {
@@ -6719,7 +6719,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "떨군 파일의 확장자 (소문자)."
+            "value" : "드롭한 파일의 확장자(소문자로 변환)"
           }
         },
         "nl" : {
@@ -6832,7 +6832,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "떨군 파일의 확장자 (대문자)."
+            "value" : "드롭한 파일의 확장자(대문자로 변환)"
           }
         },
         "nl" : {
@@ -6945,7 +6945,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "떨군 파일의 확장자를 포함한 이름 (존재하는 경우)."
+            "value" : "드롭한 파일의 이름(확장자가 있으면 포함)"
           }
         },
         "nl" : {
@@ -7058,7 +7058,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "떨군 파일의 확장자를 제외한 이름."
+            "value" : "드롭한 파일의 확장자를 제외한 이름"
           }
         },
         "nl" : {
@@ -7171,7 +7171,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이미지 높이."
+            "value" : "이미지 높이"
           }
         },
         "nl" : {
@@ -7284,7 +7284,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이미지 너비."
+            "value" : "이미지 너비"
           }
         },
         "nl" : {
@@ -7397,7 +7397,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "문서와 떨군 파일의 상대 경로."
+            "value" : "드롭한 파일과 문서 간의 상대 경로"
           }
         },
         "nl" : {
@@ -9096,7 +9096,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "‘%@’는 사용된 이름입니다."
+            "value" : "‘%@’ 이름은 이미 사용 중입니다."
           }
         },
         "nl" : {
@@ -9662,7 +9662,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "‘%@’는 예약된 이름입니다."
+            "value" : "‘%@’ 이름은 예약되어 있습니다."
           }
         },
         "nl" : {
@@ -10454,7 +10454,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "문제"
+            "value" : "문제 재현 단계"
           }
         },
         "nl" : {
@@ -13273,7 +13273,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "스크립트 ‘%@’가 존재하지 않습니다."
+            "value" : "‘%@’ 스크립트가 존재하지 않습니다."
           }
         },
         "nl" : {
@@ -14290,7 +14290,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "‘%@’를 삭제할 수 없습니다."
+            "value" : "‘%@’을(를) 삭제할 수 없습니다."
           }
         },
         "nl" : {
@@ -14403,7 +14403,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "‘%@’를 가져올 수 없습니다."
+            "value" : "‘%@’을(를) 가져올 수 없습니다."
           }
         },
         "nl" : {
@@ -14516,7 +14516,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "‘%@’를 로드할 수 없습니다."
+            "value" : "‘%@’을(를) 로드할 수 없습니다."
           }
         },
         "nl" : {
@@ -14855,7 +14855,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "‘%1$@’는 이미 ‘%2$@’ 명령에 의해 사용되고 있습니다."
+            "value" : "‘%1$@’ 단축키는 이미 ‘%2$@’ 명령에서 사용 중입니다."
           }
         },
         "nl" : {
@@ -15307,7 +15307,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "상용구를 삽입한 후의 삽입 위치."
+            "value" : "상용구를 삽입한 후의 삽입 위치"
           }
         },
         "nl" : {
@@ -15420,7 +15420,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "선택된 텍스트."
+            "value" : "선택된 텍스트"
           }
         },
         "nl" : {
@@ -15874,7 +15874,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "정말 저장하지 않은 변경 사항을 복귀하고 문서를 ‘%@’을(를) 이용해서 다시 여시겠습니까?"
+            "value" : "저장하지 않은 변경 사항을 폐기하고 문서를 ‘%@’ 인코딩으로 다시 열겠습니까?"
           }
         },
         "nl" : {
@@ -16314,7 +16314,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor의 상태를 유지"
+            "value" : "CotEditor 버전 유지"
           }
         },
         "nl" : {
@@ -16540,7 +16540,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor에 열린 상태를 유지하시겠습니까, 또는 수정된 상태로 업데이트하시겠습니까?"
+            "value" : "CotEditor 버전을 유지하겠습니까, 아니면 수정된 버전으로 업데이트하겠습니까?"
           }
         },
         "nl" : {
