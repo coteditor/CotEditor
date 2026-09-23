@@ -199,7 +199,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modified NFC"
+            "value" : "Модифікований NFC"
           }
         },
         "zh-Hans" : {
@@ -420,7 +420,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modified NFD"
+            "value" : "Модифікований NFD"
           }
         },
         "zh-Hans" : {
