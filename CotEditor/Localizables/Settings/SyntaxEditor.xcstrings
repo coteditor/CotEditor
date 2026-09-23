@@ -3582,7 +3582,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odsazení:"
+            "value" : "Odsazení"
           }
         },
         "de" : {
@@ -3606,7 +3606,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indentation :"
+            "value" : "Indentation"
           }
         },
         "it" : {
@@ -3630,7 +3630,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inspringing:"
+            "value" : "Inspringing"
           }
         },
         "pl" : {
@@ -3648,13 +3648,13 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отступ:"
+            "value" : "Отступ"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Girintileme:"
+            "value" : "Girintileme"
           }
         },
         "uk" : {
