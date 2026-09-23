@@ -1491,7 +1491,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zamknij wynik wyszukiwania."
+            "value" : "Zamknij wynik wyszukiwania"
           }
         },
         "pt" : {
@@ -1919,7 +1919,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Znajdź i wyświetl listę wszystkich dopasowań."
+            "value" : "Znajdź i wyświetl listę wszystkich dopasowań"
           }
         },
         "pt" : {
@@ -2133,7 +2133,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Znajdź następne dopasowanie."
+            "value" : "Znajdź następne dopasowanie"
           }
         },
         "pt" : {
@@ -2347,7 +2347,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Znajdź poprzednie dopasowanie."
+            "value" : "Znajdź poprzednie dopasowanie"
           }
         },
         "pt" : {
@@ -5162,7 +5162,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ogranicz wyniki wyszukiwania do pełnych wyrazów."
+            "value" : "Ogranicz wyniki wyszukiwania do pełnych wyrazów"
           }
         },
         "pt" : {
@@ -5390,7 +5390,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Konwertuj sekwencje ucieczki metaznaków z ukośnikiem wstecznym w tekście zastępującym."
+            "value" : "Konwertuj sekwencje ucieczki metaznaków z ukośnikiem wstecznym w tekście zastępującym"
           }
         },
         "pt" : {
@@ -7459,7 +7459,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zamień wszystkie dopasowania na tekst zastępujący."
+            "value" : "Zamień wszystkie dopasowania na tekst zastępujący"
           }
         },
         "pt" : {
@@ -7566,7 +7566,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zastąp bieżące zaznaczenie tekstem zastępującym, a następnie znajdź kolejne dopasowanie."
+            "value" : "Zastąp bieżące zaznaczenie tekstem zastępującym, a następnie znajdź kolejne dopasowanie"
           }
         },
         "pt" : {
@@ -8528,7 +8528,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pokaż skrócony podręcznik składni wyrażeń regularnych."
+            "value" : "Pokaż skrócony podręcznik składni wyrażeń regularnych"
           }
         },
         "pt" : {
@@ -9413,7 +9413,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wprowadź tekst, który ma zastąpić tekst znaleziony."
+            "value" : "Wprowadź tekst, który ma zastąpić tekst znaleziony"
           }
         },
         "pt" : {
@@ -9520,7 +9520,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wprowadź tekst do znalezienia."
+            "value" : "Wprowadź tekst do znalezienia"
           }
         },
         "pt" : {

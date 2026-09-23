@@ -5540,7 +5540,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Przywróć zachowany"
+            "value" : "Przywróć do zachowanego"
           }
         },
         "pt" : {
@@ -5654,7 +5654,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otwórz ostatni"
+            "value" : "Otwórz ostatnie"
           }
         },
         "pt" : {
@@ -5768,7 +5768,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otwórz ostatni"
+            "value" : "Otwórz ostatnie"
           }
         },
         "pt" : {
@@ -6908,7 +6908,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Przywróć"
+            "value" : "Cofnij"
           }
         },
         "pt" : {
@@ -9416,7 +9416,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pokaż pasek stanu"
+            "value" : "Pokaż pasek statusu"
           }
         },
         "pt" : {
@@ -18308,7 +18308,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Użyj zaznaczenia w Znajdź"
+            "value" : "Szukaj zaznaczonego tekstu"
           }
         },
         "pt" : {
@@ -24920,7 +24920,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cytaty inteligentne"
+            "value" : "Cudzysłowy inteligentne"
           }
         },
         "pt" : {

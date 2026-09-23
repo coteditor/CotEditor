@@ -5825,7 +5825,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Czy chcesz konwertować lub reimpretować ten dokument z użyciem „%@”?"
+            "value" : "Czy chcesz konwertować lub reinterpretować ten dokument z użyciem „%@”?"
           }
         },
         "pt" : {
@@ -11140,7 +11140,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokument zawiera znaki niezgodne z „%@.”"
+            "value" : "Dokument zawiera znaki niezgodne z „%@”."
           }
         },
         "pt" : {
@@ -12607,7 +12607,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokument nie posiada pliku do reimpretacji."
+            "value" : "Dokument nie posiada pliku do reinterpretacji."
           }
         },
         "pt" : {
@@ -12720,7 +12720,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokument nie mogł zostać reimpretowany z użyciem kodowania tekstu „%@.”"
+            "value" : "Dokument nie mógł zostać reinterpretowany z użyciem kodowania tekstu „%@”."
           }
         },
         "pt" : {
@@ -15886,7 +15886,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Czy masz pewność, że chcesz odrzucić zmiany i ponownie otworzyć dokument używając „%@”?"
+            "value" : "Czy masz pewność, że chcesz odrzucić zmiany i ponownie otworzyć dokument, używając „%@”?"
           }
         },
         "pt" : {

@@ -60,7 +60,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Funkcja systemu, która automatycznie nadpisuje Twoje pliki podczas edycji. Nawet jeśli jest wyłączona, CotEditor tworzy w ukryciu kopię zapasową na wypadek nieoczekiwanego zamknięcia."
+            "value" : "Funkcja systemu, która automatycznie nadpisuje Twoje pliki podczas edycji. Nawet jeśli jest wyłączona, CotEditor tworzy w ukryciu kopię zapasową na wypadek nieoczekiwanego zamknięcia"
           }
         },
         "pt" : {
@@ -936,7 +936,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zapytaj co robić"
+            "value" : "Zapytaj, co robić"
           }
         },
         "pt" : {
@@ -2576,7 +2576,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Niezależnie od tego ustawienia, w przypadku korzystania z wersji wstępnej, nowe wersje wstępne są zawsze uwzględniane."
+            "value" : "Niezależnie od tego ustawienia w przypadku korzystania z wersji wstępnej nowe wersje wstępne są zawsze uwzględniane"
           }
         },
         "pt" : {
@@ -3425,7 +3425,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Za pomocą narzędzia wiersza poleceń `cot` możesz uruchomić CotEditora i pozwolić mu otwierać pliki z poziomu wiersza poleceń."
+            "value" : "Za pomocą narzędzia wiersza poleceń `cot` możesz uruchomić CotEditora i pozwolić mu otwierać pliki z poziomu wiersza poleceń"
           }
         },
         "pt" : {

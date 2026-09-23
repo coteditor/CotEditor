@@ -166,7 +166,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ piks./cal"
+            "value" : "%@ piks./cal"
           }
         },
         "pt" : {
@@ -14125,7 +14125,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wybierz pojedynczy znak, aby wyświetlić informacje Unikodu."
+            "value" : "Wybierz pojedynczy znak, aby wyświetlić informacje Unikodu"
           }
         },
         "pt" : {
@@ -15742,7 +15742,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokumentu nie można edytować."
+            "value" : "Dokumentu nie można edytować"
           }
         },
         "pt" : {
@@ -17437,7 +17437,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pokaż Znajdź i zastąp"
+            "value" : "Pokaż okno Znajdź i zastąp"
           }
         },
         "pt" : {

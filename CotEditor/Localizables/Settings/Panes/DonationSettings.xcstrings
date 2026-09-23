@@ -621,7 +621,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jako dowód Twojego wsparcia, w okresie ciągłego wsparcia na pasku stanu pojawi się znak kawy."
+            "value" : "Jako dowód Twojego wsparcia w okresie ciągłego wsparcia na pasku statusu pojawi się odznaka kawy"
           }
         },
         "pt" : {
@@ -939,7 +939,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor udostępnia wszystkie funkcje za darmo dla każdego.\nMożesz wesprzeć ten projekt oferując kawę."
+            "value" : "CotEditor udostępnia wszystkie funkcje za darmo dla każdego.\nMożesz wesprzeć ten projekt, oferując kawę"
           }
         },
         "pt" : {
@@ -1364,7 +1364,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otwórz GitHub Sponsors"
+            "value" : "Otwórz GitHub Sponsors"
           }
         },
         "pt" : {
@@ -1470,7 +1470,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otwórz w App Store"
+            "value" : "Otwórz w App Store"
           }
         },
         "pt" : {
@@ -2001,7 +2001,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Funkcja darowizny w aplikacji jest dostępna wyłącznie w CotEditorze dystrybuowanym przez App Store."
+            "value" : "Funkcja darowizny w aplikacji jest dostępna wyłącznie w CotEditorze dystrybuowanym przez App Store."
           }
         },
         "pt" : {

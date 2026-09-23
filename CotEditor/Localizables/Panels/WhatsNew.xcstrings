@@ -173,7 +173,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Użyj ustawień Trybu by dostosować do własnych upodobań styl wcięć dla poszczególnych składni."
+            "value" : "Użyj ustawień Trybu, by dostosować do własnych upodobań styl wcięć dla poszczególnych składni."
           }
         },
         "pt" : {
@@ -512,7 +512,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pozwól by dokument sam się nazwał"
+            "value" : "Pozwól, by dokument sam się nazwał"
           }
         },
         "pt" : {
@@ -851,7 +851,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Użyj paska narzędzi by przechodzić wstecz i dalej pomiędzy ostatnio przeglądanymi dokumentami w folderze."
+            "value" : "Użyj paska narzędzi, by przechodzić wstecz i dalej pomiędzy ostatnio przeglądanymi dokumentami w folderze."
           }
         },
         "pt" : {

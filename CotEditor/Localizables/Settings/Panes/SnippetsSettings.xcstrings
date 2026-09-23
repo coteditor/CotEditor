@@ -595,7 +595,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozszerzenia upuszczanych plików (rozdzielone przecinkami)."
+            "value" : "Rozszerzenia upuszczanych plików (rozdzielone przecinkami)"
           }
         },
         "pt" : {
@@ -1355,7 +1355,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Składnia, w której to ustawienie upuszczenia pliku jest używane."
+            "value" : "Składnia, w której to ustawienie upuszczenia pliku jest używane"
           }
         },
         "pt" : {

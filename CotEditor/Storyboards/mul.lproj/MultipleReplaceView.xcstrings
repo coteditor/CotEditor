@@ -182,7 +182,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wykonaj zastąpienie używając poniższych reguł w kolejności od góry do dołu:"
+            "value" : "Wykonaj zastąpienie, używając poniższych reguł w kolejności od góry do dołu:"
           }
         },
         "pt" : {
@@ -296,7 +296,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wyróżnij wszystkie dopasowania reguł zastąpienia."
+            "value" : "Wyróżnij wszystkie dopasowania reguł zastąpienia"
           }
         },
         "pt" : {
@@ -1449,7 +1449,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zaznacz, aby szukać z użyciem wyrażenia regularnego."
+            "value" : "Zaznacz, aby szukać z użyciem wyrażenia regularnego"
           }
         },
         "pt" : {
@@ -1677,7 +1677,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zastąp wszystkie dopasowania zgodnie z regułami zastąpienia."
+            "value" : "Zastąp wszystkie dopasowania zgodnie z regułami zastąpienia"
           }
         },
         "pt" : {
@@ -1791,7 +1791,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zaznacz, aby zastąpić tekst jedynie w zaznaczeniu."
+            "value" : "Zaznacz, aby zastąpić tekst tylko w zaznaczeniu"
           }
         },
         "pt" : {
@@ -1905,7 +1905,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zaznacz, aby użyć tej reguły zastąpienia."
+            "value" : "Zaznacz, aby użyć tej reguły zastąpienia"
           }
         },
         "pt" : {

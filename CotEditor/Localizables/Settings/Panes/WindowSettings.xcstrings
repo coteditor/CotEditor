@@ -1124,7 +1124,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zrób wcięcie zawiniętych wierszy na"
+            "value" : "Wcięcie zawijanej linii o"
           }
         },
         "pt" : {
@@ -3041,7 +3041,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "spacje"
+            "value" : "sp."
           }
         },
         "pt" : {
@@ -3679,7 +3679,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zawijaj wiersze do szerokości edytora"
+            "value" : "Zawijaj wiersze na szerokość edytora"
           }
         },
         "pt" : {

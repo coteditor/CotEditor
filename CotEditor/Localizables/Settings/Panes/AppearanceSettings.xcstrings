@@ -61,7 +61,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ pkt"
+            "value" : "%@ pkt"
           }
         },
         "pt" : {
@@ -168,7 +168,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ wielkości czcionki"
+            "value" : "Mnożnik: %@"
           }
         },
         "pt" : {
@@ -2234,7 +2234,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "wielkości czcionki"
+            "value" : "×"
           }
         },
         "pt" : {

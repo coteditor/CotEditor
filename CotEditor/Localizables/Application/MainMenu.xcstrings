@@ -2826,7 +2826,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kliknij, trzymając naciśnięty klawisz Option, by otworzyć skrypt w edytorze."
+            "value" : "Kliknij, trzymając naciśnięty klawisz Option, by otworzyć skrypt w edytorze"
           }
         },
         "pt" : {
@@ -5597,7 +5597,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pasek boczny jest dostępny tylko wtedy, gdy folder jest otwarty jako dokument."
+            "value" : "Pasek boczny jest dostępny tylko wtedy, gdy folder jest otwarty jako dokument"
           }
         },
         "pt" : {

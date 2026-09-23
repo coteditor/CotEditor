@@ -1501,7 +1501,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nie można zmienić nazwy składni wbudowanej."
+            "value" : "Nie można zmienić nazwy składni wbudowanej"
           }
         },
         "pt" : {
@@ -6345,7 +6345,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uzupełnienie"
+            "value" : "Uzupełnianie"
           }
         },
         "pt" : {
