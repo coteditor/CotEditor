@@ -20,19 +20,24 @@
       "internalID" : "6499507688",
       "localizations" : [
         {
+          "description" : "Una gustosa tazza",
+          "displayName" : "Espresso",
+          "locale" : "it"
+        },
+        {
           "description" : "Lezzetli bir kupa",
           "displayName" : "Espresso",
           "locale" : "tr"
         },
         {
-          "description" : "Smaczna filiżanka",
+          "description" : "Chutný šálek",
           "displayName" : "Espresso",
-          "locale" : "pl"
+          "locale" : "cs"
         },
         {
-          "description" : "一杯美味的咖啡",
-          "displayName" : "濃縮咖啡",
-          "locale" : "zh_Hant"
+          "description" : "Uma saborosa xícara",
+          "displayName" : "Espresso",
+          "locale" : "pt_BR"
         },
         {
           "description" : "커피 한 잔",
@@ -45,14 +50,9 @@
           "locale" : "de"
         },
         {
-          "description" : "おいしい1杯",
-          "displayName" : "エスプレッソ",
-          "locale" : "ja"
-        },
-        {
-          "description" : "Una gustosa tazza",
-          "displayName" : "Espresso",
-          "locale" : "it"
+          "description" : "Вкусная чашка",
+          "displayName" : "Экспрессо",
+          "locale" : "ru"
         },
         {
           "description" : "Une tasse savoureuse",
@@ -60,24 +60,9 @@
           "locale" : "fr"
         },
         {
-          "description" : "A tasty cup",
-          "displayName" : "Espresso",
-          "locale" : "en_US"
-        },
-        {
-          "description" : "Uma saborosa xícara",
-          "displayName" : "Espresso",
-          "locale" : "pt_BR"
-        },
-        {
-          "description" : "Chutný šálek",
-          "displayName" : "Espresso",
-          "locale" : "cs"
-        },
-        {
-          "description" : "Вкусная чашка",
-          "displayName" : "Экспрессо",
-          "locale" : "ru"
+          "description" : "一杯美味的咖啡",
+          "displayName" : "濃縮咖啡",
+          "locale" : "zh_Hant"
         },
         {
           "description" : "Een lekker kopje",
@@ -85,9 +70,29 @@
           "locale" : "nl"
         },
         {
+          "description" : "A tasty cup",
+          "displayName" : "Espresso",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "おいしい1杯",
+          "displayName" : "エスプレッソ",
+          "locale" : "ja"
+        },
+        {
           "description" : "一杯美味的咖啡",
           "displayName" : "浓缩咖啡",
           "locale" : "zh_Hans"
+        },
+        {
+          "description" : "Смачне горнятко",
+          "displayName" : "Еспресо",
+          "locale" : "uk"
+        },
+        {
+          "description" : "Smaczna filiżanka",
+          "displayName" : "Espresso",
+          "locale" : "pl"
         }
       ],
       "productID" : "com.coteditor.CotEditor.donation.onetime",
@@ -103,7 +108,7 @@
     "_developerTeamID" : "HT3Z3A72WZ",
     "_disableDialogs" : false,
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 783603380.077003,
+    "_lastSynchronizedDate" : 811884542.216506,
     "_locale" : "en_US",
     "_renewalBillingIssuesEnabled" : false,
     "_storefront" : "USA",
@@ -147,17 +152,158 @@
     ],
     "_timeRate" : 0
   },
+  "subscriptionBundleGroups" : [
+
+  ],
   "subscriptionGroups" : [
     {
       "id" : "21481959",
       "localizations" : [
-
+        {
+          "description" : "",
+          "displayName" : "Apoio contínuo",
+          "locale" : "pt_BR"
+        },
+        {
+          "description" : "",
+          "displayName" : "Apoio contínuo",
+          "locale" : "pt_BR"
+        },
+        {
+          "description" : "",
+          "displayName" : "Ciągłe wsparcie",
+          "locale" : "pl"
+        },
+        {
+          "description" : "",
+          "displayName" : "Ciągłe wsparcie",
+          "locale" : "pl"
+        },
+        {
+          "description" : "",
+          "displayName" : "Continuous support",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "",
+          "displayName" : "Continuous support",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "",
+          "displayName" : "Kontinuierliche Unterstützung",
+          "locale" : "de"
+        },
+        {
+          "description" : "",
+          "displayName" : "Kontinuální podpora",
+          "locale" : "cs"
+        },
+        {
+          "description" : "",
+          "displayName" : "Kontinuální podpora",
+          "locale" : "cs"
+        },
+        {
+          "description" : "",
+          "displayName" : "Sostegno permanente",
+          "locale" : "it"
+        },
+        {
+          "description" : "",
+          "displayName" : "Sostegno permanente",
+          "locale" : "it"
+        },
+        {
+          "description" : "",
+          "displayName" : "Soutien continu",
+          "locale" : "fr"
+        },
+        {
+          "description" : "",
+          "displayName" : "Soutien continu",
+          "locale" : "fr"
+        },
+        {
+          "description" : "",
+          "displayName" : "Sürekli destek",
+          "locale" : "tr"
+        },
+        {
+          "description" : "",
+          "displayName" : "Sürekli destek",
+          "locale" : "tr"
+        },
+        {
+          "description" : "",
+          "displayName" : "Постоянная поддержка",
+          "locale" : "ru"
+        },
+        {
+          "description" : "",
+          "displayName" : "Постоянная поддержка",
+          "locale" : "ru"
+        },
+        {
+          "description" : "",
+          "displayName" : "Постійна підтримка",
+          "locale" : "uk"
+        },
+        {
+          "description" : "",
+          "displayName" : "持續支援",
+          "locale" : "zh_Hant"
+        },
+        {
+          "description" : "",
+          "displayName" : "持續支援",
+          "locale" : "zh_Hant"
+        },
+        {
+          "description" : "",
+          "displayName" : "持续支持",
+          "locale" : "zh_Hans"
+        },
+        {
+          "description" : "",
+          "displayName" : "持续支持",
+          "locale" : "zh_Hans"
+        },
+        {
+          "description" : "",
+          "displayName" : "継続的なサポート",
+          "locale" : "ja"
+        },
+        {
+          "description" : "",
+          "displayName" : "継続的なサポート",
+          "locale" : "ja"
+        },
+        {
+          "description" : "",
+          "displayName" : "지속 후원",
+          "locale" : "ko"
+        },
+        {
+          "description" : "",
+          "displayName" : "지속 후원",
+          "locale" : "ko"
+        }
       ],
       "name" : "Continuous support",
       "subscriptions" : [
         {
           "adHocOffers" : [
 
+          ],
+          "billingPlans" : [
+            {
+              "billingPlanType" : "BILLED_UPFRONT",
+              "commitmentDisplayPrice" : "19.99",
+              "displayPrice" : "19.99",
+              "internalID" : "6670775074_BILLED_UPFRONT",
+              "isEnabled" : true
+            }
           ],
           "codeOffers" : [
 
@@ -166,8 +312,85 @@
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "6670775074",
-          "introductoryOffer" : null,
+          "introductoryOffers" : [
+
+          ],
           "localizations" : [
+            {
+              "description" : "日々の開発のためのコーヒー",
+              "displayName" : "コーヒー豆",
+              "locale" : "ja"
+            },
+            {
+              "description" : "Caffà per lo sviluppo quotidiano",
+              "displayName" : "Chicchi di caffè",
+              "locale" : "it"
+            },
+            {
+              "description" : "Kawa dla codziennego rozwoju",
+              "displayName" : "Kawa ziarnista",
+              "locale" : "pl"
+            },
+            {
+              "description" : "Café para desenvolvimento diário",
+              "displayName" : "Grãos de Café",
+              "locale" : "pt_BR"
+            },
+            {
+              "description" : "Kaffee für die tägliche Entwicklung",
+              "displayName" : "Kaffeebohnen",
+              "locale" : "de"
+            },
+            {
+              "description" : "Koffie voor dagelijkse ontwikkeling",
+              "displayName" : "Koffiebonen",
+              "locale" : "nl"
+            },
+            {
+              "description" : "Günlük geliştirme için kahve",
+              "displayName" : "Kahve Çekirdekleri",
+              "locale" : "tr"
+            },
+            {
+              "description" : "Кофе для ежедневной разработки",
+              "displayName" : "Мешок кофе",
+              "locale" : "ru"
+            },
+            {
+              "description" : "Káva pro každodenní vývoj",
+              "displayName" : "Kávové boby",
+              "locale" : "cs"
+            },
+            {
+              "description" : "日常开发的咖啡",
+              "displayName" : "咖啡豆",
+              "locale" : "zh_Hans"
+            },
+            {
+              "description" : "以咖啡資助軟體研發",
+              "displayName" : "咖啡豆",
+              "locale" : "zh_Hant"
+            },
+            {
+              "description" : "Coffee for daily development",
+              "displayName" : "Coffee Beans",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Café pour le développement quotidien",
+              "displayName" : "Grains de café",
+              "locale" : "fr"
+            },
+            {
+              "description" : "일일 개발을 위한 커피",
+              "displayName" : "커피 원두",
+              "locale" : "ko"
+            },
+            {
+              "description" : "Кава для повсякденної розробки",
+              "displayName" : "Кавові зерна",
+              "locale" : "uk"
+            },
             {
               "description" : "Кофе для ежедневной разработки",
               "displayName" : "Мешок кофе",
@@ -187,11 +410,6 @@
               "description" : "Günlük geliştirme için kahve",
               "displayName" : "Kahve Çekirdekleri",
               "locale" : "tr"
-            },
-            {
-              "description" : "Káva pro každodenní vývoj",
-              "displayName" : "Kávové boby",
-              "locale" : "cs"
             },
             {
               "description" : "Koffie voor dagelijkse ontwikkeling",
@@ -219,9 +437,9 @@
               "locale" : "ja"
             },
             {
-              "description" : "Caffà per lo sviluppo quotidiano",
-              "displayName" : "Chicchi di caffè",
-              "locale" : "it"
+              "description" : "Káva pro každodenní vývoj",
+              "displayName" : "Kávové boby",
+              "locale" : "cs"
             },
             {
               "description" : "Café pour le développement quotidien",
@@ -237,6 +455,11 @@
               "description" : "Coffee for daily development",
               "displayName" : "Coffee Beans",
               "locale" : "en_US"
+            },
+            {
+              "description" : "Caffà per lo sviluppo quotidiano",
+              "displayName" : "Chicchi di caffè",
+              "locale" : "it"
             }
           ],
           "productID" : "com.coteditor.CotEditor.donation.subscription.yearly",
@@ -251,8 +474,11 @@
       ]
     }
   ],
+  "subscriptionSuiteGroups" : [
+
+  ],
   "version" : {
-    "major" : 4,
-    "minor" : 0
+    "major" : 6,
+    "minor" : 3
   }
 }
