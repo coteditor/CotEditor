@@ -1732,7 +1732,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "불러오기…"
+            "value" : "가져오기…"
           }
         },
         "nl" : {
@@ -1845,7 +1845,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "불러오기"
+            "value" : "가져오기"
           }
         },
         "nl" : {
@@ -1958,7 +1958,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이름 바꾸기"
+            "value" : "이름 변경"
           }
         },
         "nl" : {
@@ -2523,7 +2523,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "기본값 복원"
+            "value" : "기본값으로 복원"
           }
         },
         "nl" : {
@@ -8756,7 +8756,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이 문서에서 가장 흔한 줄바꿈은 %@ 입니다."
+            "value" : "이 문서에서 가장 흔한 줄바꿈은 %@입니다."
           }
         },
         "nl" : {
@@ -10002,7 +10002,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "다음 양식을 채워, %1$@에 게시하거나 %2$@로 보내십시오. 이메일로 전송한 내용이 Issue 페이지에서 공개적으로 공유될 수 있음에 주의하세요. 내용을 영어 또는 일본어로 작성해주시길 바랍니다."
+            "value" : "다음 양식을 작성한 다음 %1$@에 게시하거나 %2$@로 보내십시오. 이메일 내용은 이슈 페이지에서 공유될 수 있습니다. 메시지는 영어 또는 일본어로 작성하십시오."
           }
         },
         "nl" : {
@@ -12934,7 +12934,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "입력 받을 문서가 없습니다."
+            "value" : "입력받을 문서가 없습니다."
           }
         },
         "nl" : {
@@ -16767,7 +16767,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "파일이 다른 응용 프로그램에 의해 수정되었습니다. CotEditor에 아직 저장하지 않은 변경사항이 있습니다."
+            "value" : "파일이 다른 응용 프로그램에 의해 수정되었습니다. CotEditor에 아직 저장하지 않은 변경 사항이 있습니다."
           }
         },
         "nl" : {

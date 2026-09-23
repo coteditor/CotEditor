@@ -48,7 +48,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "(기본 설정)"
+            "value" : " (기본 설정)"
           }
         },
         "nl" : {
@@ -7001,7 +7001,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@”과(와) 일치하는 항목을 찾을 수 없습니다."
+            "value" : "‘%@’과(와) 일치하는 항목을 찾을 수 없습니다."
           }
         },
         "nl" : {
@@ -10633,7 +10633,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@”을(를) 휴지통으로 이동하겠습니까?"
+            "value" : "‘%@’을(를) 휴지통으로 이동하겠습니까?"
           }
         },
         "nl" : {
@@ -14327,7 +14327,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "숨긴 파일 보기"
+            "value" : "숨겨진 파일 보기"
           }
         },
         "nl" : {
@@ -17086,7 +17086,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이모티콘 및 기호"
+            "value" : "이모지 및 기호"
           }
         },
         "nl" : {

@@ -1547,7 +1547,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이 설정 아카이브는 다른 버전의 CotEditor에서 생성되었습니다. (%@)"
+            "value" : "이 설정 아카이브는 다른 버전의 CotEditor(%@)에서 생성되었습니다."
           }
         },
         "nl" : {

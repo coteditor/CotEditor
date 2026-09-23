@@ -2906,7 +2906,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "입력할 때 맞춤법 검사"
+            "value" : "입력하는 동안 맞춤법 검사"
           }
         },
         "nl" : {
@@ -11000,7 +11000,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "알파벳 숫자 텍스트를 전각으로 변환"
+            "value" : "영숫자 텍스트를 전각으로 변환"
           }
         },
         "nl" : {
@@ -11114,7 +11114,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "알파벳 숫자 텍스트를 반각으로 변환"
+            "value" : "영숫자 텍스트를 반각으로 변환"
           }
         },
         "nl" : {
@@ -13736,7 +13736,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "변환"
+            "value" : "변형"
           }
         },
         "nl" : {
@@ -15218,7 +15218,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor의 변경사항"
+            "value" : "CotEditor의 새로운 기능"
           }
         },
         "nl" : {
@@ -17384,7 +17384,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "변환"
+            "value" : "변형"
           }
         },
         "nl" : {
@@ -18410,7 +18410,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "쓰기 방향"
+            "value" : "작성 방향"
           }
         },
         "nl" : {
@@ -21146,7 +21146,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "쓰기 방향"
+            "value" : "작성 방향"
           }
         },
         "nl" : {

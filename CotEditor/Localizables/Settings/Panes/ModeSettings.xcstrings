@@ -262,7 +262,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "입력할 때 문법 검사"
+            "value" : "맞춤법 및 문법 검사"
           }
         },
         "nl" : {
@@ -369,7 +369,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "입력할 때 맞춤법 검사"
+            "value" : "입력하는 동안 맞춤법 검사"
           }
         },
         "nl" : {

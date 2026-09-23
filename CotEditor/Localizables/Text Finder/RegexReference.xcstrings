@@ -2811,7 +2811,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이 구문은 %@ 명세를 따릅니다. "
+            "value" : "이 구문은 %@ 명세를 따릅니다."
           }
         },
         "nl" : {

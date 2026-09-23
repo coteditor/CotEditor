@@ -154,7 +154,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "전체 선택"
+            "value" : "모두 선택"
           }
         },
         "nl" : {
@@ -260,7 +260,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "구문 메뉴에 표시할 구문을 선택하십시오:"
+            "value" : "구문 메뉴에 표시할 구문을 선택하십시오."
           }
         },
         "nl" : {

@@ -2126,7 +2126,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "아무 것도 안 함"
+            "value" : "아무것도 안 함"
           }
         },
         "nl" : {
@@ -2564,7 +2564,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이 설정과 관계 없이, 사전 발매 버전을 사용 중인 경우 항상 사전 발매 버전을 포함합니다."
+            "value" : "이 설정과 관계없이, 사전 발매 버전을 사용 중인 경우 항상 사전 발매 버전을 포함합니다."
           }
         },
         "nl" : {
@@ -3201,7 +3201,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "문서가 다른 응용프로그램에 의해 수정되었을 때:"
+            "value" : "문서가 다른 응용 프로그램에 의해 수정되었을 때:"
           }
         },
         "nl" : {
@@ -3307,7 +3307,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "아무 것도 열려있지 않을 때:"
+            "value" : "아무것도 열려 있지 않을 때:"
           }
         },
         "nl" : {
