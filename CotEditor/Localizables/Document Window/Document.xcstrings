@@ -78,7 +78,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " (Saptanmış)"
+            "value" : " (saptanmış)"
           }
         },
         "uk" : {
@@ -8277,7 +8277,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Görüntü DPI’si"
+            "value" : "Görüntü DPI’sı"
           }
         },
         "uk" : {
@@ -23111,7 +23111,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yazım Yönü"
+            "value" : "Yazma Yönü"
           }
         },
         "uk" : {
@@ -23676,7 +23676,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yazım yönünü değiştir"
+            "value" : "Yazma yönünü değiştir"
           }
         },
         "uk" : {

@@ -823,7 +823,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geçerli satır"
+            "value" : "Geçerli satır:"
           }
         },
         "uk" : {
@@ -3910,7 +3910,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yazım yönü:"
+            "value" : "Yazma yönü:"
           }
         },
         "uk" : {

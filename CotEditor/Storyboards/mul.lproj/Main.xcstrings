@@ -5558,7 +5558,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kaydedilene Geri Dön"
+            "value" : "Kaydedilene Dön"
           }
         },
         "uk" : {
@@ -18326,7 +18326,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bul İçin Seçimi Kullan"
+            "value" : "Bul için Seçimi Kullan"
           }
         },
         "uk" : {
@@ -18440,7 +18440,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yazım Yönü"
+            "value" : "Yazma Yönü"
           }
         },
         "uk" : {
@@ -20264,7 +20264,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Değişim İçin Seçimi Kullan"
+            "value" : "Değişim için Seçimi Kullan"
           }
         },
         "uk" : {
@@ -21176,7 +21176,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yazım Yönü"
+            "value" : "Yazma Yönü"
           }
         },
         "uk" : {
@@ -26192,7 +26192,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yazım Denetimi ve Dilbilgisini Göster"
+            "value" : "Yazım ve Dilbilgisi Denetimini Göster"
           }
         },
         "uk" : {

@@ -1598,7 +1598,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Daha Fazla Öğren"
+            "value" : "Daha Fazla Bilgi…"
           }
         },
         "uk" : {
@@ -2156,7 +2156,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bir Şey Yapma"
+            "value" : "Hiçbir Şey Yapma"
           }
         },
         "uk" : {
@@ -3019,7 +3019,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aşağıdaki uyarıları sustur"
+            "value" : "Aşağıdaki uyarıları sustur:"
           }
         },
         "uk" : {

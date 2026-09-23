@@ -1988,7 +1988,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yeniden Adlandır"
+            "value" : "Adını Değiştir"
           }
         },
         "uk" : {
@@ -2101,7 +2101,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yeniden Adlandır: “%@”"
+            "value" : "Adını Değiştir: “%@”"
           }
         },
         "uk" : {
@@ -6862,7 +6862,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bırakılan dosyanın uzantısı (BÜYÜK harfe dönüştürülmüş)."
+            "value" : "Bırakılan dosyanın uzantısı (büyük harfe dönüştürülmüş)."
           }
         },
         "uk" : {
@@ -11158,7 +11158,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Belge, “%@” ile uyumsuz karakterler içeriyor"
+            "value" : "Belge, “%@” ile uyumsuz karakterler içeriyor."
           }
         },
         "uk" : {
@@ -14320,7 +14320,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@”, silinemedi."
+            "value" : "“%@” silinemedi."
           }
         },
         "uk" : {
@@ -14433,7 +14433,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@”, içe aktarılamadı."
+            "value" : "“%@” içe aktarılamadı."
           }
         },
         "uk" : {
