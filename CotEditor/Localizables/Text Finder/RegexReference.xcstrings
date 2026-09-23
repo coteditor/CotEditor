@@ -81,6 +81,12 @@
             "value" : "0 veya daha çok kez"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 або більше разів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -181,6 +187,12 @@
             "value" : "1 veya 0 kez"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 або 0 разів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -279,6 +291,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 veya daha çok kez"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 або більше разів"
           }
         },
         "zh-Hans" : {
@@ -382,6 +400,12 @@
             "value" : "Çapalar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Якорі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -480,6 +504,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "herhangi bir karakter"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "будь-який символ"
           }
         },
         "zh-Hans" : {
@@ -582,6 +612,12 @@
             "value" : "A-Z erimindeki herhangi bir karakter"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "будь-який символ у діапазоні від A до Z"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -680,6 +716,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A-Z eriminde bulunmayan herhangi bir karakter"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "будь-який символ поза діапазоном від A до Z"
           }
         },
         "zh-Hans" : {
@@ -782,6 +824,12 @@
             "value" : "en az 0; ancak n’den fazla değil"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "щонайменше 0, але не більше n разів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -882,6 +930,12 @@
             "value" : "en az n; ancak m’den fazla değil"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "щонайменше n, але не більше m разів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -980,6 +1034,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "en az n kez"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "щонайменше n разів"
           }
         },
         "zh-Hans" : {
@@ -1083,6 +1143,12 @@
             "value" : "Geri Başvuru"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зворотне посилання"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1184,6 +1250,12 @@
             "value" : "Yalın Düzenli İfade Sözdizimi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Базовий синтаксис регулярних виразів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1282,6 +1354,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "satır başlangıcı"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "початок рядка"
           }
         },
         "zh-Hans" : {
@@ -1385,6 +1463,12 @@
             "value" : "Karakterler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Символи"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1485,6 +1569,12 @@
             "value" : "onluk sayı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "десяткове число"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1583,6 +1673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "satır sonu"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "кінець рядка"
           }
         },
         "zh-Hans" : {
@@ -1686,6 +1782,12 @@
             "value" : "Genişletilmiş Gruplar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розширені групи"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1784,6 +1886,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ilk eşleşme"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "перший збіг"
           }
         },
         "zh-Hans" : {
@@ -1886,6 +1994,12 @@
             "value" : "ICU Regular Expressions"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Регулярні вирази ICU"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1984,6 +2098,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "öne bak"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "випереджальна перевірка"
           }
         },
         "zh-Hans" : {
@@ -2086,6 +2206,12 @@
             "value" : "arkaya bak"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ретроспективна перевірка"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2184,6 +2310,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "n kez"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "n разів"
           }
         },
         "zh-Hans" : {
@@ -2286,6 +2418,12 @@
             "value" : "yeni satır karakteri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "символ нового рядка"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2384,6 +2522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "boşluk olmayan karakter"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "символ непробілу"
           }
         },
         "zh-Hans" : {
@@ -2487,6 +2631,12 @@
             "value" : "Niceleyiciler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Квантифікатори"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2585,6 +2735,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "sekme karakteri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "символ табуляції"
           }
         },
         "zh-Hans" : {
@@ -2688,6 +2844,12 @@
             "value" : "Sözdizim, %@ belirtimine uyar."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис відповідає специфікаціям %@."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2786,6 +2948,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "boşluk karakteri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "символ пробілу"
           }
         },
         "zh-Hans" : {
@@ -2888,6 +3056,12 @@
             "value" : "sözcük sınırı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "межа слова"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2986,6 +3160,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "sözcük karakteri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "символ слова"
           }
         },
         "zh-Hans" : {

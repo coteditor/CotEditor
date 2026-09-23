@@ -82,6 +82,12 @@
             "value" : "Otomatik"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматично"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -181,6 +187,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salt okunur olarak aç"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відкрити лише для читання"
           }
         },
         "zh-Hans" : {
@@ -284,6 +296,12 @@
             "value" : "Gizli dosyaları göster"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показувати невидимі файли"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -382,6 +400,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Metin kodlaması:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодування тексту:"
           }
         },
         "zh-Hans" : {

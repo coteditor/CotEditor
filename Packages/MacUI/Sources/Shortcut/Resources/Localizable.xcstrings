@@ -82,6 +82,12 @@
             "value" : "Boşluk"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пробіл"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

@@ -89,6 +89,12 @@
             "value" : "Emoji Biçemi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стиль емоджі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -195,6 +201,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Metin Biçemi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текстовий стиль"
           }
         },
         "zh-Hans" : {
@@ -305,6 +317,12 @@
             "value" : "Ten Rengi III"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тон шкіри III"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -411,6 +429,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ten Rengi IV"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тон шкіри IV"
           }
         },
         "zh-Hans" : {
@@ -521,6 +545,12 @@
             "value" : "Ten Rengi V"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тон шкіри V"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -627,6 +657,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ten Rengi VI"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тон шкіри VI"
           }
         },
         "zh-Hans" : {
@@ -737,6 +773,12 @@
             "value" : "Ten Rengi I-II"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тон шкіри I–II"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -836,6 +878,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Varyant"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Варіант"
           }
         },
         "zh-Hans" : {

@@ -82,6 +82,12 @@
             "value" : "Çift boşlukla nokta ekle"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додавати крапку подвійним пробілом"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -180,6 +186,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kapatma ayraçlarını ve tırnaklarını kendiliğinden ekle"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматично вставляти закривні дужки та лапки"
           }
         },
         "zh-Hans" : {
@@ -283,6 +295,12 @@
             "value" : "Yazım ve dilbilgisi denetimi yap"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перевіряти граматику разом із правописом"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -382,6 +400,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yazarken yazım denetimi yap"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перевіряти правопис під час введення"
           }
         },
         "zh-Hans" : {
@@ -484,6 +508,12 @@
             "value" : "Tamamlama listesi şunları içerir:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Список доповнень містить:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -582,6 +612,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tamamlama:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доповнення:"
           }
         },
         "zh-Hans" : {
@@ -685,6 +721,12 @@
             "value" : "Yazım hatalarını otomatik düzelt"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматично виправляти правопис"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -783,6 +825,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Font:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шрифт:"
           }
         },
         "zh-Hans" : {
@@ -892,6 +940,12 @@
             "value" : "Sabit Genişlikli"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Моноширинний"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -999,6 +1053,12 @@
             "value" : "Standart"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартний"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1099,6 +1159,12 @@
             "value" : "Girintileme:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відступи:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1197,6 +1263,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mod"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим"
           }
         },
         "zh-Hans" : {
@@ -1300,6 +1372,12 @@
             "value" : "Bulunamadı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не знайдено"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1399,6 +1477,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Akıllı kopyala/yapıştır"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розумне копіювання/вставлення"
           }
         },
         "zh-Hans" : {
@@ -1502,6 +1586,12 @@
             "value" : "Akıllı tireler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розумні тире"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1601,6 +1691,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Akıllı tırnaklar"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розумні лапки"
           }
         },
         "zh-Hans" : {
@@ -1703,6 +1799,12 @@
             "value" : "Yazım denetimi:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правопис:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1801,6 +1903,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standart sözcükler"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартні слова"
           }
         },
         "zh-Hans" : {
@@ -1903,6 +2011,12 @@
             "value" : "Değişimler:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заміна:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2003,6 +2117,12 @@
             "value" : "Yazarken tamamlamaları öner"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пропонувати доповнення під час введення"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2101,6 +2221,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sözdizimi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синтаксис"
           }
         },
         "zh-Hans" : {
@@ -2204,6 +2330,12 @@
             "value" : "Metin değişimi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заміна тексту"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2303,6 +2435,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bu sözdizimi yok"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цього синтаксису не існує"
           }
         },
         "zh-Hans" : {
@@ -2405,6 +2543,12 @@
             "value" : "Özel Ayarlar Kullan"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Використовувати власні налаштування"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2505,6 +2649,12 @@
             "value" : "Sözdiziminde tanımlı sözcükler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Слова, визначені в синтаксисі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2603,6 +2753,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Belgedeki sözcükler"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Слова в документі"
           }
         },
         "zh-Hans" : {

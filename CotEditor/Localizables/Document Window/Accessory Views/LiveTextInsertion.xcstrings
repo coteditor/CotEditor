@@ -81,6 +81,12 @@
             "value" : "Algılama başarısız"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося розпізнати"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -182,6 +188,12 @@
             "value" : "Ekle"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вставити"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -280,6 +292,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saptanan metin yok"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст не розпізнано"
           }
         },
         "zh-Hans" : {

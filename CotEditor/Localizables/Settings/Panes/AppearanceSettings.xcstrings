@@ -82,6 +82,12 @@
             "value" : "%@ punto"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ пунктів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -181,6 +187,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ kere"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ разів"
           }
         },
         "zh-Hans" : {
@@ -283,6 +295,12 @@
             "value" : "Kenar düzleştirme"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Згладжування"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -381,6 +399,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Görünüş:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вигляд:"
           }
         },
         "zh-Hans" : {
@@ -490,6 +514,12 @@
             "value" : "Sistemle eşleştir"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Як у системі"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -595,6 +625,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Koyu"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темний"
           }
         },
         "zh-Hans" : {
@@ -704,6 +740,12 @@
             "value" : "Açık"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Світлий"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -802,6 +844,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Düzenleyici matlığı:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прозорість редактора:"
           }
         },
         "zh-Hans" : {
@@ -904,6 +952,12 @@
             "value" : "Font puntosu"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розмір шрифту"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1002,6 +1056,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Birleşik harfler"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лігатури"
           }
         },
         "zh-Hans" : {
@@ -1104,6 +1164,12 @@
             "value" : "Satır yüksekliği:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Висота рядка:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1202,6 +1268,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sabit genişlikli font:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Моноширинний шрифт:"
           }
         },
         "zh-Hans" : {
@@ -1312,6 +1384,12 @@
             "value" : "Sabit genişlikli font olarak kullanmak istiyor musunuz?"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Використовувати його як моноширинний шрифт?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1417,6 +1495,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Seçili font, sabit genişlikli değil gibi görünüyor."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Схоже, вибраний шрифт не є моноширинним."
           }
         },
         "zh-Hans" : {
@@ -1526,6 +1610,12 @@
             "value" : "Opak"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непрозорий"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1633,6 +1723,12 @@
             "value" : "Saydam"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прозорий"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1731,6 +1827,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opak"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Непрозорий"
           }
         },
         "zh-Hans" : {
@@ -1834,6 +1936,12 @@
             "value" : "Seç…"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибрати…"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1934,6 +2042,12 @@
             "value" : "Standart font:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартний шрифт:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2032,6 +2146,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Durum çubuğu:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рядок стану:"
           }
         },
         "zh-Hans" : {
@@ -2135,6 +2255,12 @@
             "value" : "kere"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "разів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2233,6 +2359,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hafif Renkli"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "З відтінком"
           }
         },
         "zh-Hans" : {

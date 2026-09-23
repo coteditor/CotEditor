@@ -81,6 +81,12 @@
             "value" : "Sıralamayı değiştirmek için kodlamaları sürükleyin:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перетягуйте кодування, щоб змінити їх порядок:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -186,6 +192,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saptanmış olarak ayarlanan kodlama kaldırılamaz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодування, встановлене за замовчуванням, не можна видалити."
           }
         },
         "zh-Hans" : {
@@ -296,6 +308,12 @@
             "value" : "%@ kaldırılamaz."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не можна видалити %@."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -394,6 +412,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ayırıcı"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Роздільник"
           }
         },
         "zh-Hans" : {
@@ -496,6 +520,12 @@
             "value" : "Metin Kodlaması"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кодування тексту"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -594,6 +624,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bu sıralama, kodlama menüsü ve kodlama algılaması içindir. Algılama süreci yalnızca burada listelenen öğeleri, sıra önceliğine göre dikkate alır."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цей порядок використовується в меню «Кодування» та для визначення кодування. Під час визначення враховуються лише наведені тут кодування, причому розташовані вище мають вищий пріоритет."
           }
         },
         "zh-Hans" : {

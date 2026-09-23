@@ -82,6 +82,12 @@
             "value" : " (%@)"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(%@)"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -178,6 +184,12 @@
           }
         },
         "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@:"
+          }
+        },
+        "uk" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@:"
@@ -290,6 +302,12 @@
             "value" : "%1$@: %2$@"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -389,6 +407,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld seçildi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибрано %lld"
           }
         },
         "zh-Hans" : {
@@ -498,6 +522,12 @@
             "value" : "Ekle"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додати"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -603,6 +633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yeni Öğe Ekle"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додати новий елемент"
           }
         },
         "zh-Hans" : {
@@ -712,6 +748,12 @@
             "value" : "Sil"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Видалити"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -817,6 +859,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Seçili Öğeleri Sil"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Видалити вибрані елементи"
           }
         },
         "zh-Hans" : {
@@ -926,6 +974,12 @@
             "value" : "Çoğalt"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дублювати"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1031,6 +1085,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Çoğalt: “%@”"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дублювати «%@»"
           }
         },
         "zh-Hans" : {
@@ -1140,6 +1200,12 @@
             "value" : "Düzenle…"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редагувати…"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1245,6 +1311,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Düzenle"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редагувати"
           }
         },
         "zh-Hans" : {
@@ -1354,6 +1426,12 @@
             "value" : "Seçili öğeyi düzenle"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редагувати вибраний елемент"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1459,6 +1537,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dışa Aktar…"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Експортувати…"
           }
         },
         "zh-Hans" : {
@@ -1568,6 +1652,12 @@
             "value" : "Dışa Aktar: “%@”…"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Експортувати «%@»…"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1673,6 +1763,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "İçe Aktar…"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Імпортувати…"
           }
         },
         "zh-Hans" : {
@@ -1782,6 +1878,12 @@
             "value" : "İçe Aktar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Імпортувати"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1887,6 +1989,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yeniden Adlandır"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейменувати"
           }
         },
         "zh-Hans" : {
@@ -1996,6 +2104,12 @@
             "value" : "Yeniden Adlandır: “%@”"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейменувати «%@»"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2101,6 +2215,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Değiştir"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замінити"
           }
         },
         "zh-Hans" : {
@@ -2210,6 +2330,12 @@
             "value" : "Geri Yükle"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відновити"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2315,6 +2441,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geri Yükle: “%@”"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відновити «%@»"
           }
         },
         "zh-Hans" : {
@@ -2424,6 +2556,12 @@
             "value" : "Saptanmışlara Dön"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відновити типові значення"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2529,6 +2667,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Finder’da Göster"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показати у Finder"
           }
         },
         "zh-Hans" : {
@@ -2638,6 +2782,12 @@
             "value" : "Finder’da Göster: “%@”"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показати «%@» у Finder"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2743,6 +2893,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kaydet"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зберегти"
           }
         },
         "zh-Hans" : {
@@ -2852,6 +3008,12 @@
             "value" : "Görünmez Kahve"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невидима кава"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2957,6 +3119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kahve Kupası"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Горнятко кави"
           }
         },
         "zh-Hans" : {
@@ -3067,6 +3235,12 @@
             "value" : "Eylemler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дії"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3172,6 +3346,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vazgeç"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скасувати"
           }
         },
         "zh-Hans" : {
@@ -3282,6 +3462,12 @@
             "value" : "Bu eylem geri alınamaz."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цю дію неможливо скасувати."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3389,6 +3575,12 @@
             "value" : "“%@” öğesini silmek istediğinizden emin misiniz?"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Справді видалити «%@»?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3494,6 +3686,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” dosyası hâlihazırda başka bir pencerede açık."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл «%@» уже відкрито в іншому вікні."
           }
         },
         "zh-Hans" : {
@@ -3604,6 +3802,12 @@
             "value" : "Onu bu pencerede açmak için önce var olan pencereyi kapatın."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Щоб відкрити його в цьому вікні, спочатку закрийте вікно, у якому його вже відкрито."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3710,6 +3914,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kaydetme"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не зберігати"
           }
         },
         "zh-Hans" : {
@@ -3820,6 +4030,12 @@
             "value" : "Kaydetmezseniz değişiklikleriniz kaybolacaktır. Uyumsuz karakterler kaydedilirken değiştirilirler veya silinirler."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Якщо не зберегти зміни, їх буде втрачено. Під час збереження несумісні символи буде замінено або видалено."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3926,6 +4142,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” belgesinde yapılan değişiklikleri kaydetmek istiyor musunuz?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зберегти зміни в документі «%@»?"
           }
         },
         "zh-Hans" : {
@@ -4035,6 +4257,12 @@
             "value" : "Belge düzenlenebilir değil."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документ не можна редагувати."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4142,6 +4370,12 @@
             "value" : "Belgede değişiklik yapmak için önce onu düzenlemeye izin verin."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Щоб внести зміни в документ, спочатку дозвольте його редагування."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4247,6 +4481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” dosyası metin verisi gibi görünmüyor."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Схоже, файл «%@» не містить текстових даних."
           }
         },
         "zh-Hans" : {
@@ -4357,6 +4597,12 @@
             "value" : "Dosya %@ gibi görünüyor.\n\nDosyayı gerçekten açmak istiyor musunuz?"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Схоже, це файл типу %@.\n\nСправді відкрити цей файл?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4463,6 +4709,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "bilinmeyen bir tür"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "невідомого типу"
           }
         },
         "zh-Hans" : {
@@ -4573,6 +4825,12 @@
             "value" : "Aç"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відкрити"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4680,6 +4938,12 @@
             "value" : "“%1$@” dosyasının boyutu %2$@."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розмір файлу «%1$@» — %2$@."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4785,6 +5049,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bu kadar büyük bir dosyayı açmak uygulamayı yavaş veya tepkisiz yapabilir.\n\nDosyayı gerçekten açmak istiyor musunuz?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відкриття такого великого файлу може сповільнити програму або призвести до того, що вона перестане відповідати. Справді відкрити цей файл?"
           }
         },
         "zh-Hans" : {
@@ -4895,6 +5165,12 @@
             "value" : "Uyumsuz Karakterleri Gözden Geçir"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переглянути несумісні символи"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5001,6 +5277,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kullanılabilir Metni Kaydet"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зберегти доступний текст"
           }
         },
         "zh-Hans" : {
@@ -5111,6 +5393,12 @@
             "value" : "Uyumsuz karakterler kaydedilirken değiştirilirler veya silinirler. Yine de kaydedilsin mi?"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Під час збереження несумісні символи буде замінено або видалено. Усе одно зберегти?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5216,6 +5504,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bitti"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово"
           }
         },
         "zh-Hans" : {
@@ -5325,6 +5619,12 @@
             "value" : "Dönüştür"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перетворити"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5430,6 +5730,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yeniden Yorumla"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переінтерпретувати"
           }
         },
         "zh-Hans" : {
@@ -5540,6 +5846,12 @@
             "value" : "Bu belgeyi “%@” kullanarak dönüştürmek veya yeniden yorumlamak istiyor musunuz?"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перетворити чи переінтерпретувати цей документ, використовуючи «%@»?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5645,6 +5957,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Metin kodlaması değişikliği"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зміна кодування тексту"
           }
         },
         "zh-Hans" : {
@@ -5755,6 +6073,12 @@
             "value" : "%1$@ kopyası %2$lld"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ копія %2$lld"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5861,6 +6185,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ kopyası"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ копія"
           }
         },
         "zh-Hans" : {
@@ -5970,6 +6300,12 @@
             "value" : "Bırakılan dosya mutlak yolu."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Абсолютний шлях до перетягнутого файлу."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6075,6 +6411,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bırakılan dosyanın üst dizininin adı."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Назва батьківської папки перетягнутого файлу."
           }
         },
         "zh-Hans" : {
@@ -6184,6 +6526,12 @@
             "value" : "Dosya içeriği."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вміст файлу."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6289,6 +6637,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bırakılan dosyanın uzantısı."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розширення перетягнутого файлу."
           }
         },
         "zh-Hans" : {
@@ -6398,6 +6752,12 @@
             "value" : "Bırakılan dosyanın uzantısı (küçük harfe dönüştürülmüş)."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розширення перетягнутого файлу (у нижньому регістрі)."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6503,6 +6863,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bırakılan dosyanın uzantısı (BÜYÜK harfe dönüştürülmüş)."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розширення перетягнутого файлу (у верхньому регістрі)."
           }
         },
         "zh-Hans" : {
@@ -6612,6 +6978,12 @@
             "value" : "Bırakılan dosyanın varsa uzantısı dahil adı."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ім’я перетягнутого файлу разом із розширенням, якщо воно є."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6717,6 +7089,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bırakılan dosyanın uzantısı hariç adı."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ім’я перетягнутого файлу без розширення."
           }
         },
         "zh-Hans" : {
@@ -6826,6 +7204,12 @@
             "value" : "Resim boyu."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Висота зображення."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6931,6 +7315,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Resim eni."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ширина зображення."
           }
         },
         "zh-Hans" : {
@@ -7040,6 +7430,12 @@
             "value" : "Bırakılan dosya ve belge arasındaki göreli yol."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відносний шлях між перетягнутим файлом і документом."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7145,6 +7541,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filtre"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фільтр"
           }
         },
         "zh-Hans" : {
@@ -7254,6 +7656,12 @@
             "value" : "Son Filtreleri Temizle"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистити недавні фільтри"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7361,6 +7769,12 @@
             "value" : "Son Filtreler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недавні фільтри"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7466,6 +7880,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Son Filtre Yok"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає недавніх фільтрів"
           }
         },
         "zh-Hans" : {
@@ -7576,6 +7996,12 @@
             "value" : "CotEditor’e erişim izni vermek için özgün konumu açın."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відкрийте початкове розташування, щоб надати CotEditor доступ."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7682,6 +8108,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” hâlihazırda var. Onu değiştirmek istiyor musunuz?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«%@» уже існує. Замінити?"
           }
         },
         "zh-Hans" : {
@@ -7792,6 +8224,12 @@
             "value" : "Aynı adlı bir özelleştirilmiş ayar hâlihazırda var. Onu değiştirmek geçerli içeriğin üzerine yazacaktır."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Власне налаштування з такою назвою вже існує. У разі заміни його поточний вміст буде перезаписано."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7897,6 +8335,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dönüştür"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перетворити"
           }
         },
         "zh-Hans" : {
@@ -8006,6 +8450,12 @@
             "value" : "Yok Say"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ігнорувати"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8111,6 +8561,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gözden Geçir"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переглянути"
           }
         },
         "zh-Hans" : {
@@ -8220,6 +8676,12 @@
             "value" : "Tüm satır sonlarını, bu belgedeki en yaygın satır sonu olan %@ olarak değiştirmek istiyor musunuz?"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перетворити всі закінчення рядків на %@ — найпоширеніше закінчення рядка в цьому документі?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8327,6 +8789,12 @@
             "value" : "Bu belgedeki en yaygın satır sonu %@."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найпоширеніше закінчення рядка в цьому документі — %@."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8432,6 +8900,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Belgenin satır sonları tutarsız."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документ містить неузгоджені закінчення рядків."
           }
         },
         "zh-Hans" : {
@@ -8542,6 +9016,12 @@
             "value" : "Bu belge için yeniden sorma"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Більше не запитувати для цього документа"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8649,6 +9129,12 @@
             "value" : "“%@” adı hâlihazırda kullanılıyor."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ім’я «%@» уже використовується."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8754,6 +9240,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ad boş bırakılamaz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ім’я не може бути порожнім."
           }
         },
         "zh-Hans" : {
@@ -8864,6 +9356,12 @@
             "value" : "Ad “%@” içeremez."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ім’я не може містити «%@»."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8969,6 +9467,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ad yeni satırlar içeremez."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ім’я не може містити символів нового рядка."
           }
         },
         "zh-Hans" : {
@@ -9078,6 +9582,12 @@
             "value" : "Başka bir ad seçin."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оберіть інше ім’я."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9183,6 +9693,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” adı rezerve."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ім’я «%@» зарезервовано."
           }
         },
         "zh-Hans" : {
@@ -9292,6 +9808,12 @@
             "value" : "Ad “.” ile başlayamaz."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ім’я не може починатися з «.»."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9397,6 +9919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ad pek uzun."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ім’я задовге."
           }
         },
         "zh-Hans" : {
@@ -9507,6 +10035,12 @@
             "value" : "Aşağıdaki şablonu doldurun ve %1$@ üzerinde bir kayıt açın veya %2$@ adresine gönderin. Bu e-postanın içeriğinin “Issues” sayfasında paylaşılacağını not edin. Lütfen içeriği İngilizce veya Japonca yazın."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заповніть наведений нижче шаблон, а потім опублікуйте його на %1$@ або надішліть на %2$@. Зверніть увагу, що вміст вашого листа може бути оприлюднений на сторінці проблеми. Пишіть повідомлення англійською або японською мовою."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9612,6 +10146,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ortam"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Середовище"
           }
         },
         "zh-Hans" : {
@@ -9721,6 +10261,12 @@
             "value" : "Beklenen Sonuç"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очікуваний результат"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9828,6 +10374,12 @@
             "value" : "Kısa Açıklama"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Короткий опис"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9933,6 +10485,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sorunu Canlandırma Adımları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кроки для відтворення проблеми"
           }
         },
         "zh-Hans" : {
@@ -10043,6 +10601,12 @@
             "value" : "Hata Bildir"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Звіт про проблему"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10148,6 +10712,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Birden çok öğe seçili"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибрано кілька елементів"
           }
         },
         "zh-Hans" : {
@@ -10257,6 +10827,12 @@
             "value" : "Seçili öğe yok"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нічого не вибрано"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10356,6 +10932,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "En son %@ tarihinde değiştirildi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Востаннє змінено %@"
           }
         },
         "zh-Hans" : {
@@ -10466,6 +11048,12 @@
             "value" : "URL’ye Atla"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейти за URL"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10571,6 +11159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Belge, “%@” ile uyumsuz karakterler içeriyor"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документ містить символи, несумісні з «%@»."
           }
         },
         "zh-Hans" : {
@@ -10681,6 +11275,12 @@
             "value" : "Kodlamayı Değiştir"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Змінити кодування"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10786,6 +11386,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uyumsuz karakterler kaydedilirken değiştirilirler veya silinirler. Metin kodlamasını değiştirip uyumsuz karakterleri gözden geçirmek istiyor musunuz?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Під час збереження несумісні символи буде замінено або видалено. Змінити кодування тексту та переглянути несумісні символи?"
           }
         },
         "zh-Hans" : {
@@ -10895,6 +11501,12 @@
             "value" : "Yok"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10997,6 +11609,12 @@
           }
         },
         "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CMYK"
+          }
+        },
+        "uk" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CMYK"
@@ -11110,6 +11728,12 @@
             "value" : "AygıtN"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DeviceN"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11215,6 +11839,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відтінки сірого"
           }
         },
         "zh-Hans" : {
@@ -11325,6 +11955,12 @@
             "value" : "Dizinlenmiş"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Індексований"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11427,6 +12063,12 @@
           }
         },
         "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lab"
+          }
+        },
+        "uk" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lab"
@@ -11540,6 +12182,12 @@
             "value" : "Desen"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шаблон"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11642,6 +12290,12 @@
           }
         },
         "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RGB"
+          }
+        },
+        "uk" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RGB"
@@ -11754,6 +12408,12 @@
             "value" : "Tamam"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11853,6 +12513,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ tarihinde yazdırıldı"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Надруковано %@"
           }
         },
         "zh-Hans" : {
@@ -11962,6 +12628,12 @@
             "value" : "Belge yeniden yorumlanacak bir dosya yok."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документ не має файлу для переінтерпретації."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12067,6 +12739,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Belge, “%@” metin kodlaması kullanarak yeniden yorumlanamadı."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося переінтерпретувати документ із кодуванням тексту «%@»."
           }
         },
         "zh-Hans" : {
@@ -12176,6 +12854,12 @@
             "value" : "Belge, başka bir metin kodlaması kullanarak kaydedilmiş olabilir veya bir metin dosyası olmayabilir."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Можливо, документ збережено в іншому кодуванні або він не є текстовим файлом."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12281,6 +12965,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Girdi alınacak bir belge yok."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає документа для отримання вхідних даних."
           }
         },
         "zh-Hans" : {
@@ -12390,6 +13080,12 @@
             "value" : "Çıktı koyulacak bir belge yok."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає документа для виведення результату."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12495,6 +13191,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Belge düzenlenebilir değil."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документ не можна редагувати."
           }
         },
         "zh-Hans" : {
@@ -12604,6 +13306,12 @@
             "value" : "“%@” betiği yok."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт «%@» не існує."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12709,6 +13417,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” betik dosyası açılamadı."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося відкрити файл скрипту «%@»."
           }
         },
         "zh-Hans" : {
@@ -12818,6 +13532,12 @@
             "value" : "“%@” betiği çalıştırılamıyor; çünkü çalıştırmak için yeterli izinlere iye değilsiniz."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрипт «%@» неможливо виконати, оскільки у вас немає дозволу на його виконання."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12923,6 +13643,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Betik dosyasının izinlerini denetleyin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перевірте дозволи файлу скрипту."
           }
         },
         "zh-Hans" : {
@@ -13032,6 +13758,12 @@
             "value" : "“%@” betiği okunamadı."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося прочитати скрипт «%@»."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13137,6 +13869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Betik dosyasını denetleyin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перевірте файл скрипту."
           }
         },
         "zh-Hans" : {
@@ -13246,6 +13984,12 @@
             "value" : "Son Aramaları Sil"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистити недавні пошуки"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13351,6 +14095,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Son Aramalar"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недавні пошуки"
           }
         },
         "zh-Hans" : {
@@ -13460,6 +14210,12 @@
             "value" : "Hiç Son Arama Yok"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає недавніх пошуків"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13565,6 +14321,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”, silinemedi."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося видалити «%@»."
           }
         },
         "zh-Hans" : {
@@ -13674,6 +14436,12 @@
             "value" : "“%@”, içe aktarılamadı."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося імпортувати «%@»."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13779,6 +14547,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” yüklenemedi."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося завантажити «%@»."
           }
         },
         "zh-Hans" : {
@@ -13888,6 +14662,12 @@
             "value" : "Kod çözme hatası: %@"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Помилка декодування: %@"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13993,6 +14773,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” için özgün dosya bulunamadı."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не знайдено оригінальний файл для «%@»."
           }
         },
         "zh-Hans" : {
@@ -14102,6 +14888,12 @@
             "value" : "“%@”, halihazırda “%@” komutu tarafından alınmış."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«%1$@» уже використовується командою «%2$@»."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14207,6 +14999,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shift düğmesi yalnızca başka bir değiştirici düğme ile kullanılabilir."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Клавішу Shift можна використовувати лише разом з іншою клавішею-модифікатором."
           }
         },
         "zh-Hans" : {
@@ -14316,6 +15114,12 @@
             "value" : "Bir kısayol için tekli tür geçersizdir."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Одиночне натискання неприпустиме для скорочення."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14421,6 +15225,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” kombinasyonu, düğme bağıntısı özelleştirmesi için desteklenmiyor."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комбінація «%@» не підтримується для налаштування скорочень."
           }
         },
         "zh-Hans" : {
@@ -14530,6 +15340,12 @@
             "value" : "Kırpıntı eklendikten sonraki imleç konumu."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позиція курсора після вставлення фрагмента."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14637,6 +15453,12 @@
             "value" : "Seçilen metin."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виділений текст."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14742,6 +15564,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hiçbiri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає"
           }
         },
         "zh-Hans" : {
@@ -14852,6 +15680,12 @@
             "value" : "Bilinmeyen"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невідомо"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14957,6 +15791,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Değişikliklerden Vazgeç"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відкинути зміни"
           }
         },
         "zh-Hans" : {
@@ -15067,6 +15907,12 @@
             "value" : "Değişikliklerinizi atıp belgeyi “%@” kullanarak yeniden açmak istediğinizden emin misiniz?"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Справді відкинути зміни та повторно відкрити документ із кодуванням «%@»?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15174,6 +16020,12 @@
             "value" : "Belgede kaydedilmemiş değişiklikler var."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документ містить незбережені зміни."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15275,6 +16127,12 @@
             "value" : "Adsız"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без назви"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15374,6 +16232,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "adsız klasör"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "папка без назви"
           }
         },
         "zh-Hans" : {
@@ -15483,6 +16347,12 @@
             "value" : "CotEditor Değişikliklerini Tut"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Залишити версію CotEditor"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15590,6 +16460,12 @@
             "value" : "Güncelle"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оновити"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15695,6 +16571,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor’da yapılan değişiklikler mi kullanılsın veya daha önce değiştirilen sürüme mi güncellensin?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Залишити версію CotEditor чи оновити її до зміненої версії?"
           }
         },
         "zh-Hans" : {
@@ -15805,6 +16687,12 @@
             "value" : "Dosya başka bir uygulama tarafından değiştirilmiş."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл змінено іншою програмою."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15910,6 +16798,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dosya başka bir uygulama tarafından değiştirilmiş. Aynı zamanda CotEditor’da kaydedilmemiş değişiklikler var."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл змінено іншою програмою. У CotEditor також є незбережені зміни."
           }
         },
         "zh-Hans" : {

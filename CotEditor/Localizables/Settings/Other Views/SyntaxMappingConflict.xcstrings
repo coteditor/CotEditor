@@ -82,6 +82,12 @@
             "value" : "Yinelenmiş Sözdizimleri"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дубльовані синтаксиси"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -181,6 +187,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uzantı"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Розширення"
           }
         },
         "zh-Hans" : {
@@ -284,6 +296,12 @@
             "value" : "Dosya Adı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ім’я файлу"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -383,6 +401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yorumlayıcı"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Інтерпретатор"
           }
         },
         "zh-Hans" : {
@@ -486,6 +510,12 @@
             "value" : "Sözdizimi Eşlemleme Çakışmaları"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Конфлікти зіставлення синтаксисів"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -584,6 +614,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aşağıdaki dosya eşlemleme kuralları birden çok sözdiziminde kayıtlıdır. CotEditor, kendiliğinden ilk sözdizimini kullanır. Çakışmaları çözmek için her bir sözdizimi tanımını düzenleyin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наведені нижче правила зіставлення файлів зареєстровані для кількох синтаксисів. CotEditor автоматично використовує перший синтаксис. Щоб усунути конфлікти, відредагуйте визначення кожного синтаксису."
           }
         },
         "zh-Hans" : {
@@ -685,6 +721,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kullanılan Sözdizimi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Використаний синтаксис"
           }
         },
         "zh-Hans" : {

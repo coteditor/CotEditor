@@ -81,6 +81,12 @@
             "value" : "Sekme genişliği:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ширина табуляції:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

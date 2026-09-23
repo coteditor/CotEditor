@@ -81,6 +81,12 @@
             "value" : "Düzenleme sırasında dosyalarınızın üzerine kendiliğinden yazan bir sistem özelliği. Kapalı olsa bile CotEditor beklenmedik çıkmalar için arka planda yedek oluşturur."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Системна функція, яка автоматично перезаписує файли під час редагування. Навіть якщо її вимкнено, CotEditor непомітно створює резервну копію на випадок неочікуваного завершення роботи."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -181,6 +187,12 @@
             "value" : "Güncellemeleri kendiliğinden denetle"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматично перевіряти наявність оновлень"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -279,6 +291,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Komut satırı aracı:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Засіб командного рядка:"
           }
         },
         "zh-Hans" : {
@@ -388,6 +406,12 @@
             "value" : "Geçerli `cot` sembolik bağı, çalışan CotEditor’ü hedeflemiyor."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поточне символічне посилання `cot` не вказує на запущений CotEditor."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -495,6 +519,12 @@
             "value" : "Geçerli `cot` sembolik bağı, geçersiz bir yolu hedefleyebilir."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поточне символічне посилання `cot` може вказувати на недійсний шлях."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -595,6 +625,12 @@
             "value" : "İletişim kutusu uyarıları:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попередження в діалогах:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -693,6 +729,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Belge kaydı:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Збереження документа:"
           }
         },
         "zh-Hans" : {
@@ -802,6 +844,12 @@
             "value" : "CotEditor sürümünü tut"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зберігати версію CotEditor"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -907,6 +955,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nasıl çözüleceğini sor"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запитувати, як вирішити"
           }
         },
         "zh-Hans" : {
@@ -1016,6 +1070,12 @@
             "value" : "Değiştirilmiş sürüme güncelle"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оновлювати до зміненої версії"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1114,6 +1174,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sürümler ile kendiliğinden kaydetmeyi etkinleştir"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Увімкнути автозбереження з версіями"
           }
         },
         "zh-Hans" : {
@@ -1216,6 +1282,12 @@
             "value" : "Tutarsız satır sonları"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неузгоджені закінчення рядків"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1314,6 +1386,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ konumuna yüklendi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "встановлено в %@"
           }
         },
         "zh-Hans" : {
@@ -1417,6 +1495,12 @@
             "value" : "Daha Sonra"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пізніше"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1517,6 +1601,12 @@
             "value" : "Daha Fazla Öğren"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Докладніше…"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1615,6 +1705,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uyarıları Yönet…"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Керувати попередженнями…"
           }
         },
         "zh-Hans" : {
@@ -1724,6 +1820,12 @@
             "value" : "CotEditor’ü şimdi yeniden başlatmak istiyor musunuz?"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перезапустити CotEditor зараз?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1829,6 +1931,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uygulamanın davranışı bundan sonraki başlangıçta değişecektir."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поведінка програми зміниться з наступного запуску після цього."
           }
         },
         "zh-Hans" : {
@@ -1938,6 +2046,12 @@
             "value" : "Değişiklikler bir sonraki çalıştırmada uygulanacak."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зміна набуде чинності під час наступного запуску."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2043,6 +2157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bir Şey Yapma"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нічого не робити"
           }
         },
         "zh-Hans" : {
@@ -2152,6 +2272,12 @@
             "value" : "Aç İletişim Kutusunu Göster"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показати діалог відкриття"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2259,6 +2385,12 @@
             "value" : "Yeni Belge Oluştur"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Створити новий документ"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2357,6 +2489,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Başlangıçta:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Під час запуску:"
           }
         },
         "zh-Hans" : {
@@ -2459,6 +2597,12 @@
             "value" : "Bu ayardan bağımsız olarak, yeni ön sürümler her zaman ön sürümleri kullanırken içerilir."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Незалежно від цього налаштування, під час використання попередньої версії нові попередні версії завжди включаються до оновлень."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2557,6 +2701,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Son oturumdaki pencereleri yeniden aç"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторно відкривати вікна з попереднього сеансу"
           }
         },
         "zh-Hans" : {
@@ -2660,6 +2810,12 @@
             "value" : "Şimdi Yeniden Başlat"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перезапустити зараз"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2758,6 +2914,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yazılım güncelleme:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оновлення програми:"
           }
         },
         "zh-Hans" : {
@@ -2860,6 +3022,12 @@
             "value" : "Aşağıdaki uyarıları sustur"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не показувати такі попередження:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2958,6 +3126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kullanılabilir olduğu durumlarda ön sürümlere güncelle"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оновлювати до попередніх версій, коли вони доступні"
           }
         },
         "zh-Hans" : {
@@ -3060,6 +3234,12 @@
             "value" : "Belge başka bir uygulama tarafından değiştirildiğinde:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коли документ змінено іншою програмою:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3160,6 +3340,12 @@
             "value" : "Başka bir dosya açık değilken:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коли більше нічого не відкрито:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3258,6 +3444,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "`cot` komut satırı aracıyla CotEditor’ü çalıştırabilir ve komut satırından dosyalar açabilirsiniz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За допомогою засобу командного рядка `cot` можна запускати CotEditor і відкривати в ньому файли з командного рядка."
           }
         },
         "zh-Hans" : {

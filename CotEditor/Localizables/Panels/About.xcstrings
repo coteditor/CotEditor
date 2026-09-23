@@ -82,6 +82,12 @@
             "value" : "%@ simgesi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Іконка %@"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -181,6 +187,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ Hakkında"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Про %@"
           }
         },
         "zh-Hans" : {
@@ -284,6 +296,12 @@
             "value" : "ve CotEditor’u destekleyen herkes!"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "і всім, хто підтримує CotEditor!"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -383,6 +401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kod Katkıcıları"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Учасники розробки"
           }
         },
         "zh-Hans" : {
@@ -485,6 +509,12 @@
             "value" : "CotEditor, Apacha Lisansı Sürüm 2.0 altında\nlisanslanmış açık kaynaklı bir programdır."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor — програма з відкритим вихідним кодом, що розповсюджується за ліцензією Apache License, Version 2.0."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -583,6 +613,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor aşağıdaki muhteşem teknolojileri kullanır. Değerli çalışmalarını kullanmamıza izin veren herkese şükran borçluyuz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor використовує наведені нижче чудові технології. Ми щиро вдячні людям, які зробили результати своєї цінної роботи доступними для нас."
           }
         },
         "zh-Hans" : {
@@ -686,6 +722,12 @@
             "value" : "Emeği Geçenler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подяки"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -784,6 +826,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lisans"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ліцензія"
           }
         },
         "zh-Hans" : {
@@ -887,6 +935,12 @@
             "value" : "Lisanslar"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ліцензії"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -986,6 +1040,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Yerelleştirme"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Локалізація"
           }
         },
         "zh-Hans" : {
@@ -1089,6 +1149,12 @@
             "value" : "yalnızca App Store olmayan sürümde"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "лише у версії не з App Store"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1187,6 +1253,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ilk geliştirici"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "первинний розробник"
           }
         },
         "zh-Hans" : {
@@ -1290,6 +1362,12 @@
             "value" : "Özel Teşekkürler"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Особлива подяка"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1389,6 +1467,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor Projesi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проєкт CotEditor"
           }
         },
         "zh-Hans" : {
@@ -1496,6 +1580,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sürüm %1$@ (%2$@)"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версія %1$@ (%2$@)"
           }
         },
         "zh-Hans" : {

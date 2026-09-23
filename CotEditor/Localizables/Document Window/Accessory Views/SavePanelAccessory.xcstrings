@@ -82,6 +82,12 @@
             "value" : "Dosyayı çalıştırılabilir yap"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зробити файл виконуваним"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

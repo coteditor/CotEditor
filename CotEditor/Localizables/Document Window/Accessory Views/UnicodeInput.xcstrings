@@ -82,6 +82,12 @@
             "value" : "Son Kullanılanları Sil"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистити недавні"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -180,6 +186,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Geçersiz Kod"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Некоректний код"
           }
         },
         "zh-Hans" : {
@@ -281,6 +293,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Son Kullanılanlar"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недавні"
           }
         },
         "zh-Hans" : {
