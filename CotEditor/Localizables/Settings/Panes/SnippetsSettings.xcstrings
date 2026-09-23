@@ -1301,7 +1301,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Syntaxe, ve kterém se používá toto nastavení při přetažení souboru."
+            "value" : "Syntaxe, ve které se používá toto nastavení při přetažení souboru."
           }
         },
         "de" : {
@@ -1620,7 +1620,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Text, který má být vložen přetažením (upuštěním) souborů do editoru:"
+            "value" : "Text, který má být vložen přetažením souborů do editoru:"
           }
         },
         "de" : {

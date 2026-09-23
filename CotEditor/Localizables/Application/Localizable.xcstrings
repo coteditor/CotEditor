@@ -780,7 +780,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Smazání vybraných položek"
+            "value" : "Smazat vybrané položky"
           }
         },
         "de" : {
@@ -4402,7 +4402,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Soubor „%@” se nezdá být textovým."
+            "value" : "Soubor „%@“ se nezdá být textovým."
           }
         },
         "de" : {
@@ -4970,7 +4970,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevření tak velkého souboru může způsobit zpomalenou, nebo nereagující aplikaci.\n\nUrčitě chcete soubor otevřít?"
+            "value" : "Otevření tak velkého souboru může aplikaci zpomalit nebo způsobit, že přestane reagovat.\n\nUrčitě chcete soubor otevřít?"
           }
         },
         "de" : {
@@ -6558,7 +6558,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přípona přetažených souborů."
+            "value" : "Přípona přetaženého souboru."
           }
         },
         "de" : {
@@ -6671,7 +6671,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přípona přetažených souborů (převedeno na malá písmena)."
+            "value" : "Přípona přetaženého souboru (převedená na malá písmena)."
           }
         },
         "de" : {
@@ -6784,7 +6784,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přípona přetažených souborů (převedeno na velká písmena)."
+            "value" : "Přípona přetaženého souboru (převedená na velká písmena)."
           }
         },
         "de" : {
@@ -6897,7 +6897,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Název přetažených souborů včetně přípony (pokud existuje)."
+            "value" : "Název přetaženého souboru včetně přípony (pokud existuje)."
           }
         },
         "de" : {
@@ -7010,7 +7010,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Název přetažených souborů bez přípony."
+            "value" : "Název přetaženého souboru bez přípony."
           }
         },
         "de" : {
@@ -7915,7 +7915,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít původní umístění, abyste CotEditoru udělili přístup."
+            "value" : "Otevřete původní umístění a udělte CotEditoru přístup."
           }
         },
         "de" : {
@@ -11080,7 +11080,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokument obsahuje nekompatibilní znaky s „%@“."
+            "value" : "Dokument obsahuje znaky nekompatibilní s „%@“."
           }
         },
         "de" : {
@@ -12999,7 +12999,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Žádný dokument, který by dal výstup."
+            "value" : "Není k dispozici dokument pro vložení výstupu."
           }
         },
         "de" : {
@@ -14807,7 +14807,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "„%@“ je již obsazeno příkazem „%@“."
+            "value" : "Klávesovou zkratku „%1$@“ již používá příkaz „%2$@“."
           }
         },
         "de" : {
@@ -15033,7 +15033,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jednotlivou klávesu nelze pro zkratku použít."
+            "value" : "Tuto klávesu nelze pro zkratku použít samostatně."
           }
         },
         "de" : {
@@ -16492,7 +16492,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chcete zachovat verzi CotEditoru nebo ho aktualizovat na upravenou verzi?"
+            "value" : "Chcete zachovat verzi CotEditoru, nebo ji aktualizovat na upravenou verzi?"
           }
         },
         "de" : {

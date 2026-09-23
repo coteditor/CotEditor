@@ -8,7 +8,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neoficiální standard založený na NFC, odpovídající modifikovanému NFD"
+            "value" : "Neoficiální forma normalizace založená na NFC, odpovídající modifikovanému NFD"
           }
         },
         "de" : {
@@ -229,7 +229,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neoficiální standard založený na NFD, používaný v HFS+"
+            "value" : "Neoficiální forma normalizace založená na NFD, používaná v HFS+"
           }
         },
         "de" : {
@@ -1113,7 +1113,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Použití NFKC, case folding a odstranění ignorovatelných kódových bodů"
+            "value" : "Použití NFKC, operace case folding a odstranění standardně ignorovatelných kódových bodů"
           }
         },
         "de" : {

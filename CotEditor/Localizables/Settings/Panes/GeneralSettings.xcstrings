@@ -325,7 +325,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktuální symbolický odkaz `cot` není zaměřen na spuštěný CotEditor."
+            "value" : "Aktuální symbolický odkaz `cot` neodkazuje na spuštěný CotEditor."
           }
         },
         "de" : {
@@ -438,7 +438,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktuální symbolický odkaz `cot` může být zaměřen na neplatnou cestu."
+            "value" : "Aktuální symbolický odkaz `cot` může odkazovat na neplatnou cestu."
           }
         },
         "de" : {
@@ -1101,7 +1101,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Povolit automatické zálohování s verzí"
+            "value" : "Povolit automatické ukládání s verzemi"
           }
         },
         "de" : {
@@ -1632,7 +1632,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Správa varování…"
+            "value" : "Spravovat varování…"
           }
         },
         "de" : {
@@ -2628,7 +2628,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Znovu otevřít okna (panely) z poslední relace"
+            "value" : "Znovu otevřít okna z poslední relace"
           }
         },
         "de" : {

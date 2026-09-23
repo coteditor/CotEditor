@@ -114,7 +114,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ krát"
+            "value" : "%@krát"
           }
         },
         "de" : {
@@ -2180,7 +2180,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "krát"
+            "value" : "×"
           }
         },
         "de" : {

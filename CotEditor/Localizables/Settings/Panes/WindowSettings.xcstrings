@@ -114,7 +114,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Auto"
+            "value" : "Automaticky"
           }
         },
         "de" : {
@@ -2028,7 +2028,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ostatní kontrolní znaky"
+            "value" : "Ostatní řídicí znaky"
           }
         },
         "de" : {
@@ -2135,7 +2135,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ostatní „bílé“ znaky"
+            "value" : "Ostatní prázdné znaky"
           }
         },
         "de" : {
@@ -2987,7 +2987,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "mezery"
+            "value" : "mezerami"
           }
         },
         "de" : {

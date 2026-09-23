@@ -222,7 +222,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vyberte soubor definice nahrazení CotEditoru nebo TSV (hodnoty oddělené tabulátory)."
+            "value" : "Vyberte soubory typu Definice nahrazení CotEditoru nebo TSV (hodnoty oddělené tabulátory)."
           }
         },
         "de" : {

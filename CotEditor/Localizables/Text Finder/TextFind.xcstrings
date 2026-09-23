@@ -2400,7 +2400,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Najít výsledek"
+            "value" : "Výsledek hledání"
           }
         },
         "de" : {
@@ -2614,7 +2614,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nalezeno %1$lld z %2$lld."
+            "value" : "Shoda %1$lld z %2$lld."
           }
         },
         "de" : {
@@ -3848,7 +3848,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hledat postupně"
+            "value" : "Hledat během psaní"
           }
         },
         "de" : {
@@ -5330,7 +5330,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odstranit zpětná lomítka před metaznaky v nahrazovacím textu."
+            "value" : "Převést escape sekvence se zpětným lomítkem v nahrazovacím textu na odpovídající znaky."
           }
         },
         "de" : {
@@ -5444,7 +5444,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odescapovat nahrazovací text"
+            "value" : "Zrušit escapování nahrazovacího textu"
           }
         },
         "de" : {
@@ -5558,7 +5558,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Určit hranice slov pomocí kódování Unicode TR#29."
+            "value" : "Určit hranice slov podle Unicode TR#29"
           }
         },
         "de" : {
@@ -7405,7 +7405,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nahradit všechny shody nahrazovaným textem."
+            "value" : "Nahradit všechny shody nahrazovacím textem."
           }
         },
         "de" : {
@@ -7726,7 +7726,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hledání dokončeno."
+            "value" : "Hledání pokračuje od opačného konce dokumentu."
           }
         },
         "de" : {
@@ -8046,7 +8046,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chcete-li při hledání ignorovat velikost písmen vyberte tuto volbu."
+            "value" : "Chcete-li při hledání ignorovat velikost písmen, vyberte tuto volbu."
           }
         },
         "de" : {
@@ -8153,7 +8153,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chcete-li hledat text pouze ve výběru vyberte tuto volbu."
+            "value" : "Chcete-li hledat text pouze ve výběru, vyberte tuto volbu."
           }
         },
         "de" : {
@@ -8260,7 +8260,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chcete-li hledat pomocí regulárního výrazu vyberte tuto volbu."
+            "value" : "Chcete-li hledat pomocí regulárního výrazu, vyberte tuto volbu."
           }
         },
         "de" : {
@@ -8580,7 +8580,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Texty"
+            "value" : "Text"
           }
         },
         "de" : {

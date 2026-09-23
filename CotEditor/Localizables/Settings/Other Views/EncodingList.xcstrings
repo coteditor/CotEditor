@@ -551,7 +551,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toto pořadí platí pro nabídku kódování a detekci kódování. Proces detekce zohledňuje pouze zde uvedené položky, přičemž vyšší položky mají přednost."
+            "value" : "Toto pořadí platí pro nabídku Kódování a detekci kódování. Proces detekce zohledňuje pouze zde uvedené položky, přičemž vyšší položky mají přednost."
           }
         },
         "de" : {

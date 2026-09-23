@@ -15795,7 +15795,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Komentář"
+            "value" : "Přepnout komentář"
           }
         },
         "de" : {
@@ -16699,7 +16699,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Úpravy"
+            "value" : "Upravit"
           }
         },
         "de" : {
@@ -17377,7 +17377,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zobrazit hledat a nahradit"
+            "value" : "Zobrazit okno Hledat a nahradit"
           }
         },
         "de" : {
@@ -18734,7 +18734,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odsazení výběru"
+            "value" : "Odsadit výběr"
           }
         },
         "de" : {

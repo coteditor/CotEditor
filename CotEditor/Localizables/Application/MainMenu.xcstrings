@@ -967,7 +967,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Duplicitní řádek"
+            "value" : "Duplikovat řádek"
           }
         },
         "de" : {
@@ -2240,7 +2240,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zkontrolovat znak"
+            "value" : "Zobrazit informace o znaku"
           }
         },
         "de" : {
@@ -2772,7 +2772,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pro otevření skriptu v editoru stiskněte „Option“ a „klikněte“."
+            "value" : "Kliknutím se stisknutou klávesou Option otevřete skript v editoru."
           }
         },
         "de" : {
@@ -3096,7 +3096,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zaměnit řádky"
+            "value" : "Obrátit pořadí řádků"
           }
         },
         "de" : {
@@ -5330,7 +5330,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rovné uvozovky"
+            "value" : "Narovnat uvozovky"
           }
         },
         "de" : {

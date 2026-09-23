@@ -854,7 +854,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odkazovat na deklaraci kódování v dokumentu"
+            "value" : "Zohlednit deklaraci kódování v dokumentu"
           }
         },
         "de" : {

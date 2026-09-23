@@ -692,7 +692,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dekódování adresy URL"
+            "value" : "Dekódovat URL"
           }
         },
         "de" : {
@@ -2630,7 +2630,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rovné uvozovky"
+            "value" : "Narovnat uvozovky"
           }
         },
         "de" : {
@@ -12662,7 +12662,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Antialiasing"
+            "value" : "Vyhlazení"
           }
         },
         "de" : {
@@ -13118,7 +13118,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přesunout soustředění na další editor"
+            "value" : "Přejít na další editor"
           }
         },
         "de" : {
@@ -13232,7 +13232,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přesunout soustředění na předchozí editor"
+            "value" : "Přejít na předchozí editor"
           }
         },
         "de" : {
@@ -14486,7 +14486,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zachovat na vrchu"
+            "value" : "Zachovat navrchu"
           }
         },
         "de" : {
@@ -15398,7 +15398,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zrušit komentář"
+            "value" : "Odkomentovat"
           }
         },
         "de" : {
@@ -18476,7 +18476,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vybrat uzavírací symboly"
+            "value" : "Vybrat obklopující symboly"
           }
         },
         "de" : {
@@ -20870,7 +20870,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Náhodně"
+            "value" : "Promíchat"
           }
         },
         "de" : {
@@ -22238,7 +22238,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Upravit fragmenty kódů…"
+            "value" : "Upravit fragmenty kódu…"
           }
         },
         "de" : {
@@ -25316,7 +25316,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zadat bod kódu Unicode…"
+            "value" : "Vložit podle kódového bodu Unicode…"
           }
         },
         "de" : {
@@ -26798,7 +26798,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obrácené pořadí"
+            "value" : "Obrátit pořadí"
           }
         },
         "de" : {
@@ -27026,7 +27026,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kódování adresy URL"
+            "value" : "Zakódovat URL"
           }
         },
         "de" : {

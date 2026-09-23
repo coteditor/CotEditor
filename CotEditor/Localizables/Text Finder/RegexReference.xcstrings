@@ -6,7 +6,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Žádný nebo více"
+            "value" : "0 nebo více opakování"
           }
         },
         "de" : {
@@ -112,7 +112,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Žádný nebo jeden"
+            "value" : "0 nebo 1 opakování"
           }
         },
         "de" : {
@@ -218,7 +218,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jeden nebo více"
+            "value" : "1 nebo více opakování"
           }
         },
         "de" : {
@@ -749,7 +749,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alespoň 0, ale ne více než n krát"
+            "value" : "Nejméně 0, nejvýše n opakování"
           }
         },
         "de" : {
@@ -855,7 +855,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alespoň n krát, ale ne více než m krát"
+            "value" : "Nejméně n, nejvýše m opakování"
           }
         },
         "de" : {
@@ -961,7 +961,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alespoň n krát"
+            "value" : "Nejméně n opakování"
           }
         },
         "de" : {
@@ -2237,7 +2237,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "n krát"
+            "value" : "n opakování"
           }
         },
         "de" : {
@@ -2449,7 +2449,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Znak nepředstavující mezeru"
+            "value" : "Neprázdný znak"
           }
         },
         "de" : {
@@ -2556,7 +2556,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kvantifikátor"
+            "value" : "Kvantifikátory"
           }
         },
         "de" : {
@@ -2875,7 +2875,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mezera"
+            "value" : "Prázdný znak"
           }
         },
         "de" : {
@@ -3087,7 +3087,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Výraz"
+            "value" : "Znak slova"
           }
         },
         "de" : {

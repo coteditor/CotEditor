@@ -1603,7 +1603,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editor témat"
+            "value" : "Editor motivů"
           }
         },
         "de" : {
@@ -1816,7 +1816,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Použít systémové barvy"
+            "value" : "Použít systémovou barvu"
           }
         },
         "de" : {

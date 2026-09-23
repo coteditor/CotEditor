@@ -1660,7 +1660,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokončení"
+            "value" : "Dokončování"
           }
         },
         "de" : {
@@ -2194,7 +2194,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zobrazit vzor"
+            "value" : "Vzor zobrazení"
           }
         },
         "de" : {
@@ -5719,7 +5719,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Blokové komentáře vyžadují počáteční i koncový řetězec."
+            "value" : "Blokový komentář vyžaduje počáteční i koncový oddělovač."
           }
         },
         "de" : {
@@ -6058,7 +6058,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vnořený blokový komentář musí používat odlišné počáteční a koncové oddělovače."
+            "value" : "Vnořitelné blokové komentáře musí používat odlišné počáteční a koncové oddělovače."
           }
         },
         "de" : {
@@ -6285,7 +6285,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokončení"
+            "value" : "Dokončování"
           }
         },
         "de" : {

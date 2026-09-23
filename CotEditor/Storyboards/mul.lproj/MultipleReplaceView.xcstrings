@@ -933,7 +933,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chcete-li při hledání ignorovat velikost písmen vyberte tuto volbu."
+            "value" : "Chcete-li při hledání ignorovat velikost písmen, vyberte tuto volbu."
           }
         },
         "de" : {
@@ -1389,7 +1389,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chcete-li hledat pomocí regulárního výrazu vyberte tuto volbu."
+            "value" : "Chcete-li hledat pomocí regulárního výrazu, vyberte tuto volbu."
           }
         },
         "de" : {
@@ -1731,7 +1731,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chcete-li nahradit text pouze ve výběru vyberte tuto volbu."
+            "value" : "Chcete-li nahradit text pouze ve výběru, vyberte tuto volbu."
           }
         },
         "de" : {
