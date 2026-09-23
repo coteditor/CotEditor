@@ -565,8 +565,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Evidenziato:"
+            "state" : "translated",
+            "value" : "Evidenziazione:"
           }
         },
         "ja" : {
@@ -991,7 +991,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ricarica tutti i Temi"
+            "value" : "Ricarica tutti i temi"
           }
         },
         "ja" : {

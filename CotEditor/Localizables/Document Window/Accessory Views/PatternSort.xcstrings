@@ -994,7 +994,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Motivo:"
+            "value" : "Pattern:"
           }
         },
         "ja" : {
@@ -2271,7 +2271,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usa il gruppo selezionato:"
+            "value" : "Usa il gruppo acquisito:"
           }
         },
         "ja" : {

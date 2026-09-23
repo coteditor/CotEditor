@@ -489,7 +489,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CSS HWB"
+            "value" : "CSS HWB con alpha"
           }
         },
         "ja" : {
@@ -602,7 +602,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CSS Parola chiave"
+            "value" : "Parola chiave CSS"
           }
         },
         "ja" : {
@@ -1167,7 +1167,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esadecimale (Breve)"
+            "value" : "Esadecimale (breve)"
           }
         },
         "ja" : {
@@ -1280,7 +1280,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esadecimale con alpha (Breve)"
+            "value" : "Esadecimale con alpha (breve)"
           }
         },
         "ja" : {

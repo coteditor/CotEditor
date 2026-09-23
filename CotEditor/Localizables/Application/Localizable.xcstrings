@@ -364,7 +364,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld selezionati"
+            "value" : "Selezione: %lld"
           }
         },
         "ja" : {
@@ -816,7 +816,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eliminar elementi selezionati"
+            "value" : "Elimina elementi selezionati"
           }
         },
         "ja" : {
@@ -3757,7 +3757,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Per aprirlo in questa finestra, chiudere prima l’altra."
+            "value" : "Per aprirlo in questa finestra, chiudi prima l’altra."
           }
         },
         "ja" : {
@@ -4325,7 +4325,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Per modificare il documento, bisogna prima consentire le modifiche."
+            "value" : "Per modificare il documento, consenti prima le modifiche."
           }
         },
         "ja" : {
@@ -4552,7 +4552,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il file sembra essere un %@\n\nVuoi davvero aprirlo?"
+            "value" : "Il file sembra essere di tipo %@.\n\nVuoi davvero aprirlo?"
           }
         },
         "ja" : {
@@ -4666,7 +4666,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "di tipo sconosciuto"
+            "value" : "sconosciuto"
           }
         },
         "ja" : {
@@ -5234,7 +5234,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salva testo disponibili"
+            "value" : "Salva testo disponibile"
           }
         },
         "ja" : {
@@ -5801,7 +5801,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si desidera convertire o reinterpretare il documento usando “%@”?"
+            "value" : "Vuoi convertire o reinterpretare questo documento usando “%@”?"
           }
         },
         "ja" : {
@@ -7046,7 +7046,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il nome del file trascinato non ha estensione."
+            "value" : "Il nome del file trascinato senza estensione."
           }
         },
         "ja" : {
@@ -8631,7 +8631,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si desidera convertire tutti i fine riga in %@, il fine riga più comune del documento?"
+            "value" : "Vuoi convertire tutti i fine riga in %@, il fine riga più comune nel documento?"
           }
         },
         "ja" : {
@@ -9424,7 +9424,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il nome non può contenere\nulteriori righe."
+            "value" : "Il nome non può contenere caratteri di nuova riga."
           }
         },
         "ja" : {
@@ -9989,8 +9989,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Compilare il template che segue, e caricarlo su %1$@ oppure inviarlo a %2$@. Tieni presente che il contenuto dell’e-mail potrebbe essere condiviso sulla pagina dedicata alla risoluzione dei problemi (Issues). Scrivere il contenuto in inglese o giapponese."
+            "state" : "translated",
+            "value" : "Compila il modello seguente, quindi pubblicalo su %1$@ oppure invialo a %2$@. Tieni presente che il contenuto dell’email potrebbe essere condiviso nella pagina della segnalazione. Scrivi il messaggio in inglese o giapponese."
           }
         },
         "ja" : {
@@ -11230,7 +11230,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cambia modifica"
+            "value" : "Cambia codifica"
           }
         },
         "ja" : {
@@ -12137,7 +12137,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schema"
+            "value" : "Modello"
           }
         },
         "ja" : {
@@ -12470,7 +12470,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stampato su %@"
+            "value" : "Stampato il %@"
           }
         },
         "ja" : {
@@ -13600,7 +13600,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verificare i permessi dello script."
+            "value" : "Verifica i permessi del file dello script."
           }
         },
         "ja" : {
@@ -13826,7 +13826,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verificare il file dello script."
+            "value" : "Verifica il file dello script."
           }
         },
         "ja" : {
@@ -14956,7 +14956,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il tasto Maiuscolo va abbinato a un altro tasto modificatore."
+            "value" : "Il tasto Maiuscole va abbinato a un altro tasto modificatore."
           }
         },
         "ja" : {
@@ -15069,7 +15069,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Un solo tasto non è una scorciatoia valida."
+            "value" : "Un solo tasto non è un’abbreviazione valida."
           }
         },
         "ja" : {
@@ -15182,7 +15182,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La combinazione “%@” non è supportata per la personalizzazione dei comandi rapidi."
+            "value" : "La combinazione “%@” non è supportata per la personalizzazione delle abbreviazioni."
           }
         },
         "ja" : {
@@ -15862,7 +15862,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sei sicuro di voler annullare le modifiche e riaprire il documento usando “%@”?"
+            "value" : "Vuoi annullare le modifiche e riaprire il documento usando “%@”?"
           }
         },
         "ja" : {
@@ -16528,7 +16528,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si desidera mantenere la versione di CotEditor oppure aggiornarla a quella modificata?"
+            "value" : "Vuoi mantenere la versione di CotEditor oppure aggiornarla a quella modificata?"
           }
         },
         "ja" : {

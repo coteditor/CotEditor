@@ -142,7 +142,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Personalizza il Menu Sintassi…"
+            "value" : "Personalizza il menu Sintassi…"
           }
         },
         "ja" : {
@@ -884,7 +884,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Riferirsi alla codifica dichiarata nel documento"
+            "value" : "Usa la dichiarazione di codifica nel documento"
           }
         },
         "ja" : {

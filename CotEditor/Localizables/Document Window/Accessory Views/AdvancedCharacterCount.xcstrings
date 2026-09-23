@@ -726,7 +726,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conta nel modo intuitivo definito in Unicode. Un carattere composto di più codici Unicode, come un emoji, è conteggiato come carattere unico."
+            "value" : "Conta secondo la definizione intuitiva di Unicode. Un carattere composto da più punti di codice Unicode, come un emoji, viene contato come un solo carattere."
           }
         },
         "ja" : {
@@ -840,7 +840,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raggruppamento di Grapheme"
+            "value" : "Cluster di grafemi"
           }
         },
         "ja" : {
@@ -954,7 +954,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conta i codici Unicode, come nella codifica UTF-32."
+            "value" : "Conta i punti di codice Unicode, come nel conteggio UTF-32."
           }
         },
         "ja" : {
@@ -1182,7 +1182,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Conta i codici Unicode ma considera una coppia di caratteri sostitutivi come due caratteri."
+            "value" : "Conta i punti di codice Unicode, ma considera una coppia di surrogati come due caratteri."
           }
         },
         "ja" : {
@@ -2150,7 +2150,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inizio"
+            "value" : "Avvia"
           }
         },
         "ja" : {

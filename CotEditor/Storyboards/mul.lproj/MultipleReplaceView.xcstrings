@@ -969,7 +969,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selezionare per ignorare maiuscole/minuscole nella ricerca."
+            "value" : "Seleziona per ignorare maiuscole/minuscole nella ricerca."
           }
         },
         "ja" : {
@@ -1425,7 +1425,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selezionare per la ricerca di un’espressione regolare."
+            "value" : "Seleziona per cercare con le espressioni regolari."
           }
         },
         "ja" : {
@@ -1767,7 +1767,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selezionare per ricercare testo solo all’interno della selezione."
+            "value" : "Seleziona per sostituire il testo solo nella selezione."
           }
         },
         "ja" : {

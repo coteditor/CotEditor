@@ -248,7 +248,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " Intestazione C"
+            "value" : "Intestazione C"
           }
         },
         "ja" : {
@@ -1307,7 +1307,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Archivio Impostazioni CotEditor"
+            "value" : "Archivio impostazioni CotEditor"
           }
         },
         "ja" : {
@@ -3978,7 +3978,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Documento di testo riStrutturato"
+            "value" : "Documento reStructuredText"
           }
         },
         "ja" : {
@@ -4508,7 +4508,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Script Schema"
+            "value" : "Script Scheme"
           }
         },
         "ja" : {

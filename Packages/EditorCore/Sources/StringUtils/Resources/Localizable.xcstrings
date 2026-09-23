@@ -44,7 +44,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Form di normalizzazione non ufficiale basata su NFD, corrispondente a NFD Modificato"
+            "value" : "Forma di normalizzazione non ufficiale basata su NFC, corrispondente a NFD modificato"
           }
         },
         "ja" : {
@@ -157,7 +157,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFC Modificato"
+            "value" : "NFC modificato"
           }
         },
         "ja" : {
@@ -265,7 +265,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Form di normalizzazione non ufficiale basata su NFD, usata in HFS+"
+            "value" : "Forma di normalizzazione non ufficiale basata su NFD, usata in HFS+"
           }
         },
         "ja" : {
@@ -378,7 +378,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NFD Modificato"
+            "value" : "NFD modificato"
           }
         },
         "ja" : {
@@ -1149,7 +1149,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Applicare NFKC, case folding, e rimuovere i punti di codice ignorabili di default"
+            "value" : "Applicazione di NFKC e del case folding, con rimozione dei punti di codice ignorabili per impostazione predefinita"
           }
         },
         "ja" : {

@@ -464,7 +464,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor è un programma Open-Source,\nrilasciato sotto la licenza Apache, Versione 2.0."
+            "value" : "CotEditor è un programma open source\nrilasciato sotto la licenza Apache, versione 2.0."
           }
         },
         "ja" : {
@@ -1104,7 +1104,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "solo sulla versione non sull’AppStore"
+            "value" : "solo nella versione non distribuita tramite App Store"
           }
         },
         "ja" : {

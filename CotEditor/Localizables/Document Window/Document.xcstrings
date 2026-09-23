@@ -1104,7 +1104,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Punti di Codice"
+            "value" : "Punti di codice"
           }
         },
         "ja" : {
@@ -2528,7 +2528,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il Documento contiene modifiche non salvate"
+            "value" : "Il documento contiene modifiche non salvate"
           }
         },
         "ja" : {
@@ -3167,7 +3167,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Estrazione Outline…"
+            "value" : "Estraggo l’outline…"
           }
         },
         "ja" : {
@@ -3933,7 +3933,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unix eseguibile"
+            "value" : "Eseguibile UNIX"
           }
         },
         "ja" : {
@@ -7215,7 +7215,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ricerca nella cartella…"
+            "value" : "Cerco nella cartella…"
           }
         },
         "ja" : {
@@ -8129,7 +8129,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Percorso"
+            "value" : "Percorso completo"
           }
         },
         "ja" : {
@@ -8877,7 +8877,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ispettore"
+            "value" : "Inspector"
           }
         },
         "ja" : {
@@ -8991,7 +8991,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ispettore del documento"
+            "value" : "Inspector del documento"
           }
         },
         "ja" : {
@@ -10621,7 +10621,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si desidera spostare “%@” nel Cestino?"
+            "value" : "Vuoi spostare “%@” nel Cestino?"
           }
         },
         "ja" : {
@@ -10784,7 +10784,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Si desidera spostare gli %lld elementi selezionati nel Cestino?"
+                  "value" : "Vuoi spostare %lld elementi selezionati nel Cestino?"
                 }
               }
             }
@@ -12288,7 +12288,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri Originale"
+            "value" : "Apri originale"
           }
         },
         "ja" : {
@@ -13356,7 +13356,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rivela nel browser dei file"
+            "value" : "Mostra nel browser dei file"
           }
         },
         "ja" : {
@@ -13674,7 +13674,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scansione dei caratteri incompatibili…"
+            "value" : "Cerco i caratteri incompatibili…"
           }
         },
         "ja" : {
@@ -13994,7 +13994,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ricerca nella cartella…"
+            "value" : "Cerco nella cartella…"
           }
         },
         "ja" : {
@@ -14101,7 +14101,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selezionare un solo carattere per visualizzarne le informazioni Unicode."
+            "value" : "Seleziona un solo carattere per visualizzarne le informazioni Unicode."
           }
         },
         "ja" : {
@@ -14755,7 +14755,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trova cartella"
+            "value" : "Ricerca nella cartella"
           }
         },
         "ja" : {
@@ -15076,7 +15076,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dividi Editor"
+            "value" : "Dividi editor"
           }
         },
         "ja" : {
@@ -15831,7 +15831,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Commento"
+            "value" : "Commenta"
           }
         },
         "ja" : {
@@ -15944,7 +15944,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Commenta o de-commenta la selezione"
+            "value" : "Commenta la selezione o rimuovi il commento"
           }
         },
         "ja" : {
@@ -17187,7 +17187,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostrare “Emoji e simboli”"
+            "value" : "Mostra “Emoji e simboli”"
           }
         },
         "ja" : {
@@ -17413,7 +17413,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra “Trova e sosituisci”"
+            "value" : "Mostra “Trova e sostituisci”"
           }
         },
         "ja" : {
@@ -18318,7 +18318,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scorri a sinistra"
+            "value" : "Sposta a sinistra"
           }
         },
         "ja" : {
@@ -18431,7 +18431,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scorre le righe verso sinistra"
+            "value" : "Sposta le righe verso sinistra"
           }
         },
         "ja" : {
@@ -18544,7 +18544,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scorri a destra"
+            "value" : "Sposta a destra"
           }
         },
         "ja" : {
@@ -18657,7 +18657,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scorre le righe verso destra"
+            "value" : "Sposta le righe verso destra"
           }
         },
         "ja" : {
@@ -18883,7 +18883,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guide di indentazione"
+            "value" : "Guide di rientro"
           }
         },
         "ja" : {
@@ -18996,7 +18996,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra le guide per l’indentazione"
+            "value" : "Mostra le guide di rientro"
           }
         },
         "ja" : {
@@ -19109,7 +19109,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nascondi le guide per l’indentazione"
+            "value" : "Nascondi le guide di rientro"
           }
         },
         "ja" : {
@@ -19788,7 +19788,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Condivide documento"
+            "value" : "Condividi il file del documento"
           }
         },
         "ja" : {
@@ -20581,7 +20581,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stile Pannello"
+            "value" : "Stile tabulazione"
           }
         },
         "ja" : {
@@ -21939,7 +21939,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dimensione reale"
+            "value" : "Dimensioni reali"
           }
         },
         "ja" : {
@@ -22165,7 +22165,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Testo più grande"
+            "value" : "Aumenta la dimensione del testo"
           }
         },
         "ja" : {
@@ -22278,7 +22278,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dimensione testo"
+            "value" : "Dimensioni testo"
           }
         },
         "ja" : {
@@ -22504,7 +22504,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Testo più piccolo"
+            "value" : "Riduci la dimensione del testo"
           }
         },
         "ja" : {
@@ -22617,7 +22617,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cambia dimensione testo"
+            "value" : "Cambia dimensioni testo"
           }
         },
         "ja" : {
@@ -22730,7 +22730,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Adattamento righe:"
+            "value" : "Adattamento righe"
           }
         },
         "ja" : {
@@ -23634,7 +23634,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cambia verso di scrittura"
+            "value" : "Cambia direzione di scrittura"
           }
         },
         "ja" : {

@@ -148,7 +148,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rientro automatico durante la digitazione"
+            "value" : "Applica il rientro automatico durante la digitazione"
           }
         },
         "ja" : {
@@ -466,7 +466,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Analizza il contenuto:"
+            "value" : "Analisi del contenuto:"
           }
         },
         "ja" : {
@@ -996,7 +996,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Includere le righe di solo spazio bianco"
+            "value" : "Includi le righe di soli spazi bianchi"
           }
         },
         "ja" : {
@@ -1420,7 +1420,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserisci delimitatore di commento dopo il rientro"
+            "value" : "Inserisci i delimitatori di commento dopo il rientro"
           }
         },
         "ja" : {
@@ -1526,7 +1526,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Collegamenti agli URL nel documento"
+            "value" : "Crea collegamenti per gli URL nel documento"
           }
         },
         "ja" : {

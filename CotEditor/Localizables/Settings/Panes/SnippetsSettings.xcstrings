@@ -785,7 +785,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserisci Variabile"
+            "value" : "Inserisci variabile"
           }
         },
         "ja" : {
@@ -1331,7 +1331,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sintassi che utilizza le impostazioni del file trascinato nell’editor."
+            "value" : "Sintassi in cui viene usata questa impostazione di trascinamento dei file."
           }
         },
         "ja" : {
@@ -1544,7 +1544,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Testo da inserire con un comando di menu o una scorciatoia da tastiera:"
+            "value" : "Testo da inserire con un comando di menu o un’abbreviazione da tastiera:"
           }
         },
         "ja" : {

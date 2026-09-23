@@ -37,7 +37,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Elimina Regole"
+            "value" : "Elimina regole"
           }
         },
         "ja" : {
@@ -144,7 +144,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modifica Regola"
+            "value" : "Modifica regola"
           }
         },
         "ja" : {
@@ -258,7 +258,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scegliere una definizione di sostituzione di CotEditor oppure un file TSV (valori separati da tabulatore)."
+            "value" : "Scegli file di definizione sostituzioni di CotEditor o file TSV (valori separati da tabulazioni)."
           }
         },
         "ja" : {
@@ -365,7 +365,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserisci Regola"
+            "value" : "Inserisci regola"
           }
         },
         "ja" : {
@@ -472,7 +472,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sposta Regole"
+            "value" : "Sposta regole"
           }
         },
         "ja" : {

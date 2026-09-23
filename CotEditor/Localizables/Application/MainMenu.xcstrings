@@ -573,7 +573,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Copia come Rich Text"
+            "value" : "Copia come testo formattato"
           }
         },
         "ja" : {
@@ -679,7 +679,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ersonalizza elenco codifiche…"
+            "value" : "Personalizza elenco codifiche…"
           }
         },
         "ja" : {
@@ -1210,7 +1210,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nascondi le guide per l’indentazione"
+            "value" : "Nascondi le guide di rientro"
           }
         },
         "ja" : {
@@ -1316,7 +1316,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nascondi Ispettore"
+            "value" : "Nascondi inspector"
           }
         },
         "ja" : {
@@ -2483,7 +2483,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Termine riga a %@"
+            "value" : "Fine riga a %@"
           }
         },
         "ja" : {
@@ -2802,7 +2802,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Option-click per aprire nell’editor degli script."
+            "value" : "Fai clic tenendo premuto il tasto Opzione per aprire lo script nell’editor."
           }
         },
         "ja" : {
@@ -3338,7 +3338,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select la colonna inferiore"
+            "value" : "Seleziona la colonna inferiore"
           }
         },
         "ja" : {
@@ -3764,7 +3764,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scorri a sinistra"
+            "value" : "Sposta a sinistra"
           }
         },
         "ja" : {
@@ -3870,7 +3870,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scorri a destra"
+            "value" : "Sposta a destra"
           }
         },
         "ja" : {
@@ -3976,7 +3976,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra le guide per l’indentazione"
+            "value" : "Mostra le guide di rientro"
           }
         },
         "ja" : {
@@ -4082,7 +4082,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra Ispettore"
+            "value" : "Mostra inspector"
           }
         },
         "ja" : {
@@ -5680,7 +5680,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Per mostrare i caratteri invisibili, attivarli nelle impostazioni della finestra"
+            "value" : "Per mostrare i caratteri invisibili, attivali nelle impostazioni Finestra"
           }
         },
         "ja" : {
@@ -5892,7 +5892,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De-commenta"
+            "value" : "Rimuovi il commento"
           }
         },
         "ja" : {

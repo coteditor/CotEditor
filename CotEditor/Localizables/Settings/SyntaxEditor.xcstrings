@@ -1477,7 +1477,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le sintassi abbinate non possono essere rinominate."
+            "value" : "Le sintassi incorporate non possono essere rinominate."
           }
         },
         "ja" : {
@@ -2224,7 +2224,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra pattern"
+            "value" : "Pattern di visualizzazione"
           }
         },
         "ja" : {
@@ -2651,7 +2651,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Carattere di Escape"
+            "value" : "Carattere di escape"
           }
         },
         "ja" : {
@@ -3399,7 +3399,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quando non specificato, la sintassi delle parole\ndi completamento è generata in base ai parametri evidenziati."
+            "value" : "Se non specificate, le parole di completamento della sintassi vengono generate in base alle impostazioni di evidenziazione."
           }
         },
         "ja" : {
@@ -3612,7 +3612,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rientro:"
+            "value" : "Rientro"
           }
         },
         "ja" : {
@@ -3719,7 +3719,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "informazioni"
+            "value" : "Informazioni"
           }
         },
         "ja" : {
@@ -4463,7 +4463,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Solo avvio linea"
+            "value" : "Solo a inizio riga"
           }
         },
         "ja" : {
@@ -4783,7 +4783,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nido"
+            "value" : "Annidabile"
           }
         },
         "ja" : {
@@ -5981,7 +5981,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il carattere di escape deve essere un carattere singolo in codifica UTF-16."
+            "value" : "Il carattere di escape deve occupare una sola unità di codice UTF-16."
           }
         },
         "ja" : {
@@ -6094,7 +6094,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I commenti di blocco multilivello devono usare delimitatori di inizio e fine differenti."
+            "value" : "I commenti di blocco annidabili devono usare delimitatori di inizio e fine differenti."
           }
         },
         "ja" : {
@@ -6654,7 +6654,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I delimitatori di blocco sono usati per l’indentazione automatica durante la digitazione."
+            "value" : "I delimitatori di blocco sono usati per il rientro automatico durante la digitazione."
           }
         },
         "ja" : {

@@ -1422,7 +1422,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selezionare un archivio di impostazioni di CotEditor da importare."
+            "value" : "Scegli un archivio di impostazioni di CotEditor da importare."
           }
         },
         "ja" : {
@@ -2411,7 +2411,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tutte le impostazioni nella\nfinestra Impostazioni"
+            "value" : "Tutte le impostazioni nella finestra Impostazioni"
           }
         },
         "ja" : {

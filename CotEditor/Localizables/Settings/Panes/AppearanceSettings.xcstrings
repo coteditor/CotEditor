@@ -37,7 +37,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ punto"
+            "value" : "%@ pt"
           }
         },
         "ja" : {
@@ -907,7 +907,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dimensione font"
+            "value" : "Dimensioni font"
           }
         },
         "ja" : {

@@ -697,7 +697,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dimensione font"
+            "value" : "Dimensioni font"
           }
         },
         "ja" : {
@@ -804,7 +804,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pie’ di pagina"
+            "value" : "Piè di pagina"
           }
         },
         "ja" : {
@@ -1231,7 +1231,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Acceso"
+            "value" : "Attivo"
           }
         },
         "ja" : {

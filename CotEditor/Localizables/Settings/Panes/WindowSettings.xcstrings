@@ -993,7 +993,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guide di indentazione"
+            "value" : "Guide di rientro"
           }
         },
         "ja" : {
@@ -1419,7 +1419,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Termine riga"
+            "value" : "Fine riga"
           }
         },
         "ja" : {
@@ -1951,7 +1951,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aprire in pannelli:"
+            "value" : "Apri in pannelli:"
           }
         },
         "ja" : {
@@ -2377,7 +2377,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guide pagina alla colonna:"
+            "value" : "Guida pagina alla colonna:"
           }
         },
         "ja" : {

@@ -932,7 +932,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Distingue maiuscole/minuscole"
+            "value" : "Distingui maiuscole/minuscole"
           }
         },
         "ja" : {
@@ -3770,7 +3770,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Manda a capo la ricerca"
+            "value" : "Continua dall’inizio"
           }
         },
         "ja" : {
@@ -3884,7 +3884,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ricerca incrementale"
+            "value" : "Cerca in modo incrementale"
           }
         },
         "ja" : {
@@ -4682,7 +4682,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Consente a ^ e $ di valere come inizio e fine riga (multipla)."
+            "value" : "Consenti a ^ e $ di corrispondere all’inizio e alla fine delle righe (multiline)."
           }
         },
         "ja" : {
@@ -4796,7 +4796,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le Anchors valgono come righe"
+            "value" : "Applica le ancore alle righe"
           }
         },
         "ja" : {
@@ -4910,7 +4910,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Consente al . di equivalere a qualunque carattere, anche quello di nuova riga (singola)."
+            "value" : "Consenti a . di corrispondere a qualsiasi carattere, inclusi i caratteri di nuova riga (singleline)."
           }
         },
         "ja" : {
@@ -5024,7 +5024,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il punto vale come separatore di riga"
+            "value" : "Il punto corrisponde anche ai separatori di riga"
           }
         },
         "ja" : {
@@ -5366,7 +5366,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nel testo sostitutivo, decodifica i meta-caratteri con la barra inversa."
+            "value" : "Interpreta le sequenze di escape con barra inversa nel testo sostitutivo."
           }
         },
         "ja" : {
@@ -5480,7 +5480,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Testo di sostituzione Unescape"
+            "value" : "Interpreta gli escape nel testo sostitutivo"
           }
         },
         "ja" : {
@@ -5594,7 +5594,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usa Unicode TR#29 per specificare i Word Boundary"
+            "value" : "Usa Unicode TR#29 per definire i limiti di parola"
           }
         },
         "ja" : {
@@ -5708,7 +5708,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usa Word Boundary Unicode"
+            "value" : "Usa i limiti di parola Unicode"
           }
         },
         "ja" : {
@@ -5944,7 +5944,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Trovati %1$lld risultati in %2$@”."
+                  "value" : "Trovati %1$lld risultati in “%2$@”."
                 }
               },
               "zero" : {
@@ -7756,7 +7756,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ricerca dall’inizio"
+            "value" : "Ricerca ripresa dall’estremità opposta."
           }
         },
         "ja" : {
@@ -7862,7 +7862,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ricerca nel testo…"
+            "value" : "Cerco nel testo…"
           }
         },
         "ja" : {
@@ -8076,7 +8076,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selezionare per ignorare maiuscole/minuscole nella ricerca."
+            "value" : "Seleziona per ignorare maiuscole/minuscole nella ricerca."
           }
         },
         "ja" : {
@@ -8183,7 +8183,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selezionare per ricercare testo solo all’interno della selezione."
+            "value" : "Seleziona per cercare il testo solo nella selezione."
           }
         },
         "ja" : {
@@ -8290,7 +8290,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selezionare per ricercare con le espressioni regolari."
+            "value" : "Seleziona per cercare con le espressioni regolari."
           }
         },
         "ja" : {
@@ -8723,7 +8723,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nessun testo trovato"
+            "value" : "Testo da cercare vuoto"
           }
         },
         "ja" : {
@@ -8836,7 +8836,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserire il testo da cercare."
+            "value" : "Inserisci il testo da cercare."
           }
         },
         "ja" : {
@@ -8949,7 +8949,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’opzione “nella selezione” è attiva, ma non è stato selezionato nulla."
+            "value" : "L’opzione “In selezione” è attiva, ma non è stato selezionato nulla."
           }
         },
         "ja" : {
@@ -9062,7 +9062,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selezionare l’ambito di ricerca nel documento, oppure disabilitare l’opzione “nella selezione”."
+            "value" : "Seleziona l’ambito di ricerca nel documento oppure disattiva l’opzione “In selezione”."
           }
         },
         "ja" : {
@@ -9389,7 +9389,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserire il testo con cui sostituire il testo trovato."
+            "value" : "Inserisci il testo con cui sostituire il testo trovato."
           }
         },
         "ja" : {
@@ -9496,7 +9496,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserire il testo da cercare."
+            "value" : "Inserisci il testo da cercare."
           }
         },
         "ja" : {

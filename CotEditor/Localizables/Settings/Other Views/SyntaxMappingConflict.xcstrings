@@ -358,7 +358,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Interpreti"
+            "value" : "Interprete"
           }
         },
         "ja" : {
@@ -571,7 +571,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le regole di mappatura del file che seguono sono registrate in più sintassi. CotEditor userà la prima sintassi. Per risolvere i conflitti, modificare le definizioni di ciascuna sintassi."
+            "value" : "Le seguenti regole di mappatura dei file sono registrate in più sintassi. CotEditor usa automaticamente la prima sintassi. Per risolvere i conflitti, modifica la definizione di ciascuna sintassi."
           }
         },
         "ja" : {
@@ -678,7 +678,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sintassi usate"
+            "value" : "Sintassi usata"
           }
         },
         "ja" : {

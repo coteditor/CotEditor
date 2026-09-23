@@ -149,7 +149,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usa le impostazioni del Modo per personalizzare lo stile di indentazione in base alla sintassi preferita."
+            "value" : "Usa le impostazioni Modalità per personalizzare lo stile di rientro per ogni sintassi."
           }
         },
         "ja" : {
@@ -262,7 +262,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indentazione adatta ad ogni sintassi"
+            "value" : "Rientro adatto a ogni sintassi"
           }
         },
         "ja" : {

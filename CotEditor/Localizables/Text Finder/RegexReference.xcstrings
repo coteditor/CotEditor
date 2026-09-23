@@ -1524,7 +1524,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Decimale"
+            "value" : "Cifra decimale"
           }
         },
         "ja" : {
@@ -2055,7 +2055,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "guarda avanti"
+            "value" : "Lookahead"
           }
         },
         "ja" : {
@@ -2161,7 +2161,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "guarda indietro"
+            "value" : "Lookbehind"
           }
         },
         "ja" : {
@@ -2586,7 +2586,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quantificatore"
+            "value" : "Quantificatori"
           }
         },
         "ja" : {
@@ -2692,7 +2692,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Carattere Tabulazione"
+            "value" : "Carattere di tabulazione"
           }
         },
         "ja" : {
@@ -2799,7 +2799,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La sintassi rispetta le specifiche %@"
+            "value" : "La sintassi rispetta le specifiche %@."
           }
         },
         "ja" : {
@@ -3011,7 +3011,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Limiti delle parole"
+            "value" : "Limite di parola"
           }
         },
         "ja" : {

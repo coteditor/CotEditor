@@ -568,7 +568,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nessun Blocco"
+            "value" : "Nessun blocco"
           }
         },
         "ja" : {
@@ -674,7 +674,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sconosciuta"
+            "value" : "Sconosciuto"
           }
         },
         "ja" : {

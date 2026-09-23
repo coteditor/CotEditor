@@ -36,7 +36,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Funzione di sistema che sovrascrive automaticamente i file durante la modifica. Anche se disattivata, CotEditor crea di nascosto un backup in caso di chiusura imprevista."
+            "value" : "Funzione di sistema che sovrascrive automaticamente i file durante la modifica. Anche se disattivata, CotEditor crea un backup in background in caso di chiusura imprevista."
           }
         },
         "ja" : {
@@ -248,7 +248,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "linea di comando:"
+            "value" : "Strumento da riga di comando:"
           }
         },
         "ja" : {
@@ -686,7 +686,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Salva documento:"
+            "value" : "Salvataggio documento:"
           }
         },
         "ja" : {
@@ -1131,7 +1131,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abilita il salvataggio automatico delle versioni"
+            "value" : "Abilita il salvataggio automatico con versioni"
           }
         },
         "ja" : {
@@ -1343,7 +1343,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Installato in bei %@"
+            "value" : "Installato in %@"
           }
         },
         "ja" : {
@@ -1775,7 +1775,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si desidera riavviare CotEditor adesso?"
+            "value" : "Vuoi riavviare CotEditor adesso?"
           }
         },
         "ja" : {
@@ -2114,7 +2114,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nessuna azione"
+            "value" : "Non fare nulla"
           }
         },
         "ja" : {
@@ -3401,7 +3401,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Con il comando testuale “cot” si può lanciare CotEditor facendogli aprire documenti dalla riga di comando."
+            "value" : "Con lo strumento da riga di comando `cot`, puoi avviare CotEditor e aprire file dalla riga di comando."
           }
         },
         "ja" : {

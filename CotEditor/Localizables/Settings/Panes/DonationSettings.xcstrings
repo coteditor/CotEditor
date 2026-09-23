@@ -597,7 +597,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Come prova del tuo sostegno permanente, un badge del caffè apparirà sulla barra di stato."
+            "value" : "Come segno di ringraziamento per il tuo sostegno, un badge del caffè appare sulla barra di stato durante il sostegno continuativo."
           }
         },
         "ja" : {
@@ -703,7 +703,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tipo Badge:"
+            "value" : "Tipo di badge:"
           }
         },
         "ja" : {
@@ -809,7 +809,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sostegno permanente"
+            "value" : "Sostegno continuativo"
           }
         },
         "ja" : {
@@ -1127,7 +1127,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gestisci le iscrizioni"
+            "value" : "Gestisci abbonamenti"
           }
         },
         "ja" : {

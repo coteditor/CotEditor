@@ -7796,7 +7796,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ripetistina"
+            "value" : "Ripeti"
           }
         },
         "ja" : {
@@ -10076,7 +10076,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scorri a destra"
+            "value" : "Sposta a destra"
           }
         },
         "ja" : {
@@ -10190,7 +10190,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scorri a sinistra"
+            "value" : "Sposta a sinistra"
           }
         },
         "ja" : {
@@ -10532,7 +10532,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ispettore del documento"
+            "value" : "Inspector del documento"
           }
         },
         "ja" : {
@@ -12014,7 +12014,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserisci Backslash"
+            "value" : "Inserisci barra inversa"
           }
         },
         "ja" : {
@@ -12128,7 +12128,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserisci simbolo Yen"
+            "value" : "Inserisci simbolo yen"
           }
         },
         "ja" : {
@@ -13040,7 +13040,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Editor diviso"
+            "value" : "Dividi editor"
           }
         },
         "ja" : {
@@ -15434,7 +15434,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De-commenta"
+            "value" : "Rimuovi il commento"
           }
         },
         "ja" : {
@@ -16460,7 +16460,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserisci commento"
+            "value" : "Commenta in linea"
           }
         },
         "ja" : {
@@ -16802,7 +16802,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sito Web di CotEditor"
+            "value" : "Sito web di CotEditor"
           }
         },
         "ja" : {
@@ -18512,7 +18512,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleziona simboli di chiusura"
+            "value" : "Seleziona simboli delimitatori"
           }
         },
         "ja" : {
@@ -18740,7 +18740,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra Ispettore"
+            "value" : "Mostra inspector"
           }
         },
         "ja" : {
@@ -20450,7 +20450,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Attiva commento"
+            "value" : "Attiva/disattiva commento"
           }
         },
         "ja" : {
@@ -20564,7 +20564,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ordina per motivo…"
+            "value" : "Ordina per pattern…"
           }
         },
         "ja" : {
@@ -20678,7 +20678,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Select la colonna inferiore"
+            "value" : "Seleziona la colonna inferiore"
           }
         },
         "ja" : {
@@ -20792,7 +20792,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Manuale Scripting di CotEditor"
+            "value" : "Manuale di scripting di CotEditor"
           }
         },
         "ja" : {
@@ -22160,7 +22160,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Manuale Scripting di CotEditor"
+            "value" : "Manuale di scripting di CotEditor"
           }
         },
         "ja" : {
@@ -22274,7 +22274,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modifica ritagli…"
+            "value" : "Modifica snippet…"
           }
         },
         "ja" : {
@@ -23186,7 +23186,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Copia/Incolla smart"
+            "value" : "Copia/incolla smart"
           }
         },
         "ja" : {
@@ -23414,7 +23414,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra guide per l’indentazione"
+            "value" : "Mostra guide di rientro"
           }
         },
         "ja" : {
@@ -23870,7 +23870,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Grammatica e ortografia"
+            "value" : "Ortografia"
           }
         },
         "ja" : {
@@ -24896,7 +24896,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Virgolette curve"
+            "value" : "Virgolette smart"
           }
         },
         "ja" : {
@@ -25352,7 +25352,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserisci in Punto di Codice Unicode…"
+            "value" : "Inserisci tramite punto di codice Unicode…"
           }
         },
         "ja" : {
@@ -25580,7 +25580,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Blocca commento"
+            "value" : "Commenta a blocchi"
           }
         },
         "ja" : {
@@ -25694,7 +25694,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Allinea gli editor in verticale"
+            "value" : "Affianca gli editor verticalmente"
           }
         },
         "ja" : {
@@ -25922,7 +25922,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trova cartella"
+            "value" : "Ricerca nella cartella"
           }
         },
         "ja" : {
