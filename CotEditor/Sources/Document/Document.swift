@@ -651,7 +651,7 @@ extension NSTextView: EditorCounter.Source { }
             alert.informativeText = String(
                 localized: "DocumentClosingAlert.lossyEncoding.informativeText",
                 defaultValue: "Your changes will be lost if you don’t save them. Incompatible characters are either substituted or removed in saving.",
-                comment: "For the first sentence, refer the same sentence in AppKit.framework by Apple. For the latter one, refer the DocumentSavingAlert.lossyEncoding.recoverySuggestion.")
+                comment: "For the first sentence, refer the same sentence in AppKit.framework by Apple. For the latter one, refer the DocumentSavingError.lossyEncoding.recoverySuggestion.")
             alert.addButton(withTitle: String(
                 localized: "DocumentSavingError.lossyEncoding.recoveryOption.save",
                 defaultValue: "Save Available Text"))

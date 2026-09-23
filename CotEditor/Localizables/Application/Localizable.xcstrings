@@ -3943,7 +3943,7 @@
       }
     },
     "DocumentClosingAlert.lossyEncoding.informativeText" : {
-      "comment" : "For the first sentence, refer the same sentence in AppKit.framework by Apple. For the latter one, refer the DocumentSavingAlert.lossyEncoding.recoverySuggestion.",
+      "comment" : "For the first sentence, refer the same sentence in AppKit.framework by Apple. For the latter one, refer the DocumentSavingError.lossyEncoding.recoverySuggestion.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
