@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Tab width:" : {
+      "comment" : "Tab refers to indentation",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

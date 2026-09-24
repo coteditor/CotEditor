@@ -145,6 +145,9 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                                 <tableColumn identifier="key" editable="NO" width="80" minWidth="80" maxWidth="80" id="PSD-Um-TfH">
+                                                    <attributedString key="userComments">
+                                                        <fragment content="keyboard shortcut"/>
+                                                    </attributedString>
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Key">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>

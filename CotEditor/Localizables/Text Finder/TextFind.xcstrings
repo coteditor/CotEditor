@@ -2395,7 +2395,7 @@
       }
     },
     "Find Result" : {
-      "comment" : "accessibility label",
+      "comment" : "accessibility label for the view displaying find result",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3728,7 +3728,7 @@
       }
     },
     "FindSettings.findIsWrap.label" : {
-      "comment" : "toggle button label",
+      "comment" : "toggle button label; continue searching from the other end of the document",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

@@ -535,6 +535,7 @@
       }
     },
     "Completion:" : {
+      "comment" : "noun, word completion",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

@@ -386,7 +386,7 @@ extension SyntaxEditView.Pane {
                 .init("Syntax.key.completions.label",
                       defaultValue: "Completion",
                       table: "SyntaxEditor",
-                      comment: "syntax definition type")
+                      comment: "syntax definition type; noun, word completion")
                 
             case .syntaxInfo:
                 .init("Information",

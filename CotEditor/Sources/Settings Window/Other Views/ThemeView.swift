@@ -469,7 +469,7 @@ private struct ThemeEditorView: View {
                                       selection: $theme.selection,
                                       systemColor: Color(nsColor: .selectedTextBackgroundColor.forDarkMode(self.theme.isDarkTheme)),
                                       supportsOpacity: false)
-                    SystemColorPicker(.init("Highlight:", table: "ThemeEditor"),
+                    SystemColorPicker(.init("Highlight:", table: "ThemeEditor", comment: "noun, the highlight color"),
                                       selection: $theme.highlight,
                                       systemColor: .accentColor,
                                       supportsOpacity: false)

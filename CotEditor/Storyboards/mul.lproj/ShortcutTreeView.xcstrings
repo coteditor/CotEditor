@@ -256,7 +256,7 @@
       "shouldTranslate" : false
     },
     "PSD-Um-TfH.headerCell.title" : {
-      "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Key\"; ObjectID = \"PSD-Um-TfH\";",
+      "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Key\"; ObjectID = \"PSD-Um-TfH\"; Note = \"keyboard shortcut\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

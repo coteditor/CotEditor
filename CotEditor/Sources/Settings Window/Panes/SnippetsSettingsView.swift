@@ -92,7 +92,7 @@ private struct CommandSnippetsView: View {
                     TextField(text: $item.name, label: EmptyView.init)
                 }
                 
-                TableColumn(.init("Key", table: "SnippetsSettings", comment: "table column header")) { $item in
+                TableColumn(.init("Key", table: "SnippetsSettings", comment: "table column header; keyboard shortcut")) { $item in
                     ShortcutField(value: $item.shortcut, error: $error)
                 }
                 .width(80)

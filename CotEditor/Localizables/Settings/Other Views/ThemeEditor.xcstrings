@@ -532,6 +532,7 @@
       }
     },
     "Highlight:" : {
+      "comment" : "noun, the highlight color",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

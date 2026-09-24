@@ -16261,6 +16261,7 @@
       }
     },
     "UpdatedByExternalProcessAlert.button.keep" : {
+      "comment" : "version refers to the document’s contents",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -16487,6 +16488,7 @@
       }
     },
     "UpdatedByExternalProcessAlert.informativeText" : {
+      "comment" : "version refers to the document’s contents",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

@@ -14934,7 +14934,7 @@
       }
     },
     "Split editor" : {
-      "comment" : "tooltip for button",
+      "comment" : "tooltip for button; verb, split the editor pane",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -15041,7 +15041,7 @@
       }
     },
     "Split Editor" : {
-      "comment" : "accessibility label for button",
+      "comment" : "accessibility label for button; verb, split the editor pane",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -15790,6 +15790,7 @@
       }
     },
     "Toolbar.comment.label" : {
+      "comment" : "verb, toggle commenting of the selection",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -20540,6 +20541,7 @@
       }
     },
     "Toolbar.tabStyle.label" : {
+      "comment" : "Tab refers to indentation",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -20766,7 +20768,7 @@
       }
     },
     "Toolbar.tabStyle.menu.tabWidth.label" : {
-      "comment" : "menu item header",
+      "comment" : "menu item header; Tab refers to indentation",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

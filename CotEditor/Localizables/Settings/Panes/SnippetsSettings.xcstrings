@@ -963,7 +963,7 @@
       }
     },
     "Key" : {
-      "comment" : "table column header",
+      "comment" : "table column header; keyboard shortcut",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

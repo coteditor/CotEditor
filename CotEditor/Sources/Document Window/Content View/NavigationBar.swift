@@ -64,13 +64,13 @@ struct NavigationBar: View {
             Button {
                 NSApp.sendAction(#selector(DocumentViewController.openSplitTextView), to: nil, from: self.outlineNavigator.textView)
             } label: {
-                Label(.init("Split Editor", table: "Document", comment: "accessibility label for button"), image: .splitAdd)
+                Label(.init("Split Editor", table: "Document", comment: "accessibility label for button; verb, split the editor pane"), image: .splitAdd)
                     .frame(width: 18)
                     .frame(maxHeight: .infinity, alignment: .center)
             }
             .rotationEffect(.degrees(self.splitState.isVertical ? -90 : 0))
             .labelStyle(.iconOnly)
-            .help(.init("Split editor", table: "Document", comment: "tooltip for button"))
+            .help(.init("Split editor", table: "Document", comment: "tooltip for button; verb, split the editor pane"))
             .contextMenu {
                 Button {
                     NSApp.sendAction(#selector(DocumentViewController.toggleSplitOrientation), to: nil, from: nil)

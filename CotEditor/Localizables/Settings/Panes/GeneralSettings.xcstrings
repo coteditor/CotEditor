@@ -758,6 +758,7 @@
       }
     },
     "DocumentConflictOption.ignore.label" : {
+      "comment" : "version refers to the document’s contents",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -984,6 +985,7 @@
       }
     },
     "DocumentConflictOption.revert.label" : {
+      "comment" : "version refers to the document’s contents",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

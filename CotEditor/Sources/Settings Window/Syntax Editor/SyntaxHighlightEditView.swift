@@ -69,7 +69,7 @@ struct SyntaxHighlightEditView: View {
                 .width(24)
                 .alignment(.center)
                 
-                TableColumn(.init("Begin String", table: "SyntaxEditor", comment: "table column header"), value: \.value.begin) { wrappedItem in
+                TableColumn(.init("Begin String", table: "SyntaxEditor", comment: "table column header; noun, the pattern marking the beginning of a highlight"), value: \.value.begin) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         HStack {
                             RegexTextField(text: item.value.begin)
@@ -84,7 +84,7 @@ struct SyntaxHighlightEditView: View {
                     }
                 }
                 
-                TableColumn(.init("End String", table: "SyntaxEditor", comment: "table column header"), sortUsing: KeyPathComparator(\.value.end)) { wrappedItem in
+                TableColumn(.init("End String", table: "SyntaxEditor", comment: "table column header; noun, the pattern marking the end of a highlight"), sortUsing: KeyPathComparator(\.value.end)) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         HStack {
                             RegexTextField(text: item.value.end ?? "")

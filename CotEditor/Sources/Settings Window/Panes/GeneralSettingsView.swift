@@ -346,7 +346,8 @@ private extension DocumentConflictOption {
             case .ignore:
                 .init("DocumentConflictOption.ignore.label",
                       defaultValue: "Keep CotEditor’s version",
-                      table: "GeneralSettings")
+                      table: "GeneralSettings",
+                      comment: "version refers to the document’s contents")
             case .notify:
                 .init("DocumentConflictOption.notify.label",
                       defaultValue: "Ask how to resolve",
@@ -354,7 +355,8 @@ private extension DocumentConflictOption {
             case .revert:
                 .init("DocumentConflictOption.revert.label",
                       defaultValue: "Update to modified version",
-                      table: "GeneralSettings")
+                      table: "GeneralSettings",
+                      comment: "version refers to the document’s contents")
         }
     }
 }

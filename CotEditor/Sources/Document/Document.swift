@@ -1612,9 +1612,11 @@ extension NSTextView: EditorCounter.Source { }
                          defaultValue: "The file has been changed by another application.",
                          comment: "AppKit has the same expression.")
             alert.informativeText = String(localized: "UpdatedByExternalProcessAlert.informativeText",
-                                           defaultValue: "Do you want to keep CotEditor’s version or update it to the modified version?")
+                                           defaultValue: "Do you want to keep CotEditor’s version or update it to the modified version?",
+                                           comment: "version refers to the document’s contents")
             alert.addButton(withTitle: String(localized: "UpdatedByExternalProcessAlert.button.keep",
-                                              defaultValue: "Keep CotEditor’s Version"))
+                                              defaultValue: "Keep CotEditor’s Version",
+                                              comment: "version refers to the document’s contents"))
             alert.addButton(withTitle: String(localized: "UpdatedByExternalProcessAlert.button.update",
                                               defaultValue: "Update"))
             

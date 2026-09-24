@@ -428,6 +428,7 @@
       }
     },
     "AppearanceMode.automatic.label" : {
+      "comment" : "use the system’s appearance setting",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

@@ -234,7 +234,8 @@ private extension AppearanceMode {
             case .default:
                 .init("AppearanceMode.automatic.label",
                       defaultValue: "Match System",
-                      table: "AppearanceSettings")
+                      table: "AppearanceSettings",
+                      comment: "use the system’s appearance setting")
             case .light:
                 .init("AppearanceMode.light.label",
                       defaultValue: "Light",

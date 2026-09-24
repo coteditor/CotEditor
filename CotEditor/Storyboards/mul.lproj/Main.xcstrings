@@ -12998,7 +12998,7 @@
       }
     },
     "793.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Split Editor\"; ObjectID = \"793\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Split Editor\"; ObjectID = \"793\"; Note = \"verb, split the editor pane\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -15278,7 +15278,7 @@
       }
     },
     "djM-fI-MkN.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Tab Width\"; ObjectID = \"djM-fI-MkN\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Tab Width\"; ObjectID = \"djM-fI-MkN\"; Note = \"Tab refers to indentation\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -16418,7 +16418,7 @@
       }
     },
     "F6P-7N-LSf.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Inline Comment\"; ObjectID = \"F6P-7N-LSf\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Inline Comment\"; ObjectID = \"F6P-7N-LSf\"; Note = \"verb, comment out the selection using inline comments\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -23030,7 +23030,7 @@
       }
     },
     "Qa9-dA-CF1.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Complete\"; ObjectID = \"Qa9-dA-CF1\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Complete\"; ObjectID = \"Qa9-dA-CF1\"; Note = \"verb, complete the current word\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -25538,7 +25538,7 @@
       }
     },
     "U5v-4k-2tq.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Block Comment\"; ObjectID = \"U5v-4k-2tq\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Block Comment\"; ObjectID = \"U5v-4k-2tq\"; Note = \"verb, comment out the selection using block comments\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -26678,7 +26678,7 @@
       }
     },
     "xAm-b4-9CY.title" : {
-      "comment" : "Class = \"NSMenu\"; title = \"Tab Width\"; ObjectID = \"xAm-b4-9CY\";",
+      "comment" : "Class = \"NSMenu\"; title = \"Tab Width\"; ObjectID = \"xAm-b4-9CY\"; Note = \"Tab refers to indentation\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

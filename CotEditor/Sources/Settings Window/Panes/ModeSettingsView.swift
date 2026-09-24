@@ -264,7 +264,7 @@ private struct ModeOptionsView: View {
             }
             .padding(.bottom, 12)
             
-            LabeledContent(.init("Completion:", table: "ModeSettings")) {
+            LabeledContent(.init("Completion:", table: "ModeSettings", comment: "noun, word completion")) {
                 VStack(alignment: .leading) {
                     Text("Completion list includes:", tableName: "ModeSettings")
                         .foregroundStyle(self.isEnabled ? .primary : .tertiary)

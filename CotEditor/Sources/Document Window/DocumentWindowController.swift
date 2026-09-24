@@ -837,7 +837,8 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .comment:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = String(localized: "Toolbar.comment.label",
-                                    defaultValue: "Comment", table: "Document")
+                                    defaultValue: "Comment", table: "Document",
+                                    comment: "verb, toggle commenting of the selection")
                 item.toolTip = String(localized: "Toolbar.comment.tooltip",
                                       defaultValue: "Comment-out or uncomment selection", table: "Document")
                 item.image = NSImage(resource: .textCommentout)
@@ -847,7 +848,8 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .tabStyle:
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = String(localized: "Toolbar.tabStyle.label",
-                                    defaultValue: "Tab Style", table: "Document")
+                                    defaultValue: "Tab Style", table: "Document",
+                                    comment: "Tab refers to indentation")
                 item.toolTip = String(localized: "Toolbar.tabStyle.tooltip.off",
                                       defaultValue: "Use spaces for indentation", table: "Document")
                 item.stateImages[.on] = NSImage(resource: .tabForwardSplit)
@@ -855,7 +857,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu.items = [
                     .sectionHeader(title: String(localized: "Toolbar.tabStyle.menu.tabWidth.label",
-                                                 defaultValue: "Tab Width", table: "Document", comment: "menu item header")),
+                                                 defaultValue: "Tab Width", table: "Document", comment: "menu item header; Tab refers to indentation")),
                 ] + [2, 4, 8].map { width in
                     let item = NSMenuItem(title: width.formatted(), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                     item.tag = width

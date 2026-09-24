@@ -1016,7 +1016,7 @@
       }
     },
     "Begin String" : {
-      "comment" : "table column header",
+      "comment" : "table column header\ntable column header; noun, the pattern marking the beginning of a highlight",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1123,6 +1123,7 @@
       }
     },
     "Block comment:" : {
+      "comment" : "noun, a type of comment",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1655,7 +1656,7 @@
       }
     },
     "Completion" : {
-      "comment" : "table column header",
+      "comment" : "table column header; noun, word completion",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2189,7 +2190,7 @@
       }
     },
     "Display Pattern" : {
-      "comment" : "table column header",
+      "comment" : "table column header; noun, template used to generate outline item titles",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2402,7 +2403,7 @@
       }
     },
     "End String" : {
-      "comment" : "table column header",
+      "comment" : "table column header\ntable column header; noun, the pattern marking the end of a highlight",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2509,7 +2510,7 @@
       }
     },
     "Entire match" : {
-      "comment" : "placeholder for outline item table",
+      "comment" : "placeholder for outline item table; noun, the entire text matched by the regular expression",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3791,6 +3792,7 @@
       }
     },
     "Inline comment:" : {
+      "comment" : "noun, a type of comment",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4428,7 +4430,7 @@
       }
     },
     "Line Start Only" : {
-      "comment" : "table column header, keep short",
+      "comment" : "table column header; keep short",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4748,7 +4750,7 @@
       }
     },
     "Nest" : {
-      "comment" : "table column header, keep short",
+      "comment" : "table column header; verb, allow nested block comments; keep short",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -6279,7 +6281,7 @@
       }
     },
     "Syntax.key.completions.label" : {
-      "comment" : "syntax definition type",
+      "comment" : "syntax definition type; noun, word completion",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
