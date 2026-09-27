@@ -3404,7 +3404,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "स्निपेट डालें"
+            "value" : "स्निपेट सम्मिलित करें"
           }
         },
         "it" : {
@@ -3644,7 +3644,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "छोटा करें"
+            "value" : "मिनिमाइज़ करें"
           }
         },
         "it" : {
@@ -8324,7 +8324,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ज़ूम"
+            "value" : "ज़ूम करें"
           }
         },
         "it" : {
@@ -12644,7 +12644,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "बैकस्लैश डालें"
+            "value" : "बैकस्लैश सम्मिलित करें"
           }
         },
         "it" : {
@@ -12764,7 +12764,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "येन चिह्न डालें"
+            "value" : "येन चिह्न सम्मिलित करें"
           }
         },
         "it" : {
@@ -16604,7 +16604,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "स्निपेट डालें"
+            "value" : "स्निपेट सम्मिलित करें"
           }
         },
         "it" : {
@@ -21644,7 +21644,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पैटर्न से क्रमबद्ध करें…"
+            "value" : "पैटर्न से सॉर्ट करें…"
           }
         },
         "it" : {
@@ -23564,7 +23564,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "क्रमबद्ध करें"
+            "value" : "सॉर्ट करें"
           }
         },
         "it" : {
@@ -25844,7 +25844,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "iPhone या iPad से डालें"
+            "value" : "iPhone या iPad से सम्मिलित करें"
           }
         },
         "it" : {
@@ -26684,7 +26684,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "यूनिकोड कोड पॉइंट से डालें…"
+            "value" : "यूनिकोड कोड पॉइंट से सम्मिलित करें…"
           }
         },
         "it" : {

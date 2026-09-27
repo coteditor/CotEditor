@@ -2172,7 +2172,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "कलर कोड डालें"
+            "value" : "कलर कोड सम्मिलित करें"
           }
         },
         "it" : {
@@ -2284,7 +2284,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "स्निपेट डालें"
+            "value" : "स्निपेट सम्मिलित करें"
           }
         },
         "it" : {
@@ -5324,7 +5324,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पंक्तियाँ क्रमबद्ध करें"
+            "value" : "पंक्तियाँ सॉर्ट करें"
           }
         },
         "it" : {
