@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023-2025 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,15 +27,32 @@ public import Foundation
 
 public final class ShortcutFormatter: Formatter {
     
+    private var editingShortcut: Shortcut?
+    
+    
     public override func string(for obj: Any?) -> String? {
         
         (obj as? Shortcut)?.symbol
     }
     
     
+    public override func editingString(for obj: Any) -> String? {
+        
+        self.editingShortcut = obj as? Shortcut
+        
+        return self.string(for: obj)
+    }
+    
+    
     public override func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
         
-        unsafe obj?.pointee = Shortcut(symbolRepresentation: string) as AnyObject?
+        // The display representation is not reversible (for example, both ß and ss display as SS).
+        let shortcut = if let editingShortcut = self.editingShortcut, editingShortcut.symbol == string {
+            editingShortcut
+        } else {
+            Shortcut(symbolRepresentation: string)
+        }
+        unsafe obj?.pointee = shortcut as AnyObject?
         
         return true
     }

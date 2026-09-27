@@ -40,7 +40,7 @@ public struct Shortcut: Sendable {
     
     // MARK: Lifecycle
     
-    /// Initializes Shortcut directly from a key equivalent character and modifiers.
+    /// Initializes Shortcut directly from a key equivalent string and modifiers.
     ///
     /// - Parameters:
     ///   - keyEquivalent: The key equivalent character.
@@ -55,6 +55,11 @@ public struct Shortcut: Sendable {
     }
     
     
+    /// Initializes Shortcut from a special key and modifiers.
+    ///
+    /// - Parameters:
+    ///   - specialKey: The special key.
+    ///   - modifiers: The modifier flags.
     public init(_ specialKey: NSEvent.SpecialKey, modifiers: NSEvent.ModifierFlags) {
         
         self.keyEquivalent = Self.menuKeyEquivalent(for: specialKey)
@@ -64,39 +69,51 @@ public struct Shortcut: Sendable {
     
     /// Initializes Shortcut from a stored string.
     ///
+    /// - Note: Uses the Cocoa key-binding notation. A leading backslash after the modifiers quotes the key string.
+    ///
     /// - Parameter keySpecChars: The storable representation.
     public init?(keySpecChars: String) {
         
-        guard let keyEquivalent = keySpecChars.last else { return nil }
+        guard !keySpecChars.isEmpty else { return nil }
         
-        let modifierCharacters = keySpecChars.dropLast()
-        let modifiers = ModifierKey.validCases
+        // Keep a final modifier character as a key for compatibility with older CotEditor settings.
+        let keySpecCharCandidates = ModifierKey.keySpecCases.map(\.keySpecChar)
+        let modifierCharacters = keySpecChars.unicodeScalars.dropLast().prefix(while: keySpecCharCandidates.contains)
+        var keyEquivalent = String(keySpecChars.unicodeScalars.dropFirst(modifierCharacters.count))
+        if keyEquivalent.first == "\\", keyEquivalent.count > 1 {
+            keyEquivalent.removeFirst()
+        }
+        let modifiers = ModifierKey.keySpecCases
             .filter { modifierCharacters.contains($0.keySpecChar) }
             .mask
         
-        self.keyEquivalent = Self.menuKeyEquivalent(for: String(keyEquivalent))
-        self.modifiers = modifiers
+        self.init(keyEquivalent, modifiers: modifiers)
     }
     
     
     /// Initializes Shortcut from a display representation.
     ///
+    /// - Note: Display symbols can be ambiguous; preserve the original shortcut when editing an existing value.
+    ///
     /// - Parameter string: The shortcut string to display in GUI.
     public init?(symbolRepresentation string: String) {
         
-        let components = string.split(whereSeparator: \.isWhitespace)
+        var keySymbol = string[...]
+        var modifiers: NSEvent.ModifierFlags = []
         
-        guard let lastSymbol = components.last, !lastSymbol.isEmpty else { return nil }
+        while let modifier = ModifierKey.displayCases.first(where: { keySymbol.hasPrefix($0.symbol) }) {
+            let remainder = keySymbol.dropFirst(modifier.symbol.count)
+            guard remainder.first?.isWhitespace == true else { break }
+            modifiers.insert(modifier.mask)
+            keySymbol = remainder.dropFirst()
+        }
         
-        let keyEquivalent = Self.menuKeyEquivalent(forSymbol: String(lastSymbol)) ?? lastSymbol.lowercased()
+        guard !keySymbol.isEmpty else { return nil }
         
-        let modifierCharacters = components.dropLast().joined()
-        let modifiers = ModifierKey.validCases
-            .filter { modifierCharacters.contains($0.symbol) }
-            .mask
+        let keyEquivalent = Self.menuKeyEquivalent(forSymbol: String(keySymbol))
+            ?? ((keySymbol.count == 1) ? keySymbol.lowercased() : String(keySymbol))
         
-        self.keyEquivalent = keyEquivalent
-        self.modifiers = modifiers
+        self.init(keyEquivalent, modifiers: modifiers)
     }
     
     
@@ -109,16 +126,22 @@ public struct Shortcut: Sendable {
         
         guard
             let charactersIgnoringModifiers = event.charactersIgnoringModifiers,
-            charactersIgnoringModifiers.count == 1
+            !charactersIgnoringModifiers.isEmpty
         else { return nil }
         
         // correct deletion keys for the NSMenuItem key equivalent
-        let keyEquivalent = event.specialKey.map(Self.menuKeyEquivalent(for:)) ?? charactersIgnoringModifiers
+        let keyEquivalent = if charactersIgnoringModifiers.unicodeScalars.count == 1,
+                               let specialKey = event.specialKey
+        {
+            Self.menuKeyEquivalent(for: specialKey)
+        } else {
+            charactersIgnoringModifiers
+        }
         
         // remove unwanted Shift
-        let ignoresShift = "`~!@#$%^&()_{}|\":<>?=/*-+.'".contains(keyEquivalent)
+        let ignoresShift = keyEquivalent.count == 1 && "`~!@#$%^&()_{}|\":<>?=/*-+.'".contains(keyEquivalent)
         let modifiers = event.modifierFlags
-            .intersection(ModifierKey.allCases.mask)
+            .intersection(ModifierKey.displayCases.mask)
             .subtracting(ignoresShift ? .shift : [])
         
         self.keyEquivalent = keyEquivalent
@@ -128,14 +151,20 @@ public struct Shortcut: Sendable {
     
     // MARK: Public Methods
     
-    /// The unique string to store in plist.
+    /// The Cocoa key-binding string to store in plist.
     public var keySpecChars: String {
         
         let shortcut = self.normalized
-        let modifierCharacters = ModifierKey.validCases
+        let modifierCharacters = ModifierKey.keySpecCases
             .filter { shortcut.modifiers.contains($0.mask) }
-            .map(\.keySpecChar)
+            .map { String($0.keySpecChar) }
             .joined()
+        
+        if let first = shortcut.keyEquivalent.unicodeScalars.first,
+           ModifierKey.keySpecCases.contains(where: { $0.keySpecChar == first }) || first == "\\"
+        {
+            return modifierCharacters + "\\" + shortcut.keyEquivalent
+        }
         
         return modifierCharacters + shortcut.keyEquivalent
     }
@@ -154,7 +183,7 @@ public struct Shortcut: Sendable {
     public var isValid: Bool {
         
         guard
-            self.keyEquivalent.count == 1,
+            !self.keyEquivalent.isEmpty,
             !self.modifiers.contains(.function)
         else { return false }
         
@@ -164,14 +193,14 @@ public struct Shortcut: Sendable {
         
         guard !self.modifiers.isEmpty else { return false }
         
-        return self.modifiers.isSubset(of: ModifierKey.validCases.mask)
+        return self.modifiers.isSubset(of: [.control, .option, .shift, .command])
     }
     
     
     /// Modifier key strings to display.
     public var modifierSymbols: [String] {
         
-        ModifierKey.allCases
+        ModifierKey.displayCases
             .filter { self.modifiers.contains($0.mask) }
             .map(\.symbol)
     }
@@ -180,7 +209,7 @@ public struct Shortcut: Sendable {
     /// The SF Symbol names for modifier keys to display.
     public var modifierSymbolNames: [String] {
         
-        ModifierKey.allCases
+        ModifierKey.displayCases
             .filter { self.modifiers.contains($0.mask) }
             .map(\.symbolName)
     }
@@ -189,16 +218,24 @@ public struct Shortcut: Sendable {
     /// The key equivalent to display.
     public var keyEquivalentSymbol: String {
         
-        guard let scalar = self.keyEquivalent.unicodeScalars.first else { return "" }
+        let scalars = self.keyEquivalent.unicodeScalars
         
-        return Self.keyEquivalentSymbols[scalar] ?? String(scalar).uppercased()
+        guard
+            scalars.count == 1,
+            let scalar = scalars.first,
+            let symbol = Self.keyEquivalentSymbols[scalar]
+        else { return self.keyEquivalent.uppercased() }
+        
+        return symbol
     }
     
     
     /// The SF Symbol name for key equivalent, if exists.
     public var keyEquivalentSymbolName: String? {
         
-        guard let scalar = self.keyEquivalent.unicodeScalars.first else { return nil }
+        let scalars = self.keyEquivalent.unicodeScalars
+        
+        guard scalars.count == 1, let scalar = scalars.first else { return nil }
         
         return Self.keyEquivalentSymbolNames[scalar]
     }
@@ -207,7 +244,10 @@ public struct Shortcut: Sendable {
     /// The normalized Shortcut by preferring to use the Shift key rather than an upper key equivalent character.
     ///
     /// According to the AppKit's specification, Command-Shift-c and Command-C should be considered to be identical.
+    /// Multi-character key strings retain their original case and modifiers.
     public var normalized: Self {
+        
+        guard self.keyEquivalent.count == 1 else { return self }
         
         let needsShift = self.keyEquivalent.last?.isUppercase == true
         
