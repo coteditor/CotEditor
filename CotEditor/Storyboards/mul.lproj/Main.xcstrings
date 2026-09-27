@@ -6284,7 +6284,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "सेटिंग्ज़…"
+            "value" : "सेटिंग…"
           }
         },
         "it" : {
@@ -8204,7 +8204,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "फिर से करें"
+            "value" : "फिर करें"
           }
         },
         "it" : {
@@ -16364,7 +16364,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "सेटिंग्ज़ इम्पोर्ट करें…"
+            "value" : "सेटिंग इम्पोर्ट करें…"
           }
         },
         "it" : {
@@ -20204,7 +20204,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "सेटिंग्ज़ एक्सपोर्ट करें…"
+            "value" : "सेटिंग एक्सपोर्ट करें…"
           }
         },
         "it" : {
