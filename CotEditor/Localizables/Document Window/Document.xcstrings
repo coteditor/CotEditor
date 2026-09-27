@@ -5306,10 +5306,42 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ v %#@arg2@"
+            "value" : "%#@matches@ v %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg souborech"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg souborech"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg souboru"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg souborech"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5340,68 +5372,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg souborech"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg souborech"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg souboru"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg souborech"
-                    }
-                  }
-                }
-              }
             }
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@matches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg Treffer"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg Treffer"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5420,16 +5400,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5437,19 +5409,27 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg match"
+                      "value" : "%arg Treffer"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg matches"
+                      "value" : "%arg Treffer"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@matches@ in %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5464,6 +5444,26 @@
                     "stringUnit" : {
                       "state" : "translated",
                       "value" : "%arg files"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg match"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg matches"
                     }
                   }
                 }
@@ -5474,30 +5474,10 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@matches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg match"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg matches"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5516,16 +5496,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%#@arg1@ en %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5533,19 +5505,27 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg coincidencia"
+                      "value" : "%arg match"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg coincidencias"
+                      "value" : "%arg matches"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%#@matches@ en %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5564,36 +5544,36 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%#@arg1@ dans %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
                 "plural" : {
                   "one" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg correspondance"
+                      "state" : "translated",
+                      "value" : "%arg coincidencia"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg correspondances"
+                      "state" : "translated",
+                      "value" : "%arg coincidencias"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%#@matches@ dans %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5612,36 +5592,36 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg2@ में %#@arg1@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
                 "plural" : {
                   "one" : {
                     "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg मिलान"
+                      "state" : "needs_review",
+                      "value" : "%arg correspondance"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg मिलान"
+                      "state" : "needs_review",
+                      "value" : "%arg correspondances"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@ में %#@matches@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5660,16 +5640,56 @@
                   }
                 }
               }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg मिलान"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg मिलान"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@matches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg file"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg file"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5688,50 +5708,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg file"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg file"
-                    }
-                  }
-                }
-              }
             }
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg2@で%#@arg1@一致"
+            "value" : "%#@files@で%#@matches@一致"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg件"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5744,16 +5730,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg2@에서 %#@arg1@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5761,13 +5739,21 @@
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg개 일치"
+                      "value" : "%arg件"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@에서 %#@matches@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5780,36 +5766,30 @@
                   }
                 }
               }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg개 일치"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "state" : "translated",
+            "value" : "%#@matches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg overeenkomst"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg overeenkomsten"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5828,16 +5808,68 @@
                   }
                 }
               }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg overeenkomst"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg overeenkomsten"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ w %#@arg2@"
+            "value" : "%#@matches@ w %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg plikach"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg plikach"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg pliku"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg pliku"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5868,68 +5900,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg plikach"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg plikach"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg pliku"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg pliku"
-                    }
-                  }
-                }
-              }
             }
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ em %#@arg2@"
+            "value" : "%#@matches@ em %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg correspondência"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg correspondências"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5948,16 +5928,68 @@
                   }
                 }
               }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg correspondência"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg correspondências"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ в %#@arg2@"
+            "value" : "%#@matches@ в %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg файлах"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg файлах"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg файле"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg файлах"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5988,8 +6020,64 @@
                   }
                 }
               }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@ içinde %#@matches@"
+          },
+          "substitutions" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg dosya"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg dosya"
+                    }
+                  }
+                }
+              }
             },
-            "arg2" : {
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg eşleşme"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg eşleşme"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@matches@ у %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6009,7 +6097,7 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg файле"
+                      "value" : "%arg файлі"
                     }
                   },
                   "other" : {
@@ -6020,64 +6108,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg2@ içinde %#@arg1@"
-          },
-          "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg eşleşme"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg eşleşme"
-                    }
-                  }
-                }
-              }
             },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg dosya"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg dosya"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg1@ у %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6108,62 +6140,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg файлах"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg файлах"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg файлі"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg файлах"
-                    }
-                  }
-                }
-              }
             }
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg2@中的%#@arg1@"
+            "value" : "%#@files@中的%#@matches@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg个匹配项"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6176,16 +6162,44 @@
                   }
                 }
               }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg个匹配项"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在%#@arg2@中找到%#@arg1@"
+            "value" : "在%#@files@中找到%#@matches@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg個檔案"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6198,8 +6212,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@中的%#@matches@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6212,16 +6234,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg2@中的%#@arg1@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6230,20 +6244,6 @@
                     "stringUnit" : {
                       "state" : "translated",
                       "value" : "%arg個符合項目"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg個檔案"
                     }
                   }
                 }
@@ -6259,42 +6259,10 @@
         "cs" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "%#@arg1@ v %#@arg2@"
+            "value" : "%#@maches@ v %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ shody"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ shod"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ shoda"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ shod"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6325,36 +6293,48 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ shody"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ shod"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ shoda"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ shod"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@maches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ Treffer"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ Treffer"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6373,16 +6353,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6390,19 +6362,27 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg+ match"
+                      "value" : "%arg+ Treffer"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg+ matches"
+                      "value" : "%arg+ Treffer"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@maches@ in %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6417,6 +6397,26 @@
                     "stringUnit" : {
                       "state" : "translated",
                       "value" : "%arg files"
+                    }
+                  }
+                }
+              }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ match"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ matches"
                     }
                   }
                 }
@@ -6427,30 +6427,10 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@maches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ match"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ matches"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6469,16 +6449,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%#@arg1@ en %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6486,19 +6458,27 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg+ coincidencia"
+                      "value" : "%arg+ match"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg+ coincidencias"
+                      "value" : "%arg+ matches"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%#@maches@ en %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6517,36 +6497,36 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%#@arg1@ dans %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
                 "plural" : {
                   "one" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ correspondance"
+                      "state" : "translated",
+                      "value" : "%arg+ coincidencia"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ correspondances"
+                      "state" : "translated",
+                      "value" : "%arg+ coincidencias"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%#@maches@ dans %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6565,36 +6545,36 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg2@ में %#@arg1@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
                 "plural" : {
                   "one" : {
                     "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ मिलान"
+                      "state" : "needs_review",
+                      "value" : "%arg+ correspondance"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ मिलान"
+                      "state" : "needs_review",
+                      "value" : "%arg+ correspondances"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@ में %#@maches@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6613,16 +6593,56 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ मिलान"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ मिलान"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@maches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg file"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg file"
+                    }
+                  }
+                }
+              }
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6641,50 +6661,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg file"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg file"
-                    }
-                  }
-                }
-              }
             }
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg2@で%#@arg1@一致"
+            "value" : "%#@files@で%#@maches@一致"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg件以上"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6697,16 +6683,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg2@에서 %#@arg1@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6714,13 +6692,21 @@
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg개 이상 일치"
+                      "value" : "%arg件以上"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@에서 %#@maches@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6733,36 +6719,30 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg개 이상 일치"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@maches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ overeenkomst"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ overeenkomsten"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6781,16 +6761,68 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ overeenkomst"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ overeenkomsten"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "%#@arg1@ w %#@arg2@"
+            "value" : "%#@maches@ w %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg plikach"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg plikach"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg pliku"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg pliku"
+                    }
+                  }
+                }
+              }
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6821,68 +6853,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg plikach"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg plikach"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg pliku"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg pliku"
-                    }
-                  }
-                }
-              }
             }
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ em %#@arg2@"
+            "value" : "%#@maches@ em %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ correspondência"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ correspondências"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6901,48 +6881,36 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ correspondência"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ correspondências"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ в %#@arg2@"
+            "value" : "%#@maches@ в %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ совпадения"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ совпадений"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ совпадение"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ совпадений"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6973,36 +6941,48 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ совпадения"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ совпадений"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ совпадение"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ совпадений"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg2@ içinde %#@arg1@"
+            "value" : "%#@files@ içinde %#@maches@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ eşleşme"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ eşleşme"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -7021,48 +7001,36 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ eşleşme"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ eşleşme"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ у %#@arg2@"
+            "value" : "%#@maches@ у %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ збіги"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ збігів"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ збіг"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ збігів"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -7093,30 +7061,48 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ збіги"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ збігів"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ збіг"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ збігів"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg2@中的%#@arg1@"
+            "value" : "%#@files@中的%#@maches@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg个以上匹配项"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -7129,16 +7115,44 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg个以上匹配项"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在%#@arg2@中找到%#@arg1@"
+            "value" : "在%#@files@中找到%#@maches@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg個檔案"
+                    }
+                  }
+                }
+              }
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -7151,8 +7165,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@中的%#@maches@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -7165,16 +7187,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg2@中的%#@arg1@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -7183,20 +7197,6 @@
                     "stringUnit" : {
                       "state" : "translated",
                       "value" : "%arg個以上符合項目"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg個檔案"
                     }
                   }
                 }
