@@ -33,6 +33,12 @@
             "value" : "Échec de la détection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पहचान विफल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -140,6 +146,12 @@
             "value" : "Insérer"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सम्मिलित करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -244,6 +256,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucun texte détecté"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई टेक्स्ट नहीं मिला"
           }
         },
         "it" : {

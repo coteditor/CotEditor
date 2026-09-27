@@ -33,6 +33,12 @@
             "value" : "Syntaxes disponibles :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपलब्ध सिंटैक्स:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -137,6 +143,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Personnaliser le menu de syntaxe…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंटैक्स मेन्यू कस्टमाइज़ करें…"
           }
         },
         "it" : {
@@ -245,6 +257,12 @@
             "value" : "Syntaxes personnalisées"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कस्टमाइज़ किए सिंटैक्स"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -349,6 +367,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fins de ligne par défaut :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डिफ़ॉल्ट लाइन एंडिंग:"
           }
         },
         "it" : {
@@ -457,6 +481,12 @@
             "value" : "Syntaxe par défaut :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डिफ़ॉल्ट सिंटैक्स:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -561,6 +591,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Encodage du texte par défaut :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डिफ़ॉल्ट टेक्स्ट एन्कोडिंग:"
           }
         },
         "it" : {
@@ -669,6 +705,12 @@
             "value" : "Modifier la liste…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सूची संपादित करें…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -775,6 +817,12 @@
             "value" : "Priorité des encodages :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एन्कोडिंग प्राथमिकताएँ:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -879,6 +927,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Se référer à l’encodage déclaré dans le document"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ में एन्कोडिंग घोषणा देखें"
           }
         },
         "it" : {
@@ -993,6 +1047,12 @@
             "value" : "Recharger toutes les syntaxes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी सिंटैक्स फिर से लोड करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1105,6 +1165,12 @@
             "value" : "Montrer les conflits d’associations de fichiers"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल मैपिंग विरोध दिखाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1210,6 +1276,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cette syntaxe n’existe pas."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह सिंटैक्स मौजूद नहीं है"
           }
         },
         "it" : {
@@ -1322,6 +1394,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cette syntaxe est personnalisée."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह सिंटैक्स कस्टमाइज़ किया गया है।"
           }
         },
         "it" : {

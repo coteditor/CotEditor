@@ -33,6 +33,12 @@
             "value" : "0 fois ou plus"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 या अधिक बार"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
             "value" : "1 fois ou 0"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 या 0 बार"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -243,6 +255,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 fois ou plus"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 या अधिक बार"
           }
         },
         "it" : {
@@ -352,6 +370,12 @@
             "value" : "Ancrages"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एंकर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -456,6 +480,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "N’importe quel caractère"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई भी वर्ण"
           }
         },
         "it" : {
@@ -564,6 +594,12 @@
             "value" : "Caractère entre A et Z"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A से Z की सीमा में कोई भी वर्ण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -668,6 +704,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tout sauf un caractère entre A et Z"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A से Z की सीमा में न होने वाला कोई भी वर्ण"
           }
         },
         "it" : {
@@ -776,6 +818,12 @@
             "value" : "Au moins 0 fois mais pas plus de n fois"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कम से कम 0 लेकिन n बार से अधिक नहीं"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -882,6 +930,12 @@
             "value" : "Au moins n mais pas plus de m fois"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कम से कम n लेकिन m बार से अधिक नहीं"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -986,6 +1040,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Au moins n fois"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कम से कम n बार"
           }
         },
         "it" : {
@@ -1095,6 +1155,12 @@
             "value" : "Référence arrière"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बैक रेफ़रेंस"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1202,6 +1268,12 @@
             "value" : "Syntaxe de base des expressions régulières"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मूल रेगुलर एक्सप्रेशन सिंटैक्स"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1306,6 +1378,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Début de la ligne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति का आरंभ"
           }
         },
         "it" : {
@@ -1415,6 +1493,12 @@
             "value" : "Caractères"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्ण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1521,6 +1605,12 @@
             "value" : "Chiffre"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दशमलव संख्या"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1625,6 +1715,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fin de la ligne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति का अंत"
           }
         },
         "it" : {
@@ -1734,6 +1830,12 @@
             "value" : "Groupes étendus"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विस्तारित समूह"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1838,6 +1940,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Première correspondance"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पहला मिलान"
           }
         },
         "it" : {
@@ -1946,6 +2054,12 @@
             "value" : "ICU Regular Expressions"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ICU रेगुलर एक्सप्रेशन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2050,6 +2164,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Test avant"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लुक-अहेड"
           }
         },
         "it" : {
@@ -2158,6 +2278,12 @@
             "value" : "Test arrière"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लुक-बिहाइंड"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2262,6 +2388,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "n fois"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "n बार"
           }
         },
         "it" : {
@@ -2370,6 +2502,12 @@
             "value" : "Nouvelle ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "न्यूलाइन वर्ण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2474,6 +2612,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Caractère non blanc"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गैर-खाली-स्थान वर्ण"
           }
         },
         "it" : {
@@ -2583,6 +2727,12 @@
             "value" : "Quantificateurs"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्वांटिफ़ायर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2687,6 +2837,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tabulation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टैब वर्ण"
           }
         },
         "it" : {
@@ -2796,6 +2952,12 @@
             "value" : "Syntaxe conforme aux spécifications %@."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंटैक्स %@ विनिर्देशों के अनुरूप है।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2900,6 +3062,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Caractère blanc"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खाली स्थान वर्ण"
           }
         },
         "it" : {
@@ -3008,6 +3176,12 @@
             "value" : "Début ou fin de mot"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शब्द सीमा"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3112,6 +3286,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Caractère de mot"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शब्द वर्ण"
           }
         },
         "it" : {

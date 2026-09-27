@@ -40,6 +40,12 @@
             "value" : "Code"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोड"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Général"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सामान्य"
           }
         },
         "it" : {
@@ -266,6 +278,12 @@
             "value" : "Conteneur"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कंटेनर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -377,6 +395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fonction"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ंक्शन"
           }
         },
         "it" : {
@@ -492,6 +516,12 @@
             "value" : "Titre"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हेडिंग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -603,6 +633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Titre %lld"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हेडिंग %lld"
           }
         },
         "it" : {
@@ -718,6 +754,12 @@
             "value" : "Marqueur"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मार्क"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -829,6 +871,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Séparateur"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विभाजक"
           }
         },
         "it" : {
@@ -944,6 +992,12 @@
             "value" : "Titre"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शीर्षक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1055,6 +1109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Valeur"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मान"
           }
         },
         "it" : {
@@ -1170,6 +1230,12 @@
             "value" : "Attributs"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एट्रिब्यूट"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1281,6 +1347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Caractères"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्ण"
           }
         },
         "it" : {
@@ -1396,6 +1468,12 @@
             "value" : "Commandes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कमांड"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1507,6 +1585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commentaires"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कमेंट"
           }
         },
         "it" : {
@@ -1622,6 +1706,12 @@
             "value" : "Mots-clés"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कीवर्ड"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1733,6 +1823,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nombres"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संख्याएँ"
           }
         },
         "it" : {
@@ -1848,6 +1944,12 @@
             "value" : "Chaînes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्ट्रिंग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1959,6 +2061,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Types"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रकार"
           }
         },
         "it" : {
@@ -2074,6 +2182,12 @@
             "value" : "Valeurs"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मान"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2185,6 +2299,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Variables"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वेरिएबल"
           }
         },
         "it" : {

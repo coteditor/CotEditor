@@ -33,6 +33,12 @@
             "value" : "Début :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आरंभ:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
             "value" : "Fin :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अंत:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -243,6 +255,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Entourer avec :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इससे घेरें:"
           }
         },
         "it" : {

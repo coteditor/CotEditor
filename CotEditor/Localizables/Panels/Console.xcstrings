@@ -34,6 +34,12 @@
             "value" : "Effacer la console"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लॉग साफ़ करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Console"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कंसोल"
           }
         },
         "it" : {

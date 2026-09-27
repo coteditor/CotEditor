@@ -124,6 +124,24 @@
             }
           }
         },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld मिलान मिला।"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld मिलान मिले।"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -465,6 +483,24 @@
             }
           }
         },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld मिलान बदला गया।"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld मिलान बदले गए।"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -715,6 +751,12 @@
             "value" : "Options avancées de recherche"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उन्नत खोज विकल्प"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -820,6 +862,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Options avancées"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उन्नत विकल्प"
           }
         },
         "it" : {
@@ -929,6 +977,12 @@
             "value" : "Sensible à la casse"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केस-संवेदी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1034,6 +1088,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Effacer"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "साफ़ करें"
           }
         },
         "it" : {
@@ -1143,6 +1203,12 @@
             "value" : "Effacer les remplacements récents"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हाल के प्रतिस्थापन साफ़ करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1248,6 +1314,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Effacer les recherches récentes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हाल की खोजें साफ़ करें"
           }
         },
         "it" : {
@@ -1357,6 +1429,12 @@
             "value" : "Fermer"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बंद करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1462,6 +1540,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fermez les résultats de recherche."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोज परिणाम बंद करें।"
           }
         },
         "it" : {
@@ -1571,6 +1655,12 @@
             "value" : "Rechercher"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ढूँढें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1676,6 +1766,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rechercher et remplacer"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोजें और बदलें"
           }
         },
         "it" : {
@@ -1785,6 +1881,12 @@
             "value" : "Tout rechercher"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी ढूँढें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1890,6 +1992,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recherchez et listez toutes les correspondances."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी मिलान ढूँढें और सूचीबद्ध करें।"
           }
         },
         "it" : {
@@ -1999,6 +2107,12 @@
             "value" : "Rechercher le suivant"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगला ढूँढें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2104,6 +2218,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recherchez le résultat suivant."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगला मिलान ढूँढें।"
           }
         },
         "it" : {
@@ -2213,6 +2333,12 @@
             "value" : "Rechercher le précédent"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिछला ढूँढें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2318,6 +2444,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recherchez le résultat précédent."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिछला मिलान ढूँढें।"
           }
         },
         "it" : {
@@ -2427,6 +2559,12 @@
             "value" : "Résultat de la recherche"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोज परिणाम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2531,6 +2669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rechercher du texte : %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोज टेक्स्ट: %@"
           }
         },
         "it" : {
@@ -2645,6 +2789,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Résultat %1$lld sur %2$lld."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%2$lld में से %1$lld मिलान।"
           }
         },
         "it" : {
@@ -2875,6 +3025,30 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "Introuvable"
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld मिलान"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld मिलान"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "नहीं मिला"
                 }
               }
             }
@@ -3216,6 +3390,12 @@
             "value" : "%1$lld/%2$lld"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld/%2$lld"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3426,6 +3606,30 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "Non remplacé"
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld बदला गया"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld बदले गए"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "नहीं बदला"
                 }
               }
             }
@@ -3767,6 +3971,12 @@
             "value" : "Reprendre la recherche à l’autre extrémité du document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोज को आसपास लपेटें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3879,6 +4089,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recherche incrémentale"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वृद्धिशील खोज करें"
           }
         },
         "it" : {
@@ -3995,6 +4211,12 @@
             "value" : "La recherche ignore les signes diacritiques (par exemple, ö = o)."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोज विशेषक चिह्नों को अनदेखा करती है (उदाहरण के लिए, ö = o)।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4107,6 +4329,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorer les signes diacritiques"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विशेषक चिह्न अनदेखा करें"
           }
         },
         "it" : {
@@ -4223,6 +4451,12 @@
             "value" : "Ignore les différences de forme des caractères (Ex. : ａ = a)."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोज वर्ण रूपों में चौड़ाई के अंतर को अनदेखा करती है (उदाहरण के लिए, ａ = a)।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4335,6 +4569,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorer les différences de chasse"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चौड़ाई के अंतर अनदेखा करें"
           }
         },
         "it" : {
@@ -4451,6 +4691,12 @@
             "value" : "Équivalence exacte caractère par caractère."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सटीक वर्ण-दर-वर्ण समानता।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4563,6 +4809,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Équivalence stricte des caractères"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्णों में कड़ाई से भेद करें"
           }
         },
         "it" : {
@@ -4679,6 +4931,12 @@
             "value" : "Les caractères ^ et $ capturent respectivement le début et la fin d’une ligne."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "^ और $ को पंक्तियों के आरंभ और अंत से मिलान करने दें (मल्टीलाइन)।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4791,6 +5049,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ancrage de ligne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एंकर पंक्तियों से मिलान करें"
           }
         },
         "it" : {
@@ -4907,6 +5171,12 @@
             "value" : "Le caractère . capture n’importe quel caractère, y compris les caractères de nouvelle ligne."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ". को किसी भी वर्ण से मिलान करने दें, न्यूलाइन वर्णों सहित (सिंगललाइन)।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5019,6 +5289,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le point capture les séparateurs de ligne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डॉट पंक्ति विभाजकों से मिलान करे"
           }
         },
         "it" : {
@@ -5135,6 +5411,12 @@
             "value" : "Limitez les résultats de recherche aux mots entiers."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोज परिणामों को पूर्ण शब्दों तक सीमित करें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5247,6 +5529,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rechercher seulement les mots entiers"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केवल पूर्ण शब्दों से मिलान करें"
           }
         },
         "it" : {
@@ -5363,6 +5651,12 @@
             "value" : "Annulez l’échappement des métacaractères précédés d’un antislash dans le texte de remplacement."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रतिस्थापन टेक्स्ट में बैकस्लैश के साथ मेटावर्णों को अनएस्केप करें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5475,6 +5769,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annuler l’échappement du texte de remplacement"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रतिस्थापन टेक्स्ट अनएस्केप करें"
           }
         },
         "it" : {
@@ -5591,6 +5891,12 @@
             "value" : "Utilise Unicode TR#29 pour spécifier les extrémités de mots."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शब्द सीमाएँ निर्दिष्ट करने के लिए Unicode TR#29 उपयोग करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5703,6 +6009,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Utiliser les limites de mots Unicode"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unicode शब्द सीमाएँ उपयोग करें"
           }
         },
         "it" : {
@@ -5927,6 +6239,30 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "Aucune occurrence trouvée dans « %2$@ »."
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "“%2$@” में एक मिलान मिला।"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "“%2$@” में %1$lld मिलान मिले।"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "“%2$@” में कोई मिलान नहीं मिला।"
                 }
               }
             }
@@ -6255,6 +6591,12 @@
             "value" : "Tout surligner"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी हाइलाइट करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6360,6 +6702,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorer la casse"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केस अनदेखा करें"
           }
         },
         "it" : {
@@ -6469,6 +6817,12 @@
             "value" : "Dans la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चयन में"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6574,6 +6928,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ligne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति"
           }
         },
         "it" : {
@@ -6683,6 +7043,12 @@
             "value" : "Texte correspondant"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मिलान किया टेक्स्ट"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6788,6 +7154,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remplacements récents"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हाल के प्रतिस्थापन"
           }
         },
         "it" : {
@@ -6897,6 +7269,12 @@
             "value" : "Recherches récentes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हाल की खोजें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7002,6 +7380,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Expression régulière"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेगुलर एक्सप्रेशन"
           }
         },
         "it" : {
@@ -7111,6 +7495,12 @@
             "value" : "Expressions régulières"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेगुलर एक्सप्रेशन खोज"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7216,6 +7606,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remplacer"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बदलें"
           }
         },
         "it" : {
@@ -7325,6 +7721,12 @@
             "value" : "Tout remplacer"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी बदलें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7430,6 +7832,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remplacez tous les résultats par le texte de remplacement."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी मिलानों को प्रतिस्थापन टेक्स्ट से बदलें।"
           }
         },
         "it" : {
@@ -7539,6 +7947,12 @@
             "value" : "Remplacez la sélection par le texte de remplacement, puis recherchez la correspondance suivante."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मौजूदा चयन को प्रतिस्थापन टेक्स्ट से बदलें, फिर अगला मिलान ढूँढें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7644,6 +8058,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remplacer par"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इससे बदलें"
           }
         },
         "it" : {
@@ -7753,6 +8173,12 @@
             "value" : "Recherche reprise à l’autre extrémité du document."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोज दस्तावेज़ के दूसरे सिरे से जारी है।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7857,6 +8283,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recherche en cours…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट में खोजा जा रहा है…"
           }
         },
         "it" : {
@@ -7966,6 +8398,12 @@
             "value" : "Tout sélectionner"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी चुनें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8071,6 +8509,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionnez pour ignorer la casse lors de la recherche."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोज में वर्ण केस अनदेखा करने के लिए चुनें।"
           }
         },
         "it" : {
@@ -8180,6 +8624,12 @@
             "value" : "Sélectionnez pour rechercher le texte seulement dans la sélection."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केवल चयन से टेक्स्ट खोजने के लिए चुनें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8285,6 +8735,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionnez pour rechercher à l’aide d’une expression régulière."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेगुलर एक्सप्रेशन से खोजने के लिए चुनें।"
           }
         },
         "it" : {
@@ -8394,6 +8850,12 @@
             "value" : "Afficher les options avancées"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उन्नत विकल्प दिखाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8501,6 +8963,12 @@
             "value" : "Affichez un pense-bête pour les expressions régulières."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेगुलर एक्सप्रेशन सिंटैक्स के लिए त्वरित संदर्भ दिखाएँ।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8605,6 +9073,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Texte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट"
           }
         },
         "it" : {
@@ -8720,6 +9194,12 @@
             "value" : "Texte de recherche vide"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खाली खोज टेक्स्ट"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8831,6 +9311,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saisissez le texte à rechercher."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ढूँढने के लिए टेक्स्ट दर्ज करें।"
           }
         },
         "it" : {
@@ -8946,6 +9432,12 @@
             "value" : "L’option « Dans la sélection » est activée mais il n’y a aucune sélection."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“चयन में” विकल्प चयनित है, हालाँकि कुछ भी चयनित नहीं है।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9057,6 +9549,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionnez le périmètre de recherche dans le document ou désactivez l’option « dans la sélection »."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ में खोज दायरा चुनें या “चयन में” विकल्प अचयनित करें।"
           }
         },
         "it" : {
@@ -9172,6 +9670,12 @@
             "value" : "Expression régulière invalide"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अमान्य रेगुलर एक्सप्रेशन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9277,6 +9781,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recherche textuelle"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाठ्य खोज"
           }
         },
         "it" : {
@@ -9386,6 +9896,12 @@
             "value" : "Tapez le texte qui doit remplacer les résultats de recherche."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मिले हुए टेक्स्ट को बदलने के लिए टेक्स्ट टाइप करें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9491,6 +10007,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tapez le texte à rechercher."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोजने के लिए टेक्स्ट टाइप करें।"
           }
         },
         "it" : {

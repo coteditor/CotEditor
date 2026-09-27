@@ -41,6 +41,12 @@
             "value" : "toutes les"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +159,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "l’une des"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "किसी एक"
           }
         },
         "it" : {
@@ -269,6 +281,12 @@
             "value" : "Satisfaire à"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नीचे दी गई शर्तों में से"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -381,6 +399,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "conditions suivantes :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "से मेल खाएँ:"
           }
         },
         "it" : {
@@ -496,6 +520,12 @@
             "value" : "Le périmètre contient une règle sans valeur."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्कोप में बिना मान वाला एक नियम है।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -607,6 +637,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Le périmètre contient une expression régulière non valide."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्कोप में एक अमान्य रेगुलर एक्सप्रेशन है।"
           }
         },
         "it" : {
@@ -723,6 +759,12 @@
             "value" : "contient"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शामिल है"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -835,6 +877,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ne contient pas"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शामिल नहीं है"
           }
         },
         "it" : {
@@ -951,6 +999,12 @@
             "value" : "se termine par"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इससे समाप्त होता है"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1063,6 +1117,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "est"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "है"
           }
         },
         "it" : {
@@ -1179,6 +1239,12 @@
             "value" : "n’est pas"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नहीं है"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1291,6 +1357,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "correspond à l’expression régulière"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेगुलर एक्सप्रेशन से मेल खाता है"
           }
         },
         "it" : {
@@ -1407,6 +1479,12 @@
             "value" : "commence par"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इससे शुरू होता है"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1518,6 +1596,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extension de fichier"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल एक्सटेंशन"
           }
         },
         "it" : {
@@ -1633,6 +1717,12 @@
             "value" : "Nom du fichier"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल नाम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1746,6 +1836,12 @@
             "value" : "Chemin du fichier"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल पथ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1850,6 +1946,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Enregistrer comme périmètre nommé…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नामित स्कोप के रूप में सहेजें…"
           }
         },
         "it" : {
@@ -1965,6 +2067,12 @@
             "value" : "Nom"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नाम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2076,6 +2184,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrer sous :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस रूप में सहेजें:"
           }
         },
         "it" : {

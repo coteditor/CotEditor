@@ -40,6 +40,12 @@
             "value" : "Crée un nouveau document avec le texte spécifié dans CotEditor."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor में निर्दिष्ट टेक्स्ट के साथ एक नया दस्तावेज़ बनाएँ।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Contenu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सामग्री"
           }
         },
         "it" : {
@@ -266,6 +278,12 @@
             "value" : "Créer un document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ बनाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -377,6 +395,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Créer un document"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ बनाएँ"
           }
         },
         "it" : {

@@ -34,6 +34,12 @@
             "value" : "Code couleur"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कलर कोड"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -142,6 +148,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSL"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS HSL"
@@ -260,6 +272,12 @@
             "value" : "CSS HSLa"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HSLa"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -368,6 +386,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS HWB"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS HWB"
@@ -486,6 +510,12 @@
             "value" : "CSS HWB avec alpha"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अल्फ़ा के साथ CSS HWB"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -599,6 +629,12 @@
             "value" : "Nom CSS"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS कीवर्ड"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -707,6 +743,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGB"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CSS RGB"
@@ -825,6 +867,12 @@
             "value" : "CSS RGBa"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSS RGBa"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -936,6 +984,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hexa"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हेक्साडेसिमल"
           }
         },
         "it" : {
@@ -1051,6 +1105,12 @@
             "value" : "Hexa avec alpha"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अल्फ़ा के साथ हेक्साडेसिमल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1162,6 +1222,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hexa (court)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हेक्साडेसिमल (लघु)"
           }
         },
         "it" : {
@@ -1277,6 +1343,12 @@
             "value" : "Hexa avec alpha (court)"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अल्फ़ा के साथ हेक्साडेसिमल (लघु)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1384,6 +1456,12 @@
             "value" : "Insérer"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सम्मिलित करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1489,6 +1567,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mots-clés CSS"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्टाइलशीट कीवर्ड"
           }
         },
         "it" : {

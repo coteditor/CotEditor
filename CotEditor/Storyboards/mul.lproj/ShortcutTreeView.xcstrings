@@ -54,6 +54,12 @@
             "value" : "Menu"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेन्यू"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -166,6 +172,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commande"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कमांड"
           }
         },
         "it" : {
@@ -293,6 +305,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Raccourci"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कुंजी"
           }
         },
         "it" : {

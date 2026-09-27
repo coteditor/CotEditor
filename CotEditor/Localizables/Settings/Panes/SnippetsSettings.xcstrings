@@ -33,6 +33,12 @@
             "value" : "Toutes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -138,6 +144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commande"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कमांड"
           }
         },
         "it" : {
@@ -247,6 +259,12 @@
             "value" : "Description"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विवरण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -352,6 +370,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensions"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक्सटेंशन"
           }
         },
         "it" : {
@@ -461,6 +485,12 @@
             "value" : "Dépôt de fichiers"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल ड्रॉप"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -566,6 +596,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensions des fichiers déposés (séparées par une virgule)."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ड्रॉप की गई फ़ाइल के एक्सटेंशन (अल्पविराम से अलग)।"
           }
         },
         "it" : {
@@ -675,6 +711,12 @@
             "value" : "Fichier image"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इमेज फ़ाइल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -782,6 +824,12 @@
             "value" : "Insérer une variable"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वेरिएबल सम्मिलित करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -886,6 +934,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Format du texte à insérer :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सम्मिलन फ़ॉर्मैट:"
           }
         },
         "it" : {
@@ -1001,6 +1055,12 @@
             "value" : "Raccourci"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कुंजी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1114,6 +1174,12 @@
             "value" : "Nom"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नाम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1219,6 +1285,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Syntaxe"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंटैक्स"
           }
         },
         "it" : {
@@ -1328,6 +1400,12 @@
             "value" : "Syntaxe pour laquelle cette configuration de fichiers déposés est utilisée."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वह सिंटैक्स जिसमें यह फ़ाइल ड्रॉप सेटिंग उपयोग होती है।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1433,6 +1511,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fichier texte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट फ़ाइल"
           }
         },
         "it" : {
@@ -1541,6 +1625,12 @@
             "value" : "Texte à insérer lors d’une commande de menu ou d’un raccourci clavier :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेन्यू में किसी कमांड या कीबोर्ड शॉर्टकट द्वारा डाला जाने वाला टेक्स्ट:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1645,6 +1735,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Texte à insérer en glissant-déposant des fichiers dans l’éditeur :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एडिटर में फ़ाइलें ड्रॉप करके डाला जाने वाला टेक्स्ट:"
           }
         },
         "it" : {

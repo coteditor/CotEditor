@@ -40,6 +40,12 @@
             "value" : "Une tasse savoureuse"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक स्वादिष्ट कप"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Espresso"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एस्प्रेसो"
           }
         },
         "it" : {
@@ -266,6 +278,12 @@
             "value" : "Café pour le développement quotidien"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रोज़ाना विकास के लिए कॉफ़ी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -377,6 +395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grains de café"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉफ़ी बीन्स"
           }
         },
         "it" : {

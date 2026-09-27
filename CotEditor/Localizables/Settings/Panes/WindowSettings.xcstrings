@@ -34,6 +34,12 @@
             "value" : "Toujours"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हमेशा"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Auto"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऑटो"
           }
         },
         "it" : {
@@ -248,6 +260,12 @@
             "value" : "Automatiquement"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्वचालित रूप से"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -352,6 +370,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Changer la couleur de fond"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पृष्ठभूमि रंग बदलें"
           }
         },
         "it" : {
@@ -460,6 +484,12 @@
             "value" : "Compteur de caractères"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्ण गणना"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -564,6 +594,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Colonne courante"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्तमान कॉलम"
           }
         },
         "it" : {
@@ -672,6 +708,12 @@
             "value" : "Ligne courante"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्तमान पंक्ति"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -776,6 +818,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ligne courante :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्तमान पंक्ति:"
           }
         },
         "it" : {
@@ -884,6 +932,12 @@
             "value" : "Hauteur"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऊँचाई"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -988,6 +1042,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Guides d’indentation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंडेंट गाइड"
           }
         },
         "it" : {
@@ -1097,6 +1157,12 @@
             "value" : "Retrait des retours à la ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लपेटी गई पंक्तियों को इंडेंट करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1203,6 +1269,12 @@
             "value" : "Caractères invisibles"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अदृश्य वर्ण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1307,6 +1379,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Compteur de lignes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति गणना"
           }
         },
         "it" : {
@@ -1416,6 +1494,12 @@
             "value" : "Fin de ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लाइन एंडिंग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1520,6 +1604,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Numéros de ligne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति संख्याएँ"
           }
         },
         "it" : {
@@ -1628,6 +1718,12 @@
             "value" : "Retours à la ligne :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति लपेटन:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1732,6 +1828,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Position"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थान"
           }
         },
         "it" : {
@@ -1841,6 +1943,12 @@
             "value" : "Jamais"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कभी नहीं"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1946,6 +2054,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ouvrir dans des onglets :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ टैब में खोलें:"
           }
         },
         "it" : {
@@ -2055,6 +2169,12 @@
             "value" : "Autres caractères de contrôle"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अन्य नियंत्रण वर्ण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2160,6 +2280,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Autres blancs"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अन्य खाली स्थान"
           }
         },
         "it" : {
@@ -2268,6 +2394,12 @@
             "value" : "Surdéfilement :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ओवरस्क्रॉल:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2372,6 +2504,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Guide de page à la colonne :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉलम पर पेज गाइड:"
           }
         },
         "it" : {
@@ -2481,6 +2619,12 @@
             "value" : "pixels"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिक्सेल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2583,6 +2727,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "px"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "px"
@@ -2694,6 +2844,12 @@
             "value" : "Réglages du système"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिस्टम सेटिंग का पालन करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2798,6 +2954,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afficher :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दिखाएँ:"
           }
         },
         "it" : {
@@ -2907,6 +3069,12 @@
             "value" : "Espace"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्पेस"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3014,6 +3182,12 @@
             "value" : "espaces"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्पेस"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3118,6 +3292,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La barre d’état affiche :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्टेटस बार दिखाता है:"
           }
         },
         "it" : {
@@ -3227,6 +3407,12 @@
             "value" : "Tabulation"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टैब"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3331,6 +3517,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Largeur"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चौड़ाई"
           }
         },
         "it" : {
@@ -3439,6 +3631,12 @@
             "value" : "Taille de la fenêtre :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विंडो आकार:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3543,6 +3741,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Compteur de mots"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शब्द गणना"
           }
         },
         "it" : {
@@ -3652,6 +3856,12 @@
             "value" : "Adapter les lignes à la largeur de l’éditeur"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्तियाँ एडिटर चौड़ाई तक लपेटें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3759,6 +3969,12 @@
             "value" : "espaces indentés des retours de ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लपेटी गई पंक्ति इंडेंट स्पेस"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3863,6 +4079,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sens de l’écriture :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लेखन दिशा:"
           }
         },
         "it" : {
@@ -3979,6 +4201,12 @@
             "value" : "De gauche à droite"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाएँ से दाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4093,6 +4321,12 @@
             "value" : "De droite à gauche"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दाएँ से बाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4205,6 +4439,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vertical"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लंबवत"
           }
         },
         "it" : {

@@ -34,6 +34,12 @@
             "value" : "Largeur de tabulation :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टैब चौड़ाई:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",

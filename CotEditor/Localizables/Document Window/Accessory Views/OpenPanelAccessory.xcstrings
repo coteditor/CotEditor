@@ -34,6 +34,12 @@
             "value" : "Automatique"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऑटोमैटिक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ouvrir en lecture seule"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केवल-पढ़ने के लिए खोलें"
           }
         },
         "it" : {
@@ -248,6 +260,12 @@
             "value" : "Afficher les fichiers cachés"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अदृश्य फ़ाइलें दिखाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -352,6 +370,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Encodage du texte :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट एन्कोडिंग:"
           }
         },
         "it" : {

@@ -124,6 +124,24 @@
             }
           }
         },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld कप"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld कप"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -381,6 +399,12 @@
             "value" : "× %lld"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× %lld"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -486,6 +510,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Une connexion Internet est requise pour faire un don."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दान करने के लिए इंटरनेट कनेक्शन आवश्यक है।"
           }
         },
         "it" : {
@@ -594,6 +624,12 @@
             "value" : "Comme preuve de votre soutien, un badge de café apparaît sur la barre d’état pendant le soutien continu."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपके सहयोग के प्रमाण के रूप में, निरंतर सहयोग के दौरान स्टेटस बार पर एक कॉफ़ी बैज दिखाई देता है।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -698,6 +734,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Type de badge :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बैज प्रकार:"
           }
         },
         "it" : {
@@ -806,6 +848,12 @@
             "value" : "Soutien continu"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "निरंतर सहयोग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -910,6 +958,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "CotEditor fournit toutes les fonctionnalités gratuitement à tout le monde. Vous pouvez soutenir ce projet en offrant du café."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor सभी को सभी सुविधाएँ मुफ़्त प्रदान करता है। आप कॉफ़ी देकर इस परियोजना का समर्थन कर सकते हैं।"
           }
         },
         "it" : {
@@ -1018,6 +1072,12 @@
             "value" : "Le don n’est pas disponible pour le moment."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दान वर्तमान में उपलब्ध नहीं है।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1124,6 +1184,12 @@
             "value" : "Gérer les abonnements"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सदस्यताएँ प्रबंधित करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1228,6 +1294,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Don unique"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एकमुश्त दान"
           }
         },
         "it" : {
@@ -1337,6 +1409,12 @@
             "value" : "Ouvrir GitHub Sponsors"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub Sponsors खोलें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1443,6 +1521,12 @@
             "value" : "Ouvrir dans l’App Store"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Store में खोलें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1547,6 +1631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Confidentialité"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गोपनीयता नीति"
           }
         },
         "it" : {
@@ -1656,6 +1746,12 @@
             "value" : "Quantité"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मात्रा"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1760,6 +1856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rétablir l’abonnement"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सदस्यता पुनर्स्थापित करें"
           }
         },
         "it" : {
@@ -1868,6 +1970,12 @@
             "value" : "Conditions de service"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेवा की शर्तें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1972,6 +2080,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "La fonction de donation intégrée n’est disponible que dans CotEditor distribué dans l’App Store."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इन-ऐप दान सुविधा केवल App Store में वितरित CotEditor में उपलब्ध है।"
           }
         },
         "it" : {

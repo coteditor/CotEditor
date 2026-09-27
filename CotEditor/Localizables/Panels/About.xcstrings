@@ -34,6 +34,12 @@
             "value" : "Icône %@"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ आइकन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "À propos de %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ के बारे में"
           }
         },
         "it" : {
@@ -248,6 +260,12 @@
             "value" : "ainsi que tous ceux qui soutiennent CotEditor !"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "और उन सभी को जो CotEditor का समर्थन करते हैं!"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -353,6 +371,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Contributeurs du code"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोड योगदानकर्ता"
           }
         },
         "it" : {
@@ -461,6 +485,12 @@
             "value" : "CotEditor est un programme open source\nsous licence Apache, version 2.0."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor एक ओपन सोर्स प्रोग्राम है\nजो Apache License, Version 2.0 के अंतर्गत लाइसेंस प्राप्त है।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -565,6 +595,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "CotEditor utilise les technologies géniales suivantes. Nous sommes très reconnaissants envers les personnes qui mettent leur précieux travail à notre disposition."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor निम्नलिखित बेहतरीन तकनीकों का उपयोग करता है। हम उन लोगों के गहराई से आभारी हैं जो अपना बहुमूल्य कार्य हमें उपलब्ध कराते हैं।"
           }
         },
         "it" : {
@@ -674,6 +710,12 @@
             "value" : "Crédits"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्रेडिट"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -778,6 +820,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Licence"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लाइसेंस"
           }
         },
         "it" : {
@@ -887,6 +935,12 @@
             "value" : "Licences"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लाइसेंस"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -992,6 +1046,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Localisation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थानीयकरण"
           }
         },
         "it" : {
@@ -1101,6 +1161,12 @@
             "value" : "uniquement dans la version hors App Store"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केवल गैर-AppStore वर्शन पर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1205,6 +1271,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "développeur original"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मूल डेवलपर"
           }
         },
         "it" : {
@@ -1314,6 +1386,12 @@
             "value" : "Un grand merci"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विशेष धन्यवाद"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1419,6 +1497,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le projet CotEditor"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor परियोजना"
           }
         },
         "it" : {
@@ -1532,6 +1616,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version %1$@ (%2$@)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्शन %1$@ (%2$@)"
           }
         },
         "it" : {
