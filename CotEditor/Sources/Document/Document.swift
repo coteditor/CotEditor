@@ -1551,7 +1551,7 @@ extension NSTextView: EditorCounter.Source { }
             alert.showsSuppressionButton = true
             alert.suppressionButton?.title = String(localized: "InconsistentLineEndingAlert.suppressionButton",
                                                     defaultValue: "Don’t ask again for this document",
-                                                    comment: "toggle button label")
+                                                    comment: "imperative form; Refer to the Apple's translation for \"Don’t ask again\"")
             alert.helpAnchor = "inconsistent_line_endings"
             alert.showsHelp = true
             alert.window.identifier = .contentDependentAlert
@@ -1610,7 +1610,7 @@ extension NSTextView: EditorCounter.Source { }
                          defaultValue: "The file has been changed by another application. There are also unsaved changes in CotEditor.")
                 : String(localized: "UpdatedByExternalProcessAlert.message",
                          defaultValue: "The file has been changed by another application.",
-                         comment: "AppKit has the same expression.")
+                         comment: "Refer to the same expression by Apple.")
             alert.informativeText = String(localized: "UpdatedByExternalProcessAlert.informativeText",
                                            defaultValue: "Do you want to keep CotEditor’s version or update it to the modified version?",
                                            comment: "version refers to the document’s contents")

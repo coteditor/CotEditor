@@ -178,7 +178,7 @@ private struct FolderFindControlView: View {
             .controlSize(.small)
             
             SearchField(text: $textFinderSettings.findString,
-                        placeholder: String(localized: "Search in Folder", table: "Document", comment: "placeholder"))
+                        placeholder: String(localized: "Search in Folder", table: "Document", comment: "placeholder; noun"))
             .autosaveName("FolderSearch")
             .isRegex(self.usesRegularExpression)
             .onSubmit { findString in

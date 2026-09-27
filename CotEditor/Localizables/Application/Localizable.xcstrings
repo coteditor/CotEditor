@@ -2559,7 +2559,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Відновити типові значення"
+            "value" : "Відновити типові"
           }
         },
         "zh-Hans" : {
@@ -3465,7 +3465,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Цю дію неможливо відмінити."
+            "value" : "Цю дію не можна відмінити."
           }
         },
         "zh-Hans" : {
@@ -3489,12 +3489,13 @@
       }
     },
     "DeletionConfirmation.title" : {
+      "comment" : "Refer to the same expression by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Určitě chcete smazat „%@“?"
+            "value" : "Určitě chcete „%@“ smazat?"
           }
         },
         "de" : {
@@ -3524,7 +3525,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voulez-vous vraiment supprimer « %@ » ?"
+            "value" : "Souhaitez-vous vraiment supprimer « %@ » ?"
           }
         },
         "it" : {
@@ -3584,7 +3585,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "你确定要删除“%@”吗？"
+            "value" : "确定要删除“%@”吗？"
           }
         },
         "zh-Hant" : {
@@ -5054,7 +5055,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Відкриття такого великого файлу може сповільнити програму або призвести до того, що вона перестане відповідати. Справді відкрити цей файл?"
+            "value" : "Відкриття такого великого файлу може сповільнити програму або призвести до того, що вона перестане відповідати.\n\nСправді відкрити цей файл?"
           }
         },
         "zh-Hans" : {
@@ -8929,7 +8930,7 @@
       }
     },
     "InconsistentLineEndingAlert.suppressionButton" : {
-      "comment" : "toggle button label",
+      "comment" : "toggle button label; refer to the Apple's translation for \"Don’t ask again\"",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -9496,6 +9497,7 @@
       }
     },
     "InvalidNameError.recoverySuggestion" : {
+      "comment" : "Refer to the same expression by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -9525,25 +9527,25 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Elige otro nombre."
+            "value" : "Selecciona otro nombre."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Choisissez un autre nom."
+            "value" : "Veuillez en choisir un autre."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scegli un altro nome."
+            "value" : "Scegline uno differente."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "別の名前を指定してください。"
+            "value" : "別の名前を選んでください。"
           }
         },
         "ko" : {
@@ -9579,25 +9581,25 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Başka bir ad seçin."
+            "value" : "Lütfen başka bir ad seçin."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Оберіть інше імʼя."
+            "value" : "Оберіть іншу назву."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "输入其他名称。"
+            "value" : "请选取其他名称。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "輸入其他名稱。"
+            "value" : "請另選名稱。"
           }
         },
         "zh-HK" : {
