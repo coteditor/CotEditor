@@ -10958,7 +10958,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ट्रैश में ले जाएँ"
+            "value" : "रद्दी में मूव करें"
           }
         },
         "it" : {
@@ -11197,7 +11197,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "क्या “%@” को ट्रैश में ले जाएँ?"
+            "value" : "क्या “%@” को रद्दी में ले जाएँ?"
           }
         },
         "it" : {
@@ -11366,13 +11366,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "क्या चयनित %lld आइटम ट्रैश में ले जाएँ?"
+                  "value" : "क्या चयनित %lld आइटम रद्दी में ले जाएँ?"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "क्या चयनित %lld आइटम ट्रैश में ले जाएँ?"
+                  "value" : "क्या चयनित %lld आइटम रद्दी में ले जाएँ?"
                 }
               }
             }
@@ -14988,7 +14988,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "साझा करें…"
+            "value" : "शेयर करें…"
           }
         },
         "it" : {
@@ -20869,7 +20869,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "दस्तावेज़ फ़ाइल साझा करें"
+            "value" : "दस्तावेज़ फ़ाइल शेयर करें"
           }
         },
         "it" : {

@@ -7124,7 +7124,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "कॉपी करें"
+            "value" : "कॉपी"
           }
         },
         "it" : {
@@ -7364,7 +7364,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "कट करें"
+            "value" : "कट"
           }
         },
         "it" : {
@@ -7964,7 +7964,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पेस्ट करें"
+            "value" : "पेस्ट"
           }
         },
         "it" : {
@@ -16364,7 +16364,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "सेटिंग इम्पोर्ट करें…"
+            "value" : "सेटिंग इंपोर्ट करें…"
           }
         },
         "it" : {
@@ -26444,7 +26444,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "साझा करें…"
+            "value" : "शेयर करें…"
           }
         },
         "it" : {

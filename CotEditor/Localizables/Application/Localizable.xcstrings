@@ -1810,7 +1810,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इम्पोर्ट करें…"
+            "value" : "इंपोर्ट करें…"
           }
         },
         "it" : {
@@ -1929,7 +1929,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इम्पोर्ट करें"
+            "value" : "इंपोर्ट करें"
           }
         },
         "it" : {
@@ -15153,7 +15153,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” इम्पोर्ट नहीं की जा सकी।"
+            "value" : "“%@” इंपोर्ट नहीं की जा सकी।"
           }
         },
         "it" : {
