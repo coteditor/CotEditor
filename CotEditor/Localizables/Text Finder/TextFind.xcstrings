@@ -2794,7 +2794,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%2$lld में से %1$lld मिलान।"
+            "value" : "%2$lld में से मिलान संख्या %1$lld."
           }
         },
         "it" : {
@@ -3974,7 +3974,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "खोज को आसपास लपेटें"
+            "value" : "दस्तावेज़ के दूसरे सिरे से खोज जारी रखें"
           }
         },
         "it" : {
