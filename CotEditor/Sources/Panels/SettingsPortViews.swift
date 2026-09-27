@@ -53,17 +53,9 @@ struct ExportSettingsView: View {
             
             PortableTypesView(types: $types, includedTypes: self.includedTypes)
             
-            SubmitButtonGroup(.init("Action.export.label", defaultValue: "Export…"), helpAnchor: "howto_port_settings") {
-                do {
-                    self.document = try PortableSettingsDocument(including: self.types)
-                } catch {
-                    self.error = error
-                    return
-                }
-                self.isFileExporterPresented = true
-            }
-            .disabled(self.types.isEmpty)
-            .padding(.top)
+            SubmitButtonGroup(.init("Action.export.label", defaultValue: "Export…"), helpAnchor: "howto_port_settings", action: self.exportSettings)
+                .disabled(self.types.isEmpty)
+                .padding(.top)
         }
         .fileExporter(isPresented: $isFileExporterPresented, document: self.document, contentTypes: [.cotSettings], defaultFilename: nil) { result in
             self.document = nil
@@ -75,10 +67,23 @@ struct ExportSettingsView: View {
             }
         } onCancellation: {
             self.document = nil
-            self.dismiss()
         }
         .alert(error: $error)
         .frame(width: 340)
+    }
+    
+    
+    /// Exports the selected settings.
+    private func exportSettings() {
+        
+        do {
+            self.document = try PortableSettingsDocument(including: self.types)
+        } catch {
+            self.error = error
+            return
+        }
+        
+        self.isFileExporterPresented = true
     }
 }
 
@@ -112,17 +117,9 @@ struct ImportSettingsView: View {
             Text("Select the items to import:", tableName: "SettingsPorting")
             PortableTypesView(types: $types, includedTypes: self.document.bundledSettings)
             
-            SubmitButtonGroup(.init("Action.import.ellipsis.label", defaultValue: "Import…"), helpAnchor: "howto_port_settings") {
-                do {
-                    try self.document.applySettings(types: self.types)
-                } catch {
-                    self.error = error
-                    return
-                }
-                self.dismiss()
-            }
-            .disabled(self.types.isEmpty)
-            .padding(.top)
+            SubmitButtonGroup(.init("Action.import.ellipsis.label", defaultValue: "Import…"), helpAnchor: "howto_port_settings", action: self.importSettings)
+                .disabled(self.types.isEmpty)
+                .padding(.top)
         }
         .onAppear {
             self.documentError = nil
@@ -134,6 +131,20 @@ struct ImportSettingsView: View {
         }
         .alert(error: $error)
         .frame(width: 340)
+    }
+    
+    
+    /// Imports the selected settings.
+    private func importSettings() {
+        
+        do {
+            try self.document.applySettings(types: self.types)
+        } catch {
+            self.error = error
+            return
+        }
+        
+        self.dismiss()
     }
     
     

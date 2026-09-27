@@ -138,6 +138,7 @@ private struct ModeListView: View {
         .onAppear {
             self.syntaxModes = self.manager.syntaxModes
         }
+        .alert(error: $error)
         .accessibilityLabel(.init("Mode", table: "ModeSettings"))
     }
     
@@ -168,7 +169,6 @@ private struct ModeListView: View {
             }
             .help(.init("Action.add.tooltip", defaultValue: "Add new item"))
             .menuIndicator(.hidden)
-            .alert(error: $error)
             
             Button {
                 self.manager.removeSetting(for: self.selection)
