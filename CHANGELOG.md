@@ -6,6 +6,7 @@
 ### New Features
 
 - Add the Ukrainian localization (thanks to Yaroslav Savchenko!).
+- Add the Hindi localization (thanks to Prajwal Raj!).
 
 
 ### Improvements
