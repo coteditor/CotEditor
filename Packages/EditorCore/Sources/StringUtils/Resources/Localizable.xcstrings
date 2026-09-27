@@ -44,7 +44,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modified NFD के अनुरूप अनौपचारिक NFC-आधारित नॉर्मलाइज़ेशन रूप"
+            "value" : "संशोधित NFD के अनुरूप अनौपचारिक NFC-आधारित नॉर्मलाइज़ेशन रूप"
           }
         },
         "it" : {
@@ -163,7 +163,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modified NFC"
+            "value" : "संशोधित NFC"
           }
         },
         "it" : {
@@ -402,7 +402,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modified NFD"
+            "value" : "संशोधित NFD"
           }
         },
         "it" : {

@@ -17324,7 +17324,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इनलाइन कमेंट"
+            "value" : "इनलाइन कमेंट करें"
           }
         },
         "it" : {
@@ -26924,7 +26924,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ब्लॉक कमेंट"
+            "value" : "ब्लॉक कमेंट करें"
           }
         },
         "it" : {

@@ -164,7 +164,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "किसी भी"
+            "value" : "किसी एक"
           }
         },
         "it" : {
@@ -284,7 +284,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "मिलाएँ"
+            "value" : "निम्नलिखित शर्तों में से"
           }
         },
         "it" : {
@@ -404,7 +404,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "निम्नलिखित शर्तों में से:"
+            "value" : "से मेल खाएँ:"
           }
         },
         "it" : {
