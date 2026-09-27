@@ -41,6 +41,12 @@
             "value" : "Style d’emoji"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इमोजी शैली"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Style de texte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट शैली"
           }
         },
         "it" : {
@@ -269,6 +281,12 @@
             "value" : "Ton de chair III"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्वचा रंग III"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -381,6 +399,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ton de chair IV"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्वचा रंग IV"
           }
         },
         "it" : {
@@ -497,6 +521,12 @@
             "value" : "Ton de chair V"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्वचा रंग V"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -609,6 +639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ton de chair VI"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्वचा रंग VI"
           }
         },
         "it" : {
@@ -725,6 +761,12 @@
             "value" : "Ton de chair I-II"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्वचा रंग I-II"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -830,6 +872,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Variante"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वेरिएंट"
           }
         },
         "it" : {

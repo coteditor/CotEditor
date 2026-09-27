@@ -34,6 +34,12 @@
             "value" : "Supprimer les règles"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नियम मिटाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modifier la règle"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नियम संपादित करें"
           }
         },
         "it" : {
@@ -255,6 +267,12 @@
             "value" : "Choisissez des fichiers « Liste de remplacements CotEditor » ou des fichiers TSV (valeurs séparées par des tabulations)."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor रिप्लेस परिभाषा या TSV (टैब-पृथक मान) फ़ाइलें चुनें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -360,6 +378,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nouvelle règle"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नियम डालें"
           }
         },
         "it" : {
@@ -469,6 +493,12 @@
             "value" : "Déplacer les règles"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नियम ले जाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -574,6 +604,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remplacements multiples"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मल्टीपल रिप्लेस"
           }
         },
         "it" : {
@@ -688,6 +724,12 @@
             "value" : "Recharger toutes les définitions"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी परिभाषाएँ फिर से लोड करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -793,6 +835,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Barre latérale"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "साइडबार"
           }
         },
         "it" : {

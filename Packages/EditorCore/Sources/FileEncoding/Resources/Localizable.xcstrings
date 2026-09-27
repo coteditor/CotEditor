@@ -34,6 +34,12 @@
             "value" : "%@ avec BOM"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BOM के साथ %@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",

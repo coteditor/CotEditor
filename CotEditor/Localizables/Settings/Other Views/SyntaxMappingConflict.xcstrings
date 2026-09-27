@@ -34,6 +34,12 @@
             "value" : "Syntaxes dupliquées"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डुप्लिकेट सिंटैक्स"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extension"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक्सटेंशन"
           }
         },
         "it" : {
@@ -248,6 +260,12 @@
             "value" : "Nom du fichier"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल नाम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -353,6 +371,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Interpréteur"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंटरप्रेटर"
           }
         },
         "it" : {
@@ -462,6 +486,12 @@
             "value" : "Conflits des associations de syntaxes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंटैक्स मैपिंग विरोध"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -566,6 +596,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les règles d’association de fichiers suivantes sont déclarées dans plusieurs syntaxes. CotEditor utilise la première syntaxe automatiquement. Pour résoudre les conflits, éditez chaque syntaxe."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "निम्नलिखित फ़ाइल मैपिंग नियम कई सिंटैक्स में पंजीकृत हैं। CotEditor स्वचालित रूप से पहले सिंटैक्स का उपयोग करता है। विरोध हल करने के लिए, प्रत्येक सिंटैक्स परिभाषा संपादित करें।"
           }
         },
         "it" : {
@@ -673,6 +709,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Syntaxe utilisée"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपयोग किया सिंटैक्स"
           }
         },
         "it" : {

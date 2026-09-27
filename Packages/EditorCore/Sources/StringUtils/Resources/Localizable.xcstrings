@@ -41,6 +41,12 @@
             "value" : "Normalisation non officielle basée sur NFC, correspondant au NFD modifié"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modified NFD के अनुरूप अनौपचारिक NFC-आधारित नॉर्मलाइज़ेशन रूप"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -152,6 +158,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFC modifié"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modified NFC"
           }
         },
         "it" : {
@@ -268,6 +280,12 @@
             "value" : "Normalisation non officielle basée sur NFD, utilisée dans HFS+"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HFS+ में उपयोग किया जाने वाला अनौपचारिक NFD-आधारित नॉर्मलाइज़ेशन रूप"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -379,6 +397,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFD modifié"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modified NFD"
           }
         },
         "it" : {
@@ -495,6 +519,12 @@
             "value" : "Décomposition canonique, suivie d’une composition canonique"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कैनोनिकल डीकम्पोज़िशन, उसके बाद कैनोनिकल कम्पोज़िशन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -603,6 +633,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFC"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFC"
@@ -722,6 +758,12 @@
             "value" : "Décomposition canonique"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कैनोनिकल डीकम्पोज़िशन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -830,6 +872,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFD"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFD"
@@ -949,6 +997,12 @@
             "value" : "Décomposition de compatibilité, suivie d’une composition canonique"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कम्पैटिबिलिटी डीकम्पोज़िशन, उसके बाद कैनोनिकल कम्पोज़िशन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1057,6 +1111,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC"
@@ -1176,6 +1236,12 @@
             "value" : "Application de NFKC et du pli de casse, avec suppression des points de code ignorables implicitement"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC, केस फ़ोल्डिंग, और डिफ़ॉल्ट-अनदेखा-योग्य कोड पॉइंट हटाना लागू करना"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1287,6 +1353,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKC Case-Fold"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKC केस-फ़ोल्ड"
           }
         },
         "it" : {
@@ -1403,6 +1475,12 @@
             "value" : "Décomposition de compatibilité"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कम्पैटिबिलिटी डीकम्पोज़िशन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1511,6 +1589,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFKD"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NFKD"

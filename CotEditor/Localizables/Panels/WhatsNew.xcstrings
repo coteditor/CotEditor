@@ -33,6 +33,12 @@
             "value" : "Continuer"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जारी रखें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -144,6 +150,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Utilisez les réglages Mode pour personnaliser le style d’indentation de certaines syntaxes à votre convenance."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अलग-अलग सिंटैक्स के लिए इंडेंटेशन स्टाइल अपनी पसंद के अनुसार कस्टमाइज़ करने के लिए मोड सेटिंग्ज़ उपयोग करें।"
           }
         },
         "it" : {
@@ -259,6 +271,12 @@
             "value" : "Une indentation adaptée à chaque syntaxe"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हर सिंटैक्स के अनुरूप इंडेंटेशन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -370,6 +388,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sous macOS 27, les documents sans titre reçoivent automatiquement un nom provisoire suggéré à partir de leur contenu."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 27 पर, शीर्षकहीन दस्तावेज़ों को उनकी सामग्री से सुझाया गया ड्राफ़्ट नाम स्वतः मिल जाता है।"
           }
         },
         "it" : {
@@ -485,6 +509,12 @@
             "value" : "Le document se nomme tout seul"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ को स्वयं नाम रखने दें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -596,6 +626,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Recherchez du texte dans les fichiers d’un dossier ouvert directement depuis la barre latérale."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "साइडबार से ही खुले फ़ोल्डर की फ़ाइलों में टेक्स्ट खोजें।"
           }
         },
         "it" : {
@@ -711,6 +747,12 @@
             "value" : "Trouvez-le dans le dossier"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इसे फ़ोल्डर में ढूँढें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -822,6 +864,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Utilisez la barre d’outils pour naviguer en arrière et en avant parmi les documents récemment consultés dans un document de dossier."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोल्डर दस्तावेज़ में हाल में देखे गए दस्तावेज़ों में पीछे और आगे जाने के लिए टूलबार उपयोग करें।"
           }
         },
         "it" : {
@@ -937,6 +985,12 @@
             "value" : "Précédent et suivant dans les dossiers"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोल्डर में पीछे और आगे"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1048,6 +1102,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "CotEditor prend désormais en charge macOS 27 Golden Gate, avec une apparence actualisée pour le tout dernier système."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor अब macOS 27 Golden Gate का समर्थन करता है, जिसमें नवीनतम सिस्टम के लिए ताज़ा रूप शामिल है।"
           }
         },
         "it" : {
@@ -1163,6 +1223,12 @@
             "value" : "Prêt pour macOS 27"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 27 के लिए तैयार"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1273,6 +1339,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notes de version"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रिलीज़ नोट्स"
           }
         },
         "it" : {
@@ -1388,6 +1460,12 @@
             "value" : "Alpha"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अल्फ़ा"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1499,6 +1577,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bêta"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बीटा"
           }
         },
         "it" : {
@@ -1614,6 +1698,12 @@
             "value" : "RC"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RC"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1719,6 +1809,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nouveautés de CotEditor %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor %@ में नया क्या है"
           }
         },
         "it" : {

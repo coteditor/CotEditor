@@ -33,6 +33,12 @@
             "value" : "Pour changer un raccourci, cliquez dans la colonne Raccourci, puis effectuez le raccourci désiré au clavier."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शॉर्टकट बदलने के लिए, कुंजी कॉलम पर क्लिक करें, फिर नई कुंजियाँ टाइप करें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",

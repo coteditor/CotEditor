@@ -33,6 +33,12 @@
             "value" : "Fonctionnalité du système qui enregistre automatiquement vos fichiers pendant que vous les éditez. Si vous désactivez cette option, CotEditor créera quand même une sauvegarde en cas d’arrêt imprévu."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक सिस्टम सुविधा जो संपादन के दौरान आपकी फ़ाइलों को स्वचालित रूप से अधिलेखित करती है। बंद होने पर भी, CotEditor अप्रत्याशित रूप से बंद होने की स्थिति में गुप्त रूप से एक बैकअप बनाता है।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
             "value" : "Vérifier les mises à jour automatiquement"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपडेट के लिए स्वतः जाँचें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -243,6 +255,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Outil en ligne de commande :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कमांड-लाइन टूल:"
           }
         },
         "it" : {
@@ -358,6 +376,12 @@
             "value" : "Le lien symbolique `cot` actuel ne pointe pas vers la version de CotEditor en cours d’exécution."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मौजूदा `cot` सिंबॉलिक लिंक चल रहे CotEditor को लक्षित नहीं करता।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -471,6 +495,12 @@
             "value" : "Il se peut que le lien symbolique `cot` pointe vers un chemin invalide."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मौजूदा `cot` सिंबॉलिक लिंक किसी अमान्य पथ को लक्षित कर सकता है।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -577,6 +607,12 @@
             "value" : "Avertissements :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डायलॉग चेतावनियाँ:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -681,6 +717,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrement :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ सहेजना:"
           }
         },
         "it" : {
@@ -797,6 +839,12 @@
             "value" : "Garder la version dans CotEditor"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor का वर्शन रखें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -908,6 +956,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Demander quoi faire"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "समाधान कैसे करें पूछें"
           }
         },
         "it" : {
@@ -1024,6 +1078,12 @@
             "value" : "Charger la nouvelle version"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संशोधित वर्शन में अपडेट करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1128,6 +1188,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activer l’enregistrement automatique et les versions"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्शन के साथ ऑटो सेव सक्षम करें"
           }
         },
         "it" : {
@@ -1236,6 +1302,12 @@
             "value" : "Fins de ligne incohérentes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "असंगत लाइन एंडिंग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1340,6 +1412,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Installé ici : %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ पर इंस्टॉल किया गया"
           }
         },
         "it" : {
@@ -1449,6 +1527,12 @@
             "value" : "Plus tard"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाद में"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1555,6 +1639,12 @@
             "value" : "En savoir plus…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "और जानें…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1659,6 +1749,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gérer les avertissements…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चेतावनियाँ प्रबंधित करें…"
           }
         },
         "it" : {
@@ -1774,6 +1870,12 @@
             "value" : "Voulez-vous relancer CotEditor maintenant ?"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्या आप अभी CotEditor पुनः आरंभ करना चाहते हैं?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1885,6 +1987,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Le comportement de l’application changera dès le prochain lancement suivant celui-ci."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऐप का व्यवहार उसके बाद वाले लॉन्च से बदल जाएगा।"
           }
         },
         "it" : {
@@ -2000,6 +2108,12 @@
             "value" : "Le changement sera appliqué au prochain lancement."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बदलाव पहली बार अगले लॉन्च पर लागू होगा।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2111,6 +2225,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ne rien faire"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कुछ न करें"
           }
         },
         "it" : {
@@ -2226,6 +2346,12 @@
             "value" : "Afficher la fenêtre Ouvrir"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ओपन डायलॉग दिखाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2339,6 +2465,12 @@
             "value" : "Créer un nouveau document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नया दस्तावेज़ बनाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2443,6 +2575,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Au lancement :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शुरुआत पर:"
           }
         },
         "it" : {
@@ -2551,6 +2689,12 @@
             "value" : "Lorsque vous utilisez une version préliminaire, vous recevrez toujours les nouvelles versions préliminaires, peu importe l’activation ou non de cette option."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस सेटिंग के बावजूद, प्रीरिलीज़ का उपयोग करते समय नई प्रीरिलीज़ हमेशा शामिल होती हैं।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2655,6 +2799,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rouvrir toutes les fenêtres de la dernière session"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिछले सत्र की विंडो फिर से खोलें"
           }
         },
         "it" : {
@@ -2764,6 +2914,12 @@
             "value" : "Relancer maintenant"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी पुनः आरंभ करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2868,6 +3024,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mise à jour :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सॉफ़्टवेयर अपडेट:"
           }
         },
         "it" : {
@@ -2976,6 +3138,12 @@
             "value" : "Cacher ces avertissements :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "निम्नलिखित चेतावनियाँ दबाएँ:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3080,6 +3248,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mettre à jour vers les versions préliminaires, quand disponible"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपलब्ध होने पर प्रीरिलीज़ में अपडेट करें"
           }
         },
         "it" : {
@@ -3188,6 +3362,12 @@
             "value" : "Lorsque le document est modifié par une autre application :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जब दस्तावेज़ किसी अन्य एप्लिकेशन द्वारा बदला जाए:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3294,6 +3474,12 @@
             "value" : "Quand aucune fenêtre n’est ouverte :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जब और कुछ भी खुला न हो:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3398,6 +3584,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Avec l’outil en ligne de commande `cot`, vous pouvez lancer CotEditor et ouvrir des fichiers depuis le Terminal."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "`cot` कमांड-लाइन टूल से, आप CotEditor लॉन्च कर सकते हैं और इसे कमांड लाइन से फ़ाइलें खुलवा सकते हैं।"
           }
         },
         "it" : {

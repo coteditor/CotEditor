@@ -53,6 +53,12 @@
             ]
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${applicationName} में एक दस्तावेज़ बनाएँ"
+          }
+        },
         "it" : {
           "stringSet" : {
             "state" : "translated",

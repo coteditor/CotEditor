@@ -34,6 +34,12 @@
             "value" : "Rendre ce fichier exécutable"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल को निष्पादन योग्य बनाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",

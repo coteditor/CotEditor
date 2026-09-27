@@ -124,6 +124,24 @@
             }
           }
         },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* वर्ण"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "*%lld* वर्ण"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -381,6 +399,12 @@
             "value" : "Comptage de caractères avancé…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उन्नत वर्ण गणना…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -493,6 +517,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comptez les octets du texte encodé selon l’encodage spécifié."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "निर्दिष्ट एन्कोडिंग से एन्कोड किए गए टेक्स्ट के बाइट गिनें।"
           }
         },
         "it" : {
@@ -609,6 +639,12 @@
             "value" : "Octet"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाइट"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -721,6 +757,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comptage intuitif tel que défini par Unicode. Un caractère comprenant plusieurs points de code Unicode, par exemple un emoji, est compté comme un seul caractère."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यूनिकोड में परिभाषित सहज तरीके से गिनें। कई यूनिकोड कोड पॉइंट से बना वर्ण, जैसे इमोजी, एक वर्ण के रूप में गिना जाता है।"
           }
         },
         "it" : {
@@ -837,6 +879,12 @@
             "value" : "Groupe graphémique"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्राफ़ीम क्लस्टर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -949,6 +997,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comptez les points de code Unicode. Identique au comptage UTF-32."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यूनिकोड कोड पॉइंट गिनें। UTF-32 गिनने के समान।"
           }
         },
         "it" : {
@@ -1065,6 +1119,12 @@
             "value" : "Scalaire Unicode"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यूनिकोड स्केलर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1177,6 +1237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comptez les points de code Unicode, mais comptez une paire de caractères de substitution comme deux caractères."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यूनिकोड कोड पॉइंट गिनें लेकिन एक सरोगेट जोड़ी को दो वर्णों के रूप में।"
           }
         },
         "it" : {
@@ -1293,6 +1359,12 @@
             "value" : "UTF-16"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UTF-16"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1400,6 +1472,12 @@
             "value" : "Copier"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉपी करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1504,6 +1582,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Encodage :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एन्कोडिंग:"
           }
         },
         "it" : {
@@ -1613,6 +1697,12 @@
             "value" : "échec"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विफल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1718,6 +1808,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ignorer les fins de lignes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लाइन एंडिंग अनदेखा करें"
           }
         },
         "it" : {
@@ -1827,6 +1923,12 @@
             "value" : "Ignorer les espaces"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खाली स्थान अनदेखा करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1931,6 +2033,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Normalisation :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नॉर्मलाइज़ेशन:"
           }
         },
         "it" : {
@@ -2040,6 +2148,12 @@
             "value" : "Afficher les options"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विकल्प दिखाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2145,6 +2259,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Démarrer"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आरंभ करें"
           }
         },
         "it" : {
@@ -2254,6 +2374,12 @@
             "value" : "Arrêter le comptage de caractères avancé"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उन्नत वर्ण गणना रोकें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2359,6 +2485,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arrêter le comptage"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गणना रोकें"
           }
         },
         "it" : {
@@ -2468,6 +2600,12 @@
             "value" : "Compter les espaces consécutifs comme un seul"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लगातार खाली स्थान को एक स्पेस के रूप में मानें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2574,6 +2712,12 @@
             "value" : "Unité :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इकाई:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2678,6 +2822,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Espaces :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खाली स्थान:"
           }
         },
         "it" : {

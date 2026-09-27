@@ -40,6 +40,12 @@
             "value" : "Mac OS classic"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्लासिक Mac OS"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +159,12 @@
             "value" : "Windows"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windows"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -261,6 +273,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS / Unix"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "macOS / Unix"
@@ -380,6 +398,12 @@
             "value" : "Unix line separator"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix लाइन सेपरेटर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -494,6 +518,12 @@
             "value" : "Unix next line"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix नेक्स्ट लाइन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -606,6 +636,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unix paragraph separator"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix पैराग्राफ़ सेपरेटर"
           }
         },
         "it" : {

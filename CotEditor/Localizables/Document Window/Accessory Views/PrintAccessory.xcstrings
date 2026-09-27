@@ -34,6 +34,12 @@
             "value" : "%@ pt"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ pt"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -145,6 +151,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Centrer"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केंद्र"
           }
         },
         "it" : {
@@ -260,6 +272,12 @@
             "value" : "Aligner à gauche"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाएँ संरेखित करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -373,6 +391,12 @@
             "value" : "Aligner à droite"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दाएँ संरेखित करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -478,6 +502,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noir et blanc"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "श्वेत-श्याम"
           }
         },
         "it" : {
@@ -587,6 +617,12 @@
             "value" : "Couleur"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रंग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -692,6 +728,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Taille de police"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ॉन्ट आकार"
           }
         },
         "it" : {
@@ -801,6 +843,12 @@
             "value" : "Pied de page"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ुटर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -906,6 +954,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "En-tête"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हेडर"
           }
         },
         "it" : {
@@ -1015,6 +1069,12 @@
             "value" : "Caractères invisibles"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अदृश्य वर्ण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1120,6 +1180,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Numéro de ligne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति संख्या"
           }
         },
         "it" : {
@@ -1228,6 +1294,12 @@
             "value" : "Oui"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चालू"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1333,6 +1405,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Imprimer l’arrière-plan"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पृष्ठभूमि प्रिंट करें"
           }
         },
         "it" : {
@@ -1448,6 +1526,12 @@
             "value" : "Nom du document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ नाम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1559,6 +1643,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chemin du fichier"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल पथ"
           }
         },
         "it" : {
@@ -1674,6 +1764,12 @@
             "value" : "Date de dernière modification"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अंतिम संशोधित तिथि"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1787,6 +1883,12 @@
             "value" : "Aucun"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई नहीं"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1898,6 +2000,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Numéro de page"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेज संख्या"
           }
         },
         "it" : {
@@ -2014,6 +2122,12 @@
             "value" : "Date d’impression"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रिंट तिथि"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2127,6 +2241,12 @@
             "value" : "Nom de la syntaxe"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंटैक्स नाम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2232,6 +2352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thème"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "थीम"
           }
         },
         "it" : {

@@ -41,6 +41,12 @@
             "value" : "Imprimer l’arrière-plan"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पृष्ठभूमि प्रिंट करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Taille de police"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ॉन्ट आकार"
           }
         },
         "it" : {
@@ -269,6 +281,12 @@
             "value" : "En-tête"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हेडर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -381,6 +399,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Imprimer les en-têtes et pieds de page"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हेडर और फ़ुटर प्रिंट करें"
           }
         },
         "it" : {
@@ -497,6 +521,12 @@
             "value" : "Imprimer les numéros de lignes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति संख्याएँ प्रिंट करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -609,6 +639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Imprimer les caractères invisibles"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अदृश्य वर्ण प्रिंट करें"
           }
         },
         "it" : {
@@ -738,6 +774,12 @@
             "value" : "Pied de page"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ुटर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -850,6 +892,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noir et blanc"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "श्वेत-श्याम"
           }
         },
         "it" : {
@@ -974,6 +1022,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pt"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "pt"
@@ -1117,6 +1171,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couleur"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रंग"
           }
         },
         "it" : {
