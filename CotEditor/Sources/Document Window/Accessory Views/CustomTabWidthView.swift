@@ -52,7 +52,7 @@ struct CustomTabWidthView: View {
     var body: some View {
         
         VStack {
-            LabeledContent(.init("Tab width:", table: "CustomTabWidth")) {
+            LabeledContent(.init("Tab width:", table: "CustomTabWidth", comment: "Tab refers to indentation")) {
                 StepperNumberField(value: $value, default: self.defaultWidth, in: 1...99)
                     .onSubmit(self.submit)
             }

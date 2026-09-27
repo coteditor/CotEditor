@@ -26,6 +26,7 @@
 import Testing
 import Shortcut
 import AppKit.NSEvent
+import Foundation
 @testable import CotEditor
 
 @MainActor struct KeyBindingTests {
@@ -87,5 +88,27 @@ import AppKit.NSEvent
             #expect(!self.accessibilityShortcuts.contains(shortcut),
                     "\(keyBinding.action) overrides the accessibility shortcut “\(shortcut.symbol)”")
         }
+    }
+    
+    
+    /// Tests that user key bindings preserve complete key strings through property-list storage and menu assignment.
+    ///
+    /// - Parameter key: The key string to preserve.
+    /// - Throws: If creating or decoding a shortcut fails.
+    @Test(arguments: ["ab", "aB", "SS", "@ab", "a b"])
+    func keyStringBindings(_ key: String) throws {
+        
+        let shortcut = try #require(Shortcut(key, modifiers: [.control, .option]))
+        let binding = KeyBinding(action: #selector(NSDocument.save(_:)), shortcut: shortcut)
+        let data = try PropertyListEncoder().encode([binding])
+        let decoded = try #require(PropertyListDecoder().decode([KeyBinding].self, from: data).first)
+        
+        #expect(decoded.shortcut?.keyEquivalent == key)
+        #expect(decoded.shortcut?.modifiers == shortcut.modifiers)
+        
+        let item = NSMenuItem(title: "Test", action: binding.action, keyEquivalent: "")
+        item.shortcut = decoded.shortcut
+        #expect(item.keyEquivalent == key)
+        #expect(item.shortcut?.keyEquivalent == key)
     }
 }

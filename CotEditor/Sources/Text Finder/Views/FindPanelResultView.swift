@@ -127,7 +127,7 @@ struct FindPanelResultView: View {
         .controlSize(.small)
         .padding(.top, 8)
         .frame(minHeight: 0)
-        .accessibilityLabel(.init("Find Result", table: "TextFind", comment: "accessibility label"))
+        .accessibilityLabel(.init("Find Result", table: "TextFind", comment: "accessibility label for the view displaying find result"))
     }
     
     

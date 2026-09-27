@@ -33,6 +33,12 @@
             "value" : "Faites glisser les encodages pour changer l’ordre :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्रम बदलने के लिए एनकोडिंग खींचें :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -144,6 +150,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "L’encodage défini par défaut ne peut pas être supprimé."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डिफ़ॉल्ट के रूप में सेट एनकोडिंग हटाई नहीं जा सकती।"
           }
         },
         "it" : {
@@ -260,6 +272,12 @@
             "value" : "%@ ne peut pas être supprimé."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ हटाई नहीं जा सकती।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -364,6 +382,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Séparateur"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विभाजक"
           }
         },
         "it" : {
@@ -472,6 +496,12 @@
             "value" : "Encodage du texte"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट एनकोडिंग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -576,6 +606,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Cet ordre est utilisé par le menu Encodage et pour la détection de l’encodage. Lors de la détection, seuls les encodages répertoriés ici sont pris en compte, et les éléments les plus hauts dans la liste sont prioritaires."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह क्रम एनकोडिंग मेन्यू और एनकोडिंग पहचान के लिए उपयोग होता है। पहचान के दौरान केवल यहाँ सूचीबद्ध एनकोडिंग पर विचार किया जाता है, जिसमें ऊपरी आइटम को प्राथमिकता मिलती है।"
           }
         },
         "it" : {

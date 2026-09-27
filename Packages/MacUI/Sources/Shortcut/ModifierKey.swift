@@ -37,8 +37,13 @@ enum ModifierKey: CaseIterable {
     case shift
     case command
     case function  // This key modifier is reserved for system applications.
+    case numericPad
     
-    static let validCases: [Self] = Array(Self.allCases[0..<4])
+    /// Modifiers with a symbol to display.
+    static let displayCases: [Self] = [.control, .option, .shift, .command, .function]
+    
+    /// Modifiers represented in Cocoa key-binding strings.
+    static let keySpecCases: [Self] = [.control, .option, .shift, .command, .numericPad]
     
     
     /// NSEvent.ModifierFlags representation.
@@ -50,6 +55,7 @@ enum ModifierKey: CaseIterable {
             case .shift: .shift
             case .command: .command
             case .function: .function
+            case .numericPad: .numericPad
         }
     }
     
@@ -63,6 +69,7 @@ enum ModifierKey: CaseIterable {
             case .shift: "⇧"
             case .command: "⌘"
             case .function: Self.supportsGlobeKey ? "🌐︎" : "fn"
+            case .numericPad: preconditionFailure("The numeric keypad flag has no modifier key symbol.")
         }
     }
     
@@ -76,12 +83,16 @@ enum ModifierKey: CaseIterable {
             case .shift: "shift"
             case .command: "command"
             case .function: Self.supportsGlobeKey ? "globe" : "fn"
+            case .numericPad: preconditionFailure("The numeric keypad flag has no modifier key symbol.")
         }
     }
     
     
-    /// The symbol string to store.
-    var keySpecChar: String {
+    /// The Unicode scalar used as a modifier prefix in Cocoa key-binding strings.
+    ///
+    ///
+    /// - SeeAlso: [Text System Defaults and Key Bindings](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/TextDefaultsBindings/TextDefaultsBindings.html).
+    var keySpecChar: Unicode.Scalar {
         
         switch self {
             case .control: "^"
@@ -89,6 +100,7 @@ enum ModifierKey: CaseIterable {
             case .shift: "$"
             case .command: "@"
             case .function: preconditionFailure("Fn/Globe key cannot be used for custom shortcuts.")
+            case .numericPad: "#"
         }
     }
     

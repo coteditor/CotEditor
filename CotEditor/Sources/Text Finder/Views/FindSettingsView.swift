@@ -58,7 +58,7 @@ struct FindSettingsView: View {
                     Section {
                         Toggle(.init("FindSettings.findIsWrap.label",
                                      defaultValue: "Wrap search around",
-                                     table: "TextFind", comment: "toggle button label"),
+                                     table: "TextFind", comment: "toggle button label; continue searching from the other end of the document"),
                                isOn: $findIsWrap)
                         
                         Toggle(.init("FindSettings.findSearchesIncrementally.label",

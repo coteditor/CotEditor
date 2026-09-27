@@ -39,6 +39,12 @@
             "value" : "Ajouter un espace aux symboles de commentaire"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कमेंट सीमांककों में स्पेस जोड़ें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -143,6 +149,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Indenter automatiquement lors de la frappe"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टाइप करते समय स्वचालित इंडेंट करें"
           }
         },
         "it" : {
@@ -251,6 +263,12 @@
             "value" : "Supprimer automatiquement les espaces en fin de ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति-अंत का खाली स्थान स्वतः हटाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -355,6 +373,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commentaires :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कमेंट :"
           }
         },
         "it" : {
@@ -463,6 +487,12 @@
             "value" : "Analyse du contenu :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सामग्री पार्स :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -567,6 +597,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Délai :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विलंब :"
           }
         },
         "it" : {
@@ -675,6 +711,12 @@
             "value" : "Détecter le style d’indentation à l’ouverture du document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ खोलने पर इंडेंट स्टाइल पहचानें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -779,6 +821,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Surligner les autres instances du texte sélectionné"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चयनित टेक्स्ट के अन्य मिलान हाइलाइट करें"
           }
         },
         "it" : {
@@ -887,6 +935,12 @@
             "value" : "Surligner les accolades associées"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मिलान करने वाले ब्रेस हाइलाइट करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -991,6 +1045,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Même les lignes composées uniquement d’espaces"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केवल-खाली-स्थान पंक्तियाँ शामिल करके"
           }
         },
         "it" : {
@@ -1099,6 +1159,12 @@
             "value" : "Indenter la sélection avec la touche Tabulation"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टैब-की से चयन इंडेंट करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1203,6 +1269,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Largeur :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंडेंट चौड़ाई :"
           }
         },
         "it" : {
@@ -1311,6 +1383,12 @@
             "value" : "Indentation :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंडेंटेशन :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1415,6 +1493,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Insérer des délimiteurs de commentaire après l’indentation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंडेंट के बाद कमेंट सीमांकक सम्मिलित करें"
           }
         },
         "it" : {
@@ -1523,6 +1607,12 @@
             "value" : "Lier les URLs dans le document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ में URL लिंक करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1627,6 +1717,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Préférer :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपयोग को प्राथमिकता दें"
           }
         },
         "it" : {
@@ -1736,6 +1832,12 @@
             "value" : "secondes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेकंड"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1841,6 +1943,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "espaces"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्पेस"
           }
         },
         "it" : {
@@ -1950,6 +2058,12 @@
             "value" : "Espaces"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्पेस"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2057,6 +2171,12 @@
             "value" : "Tabulations"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टैब"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2161,6 +2281,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Espace :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खाली स्थान :"
           }
         },
         "it" : {

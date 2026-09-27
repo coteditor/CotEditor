@@ -88,6 +88,7 @@ Currently, we already have maintainers for:
 - Chinese (Hong Kong)
 - Czech
 - German
+- Hindi
 - Italian
 - Japanese
 - Korean

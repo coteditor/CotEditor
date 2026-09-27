@@ -169,6 +169,7 @@ extension DocumentWindow {
             self.tabbingMode != .disallowed,
             let shortcut = Shortcut(keyDownEvent: event),
             shortcut.modifiers == [.command],
+            shortcut.keyEquivalent.count == 1,
             let number = Int(shortcut.keyEquivalent), number > 0,
             let group = self.tabGroup,
             let window = (number == 9) ? group.windows.last : group.windows[safe: number - 1]  // 1-based to 0-based

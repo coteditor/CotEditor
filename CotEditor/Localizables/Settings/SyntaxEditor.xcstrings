@@ -34,6 +34,12 @@
             "value" : "(sans point)"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(बिना डॉट)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -138,6 +144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ :"
           }
         },
         "it" : {
@@ -332,6 +344,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld erreurs trouvées."
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld त्रुटि मिली।"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld त्रुटियाँ मिलीं।"
                 }
               }
             }
@@ -685,6 +715,24 @@
             }
           }
         },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld आइटम"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld आइटम"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -941,6 +989,12 @@
             "value" : "Auteur :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लेखक :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1016,7 +1070,7 @@
       }
     },
     "Begin String" : {
-      "comment" : "table column header",
+      "comment" : "table column header\ntable column header; noun, the pattern marking the beginning of a highlight",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1046,6 +1100,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Début de chaîne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आरंभ स्ट्रिंग"
           }
         },
         "it" : {
@@ -1123,6 +1183,7 @@
       }
     },
     "Block comment:" : {
+      "comment" : "noun, a type of comment",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1152,6 +1213,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commentaire de bloc :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ब्लॉक कमेंट :"
           }
         },
         "it" : {
@@ -1258,6 +1325,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Délimiteurs de bloc :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ब्लॉक सीमांकक :"
           }
         },
         "it" : {
@@ -1367,6 +1440,12 @@
             "value" : "Intégré"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बिल्ट-इन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1472,6 +1551,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les syntaxes fournies ne peuvent pas être renommées."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बिल्ट-इन सिंटैक्स का नाम नहीं बदला जा सकता।"
           }
         },
         "it" : {
@@ -1580,6 +1665,12 @@
             "value" : "Délimiteurs de caractère :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्ण सीमांकक :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1655,7 +1746,7 @@
       }
     },
     "Completion" : {
-      "comment" : "table column header",
+      "comment" : "table column header; noun, word completion",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1685,6 +1776,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Complétion"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूर्णता"
           }
         },
         "it" : {
@@ -1794,6 +1891,12 @@
             "value" : "Fichier de définition"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "परिभाषा फ़ाइल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1899,6 +2002,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Délimiteurs"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सीमांकक"
           }
         },
         "it" : {
@@ -2008,6 +2117,12 @@
             "value" : "Description"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विवरण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2114,6 +2229,12 @@
             "value" : "Description :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विवरण :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2189,7 +2310,7 @@
       }
     },
     "Display Pattern" : {
-      "comment" : "table column header",
+      "comment" : "table column header; noun, template used to generate outline item titles",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2219,6 +2340,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Modèle d’affichage"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रदर्शन पैटर्न"
           }
         },
         "it" : {
@@ -2327,6 +2454,12 @@
             "value" : "URL :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वितरण URL:"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2402,7 +2535,7 @@
       }
     },
     "End String" : {
-      "comment" : "table column header",
+      "comment" : "table column header\ntable column header; noun, the pattern marking the end of a highlight",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2432,6 +2565,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fin de chaîne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अंत स्ट्रिंग"
           }
         },
         "it" : {
@@ -2509,7 +2648,7 @@
       }
     },
     "Entire match" : {
-      "comment" : "placeholder for outline item table",
+      "comment" : "placeholder for outline item table; noun, the entire text matched by the regular expression",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2539,6 +2678,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Correspondance entière"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संपूर्ण मिलान"
           }
         },
         "it" : {
@@ -2648,6 +2793,12 @@
             "value" : "Caractère d’échappement"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एस्केप वर्ण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2753,6 +2904,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensions :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक्सटेंशन :"
           }
         },
         "it" : {
@@ -2862,6 +3019,12 @@
             "value" : "Fonctionnalités"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विशेषताएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2969,6 +3132,12 @@
             "value" : "Mappage de fichiers"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल मैपिंग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3073,6 +3242,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noms de fichiers :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल नाम :"
           }
         },
         "it" : {
@@ -3182,6 +3357,12 @@
             "value" : "Surlignage"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हाइलाइटिंग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3284,6 +3465,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IC"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "IC"
@@ -3396,6 +3583,12 @@
             "value" : "Si non précisé, les mots de complétion de syntaxe sont générés à partir des réglages de surlignage."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यदि निर्दिष्ट नहीं है, तो सिंटैक्स पूर्णता शब्द हाइलाइटिंग सेटिंग के आधार पर उत्पन्न होते हैं।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3503,6 +3696,12 @@
             "value" : "Ignorer la casse"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केस अनदेखा करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3607,6 +3806,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Indentation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंडेंटेशन"
           }
         },
         "it" : {
@@ -3716,6 +3921,12 @@
             "value" : "Informations"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जानकारी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3791,6 +4002,7 @@
       }
     },
     "Inline comment:" : {
+      "comment" : "noun, a type of comment",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3820,6 +4032,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commentaire de ligne :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इनलाइन कमेंट :"
           }
         },
         "it" : {
@@ -3926,6 +4144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Interpréteurs :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंटरप्रेटर :"
           }
         },
         "it" : {
@@ -4035,6 +4259,12 @@
             "value" : "Type"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रकार"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4139,6 +4369,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Type :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रकार :"
           }
         },
         "it" : {
@@ -4247,6 +4483,12 @@
             "value" : "Dernière modification :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अंतिम संशोधित :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4353,6 +4595,12 @@
             "value" : "Licence :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लाइसेंस :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4428,7 +4676,7 @@
       }
     },
     "Line Start Only" : {
-      "comment" : "table column header, keep short",
+      "comment" : "table column header; keep short",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4458,6 +4706,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Début de ligne uniquement"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केवल पंक्ति आरंभ"
           }
         },
         "it" : {
@@ -4564,6 +4818,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Géré par l’app"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऐप द्वारा प्रबंधित"
           }
         },
         "it" : {
@@ -4673,6 +4933,12 @@
             "value" : "Multiligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मल्टीलाइन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4748,7 +5014,7 @@
       }
     },
     "Nest" : {
-      "comment" : "table column header, keep short",
+      "comment" : "table column header; verb, allow nested block comments; keep short",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4778,6 +5044,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Imbrication"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नेस्ट"
           }
         },
         "it" : {
@@ -4885,6 +5157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucune erreur trouvée."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई त्रुटि नहीं मिली।"
           }
         },
         "it" : {
@@ -4999,6 +5277,12 @@
             "value" : "Aucun"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई नहीं"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5106,6 +5390,12 @@
             "value" : "Préfixes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उपसर्ग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5208,6 +5498,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RE"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "RE"
@@ -5320,6 +5616,12 @@
             "value" : "Expressions régulières"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेगुलर एक्सप्रेशन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5425,6 +5727,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Expression régulière"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेगुलर एक्सप्रेशन पैटर्न"
           }
         },
         "it" : {
@@ -5533,6 +5841,12 @@
             "value" : "Délimiteurs de chaîne :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्ट्रिंग सीमांकक :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5637,6 +5951,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nom de la syntaxe"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंटैक्स नाम"
           }
         },
         "it" : {
@@ -5752,6 +6072,12 @@
             "value" : "Les commentaires en bloc ont besoin d’un délimiteur de début et de fin."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ब्लॉक कमेंट को आरंभ और अंत दोनों सीमांकक चाहिए।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5863,6 +6189,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Le même mot est présent plusieurs fois."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक ही शब्द कई बार पंजीकृत है।"
           }
         },
         "it" : {
@@ -5978,6 +6310,12 @@
             "value" : "Le caractère d’échappement doit correspondre à une seule unité de code UTF-16."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एस्केप वर्ण UTF-16 कोड यूनिट में एकल वर्ण होना चाहिए।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6089,6 +6427,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Les commentaires de bloc imbriqués doivent utiliser des délimiteurs de début et de fin différents."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नेस्ट करने योग्य ब्लॉक कमेंट को अलग-अलग आरंभ और अंत सीमांकक उपयोग करने चाहिए।"
           }
         },
         "it" : {
@@ -6204,6 +6548,12 @@
             "value" : "Expression régulière invalide."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अमान्य रेगुलर एक्सप्रेशन।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6279,7 +6629,7 @@
       }
     },
     "Syntax.key.completions.label" : {
-      "comment" : "syntax definition type",
+      "comment" : "syntax definition type; noun, word completion",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -6316,6 +6666,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Complétion"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूर्णता"
           }
         },
         "it" : {
@@ -6432,6 +6788,12 @@
             "value" : "Structure"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आउटलाइन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6545,6 +6907,12 @@
             "value" : "Ce langage utilise un analyseur générique basé sur la structure, appelé tree-sitter, pour l’analyse syntaxique.\nLes règles d’extraction étant gérées par l’app, vous ne pouvez pas les personnaliser."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह भाषा सिंटैक्स विश्लेषण के लिए tree-sitter नामक एक संरचना-आधारित, सामान्य-उद्देश्य पार्सर का उपयोग करती है।\nचूँकि निष्कर्षण नियम ऐप द्वारा प्रबंधित होते हैं, आप उन्हें कस्टमाइज़ नहीं कर सकते।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6651,6 +7019,12 @@
             "value" : "Les délimiteurs de bloc sont utilisés pour l’indentation automatique lors de la frappe."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ब्लॉक सीमांकक टाइप करते समय स्वचालित इंडेंटेशन के लिए उपयोग होते हैं।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6755,6 +7129,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Les symboles définis ici sont également utilisés pour le surlignage syntaxique."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यहाँ परिभाषित सीमांकक सिंटैक्स हाइलाइटिंग के लिए भी उपयोग होते हैं।"
           }
         },
         "it" : {
@@ -6864,6 +7244,12 @@
             "value" : "Les interpréteurs sont utilisés pour déterminer la syntaxe à partir de l’en-tête `#!` du document."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंटरप्रेटर दस्तावेज़ में `#!` हेडर से सिंटैक्स निर्धारित करने के लिए उपयोग होते हैं।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6969,6 +7355,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Type"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रकार"
           }
         },
         "it" : {
@@ -7078,6 +7470,12 @@
             "value" : "Validation"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सत्यापन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7182,6 +7580,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्शन :"
           }
         },
         "it" : {

@@ -33,6 +33,12 @@
             "value" : "Auteur"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लेखक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -137,6 +143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fond :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पृष्ठभूमि :"
           }
         },
         "it" : {
@@ -245,6 +257,12 @@
             "value" : "Ligne courante :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्तमान पंक्ति :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -349,6 +367,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Curseur :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कर्सर :"
           }
         },
         "it" : {
@@ -457,6 +481,12 @@
             "value" : "Description"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विवरण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -532,6 +562,7 @@
       }
     },
     "Highlight:" : {
+      "comment" : "noun, the highlight color",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -561,6 +592,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Surbrillance :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हाइलाइट :"
           }
         },
         "it" : {
@@ -669,6 +706,12 @@
             "value" : "Invisibles :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अदृश्य वर्ण :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -773,6 +816,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Licence"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लाइसेंस"
           }
         },
         "it" : {
@@ -882,6 +931,12 @@
             "value" : "Non défini"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "परिभाषित नहीं"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -986,6 +1041,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recharger tous les thèmes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी थीम फिर से लोड करें"
           }
         },
         "it" : {
@@ -1094,6 +1155,12 @@
             "value" : "Sélection :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चयन :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1198,6 +1265,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afficher les informations du thème"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "थीम फ़ाइल जानकारी दिखाएँ"
           }
         },
         "it" : {
@@ -1306,6 +1379,12 @@
             "value" : "Syntaxe"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंटैक्स"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1410,6 +1489,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Texte :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट :"
           }
         },
         "it" : {
@@ -1524,6 +1609,12 @@
             "value" : "Thème"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "थीम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1630,6 +1721,12 @@
             "value" : "Éditeur de thème"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "थीम एडिटर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1731,6 +1828,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        },
+        "hi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL"
@@ -1841,6 +1944,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couleur du système"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिस्टम रंग उपयोग करें"
           }
         },
         "it" : {

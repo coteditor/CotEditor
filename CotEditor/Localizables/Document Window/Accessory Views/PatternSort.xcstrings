@@ -33,6 +33,12 @@
             "value" : "Effacer les éléments récents"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हाल के साफ़ करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -140,6 +146,12 @@
             "value" : "Colonne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉलम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -244,6 +256,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Délimiteur :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सीमांकक :"
           }
         },
         "it" : {
@@ -353,6 +371,12 @@
             "value" : "Motif vide"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खाली पैटर्न"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -458,6 +482,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ligne entière"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संपूर्ण पंक्ति"
           }
         },
         "it" : {
@@ -566,6 +596,12 @@
             "value" : "Ignorer la casse"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केस अनदेखा करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -670,6 +706,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ordre descendant"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अवरोही क्रम में"
           }
         },
         "it" : {
@@ -779,6 +821,12 @@
             "value" : "Motif invalide"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अमान्य पैटर्न"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -883,6 +931,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Garder la première ligne en haut"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पहली पंक्ति को सबसे ऊपर रखें"
           }
         },
         "it" : {
@@ -991,6 +1045,12 @@
             "value" : "Motif :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पैटर्न :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1095,6 +1155,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Position :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थिति :"
           }
         },
         "it" : {
@@ -1204,6 +1270,12 @@
             "value" : "Récents"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हाल के"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1309,6 +1381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Expression régulière"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेगुलर एक्सप्रेशन"
           }
         },
         "it" : {
@@ -1418,6 +1496,12 @@
             "value" : "Expression régulière"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रेगुलर एक्सप्रेशन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1522,6 +1606,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Respecter les règles de la langue"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भाषा नियमों का पालन करें"
           }
         },
         "it" : {
@@ -1631,6 +1721,12 @@
             "value" : "Ligne d’exemple pour vérifier quelle section sera utilisée pour la comparaison."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नमूना पंक्ति यह जाँचने के लिए कि पंक्ति का कौन-सा भाग क्रमबद्ध करने के लिए उपयोग होगा।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1735,6 +1831,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Échantillon :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नमूना :"
           }
         },
         "it" : {
@@ -1844,6 +1946,12 @@
             "value" : "Trier"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सॉर्ट करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1948,6 +2056,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Clé de tri :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्रम कुंजी :"
           }
         },
         "it" : {
@@ -2056,6 +2170,12 @@
             "value" : "Options de tri :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्रम विकल्प :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2162,6 +2282,12 @@
             "value" : "Traiter les nombres comme des valeurs numériques"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संख्याओं को संख्यात्मक मानों के रूप में मानें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2266,6 +2392,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Utiliser le groupe de capture :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कैप्चर किया समूह उपयोग करें :"
           }
         },
         "it" : {

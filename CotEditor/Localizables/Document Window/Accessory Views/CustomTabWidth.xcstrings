@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Tab width:" : {
+      "comment" : "Tab refers to indentation",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -31,6 +32,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Largeur de tabulation :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टैब चौड़ाई :"
           }
         },
         "it" : {

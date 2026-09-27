@@ -261,6 +261,9 @@ CA
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="630"/>
                                         <menuItem title="Complete" id="Qa9-dA-CF1">
+                                            <attributedString key="userComments">
+                                                <fragment content="verb, complete the current word"/>
+                                            </attributedString>
                                             <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
@@ -501,8 +504,14 @@ Gw
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="9GY-M7-uHl"/>
                                         <menuItem title="Tab Width" secondaryImage="tab.forward" id="djM-fI-MkN">
+                                            <attributedString key="userComments">
+                                                <fragment content="Tab refers to indentation"/>
+                                            </attributedString>
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Tab Width" id="xAm-b4-9CY">
+                                                <attributedString key="userComments">
+                                                    <fragment content="Tab refers to indentation"/>
+                                                </attributedString>
                                                 <items>
                                                     <menuItem title="2" tag="2" id="qs3-we-YzU">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
@@ -728,6 +737,9 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Split Editor" secondaryImage="rectangle.split.1x2" catalog="system" id="793">
+                                            <attributedString key="userComments">
+                                                <fragment content="verb, split the editor pane"/>
+                                            </attributedString>
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openSplitTextView:" target="Ady-hI-5gd" id="PUY-re-c9S"/>
@@ -783,12 +795,18 @@ Gw
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="WqH-at-5aR"/>
                                                     <menuItem title="Inline Comment" secondaryImage="text.commentout" id="F6P-7N-LSf">
+                                                        <attributedString key="userComments">
+                                                            <fragment content="verb, comment out the selection using inline comments"/>
+                                                        </attributedString>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="inlineCommentOut:" target="Ady-hI-5gd" id="cKe-O3-dvP"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Block Comment" id="U5v-4k-2tq">
+                                                        <attributedString key="userComments">
+                                                            <fragment content="verb, comment out the selection using block comments"/>
+                                                        </attributedString>
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="blockCommentOut:" target="Ady-hI-5gd" id="2fg-lQ-D0T"/>

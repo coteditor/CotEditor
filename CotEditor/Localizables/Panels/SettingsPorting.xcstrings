@@ -123,6 +123,24 @@
             }
           }
         },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld कस्टम सिंटैक्स"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld कस्टम सिंटैक्स"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -464,6 +482,24 @@
                 "stringUnit" : {
                   "state" : "needs_review",
                   "value" : "%lld thèmes personnalisés"
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld कस्टम थीम"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld कस्टम थीम"
                 }
               }
             }
@@ -816,6 +852,24 @@
             }
           }
         },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld परिभाषा"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld परिभाषाएँ"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -1163,6 +1217,24 @@
             }
           }
         },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld आइटम"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld आइटम"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -1419,6 +1491,12 @@
             "value" : "Choisissez une archive de réglages CotEditor à importer."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंपोर्ट करने के लिए एक CotEditor सेटिंग आर्काइव चुनें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1530,6 +1608,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Cette archive de réglages a été créée par une autre version de CotEditor (%@)."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह सेटिंग आर्काइव CotEditor के किसी भिन्न वर्शन (%@) द्वारा बनाया गया था।"
           }
         },
         "it" : {
@@ -1645,6 +1729,12 @@
             "value" : "Vous pouvez toujours importer ces éléments, mais certains réglages peuvent être incompatibles."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आप फिर भी इन आइटम को इंपोर्ट कर सकते हैं, लेकिन कुछ सेटिंग असंगत हो सकती हैं।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1749,6 +1839,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exportez les réglages sélectionnés sous forme d’archive afin de pouvoir les importer sur d’autres ordinateurs."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अन्य कंप्यूटरों में इंपोर्ट करने की अनुमति देने के लिए चयनित सेटिंग को आर्काइव के रूप में एक्सपोर्ट करें।"
           }
         },
         "it" : {
@@ -1857,6 +1953,12 @@
             "value" : "Exporter les réglages"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग एक्सपोर्ट करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1963,6 +2065,12 @@
             "value" : "Importer les réglages"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग इंपोर्ट करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2008,7 +2116,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ayarları İçe Aktar"
+            "value" : "Ayarlar İçe Aktar"
           }
         },
         "uk" : {
@@ -2067,6 +2175,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionnez les éléments à importer :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंपोर्ट करने के लिए आइटम चुनें :"
           }
         },
         "it" : {
@@ -2182,6 +2296,12 @@
             "value" : "Périmètres des fichiers"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल स्कोप"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2293,6 +2413,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Définitions de remplacement multiples"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मल्टीपल रिप्लेस परिभाषाएँ"
           }
         },
         "it" : {
@@ -2408,6 +2534,12 @@
             "value" : "Tous les réglages dans la fenêtre Réglages"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग विंडो में सभी सेटिंग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2519,6 +2651,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réglages"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग"
           }
         },
         "it" : {
@@ -2634,6 +2772,12 @@
             "value" : "Syntaxes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंटैक्स"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2745,6 +2889,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Thèmes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "थीम"
           }
         },
         "it" : {

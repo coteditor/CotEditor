@@ -312,8 +312,8 @@ private struct OnetimeProductViewStyle: ProductViewStyle {
             }
             .accessibilityElement(children: .contain)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
         .alert(error: $error)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
     
     

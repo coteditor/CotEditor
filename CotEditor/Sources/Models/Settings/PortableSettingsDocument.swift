@@ -177,7 +177,7 @@ struct PortableSettingsDocument: FileDocument {
             .replacements: self.replacements.keys.sorted(),
             .syntaxes: self.syntaxes.keys.sorted(),
             .themes: self.themes.keys.sorted(),
-            .fileScopes: self.fileScopes.sorted()
+            .fileScopes: self.fileScopes.sorted(),
         ]
     }
     

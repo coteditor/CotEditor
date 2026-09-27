@@ -34,6 +34,12 @@
             "value" : "%@ points"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ पॉइंट"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ fois"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ गुना"
           }
         },
         "it" : {
@@ -247,6 +259,12 @@
             "value" : "Anticrénelage"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एंटीअलियास"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -353,6 +371,12 @@
             "value" : "Mode d’apparence :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रूप :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -428,6 +452,7 @@
       }
     },
     "AppearanceMode.automatic.label" : {
+      "comment" : "use the system’s appearance setting",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -464,6 +489,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Comme le système"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिस्टम से मिलाएँ"
           }
         },
         "it" : {
@@ -579,6 +610,12 @@
             "value" : "Sombre"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डार्क"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -692,6 +729,12 @@
             "value" : "Clair"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लाइट"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -796,6 +839,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opacité de l’éditeur :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एडिटर अपारदर्शिता :"
           }
         },
         "it" : {
@@ -904,6 +953,12 @@
             "value" : "Taille de la police"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ॉन्ट आकार"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1008,6 +1063,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ligatures"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संयुक्ताक्षर"
           }
         },
         "it" : {
@@ -1116,6 +1177,12 @@
             "value" : "Hauteur de ligne :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति ऊँचाई :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1220,6 +1287,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Police monochasse :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मोनोस्पेस्ड फ़ॉन्ट :"
           }
         },
         "it" : {
@@ -1336,6 +1409,12 @@
             "value" : "Voulez-vous l’utiliser comme police monochasse ?"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्या आप इसे मोनोस्पेस्ड फ़ॉन्ट के लिए उपयोग करना चाहते हैं?"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1447,6 +1526,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La police sélectionnée ne semble pas être monochasse."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चयनित फ़ॉन्ट मोनोस्पेस्ड प्रतीत नहीं होता।"
           }
         },
         "it" : {
@@ -1562,6 +1647,12 @@
             "value" : "Opaque"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपारदर्शी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1675,6 +1766,12 @@
             "value" : "Transparent"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पारदर्शी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1779,6 +1876,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opaque"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपारदर्शी"
           }
         },
         "it" : {
@@ -1888,6 +1991,12 @@
             "value" : "Choisir…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चुनें…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1994,6 +2103,12 @@
             "value" : "Police standard :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मानक फ़ॉन्ट :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2098,6 +2213,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Barre d’état :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्टेटस बार :"
           }
         },
         "it" : {
@@ -2207,6 +2328,12 @@
             "value" : "fois"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गुना"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2311,6 +2438,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Teinté"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रंगीन"
           }
         },
         "it" : {

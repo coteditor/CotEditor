@@ -218,7 +218,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                        action: #selector(addFolder), keyEquivalent: ""),
             .separator(),
             
-            NSMenuItem(title: String(localized: "Share…", table: "Document", comment: "menu item label"),
+            NSMenuItem(title: String(localized: "Action.share.ellipsis.label", defaultValue: "Share…"),
                        systemImage: "square.and.arrow.up",
                        action: #selector(share), keyEquivalent: ""),
             .separator(),

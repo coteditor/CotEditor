@@ -54,6 +54,12 @@
             "value" : "Menu"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेन्यू"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -168,6 +174,12 @@
             "value" : "Commande"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कमांड"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -256,7 +268,7 @@
       "shouldTranslate" : false
     },
     "PSD-Um-TfH.headerCell.title" : {
-      "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Key\"; ObjectID = \"PSD-Um-TfH\";",
+      "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Key\"; ObjectID = \"PSD-Um-TfH\"; Note = \"keyboard shortcut\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -293,6 +305,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Raccourci"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कुंजी"
           }
         },
         "it" : {

@@ -160,6 +160,24 @@
             }
           }
         },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld कमांड मिली"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld कमांड मिलीं"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -489,6 +507,12 @@
             "value" : "Commande"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कमांड"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -593,6 +617,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Actions rapides"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्विक एक्शन"
           }
         },
         "it" : {
@@ -700,6 +730,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Script"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्क्रिप्ट"
           }
         },
         "it" : {

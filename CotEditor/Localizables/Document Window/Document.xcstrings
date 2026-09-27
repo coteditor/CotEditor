@@ -33,6 +33,12 @@
             "value" : " (par défaut)"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (डिफ़ॉल्ट)"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -137,6 +143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ pixels/pouce"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ पिक्सेल/इंच"
           }
         },
         "it" : {
@@ -246,6 +258,12 @@
             "value" : "Alias"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एलियस"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -351,6 +369,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bloc"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ब्लॉक"
           }
         },
         "it" : {
@@ -460,6 +484,12 @@
             "value" : "Catégorie"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "श्रेणी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -567,6 +597,12 @@
             "value" : "Caractère"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्ण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -671,6 +707,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Effacer le périmètre des fichiers"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल स्कोप साफ़ करें"
           }
         },
         "it" : {
@@ -780,6 +822,12 @@
             "value" : "Fermer l’éditeur divisé"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विभाजित एडिटर बंद करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -885,6 +933,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fermer l’éditeur divisé"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विभाजित एडिटर बंद करें"
           }
         },
         "it" : {
@@ -994,6 +1048,12 @@
             "value" : "Point de code"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोड पॉइंट"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1099,6 +1159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Points de code"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोड पॉइंट्स"
           }
         },
         "it" : {
@@ -1207,6 +1273,12 @@
             "value" : "Profil de couleur"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कलर प्रोफ़ाइल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1311,6 +1383,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Espace colorimétrique"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कलर स्पेस"
           }
         },
         "it" : {
@@ -1420,6 +1498,12 @@
             "value" : "Converti"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "परिवर्तित"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1525,6 +1609,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Compteurs"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गणना"
           }
         },
         "it" : {
@@ -1640,6 +1730,12 @@
             "value" : "Caractères"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्ण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1751,6 +1847,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Colonne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉलम"
           }
         },
         "it" : {
@@ -1866,6 +1968,12 @@
             "value" : "Ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1977,6 +2085,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lignes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्तियाँ"
           }
         },
         "it" : {
@@ -2092,6 +2206,12 @@
             "value" : "Position"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थान"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2205,6 +2325,12 @@
             "value" : "Mots"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शब्द"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2312,6 +2438,12 @@
             "value" : "Créé le"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बनाया गया"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2416,6 +2548,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dimensions"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आयाम"
           }
         },
         "it" : {
@@ -2525,6 +2663,12 @@
             "value" : "Le document contient des modifications non enregistrées."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ में सहेजे न गए बदलाव हैं"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2630,6 +2774,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dupliquer"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नक़ल बनाएँ"
           }
         },
         "it" : {
@@ -2738,6 +2888,12 @@
             "value" : "Durée"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अवधि"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2842,6 +2998,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Modifier le périmètre des fichiers…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल स्कोप संपादित करें…"
           }
         },
         "it" : {
@@ -2951,6 +3113,12 @@
             "value" : "Éditeur"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एडिटर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3058,6 +3226,12 @@
             "value" : "Encodage"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एनकोडिंग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3162,6 +3336,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Récupération de la structure…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आउटलाइन निकाली जा रही है…"
           }
         },
         "it" : {
@@ -3271,6 +3451,12 @@
             "value" : "Fichier"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3376,6 +3562,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Filtre du navigateur de fichiers"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल ब्राउज़र फ़िल्टर"
           }
         },
         "it" : {
@@ -3484,6 +3676,12 @@
             "value" : "Périmètre des fichiers"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल स्कोप"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3589,6 +3787,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Taille du fichier"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल आकार"
           }
         },
         "it" : {
@@ -3704,6 +3908,12 @@
             "value" : "Archive"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आर्काइव"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3815,6 +4025,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Audio"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऑडियो"
           }
         },
         "it" : {
@@ -3930,6 +4146,12 @@
             "value" : "Exécutable Unix"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unix निष्पादन फ़ाइल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4041,6 +4263,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dossier"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोल्डर"
           }
         },
         "it" : {
@@ -4156,6 +4384,12 @@
             "value" : "Document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4267,6 +4501,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Image"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इमेज"
           }
         },
         "it" : {
@@ -4382,6 +4622,12 @@
             "value" : "Séquence"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मूवी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4487,6 +4733,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fichiers"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइलें"
           }
         },
         "it" : {
@@ -4681,6 +4933,24 @@
                 "stringUnit" : {
                   "state" : "needs_review",
                   "value" : "Seules les %lld premières correspondances ont été trouvées."
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "केवल पहला मिलान मिला।"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "केवल पहले %lld मिलान मिले।"
                 }
               }
             }
@@ -4950,6 +5220,12 @@
             "value" : "Limite de recherche atteinte"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोज सीमा तक पहुँच गई"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5030,10 +5306,42 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ v %#@arg2@"
+            "value" : "%#@matches@ v %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg souborech"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg souborech"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg souboru"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg souborech"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5064,68 +5372,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg souborech"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg souborech"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg souboru"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg souborech"
-                    }
-                  }
-                }
-              }
             }
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@matches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg Treffer"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg Treffer"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5144,16 +5400,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5161,19 +5409,27 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg match"
+                      "value" : "%arg Treffer"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg matches"
+                      "value" : "%arg Treffer"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@matches@ in %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5188,6 +5444,26 @@
                     "stringUnit" : {
                       "state" : "translated",
                       "value" : "%arg files"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg match"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg matches"
                     }
                   }
                 }
@@ -5198,30 +5474,10 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@matches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg match"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg matches"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5240,16 +5496,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%#@arg1@ en %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5257,19 +5505,27 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg coincidencia"
+                      "value" : "%arg match"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg coincidencias"
+                      "value" : "%arg matches"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%#@matches@ en %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5288,36 +5544,36 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%#@arg1@ dans %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
                 "plural" : {
                   "one" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg correspondance"
+                      "state" : "translated",
+                      "value" : "%arg coincidencia"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg correspondances"
+                      "state" : "translated",
+                      "value" : "%arg coincidencias"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%#@matches@ dans %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5336,16 +5592,104 @@
                   }
                 }
               }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg correspondance"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg correspondances"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@ में %#@matches@"
+          },
+          "substitutions" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg फ़ाइल"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg फ़ाइलों"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg मिलान"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg मिलान"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@matches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg file"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg file"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5364,50 +5708,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg file"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg file"
-                    }
-                  }
-                }
-              }
             }
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg2@で%#@arg1@一致"
+            "value" : "%#@files@で%#@matches@一致"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg件"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5420,16 +5730,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg2@에서 %#@arg1@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5437,13 +5739,21 @@
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg개 일치"
+                      "value" : "%arg件"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@에서 %#@matches@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5456,36 +5766,30 @@
                   }
                 }
               }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg개 일치"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "state" : "translated",
+            "value" : "%#@matches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg overeenkomst"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg overeenkomsten"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5504,16 +5808,68 @@
                   }
                 }
               }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg overeenkomst"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg overeenkomsten"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ w %#@arg2@"
+            "value" : "%#@matches@ w %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg plikach"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg plikach"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg pliku"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg pliku"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5544,68 +5900,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg plikach"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg plikach"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg pliku"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg pliku"
-                    }
-                  }
-                }
-              }
             }
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ em %#@arg2@"
+            "value" : "%#@matches@ em %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg correspondência"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg correspondências"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5624,16 +5928,68 @@
                   }
                 }
               }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg correspondência"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg correspondências"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ в %#@arg2@"
+            "value" : "%#@matches@ в %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg файлах"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg файлах"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg файле"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg файлах"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5664,8 +6020,64 @@
                   }
                 }
               }
+            }
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@ içinde %#@matches@"
+          },
+          "substitutions" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg dosya"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg dosya"
+                    }
+                  }
+                }
+              }
             },
-            "arg2" : {
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg eşleşme"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg eşleşme"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@matches@ у %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5685,7 +6097,7 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg файле"
+                      "value" : "%arg файлі"
                     }
                   },
                   "other" : {
@@ -5696,64 +6108,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg2@ içinde %#@arg1@"
-          },
-          "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg eşleşme"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg eşleşme"
-                    }
-                  }
-                }
-              }
             },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg dosya"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg dosya"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg1@ у %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5784,62 +6140,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg файлах"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg файлах"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg файлі"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg файлах"
-                    }
-                  }
-                }
-              }
             }
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg2@中的%#@arg1@"
+            "value" : "%#@files@中的%#@matches@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg个匹配项"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5852,16 +6162,44 @@
                   }
                 }
               }
+            },
+            "matches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg个匹配项"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在%#@arg2@中找到%#@arg1@"
+            "value" : "在%#@files@中找到%#@matches@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg個檔案"
+                    }
+                  }
+                }
+              }
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5874,8 +6212,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@中的%#@matches@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5888,16 +6234,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg2@中的%#@arg1@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "matches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -5906,20 +6244,6 @@
                     "stringUnit" : {
                       "state" : "translated",
                       "value" : "%arg個符合項目"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg個檔案"
                     }
                   }
                 }
@@ -5935,42 +6259,10 @@
         "cs" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "%#@arg1@ v %#@arg2@"
+            "value" : "%#@maches@ v %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ shody"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ shod"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ shoda"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ shod"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6001,36 +6293,48 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ shody"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ shod"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ shoda"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ shod"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@maches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ Treffer"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ Treffer"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6049,16 +6353,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6066,19 +6362,27 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg+ match"
+                      "value" : "%arg+ Treffer"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg+ matches"
+                      "value" : "%arg+ Treffer"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@maches@ in %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6093,6 +6397,26 @@
                     "stringUnit" : {
                       "state" : "translated",
                       "value" : "%arg files"
+                    }
+                  }
+                }
+              }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ match"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ matches"
                     }
                   }
                 }
@@ -6103,30 +6427,10 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@maches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ match"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ matches"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6145,16 +6449,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%#@arg1@ en %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6162,19 +6458,27 @@
                   "one" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg+ coincidencia"
+                      "value" : "%arg+ match"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg+ coincidencias"
+                      "value" : "%arg+ matches"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%#@maches@ en %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6193,36 +6497,36 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%#@arg1@ dans %#@arg2@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
                 "plural" : {
                   "one" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ correspondance"
+                      "state" : "translated",
+                      "value" : "%arg+ coincidencia"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ correspondances"
+                      "state" : "translated",
+                      "value" : "%arg+ coincidencias"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "%#@maches@ dans %#@files@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6241,16 +6545,104 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ correspondance"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ correspondances"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@ में %#@maches@"
+          },
+          "substitutions" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg फ़ाइल"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg फ़ाइलों"
+                    }
+                  }
+                }
+              }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ मिलान"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ मिलान"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@maches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg file"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg file"
+                    }
+                  }
+                }
+              }
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6269,50 +6661,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg file"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg file"
-                    }
-                  }
-                }
-              }
             }
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg2@で%#@arg1@一致"
+            "value" : "%#@files@で%#@maches@一致"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg件以上"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6325,16 +6683,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg2@에서 %#@arg1@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6342,13 +6692,21 @@
                   "other" : {
                     "stringUnit" : {
                       "state" : "translated",
-                      "value" : "%arg개 이상 일치"
+                      "value" : "%arg件以上"
                     }
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@에서 %#@maches@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6361,36 +6719,30 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg개 이상 일치"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "%#@arg1@ in %#@arg2@"
+            "value" : "%#@maches@ in %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ overeenkomst"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ overeenkomsten"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6409,16 +6761,68 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ overeenkomst"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "needs_review",
+                      "value" : "%arg+ overeenkomsten"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "%#@arg1@ w %#@arg2@"
+            "value" : "%#@maches@ w %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg plikach"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg plikach"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg pliku"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg pliku"
+                    }
+                  }
+                }
+              }
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6449,68 +6853,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg plikach"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg plikach"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg pliku"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg pliku"
-                    }
-                  }
-                }
-              }
             }
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ em %#@arg2@"
+            "value" : "%#@maches@ em %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ correspondência"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ correspondências"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6529,48 +6881,36 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ correspondência"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ correspondências"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ в %#@arg2@"
+            "value" : "%#@maches@ в %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ совпадения"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ совпадений"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ совпадение"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "needs_review",
-                      "value" : "%arg+ совпадений"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6601,36 +6941,48 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ совпадения"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ совпадений"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ совпадение"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ совпадений"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg2@ içinde %#@arg1@"
+            "value" : "%#@files@ içinde %#@maches@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ eşleşme"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ eşleşme"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6649,48 +7001,36 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ eşleşme"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ eşleşme"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg1@ у %#@arg2@"
+            "value" : "%#@maches@ у %#@files@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "few" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ збіги"
-                    }
-                  },
-                  "many" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ збігів"
-                    }
-                  },
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ збіг"
-                    }
-                  },
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg+ збігів"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6721,30 +7061,48 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ збіги"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ збігів"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ збіг"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg+ збігів"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%#@arg2@中的%#@arg1@"
+            "value" : "%#@files@中的%#@maches@"
           },
           "substitutions" : {
-            "arg1" : {
-              "argNum" : 1,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg个以上匹配项"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6757,16 +7115,44 @@
                   }
                 }
               }
+            },
+            "maches" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg个以上匹配项"
+                    }
+                  }
+                }
+              }
             }
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在%#@arg2@中找到%#@arg1@"
+            "value" : "在%#@files@中找到%#@maches@"
           },
           "substitutions" : {
-            "arg1" : {
+            "files" : {
+              "argNum" : 2,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg個檔案"
+                    }
+                  }
+                }
+              }
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6779,8 +7165,16 @@
                   }
                 }
               }
-            },
-            "arg2" : {
+            }
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%#@files@中的%#@maches@"
+          },
+          "substitutions" : {
+            "files" : {
               "argNum" : 2,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6793,16 +7187,8 @@
                   }
                 }
               }
-            }
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%#@arg2@中的%#@arg1@"
-          },
-          "substitutions" : {
-            "arg1" : {
+            },
+            "maches" : {
               "argNum" : 1,
               "formatSpecifier" : "lld",
               "variations" : {
@@ -6811,20 +7197,6 @@
                     "stringUnit" : {
                       "state" : "translated",
                       "value" : "%arg個以上符合項目"
-                    }
-                  }
-                }
-              }
-            },
-            "arg2" : {
-              "argNum" : 2,
-              "formatSpecifier" : "lld",
-              "variations" : {
-                "plural" : {
-                  "other" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg個檔案"
                     }
                   }
                 }
@@ -6871,6 +7243,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La recherche a échoué"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोज नहीं हो सकी"
           }
         },
         "it" : {
@@ -6986,6 +7364,12 @@
             "value" : "Aucun résultat pour « %@ » n’a été trouvé."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” से मेल खाने वाला कुछ नहीं है।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7097,6 +7481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucun résultat"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई परिणाम नहीं"
           }
         },
         "it" : {
@@ -7212,6 +7602,12 @@
             "value" : "Recherche dans le dossier…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोल्डर में खोजा जा रहा है…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7323,6 +7719,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Le dossier est introuvable."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोल्डर नहीं मिला।"
           }
         },
         "it" : {
@@ -7517,6 +7919,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld caractères incompatibles trouvés."
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld असंगत वर्ण मिला।"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld असंगत वर्ण मिले।"
                 }
               }
             }
@@ -7869,6 +8289,24 @@
             }
           }
         },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%2$@ के अलावा %1$lld लाइन एंडिंग मिली।"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%2$@ के अलावा %1$lld लाइन एंडिंग मिलीं।"
+                }
+              }
+            }
+          }
+        },
         "it" : {
           "variations" : {
             "plural" : {
@@ -8126,6 +8564,12 @@
             "value" : "Chemin complet"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरा पथ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8230,6 +8674,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "PPP de l’image"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इमेज DPI"
           }
         },
         "it" : {
@@ -8339,6 +8789,12 @@
             "value" : "Inclure les fichiers cachés"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "छिपी हुई फ़ाइलें शामिल करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8444,6 +8900,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Inclure d’autres types de fichiers"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अन्य फ़ाइल प्रकार शामिल करें"
           }
         },
         "it" : {
@@ -8553,6 +9015,12 @@
             "value" : "Caractères incompatibles"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "असंगत वर्ण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8658,6 +9126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fins de ligne incohérentes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "असंगत लाइन एंडिंग"
           }
         },
         "it" : {
@@ -8767,6 +9241,12 @@
             "value" : "Informations"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जानकारी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8872,6 +9352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inspecteur"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंस्पेक्टर"
           }
         },
         "it" : {
@@ -8988,6 +9474,12 @@
             "value" : "Inspecteur de document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ इंस्पेक्टर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9100,6 +9592,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Structure"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आउटलाइन"
           }
         },
         "it" : {
@@ -9216,6 +9714,12 @@
             "value" : "Avertissements"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चेतावनियाँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9321,6 +9825,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aller à l’élément de structure suivant"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगले आइटम पर जाएँ"
           }
         },
         "it" : {
@@ -9430,6 +9940,12 @@
             "value" : "Aller à l’élément de structure précédent"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिछले आइटम पर जाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9534,6 +10050,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Type"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रकार"
           }
         },
         "it" : {
@@ -9643,6 +10165,12 @@
             "value" : "Ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9748,6 +10276,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fin de ligne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लाइन एंडिंग"
           }
         },
         "it" : {
@@ -9857,6 +10391,12 @@
             "value" : "Fins de ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लाइन एंडिंग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9964,6 +10504,12 @@
             "value" : "Numéros de ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति संख्याएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10068,6 +10614,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Gérer les périmètres enregistrés…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सहेजे गए स्कोप प्रबंधित करें…"
           }
         },
         "it" : {
@@ -10177,6 +10729,12 @@
             "value" : "Mode"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मोड"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10284,6 +10842,12 @@
             "value" : "Modifié le"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संशोधित"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10389,6 +10953,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Placer dans la corbeille"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रद्दी में मूव करें"
           }
         },
         "it" : {
@@ -10505,6 +11075,12 @@
             "value" : "Cette opération est irréversible."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह क्रिया पूर्ववत नहीं की जा सकती।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10616,6 +11192,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Voulez-vous placer « %@ » dans la corbeille ?"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्या “%@” को रद्दी में ले जाएँ?"
           }
         },
         "it" : {
@@ -10773,6 +11355,24 @@
                 "stringUnit" : {
                   "state" : "needs_review",
                   "value" : "Voulez-vous placer %lld éléments sélectionnés dans la corbeille ?"
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "क्या चयनित %lld आइटम रद्दी में ले जाएँ?"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "क्या चयनित %lld आइटम रद्दी में ले जाएँ?"
                 }
               }
             }
@@ -11005,6 +11605,12 @@
             "value" : "Nom"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नाम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11110,6 +11716,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Barre de navigation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नेविगेशन बार"
           }
         },
         "it" : {
@@ -11219,6 +11831,12 @@
             "value" : "Nouveau fichier"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नई फ़ाइल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11324,6 +11942,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nouveau dossier"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नया फ़ोल्डर"
           }
         },
         "it" : {
@@ -11433,6 +12057,12 @@
             "value" : "Élément de structure suivant"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगला आउटलाइन आइटम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11537,6 +12167,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Aucun document sélectionné"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई दस्तावेज़ चयनित नहीं"
           }
         },
         "it" : {
@@ -11646,6 +12282,12 @@
             "value" : "Aucun résultat pour ce filtre"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई फ़िल्टर परिणाम नहीं"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11752,6 +12394,12 @@
             "value" : "Aucun problème trouvé."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई समस्या नहीं मिली।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11856,6 +12504,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Non modifiable"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संपादन योग्य नहीं"
           }
         },
         "it" : {
@@ -11965,6 +12619,12 @@
             "value" : "Pas de sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चयनित नहीं"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12069,6 +12729,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ouvrir en texte brut"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्लेन टेक्स्ट के रूप में खोलें"
           }
         },
         "it" : {
@@ -12178,6 +12844,12 @@
             "value" : "Ouvrir dans une nouvelle fenêtre"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नई विंडो में खोलें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12283,6 +12955,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Ouvrir l’original"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मूल खोलें"
           }
         },
         "it" : {
@@ -12392,6 +13070,12 @@
             "value" : "Ouvrir avec un éditeur externe"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाहरी एडिटर से खोलें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12496,6 +13180,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Options"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विकल्प"
           }
         },
         "it" : {
@@ -12605,6 +13295,12 @@
             "value" : "Original"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मूल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12709,6 +13405,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Autre…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अन्य…"
           }
         },
         "it" : {
@@ -12818,6 +13520,12 @@
             "value" : "Structure"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आउटलाइन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12923,6 +13631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Menu de structure"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आउटलाइन मेन्यू"
           }
         },
         "it" : {
@@ -13032,6 +13746,12 @@
             "value" : "Propriétaire"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्वामी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13137,6 +13857,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Permissions"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुमतियाँ"
           }
         },
         "it" : {
@@ -13246,6 +13972,12 @@
             "value" : "Élément de structure précédent"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिछला आउटलाइन आइटम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13351,6 +14083,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Afficher dans le navigateur de fichiers"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल ब्राउज़र में दिखाएँ"
           }
         },
         "it" : {
@@ -13459,6 +14197,12 @@
             "value" : "Périmètres enregistrés"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सहेजे गए स्कोप"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13563,6 +14307,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Périmètres enregistrés :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सहेजे गए स्कोप :"
           }
         },
         "it" : {
@@ -13671,6 +14421,12 @@
             "value" : "Recherche de caractères incompatibles…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "असंगत वर्ण स्कैन किए जा रहे हैं…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13746,7 +14502,7 @@
       }
     },
     "Search in Folder" : {
-      "comment" : "placeholder",
+      "comment" : "placeholder; noun",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -13776,6 +14532,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Rechercher dans le dossier"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोल्डर में खोजें"
           }
         },
         "it" : {
@@ -13885,6 +14647,12 @@
             "value" : "Méthode de recherche"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोज विधि"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13989,6 +14757,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Recherche dans le dossier…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोल्डर में खोजा जा रहा है…"
           }
         },
         "it" : {
@@ -14098,6 +14872,12 @@
             "value" : "Sélectionnez un et un seul caractère pour afficher ses informations Unicode."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यूनिकोड जानकारी दिखाने के लिए केवल एक वर्ण चुनें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14172,113 +14952,6 @@
         }
       }
     },
-    "Share…" : {
-      "comment" : "menu item label",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sdílet…"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Teilen …"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Share…"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compartir…"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Partager…"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Condividi…"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "共有…"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "공유…"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deel…"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Udostępnij…"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compartilhar…"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Поделиться…"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Paylaş…"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Поширити…"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "共享…"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "分享⋯"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "分享⋯"
-          }
-        }
-      }
-    },
     "Show Hidden Files" : {
       "comment" : "menu item label",
       "localizations" : {
@@ -14310,6 +14983,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Afficher les fichiers cachés"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "छिपी हुई फ़ाइलें दिखाएँ"
           }
         },
         "it" : {
@@ -14419,6 +15098,12 @@
             "value" : "Afficher dans le Finder"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finder में दिखाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14524,6 +15209,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Barre latérale"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "साइडबार"
           }
         },
         "it" : {
@@ -14639,6 +15330,12 @@
             "value" : "Navigateur de fichiers"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ाइल ब्राउज़र"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14752,6 +15449,12 @@
             "value" : "Recherche dans le dossier"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोल्डर खोज"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14859,6 +15562,12 @@
             "value" : "Taille"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आकार"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14934,7 +15643,7 @@
       }
     },
     "Split editor" : {
-      "comment" : "tooltip for button",
+      "comment" : "tooltip for button; verb, split the editor pane",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -14964,6 +15673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diviser l’éditeur"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एडिटर विभाजित करें"
           }
         },
         "it" : {
@@ -15041,7 +15756,7 @@
       }
     },
     "Split Editor" : {
-      "comment" : "accessibility label for button",
+      "comment" : "accessibility label for button; verb, split the editor pane",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -15071,6 +15786,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diviser l’éditeur"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एडिटर विभाजित करें"
           }
         },
         "it" : {
@@ -15180,6 +15901,12 @@
             "value" : "Barre d’état"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्टेटस बार"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15285,6 +16012,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tags"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टैग"
           }
         },
         "it" : {
@@ -15394,6 +16127,12 @@
             "value" : "Encodage du texte"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट एनकोडिंग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15499,6 +16238,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réglages du texte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट सेटिंग"
           }
         },
         "it" : {
@@ -15608,6 +16353,12 @@
             "value" : "Merci pour votre soutien !"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपके सहयोग के लिए धन्यवाद!"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15715,6 +16466,12 @@
             "value" : "Le document n’est pas modifiable."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह दस्तावेज़ संपादन योग्य नहीं है।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15790,6 +16547,7 @@
       }
     },
     "Toolbar.comment.label" : {
+      "comment" : "verb, toggle commenting of the selection",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -15826,6 +16584,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commenter"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कमेंट"
           }
         },
         "it" : {
@@ -15941,6 +16705,12 @@
             "value" : "Commenter ou décommenter la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चयन को कमेंट आउट/कमेंट हटाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16052,6 +16822,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Précédent"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पीछे"
           }
         },
         "it" : {
@@ -16167,6 +16943,12 @@
             "value" : "Aller au document précédent"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिछले दस्तावेज़ पर लौटें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16278,6 +17060,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Suivant"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आगे"
           }
         },
         "it" : {
@@ -16393,6 +17181,12 @@
             "value" : "Aller au document suivant"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगले दस्तावेज़ पर जाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16504,6 +17298,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Précédent/Suivant"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पीछे/आगे"
           }
         },
         "it" : {
@@ -16619,6 +17419,12 @@
             "value" : "Revenir ou avancer dans l’historique des documents"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ इतिहास में पीछे/आगे जाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16730,6 +17536,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Édition"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संपादन"
           }
         },
         "it" : {
@@ -16845,6 +17657,12 @@
             "value" : "Empêcher la modification du document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ का संपादन रोकें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16956,6 +17774,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Autoriser la modification du document"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ को संपादन योग्य बनाएँ"
           }
         },
         "it" : {
@@ -17071,6 +17895,12 @@
             "value" : "Emoji et symboles"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इमोजी और चिह्न"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17182,6 +18012,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afficher Emoji et symboles"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“इमोजी और चिह्न” दिखाएँ"
           }
         },
         "it" : {
@@ -17297,6 +18133,12 @@
             "value" : "Rechercher"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ढूँढें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17410,6 +18252,12 @@
             "value" : "Rechercher et remplacer"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“खोजें और बदलें” दिखाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17521,6 +18369,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Polices"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ॉन्ट"
           }
         },
         "it" : {
@@ -17637,6 +18491,12 @@
             "value" : "Type de police"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ॉन्ट प्रकार"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17748,6 +18608,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Monochasse"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मोनोस्पेस्ड"
           }
         },
         "it" : {
@@ -17863,6 +18729,12 @@
             "value" : "Afficher les polices"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ॉन्ट दिखाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17974,6 +18846,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Standard"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मानक"
           }
         },
         "it" : {
@@ -18089,6 +18967,12 @@
             "value" : "Changer la police"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ॉन्ट बदलें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18200,6 +19084,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Indenter"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंडेंट"
           }
         },
         "it" : {
@@ -18315,6 +19205,12 @@
             "value" : "Décaler à gauche"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाएँ शिफ़्ट करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18426,6 +19322,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Décaler les lignes à gauche"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्तियाँ बाएँ शिफ़्ट करें"
           }
         },
         "it" : {
@@ -18541,6 +19443,12 @@
             "value" : "Décaler à droite"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दाएँ शिफ़्ट करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18652,6 +19560,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Décaler les lignes à droite"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्तियाँ दाएँ शिफ़्ट करें"
           }
         },
         "it" : {
@@ -18767,6 +19681,12 @@
             "value" : "Indenter ou désindenter la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चयन को इंडेंट करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18878,6 +19798,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Guides d’indentation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंडेंट गाइड"
           }
         },
         "it" : {
@@ -18993,6 +19919,12 @@
             "value" : "Afficher les guides d’indentation"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंडेंट गाइड दिखाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19104,6 +20036,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Masquer les guides d’indentation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंडेंट गाइड छिपाएँ"
           }
         },
         "it" : {
@@ -19219,6 +20157,12 @@
             "value" : "Invisibles"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अदृश्य वर्ण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19330,6 +20274,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afficher les caractères invisibles"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अदृश्य वर्ण दिखाएँ"
           }
         },
         "it" : {
@@ -19445,6 +20395,12 @@
             "value" : "Masquer les caractères invisibles"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अदृश्य वर्ण छिपाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19558,6 +20514,12 @@
             "value" : "Garder au premier plan"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सबसे ऊपर रखें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19669,6 +20631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Garder la fenêtre au premier plan"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विंडो को हमेशा सबसे ऊपर रखें"
           }
         },
         "it" : {
@@ -19785,6 +20753,12 @@
             "value" : "Partager le document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ फ़ाइल शेयर करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19896,6 +20870,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vérifier l’orthographe"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्पेल चेक"
           }
         },
         "it" : {
@@ -20011,6 +20991,12 @@
             "value" : "Afficher l’orthographe et la grammaire"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्तनी और व्याकरण दिखाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20122,6 +21108,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Syntaxe"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंटैक्स"
           }
         },
         "it" : {
@@ -20238,6 +21230,12 @@
             "value" : "Supprimés"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मिटाए गए आइटम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20350,6 +21348,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Utilisés récemment"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हाल में उपयोग किए आइटम"
           }
         },
         "it" : {
@@ -20465,6 +21469,12 @@
             "value" : "Changer la syntaxe"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंटैक्स बदलें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20540,6 +21550,7 @@
       }
     },
     "Toolbar.tabStyle.label" : {
+      "comment" : "Tab refers to indentation",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -20576,6 +21587,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Style de tabulation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टैब स्टाइल"
           }
         },
         "it" : {
@@ -20691,6 +21708,12 @@
             "value" : "Personnalisé…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कस्टम…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20766,7 +21789,7 @@
       }
     },
     "Toolbar.tabStyle.menu.tabWidth.label" : {
-      "comment" : "menu item header",
+      "comment" : "menu item header; Tab refers to indentation",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -20803,6 +21826,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Largeur de tabulation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टैब चौड़ाई"
           }
         },
         "it" : {
@@ -20918,6 +21947,12 @@
             "value" : "Utiliser des espaces pour l’indentation"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंडेंटेशन के लिए स्पेस उपयोग करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21029,6 +22064,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Utiliser des espaces pour l’indentation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंडेंटेशन के लिए स्पेस उपयोग करें"
           }
         },
         "it" : {
@@ -21144,6 +22185,12 @@
             "value" : "Utiliser des tabulations pour l’indentation"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंडेंटेशन के लिए टैब उपयोग करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21255,6 +22302,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Horizontale"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्षैतिज"
           }
         },
         "it" : {
@@ -21370,6 +22423,12 @@
             "value" : "Horizontale"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्षैतिज"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21481,6 +22540,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Orientation du texte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्षैतिज/लंबवत"
           }
         },
         "it" : {
@@ -21596,6 +22661,12 @@
             "value" : "Changer l’orientation du texte"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्षैतिज/लंबवत टेक्स्ट टॉगल करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21709,6 +22780,12 @@
             "value" : "Verticale"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लंबवत"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21820,6 +22897,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verticale"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लंबवत"
           }
         },
         "it" : {
@@ -21936,6 +23019,12 @@
             "value" : "Taille réelle"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वास्तविक आकार"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22047,6 +23136,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Plus grand"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "और बड़ा"
           }
         },
         "it" : {
@@ -22162,6 +23257,12 @@
             "value" : "Augmenter la taille du texte"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट आकार बड़ा करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22273,6 +23374,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Taille du texte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट आकार"
           }
         },
         "it" : {
@@ -22388,6 +23495,12 @@
             "value" : "Plus petit"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "और छोटा"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22499,6 +23612,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diminuer la taille du texte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट आकार छोटा करें"
           }
         },
         "it" : {
@@ -22614,6 +23733,12 @@
             "value" : "Changer la taille du texte"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट आकार बदलें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22725,6 +23850,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retours à la ligne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्ति रैपिंग"
           }
         },
         "it" : {
@@ -22840,6 +23971,12 @@
             "value" : "Renvoyer à la ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्तियाँ रैप करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22951,6 +24088,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ne pas renvoyer à la ligne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पंक्तियाँ रैप न करें"
           }
         },
         "it" : {
@@ -23066,6 +24209,12 @@
             "value" : "Sens de l’écriture"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लिखने की दिशा"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23177,6 +24326,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De gauche à droite"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाएँ से दाएँ"
           }
         },
         "it" : {
@@ -23292,6 +24447,12 @@
             "value" : "De gauche à droite"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाएँ से दाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23403,6 +24564,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "De droite à gauche"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दाएँ से बाएँ"
           }
         },
         "it" : {
@@ -23518,6 +24685,12 @@
             "value" : "De droite à gauche"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दाएँ से बाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23629,6 +24802,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Changer le sens de l’écriture"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लिखने की दिशा बदलें"
           }
         },
         "it" : {

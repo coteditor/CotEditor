@@ -33,6 +33,12 @@
             "value" : "Les syntaxes masquées sont toujours utilisées pour la détection automatique."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "छिपे हुए सिंटैक्स अभी भी स्वचालित पहचान के लिए उपयोग होते हैं।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -139,6 +145,12 @@
             "value" : "Tout sélectionner"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी चुनें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -243,6 +255,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sélectionnez les syntaxes à afficher dans les menus Syntaxe :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वे सिंटैक्स चुनें जिन्हें आप सिंटैक्स मेन्यू में दिखाना चाहते हैं :"
           }
         },
         "it" : {

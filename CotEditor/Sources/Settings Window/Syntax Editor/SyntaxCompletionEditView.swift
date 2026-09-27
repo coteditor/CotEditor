@@ -51,7 +51,7 @@ struct SyntaxCompletionEditView: View {
             
             // create a table with wrapped values and then find the editable item again in each column to enable sorting (2025-07, macOS 26)
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
-                TableColumn(.init("Completion", table: "SyntaxEditor", comment: "table column header"), value: \.value.text) { wrappedItem in
+                TableColumn(.init("Completion", table: "SyntaxEditor", comment: "table column header; noun, word completion"), value: \.value.text) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         TextField(text: item.value.text, label: EmptyView.init)
                             .focused($focusedField, equals: item.id)

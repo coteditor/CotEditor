@@ -34,6 +34,12 @@
             "value" : "Ajouter un point en saisissant deux espaces"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डबल-स्पेस से फ़ुल स्टॉप जोड़ें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -138,6 +144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Insérer automatiquement les parenthèses et guillemets fermants"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "समापन ब्रैकेट और उद्धरण स्वचालित रूप से सम्मिलित करें"
           }
         },
         "it" : {
@@ -247,6 +259,12 @@
             "value" : "Vérifier la grammaire et l’orthographe"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्तनी के साथ व्याकरण जाँचें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -352,6 +370,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vérifier l’orthographe lors de la saisie"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टाइप करते समय वर्तनी जाँचें"
           }
         },
         "it" : {
@@ -460,6 +484,12 @@
             "value" : "La liste de complétion inclut :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूर्णता सूची में शामिल है :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -535,6 +565,7 @@
       }
     },
     "Completion:" : {
+      "comment" : "noun, word completion",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -564,6 +595,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Complétion :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूर्णता :"
           }
         },
         "it" : {
@@ -673,6 +710,12 @@
             "value" : "Corriger l’orthographe automatiquement"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्तनी को ऑटोमैटिकली सुधारें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -777,6 +820,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Police :"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ॉन्ट :"
           }
         },
         "it" : {
@@ -892,6 +941,12 @@
             "value" : "Monochasse"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मोनोस्पेस्ड"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1005,6 +1060,12 @@
             "value" : "Standard"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मानक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1111,6 +1172,12 @@
             "value" : "Indentation :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंडेंटेशन :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1215,6 +1282,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mode"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मोड"
           }
         },
         "it" : {
@@ -1324,6 +1397,12 @@
             "value" : "Introuvable"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नहीं मिला"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1429,6 +1508,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copier-coller intelligent"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्मार्ट कॉपी/पेस्ट"
           }
         },
         "it" : {
@@ -1538,6 +1623,12 @@
             "value" : "Tirets intelligents"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्मार्ट डैश"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1643,6 +1734,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Guillemets courbes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्मार्ट कोट"
           }
         },
         "it" : {
@@ -1751,6 +1848,12 @@
             "value" : "Orthographe :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्तनी :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1855,6 +1958,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mots courants"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मानक शब्द"
           }
         },
         "it" : {
@@ -1963,6 +2072,12 @@
             "value" : "Substitution :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सब्स्टिट्यूशन :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2069,6 +2184,12 @@
             "value" : "Afficher des suggestions pendant la saisie"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टाइप करते समय पूर्णता सुझाएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2173,6 +2294,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Syntaxe"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंटैक्स"
           }
         },
         "it" : {
@@ -2282,6 +2409,12 @@
             "value" : "Remplacement de texte"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टेक्स्ट प्रतिस्थापन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2387,6 +2520,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cette syntaxe n’existe pas."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह सिंटैक्स मौजूद नहीं है"
           }
         },
         "it" : {
@@ -2495,6 +2634,12 @@
             "value" : "Réglages personnalisés"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कस्टम सेटिंग उपयोग करें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2601,6 +2746,12 @@
             "value" : "Mots définis dans la syntaxe"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंटैक्स में परिभाषित शब्द"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2705,6 +2856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mots du document"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "दस्तावेज़ में शब्द"
           }
         },
         "it" : {

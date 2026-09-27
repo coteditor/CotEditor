@@ -57,7 +57,8 @@ enum InvalidNameError: LocalizedError {
                        defaultValue: "Name can’t begin with “.”.")
             case .duplicated(let name):
                 String(localized: "InvalidNameError.duplicated.description",
-                       defaultValue: "The name “\(name)” is already taken.")
+                       defaultValue: "The name “\(name)” is already taken.",
+                       comment: "Refer to the same expression by Apple.")
             case .reserved(let name):
                 String(localized: "InvalidNameError.reserved.description",
                        defaultValue: "The name “\(name)” is reserved.")

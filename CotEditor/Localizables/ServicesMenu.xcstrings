@@ -35,6 +35,12 @@
             "value" : "Nouveau document CotEditor avec la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चयन युक्त नई CotEditor विंडो"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -140,6 +146,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ouvrir dans CotEditor"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor में खोलें"
           }
         },
         "it" : {
