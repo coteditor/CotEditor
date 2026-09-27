@@ -644,7 +644,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "प्रतिस्थापन"
+            "value" : "सब्स्टिट्यूशन"
           }
         },
         "it" : {
@@ -18164,7 +18164,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "प्रतिस्थापन दिखाएँ"
+            "value" : "सब्स्टिट्यूशन दिखाएँ"
           }
         },
         "it" : {
@@ -22604,7 +22604,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "फ़ॉन्ट टाइप"
+            "value" : "फ़ॉन्ट प्रकार"
           }
         },
         "it" : {
@@ -28604,7 +28604,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "प्रतिस्थापन"
+            "value" : "सब्स्टिट्यूशन"
           }
         },
         "it" : {
