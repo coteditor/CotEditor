@@ -3229,7 +3229,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "एन्कोडिंग"
+            "value" : "एनकोडिंग"
           }
         },
         "it" : {
@@ -16243,7 +16243,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "टेक्स्ट एन्कोडिंग"
+            "value" : "टेक्स्ट एनकोडिंग"
           }
         },
         "it" : {
