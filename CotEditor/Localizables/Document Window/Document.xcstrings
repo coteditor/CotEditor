@@ -261,7 +261,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "उपनाम"
+            "value" : "एलियस"
           }
         },
         "it" : {
@@ -23254,7 +23254,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "बड़ा"
+            "value" : "और बड़ा"
           }
         },
         "it" : {
@@ -23611,7 +23611,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "छोटा"
+            "value" : "और छोटा"
           }
         },
         "it" : {
@@ -24325,7 +24325,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "लेखन दिशा"
+            "value" : "लिखने की दिशा"
           }
         },
         "it" : {
@@ -24920,7 +24920,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "लेखन दिशा टॉगल करें"
+            "value" : "लिखने की दिशा बदलें"
           }
         },
         "it" : {

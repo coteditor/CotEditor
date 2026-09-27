@@ -156,7 +156,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "केंद्र"
+            "value" : "मध्य"
           }
         },
         "it" : {
@@ -275,7 +275,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "बाएँ संरेखित करें"
+            "value" : "बाईं ओर अलाइन करें"
           }
         },
         "it" : {
@@ -394,7 +394,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "दाएँ संरेखित करें"
+            "value" : "दाईं ओर अलाइन करें"
           }
         },
         "it" : {

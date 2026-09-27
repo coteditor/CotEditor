@@ -713,7 +713,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "वर्तनी स्वतः सुधारें"
+            "value" : "वर्तनी को ऑटोमैटिकली सुधारें"
           }
         },
         "it" : {
@@ -1739,7 +1739,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "स्मार्ट उद्धरण चिह्न"
+            "value" : "स्मार्ट कोट"
           }
         },
         "it" : {

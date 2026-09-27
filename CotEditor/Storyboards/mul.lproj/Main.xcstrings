@@ -524,7 +524,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पढ़ना रोकें"
+            "value" : "बोलना बंद करें"
           }
         },
         "it" : {
@@ -1124,7 +1124,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पढ़ना शुरू करें"
+            "value" : "बोलना शुरू करें"
           }
         },
         "it" : {
@@ -4724,7 +4724,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पेज सेटअप…"
+            "value" : "पृष्ठ सेटअप…"
           }
         },
         "it" : {
@@ -4964,7 +4964,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इस रूप में सहेजें…"
+            "value" : "ऐसे सहेजें…"
           }
         },
         "it" : {
@@ -5804,7 +5804,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "सहेजे गए पर वापस लौटें"
+            "value" : "सहेजे हुए पर रिवर्ट करें"
           }
         },
         "it" : {
@@ -5924,7 +5924,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "हाल ही के खोलें"
+            "value" : "हालिया खोलें"
           }
         },
         "it" : {
@@ -6044,7 +6044,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "हाल ही के खोलें"
+            "value" : "हालिया खोलें"
           }
         },
         "it" : {
@@ -10004,7 +10004,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "छोटा"
+            "value" : "और छोटा"
           }
         },
         "it" : {
@@ -10124,7 +10124,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "बड़ा"
+            "value" : "और बड़ा"
           }
         },
         "it" : {
@@ -14444,7 +14444,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "रूपांतरण"
+            "value" : "ट्रांसफ़ॉर्मेशन"
           }
         },
         "it" : {
@@ -17804,7 +17804,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "स्पीच"
+            "value" : "बोली"
           }
         },
         "it" : {
@@ -18284,7 +18284,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "रूपांतरण"
+            "value" : "ट्रांसफ़ॉर्मेशन"
           }
         },
         "it" : {
@@ -19244,7 +19244,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "चयन को खोज के लिए उपयोग करें"
+            "value" : "ढूँढने के लिए चयन का उपयोग करें"
           }
         },
         "it" : {
@@ -19364,7 +19364,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "लेखन दिशा"
+            "value" : "लिखने की दिशा"
           }
         },
         "it" : {
@@ -19604,7 +19604,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "स्पीच"
+            "value" : "बोली"
           }
         },
         "it" : {
@@ -21044,7 +21044,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "वर्तनी स्वतः सुधारें"
+            "value" : "वर्तनी को ऑटोमैटिकली सुधारें"
           }
         },
         "it" : {
@@ -21404,7 +21404,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "प्रत्येक शब्द बड़े अक्षर में"
+            "value" : "हर पहला अक्षर कैपिटल करें"
           }
         },
         "it" : {
@@ -22244,7 +22244,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "लेखन दिशा"
+            "value" : "लिखने की दिशा"
           }
         },
         "it" : {
@@ -26204,7 +26204,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "स्मार्ट उद्धरण चिह्न"
+            "value" : "स्मार्ट कोट"
           }
         },
         "it" : {
@@ -27764,7 +27764,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "लिगेचर"
+            "value" : "संयुक्ताक्षर"
           }
         },
         "it" : {

@@ -4076,7 +4076,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "सहेजें नहीं"
+            "value" : "न सहेजें"
           }
         },
         "it" : {
@@ -16937,7 +16937,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "शीर्षकहीन"
+            "value" : "अनामांकित"
           }
         },
         "it" : {
