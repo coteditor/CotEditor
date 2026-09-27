@@ -150,7 +150,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@:"
+            "value" : "%@ :"
           }
         },
         "it" : {
@@ -269,7 +269,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@: %2$@"
+            "value" : "%1$@ : %2$@"
           }
         },
         "it" : {
@@ -15394,7 +15394,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "डिकोडिंग त्रुटि: %@"
+            "value" : "डिकोडिंग त्रुटि : %@"
           }
         },
         "it" : {

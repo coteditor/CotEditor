@@ -823,7 +823,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "वर्तमान पंक्ति:"
+            "value" : "वर्तमान पंक्ति :"
           }
         },
         "it" : {
@@ -1721,7 +1721,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पंक्ति लपेटन:"
+            "value" : "पंक्ति लपेटन :"
           }
         },
         "it" : {
@@ -2059,7 +2059,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "दस्तावेज़ टैब में खोलें:"
+            "value" : "दस्तावेज़ टैब में खोलें :"
           }
         },
         "it" : {
@@ -2397,7 +2397,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ओवरस्क्रॉल:"
+            "value" : "ओवरस्क्रॉल :"
           }
         },
         "it" : {
@@ -2509,7 +2509,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "कॉलम पर पेज गाइड:"
+            "value" : "कॉलम पर पेज गाइड :"
           }
         },
         "it" : {
@@ -2959,7 +2959,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "दिखाएँ:"
+            "value" : "दिखाएँ :"
           }
         },
         "it" : {
@@ -3297,7 +3297,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "स्टेटस बार दिखाता है:"
+            "value" : "स्टेटस बार दिखाता है :"
           }
         },
         "it" : {
@@ -3634,7 +3634,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "विंडो आकार:"
+            "value" : "विंडो आकार :"
           }
         },
         "it" : {
@@ -4084,7 +4084,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "लेखन दिशा:"
+            "value" : "लेखन दिशा :"
           }
         },
         "it" : {

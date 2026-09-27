@@ -2674,7 +2674,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "खोज टेक्स्ट: %@"
+            "value" : "खोज टेक्स्ट : %@"
           }
         },
         "it" : {

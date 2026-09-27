@@ -378,7 +378,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "कमेंट:"
+            "value" : "कमेंट :"
           }
         },
         "it" : {
@@ -490,7 +490,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "सामग्री पार्स:"
+            "value" : "सामग्री पार्स :"
           }
         },
         "it" : {
@@ -602,7 +602,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "विलंब:"
+            "value" : "विलंब :"
           }
         },
         "it" : {
@@ -1274,7 +1274,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इंडेंट चौड़ाई:"
+            "value" : "इंडेंट चौड़ाई :"
           }
         },
         "it" : {
@@ -1386,7 +1386,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इंडेंटेशन:"
+            "value" : "इंडेंटेशन :"
           }
         },
         "it" : {
@@ -2286,7 +2286,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "खाली स्थान:"
+            "value" : "खाली स्थान :"
           }
         },
         "it" : {

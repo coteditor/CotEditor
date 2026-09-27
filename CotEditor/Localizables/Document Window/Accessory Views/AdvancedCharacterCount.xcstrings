@@ -1587,7 +1587,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "एन्कोडिंग:"
+            "value" : "एन्कोडिंग :"
           }
         },
         "it" : {
@@ -2038,7 +2038,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "नॉर्मलाइज़ेशन:"
+            "value" : "नॉर्मलाइज़ेशन :"
           }
         },
         "it" : {
@@ -2715,7 +2715,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इकाई:"
+            "value" : "इकाई :"
           }
         },
         "it" : {
@@ -2827,7 +2827,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "खाली स्थान:"
+            "value" : "खाली स्थान :"
           }
         },
         "it" : {

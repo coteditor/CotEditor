@@ -149,7 +149,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@:"
+            "value" : "%@ :"
           }
         },
         "it" : {
@@ -992,7 +992,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "लेखक:"
+            "value" : "लेखक :"
           }
         },
         "it" : {
@@ -1218,7 +1218,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ब्लॉक कमेंट:"
+            "value" : "ब्लॉक कमेंट :"
           }
         },
         "it" : {
@@ -1330,7 +1330,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ब्लॉक सीमांकक:"
+            "value" : "ब्लॉक सीमांकक :"
           }
         },
         "it" : {
@@ -1668,7 +1668,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "वर्ण सीमांकक:"
+            "value" : "वर्ण सीमांकक :"
           }
         },
         "it" : {
@@ -2232,7 +2232,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "विवरण:"
+            "value" : "विवरण :"
           }
         },
         "it" : {
@@ -2909,7 +2909,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "एक्सटेंशन:"
+            "value" : "एक्सटेंशन :"
           }
         },
         "it" : {
@@ -3247,7 +3247,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "फ़ाइल नाम:"
+            "value" : "फ़ाइल नाम :"
           }
         },
         "it" : {
@@ -4037,7 +4037,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इनलाइन कमेंट:"
+            "value" : "इनलाइन कमेंट :"
           }
         },
         "it" : {
@@ -4149,7 +4149,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इंटरप्रेटर:"
+            "value" : "इंटरप्रेटर :"
           }
         },
         "it" : {
@@ -4374,7 +4374,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "प्रकार:"
+            "value" : "प्रकार :"
           }
         },
         "it" : {
@@ -4486,7 +4486,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "अंतिम संशोधित:"
+            "value" : "अंतिम संशोधित :"
           }
         },
         "it" : {
@@ -4598,7 +4598,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "लाइसेंस:"
+            "value" : "लाइसेंस :"
           }
         },
         "it" : {
@@ -5844,7 +5844,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "स्ट्रिंग सीमांकक:"
+            "value" : "स्ट्रिंग सीमांकक :"
           }
         },
         "it" : {
@@ -7585,7 +7585,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "वर्शन:"
+            "value" : "वर्शन :"
           }
         },
         "it" : {

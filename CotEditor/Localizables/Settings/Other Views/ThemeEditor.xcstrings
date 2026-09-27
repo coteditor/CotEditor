@@ -148,7 +148,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पृष्ठभूमि:"
+            "value" : "पृष्ठभूमि :"
           }
         },
         "it" : {
@@ -260,7 +260,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "वर्तमान पंक्ति:"
+            "value" : "वर्तमान पंक्ति :"
           }
         },
         "it" : {
@@ -372,7 +372,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "कर्सर:"
+            "value" : "कर्सर :"
           }
         },
         "it" : {
@@ -597,7 +597,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "हाइलाइट:"
+            "value" : "हाइलाइट :"
           }
         },
         "it" : {
@@ -709,7 +709,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "अदृश्य वर्ण:"
+            "value" : "अदृश्य वर्ण :"
           }
         },
         "it" : {
@@ -1158,7 +1158,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "चयन:"
+            "value" : "चयन :"
           }
         },
         "it" : {
@@ -1494,7 +1494,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "टेक्स्ट:"
+            "value" : "टेक्स्ट :"
           }
         },
         "it" : {

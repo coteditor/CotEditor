@@ -260,7 +260,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "कमांड-लाइन टूल:"
+            "value" : "कमांड-लाइन टूल :"
           }
         },
         "it" : {
@@ -610,7 +610,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "डायलॉग चेतावनियाँ:"
+            "value" : "डायलॉग चेतावनियाँ :"
           }
         },
         "it" : {
@@ -722,7 +722,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "दस्तावेज़ सहेजना:"
+            "value" : "दस्तावेज़ सहेजना :"
           }
         },
         "it" : {
@@ -2580,7 +2580,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "शुरुआत पर:"
+            "value" : "शुरुआत पर :"
           }
         },
         "it" : {
@@ -3029,7 +3029,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "सॉफ़्टवेयर अपडेट:"
+            "value" : "सॉफ़्टवेयर अपडेट :"
           }
         },
         "it" : {
@@ -3141,7 +3141,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "निम्नलिखित चेतावनियाँ दबाएँ:"
+            "value" : "निम्नलिखित चेतावनियाँ दबाएँ :"
           }
         },
         "it" : {
@@ -3365,7 +3365,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "जब दस्तावेज़ किसी अन्य एप्लिकेशन द्वारा बदला जाए:"
+            "value" : "जब दस्तावेज़ किसी अन्य एप्लिकेशन द्वारा बदला जाए :"
           }
         },
         "it" : {
@@ -3477,7 +3477,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "जब और कुछ भी खुला न हो:"
+            "value" : "जब और कुछ भी खुला न हो :"
           }
         },
         "it" : {

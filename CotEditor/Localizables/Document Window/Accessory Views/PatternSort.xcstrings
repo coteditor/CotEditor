@@ -261,7 +261,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "सीमांकक:"
+            "value" : "सीमांकक :"
           }
         },
         "it" : {
@@ -1048,7 +1048,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पैटर्न:"
+            "value" : "पैटर्न :"
           }
         },
         "it" : {
@@ -1160,7 +1160,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "स्थिति:"
+            "value" : "स्थिति :"
           }
         },
         "it" : {
@@ -1836,7 +1836,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "नमूना:"
+            "value" : "नमूना :"
           }
         },
         "it" : {
@@ -2061,7 +2061,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "क्रम कुंजी:"
+            "value" : "क्रम कुंजी :"
           }
         },
         "it" : {
@@ -2173,7 +2173,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "क्रम विकल्प:"
+            "value" : "क्रम विकल्प :"
           }
         },
         "it" : {
@@ -2397,7 +2397,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "कैप्चर किया समूह उपयोग करें:"
+            "value" : "कैप्चर किया समूह उपयोग करें :"
           }
         },
         "it" : {

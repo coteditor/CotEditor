@@ -487,7 +487,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पूर्णता सूची में शामिल है:"
+            "value" : "पूर्णता सूची में शामिल है :"
           }
         },
         "it" : {
@@ -600,7 +600,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पूर्णता:"
+            "value" : "पूर्णता :"
           }
         },
         "it" : {
@@ -825,7 +825,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "फ़ॉन्ट:"
+            "value" : "फ़ॉन्ट :"
           }
         },
         "it" : {
@@ -1175,7 +1175,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इंडेंटेशन:"
+            "value" : "इंडेंटेशन :"
           }
         },
         "it" : {
@@ -1851,7 +1851,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "वर्तनी:"
+            "value" : "वर्तनी :"
           }
         },
         "it" : {
@@ -2075,7 +2075,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "सब्स्टिट्यूशन:"
+            "value" : "सब्स्टिट्यूशन :"
           }
         },
         "it" : {

@@ -36,7 +36,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "उपलब्ध सिंटैक्स:"
+            "value" : "उपलब्ध सिंटैक्स :"
           }
         },
         "it" : {
@@ -372,7 +372,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "डिफ़ॉल्ट लाइन एंडिंग:"
+            "value" : "डिफ़ॉल्ट लाइन एंडिंग :"
           }
         },
         "it" : {
@@ -484,7 +484,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "डिफ़ॉल्ट सिंटैक्स:"
+            "value" : "डिफ़ॉल्ट सिंटैक्स :"
           }
         },
         "it" : {
@@ -596,7 +596,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "डिफ़ॉल्ट टेक्स्ट एन्कोडिंग:"
+            "value" : "डिफ़ॉल्ट टेक्स्ट एन्कोडिंग :"
           }
         },
         "it" : {
@@ -820,7 +820,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "एन्कोडिंग प्राथमिकताएँ:"
+            "value" : "एन्कोडिंग प्राथमिकताएँ :"
           }
         },
         "it" : {

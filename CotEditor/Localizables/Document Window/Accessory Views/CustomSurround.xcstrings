@@ -36,7 +36,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "आरंभ:"
+            "value" : "आरंभ :"
           }
         },
         "it" : {
@@ -148,7 +148,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "अंत:"
+            "value" : "अंत :"
           }
         },
         "it" : {
@@ -260,7 +260,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इससे घेरें:"
+            "value" : "इससे घेरें :"
           }
         },
         "it" : {

@@ -404,7 +404,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "से मेल खाएँ:"
+            "value" : "से मेल खाएँ :"
           }
         },
         "it" : {
@@ -2189,7 +2189,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इस रूप में सहेजें:"
+            "value" : "इस रूप में सहेजें :"
           }
         },
         "it" : {

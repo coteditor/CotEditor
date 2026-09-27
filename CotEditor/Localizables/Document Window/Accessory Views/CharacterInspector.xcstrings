@@ -149,7 +149,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ब्लॉक:"
+            "value" : "ब्लॉक :"
           }
         },
         "it" : {
@@ -261,7 +261,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "श्रेणी:"
+            "value" : "श्रेणी :"
           }
         },
         "it" : {
@@ -373,7 +373,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "कोड पॉइंट:"
+            "value" : "कोड पॉइंट :"
           }
         },
         "it" : {
@@ -822,7 +822,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "वर्शन:"
+            "value" : "वर्शन :"
           }
         },
         "it" : {
