@@ -8930,7 +8930,7 @@
       }
     },
     "InconsistentLineEndingAlert.suppressionButton" : {
-      "comment" : "toggle button label; refer to the Apple's translation for \"Don’t ask again\"",
+      "comment" : "imperative form; Refer to the Apple's translation for \"Don’t ask again\"",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -9044,6 +9044,7 @@
       }
     },
     "InvalidNameError.duplicated.description" : {
+      "comment" : "Refer to the same expression by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -16604,7 +16605,7 @@
       }
     },
     "UpdatedByExternalProcessAlert.message" : {
-      "comment" : "AppKit has the same expression.",
+      "comment" : "Refer to the same expression by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
