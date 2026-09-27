@@ -179,8 +179,8 @@ public struct Shortcut: Sendable {
     }
     
     
-    /// Whether key combination is valid for a shortcut.
-    public var isValid: Bool {
+    /// Whether the key combination meets the basic requirements for shortcut assignment.
+    public var isAssignable: Bool {
         
         guard
             !self.keyEquivalent.isEmpty,

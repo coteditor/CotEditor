@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2025 1024jp
+//  © 2016-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -134,7 +134,7 @@ struct ScriptDescriptor {
         
         var name = name
         var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
-        shortcut = (shortcut?.isValid == true) ? shortcut : nil
+        shortcut = (shortcut?.isAssignable == true) ? shortcut : nil
         if shortcut != nil {
             name.replace(/\..+$/, with: "")
         }

@@ -105,7 +105,7 @@ import URLUtils
         
         let keyBindings = tree
             .flatMap(\.flatValues)
-            .filter { $0.shortcut?.isValid ?? true }
+            .filter { $0.shortcut?.isAssignable ?? true }
             .compactMap { KeyBinding(action: $0.action, tag: $0.tag, shortcut: $0.shortcut) }
         
         try self.save(keyBindings: keyBindings)
@@ -133,7 +133,7 @@ import URLUtils
     func importSetting(data: Data) throws {
         
         let keyBindings = try PropertyListDecoder().decode([KeyBinding].self, from: data)
-            .filter { $0.shortcut?.isValid ?? true }
+            .filter { $0.shortcut?.isAssignable ?? true }
         
         try self.save(keyBindings: keyBindings)
         
@@ -176,7 +176,7 @@ import URLUtils
         let data = try Data(contentsOf: fileURL)
         let keyBindings = try PropertyListDecoder().decode([KeyBinding].self, from: data)
         
-        return keyBindings.filter { $0.shortcut?.isValid ?? true }
+        return keyBindings.filter { $0.shortcut?.isAssignable ?? true }
     }
     
     

@@ -53,10 +53,10 @@ struct ShortcutTests {
         #expect(Shortcut("a", modifiers: [.control, .shift])?.keySpecChars == "^$a")
         
         #expect(Shortcut("a", modifiers: [])?.keySpecChars == "a")
-        #expect(Shortcut("a", modifiers: [])?.isValid == false)
+        #expect(Shortcut("a", modifiers: [])?.isAssignable == false)
         #expect(Shortcut("", modifiers: [.control, .shift]) == nil)
-        #expect(Shortcut("a", modifiers: [.control, .shift])?.isValid == true)
-        #expect(Shortcut("ab", modifiers: [.control, .shift])?.isValid == true)
+        #expect(Shortcut("a", modifiers: [.control, .shift])?.isAssignable == true)
+        #expect(Shortcut("ab", modifiers: [.control, .shift])?.isAssignable == true)
         
         let backspace = try #require(UnicodeScalar(NSBackspaceCharacter).map(String.init))
         let delete = try #require(UnicodeScalar(NSDeleteCharacter).map(String.init))
@@ -93,7 +93,7 @@ struct ShortcutTests {
         
         #expect(shortcut.keyEquivalent == "a")
         #expect(shortcut.modifiers == [.control, .shift])
-        #expect(shortcut.isValid)
+        #expect(shortcut.isAssignable)
     }
     
     
@@ -101,7 +101,7 @@ struct ShortcutTests {
         
         let shortcut = try #require(Shortcut("a", modifiers: [.function]))
         
-        #expect(!shortcut.isValid)
+        #expect(!shortcut.isAssignable)
         #expect(shortcut.keyEquivalent == "a")
         #expect(shortcut.modifiers == [.function])
         #expect(shortcut.symbol == "fn A" || shortcut.symbol == "🌐︎ A")
@@ -121,7 +121,7 @@ struct ShortcutTests {
         
         #expect(parsed.keyEquivalent == "a")
         #expect(parsed.modifiers == modifiers)
-        #expect(!parsed.isValid)
+        #expect(!parsed.isAssignable)
     }
     
     
@@ -302,7 +302,7 @@ struct ShortcutTests {
         
         #expect(shortcut.keyEquivalent == key)
         #expect(shortcut.modifiers == modifiers)
-        #expect(shortcut.isValid)
+        #expect(shortcut.isAssignable)
     }
     
     
@@ -318,10 +318,10 @@ struct ShortcutTests {
                                                 charactersIgnoringModifiers: key, isARepeat: false, keyCode: 0))
         let captured = try #require(Shortcut(keyDownEvent: event))
         #expect(captured.modifiers == .command)
-        #expect(captured.isValid)
+        #expect(captured.isAssignable)
         
         let stored = try #require(Shortcut(key, modifiers: [.command, .numericPad]))
-        #expect(!stored.isValid)
+        #expect(!stored.isAssignable)
         #expect(stored.modifierSymbols == ["⌘"])
         #expect(stored.modifierSymbolNames == ["command"])
     }
@@ -373,7 +373,7 @@ struct ShortcutTests {
         
         var shortcut = try #require(Shortcut("ab", modifiers: .command))
         shortcut.keyEquivalent = ""
-        #expect(!shortcut.isValid)
+        #expect(!shortcut.isAssignable)
     }
     
     
