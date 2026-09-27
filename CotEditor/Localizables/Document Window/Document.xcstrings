@@ -23968,7 +23968,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पंक्तियाँ लपेटें"
+            "value" : "पंक्ति रैपिंग"
           }
         },
         "it" : {
@@ -24087,7 +24087,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पंक्तियाँ लपेटें"
+            "value" : "पंक्तियाँ रैप करें"
           }
         },
         "it" : {
@@ -24206,7 +24206,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पंक्तियाँ न लपेटें"
+            "value" : "पंक्तियाँ रैप न करें"
           }
         },
         "it" : {
