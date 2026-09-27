@@ -827,7 +827,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "डुप्लिकेट पंक्तियाँ मिटाएँ"
+            "value" : "डुप्लिकेट पंक्तियाँ डिलीट करें"
           }
         },
         "it" : {
@@ -939,7 +939,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पंक्ति मिटाएँ"
+            "value" : "पंक्ति डिलीट करें"
           }
         },
         "it" : {
@@ -1051,7 +1051,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पंक्ति डुप्लिकेट करें"
+            "value" : "पंक्ति की नक़ल बनाएँ"
           }
         },
         "it" : {

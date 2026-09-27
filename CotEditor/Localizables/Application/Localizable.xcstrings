@@ -739,7 +739,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "मिटाएँ"
+            "value" : "डिलीट करें"
           }
         },
         "it" : {
@@ -858,7 +858,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "चयनित आइटम मिटाएँ"
+            "value" : "चयनित आइटम डिलीट करें"
           }
         },
         "it" : {
@@ -977,7 +977,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "डुप्लिकेट करें"
+            "value" : "नक़ल बनाएँ"
           }
         },
         "it" : {
@@ -1096,7 +1096,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” डुप्लिकेट करें"
+            "value" : "“%@” की नक़ल बनाएँ"
           }
         },
         "it" : {
@@ -3716,7 +3716,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "क्या आप वाकई “%@” को मिटाना चाहते हैं?"
+            "value" : "क्या आप वाकई “%@” को डिलीट करना चाहते हैं?"
           }
         },
         "it" : {
@@ -15034,7 +15034,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” मिटाई नहीं जा सकी।"
+            "value" : "“%@” डिलीट नहीं की जा सकी।"
           }
         },
         "it" : {

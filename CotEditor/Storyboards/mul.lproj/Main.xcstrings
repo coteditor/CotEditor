@@ -7604,7 +7604,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "मिटाएँ"
+            "value" : "डिलीट करें"
           }
         },
         "it" : {
@@ -14564,7 +14564,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "डुप्लिकेट मिटाएँ"
+            "value" : "डुप्लिकेट डिलीट करें"
           }
         },
         "it" : {
@@ -22124,7 +22124,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पंक्ति डुप्लिकेट करें"
+            "value" : "पंक्ति की नक़ल बनाएँ"
           }
         },
         "it" : {
@@ -25484,7 +25484,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पंक्ति मिटाएँ"
+            "value" : "पंक्ति डिलीट करें"
           }
         },
         "it" : {
