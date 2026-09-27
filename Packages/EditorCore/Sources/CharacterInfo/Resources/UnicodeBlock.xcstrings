@@ -33,6 +33,12 @@
             "value" : "Adlam"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अदलाम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -137,6 +143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nombres égéens"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ईचेयन संख्याएँ"
           }
         },
         "it" : {
@@ -245,6 +257,12 @@
             "value" : "Âhom"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ahom"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -349,6 +367,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles alchimiques"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कीमियाई चिह्न"
           }
         },
         "it" : {
@@ -457,6 +481,12 @@
             "value" : "Formes de présent. alphabét."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्णानुक्रम प्रेज़ेंटेशन रूप"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -561,6 +591,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hiéroglyphes hittites"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऐनातोलियाई हाइरोग्लिफ़्स"
           }
         },
         "it" : {
@@ -669,6 +705,12 @@
             "value" : "Notation musicale de la Grèce antique"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्राचीन यूनानी संगीतमय चिह्नांकन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -773,6 +815,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Numération grecque antique"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्राचीन यूनानी संख्याएँ"
           }
         },
         "it" : {
@@ -881,6 +929,12 @@
             "value" : "Symboles anciens"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्राचीन चिह्न"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -985,6 +1039,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arabe"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अरबी"
           }
         },
         "it" : {
@@ -1093,6 +1153,12 @@
             "value" : "Arabe étendu-A"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अरबी विस्तारित-A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1197,6 +1263,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arabe étendu-B"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अरबी विस्तारित-B"
           }
         },
         "it" : {
@@ -1305,6 +1377,12 @@
             "value" : "Arabe étendu-C"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अरबी विस्तारित-C"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1409,6 +1487,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles alphab. math. arabes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अरबी गणित वर्णानुक्रम चिह्न"
           }
         },
         "it" : {
@@ -1517,6 +1601,12 @@
             "value" : "Formes de présent. arabes-A"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अरबी प्रेज़ेंटेशन रूप-A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1621,6 +1711,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Formes de présent. arabes-B"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अरबी प्रेज़ेंटेशन रूप-B"
           }
         },
         "it" : {
@@ -1729,6 +1825,12 @@
             "value" : "Supplément arabe"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अरबी पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1833,6 +1935,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Arménien"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आर्मेनियाई"
           }
         },
         "it" : {
@@ -1941,6 +2049,12 @@
             "value" : "Flèches"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तीर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2045,6 +2159,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Avestan"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अवेस्तन"
           }
         },
         "it" : {
@@ -2153,6 +2273,12 @@
             "value" : "Balinais"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाली"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2257,6 +2383,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bamoun"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बामम"
           }
         },
         "it" : {
@@ -2365,6 +2497,12 @@
             "value" : "Supplément bamoun"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बामम पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2469,6 +2607,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latin de base"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मूल लैटिन"
           }
         },
         "it" : {
@@ -2577,6 +2721,12 @@
             "value" : "Bassa/Vah"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बस्सा वा"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2683,6 +2833,12 @@
             "value" : "Batak"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बटकी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2787,6 +2943,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bengali"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बंगाली"
           }
         },
         "it" : {
@@ -2905,6 +3067,12 @@
             "value" : "Bhaiksuki"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भैक्षुकी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3009,6 +3177,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Éléments d’ensemble"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ब्लॉक एलिमेंट"
           }
         },
         "it" : {
@@ -3117,6 +3291,12 @@
             "value" : "Bopomofo"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बोपोमोफ़ो"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3221,6 +3401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bopomofo étendu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बोपोमोफ़ो विस्तारित"
           }
         },
         "it" : {
@@ -3329,6 +3515,12 @@
             "value" : "Tracé de cadre"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बॉक्स ड्रॉइंग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3433,6 +3625,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Brahmi"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ब्रह्मी"
           }
         },
         "it" : {
@@ -3541,6 +3739,12 @@
             "value" : "Caractères en Braille"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ब्रेल पैटर्न"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3645,6 +3849,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bouguinais"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बगिनीस"
           }
         },
         "it" : {
@@ -3753,6 +3963,12 @@
             "value" : "Buhid"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बुहिद"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3857,6 +4073,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles musicaux byzantins"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाइज़ेन्टाइन संगीतमय चिह्न"
           }
         },
         "it" : {
@@ -3965,6 +4187,12 @@
             "value" : "Carien"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "करैन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4069,6 +4297,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Albanais caucasien"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉकेशियन अल्बानियाई"
           }
         },
         "it" : {
@@ -4177,6 +4411,12 @@
             "value" : "Chakma"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चकमा"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4281,6 +4521,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cham"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चाम"
           }
         },
         "it" : {
@@ -4389,6 +4635,12 @@
             "value" : "Cherokee"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चेरोकी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4493,6 +4745,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supplément cherokee"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चेरोकी पूरक"
           }
         },
         "it" : {
@@ -4601,6 +4859,12 @@
             "value" : "Symboles d’échecs"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शतरंज चिह्न"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4705,6 +4969,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chorasmien"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोरेज्मियन"
           }
         },
         "it" : {
@@ -4813,6 +5083,12 @@
             "value" : "Compatibilité CJK"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK संगतता"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4917,6 +5193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Formes de compatibilité CJK"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK संगतता रूप"
           }
         },
         "it" : {
@@ -5025,6 +5307,12 @@
             "value" : "Idéogr. de compatibilité CJK"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK संगतता आइडियोग्राफ़"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5129,6 +5417,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Suppl. d’idéogr. de compatibilité CJK"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK संगतता आइडियोग्राफ़ पूरक"
           }
         },
         "it" : {
@@ -5237,6 +5531,12 @@
             "value" : "Supplément de radicaux CJK"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK मूलशब्द पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5341,6 +5641,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Traits CJC"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK स्ट्रोक"
           }
         },
         "it" : {
@@ -5449,6 +5755,12 @@
             "value" : "Symboles et ponctuation CJK"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK चिह्न और विरामचिह्र"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5553,6 +5865,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Idéogrammes unifiés CJK"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK यूनिफ़ाइड आइडियोग्राफ़"
           }
         },
         "it" : {
@@ -5661,6 +5979,12 @@
             "value" : "Idéogr. unifiés CJK d’ext. A"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK यूनिफ़ाइड आइडियोग्राफ़ विस्तारित A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5765,6 +6089,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Idéogr. unifiés CJK d’ext. B"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK यूनिफ़ाइड आइडियोग्राफ़ विस्तारित B"
           }
         },
         "it" : {
@@ -5873,6 +6203,12 @@
             "value" : "Idéogr. unifiés CJK d’ext. C"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK यूनिफ़ाइड आइडियोग्राफ़ विस्तारित C"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5977,6 +6313,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Idéogr. unifiés CJK d’ext. D"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK यूनिफ़ाइड आइडियोग्राफ़ विस्तारित D"
           }
         },
         "it" : {
@@ -6085,6 +6427,12 @@
             "value" : "Idéogr. unifiés CJK d’ext. E"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK यूनिफ़ाइड आइडियोग्राफ़ विस्तारित E"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6189,6 +6537,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Idéogr. unifiés CJK d’ext. F"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK Unified Ideographs Ext. F"
           }
         },
         "it" : {
@@ -6297,6 +6651,12 @@
             "value" : "Idéogr. unifiés CJK d’ext. G"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK Unified Ideographs Ext. G"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6401,6 +6761,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Idéogr. unifiés CJK d’ext. H"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK Unified Ideographs Ext. H"
           }
         },
         "it" : {
@@ -6509,6 +6875,12 @@
             "value" : "Idéogr. unifiés CJK d’ext. I"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK Unified Ideographs Ext. I"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6613,6 +6985,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Idéogr. unifiés CJK d’ext. J"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CJK Unified Ideographs Ext. J"
           }
         },
         "it" : {
@@ -6721,6 +7099,12 @@
             "value" : "Combin. de signes diacritiques"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संयोजक विशेषक चिह्न"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6825,6 +7209,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Combinaison de signes diacritiques étendus"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संयोजक विशेषक चिह्न विस्तारित"
           }
         },
         "it" : {
@@ -6933,6 +7323,12 @@
             "value" : "Combinaison de signes diacritiques pour symboles"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चिह्नों के लिए संयोजक विशेषक चिह्न"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7037,6 +7433,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supplément combin. de signes diacritiques"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संयोजक विशेषक चिह्न पूरक"
           }
         },
         "it" : {
@@ -7145,6 +7547,12 @@
             "value" : "Combinaisons de demi-marque"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संयोजक अर्द्ध चिह्न"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7249,6 +7657,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Formes numériques brahmiques communes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सामान्य भारतीय संख्या रूप"
           }
         },
         "it" : {
@@ -7357,6 +7771,12 @@
             "value" : "Images de contrôle"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कंट्रोल तस्वीरें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7461,6 +7881,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Copte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉप्टिक"
           }
         },
         "it" : {
@@ -7569,6 +7995,12 @@
             "value" : "Chiffres épactes coptes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉप्टिक इपेक्ट संख्याएँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7673,6 +8105,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Numération à bâtons"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गिनती रॉड अंक"
           }
         },
         "it" : {
@@ -7781,6 +8219,12 @@
             "value" : "Cunéiforme"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्यूनीफ़ॉर्म"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7885,6 +8329,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ponctuation et nombres cunéiformes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्यूनीफ़ॉर्म संख्या और विरामचिह्र"
           }
         },
         "it" : {
@@ -7993,6 +8443,12 @@
             "value" : "Symboles de devises"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मुद्रा चिह्न"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8097,6 +8553,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Syllabisme chypriote"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिप्रिएट सिलेबरी"
           }
         },
         "it" : {
@@ -8205,6 +8667,12 @@
             "value" : "Chypro-minoen"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cypro-Minoan"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8309,6 +8777,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cyrillique"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिरिलिक"
           }
         },
         "it" : {
@@ -8417,6 +8891,12 @@
             "value" : "Cyrillique étendu-A"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिरिलिक विस्तारित-A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8521,6 +9001,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cyrillique étendu-B"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिरिलिक विस्तारित-B"
           }
         },
         "it" : {
@@ -8629,6 +9115,12 @@
             "value" : "Cyrillique étendu-C"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिरिलिक विस्तारित-C"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8733,6 +9225,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cyrillique étendu-D"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिरिलिक विस्तारित-D"
           }
         },
         "it" : {
@@ -8841,6 +9339,12 @@
             "value" : "Supplément Cyrillique"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिरिलिक पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8945,6 +9449,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Déséret"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डेसरेट"
           }
         },
         "it" : {
@@ -9053,6 +9563,12 @@
             "value" : "Devanagari"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "देवनागरी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9157,6 +9673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Devanagari étendu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "देवनागरी विस्तारित"
           }
         },
         "it" : {
@@ -9265,6 +9787,12 @@
             "value" : "Devanagari étendu-A"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "देवनागरी विस्तारित-A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9369,6 +9897,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dingbats"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डिंगबैट्स"
           }
         },
         "it" : {
@@ -9477,6 +10011,12 @@
             "value" : "Dives Akuru"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डाइव्स अकुरू"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9581,6 +10121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dogra"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डोगरा"
           }
         },
         "it" : {
@@ -9689,6 +10235,12 @@
             "value" : "Pièces de dominos"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डॉमिनो टाइल्स"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9793,6 +10345,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Duployé"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डुप्लोयन"
           }
         },
         "it" : {
@@ -9901,6 +10459,12 @@
             "value" : "Cunéiforme thinite"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आरंभिक शाही क्यूनीफ़ॉर्म"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10005,6 +10569,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Commandes de formatage des hiéroglyphes égyptiens"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मिस्री हाइरोग्लिफ़्स फ़ॉर्मैट कंट्रोल"
           }
         },
         "it" : {
@@ -10113,6 +10683,12 @@
             "value" : "Hiéroglyphes égyptiens"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मिस्री हाइरोग्लिफ़्स"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10217,6 +10793,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hiéroglyphes égyptiens étendus-A"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मिस्री हाइरोग्लिफ़्स विस्तारित-A"
           }
         },
         "it" : {
@@ -10325,6 +10907,12 @@
             "value" : "Elbasan"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एल्बासान"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10429,6 +11017,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Élymaïque"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एलामेयस"
           }
         },
         "it" : {
@@ -10537,6 +11131,12 @@
             "value" : "Émoticônes"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इमोटिकॉन्स"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10641,6 +11241,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alphanumériques encerclés supplémentaires"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बंद अल्फ़ान्यूमैरिक पूरक"
           }
         },
         "it" : {
@@ -10749,6 +11355,12 @@
             "value" : "Alphanumériques encerclés"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बंद अल्फ़ान्यूमैरिक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10853,6 +11465,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lettres et mois CJK encerclés"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बंद CJK अक्षर और महीने"
           }
         },
         "it" : {
@@ -10961,6 +11579,12 @@
             "value" : "Idéogrammes encerclés supplémentaires"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बंद आइडियोग्राफ़िक पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11065,6 +11689,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Éthiopien"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ईथिओपिक"
           }
         },
         "it" : {
@@ -11173,6 +11803,12 @@
             "value" : "Éthiopique étendu"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इथियोपिक विस्तारित"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11277,6 +11913,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Éthiopien étendu-A"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इथियोपिक विस्तारित-A"
           }
         },
         "it" : {
@@ -11385,6 +12027,12 @@
             "value" : "Éthiopien étendu-B"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इथियोपिक विस्तारित-B"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11489,6 +12137,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supplément éthiopique"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इथियोपिक पूरक"
           }
         },
         "it" : {
@@ -11597,6 +12251,12 @@
             "value" : "Garay"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गैरे"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11701,6 +12361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ponctuation générale"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सामान्य विराम चिह्न"
           }
         },
         "it" : {
@@ -11809,6 +12475,12 @@
             "value" : "Formes géométriques"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ज्यामितीय आकृतियाँ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11913,6 +12585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Formes géométriques étendues"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ज्यामितीय आकृतियाँ विस्तारित"
           }
         },
         "it" : {
@@ -12021,6 +12699,12 @@
             "value" : "Géorgien"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जॉर्जियन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12125,6 +12809,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Géorgien étendu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जॉर्जियन विस्तारित"
           }
         },
         "it" : {
@@ -12233,6 +12923,12 @@
             "value" : "Supplément géorgien"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जॉर्जियन पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12337,6 +13033,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Glagolitique"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्लेगोलिटिक"
           }
         },
         "it" : {
@@ -12445,6 +13147,12 @@
             "value" : "Supplément glagolitique"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्लैगोलिटिक पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12549,6 +13257,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gothique"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गॉथिक"
           }
         },
         "it" : {
@@ -12657,6 +13371,12 @@
             "value" : "Grantha"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रन्थ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12761,6 +13481,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grec et copte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यूनानी और कॉप्टिक"
           }
         },
         "it" : {
@@ -12869,6 +13595,12 @@
             "value" : "Grec étendu"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यूनानी विस्तारित"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12973,6 +13705,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gujarati"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गुजराती"
           }
         },
         "it" : {
@@ -13081,6 +13819,12 @@
             "value" : "Gondi de Gunjala"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गुंजला गोंडी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13185,6 +13929,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gurmukhi"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गुरमुखी"
           }
         },
         "it" : {
@@ -13293,6 +14043,12 @@
             "value" : "Gurung Khema"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गुरुंग खेमा"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13397,6 +14153,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Formes en demi-largeur et en pleine largeur"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अर्द्धचौड़ाई और पूर्ण चौड़ाई रूप"
           }
         },
         "it" : {
@@ -13505,6 +14267,12 @@
             "value" : "Jamo de compatibilité Hangeul"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हंगुल संगतता जामो"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13609,6 +14377,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jamo Hangeul"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हंगुल जामो"
           }
         },
         "it" : {
@@ -13717,6 +14491,12 @@
             "value" : "Jamo Hangeul étendu-A"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हंगुल जामो विस्तारित-A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13821,6 +14601,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jamo Hangeul étendu-B"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हंगुल जामो विस्तारित-B"
           }
         },
         "it" : {
@@ -13929,6 +14715,12 @@
             "value" : "Syllabes Hangeul"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हंगुल सिलेबल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14033,6 +14825,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hanifi du Rohingya"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हनीफ़ी रोहिंग्या"
           }
         },
         "it" : {
@@ -14141,6 +14939,12 @@
             "value" : "Hanunoo"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हानुनू"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14245,6 +15049,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hatran"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हातरन"
           }
         },
         "it" : {
@@ -14353,6 +15163,12 @@
             "value" : "Hébreu"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हिब्रू"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14457,6 +15273,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Remplacements d’usage privé supérieurs"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उच्च निजी उपयोग सरोगेट"
           }
         },
         "it" : {
@@ -14565,6 +15387,12 @@
             "value" : "Remplacements supérieurs"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उच्च सरोगेट"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14669,6 +15497,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hiragana"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हिरागाना"
           }
         },
         "it" : {
@@ -14777,6 +15611,12 @@
             "value" : "Caractères idéographiques"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आइडियोग्राफ़िक विवरण वर्ण"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14881,6 +15721,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles idéographiques et ponctuation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आइडियोग्राफ़िक चिह्न और विरामचिह्र"
           }
         },
         "it" : {
@@ -14989,6 +15835,12 @@
             "value" : "Araméen impérial"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शाही ऐरेमेक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15093,6 +15945,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nombres siyaq indiens"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भारतीय सियक संख्या"
           }
         },
         "it" : {
@@ -15201,6 +16059,12 @@
             "value" : "Écriture pehlevi"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंस्क्रिपश्नल पाहलवी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15305,6 +16169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Écriture parthienne"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंस्क्रिपश्नल पार्थियन"
           }
         },
         "it" : {
@@ -15413,6 +16283,12 @@
             "value" : "Extensions IPA"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IPA एक्सटेंशन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15517,6 +16393,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Javanais"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जावानीस"
           }
         },
         "it" : {
@@ -15625,6 +16507,12 @@
             "value" : "Kaithi"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कैथी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15729,6 +16617,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Numération Kaktovik"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ककतोविक अंक"
           }
         },
         "it" : {
@@ -15837,6 +16731,12 @@
             "value" : "Kana étendu-A"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "काना विस्तारित-A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15941,6 +16841,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kana étendu-B"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "काना विस्तारित-B"
           }
         },
         "it" : {
@@ -16049,6 +16955,12 @@
             "value" : "Supplément kana"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "काना पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16153,6 +17065,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kanbun"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कानबुन"
           }
         },
         "it" : {
@@ -16261,6 +17179,12 @@
             "value" : "Radicaux Kangxi"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कांग्सी मूलशब्द"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16365,6 +17289,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kannada"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कन्नड़"
           }
         },
         "it" : {
@@ -16473,6 +17403,12 @@
             "value" : "Katakana"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "काताकाना"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16577,6 +17513,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensions phonétiq. Katakana"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "काताकाना फ़ोनेटिक्स एक्सटेंशन"
           }
         },
         "it" : {
@@ -16685,6 +17627,12 @@
             "value" : "Kawi"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कावी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16789,6 +17737,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kayah Li"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कायाह ली"
           }
         },
         "it" : {
@@ -16897,6 +17851,12 @@
             "value" : "Kharoṣṭhī"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खारोशथी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17001,6 +17961,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Petite écriture khitan"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "किडन लघु लिपि"
           }
         },
         "it" : {
@@ -17109,6 +18075,12 @@
             "value" : "Khmer"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खमेर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17213,6 +18185,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles Khmer"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खमेर चिह्न"
           }
         },
         "it" : {
@@ -17321,6 +18299,12 @@
             "value" : "Khojki"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खोजकी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17425,6 +18409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Khudawadi"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खुदाबादी"
           }
         },
         "it" : {
@@ -17543,6 +18533,12 @@
             "value" : "Laotien"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लाओ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17647,6 +18643,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latin étendu supplémentaire"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लैटिन विस्तारित अतिरिक्त"
           }
         },
         "it" : {
@@ -17755,6 +18757,12 @@
             "value" : "Latin étendu-A"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लैटिन विस्तारित-A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17859,6 +18867,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latin étendu-B"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लैटिन विस्तारित-B"
           }
         },
         "it" : {
@@ -17967,6 +18981,12 @@
             "value" : "Latin étendu-C"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लैटिन विस्तारित-C"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18071,6 +19091,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latin étendu-D"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लैटिन विस्तारित-D"
           }
         },
         "it" : {
@@ -18179,6 +19205,12 @@
             "value" : "Latin étendu-E"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लैटिन विस्तारित-E"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18283,6 +19315,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latin étendu-F"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लैटिन विस्तारित-F"
           }
         },
         "it" : {
@@ -18391,6 +19429,12 @@
             "value" : "Latin étendu-G"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लैटिन विस्तारित-G"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18495,6 +19539,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supplément Latin-1"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लैटिन-1 पूरक"
           }
         },
         "it" : {
@@ -18603,6 +19653,12 @@
             "value" : "Lepcha"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लेप्चा"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18707,6 +19763,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles en forme de lettres"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वर्णसदृश चिह्न"
           }
         },
         "it" : {
@@ -18815,6 +19877,12 @@
             "value" : "Limbu"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लिम्बू"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18919,6 +19987,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Linéaire A"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लीनियर A"
           }
         },
         "it" : {
@@ -19027,6 +20101,12 @@
             "value" : "Idéogrammes linéaires B"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लीनियर B आइडियोग्राम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19131,6 +20211,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Syllabaire linéaire B"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लीनियर B सिलेबरी"
           }
         },
         "it" : {
@@ -19239,6 +20325,12 @@
             "value" : "Lisu"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लीसु"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19343,6 +20435,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supplément lisu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लिसु पूरक"
           }
         },
         "it" : {
@@ -19451,6 +20549,12 @@
             "value" : "Remplacements inférieurs"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "निम्न सरोगेट"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19555,6 +20659,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lycien"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लिशियन"
           }
         },
         "it" : {
@@ -19663,6 +20773,12 @@
             "value" : "Lydien"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लिडियन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19767,6 +20883,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mahajani"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "महाजनी"
           }
         },
         "it" : {
@@ -19875,6 +20997,12 @@
             "value" : "Pièces de mahjong"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "माहजोंग टाइल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19979,6 +21107,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Makassar"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मकस्सर"
           }
         },
         "it" : {
@@ -20087,6 +21221,12 @@
             "value" : "Malayalam"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मलयालम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20191,6 +21331,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mandéen"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेंडाइक"
           }
         },
         "it" : {
@@ -20299,6 +21445,12 @@
             "value" : "Manichéen"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेनिचाएन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20403,6 +21555,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Marchen"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मार्चेन"
           }
         },
         "it" : {
@@ -20511,6 +21669,12 @@
             "value" : "Gondi de Masaram"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मसाराम गोंडी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20615,6 +21779,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles alphanum. math."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गणित वर्णानुक्रम चिह्न"
           }
         },
         "it" : {
@@ -20723,6 +21893,12 @@
             "value" : "Opérateurs mathématiques"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गणितीय ऑपरेटर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20827,6 +22003,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Numération maya"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "माया अंक"
           }
         },
         "it" : {
@@ -20935,6 +22117,12 @@
             "value" : "Medefidrin"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेदेफ़ाइद्रिन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21039,6 +22227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Meitei Mayek"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेइतेइ मायेक"
           }
         },
         "it" : {
@@ -21147,6 +22341,12 @@
             "value" : "Extensions Meetei Mayek"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेइतेइ मायेक विस्तारित"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21251,6 +22451,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kikakoui mendé"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेंदे कीकाकुई"
           }
         },
         "it" : {
@@ -21359,6 +22565,12 @@
             "value" : "Méroïtique cursif"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेरोटिक प्रवाही"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21463,6 +22675,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hiéroglyphes méroïtiques"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेरोटिक हाइरोग्लिफ़्स"
           }
         },
         "it" : {
@@ -21571,6 +22789,12 @@
             "value" : "Miao"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मियाओ"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21675,6 +22899,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles math. divers-A"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विविध गणित चिह्न-A"
           }
         },
         "it" : {
@@ -21783,6 +23013,12 @@
             "value" : "Symboles math. divers-B"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विविध गणित चिह्न-B"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21887,6 +23123,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles divers"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विविध चिह्न"
           }
         },
         "it" : {
@@ -21995,6 +23237,12 @@
             "value" : "Symboles et Flèches divers"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विविध चिह्न और तीर के निशान"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22099,6 +23347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles et pictogrammes divers"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विविध चिह्न और चित्रलिपि"
           }
         },
         "it" : {
@@ -22217,6 +23471,12 @@
             "value" : "Signes techniques divers"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विविध तकनीकी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22321,6 +23581,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Modi"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मॉडिफ़ायर"
           }
         },
         "it" : {
@@ -22429,6 +23695,12 @@
             "value" : "Lettres modifiant le ton"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मॉडिफ़ायर टोन अक्षर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22533,6 +23805,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mongol"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मंगोलियाई"
           }
         },
         "it" : {
@@ -22641,6 +23919,12 @@
             "value" : "Supplément mongol"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मंगोलियाई पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22745,6 +24029,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mro"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "म्रो"
           }
         },
         "it" : {
@@ -22853,6 +24143,12 @@
             "value" : "Multani"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मुल्तानी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22957,6 +24253,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles musicaux"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संगीतमय चिह्न"
           }
         },
         "it" : {
@@ -23065,6 +24367,12 @@
             "value" : "Birman"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "म्यांमार"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23169,6 +24477,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Birman étendu-A"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "म्यांमार विस्तारित-A"
           }
         },
         "it" : {
@@ -23277,6 +24591,12 @@
             "value" : "Birman étendu-B"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "म्यांमार विस्तारित-B"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23381,6 +24701,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Birman étendu-C"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "म्यांमार विस्तारित-C"
           }
         },
         "it" : {
@@ -23489,6 +24815,12 @@
             "value" : "N’ko"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एन्को"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23593,6 +24925,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nabatéen"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नाबातायेन"
           }
         },
         "it" : {
@@ -23701,6 +25039,12 @@
             "value" : "Nag Mundari"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नाग मुंडारी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23805,6 +25149,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nandinagari"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नंदीनागरी"
           }
         },
         "it" : {
@@ -23913,6 +25263,12 @@
             "value" : "Nouveau taï-lue"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "न्यू ताई ल्यू"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24017,6 +25373,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Newa"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नेवा"
           }
         },
         "it" : {
@@ -24125,6 +25487,12 @@
             "value" : "Formes numériques"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संख्या रूप"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24229,6 +25597,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nüshu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नुशु"
           }
         },
         "it" : {
@@ -24337,6 +25711,12 @@
             "value" : "Nyiakeng Puatchue Khmong"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नियाकेंग पुआचे ह्माँग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24443,6 +25823,12 @@
             "value" : "Ogham"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ओघम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24547,6 +25933,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Santâlî"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ओल चिकी"
           }
         },
         "it" : {
@@ -24665,6 +26057,12 @@
             "value" : "Ancien hongrois"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऑल्ड हंगेरियन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24769,6 +26167,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ancien italique"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पुरानी इटली"
           }
         },
         "it" : {
@@ -24877,6 +26281,12 @@
             "value" : "Arabe septentrional ancien"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पुरानी उत्तरी अरबी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24981,6 +26391,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ancien permien"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ओल्ड परमिक"
           }
         },
         "it" : {
@@ -25089,6 +26505,12 @@
             "value" : "Vieux-persan"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पुरानी फारसी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25193,6 +26615,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vieux sogdien"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पुरानी सोग्डिएन"
           }
         },
         "it" : {
@@ -25301,6 +26729,12 @@
             "value" : "Arabe méridional ancien"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पुरानी दक्षिणी अरबी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25405,6 +26839,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vieux-ouïgour"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पुरानी तुर्की"
           }
         },
         "it" : {
@@ -25513,6 +26953,12 @@
             "value" : "Ouïghour ancien"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ओल्ड उईग़ूर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25617,6 +27063,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reconnais. optique des caract."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऑप्टिकल कैरेक्टर रिकॉग्निशन"
           }
         },
         "it" : {
@@ -25725,6 +27177,12 @@
             "value" : "Oriya"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ओडिया"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25829,6 +27287,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dingbats ornementaux"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऑर्नामेंटल डिंगबैट्स"
           }
         },
         "it" : {
@@ -25937,6 +27401,12 @@
             "value" : "Osage"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ओसेज"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26041,6 +27511,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Osmanya"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ओस्मान्या"
           }
         },
         "it" : {
@@ -26149,6 +27625,12 @@
             "value" : "Nombres siyaq ottomans"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उस्मानी सियक संख्या"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26253,6 +27735,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pahawh Hmong"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाहो ह्मोन्ग"
           }
         },
         "it" : {
@@ -26361,6 +27849,12 @@
             "value" : "Palmyrénien"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पामीरिन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26465,6 +27959,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pau Cin Hau"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पाउ सिन हाउ"
           }
         },
         "it" : {
@@ -26573,6 +28073,12 @@
             "value" : "Phags pa"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फाग्स-पा"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26677,6 +28183,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Disque de Phaistos"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ेसटॉस डिस्क"
           }
         },
         "it" : {
@@ -26785,6 +28297,12 @@
             "value" : "Phénicien"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फोनिशियन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26889,6 +28407,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extensions phonétiques"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोनेटिक एक्सटेंशन"
           }
         },
         "it" : {
@@ -26997,6 +28521,12 @@
             "value" : "Supplément extensions phonétiques"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फ़ोनेटिक एक्सटेंशन पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27101,6 +28631,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jeu des cartes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ताश के पत्ते"
           }
         },
         "it" : {
@@ -27209,6 +28745,12 @@
             "value" : "Zone à usage privé"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "निजी उपयोग क्षेत्र"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27313,6 +28855,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pehlevi des psautiers"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सॉल्टर पाहलवी"
           }
         },
         "it" : {
@@ -27421,6 +28969,12 @@
             "value" : "Rejang"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रीजांग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27525,6 +29079,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chiffres de Fès (Rumi)"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रूमी अंक चिह्न"
           }
         },
         "it" : {
@@ -27633,6 +29193,12 @@
             "value" : "Runique"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रूनिक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27737,6 +29303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Samaritain"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "समरिटन"
           }
         },
         "it" : {
@@ -27845,6 +29417,12 @@
             "value" : "Saurashtra"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सौराष्ट्र"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27949,6 +29527,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sharda"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शारदा"
           }
         },
         "it" : {
@@ -28067,6 +29651,12 @@
             "value" : "Shavian"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शावियान"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28173,6 +29763,12 @@
             "value" : "Commandes du format codé"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शॉर्टहेंड फ़ॉर्मैट कंट्रोल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28277,6 +29873,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Siddham"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिद्धम"
           }
         },
         "it" : {
@@ -28395,6 +29997,12 @@
             "value" : "Cingalais"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंहली"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28499,6 +30107,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chiffres archaïques cingalais"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिंहली पुरातन संख्याएँ"
           }
         },
         "it" : {
@@ -28607,6 +30221,12 @@
             "value" : "Petites variantes de forme"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लघु रूप भिन्नता"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28711,6 +30331,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kana en minuscule étendu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लघु काना एक्सटेंशन"
           }
         },
         "it" : {
@@ -28819,6 +30445,12 @@
             "value" : "Sogdien"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सोग्डिएन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28923,6 +30555,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sora Sompeng"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सोरा सोम्पेंग"
           }
         },
         "it" : {
@@ -29031,6 +30669,12 @@
             "value" : "Soyombo"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सोयोंबो"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29135,6 +30779,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lettres modifiant l’espacement"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रिक्ति मॉडिफ़ायर अक्षर"
           }
         },
         "it" : {
@@ -29243,6 +30893,12 @@
             "value" : "Spéciaux"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विशेष"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29347,6 +31003,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Soundanais"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सूडानी"
           }
         },
         "it" : {
@@ -29455,6 +31117,12 @@
             "value" : "Supplément soundanais"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सूडानी पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29559,6 +31227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sunwar"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सुनुवार"
           }
         },
         "it" : {
@@ -29667,6 +31341,12 @@
             "value" : "Exposants et indices"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सुपरस्क्रिप्ट और सबस्क्रिप्ट"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29771,6 +31451,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Flèches supplémentaires-A"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरक तीर के निशान-A"
           }
         },
         "it" : {
@@ -29879,6 +31565,12 @@
             "value" : "Flèches supplémentaires-B"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरक तीर के निशान-B"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29983,6 +31675,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Flèches supplémentaires-C"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरक तीर के निशान-C"
           }
         },
         "it" : {
@@ -30091,6 +31789,12 @@
             "value" : "Opérateurs math. suppl."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सप्लीमेंटल मैथ ऑपरेटर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30195,6 +31899,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ponctuation supplémentaire"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरक विराम चिह्न"
           }
         },
         "it" : {
@@ -30303,6 +32013,12 @@
             "value" : "Symboles et pictogrammes supplémentaires"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरक चिह्न और चित्रलिपि"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30407,6 +32123,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zone à usage privé supplémentaire-A"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरक निजी उपयोग क्षेत्र-A"
           }
         },
         "it" : {
@@ -30515,6 +32237,12 @@
             "value" : "Zone à usage privé supplémentaire-B"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरक निजी उपयोग क्षेत्र-B"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30619,6 +32347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "SignWriting de Sutton"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सटन SignWriting"
           }
         },
         "it" : {
@@ -30727,6 +32461,12 @@
             "value" : "Sylotî Nâgrî"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिलोती नागरी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30833,6 +32573,12 @@
             "value" : "Symboles et pictogrammes étendus-A"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चिह्न और चित्रलिपि विस्तारित-A"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30937,6 +32683,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles pour anciens systèmes informatiques"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लेगसी कंप्यूटिंग के लिए चिह्न"
           }
         },
         "it" : {
@@ -31055,6 +32807,12 @@
             "value" : "Syriaque"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिरियेक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31159,6 +32917,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Supplément syriaque"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सिरियक पूरक"
           }
         },
         "it" : {
@@ -31267,6 +33031,12 @@
             "value" : "Tagalog"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टैगलॉग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31371,6 +33141,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tagbanwa"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तगबन्वा"
           }
         },
         "it" : {
@@ -31479,6 +33255,12 @@
             "value" : "Tags"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टैग"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31583,6 +33365,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tai Le"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ताई ली"
           }
         },
         "it" : {
@@ -31691,6 +33479,12 @@
             "value" : "Tai Tham"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ताई थाम"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31797,6 +33591,12 @@
             "value" : "Tai Viet"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ताई विएत"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31901,6 +33701,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles Tai Xuan Jing"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ताई ज़ुआन जिंग चिह्न"
           }
         },
         "it" : {
@@ -32025,6 +33831,12 @@
             "value" : "Takri"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टकरी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32129,6 +33941,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tamoul"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तमिल"
           }
         },
         "it" : {
@@ -32237,6 +34055,12 @@
             "value" : "Supplément tamoul"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तमिल पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32341,6 +34165,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tangsa"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तांग्सा"
           }
         },
         "it" : {
@@ -32449,6 +34279,12 @@
             "value" : "Tangoute"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टंगुट"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32553,6 +34389,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Composants tangoutes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टंगुट घटक"
           }
         },
         "it" : {
@@ -32671,6 +34513,12 @@
             "value" : "Supplément tangoute"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टंगुट पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32775,6 +34623,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Télougou"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तेलुगू"
           }
         },
         "it" : {
@@ -32883,6 +34737,12 @@
             "value" : "Thaana"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "थाना"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32987,6 +34847,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thaï"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "थाई"
           }
         },
         "it" : {
@@ -33095,6 +34961,12 @@
             "value" : "Tibétain"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तिब्बती"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33199,6 +35071,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tifinagh"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तिफ़िनाघ"
           }
         },
         "it" : {
@@ -33307,6 +35185,12 @@
             "value" : "Tirhouta"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तिरहुता"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33411,6 +35295,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Todhri"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टोधरी"
           }
         },
         "it" : {
@@ -33545,6 +35435,12 @@
             "value" : "Symboles routiers et géographiques"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "परिवहन और नक़्शा चिह्न"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33649,6 +35545,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tulu-Tigalari"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तुलू-तिगालारी"
           }
         },
         "it" : {
@@ -33757,6 +35659,12 @@
             "value" : "Ugaritique"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "युगारिटिक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33861,6 +35769,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Syllabes autochtones canadiennes"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यूनिफ़ाइड कैनेडियन एबोरिजनल सिलेबिक्स"
           }
         },
         "it" : {
@@ -33969,6 +35883,12 @@
             "value" : "Syllabes autochtones canadiennes étendues"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यूनिफ़ाइड कैनेडियन एबोरिजनल सिलेबिक्स विस्तारित"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34073,6 +35993,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Syllabes autochtones canadiennes étendues-A"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यूनिफ़ाइड कैनेडियन एबोरिजनल सिलेबिक्स विस्तारित-A"
           }
         },
         "it" : {
@@ -34181,6 +36107,12 @@
             "value" : "Vaï"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वाई"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34285,6 +36217,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélecteurs de variation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भिन्नता चयनकर्ता"
           }
         },
         "it" : {
@@ -34393,6 +36331,12 @@
             "value" : "Sélecteurs de variation supplémentaires"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भिन्नता चयनकर्ता पूरक"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34497,6 +36441,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Védique étendu"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वेदिक एक्सटेंशन"
           }
         },
         "it" : {
@@ -34605,6 +36555,12 @@
             "value" : "Formes verticales"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लंबवत रूप"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34709,6 +36665,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vithkuqi"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विथककी"
           }
         },
         "it" : {
@@ -34817,6 +36779,12 @@
             "value" : "Wancho"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वान्चो"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34921,6 +36889,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Warang Citi"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वारंग सिटी"
           }
         },
         "it" : {
@@ -35029,6 +37003,12 @@
             "value" : "Yezidi"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यज़ीदी"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35133,6 +37113,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Radicaux Yi"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yi मूलशब्द"
           }
         },
         "it" : {
@@ -35241,6 +37227,12 @@
             "value" : "Syllabes Yi"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yi सिलेबल"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35345,6 +37337,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symboles en hexagramme Yijing"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यिजिंग हेक्साग्राम चिह्न"
           }
         },
         "it" : {
@@ -35453,6 +37451,12 @@
             "value" : "Zanabazar carré"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जनाबज़ार स्क्वेयर"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35557,6 +37561,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notation musicale Znamenny"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अज़्नामेनी संगीतमय चिह्नांकन"
           }
         },
         "it" : {
