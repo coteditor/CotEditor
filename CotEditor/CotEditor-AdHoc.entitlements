@@ -26,5 +26,7 @@
 	<string>2</string>
 	<key>com.apple.security.print</key>
 	<true/>
+	<key>com.apple.security.network.server</key>
+	<true/>
 </dict>
 </plist>
