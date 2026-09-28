@@ -35,6 +35,8 @@ extension DefaultKeys {
     static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
     static let documentConflictOption = RawRepresentableDefaultKey<DocumentConflictOption>("documentConflictOption")
     static let suppressesInconsistentLineEndingAlert = DefaultKey<Bool>("suppressesInconsistentLineEndingAlert")
+    static let enablesRemoteEditing = DefaultKey<Bool>("enablesRemoteEditing")
+    static let remoteEditingPort = DefaultKey<Int>("remoteEditingPort")
     static let checksUpdatesForBeta = DefaultKey<Bool>("checksUpdatesForBeta")
     
     // Appearance

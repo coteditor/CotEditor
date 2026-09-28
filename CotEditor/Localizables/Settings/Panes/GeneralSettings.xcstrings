@@ -113,6 +113,12 @@
         }
       }
     },
+    "Accept rmate connections" : {
+      "comment" : "verb; checkbox"
+    },
+    "Allow remote files to be opened in CotEditor using the `rmate` protocol." : {
+
+    },
     "Check for updates automatically" : {
       "comment" : "verb; checkbox",
       "localizations" : {
@@ -2665,6 +2671,12 @@
         }
       }
     },
+    "Port" : {
+      "comment" : "placeholder"
+    },
+    "Port:" : {
+
+    },
     "Regardless of this setting, new prereleases are always included while using a prerelease." : {
       "localizations" : {
         "cs" : {
@@ -2776,6 +2788,9 @@
           }
         }
       }
+    },
+    "Remote editing:" : {
+
     },
     "Reopen windows from last session" : {
       "comment" : "verb; checkbox",

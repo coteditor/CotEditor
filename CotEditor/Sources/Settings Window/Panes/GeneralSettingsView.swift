@@ -25,6 +25,7 @@
 
 import SwiftUI
 import Defaults
+import RMate
 import SemanticVersioning
 
 struct GeneralSettingsView: View {
@@ -44,6 +45,9 @@ struct GeneralSettingsView: View {
     
     @AppStorage(.enablesAutosaveInPlace) private var enablesAutosaveInPlace: Bool
     @AppStorage(.documentConflictOption) private var documentConflictOption: DocumentConflictOption
+    
+    @AppStorage(.enablesRemoteEditing) private var enablesRemoteEditing: Bool
+    @AppStorage(.remoteEditingPort) private var remoteEditingPort: Int
     
     @State private var initialEnablesAutosaveInPlace: Bool = false
     
@@ -203,6 +207,33 @@ struct GeneralSettingsView: View {
                         .controlSize(.small)
                         .lineLimit(10)
                         .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            
+            GridRow {
+                Text("Remote editing:", tableName: "GeneralSettings")
+                    .gridColumnAlignment(.trailing)
+                
+                VStack(alignment: .leading) {
+                    Toggle(.init("Accept rmate connections", table: "GeneralSettings", comment: "verb; checkbox"), isOn: $enablesRemoteEditing)
+                    
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("Port:", tableName: "GeneralSettings")
+                            .accessibilityLabeledPair(role: .label, id: "remoteEditingPort", in: self.accessibility)
+                        TextField(.init("Port", table: "GeneralSettings", comment: "placeholder"),
+                                  value: $remoteEditingPort, format: .number.grouping(.never),
+                                  prompt: Text(RMateServer.defaultPort, format: .number.grouping(.never)))
+                            .disabled(!self.enablesRemoteEditing)
+                            .accessibilityLabeledPair(role: .content, id: "remoteEditingPort", in: self.accessibility)
+                            .frame(width: 80)
+                    }
+                    .padding(.leading, 20)
+                    
+                    Text("Allow remote files to be opened in CotEditor using the `rmate` protocol.", tableName: "GeneralSettings")
+                        .foregroundStyle(.secondary)
+                        .controlSize(.small)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.leading, 20)
                 }
             }
             
