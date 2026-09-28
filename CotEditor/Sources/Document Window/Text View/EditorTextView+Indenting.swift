@@ -39,7 +39,7 @@ extension EditorTextView: Indenting {
             guard self.indent() else { return }
         }
         
-        self.undoManager?.setActionName(String(localized: "Shift Right", table: "MainMenu"))
+        self.undoManager?.setActionName(String(localized: "Shift Right", table: "MainMenu", comment: "verb; undo action name"))
     }
     
     
@@ -52,7 +52,7 @@ extension EditorTextView: Indenting {
             guard self.outdent() else { return }
         }
         
-        self.undoManager?.setActionName(String(localized: "Shift Left", table: "MainMenu"))
+        self.undoManager?.setActionName(String(localized: "Shift Left", table: "MainMenu", comment: "verb; undo action name"))
     }
     
     
@@ -157,6 +157,6 @@ extension Indenting {
             let textEditing = self.string.convertIndentation(to: style, indentWidth: self.tabWidth, in: selectedRanges)
         else { return }
         
-        self.edit(with: textEditing, actionName: String(localized: "Convert Indentation", table: "MainMenu"))
+        self.edit(with: textEditing, actionName: String(localized: "Convert Indentation", table: "MainMenu", comment: "verb; undo action name"))
     }
 }

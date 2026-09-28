@@ -41,11 +41,11 @@ struct GoToLineView: View {
     var body: some View {
         
         VStack {
-            TextField(.init("Line Number", table: "GoToLine"), value: $lineRange, format: .fuzzyRange)
+            TextField(.init("Line Number", table: "GoToLine", comment: "noun; placeholder"), value: $lineRange, format: .fuzzyRange)
                 .monospacedDigit()
                 .onSubmit(self.submit)
             
-            SubmitButtonGroup(.init("Go", table: "GoToLine", comment: "button label"), helpAnchor: "howto_jump", action: self.submit)
+            SubmitButtonGroup(.init("Go", table: "GoToLine", comment: "verb; button"), helpAnchor: "howto_jump", action: self.submit)
                 .padding(.top)
         }
         .fixedSize()

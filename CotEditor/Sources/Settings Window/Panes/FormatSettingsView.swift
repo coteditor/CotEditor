@@ -130,7 +130,7 @@ struct FormatSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Button(.init("Edit List…", table: "FormatSettings")) {
+                    Button(.init("Edit List…", table: "FormatSettings", comment: "verb; button")) {
                         self.isEncodingListPresented.toggle()
                     }
                     .sheet(isPresented: $isEncodingListPresented) {
@@ -139,7 +139,7 @@ struct FormatSettingsView: View {
                             .presentationSizing(.fitted)
                     }
                     
-                    Toggle(.init("Refer to encoding declaration in document", table: "FormatSettings"), isOn: $referToEncodingTag)
+                    Toggle(.init("Refer to encoding declaration in document", table: "FormatSettings", comment: "verb; checkbox"), isOn: $referToEncodingTag)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 .accessibilityLabeledPair(role: .content, id: "encodingPriority", in: self.accessibility)
@@ -323,7 +323,7 @@ private struct SyntaxListView: View {
         } primaryAction: { selections in
             self.editingMode = selections.first.map { .edit($0) }
         }
-        .accessibilityRotor(.init("Customized Syntaxes", table: "FormatSettings"),
+        .accessibilityRotor(.init("Customized Syntaxes", table: "FormatSettings", comment: "heading"),
                             entries: self.settingStates.filter(\.isCustomized), entryID: \.id, entryLabel: \.name)
         .onChange(of: self.settingNames, initial: true) { _, settingNames in
             self.settingStates = settingNames.compactMap(self.manager.state(of:))
@@ -542,7 +542,7 @@ private struct SyntaxListView: View {
                 self.isImporterPresented = true
             }
             .modifierKeyAlternate(.option) {
-                Button(.init("Reload All Syntaxes", table: "FormatSettings"), systemImage: "arrow.clockwise") {
+                Button(.init("Reload All Syntaxes", table: "FormatSettings", comment: "verb; menu item"), systemImage: "arrow.clockwise") {
                     Task {
                         await self.manager.invalidateUserSettings()
                     }
@@ -551,11 +551,11 @@ private struct SyntaxListView: View {
             
             Divider()
             
-            Button(.init("Customize Syntax Menu…", table: "FormatSettings"), systemImage: "square.and.pencil") {
+            Button(.init("Customize Syntax Menu…", table: "FormatSettings", comment: "verb; menu item"), systemImage: "square.and.pencil") {
                 self.isListCustomizationViewPresented = true
             }
             
-            Button(.init("Show File Mapping Conflicts", table: "FormatSettings"), systemImage: "exclamationmark.triangle") {
+            Button(.init("Show File Mapping Conflicts", table: "FormatSettings", comment: "verb; menu item"), systemImage: "exclamationmark.triangle") {
                 self.isFileMappingConflictPresented = true
             }
             .disabled(self.manager.mappingConflicts.isEmpty)

@@ -1917,6 +1917,7 @@
       }
     },
     "Save as Named Scope…" : {
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2148,6 +2149,7 @@
       }
     },
     "ScopeSaveView.label" : {
+      "comment" : "Refer the same expression in AppKit.framework by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

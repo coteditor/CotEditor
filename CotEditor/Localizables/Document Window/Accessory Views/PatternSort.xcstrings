@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Clear Recents" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -565,6 +566,7 @@
       }
     },
     "Ignore case" : {
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -677,6 +679,7 @@
       }
     },
     "In descending order" : {
+      "comment" : "checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -902,6 +905,7 @@
       }
     },
     "Keep the first line at the top" : {
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1464,7 +1468,7 @@
       }
     },
     "Regular Expression" : {
-      "comment" : "placeholder for regular expression pattern field",
+      "comment" : "noun; placeholder",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1577,6 +1581,7 @@
       }
     },
     "Respect language rules" : {
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1914,7 +1919,7 @@
       }
     },
     "Sort" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2251,6 +2256,7 @@
       }
     },
     "Treat numbers as numeric values" : {
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

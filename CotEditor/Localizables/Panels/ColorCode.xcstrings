@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Color Code" : {
-      "comment" : "placeholder",
+      "comment" : "noun; placeholder",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1424,7 +1424,7 @@
       }
     },
     "Insert" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

@@ -314,7 +314,7 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
         
         // add "Inspect Character" menu item if single character is selected
         if self.textView.selectsSingleCharacter {
-            menu.insertItem(.init(title: String(localized: "Inspect Character", table: "MainMenu"),
+            menu.insertItem(.init(title: String(localized: "Inspect Character", table: "MainMenu", comment: "verb; menu item"),
                                   systemImage: "character.bubble",
                                   action: #selector(showSelectionInfo), keyEquivalent: ""),
                             at: 1)
@@ -497,8 +497,8 @@ extension EditorTextViewController: NSUserInterfaceValidations {
                 return self.textView.isEditable
             case #selector(toggleAdvancedCounter):
                 (item as? NSMenuItem)?.title = (self.advancedCounterView == nil)
-                    ? String(localized: "Advanced Character Count…", table: "AdvancedCharacterCount", comment: "menu item")
-                    : String(localized: "Stop Advanced Character Count", table: "AdvancedCharacterCount", comment: "menu item")
+                    ? String(localized: "Advanced Character Count…", table: "AdvancedCharacterCount", comment: "noun; menu item; opens options for advanced character counting")
+                    : String(localized: "Stop Advanced Character Count", table: "AdvancedCharacterCount", comment: "verb; menu item")
                 return true
                 
             case #selector(showSelectionInfo):

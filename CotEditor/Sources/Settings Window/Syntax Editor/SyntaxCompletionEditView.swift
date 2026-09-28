@@ -51,14 +51,14 @@ struct SyntaxCompletionEditView: View {
             
             // create a table with wrapped values and then find the editable item again in each column to enable sorting (2025-07, macOS 26)
             Table(self.items, selection: $selection, sortOrder: $sortOrder) {
-                TableColumn(.init("Completion", table: "SyntaxEditor", comment: "table column header; noun, word completion"), value: \.value.text) { wrappedItem in
+                TableColumn(.init("Completion", table: "SyntaxEditor", comment: "noun; table column header; word completion"), value: \.value.text) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         TextField(text: item.value.text, label: EmptyView.init)
                             .focused($focusedField, equals: item.id)
                     }
                 }
                 
-                TableColumn(.init("Type", table: "SyntaxEditor", comment: "table column header"), value: \.value.type.sortValue) { wrappedItem in
+                TableColumn(.init("Type", table: "SyntaxEditor", comment: "noun; table column header; syntax type"), value: \.value.type.sortValue) { wrappedItem in
                     if let item = self.item(with: wrappedItem.id, in: itemIndexes) {
                         Picker(.init("Type", table: "SyntaxEditor"), selection: item.value.type) {
                             Text("None", tableName: "SyntaxEditor")

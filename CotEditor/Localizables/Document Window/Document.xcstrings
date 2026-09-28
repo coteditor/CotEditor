@@ -1579,7 +1579,7 @@
       }
     },
     "Count" : {
-      "comment" : "section title in inspector",
+      "comment" : "noun; section heading; character and word counts",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2744,7 +2744,7 @@
       }
     },
     "Duplicate" : {
-      "comment" : "menu item label",
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -8757,7 +8757,7 @@
       }
     },
     "Include Hidden Files" : {
-      "comment" : "toggle button label",
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -8870,7 +8870,7 @@
       }
     },
     "Include Other File Types" : {
-      "comment" : "toggle button label",
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -10923,7 +10923,7 @@
       }
     },
     "Move to Trash" : {
-      "comment" : "menu item label",
+      "comment" : "verb; button\nverb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -11799,7 +11799,7 @@
       }
     },
     "New File" : {
-      "comment" : "menu item label",
+      "comment" : "noun; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -11912,7 +11912,7 @@
       }
     },
     "New Folder" : {
-      "comment" : "menu item label",
+      "comment" : "noun; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -12700,6 +12700,7 @@
       }
     },
     "Open as Plain Text" : {
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -12812,7 +12813,7 @@
       }
     },
     "Open in New Window" : {
-      "comment" : "menu item label",
+      "comment" : "verb; button\nverb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -12925,7 +12926,7 @@
       }
     },
     "Open Original" : {
-      "comment" : "action label; “Original” refers to the target of an alias/symlink in macOS. Refer to how the Finder translates it.",
+      "comment" : "verb; button; “Original” refers to the target of an alias/symlink in macOS. Refer to how the Finder translates it.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -13038,7 +13039,7 @@
       }
     },
     "Open with External Editor" : {
-      "comment" : "menu item label",
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -14053,7 +14054,7 @@
       }
     },
     "Reveal in File Browser" : {
-      "comment" : "menu item label",
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -14502,7 +14503,7 @@
       }
     },
     "Search in Folder" : {
-      "comment" : "placeholder; noun",
+      "comment" : "noun; placeholder",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -14953,7 +14954,7 @@
       }
     },
     "Show Hidden Files" : {
-      "comment" : "menu item label",
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -15066,7 +15067,7 @@
       }
     },
     "Show in Finder" : {
-      "comment" : "menu item label",
+      "comment" : "verb; button\nverb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -15411,6 +15412,7 @@
       }
     },
     "SidebarPane.find.label" : {
+      "comment" : "noun; feature searching for text in documents within a folder",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -20714,7 +20716,7 @@
       }
     },
     "Toolbar.share.tooltip" : {
-      "comment" : "(label for the Share toolbar item is automatically set)",
+      "comment" : "(label for the Share toolbar item is set automatically)",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -21789,7 +21791,7 @@
       }
     },
     "Toolbar.tabStyle.menu.tabWidth.label" : {
-      "comment" : "menu item header; Tab refers to indentation",
+      "comment" : "noun; menu section header; Tab refers to indentation",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

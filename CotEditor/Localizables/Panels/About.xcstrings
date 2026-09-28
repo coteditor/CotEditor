@@ -678,7 +678,7 @@
       }
     },
     "Credits" : {
-      "comment" : "button label",
+      "comment" : "noun; pane",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -903,7 +903,7 @@
       }
     },
     "Licenses" : {
-      "comment" : "button label",
+      "comment" : "noun; pane",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

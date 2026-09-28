@@ -291,19 +291,19 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
         switch item.action {
             case #selector(toggleLineNumber):
                 (item as? NSMenuItem)?.title = self.showsLineNumber
-                    ? String(localized: "Hide Line Numbers", table: "MainMenu")
-                    : String(localized: "Show Line Numbers", table: "MainMenu")
+                    ? String(localized: "Hide Line Numbers", table: "MainMenu", comment: "verb; menu item")
+                    : String(localized: "Show Line Numbers", table: "MainMenu", comment: "verb; menu item")
                 
             case #selector(togglePageGuide):
                 (item as? NSMenuItem)?.title = self.showsPageGuide
-                    ? String(localized: "Hide Page Guide", table: "MainMenu")
-                    : String(localized: "Show Page Guide", table: "MainMenu")
+                    ? String(localized: "Hide Page Guide", table: "MainMenu", comment: "verb; menu item")
+                    : String(localized: "Show Page Guide", table: "MainMenu", comment: "verb; menu item")
                 (item as? StatableToolbarItem)?.state = self.showsPageGuide ? .on : .off
                 
             case #selector(toggleIndentGuides):
                 (item as? NSMenuItem)?.title = self.showsIndentGuides
-                    ? String(localized: "Hide Indent Guides", table: "MainMenu")
-                    : String(localized: "Show Indent Guides", table: "MainMenu")
+                    ? String(localized: "Hide Indent Guides", table: "MainMenu", comment: "verb; menu item")
+                    : String(localized: "Show Indent Guides", table: "MainMenu", comment: "verb; menu item")
                 (item as? NSToolbarItem)?.toolTip = self.showsIndentGuides
                     ? String(localized: "Toolbar.indentGuides.tooltip.on",
                              defaultValue: "Hide indent guide lines", table: "Document")
@@ -313,8 +313,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 
             case #selector(toggleLineWrap):
                 (item as? NSMenuItem)?.title = self.wrapsLines
-                    ? String(localized: "Unwrap Lines", table: "MainMenu")
-                    : String(localized: "Wrap Lines", table: "MainMenu")
+                    ? String(localized: "Unwrap Lines", table: "MainMenu", comment: "verb; menu item")
+                    : String(localized: "Wrap Lines", table: "MainMenu", comment: "verb; menu item")
                 (item as? NSToolbarItem)?.toolTip = self.wrapsLines
                     ? String(localized: "Toolbar.wrapLines.tooltip.on",
                              defaultValue: "Unwrap lines", table: "Document")
@@ -324,8 +324,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 
             case #selector(toggleInvisibleChars):
                 (item as? NSMenuItem)?.title = self.showsInvisibles
-                    ? String(localized: "Hide Invisibles", table: "MainMenu")
-                    : String(localized: "Show Invisibles", table: "MainMenu")
+                    ? String(localized: "Hide Invisibles", table: "MainMenu", comment: "verb; menu item")
+                    : String(localized: "Show Invisibles", table: "MainMenu", comment: "verb; menu item")
                 if #unavailable(macOS 27) {
                     (item as? NSMenuItem)?.image = self.showsInvisibles
                         ? NSImage(resource: .paragraphsignSlash)
@@ -404,8 +404,8 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
                 
             case #selector(toggleSplitOrientation):
                 (item as? NSMenuItem)?.title = self.splitView.isVertical
-                    ? String(localized: "Stack Editors Horizontally", table: "MainMenu")
-                    : String(localized: "Stack Editors Vertically", table: "MainMenu")
+                    ? String(localized: "Stack Editors Horizontally", table: "MainMenu", comment: "verb; menu item")
+                    : String(localized: "Stack Editors Vertically", table: "MainMenu", comment: "verb; menu item")
                 (item as? NSMenuItem)?.image = self.splitView.isVertical
                     ? NSImage(systemSymbolName: "rectangle.split.1x2", accessibilityDescription: nil)
                     : NSImage(systemSymbolName: "rectangle.split.2x1", accessibilityDescription: nil)

@@ -58,12 +58,12 @@ struct FindSettingsView: View {
                     Section {
                         Toggle(.init("FindSettings.findIsWrap.label",
                                      defaultValue: "Wrap search around",
-                                     table: "TextFind", comment: "toggle button label; continue searching from the other end of the document"),
+                                     table: "TextFind", comment: "verb; checkbox; continue searching from the other end of the document"),
                                isOn: $findIsWrap)
                         
                         Toggle(.init("FindSettings.findSearchesIncrementally.label",
                                      defaultValue: "Search incrementally",
-                                     table: "TextFind", comment: "toggle button label"),
+                                     table: "TextFind", comment: "verb; checkbox"),
                                isOn: $findSearchesIncrementally)
                     }
                 }
@@ -107,7 +107,7 @@ struct FindTextualOptionsView: View {
             Section {
                 Toggle(.init("FindSettings.matchesFullWord.label",
                              defaultValue: "Match only whole words",
-                             table: "TextFind", comment: "toggle button label"),
+                             table: "TextFind", comment: "verb; checkbox"),
                        isOn: $matchesFullWord)
                 .help(.init("FindSettings.matchesFullWord.description",
                             defaultValue: "Restrict search results to whole words.",
@@ -115,7 +115,7 @@ struct FindTextualOptionsView: View {
                 
                 Toggle(.init("FindSettings.isLiteralSearch.label",
                              defaultValue: "Distinguish characters strictly",
-                             table: "TextFind", comment: "toggle button label"),
+                             table: "TextFind", comment: "verb; checkbox"),
                        isOn: $isLiteralSearch)
                 .help(.init("FindSettings.isLiteralSearch.description",
                             defaultValue: "Exact character-by-character equivalence.",
@@ -123,7 +123,7 @@ struct FindTextualOptionsView: View {
                 
                 Toggle(.init("FindSettings.ignoresDiacriticMarks.label",
                              defaultValue: "Ignore diacritical marks",
-                             table: "TextFind", comment: "toggle button label"),
+                             table: "TextFind", comment: "verb; checkbox"),
                        isOn: $ignoresDiacriticMarks)
                 .help(.init("FindSettings.ignoresDiacriticMarks.description",
                             defaultValue: "Search ignores diacritical marks (for example, ö = o).",
@@ -131,7 +131,7 @@ struct FindTextualOptionsView: View {
                 
                 Toggle(.init("FindSettings.ignoresWidth.label",
                              defaultValue: "Ignore width differences",
-                             table: "TextFind", comment: "toggle button label"),
+                             table: "TextFind", comment: "verb; checkbox"),
                        isOn: $ignoresWidth)
                 .help(.init("FindSettings.ignoresWidth.description",
                             defaultValue: "Search ignores width differences in character forms (for example, ａ = a).",
@@ -159,7 +159,7 @@ struct FindRegularExpressionOptionsView: View {
             Section {
                 Toggle(.init("FindSettings.isSingleLine.label",
                              defaultValue: "Dot matches line separators",
-                             table: "TextFind", comment: "toggle button label"),
+                             table: "TextFind", comment: "checkbox"),
                        isOn: $isSingleLine)
                 .help(.init("FindSettings.isSingleLine.description",
                             defaultValue: "Allow . to match any character, including newline characters (singleline).",
@@ -167,7 +167,7 @@ struct FindRegularExpressionOptionsView: View {
                 
                 Toggle(.init("FindSettings.isMultiline.label",
                              defaultValue: "Anchors match lines",
-                             table: "TextFind", comment: "toggle button label"),
+                             table: "TextFind", comment: "checkbox"),
                        isOn: $isMultiline)
                 .help(.init("FindSettings.isMultiline.description",
                             defaultValue: "Allow ^ and $ to match the start and end of lines (multiline).",
@@ -175,7 +175,7 @@ struct FindRegularExpressionOptionsView: View {
                 
                 Toggle(.init("FindSettings.usesUnicodeBoundaries.label",
                              defaultValue: "Use Unicode word boundaries",
-                             table: "TextFind", comment: "toggle button label"),
+                             table: "TextFind", comment: "verb; checkbox"),
                        isOn: $usesUnicodeBoundaries)
                 .help(.init("FindSettings.usesUnicodeBoundaries.description",
                             defaultValue: "Use Unicode TR#29 to specify word boundaries",
@@ -183,7 +183,7 @@ struct FindRegularExpressionOptionsView: View {
                 
                 Toggle(.init("FindSettings.unescapesReplacementString.label",
                              defaultValue: "Unescape replacement text",
-                             table: "TextFind", comment: "toggle button label"),
+                             table: "TextFind", comment: "verb; checkbox"),
                        isOn: $unescapesReplacementString)
                 .help(.init("FindSettings.unescapesReplacementString.description",
                             defaultValue: "Unescape metacharacters with backslash in replacement text.",

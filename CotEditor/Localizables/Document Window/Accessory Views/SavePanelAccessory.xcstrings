@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Make file executable" : {
-      "comment" : "toggle button label",
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

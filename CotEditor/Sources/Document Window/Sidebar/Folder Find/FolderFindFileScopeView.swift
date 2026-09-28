@@ -99,7 +99,7 @@ struct FolderFindFileScopeView: View {
             
             SubmitButtonGroup(helpAnchor: "howto_find_in_folder", action: self.apply, supplementalButton: {
                 if self.originalName == nil {
-                    Button(.init("Save as Named Scope…", table: "FileScopeEditor")) {
+                    Button(.init("Save as Named Scope…", table: "FileScopeEditor", comment: "verb; button")) {
                         guard self.validate(self.fileScope.normalized) else { return NSSound.beep() }
                         
                         self.isScopeSaveViewPresented = true
@@ -222,7 +222,8 @@ private struct ScopeSaveView: View {
         
         VStack(alignment: .leading) {
             Form {
-                TextField(.init("ScopeSaveView.label", defaultValue: "Save as:", table: "FileScopeEditor"),
+                TextField(.init("ScopeSaveView.label", defaultValue: "Save as:", table: "FileScopeEditor",
+                                comment: "Refer the same expression in AppKit.framework by Apple."),
                           text: $name,
                           prompt: Text(.init("ScopeSaveView.field.label", defaultValue: "Name", table: "FileScopeEditor")))
                 .onSubmit(self.submit)

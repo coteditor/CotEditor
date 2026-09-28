@@ -40,14 +40,14 @@ struct SnippetsSettingsView: View {
                     CommandSnippetsView()
                         .padding(self.insets)
                 } label: {
-                    Text("Command", tableName: "SnippetsSettings", comment: "tab label")
+                    Text("Command", tableName: "SnippetsSettings", comment: "tab")
                 }
                 
                 Tab {
                     FileDropView()
                         .padding(self.insets)
                 } label: {
-                    Text("File Drop", tableName: "SnippetsSettings", comment: "tab label")
+                    Text("File Drop", tableName: "SnippetsSettings", comment: "tab")
                 }
             }
             .tabViewStyle(.tabBarOnly)
@@ -339,7 +339,7 @@ private struct InsertionFormatView<Variable: TokenRepresentable, MenuContent: Vi
                     .accessibilityLabeledPair(role: .label, id: "insertionFormat", in: self.accessibility)
                 Spacer()
                 
-                Menu(.init("Insert Variable", table: "SnippetsSettings", comment: "button label")) {
+                Menu(.init("Insert Variable", table: "SnippetsSettings", comment: "verb; button")) {
                     self.menuContent
                 }
             }

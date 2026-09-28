@@ -646,19 +646,19 @@ extension NSTextView: EditorCounter.Source { }
             alert.messageText = String(
                 localized: "DocumentClosingAlert.message",
                 defaultValue: "Do you want to save the changes made to the document “\(self.displayName!)”?",
-                comment: "Refer the same sentence in AppKit.framework by Apple."
+                comment: "Refer the same expression in AppKit.framework by Apple."
             ) + "\n" + LossyEncodingError(encoding: self.fileEncoding).localizedDescription
             alert.informativeText = String(
                 localized: "DocumentClosingAlert.lossyEncoding.informativeText",
                 defaultValue: "Your changes will be lost if you don’t save them. Incompatible characters are either substituted or removed in saving.",
-                comment: "For the first sentence, refer the same sentence in AppKit.framework by Apple. For the latter one, refer the DocumentSavingError.lossyEncoding.recoverySuggestion.")
+                comment: "For the first sentence, refer the same expression in AppKit.framework by Apple. For the latter one, refer the DocumentSavingError.lossyEncoding.recoverySuggestion.")
             alert.addButton(withTitle: String(
                 localized: "DocumentSavingError.lossyEncoding.recoveryOption.save",
                 defaultValue: "Save Available Text"))
             alert.addButton(withTitle: String(
                 localized: "DocumentClosingAlert.button.dontSave",
                 defaultValue: "Don’t Save",
-                comment: "Refer the same sentence in AppKit.framework by Apple."))
+                comment: "Refer the same expression in AppKit.framework by Apple."))
             alert.addButton(withTitle: String(localized: .cancel))
             alert.buttons[1].hasDestructiveAction = true
             alert.window.identifier = .contentDependentAlert
@@ -954,8 +954,8 @@ extension NSTextView: EditorCounter.Source { }
             case #selector(toggleEditable):
                 if let item = item as? NSMenuItem {
                     item.title = self.isEditable
-                        ? String(localized: "Prevent Editing", table: "MainMenu")
-                        : String(localized: "Allow Editing", table: "MainMenu")
+                        ? String(localized: "Prevent Editing", table: "MainMenu", comment: "noun; menu item")
+                        : String(localized: "Allow Editing", table: "MainMenu", comment: "noun; menu item")
                     if #unavailable(macOS 27) {
                         item.image = self.isEditable
                             ? NSImage(systemSymbolName: "pencil.slash", accessibilityDescription: nil)
@@ -1436,9 +1436,9 @@ extension NSTextView: EditorCounter.Source { }
                                            defaultValue: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?",
                                            comment: "%@ is an encoding name")
             alert.addButton(withTitle: String(localized: "EncodingChangeAlert.button.convert",
-                                              defaultValue: "Convert"))
+                                              defaultValue: "Convert", comment: "verb; button"))
             alert.addButton(withTitle: String(localized: "EncodingChangeAlert.button.reinterpret",
-                                              defaultValue: "Reinterpret"))
+                                              defaultValue: "Reinterpret", comment: "verb; button"))
             alert.addButton(withTitle: String(localized: .cancel))
             alert.helpAnchor = "howto_change_encoding"
             alert.showsHelp = true
@@ -1542,16 +1542,16 @@ extension NSTextView: EditorCounter.Source { }
                          defaultValue: "The most common line ending in this document is \(self.lineEnding.label).")
             if self.isEditable {
                 alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.convert",
-                                                  defaultValue: "Convert"))
+                                                  defaultValue: "Convert", comment: "verb; button"))
             }
             alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.review",
-                                              defaultValue: "Review"))
+                                              defaultValue: "Review", comment: "verb; button"))
             alert.addButton(withTitle: String(localized: "InconsistentLineEndingAlert.button.ignore",
-                                              defaultValue: "Ignore"))
+                                              defaultValue: "Ignore", comment: "verb; button"))
             alert.showsSuppressionButton = true
             alert.suppressionButton?.title = String(localized: "InconsistentLineEndingAlert.suppressionButton",
                                                     defaultValue: "Don’t ask again for this document",
-                                                    comment: "imperative form; Refer to the Apple's translation for \"Don’t ask again\"")
+                                                    comment: "verb; checkbox; refer to Apple’s translation of “Don’t ask again”")
             alert.helpAnchor = "inconsistent_line_endings"
             alert.showsHelp = true
             alert.window.identifier = .contentDependentAlert
@@ -1616,9 +1616,9 @@ extension NSTextView: EditorCounter.Source { }
                                            comment: "version refers to the document’s contents")
             alert.addButton(withTitle: String(localized: "UpdatedByExternalProcessAlert.button.keep",
                                               defaultValue: "Keep CotEditor’s Version",
-                                              comment: "version refers to the document’s contents"))
+                                              comment: "verb; button; version refers to the document’s contents"))
             alert.addButton(withTitle: String(localized: "UpdatedByExternalProcessAlert.button.update",
-                                              defaultValue: "Update"))
+                                              defaultValue: "Update", comment: "verb; button"))
             
             // mark the alert as critical in order to interrupt other sheets already attached
             if documentWindow.attachedSheet != nil {
@@ -1792,7 +1792,7 @@ struct LossyEncodingError: LocalizedError, RecoverableError {
     
     var recoveryOptions: [String] {
         
-        [String(localized: "LossyEncodingError.recoveryOption.change", defaultValue: "Change Encoding", comment: "button label"),
+        [String(localized: "LossyEncodingError.recoveryOption.change", defaultValue: "Change Encoding", comment: "verb; button"),
          String(localized: .cancel)]
     }
     
@@ -1854,9 +1854,9 @@ private struct DocumentSavingError: LocalizedError, CustomNSError {
         switch self.code {
             case .lossyEncoding:
                 [String(localized: "DocumentSavingError.lossyEncoding.recoveryOption.save",
-                        defaultValue: "Save Available Text", comment: "button label"),
+                        defaultValue: "Save Available Text", comment: "verb; button"),
                  String(localized: "DocumentSavingError.lossyEncoding.recoveryOption.review",
-                        defaultValue: "Review Incompatible Characters", comment: "button label"),
+                        defaultValue: "Review Incompatible Characters", comment: "verb; button"),
                  String(localized: .cancel)]
         }
     }

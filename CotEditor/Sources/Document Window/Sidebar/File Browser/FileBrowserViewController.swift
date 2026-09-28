@@ -113,10 +113,10 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let addMenu = NSMenu()
         addMenu.autoenablesItems = false
         addMenu.items = [
-            NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
+            NSMenuItem(title: String(localized: "New File", table: "Document", comment: "noun; menu item"),
                        systemImage: "document.badge.plus",
                        action: #selector(addFile), keyEquivalent: ""),
-            NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
+            NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "noun; menu item"),
                        systemImage: "folder.badge.plus",
                        action: #selector(addFolder), keyEquivalent: ""),
         ]
@@ -189,31 +189,31 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
         let contextMenu = NSMenu()
         contextMenu.delegate = self
         contextMenu.items = [
-            NSMenuItem(title: String(localized: "Show in Finder", table: "Document", comment: "menu item label"),
+            NSMenuItem(title: String(localized: "Show in Finder", table: "Document", comment: "verb; menu item"),
                        systemImage: "finder",
                        action: #selector(showInFinder), keyEquivalent: ""),
             .separator(),
             
-            NSMenuItem(title: String(localized: "Open in New Window", table: "Document", comment: "menu item label"),
+            NSMenuItem(title: String(localized: "Open in New Window", table: "Document", comment: "verb; menu item"),
                        systemImage: "macwindow.badge.plus",
                        action: #selector(openInNewWindow), keyEquivalent: ""),
-            NSMenuItem(title: String(localized: "Open with External Editor", table: "Document", comment: "menu item label"),
+            NSMenuItem(title: String(localized: "Open with External Editor", table: "Document", comment: "verb; menu item"),
                        systemImage: "arrow.up.forward.square",
                        action: #selector(openWithExternalEditor), keyEquivalent: ""),
             .separator(),
             
-            NSMenuItem(title: String(localized: "Move to Trash", table: "Document", comment: "menu item label"),
+            NSMenuItem(title: String(localized: "Move to Trash", table: "Document", comment: "verb; menu item"),
                        systemImage: "trash",
                        action: #selector(moveToTrash), keyEquivalent: ""),
-            NSMenuItem(title: String(localized: "Duplicate", table: "Document", comment: "menu item label"),
+            NSMenuItem(title: String(localized: "Duplicate", table: "Document", comment: "verb; menu item"),
                        systemImage: "plus.square.on.square",
                        action: #selector(duplicate), keyEquivalent: ""),
             .separator(),
             
-            NSMenuItem(title: String(localized: "New File", table: "Document", comment: "menu item label"),
+            NSMenuItem(title: String(localized: "New File", table: "Document", comment: "noun; menu item"),
                        systemImage: "document.badge.plus",
                        action: #selector(addFile), keyEquivalent: ""),
-            NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "menu item label"),
+            NSMenuItem(title: String(localized: "New Folder", table: "Document", comment: "noun; menu item"),
                        systemImage: "folder.badge.plus",
                        action: #selector(addFolder), keyEquivalent: ""),
             .separator(),
@@ -223,7 +223,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                        action: #selector(share), keyEquivalent: ""),
             .separator(),
             
-            NSMenuItem(title: String(localized: "Show Hidden Files", table: "Document", comment: "menu item label"),
+            NSMenuItem(title: String(localized: "Show Hidden Files", table: "Document", comment: "verb; menu item"),
                        systemImage: "eye",
                        action: #selector(toggleHiddenFileVisibility), keyEquivalent: ""),
         ]
@@ -478,7 +478,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                                        defaultValue: "This operation cannot be undone.",
                                        table: "Document",
                                        comment: "Refer to the same expression by Apple.")
-        alert.addButton(withTitle: String(localized: "Move to Trash", table: "Document", comment: "menu item label"))
+        alert.addButton(withTitle: String(localized: "Move to Trash", table: "Document", comment: "verb; button"))
         alert.addButton(withTitle: String(localized: .cancel))
         alert.buttons.first?.keyEquivalent = ""
         

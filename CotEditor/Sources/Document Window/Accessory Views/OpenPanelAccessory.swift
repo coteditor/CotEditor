@@ -81,7 +81,7 @@ struct OpenPanelAccessory: View {
             }
             .disabled(self.model.selectsOnlyDirectories)
             
-            Toggle(.init("Open as read-only", table: "OpenPanelAccessory", comment: "toggle button label"), isOn: $model.options.isReadOnly)
+            Toggle(.init("Open as read-only", table: "OpenPanelAccessory", comment: "verb; checkbox"), isOn: $model.options.isReadOnly)
                 .disabled(self.model.selectsOnlyDirectories)
                 .onChange(of: self.model.selectsOnlyDirectories) { _, newValue in
                     if newValue {
@@ -89,7 +89,7 @@ struct OpenPanelAccessory: View {
                     }
                 }
             
-            Toggle(.init("Show invisible files", table: "OpenPanelAccessory", comment: "toggle button label"), isOn: $showsHiddenFiles)
+            Toggle(.init("Show invisible files", table: "OpenPanelAccessory", comment: "verb; checkbox"), isOn: $showsHiddenFiles)
                 .onChange(of: self.showsHiddenFiles) { _, newValue in
                     guard let openPanel = self.openPanel else { return }
                     

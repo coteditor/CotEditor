@@ -48,7 +48,7 @@ private extension NSTextView {
         
         let context = snippet.insertions(for: self.string, ranges: ranges)
         
-        self.edit(with: context, actionName: String(localized: "Insert Snippet", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Insert Snippet", table: "MainMenu", comment: "verb; undo action name"))
         self.scrollRangeToVisible(self.selectedRange)
     }
 }

@@ -341,6 +341,7 @@
       }
     },
     "Change background color" : {
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1013,6 +1014,7 @@
       }
     },
     "Indent guides" : {
+      "comment" : "noun; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1238,6 +1240,7 @@
       }
     },
     "Invisible characters" : {
+      "comment" : "noun; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1575,6 +1578,7 @@
       }
     },
     "Line numbers" : {
+      "comment" : "noun; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2024,7 +2028,7 @@
       }
     },
     "Open documents in tabs:" : {
-      "comment" : "Omit “documents” if label becomes too long.",
+      "comment" : "Omit “documents” if the text becomes too long.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2475,6 +2479,7 @@
       }
     },
     "Page guide at column:" : {
+      "comment" : "followed by a number field for the column",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2813,6 +2818,7 @@
       }
     },
     "Respect System Setting" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

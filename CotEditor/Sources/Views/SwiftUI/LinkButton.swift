@@ -34,7 +34,7 @@ struct LinkButton: View {
         
         if let url = URL(string: self.url) {
             Link(destination: url) {
-                Label(.init("LinkButton.label", defaultValue: "Jump to URL", comment: "accessibility label for link button"), systemImage: "arrow.forward")
+                Label(.init("LinkButton.label", defaultValue: "Jump to URL", comment: "verb; button"), systemImage: "arrow.forward")
                     .symbolVariant(.circle)
             }
             .labelStyle(.iconOnly)

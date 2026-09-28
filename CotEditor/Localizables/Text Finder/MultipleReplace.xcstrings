@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Delete Rules" : {
-      "comment" : "action name",
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -115,7 +115,7 @@
       }
     },
     "Edit Rule" : {
-      "comment" : "action name",
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -348,7 +348,7 @@
       }
     },
     "Insert Rule" : {
-      "comment" : "action name",
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -461,7 +461,7 @@
       }
     },
     "Move Rules" : {
-      "comment" : "action name",
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -687,6 +687,7 @@
       }
     },
     "Reload All Definitions" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

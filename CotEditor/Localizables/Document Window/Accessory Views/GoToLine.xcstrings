@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Go" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -115,7 +115,7 @@
       }
     },
     "Line Number" : {
-      "comment" : "placeholder",
+      "comment" : "noun; placeholder",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

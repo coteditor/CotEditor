@@ -257,7 +257,7 @@ struct MultipleReplaceListView: View {
                 self.isImporterPresented = true
             }
             .modifierKeyAlternate(.option) {
-                Button(.init("Reload All Definitions", table: "MultipleReplace"), systemImage: "arrow.clockwise") {
+                Button(.init("Reload All Definitions", table: "MultipleReplace", comment: "verb; menu item"), systemImage: "arrow.clockwise") {
                     Task {
                         await self.manager.invalidateUserSettings()
                     }

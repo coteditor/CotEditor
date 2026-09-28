@@ -114,7 +114,7 @@
       }
     },
     "Command" : {
-      "comment" : "tab label",
+      "comment" : "tab",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -453,7 +453,7 @@
       }
     },
     "File Drop" : {
-      "comment" : "tab label",
+      "comment" : "tab",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -792,7 +792,7 @@
       }
     },
     "Insert Variable" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

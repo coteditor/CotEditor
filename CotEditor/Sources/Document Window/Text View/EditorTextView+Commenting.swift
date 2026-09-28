@@ -101,7 +101,7 @@ extension Commenting {
             let context = self.string.commentOut(types: types, delimiters: self.commentDelimiters, appendsSpacer: self.appendsCommentSpacer, in: selectedRanges, at: location)
         else { return }
         
-        self.edit(with: context, actionName: String(localized: "Comment Out", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Comment Out", table: "MainMenu", comment: "verb; undo action name"))
     }
     
     
@@ -113,7 +113,7 @@ extension Commenting {
             let context = self.string.uncomment(delimiters: self.commentDelimiters, appendsSpacer: self.appendsCommentSpacer, in: selectedRanges)
         else { return }
         
-        self.edit(with: context, actionName: String(localized: "Uncomment", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Uncomment", table: "MainMenu", comment: "verb; undo action name"))
     }
     
     

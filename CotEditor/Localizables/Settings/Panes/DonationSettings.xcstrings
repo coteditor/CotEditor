@@ -1377,7 +1377,7 @@
       }
     },
     "Open GitHub Sponsors" : {
-      "comment" : "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization.",
+      "comment" : "verb; button; \"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1490,6 +1490,7 @@
       }
     },
     "Open in App Store" : {
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1827,6 +1828,7 @@
       }
     },
     "Restore Subscription" : {
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

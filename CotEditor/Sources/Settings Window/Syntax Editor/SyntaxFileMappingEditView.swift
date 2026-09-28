@@ -40,8 +40,8 @@ struct SyntaxFileMappingEditView: View {
             GridRow {
                 EditTable($extensions) {
                     HStack(alignment: .firstTextBaseline) {
-                        Text("Extensions:", tableName: "SyntaxEditor", comment: "label for file extensions")
-                        Text("(without dot)", tableName: "SyntaxEditor", comment: "additional label to “Extensions:”")
+                        Text("Extensions:", tableName: "SyntaxEditor", comment: "file extensions")
+                        Text("(without dot)", tableName: "SyntaxEditor", comment: "additional text for “Extensions:”")
                             .fontWeight(.regular)
                             .foregroundStyle(.secondary)
                     }

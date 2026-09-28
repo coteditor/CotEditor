@@ -114,6 +114,7 @@
       }
     },
     "Check for updates automatically" : {
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1159,6 +1160,7 @@
       }
     },
     "Enable Auto Save with Versions" : {
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1495,7 +1497,7 @@
       }
     },
     "Later" : {
-      "comment" : "button label",
+      "comment" : "button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1608,6 +1610,7 @@
       }
     },
     "Learn More…" : {
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1720,6 +1723,7 @@
       }
     },
     "Manage Warnings…" : {
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2770,6 +2774,7 @@
       }
     },
     "Reopen windows from last session" : {
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2882,7 +2887,7 @@
       }
     },
     "Restart Now" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3219,6 +3224,7 @@
       }
     },
     "Update to prereleases when available" : {
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

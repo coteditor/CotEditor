@@ -63,11 +63,11 @@ struct CharacterCountOptionsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Toggle(.init("Ignore line endings", table: "AdvancedCharacterCount", comment: "setting option"),
+                    Toggle(.init("Ignore line endings", table: "AdvancedCharacterCount", comment: "verb; checkbox"),
                            isOn: $ignoresNewlines)
-                    Toggle(.init("Ignore whitespace", table: "AdvancedCharacterCount", comment: "setting option"),
+                    Toggle(.init("Ignore whitespace", table: "AdvancedCharacterCount", comment: "verb; checkbox"),
                            isOn: $ignoresWhitespaces)
-                    Toggle(.init("Treat consecutive whitespace as one space", table: "AdvancedCharacterCount", comment: "setting option"),
+                    Toggle(.init("Treat consecutive whitespace as one space", table: "AdvancedCharacterCount", comment: "verb; checkbox"),
                            isOn: $treatsConsecutiveWhitespaceAsSingle)
                     .disabled(self.ignoresNewlines && self.ignoresWhitespaces)
                 }

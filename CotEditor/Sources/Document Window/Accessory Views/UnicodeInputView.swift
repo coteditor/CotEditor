@@ -80,7 +80,7 @@ struct UnicodeInputView: View {
                         }
                         
                         if !scalars.isEmpty {
-                            Button(.init("Clear Recents", table: "UnicodeInput", comment: "button label"),
+                            Button(.init("Clear Recents", table: "UnicodeInput", comment: "verb; menu item"),
                                    role: .destructive, action: self.clearRecents)
                         }
                     } label: {

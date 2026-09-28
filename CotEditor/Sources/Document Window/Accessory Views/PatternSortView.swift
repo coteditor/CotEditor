@@ -125,15 +125,15 @@ struct PatternSortView: View {
                     Text("Sort option:", tableName: "PatternSort")
                     
                     VStack(alignment: .leading) {
-                        Toggle(.init("Ignore case", table: "PatternSort"),
+                        Toggle(.init("Ignore case", table: "PatternSort", comment: "verb; checkbox"),
                                isOn: $options.ignoresCase)
-                        Toggle(.init("Respect language rules", table: "PatternSort"),
+                        Toggle(.init("Respect language rules", table: "PatternSort", comment: "verb; checkbox"),
                                isOn: $options.isLocalized)
-                        Toggle(.init("Treat numbers as numeric values", table: "PatternSort"),
+                        Toggle(.init("Treat numbers as numeric values", table: "PatternSort", comment: "verb; checkbox"),
                                isOn: $options.numeric)
-                        Toggle(.init("Keep the first line at the top", table: "PatternSort"),
+                        Toggle(.init("Keep the first line at the top", table: "PatternSort", comment: "verb; checkbox"),
                                isOn: $options.keepsFirstLine)
-                        Toggle(.init("In descending order", table: "PatternSort"),
+                        Toggle(.init("In descending order", table: "PatternSort", comment: "checkbox"),
                                isOn: $options.descending)
                     }
                 }
@@ -141,7 +141,7 @@ struct PatternSortView: View {
                 .accessibilityElement(children: .contain)
             }
             
-            SubmitButtonGroup(.init("Sort", table: "PatternSort", comment: "button label"), helpAnchor: "howto_pattern_sort", action: self.submit) .disabled(self.error != nil)
+            SubmitButtonGroup(.init("Sort", table: "PatternSort", comment: "verb; button"), helpAnchor: "howto_pattern_sort", action: self.submit) .disabled(self.error != nil)
                 .padding(.top)
         }
         .onAppear {
@@ -245,7 +245,7 @@ struct RegularExpressionSortPatternView: View {
                 Text("Pattern:", tableName: "PatternSort")
                     .accessibilityLabeledPair(role: .label, id: "pattern", in: self.accessibility)
                 VStack(alignment: .leading, spacing: 6) {
-                    RegexTextField(text: $pattern.searchPattern, prompt: String(localized: "Regular Expression", table: "PatternSort", comment: "placeholder for regular expression pattern field"))
+                    RegexTextField(text: $pattern.searchPattern, prompt: String(localized: "Regular Expression", table: "PatternSort", comment: "noun; placeholder"))
                         .leadingInset(18)
                         .overlay(alignment: .leadingLastTextBaseline) {
                             Menu {
@@ -260,7 +260,7 @@ struct RegularExpressionSortPatternView: View {
                                 }
                                 
                                 if !patterns.isEmpty {
-                                    Button(.init("Clear Recents", table: "PatternSort"), role: .destructive, action: self.clearRecents)
+                                    Button(.init("Clear Recents", table: "PatternSort", comment: "verb; menu item"), role: .destructive, action: self.clearRecents)
                                 }
                             } label: {
                                 EmptyView()

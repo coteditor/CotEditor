@@ -107,5 +107,5 @@ import SemanticVersioning
 private extension NSMenuItem {
     
     static let updateMenuTitle = String(localized: "Check for Updates…", table: "MainMenu",
-                                        comment: "provided only in the non-AppStore version")
+                                        comment: "verb; menu item; provided only in the non-AppStore version")
 }

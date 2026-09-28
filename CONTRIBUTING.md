@@ -126,6 +126,14 @@ Pay attention to how Apple treats punctuation and symbols. For example, Apple ge
 
 Recent versions of Xcode include a translation skill at `~/Library/Developer/Xcode/CodingAssistant/codex/skills/__xcode/translation/`. Although the skill is intended for agentic coding, its `references` directory contains useful style guides for several languages. If you have Xcode installed and a guide is available for your language, we recommend consulting it as well.
 
+##### Understanding localization comments
+
+Localization comments help you understand a string’s intended meaning and where it appears. Terms such as `verb`, `noun`, and `adjective` clarify how an English word is used: for example, “Count” can mean the action of counting (`verb`) or the resulting number (`noun`). Comments may combine this information with the type of UI element.
+
+Capitalization conventions can vary depending on where text appears, so some comments identify the UI element, such as a menu item or checkbox. These conventions also differ by language. Consult the style for your language and follow it when translating.
+
+Comments may also provide other context to help with translation, so be sure to read them. If a comment says “Refer to the same expression by Apple.” or similar, consult resources such as the [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) mentioned above and use Apple’s wording whenever possible.
+
 
 ### Syntaxes
 

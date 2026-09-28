@@ -344,7 +344,7 @@ extension Logger {
         let panel = self.exportSettingsPanel ?? NSPanel(
             view: ExportSettingsView(includedTypes: PortableSettingsDocument.exportableSettings).scenePadding(),
             hidesTitleButtons: true,
-            title: String(localized: "Export Settings", table: "SettingsPorting")
+            title: String(localized: "Export Settings", table: "SettingsPorting", comment: "window title")
         )
         panel.makeKeyAndOrderFront(nil)
         
@@ -379,7 +379,7 @@ extension Logger {
             let panel = NSPanel(
                 view: ImportSettingsView(name: name, document: document).scenePadding(),
                 hidesTitleButtons: true,
-                title: String(localized: "Import Settings", table: "SettingsPorting")
+                title: String(localized: "Import Settings", table: "SettingsPorting", comment: "window title")
             )
             panel.makeKeyAndOrderFront(nil)
         }
@@ -619,7 +619,7 @@ extension AppDelegate: NSMenuDelegate {
             }
         } + [
             .separator(),
-            NSMenuItem(title: String(localized: "Customize Encodings List…", table: "MainMenu"),
+            NSMenuItem(title: String(localized: "Customize Encodings List…", table: "MainMenu", comment: "verb; menu item"),
                        systemImage: "square.and.pencil",
                        action: #selector(showEncodingsListEditor), keyEquivalent: ""),
         ]

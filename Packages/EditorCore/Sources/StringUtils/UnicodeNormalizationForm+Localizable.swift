@@ -55,11 +55,13 @@ public extension UnicodeNormalizationForm {
             case .modifiedNFD:
                 String(localized: "UnicodeNormalization.modifiedNFD.label",
                        defaultValue: "Modified NFD",
-                       bundle: .module)
+                       bundle: .module,
+                       comment: "recommend to translate “modified”")
             case .modifiedNFC:
                 String(localized: "UnicodeNormalization.modifiedNFC.label",
                        defaultValue: "Modified NFC",
-                       bundle: .module)
+                       bundle: .module,
+                       comment: "recommend to translate “modified”")
         }
     }
     

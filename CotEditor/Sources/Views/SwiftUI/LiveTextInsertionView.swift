@@ -57,7 +57,7 @@ struct LiveTextInsertionView: View {
                 Spacer()
                 
                 if let transcript = try? self.result?.get().transcript, !transcript.isEmpty {
-                    Button(.init("Insert", table: "LiveTextInsertion", comment: "button label")) {
+                    Button(.init("Insert", table: "LiveTextInsertion", comment: "verb; button")) {
                         self.actionHandler(transcript)
                         self.dismiss()
                     }.keyboardShortcut(.defaultAction)

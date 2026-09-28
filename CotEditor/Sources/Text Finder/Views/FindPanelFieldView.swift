@@ -78,7 +78,7 @@ struct FindPanelFieldView: View {
                 HStack(alignment: .firstTextBaseline) {
                     HistoryMenu(.init("Recent Searches", table: "TextFind", comment: "menu item header"),
                                 defaultKey: .findHistory, systemImage: "magnifyingglass",
-                                clearLabel: .init("Clear Recent Searches", table: "TextFind", comment: "menu item label"),
+                                clearLabel: .init("Clear Recent Searches", table: "TextFind", comment: "verb; menu item"),
                                 value: $settings.findString)
                     Spacer()
                     FindPanelFieldAccessoryView(result: self.findResultMessage,
@@ -101,7 +101,7 @@ struct FindPanelFieldView: View {
                 HStack(alignment: .firstTextBaseline) {
                     HistoryMenu(.init("Recent Replacements", table: "TextFind", comment: "menu item header"),
                                 defaultKey: .replaceHistory, systemImage: "pencil",
-                                clearLabel: .init("Clear Recent Replacements", table: "TextFind", comment: "menu item label"),
+                                clearLabel: .init("Clear Recent Replacements", table: "TextFind", comment: "verb; menu item"),
                                 value: $settings.replacementString)
                     Spacer()
                     FindPanelFieldAccessoryView(result: (self.result?.action == .replace) ? self.result?.message : nil,
@@ -115,7 +115,7 @@ struct FindPanelFieldView: View {
             
             HStack(alignment: .firstTextBaseline, spacing: 12) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Toggle(.init("Regular Expression", table: "TextFind", comment: "toggle button label"), isOn: $usesRegularExpression)
+                    Toggle(.init("Regular Expression", table: "TextFind", comment: "toggle button"), isOn: $usesRegularExpression)
                         .help(.init("Select to search with regular expression.", table: "TextFind", comment: "tooltip"))
                         .fixedSize()
                     HelpLink {
@@ -128,10 +128,10 @@ struct FindPanelFieldView: View {
                             .scenePadding()
                     }
                 }
-                Toggle(.init("Ignore Case", table: "TextFind", comment: "toggle button label"), isOn: $ignoresCase)
+                Toggle(.init("Ignore Case", table: "TextFind", comment: "toggle button"), isOn: $ignoresCase)
                     .help(.init("Select to ignore character case on search.", table: "TextFind", comment: "tooltip"))
                     .fixedSize()
-                Toggle(.init("In Selection", table: "TextFind", comment: "toggle button label"), isOn: $inSelection)
+                Toggle(.init("In Selection", table: "TextFind", comment: "toggle button"), isOn: $inSelection)
                     .help(.init("Select to search text only from selection.", table: "TextFind", comment: "tooltip"))
                     .fixedSize()
                 
@@ -242,7 +242,7 @@ private struct FindPanelFieldAccessoryView: View {
                         .clipShape(.rect(cornerRadius: 2))
                 }
                 
-                Button(.init("Clear", table: "TextFind", comment: "button label"), systemImage: "xmark") {
+                Button(.init("Clear", table: "TextFind", comment: "verb; button"), systemImage: "xmark") {
                     self.text = ""
                 }
                 .symbolVariant(.circle.fill)

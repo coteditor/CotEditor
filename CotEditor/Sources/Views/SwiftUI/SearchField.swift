@@ -261,15 +261,23 @@ private extension NSSearchField {
     /// Generates a generic search menu template.
     static func searchMenuTemplate() -> sending NSMenu {
         
-        let menu = NSMenu(title: String(localized: "SearchField.recentMenu.label", defaultValue: "Recent Searches"))
-        menu.addItem(withTitle: String(localized: "SearchField.recentMenu.label", defaultValue: "Recent Searches"), action: nil, keyEquivalent: "")
+        let menu = NSMenu(title: String(localized: "SearchField.recentMenu.label", defaultValue: "Recent Searches",
+                                        comment: "Refer the same expression in AppKit.framework by Apple."))
+        menu.addItem(withTitle: String(localized: "SearchField.recentMenu.label", defaultValue: "Recent Searches"),
+                     action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsTitleMenuItemTag
         menu.addItem(withTitle: "", action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsMenuItemTag
         menu.addItem(.separator())
-        menu.addItem(withTitle: String(localized: "SearchField.recentMenu.clear.label", defaultValue: "Clear Recent Searches"), action: nil, keyEquivalent: "")
+        menu.addItem(withTitle: String(localized: "SearchField.recentMenu.clear.label",
+                                       defaultValue: "Clear Recent Searches",
+                                       comment: "Refer the same expression in AppKit.framework by Apple."),
+                     action: nil, keyEquivalent: "")
             .tag = NSSearchField.clearRecentsMenuItemTag
-        menu.addItem(withTitle: String(localized: "SearchField.recentMenu.noItem.label", defaultValue: "No Recent Searches"), action: nil, keyEquivalent: "")
+        menu.addItem(withTitle: String(localized: "SearchField.recentMenu.noItem.label",
+                                       defaultValue: "No Recent Searches",
+                                       comment: "Refer the same expression in AppKit.framework by Apple."),
+                     action: nil, keyEquivalent: "")
             .tag = NSSearchField.noRecentsMenuItemTag
         
         return menu

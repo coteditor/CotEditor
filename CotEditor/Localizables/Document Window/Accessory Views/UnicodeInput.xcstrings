@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Clear Recents" : {
-      "comment" : "button label",
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

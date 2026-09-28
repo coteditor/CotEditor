@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Allow Editing" : {
+      "comment" : "noun; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -114,6 +115,7 @@
       }
     },
     "Bigger" : {
+      "comment" : "menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -232,7 +234,7 @@
       }
     },
     "Check for Updates…" : {
-      "comment" : "provided only in the non-AppStore version",
+      "comment" : "verb; menu item; provided only in the non-AppStore version",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -345,6 +347,7 @@
       }
     },
     "Comment Out" : {
+      "comment" : "verb; menu item\nverb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -457,6 +460,7 @@
       }
     },
     "Convert Indentation" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -569,6 +573,7 @@
       }
     },
     "Copy as Rich Text" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -681,6 +686,7 @@
       }
     },
     "Customize Encodings List…" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -793,6 +799,7 @@
       }
     },
     "Delete Duplicate Lines" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -905,6 +912,7 @@
       }
     },
     "Delete Line" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1017,6 +1025,7 @@
       }
     },
     "Duplicate Line" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1242,6 +1251,7 @@
       }
     },
     "Hide Indent Guides" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1354,6 +1364,7 @@
       }
     },
     "Hide Inspector" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1466,6 +1477,7 @@
       }
     },
     "Hide Invisibles" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1578,6 +1590,7 @@
       }
     },
     "Hide Line Numbers" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1690,6 +1703,7 @@
       }
     },
     "Hide Navigation Bar" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1802,6 +1816,7 @@
       }
     },
     "Hide Page Guide" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1914,6 +1929,7 @@
       }
     },
     "Hide Sidebar" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2026,6 +2042,7 @@
       }
     },
     "Hide Status Bar" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2138,6 +2155,7 @@
       }
     },
     "Insert Color Code" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2250,6 +2268,7 @@
       }
     },
     "Insert Snippet" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2362,6 +2381,7 @@
       }
     },
     "Inspect Character" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2474,6 +2494,7 @@
       }
     },
     "Join Lines" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2699,6 +2720,7 @@
       }
     },
     "Move Line" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2811,6 +2833,7 @@
       }
     },
     "Open Scripts Folder" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3036,6 +3059,7 @@
       }
     },
     "Prevent Editing" : {
+      "comment" : "noun; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3148,6 +3172,7 @@
       }
     },
     "Reset to Default" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3266,6 +3291,7 @@
       }
     },
     "Reverse Lines" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3378,6 +3404,7 @@
       }
     },
     "Select All" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3490,6 +3517,7 @@
       }
     },
     "Select Column Down" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3602,7 +3630,7 @@
       }
     },
     "Select Column Left" : {
-      "comment" : "vertical orientation version of the Select Column Down command",
+      "comment" : "verb; menu item; vertical orientation version of the Select Column Down command",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3715,7 +3743,7 @@
       }
     },
     "Select Column Right" : {
-      "comment" : "vertical orientation version of the Select Column Up command",
+      "comment" : "verb; menu item; vertical orientation version of the Select Column Up command",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3828,6 +3856,7 @@
       }
     },
     "Select Column Up" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3940,6 +3969,7 @@
       }
     },
     "Shift Left" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4052,6 +4082,7 @@
       }
     },
     "Shift Right" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4164,6 +4195,7 @@
       }
     },
     "Show Indent Guides" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4276,6 +4308,7 @@
       }
     },
     "Show Inspector" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4388,6 +4421,7 @@
       }
     },
     "Show Invisibles" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4500,6 +4534,7 @@
       }
     },
     "Show Line Numbers" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4612,6 +4647,7 @@
       }
     },
     "Show Navigation Bar" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4724,6 +4760,7 @@
       }
     },
     "Show Page Guide" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4836,6 +4873,7 @@
       }
     },
     "Show Sidebar" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -4948,6 +4986,7 @@
       }
     },
     "Show Status Bar" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -5060,6 +5099,7 @@
       }
     },
     "Shuffle Lines" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -5172,6 +5212,7 @@
       }
     },
     "Smaller" : {
+      "comment" : "menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -5290,6 +5331,7 @@
       }
     },
     "Sort Lines" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -5402,6 +5444,7 @@
       }
     },
     "Stack Editors Horizontally" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -5514,6 +5557,7 @@
       }
     },
     "Stack Editors Vertically" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -5626,6 +5670,7 @@
       }
     },
     "Straighten Quotes" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -5738,6 +5783,7 @@
       }
     },
     "Text Size" : {
+      "comment" : "noun; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -6076,6 +6122,7 @@
       }
     },
     "Trim Trailing Whitespace" : {
+      "comment" : "verb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -6188,6 +6235,7 @@
       }
     },
     "Uncomment" : {
+      "comment" : "verb; menu item\nverb; undo action name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -6300,6 +6348,7 @@
       }
     },
     "Unwrap Lines" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -6412,6 +6461,7 @@
       }
     },
     "Wrap Lines" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

@@ -115,9 +115,9 @@ struct AppearanceSettingsView: View {
             .padding(.bottom, Self.verticalSpace)
             
             Picker(.init("Status bar:", table: "AppearanceSettings"), selection: $prefersOpaqueBarBackground) {
-                Text("Tinted", tableName: "AppearanceSettings")
+                Text("Tinted", tableName: "AppearanceSettings", comment: "adjective; radio button; status bar appearance")
                     .tag(false)
-                Text("Opaque", tableName: "AppearanceSettings")
+                Text("Opaque", tableName: "AppearanceSettings", comment: "adjective; radio button; status bar appearance")
                     .tag(true)
             }
             .pickerStyle(.radioGroup)
@@ -205,11 +205,11 @@ private struct FontSettingView: View {
                                               table: "AppearanceSettings", comment: "accessibility label for font size"))
                     .labelsHidden()
                     .padding(.leading, -4)
-                FontPicker(.init("Select…", table: "AppearanceSettings", comment: "label for font picker button"), selection: self.font)
+                FontPicker(.init("Select…", table: "AppearanceSettings", comment: "verb; button; opens the font picker"), selection: self.font)
             }
             HStack {
-                Toggle(.init("Antialias", table: "AppearanceSettings"), isOn: $antialias)
-                Toggle(.init("Ligatures", table: "AppearanceSettings"), isOn: $ligature)
+                Toggle(.init("Antialias", table: "AppearanceSettings", comment: "verb; checkbox"), isOn: $antialias)
+                Toggle(.init("Ligatures", table: "AppearanceSettings", comment: "noun; checkbox"), isOn: $ligature)
             }.controlSize(.small)
         }
     }
@@ -235,7 +235,7 @@ private extension AppearanceMode {
                 .init("AppearanceMode.automatic.label",
                       defaultValue: "Match System",
                       table: "AppearanceSettings",
-                      comment: "use the system’s appearance setting")
+                      comment: "verb; radio button; use the system’s appearance setting")
             case .light:
                 .init("AppearanceMode.light.label",
                       defaultValue: "Light",

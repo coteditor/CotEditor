@@ -115,7 +115,7 @@
       }
     },
     "%@:" : {
-      "comment" : "format for control labels followed by a colon",
+      "comment" : "format for control text followed by a colon",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -228,7 +228,7 @@
       }
     },
     "%@: %@" : {
-      "comment" : "set of label and value",
+      "comment" : "field name and value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3435,7 +3435,7 @@
       }
     },
     "Button.actions.label" : {
-      "comment" : "label for action menu button",
+      "comment" : "noun; action menu button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -4153,7 +4153,7 @@
       }
     },
     "DocumentClosingAlert.button.dontSave" : {
-      "comment" : "Refer the same sentence in AppKit.framework by Apple.",
+      "comment" : "Refer the same expression in AppKit.framework by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -4273,7 +4273,7 @@
       }
     },
     "DocumentClosingAlert.lossyEncoding.informativeText" : {
-      "comment" : "For the first sentence, refer the same sentence in AppKit.framework by Apple. For the latter one, refer the DocumentSavingError.lossyEncoding.recoverySuggestion.",
+      "comment" : "For the first sentence, refer the same expression in AppKit.framework by Apple. For the latter one, refer the DocumentSavingError.lossyEncoding.recoverySuggestion.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -4393,7 +4393,7 @@
       }
     },
     "DocumentClosingAlert.message" : {
-      "comment" : "Refer the same sentence in AppKit.framework by Apple.",
+      "comment" : "Refer the same expression in AppKit.framework by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -5110,7 +5110,7 @@
       }
     },
     "DocumentOpeningError.recoveryOption.open" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -5468,7 +5468,7 @@
       }
     },
     "DocumentSavingError.lossyEncoding.recoveryOption.review" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -5588,7 +5588,7 @@
       }
     },
     "DocumentSavingError.lossyEncoding.recoveryOption.save" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -5947,6 +5947,7 @@
       }
     },
     "EncodingChangeAlert.button.convert" : {
+      "comment" : "verb; button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -6066,6 +6067,7 @@
       }
     },
     "EncodingChangeAlert.button.reinterpret" : {
+      "comment" : "verb; button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -8809,6 +8811,7 @@
       }
     },
     "InconsistentLineEndingAlert.button.convert" : {
+      "comment" : "verb; button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -8928,6 +8931,7 @@
       }
     },
     "InconsistentLineEndingAlert.button.ignore" : {
+      "comment" : "verb; button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -9047,6 +9051,7 @@
       }
     },
     "InconsistentLineEndingAlert.button.review" : {
+      "comment" : "verb; button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -9523,7 +9528,7 @@
       }
     },
     "InconsistentLineEndingAlert.suppressionButton" : {
-      "comment" : "imperative form; Refer to the Apple's translation for \"Don’t ask again\"",
+      "comment" : "verb; checkbox; refer to Apple’s translation of “Don’t ask again”",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -11665,7 +11670,7 @@
       }
     },
     "LinkButton.label" : {
-      "comment" : "accessibility label for link button",
+      "comment" : "verb; button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -11904,7 +11909,7 @@
       }
     },
     "LossyEncodingError.recoveryOption.change" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -14758,6 +14763,7 @@
       }
     },
     "SearchField.recentMenu.clear.label" : {
+      "comment" : "Refer the same expression in AppKit.framework by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -14877,6 +14883,7 @@
       }
     },
     "SearchField.recentMenu.label" : {
+      "comment" : "Refer the same expression in AppKit.framework by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -14996,6 +15003,7 @@
       }
     },
     "SearchField.recentMenu.noItem.label" : {
+      "comment" : "Refer the same expression in AppKit.framework by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -16543,7 +16551,7 @@
       }
     },
     "Unknown" : {
-      "comment" : "Generic label for items whose label couldn’t be determined somehow.",
+      "comment" : "fallback text when an item’s name cannot be determined",
       "extractionState" : "manual",
       "localizations" : {
         "cs" : {
@@ -17247,7 +17255,7 @@
       }
     },
     "UpdatedByExternalProcessAlert.button.keep" : {
-      "comment" : "version refers to the document’s contents",
+      "comment" : "verb; button; version refers to the document’s contents",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -17367,6 +17375,7 @@
       }
     },
     "UpdatedByExternalProcessAlert.button.update" : {
+      "comment" : "verb; button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

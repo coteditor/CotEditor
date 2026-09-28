@@ -55,7 +55,7 @@ struct FindPanelResultView: View {
         
         VStack(alignment: .leading) {
             HStack {
-                Button(.init("Close", table: "TextFind", comment: "button label"), systemImage: "chevron.up") {
+                Button(.init("Close", table: "TextFind", comment: "verb; button"), systemImage: "chevron.up") {
                     NSApp.sendAction(#selector(FindPanelContentViewController.closeResultView), to: nil, from: nil)
                 }
                 .fontWeight(.medium)
@@ -114,10 +114,10 @@ struct FindPanelResultView: View {
                 self.documentName = newValue?.documentName
             }
             .contextMenu {
-                Menu(.init("Text Size", table: "MainMenu")) {
-                    Button(.init("Bigger", table: "MainMenu"), systemImage: "textformat.size.larger", action: self.biggerFont)
-                    Button(.init("Smaller", table: "MainMenu"), systemImage: "textformat.size.smaller", action: self.smallerFont)
-                    Button(.init("Reset to Default", table: "MainMenu"), systemImage: "textformat.size", action: self.resetFont)
+                Menu(.init("Text Size", table: "MainMenu", comment: "noun; menu item")) {
+                    Button(.init("Bigger", table: "MainMenu", comment: "menu item"), systemImage: "textformat.size.larger", action: self.biggerFont)
+                    Button(.init("Smaller", table: "MainMenu", comment: "menu item"), systemImage: "textformat.size.smaller", action: self.smallerFont)
+                    Button(.init("Reset to Default", table: "MainMenu", comment: "verb; menu item"), systemImage: "textformat.size", action: self.resetFont)
                 }
             }
             .onCommand(#selector((any TextSizeChanging).biggerFont), perform: self.biggerFont)

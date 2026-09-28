@@ -106,21 +106,21 @@ struct FolderFindView: View {
     /// - Returns: The context menu content.
     @ContentBuilder private func contextMenu(for file: FolderFind.FileResult) -> some View {
         
-        Button(.init("Reveal in File Browser", table: "Document"), systemImage: "folder") {
+        Button(.init("Reveal in File Browser", table: "Document", comment: "verb; menu item"), systemImage: "folder") {
             self.model.document.revealInFileBrowser(fileURL: file.fileURL)
         }
         
-        Button(.init("Show in Finder", table: "Document"), systemImage: "finder") {
+        Button(.init("Show in Finder", table: "Document", comment: "verb; menu item"), systemImage: "finder") {
             NSWorkspace.shared.activateFileViewerSelecting([file.fileURL])
         }
         
-        Button(.init("Open in New Window", table: "Document"), systemImage: "macwindow.badge.plus") {
+        Button(.init("Open in New Window", table: "Document", comment: "verb; menu item"), systemImage: "macwindow.badge.plus") {
             self.model.document.openInNewWindow(fileURL: file.fileURL)
         }
         
         Divider()
         
-        Button(.init("Open with External Editor", table: "Document"), systemImage: "arrow.up.forward.square") {
+        Button(.init("Open with External Editor", table: "Document", comment: "verb; menu item"), systemImage: "arrow.up.forward.square") {
             NSWorkspace.shared.openWithOtherApplication([file.fileURL])
         }
     }
@@ -162,13 +162,13 @@ private struct FolderFindControlView: View {
                 
                 Toggle(isOn: Binding(get: { !self.ignoresCase }, set: { self.ignoresCase = !$0 })) {
                     Label {
-                        Text("Case Sensitive", tableName: "TextFind", comment: "toggle button label")
+                        Text("Case Sensitive", tableName: "TextFind", comment: "toggle button")
                     } icon: {
                         Image(systemName: "textformat")
                             .environment(\.locale, Locale(script: .latin))
                     }
                 }
-                .help(.init("Case Sensitive", table: "TextFind", comment: "toggle button label"))
+                .help(.init("Case Sensitive", table: "TextFind", comment: "toggle button"))
                 .toggleStyle(.button)
                 .fontWeight(self.ignoresCase ? .medium : .bold)
                 .labelStyle(.iconOnly)
@@ -178,7 +178,7 @@ private struct FolderFindControlView: View {
             .controlSize(.small)
             
             SearchField(text: $textFinderSettings.findString,
-                        placeholder: String(localized: "Search in Folder", table: "Document", comment: "placeholder; noun"))
+                        placeholder: String(localized: "Search in Folder", table: "Document", comment: "noun; placeholder"))
             .autosaveName("FolderSearch")
             .isRegex(self.usesRegularExpression)
             .onSubmit { findString in
@@ -225,8 +225,8 @@ private struct FileScopeMenu: View {
         
         Menu {
             Section {
-                Toggle(.init("Include Hidden Files", table: "Document", comment: "toggle button label"), isOn: $includesHiddenFiles)
-                Toggle(.init("Include Other File Types", table: "Document", comment: "toggle button label"), isOn: $includesOtherFileTypes)
+                Toggle(.init("Include Hidden Files", table: "Document", comment: "verb; menu item"), isOn: $includesHiddenFiles)
+                Toggle(.init("Include Other File Types", table: "Document", comment: "verb; menu item"), isOn: $includesOtherFileTypes)
             }
             
             Button(.init("Edit File Scope…", table: "Document")) {

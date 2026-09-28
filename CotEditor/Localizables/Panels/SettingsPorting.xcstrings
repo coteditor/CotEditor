@@ -1922,6 +1922,7 @@
       }
     },
     "Export Settings" : {
+      "comment" : "window title",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2034,6 +2035,7 @@
       }
     },
     "Import Settings" : {
+      "comment" : "window title",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

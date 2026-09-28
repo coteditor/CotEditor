@@ -76,10 +76,10 @@ struct NavigationBar: View {
                     NSApp.sendAction(#selector(DocumentViewController.toggleSplitOrientation), to: nil, from: nil)
                 } label: {
                     if self.splitState.isVertical {
-                        Label(.init("Stack Editors Horizontally", table: "MainMenu"),
+                        Label(.init("Stack Editors Horizontally", table: "MainMenu", comment: "verb; menu item"),
                               systemImage: "rectangle.split.1x2")
                     } else {
-                        Label(.init("Stack Editors Vertically", table: "MainMenu"),
+                        Label(.init("Stack Editors Vertically", table: "MainMenu", comment: "verb; menu item"),
                               systemImage: "rectangle.split.2x1")
                     }
                 }

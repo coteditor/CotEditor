@@ -471,7 +471,7 @@ private extension PrintInfoType {
                 String(localized: "PrintInfoType.printDate.label",
                        defaultValue: "Print Date",
                        table: "PrintAccessory",
-                       comment: "noun, the date the document is printed")
+                       comment: "noun; the date the document is printed")
             case .lastModifiedDate:
                 String(localized: "PrintInfoType.lastModifiedDate.label",
                        defaultValue: "Last Modified Date",

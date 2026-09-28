@@ -30,11 +30,11 @@ struct FindPanelButtonView: View {
     var body: some View {
         
         HStack(alignment: .bottom) {
-            Menu(.init("Find All", table: "TextFind", comment: "button label")) {
-                Button(.init("Highlight All", table: "TextFind", comment: "button label"), systemImage: "highlighter") {
+            Menu(.init("Find All", table: "TextFind", comment: "verb; button")) {
+                Button(.init("Highlight All", table: "TextFind", comment: "verb; menu item"), systemImage: "highlighter") {
                     self.performAction(.highlight)
                 }
-                Button(.init("Select All", table: "TextFind", comment: "button label"), systemImage: "character.textbox") {
+                Button(.init("Select All", table: "TextFind", comment: "verb; menu item"), systemImage: "character.textbox") {
                     self.performAction(.selectAll)
                 }
             } primaryAction: {
@@ -42,24 +42,24 @@ struct FindPanelButtonView: View {
             }
             .help(.init("Find and list all matches.", table: "TextFind", comment: "tooltip"))
             
-            Button(.init("Replace All", table: "TextFind", comment: "button label")) {
+            Button(.init("Replace All", table: "TextFind", comment: "verb; button")) {
                 self.performAction(.replaceAll)
             }
             .help(.init("Replace all matches with the replacement text.", table: "TextFind", comment: "tooltip"))
             
             Spacer()
             
-            Button(.init("Replace", table: "TextFind", comment: "button label")) {
+            Button(.init("Replace", table: "TextFind", comment: "verb; button")) {
                 self.performAction(.replaceAndFind)
             }
             .help(.init("Replace the current selection with the replacement text, then find the next match.", table: "TextFind", comment: "tooltip"))
             
             ControlGroup {
-                Button(.init("Find Previous", table: "TextFind", comment: "button label"), systemImage: "chevron.backward") {
+                Button(.init("Find Previous", table: "TextFind", comment: "verb; button"), systemImage: "chevron.backward") {
                     self.performAction(.previousMatch)
                 }.help(.init("Find previous match.", table: "TextFind", comment: "tooltip"))
                 
-                Button(.init("Find Next", table: "TextFind", comment: "button label"), systemImage: "chevron.forward") {
+                Button(.init("Find Next", table: "TextFind", comment: "verb; button"), systemImage: "chevron.forward") {
                     self.performAction(.nextMatch)
                 }.help(.init("Find next match.", table: "TextFind", comment: "tooltip"))
             }

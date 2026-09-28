@@ -945,7 +945,7 @@
       }
     },
     "Case Sensitive" : {
-      "comment" : "toggle button label",
+      "comment" : "toggle button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1058,7 +1058,7 @@
       }
     },
     "Clear" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1171,7 +1171,7 @@
       }
     },
     "Clear Recent Replacements" : {
-      "comment" : "menu item label",
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1284,7 +1284,7 @@
       }
     },
     "Clear Recent Searches" : {
-      "comment" : "menu item label",
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1397,7 +1397,7 @@
       }
     },
     "Close" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1849,7 +1849,7 @@
       }
     },
     "Find All" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2075,7 +2075,7 @@
       }
     },
     "Find Next" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2301,7 +2301,7 @@
       }
     },
     "Find Previous" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -3932,7 +3932,7 @@
       }
     },
     "FindSettings.findIsWrap.label" : {
-      "comment" : "toggle button label; continue searching from the other end of the document",
+      "comment" : "verb; checkbox; continue searching from the other end of the document",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -4052,7 +4052,7 @@
       }
     },
     "FindSettings.findSearchesIncrementally.label" : {
-      "comment" : "toggle button label",
+      "comment" : "verb; checkbox",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -4292,7 +4292,7 @@
       }
     },
     "FindSettings.ignoresDiacriticMarks.label" : {
-      "comment" : "toggle button label",
+      "comment" : "verb; checkbox",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -4532,7 +4532,7 @@
       }
     },
     "FindSettings.ignoresWidth.label" : {
-      "comment" : "toggle button label",
+      "comment" : "verb; checkbox",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -4772,7 +4772,7 @@
       }
     },
     "FindSettings.isLiteralSearch.label" : {
-      "comment" : "toggle button label",
+      "comment" : "verb; checkbox",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -5012,7 +5012,7 @@
       }
     },
     "FindSettings.isMultiline.label" : {
-      "comment" : "toggle button label",
+      "comment" : "checkbox",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -5252,7 +5252,7 @@
       }
     },
     "FindSettings.isSingleLine.label" : {
-      "comment" : "toggle button label",
+      "comment" : "checkbox",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -5492,7 +5492,7 @@
       }
     },
     "FindSettings.matchesFullWord.label" : {
-      "comment" : "toggle button label",
+      "comment" : "verb; checkbox",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -5732,7 +5732,7 @@
       }
     },
     "FindSettings.unescapesReplacementString.label" : {
-      "comment" : "toggle button label",
+      "comment" : "verb; checkbox",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -5972,7 +5972,7 @@
       }
     },
     "FindSettings.usesUnicodeBoundaries.label" : {
-      "comment" : "toggle button label",
+      "comment" : "verb; checkbox",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -6559,7 +6559,7 @@
       }
     },
     "Highlight All" : {
-      "comment" : "button label",
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -6672,7 +6672,7 @@
       }
     },
     "Ignore Case" : {
-      "comment" : "toggle button label",
+      "comment" : "toggle button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -6785,7 +6785,7 @@
       }
     },
     "In Selection" : {
-      "comment" : "toggle button label",
+      "comment" : "toggle button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -7350,7 +7350,7 @@
       }
     },
     "Regular Expression" : {
-      "comment" : "toggle button label",
+      "comment" : "toggle button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -7576,7 +7576,7 @@
       }
     },
     "Replace" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -7689,7 +7689,7 @@
       }
     },
     "Replace All" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -8366,7 +8366,7 @@
       }
     },
     "Select All" : {
-      "comment" : "button label",
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

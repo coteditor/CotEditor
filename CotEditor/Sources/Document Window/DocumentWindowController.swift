@@ -857,7 +857,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu.items = [
                     .sectionHeader(title: String(localized: "Toolbar.tabStyle.menu.tabWidth.label",
-                                                 defaultValue: "Tab Width", table: "Document", comment: "menu item header; Tab refers to indentation")),
+                                                 defaultValue: "Tab Width", table: "Document", comment: "noun; menu section header; Tab refers to indentation")),
                 ] + [2, 4, 8].map { width in
                     let item = NSMenuItem(title: width.formatted(), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                     item.tag = width
@@ -995,7 +995,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = NSSharingServicePickerToolbarItem(itemIdentifier: itemIdentifier)
                 item.toolTip = String(localized: "Toolbar.share.tooltip",
                                       defaultValue: "Share document file", table: "Document",
-                                      comment: "(label for the Share toolbar item is automatically set)")
+                                      comment: "(label for the Share toolbar item is set automatically)")
                 item.delegate = self
                 return item
                 

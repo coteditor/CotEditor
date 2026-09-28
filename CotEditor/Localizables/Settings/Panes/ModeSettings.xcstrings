@@ -2603,6 +2603,7 @@
       }
     },
     "Use custom settings" : {
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

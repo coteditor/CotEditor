@@ -2083,7 +2083,7 @@
       }
     },
     "PrintInfoType.printDate.label" : {
-      "comment" : "noun, the date the document is printed",
+      "comment" : "noun; the date the document is printed",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

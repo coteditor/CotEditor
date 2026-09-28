@@ -122,6 +122,7 @@
       }
     },
     "UnicodeNormalization.modifiedNFC.label" : {
+      "comment" : "recommend to translate “modified”",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -361,6 +362,7 @@
       }
     },
     "UnicodeNormalization.modifiedNFD.label" : {
+      "comment" : "recommend to translate “modified”",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

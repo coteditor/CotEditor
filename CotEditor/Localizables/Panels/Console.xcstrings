@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Clear Log" : {
-      "comment" : "toolbar item label",
+      "comment" : "verb; toolbar item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -115,7 +115,7 @@
       }
     },
     "Console" : {
-      "comment" : "window title",
+      "comment" : "noun; window title",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

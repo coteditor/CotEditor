@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Continue" : {
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

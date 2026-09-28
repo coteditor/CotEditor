@@ -556,7 +556,7 @@ private struct DocumentOpeningError: LocalizedError, RecoverableError {
     
     var recoveryOptions: [String] {
         
-        [String(localized: "DocumentOpeningError.recoveryOption.open", defaultValue: "Open", comment: "button label"),
+        [String(localized: "DocumentOpeningError.recoveryOption.open", defaultValue: "Open", comment: "verb; button"),
          String(localized: .cancel)]
     }
     

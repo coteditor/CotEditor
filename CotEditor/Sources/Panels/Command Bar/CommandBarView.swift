@@ -282,8 +282,14 @@ private extension ActionCommand.Kind {
     var label: LocalizedStringResource {
         
         switch self {
-            case .command: .init("Command", table: "CommandBar", comment: "command type")
-            case .script: .init("Script", table: "CommandBar", comment: "command type")
+            case .command:
+                .init("ActionCommand.Kind.command.label",
+                      defaultValue: "Command",
+                      table: "CommandBar", comment: "noun; command type")
+            case .script:
+                .init("ActionCommand.Kind.script.label",
+                      defaultValue: "Script",
+                      table: "CommandBar", comment: "noun; command type")
         }
     }
 }

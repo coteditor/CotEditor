@@ -305,7 +305,7 @@ private struct ModeIndentOptionsView: View {
     var body: some View {
         
         VStack(alignment: .leading) {
-            Toggle(.init("Use custom settings", table: "ModeSettings"),
+            Toggle(.init("Use custom settings", table: "ModeSettings", comment: "verb; checkbox"),
                    isOn: self.usesCustomIndentation)
             
             Group {
@@ -313,8 +313,8 @@ private struct ModeIndentOptionsView: View {
                     Text(.init("Prefer using", table: "EditSettings"))
                         .accessibilityLabeledPair(role: .label, id: "expandsTab", in: self.accessibility)
                     Picker(selection: self.expandsTab) {
-                        Text("Spaces", tableName: "EditSettings", comment: "indent style").tag(true)
-                        Text("Tabs", tableName: "EditSettings", comment: "indent style").tag(false)
+                        Text("Spaces", tableName: "EditSettings", comment: "noun; menu item; indent style").tag(true)
+                        Text("Tabs", tableName: "EditSettings", comment: "noun; menu item; indent style").tag(false)
                     } label: {
                         EmptyView()
                     }

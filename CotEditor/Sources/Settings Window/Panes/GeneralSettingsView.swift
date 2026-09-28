@@ -66,7 +66,7 @@ struct GeneralSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Toggle(.init("Reopen windows from last session", table: "GeneralSettings"), isOn: $quitAlwaysKeepsWindows)
+                    Toggle(.init("Reopen windows from last session", table: "GeneralSettings", comment: "verb; checkbox"), isOn: $quitAlwaysKeepsWindows)
                         .onChange(of: self.quitAlwaysKeepsWindows) {
                             guard !self.suppressesQuitAlwaysKeepsWindowsChangeConfirmation else { return }
                             
@@ -99,7 +99,7 @@ struct GeneralSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Toggle(.init("Enable Auto Save with Versions", table: "GeneralSettings"), isOn: $enablesAutosaveInPlace)
+                    Toggle(.init("Enable Auto Save with Versions", table: "GeneralSettings", comment: "verb; checkbox"), isOn: $enablesAutosaveInPlace)
                         .onChange(of: self.enablesAutosaveInPlace) { _, newValue in
                             if newValue != self.initialEnablesAutosaveInPlace {
                                 self.isAutosaveChangeConfirmationPresented = true
@@ -109,11 +109,11 @@ struct GeneralSettingsView: View {
                             self.initialEnablesAutosaveInPlace = self.enablesAutosaveInPlace
                         }
                         .confirmationDialog(.init("NextSessionApplicationConfirmation.title", defaultValue: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: $isAutosaveChangeConfirmationPresented) {
-                            Button(.init("Restart Now", table: "GeneralSettings", comment: "button label")) {
+                            Button(.init("Restart Now", table: "GeneralSettings", comment: "verb; button")) {
                                 (NSApp.delegate as? AppDelegate)?.needsRelaunch = true
                                 NSApp.terminate(self)
                             }
-                            Button(.init("Later", table: "GeneralSettings", comment: "button label")) {
+                            Button(.init("Later", table: "GeneralSettings", comment: "button")) {
                                 // do nothing
                             }
                             Button(role: .cancel) {
@@ -162,7 +162,7 @@ struct GeneralSettingsView: View {
                     .gridColumnAlignment(.trailing)
                     .accessibilityLabeledPair(role: .label, id: "dialogWarnings", in: self.accessibility)
                 
-                Button(.init("Manage Warnings…", table: "GeneralSettings")) {
+                Button(.init("Manage Warnings…", table: "GeneralSettings", comment: "verb; button")) {
                     self.isWarningsSettingPresented.toggle()
                 }
                 .accessibilityLabeledPair(role: .content, id: "dialogWarnings", in: self.accessibility)
@@ -180,7 +180,7 @@ struct GeneralSettingsView: View {
                 
                 VStack(alignment: .leading) {
                     HStack(alignment: .firstTextBaseline) {
-                        Button(.init("Learn More…", table: "GeneralSettings")) {
+                        Button(.init("Learn More…", table: "GeneralSettings", comment: "verb; button")) {
                             NSHelpManager.shared.openHelpAnchor("about_cot", inBook: nil)
                         }
                         if self.commandLineToolStatus.installed,
@@ -239,10 +239,10 @@ private struct UpdaterView: View {
                 .gridColumnAlignment(.trailing)
             
             VStack(alignment: .leading) {
-                Toggle(.init("Check for updates automatically", table: "GeneralSettings"), isOn: $enableAutomaticUpdateChecks)
+                Toggle(.init("Check for updates automatically", table: "GeneralSettings", comment: "verb; checkbox"), isOn: $enableAutomaticUpdateChecks)
                 
                 VStack(alignment: .leading, spacing: 2) {
-                    Toggle(.init("Update to prereleases when available", table: "GeneralSettings"), isOn: $checksUpdatesForBeta)
+                    Toggle(.init("Update to prereleases when available", table: "GeneralSettings", comment: "verb; checkbox"), isOn: $checksUpdatesForBeta)
                     
                     if Bundle.main.version!.isPrerelease {
                         Text("Regardless of this setting, new prereleases are always included while using a prerelease.", tableName: "GeneralSettings")

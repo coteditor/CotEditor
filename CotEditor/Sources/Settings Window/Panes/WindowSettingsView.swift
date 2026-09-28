@@ -67,12 +67,12 @@ struct WindowSettingsView: View {
         Grid(alignment: .leadingFirstTextBaseline, verticalSpacing: 8) {
             GridRow(alignment: .lastTextBaseline) {
                 Text("Open documents in tabs:", tableName: "WindowSettings",
-                     comment: "Omit “documents” if label becomes too long.")
+                     comment: "Omit “documents” if the text becomes too long.")
                     .accessibilityLabeledPair(role: .label, id: "windowTabbing", in: self.accessibility)
                 
                 Picker(selection: $windowTabbing) {
                     Text(
-                        AttributedString(localized: "Respect System Setting", table: "WindowSettings") +
+                        AttributedString(localized: "Respect System Setting", table: "WindowSettings", comment: "verb; menu item") +
                         AttributedString(" (\(String(localized: NSWindow.userTabbingPreference.label)))",
                                          attributes: .init().foregroundColor(.secondary))
                     ).tag(-1)
@@ -139,9 +139,9 @@ struct WindowSettingsView: View {
                     .gridColumnAlignment(.trailing)
                 
                 VStack(alignment: .leading) {
-                    Toggle(.init("Line numbers", table: "WindowSettings"), isOn: $showLineNumbers)
+                    Toggle(.init("Line numbers", table: "WindowSettings", comment: "noun; checkbox"), isOn: $showLineNumbers)
                     
-                    Toggle(.init("Invisible characters", table: "WindowSettings"), isOn: $showInvisibles)
+                    Toggle(.init("Invisible characters", table: "WindowSettings", comment: "noun; checkbox"), isOn: $showInvisibles)
                     Grid(alignment: .leading, horizontalSpacing: 20) {
                         GridRow {
                             Toggle(.init("Line ending", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleNewLine)
@@ -157,11 +157,11 @@ struct WindowSettingsView: View {
                     .padding(.leading, 20)
                     .fixedSize()
                     
-                    Toggle(.init("Indent guides", table: "WindowSettings"), isOn: $showIndentGuides)
+                    Toggle(.init("Indent guides", table: "WindowSettings", comment: "noun; checkbox"), isOn: $showIndentGuides)
                     HStack(alignment: .firstTextBaseline) {
                         Toggle(.init("Page guide at column:", table: "WindowSettings"), isOn: $showPageGuide)
                         StepperNumberField(value: $pageGuideColumn, default: UserDefaults.standard[initial: .pageGuideColumn], in: 1...999)
-                            .accessibilityLabel(.init("Page guide at column:", table: "WindowSettings"))
+                            .accessibilityLabel(.init("Page guide at column:", table: "WindowSettings", comment: "followed by a number field for the column"))
                             .disabled(!self.showPageGuide)
                     }
                 }
@@ -171,7 +171,7 @@ struct WindowSettingsView: View {
                 Text("Current line:", tableName: "WindowSettings")
                     .gridColumnAlignment(.trailing)
                 
-                Toggle(.init("Change background color", table: "WindowSettings"), isOn: $highlightCurrentLine)
+                Toggle(.init("Change background color", table: "WindowSettings", comment: "verb; checkbox"), isOn: $highlightCurrentLine)
             }
             
             Divider()

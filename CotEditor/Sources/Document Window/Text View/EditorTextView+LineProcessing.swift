@@ -42,7 +42,7 @@ extension EditorTextView {
             let context = self.string.moveLineUp(in: ranges)
         else { return NSSound.beep() }
         
-        self.edit(with: context, actionName: String(localized: "Move Line", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Move Line", table: "MainMenu", comment: "verb; undo action name"))
         self.scrollRangeToVisible(self.selectedRange)
     }
     
@@ -55,7 +55,7 @@ extension EditorTextView {
             let context = self.string.moveLineDown(in: ranges)
         else { return NSSound.beep() }
         
-        self.edit(with: context, actionName: String(localized: "Move Line", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Move Line", table: "MainMenu", comment: "verb; undo action name"))
         self.scrollRangeToVisible(self.selectedRange)
     }
     
@@ -71,7 +71,7 @@ extension EditorTextView {
         self.isApprovedTextChange = true
         defer { self.isApprovedTextChange = false }
         
-        self.edit(with: context, actionName: String(localized: "Sort Lines", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Sort Lines", table: "MainMenu", comment: "verb; undo action name"))
     }
     
     
@@ -86,7 +86,7 @@ extension EditorTextView {
         self.isApprovedTextChange = true
         defer { self.isApprovedTextChange = false }
         
-        self.edit(with: context, actionName: String(localized: "Reverse Lines", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Reverse Lines", table: "MainMenu", comment: "verb; undo action name"))
     }
     
     
@@ -101,7 +101,7 @@ extension EditorTextView {
         self.isApprovedTextChange = true
         defer { self.isApprovedTextChange = false }
         
-        self.edit(with: context, actionName: String(localized: "Shuffle Lines", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Shuffle Lines", table: "MainMenu", comment: "verb; undo action name"))
     }
     
     
@@ -115,7 +115,7 @@ extension EditorTextView {
         
         guard let context = self.string.deleteDuplicateLine(in: ranges) else { return }
         
-        self.edit(with: context, actionName: String(localized: "Delete Duplicate Lines", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Delete Duplicate Lines", table: "MainMenu", comment: "verb; undo action name"))
     }
     
     
@@ -126,7 +126,7 @@ extension EditorTextView {
         
         guard let context = self.string.duplicateLine(in: selectedRanges, lineEnding: self.lineEnding.rawValue) else { return }
         
-        self.edit(with: context, actionName: String(localized: "Duplicate Line", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Duplicate Line", table: "MainMenu", comment: "verb; undo action name"))
     }
     
     
@@ -137,7 +137,7 @@ extension EditorTextView {
         
         guard let context = self.string.deleteLine(in: selectedRanges) else { return }
         
-        self.edit(with: context, actionName: String(localized: "Delete Line", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Delete Line", table: "MainMenu", comment: "verb; undo action name"))
     }
     
     
@@ -152,7 +152,7 @@ extension EditorTextView {
             self.string.joinLines(after: selectedRanges)
         }
         
-        self.edit(with: context, actionName: String(localized: "Join Lines", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Join Lines", table: "MainMenu", comment: "verb; undo action name"))
     }
     
     
@@ -211,7 +211,7 @@ extension EditorTextView {
         defer { self.isApprovedTextChange = false }
         
         self.replace(with: newString, range: lineRange, selectedRange: selectedRange,
-                     actionName: String(localized: "Sort Lines", table: "MainMenu"))
+                     actionName: String(localized: "Sort Lines", table: "MainMenu", comment: "verb; undo action name"))
     }
 }
 
@@ -228,6 +228,6 @@ extension EditorTextView {
         
         guard let context = self.string.trimTrailingWhitespace(ignoringEmptyLines: ignoringEmptyLines, keepingEditingPoint: keepingEditingPoint, in: editingRanges) else { return }
         
-        self.edit(with: context, actionName: String(localized: "Trim Trailing Whitespace", table: "MainMenu"))
+        self.edit(with: context, actionName: String(localized: "Trim Trailing Whitespace", table: "MainMenu", comment: "verb; undo action name"))
     }
 }

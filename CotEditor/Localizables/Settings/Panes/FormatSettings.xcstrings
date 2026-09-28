@@ -114,6 +114,7 @@
       }
     },
     "Customize Syntax Menu…" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -226,6 +227,7 @@
       }
     },
     "Customized Syntaxes" : {
+      "comment" : "heading",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -674,6 +676,7 @@
       }
     },
     "Edit List…" : {
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -898,6 +901,7 @@
       }
     },
     "Refer to encoding declaration in document" : {
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1010,6 +1014,7 @@
       }
     },
     "Reload All Syntaxes" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1128,6 +1133,7 @@
       }
     },
     "Show File Mapping Conflicts" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

@@ -114,6 +114,7 @@
       }
     },
     "Select All" : {
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

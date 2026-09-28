@@ -1914,7 +1914,7 @@
       }
     },
     "Use system color" : {
-      "comment" : "toggle button label",
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

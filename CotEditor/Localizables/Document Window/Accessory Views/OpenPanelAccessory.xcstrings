@@ -115,7 +115,7 @@
       }
     },
     "Open as read-only" : {
-      "comment" : "toggle button label",
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -228,7 +228,7 @@
       }
     },
     "Show invisible files" : {
-      "comment" : "toggle button label",
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

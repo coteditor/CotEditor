@@ -367,7 +367,7 @@
       }
     },
     "Advanced Character Count…" : {
-      "comment" : "menu item",
+      "comment" : "noun; menu item; opens options for advanced character counting",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1440,7 +1440,7 @@
       }
     },
     "Copy" : {
-      "comment" : "menu item",
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1778,7 +1778,7 @@
       }
     },
     "Ignore line endings" : {
-      "comment" : "setting option",
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1891,7 +1891,7 @@
       }
     },
     "Ignore whitespace" : {
-      "comment" : "setting option",
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2229,7 +2229,7 @@
       }
     },
     "Start" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2342,7 +2342,7 @@
       }
     },
     "Stop Advanced Character Count" : {
-      "comment" : "menu item",
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2455,7 +2455,7 @@
       }
     },
     "Stop Count" : {
-      "comment" : "menu item (This “Stop” should be translated the same as it is in the “Stop Advanced Character Count” menu label.)",
+      "comment" : "verb; menu item (This “Stop” should be translated the same as it is in the “Stop Advanced Character Count”.)",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2568,7 +2568,7 @@
       }
     },
     "Treat consecutive whitespace as one space" : {
-      "comment" : "setting option",
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

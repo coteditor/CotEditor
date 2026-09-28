@@ -114,7 +114,7 @@
       }
     },
     "Insert" : {
-      "comment" : "button label",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

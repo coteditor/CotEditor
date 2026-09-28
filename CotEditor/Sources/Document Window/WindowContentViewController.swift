@@ -236,8 +236,8 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
             case #selector(toggleSidebar):
                 // The menu item is not validated when the responder has no sidebar (2025-03, macOS 15).
                 (item as? NSMenuItem)?.title = self.sidebarViewItem?.isCollapsed == false
-                    ? String(localized: "Hide Sidebar", table: "MainMenu")
-                    : String(localized: "Show Sidebar", table: "MainMenu")
+                    ? String(localized: "Hide Sidebar", table: "MainMenu", comment: "verb; menu item")
+                    : String(localized: "Show Sidebar", table: "MainMenu", comment: "verb; menu item")
                 (item as? NSMenuItem)?.toolTip = self.sidebarAvailabilityHint
                 return self.canToggleSidebar
                 
@@ -253,8 +253,8 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
                 
             case #selector(toggleInspector):
                 (item as? NSMenuItem)?.title = self.inspectorViewItem.isCollapsed == false
-                    ? String(localized: "Hide Inspector", table: "MainMenu")
-                    : String(localized: "Show Inspector", table: "MainMenu")
+                    ? String(localized: "Hide Inspector", table: "MainMenu", comment: "verb; menu item")
+                    : String(localized: "Show Inspector", table: "MainMenu", comment: "verb; menu item")
                 
             case #selector(showDocumentInspector):
                 (item as? NSMenuItem)?.state = self.isInspectorShown(pane: .document) ? .on : .off
@@ -267,8 +267,8 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
                 
             case #selector(toggleStatusBar):
                 (item as? NSMenuItem)?.title = UserDefaults.standard[.showStatusBar]
-                    ? String(localized: "Hide Status Bar", table: "MainMenu")
-                    : String(localized: "Show Status Bar", table: "MainMenu")
+                    ? String(localized: "Hide Status Bar", table: "MainMenu", comment: "verb; menu item")
+                    : String(localized: "Show Status Bar", table: "MainMenu", comment: "verb; menu item")
                 
             default: break
         }

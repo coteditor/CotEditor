@@ -105,7 +105,7 @@ struct WhatsNewView: View {
                 Button {
                     self.dismiss()
                 } label: {
-                    Text("Continue", tableName: "WhatsNew")
+                    Text("Continue", tableName: "WhatsNew", comment: "verb; button")
                         .frame(minWidth: 110)
                 }
                 .prefersDefaultFocus(true, in: self.namespace)

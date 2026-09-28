@@ -228,6 +228,7 @@
       }
     },
     "Antialias" : {
+      "comment" : "verb; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -452,7 +453,7 @@
       }
     },
     "AppearanceMode.automatic.label" : {
-      "comment" : "use the system’s appearance setting",
+      "comment" : "verb; radio button; use the system’s appearance setting",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -1034,6 +1035,7 @@
       }
     },
     "Ligatures" : {
+      "comment" : "noun; checkbox",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1847,6 +1849,7 @@
       }
     },
     "Opaque" : {
+      "comment" : "adjective; radio button; status bar appearance",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1959,7 +1962,7 @@
       }
     },
     "Select…" : {
-      "comment" : "label for font picker button",
+      "comment" : "verb; button; opens the font picker",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2409,6 +2412,7 @@
       }
     },
     "Tinted" : {
+      "comment" : "adjective; radio button; status bar appearance",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

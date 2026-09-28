@@ -67,7 +67,7 @@ struct SyntaxOutlineEditView: View {
                 }
                 .width(min: 180, ideal: 240)
                 
-                TableColumn(.init("Display Pattern", table: "SyntaxEditor", comment: "table column header; noun, template used to generate outline item titles")) { $item in
+                TableColumn(.init("Display Pattern", table: "SyntaxEditor", comment: "noun; table column header; template used to generate outline item titles")) { $item in
                     let isSeparator = (item.value.kind == .separator)
                     
                     RegexTextField(
@@ -76,7 +76,7 @@ struct SyntaxOutlineEditView: View {
                         prompt: isSeparator
                             ? "–"
                             : String(localized: "Entire match", table: "SyntaxEditor",
-                                     comment: "placeholder for outline item table; noun, the entire text matched by the regular expression")
+                                     comment: "noun; placeholder for outline item table; the entire text matched by the regular expression")
                     )
                     .style(.table)
                     .disabled(isSeparator)

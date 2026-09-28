@@ -87,10 +87,10 @@ private struct NoAppPurchaseView: View {
                 .font(.body)
             
         } actions: {
-            Link(.init("Open in App Store", table: "DonationSettings"),
+            Link(.init("Open in App Store", table: "DonationSettings", comment: "verb; button"),
                  destination: URL(string: "itms-apps://apps.apple.com/app/id1024640650")!)
             Link(.init("Open GitHub Sponsors", table: "DonationSettings",
-                       comment: "\"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization."),
+                       comment: "verb; button; \"GitHub Sponsors\" is the name of a service by GitHub. Check the official localization."),
                  destination: URL(string: "https://github.com/sponsors/1024jp/")!)
         }
         .buttonStyle(.bordered)
@@ -129,7 +129,7 @@ private struct AppPurchaseView: View {
                         Link(.init("Manage Subscriptions", table: "DonationSettings"),
                              destination: URL(string: "itms-apps://apps.apple.com/account/subscriptions")!)
                     } else {
-                        Button(.init("Restore Subscription", table: "DonationSettings")) {
+                        Button(.init("Restore Subscription", table: "DonationSettings", comment: "verb; button")) {
                             Task {
                                 do {
                                     try await AppStore.sync()

@@ -215,7 +215,7 @@ private struct DocumentFileView: View {
                                 .truncationMode(.middle)
                                 .textSelection(.enabled)
                                 .help(fileURL.formatted(.url.scheme(.never)))
-                            Button(.init("Show in Finder", table: "Document"), systemImage: "arrow.forward") {
+                            Button(.init("Show in Finder", table: "Document", comment: "verb; button"), systemImage: "arrow.forward") {
                                 NSWorkspace.shared.activateFileViewerSelecting([fileURL])
                             }
                             .symbolVariant(.circle.fill)
@@ -266,7 +266,7 @@ private struct EditorCountView: View {
     
     var body: some View {
         
-        DisclosureGroup(.init("Count", table: "Document", comment: "section title in inspector"), isExpanded: $isExpanded) {
+        DisclosureGroup(.init("Count", table: "Document", comment: "noun; section heading; character and word counts"), isExpanded: $isExpanded) {
             Form {
                 Section {
                     ForEach(CountType.countCases, id: \.self) { type in

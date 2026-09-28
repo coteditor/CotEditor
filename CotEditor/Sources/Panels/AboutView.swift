@@ -37,9 +37,9 @@ struct AboutView: View {
             
             switch self {
                 case .credits:
-                    .init("Credits", table: "About", comment: "button label")
+                    .init("Credits", table: "About", comment: "noun; pane")
                 case .license:
-                    .init("Licenses", table: "About", comment: "button label")
+                    .init("Licenses", table: "About", comment: "noun; pane")
             }
         }
     }
