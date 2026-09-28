@@ -4984,7 +4984,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檔案似乎是%@。\n\n確定要開啟󠄁檔案嗎？"
+            "value" : "檔案似乎是%@。\n\n確定要開啟檔案嗎？"
           }
         }
       }
@@ -5224,7 +5224,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開啟󠄁"
+            "value" : "開啟"
           }
         }
       }
@@ -5462,7 +5462,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開啟󠄁此大型檔案可能會令應用程式執行緩慢或無回應。\n\n確定要開啟󠄁檔案嗎？"
+            "value" : "開啟此大型檔案可能會令應用程式執行緩慢或無回應。\n\n確定要開啟檔案嗎？"
           }
         }
       }

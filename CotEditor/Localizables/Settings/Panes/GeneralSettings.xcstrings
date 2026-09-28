@@ -2183,7 +2183,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "更改將在下次啟󠄁動時首先套用。"
+            "value" : "更改將在下次啟動時首先套用。"
           }
         }
       }
@@ -2421,7 +2421,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "顯示開啟󠄁對話框"
+            "value" : "顯示開啟對話框"
           }
         }
       }
@@ -2652,7 +2652,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在開啟󠄁時："
+            "value" : "在開啟時："
           }
         }
       }
