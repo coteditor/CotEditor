@@ -31,6 +31,7 @@ public struct RMateOpenRequest: Sendable {
     
     public let data: Data
     public let lineNumber: Int?
+    public let fileType: String?
     
     
     /// Initializes an open request from a message.
@@ -40,5 +41,6 @@ public struct RMateOpenRequest: Sendable {
         
         self.data = message.data
         self.lineNumber = message.headers["selection"].flatMap(Int.init).flatMap { $0 > 0 ? $0 : nil }
+        self.fileType = message.headers["file-type"]
     }
 }

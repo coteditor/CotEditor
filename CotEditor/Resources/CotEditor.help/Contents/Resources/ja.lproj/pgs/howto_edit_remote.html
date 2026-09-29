@@ -49,6 +49,12 @@
 <p>別のポートを使う場合は、SSHコマンド内の2箇所の<code>52698</code>と、<code>rmate</code>コマンドのポート番号をその番号に置き換えます。CotEditorの<a href="settings_general.html">「一般」設定</a>にも同じ番号を指定してください。</p>
 
 <p>書類を閉じるまで<code>rmate</code>の終了を待たせるには、<code>--wait</code>オプションを追加します。編集を終えてリモート書類を閉じるまで、SSHセッションを開いたままにしてください。</p>
+
+<p>シンタックスを指定して開くには、<code>--type</code>に続けてCotEditorのシンタックス名を指定します。ユーザ定義のシンタックスも指定できます。大文字と小文字を含めて名前を正確に指定し、空白を含む名前は引用符で囲んでください:</p>
+
+<pre class="shell"><code>rmate --host 127.0.0.1 --port 52698 --type Python /path/to/script</code></pre>
+
+<p><code>--type</code>を省略した場合や、一致するシンタックス名がない場合は、通常どおりシンタックスを自動判定します。</p>
 </section>
 
 

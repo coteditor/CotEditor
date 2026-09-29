@@ -94,6 +94,9 @@ import Defaults
         }
         
         document.remoteState = RemoteDocumentState(file: file)
+        if let name = request.fileType, name == SyntaxName.none || SyntaxManager.shared.settingNames.contains(name) {
+            document.setSyntax(name: name)
+        }
         DocumentController.shared.addDocument(document)
         document.didMakeDocumentForExistingFile(url: url)
         document.makeWindowControllers()

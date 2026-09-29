@@ -51,6 +51,22 @@ struct RMateProtocolTests {
     }
     
     
+    /// Tests that file type hints are passed to the editor without interpreting their names.
+    ///
+    /// - Parameter fileType: The requested file type, or `nil` if omitted.
+    /// - Throws: An error if parsing the open request fails.
+    @Test(arguments: [nil, "", "Python", "Plain Text", "source.python", "py"] as [String?])
+    func openRequestFileType(fileType: String?) throws {
+        
+        let header = fileType.map { "file-type: \($0)\n" } ?? ""
+        var parser = RMateParser()
+        let messages = try parser.append(Data("open\ntoken: file\n\(header)data: 0\n\n.\n".utf8))
+        let request = RMateOpenRequest(message: try #require(messages.first))
+        
+        #expect(request.fileType == fileType)
+    }
+    
+    
     @Test func multipleDataBlocks() throws {
         
         var parser = RMateParser()

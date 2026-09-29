@@ -49,6 +49,12 @@
 <p>If you use a different port, replace both occurrences of <code>52698</code> in the SSH command and the port in the <code>rmate</code> command with that number. Use the same number in CotEditor’s <a href="settings_general.html">General settings</a>.</p>
 
 <p>To keep <code>rmate</code> waiting until you close the document, add the <code>--wait</code> option. Keep the SSH session open until you finish editing and close the remote documents.</p>
+
+<p>To choose a syntax when opening the file, add <code>--type</code> followed by a CotEditor syntax name. You can also specify a custom syntax. Use the exact name, including capitalization, and enclose names containing spaces in quotes:</p>
+
+<pre class="shell"><code>rmate --host 127.0.0.1 --port 52698 --type Python /path/to/script</code></pre>
+
+<p>If <code>--type</code> is omitted or does not match a syntax name, CotEditor detects the syntax as usual.</p>
 </section>
 
 
