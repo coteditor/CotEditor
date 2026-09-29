@@ -42,7 +42,7 @@ import URLUtils
 extension NSTextView: EditorCounter.Source { }
 
 
-@Observable final class Document: DataDocument, AdditionalDocumentPreparing, EncodingChanging {
+@Observable class Document: DataDocument, AdditionalDocumentPreparing, EncodingChanging {
     
     // MARK: Notification Messages
     
@@ -507,27 +507,19 @@ extension NSTextView: EditorCounter.Source { }
         let additionalFileAttributes = self.additionalFileAttributes(for: saveOperation)
         self.lastAdditionalFileAttributes.withLock { $0 = additionalFileAttributes }
         
-        // workaround the issue that invoking the async version super blocks the save process
-        // (2022, macOS 12-27 + Xcode 13-27, FB11203469).
-        // To reproduce the issue:
-        //     1. Make a document unsaved ("Edited" status in the window subtitle).
-        //     2. Open the save panel once and cancel it.
-        //     3. Quit the application.
-        //     4. Then, the application hangs up.
-        super.save(to: url, ofType: typeName, for: saveOperation) { [unowned self, url] error in
-            defer {
-                self.pendingFileData.withLock { $0 = nil }
-                completionHandler(error)
+        self.saveFile(to: url, ofType: typeName, for: saveOperation) { [unowned self, url] error in
+            let data = self.pendingFileData.withLock { value in
+                defer { value = nil }
+                return value
             }
             if error != nil {
-                return
+                return completionHandler(error)
             }
             
             // store file data in order to check the file content identity in `presentedItemDidChange()`
             if saveOperation.updatesDocumentFile {
-                let pendingFileData = self.pendingFileData.withLock(\.self)
-                assert(pendingFileData != nil)
-                self.fileData.withLock { $0 = pendingFileData }
+                assert(data != nil)
+                self.fileData.withLock { $0 = data }
             }
             
             // apply syntax that is inferred from the filename or the shebang
@@ -540,11 +532,7 @@ extension NSTextView: EditorCounter.Source { }
                 self.setSyntax(name: syntaxName)
             }
             
-            if !saveOperation.isAutosave {
-                Task {
-                    await ScriptManager.shared.dispatch(event: .documentSaved, document: self.objectSpecifier)
-                }
-            }
+            self.finishSaving(data: data, for: saveOperation, completionHandler: completionHandler)
         }
     }
     
@@ -706,14 +694,6 @@ extension NSTextView: EditorCounter.Source { }
     
     override func printOperation(withSettings printSettings: [NSPrintInfo.AttributeKey: Any]) throws -> NSPrintOperation {
         
-        // -> Because the last *edited* date is not recorded anywhere, use `.now` if the document was modified since the last save.
-        let info = PrintTextView.DocumentInfo(
-            name: self.displayName,
-            fileURL: self.fileURL,
-            lastModifiedDate: self.hasUnautosavedChanges ? .now : self.fileModificationDate,
-            syntaxName: self.syntaxName
-        )
-        
         let defaults = UserDefaults.standard
         let options = PrintTextView.Options(
             lineHeight: defaults[.lineHeight],
@@ -725,7 +705,7 @@ extension NSTextView: EditorCounter.Source { }
         
         // create printView
         let textStorage = NSTextStorage(string: self.textStorage.string)
-        let printView = PrintTextView(textStorage: textStorage, lineEndingScanner: self.lineEndingScanner, info: info, options: options)
+        let printView = PrintTextView(textStorage: textStorage, lineEndingScanner: self.lineEndingScanner, info: self.printingDocumentInfo, options: options)
         if let selectedRanges = self.textView?.selectedRanges {
             printView.selectedRanges = selectedRanges
         }
@@ -1015,6 +995,56 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
+    /// The document information to display in printed headers and footers.
+    var printingDocumentInfo: PrintTextView.DocumentInfo {
+        
+        // -> Because the last *edited* date is not recorded anywhere, use `.now` if the document was modified since the last save.
+        PrintTextView.DocumentInfo(
+            name: self.displayName,
+            filePath: self.fileURL?.pathAbbreviatingWithTilde,
+            lastModifiedDate: self.hasUnautosavedChanges ? .now : self.fileModificationDate,
+            syntaxName: self.syntaxName
+        )
+    }
+    
+    
+    /// Saves the prepared content to disk.
+    ///
+    /// - Parameters:
+    ///   - url: The destination URL.
+    ///   - typeName: The document type.
+    ///   - saveOperation: The AppKit save operation.
+    ///   - completionHandler: The handler called with the result of writing the file.
+    func saveFile(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping (any Error?) -> Void) {
+        
+        // workaround the issue that invoking the async version super blocks the save process
+        // (2022, macOS 12-27 + Xcode 13-27, FB11203469).
+        // To reproduce the issue:
+        //     1. Make a document unsaved ("Edited" status in the window subtitle).
+        //     2. Open the save panel once and cancel it.
+        //     3. Quit the application.
+        //     4. Then, the application hangs up.
+        super.save(to: url, ofType: typeName, for: saveOperation, completionHandler: completionHandler)
+    }
+    
+    
+    /// Completes a successful save operation.
+    ///
+    /// - Parameters:
+    ///   - data: The file content written to disk.
+    ///   - operation: The original document save operation.
+    ///   - completionHandler: The handler called when saving finishes.
+    func finishSaving(data: Data?, for operation: NSDocument.SaveOperationType, completionHandler: @escaping (any Error?) -> Void) {
+        
+        if !operation.isAutosave {
+            Task {
+                await ScriptManager.shared.dispatch(event: .documentSaved, document: self.objectSpecifier)
+            }
+        }
+        completionHandler(nil)
+    }
+    
+    
     /// Updates the current selection ranges without touching AppKit views off the main thread.
     ///
     /// - Parameter ranges: The selected ranges.
@@ -1187,6 +1217,13 @@ extension NSTextView: EditorCounter.Source { }
     }
     
     
+    /// Discards save panel options so canceled choices do not affect subsequent saves.
+    func invalidateSaveOptions() {
+        
+        self.saveOptions = nil
+    }
+    
+    
     // MARK: Action Messages
     
     /// Changes the document text encoding with sender's tag.
@@ -1313,8 +1350,7 @@ extension NSTextView: EditorCounter.Source { }
     ///   - contextInfo: The original delegate context wrapped in `runModalSavePanel(for:delegate:didSave:contextInfo:)`.
     @objc private func document(_ document: NSDocument, didSave: Bool, contextInfo: UnsafeRawPointer) {
         
-        // discard the save options at the end of the save panel session
-        self.saveOptions = nil
+        self.invalidateSaveOptions()
         
         // manually invoke the original delegate
         let context: DelegateContext = bridgeUnwrapped(contextInfo)

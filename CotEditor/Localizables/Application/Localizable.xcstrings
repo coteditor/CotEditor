@@ -3077,6 +3077,17 @@
         }
       }
     },
+    "Action.saveAs.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Save As…"
+          }
+        }
+      }
+    },
     "Action.share.ellipsis.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -13693,6 +13704,131 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此文件可能使用了不同的文字編碼儲存，或可能不是文字檔案。"
+          }
+        }
+      }
+    },
+    "RemoteDocumentClosingAlert.button.dontSave" : {
+      "comment" : "verb; button; Refer the same expression in AppKit.framework by Apple.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Don’t Save"
+          }
+        }
+      }
+    },
+    "RemoteDocumentClosingAlert.informativeText" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The remote connection is disconnected. Your changes have not been sent."
+          }
+        }
+      }
+    },
+    "RemoteDocumentClosingAlert.messageText" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Save the changes to “%@” on this Mac?"
+          }
+        }
+      }
+    },
+    "RemoteDocumentDisconnectAlert.button.later" : {
+      "comment" : "button",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Later"
+          }
+        }
+      }
+    },
+    "RemoteDocumentDisconnectAlert.informativeText" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Changes can no longer be saved remotely. To keep your changes, save the document on this Mac."
+          }
+        }
+      }
+    },
+    "RemoteDocumentDisconnectAlert.messageText" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The remote connection for “%@” was disconnected."
+          }
+        }
+      }
+    },
+    "RMateServer.ListenError.addressInUse.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The port is already in use."
+          }
+        }
+      }
+    },
+    "RMateServer.ListenError.invalidPort.description" : {
+      "comment" : "Refer the same expression by Apple.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The port number is invalid."
+          }
+        }
+      }
+    },
+    "RMateServer.ListenError.invalidPort.recoverySuggestion" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Enter a port number from 1 to 65535."
+          }
+        }
+      }
+    },
+    "RMateServer.ReceiveError.fileTooLarge.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The remote file is too large to open."
+          }
+        }
+      }
+    },
+    "RMateServer.ReceiveError.fileTooLarge.recoverySuggestion" : {
+      "comment" : "%@ is file size, such as \"100 MB\"",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Remote editing supports files up to %@."
           }
         }
       }

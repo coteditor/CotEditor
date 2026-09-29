@@ -217,16 +217,24 @@ struct GeneralSettingsView: View {
                 VStack(alignment: .leading) {
                     Toggle(.init("Accept rmate connections", table: "GeneralSettings", comment: "verb; checkbox"), isOn: $enablesRemoteEditing)
                     
-                    HStack(alignment: .firstTextBaseline) {
+                    HStack {
                         Text("Port:", tableName: "GeneralSettings")
-                            .accessibilityLabeledPair(role: .label, id: "remoteEditingPort", in: self.accessibility)
-                        TextField(.init("Port", table: "GeneralSettings", comment: "placeholder"),
+                            .accessibilityHidden(true)
+                        TextField(.init("Port:", table: "GeneralSettings"),
                                   value: $remoteEditingPort, format: .number.grouping(.never),
                                   prompt: Text(RMateServer.defaultPort, format: .number.grouping(.never)))
                             .disabled(!self.enablesRemoteEditing)
-                            .accessibilityLabeledPair(role: .content, id: "remoteEditingPort", in: self.accessibility)
+                            .labelsVisibility(.hidden)
                             .frame(width: 80)
+                        
+                        if let message = RemoteEditingController.shared.errorMessage {
+                            Label(message, systemImage: "exclamationmark.triangle")
+                                .symbolVariant(.fill)
+                                .symbolRenderingMode(.multicolor)
+                                .controlSize(.small)
+                        }
                     }
+                    .frame(minHeight: 28)
                     .padding(.leading, 20)
                     
                     Text("Allow remote files to be opened in CotEditor using the `rmate` protocol.", tableName: "GeneralSettings")

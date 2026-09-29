@@ -28,14 +28,13 @@ import AppKit
 import Defaults
 import Invisible
 import StringUtils
-import URLUtils
 
 final class PrintTextView: NSTextView {
     
     struct DocumentInfo {
         
         var name: String
-        var fileURL: URL?
+        var filePath: String?
         var lastModifiedDate: Date?
         var syntaxName: String
     }
@@ -418,7 +417,7 @@ final class PrintTextView: NSTextView {
             case .syntaxName:
                 self.documentInfo.syntaxName
             case .filePath:
-                self.documentInfo.fileURL?.pathAbbreviatingWithTilde ?? self.documentInfo.name
+                self.documentInfo.filePath ?? self.documentInfo.name
             case .printDate:
                 String(localized: "Printed on \(.now, format: .dateTime)", comment: "print header/footer (%@ is date)")
             case .lastModifiedDate:
