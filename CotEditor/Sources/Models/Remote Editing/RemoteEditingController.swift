@@ -173,4 +173,10 @@ extension RMateServer.ReceiveError: @retroactive LocalizedError {
                        comment: "%@ is file size, such as \"100 MB\"")
         }
     }
+    
+    
+    public var helpAnchor: String? {
+        
+        "howto_edit_remote"
+    }
 }

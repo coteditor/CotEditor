@@ -456,6 +456,8 @@ import RMate
                                           defaultValue: "Don’t Save",
                                           comment: "verb; button; Refer the same expression in AppKit.framework by Apple."))
         alert.buttons[2].hasDestructiveAction = true
+        alert.helpAnchor = "howto_edit_remote"
+        alert.showsHelp = true
         
         alert.beginSheetModal(for: window) { response in
             switch response {

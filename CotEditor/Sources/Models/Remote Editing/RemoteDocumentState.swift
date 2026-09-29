@@ -138,6 +138,8 @@ import RMate
                                           defaultValue: "Save As…"))
         alert.addButton(withTitle: String(localized: "RemoteDocumentDisconnectAlert.button.later",
                                           defaultValue: "Later", comment: "button"))
+        alert.helpAnchor = "howto_edit_remote"
+        alert.showsHelp = true
         
         alert.beginSheetModal(for: window) { [weak self, weak document] response in
             self?.isShowingDisconnectAlert = false

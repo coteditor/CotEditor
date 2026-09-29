@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="リモート編集, rmate, SSH, ポート, 接続, 切断">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
+	<script defer src="../../Shared/js/toc.js"></script>
+
+	<title>MacのCotEditorでリモートファイルを編集する</title>
+</head>
+
+<body>
+<a name="howto_edit_remote"></a>
+
+<h1>MacのCotEditorでリモートファイルを編集する</h1>
+
+<p><code>rmate</code>プロトコルを使うと、リモートコンピュータ上のテキストファイルをMacのCotEditorで開けます。書類を保存すると、同じ接続を通じて変更内容がリモートファイルに送信されます。</p>
+
+
+<section>
+<h2>リモート編集を設定する</h2>
+
+<ol>
+	<li><p>リモートコンピュータに<code>rmate</code>クライアントをインストールします。例えば、<a href="https://github.com/textmate/rmate" rel="external">TextMateの<code>rmate</code>クライアント</a>を使用できます。リモートコンピュータの環境に合わせて、クライアントのインストール手順に従ってください。</p></li>
+	<li><p>MacのCotEditorで「CotEditor」＞「設定」と選択してから、「一般」をクリックします。</p></li>
+	<li><p>「リモート編集」セクションの「rmate接続を許可」を選択し、ポート番号を確認します。デフォルトは<code>52698</code>です。</p></li>
+</ol>
+
+<p>CotEditorはMac自身からの接続のみを受け入れます。以下の手順のようにSSHのポート転送を使って、リモートクライアントからCotEditorに接続します。リモート側のSSHサーバでポート転送が許可されている必要があります。</p>
+</section>
+
+
+<section>
+<h2>リモートファイルを開く</h2>
+
+<ol>
+	<li><p>MacでCotEditorを起動しておきます。</p></li>
+	<li><p>Macのターミナルで、SSHトンネルを作成してリモートコンピュータに接続します:</p>
+		<pre class="shell"><code>ssh -o ExitOnForwardFailure=yes -R 52698:127.0.0.1:52698 user@example.com</code></pre>
+		<p><code>user@example.com</code>を自分のユーザ名とリモートコンピュータのアドレスに置き換えてください。リモート側のポート<code>52698</code>がMacのCotEditorに転送されます。</p>
+	</li>
+	<li><p>そのSSHセッションで、編集するファイルのパスを指定して<code>rmate</code>を実行します:</p>
+		<pre class="shell"><code>rmate --host 127.0.0.1 --port 52698 path/to/file.txt</code></pre>
+		<p>CotEditorでファイルが開き、ウインドウのサブタイトルに「リモート」と表示されます。</p>
+	</li>
+</ol>
+
+<p>別のポートを使う場合は、SSHコマンド内の2箇所の<code>52698</code>と、<code>rmate</code>コマンドのポート番号をその番号に置き換えます。CotEditorの<a href="settings_general.html">「一般」設定</a>にも同じ番号を指定してください。</p>
+
+<p>書類を閉じるまで<code>rmate</code>の終了を待たせるには、<code>--wait</code>オプションを追加します。編集を終えてリモート書類を閉じるまで、SSHセッションを開いたままにしてください。</p>
+</section>
+
+
+<section>
+<h2>変更内容を保存する</h2>
+
+<p>「ファイル」＞「保存」を選択するか、<kbd>Command</kbd>+<kbd>S</kbd>を押すと、変更内容がリモートファイルに送信されます。「一般」設定で「オートセーブとバージョンを有効にする」が選択されている場合は、自動保存でも変更内容がリモートファイルに送信されます。</p>
+
+<p>書類をMacに保存するには、「ファイル」＞「別名で保存」を選択します。Macに保存するとリモートファイルとの関連が解除され、それ以降はMac上のファイルだけが更新されます。</p>
+
+<p>CotEditorを終了すると、接続中のリモート書類は閉じられ、次回起動時には復元されません。再びリモート編集するには、<code>rmate</code>を実行して開き直してください。</p>
+</section>
+
+
+<section>
+<h2>接続が切断された場合</h2>
+
+<p>SSHセッションや<code>rmate</code>クライアントの接続が切断されると、ウインドウのサブタイトルが「切断済み」に変わります。編集を続けることはできますが、変更内容をリモートファイルに送信できなくなります。</p>
+
+<p>未送信の変更内容がある場合は、Macへの保存を促すダイアログが表示されます。「別名で保存」をクリックし、Mac上の保存先を選択して変更内容を残してください。ファイル名を変える必要はありません。「あとで」をクリックすると書類は開いたままになりますが、接続は復旧しません。</p>
+
+<p>CotEditorは開いている書類を自動的に再接続しません。リモート編集を再開するには、変更内容をMacに保存してからSSHトンネルを作成し直し、<code>rmate</code>を再度実行します。新たに開いたリモート書類に必要な変更内容をコピーして保存してください。</p>
+
+<p>切断後に未送信の変更内容を保持している書類は、「一般」設定で「最後のセッションのウインドウを開く」が選択されている場合、引き続き復元の対象になります。また、予期せず終了した場合は、復旧用コピーからリモート書類を復元できます。復元した書類の接続は切れたままです。内容をMacに残すには「別名で保存」を使用してください。</p>
+</section>
+
+
+<section>
+<h2>ファイルが開かない場合</h2>
+
+<ul>
+	<li><p>CotEditorが起動していて、「一般」設定の「rmate接続を許可」が選択されていることを確認してください。</p></li>
+	<li><p>SSHトンネルが作成され、ポート番号が一致していることを確認してください。ポートがすでに使われている場合は、ほかの受信アプリを停止するか、別のポートを選んでください。</p></li>
+	<li><p>リモート側のターミナルで、SSHや<code>rmate</code>からエラーが出ていないか確認してください。ファイルが存在しない場合やアクセス権がない場合などにエラーが表示されます。</p></li>
+	<li><p>リモート編集で開けるファイルの大きさは100 MBまでです。</p></li>
+</ul>
+</section>
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="settings_general.html">MacのCotEditorで「一般」設定を変更する</a></li>
+	<li><a href="howto_save_document.html">書類を保存する</a></li>
+	<li><a href="about_cot.html">cotコマンドと連携する</a></li>
+</ul>
+</section>
+
+</body>
+</html>
