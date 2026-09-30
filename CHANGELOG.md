@@ -21,6 +21,7 @@
 
 ### Fixes
 
+- Fix an issue where Redo could change line endings in documents with mixed line endings.
 - Fix localizations.
 
 

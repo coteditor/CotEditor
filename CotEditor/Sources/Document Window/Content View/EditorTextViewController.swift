@@ -292,7 +292,10 @@ final class EditorTextViewController: NSViewController, NSServicesMenuRequestor,
     
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         
-        if textView.undoManager?.isUndoing == true { return true }  // = undo
+        // restore previously accepted text without normalizing it again
+        if let undoManager = textView.undoManager, undoManager.isUndoing || undoManager.isRedoing {
+            return true
+        }
         
         guard let textView = textView as? EditorTextView else { return true }
         
