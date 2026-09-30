@@ -442,6 +442,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         if let document = self.fileDocument as? Document {
             self.selectSyntaxPopUpItem(with: document.syntaxName, in: popUpButton)
+        } else {
+            self.updateSyntaxPopUpButtonWidth(popUpButton)
         }
     }
     
@@ -483,6 +485,29 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             
             menu.insertItem(.separator(), at: 1)
             menu.item(at: 1)?.tag = deletedTag
+        }
+        
+        self.updateSyntaxPopUpButtonWidth(popUpButton)
+    }
+    
+    
+    /// Updates the fixed width of the syntax pop-up button to fit its menu items.
+    ///
+    /// - Parameter popUpButton: The syntax pop-up button to update.
+    private func updateSyntaxPopUpButtonWidth(_ popUpButton: NSPopUpButton) {
+        
+        guard #available(macOS 27, *) else { return }
+        
+        // Work around an AppKit layout loop near the toolbar overflow threshold (2026-09, macOS 27, FB25001982).
+        // -> The pop-up button's intrinsic width alternates depending on its toolbar layout, so constrain it explicitly.
+        let identifier = "syntaxPopUpButtonWidth"
+        let width = popUpButton.intrinsicContentSize.width
+        if let constraint = popUpButton.constraints.first(where: { $0.identifier == identifier }) {
+            constraint.constant = width
+        } else {
+            let constraint = popUpButton.widthAnchor.constraint(equalToConstant: width)
+            constraint.identifier = identifier
+            constraint.isActive = true
         }
     }
 }

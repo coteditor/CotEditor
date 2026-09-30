@@ -21,6 +21,7 @@
 
 ### Fixes
 
+- Fix an issue where narrow windows with the Syntax toolbar item could cause sustained high CPU usage on macOS 27.
 - Fix an issue where Redo could change line endings in documents with mixed line endings.
 - Fix an issue where Replace All could change line endings outside the matched text in documents with mixed line endings.
 - Fix localizations.
