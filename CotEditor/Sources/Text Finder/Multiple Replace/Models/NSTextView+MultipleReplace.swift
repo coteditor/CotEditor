@@ -25,6 +25,7 @@
 
 import AppKit
 import SwiftUI
+import LineEnding
 import StringUtils
 import TextFind
 
@@ -89,10 +90,12 @@ extension NSTextView {
         self.isEditable = false
         defer { self.isEditable = wasEditable }
         
+        let editorTextView = self as? EditorTextView
+        let lineEnding = editorTextView?.lineEnding
         let string = self.string.immutable
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         let progress = FindProgress(scope: 0..<definition.replacements.endIndex)
-        async let replacementResult = Self.replace(definition, in: string, ranges: selectedRanges, inSelection: inSelection, progress: progress)
+        async let replacementResult = Self.replace(definition, in: string, ranges: selectedRanges, inSelection: inSelection, lineEnding: lineEnding, progress: progress)
         
         // present progress view
         self.window?.beginSheet {
@@ -106,6 +109,11 @@ extension NSTextView {
         self.isEditable = wasEditable
         
         if progress.count > 0 {
+            // inserted text is already normalized; preserve line endings outside the matches
+            let wasApproved = editorTextView?.isApprovedTextChange ?? false
+            editorTextView?.isApprovedTextChange = true
+            defer { editorTextView?.isApprovedTextChange = wasApproved }
+            
             // apply to the text view
             self.replace(with: [result.string], ranges: [string.nsRange], selectedRanges: result.selectedRanges, actionName: String(localized: "Replace All", table: "TextFind"))
         } else {
@@ -146,11 +154,12 @@ extension NSTextView {
     ///   - string: The string to replace in.
     ///   - ranges: The selected ranges in the string.
     ///   - inSelection: Whether replace matches only in the ranges.
+    ///   - lineEnding: The line ending to use in inserted text, or `nil` to preserve its line endings.
     ///   - progress: The progress object to report the state.
     /// - Returns: The replacement result.
     /// - Throws: `CancellationError`.
-    @concurrent private static func replace(_ definition: MultipleReplace, in string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress) async throws(CancellationError) -> MultipleReplace.Result {
+    @concurrent private static func replace(_ definition: MultipleReplace, in string: String, ranges: [NSRange], inSelection: Bool, lineEnding: LineEnding?, progress: FindProgress) async throws(CancellationError) -> MultipleReplace.Result {
         
-        try definition.replace(string: string, ranges: ranges, inSelection: inSelection, progress: progress)
+        try definition.replace(string: string, ranges: ranges, inSelection: inSelection, lineEnding: lineEnding, progress: progress)
     }
 }

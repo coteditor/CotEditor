@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import LineEnding
 import ValueRange
 import Testing
 @testable import TextFind
@@ -374,6 +375,47 @@ struct TextFindTests {
     }
     
     
+    /// Uses the target line ending in a single replacement in every search mode.
+    ///
+    /// - Parameters:
+    ///   - mode: The search mode.
+    ///   - lineEnding: The target line ending, or `nil` to preserve inserted line endings.
+    /// - Throws: A find pattern or selection error.
+    @Test(arguments: [TextFind.Mode.textual(options: [], fullWord: false),
+                      .textual(options: [], fullWord: true),
+                      .regularExpression(options: [], unescapesReplacement: true)],
+          [nil, .lf, .crlf] as [LineEnding?])
+    func replaceNormalizesInsertedLineEndings(mode: TextFind.Mode, lineEnding: LineEnding?) throws {
+        
+        let string = "before\r dog after\r"
+        let range = (string as NSString).range(of: "dog")
+        let pattern = try TextFind.Pattern(findString: "dog", mode: mode)
+        let textFind = try TextFind(for: string, pattern: pattern, lineEnding: lineEnding, selectedRanges: [range])
+        
+        #expect(textFind.replace(with: "cat\n") == .init(value: "cat\(lineEnding?.string ?? "\n")", range: range))
+    }
+    
+    
+    /// Normalizes captured text and metacharacters after expanding a single replacement.
+    ///
+    /// - Parameters:
+    ///   - lineEnding: The target line ending, or `nil` to preserve inserted line endings.
+    ///   - replacement: The replacement template.
+    /// - Throws: A find pattern or selection error.
+    @Test(arguments: [nil, .lf, .crlf] as [LineEnding?], ["$0", #"$0\r"#])
+    func replaceNormalizesCapturedLineEndings(lineEnding: LineEnding?, replacement: String) throws {
+        
+        let string = "before\r|dog\r\ncow|after\r"
+        let range = (string as NSString).range(of: "dog\r\ncow")
+        let pattern = try TextFind.Pattern(findString: #"dog\Rcow"#,
+                                           mode: .regularExpression(options: [], unescapesReplacement: true))
+        let textFind = try TextFind(for: string, pattern: pattern, lineEnding: lineEnding, selectedRanges: [range])
+        let suffix = replacement == "$0" ? "" : (lineEnding?.string ?? "\r")
+        
+        #expect(textFind.replace(with: replacement) == .init(value: "dog\(lineEnding?.string ?? "\r\n")cow\(suffix)", range: range))
+    }
+    
+    
     @Test func findAll() throws {
         
         let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: false)
@@ -457,6 +499,119 @@ struct TextFindTests {
         #expect(replacementItems[0].range == NSRange(location: 0, length: 4))
         #expect(selectedRanges?[0] == NSRange(location: 0, length: 2))
         #expect(selectedRanges?[1] == NSRange(location: 5, length: 3))
+    }
+    
+    
+    /// Preserves unmatched line endings when replacing text in a mixed-line-ending document.
+    ///
+    /// - Throws: A find pattern or cancellation error.
+    @Test(.bug("https://github.com/coteditor/CotEditor/issues/2172"))
+    func replaceAllPreservesUnmatchedLineEndings() throws {
+        
+        let string = "<key>\r</key>\n\t<string>insertNewline:</string>\n"
+        let pattern = try TextFind.Pattern(findString: #"\n\t<string>"#,
+                                           mode: .regularExpression(options: [], unescapesReplacement: true))
+        let textFind = TextFind(for: string, pattern: pattern, lineEnding: .lf)
+        
+        let (items, _) = try textFind.replaceAll(with: "<string>") { _, _, _ in }
+        
+        #expect(items == [.init(value: "<key>\r</key><string>insertNewline:</string>\n", range: NSRange(0..<string.utf16.count))])
+    }
+    
+    
+    /// Normalizes inserted line endings in both textual replacement paths and regular expressions.
+    ///
+    /// - Parameter mode: The search mode.
+    /// - Throws: A find pattern or cancellation error.
+    @Test(arguments: [TextFind.Mode.textual(options: [], fullWord: false),
+                      .textual(options: [], fullWord: true),
+                      .regularExpression(options: [], unescapesReplacement: true)])
+    func replaceAllNormalizesInsertedLineEndings(mode: TextFind.Mode) throws {
+        
+        let string = "before\r dog dog after\r"
+        let pattern = try TextFind.Pattern(findString: "dog", mode: mode)
+        let textFind = TextFind(for: string, pattern: pattern, lineEnding: .crlf)
+        
+        let (items, _) = try textFind.replaceAll(with: "cat\n") { _, _, _ in }
+        
+        #expect(items == [.init(value: "before\r cat\r\n cat\r\n after\r", range: NSRange(0..<string.utf16.count))])
+    }
+    
+    
+    /// Normalizes captured text after template expansion, including an otherwise unchanged replacement.
+    ///
+    /// - Parameters:
+    ///   - lineEnding: The document line ending.
+    ///   - replacement: The replacement template.
+    /// - Throws: A find pattern or cancellation error.
+    @Test(arguments: [LineEnding.lf, .cr], ["$0", #"$0\r"#])
+    func replaceAllNormalizesCapturedLineEndings(lineEnding: LineEnding, replacement: String) throws {
+        
+        let string = "before\r|dog\r\ncow|after\r"
+        let pattern = try TextFind.Pattern(findString: #"dog\Rcow"#,
+                                           mode: .regularExpression(options: [], unescapesReplacement: true))
+        let textFind = TextFind(for: string, pattern: pattern, lineEnding: lineEnding)
+        
+        let (items, _) = try textFind.replaceAll(with: replacement) { _, _, _ in }
+        
+        let suffix = replacement == "$0" ? "" : lineEnding.string
+        #expect(items == [.init(value: "before\r|dog\(lineEnding.string)cow\(suffix)|after\r", range: NSRange(0..<string.utf16.count))])
+    }
+    
+    
+    /// Normalizes every supported line ending in captured text.
+    ///
+    /// - Parameter capturedLineEnding: The line ending in the captured text.
+    /// - Throws: A find pattern or cancellation error.
+    @Test(arguments: LineEnding.allCases)
+    func replaceAllNormalizesCapturedNewlineCharacters(capturedLineEnding: LineEnding) throws {
+        
+        let string = "before\r|dog\(capturedLineEnding.string)cow|after\r"
+        let pattern = try TextFind.Pattern(findString: #"dog\Rcow"#,
+                                           mode: .regularExpression(options: [], unescapesReplacement: true))
+        let textFind = TextFind(for: string, pattern: pattern, lineEnding: .crlf)
+        
+        let (items, _) = try textFind.replaceAll(with: "$0") { _, _, _ in }
+        
+        let expectedItems: [TextFind.ReplacementItem] = if capturedLineEnding == .crlf {
+            []
+        } else {
+            [.init(value: "before\r|dog\r\ncow|after\r", range: NSRange(0..<string.utf16.count))]
+        }
+        #expect(items == expectedItems)
+    }
+    
+    
+    /// Adjusts multiple selections using normalized replacement lengths while preserving unmatched CRs.
+    ///
+    /// - Throws: A find pattern, selection, or cancellation error.
+    @Test func replaceAllNormalizesLineEndingsInSelections() throws {
+        
+        let pattern = try TextFind.Pattern(findString: #"dog\Rcow"#,
+                                           mode: .regularExpression(options: [], unescapesReplacement: true))
+        let textFind = try TextFind(for: "dog\r\ncow\r---dog\r\ncow\r", pattern: pattern, lineEnding: .lf, inSelection: true,
+                                    selectedRanges: [NSRange(0..<9), NSRange(12..<21)])
+        
+        let (items, selectedRanges) = try textFind.replaceAll(with: "$0") { _, _, _ in }
+        
+        #expect(items == [.init(value: "dog\ncow\r", range: NSRange(0..<9)),
+                          .init(value: "dog\ncow\r", range: NSRange(12..<21))])
+        #expect(selectedRanges == [NSRange(0..<8), NSRange(11..<19)])
+    }
+    
+    
+    /// Leaves mixed line endings untouched when there is no match.
+    ///
+    /// - Throws: A find pattern or cancellation error.
+    @Test func replaceAllWithoutMatchesPreservesLineEndings() throws {
+        
+        let pattern = try TextFind.Pattern(findString: "dog", mode: .textual(options: [], fullWord: false))
+        let textFind = TextFind(for: "cat\r\ncow\r", pattern: pattern, lineEnding: .lf)
+        
+        let (items, selectedRanges) = try textFind.replaceAll(with: "bird\n") { _, _, _ in }
+        
+        #expect(items.isEmpty)
+        #expect(selectedRanges == nil)
     }
     
     

@@ -24,6 +24,7 @@
 //
 
 public import Foundation
+public import LineEnding
 import ValueRange
 import StringUtils
 
@@ -192,10 +193,11 @@ extension MultipleReplace {
     ///   - string: The string to replace.
     ///   - ranges: The ranges of selection in the text view.
     ///   - inSelection: Whether replace only in selection.
+    ///   - lineEnding: The line ending to use in inserted text, or `nil` to preserve its line endings.
     ///   - progress: The progress object to observe cancellation by the user and notify the replacement progress.
     /// - Returns: The result of the replacement. This method will return once all replacement is finished.
     /// - Throws: `CancellationError` if the replacement is cancelled by the user or the task.
-    public func replace(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws(CancellationError) -> Result {
+    public func replace(string: String, ranges: [NSRange], inSelection: Bool, lineEnding: LineEnding? = nil, progress: FindProgress? = nil) throws(CancellationError) -> Result {
         
         var result = Result(string: string, selectedRanges: ranges)
         
@@ -205,7 +207,7 @@ extension MultipleReplace {
             // -> Invalid replacement rules will just be ignored.
             guard
                 let pattern = try? replacement.pattern(settings: self.settings),
-                let textFind = try? TextFind(for: result.string, pattern: pattern, inSelection: inSelection, selectedRanges: findRanges)
+                let textFind = try? TextFind(for: result.string, pattern: pattern, lineEnding: lineEnding, inSelection: inSelection, selectedRanges: findRanges)
             else { continue }
             
             // process replacement

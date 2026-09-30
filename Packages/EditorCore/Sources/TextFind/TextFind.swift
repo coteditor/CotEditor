@@ -24,6 +24,7 @@
 //
 
 public import Foundation
+public import LineEnding
 public import ValueRange
 import StringUtils
 
@@ -103,6 +104,8 @@ public struct TextFind: Equatable, Sendable {
     public let inSelection: Bool
     
     public let string: String
+    /// The line ending to use in inserted text, or `nil` to preserve its line endings.
+    public let lineEnding: LineEnding?
     public let selectedRanges: [NSRange]
     
     
@@ -119,11 +122,13 @@ public struct TextFind: Equatable, Sendable {
     /// - Parameters:
     ///   - string: The string to search.
     ///   - pattern: The compiled text find pattern.
-    public init(for string: String, pattern: Pattern) {
+    ///   - lineEnding: The line ending to use in inserted text, or `nil` to preserve its line endings.
+    public init(for string: String, pattern: Pattern, lineEnding: LineEnding? = nil) {
         
         self.pattern = pattern
         self.inSelection = false
         self.string = string
+        self.lineEnding = lineEnding
         self.selectedRanges = [NSRange()]
         self.scopeRanges = [string.range]
     }
@@ -134,10 +139,11 @@ public struct TextFind: Equatable, Sendable {
     /// - Parameters:
     ///   - string: The string to search.
     ///   - pattern: The compiled text find pattern.
+    ///   - lineEnding: The line ending to use in inserted text, or `nil` to preserve its line endings.
     ///   - inSelection: Whether find string only in selectedRanges.
     ///   - selectedRanges: The selected ranges in the text view.
     /// - Throws: `TextFind.Error.emptyInSelectionSearch` if searching in an empty selection.
-    public init(for string: String, pattern: Pattern, inSelection: Bool = false, selectedRanges: [NSRange]) throws(TextFind.Error) {
+    public init(for string: String, pattern: Pattern, lineEnding: LineEnding? = nil, inSelection: Bool = false, selectedRanges: [NSRange]) throws(TextFind.Error) {
         
         assert(!selectedRanges.isEmpty)
         
@@ -148,6 +154,7 @@ public struct TextFind: Equatable, Sendable {
         self.pattern = pattern
         self.inSelection = inSelection
         self.string = string
+        self.lineEnding = lineEnding
         self.selectedRanges = selectedRanges
         self.scopeRanges = inSelection ? selectedRanges : [string.range]
     }
@@ -261,7 +268,7 @@ public struct TextFind: Equatable, Sendable {
                 guard matchedRange.location != NSNotFound else { return nil }
                 guard self.checkFullWord(in: matchedRange) else { return nil }
                 
-                return ReplacementItem(value: replacementString, range: matchedRange)
+                return ReplacementItem(value: self.normalizeLineEndings(in: replacementString), range: matchedRange)
                 
             case .regularExpression:
                 let regex = self.pattern.regex!
@@ -270,7 +277,7 @@ public struct TextFind: Equatable, Sendable {
                 let template = self.replacementString(from: replacementString)
                 let replacedString = regex.replacementString(for: match, in: string, offset: 0, template: template)
                 
-                return ReplacementItem(value: replacedString, range: match.range)
+                return ReplacementItem(value: self.normalizeLineEndings(in: replacedString), range: match.range)
         }
     }
     
@@ -326,6 +333,7 @@ public struct TextFind: Equatable, Sendable {
             switch self.mode {
                 case .textual(options: let options, fullWord: let fullWord) where !fullWord:
                     // replace at once for performance
+                    let replacementString = self.normalizeLineEndings(in: replacementString)
                     let count = scopeString.replaceOccurrences(of: self.findString, with: replacementString, options: options, range: scopeString.range)
                     block(scopeRange, count, &ioStop)
                     
@@ -338,9 +346,11 @@ public struct TextFind: Equatable, Sendable {
                             replacementString
                         }
                         
+                        let normalizedString = self.normalizeLineEndings(in: replacedString)
+                        
                         let localRange = matchedRange.shifted(by: -scopeRange.location - offset)
-                        scopeString.replaceCharacters(in: localRange, with: replacedString)
-                        offset += matchedRange.length - replacedString.length
+                        scopeString.replaceCharacters(in: localRange, with: normalizedString)
+                        offset += matchedRange.length - normalizedString.length
                         
                         block(matchedRange, 1, &ioStop)
                         stop = ioStop
@@ -372,6 +382,18 @@ public struct TextFind: Equatable, Sendable {
     
     
     // MARK: Private Methods
+    
+    /// Normalizes line endings in replacement text.
+    ///
+    /// - Parameter string: The expanded replacement text.
+    /// - Returns: The normalized text, or the original text if no line ending is specified.
+    private func normalizeLineEndings(in string: String) -> String {
+        
+        guard let lineEnding = self.lineEnding, string.contains(where: \.isNewline) else { return string }
+        
+        return string.replacingLineEndings(with: lineEnding)
+    }
+    
     
     /// Unescapes the given string for use as the replacement template as needed.
     ///

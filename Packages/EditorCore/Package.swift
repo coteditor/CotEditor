@@ -66,8 +66,8 @@ let package = Package(
         .target(name: "TextEditing", dependencies: ["StringUtils"]),
         .testTarget(name: "TextEditingTests", dependencies: ["TextEditing"]),
         
-        .target(name: "TextFind", dependencies: ["StringUtils", "ValueRange"]),
-        .testTarget(name: "TextFindTests", dependencies: ["TextFind"]),
+        .target(name: "TextFind", dependencies: ["LineEnding", "StringUtils", "ValueRange"]),
+        .testTarget(name: "TextFindTests", dependencies: ["LineEnding", "TextFind"]),
         
         .target(name: "URLUtils"),
         .testTarget(name: "URLUtilsTests", dependencies: ["URLUtils"]),

@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import LineEnding
 import Testing
 @testable import TextFind
 
@@ -168,6 +169,23 @@ struct MultipleReplaceTests {
         
         #expect(result.string == "abc y y")
         #expect(result.selectedRanges?.count == 1)
+    }
+    
+    
+    /// Normalizes inserted text before the next rule without changing unmatched line endings.
+    ///
+    /// - Throws: `CancellationError`.
+    @Test func replaceNormalizesLineEndingsBetweenRules() throws {
+        
+        let definition = MultipleReplace(replacements: [
+            .init(findString: #"dog\Rcow"#, replacementString: "$0", usesRegularExpression: true),
+            .init(findString: #"dog\ncow"#, replacementString: #"cat\r"#, usesRegularExpression: true),
+        ])
+        
+        let result = try definition.replace(string: "before\r|dog\r\ncow|after\r",
+                                            ranges: [NSRange(0..<0)], inSelection: false, lineEnding: .lf)
+        
+        #expect(result.string == "before\r|cat\n|after\r")
     }
     
     

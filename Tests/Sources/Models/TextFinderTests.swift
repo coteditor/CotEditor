@@ -25,9 +25,13 @@
 //
 
 import AppKit
+import Defaults
+import LineEnding
+import TextFind
 import Testing
 @testable import CotEditor
 
+@Suite(.serialized)  // TextFinder instances share their find settings.
 @MainActor struct TextFinderTests {
     
     @Test func finderActions() {
@@ -258,6 +262,148 @@ import Testing
                 try await Task.sleep(for: .milliseconds(50))
             }
         }
+    }
+    
+    
+    /// Normalizes captured text and selects the inserted text during a single replacement.
+    ///
+    /// - Parameter lineEnding: The document line ending.
+    @Test(arguments: [LineEnding.lf, .crlf])
+    func replaceNormalizesCapturedLineEndings(lineEnding: LineEnding) {
+        
+        let string = "before\r|dog\r\ncow|after\r"
+        let range = (string as NSString).range(of: "dog\r\ncow")
+        let replacement = "dog\(lineEnding.string)cow\(lineEnding.string)"
+        let document = Document()
+        document.textStorage.replaceCharacters(in: NSRange(), with: string)
+        let controller = EditorTextViewController(document: document)
+        defer { withExtendedLifetime(controller) { } }
+        let textView = EditorTextView(textStorage: document.textStorage, lineEndingScanner: document.lineEndingScanner)
+        textView.lineEnding = lineEnding
+        textView.delegate = controller
+        textView.selectedRange = range
+        
+        let finder = TextFinder()
+        finder.client = textView
+        let settings = finder.settings
+        let defaults = UserDefaults.standard
+        let originalFindString = settings.findString
+        let originalReplacementString = settings.replacementString
+        let originalUsesRegularExpression = settings.usesRegularExpression
+        let originalInSelection = defaults[.findInSelection]
+        defer {
+            settings.findString = originalFindString
+            settings.replacementString = originalReplacementString
+            settings.usesRegularExpression = originalUsesRegularExpression
+            defaults[.findInSelection] = originalInSelection
+        }
+        settings.findString = #"dog\Rcow"#
+        settings.replacementString = #"$0\r"#
+        settings.usesRegularExpression = true
+        defaults[.findInSelection] = false
+        
+        finder.performAction(.replace)
+        
+        #expect(textView.string == "before\r|\(replacement)|after\r")
+        #expect(textView.selectedRange == NSRange(location: range.location, length: replacement.utf16.count))
+    }
+    
+    
+    /// Preserves unmatched line endings through Multiple Replace, undo, and redo with the editor delegate.
+    ///
+    /// - Throws: A replacement error.
+    @Test(.timeLimit(.minutes(1)))
+    func multipleReplacePreservesUnmatchedLineEndings() async throws {
+        
+        let string = "<key>\r</key>\n\t<string>insertNewline:</string>\n"
+        let expected = "<key>\r</key><string>insertNewline:</string>\n"
+        let findString = #"\n\t<string>"#
+        let replacementString = "<string>"
+        let document = Document()
+        document.textStorage.replaceCharacters(in: NSRange(), with: string)
+        let controller = EditorTextViewController(document: document)
+        defer { withExtendedLifetime(controller) { } }
+        let textView = EditorTextView(textStorage: document.textStorage, lineEndingScanner: document.lineEndingScanner)
+        textView.lineEnding = .lf
+        textView.delegate = controller
+        
+        let undoManager = UndoManager()
+        undoManager.groupsByEvent = false
+        document.undoManager = undoManager
+        
+        let definition = MultipleReplace(replacements: [
+            .init(findString: findString, replacementString: replacementString, usesRegularExpression: true),
+        ])
+        
+        undoManager.beginUndoGrouping()
+        try await textView.replaceAll(definition, inSelection: false)
+        undoManager.endUndoGrouping()
+        
+        #expect(textView.string == expected)
+        #expect(!textView.isApprovedTextChange)
+        #expect(undoManager.canUndo)
+        undoManager.undo()
+        #expect(textView.string == string)
+        #expect(undoManager.canRedo)
+        undoManager.redo()
+        #expect(textView.string == expected)
+    }
+    
+    
+    /// Preserves unmatched line endings through replacement, undo, and redo with the editor delegate.
+    ///
+    /// - Throws: A find or replacement error.
+    @Test(.bug("https://github.com/coteditor/CotEditor/issues/2172"), .timeLimit(.minutes(1)))
+    func replaceAllPreservesUnmatchedLineEndings() async throws {
+        
+        let string = "<key>\r</key>\n\t<string>insertNewline:</string>\n"
+        let expected = "<key>\r</key><string>insertNewline:</string>\n"
+        let findString = #"\n\t<string>"#
+        let replacementString = "<string>"
+        let document = Document()
+        document.textStorage.replaceCharacters(in: NSRange(), with: string)
+        let controller = EditorTextViewController(document: document)
+        defer { withExtendedLifetime(controller) { } }
+        let textView = EditorTextView(textStorage: document.textStorage, lineEndingScanner: document.lineEndingScanner)
+        textView.lineEnding = .lf
+        textView.delegate = controller
+        
+        let undoManager = UndoManager()
+        undoManager.groupsByEvent = false
+        document.undoManager = undoManager
+        
+        let finder = TextFinder()
+        finder.client = textView
+        let settings = finder.settings
+        let defaults = UserDefaults.standard
+        let originalFindString = settings.findString
+        let originalReplacementString = settings.replacementString
+        let originalUsesRegularExpression = settings.usesRegularExpression
+        let originalInSelection = defaults[.findInSelection]
+        defer {
+            settings.findString = originalFindString
+            settings.replacementString = originalReplacementString
+            settings.usesRegularExpression = originalUsesRegularExpression
+            defaults[.findInSelection] = originalInSelection
+        }
+        settings.findString = findString
+        settings.replacementString = replacementString
+        settings.usesRegularExpression = true
+        defaults[.findInSelection] = false
+        
+        undoManager.beginUndoGrouping()
+        let result = try await self.performFindAction(.replaceAll, with: finder)
+        #expect(result.count == 1)
+        undoManager.endUndoGrouping()
+        
+        #expect(textView.string == expected)
+        #expect(!textView.isApprovedTextChange)
+        #expect(undoManager.canUndo)
+        undoManager.undo()
+        #expect(textView.string == string)
+        #expect(undoManager.canRedo)
+        undoManager.redo()
+        #expect(textView.string == expected)
     }
     
     

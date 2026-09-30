@@ -22,6 +22,7 @@
 ### Fixes
 
 - Fix an issue where Redo could change line endings in documents with mixed line endings.
+- Fix an issue where Replace All could change line endings outside the matched text in documents with mixed line endings.
 - Fix localizations.
 
 
