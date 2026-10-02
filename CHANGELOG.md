@@ -1,6 +1,6 @@
 # Change Log
 
-7.1.1 (unreleased)
+7.1.1 (2026-10-03)
 --------------------------
 
 ### New Features
@@ -11,12 +11,12 @@
 
 ### Improvements
 
-- Improve the External Editor button in the file preview view.
+- Improve the “Open with External Editor” button in the file preview view.
 - Update tree-sitter-php.
 - Update tree-sitter-sql.
-- [trivial] Tweak the appearance of the Import/Export Settings windows.
-- [trivial] Tweak the layout of the CotEditor section in the print window.
-- [trivial] Support keyboard shortcuts that produce multiple characters with a single key press.
+- [trivial] Tweak the appearance of the “Import Settings” and “Export Settings” windows.
+- [trivial] Tweak the layout of the CotEditor section in the print dialog.
+- [trivial] Support keyboard shortcuts using keys that produce multiple characters with a single press.
 - [non-AppStore ver.] Update Sparkle from 2.9.6 to 2.10.0.
 
 

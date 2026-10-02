@@ -21,6 +21,50 @@
 
 <article headingoffset="1">
 	<header>
+		<h1>CotEditor 7.1.1</h1>
+		<p>release: <time>2026-10-03</time></p>
+	</header>
+
+	<section>
+		<h2>New Features</h2>
+
+		<ul>
+			<li>Add the Ukrainian localization (thanks to Yaroslav Savchenko!).</li>
+			<li>Add the Hindi localization (thanks to Prajwal Raj!).</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Improve the “Open with External Editor” button in the file preview view.</li>
+			<li>Update tree-sitter-php.</li>
+			<li>Update tree-sitter-sql.</li>
+			<li><span class="trivial">trivial</span>: Tweak the appearance of the “Import Settings” and “Export Settings” windows.</li>
+			<li><span class="trivial">trivial</span>: Tweak the layout of the CotEditor section in the print dialog.</li>
+			<li><span class="trivial">trivial</span>: Support keyboard shortcuts using keys that produce multiple characters with a single press.</li>
+			<li><span class="label">non-AppStore ver.</span>: Update Sparkle from 2.9.6 to 2.10.0.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue where narrow windows with the Syntax toolbar item could cause sustained high CPU usage on macOS 27.</li>
+			<li>Fix an issue where Redo could change line endings in documents with mixed line endings.</li>
+			<li>Fix an issue where Replace All could change line endings outside the matched text in documents with mixed line endings.</li>
+			<li>Fix localizations.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article headingoffset="1">
+	<header>
 		<h1>CotEditor 7.1.0</h1>
 		<p>release: <time>2026-09-13</time></p>
 	</header>
