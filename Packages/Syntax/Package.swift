@@ -36,7 +36,7 @@ let package = Package(
         .package(url: "https://github.com/1024jp/tree-sitter-lua", branch: "swiftPackage"),
         .package(url: "https://github.com/tree-sitter-grammars/tree-sitter-make", from: Version(1, 1, 1)),
         .package(url: "https://github.com/tree-sitter-grammars/tree-sitter-markdown", from: Version(0, 5, 3)),
-        .package(url: "https://github.com/tree-sitter/tree-sitter-php", from: Version(0, 24, 2)),
+        .package(url: "https://github.com/tree-sitter/tree-sitter-php", from: Version(0, 25, 0)),
         .package(url: "https://github.com/1024jp/tree-sitter-python", branch: "swiftPackage"),
         .package(url: "https://github.com/tree-sitter/tree-sitter-ruby", from: Version(0, 23, 1)),
         .package(url: "https://github.com/tree-sitter/tree-sitter-rust", from: Version(0, 24, 0)),
