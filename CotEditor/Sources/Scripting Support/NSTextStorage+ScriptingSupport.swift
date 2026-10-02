@@ -24,15 +24,11 @@
 //
 
 import AppKit.NSTextStorage
-
-// declare Sendable to NSAttributedString instead of NSTextStorage to suppress the warning
-// when sending NSTextStorage as a notification object (2025-10, Xcode 26.1).
-extension NSAttributedString: @retroactive @unchecked Sendable { }
-
+import StringUtils
 
 extension NSTextStorage {
     
-    /// Observes text storage update for in case when a part of the content is directly edited from AppleScript.
+    /// Observes the first text storage update when part of the content is directly edited from AppleScript.
     ///
     /// Example:
     /// ```AppleScript
@@ -46,16 +42,24 @@ extension NSTextStorage {
     /// - Parameters:
     ///   - block: The block to be executed when the textStorage is edited.
     ///   - editedString: The content of the textStorage after the editing.
-    final func observeDirectEditing(block: @MainActor @escaping @Sendable (_ editedString: String) -> Void) {
+    @MainActor final func observeDirectEditing(block: @MainActor @escaping @Sendable (_ editedString: String) -> Void) {
         
-        let notifications = NotificationCenter.default.notifications(named: NSTextStorage.didProcessEditingNotification, object: self)
+        let center = NotificationCenter.default
+        let (strings, continuation) = AsyncStream<String>.makeStream(bufferingPolicy: .bufferingOldest(1))
+        let observer = center.addObserver(of: self, for: DirectEditingMessage.self) { message in
+            continuation.yield(message.string)
+        }
         
         Task {
+            defer {
+                center.removeObserver(observer)
+                continuation.finish()
+            }
+            
             try? await withThrowingTaskGroup { group in
                 // observe text storage update
                 group.addTask {
-                    for await textStorage in notifications.map({ $0.object as! NSTextStorage }) {
-                        let string = textStorage.string
+                    for await string in strings {
                         await block(string)
                         break
                     }
@@ -71,5 +75,29 @@ extension NSTextStorage {
                 group.cancelAll()
             }
         }
+    }
+}
+
+
+/// A snapshot of the text storage content when an editing notification is posted.
+private struct DirectEditingMessage: NotificationCenter.MainActorMessage {
+    
+    typealias Subject = NSTextStorage
+    
+    static let name = NSTextStorage.didProcessEditingNotification
+    
+    let string: String
+    
+    
+    /// Converts an editing notification into a snapshot of the edited content.
+    ///
+    /// - Parameters:
+    ///   - notification: The text storage editing notification.
+    /// - Returns: A message containing the edited content, or `nil` if the notification has no text storage object.
+    static func makeMessage(_ notification: Notification) -> Self? {
+        
+        guard let textStorage = notification.object as? NSTextStorage else { return nil }
+        
+        return Self(string: textStorage.string.immutable)
     }
 }
