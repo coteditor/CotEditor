@@ -307,8 +307,13 @@ import TextFind
             
             guard textStorage.editedMask.contains(.editedCharacters) else { return }
             
+            let textStorageIdentifier = ObjectIdentifier(textStorage)
+            let editedRange = textStorage.editedRange
+            let changeInLength = textStorage.changeInLength
+            let length = textStorage.length
+            
             MainActor.assumeIsolated {
-                self?.documentTextDidChange(textStorage: textStorage)
+                self?.documentTextDidChange(textStorageIdentifier: textStorageIdentifier, editedRange: editedRange, changeInLength: changeInLength, length: length)
             }
         }
     }
@@ -317,17 +322,20 @@ import TextFind
     /// Updates the live match ranges after the text of an open document changes.
     ///
     /// - Parameters:
-    ///   - textStorage: The edited text storage.
-    private func documentTextDidChange(textStorage: NSTextStorage) {
+    ///   - textStorageIdentifier: The identifier of the edited text storage.
+    ///   - editedRange: The range edited in the text storage.
+    ///   - changeInLength: The change in UTF-16 length caused by the edit.
+    ///   - length: The text storage length in UTF-16 units after the edit.
+    private func documentTextDidChange(textStorageIdentifier: ObjectIdentifier, editedRange: NSRange, changeInLength: Int, length: Int) {
         
         guard
             let document = NSDocumentController.shared.documents
                 .compactMap({ $0 as? Document })
-                .first(where: { $0.textStorage === textStorage }),
+                .first(where: { ObjectIdentifier($0.textStorage) == textStorageIdentifier }),
             let fileURL = document.fileURL
         else { return }
         
-        self.liveSummary?.updateMatchRanges(in: fileURL, editedRange: textStorage.editedRange, changeInLength: textStorage.changeInLength, length: textStorage.length)
+        self.liveSummary?.updateMatchRanges(in: fileURL, editedRange: editedRange, changeInLength: changeInLength, length: length)
     }
     
     
