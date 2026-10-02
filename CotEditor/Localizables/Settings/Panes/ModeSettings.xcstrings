@@ -2087,7 +2087,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自動変換:"
+            "value" : "自動置換:"
           }
         },
         "ko" : {

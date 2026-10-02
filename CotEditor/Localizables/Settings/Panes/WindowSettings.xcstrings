@@ -4468,7 +4468,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "세로"
+            "value" : "수직"
           }
         },
         "nl" : {
@@ -4480,7 +4480,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pionowo"
+            "value" : "Pionowa"
           }
         },
         "pt" : {
@@ -4492,19 +4492,19 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вертикально"
+            "value" : "Вертикальная"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dikey"
+            "value" : "Düşey"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вертикально"
+            "value" : "Вертикальна"
           }
         },
         "zh-Hans" : {
@@ -4516,13 +4516,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直書"
+            "value" : "直向"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直書"
+            "value" : "垂直"
           }
         }
       }

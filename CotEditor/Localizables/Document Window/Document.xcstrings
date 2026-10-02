@@ -18153,7 +18153,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerca"
+            "value" : "Trova"
           }
         },
         "ja" : {
@@ -18785,7 +18785,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать шрифты"
+            "value" : "Панель шрифтов"
           }
         },
         "tr" : {
@@ -22336,7 +22336,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "가로"
+            "value" : "수평"
           }
         },
         "nl" : {
@@ -22348,7 +22348,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Poziomo"
+            "value" : "Pozioma"
           }
         },
         "pt" : {
@@ -22360,7 +22360,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Горизонтальный"
+            "value" : "Горизонтальная"
           }
         },
         "tr" : {
@@ -22372,7 +22372,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Горизонтально"
+            "value" : "Горизонтальна"
           }
         },
         "zh-Hans" : {
@@ -22384,13 +22384,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "橫書"
+            "value" : "橫向"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "橫書"
+            "value" : "水平"
           }
         }
       }
@@ -22455,7 +22455,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "텍스트를 가로로 표시합니다."
+            "value" : "텍스트를 수평으로 표시합니다."
           }
         },
         "nl" : {
@@ -22467,7 +22467,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Poziomo"
+            "value" : "Pozioma"
           }
         },
         "pt" : {
@@ -22479,7 +22479,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Горизонтальный"
+            "value" : "Горизонтальная"
           }
         },
         "tr" : {
@@ -22491,7 +22491,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Горизонтально"
+            "value" : "Горизонтальна"
           }
         },
         "zh-Hans" : {
@@ -22503,13 +22503,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "橫書"
+            "value" : "橫向"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "橫書"
+            "value" : "水平"
           }
         }
       }
@@ -22812,7 +22812,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "세로"
+            "value" : "수직"
           }
         },
         "nl" : {
@@ -22824,7 +22824,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pionowo"
+            "value" : "Pionowa"
           }
         },
         "pt" : {
@@ -22836,19 +22836,19 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вертикальный"
+            "value" : "Вертикальная"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dikey"
+            "value" : "Düşey"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вертикально"
+            "value" : "Вертикальна"
           }
         },
         "zh-Hans" : {
@@ -22860,13 +22860,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直書"
+            "value" : "直向"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直書"
+            "value" : "垂直"
           }
         }
       }
@@ -22931,7 +22931,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "텍스트를 세로로 표시합니다."
+            "value" : "텍스트를 수직으로 표시합니다."
           }
         },
         "nl" : {
@@ -22943,7 +22943,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pionowo"
+            "value" : "Pionowa"
           }
         },
         "pt" : {
@@ -22955,19 +22955,19 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вертикальный"
+            "value" : "Вертикальная"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dikey"
+            "value" : "Düşey"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вертикально"
+            "value" : "Вертикальна"
           }
         },
         "zh-Hans" : {
@@ -22979,13 +22979,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直書"
+            "value" : "直向"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直書"
+            "value" : "垂直"
           }
         }
       }
@@ -23212,7 +23212,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "较大"
+            "value" : "调大"
           }
         },
         "zh-Hant" : {
@@ -23569,7 +23569,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "较小"
+            "value" : "调小"
           }
         },
         "zh-Hant" : {

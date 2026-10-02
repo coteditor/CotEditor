@@ -1445,7 +1445,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kopírovat"
+            "value" : "Zkopírovat"
           }
         },
         "de" : {
@@ -1517,7 +1517,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Копировать"
+            "value" : "Скопировать"
           }
         },
         "tr" : {

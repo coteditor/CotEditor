@@ -210,7 +210,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "较大"
+            "value" : "调大"
           }
         },
         "zh-Hant" : {
@@ -572,7 +572,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kopírovat jako RTF"
+            "value" : "Zkopírovat jako RTF"
           }
         },
         "de" : {
@@ -644,7 +644,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Копировать с форматированием"
+            "value" : "Скопировать с форматированием"
           }
         },
         "tr" : {
@@ -1363,7 +1363,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skrýt inspektora"
+            "value" : "Skrýt Inspektor"
           }
         },
         "de" : {
@@ -4301,7 +4301,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zobrazit inspektora"
+            "value" : "Zobrazit Inspektor"
           }
         },
         "de" : {
@@ -5295,7 +5295,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "较小"
+            "value" : "调小"
           }
         },
         "zh-Hant" : {

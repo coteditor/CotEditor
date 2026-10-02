@@ -1664,7 +1664,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerca"
+            "value" : "Trova"
           }
         },
         "ja" : {
@@ -1890,7 +1890,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerca tutto"
+            "value" : "Trova tutto"
           }
         },
         "ja" : {
@@ -2116,7 +2116,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerca successivo"
+            "value" : "Trova successivo"
           }
         },
         "ja" : {
@@ -2229,7 +2229,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerca l’occorrenza successiva."
+            "value" : "Trova l’occorrenza successiva."
           }
         },
         "ja" : {
@@ -2342,7 +2342,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerca precedente"
+            "value" : "Trova precedente"
           }
         },
         "ja" : {
@@ -2455,7 +2455,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerca l’occorrenza precedente."
+            "value" : "Trova l’occorrenza precedente."
           }
         },
         "ja" : {
@@ -7754,7 +7754,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zastąp wszystkie"
+            "value" : "Zastąp wszystko"
           }
         },
         "pt" : {
@@ -7867,7 +7867,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zamień wszystkie dopasowania na tekst zastępujący"
+            "value" : "Zastąp wszystkie dopasowania tekstem zastępującym"
           }
         },
         "pt" : {

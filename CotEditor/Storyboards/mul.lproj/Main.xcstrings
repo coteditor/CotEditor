@@ -254,7 +254,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vollbild ein"
+            "value" : "Vollbildmodus"
           }
         },
         "en" : {
@@ -284,13 +284,13 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "फ़ुल स्क्रीन में जाएँ"
+            "value" : "फ़ुल स्क्रीन में प्रवेश करें"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vai a tutto schermo"
+            "value" : "Attiva modalità a tutto schermo"
           }
         },
         "ja" : {
@@ -656,7 +656,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自動変換"
+            "value" : "自動置換"
           }
         },
         "ko" : {
@@ -1364,7 +1364,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "सभी सामने लाएँ"
+            "value" : "सभी आगे लाएँ"
           }
         },
         "it" : {
@@ -1634,7 +1634,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zastąp wszystkie"
+            "value" : "Zastąp wszystko"
           }
         },
         "pt" : {
@@ -2084,7 +2084,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "उद्धरण चिह्न बदलें"
+            "value" : "कोट बदलें"
           }
         },
         "it" : {
@@ -2102,7 +2102,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "인용 부호 대치"
+            "value" : "인용 대치"
           }
         },
         "nl" : {
@@ -2114,7 +2114,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zastąp cudzysłowy"
+            "value" : "Zastępuj cudzysłowy"
           }
         },
         "pt" : {
@@ -3056,7 +3056,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "入力中にスペルをチェック"
+            "value" : "入力中にスペルチェック"
           }
         },
         "ko" : {
@@ -3104,7 +3104,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "输入时检查拼写"
+            "value" : "键入时检查拼写"
           }
         },
         "zh-Hant" : {
@@ -3674,7 +3674,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Minimalizuj"
+            "value" : "Minimalizuj okno"
           }
         },
         "pt" : {
@@ -4244,7 +4244,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor के बारे में"
+            "value" : "CotEditor परिचय"
           }
         },
         "it" : {
@@ -4454,7 +4454,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fenster schließen"
+            "value" : "Schließen"
           }
         },
         "en" : {
@@ -4730,7 +4730,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Formato di pagina…"
+            "value" : "Formato di stampa…"
           }
         },
         "ja" : {
@@ -5690,7 +5690,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guida di CotEditor"
+            "value" : "Aiuto di CotEditor"
           }
         },
         "ja" : {
@@ -5708,7 +5708,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CotEditor-help"
+            "value" : "CotEditor Help"
           }
         },
         "pl" : {
@@ -5810,7 +5810,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ripristina"
+            "value" : "Ripristina versione salvata"
           }
         },
         "ja" : {
@@ -5876,7 +5876,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "回復到已儲存的版本"
+            "value" : "回復成儲存過的版本"
           }
         }
       }
@@ -5888,7 +5888,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít poslední"
+            "value" : "Otevřít poslední položku"
           }
         },
         "de" : {
@@ -5960,13 +5960,13 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Recentes"
+            "value" : "Abrir Recente"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Открыть недавние"
+            "value" : "Недавние"
           }
         },
         "tr" : {
@@ -6008,7 +6008,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřít poslední"
+            "value" : "Otevřít poslední položku"
           }
         },
         "de" : {
@@ -6080,13 +6080,13 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abrir Recentes"
+            "value" : "Abrir Recente"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Открыть недавние"
+            "value" : "Недавние"
           }
         },
         "tr" : {
@@ -7088,7 +7088,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kopírovat"
+            "value" : "Zkopírovat"
           }
         },
         "de" : {
@@ -7166,7 +7166,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Копировать"
+            "value" : "Скопировать"
           }
         },
         "tr" : {
@@ -7190,7 +7190,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "複製"
+            "value" : "拷貝"
           }
         },
         "zh-HK" : {
@@ -7256,7 +7256,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "取り消し"
+            "value" : "取り消す"
           }
         },
         "ko" : {
@@ -8216,7 +8216,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "やり直し"
+            "value" : "やり直す"
           }
         },
         "ko" : {
@@ -8360,7 +8360,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ampliar/Reduzir"
+            "value" : "Zoom"
           }
         },
         "ru" : {
@@ -9590,7 +9590,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "顯示"
+            "value" : "顯示方式"
           }
         },
         "zh-HK" : {
@@ -9830,7 +9830,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "顯示"
+            "value" : "顯示方式"
           }
         },
         "zh-HK" : {
@@ -10064,7 +10064,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "较小"
+            "value" : "调小"
           }
         },
         "zh-Hant" : {
@@ -10184,7 +10184,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "较大"
+            "value" : "调大"
           }
         },
         "zh-Hant" : {
@@ -10526,7 +10526,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Показать шрифты"
+            "value" : "Панель шрифтов"
           }
         },
         "tr" : {
@@ -10970,7 +10970,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerca"
+            "value" : "Trova"
           }
         },
         "ja" : {
@@ -12224,7 +12224,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自定工具栏…"
+            "value" : "自定义工具栏…"
           }
         },
         "zh-Hant" : {
@@ -15182,7 +15182,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "세로"
+            "value" : "수직"
           }
         },
         "nl" : {
@@ -15194,7 +15194,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pionowo"
+            "value" : "Pionowa"
           }
         },
         "pt" : {
@@ -15206,19 +15206,19 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вертикально"
+            "value" : "Вертикальная"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dikey"
+            "value" : "Düşey"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вертикально"
+            "value" : "Вертикальна"
           }
         },
         "zh-Hans" : {
@@ -15230,13 +15230,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直書"
+            "value" : "直向"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直書"
+            "value" : "垂直"
           }
         }
       }
@@ -16484,7 +16484,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "फ़ुल विड्थ में बदलें"
+            "value" : "टेक्स्ट पूर्ण चौड़ाई में बदलें"
           }
         },
         "it" : {
@@ -16526,7 +16526,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Преобразовать в полноширинные символы"
+            "value" : "Конвертировать в полную ширину"
           }
         },
         "tr" : {
@@ -16556,7 +16556,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "轉換成全形"
+            "value" : "切換至全形格式"
           }
         }
       }
@@ -16970,7 +16970,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerca…"
+            "value" : "Trova…"
           }
         },
         "ja" : {
@@ -17006,7 +17006,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Поиск…"
+            "value" : "Найти…"
           }
         },
         "tr" : {
@@ -17246,7 +17246,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Запретить изменение"
+            "value" : "Запретить правку"
           }
         },
         "tr" : {
@@ -18176,7 +18176,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自動変換を表示"
+            "value" : "自動置換を表示"
           }
         },
         "ko" : {
@@ -18770,7 +18770,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerca tutto"
+            "value" : "Trova tutto"
           }
         },
         "ja" : {
@@ -19034,7 +19034,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zastąp myślniki"
+            "value" : "Zastępuj myślniki"
           }
         },
         "pt" : {
@@ -19250,7 +19250,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usa selezione per cercare"
+            "value" : "Usa selezione per trovare"
           }
         },
         "ja" : {
@@ -19268,7 +19268,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gebruik selectie voor zoekactie"
+            "value" : "Gebruik selectie voor zoekopdracht"
           }
         },
         "pl" : {
@@ -19292,7 +19292,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bul için Seçimi Kullan"
+            "value" : "Bul İçin Seçimi Kullan"
           }
         },
         "uk" : {
@@ -19316,7 +19316,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用所選範圍進行尋找"
+            "value" : "使用所選範圍尋找"
           }
         }
       }
@@ -19688,7 +19688,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zobrazit inspektora"
+            "value" : "Zobrazit Inspektor"
           }
         },
         "de" : {
@@ -20048,7 +20048,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kopírovat jako RTF"
+            "value" : "Zkopírovat jako RTF"
           }
         },
         "de" : {
@@ -20702,7 +20702,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "가로"
+            "value" : "수평"
           }
         },
         "nl" : {
@@ -20714,7 +20714,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Poziomo"
+            "value" : "Pozioma"
           }
         },
         "pt" : {
@@ -20726,7 +20726,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Горизонтально"
+            "value" : "Горизонтальная"
           }
         },
         "tr" : {
@@ -20738,7 +20738,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Горизонтально"
+            "value" : "Горизонтальна"
           }
         },
         "zh-Hans" : {
@@ -20750,13 +20750,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "橫書"
+            "value" : "橫向"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "橫書"
+            "value" : "水平"
           }
         }
       }
@@ -20930,7 +20930,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerca"
+            "value" : "Trova"
           }
         },
         "ja" : {
@@ -21308,7 +21308,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gebruik selectie voor vervangen"
+            "value" : "Gebruik selectie voor vervanging"
           }
         },
         "pl" : {
@@ -21332,7 +21332,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Değişim için Seçimi Kullan"
+            "value" : "Değiştir İçin Seçimi Kullan"
           }
         },
         "uk" : {
@@ -21356,7 +21356,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用所選範圍進行取代"
+            "value" : "使用所選範圍取代"
           }
         }
       }
@@ -21422,7 +21422,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "대문자화"
+            "value" : "대문자로 시작"
           }
         },
         "nl" : {
@@ -21458,7 +21458,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "З великої літери"
+            "value" : "Великі перші літери"
           }
         },
         "zh-Hans" : {
@@ -22370,7 +22370,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mostra barra dei pannelli"
+            "value" : "Mostra la barra dei pannelli"
           }
         },
         "ja" : {
@@ -22730,7 +22730,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerca successivo"
+            "value" : "Trova successivo"
           }
         },
         "ja" : {
@@ -23720,7 +23720,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Saltar para Seleção"
+            "value" : "Ir para Seleção"
           }
         },
         "ru" : {
@@ -23936,7 +23936,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "テキストを置換"
+            "value" : "テキストの置換"
           }
         },
         "ko" : {
@@ -23990,7 +23990,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文字取代"
+            "value" : "替代文字"
           }
         },
         "zh-HK" : {
@@ -24284,7 +24284,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "पूर्ण करें"
+            "value" : "पूर्ण"
           }
         },
         "it" : {
@@ -24326,7 +24326,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Закончить слово"
+            "value" : "Завершение"
           }
         },
         "tr" : {
@@ -24350,7 +24350,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "聯想"
+            "value" : "完成"
           }
         },
         "zh-HK" : {
@@ -24476,7 +24476,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "智慧複製/貼上"
+            "value" : "智慧型複製/貼上"
           }
         }
       }
@@ -25364,7 +25364,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "बड़े अक्षरों में बदलें"
+            "value" : "कैपिटल लेटर बनाएँ"
           }
         },
         "it" : {
@@ -25406,7 +25406,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сделать все прописными"
+            "value" : "Прописные"
           }
         },
         "tr" : {
@@ -25418,7 +25418,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перетворити на великі літери"
+            "value" : "У верхній регістр"
           }
         },
         "zh-Hans" : {
@@ -25604,7 +25604,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "हाफ़ विड्थ में बदलें"
+            "value" : "आधी चौड़ाई में बदलें"
           }
         },
         "it" : {
@@ -25646,7 +25646,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Преобразовать в полуширинные символы"
+            "value" : "Конвертировать в половинную ширину"
           }
         },
         "tr" : {
@@ -25676,7 +25676,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "轉換成半形"
+            "value" : "切換至半形格式"
           }
         }
       }
@@ -27194,7 +27194,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zastąp tekst"
+            "value" : "Zastępuj tekst"
           }
         },
         "pt" : {
@@ -28010,7 +28010,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cerca precedente"
+            "value" : "Trova precedente"
           }
         },
         "ja" : {
@@ -28616,7 +28616,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自動変換"
+            "value" : "自動置換"
           }
         },
         "ko" : {
@@ -29084,7 +29084,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "छोटे अक्षरों में बदलें"
+            "value" : "स्मॉल लेटर बनाएँ"
           }
         },
         "it" : {
@@ -29126,7 +29126,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сделать все строчными"
+            "value" : "Строчные"
           }
         },
         "tr" : {
@@ -29138,7 +29138,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Перетворити на малі літери"
+            "value" : "У нижній регістр"
           }
         },
         "zh-Hans" : {
