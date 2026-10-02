@@ -252,7 +252,7 @@ private struct FileScopeMenu: View {
                 }
             }
         } label: {
-            Label(self.selection.name ?? String(localized: "File Scope", table: "Document"), systemImage: "text.magnifyingglass")
+            Label(self.selection.name ?? String(localized: "Scope", table: "Document", comment: "noun; menu button; file scope label in the Folder Find sidebar pane"), systemImage: "text.magnifyingglass")
                 .foregroundStyle(self.selection.fileScope.isEmpty ? .secondary : Color.accentColor)
                 .fontWeight((self.differentiateWithoutColor && !self.selection.fileScope.isEmpty) ? .semibold : .regular)
                 .labelIconToTitleSpacing(6)
