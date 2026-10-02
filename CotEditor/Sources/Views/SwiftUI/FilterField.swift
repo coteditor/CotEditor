@@ -162,16 +162,19 @@ class FilterSearchField: NSSearchField {
     /// Sets up the search menu.
     private func invalidateSearchMenu() {
         
-        let searchMenu = NSMenu(title: String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters"))
+        let searchMenu = NSMenu(title: String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters",
+                                              comment: "noun; menu item header; Refer to the localization for “Recent Searches” by Apple"))
         searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.label", defaultValue: "Recent Filters"), action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsTitleMenuItemTag
         searchMenu.addItem(withTitle: "", action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsMenuItemTag
         searchMenu.addItem(.separator())
-        searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.clear.label", defaultValue: "Clear Recent Filters"),
+        searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.clear.label", defaultValue: "Clear Recent Filters",
+                                             comment: "verb; menu item; Refer to the localization for “Clear Recent Searches” by Apple"),
                            action: nil, keyEquivalent: "")
             .tag = NSSearchField.clearRecentsMenuItemTag
-        searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.noItem.label", defaultValue: "No Recent Filter"),
+        searchMenu.addItem(withTitle: String(localized: "FilterField.recentMenu.noItem.label", defaultValue: "No Recent Filters",
+                                             comment: "verb; menu item; Refer to the localization for “No Recent Searches” by Apple"),
                            action: nil, keyEquivalent: "")
             .tag = NSSearchField.noRecentsMenuItemTag
         

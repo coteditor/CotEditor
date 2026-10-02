@@ -10943,7 +10943,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dieser Vorgang kann nicht widerrufen werden."
+            "value" : "Der Vorgang kann nicht widerrufen werden."
           }
         },
         "en" : {
@@ -10955,7 +10955,7 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This operation cannot be undone."
+            "value" : "This operation can’t be undone."
           }
         },
         "es" : {
@@ -10973,7 +10973,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "यह क्रिया पूर्ववत नहीं की जा सकती।"
+            "value" : "यह ऑपरेशन पहले जैसा नहीं हो सकेगा।"
           }
         },
         "it" : {
@@ -11015,7 +11015,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Операцию невозможно отменить."
+            "value" : "Это действие нельзя отменить."
           }
         },
         "tr" : {
@@ -12916,19 +12916,19 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打开原项目"
+            "value" : "打开原始项目"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開啟原始檔"
+            "value" : "開啟原項目"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開啟原始檔案"
+            "value" : "開啟原項目"
           }
         }
       }
@@ -13254,19 +13254,19 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原项目"
+            "value" : "原始项目"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原始檔"
+            "value" : "原項目"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "原始"
+            "value" : "原項目"
           }
         }
       }

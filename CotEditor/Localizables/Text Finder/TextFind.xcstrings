@@ -1319,7 +1319,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "हाल की खोजें साफ़ करें"
+            "value" : "हालिया खोज साफ़ करें"
           }
         },
         "it" : {
@@ -1343,7 +1343,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wis recente zoekacties"
+            "value" : "Wis recente zoekopdrachten"
           }
         },
         "pl" : {
@@ -1361,7 +1361,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Очистить список недавних поисков"
+            "value" : "Очистить недавние поиски"
           }
         },
         "tr" : {
@@ -1379,7 +1379,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "清除最近查找"
+            "value" : "清除最近搜索"
           }
         },
         "zh-Hant" : {
@@ -7272,7 +7272,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "हाल की खोजें"
+            "value" : "हालिया खोज"
           }
         },
         "it" : {
@@ -7296,7 +7296,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recente zoekacties"
+            "value" : "Recente zoekopdrachten"
           }
         },
         "pl" : {
@@ -7332,13 +7332,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最近的搜索"
+            "value" : "最近搜索"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最近的搜尋"
+            "value" : "最近的搜尋項目"
           }
         },
         "zh-HK" : {

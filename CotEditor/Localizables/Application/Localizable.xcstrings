@@ -3716,7 +3716,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "यह क्रिया पूर्ववत नहीं की जा सकती।"
+            "value" : "यह क्रिया पहले जैसी नहीं की जा सकेगी।"
           }
         },
         "it" : {
@@ -3734,7 +3734,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이 작업은 되돌릴 수 없습니다."
+            "value" : "이 동작은 취소할 수 없습니다."
           }
         },
         "nl" : {
@@ -3758,7 +3758,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Это действие невозможно отменить."
+            "value" : "Это действие нельзя отменить."
           }
         },
         "tr" : {
@@ -3806,7 +3806,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Möchtest du „%@“ wirklich löschen?"
+            "value" : "Bist du sicher, dass du „%@“ löschen willst?"
           }
         },
         "en" : {
@@ -3836,7 +3836,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "क्या आप वाकई “%@” को डिलीट करना चाहते हैं?"
+            "value" : "क्या आप वाक़ई “%@” को डिलीट करना चाहते हैं?"
           }
         },
         "it" : {
@@ -4315,7 +4315,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "यदि आप बदलाव सहेजते नहीं हैं तो वे खो जाएँगे। सहेजते समय असंगत वर्ण या तो प्रतिस्थापित कर दिए जाते हैं या हटा दिए जाते हैं।"
+            "value" : "यदि आप अपने परिवर्तन नहीं सहेजते हैं, तो वे अनुपलब्ध हो जाएँगे। सहेजते समय असंगत वर्ण या तो प्रतिस्थापित कर दिए जाते हैं या हटा दिए जाते हैं।"
           }
         },
         "it" : {
@@ -4357,7 +4357,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ваши изменения будут потеряны, если Вы их не сохраните. Несовместимые символы будут заменены или удалены при сохранении."
+            "value" : "Если изменения не сохранить, они будут утрачены. Несовместимые символы будут заменены или удалены при сохранении."
           }
         },
         "tr" : {
@@ -4387,7 +4387,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如不儲存，將會遺失所作的變更。不相容的字元在儲存時被替代或移除。"
+            "value" : "如不儲存，變更將會遺失。不相容的字元在儲存時被替代或移除。"
           }
         }
       }
@@ -4435,7 +4435,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "क्या आप दस्तावेज़ “%@” में किए गए बदलाव सहेजना चाहते हैं?"
+            "value" : "क्या आप दस्तावेज़ “%@” में किए गए परिवर्तन सहेजना चाहते हैं?"
           }
         },
         "it" : {
@@ -4477,13 +4477,13 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сохранить изменения в документе «%@»?"
+            "value" : "Хотите сохранить изменения, внесенные в документ «%@»?"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” belgesinde yapılan değişiklikleri kaydetmek istiyor musunuz?"
+            "value" : "“%@” belgesinde yapılan değişiklikleri kaydetmek ister misiniz?"
           }
         },
         "uk" : {
@@ -5816,7 +5816,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "存檔時會自動置換或刪除不相容的字元。確定要儲存嗎？"
+            "value" : "存檔時會自動置換或刪除不相容的字元。仍要儲存嗎？"
           }
         },
         "zh-HK" : {
@@ -8094,6 +8094,7 @@
       }
     },
     "FilterField.recentMenu.clear.label" : {
+      "comment" : "verb; menu item; Refer to the localization for “Clear Recent Searches” by Apple",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -8129,19 +8130,19 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Effacer l’historique"
+            "value" : "Effacer les filtres récents"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "हाल के फ़िल्टर साफ़ करें"
+            "value" : "हालिया फ़िल्टर साफ़ करें"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cancella recenti"
+            "value" : "Cancella filtri recenti"
           }
         },
         "ja" : {
@@ -8171,7 +8172,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Limpar Recentes"
+            "value" : "Limpar Filtros Recentes"
           }
         },
         "ru" : {
@@ -8183,25 +8184,25 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Son Filtreleri Temizle"
+            "value" : "Son Filtreleri Sil"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Очистити недавні фільтри"
+            "value" : "Очистити список останніх фільтрів"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "清除最近记录"
+            "value" : "清除最近过滤条件"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "清除最近記錄"
+            "value" : "清除最近的過濾條件"
           }
         },
         "zh-HK" : {
@@ -8213,6 +8214,7 @@
       }
     },
     "FilterField.recentMenu.label" : {
+      "comment" : "noun; menu item header; Refer to the localization for “Recent Searches” by Apple",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -8224,7 +8226,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zuletzt gefiltert"
+            "value" : "Letzte Filter"
           }
         },
         "en" : {
@@ -8254,7 +8256,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "हाल के फ़िल्टर"
+            "value" : "हालिया फ़िल्टर"
           }
         },
         "it" : {
@@ -8266,7 +8268,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最近のフィルタ"
+            "value" : "フィルタ履歴"
           }
         },
         "ko" : {
@@ -8296,7 +8298,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Использованные фильтры"
+            "value" : "Недавние фильтры"
           }
         },
         "tr" : {
@@ -8308,19 +8310,19 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Недавні фільтри"
+            "value" : "Останні фільтри"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最近的过滤"
+            "value" : "最近过滤条件"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最近的過濾"
+            "value" : "最近的過濾條件"
           }
         },
         "zh-HK" : {
@@ -8332,36 +8334,37 @@
       }
     },
     "FilterField.recentMenu.noItem.label" : {
+      "comment" : "verb; menu item; Refer to the localization for “No Recent Searches” by Apple",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Žádný poslední filtr"
+            "value" : "Žádné poslední filtry"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keine letzten Filtereinträge"
+            "value" : "Keine letzten Filter"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "No Recent Filter"
+            "value" : "No Recent Filters"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No Recent Filter"
+            "value" : "No Recent Filters"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sin filtro reciente"
+            "value" : "No hay ningún filtro reciente"
           }
         },
         "fr" : {
@@ -8373,7 +8376,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "कोई हाल का फ़िल्टर नहीं"
+            "value" : "कोई हालिया फ़िल्टर नहीं"
           }
         },
         "it" : {
@@ -8385,7 +8388,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "フィルタ履歴がありません"
+            "value" : "フィルタ履歴はありません"
           }
         },
         "ko" : {
@@ -8397,7 +8400,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geen recente filter"
+            "value" : "Geen recente filters"
           }
         },
         "pl" : {
@@ -8409,43 +8412,43 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nenhum Filtro Recente"
+            "value" : "Não Há Filtros Recentes"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Нет использованных фильтров"
+            "value" : "Нет недавних фильтров"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Son Filtre Yok"
+            "value" : "Hiç Son Filtre Yok"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Немає недавніх фільтрів"
+            "value" : "Немає останніх фільтрів"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "没有最近的过滤"
+            "value" : "无最近过滤条件"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "沒有最近的過濾"
+            "value" : "沒有最近的過濾條件"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無最近的過濾條件"
+            "value" : "沒有最近的過濾條件"
           }
         }
       }
@@ -8577,7 +8580,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "„%@“ již existuje. Chcete soubor nahradit?"
+            "value" : "„%@“ už existuje. Chcete soubor nahradit?"
           }
         },
         "de" : {
@@ -8613,7 +8616,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” पहले से मौजूद है। क्या आप इसे बदलना चाहते हैं?"
+            "value" : "“%@” पहले से मौजूद है। क्या आप उसे बदलना चाहते हैं?"
           }
         },
         "it" : {
@@ -8625,7 +8628,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@”はすでに存在します。置き換えますか?"
+            "value" : "“%@”はすでに存在しています。置き換えますか?"
           }
         },
         "ko" : {
@@ -8661,7 +8664,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“%@” hâlihazırda var. Onu değiştirmek istiyor musunuz?"
+            "value" : "“%@” zaten var. Onu değiştirmek istiyor musunuz?"
           }
         },
         "uk" : {
@@ -14808,7 +14811,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "हाल की खोजें साफ़ करें"
+            "value" : "हालिया खोज साफ़ करें"
           }
         },
         "it" : {
@@ -14868,7 +14871,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "清除最近的搜索"
+            "value" : "清除最近搜索"
           }
         },
         "zh-Hant" : {
@@ -14928,7 +14931,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "हाल की खोजें"
+            "value" : "हालिया खोज"
           }
         },
         "it" : {
@@ -14988,7 +14991,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最近的搜索"
+            "value" : "最近搜索"
           }
         },
         "zh-Hant" : {
@@ -15048,7 +15051,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "कोई हाल की खोज नहीं"
+            "value" : "कोई हालिया खोज नहीं"
           }
         },
         "it" : {
@@ -15102,13 +15105,13 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Немає недавніх пошуків"
+            "value" : "Немає останніх запитів"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无最近的搜索"
+            "value" : "无最近搜索"
           }
         },
         "zh-Hant" : {
@@ -16722,7 +16725,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Elimina modifiche"
+            "value" : "Non salvare modifiche"
           }
         },
         "ja" : {
@@ -16758,7 +16761,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сбросить изменения"
+            "value" : "Отменить изменения"
           }
         },
         "tr" : {
@@ -17661,7 +17664,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "फ़ाइल किसी अन्य एप्लिकेशन द्वारा बदल दी गई है।"
+            "value" : "फ़ाइल अन्य ऐप्लिकेशन द्वारा बदल दी गई है।"
           }
         },
         "it" : {
@@ -17679,7 +17682,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "파일이 다른 응용 프로그램에 의해 수정되었습니다."
+            "value" : "다른 응용 프로그램에 의해 파일이 변경되었습니다."
           }
         },
         "nl" : {
@@ -17703,7 +17706,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Файл был изменен другим приложением."
+            "value" : "Этот файл был изменен другой программой."
           }
         },
         "tr" : {

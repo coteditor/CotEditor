@@ -32,13 +32,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Nouveau document CotEditor avec la sélection"
+            "value" : "Nouvelle fenêtre de CotEditor contenant la sélection"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "चयन युक्त नई CotEditor विंडो"
+            "value" : "चयन वाली नई CotEditor विंडो"
           }
         },
         "it" : {
@@ -80,7 +80,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Новое окно CotEditor, которое содержит выделенное"
+            "value" : "Открыть выбранное в новом окне CotEditor"
           }
         },
         "tr" : {
@@ -98,13 +98,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用选中内容创建新的CotEditor窗口"
+            "value" : "新CotEditor窗口包含所选内容"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用選中的內容創建新的CotEditor文件"
+            "value" : "新增包含所選範圍的CotEditor視窗"
           }
         },
         "zh-HK" : {
