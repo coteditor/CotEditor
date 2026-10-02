@@ -55,10 +55,7 @@ public extension NSAttributedString {
     /// Appends another attributed string to the left-hand value.
     static func += (lhs: inout NSAttributedString, rhs: NSAttributedString) {
         
-        let result = NSMutableAttributedString(attributedString: lhs)
-        result.append(rhs)
-        
-        lhs = result.copy() as! NSAttributedString
+        lhs = lhs + rhs
     }
     
     

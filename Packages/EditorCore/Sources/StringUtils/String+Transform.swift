@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2025 1024jp
+//  © 2014-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ public extension StringProtocol {
     func fullwidthRoman(reverse: Bool = false) -> String {
         
         self.unicodeScalars
+            .lazy
             .map { $0.convertedToFullwidthRoman(reverse: reverse) ?? $0 }
             .reduce(into: "") { $0.unicodeScalars.append($1) }
     }
