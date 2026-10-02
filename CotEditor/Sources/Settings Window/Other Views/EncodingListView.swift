@@ -116,12 +116,12 @@ struct EncodingListView: View {
                             .filter { !listedEncodings.contains($0.cfEncoding) }
                             .sorted(using: KeyPathComparator(\.localizedName, comparator: .localizedStandard))
                         
-                        Button(.init("Separator", table: "EncodingList")) {
+                        Button(.init("Separator", table: "EncodingList", comment: "noun; menu item")) {
                             let item = self.model.addSeparator(after: self.selection)
                             self.selection = [item.id]
                         }
                         
-                        Section(.init("Text Encoding", table: "EncodingList")) {
+                        Section(.init("Text Encoding", table: "EncodingList", comment: "noun; menu item header")) {
                             ForEach(encodings, id: \.rawValue) { encoding in
                                 Button(encoding.localizedName) {
                                     let item = self.model.addEncoding(encoding.cfEncoding, after: self.selection)

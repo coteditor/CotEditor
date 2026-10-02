@@ -324,15 +324,18 @@ private extension NoDocumentOnLaunchOption {
             case .untitledDocument:
                 .init("NoDocumentOnLaunchOption.untitledDocument.label",
                       defaultValue: "Create New Document",
-                      table: "GeneralSettings")
+                      table: "GeneralSettings",
+                      comment: "verb; menu item")
             case .openPanel:
                 .init("NoDocumentOnLaunchOption.openPanel.label",
                       defaultValue: "Show Open Dialog",
-                      table: "GeneralSettings")
+                      table: "GeneralSettings",
+                      comment: "verb; menu item")
             case .none:
                 .init("NoDocumentOnLaunchOption.none.label",
                       defaultValue: "Do Nothing",
-                      table: "GeneralSettings")
+                      table: "GeneralSettings",
+                      comment: "verb; menu item")
         }
     }
 }
@@ -347,16 +350,17 @@ private extension DocumentConflictOption {
                 .init("DocumentConflictOption.ignore.label",
                       defaultValue: "Keep CotEditor’s version",
                       table: "GeneralSettings",
-                      comment: "version refers to the document’s contents")
+                      comment: "verb; button; version refers to the document’s contents")
             case .notify:
                 .init("DocumentConflictOption.notify.label",
                       defaultValue: "Ask how to resolve",
-                      table: "GeneralSettings")
+                      table: "GeneralSettings",
+                      comment: "verb; button")
             case .revert:
                 .init("DocumentConflictOption.revert.label",
                       defaultValue: "Update to modified version",
                       table: "GeneralSettings",
-                      comment: "version refers to the document’s contents")
+                      comment: "verb; button; version refers to the document’s contents")
         }
     }
 }

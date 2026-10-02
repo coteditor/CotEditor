@@ -801,7 +801,7 @@
       }
     },
     "DocumentConflictOption.ignore.label" : {
-      "comment" : "version refers to the document’s contents",
+      "comment" : "verb; button; version refers to the document’s contents",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -921,6 +921,7 @@
       }
     },
     "DocumentConflictOption.notify.label" : {
+      "comment" : "verb; button",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -1040,7 +1041,7 @@
       }
     },
     "DocumentConflictOption.revert.label" : {
-      "comment" : "version refers to the document’s contents",
+      "comment" : "verb; button; version refers to the document’s contents",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -2193,6 +2194,7 @@
       }
     },
     "NoDocumentOnLaunchOption.none.label" : {
+      "comment" : "verb; menu item",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -2312,6 +2314,7 @@
       }
     },
     "NoDocumentOnLaunchOption.openPanel.label" : {
+      "comment" : "verb; menu item",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -2431,6 +2434,7 @@
       }
     },
     "NoDocumentOnLaunchOption.untitledDocument.label" : {
+      "comment" : "verb; menu item",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {

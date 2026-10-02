@@ -39,12 +39,12 @@ struct NavigationBar: View {
             Button {
                 NSApp.sendAction(#selector(DocumentViewController.closeSplitTextView), to: nil, from: self.outlineNavigator.textView)
             } label: {
-                Label(.init("Close Split Editor", table: "Document", comment: "accessibility label for button"), systemImage: "xmark")
+                Label(.init("Close Split Editor", table: "Document", comment: "verb; button"), systemImage: "xmark")
                     .frame(width: 18)
                     .frame(maxHeight: .infinity, alignment: .center)
             }
             .labelStyle(.iconOnly)
-            .help(.init("Close split editor", table: "Document", comment: "tooltip for button"))
+            .help(.init("Close split editor", table: "Document", comment: "verb; tooltip"))
             .symbolEffect(.disappear, isActive: !self.splitState.canClose)
             .opacity(self.splitState.canClose ? 1 : 0)
             .disabled(!self.splitState.canClose)
@@ -64,13 +64,13 @@ struct NavigationBar: View {
             Button {
                 NSApp.sendAction(#selector(DocumentViewController.openSplitTextView), to: nil, from: self.outlineNavigator.textView)
             } label: {
-                Label(.init("Split Editor", table: "Document", comment: "accessibility label for button; verb, split the editor pane"), image: .splitAdd)
+                Label(.init("Split Editor", table: "Document", comment: "verb; button; split the editor pane"), image: .splitAdd)
                     .frame(width: 18)
                     .frame(maxHeight: .infinity, alignment: .center)
             }
             .rotationEffect(.degrees(self.splitState.isVertical ? -90 : 0))
             .labelStyle(.iconOnly)
-            .help(.init("Split editor", table: "Document", comment: "tooltip for button; verb, split the editor pane"))
+            .help(.init("Split editor", table: "Document", comment: "verb; tooltip; split the editor pane"))
             .contextMenu {
                 Button {
                     NSApp.sendAction(#selector(DocumentViewController.toggleSplitOrientation), to: nil, from: nil)

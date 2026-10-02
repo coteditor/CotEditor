@@ -61,7 +61,7 @@ struct InconsistentLineEndingsView: View {
             
             if !self.items.isEmpty {
                 Table(self.items, selection: $selection, sortOrder: $sortOrder) {
-                    TableColumn(.init("Line", table: "Document", comment: "table column header"), value: \.lowerBound) {
+                    TableColumn(.init("Line", table: "Document", comment: "noun; table column header"), value: \.lowerBound) {
                         // calculate the line number first at this point to postpone the high cost processing as much as possible
                         if let line = self.lineNumber(at: $0.lowerBound) {
                             Text(line, format: .number)
@@ -70,7 +70,7 @@ struct InconsistentLineEndingsView: View {
                     }
                     .alignment(.trailing)
                     
-                    TableColumn(.init("Line Ending", table: "Document", comment: "table column header"), value: \.value.rawValue) {
+                    TableColumn(.init("Line Ending", table: "Document", comment: "noun; table column header"), value: \.value.rawValue) {
                         Text($0.value.label)
                     }
                 }

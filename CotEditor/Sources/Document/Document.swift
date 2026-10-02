@@ -1478,7 +1478,8 @@ extension NSTextView: EditorCounter.Source { }
                                                            defaultValue: "Are you sure you want to discard your changes and reopen the document using “\(fileEncoding.localizedName)”?", comment: "%@ is an encoding name")
                             alert.addButton(withTitle: String(localized: .cancel))
                             alert.addButton(withTitle: String(localized: "UnsavedReinterpretationAlert.button.discard",
-                                                              defaultValue: "Discard Changes"))
+                                                              defaultValue: "Discard Changes",
+                                                              comment: "Refer the same expression by Apple."))
                             alert.buttons.last?.hasDestructiveAction = true
                             alert.window.identifier = .contentDependentAlert
                             

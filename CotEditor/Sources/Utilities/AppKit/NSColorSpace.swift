@@ -36,11 +36,14 @@ extension NSColorSpace.Model {
             case .gray:
                 String(localized: "NSColorSpace.Model.gray", defaultValue: "Gray")
             case .rgb:
-                String(localized: "NSColorSpace.Model.rgb", defaultValue: "RGB")
+                String(localized: "NSColorSpace.Model.rgb", defaultValue: "RGB",
+                       comment: "refer kCGColorSpaceModelRGB")
             case .cmyk:
-                String(localized: "NSColorSpace.Model.cmyk", defaultValue: "CMYK")
+                String(localized: "NSColorSpace.Model.cmyk", defaultValue: "CMYK",
+                       comment: "refer kCGColorSpaceModelCMYK")
             case .lab:
-                String(localized: "NSColorSpace.Model.lab", defaultValue: "Lab")
+                String(localized: "NSColorSpace.Model.lab", defaultValue: "Lab",
+                       comment: "refer kCGColorSpaceModelLab")
             case .deviceN:
                 String(localized: "NSColorSpace.Model.deviceN", defaultValue: "DeviceN",
                        comment: "refer kCGColorSpaceModelDeviceN")

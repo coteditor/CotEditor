@@ -1296,6 +1296,7 @@
       }
     },
     "Block delimiters:" : {
+      "comment" : "noun; delimiters indicating block",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1634,6 +1635,7 @@
       }
     },
     "Character delimiters:" : {
+      "comment" : "noun; delimiters indicating character type",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -5810,6 +5812,7 @@
       }
     },
     "String delimiters:" : {
+      "comment" : "noun; delimiters indicating string type",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

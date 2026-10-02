@@ -1153,6 +1153,7 @@
       }
     },
     "Manage Subscriptions" : {
+      "comment" : "verb; link",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

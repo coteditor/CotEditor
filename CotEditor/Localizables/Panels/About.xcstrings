@@ -115,7 +115,7 @@
       }
     },
     "About %@" : {
-      "comment" : "%@ is app name",
+      "comment" : "window title; %@ is app name",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1051,7 +1051,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "स्थानीयकरण"
+            "value" : "लोकलाइज़ेशन"
           }
         },
         "it" : {
@@ -1069,7 +1069,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "번역"
+            "value" : "현지화"
           }
         },
         "nl" : {
@@ -1093,7 +1093,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Авторы переводов"
+            "value" : "Локализация"
           }
         },
         "tr" : {

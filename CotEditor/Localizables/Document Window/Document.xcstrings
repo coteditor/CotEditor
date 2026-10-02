@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     " (default)" : {
+      "comment" : "suffix added to the app name of the default external editor",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -565,7 +566,7 @@
       }
     },
     "Character" : {
-      "comment" : "section title in inspector\ntable column header",
+      "comment" : "noun; table column header\nsection title in inspector",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -678,6 +679,7 @@
       }
     },
     "Clear File Scope" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -790,7 +792,7 @@
       }
     },
     "Close split editor" : {
-      "comment" : "tooltip for button",
+      "comment" : "verb; tooltip",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -903,7 +905,7 @@
       }
     },
     "Close Split Editor" : {
-      "comment" : "accessibility label for button",
+      "comment" : "verb; button",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1242,6 +1244,7 @@
       }
     },
     "Color profile" : {
+      "comment" : "Refer the same expression by Apple.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1276,7 +1279,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "कलर प्रोफ़ाइल"
+            "value" : "रंग प्रोफ़ाइल"
           }
         },
         "it" : {
@@ -1354,6 +1357,7 @@
       }
     },
     "Color space" : {
+      "comment" : "Refer the same expression by Apple.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1466,7 +1470,7 @@
       }
     },
     "Converted" : {
-      "comment" : "table column header for converted character",
+      "comment" : "noun; table column header for converted character",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -2969,6 +2973,7 @@
       }
     },
     "Edit File Scope…" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -8533,11 +8538,12 @@
       }
     },
     "Image DPI" : {
+      "comment" : "Refer the same expression by Apple.",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozlišení"
+            "value" : "DPI obrázku"
           }
         },
         "de" : {
@@ -8609,7 +8615,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "DPI изображения"
+            "value" : "Разрешение (DPI)"
           }
         },
         "tr" : {
@@ -8621,7 +8627,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "DPI зображення"
+            "value" : "Роздільність, DPI"
           }
         },
         "zh-Hans" : {
@@ -10021,7 +10027,7 @@
       }
     },
     "Line" : {
-      "comment" : "table column header",
+      "comment" : "noun; table column header",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -10134,7 +10140,7 @@
       }
     },
     "Line Ending" : {
-      "comment" : "table column header",
+      "comment" : "noun; table column header",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -10473,6 +10479,7 @@
       }
     },
     "Manage Saved Scopes…" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -14055,6 +14062,7 @@
       }
     },
     "Saved Scopes" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -15646,7 +15654,7 @@
       }
     },
     "Split editor" : {
-      "comment" : "tooltip for button; verb, split the editor pane",
+      "comment" : "verb; tooltip; split the editor pane",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -15759,7 +15767,7 @@
       }
     },
     "Split Editor" : {
-      "comment" : "accessibility label for button; verb, split the editor pane",
+      "comment" : "verb; button; split the editor pane",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

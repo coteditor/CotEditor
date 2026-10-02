@@ -353,6 +353,7 @@
       }
     },
     "Separator" : {
+      "comment" : "noun; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -465,6 +466,7 @@
       }
     },
     "Text Encoding" : {
+      "comment" : "noun; menu item header",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

@@ -12267,6 +12267,7 @@
       }
     },
     "NSColorSpace.Model.cmyk" : {
+      "comment" : "refer kCGColorSpaceModelCMYK",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -12667,7 +12668,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इंडेक्स्ड"
+            "value" : "सूचीबद्ध"
           }
         },
         "it" : {
@@ -12745,6 +12746,7 @@
       }
     },
     "NSColorSpace.Model.lab" : {
+      "comment" : "refer kCGColorSpaceModelLab",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -12774,7 +12776,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lab"
+            "value" : "Laboratorio"
           }
         },
         "fr" : {
@@ -12786,7 +12788,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lab"
+            "value" : "प्रयोगशाला"
           }
         },
         "it" : {
@@ -12912,7 +12914,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modello"
+            "value" : "Schema"
           }
         },
         "ja" : {
@@ -12948,7 +12950,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Узор"
+            "value" : "Матричный"
           }
         },
         "tr" : {
@@ -12960,7 +12962,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Шаблон"
+            "value" : "Матричний"
           }
         },
         "zh-Hans" : {
@@ -12984,6 +12986,7 @@
       }
     },
     "NSColorSpace.Model.rgb" : {
+      "comment" : "refer kCGColorSpaceModelRGB",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -16671,6 +16674,7 @@
       }
     },
     "UnsavedReinterpretationAlert.button.discard" : {
+      "comment" : "Refer the same expression by Apple.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "cs" : {
@@ -16706,19 +16710,19 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Éliminer les modifications"
+            "value" : "Annuler les modifications"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "बदलाव रद्द करें"
+            "value" : "परिवर्तनों को ख़ारिज करें"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Non salvare le modifiche"
+            "value" : "Elimina modifiche"
           }
         },
         "ja" : {
@@ -16736,7 +16740,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Maak wijzigingen ongedaan"
+            "value" : "Verwijder wijzigingen"
           }
         },
         "pl" : {
@@ -16754,7 +16758,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отменить изменения"
+            "value" : "Сбросить изменения"
           }
         },
         "tr" : {
@@ -16784,7 +16788,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "捨棄變更"
+            "value" : "捨棄所作變更"
           }
         }
       }

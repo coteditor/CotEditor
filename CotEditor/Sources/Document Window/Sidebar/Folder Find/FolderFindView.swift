@@ -229,16 +229,16 @@ private struct FileScopeMenu: View {
                 Toggle(.init("Include Other File Types", table: "Document", comment: "verb; menu item"), isOn: $includesOtherFileTypes)
             }
             
-            Button(.init("Edit File Scope…", table: "Document")) {
+            Button(.init("Edit File Scope…", table: "Document", comment: "verb; menu item")) {
                 self.isFileScopeEditorPresented = true
             }
-            Button(.init("Clear File Scope", table: "Document")) {
+            Button(.init("Clear File Scope", table: "Document", comment: "verb; menu item")) {
                 self.selection = FileScopeSelection()
             }
             .disabled(self.selection.fileScope.isEmpty)
             
             if !self.savedScopes.scopes.isEmpty {
-                Picker(.init("Saved Scopes", table: "Document"), selection: $selection.name) {
+                Picker(.init("Saved Scopes", table: "Document", comment: "verb; menu item"), selection: $selection.name) {
                     ForEach(self.savedScopes.sortedNames, id: \.self) { name in
                         Label(name, systemImage: "text.magnifyingglass")
                             .tag(name)
@@ -247,7 +247,7 @@ private struct FileScopeMenu: View {
                 .pickerStyle(.inline)
                 .labelStyle(.titleAndIcon)
                 
-                Button(.init("Manage Saved Scopes…", table: "Document")) {
+                Button(.init("Manage Saved Scopes…", table: "Document", comment: "verb; menu item")) {
                     self.isSavedScopesEditorPresented = true
                 }
             }

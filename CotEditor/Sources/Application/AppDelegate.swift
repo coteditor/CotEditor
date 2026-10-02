@@ -314,7 +314,7 @@ extension Logger {
     /// Shows the about panel.
     @IBAction func showAboutPanel(_ sender: Any?) {
         
-        let panel = self.aboutPanel ?? NSPanel(view: AboutView(), title: String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "%@ is app name"))
+        let panel = self.aboutPanel ?? NSPanel(view: AboutView(), title: String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "window title; %@ is app name"))
         panel.makeKeyAndOrderFront(sender)
         
         self.aboutPanel = panel

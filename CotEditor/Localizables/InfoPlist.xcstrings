@@ -4696,7 +4696,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Масштабована векторна графіка SVG"
+            "value" : "SVG-файл"
           }
         },
         "zh-Hans" : {

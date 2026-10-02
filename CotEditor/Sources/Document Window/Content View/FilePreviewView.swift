@@ -188,12 +188,12 @@ struct ImageAttributesView: View {
         
         LabeledContent(.init("Dimensions", table: "Document"),
                        value: self.attributes.dimensions.formatted)
-        LabeledContent(.init("Image DPI", table: "Document"),
+        LabeledContent(.init("Image DPI", table: "Document", comment: "Refer the same expression by Apple."),
                        value: String(localized: "\(self.attributes.dotsPerInch, format: .number) pixels/inch", table: "Document"))
         if let colorSpace = self.attributes.colorSpace {
-            LabeledContent(.init("Color space", table: "Document"),
+            LabeledContent(.init("Color space", table: "Document", comment: "Refer the same expression by Apple."),
                            optional: colorSpace.colorSpaceModel.localizedName)
-            LabeledContent(.init("Color profile", table: "Document"),
+            LabeledContent(.init("Color profile", table: "Document", comment: "Refer the same expression by Apple."),
                            optional: colorSpace.localizedName)
         }
     }
@@ -326,7 +326,8 @@ private struct OpenWithExternalEditorMenu: View {
             
             var title = AttributedString(self.editor.displayName)
             if self.isDefault {
-                title += AttributedString(String(localized: " (default)", table: "Document"),
+                title += AttributedString(String(localized: " (default)", table: "Document",
+                                                 comment: "suffix added to the app name of the default external editor"),
                                           attributes: .init().foregroundColor(.secondary))
             }
             if self.includesVersion, let version = self.editor.version, !version.isEmpty {

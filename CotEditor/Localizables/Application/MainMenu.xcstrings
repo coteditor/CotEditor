@@ -129,12 +129,6 @@
             "value" : "Größer"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Bigger"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3186,12 +3180,6 @@
             "value" : "Auf Standard zurücksetzen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Reset to Default"
-          }
-        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5224,12 +5212,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kleiner"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Smaller"
           }
         },
         "en-GB" : {

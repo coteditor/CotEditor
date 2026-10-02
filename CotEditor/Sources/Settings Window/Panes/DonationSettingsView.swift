@@ -126,7 +126,7 @@ private struct AppPurchaseView: View {
                 
                 Group {
                     if self.hasDonated {
-                        Link(.init("Manage Subscriptions", table: "DonationSettings"),
+                        Link(.init("Manage Subscriptions", table: "DonationSettings", comment: "verb; link"),
                              destination: URL(string: "itms-apps://apps.apple.com/account/subscriptions")!)
                     } else {
                         Button(.init("Restore Subscription", table: "DonationSettings", comment: "verb; button")) {

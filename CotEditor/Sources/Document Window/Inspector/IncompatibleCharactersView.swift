@@ -87,7 +87,7 @@ struct IncompatibleCharactersView: View {
             
             if !self.model.items.isEmpty {
                 Table(self.model.items, selection: $selection, sortOrder: $sortOrder) {
-                    TableColumn(.init("Line", table: "Document", comment: "table column header"), value: \.lowerBound) {
+                    TableColumn(.init("Line", table: "Document", comment: "noun; table column header"), value: \.lowerBound) {
                         // calculate the line number first at this point to postpone the high cost processing as much as possible
                         if let line = self.model.lineNumber(at: $0.lowerBound) {
                             Text(line, format: .number)
@@ -96,7 +96,7 @@ struct IncompatibleCharactersView: View {
                     }
                     .alignment(.trailing)
                     
-                    TableColumn(.init("Character", table: "Document", comment: "table column header"), value: \.value.character) {
+                    TableColumn(.init("Character", table: "Document", comment: "noun; table column header"), value: \.value.character) {
                         let character = $0.value.character
                         let invisibleCategories: Set<Unicode.GeneralCategory> = [
                             .control,
@@ -114,7 +114,7 @@ struct IncompatibleCharactersView: View {
                         }
                     }
                     
-                    TableColumn(.init("Converted", table: "Document", comment: "table column header for converted character"), sortUsing: KeyPathComparator(\.value.converted)) {
+                    TableColumn(.init("Converted", table: "Document", comment: "noun; table column header for converted character"), sortUsing: KeyPathComparator(\.value.converted)) {
                         if let converted = $0.value.converted {
                             Text(converted)
                         }

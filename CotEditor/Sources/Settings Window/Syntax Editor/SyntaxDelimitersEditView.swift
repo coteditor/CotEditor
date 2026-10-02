@@ -68,7 +68,7 @@ struct SyntaxDelimitersEditView: View {
                     .fontWeight(.semibold)
                     .padding(.bottom, 2)
                 
-                Text("String delimiters:", tableName: "SyntaxEditor")
+                Text("String delimiters:", tableName: "SyntaxEditor", comment: "noun; delimiters indicating string type")
                     .accessibilityAddTraits(.isHeader)
                 StringDelimitersEditView(items: $stringDelimiters)
             }
@@ -79,7 +79,7 @@ struct SyntaxDelimitersEditView: View {
                     .fontWeight(.semibold)
                     .padding(.bottom, 2)
                 
-                Text("Character delimiters:", tableName: "SyntaxEditor")
+                Text("Character delimiters:", tableName: "SyntaxEditor", comment: "noun; delimiters indicating character type")
                     .accessibilityAddTraits(.isHeader)
                 CharacterDelimitersEditView(items: $characterDelimiters)
             }
@@ -90,7 +90,7 @@ struct SyntaxDelimitersEditView: View {
                     .fontWeight(.semibold)
                     .padding(.bottom, 2)
                 
-                Text("Block delimiters:", tableName: "SyntaxEditor")
+                Text("Block delimiters:", tableName: "SyntaxEditor", comment: "noun; delimiters indicating block")
                     .accessibilityAddTraits(.isHeader)
                 BlockEditView(items: $indentations)
                 Text("The block delimiters are used for automatic indentation while typing.", tableName: "SyntaxEditor")
