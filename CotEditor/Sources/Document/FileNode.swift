@@ -142,18 +142,6 @@ final class FileNode {
             .map { try File(at: $0) }
             .sorted(using: Self.fileSortOrder)
     }
-    
-    
-    /// Reads and returns the immediate child files for the given directory URL in the background.
-    ///
-    /// - Parameters:
-    ///   - fileURL: The directory URL whose contents should be read.
-    /// - Returns: An array of `File` objects representing the accepted child items, sorted for display.
-    /// - Throws: An error if reading the directory contents or initializing `File` metadata fails.
-    @concurrent private static func childFiles(at fileURL: URL) async throws -> [File] {
-        
-        try Self.readChildFiles(at: fileURL)
-    }
 }
 
 
@@ -418,8 +406,10 @@ extension FileNode {
         if self.file.isDirectory {
             // async read files in background
             if self.cachedChildren == nil {
-                self.cachedChildren = try await Self.childFiles(at: self.file.fileURL)
-                    .map { FileNode(file: $0, parent: self) }
+                self.cachedChildren = try await { @concurrent [fileURL = self.file.fileURL] () async throws -> [File] in
+                    try Self.readChildFiles(at: fileURL)
+                }()
+                .map { FileNode(file: $0, parent: self) }
             }
             
             if let children {

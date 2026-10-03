@@ -1673,7 +1673,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         else { return }
         
         let selectedRange = self.selectedRange
-        let ranges = try await Self.instanceRanges(in: self.string.immutable, at: selectedRange)
+        let ranges = try await { @concurrent [string = self.string.immutable] () async throws(CancellationError) -> [NSRange] in
+            try string.instanceRangesOfWord(at: selectedRange)
+                .filter { $0 != selectedRange }
+        }()
         
         guard !Task.isCancelled else { throw CancellationError() }
         
@@ -1694,20 +1697,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
                 layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: color, forCharacterRange: range)
             }
         }
-    }
-    
-    
-    /// Finds the ranges of the instances of the word at the given range in the background.
-    ///
-    /// - Parameters:
-    ///   - string: The string to find in.
-    ///   - selectedRange: The range of the selected word.
-    /// - Returns: The found ranges excluding the selected range itself.
-    /// - Throws: `CancellationError`.
-    @concurrent private static func instanceRanges(in string: String, at selectedRange: NSRange) async throws(CancellationError) -> [NSRange] {
-        
-        try string.instanceRangesOfWord(at: selectedRange)
-            .filter { $0 != selectedRange }
     }
 }
 

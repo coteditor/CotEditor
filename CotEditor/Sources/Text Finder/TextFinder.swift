@@ -454,7 +454,9 @@ struct FindMatchesCache {
             return cache.matches
         }
         
-        let matches = try await Self.matches(in: textFind)
+        let matches = try await { @concurrent () async throws(CancellationError) -> [NSRange] in
+            try textFind.matches
+        }()
         
         guard !Task.isCancelled else { throw CancellationError() }
         
@@ -800,17 +802,6 @@ struct FindMatchesCache {
         
         NotificationCenter.default.post(message, subject: self)
         AccessibilityNotification.Announcement(result.accessibilityPositionMessage ?? result.message).post()
-    }
-    
-    
-    /// Finds all matches in the given find state.
-    ///
-    /// - Parameter textFind: The find state to use.
-    /// - Returns: Matched ranges.
-    /// - Throws: `CancellationError`.
-    @concurrent private static func matches(in textFind: TextFind) async throws(CancellationError) -> [NSRange] {
-        
-        try textFind.matches
     }
     
     

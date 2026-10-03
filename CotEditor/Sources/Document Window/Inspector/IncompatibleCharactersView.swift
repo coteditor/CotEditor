@@ -260,7 +260,9 @@ private extension IncompatibleCharactersView.Model {
                 }
             }
             
-            let items = try await Self.scan(string, encoding: encoding)
+            let items = try await { @concurrent () async throws(CancellationError) -> [Item] in
+                try string.charactersIncompatible(with: encoding)
+            }()
             
             guard !Task.isCancelled else { throw CancellationError() }
             
@@ -272,19 +274,6 @@ private extension IncompatibleCharactersView.Model {
             self.items = items.sorted(using: self.sortOrder)
             document.textView?.updateBackgroundColor(.unemphasizedSelectedTextBackgroundColor, ranges: items.map(\.range))
         }
-    }
-    
-    
-    /// Scans the string for characters incompatible with the target encoding.
-    ///
-    /// - Parameters:
-    ///   - string: The string to scan.
-    ///   - encoding: The target encoding.
-    /// - Returns: An array of Item.
-    /// - Throws: `CancellationError`.
-    @concurrent private static func scan(_ string: String, encoding: String.Encoding) async throws(CancellationError) -> [Item] {
-        
-        try string.charactersIncompatible(with: encoding)
     }
 }
 

@@ -117,7 +117,9 @@ import StringUtils
         let options = UserDefaults.standard.characterCountOptions
         self.entireCountTask = Task(priority: .utility) { [weak self] in
             try Task.checkCancellation()
-            let count = await Self.calculateCount(in: string, options: options)
+            let count = await { @concurrent () async -> Int? in
+                string.count(options: options)
+            }()
             try Task.checkCancellation()
             
             self?.entireCount = count
@@ -141,42 +143,19 @@ import StringUtils
         let options = UserDefaults.standard.characterCountOptions
         self.selectionCountTask = Task(priority: .utility) { [weak self] in
             try Task.checkCancellation()
-            let count = await Self.calculateCount(in: strings, options: options)
+            let count = await { @concurrent () async -> Int? in
+                var count = 0
+                for string in strings {
+                    guard let stringCount = string.count(options: options) else { return nil }
+                    
+                    count += stringCount
+                }
+                return count
+            }()
             try Task.checkCancellation()
             
             self?.selectionCount = count
         }
-    }
-    
-    
-    /// Calculates the count of a string off the main actor.
-    ///
-    /// - Parameters:
-    ///   - string: The string to count.
-    ///   - options: The counting options.
-    /// - Returns: The count, or `nil` if counting failed.
-    @concurrent private static func calculateCount(in string: String, options: CharacterCountOptions) async -> Int? {
-        
-        string.count(options: options)
-    }
-    
-    
-    /// Calculates the total count of the selected strings off the main actor.
-    ///
-    /// - Parameters:
-    ///   - strings: The selected strings to count.
-    ///   - options: The counting options.
-    /// - Returns: The total count, or `nil` if counting failed.
-    @concurrent private static func calculateCount(in strings: [String], options: CharacterCountOptions) async -> Int? {
-        
-        var count = 0
-        for string in strings {
-            guard let stringCount = string.count(options: options) else { return nil }
-            
-            count += stringCount
-        }
-        
-        return count
     }
 }
 
