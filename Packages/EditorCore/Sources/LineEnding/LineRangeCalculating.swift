@@ -110,6 +110,32 @@ public extension LineRangeCalculating {
     }
     
     
+    /// Returns the range of the line with the given 1-based line number.
+    ///
+    /// - Note: The range includes the line ending. The last blank line is also a valid line.
+    ///
+    /// - Parameter lineNumber: The 1-based line number.
+    /// - Returns: The UTF16-based character range of the line, or `nil` if the line does not exist.
+    func lineRange(for lineNumber: Int) -> NSRange? {
+        
+        guard lineNumber > 0 else { return nil }
+        
+        if let cache = self as? any LazyLineEndingCaching {
+            while cache.lineEndings.count < lineNumber, cache.firstUnparsedIndex < self.length {
+                cache.ensureLineEndings(upTo: cache.firstUnparsedIndex, needsNextEnd: true)
+            }
+        }
+        
+        let lineIndex = lineNumber - 1
+        guard lineIndex <= self.lineEndings.count else { return nil }
+        
+        let start = (lineIndex > 0) ? self.lineEndings[lineIndex - 1].upperBound : 0
+        let end = (lineIndex < self.lineEndings.count) ? self.lineEndings[lineIndex].upperBound : self.length
+        
+        return NSRange(start..<end)
+    }
+    
+    
     /// Returns the range of the content lines including the given range.
     ///
     /// - Parameter range: The range of character for finding the line range.

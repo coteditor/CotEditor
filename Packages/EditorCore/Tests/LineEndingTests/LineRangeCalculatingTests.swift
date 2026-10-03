@@ -203,6 +203,32 @@ struct LineRangeCalculatingTests {
     }
     
     
+    @Suite struct LineNumberToRangeTests {
+        
+        @Test(arguments: [
+            ("", [NSRange(0..<0)]),
+            ("dog", [NSRange(0..<3)]),
+            ("\r\n", [NSRange(0..<2), NSRange(2..<2)]),
+            ("dog \n\n cat \n cow \n", [NSRange(0..<5), NSRange(5..<6), NSRange(6..<12), NSRange(12..<18), NSRange(18..<18)]),
+            ("dog \n\n cat \n cow ", [NSRange(0..<5), NSRange(5..<6), NSRange(6..<12), NSRange(12..<17)]),
+            ("🐶\r\n🐱\n", [NSRange(0..<4), NSRange(4..<7), NSRange(7..<7)]),
+            ("a\r\nb\nc\rd\u{2028}e\u{2029}f\u{0085}g", [NSRange(0..<3), NSRange(3..<5), NSRange(5..<7), NSRange(7..<9), NSRange(9..<11), NSRange(11..<13), NSRange(13..<14)]),
+        ])
+        func ranges(string: String, ranges: [NSRange]) {
+            
+            let calculator = Calculator(string: string)
+            
+            for (index, range) in ranges.enumerated() {
+                #expect(calculator.lineRange(for: index + 1) == range)
+            }
+            
+            for lineNumber in [-1, 0, ranges.count + 1, Int.max] {
+                #expect(calculator.lineRange(for: lineNumber) == nil)
+            }
+        }
+    }
+    
+    
     @Suite struct LineContentsRangeTests {
         
         @Test func empty() {

@@ -77,6 +77,47 @@ struct LazyLineEndingCachingTests {
     }
     
     
+    @Test(arguments: ["", "dog", "\r\n", "\n\n", "🐶\r\n🐱\n", "a\r\nb\nc\rd\u{2028}e\u{2029}f\u{0085}g"])
+    func calculateLineNumberToRange(string: String) {
+        
+        let nsString = string as NSString
+        var ranges: [NSRange] = []
+        var index = 0
+        repeat {
+            let range = nsString.lineRange(at: index)
+            ranges.append(range)
+            index = range.upperBound
+        } while index < nsString.length
+        if nsString.length > 0, nsString.lineRange(at: nsString.length).isEmpty {
+            ranges.append(NSRange(location: nsString.length, length: 0))
+        }
+        
+        for lineNumber in ranges.indices.map({ $0 + 1 }) + [ranges.count + 1, Int.max, 0, -1] {
+            let counter = LineCounter(string: string)
+            let expected = (1...ranges.count).contains(lineNumber) ? ranges[lineNumber - 1] : nil
+            
+            #expect(counter.lineRange(for: lineNumber) == expected)
+        }
+    }
+    
+    
+    @Test func calculateLineNumberToRangeIncrementally() {
+        
+        let counter = LineCounter(string: "a\r\n🐱\n\ncow")
+        
+        #expect(counter.lineRange(for: 0) == nil)
+        #expect(counter.firstUnparsedIndex == 0)
+        #expect(counter.lineRange(for: 1) == NSRange(0..<3))
+        #expect(counter.firstUnparsedIndex == 3)
+        #expect(counter.lineNumber(at: 4) == 2)
+        #expect(counter.lineRange(for: 3) == NSRange(6..<7))
+        #expect(counter.lineRange(for: 2) == NSRange(3..<6))
+        #expect(counter.lineRange(for: 4) == NSRange(7..<10))
+        #expect(counter.lineRange(for: 5) == nil)
+        #expect(counter.lineRange(for: 1) == NSRange(0..<3))
+    }
+    
+    
     @Test func lineContentsRange() throws {
         
         for _ in 0..<self.repeatCount {
