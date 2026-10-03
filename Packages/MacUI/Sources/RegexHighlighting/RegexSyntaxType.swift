@@ -65,7 +65,7 @@ enum RegexSyntaxType: CaseIterable {
             if !quotedRanges.isEmpty {
                 ranges.removeAll { range in
                     quotedRanges.contains { quotedRange in
-                        quotedRange.location <= range.location && NSMaxRange(range) <= NSMaxRange(quotedRange)
+                        quotedRange.lowerBound <= range.lowerBound && range.upperBound <= quotedRange.upperBound
                     }
                 }
             }
