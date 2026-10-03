@@ -29,6 +29,7 @@ import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 import Defaults
+import RMate
 import ControlUI
 import URLUtils
 
@@ -209,7 +210,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     override func windowTitle(forDocumentDisplayName displayName: String) -> String {
         
-        if let uniqueDirectory {
+        if (self.fileDocument as? RemoteDocument)?.remoteState != nil {
+            displayName
+        } else if let uniqueDirectory {
             displayName + " \u{2014} " + uniqueDirectory  // EM DASH
         } else {
             displayName
@@ -220,6 +223,14 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     override func synchronizeWindowTitleWithDocumentName() {
         
         super.synchronizeWindowTitleWithDocumentName()
+        
+        if let remoteState = (self.fileDocument as? RemoteDocument)?.remoteState {
+            self.window?.representedURL = nil
+            self.window?.subtitle = remoteState.file.isConnected
+                ? String(localized: "Remote", table: "Document", comment: "window subtitle; for remote document")
+                : String(localized: "Disconnected", table: "Document", comment: "window subtitle; for remote document")
+            return
+        }
         
         if self.isDirectoryDocument {
             // display current document title as window subtitle

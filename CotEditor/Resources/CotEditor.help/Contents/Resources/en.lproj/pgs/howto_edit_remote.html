@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="remote editing, rmate, SSH, port, connection, disconnected">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
+	<script defer src="../../Shared/js/toc.js"></script>
+
+	<title>Edit remote files in CotEditor on Mac</title>
+</head>
+
+<body>
+<a name="howto_edit_remote"></a>
+
+<h1>Edit remote files in CotEditor on Mac</h1>
+
+<p>With the <code>rmate</code> protocol, you can open a text file on a remote computer in CotEditor on your Mac. When you save the document, CotEditor sends the changes back to the remote file through the same connection.</p>
+
+
+<section>
+<h2>Set up remote editing</h2>
+
+<ol>
+	<li><p>Install an <code>rmate</code> client on the remote computer. For example, you can use <a href="https://github.com/textmate/rmate" rel="external">TextMate’s <code>rmate</code> client</a>. Follow the client’s installation instructions for your remote computer.</p></li>
+	<li><p>In CotEditor on your Mac, choose CotEditor &gt; Settings, then click General.</p></li>
+	<li><p>Select “Accept rmate connections” in the Remote Editing section and check the port number. The default is <code>52698</code>.</p></li>
+</ol>
+
+<p>CotEditor accepts connections only from your Mac. Use SSH port forwarding to connect the remote client to CotEditor, as shown below. The remote SSH server must allow port forwarding.</p>
+</section>
+
+
+<section>
+<h2>Open a remote file</h2>
+
+<ol>
+	<li><p>Keep CotEditor running on your Mac.</p></li>
+	<li><p>In Terminal on your Mac, connect to the remote computer with an SSH tunnel:</p>
+		<pre class="shell"><code>ssh -o ExitOnForwardFailure=yes -R 52698:127.0.0.1:52698 user@example.com</code></pre>
+		<p>Replace <code>user@example.com</code> with your user name and the remote computer’s address. This forwards the remote computer’s port <code>52698</code> to CotEditor on your Mac.</p>
+	</li>
+	<li><p>In that SSH session, run <code>rmate</code> with the path of the file you want to edit:</p>
+		<pre class="shell"><code>rmate --host 127.0.0.1 --port 52698 path/to/file.txt</code></pre>
+		<p>The file opens in CotEditor with “Remote” in the window’s subtitle.</p>
+	</li>
+</ol>
+
+<p>If you use a different port, replace both occurrences of <code>52698</code> in the SSH command and the port in the <code>rmate</code> command with that number. Use the same number in CotEditor’s <a href="settings_general.html">General settings</a>.</p>
+
+<p>To keep <code>rmate</code> waiting until you close the document, add the <code>--wait</code> option. Keep the SSH session open until you finish editing and close the remote documents.</p>
+
+<p>To choose a syntax when opening the file, add <code>--type</code> followed by a CotEditor syntax name. You can also specify a custom syntax. Use the exact name, including capitalization, and enclose names containing spaces in quotes:</p>
+
+<pre class="shell"><code>rmate --host 127.0.0.1 --port 52698 --type Python /path/to/script</code></pre>
+
+<p>If <code>--type</code> is omitted or does not match a syntax name, CotEditor detects the syntax as usual.</p>
+</section>
+
+
+<section>
+<h2>Save your changes</h2>
+
+<p>Choose File &gt; Save or press <kbd>Command</kbd>-<kbd>S</kbd> to send your changes to the remote file. If “Enable Auto Save with Versions” is selected in General settings, automatic saves also send changes to the remote file.</p>
+
+<p>To keep the document on your Mac instead, choose File &gt; Save As. After you save it on your Mac, the document is no longer associated with the remote file, and subsequent saves update only the local file.</p>
+
+<p>When you quit CotEditor, connected remote documents close and do not reopen at the next launch. Run <code>rmate</code> again to open them for remote editing.</p>
+</section>
+
+
+<section>
+<h2>If the connection is lost</h2>
+
+<p>If the SSH session or the <code>rmate</code> client disconnects, the window’s subtitle changes to “Disconnected.” You can continue editing, but CotEditor can no longer send changes to the remote file.</p>
+
+<p>When there are unsent changes, CotEditor shows a dialog offering to save the document on your Mac. Click Save As and choose a local location to keep your changes. The filename can stay the same. Clicking Later keeps the document open, but does not restore the connection.</p>
+
+<p>CotEditor does not automatically reconnect an open document. To resume remote editing, save your changes on your Mac, establish the SSH tunnel again, and run <code>rmate</code> again. Copy any changes you want to keep into the newly opened remote document, then save it.</p>
+
+<p>Disconnected documents with unsent changes remain eligible for restoration when “Reopen windows from last session” is selected in General settings. After an unexpected quit, CotEditor can also restore remote documents from recovery copies. Restored documents remain disconnected; use Save As to keep their contents on your Mac.</p>
+</section>
+
+
+<section>
+<h2>If a file doesn’t open</h2>
+
+<ul>
+	<li><p>Check that CotEditor is running and “Accept rmate connections” is selected in General settings.</p></li>
+	<li><p>Check that the SSH tunnel was established and that the port numbers match. If the port is already in use, stop the other receiver or choose another port.</p></li>
+	<li><p>Check the remote terminal for errors from SSH or <code>rmate</code>, such as a missing file or insufficient permissions.</p></li>
+	<li><p>Remote editing supports files up to 100 MB.</p></li>
+</ul>
+</section>
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="settings_general.html">Change General settings in CotEditor on Mac</a></li>
+	<li><a href="howto_save_document.html">Save documents</a></li>
+	<li><a href="about_cot.html">Work with cot command</a></li>
+</ul>
+</section>
+
+</body>
+</html>

@@ -26,6 +26,7 @@
 
 import AppKit.NSFont
 import Defaults
+import RMate
 import StringUtils
 
 struct DefaultSettings {
@@ -39,6 +40,8 @@ struct DefaultSettings {
             .enablesAutosaveInPlace: true,
             .documentConflictOption: DocumentConflictOption.revert.rawValue,
             .suppressesInconsistentLineEndingAlert: false,
+            .enablesRemoteEditing: false,
+            .remoteEditingPort: RMateServer.defaultPort,
             .checksUpdatesForBeta: false,
             
             // Appearance

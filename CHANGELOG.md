@@ -3,6 +3,10 @@
 7.2.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Support editing remote files with rmate over SSH port forwarding, enabled in General settings.
+
 
 
 7.1.1 (2026-10-03)

@@ -169,6 +169,7 @@ extension Logger {
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         
+        RemoteEditingController.shared.start()
         KeyBindingManager.shared.applyShortcutsToMainMenu()
         
         NSApp.servicesProvider = ServicesProvider()
