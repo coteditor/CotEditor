@@ -74,7 +74,7 @@ public struct RMateFileStore: Sendable {
             
             return url
         } catch {
-            try? FileManager.default.removeItem(at: directory)
+            try? self.removeBackingFile(at: url)
             throw error
         }
     }
@@ -86,9 +86,7 @@ public struct RMateFileStore: Sendable {
     /// - Returns: `true` if the URL is in the working copy directory.
     public func isBackingFile(_ url: URL) -> Bool {
         
-        let directory = url.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
-        
-        return directory.standardizedFileURL.pathComponents == self.directory.standardizedFileURL.pathComponents
+        self.backingDirectory(for: url) != nil
     }
     
     
@@ -99,9 +97,9 @@ public struct RMateFileStore: Sendable {
     /// - Throws: An error if reading or decoding the metadata failed.
     public func metadata(for url: URL) throws -> RMateFile.Metadata? {
         
-        guard self.isBackingFile(url) else { return nil }
+        guard let directory = self.backingDirectory(for: url) else { return nil }
         
-        let url = url.deletingLastPathComponent().deletingLastPathComponent().appending(component: "remote.json")
+        let url = directory.appending(component: "remote.json")
         
         return try JSONDecoder().decode(RMateFile.Metadata.self, from: Data(contentsOf: url))
     }
@@ -110,11 +108,91 @@ public struct RMateFileStore: Sendable {
     /// Removes a working copy and its metadata, leaving URLs outside the store unchanged.
     ///
     /// - Parameter url: The working copy URL.
-    /// - Throws: An error if removing the working copy failed.
+    /// - Throws: An error if moving or removing the working copy failed.
     public func removeBackingFile(at url: URL) throws {
         
-        guard self.isBackingFile(url) else { return }
+        guard let directory = self.backingDirectory(for: url) else { return }
         
-        try FileManager.default.removeItem(at: url.deletingLastPathComponent().deletingLastPathComponent())
+        let pendingDirectory = self.pendingDeletionDirectory
+        try FileManager.default.createDirectory(at: pendingDirectory, withIntermediateDirectories: true, attributes: [.posixPermissions: 0o700])
+        
+        let values = try pendingDirectory.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+        guard values.isDirectory == true, values.isSymbolicLink == false else {
+            throw CocoaError(.fileWriteFileExists, userInfo: [NSURLErrorKey: pendingDirectory])
+        }
+        
+        // retain the deletion intent if removing the directory is interrupted
+        let discardedDirectory = pendingDirectory.appending(component: directory.lastPathComponent, directoryHint: .isDirectory)
+        try FileManager.default.moveItem(at: directory, to: discardedDirectory)
+        do {
+            try FileManager.default.removeItem(at: discardedDirectory)
+        } catch CocoaError.fileNoSuchFile {
+            // the startup cleanup may have already removed the directory
+        }
+    }
+    
+    
+    /// Retries removing working copies that were already discarded.
+    ///
+    /// - Throws: An error if reading the deletion directory or removing a discarded copy failed.
+    public func removeDiscardedFiles() throws {
+        
+        let directory = self.pendingDeletionDirectory
+        let keys: Set<URLResourceKey> = [.isDirectoryKey, .isSymbolicLinkKey]
+        let urls: [URL]
+        do {
+            let values = try directory.resourceValues(forKeys: keys)
+            
+            guard values.isDirectory == true, values.isSymbolicLink == false else { return }
+            
+            urls = try FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: Array(keys))
+            
+        } catch CocoaError.fileReadNoSuchFile {
+            return
+        }
+        
+        var failure: (any Error)?
+        for url in urls where UUID(uuidString: url.lastPathComponent) != nil {
+            do {
+                let values = try url.resourceValues(forKeys: keys)
+                
+                guard values.isDirectory == true, values.isSymbolicLink == false else { continue }
+                
+                try FileManager.default.removeItem(at: url)
+                
+            } catch CocoaError.fileNoSuchFile, CocoaError.fileReadNoSuchFile {
+                // a copy can also be removed when its document closes
+                
+            } catch {
+                failure = failure ?? error
+            }
+        }
+        
+        if let failure {
+            throw failure
+        }
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// The directory containing working copies that are no longer needed.
+    private var pendingDeletionDirectory: URL {
+        
+        self.directory.appending(component: "Pending Deletion", directoryHint: .isDirectory)
+    }
+    
+    
+    /// Returns the directory containing a working copy and its metadata.
+    ///
+    /// - Parameter url: A local document URL.
+    /// - Returns: The working copy directory, or `nil` if the URL does not belong to the store.
+    private func backingDirectory(for url: URL) -> URL? {
+        
+        let directory = url.deletingLastPathComponent().deletingLastPathComponent()
+        
+        guard directory.deletingLastPathComponent().standardizedFileURL.pathComponents == self.directory.standardizedFileURL.pathComponents else { return nil }
+        
+        return directory
     }
 }

@@ -61,6 +61,7 @@ import RMate
     
     private let hasRemoteState: Mutex<Bool> = .init(false)  // presence check for background save callbacks
     private var pendingCloseContexts: [DelegateContext] = []
+    private var preservesSharedWorkingCopy = false
     
     
     // MARK: Lifecycle
@@ -304,7 +305,13 @@ import RMate
     override func close() {
         
         // AppKit can close documents before posting the termination notification.
-        let keepsWorkingCopy = self.restoresAfterTermination
+        let keepsWorkingCopy = self.restoresAfterTermination || self.preservesSharedWorkingCopy
+        if keepsWorkingCopy, self.remoteState != nil, let fileURL {
+            // another document must not delete a copy retained for a closed document's restoration
+            for case let document as RemoteDocument in self.otherDocuments(usingBackingFileAt: fileURL) {
+                document.preservesSharedWorkingCopy = true
+            }
+        }
         
         NotificationCenter.default.removeObserver(self, name: NSApplication.willTerminateNotification, object: nil)
         
@@ -396,12 +403,30 @@ import RMate
         // clear the state because AppKit can reenter close() while closing the last window
         self.remoteState = nil
         
-        guard let url else { return }
+        guard
+            let url,
+            !self.preservesSharedWorkingCopy,
+            self.otherDocuments(usingBackingFileAt: url).isEmpty
+        else { return }
         
         do {
             try RemoteEditingController.fileStore.removeBackingFile(at: url)
         } catch {
             Logger.app.error("Failed deleting remote working copy: \(error)")
+        }
+    }
+    
+    
+    /// Finds other open documents using the same working copy.
+    ///
+    /// - Parameter url: The working copy URL.
+    /// - Returns: The other documents whose standardized file URL matches the working copy.
+    private func otherDocuments(usingBackingFileAt url: URL) -> [NSDocument] {
+        
+        let url = url.standardizedFileURL
+        
+        return DocumentController.shared.documents.filter {
+            $0 !== self && $0.fileURL?.standardizedFileURL == url
         }
     }
     

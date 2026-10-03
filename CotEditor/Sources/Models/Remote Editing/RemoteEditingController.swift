@@ -28,6 +28,7 @@ public import RMate
 import AppKit
 import Combine
 import Network
+import OSLog
 import UniformTypeIdentifiers
 import Defaults
 
@@ -57,10 +58,18 @@ import Defaults
     }
     
     
-    /// Starts the receiver and observes its settings.
+    /// Starts the receiver, removes discarded working copies, and observes settings.
     func start() {
         
         guard self.settingsObserver == nil else { return }
+        
+        Task(priority: .background) { @concurrent in
+            do {
+                try Self.fileStore.removeDiscardedFiles()
+            } catch {
+                Logger.app.error("Failed deleting discarded remote working copies: \(error)")
+            }
+        }
         
         let defaults = UserDefaults.standard
         self.settingsObserver = defaults.publisher(for: .enablesRemoteEditing)

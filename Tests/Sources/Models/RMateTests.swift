@@ -292,6 +292,79 @@ struct RMateTests {
     }
     
     
+    /// Tests that closing or saving one restored document does not discard another document's working copy.
+    ///
+    /// - Parameters:
+    ///   - savesLocalCopy: Whether to release the remote association by saving a local copy.
+    ///   - releasesAutosaveFirst: Whether to release the document restored from autosaved contents first.
+    /// - Throws: An error if restoring, saving, or reading the working copy fails.
+    @Test(arguments: [true, false], [true, false])
+    @MainActor func releasingRestoredDocumentKeepsSharedWorkingCopy(savesLocalCopy: Bool, releasesAutosaveFirst: Bool) async throws {
+        
+        let (original, autosaved, url, backup) = try await self.makeRestoredDocuments()
+        defer {
+            self.remove(original, url: url)
+            self.remove(autosaved, url: url)
+            try? FileManager.default.removeItem(at: backup)
+        }
+        let destination = FileManager.default.temporaryDirectory.appending(component: UUID().uuidString + ".txt")
+        defer { try? FileManager.default.removeItem(at: destination) }
+        
+        let released = releasesAutosaveFirst ? autosaved : original
+        let remaining = releasesAutosaveFirst ? original : autosaved
+        let remainingContent = remaining.textStorage.string
+        original.updateChangeCount(.changeCleared)
+        autosaved.updateChangeCount(.changeCleared)
+        
+        if savesLocalCopy {
+            try await self.save(released, to: destination, operation: .saveAsOperation)
+            #expect(released.remoteState == nil)
+        } else {
+            released.close()
+        }
+        #expect(try Data(contentsOf: url) == Data("old".utf8))
+        #expect(try RemoteEditingController.fileStore.metadata(for: url)?.path == "/tmp/test.txt")
+        #expect(remaining.textStorage.string == remainingContent)
+        
+        let restored = try RemoteDocument(restoring: url, withContentsOf: url, ofType: "public.plain-text")
+        restored.close()
+        
+        remaining.close()
+        #expect(!FileManager.default.fileExists(atPath: url.path(percentEncoded: false)))
+    }
+    
+    
+    /// Tests that a shared working copy retained for restoration survives releasing the remaining document.
+    ///
+    /// - Parameter savesLocalCopy: Whether the remaining document is saved locally instead of closed.
+    /// - Throws: An error if restoring, saving, or reading the working copy fails.
+    @Test(arguments: [true, false])
+    @MainActor func releasingLastDocumentKeepsCopyRequiredForRestoration(savesLocalCopy: Bool) async throws {
+        
+        let (original, autosaved, url, backup) = try await self.makeRestoredDocuments()
+        defer {
+            self.remove(original, url: url)
+            self.remove(autosaved, url: url)
+            try? FileManager.default.removeItem(at: backup)
+        }
+        let destination = FileManager.default.temporaryDirectory.appending(component: UUID().uuidString + ".txt")
+        defer { try? FileManager.default.removeItem(at: destination) }
+        #expect(autosaved.isDocumentEdited)
+        
+        self.withQuitAlwaysKeepsWindows(true) {
+            autosaved.close()
+        }
+        
+        if savesLocalCopy {
+            try await self.save(original, to: destination, operation: .saveAsOperation)
+        } else {
+            original.close()
+        }
+        #expect(try Data(contentsOf: url) == Data("old".utf8))
+        #expect(try RemoteEditingController.fileStore.metadata(for: url)?.path == "/tmp/test.txt")
+    }
+    
+    
     @Test(arguments: [
         (true, true, false, false),
         (true, true, true, false),
@@ -490,6 +563,25 @@ struct RMateTests {
         defaults[.quitAlwaysKeepsWindows] = keepsWindows
         operation()
     }
+    
+    
+    /// Reopens one remote working copy from its original and autosaved contents.
+    ///
+    /// - Returns: The two restored documents, their shared working copy URL, and the autosaved contents URL.
+    /// - Throws: An error if creating or reopening the files fails.
+    @MainActor private func makeRestoredDocuments() async throws -> (RemoteDocument, RemoteDocument, URL, URL) {
+        
+        let metadata = RMateFile.Metadata(displayName: "host:test.txt", path: "/tmp/test.txt")
+        let url = try RemoteEditingController.fileStore.makeBackingFile(data: Data("old".utf8), metadata: metadata)
+        let backup = FileManager.default.temporaryDirectory.appending(component: UUID().uuidString + ".txt")
+        try Data("recovery".utf8).write(to: backup)
+        
+        let (original, _) = try await DocumentController.shared.reopenDocument(for: url, withContentsOf: url, display: false)
+        let (autosaved, _) = try await DocumentController.shared.reopenDocument(for: url, withContentsOf: backup, display: false)
+        
+        return (try #require(original as? RemoteDocument), try #require(autosaved as? RemoteDocument), url, backup)
+    }
+    
     
     /// Creates a document from a disconnected remote file.
     ///
