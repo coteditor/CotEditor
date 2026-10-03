@@ -31,6 +31,7 @@ import Network
 import OSLog
 import UniformTypeIdentifiers
 import Defaults
+import LineEnding
 
 /// Manages remote editing settings and incoming files.
 @MainActor final class RemoteEditingController {
@@ -118,17 +119,10 @@ import Defaults
         document.makeWindowControllers()
         document.showWindows()
         
-        if let line = request.lineNumber, let textView = document.textView {
-            let string = document.textStorage.string as NSString
-            var location = 0
-            
-            for _ in 1..<line {
-                guard location < string.length else { break }
-                
-                location = NSMaxRange(string.lineRange(for: NSRange(location: location, length: 0)))
-            }
-            
+        if let lineNumber = request.lineNumber, let textView = document.textView {
+            let location = document.lineEndingScanner.lineRange(for: lineNumber)?.location ?? document.textStorage.length
             let range = NSRange(location: location, length: 0)
+            
             textView.setSelectedRange(range)
             textView.scrollRangeToVisible(range)
         }
