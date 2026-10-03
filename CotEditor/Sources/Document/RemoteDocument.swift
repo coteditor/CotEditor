@@ -294,7 +294,7 @@ import RMate
             return
         }
         
-        if let remoteState, !remoteState.file.isConnected, self.isDocumentEdited {
+        if self.remoteState?.file.isConnected == false, self.isDocumentEdited {
             return self.canCloseRemoteDocument(context: DelegateContext(delegate: delegate, selector: shouldCloseSelector, contextInfo: contextInfo))
         }
         
@@ -486,16 +486,16 @@ import RMate
         
         alert.beginSheetModal(for: window) { response in
             switch response {
-                case .alertFirstButtonReturn:
+                case .alertFirstButtonReturn:  // Save As
                     self.runRemoteSavePanel { succeeded in
                         context.perform(from: self, flag: succeeded && self.remoteState == nil)
                     }
                     
-                case .alertThirdButtonReturn:
+                case .alertThirdButtonReturn:  // Don't Save
                     self.updateChangeCount(.changeCleared)
                     context.perform(from: self, flag: true)
                     
-                default:
+                default:  // Cancel
                     context.perform(from: self, flag: false)
             }
         }

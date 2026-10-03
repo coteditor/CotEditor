@@ -39,6 +39,7 @@ import LineEnding
     // MARK: Public Properties
     
     static let shared = RemoteEditingController()
+    
     nonisolated static let fileStore = RMateFileStore(directory: .applicationSupportDirectory
         .appending(component: "CotEditor", directoryHint: .isDirectory)
         .appending(path: "Remote Documents", directoryHint: .isDirectory))
@@ -111,7 +112,9 @@ import LineEnding
         }
         
         document.remoteState = RemoteDocumentState(file: file)
-        if let name = request.fileType, name == SyntaxName.none || SyntaxManager.shared.settingNames.contains(name) {
+        if let name = request.fileType,
+           name == SyntaxName.none || SyntaxManager.shared.settingNames.contains(name)
+        {
             document.setSyntax(name: name)
         }
         DocumentController.shared.addDocument(document)

@@ -144,7 +144,7 @@ import RMate
         alert.beginSheetModal(for: window) { [weak self, weak document] response in
             self?.isShowingDisconnectAlert = false
             
-            if response == .alertFirstButtonReturn {
+            if response == .alertFirstButtonReturn {  // Save As
                 document?.saveAs(nil)
             }
         }
@@ -156,9 +156,11 @@ import RMate
     /// Updates the document after the connection is lost.
     private func didDisconnect() {
         
-        self.document?.windowController?.synchronizeWindowTitleWithDocumentName()
+        guard let document else { return }
         
-        if self.document?.isDocumentEdited == true {
+        document.windowController?.synchronizeWindowTitleWithDocumentName()
+        
+        if document.isDocumentEdited {
             self.presentDisconnectAlert()
         }
     }
