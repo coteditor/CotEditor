@@ -5,7 +5,7 @@
 
 ### New Features
 
-- Support editing remote files with rmate over SSH port forwarding, enabled in General settings.
+- Support editing remote files with `rmate` over SSH port forwarding, enabled in General settings.
 
 
 
