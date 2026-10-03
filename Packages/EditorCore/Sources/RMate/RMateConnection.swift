@@ -39,12 +39,12 @@ import Network
     
     // MARK: Private Properties
     
-    private let onOpen: @MainActor (RMateFile, RMateOpenRequest) throws -> Void
+    private let onOpen: @MainActor (RMateFile, RMateOpenRequest) async throws -> Void
     private let onError: @MainActor (any Error) -> Void
     private let connection: NetworkConnection<TCP>
     private var receiveTask: Task<Void, Never>?
     private var sendTasks: [UUID: Task<Void, any Error>] = [:]
-    private var parser = RMateParser()
+    private var hasReceivedAllRequests = false
     private var files: [ObjectIdentifier: RMateFile] = [:]
     private var pendingCloseCount = 0
     
@@ -55,9 +55,9 @@ import Network
     ///
     /// - Parameters:
     ///   - connection: The accepted TCP connection.
-    ///   - onOpen: The handler to open a received file.
+    ///   - onOpen: The asynchronous handler to open a received file.
     ///   - onError: The handler for receive errors and errors thrown by `onOpen`.
-    init(connection: NetworkConnection<TCP>, onOpen: @MainActor @escaping (RMateFile, RMateOpenRequest) throws -> Void, onError: @MainActor @escaping (any Error) -> Void) {
+    init(connection: NetworkConnection<TCP>, onOpen: @MainActor @escaping (RMateFile, RMateOpenRequest) async throws -> Void, onError: @MainActor @escaping (any Error) -> Void) {
         
         self.connection = connection
         self.onOpen = onOpen
@@ -84,6 +84,8 @@ import Network
         self.receiveTask = Task { [weak self, connection] in
             defer { self?.disconnect() }
             
+            var parser = RMateParser()
+            
             do {
                 try await connection.send(Data("\(applicationName) rmate 1\n".utf8))
                 
@@ -93,8 +95,8 @@ import Network
                     guard let self, self.isConnected else { return }
                     
                     do {
-                        for message in try self.parser.append(data) {
-                            try self.open(message)
+                        for message in try parser.append(data) {
+                            try await self.open(message)
                         }
                     } catch {
                         self.disconnect()
@@ -102,13 +104,16 @@ import Network
                         switch error {
                             case RMateParser.ParseError.fileTooLarge:
                                 self.onError(RMateServer.ReceiveError.fileTooLarge(maximumSize: RMateParser.maximumDataLength))
-                            case is RMateParser.ParseError:
+                            case is RMateParser.ParseError, is CancellationError:
                                 break
                             default:
                                 self.onError(error)
                         }
                         return
                     }
+                    
+                    // publish completion only after all received files have been opened
+                    self.hasReceivedAllRequests = parser.isFinished
                     
                     if metadata.endOfStream || self.isFinished {
                         return
@@ -200,7 +205,7 @@ import Network
     /// Whether all requests are received, all files are closed, and all close notifications are sent.
     private var isFinished: Bool {
         
-        self.parser.isFinished && self.files.isEmpty && self.pendingCloseCount == 0
+        self.hasReceivedAllRequests && self.files.isEmpty && self.pendingCloseCount == 0
     }
     
     
@@ -228,8 +233,10 @@ import Network
     /// Passes a received file to the open handler.
     ///
     /// - Parameter message: The open request.
-    /// - Throws: `RMateParser.ParseError` or an error from the open handler.
-    private func open(_ message: RMateMessage) throws {
+    /// - Throws: `RMateParser.ParseError`, `CancellationError`, or an error from the open handler.
+    private func open(_ message: RMateMessage) async throws {
+        
+        guard self.isConnected, !Task.isCancelled else { throw CancellationError() }
         
         guard
             self.files.count < 64,
@@ -242,6 +249,6 @@ import Network
         let file = RMateFile(metadata: metadata, token: token, connection: self)
         self.files[ObjectIdentifier(file)] = file
         
-        try self.onOpen(file, RMateOpenRequest(message: message))
+        try await self.onOpen(file, RMateOpenRequest(message: message))
     }
 }

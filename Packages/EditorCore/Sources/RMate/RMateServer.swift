@@ -54,7 +54,7 @@ public import Observation
     // MARK: Private Properties
     
     private let applicationName: String
-    private let onOpen: @MainActor (RMateFile, RMateOpenRequest) throws -> Void
+    private let onOpen: @MainActor (RMateFile, RMateOpenRequest) async throws -> Void
     private let onError: @MainActor (any Error) -> Void
     private var listener: NetworkListener<TCP>?
     private var listeningTask: Task<Void, Never>?
@@ -67,9 +67,9 @@ public import Observation
     ///
     /// - Parameters:
     ///   - applicationName: The application name sent in the greeting.
-    ///   - onOpen: The handler to open a received file.
+    ///   - onOpen: The asynchronous handler to open a received file.
     ///   - onError: The handler for receive errors and errors thrown by `onOpen`.
-    public init(applicationName: String, onOpen: @MainActor @escaping (RMateFile, RMateOpenRequest) throws -> Void, onError: @MainActor @escaping (any Error) -> Void) {
+    public init(applicationName: String, onOpen: @MainActor @escaping (RMateFile, RMateOpenRequest) async throws -> Void, onError: @MainActor @escaping (any Error) -> Void) {
         
         self.applicationName = applicationName
         self.onOpen = onOpen

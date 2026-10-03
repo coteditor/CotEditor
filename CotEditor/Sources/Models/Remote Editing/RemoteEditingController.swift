@@ -88,14 +88,21 @@ import Defaults
     /// - Parameters:
     ///   - file: The remote file.
     ///   - request: The file content and opening options.
-    /// - Throws: An error if creating or reading the working copy failed.
-    private static func open(_ file: RMateFile, request: RMateOpenRequest) throws {
+    /// - Throws: An error if creating or reading the working copy failed, or `CancellationError` if opening was canceled.
+    private static func open(_ file: RMateFile, request: RMateOpenRequest) async throws {
+        
+        try Task.checkCancellation()
         
         // use a local working copy for the NSDocument file operations
-        let url = try self.fileStore.makeBackingFile(data: request.data, metadata: file.metadata)
+        let url = try await { @concurrent [metadata = file.metadata] () async throws in
+            try self.fileStore.makeBackingFile(data: request.data, metadata: metadata)
+        }()
         
         let document: RemoteDocument
         do {
+            try Task.checkCancellation()
+            guard file.isConnected else { throw CancellationError() }
+            
             document = try RemoteDocument(contentsOf: url, ofType: UTType.plainText.identifier)
         } catch {
             try? self.fileStore.removeBackingFile(at: url)
