@@ -568,9 +568,7 @@ private struct SyntaxListView: View {
     /// - Parameter urls: The file URLs to import.
     private func importSettings(at urls: [URL]) {
         
-        for url in urls {
-            guard url.isFileURL else { continue }
-            
+        for url in urls where url.isFileURL {
             let accessing = url.startAccessingSecurityScopedResource()
             defer {
                 if accessing { url.stopAccessingSecurityScopedResource() }

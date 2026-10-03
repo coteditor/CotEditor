@@ -235,9 +235,7 @@ public extension String {
             replacementRanges.append(replacementRange)
             
             offset += lineString.length
-            for range in group {
-                selectedRanges.append(range.shifted(by: offset))
-            }
+            selectedRanges += group.map { $0.shifted(by: offset) }
         }
         
         return EditingContext(strings: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)

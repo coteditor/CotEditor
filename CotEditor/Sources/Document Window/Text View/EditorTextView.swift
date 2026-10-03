@@ -879,9 +879,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         }
         
         // add "Straighten Quotes" menu item in Substitutions submenu
-        for item in menu.items {
-            guard let submenu = item.submenu else { continue }
-            
+        for case let submenu in menu.items.compactMap(\.submenu) {
             let index = submenu.indexOfItem(withTarget: nil, andAction: Selector(("replaceQuotesInSelection:")))
             
             guard index >= 0 else { continue }  // -1 == not found

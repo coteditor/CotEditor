@@ -299,6 +299,7 @@ private extension NestableToken {
         for prefix in prefixes {
             let length = (prefix as NSString).length
             let start = location - length
+            
             guard start >= parseRange.location else { continue }
             
             if nsString.substring(with: NSRange(location: start, length: length)) == prefix {

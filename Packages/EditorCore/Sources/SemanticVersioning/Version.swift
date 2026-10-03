@@ -180,7 +180,7 @@ private extension Version {
             let rhsIdentifiers = rhs.prereleaseIdentifiers
         else { return lhs < rhs }
         
-        for (lhsIdentifier, rhsIdentifier) in zip(lhsIdentifiers, rhsIdentifiers) where lhsIdentifier != rhsIdentifier {
+        if let (lhsIdentifier, rhsIdentifier) = zip(lhsIdentifiers, rhsIdentifiers).first(where: { $0 != $1 }) {
             return lhsIdentifier.precedesPrereleaseIdentifier(rhsIdentifier)
         }
         
