@@ -219,6 +219,7 @@ struct GeneralSettingsView: View {
                     
                     HStack {
                         Text("Port:", tableName: "GeneralSettings")
+                            .foregroundStyle(self.enablesRemoteEditing ? .primary : .tertiary)
                             .accessibilityHidden(true)
                         TextField(.init("Port:", table: "GeneralSettings"),
                                   value: $remoteEditingPort, format: .number.grouping(.never),
