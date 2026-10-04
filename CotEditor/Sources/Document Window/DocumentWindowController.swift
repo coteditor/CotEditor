@@ -211,9 +211,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     override func windowTitle(forDocumentDisplayName displayName: String) -> String {
         
-        if (self.fileDocument as? RemoteDocument)?.remoteState != nil {
-            displayName
-        } else if let uniqueDirectory {
+        if let uniqueDirectory, (self.fileDocument as? RemoteDocument)?.remoteState == nil {
             displayName + " \u{2014} " + uniqueDirectory  // EM DASH
         } else {
             displayName
