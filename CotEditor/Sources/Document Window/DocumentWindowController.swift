@@ -104,6 +104,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         window.styleMask.update(with: .fullSizeContentView)
         window.animationBehavior = .documentWindow
         window.setFrameAutosaveName(self.windowAutosaveName)
+        window.setFrameUsingName(self.windowAutosaveName)
         
         if self.isDirectoryDocument {
             window.tabbingMode = .disallowed

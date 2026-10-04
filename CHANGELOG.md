@@ -3,6 +3,10 @@
 7.1.2 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue where new windows did not inherit the last resized window size when the window size was set to Auto.
+
 
 
 7.1.1 (2026-10-03)
