@@ -8,6 +8,11 @@
 - Support editing remote files with `rmate` over SSH port forwarding, enabled in General settings.
 
 
+### Fixes
+
+- Fix an issue where new windows did not inherit the last resized window size when the window size was set to Auto.
+
+
 
 7.1.1 (2026-10-03)
 --------------------------
