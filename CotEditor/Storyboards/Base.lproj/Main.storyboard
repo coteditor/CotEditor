@@ -25,6 +25,12 @@
                                                 <action selector="showSettingsWindow:" target="Ady-hI-5gd" id="B5S-pE-Q9J"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Donate to CotEditor…" secondaryImage="mug" catalog="system" id="qPX-5r-cB2">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showDonationWindow:" target="Ady-hI-5gd" id="y4U-qi-7Pb"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="143"/>
                                         <menuItem title="Services" id="131">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -1454,6 +1460,7 @@ LQEyATYBOAE6ATwBPgFAAUYBRwFMAVcBYAFoAWsBdAGBAYkBlgGjAbgBywHQAdIB1gHYAdoB3AHlAeoB
 AAAAFBk
 </mutableData>
         </image>
+        <image name="mug" catalog="system" width="16" height="16"/>
         <image name="number" catalog="system" width="15" height="15"/>
         <image name="numbers.rectangle" catalog="system" width="18" height="14"/>
         <image name="paintbrush" catalog="system" width="17" height="18"/>

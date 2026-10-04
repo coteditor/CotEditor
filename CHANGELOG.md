@@ -8,6 +8,11 @@
 - Support editing remote files with `rmate` over SSH port forwarding, enabled in General settings.
 
 
+### Improvements
+
+- Move donations to the CotEditor project from a settings pane to a separate window, accessible from the CotEditor menu.
+
+
 ### Fixes
 
 - Fix an issue where new windows did not inherit the last resized window size when the window size was set to Auto.
