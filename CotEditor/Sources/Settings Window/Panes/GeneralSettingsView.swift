@@ -25,7 +25,6 @@
 
 import SwiftUI
 import Defaults
-import RMate
 import SemanticVersioning
 
 struct GeneralSettingsView: View {
@@ -38,16 +37,11 @@ struct GeneralSettingsView: View {
     
     @Namespace private var accessibility
     
-    @Environment(\.locale) private var locale
-    
     @AppStorage(.quitAlwaysKeepsWindows) private var quitAlwaysKeepsWindows: Bool
     @AppStorage(.noDocumentOnLaunchOption) private var noDocumentOnLaunchOption: NoDocumentOnLaunchOption
     
     @AppStorage(.enablesAutosaveInPlace) private var enablesAutosaveInPlace: Bool
     @AppStorage(.documentConflictOption) private var documentConflictOption: DocumentConflictOption
-    
-    @AppStorage(.enablesRemoteEditing) private var enablesRemoteEditing: Bool
-    @AppStorage(.remoteEditingPort) private var remoteEditingPort: Int
     
     @State private var initialEnablesAutosaveInPlace: Bool = false
     
@@ -55,9 +49,6 @@ struct GeneralSettingsView: View {
     @State private var suppressesQuitAlwaysKeepsWindowsChangeConfirmation = false
     @State private var isQuitAlwaysKeepsWindowsChangeConfirmationPresented = false
     @State private var isWarningsSettingPresented = false
-    
-    @State private var commandLineToolStatus: CommandLineToolManager.Status = .none
-    @State private var commandLineToolURL: URL?
     
     
     // MARK: View
@@ -176,83 +167,6 @@ struct GeneralSettingsView: View {
                 }
             }
             
-            Divider()
-            
-            GridRow {
-                Text("Command-line tool:", tableName: "GeneralSettings")
-                    .gridColumnAlignment(.trailing)
-                
-                VStack(alignment: .leading) {
-                    HStack(alignment: .firstTextBaseline) {
-                        Button(.init("Learn More…", table: "GeneralSettings", comment: "verb; button")) {
-                            NSHelpManager.shared.openHelpAnchor("about_cot", inBook: nil)
-                        }
-                        if self.commandLineToolStatus.installed,
-                           let url = self.commandLineToolURL
-                        {
-                            Label {
-                                Text("installed at \(url, format: .url.scheme(.never))", tableName: "GeneralSettings")
-                            } icon: {
-                                StatusImage(status: self.commandLineToolStatus.imageStatus)
-                                    .imageScale(.small)
-                                    .help(self.commandLineToolStatus.message ?? "")
-                                    .accessibilityHint(self.commandLineToolStatus.message ?? "")
-                            }
-                            .foregroundStyle(.secondary)
-                            .labelIconToTitleSpacing(6)
-                        }
-                    }
-                    Text("With the `cot` command-line tool, you can launch CotEditor and let it open files from the command line.", tableName: "GeneralSettings")
-                        .foregroundStyle(.secondary)
-                        .controlSize(.small)
-                        .lineLimit(10)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-            }
-            
-            GridRow {
-                Text("Remote editing:", tableName: "GeneralSettings")
-                    .gridColumnAlignment(.trailing)
-                
-                VStack(alignment: .leading) {
-                    Toggle(.init("Accept rmate connections", table: "GeneralSettings", comment: "verb; checkbox"), isOn: $enablesRemoteEditing)
-                    
-                    HStack {
-                        Text("Port:", tableName: "GeneralSettings")
-                            .foregroundStyle(self.enablesRemoteEditing ? .primary : .tertiary)
-                            .accessibilityHidden(true)
-                        TextField(.init("Port:", table: "GeneralSettings"),
-                                  value: $remoteEditingPort, format: .number.grouping(.never),
-                                  prompt: Text(RMateServer.defaultPort, format: .number.grouping(.never)))
-                            .disabled(!self.enablesRemoteEditing)
-                            .labelsVisibility(.hidden)
-                            .frame(width: 80)
-                        
-                        if let message = RemoteEditingController.shared.errorMessage {
-                            Label(message, systemImage: "exclamationmark.triangle")
-                                .symbolVariant(.fill)
-                                .symbolRenderingMode(.multicolor)
-                                .controlSize(.small)
-                        }
-                    }
-                    .frame(minHeight: 28)
-                    .padding(.leading, 20)
-                    
-                    let description = AttributedString(localized: "Allow remote files to be opened in CotEditor using the `rmate` protocol.",
-                                                       table: "GeneralSettings", locale: self.locale)
-                        .replacingAttributes(AttributeContainer.inlinePresentationIntent(.code),
-                                             with: AttributeContainer
-                                                .inlinePresentationIntent(.code)
-                                                .link(URL(string: "help:anchor=howto_edit_remote%20bookID=com.coteditor.CotEditor.help")!))
-                    Text(description)
-                        .foregroundStyle(.secondary)
-                        .tint(.accentColor)
-                        .controlSize(.small)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(.leading, 20)
-                }
-            }
-            
             if self.showsUpdaterSettings {
                 Divider()
                 UpdaterView()
@@ -262,11 +176,6 @@ struct GeneralSettingsView: View {
                 Spacer()
                 HelpLink(anchor: "settings_general")
             }
-        }
-        .onAppear {
-            let manager = CommandLineToolManager()
-            self.commandLineToolStatus = manager.validateSymlink()
-            self.commandLineToolURL = manager.linkURL
         }
         .fixedSize(horizontal: false, vertical: true)
     }
@@ -329,36 +238,6 @@ private struct WarningsSettingView: View {
             }.padding(.top)
         }
         .fixedSize()
-    }
-}
-
-
-private extension CommandLineToolManager.Status {
-    
-    var imageStatus: StatusImage.Status {
-        
-        switch self {
-            case .none: .none
-            case .validTarget: .available
-            case .differentTarget: .partiallyAvailable
-            case .invalidTarget: .unavailable
-        }
-    }
-    
-    
-    var message: String? {
-        
-        switch self {
-            case .none, .validTarget:
-                nil
-            case .differentTarget:
-                String(localized: "CommandLineToolManager.Status.differentTarget.message",
-                       defaultValue: "The current `cot` symbolic link doesn’t target the running CotEditor.",
-                       table: "GeneralSettings")
-            case .invalidTarget:
-                String(localized: "CommandLineToolManager.Status.invalidTarget.message",
-                       defaultValue: "The current `cot` symbolic link may target an invalid path.", table: "GeneralSettings")
-        }
     }
 }
 

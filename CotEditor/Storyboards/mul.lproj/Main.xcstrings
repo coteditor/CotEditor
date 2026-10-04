@@ -24601,6 +24601,54 @@
         }
       }
     },
+    "qPX-5r-cB2.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Donate to CotEditor…\"; ObjectID = \"qPX-5r-cB2\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für CotEditor spenden …"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Donate to CotEditor…"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Donate to CotEditor…"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Donar a CotEditor…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Faire un don à CotEditor…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditorに寄付…"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Doneer aan CotEditor…"
+          }
+        }
+      }
+    },
     "Qqu-pI-Xz6.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Show Indent Guides\"; ObjectID = \"Qqu-pI-Xz6\";",
       "extractionState" : "extracted_with_value",

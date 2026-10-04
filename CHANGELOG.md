@@ -5,7 +5,13 @@
 
 ### New Features
 
-- Support editing remote files with `rmate` over SSH port forwarding, enabled in General settings.
+- Support editing remote files with `rmate` over SSH port forwarding, enabled in Integration settings.
+
+
+### Improvements
+
+- Move donations to the CotEditor project from a settings pane to a separate window, accessible from the CotEditor menu.
+- Add an Integration pane to the settings window for managing integration with external tools.
 
 
 ### Fixes

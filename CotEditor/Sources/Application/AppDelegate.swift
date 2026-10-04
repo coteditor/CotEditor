@@ -100,6 +100,7 @@ extension Logger {
     private lazy var settingsWindowController = SettingsWindowController<SettingsPane>()
     private weak var aboutPanel: NSPanel?
     private weak var whatsNewPanel: NSPanel?
+    private weak var donationPanel: NSPanel?
     private weak var exportSettingsPanel: NSPanel?
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
@@ -336,6 +337,27 @@ extension Logger {
     @IBAction func showSettingsWindow(_ sender: Any?) {
         
         self.settingsWindowController.showWindow(sender)
+    }
+    
+    
+    /// Shows the Donation window.
+    @IBAction func showDonationWindow(_ sender: Any?) {
+        
+        let panel: NSPanel
+        if let donationPanel {
+            panel = donationPanel
+        } else {
+            let viewController = NSHostingController(rootView: DonationView().scenePadding())
+            panel = NSPanel(contentViewController: viewController)
+            panel.title = String(localized: "Donation", table: "Donation", comment: "window title")
+            panel.hidesOnDeactivate = false
+            panel.setContentSize(viewController.view.intrinsicContentSize)
+        }
+        
+        panel.center()
+        panel.makeKeyAndOrderFront(nil)
+        
+        self.donationPanel = panel
     }
     
     
