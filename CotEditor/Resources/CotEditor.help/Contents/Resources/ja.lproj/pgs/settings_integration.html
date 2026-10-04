@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="「連携」設定, 連携設定, 連携">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
+	<script defer src="../../Shared/js/toc.js"></script>
+	
+	<title>MacのCotEditorで「連携」設定を変更する</title>
+</head>
+
+<body>
+<a name="settings_integration"></a>
+
+<h1>MacのCotEditorで「連携」設定を変更する</h1>
+
+<p>MacのCotEditorアプリ<img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt="">で、外部ツールとの連携を確認したり設定したりするには、「連携」設定を使用します。</p>
+
+<p>これらの設定を変更するには、「CotEditor」＞「設定」と選択してから、「連携」をクリックします。</p>
+
+
+<table class="settings">
+<thead>
+	<tr><th>オプション</th><th>説明</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>コマンドラインツール</th>
+		<td><p><code>cot</code>コマンドラインツールのインストール状態を表示します。<code>cot</code> を使うと、CotEditorをコマンドラインから起動してファイルを開けます。詳しくは、<a href="about_cot.html">cotコマンドと連携する</a>を参照してください。</p></td>
+	</tr>
+
+	<tr>
+		<th>rmate接続を許可</th>
+		<td><p><code>rmate</code>クライアントからリモートファイルをCotEditorで開き、保存した変更内容を送り返せるようにします。設定手順については、<a href="howto_edit_remote.html">リモートファイルを編集する</a>を参照してください。</p>
+			<p>このオプションをオフにすると、新しい接続の受け入れを停止します。すでに接続している書類の接続は維持されます。</p></td>
+	</tr>
+
+	<tr>
+		<th>ポート</th>
+		<td><p><code>rmate</code>接続を受け入れるMac側のポート番号を指定します。デフォルトは52698です。1から65535までの番号を入力してください。</p></td>
+	</tr>
+</tbody>
+</table>
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="settings.html">MacのCotEditorで設定を変更する</a></li>
+</ul>
+</section>
+
+</body>
+</html>

@@ -36,6 +36,7 @@ enum SettingsPane: String, ControlUI.SettingsPane {
     case format
     case snippets
     case shortcuts
+    case integration
     
     
     static let width: Double = 580
@@ -77,6 +78,10 @@ enum SettingsPane: String, ControlUI.SettingsPane {
                 String(localized: "SettingsPane.shortcuts.label",
                        defaultValue: "Shortcuts",
                        table: "Settings")
+            case .integration:
+                String(localized: "SettingsPane.integration.label",
+                       defaultValue: "Integration",
+                       table: "Settings")
         }
     }
     
@@ -93,6 +98,7 @@ enum SettingsPane: String, ControlUI.SettingsPane {
             case .format: "text.document"
             case .snippets: "text.viewfinder"
             case .shortcuts: "keyboard"
+            case .integration: "apple.terminal.fill"
         }
     }
     
@@ -109,6 +115,7 @@ enum SettingsPane: String, ControlUI.SettingsPane {
             case .format: FormatSettingsView()
             case .snippets: SnippetsSettingsView()
             case .shortcuts: ShortcutsSettingsView()
+            case .integration: IntegrationSettingsView()
         }
     }
 }

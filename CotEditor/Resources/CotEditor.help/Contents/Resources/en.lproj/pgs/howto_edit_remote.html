@@ -23,7 +23,7 @@
 
 <ol>
 	<li><p>Install an <code>rmate</code> client on the remote computer. For example, you can use <a href="https://github.com/textmate/rmate" rel="external">TextMate’s <code>rmate</code> client</a>. Follow the client’s installation instructions for your remote computer.</p></li>
-	<li><p>In CotEditor on your Mac, choose CotEditor &gt; Settings, then click General.</p></li>
+	<li><p>In CotEditor on your Mac, choose CotEditor &gt; Settings, then click Integration.</p></li>
 	<li><p>Select “Accept rmate connections” in the Remote Editing section and check the port number. The default is <code>52698</code>.</p></li>
 </ol>
 
@@ -46,7 +46,7 @@
 	</li>
 </ol>
 
-<p>If you use a different port, replace both occurrences of <code>52698</code> in the SSH command and the port in the <code>rmate</code> command with that number. Use the same number in CotEditor’s <a href="settings_general.html">General settings</a>.</p>
+<p>If you use a different port, replace both occurrences of <code>52698</code> in the SSH command and the port in the <code>rmate</code> command with that number. Use the same number in CotEditor’s <a href="settings_integration.html">Integration settings</a>.</p>
 
 <p>To keep <code>rmate</code> waiting until you close the document, add the <code>--wait</code> option. Keep the SSH session open until you finish editing and close the remote documents.</p>
 
@@ -86,7 +86,7 @@
 <h2>If a file doesn’t open</h2>
 
 <ul>
-	<li><p>Check that CotEditor is running and “Accept rmate connections” is selected in General settings.</p></li>
+	<li><p>Check that CotEditor is running and “Accept rmate connections” is selected in Integration settings.</p></li>
 	<li><p>Check that the SSH tunnel was established and that the port numbers match. If the port is already in use, stop the other receiver or choose another port.</p></li>
 	<li><p>Check the remote terminal for errors from SSH or <code>rmate</code>, such as a missing file or insufficient permissions.</p></li>
 	<li><p>Remote editing supports files up to 100 MB.</p></li>
@@ -97,7 +97,7 @@
 <section id="cf">
 <h2>See also</h2>
 <ul>
-	<li><a href="settings_general.html">Change General settings in CotEditor on Mac</a></li>
+	<li><a href="settings_integration.html">Change Integration settings in CotEditor on Mac</a></li>
 	<li><a href="howto_save_document.html">Save documents</a></li>
 	<li><a href="about_cot.html">Work with cot command</a></li>
 </ul>

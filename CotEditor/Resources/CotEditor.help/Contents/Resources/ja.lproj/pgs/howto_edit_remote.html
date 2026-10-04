@@ -23,7 +23,7 @@
 
 <ol>
 	<li><p>リモートコンピュータに<code>rmate</code>クライアントをインストールします。例えば、<a href="https://github.com/textmate/rmate" rel="external">TextMateの<code>rmate</code>クライアント</a>を使用できます。リモートコンピュータの環境に合わせて、クライアントのインストール手順に従ってください。</p></li>
-	<li><p>MacのCotEditorで「CotEditor」＞「設定」と選択してから、「一般」をクリックします。</p></li>
+	<li><p>MacのCotEditorで「CotEditor」＞「設定」と選択してから、「連携」をクリックします。</p></li>
 	<li><p>「リモート編集」セクションの「rmate接続を許可」を選択し、ポート番号を確認します。デフォルトは<code>52698</code>です。</p></li>
 </ol>
 
@@ -46,7 +46,7 @@
 	</li>
 </ol>
 
-<p>別のポートを使う場合は、SSHコマンド内の2箇所の<code>52698</code>と、<code>rmate</code>コマンドのポート番号をその番号に置き換えます。CotEditorの<a href="settings_general.html">「一般」設定</a>にも同じ番号を指定してください。</p>
+<p>別のポートを使う場合は、SSHコマンド内の2箇所の<code>52698</code>と、<code>rmate</code>コマンドのポート番号をその番号に置き換えます。CotEditorの<a href="settings_integration.html">「連携」設定</a>にも同じ番号を指定してください。</p>
 
 <p>書類を閉じるまで<code>rmate</code>の終了を待たせるには、<code>--wait</code>オプションを追加します。編集を終えてリモート書類を閉じるまで、SSHセッションを開いたままにしてください。</p>
 
@@ -86,7 +86,7 @@
 <h2>ファイルが開かない場合</h2>
 
 <ul>
-	<li><p>CotEditorが起動していて、「一般」設定の「rmate接続を許可」が選択されていることを確認してください。</p></li>
+	<li><p>CotEditorが起動していて、「連携」設定の「rmate接続を許可」が選択されていることを確認してください。</p></li>
 	<li><p>SSHトンネルが作成され、ポート番号が一致していることを確認してください。ポートがすでに使われている場合は、ほかの受信アプリを停止するか、別のポートを選んでください。</p></li>
 	<li><p>リモート側のターミナルで、SSHや<code>rmate</code>からエラーが出ていないか確認してください。ファイルが存在しない場合やアクセス権がない場合などにエラーが表示されます。</p></li>
 	<li><p>リモート編集で開けるファイルの大きさは100 MBまでです。</p></li>
@@ -97,7 +97,7 @@
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
-	<li><a href="settings_general.html">MacのCotEditorで「一般」設定を変更する</a></li>
+	<li><a href="settings_integration.html">MacのCotEditorで「連携」設定を変更する</a></li>
 	<li><a href="howto_save_document.html">書類を保存する</a></li>
 	<li><a href="about_cot.html">cotコマンドと連携する</a></li>
 </ul>
