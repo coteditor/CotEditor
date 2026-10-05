@@ -127,6 +127,70 @@ struct TreeSitterHighlightTests {
     }
     
     
+    /// Tests highlighting of ownership, memory safety, and inline array syntax.
+    @Test func highlightSwiftModernSyntax() async throws {
+        
+        let source = #"""
+            struct Store<let count: Int> {
+                var buffer: [count of Item]
+                
+                func load(value: borrowing Item, isolation: isolated (any Actor)? = #isolation) -> sending Item {
+                    let duplicated = copy value
+                    let transferred = consume duplicated
+                    return unsafe fetch()
+                }
+            }
+            let absent: Item? = nil
+            let context = #isolation
+            for unsafe element in elements { }
+            """#
+        
+        let config = try self.registry.configuration(for: .swift)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .swift)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        for keyword in ["borrowing", "isolated", "sending", "copy", "consume", "of"] {
+            #expect(captures.contains(Capture(type: .keywords, text: keyword)))
+        }
+        #expect(captures.filter { $0 == Capture(type: .keywords, text: "unsafe") }.count == 2)
+        #expect(captures.filter { $0 == Capture(type: .variables, text: "count") }.count == 2)
+        #expect(captures.contains(Capture(type: .values, text: "nil")))
+        #expect(captures.contains(Capture(type: .commands, text: "fetch")))
+        #expect(captures.filter { $0 == Capture(type: .commands, text: "#") }.count == 2)
+        #expect(captures.filter { $0 == Capture(type: .commands, text: "isolation") }.count == 2)
+    }
+    
+    
+    /// Tests that contextual keywords remain function names and ordinary identifiers.
+    @Test func highlightSwiftContextualIdentifiers() async throws {
+        
+        let source = #"""
+            func unsafe() { }
+            func copy() { }
+            func consume() { }
+            unsafe()
+            copy()
+            consume()
+            let of = 1
+            let value = of
+            """#
+        
+        let config = try self.registry.configuration(for: .swift)
+        let client = try TreeSitterClient(languageConfig: config, languageProvider: self.registry.languageProvider, syntax: .swift)
+        let captures = try #require(await client.parseHighlights(in: source, range: source.nsRange))
+            .highlights
+            .map { Capture(type: $0.value, text: (source as NSString).substring(with: $0.range)) }
+        
+        for identifier in ["unsafe", "copy", "consume"] {
+            #expect(captures.filter { $0 == Capture(type: .commands, text: identifier) }.count == 2)
+            #expect(!captures.contains(Capture(type: .keywords, text: identifier)))
+        }
+        #expect(!captures.contains(Capture(type: .keywords, text: "of")))
+    }
+    
+    
     @Test func highlightPythonAllCapsConstantsAndConstructorCalls() async throws {
         
         let source = #"""

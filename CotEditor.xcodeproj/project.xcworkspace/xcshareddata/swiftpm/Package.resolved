@@ -1,5 +1,5 @@
 {
-  "originHash" : "423082f39559ab4331c8832ebc8aa455062b84d6bbff6117da6b259434f0351d",
+  "originHash" : "e8a3bb54d55b68d8b376cfbb6788864a3b787ab3a096be2bd2661bb6ad3257a3",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -241,7 +241,7 @@
       "location" : "https://github.com/alex-pinkus/tree-sitter-swift",
       "state" : {
         "branch" : "with-generated-files",
-        "revision" : "31d17fe7e818a2048c808b5c6fdc2dc792f4f5b5"
+        "revision" : "82bb3a533e0801fd2bbaa11dc49676e10bf41948"
       }
     },
     {
