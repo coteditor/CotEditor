@@ -118,9 +118,7 @@ final class InspectorViewController: NSTabViewController {
     /// Updates the document in children.
     private func updateDocument() {
         
-        for item in self.tabViewItems {
-            guard let viewController = item.viewController as? any InspectorPaneHosting else { preconditionFailure() }
-            
+        for case let viewController as any InspectorPaneHosting in self.tabViewItems.map(\.viewController) {
             viewController.document = self.document
         }
     }
