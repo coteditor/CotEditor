@@ -43,18 +43,7 @@ import RMate
     
     // MARK: Public Properties
     
-    var remoteState: RemoteDocumentState? {
-        
-        didSet {
-            self.hasRemoteState.withLock { $0 = self.remoteState != nil }
-            self.remoteState?.document = self
-            self.invalidateRestorableState()
-            if oldValue != nil, self.remoteState == nil {
-                self.windowController?.window?.subtitle = ""
-            }
-            self.windowController?.synchronizeWindowTitleWithDocumentName()
-        }
-    }
+    var remoteState: RemoteDocumentState?  { didSet { self.didSetRemoteState(oldState: oldValue) } }
     
     
     // MARK: Private Properties
@@ -389,6 +378,18 @@ import RMate
         
         UserDefaults.standard[.quitAlwaysKeepsWindows] &&
             self.remoteState?.file.isConnected == false && self.isDocumentEdited
+    }
+    
+    
+    private func didSetRemoteState(oldState: RemoteDocumentState?) {
+        
+        self.hasRemoteState.withLock { $0 = self.remoteState != nil }
+        self.remoteState?.document = self
+        self.invalidateRestorableState()
+        if oldState != nil, self.remoteState == nil {
+            self.windowController?.window?.subtitle = ""
+        }
+        self.windowController?.synchronizeWindowTitleWithDocumentName()
     }
     
     

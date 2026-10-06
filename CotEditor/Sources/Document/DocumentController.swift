@@ -225,11 +225,11 @@ protocol AdditionalDocumentPreparing: NSDocument {
         
         // [caution] This method may be called from a background thread during restoration.
         
-        guard let url, RemoteEditingController.fileStore.isBackingFile(url) else {
-            return try super.makeDocument(for: url, withContentsOf: contentsURL, ofType: typeName)
+        if let url, RemoteEditingController.fileStore.isBackingFile(url) {
+            return try RemoteDocument(restoring: url, withContentsOf: contentsURL, ofType: typeName)
         }
         
-        return try RemoteDocument(restoring: url, withContentsOf: contentsURL, ofType: typeName)
+        return try super.makeDocument(for: url, withContentsOf: contentsURL, ofType: typeName)
     }
     
     
