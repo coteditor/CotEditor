@@ -137,20 +137,16 @@ extension Snippet {
         
         // split at the cursor tokens before inserting the selection,
         // so that a cursor token contained in the selection is kept as is
-        let parts = self.format
+        return self.format
             .replacing(/\R/) { $0.output + indent }  // indent
             .split(separator: Variable.cursor.token, omittingEmptySubsequences: false)
             .map { $0.replacing(Variable.selection.token, with: selectedString) }  // selection
-        
-        var text = ""
-        var ranges: [NSRange] = []
-        for (index, part) in parts.enumerated() {
-            if index > 0 {
-                ranges.append(NSRange(location: (text as NSString).length, length: 0))
+            .enumerated()
+            .reduce(into: ("", [])) { result, item in
+                if item.offset > 0 {
+                    result.selectedRanges.append(NSRange(location: (item.element as NSString).length, length: 0))
+                }
+                result.string += item.element
             }
-            text += part
-        }
-        
-        return (text, ranges)
     }
 }
