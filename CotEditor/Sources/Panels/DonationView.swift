@@ -64,8 +64,13 @@ struct DonationView: View {
             } else {
                 NoAppPurchaseView()
             }
+            
+            HStack {
+                Spacer()
+                HelpLink(anchor: "about_donation")
+            }
         }
-        .frame(width: 380)
+        .frame(width: 560)
     }
 }
 
@@ -107,22 +112,13 @@ private struct AppPurchaseView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            Section {
-                ProductView(id: Donation.Product.onetime.id, prefersPromotionalIcon: true) {
-                    Label(.InAppPurchase.donationOnetimeDisplayName, image: .espresso)
-                        .labelStyle(.iconOnly)
-                }
-                .productViewStyle(OnetimeProductViewStyle())
-            } header: {
-                Text("One-time donation", tableName: "Donation")
+        HStack(alignment: .top, spacing: 18) {
+            VStack(alignment: .leading) {
+                Text(.InAppPurchase.donationSubscriptionLabel)
                     .font(.title3)
-            }
-            
-            Divider()
-                .padding(.vertical)
-            
-            Section {
+                    .foregroundStyle(.secondary)
+                    .accessibilityAddTraits(.isHeader)
+                
                 ProductView(id: Donation.Product.continuous.id, prefersPromotionalIcon: true) {
                     Label(.InAppPurchase.donationSubscriptionYearlyDisplayName, image: .bagCoffee)
                         .labelStyle(.iconOnly)
@@ -134,7 +130,7 @@ private struct AppPurchaseView: View {
                 
                 Group {
                     if self.hasDonated {
-                        Link(.init("Manage Subscriptions", table: "Donation", comment: "verb; link"),
+                        Link(.init("Manage Subscriptions", table: "Donation", comment: "verb; button"),
                              destination: URL(string: "itms-apps://apps.apple.com/account/subscriptions")!)
                     } else {
                         Button(.init("Restore Subscription", table: "Donation", comment: "verb; button")) {
@@ -142,7 +138,7 @@ private struct AppPurchaseView: View {
                                 do {
                                     try await AppStore.sync()
                                 } catch {
-                                    self.presentError(error, disablesDonation: false)
+                                    self.presentError(error)
                                 }
                             }
                         }.buttonStyle(.link)
@@ -152,10 +148,10 @@ private struct AppPurchaseView: View {
                 .foregroundStyle(.tint)
                 
                 Text(SubscriptionInformationURL.markdown)
-                    .tint(.accentColor)
+                    .tint(.primary)
                     .foregroundStyle(.secondary)
                     .font(.footnote)
-                    .padding(.bottom, 10)
+                    .padding(.bottom, 8)
                 
                 Form {
                     Picker(.init("Badge type:", table: "Donation"), selection: $badgeType) {
@@ -169,43 +165,35 @@ private struct AppPurchaseView: View {
                         .controlSize(.small)
                         .fixedSize(horizontal: false, vertical: true)
                 }.disabled(!self.hasDonated)
-            } header: {
-                Text("Continuous support", tableName: "Donation")
-                    .font(.title3)
             }
+            .accessibilityElement(children: .contain)
             .subscriptionStatusTask(for: Donation.groupID) { taskState in
                 self.hasDonated = taskState.value?.map(\.state)
                     .contains { [.subscribed, .inGracePeriod].contains($0) } == true
             }
             
-            HStack {
-                Spacer()
-                HelpLink(anchor: "about_donation")
+            Divider()
+            
+            VStack(alignment: .leading) {
+                Text(.InAppPurchase.donationOnetimeLabel)
+                    .font(.title3)
+                    .foregroundStyle(.secondary)
+                    .accessibilityAddTraits(.isHeader)
+                
+                ProductView(id: Donation.Product.onetime.id, prefersPromotionalIcon: true) {
+                    Label(.InAppPurchase.donationOnetimeDisplayName, image: .espresso)
+                        .labelStyle(.iconOnly)
+                }
+                .productViewStyle(OnetimeProductViewStyle())
             }
+            .accessibilityElement(children: .contain)
         }
         .disabled(self.storeKitError != nil)
         .opacity((self.storeKitError == nil) ? 1 : 0.5)
         .overlay(alignment: .top) {
             if let error = self.storeKitError {
-                VStack {
-                    let description = switch error {
-                        case .networkError:
-                            String(localized: "An internet connection is required to donate.", table: "Donation",
-                                   comment: "error message")
-                        default:
-                            error.localizedDescription
-                    }
-                    Text("Donation is currently not available.", tableName: "Donation")
-                    Text(description)
-                        .foregroundStyle(.secondary)
-                        .textScale(.secondary)
-                }
-                .accessibilityElement(children: .contain)
-                .padding(.vertical, 8)
-                .padding(.horizontal, 12)
-                .background(.background.shadow(.drop(radius: 3, y: 1.5)),
-                            in: .rect(cornerRadius: 8))
-                .offset(y: 40)
+                StoreKitErrorView(error: error)
+                    .offset(y: 40)
             }
         }
         .storeProductsTask(for: Donation.Product.allCases.map(\.id)) { taskState in
@@ -213,7 +201,7 @@ private struct AppPurchaseView: View {
                 case .loading, .success:
                     break
                 case .failure(let error):
-                    self.presentError(error)
+                    self.presentError(error, disablesDonation: true)
                 @unknown default:
                     assertionFailure()
             }
@@ -227,7 +215,7 @@ private struct AppPurchaseView: View {
     /// - Parameters:
     ///   - error: The error to present.
     ///   - disablesDonation: Whether the error means the donation products are unavailable.
-    private func presentError(_ error: any Error, disablesDonation: Bool = true) {
+    private func presentError(_ error: any Error, disablesDonation: Bool = false) {
         
         switch error {
             case StoreKitError.userCancelled:
@@ -236,6 +224,41 @@ private struct AppPurchaseView: View {
                 self.storeKitError = error
             default:
                 self.error = error
+        }
+    }
+}
+
+
+private struct StoreKitErrorView: View {
+    
+    var error: StoreKitError
+    
+    
+    var body: some View {
+        
+        VStack {
+            Text("Donation is currently not available.", tableName: "Donation")
+            Text(self.description)
+                .foregroundStyle(.secondary)
+                .textScale(.secondary)
+        }
+        .accessibilityElement(children: .contain)
+        .padding(.vertical, 8)
+        .padding(.horizontal, 12)
+        .background(.background.shadow(.drop(radius: 4, y: 2)),
+                    in: .rect(cornerRadius: 8))
+    }
+    
+    
+    /// The error description to display.
+    private var description: String {
+        
+        switch self.error {
+            case .networkError:
+                String(localized: "An internet connection is required to donate.", table: "Donation",
+                       comment: "error message")
+            default:
+                self.error.localizedDescription
         }
     }
 }
@@ -369,5 +392,10 @@ private extension SubscriptionInformationURL {
 
 #Preview("Non-AppStore version") {
     DonationView(isInAppPurchaseAvailable: false)
+        .scenePadding()
+}
+
+#Preview("StoreKitErrorView") {
+    StoreKitErrorView(error: .notAvailableInStorefront)
         .scenePadding()
 }

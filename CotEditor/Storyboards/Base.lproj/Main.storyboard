@@ -19,16 +19,16 @@
                                                 <action selector="showAboutPanel:" target="Ady-hI-5gd" id="u8D-Wn-gmq"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="202"/>
-                                        <menuItem title="Settings…" image="gear" catalog="system" keyEquivalent="," id="129">
-                                            <connections>
-                                                <action selector="showSettingsWindow:" target="Ady-hI-5gd" id="B5S-pE-Q9J"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Donate to CotEditor…" secondaryImage="mug" catalog="system" id="qPX-5r-cB2">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showDonationWindow:" target="Ady-hI-5gd" id="y4U-qi-7Pb"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="202"/>
+                                        <menuItem title="Settings…" image="gear" catalog="system" keyEquivalent="," id="129">
+                                            <connections>
+                                                <action selector="showSettingsWindow:" target="Ady-hI-5gd" id="B5S-pE-Q9J"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="143"/>
