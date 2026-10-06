@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Accept rmate connections" : {
-      "comment" : "verb; checkbox",
+      "comment" : "verb; checkbox; rmate is a remote connection protocol",
       "localizations" : {
         "de" : {
           "stringUnit" : {
