@@ -14,6 +14,15 @@
 - Add an Integration pane to the settings window for managing integration with external tools.
 
 
+
+7.1.2 (unreleased)
+--------------------------
+
+### Improvements
+
+- Improve Swift syntax highlighting for `unsafe`, `copy`, `consume`, and inline array types.
+
+
 ### Fixes
 
 - Fix an issue where new windows did not inherit the last resized window size when the window size was set to Auto.

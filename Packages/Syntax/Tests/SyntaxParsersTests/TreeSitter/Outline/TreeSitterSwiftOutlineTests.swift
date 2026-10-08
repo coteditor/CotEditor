@@ -256,6 +256,43 @@ struct TreeSitterSwiftOutlineTests {
     }
     
     
+    /// Tests outline signatures with value generics, isolation defaults, and ownership modifiers.
+    @Test func outlineIncludesModernSignatures() async throws {
+        
+        let source = #"""
+            struct Store<let count: Int> {
+                var buffer: [count of Item]
+                
+                init(value: sending Item, isolation: isolated (any Actor)? = #isolation) { }
+                func load(value: borrowing Item, isolation: isolated (any Actor)? = #isolation) -> sending Item {
+                    return unsafe fetch()
+                }
+                func `load item`(`with value` value: Item) { }
+            }
+            protocol Service {
+                func send(_ value: sending Item) -> sending Item
+            }
+            """#
+        let nsSource = source as NSString
+        
+        let outline = try await self.parseOutline(in: source)
+        
+        #expect(outline.map(\.title) == [
+            "Store",
+            "buffer",
+            "init(value:isolation:)",
+            "load(value:isolation:)",
+            "`load item`(`with value`:)",
+            "Service",
+            "send(_:)",
+        ])
+        #expect(outline.map(\.kind) == [.container, .value, .function, .function, .function, .container, .function])
+        #expect(outline.map(\.indent.level) == [0, 1, 1, 1, 1, 0, 1])
+        let initializer = try #require(outline.first { $0.title == "init(value:isolation:)" })
+        #expect(nsSource.substring(with: initializer.range) == "init(value: sending Item, isolation: isolated (any Actor)? = #isolation)")
+    }
+    
+    
     // MARK: Private Methods
     
     private func parseOutline(in source: String) async throws -> [OutlineItem] {

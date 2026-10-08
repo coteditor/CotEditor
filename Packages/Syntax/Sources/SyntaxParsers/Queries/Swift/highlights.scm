@@ -93,6 +93,18 @@
 (deinit_declaration
   "deinit" @keywords)
 
+; contextual expression keywords
+(consume_expression
+  ["consume" "copy"] @keywords)
+(unsafe_expression
+  "unsafe" @keywords)
+(for_statement
+  "unsafe" @keywords)
+
+; inline array types: [count of Element]
+(array_type
+  "of" @keywords)
+
 ; modifiers (public/private, mutating, override, weak…)
 [
   (visibility_modifier)
@@ -198,6 +210,9 @@
 (type_parameter
   (type_identifier) @variables)
 
+(array_type
+  count: (simple_identifier) @variables)
+
 (inheritance_constraint
   (identifier
     (simple_identifier) @variables))
@@ -226,7 +241,7 @@
 ; ----------------------------
 
 (boolean_literal) @values
-"nil" @values
+(nil_literal) @values
 
 
 ; MARK: Numbers
