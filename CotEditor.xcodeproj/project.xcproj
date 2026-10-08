@@ -188,7 +188,11 @@
         "ENABLE_POINTER_AUTHENTICATION": "NO",
         "ENABLE_USER_SCRIPT_SANDBOXING": "NO",
         "INFOPLIST_FILE": "CotEditor/Info.plist",
+        "INFOPLIST_KEY_ITSAppUsesNonExemptEncryption": "NO",
         "INFOPLIST_KEY_LSApplicationCategoryType": "public.app-category.productivity",
+        "INFOPLIST_KEY_NSAppleEventsUsageDescription": "${PRODUCT_NAME} needs your approval to control other applications with AppleScript.",
+        "INFOPLIST_KEY_NSHumanReadableCopyright": "© 2005-2009 nakamuxu\n© 2011, 2014 usami-k\n© 2013-2026 1024jp",
+        "INFOPLIST_KEY_NSMainStoryboardFile": "Main",
         "MARKETING_VERSION": "7.2.0-alpha",
         "PRODUCT_BUNDLE_IDENTIFIER": "com.coteditor.CotEditor",
         "PRODUCT_NAME": "CotEditor",
@@ -236,7 +240,6 @@
       ],
       "build-settings": {
         "BUNDLE_LOADER": "$(TEST_HOST)",
-        "GENERATE_INFOPLIST_FILE": "YES",
         "PRODUCT_BUNDLE_IDENTIFIER": "com.coteditor.CotEditorTests",
         "PRODUCT_NAME": "$(TARGET_NAME)",
         "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/CotEditor.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CotEditor",
@@ -261,7 +264,6 @@
         "compile-sources",
       ],
       "build-settings": {
-        "GENERATE_INFOPLIST_FILE": "YES",
         "PRODUCT_BUNDLE_IDENTIFIER": "com.wolfrosch.CotEditorUITests",
         "PRODUCT_NAME": "$(TARGET_NAME)",
         "TEST_TARGET_NAME": "CotEditor",
@@ -345,6 +347,7 @@
     "GCC_WARN_UNUSED_LABEL": "YES",
     "GCC_WARN_UNUSED_PARAMETER": "YES",
     "GCC_WARN_UNUSED_VARIABLE": "YES",
+    "GENERATE_INFOPLIST_FILE": "YES",
     "LD_RUNPATH_SEARCH_PATHS": [
       "$(inherited)",
       "@executable_path/../Frameworks",
