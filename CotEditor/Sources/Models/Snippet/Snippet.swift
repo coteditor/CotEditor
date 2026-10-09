@@ -144,7 +144,7 @@ extension Snippet {
             .enumerated()
             .reduce(into: ("", [])) { result, item in
                 if item.offset > 0 {
-                    result.selectedRanges.append(NSRange(location: (item.element as NSString).length, length: 0))
+                    result.selectedRanges.append(NSRange(location: (result.string as NSString).length, length: 0))
                 }
                 result.string += item.element
             }
