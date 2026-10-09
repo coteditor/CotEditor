@@ -126,7 +126,7 @@ public extension NSRange {
         
         ranges
             .compactMap(\.self)
-            .reduce(self) { $0.union($1) }
+            .reduce(into: self) { $0.formUnion($1) }
     }
 }
 

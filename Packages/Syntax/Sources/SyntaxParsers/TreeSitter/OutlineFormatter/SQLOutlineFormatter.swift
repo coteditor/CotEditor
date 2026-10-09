@@ -175,7 +175,7 @@ private extension SQLOutlineFormatter {
         guard let firstTypeNode = typeNodes.first else { return nil }
         
         let range = typeNodes.dropFirst()
-            .reduce(firstTypeNode.range) { $0.union($1.range) }
+            .reduce(into: firstTypeNode.range) { $0.formUnion($1.range) }
         let type = source.substring(with: range)
             .replacing(/\s+/, with: " ")
             .trimmingCharacters(in: .whitespacesAndNewlines)
