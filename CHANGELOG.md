@@ -10,6 +10,7 @@
 
 ### Fixes
 
+- Fix a security issue where running the `cot` command from a specially crafted application path could execute unintended commands.
 - Fix an issue where new windows did not inherit the last resized window size when the window size was set to Auto.
 
 

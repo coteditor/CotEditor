@@ -109,6 +109,22 @@ def run_osascript(script: str, is_async: bool = False) -> str:
     return result
 
 
+def osa_string(value: str) -> str:
+    """Return AppleScript string literal for an arbitrary value.
+
+    Args:
+        value (str): Value to embed in AppleScript source.
+    Returns:
+        literal (str): Quoted AppleScript string literal.
+    """
+    escaped = (value.replace('\\', '\\\\')
+                    .replace('"', '\\"')
+                    .replace('\n', '\\n')
+                    .replace('\r', '\\r')
+                    .replace('\t', '\\t'))
+    return '"{}"'.format(escaped)
+
+
 def osa_literal(value: str) -> str:
     """Return AppleScript literal for a value returned by OSA script.
 
@@ -121,7 +137,7 @@ def osa_literal(value: str) -> str:
         int(value)
         return value
     except ValueError:
-        return '"{}"'.format(value.replace('\\', '\\\\').replace('"', '\\"'))
+        return osa_string(value)
 
 
 class ScriptableApplication(object):
@@ -137,7 +153,7 @@ class ScriptableApplication(object):
         Returns:
             result (bool): Is the app running?
         """
-        script = 'app "{}" is running'.format(self.name)
+        script = 'app {} is running'.format(osa_string(self.name))
         try:
             return run_osascript(script) == 'true'
         except CalledProcessError as error:
@@ -153,7 +169,7 @@ class ScriptableApplication(object):
         Returns:
             result (str): Return value of the script.
         """
-        script = 'tell app "{}" to {}'.format(self.name, script)
+        script = 'tell app {} to {}'.format(osa_string(self.name), script)
         try:
             return run_osascript(script, is_async)
         except CalledProcessError as error:
@@ -177,8 +193,7 @@ class ScriptableApplication(object):
         Args:
             path (str): Path to file.
         """
-        path = path.replace('\\', '\\\\').replace('"', '\\"')
-        self.tell('open POSIX file "{}"'.format(path))
+        self.tell('open POSIX file {}'.format(osa_string(path)))
 
     def tell_document(self, script: str, index: int = 1) -> str:
         """Tell OSA command to a document of the application.
@@ -430,9 +445,8 @@ def main(args: argparse.Namespace, stdin: Optional[str]) -> None:
 
     elif stdin:
         # new document with piped text
-        sanitized_stdin = stdin.replace('\\', '\\\\').replace('"', '\\"')
         app.tell('make new document')
-        app.tell_document('set contents to "{}"'.format(sanitized_stdin))
+        app.tell_document('set contents to {}'.format(osa_string(stdin)))
         app.tell_document('set range of selection to {0, 0}')
         document_count = 1
 
@@ -454,8 +468,9 @@ def main(args: argparse.Namespace, stdin: Optional[str]) -> None:
 
     # set syntax
     if args.syntax is not None:
+        syntax = osa_string(args.syntax)
         for index in range(document_count):
-            app.tell_document('set coloring style to "{}"'.format(args.syntax),
+            app.tell_document('set coloring style to {}'.format(syntax),
                               index + 1)
 
     # jump to location
