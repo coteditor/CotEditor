@@ -39,7 +39,7 @@ jobs:
           ${{ runner.os }}-${{ runner.arch }}-xcode-${{ env.XCODE_VERSION }}-spm-${{ matrix.package }}-
     - name: Unit Test for ${{ matrix.package }}
       run: |
-        swift test --package-path "Packages/${{ matrix.package }}" --force-resolved-versions
+        swift test --package-path "Packages/${{ matrix.package }}"
 
   macOS:
     name: Tests for CotEditor
