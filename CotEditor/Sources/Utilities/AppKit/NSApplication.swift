@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021-2023 1024jp
+//  © 2021-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,9 +30,11 @@ extension NSApplication {
     /// Relaunches the application itself.
     final func relaunch() {
         
-        let escapedPath = Bundle.main.bundlePath.replacing("\"", with: "\\\"")
-        let command = "sleep 2; open \"\(escapedPath)\""
+        // pass the bundle path as an argument to prevent shell command substitution
+        let process = Process()
+        process.executableURL = URL(filePath: "/bin/sh")
+        process.arguments = ["-c", "sleep 2; open \"$0\"", Bundle.main.bundlePath]
         
-        Process.launchedProcess(launchPath: "/bin/sh", arguments: ["-c", command])
+        try? process.run()
     }
 }
