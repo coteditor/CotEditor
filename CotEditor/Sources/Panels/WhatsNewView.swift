@@ -108,7 +108,7 @@ struct WhatsNewView: View {
                     Text("Continue", tableName: "WhatsNew", comment: "verb; button")
                         .frame(minWidth: 110)
                 }
-                .prefersDefaultFocus(true, in: self.namespace)
+                .prefersDefaultFocus(in: self.namespace)
                 .keyboardShortcut(.defaultAction)
                 .glassEffect()
             }
