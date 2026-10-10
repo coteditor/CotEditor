@@ -8700,7 +8700,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vlastní nastavení se stejným názvem již existuje. Jeho nahrazením dojde k přepsání aktuálního obsahu."
+            "value" : "Vlastní nastavení se stejným názvem již existuje. Náhradou bude obsah této položky přepsán."
           }
         },
         "de" : {
@@ -8712,13 +8712,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "A custom setting with the same name already exists. Replacing it will overwrite its current content."
+            "value" : "A custom setting with the same name already exists. Replacing it will overwrite its current contents."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A custom setting with the same name already exists. Replacing it will overwrite its current content."
+            "value" : "A custom setting with the same name already exists. Replacing it will overwrite its current contents."
           }
         },
         "es" : {
@@ -8730,19 +8730,19 @@
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Un réglage personnalisé du même nom existe déjà. Si vous le remplacez, son contenu actuel sera écrasé."
+            "value" : "Un réglage personnalisé du même nom existe déjà. Si vous le remplacez, le contenu d’origine sera perdu."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "समान नाम की एक कस्टम सेटिंग पहले से मौजूद है। इसे बदलने से इसकी मौजूदा सामग्री अधिलेखित हो जाएगी।"
+            "value" : "समान नाम की एक कस्टम सेटिंग पहले से मौजूद है। उसे बदलने पर उसका वर्तमान कॉन्टेंट ओवरराइट कर दिया जाएगा।"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esiste già un’opzione con lo stesso nome. Sostituendola, il suo contenuto verrà sovrascritto."
+            "value" : "Esiste già un’opzione con lo stesso nome. Se decidi di sostituire l’opzione, i contenuti attuali verranno sovrascritti."
           }
         },
         "ja" : {
@@ -8754,61 +8754,61 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "같은 이름의 사용자 설정이 이미 있습니다. 교체하면 현재 내용이 덮어쓰기됩니다."
+            "value" : "같은 이름의 사용자 설정이 이미 있습니다. 대치하면 현재 내용을 덮어씁니다."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Er bestaat al een aangepaste instelling met dezelfde naam. Als je deze vervangt, wordt de huidige inhoud overschreven."
+            "value" : "Er bestaat al een aangepaste instelling met dezelfde naam. Als je de instelling vervangt, wordt de content ervan overschreven."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ustawienie własne o tej samej nazwie już istnieje. Zastąpienie go spowoduje nadpisanie jego obecnej zawartości."
+            "value" : "Ustawienie własne o tej samej nazwie już istnieje. Zastąpienie spowoduje nadpisanie jego bieżącej zawartości."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Já existe um ajuste personalizado com o mesmo nome. Substituí-lo sobrescreverá o conteúdo atual."
+            "value" : "Já existe um ajuste personalizado com o mesmo nome. A substituição sobrescreverá o conteúdo atual."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Пользовательский параметр с таким именем уже существует. Замена его перезапишет его текущее содержимое."
+            "value" : "Пользовательский параметр с таким именем уже существует. Замена приведет к перезаписи текущего содержимого этого параметра."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aynı adlı bir özelleştirilmiş ayar hâlihazırda var. Onu değiştirmek geçerli içeriğin üzerine yazacaktır."
+            "value" : "Aynı adlı bir özelleştirilmiş ayar hâlihazırda var. Onu değiştirmek, şu anki içeriğinin üzerine yazacaktır."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Власний параметр з такою назвою вже існує. У разі заміни його поточний вміст буде перезаписано."
+            "value" : "Власний параметр з такою назвою вже існує. Якщо ви заміните цей елемент, то втратите весь його вміст."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已存在同名自定设置。替换后将会覆盖当前内容。"
+            "value" : "已存在同名自定设置。若替换，则会覆盖其当前内容。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已存在同名的自訂設定。取代它將覆寫其當前內容。"
+            "value" : "已存在同名的自訂設定。若選擇取代，將會覆寫原有的內容。"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "相同名稱的自訂設定已經存在。如取代，將會覆寫目前的內容。"
+            "value" : "相同名稱的自訂設定已經存在。如要取代，將會覆寫目前的內容。"
           }
         }
       }
@@ -10373,115 +10373,115 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Název nesmí začínat tečkou „.“."
+            "value" : "Název nesmí začínat tečkou \".\"."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Name darf nicht mit „.“ beginnen."
+            "value" : "Name darf nicht mit einem Punkt „.“ beginnen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Name can’t begin with “.”."
+            "value" : "Name can’t begin with a dot “.”."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Name can’t begin with “.”."
+            "value" : "Name can’t begin with a dot “.”."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El nombre no puede comenzar con “.”."
+            "value" : "El nombre no puede comenzar con un punto “.”."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le nom ne peut pas commencer par « . »."
+            "value" : "Le nom ne peut pas commencer par un point « . »."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "नाम “.” से शुरू नहीं हो सकता।"
+            "value" : "नाम डॉट “.” से शुरू नहीं हो सकता।"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il nome non può iniziare con “.”."
+            "value" : "Il nome non può iniziare con un punto “.”."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "名前を“.”から始めることはできません。"
+            "value" : "名前を“.”（ドット）から始めることはできません。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이름은 ‘.’으로 시작할 수 없습니다."
+            "value" : "이름은 점 ‘.’으로 시작할 수 없습니다."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Naam kan niet beginnen met '.'."
+            "value" : "Naam kan niet beginnen met een punt (.)."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nazwa nie może się zaczynać od „.” (kropki)."
+            "value" : "Nazwa nie może się zaczynać od kropki."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nome não pode começar com “.”."
+            "value" : "Nome não pode começar com um ponto “.”."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Имя не может начинаться с точки."
+            "value" : "Имя не может начинаться с точки «.»."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ad “.” ile başlayamaz."
+            "value" : "Ad nokta (“.”) ile başlayamaz."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Імʼя не може починатися з «.»."
+            "value" : "Імʼя не може починатися з крапки «.»."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "名称不能以“.”开头。"
+            "value" : "名称不能以点“.”开头。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "名稱不能以「.」開頭。"
+            "value" : "名稱不能以點「.」開頭。"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "名稱不能以「.」開頭。"
+            "value" : "名稱不能以點「.」開頭。"
           }
         }
       }

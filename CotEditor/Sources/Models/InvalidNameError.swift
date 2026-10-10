@@ -54,7 +54,7 @@ enum InvalidNameError: LocalizedError {
                        defaultValue: "Name can’t contain new lines.")
             case .startWithDot:
                 String(localized: "InvalidNameError.startWithDot.description",
-                       defaultValue: "Name can’t begin with “.”.")
+                       defaultValue: "Name can’t begin with a dot “.”.")
             case .duplicated(let name):
                 String(localized: "InvalidNameError.duplicated.description",
                        defaultValue: "The name “\(name)” is already taken.",
