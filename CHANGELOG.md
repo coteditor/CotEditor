@@ -3,6 +3,11 @@
 7.1.2 (unreleased)
 --------------------------
 
+#New Features
+
+- Add new “Classic (Dark)” theme.
+
+
 ### Improvements
 
 - Improve Swift syntax highlighting for `unsafe`, `copy`, `consume`, and inline array types.
