@@ -1,6 +1,5 @@
 {
   "organization": "CotEditor Project",
-  "class-prefix": "",
   "default-configuration": "Release",
   "configurations": [
     "Debug",
