@@ -3,7 +3,7 @@
 7.1.2 (unreleased)
 --------------------------
 
-#New Features
+### New Features
 
 - Add new “Classic (Dark)” theme.
 
