@@ -286,15 +286,19 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         guard
             let sidebarViewItem,
-            let viewController = sidebarViewItem.viewController as? NSTabViewController
+            let tabViewController = sidebarViewItem.viewController as? NSTabViewController
         else { return assertionFailure() }
         
         sidebarViewItem.animator().isCollapsed = false
-        viewController.selectedTabViewItemIndex = pane.rawValue
+        tabViewController.selectedTabViewItemIndex = pane.rawValue
         
         // move focus
-        let paneTabviewItem = viewController.tabViewItems[viewController.selectedTabViewItemIndex]
-        self.view.window?.makeFirstResponderDiscardingMarkedText(paneTabviewItem.viewController)
+        if let paneView = tabViewController.tabViewItems[tabViewController.selectedTabViewItemIndex].viewController?.view,
+           let window = self.view.window
+        {
+            window.discardMarkedTextIfNeeded()
+            window.selectKeyView(following: paneView)
+        }
     }
     
     

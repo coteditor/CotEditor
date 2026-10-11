@@ -18,8 +18,14 @@
 7.1.2 (unreleased)
 --------------------------
 
+#New Features
+
+- Add new “Classic (Dark)” theme.
+
+
 ### Improvements
 
+- Focus the search field when opening the folder find pane from the menu or using a keyboard shortcut.
 - Improve Swift syntax highlighting for `unsafe`, `copy`, `consume`, and inline array types.
 
 
