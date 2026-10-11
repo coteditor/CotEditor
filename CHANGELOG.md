@@ -1,6 +1,6 @@
 # Change Log
 
-7.1.2 (unreleased)
+7.1.2 (2026-10-12)
 --------------------------
 
 ### New Features

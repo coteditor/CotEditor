@@ -35,7 +35,7 @@ from typing import Optional
 
 
 # meta data
-__version__ = '7.0.1'
+__version__ = '7.1.2'
 __description__ = 'command-line utility for CotEditor.'
 
 
