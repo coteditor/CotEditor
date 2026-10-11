@@ -294,7 +294,10 @@ final class WindowContentViewController: NSSplitViewController, NSToolbarItemVal
         
         // move focus
         let paneTabviewItem = viewController.tabViewItems[viewController.selectedTabViewItemIndex]
-        self.view.window?.makeFirstResponderDiscardingMarkedText(paneTabviewItem.viewController)
+        if let paneView = paneTabviewItem.viewController?.view, let window = self.view.window {
+            window.discardMarkedTextIfNeeded()
+            window.selectKeyView(following: paneView)
+        }
     }
     
     
