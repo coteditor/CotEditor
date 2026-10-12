@@ -1,5 +1,6 @@
 //
 //  PropertyListValueTests.swift
+//  DefaultsTests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +26,7 @@
 
 import Foundation
 import Testing
-@testable import CotEditor
+@testable import Defaults
 
 struct PropertyListValueTests {
     
@@ -187,7 +188,7 @@ struct PropertyListValueTests {
         ])
         
         let data = try PropertyListSerialization.data(fromPropertyList: value.any, format: .xml, options: 0)
-        let plist = try PropertyListSerialization.propertyList(from: data, format: nil)
+        let plist = try unsafe PropertyListSerialization.propertyList(from: data, format: nil)
         
         #expect(PropertyListValue(plist) == value)
     }

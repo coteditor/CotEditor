@@ -1,5 +1,6 @@
 //
 //  PropertyListValue.swift
+//  Defaults
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,12 +24,12 @@
 //  limitations under the License.
 //
 
-import Foundation
+public import Foundation
 
 /// A type-safe enum that represents all valid property list value types.
 ///
 /// This is used to safely encode and decode property lists while conforming to `Sendable`.
-enum PropertyListValue: Equatable, Sendable {
+public enum PropertyListValue: Equatable, Sendable {
     
     case string(String)
     case bool(Bool)
@@ -43,7 +44,7 @@ enum PropertyListValue: Equatable, Sendable {
     /// Creates a property list value from a raw property list object.
     ///
     /// - Parameter any: The raw object.
-    init?(_ any: Any) {
+    public init?(_ any: Any) {
         
         switch any {
             case is NSNull:
@@ -90,7 +91,7 @@ enum PropertyListValue: Equatable, Sendable {
     
     
     /// The raw property list representation.
-    var any: any Sendable {
+    public var any: any Sendable {
         
         switch self {
             case .string(let value): value
