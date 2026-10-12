@@ -41,7 +41,7 @@ import ValueRange
         
         controller.setupParser()
         
-        let didHighlight = await self.waitFor {
+        let didHighlight = await Task.waitFor {
             !layoutManager.syntaxHighlights().isEmpty
         }
         
@@ -64,14 +64,14 @@ import ValueRange
         
         controller.setupParser()
         
-        let didHighlight = await self.waitFor {
+        let didHighlight = await Task.waitFor {
             !layoutManager.syntaxHighlights().isEmpty
         }
         #expect(didHighlight)
         
         controller.update(syntax: Syntax(), name: "UnitTest-Empty")
         
-        let didClear = await self.waitFor {
+        let didClear = await Task.waitFor {
             layoutManager.syntaxHighlights().isEmpty
         }
         
@@ -93,7 +93,7 @@ import ValueRange
         
         controller.setupParser()
         
-        let didParseOutline = await self.waitFor {
+        let didParseOutline = await Task.waitFor {
             controller.outlineItems?.isEmpty == false
         }
         
@@ -120,20 +120,6 @@ import ValueRange
         let controller = SyntaxController(textStorage: textStorage, syntax: syntax, name: "mock")
         
         return (controller, layoutManager, textStorage)
-    }
-    
-    
-    private func waitFor(timeout: Duration = .seconds(2), interval: Duration = .milliseconds(20), _ condition: @escaping () -> Bool) async -> Bool {
-        
-        let clock = ContinuousClock()
-        let deadline = clock.now.advanced(by: timeout)
-        
-        while clock.now < deadline {
-            if condition() { return true }
-            try? await Task.sleep(for: interval)
-        }
-        
-        return condition()
     }
 }
 

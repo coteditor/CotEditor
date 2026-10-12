@@ -59,14 +59,14 @@ import ValueRange
         let detector = URLDetector(textStorage: textStorage)
         defer { detector.cancel() }
         
-        let didDetectInitialLinks = await self.waitFor {
+        let didDetectInitialLinks = await Task.waitFor {
             self.links(in: textStorage).count == 2
         }
         try #require(didDetectInitialLinks, "The initial URLs must be detected.")
         
         textStorage.replaceCharacters(in: (textStorage.string as NSString).range(of: firstURL), with: "Not a URL")
         
-        let didRemoveEditedLink = await self.waitFor {
+        let didRemoveEditedLink = await Task.waitFor {
             self.links(in: textStorage) == [
                 ValueRange(value: secondLink,
                            range: (textStorage.string as NSString).range(of: secondURL)),
@@ -78,7 +78,7 @@ import ValueRange
         let replacementLink = try #require(URL(string: replacementURL))
         textStorage.replaceCharacters(in: (textStorage.string as NSString).range(of: "Not a URL"), with: replacementURL)
         
-        let didDetectReplacementLink = await self.waitFor {
+        let didDetectReplacementLink = await Task.waitFor {
             self.links(in: textStorage) == [
                 ValueRange(value: replacementLink,
                            range: (textStorage.string as NSString).range(of: replacementURL)),
@@ -96,7 +96,7 @@ import ValueRange
         let textStorage = NSTextStorage(string: "https://example.com")
         let detector = URLDetector(textStorage: textStorage)
         
-        let didDetectInitialLink = await self.waitFor {
+        let didDetectInitialLink = await Task.waitFor {
             !self.links(in: textStorage).isEmpty
         }
         try #require(didDetectInitialLink, "The initial URL must be detected.")
@@ -148,26 +148,5 @@ import ValueRange
         }
         
         return links
-    }
-    
-    
-    /// Waits until the given condition is satisfied.
-    ///
-    /// - Parameters:
-    ///   - timeout: The maximum duration to wait.
-    ///   - interval: The interval between condition checks.
-    ///   - condition: The condition to evaluate.
-    /// - Returns: `true` if the condition was satisfied; otherwise, `false`.
-    private func waitFor(timeout: Duration = .seconds(2), interval: Duration = .milliseconds(20), _ condition: @escaping () -> Bool) async -> Bool {
-        
-        let clock = ContinuousClock()
-        let deadline = clock.now.advanced(by: timeout)
-        
-        while clock.now < deadline {
-            if condition() { return true }
-            try? await Task.sleep(for: interval)
-        }
-        
-        return condition()
     }
 }
