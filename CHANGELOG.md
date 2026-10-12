@@ -16,10 +16,10 @@
 
 
 
-7.1.2 (unreleased)
+7.1.2 (2026-10-12)
 --------------------------
 
-#New Features
+### New Features
 
 - Add new “Classic (Dark)” theme.
 
@@ -32,6 +32,8 @@
 
 ### Fixes
 
+- Fix a security issue where running the `cot` command from a specially crafted application path could execute unintended commands.
+- Fix a security issue where restarting the app from a specially crafted application path could execute unintended commands.
 - Fix an issue where new windows did not inherit the last resized window size when the window size was set to Auto.
 
 
