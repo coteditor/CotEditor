@@ -176,10 +176,9 @@ import SyntaxFormat
             ]),
         ])
         
-        let directoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
-        try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
-        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
         let archiveURL = directoryURL.appendingPathComponent("Settings").appendingPathExtension("cotsettings")
+        
         try archive.write(to: archiveURL, options: .atomic, originalContentsURL: nil)
         
         return archiveURL

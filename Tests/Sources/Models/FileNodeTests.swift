@@ -127,8 +127,7 @@ struct FileNodeTests {
     
     private func makeDirectoryTree() throws -> DirectoryTree {
         
-        let rootURL = FileManager.default.temporaryDirectory
-            .appending(path: UUID().uuidString, directoryHint: .isDirectory)
+        let rootURL = try FileManager.default.makeTemporaryDirectory()
         let folderURL = rootURL.appending(path: "folder", directoryHint: .isDirectory)
         let childFolderURL = folderURL.appending(path: "child", directoryHint: .isDirectory)
         let leafURL = childFolderURL.appending(path: "leaf.txt", directoryHint: .notDirectory)
@@ -144,11 +143,8 @@ struct FileNodeTests {
     
     private func makeTypeChangeTree(itemIsDirectory: Bool) throws -> (rootURL: URL, itemURL: URL, leafURL: URL?) {
         
-        let rootURL = FileManager.default.temporaryDirectory
-            .appending(path: UUID().uuidString, directoryHint: .isDirectory)
+        let rootURL = try FileManager.default.makeTemporaryDirectory()
         let itemURL = rootURL.appending(path: "item", directoryHint: itemIsDirectory ? .isDirectory : .notDirectory)
-        
-        try FileManager.default.createDirectory(at: rootURL, withIntermediateDirectories: true)
         
         if itemIsDirectory {
             let leafURL = itemURL.appending(path: "leaf.txt", directoryHint: .notDirectory)

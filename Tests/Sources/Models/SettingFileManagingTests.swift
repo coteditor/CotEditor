@@ -251,10 +251,9 @@ import SyntaxFormat
     
     private func createNativeSyntaxFile(setting: Syntax) throws -> URL {
         
-        let directoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
-        try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
-        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
         let fileURL = directoryURL.appendingPathComponent("Imported", conformingTo: .cotSyntax)
+        
         try setting.fileWrapper.write(to: fileURL, options: .atomic, originalContentsURL: nil)
         
         return fileURL
@@ -275,10 +274,9 @@ import SyntaxFormat
     
     private func createTemporaryFile(type: UTType, data: Data) throws -> URL {
         
-        let directoryURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
-        try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
-        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
         let fileURL = directoryURL.appendingPathComponent("Imported", conformingTo: type)
+        
         try data.write(to: fileURL)
         
         return fileURL

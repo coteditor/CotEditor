@@ -68,8 +68,7 @@ struct DirectoryDocumentTests {
     
     private func makeMoveConflictTree() throws -> MoveConflictTreeURLs {
         
-        let rootURL = FileManager.default.temporaryDirectory
-            .appending(path: UUID().uuidString, directoryHint: .isDirectory)
+        let rootURL = try FileManager.default.makeTemporaryDirectory()
         let folderURL = rootURL.appending(path: "folder", directoryHint: .isDirectory)
         let childFolderURL = folderURL.appending(path: "child", directoryHint: .isDirectory)
         let leafURL = childFolderURL.appending(path: "leaf.txt", directoryHint: .notDirectory)

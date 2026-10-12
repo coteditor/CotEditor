@@ -37,7 +37,7 @@ import UniformTypeIdentifiers
     @Test(.timeLimit(.minutes(1)))
     func findUpdatesStateWithSummary() async throws {
         
-        let rootURL = try Self.makeTemporaryDirectory()
+        let rootURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: rootURL) }
         
         try Data("needle\nhay\n".utf8).write(to: rootURL.appending(path: "a.txt"))
@@ -67,7 +67,7 @@ import UniformTypeIdentifiers
     @Test(.timeLimit(.minutes(1)))
     func removeResultsUpdatesStateWithSummary() async throws {
         
-        let rootURL = try Self.makeTemporaryDirectory()
+        let rootURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: rootURL) }
         
         try Data("needle\nneedle\nneedle\n".utf8).write(to: rootURL.appending(path: "a.txt"))
@@ -111,7 +111,7 @@ import UniformTypeIdentifiers
     @Test(.timeLimit(.minutes(1)))
     func editingIndependentDocumentUpdatesMatchRanges() async throws {
         
-        let rootURL = try Self.makeTemporaryDirectory()
+        let rootURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: rootURL) }
         
         let fileURL = rootURL.appending(path: "a.txt").standardizedFileURL
@@ -145,7 +145,7 @@ import UniformTypeIdentifiers
     @Test(.timeLimit(.minutes(1)))
     func invalidRegularExpressionFails() async throws {
         
-        let rootURL = try Self.makeTemporaryDirectory()
+        let rootURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: rootURL) }
         
         try Data("needle\n".utf8).write(to: rootURL.appending(path: "a.txt"))
@@ -246,19 +246,6 @@ import UniformTypeIdentifiers
         }
         
         throw WaitError.unexpectedState
-    }
-    
-    
-    /// Creates a temporary directory for a test.
-    ///
-    /// - Returns: The created directory URL.
-    private static func makeTemporaryDirectory() throws -> URL {
-        
-        let url = FileManager.default.temporaryDirectory
-            .appending(path: UUID().uuidString, directoryHint: .isDirectory)
-        try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
-        
-        return url
     }
 }
 
