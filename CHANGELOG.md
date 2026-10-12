@@ -5,6 +5,7 @@
 
 ### Improvements
 
+- Update tree-sitter-php to 0.25.1.
 - [dev] Update the build environment to Xcode 27.1.
 
 
