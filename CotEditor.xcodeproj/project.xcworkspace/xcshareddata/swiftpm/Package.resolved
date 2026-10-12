@@ -1,5 +1,5 @@
 {
-  "originHash" : "e8a3bb54d55b68d8b376cfbb6788864a3b787ab3a096be2bd2661bb6ad3257a3",
+  "originHash" : "f193678549220f342aee57d4f0d19c95b850a81deeb552a41480bffe88fc2495",
   "pins" : [
     {
       "identity" : "sparkle",
@@ -186,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tree-sitter/tree-sitter-php",
       "state" : {
-        "revision" : "92b5271b60bec77fb65b5e5bc41561e8dac81299",
-        "version" : "0.25.0"
+        "revision" : "58d5643086ae60e93a3746cca648363ee97c8761",
+        "version" : "0.25.1"
       }
     },
     {
@@ -240,7 +240,6 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/alex-pinkus/tree-sitter-swift",
       "state" : {
-        "branch" : "with-generated-files",
         "revision" : "82bb3a533e0801fd2bbaa11dc49676e10bf41948"
       }
     },
