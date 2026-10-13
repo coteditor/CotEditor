@@ -39,7 +39,6 @@ struct GeneralSettingsView: View {
     
     @AppStorage(.quitAlwaysKeepsWindows) private var quitAlwaysKeepsWindows: Bool
     @AppStorage(.noDocumentOnLaunchOption) private var noDocumentOnLaunchOption: NoDocumentOnLaunchOption
-    
     @AppStorage(.enablesAutosaveInPlace) private var enablesAutosaveInPlace: Bool
     @AppStorage(.documentConflictOption) private var documentConflictOption: DocumentConflictOption
     
@@ -97,37 +96,31 @@ struct GeneralSettingsView: View {
                 Text("Document save:", tableName: "GeneralSettings")
                     .gridColumnAlignment(.trailing)
                 
-                VStack(alignment: .leading) {
-                    Toggle(.init("Enable Auto Save with Versions", table: "GeneralSettings", comment: "verb; checkbox"), isOn: $enablesAutosaveInPlace)
-                        .onChange(of: self.enablesAutosaveInPlace) { _, newValue in
-                            if newValue != self.initialEnablesAutosaveInPlace {
-                                self.isAutosaveChangeConfirmationPresented = true
-                            }
-                        }
-                        .onAppear {
-                            self.initialEnablesAutosaveInPlace = self.enablesAutosaveInPlace
-                        }
-                        .confirmationDialog(.init("NextSessionApplicationConfirmation.title", defaultValue: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: $isAutosaveChangeConfirmationPresented) {
-                            Button(.init("Restart Now", table: "GeneralSettings", comment: "verb; button")) {
-                                (NSApp.delegate as? AppDelegate)?.needsRelaunch = true
-                                NSApp.terminate(self)
-                            }
-                            Button(.init("Later", table: "GeneralSettings", comment: "button")) {
-                                // do nothing
-                            }
-                            Button(role: .cancel) {
-                                self.enablesAutosaveInPlace.toggle()
-                            }
-                        } message: {
-                            Text(.init("NextSessionApplicationConfirmation.message", defaultValue: "Do you want to restart CotEditor now?", table: "GeneralSettings"))
-                        }
-                    
+                Toggle(isOn: $enablesAutosaveInPlace) {
+                    Text("Enable Auto Save with Versions", tableName: "GeneralSettings", comment: "verb; checkbox")
                     Text("A system feature that automatically overwrites your files while editing. Even if turned off, CotEditor covertly creates a backup in case it unexpectedly quits.", tableName: "GeneralSettings")
-                        .foregroundStyle(.secondary)
-                        .controlSize(.small)
-                        .lineLimit(10)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(.leading, 22)
+                }
+                .onChange(of: self.enablesAutosaveInPlace) { _, newValue in
+                    if newValue != self.initialEnablesAutosaveInPlace {
+                        self.isAutosaveChangeConfirmationPresented = true
+                    }
+                }
+                .onAppear {
+                    self.initialEnablesAutosaveInPlace = self.enablesAutosaveInPlace
+                }
+                .confirmationDialog(.init("NextSessionApplicationConfirmation.title", defaultValue: "The change will be applied first on the next launch.", table: "GeneralSettings"), isPresented: $isAutosaveChangeConfirmationPresented) {
+                    Button(.init("Restart Now", table: "GeneralSettings", comment: "verb; button")) {
+                        (NSApp.delegate as? AppDelegate)?.needsRelaunch = true
+                        NSApp.terminate(self)
+                    }
+                    Button(.init("Later", table: "GeneralSettings", comment: "button")) {
+                        // do nothing
+                    }
+                    Button(role: .cancel) {
+                        self.enablesAutosaveInPlace.toggle()
+                    }
+                } message: {
+                    Text(.init("NextSessionApplicationConfirmation.message", defaultValue: "Do you want to restart CotEditor now?", table: "GeneralSettings"))
                 }
             }
             
