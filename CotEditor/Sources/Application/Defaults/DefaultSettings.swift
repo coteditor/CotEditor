@@ -43,6 +43,7 @@ struct DefaultSettings {
             .enablesRemoteEditing: false,
             .remoteEditingPort: RMateServer.defaultPort,
             .checksUpdatesForBeta: false,
+            .syncsSettings: false,
             
             // Appearance
             .font: try? FontType.standard.systemFont().archivedData,

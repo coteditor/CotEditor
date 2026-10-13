@@ -1035,6 +1035,47 @@
         }
       }
     },
+    "Keep a copy in iCloud" : {
+      "comment" : "verb; checkbox; refer to the expression for “Keep a copy” by Apple",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopie in iCloud behalten"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep a copy in iCloud"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Guardar una copia en iCloud"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Conserver une copie sur iCloud"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloudにコピーを保存"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bewaar een kopie in iCloud"
+          }
+        }
+      }
+    },
     "Later" : {
       "comment" : "button",
       "localizations" : {
@@ -2576,6 +2617,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "軟件更新："
+          }
+        }
+      }
+    },
+    "Store a copy of these settings for other devices to import." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sichere eine Kopie dieser Einstellungen, um sie auf anderen Geräten importieren zu können."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Store a copy of these settings for other devices to import."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Guarda una copia de estos ajustes para poder importarlos en otros dispositivos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Enregistrez une copie de ces réglages pour pouvoir les importer sur d’autres appareils."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ほかのデバイスで読み込めるように、設定のコピーを保存します。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bewaar een kopie van deze instellingen om ze op andere apparaten te kunnen importeren."
           }
         }
       }

@@ -40,6 +40,7 @@ struct GeneralSettingsView: View {
     @AppStorage(.quitAlwaysKeepsWindows) private var quitAlwaysKeepsWindows: Bool
     @AppStorage(.noDocumentOnLaunchOption) private var noDocumentOnLaunchOption: NoDocumentOnLaunchOption
     @AppStorage(.enablesAutosaveInPlace) private var enablesAutosaveInPlace: Bool
+    @AppStorage(.syncsSettings) private var syncsSettings: Bool
     @AppStorage(.documentConflictOption) private var documentConflictOption: DocumentConflictOption
     
     @State private var initialEnablesAutosaveInPlace: Bool = false
@@ -154,12 +155,19 @@ struct GeneralSettingsView: View {
                     .gridColumnAlignment(.trailing)
                     .accessibilityLabeledPair(role: .label, id: "settingsPorting", in: self.accessibility)
                 
-                HStack {
-                    Button(.init("Action.export.label", defaultValue: "Export…")) {
-                        self.isSettingsExporterPresented.toggle()
+                VStack(alignment: .leading) {
+                    Toggle(isOn: $syncsSettings) {
+                        Text("Keep a copy in iCloud", tableName: "GeneralSettings", comment: "verb; checkbox")
+                        Text("Store a copy of these settings for other devices to import.", tableName: "GeneralSettings")
                     }
-                    Button(.init("Action.import.ellipsis.label", defaultValue: "Import…")) {
-                        self.isSettingsImporterPresented.toggle()
+                    HStack {
+                        Spacer()
+                        Button(.init("Action.export.label", defaultValue: "Export…")) {
+                            self.isSettingsExporterPresented.toggle()
+                        }
+                        Button(.init("Action.import.ellipsis.label", defaultValue: "Import…")) {
+                            self.isSettingsImporterPresented.toggle()
+                        }
                     }
                 }
                 .accessibilityLabeledPair(role: .content, id: "settingsPorting", in: self.accessibility)
