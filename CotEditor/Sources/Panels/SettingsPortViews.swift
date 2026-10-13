@@ -46,8 +46,10 @@ struct ExportSettingsView: View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading, spacing: 6) {
                 Text("Export Settings", tableName: "SettingsPorting")
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.system(size: 14, weight: .semibold))
                 Text("Export selected settings as an archive to allow importing into other computers.", tableName: "SettingsPorting")
+                    .controlSize(.small)
+                    .foregroundStyle(.secondary)
             }
             .padding(.bottom, 12)
             
@@ -69,7 +71,6 @@ struct ExportSettingsView: View {
             self.document = nil
         }
         .alert(error: $error)
-        .frame(width: 340)
     }
     
     
@@ -92,7 +93,6 @@ struct ImportSettingsView: View {
     
     typealias Types = PortableSettingsDocument.SettingTypes
     
-    var name: String
     var document: PortableSettingsDocument
     
     
@@ -106,8 +106,8 @@ struct ImportSettingsView: View {
     var body: some View {
         
         VStack(alignment: .leading, spacing: 8) {
-            Text(self.name)
-                .font(.system(size: 14, weight: .bold))
+            Text("Import Settings", tableName: "SettingsPorting")
+                .font(.system(size: 14, weight: .semibold))
             
             if let documentError {
                 DocumentErrorView(error: documentError)
@@ -130,7 +130,6 @@ struct ImportSettingsView: View {
             }
         }
         .alert(error: $error)
-        .frame(width: 340)
     }
     
     
@@ -268,6 +267,6 @@ extension PortableSettingsDocument.Error: LocalizedError {
     var document = try! PortableSettingsDocument(including: .all)
     document.info.version = Version(6, 0, 0)
     
-    return ImportSettingsView(name: "Untitled", document: document)
+    return ImportSettingsView(document: document)
         .scenePadding()
 }

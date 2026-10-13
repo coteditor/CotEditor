@@ -67,7 +67,7 @@ extension Logger {
 
 
 @main
-@MainActor final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidations {
+@MainActor final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Enums
     
@@ -101,7 +101,6 @@ extension Logger {
     private weak var aboutPanel: NSPanel?
     private weak var whatsNewPanel: NSPanel?
     private weak var donationPanel: NSPanel?
-    private weak var exportSettingsPanel: NSPanel?
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxesMenu: NSMenu?
@@ -293,18 +292,6 @@ extension Logger {
     
     // MARK: Action Messages
     
-    func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
-        
-        switch item.action {
-            case #selector(importSettings):
-                return !self.isSettingsImporterPresented
-            default: break
-        }
-        
-        return true
-    }
-    
-    
     /// Activates self and perform New menu action (from Dock menu).
     @IBAction func newDocumentActivatingApplication(_ sender: Any?) {
         
@@ -358,54 +345,6 @@ extension Logger {
         panel.makeKeyAndOrderFront(nil)
         
         self.donationPanel = panel
-    }
-    
-    
-    /// Opens the Export Settings panel.
-    @IBAction func exportSettings(_ sender: Any?) {
-        
-        let panel = self.exportSettingsPanel ?? NSPanel(
-            view: ExportSettingsView(includedTypes: PortableSettingsDocument.exportableSettings).scenePadding(),
-            hidesTitleButtons: true,
-            title: String(localized: "Export Settings", table: "SettingsPorting", comment: "window title")
-        )
-        panel.makeKeyAndOrderFront(nil)
-        
-        self.exportSettingsPanel = panel
-    }
-    
-    
-    /// Opens the Import Settings panel.
-    @IBAction func importSettings(_ sender: Any?) {
-        
-        let panel = NSOpenPanel()
-        panel.allowedContentTypes = [.cotSettings]
-        panel.message = String(localized: "Choose a CotEditor settings archive to import.", table: "SettingsPorting")
-        panel.prompt = String(localized: "Action.import.label", defaultValue: "Import")
-        
-        self.isSettingsImporterPresented = true
-        
-        panel.begin { response in
-            self.isSettingsImporterPresented = false
-            
-            guard response == .OK, let url = panel.url else { return }
-            
-            let document: PortableSettingsDocument
-            do {
-                document = try PortableSettingsDocument(contentsOf: url)
-            } catch {
-                NSApp.presentError(error)
-                return
-            }
-            
-            let name = url.deletingPathExtension().lastPathComponent
-            let panel = NSPanel(
-                view: ImportSettingsView(name: name, document: document).scenePadding(),
-                hidesTitleButtons: true,
-                title: String(localized: "Import Settings", table: "SettingsPorting", comment: "window title")
-            )
-            panel.makeKeyAndOrderFront(nil)
-        }
     }
     
     

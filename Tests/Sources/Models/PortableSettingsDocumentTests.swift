@@ -33,12 +33,16 @@ import SyntaxFormat
 
 @MainActor struct PortableSettingsDocumentTests {
     
-    @Test func settingsArchiveRoundTripKeepsCustomSyntaxPackage() throws {
+    @Test(arguments: [false, true])
+    func settingsArchiveRoundTripKeepsCustomSyntaxPackage(removesSource: Bool) throws {
         
         let archiveURL = try self.createSettingsArchive()
         defer { try? FileManager.default.removeItem(at: archiveURL.deletingLastPathComponent()) }
         
         let document = try PortableSettingsDocument(contentsOf: archiveURL)
+        if removesSource {
+            try FileManager.default.removeItem(at: archiveURL)
+        }
         let payload = try #require(document.syntaxes["Sample.cotsyntax"])
         let fileWrapper = try #require(payload as? FileWrapper)
         let syntax = try Syntax(payload: fileWrapper, type: .cotSyntax)

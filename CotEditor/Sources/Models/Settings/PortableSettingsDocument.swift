@@ -36,7 +36,7 @@ extension UTType {
 }
 
 
-struct PortableSettingsDocument: FileDocument {
+struct PortableSettingsDocument: FileDocument, Identifiable {
     
     struct Info: Equatable, Codable {
         
@@ -81,6 +81,7 @@ struct PortableSettingsDocument: FileDocument {
     
     
     var info: Info
+    var id = UUID()
     
     var defaults: [String: PropertyListValue]
     var keyBindings: Data?
@@ -93,7 +94,7 @@ struct PortableSettingsDocument: FileDocument {
         
         assert((try? fileURL.resourceValues(forKeys: [.contentTypeKey]))?.contentType == .cotSettings)
         
-        let file = try FileWrapper(url: fileURL)
+        let file = try FileWrapper(url: fileURL, options: [.immediate, .withoutMapping])
         
         try self.init(file: file)
     }

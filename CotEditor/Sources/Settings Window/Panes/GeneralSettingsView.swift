@@ -44,10 +44,14 @@ struct GeneralSettingsView: View {
     @AppStorage(.documentConflictOption) private var documentConflictOption: DocumentConflictOption
     
     @State private var initialEnablesAutosaveInPlace: Bool = false
+    @State private var error: any Error?
     
     @State private var isAutosaveChangeConfirmationPresented = false
     @State private var suppressesQuitAlwaysKeepsWindowsChangeConfirmation = false
     @State private var isQuitAlwaysKeepsWindowsChangeConfirmationPresented = false
+    @State private var isSettingsExporterPresented = false
+    @State private var isSettingsImporterPresented = false
+    @State private var importingSettings: PortableSettingsDocument?
     @State private var isWarningsSettingPresented = false
     
     
@@ -153,6 +157,53 @@ struct GeneralSettingsView: View {
             }
             
             GridRow {
+                Text("Settings import & export:", tableName: "GeneralSettings")
+                    .gridColumnAlignment(.trailing)
+                    .accessibilityLabeledPair(role: .label, id: "settingsPorting", in: self.accessibility)
+                
+                HStack {
+                    Button(.init("Action.export.label", defaultValue: "Export…")) {
+                        self.isSettingsExporterPresented.toggle()
+                    }
+                    Button(.init("Action.import.ellipsis.label", defaultValue: "Import…")) {
+                        self.isSettingsImporterPresented.toggle()
+                    }
+                }
+                .accessibilityLabeledPair(role: .content, id: "settingsPorting", in: self.accessibility)
+                .fileImporter(isPresented: $isSettingsImporterPresented, allowedContentTypes: [.cotSettings]) { result in
+                    switch result {
+                        case .success(let url):
+                            let accessing = url.startAccessingSecurityScopedResource()
+                            defer {
+                                if accessing { url.stopAccessingSecurityScopedResource() }
+                            }
+                            
+                            do {
+                                self.importingSettings = try PortableSettingsDocument(contentsOf: url)
+                            } catch {
+                                self.error = error
+                            }
+                        case .failure(let error):
+                            self.error = error
+                    }
+                }
+                .fileDialogMessage(.init("Choose a CotEditor settings archive to import.", table: "SettingsPorting"))
+                .fileDialogConfirmationLabel(.init("Action.import.label", defaultValue: "Import"))
+                .sheet(isPresented: $isSettingsExporterPresented) {
+                    ExportSettingsView(includedTypes: PortableSettingsDocument.exportableSettings)
+                        .scenePadding()
+                        .frame(width: 420)
+                        .presentationSizing(.fitted)
+                }
+                .sheet(item: $importingSettings) { document in
+                    ImportSettingsView(document: document)
+                        .scenePadding()
+                        .frame(width: 420)
+                        .presentationSizing(.fitted)
+                }
+            }
+            
+            GridRow {
                 Text("Dialog warnings:", tableName: "GeneralSettings")
                     .gridColumnAlignment(.trailing)
                     .accessibilityLabeledPair(role: .label, id: "dialogWarnings", in: self.accessibility)
@@ -178,6 +229,7 @@ struct GeneralSettingsView: View {
             }
         }
         .fixedSize(horizontal: false, vertical: true)
+        .alert(error: $error)
     }
 }
 

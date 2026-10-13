@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="25406" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="25098"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="25406"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -139,19 +139,6 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="shareDocument:" target="Ady-hI-5gd" id="UEX-s7-POt"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="eze-n7-ZIP"/>
-                                        <menuItem title="Export Settings…" secondaryImage="square.and.arrow.up" catalog="system" id="j05-hW-y8z">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="exportSettings:" target="Voe-Tx-rLC" id="Hky-Go-aJ8"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Import Settings…" secondaryImage="square.and.arrow.down" catalog="system" id="dP6-KD-0D7">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="importSettings:" target="Voe-Tx-rLC" id="2co-uF-mjh"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="74"/>
@@ -1478,7 +1465,6 @@ AAAAFBk
         <image name="sidebar.leading" catalog="system" width="18" height="14"/>
         <image name="sidebar.trailing" catalog="system" width="18" height="14"/>
         <image name="sparkles" catalog="system" width="15" height="17"/>
-        <image name="square.and.arrow.down" catalog="system" width="15" height="17"/>
         <image name="square.and.arrow.up" catalog="system" width="15" height="18"/>
         <image name="square.and.pencil" catalog="system" width="17" height="16"/>
         <image name="tab.forward" width="12" height="10"/>
