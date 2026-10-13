@@ -42,6 +42,9 @@ struct PortableSettingsDocument: FileDocument, Identifiable {
         
         var date: Date
         var version: Version
+        var machineName: String?
+        var userName: String?
+        var sourceID: UUID?
     }
     
     
@@ -219,9 +222,20 @@ struct PortableSettingsDocument: FileDocument, Identifiable {
     }
     
     
-    init(including types: SettingTypes, userDefaults: UserDefaults = .standard) throws {
+    /// Creates an archive of the selected settings in the current user environment.
+    ///
+    /// - Parameters:
+    ///   - types: The setting types to include.
+    ///   - sourceID: The persistent identifier of the source environment, if available.
+    ///   - userDefaults: The user defaults store from which settings are exported.
+    /// - Throws: An error if encoding the key binding settings fails.
+    init(including types: SettingTypes, sourceID: UUID? = nil, userDefaults: UserDefaults = .standard) throws {
         
-        self.info = Info(date: .now, version: Bundle.main.version!)
+        self.info = Info(date: .now,
+                         version: Bundle.main.version!,
+                         machineName: Host.current().localizedName,
+                         userName: NSUserName(),
+                         sourceID: sourceID)
         
         var keys: [DefaultKeys] = []
         if types.contains(.settings) {
