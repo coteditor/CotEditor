@@ -258,7 +258,7 @@ private struct SettingsImportMenu: View {
             .menuStyle(.button)
             .menuOrder(.fixed)
             .disabled(self.importingCloudArchiveURL != nil)
-            .task {
+            .task(id: CloudSettingsManager.shared.ubiquityIdentityToken as? NSObject) {
                 await self.observeCloudArchives()
             }
             .task(id: self.importingCloudArchiveURL) {
@@ -312,8 +312,11 @@ private struct SettingsImportMenu: View {
     /// Updates the cloud archive menu while the view is visible.
     private func observeCloudArchives() async {
         
+        guard !Task.isCancelled else { return }
+        
         self.cloudArchives = nil
         self.cloudArchivesError = nil
+        self.importingCloudArchiveURL = nil
         
         do {
             for try await archives in CloudSettingsManager.shared.archives() {
@@ -332,19 +335,28 @@ private struct SettingsImportMenu: View {
         
         guard let url = self.importingCloudArchiveURL else { return }
         
-        defer {
-            if self.importingCloudArchiveURL == url {
-                self.importingCloudArchiveURL = nil
-            }
+        // -> The account can change before SwiftUI cancels this task.
+        let identity = CloudSettingsManager.shared.ubiquityIdentityToken as? NSObject
+        
+        let result: Result<PortableSettingsDocument, any Error>
+        do {
+            result = .success(try await CloudSettingsManager.shared.load(from: url))
+        } catch {
+            result = .failure(error)
         }
         
-        do {
-            let document = try await CloudSettingsManager.shared.load(from: url)
-            guard !Task.isCancelled else { return }
-            self.importingSettings = document
-        } catch {
-            guard !Task.isCancelled else { return }
-            self.error = error
+        guard
+            !Task.isCancelled,
+            identity == CloudSettingsManager.shared.ubiquityIdentityToken as? NSObject,
+            self.importingCloudArchiveURL == url
+        else { return }
+        
+        self.importingCloudArchiveURL = nil
+        switch result {
+            case .success(let document):
+                self.importingSettings = document
+            case .failure(let error):
+                self.error = error
         }
     }
 }

@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import Observation
 import Synchronization
 import UniformTypeIdentifiers
 import Testing
@@ -31,6 +32,38 @@ import Defaults
 @testable import CotEditor
 
 @MainActor struct CloudSettingsManagerTests {
+    
+    /// Verifies that cloud identity changes are observable without enabling automatic saving or retaining the manager.
+    ///
+    /// - Parameter usesTypedMessage: Whether to post a typed message rather than a legacy notification.
+    /// - Throws: An error if creating the defaults store or waiting for observation updates fails.
+    @Test(.serialized, .timeLimit(.minutes(1)), arguments: [false, true])
+    func cloudIdentityObservationLifecycle(usesTypedMessage: Bool) async throws {
+        
+        try await self.withDefaults { defaults in
+            defaults[.syncsSettings] = false
+            var manager: CloudSettingsManager? = CloudSettingsManager(defaults: defaults)
+            manager?.start()
+            manager?.start()
+            weak let weakManager = manager
+            var identities = Observations { _ = manager?.ubiquityIdentityToken }.makeAsyncIterator()
+            try #require(await identities.next() != nil)
+            
+            if usesTypedMessage {
+                NotificationCenter.default.post(FileManager.UbiquityIdentityDidChangeMessage())
+            } else {
+                NotificationCenter.default.post(name: .NSUbiquityIdentityDidChange, object: nil)
+            }
+            
+            try #require(await identities.next() != nil)
+            #expect(!defaults[.syncsSettings])
+            #expect(manager?.hasPendingSave == false)
+            
+            manager = nil
+            #expect(weakManager == nil)
+        }
+    }
+    
     
     /// Verifies that the source identifier survives recreating a manager.
     ///

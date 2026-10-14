@@ -73,6 +73,9 @@ enum CloudSettingsError: LocalizedError {
     
     private(set) var error: any Error?
     
+    /// The current iCloud identity, or `nil` when iCloud Drive is unavailable.
+    private(set) var ubiquityIdentityToken = FileManager.default.ubiquityIdentityToken
+    
     /// Whether a settings archive is waiting to be saved or is being written.
     var hasPendingSave: Bool  { self.saveDebouncer.isScheduled || self.saveRequested || self.saveTask != nil }
     
@@ -88,6 +91,7 @@ enum CloudSettingsError: LocalizedError {
     private let fileQueue = OperationQueue()
     
     private var enabledObserver: AnyCancellable?
+    private var ubiquityIdentityObserver: NotificationCenter.ObservationToken?
     private var changeObservers: [NotificationCenter.ObservationToken] = []
     private var lastDefaults: [String: PropertyListValue] = [:]
     private var saveTask: Task<Void, Never>?
@@ -133,10 +137,21 @@ enum CloudSettingsError: LocalizedError {
     
     // MARK: Public Methods
     
-    /// Starts observing whether automatic saving is enabled and changes to portable settings.
+    /// Starts observing the iCloud identity, automatic saving setting, and changes to portable settings.
     func start() {
         
         guard self.enabledObserver == nil else { return }
+        
+        self.ubiquityIdentityObserver = NotificationCenter.default.addObserver(of: FileManager.self, for: .ubiquityIdentityDidChange) { [weak self] _ in
+            guard let self else { return }
+            
+            self.ubiquityIdentityToken = FileManager.default.ubiquityIdentityToken
+            
+            guard self.ubiquityIdentityToken != nil else { return }
+            
+            self.scheduleSave(immediately: true)
+        }
+        self.ubiquityIdentityToken = FileManager.default.ubiquityIdentityToken
         
         self.enabledObserver = self.defaults.publisher(for: .syncsSettings)
             .receive(on: RunLoop.main)
