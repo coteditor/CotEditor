@@ -40,6 +40,8 @@ struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
     
     struct Info: Equatable, Codable, Sendable {
         
+        static let filename = "Info.plist"
+        
         var date: Date
         var version: Version
         var machineName: String?
@@ -70,7 +72,6 @@ struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
     
     private enum WrapperKey {
         
-        static let info = "Info.plist"
         static let defaults = "Defaults.plist"
         static let shortcuts = "Shortcuts.plist"
         static let keyBindings = "KeyBindings"
@@ -114,7 +115,7 @@ struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
         guard
             file.isDirectory,
             let fileWrappers = file.fileWrappers,
-            let infoData = fileWrappers[WrapperKey.info]?.regularFileContents
+            let infoData = fileWrappers[Info.filename]?.regularFileContents
         else { throw CocoaError(.fileReadCorruptFile) }
         
         self.info = try PropertyListDecoder().decode(Info.self, from: infoData)
@@ -160,7 +161,7 @@ struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
         let defaultsWrapper = FileWrapper(regularFileWithContents: defaultsData)
         
         var dictionary: [String: FileWrapper] = [
-            WrapperKey.info: infoWrapper,
+            Info.filename: infoWrapper,
             WrapperKey.defaults: defaultsWrapper,
         ]
         
@@ -317,6 +318,19 @@ struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
             
             userDefaults[.folderFindSavedScopes].merge(validScopes) { _, imported in imported }
         }
+    }
+}
+
+
+extension PortableSettingsDocument.Info {
+    
+    /// Reads the metadata from an archive's information file.
+    ///
+    /// - Parameter fileURL: The URL of the archive's Info.plist file.
+    /// - Throws: An error if reading or decoding the metadata fails.
+    init(contentsOf fileURL: URL) throws {
+        
+        self = try PropertyListDecoder().decode(Self.self, from: Data(contentsOf: fileURL))
     }
 }
 

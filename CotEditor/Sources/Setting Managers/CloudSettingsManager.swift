@@ -58,13 +58,22 @@ enum CloudSettingsError: LocalizedError {
 
 @MainActor @Observable final class CloudSettingsManager {
     
+    struct Archive: Equatable, Sendable, Identifiable {
+        
+        var url: URL
+        var info: PortableSettingsDocument.Info?
+        
+        var id: URL  { self.url }
+    }
+    
+    
     // MARK: Public Properties
     
     static let shared = CloudSettingsManager()
     
     private(set) var error: any Error?
     
-    /// Whether a settings copy is waiting to be saved or is being written.
+    /// Whether a settings archive is waiting to be saved or is being written.
     var hasPendingSave: Bool  { self.saveDebouncer.isScheduled || self.saveRequested || self.saveTask != nil }
     
     
@@ -164,58 +173,54 @@ enum CloudSettingsError: LocalizedError {
         }
     }
     
-    /// Finds settings archives without downloading or applying their contents.
+    
+    /// Observes the available archives and reads their metadata without applying settings.
     ///
-    /// - Returns: URLs of the settings archives currently discoverable in the container.
-    /// - Throws: An error if iCloud is unavailable, discovery fails, or the operation is canceled.
-    func archiveURLs() async throws -> [URL] {
+    /// - Note: Canceling iteration stops the underlying observation.
+    /// - Returns: A stream of the latest archive lists, including metadata as it becomes available.
+    func archives() -> AsyncThrowingStream<[Archive], any Error> {
         
-        let directoryURL = try await Self.settingsDirectoryURL(containerURL: self.containerURL)
-        let urls: [URL]
-        if self.containerURL != nil {
-            urls = try await { @concurrent () async throws -> [URL] in
-                do {
-                    return try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
-                } catch CocoaError.fileReadNoSuchFile {
-                    return []
+        let (stream, continuation) = AsyncThrowingStream<[Archive], any Error>.makeStream(bufferingPolicy: .bufferingNewest(1))
+        let task = Task {
+            do {
+                var archives: [URL: Archive] = [:]
+                try await self.observeArchiveURLs { urls in
+                    archives = Dictionary(uniqueKeysWithValues: urls.map { ($0, archives[$0] ?? Archive(url: $0)) })
+                    continuation.yield(Array(archives.values))
+                    
+                    try await withThrowingTaskGroup(of: Archive.self) { group in
+                        for url in urls {
+                            _ = group.addTaskUnlessCancelled {
+                                let infoURL = url.appending(component: PortableSettingsDocument.Info.filename)
+                                let info = try? await self.coordinate(intent: .readingIntent(with: infoURL, options: .withoutChanges),
+                                                                      body: PortableSettingsDocument.Info.init(contentsOf:))
+                                return Archive(url: url, info: info)
+                            }
+                        }
+                        for try await archive in group {
+                            try Task.checkCancellation()
+                            
+                            guard let info = archive.info, info != archives[archive.url]?.info else { continue }
+                            
+                            archives[archive.url] = archive
+                            continuation.yield(Array(archives.values))
+                        }
+                    }
                 }
-            }()
-            
-        } else {
-            let query = NSMetadataQuery()
-            query.searchScopes = [NSMetadataQueryUbiquitousDataScope]
-            query.predicate = NSPredicate(format: "%K LIKE %@", NSMetadataItemFSNameKey, "*.\(UTType.cotSettings.preferredFilenameExtension!)")
-            
-            // register an observer before starting the query and bridge it with AsyncStream
-            // -> messages(of:for:) can miss early notifications and leave already canceled tasks waiting.
-            let (notifications, continuation) = AsyncStream<Void>.makeStream(bufferingPolicy: .bufferingOldest(1))
-            let observer = NotificationCenter.default.addObserver(of: query, for: .didFinishGathering) { _ in
-                continuation.yield(())
-            }
-            defer {
-                query.stop()
-                NotificationCenter.default.removeObserver(observer)
                 continuation.finish()
+            } catch {
+                continuation.finish(throwing: error)
             }
-            guard query.start() else { throw CloudSettingsError.metadataQueryFailed }
-            
-            for await _ in notifications { break }
-            
-            query.disableUpdates()
-            urls = query.results.compactMap { ($0 as? NSMetadataItem)?.value(forAttribute: NSMetadataItemURLKey) as? URL }
         }
+        continuation.onTermination = { _ in task.cancel() }
         
-        try Task.checkCancellation()
-        
-        return urls
-            .map(\.standardizedFileURL)
-            .filter { Self.isSettingsArchiveURL($0, in: directoryURL) }
+        return stream
     }
     
     
     /// Downloads and reads a settings archive without applying it.
     ///
-    /// - Parameter fileURL: An archive URL returned by `archiveURLs()`.
+    /// - Parameter fileURL: An archive URL received by `archives()`.
     /// - Returns: The settings snapshot read from the archive.
     /// - Throws: An error if the URL is outside the settings directory, reading fails, or the operation is canceled.
     func load(from fileURL: URL) async throws -> PortableSettingsDocument {
@@ -287,7 +292,7 @@ enum CloudSettingsError: LocalizedError {
     }
     
     
-    /// Requests a settings copy only when portable user defaults have changed.
+    /// Requests a settings archive only when portable user defaults have changed.
     private func defaultsDidChange() {
         
         guard self.defaults[.syncsSettings], !self.changeObservers.isEmpty else { return }
@@ -301,7 +306,7 @@ enum CloudSettingsError: LocalizedError {
     }
     
     
-    /// Requests a copy of the latest settings, optionally bypassing the debounce delay.
+    /// Requests an archive of the latest settings, optionally bypassing the debounce delay.
     ///
     /// - Parameter immediately: Whether to start saving without waiting for further changes.
     private func scheduleSave(immediately: Bool = false) {
@@ -373,6 +378,84 @@ enum CloudSettingsError: LocalizedError {
             ProcessInfo.processInfo.endActivity(savingActivity)
             self.savingActivity = nil
         }
+    }
+    
+    
+    /// Finds archive URLs and observes subsequent changes.
+    ///
+    /// - Parameter action: Receives the current archive URLs.
+    /// - Throws: An error if iCloud is unavailable, discovery fails, or observation is canceled.
+    private func observeArchiveURLs(_ action: ([URL]) async throws -> Void) async throws {
+        
+        let directoryURL = try await Self.settingsDirectoryURL(containerURL: self.containerURL)
+        
+        if self.containerURL != nil {
+            let urls = try await { @concurrent () async throws -> [URL] in
+                do {
+                    return try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
+                } catch CocoaError.fileReadNoSuchFile {
+                    return []
+                }
+            }()
+            
+            try Task.checkCancellation()
+            try await action(urls.map(\.standardizedFileURL).filter { Self.isSettingsArchiveURL($0, in: directoryURL) })
+            
+            return
+        }
+        
+        let query = NSMetadataQuery()
+        query.searchScopes = [NSMetadataQueryUbiquitousDataScope]
+        query.predicate = NSPredicate(format: "%K LIKE %@", NSMetadataItemFSNameKey, "*.\(UTType.cotSettings.preferredFilenameExtension!)")
+        
+        try await Self.queryArchiveURLs(using: query, in: directoryURL, action: action)
+    }
+    
+    
+    /// Observes archive URLs until the metadata query is canceled.
+    ///
+    /// - Parameters:
+    ///   - query: The configured metadata query.
+    ///   - directoryURL: The directory containing settings archives.
+    ///   - action: Receives the current archive URLs.
+    /// - Throws: An error if the query cannot start, the action fails, or observation is canceled.
+    static func queryArchiveURLs(using query: NSMetadataQuery, in directoryURL: URL, action: ([URL]) async throws -> Void) async throws {
+        
+        // register observers before starting the query and bridge them with AsyncStream
+        // -> messages(of:for:) can miss early notifications and leave already canceled tasks waiting.
+        let (notifications, continuation) = AsyncStream<Void>.makeStream(bufferingPolicy: .bufferingNewest(1))
+        let center = NotificationCenter.default
+        let observer = center.addObserver(of: query, for: .didFinishGathering) { _ in
+            continuation.yield(())
+        }
+        let updateObserver = center.addObserver(forName: .NSMetadataQueryDidUpdate, object: query, queue: nil) { _ in
+            continuation.yield(())
+        }
+        
+        defer {
+            query.stop()
+            center.removeObserver(observer)
+            center.removeObserver(updateObserver)
+            continuation.finish()
+        }
+        
+        guard query.start() else { throw CloudSettingsError.metadataQueryFailed }
+        
+        for await _ in notifications {
+            try Task.checkCancellation()
+            
+            query.disableUpdates()
+            
+            let urls = query.results
+                .compactMap { ($0 as? NSMetadataItem)?.value(forAttribute: NSMetadataItemURLKey) as? URL }
+                .map(\.standardizedFileURL)
+                .filter { Self.isSettingsArchiveURL($0, in: directoryURL) }
+            
+            query.enableUpdates()
+            
+            try await action(urls)
+        }
+        try Task.checkCancellation()
     }
     
     

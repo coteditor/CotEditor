@@ -42,15 +42,22 @@ import Defaults
         try await self.withDefaults { defaults in
             let manager = CloudSettingsManager(containerURL: directoryURL, defaults: defaults)
             try await self.saveSettings(using: manager, defaults: defaults)
-            let urls = try await manager.archiveURLs()
-            let fileURL = try #require(urls.first)
+            var archives: [CloudSettingsManager.Archive] = []
+            for try await snapshot in manager.archives() {
+                archives = snapshot
+            }
+            let fileURL = try #require(archives.first?.url)
             let saved = try await manager.load(from: fileURL)
             let sourceID = try #require(saved.info.sourceID)
             try await self.withDefaults { otherDefaults in
                 let recreated = CloudSettingsManager(containerURL: directoryURL, defaults: otherDefaults)
                 try await self.saveSettings(using: recreated, defaults: otherDefaults)
+                for try await snapshot in recreated.archives() {
+                    archives = snapshot
+                }
             }
             
+            #expect(archives.map(\.url) == [fileURL])
             #expect(fileURL.deletingPathExtension().lastPathComponent == "\(sourceID.uuidString)-\(NSUserName())")
         }
     }
@@ -91,7 +98,10 @@ import Defaults
                 try await self.saveSettings(using: manager, defaults: defaults)
                 let updated = try await manager.load(from: fileURL)
                 let other = try await manager.load(from: otherURL)
-                let urls = try await manager.archiveURLs()
+                var archives: [CloudSettingsManager.Archive] = []
+                for try await snapshot in manager.archives() {
+                    archives = snapshot
+                }
                 
                 #expect(updated.defaults[DefaultKeys.windowWidth.rawValue] == .double(800))
                 #expect(updated.themes[obsoleteName] == nil)
@@ -101,7 +111,7 @@ import Defaults
                 #expect(other.info.sourceID == otherHostUUID)
                 #expect(other.info.machineName == first.info.machineName)
                 #expect(other.info.userName == first.info.userName)
-                #expect(Set(urls) == Set([fileURL, otherURL]))
+                #expect(Set(archives.map(\.url)) == Set([fileURL, otherURL]))
                 #expect(UserDefaults.standard[.windowWidth] == windowWidth)
             }
         }
@@ -148,8 +158,11 @@ import Defaults
         let directoryURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: directoryURL) }
         let manager = CloudSettingsManager(containerURL: directoryURL)
-        let emptyURLs = try await manager.archiveURLs()
-        #expect(emptyURLs.isEmpty)
+        var archives: [CloudSettingsManager.Archive] = []
+        for try await snapshot in manager.archives() {
+            archives = snapshot
+        }
+        #expect(archives.isEmpty)
         
         let document = try PortableSettingsDocument(including: [])
         let fileURL = try self.writeArchive(document, in: directoryURL)
@@ -163,8 +176,10 @@ import Defaults
         try document.fileWrapper().write(to: unrelatedURL, options: .atomic, originalContentsURL: nil)
         try Data().write(to: directoryURL.appending(path: "Settings/Notes.txt"))
         
-        let urls = try await manager.archiveURLs()
-        #expect(Set(urls) == Set([fileURL, legacyURL]))
+        for try await snapshot in manager.archives() {
+            archives = snapshot
+        }
+        #expect(Set(archives.map(\.url)) == Set([fileURL, legacyURL]))
         let legacy = try await manager.load(from: legacyURL)
         #expect(legacy.info.sourceID == legacyID)
         await #expect(throws: CloudSettingsError.invalidArchiveURL) {
@@ -203,13 +218,221 @@ import Defaults
         defer { try? FileManager.default.removeItem(at: directoryURL) }
         let manager = CloudSettingsManager(containerURL: directoryURL)
         let task = Task {
-            try await manager.archiveURLs()
+            for try await _ in manager.archives() {
+                Issue.record("Canceled observation must not publish archives.")
+            }
         }
         task.cancel()
         
+        try await task.value
+    }
+    
+    
+    /// Verifies that unavailable metadata does not hide other archives or apply their settings.
+    ///
+    /// - Throws: An error if preparing or observing the archives fails.
+    @Test func observesMetadataWithoutApplyingSettings() async throws {
+        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let manager = CloudSettingsManager(containerURL: directoryURL)
+        var document = try PortableSettingsDocument(including: [], sourceID: UUID())
+        document.defaults = [DefaultKeys.windowWidth.rawValue: .double(1234)]
+        let windowWidth = UserDefaults.standard[.windowWidth]
+        let fileURL = try self.writeArchive(document, in: directoryURL)
+        try FileManager.default.removeItem(at: fileURL.appending(component: "Defaults.plist"))
+        let brokenURL = fileURL.deletingLastPathComponent().appending(component: "Broken", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
+        try FileManager.default.createDirectory(at: brokenURL, withIntermediateDirectories: true)
+        try Data("invalid".utf8).write(to: brokenURL.appending(component: PortableSettingsDocument.Info.filename))
+        var snapshots: [[CloudSettingsManager.Archive]] = []
+        
+        for try await archives in manager.archives() {
+            snapshots.append(archives)
+        }
+        
+        let initial = try #require(snapshots.first)
+        let final = try #require(snapshots.last)
+        #expect(Set(initial.map(\.url)) == Set([fileURL, brokenURL]))
+        #expect(final.first { $0.url == fileURL }?.info?.machineName == document.info.machineName)
+        #expect(final.first { $0.url == fileURL }?.info?.sourceID != nil)
+        #expect(final.first { $0.url == brokenURL }?.info == nil)
+        #expect(UserDefaults.standard[.windowWidth] == windowWidth)
+    }
+    
+    
+    /// Verifies that a query receives early initial results and reports additions and removals until cancellation.
+    ///
+    /// - Throws: An error if preparing files or waiting for query results fails.
+    @Test func queryReportsArchiveUpdates() async throws {
+        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let firstURL = directoryURL.appending(component: "First", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
+        let secondURL = directoryURL.appending(component: "Second", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
+        let unrelatedURL = directoryURL.appending(component: "Other.txt")
+        try FileManager.default.createDirectory(at: firstURL, withIntermediateDirectories: true)
+        try FileManager.default.createDirectory(at: secondURL, withIntermediateDirectories: true)
+        try Data().write(to: unrelatedURL)
+        let query = TestMetadataQuery(urls: [firstURL, unrelatedURL])
+        var snapshots: [[URL]] = []
+        let task = Task {
+            try await CloudSettingsManager.queryArchiveURLs(using: query, in: directoryURL) { urls in
+                snapshots.append(urls)
+                switch snapshots.count {
+                    case 1:
+                        query.urls = [firstURL, secondURL]
+                        NotificationCenter.default.post(name: .NSMetadataQueryDidUpdate, object: query)
+                    case 2:
+                        query.urls = [secondURL]
+                        NotificationCenter.default.post(name: .NSMetadataQueryDidUpdate, object: query)
+                    default:
+                        break
+                }
+            }
+        }
+        defer { task.cancel() }
+        try #require(await Task.waitFor { snapshots.count == 3 })
+        task.cancel()
         await #expect(throws: CancellationError.self) {
             try await task.value
         }
+        
+        #expect(snapshots == [[firstURL], [firstURL, secondURL], [secondURL]])
+        #expect(query.wasStopped)
+    }
+    
+    
+    /// Verifies that observation cancellation stops the query before or during the initial gathering.
+    ///
+    /// - Parameter cancelsBeforeStarting: Whether to cancel before the task starts.
+    /// - Throws: An error if preparing files or waiting for the query fails.
+    @Test(arguments: [false, true])
+    func canceledQueryStops(cancelsBeforeStarting: Bool) async throws {
+        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let query = TestMetadataQuery(urls: [], postsInitialResults: false)
+        var receivedResults = false
+        let task = Task {
+            try await CloudSettingsManager.queryArchiveURLs(using: query, in: directoryURL) { _ in
+                receivedResults = true
+            }
+        }
+        defer { task.cancel() }
+        if !cancelsBeforeStarting {
+            try #require(await Task.waitFor { query.wasStarted })
+        }
+        task.cancel()
+        await #expect(throws: CancellationError.self) {
+            try await task.value
+        }
+        
+        #expect(!receivedResults)
+        #expect(query.wasStopped)
+    }
+    
+    
+    /// Verifies that canceling consumption terminates the producer while metadata access is waiting.
+    ///
+    /// - Throws: An error if preparing the archive, consuming the stream, or waiting for cleanup fails.
+    @Test func canceledStreamStopsMetadataReading() async throws {
+        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        var manager: CloudSettingsManager? = CloudSettingsManager(containerURL: directoryURL)
+        let document = try PortableSettingsDocument(including: [])
+        let fileURL = try self.writeArchive(document, in: directoryURL)
+        let presenter = SuspendedMetadataPresenter(fileURL: fileURL.appending(component: PortableSettingsDocument.Info.filename))
+        NSFileCoordinator.addFilePresenter(presenter)
+        defer {
+            presenter.resume()
+            NSFileCoordinator.removeFilePresenter(presenter)
+        }
+        weak let weakManager = manager
+        let stream = try #require(manager).archives()
+        manager = nil
+        var receivedResults = false
+        let task = Task {
+            for try await _ in stream {
+                receivedResults = true
+            }
+        }
+        defer { task.cancel() }
+        try #require(await Task.waitFor { presenter.isWaiting && receivedResults })
+        task.cancel()
+        try await task.value
+        
+        try #require(await Task.waitFor { weakManager == nil })
+    }
+    
+    
+    /// Verifies that discovery failures reach the stream consumer.
+    ///
+    /// - Throws: An error if preparing the unreadable directory fails.
+    @Test func streamReportsDiscoveryError() async throws {
+        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
+        let settingsURL = directoryURL.appending(component: "Settings", directoryHint: .isDirectory)
+        defer {
+            try? FileManager.default.setAttributes([.posixPermissions: 0o700], ofItemAtPath: settingsURL.path)
+            try? FileManager.default.removeItem(at: directoryURL)
+        }
+        try FileManager.default.createDirectory(at: settingsURL, withIntermediateDirectories: true)
+        try FileManager.default.setAttributes([.posixPermissions: 0o000], ofItemAtPath: settingsURL.path)
+        let manager = CloudSettingsManager(containerURL: directoryURL)
+        
+        await #expect(throws: CocoaError.self) {
+            for try await _ in manager.archives() {
+                Issue.record("Failed discovery must not publish archives.")
+            }
+        }
+    }
+    
+    
+    /// Verifies that a slow consumer receives only the latest complete archive list.
+    ///
+    /// - Throws: An error if creating the archive, waiting for completion, or consuming the stream fails.
+    @Test func streamBuffersLatestSnapshot() async throws {
+        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let sourceID = UUID()
+        var manager: CloudSettingsManager? = CloudSettingsManager(containerURL: directoryURL)
+        let document = try PortableSettingsDocument(including: [], sourceID: sourceID)
+        let fileURL = try self.writeArchive(document, in: directoryURL)
+        weak let weakManager = manager
+        let stream = try #require(manager).archives()
+        manager = nil
+        
+        // wait until the producer finishes before consuming the buffered snapshots
+        try #require(await Task.waitFor { weakManager == nil })
+        var snapshots: [[CloudSettingsManager.Archive]] = []
+        for try await archives in stream {
+            snapshots.append(archives)
+        }
+        
+        #expect(snapshots.count == 1)
+        let archive = try #require(snapshots.first?.first)
+        #expect(archive.url == fileURL)
+        #expect(archive.info?.sourceID == sourceID)
+    }
+    
+    
+    /// Verifies that an unsuccessful query start is reported and cleaned up.
+    ///
+    /// - Throws: An error if preparing the directory fails.
+    @Test func failedQueryStartStopsObservation() async throws {
+        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let query = TestMetadataQuery(urls: [], startsSuccessfully: false)
+        
+        await #expect(throws: CloudSettingsError.metadataQueryFailed) {
+            try await CloudSettingsManager.queryArchiveURLs(using: query, in: directoryURL) { _ in
+                Issue.record("A failed query must not return results.")
+            }
+        }
+        #expect(query.wasStopped)
     }
     
     
@@ -262,5 +485,122 @@ import Defaults
         try document.fileWrapper().write(to: fileURL, options: .atomic, originalContentsURL: fileURL)
         
         return fileURL
+    }
+}
+
+
+private final class TestMetadataQuery: NSMetadataQuery {
+    
+    var urls: [URL]
+    private let postsInitialResults: Bool
+    private let startsSuccessfully: Bool
+    private(set) var wasStarted = false
+    private(set) var wasStopped = false
+    
+    override var results: [Any]  { self.urls.map(TestMetadataItem.init(fileURL:)) }
+    
+    
+    /// Creates a query that supplies file metadata without depending on Spotlight indexing.
+    ///
+    /// - Parameters:
+    ///   - urls: The URLs represented by the query results.
+    ///   - postsInitialResults: Whether start() posts the initial gathering notification.
+    ///   - startsSuccessfully: Whether start() succeeds.
+    init(urls: [URL], postsInitialResults: Bool = true, startsSuccessfully: Bool = true) {
+        
+        self.urls = urls
+        self.postsInitialResults = postsInitialResults
+        self.startsSuccessfully = startsSuccessfully
+        super.init()
+    }
+    
+    
+    override func start() -> Bool {
+        
+        self.wasStarted = true
+        if self.startsSuccessfully && self.postsInitialResults {
+            NotificationCenter.default.post(name: .NSMetadataQueryDidFinishGathering, object: self)
+        }
+        return self.startsSuccessfully
+    }
+    
+    
+    override func stop() {
+        
+        self.wasStopped = true
+    }
+    
+    
+    override func disableUpdates() {}
+    
+    
+    override func enableUpdates() {}
+}
+
+
+private final class TestMetadataItem: NSMetadataItem {
+    
+    private let fileURL: URL
+    
+    
+    /// Creates a metadata item with a known URL independent of Spotlight indexing.
+    ///
+    /// - Parameter fileURL: The URL returned by the metadata item.
+    init(fileURL: URL) {
+        
+        self.fileURL = fileURL
+        super.init()
+    }
+    
+    
+    override func value(forAttribute key: String) -> Any? {
+        
+        key == NSMetadataItemURLKey ? self.fileURL : nil
+    }
+}
+
+
+/// A presenter that holds a coordinated metadata read until the test resumes it.
+private final class SuspendedMetadataPresenter: NSObject, NSFilePresenter {
+    
+    let presentedItemURL: URL?
+    let presentedItemOperationQueue = OperationQueue()
+    private let reader = Mutex<(@Sendable ((@Sendable () -> Void)?) -> Void)?>(nil)
+    
+    /// Whether a coordinated metadata read is currently suspended.
+    var isWaiting: Bool {
+        
+        self.reader.withLock { $0 != nil }
+    }
+    
+    
+    /// Creates a presenter for the archive's information file.
+    ///
+    /// - Parameter fileURL: The URL of the information file.
+    init(fileURL: URL) {
+        
+        self.presentedItemURL = fileURL
+        super.init()
+    }
+    
+    
+    /// Suspends the coordinated reader.
+    ///
+    /// - Parameter reader: The accessor to invoke when the information file can be read.
+    func relinquishPresentedItem(toReader reader: @escaping @Sendable ((@Sendable () -> Void)?) -> Void) {
+        
+        self.reader.withLock { $0 = reader }
+    }
+    
+    
+    /// Allows the suspended reader to proceed.
+    func resume() {
+        
+        let reader = self.reader.withLock {
+            let reader = $0
+            $0 = nil
+            return reader
+        }
+        reader?(nil)
     }
 }

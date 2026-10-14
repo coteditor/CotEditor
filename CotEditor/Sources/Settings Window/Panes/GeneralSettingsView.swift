@@ -44,14 +44,11 @@ struct GeneralSettingsView: View {
     @AppStorage(.documentConflictOption) private var documentConflictOption: DocumentConflictOption
     
     @State private var initialEnablesAutosaveInPlace: Bool = false
-    @State private var error: any Error?
     
     @State private var isAutosaveChangeConfirmationPresented = false
     @State private var suppressesQuitAlwaysKeepsWindowsChangeConfirmation = false
     @State private var isQuitAlwaysKeepsWindowsChangeConfirmationPresented = false
     @State private var isSettingsExporterPresented = false
-    @State private var isSettingsImporterPresented = false
-    @State private var importingSettings: PortableSettingsDocument?
     @State private var isWarningsSettingPresented = false
     
     
@@ -157,7 +154,8 @@ struct GeneralSettingsView: View {
                 
                 VStack(alignment: .leading) {
                     Toggle(isOn: $syncsSettings) {
-                        Text("Keep a copy in iCloud", tableName: "GeneralSettings", comment: "verb; checkbox")
+                        Text("Keep a copy in iCloud", tableName: "GeneralSettings",
+                             comment: "verb; checkbox; refer to the expression for “Keep a copy” by Apple")
                         Text("Store a copy of these settings for other devices to import.", tableName: "GeneralSettings")
                     }
                     if let error = CloudSettingsManager.shared.error {
@@ -166,45 +164,19 @@ struct GeneralSettingsView: View {
                             .symbolRenderingMode(.multicolor)
                             .foregroundStyle(.secondary)
                             .controlSize(.small)
+                            .padding(.leading, 20)
                     }
+                    
                     HStack {
-                        Spacer()
                         Button(.init("Action.export.label", defaultValue: "Export…")) {
                             self.isSettingsExporterPresented.toggle()
                         }
-                        Button(.init("Action.import.ellipsis.label", defaultValue: "Import…")) {
-                            self.isSettingsImporterPresented.toggle()
-                        }
+                        SettingsImportMenu()
                     }
                 }
                 .accessibilityLabeledPair(role: .content, id: "settingsPorting", in: self.accessibility)
-                .fileImporter(isPresented: $isSettingsImporterPresented, allowedContentTypes: [.cotSettings]) { result in
-                    switch result {
-                        case .success(let url):
-                            let accessing = url.startAccessingSecurityScopedResource()
-                            defer {
-                                if accessing { url.stopAccessingSecurityScopedResource() }
-                            }
-                            
-                            do {
-                                self.importingSettings = try PortableSettingsDocument(contentsOf: url)
-                            } catch {
-                                self.error = error
-                            }
-                        case .failure(let error):
-                            self.error = error
-                    }
-                }
-                .fileDialogMessage(.init("Choose a CotEditor settings archive to import.", table: "SettingsPorting"))
-                .fileDialogConfirmationLabel(.init("Action.import.label", defaultValue: "Import"))
                 .sheet(isPresented: $isSettingsExporterPresented) {
                     ExportSettingsView(includedTypes: PortableSettingsDocument.exportableSettings)
-                        .scenePadding()
-                        .frame(width: 420)
-                        .presentationSizing(.fitted)
-                }
-                .sheet(item: $importingSettings) { document in
-                    ImportSettingsView(document: document)
                         .scenePadding()
                         .frame(width: 420)
                         .presentationSizing(.fitted)
@@ -237,7 +209,143 @@ struct GeneralSettingsView: View {
             }
         }
         .fixedSize(horizontal: false, vertical: true)
+    }
+}
+
+
+private struct SettingsImportMenu: View {
+    
+    @State private var error: any Error?
+    @State private var isImporterPresented = false
+    @State private var importingSettings: PortableSettingsDocument?
+    @State private var importingCloudArchiveURL: URL?
+    @State private var cloudArchives: [CloudSettingsManager.Archive]?
+    @State private var cloudArchivesError: any Error?
+    
+    
+    var body: some View {
+        
+        HStack {
+            Menu(.init("Action.import.ellipsis.label", defaultValue: "Import…")) {
+                if let cloudArchivesError {
+                    Text(cloudArchivesError.localizedDescription)
+                } else if let cloudArchives {
+                    if cloudArchives.isEmpty {
+                        Text("No Settings Copies in iCloud", tableName: "GeneralSettings", comment: "menu item")
+                    }
+                    ForEach(self.sortedCloudArchives) { archive in
+                        Button {
+                            self.importingCloudArchiveURL = archive.url
+                        } label: {
+                            Text(archive.displayName)
+                            if let date = archive.info?.date {
+                                Text("\(date, format: Date.FormatStyle(date: .abbreviated)) (iCloud)", tableName: "GeneralSettings", comment: "Subtitle for a settings copy; %@ is its save date.")
+                            } else {
+                                Text(verbatim: "iCloud")
+                            }
+                        }
+                    }
+                } else {
+                    Text("Loading Settings Copies from iCloud…", tableName: "GeneralSettings", comment: "menu item")
+                }
+                Divider()
+                Button(.init("Choose Settings Archive…", table: "GeneralSettings", comment: "verb; menu item")) {
+                    self.isImporterPresented = true
+                }
+            } primaryAction: {
+                self.isImporterPresented.toggle()
+            }
+            .menuStyle(.button)
+            .menuOrder(.fixed)
+            .disabled(self.importingCloudArchiveURL != nil)
+            .task {
+                await self.observeCloudArchives()
+            }
+            .task(id: self.importingCloudArchiveURL) {
+                await self.loadCloudArchive()
+            }
+            
+            if self.importingCloudArchiveURL != nil {
+                ProgressView()
+                    .controlSize(.small)
+            }
+        }
+        .fileImporter(isPresented: $isImporterPresented, allowedContentTypes: [.cotSettings]) { result in
+            switch result {
+                case .success(let url):
+                    let accessing = url.startAccessingSecurityScopedResource()
+                    defer {
+                        if accessing { url.stopAccessingSecurityScopedResource() }
+                    }
+                    
+                    do {
+                        self.importingSettings = try PortableSettingsDocument(contentsOf: url)
+                    } catch {
+                        self.error = error
+                    }
+                case .failure(let error):
+                    self.error = error
+            }
+        }
+        .fileDialogMessage(.init("Choose a CotEditor settings archive to import.", table: "SettingsPorting"))
+        .fileDialogConfirmationLabel(.init("Action.import.label", defaultValue: "Import"))
+        .sheet(item: $importingSettings) { document in
+            ImportSettingsView(document: document)
+                .scenePadding()
+                .frame(width: 420)
+                .presentationSizing(.fitted)
+        }
         .alert(error: $error)
+    }
+    
+    
+    /// The cloud archives sorted by source name and then by the most recent save date.
+    private var sortedCloudArchives: [CloudSettingsManager.Archive] {
+        
+        (self.cloudArchives ?? []).sorted(using: [
+            KeyPathComparator(\.displayName, comparator: .localizedStandard),
+            KeyPathComparator(\.info?.date, order: .reverse),
+        ])
+    }
+    
+    
+    /// Updates the cloud archive menu while the view is visible.
+    private func observeCloudArchives() async {
+        
+        self.cloudArchives = nil
+        self.cloudArchivesError = nil
+        
+        do {
+            for try await archives in CloudSettingsManager.shared.archives() {
+                guard !Task.isCancelled else { return }
+                self.cloudArchives = archives
+            }
+        } catch {
+            guard !Task.isCancelled else { return }
+            self.cloudArchivesError = error
+        }
+    }
+    
+    
+    /// Loads the selected cloud archive and presents the existing settings selection sheet.
+    private func loadCloudArchive() async {
+        
+        guard let url = self.importingCloudArchiveURL else { return }
+        
+        defer {
+            if self.importingCloudArchiveURL == url {
+                self.importingCloudArchiveURL = nil
+            }
+        }
+        
+        do {
+            let document = try await CloudSettingsManager.shared.load(from: url)
+            guard !Task.isCancelled else { return }
+            self.importingSettings = document
+        } catch {
+            guard !Task.isCancelled else { return }
+            self.error = error
+        }
     }
 }
 
@@ -298,6 +406,18 @@ private struct WarningsSettingView: View {
             }.padding(.top)
         }
         .fixedSize()
+    }
+}
+
+
+private extension CloudSettingsManager.Archive {
+    
+    /// The source's display name, falling back to the filename for legacy or unreadable metadata.
+    var displayName: String {
+        
+        let names = [self.info?.machineName, self.info?.userName].compactMap(\.self).filter { !$0.isEmpty }
+        
+        return names.isEmpty ? self.url.deletingPathExtension().lastPathComponent : names.joined(separator: " — ")
     }
 }
 

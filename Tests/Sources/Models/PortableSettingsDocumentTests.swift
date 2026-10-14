@@ -48,6 +48,8 @@ import SyntaxFormat
         #expect(document.info.machineName == nil)
         #expect(document.info.userName == nil)
         #expect(document.info.sourceID == nil)
+        let info = try PortableSettingsDocument.Info(contentsOf: archiveURL.appending(component: PortableSettingsDocument.Info.filename))
+        #expect(info == document.info)
     }
     
     
@@ -73,6 +75,24 @@ import SyntaxFormat
         let document = try PortableSettingsDocument(contentsOf: archiveURL)
         
         #expect(document.info == info)
+    }
+    
+    
+    /// Verifies that metadata can be read without reading the settings payload.
+    ///
+    /// - Throws: An error if creating or reading the archive fails.
+    @Test func readsInfoWithoutSettingsPayload() throws {
+        
+        let archiveURL = try self.createSettingsArchive()
+        defer { try? FileManager.default.removeItem(at: archiveURL.deletingLastPathComponent()) }
+        try FileManager.default.removeItem(at: archiveURL.appending(component: "Defaults.plist"))
+        
+        let info = try PortableSettingsDocument.Info(contentsOf: archiveURL.appending(component: PortableSettingsDocument.Info.filename))
+        #expect(info.version == Version(7, 0, 0))
+        #expect(info.machineName == nil)
+        #expect(throws: CocoaError.self) {
+            try PortableSettingsDocument(contentsOf: archiveURL)
+        }
     }
     
     
