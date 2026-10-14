@@ -36,9 +36,9 @@ extension UTType {
 }
 
 
-struct PortableSettingsDocument: FileDocument, Identifiable {
+struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
     
-    struct Info: Equatable, Codable {
+    struct Info: Equatable, Codable, Sendable {
         
         var date: Date
         var version: Version
@@ -133,7 +133,22 @@ struct PortableSettingsDocument: FileDocument, Identifiable {
     }
     
     
+    /// Creates the archive package for a document export.
+    ///
+    /// - Parameter configuration: The framework's export configuration.
+    /// - Returns: The archive's file wrapper.
+    /// - Throws: An error if encoding the archive metadata or defaults fails.
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        
+        try self.fileWrapper()
+    }
+    
+    
+    /// Creates the file package representing the receiver.
+    ///
+    /// - Returns: The archive's file wrapper.
+    /// - Throws: An error if encoding the archive metadata or defaults fails.
+    func fileWrapper() throws -> FileWrapper {
         
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .xml
