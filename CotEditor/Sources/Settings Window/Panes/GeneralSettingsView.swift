@@ -160,6 +160,13 @@ struct GeneralSettingsView: View {
                         Text("Keep a copy in iCloud", tableName: "GeneralSettings", comment: "verb; checkbox")
                         Text("Store a copy of these settings for other devices to import.", tableName: "GeneralSettings")
                     }
+                    if let error = CloudSettingsManager.shared.error {
+                        Label(error.localizedDescription, systemImage: "exclamationmark.triangle")
+                            .symbolVariant(.fill)
+                            .symbolRenderingMode(.multicolor)
+                            .foregroundStyle(.secondary)
+                            .controlSize(.small)
+                    }
                     HStack {
                         Spacer()
                         Button(.init("Action.export.label", defaultValue: "Export…")) {

@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import Synchronization
 import UniformTypeIdentifiers
 import Testing
 import Defaults
@@ -38,16 +39,20 @@ import Defaults
         
         let directoryURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: directoryURL) }
-        let manager = CloudSettingsManager(containerURL: directoryURL)
-        let document = try PortableSettingsDocument(including: [])
-        let fileURL = try await manager.save(document)
-        let saved = try await manager.load(from: fileURL)
-        let sourceID = try #require(saved.info.sourceID)
-        let recreated = CloudSettingsManager(containerURL: directoryURL)
-        let recreatedURL = try await recreated.save(document)
-        
-        #expect(recreatedURL == fileURL)
-        #expect(fileURL.deletingPathExtension().lastPathComponent == "\(sourceID.uuidString)-\(NSUserName())")
+        try await self.withDefaults { defaults in
+            let manager = CloudSettingsManager(containerURL: directoryURL, defaults: defaults)
+            try await self.saveSettings(using: manager, defaults: defaults)
+            let urls = try await manager.archiveURLs()
+            let fileURL = try #require(urls.first)
+            let saved = try await manager.load(from: fileURL)
+            let sourceID = try #require(saved.info.sourceID)
+            try await self.withDefaults { otherDefaults in
+                let recreated = CloudSettingsManager(containerURL: directoryURL, defaults: otherDefaults)
+                try await self.saveSettings(using: recreated, defaults: otherDefaults)
+            }
+            
+            #expect(fileURL.deletingPathExtension().lastPathComponent == "\(sourceID.uuidString)-\(NSUserName())")
+        }
     }
     
     
@@ -58,46 +63,48 @@ import Defaults
         
         let directoryURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: directoryURL) }
-        let hostUUID = UUID()
-        let otherHostUUID = UUID()
-        let manager = CloudSettingsManager(containerURL: directoryURL, hostUUID: hostUUID)
-        let otherManager = CloudSettingsManager(containerURL: directoryURL, hostUUID: otherHostUUID)
-        var document = try PortableSettingsDocument(including: [])
-        document.info.date = Date(timeIntervalSince1970: 1_700_000_000)
-        document.defaults = [DefaultKeys.windowWidth.rawValue: .double(640)]
-        document.themes = ["Old.cottheme": Data("old".utf8)]
-        document.info.sourceID = UUID()
-        let windowWidth = UserDefaults.standard[.windowWidth]
-        
-        let fileURL = try await manager.save(document)
-        let otherURL = try await otherManager.save(document)
-        let first = try await manager.load(from: fileURL)
-        
-        #expect(fileURL != otherURL)
-        #expect(first.defaults == document.defaults)
-        #expect(first.info.sourceID == hostUUID)
-        #expect(first.info.machineName == document.info.machineName)
-        #expect(first.info.userName == document.info.userName)
-        #expect(first.info.date == document.info.date)
-        #expect(UserDefaults.standard[.windowWidth] == windowWidth)
-        
-        document.defaults[DefaultKeys.windowWidth.rawValue] = .double(800)
-        document.themes = [:]
-        let updatedURL = try await manager.save(document)
-        let updated = try await manager.load(from: updatedURL)
-        let other = try await manager.load(from: otherURL)
-        let urls = try await manager.archiveURLs()
-        
-        #expect(updatedURL == fileURL)
-        #expect(updated.defaults == document.defaults)
-        #expect(updated.themes.isEmpty)
-        #expect(!FileManager.default.fileExists(atPath: fileURL.appending(path: "Themes/Old.cottheme").path))
-        #expect(other.defaults[DefaultKeys.windowWidth.rawValue] == .double(640))
-        #expect(other.themes["Old.cottheme"] != nil)
-        #expect(other.info.sourceID == otherHostUUID)
-        #expect(other.info.machineName == first.info.machineName)
-        #expect(other.info.userName == first.info.userName)
-        #expect(Set(urls) == Set([fileURL, otherURL]))
+        try await self.withDefaults { defaults in
+            try await self.withDefaults { otherDefaults in
+                let hostUUID = UUID()
+                let otherHostUUID = UUID()
+                let manager = CloudSettingsManager(containerURL: directoryURL, defaults: defaults, hostUUID: hostUUID)
+                let otherManager = CloudSettingsManager(containerURL: directoryURL, defaults: otherDefaults, hostUUID: otherHostUUID)
+                let fileURL = directoryURL.appending(path: "Settings/\(hostUUID.uuidString)-\(NSUserName())", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
+                let otherURL = directoryURL.appending(path: "Settings/\(otherHostUUID.uuidString)-\(NSUserName())", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
+                let windowWidth = UserDefaults.standard[.windowWidth]
+                try await self.saveSettings(using: manager, defaults: defaults)
+                try await self.saveSettings(using: otherManager, defaults: otherDefaults)
+                
+                let obsoleteName = "Obsolete-\(UUID()).cottheme"
+                for url in [fileURL, otherURL] {
+                    var document = try await manager.load(from: url)
+                    document.themes[obsoleteName] = Data("old".utf8)
+                    try document.fileWrapper().write(to: url, options: .atomic, originalContentsURL: url)
+                }
+                let first = try await manager.load(from: fileURL)
+                #expect(first.defaults[DefaultKeys.windowWidth.rawValue] == .double(640))
+                #expect(first.info.sourceID == hostUUID)
+                #expect(first.info.machineName == Host.current().localizedName)
+                #expect(first.info.userName == NSUserName())
+                
+                defaults[.windowWidth] = 800
+                try await self.saveSettings(using: manager, defaults: defaults)
+                let updated = try await manager.load(from: fileURL)
+                let other = try await manager.load(from: otherURL)
+                let urls = try await manager.archiveURLs()
+                
+                #expect(updated.defaults[DefaultKeys.windowWidth.rawValue] == .double(800))
+                #expect(updated.themes[obsoleteName] == nil)
+                #expect(!FileManager.default.fileExists(atPath: fileURL.appending(path: "Themes/\(obsoleteName)").path))
+                #expect(other.defaults[DefaultKeys.windowWidth.rawValue] == .double(640))
+                #expect(other.themes[obsoleteName] != nil)
+                #expect(other.info.sourceID == otherHostUUID)
+                #expect(other.info.machineName == first.info.machineName)
+                #expect(other.info.userName == first.info.userName)
+                #expect(Set(urls) == Set([fileURL, otherURL]))
+                #expect(UserDefaults.standard[.windowWidth] == windowWidth)
+            }
+        }
     }
     
     
@@ -108,31 +115,35 @@ import Defaults
         
         let directoryURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: directoryURL) }
-        let hostUUID = UUID()
-        let manager = CloudSettingsManager(containerURL: directoryURL, hostUUID: hostUUID, userName: "first-user")
-        let otherManager = CloudSettingsManager(containerURL: directoryURL, hostUUID: hostUUID, userName: "second-user")
-        var document = try PortableSettingsDocument(including: [])
-        document.defaults = ["Sample": .string("first")]
-        let fileURL = try await manager.save(document)
-        document.defaults = ["Sample": .string("second")]
-        let otherURL = try await otherManager.save(document)
-        let first = try await manager.load(from: fileURL)
-        let other = try await manager.load(from: otherURL)
-        
-        #expect(fileURL != otherURL)
-        #expect(first.info.sourceID == hostUUID)
-        #expect(other.info.sourceID == hostUUID)
-        #expect(first.info.userName == "first-user")
-        #expect(other.info.userName == "second-user")
-        #expect(first.defaults["Sample"] == .string("first"))
-        #expect(other.defaults["Sample"] == .string("second"))
+        try await self.withDefaults { defaults in
+            try await self.withDefaults { otherDefaults in
+                let hostUUID = UUID()
+                let manager = CloudSettingsManager(containerURL: directoryURL, defaults: defaults, hostUUID: hostUUID, userName: "first-user")
+                let otherManager = CloudSettingsManager(containerURL: directoryURL, defaults: otherDefaults, hostUUID: hostUUID, userName: "second-user")
+                let fileURL = directoryURL.appending(path: "Settings/\(hostUUID.uuidString)-first-user", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
+                let otherURL = directoryURL.appending(path: "Settings/\(hostUUID.uuidString)-second-user", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
+                try await self.saveSettings(using: manager, defaults: defaults)
+                otherDefaults[.windowWidth] = 800
+                try await self.saveSettings(using: otherManager, defaults: otherDefaults)
+                let first = try await manager.load(from: fileURL)
+                let other = try await manager.load(from: otherURL)
+                
+                #expect(fileURL != otherURL)
+                #expect(first.info.sourceID == hostUUID)
+                #expect(other.info.sourceID == hostUUID)
+                #expect(first.info.userName == "first-user")
+                #expect(other.info.userName == "second-user")
+                #expect(first.defaults[DefaultKeys.windowWidth.rawValue] == .double(640))
+                #expect(other.defaults[DefaultKeys.windowWidth.rawValue] == .double(800))
+            }
+        }
     }
     
     
     /// Verifies that discovery is limited to archives directly inside the settings directory.
     ///
     /// - Throws: An error if creating or discovering the archives fails.
-    @Test func archiveURLsExcludeOtherFiles() async throws {
+    @Test func observedArchivesExcludeOtherFiles() async throws {
         
         let directoryURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: directoryURL) }
@@ -141,7 +152,7 @@ import Defaults
         #expect(emptyURLs.isEmpty)
         
         let document = try PortableSettingsDocument(including: [])
-        let fileURL = try await manager.save(document)
+        let fileURL = try self.writeArchive(document, in: directoryURL)
         let legacyID = UUID()
         var legacyDocument = document
         legacyDocument.info.sourceID = legacyID
@@ -159,31 +170,6 @@ import Defaults
         await #expect(throws: CloudSettingsError.invalidArchiveURL) {
             try await manager.load(from: unrelatedURL)
         }
-    }
-    
-    
-    /// Verifies that an already canceled save leaves the previous archive intact.
-    ///
-    /// - Throws: An error if creating or reading the archive fails.
-    @Test func canceledSaveKeepsPreviousArchive() async throws {
-        
-        let directoryURL = try FileManager.default.makeTemporaryDirectory()
-        defer { try? FileManager.default.removeItem(at: directoryURL) }
-        let manager = CloudSettingsManager(containerURL: directoryURL)
-        var document = try PortableSettingsDocument(including: [])
-        document.defaults = ["Sample": .string("old")]
-        let fileURL = try await manager.save(document)
-        document.defaults = ["Sample": .string("new")]
-        let task = Task { [document] in
-            try await manager.save(document)
-        }
-        task.cancel()
-        
-        await #expect(throws: CancellationError.self) {
-            try await task.value
-        }
-        let saved = try await manager.load(from: fileURL)
-        #expect(saved.defaults["Sample"] == .string("old"))
     }
     
     
@@ -208,10 +194,10 @@ import Defaults
     }
     
     
-    /// Verifies that an already canceled search does not return an empty result.
+    /// Verifies that already canceled observation does not publish an empty result.
     ///
     /// - Throws: An error if creating the container directory fails.
-    @Test func canceledSearchDoesNotReturnResults() async throws {
+    @Test func canceledObservationDoesNotReturnResults() async throws {
         
         let directoryURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: directoryURL) }
@@ -227,29 +213,54 @@ import Defaults
     }
     
     
-    /// Verifies that a failed write preserves the last successfully saved archive.
+    /// Runs a test with an isolated defaults store.
     ///
-    /// - Throws: An error if preparing or reading the archive fails.
-    @Test func failedSaveKeepsPreviousArchive() async throws {
+    /// - Parameter body: The test using the defaults store.
+    /// - Throws: An error if creating the defaults store or running the test fails.
+    private func withDefaults(_ body: (UserDefaults) async throws -> Void) async throws {
         
-        let directoryURL = try FileManager.default.makeTemporaryDirectory()
-        let settingsURL = directoryURL.appending(path: "Settings")
-        defer {
-            try? FileManager.default.setAttributes([.posixPermissions: 0o700], ofItemAtPath: settingsURL.path)
-            try? FileManager.default.removeItem(at: directoryURL)
-        }
-        let manager = CloudSettingsManager(containerURL: directoryURL)
-        var document = try PortableSettingsDocument(including: [])
-        document.defaults = ["Sample": .string("old")]
-        let fileURL = try await manager.save(document)
-        try FileManager.default.setAttributes([.posixPermissions: 0o500], ofItemAtPath: settingsURL.path)
-        document.defaults = ["Sample": .string("new")]
+        let suiteName = "CloudSettingsManagerTests.\(UUID())"
+        let defaults = try #require(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        defaults[.windowWidth] = 640
         
-        await #expect(throws: CocoaError.self) {
-            try await manager.save(document)
-        }
-        try FileManager.default.setAttributes([.posixPermissions: 0o700], ofItemAtPath: settingsURL.path)
-        let saved = try await manager.load(from: fileURL)
-        #expect(saved.defaults["Sample"] == .string("old"))
+        try await body(defaults)
+    }
+    
+    
+    /// Saves settings through automatic saving and then disables further observation.
+    ///
+    /// - Parameters:
+    ///   - manager: The manager used to save settings.
+    ///   - defaults: The defaults store observed by the manager.
+    /// - Throws: An error if saving settings fails.
+    private func saveSettings(using manager: CloudSettingsManager, defaults: UserDefaults) async throws {
+        
+        defaults[.syncsSettings] = true
+        manager.start()
+        await manager.flush()
+        let error = manager.error
+        defaults[.syncsSettings] = false
+        await manager.flush()
+        
+        if let error { throw error }
+    }
+    
+    
+    /// Writes a test archive without starting automatic saving.
+    ///
+    /// - Parameters:
+    ///   - document: The snapshot to write.
+    ///   - containerURL: The local test container.
+    /// - Returns: The archive's URL.
+    /// - Throws: An error if creating the directory or writing the archive fails.
+    private func writeArchive(_ document: PortableSettingsDocument, in containerURL: URL) throws -> URL {
+        
+        let directoryURL = containerURL.appending(component: "Settings", directoryHint: .isDirectory)
+        try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
+        let fileURL = directoryURL.appending(component: UUID().uuidString, directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
+        try document.fileWrapper().write(to: fileURL, options: .atomic, originalContentsURL: fileURL)
+        
+        return fileURL
     }
 }

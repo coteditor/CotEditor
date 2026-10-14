@@ -24,23 +24,48 @@
 //
 
 import Foundation
+import Combine
+import Observation
+import OSLog
 import Synchronization
 import UniformTypeIdentifiers
+import Defaults
 
-enum CloudSettingsError: Error {
+enum CloudSettingsError: LocalizedError {
     
     case iCloudUnavailable
     case metadataQueryFailed
     case invalidArchiveURL
-    case unresolvedConflict
+    
+    
+    var errorDescription: String? {
+        
+        switch self {
+            case .iCloudUnavailable:
+                String(localized: "CloudSettingsError.iCloudUnavailable.description",
+                       defaultValue: "iCloud Drive is not available.",
+                       comment: "Refer to the same expression by Apple.")
+            case .metadataQueryFailed:
+                String(localized: "CloudSettingsError.metadataQueryFailed.description",
+                       defaultValue: "Couldn’t find settings copies in iCloud.")
+            case .invalidArchiveURL:
+                String(localized: "CloudSettingsError.invalidArchiveURL.description",
+                       defaultValue: "Couldn’t access the selected settings copy.")
+        }
+    }
 }
 
 
-@MainActor final class CloudSettingsManager {
+@MainActor @Observable final class CloudSettingsManager {
     
     // MARK: Public Properties
     
     static let shared = CloudSettingsManager()
+    
+    private(set) var error: any Error?
+    
+    /// Whether a settings copy is waiting to be saved or is being written.
+    var hasPendingSave: Bool  { self.saveDebouncer.isScheduled || self.saveRequested || self.saveTask != nil }
     
     
     // MARK: Private Properties
@@ -48,9 +73,21 @@ enum CloudSettingsError: Error {
     private nonisolated static let ubiquityContainerIdentifier = "iCloud.com.coteditor.CotEditor"
     
     private let containerURL: URL?
+    private let defaults: UserDefaults
     private var hostUUID: UUID?
     private let userName: String
     private let fileQueue = OperationQueue()
+    
+    private var enabledObserver: AnyCancellable?
+    private var changeObservers: [NotificationCenter.ObservationToken] = []
+    private var lastDefaults: [String: PropertyListValue] = [:]
+    private var saveTask: Task<Void, Never>?
+    private var saveRequested = false
+    private var savingActivity: any NSObjectProtocol?
+    
+    @ObservationIgnored private lazy var saveDebouncer = Debouncer(delay: .seconds(1)) { [weak self] in
+        self?.saveIfNeeded()
+    }
     
     
     // MARK: Lifecycle
@@ -59,11 +96,13 @@ enum CloudSettingsError: Error {
     ///
     /// - Parameters:
     ///   - containerURL: A local container URL, or `nil` to use CotEditor's iCloud container.
+    ///   - defaults: The user defaults store to observe and export.
     ///   - hostUUID: A host UUID used for testing, or `nil` to obtain and cache the current Mac's UUID.
     ///   - userName: The user name used to distinguish archives on the same Mac.
-    init(containerURL: URL? = nil, hostUUID: UUID? = nil, userName: String = NSUserName()) {
+    init(containerURL: URL? = nil, defaults: UserDefaults = .standard, hostUUID: UUID? = nil, userName: String = NSUserName()) {
         
         self.containerURL = containerURL
+        self.defaults = defaults
         self.hostUUID = hostUUID
         self.userName = userName
         
@@ -74,7 +113,56 @@ enum CloudSettingsError: Error {
     }
     
     
+    isolated deinit {
+        
+        self.saveTask?.cancel()
+        if let savingActivity {
+            ProcessInfo.processInfo.endActivity(savingActivity)
+        }
+    }
+    
+    
     // MARK: Public Methods
+    
+    /// Starts observing whether automatic saving is enabled and changes to portable settings.
+    func start() {
+        
+        guard self.enabledObserver == nil else { return }
+        
+        self.enabledObserver = self.defaults.publisher(for: .syncsSettings)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.updateObservation() }
+        self.updateObservation()
+    }
+    
+    
+    /// Saves any pending changes without waiting for the debounce delay.
+    ///
+    /// Saving errors are retained in `error`.
+    ///
+    /// - Parameter timeout: The duration before canceling pending writes.
+    func flush(timeout: Duration = .seconds(5)) async {
+        
+        guard self.enabledObserver != nil else { return }
+        
+        self.updateObservation()
+        self.defaultsDidChange()
+        self.saveDebouncer.fire()
+        
+        let timeoutTask = Task {
+            try await Task.sleep(for: timeout)
+            self.saveDebouncer.cancel()
+            self.saveRequested = false
+            self.saveTask?.cancel()
+        }
+        defer { timeoutTask.cancel() }
+        
+        while let saveTask = self.saveTask {
+            await saveTask.value
+            guard !saveTask.isCancelled else { break }
+            self.saveDebouncer.fire()
+        }
+    }
     
     /// Finds settings archives without downloading or applying their contents.
     ///
@@ -144,6 +232,150 @@ enum CloudSettingsError: Error {
     
     // MARK: Private Methods
     
+    /// The current values of the defaults included in settings archives.
+    private var portableDefaults: [String: PropertyListValue] {
+        
+        let keys = DefaultSettings.portableKeys + [.folderFindSavedScopes]
+        
+        return self.defaults.dictionaryWithValues(forKeys: keys.map(\.rawValue))
+            .compactMapValues(PropertyListValue.init)
+    }
+    
+    
+    /// Starts or stops observing changes according to the current automatic saving setting.
+    private func updateObservation() {
+        
+        guard self.enabledObserver != nil, self.defaults[.syncsSettings] else {
+            self.stopObservingChanges()
+            return
+        }
+        
+        guard self.changeObservers.isEmpty else { return }
+        
+        self.lastDefaults = self.portableDefaults
+        let center = NotificationCenter.default
+        self.changeObservers = [
+            center.addObserver(of: self.defaults, for: .didChange) { [weak self] _ in
+                await self?.defaultsDidChange()
+            },
+            center.addObserver(of: ThemeManager.shared, for: DidManagerUpdateSettingMessage.self) { [weak self] _ in
+                self?.scheduleSave()
+            },
+            center.addObserver(of: SyntaxManager.shared, for: DidManagerUpdateSettingMessage.self) { [weak self] _ in
+                self?.scheduleSave()
+            },
+            center.addObserver(of: ReplacementManager.shared, for: DidManagerUpdateSettingMessage.self) { [weak self] _ in
+                self?.scheduleSave()
+            },
+            center.addObserver(of: KeyBindingManager.shared, for: KeyBindingManager.DidUpdateSettingsMessage.self) { [weak self] _ in
+                self?.scheduleSave()
+            },
+        ]
+        self.scheduleSave(immediately: true)
+    }
+    
+    
+    /// Removes settings observers and cancels any pending automatic saving.
+    private func stopObservingChanges() {
+        
+        self.changeObservers.removeAll()
+        self.saveDebouncer.cancel()
+        self.saveRequested = false
+        self.saveTask?.cancel()
+        self.error = nil
+        self.updateSavingActivity()
+    }
+    
+    
+    /// Requests a settings copy only when portable user defaults have changed.
+    private func defaultsDidChange() {
+        
+        guard self.defaults[.syncsSettings], !self.changeObservers.isEmpty else { return }
+        
+        let defaults = self.portableDefaults
+        
+        guard defaults != self.lastDefaults else { return }
+        
+        self.lastDefaults = defaults
+        self.scheduleSave()
+    }
+    
+    
+    /// Requests a copy of the latest settings, optionally bypassing the debounce delay.
+    ///
+    /// - Parameter immediately: Whether to start saving without waiting for further changes.
+    private func scheduleSave(immediately: Bool = false) {
+        
+        guard
+            self.defaults[.syncsSettings],
+            !self.changeObservers.isEmpty
+        else { return }
+        
+        if immediately {
+            self.saveDebouncer.cancel()
+            self.saveIfNeeded()
+        } else {
+            self.saveDebouncer.schedule()
+        }
+        self.updateSavingActivity()
+    }
+    
+    
+    /// Saves queued settings snapshots serially after their debounce delay has elapsed.
+    private func saveIfNeeded() {
+        
+        guard self.defaults[.syncsSettings] else { return }
+        
+        self.saveRequested = true
+        
+        guard self.saveTask == nil else { return }
+        
+        self.saveTask = Task(priority: .utility) { [weak self] in
+            guard let self else { return }
+            
+            defer {
+                self.saveTask = nil
+                self.updateSavingActivity()
+                
+                // a new request can arrive while a canceled save is finishing
+                if self.saveRequested {
+                    self.saveIfNeeded()
+                }
+            }
+            
+            while self.defaults[.syncsSettings], self.saveRequested, !Task.isCancelled {
+                self.saveRequested = false
+                self.saveDebouncer.cancel()
+                
+                do {
+                    let document = try PortableSettingsDocument(including: .all, userDefaults: self.defaults)
+                    try await self.save(document)
+                    self.error = nil
+                } catch {
+                    guard !Task.isCancelled else { break }
+                    
+                    self.error = error
+                    Logger.app.error("Failed saving settings to iCloud: \(error)")
+                }
+            }
+        }
+    }
+    
+    
+    /// Prevents sudden termination while an automatic settings write is pending or in progress.
+    private func updateSavingActivity() {
+        
+        if self.hasPendingSave {
+            if self.savingActivity == nil {
+                self.savingActivity = ProcessInfo.processInfo.beginActivity(options: .suddenTerminationDisabled, reason: "Saving settings to iCloud")
+            }
+        } else if let savingActivity {
+            ProcessInfo.processInfo.endActivity(savingActivity)
+            self.savingActivity = nil
+        }
+    }
+    
+    
     /// Returns whether a URL identifies a settings archive directly inside the settings directory.
     ///
     /// - Parameters:
@@ -197,9 +429,8 @@ enum CloudSettingsError: Error {
     /// Saves the supplied settings snapshot as this environment's archive.
     ///
     /// - Parameter document: The complete settings snapshot to save.
-    /// - Returns: The saved archive's URL.
-    /// - Throws: An error if iCloud is unavailable, encoding or writing fails, a conflict exists, or the operation is canceled.
-    func save(_ document: PortableSettingsDocument) async throws -> URL {
+    /// - Throws: An error if iCloud is unavailable, encoding or writing fails, or the operation is canceled.
+    private func save(_ document: PortableSettingsDocument) async throws {
         
         let sourceID = if let hostUUID {
             hostUUID
@@ -219,14 +450,19 @@ enum CloudSettingsError: Error {
         
         let fileURL = directoryURL.appending(component: "\(sourceID.uuidString)-\(self.userName)", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
         
-        return try await self.coordinate(intent: .writingIntent(with: fileURL, options: .forReplacing)) { [document] url in
-            guard NSFileVersion.unresolvedConflictVersionsOfItem(at: url)?.isEmpty ?? true else {
-                throw CloudSettingsError.unresolvedConflict
-            }
-            
+        try await self.coordinate(intent: .writingIntent(with: fileURL)) { [document] url in
             // specify the original URL to preserve the previous package if writing fails
             try document.fileWrapper().write(to: url, options: [.atomic, .withNameUpdating], originalContentsURL: url)
-            return url
+            
+            // -> This archive always represents the latest settings from this Mac.
+            for version in NSFileVersion.unresolvedConflictVersionsOfItem(at: url) ?? [] {
+                version.isResolved = true
+                do {
+                    try version.remove()
+                } catch {
+                    Logger.app.error("Failed deleting a resolved settings conflict version: \(error)")
+                }
+            }
         }
     }
     
