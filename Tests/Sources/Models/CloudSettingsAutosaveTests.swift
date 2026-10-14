@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import AppKit.NSApplication
 import Synchronization
 import UniformTypeIdentifiers
 import Testing
@@ -131,7 +132,7 @@ import Defaults
     }
     
     
-    /// Verifies retaining the previous copy after failure and clearing the error after a successful retry.
+    /// Verifies retaining the previous copy after failure and retrying on activation without further settings changes.
     ///
     /// - Throws: An error if preparing or reading the archives fails.
     @Test func retriesAfterWriteFailure() async throws {
@@ -151,10 +152,41 @@ import Defaults
             #expect(unchanged.info == original.info)
             #expect(unchanged.defaults == original.defaults)
             try FileManager.default.setAttributes([.posixPermissions: 0o700], ofItemAtPath: directoryURL.path)
-            defaults[.windowWidth] = 900
-            await manager.flush()
+            NotificationCenter.default.post(name: NSApplication.didBecomeActiveNotification, object: NSApplication.shared)
+            try #require(await Task.waitFor { manager.error == nil && !manager.hasPendingSave })
             #expect(manager.error == nil)
-            #expect(try PortableSettingsDocument(contentsOf: fileURL).defaults[DefaultKeys.windowWidth.rawValue] == .double(900))
+            #expect(try PortableSettingsDocument(contentsOf: fileURL).defaults[DefaultKeys.windowWidth.rawValue] == .double(800))
+        }
+    }
+    
+    
+    /// Verifies that activation does not save without an error or while automatic saving is disabled.
+    ///
+    /// - Parameter enabled: Whether automatic saving is enabled.
+    /// - Throws: An error if preparing or reading the archives fails.
+    @Test(arguments: [false, true])
+    func activationDoesNotSaveWithoutError(enabled: Bool) async throws {
+        
+        try await self.withManager(enabled: enabled) { manager, _, fileURL in
+            await manager.flush()
+            if enabled {
+                var document = try PortableSettingsDocument(contentsOf: fileURL)
+                document.info.date = Date(timeIntervalSince1970: 0)
+                try document.fileWrapper().write(to: fileURL, options: .atomic, originalContentsURL: fileURL)
+            }
+            NotificationCenter.default.post(name: NSApplication.didBecomeActiveNotification, object: NSApplication.shared)
+            await withCheckedContinuation { continuation in
+                RunLoop.main.perform { continuation.resume() }
+            }
+            await manager.flush()
+            
+            if enabled {
+                #expect(try PortableSettingsDocument(contentsOf: fileURL).info.date == Date(timeIntervalSince1970: 0))
+            } else {
+                #expect(!FileManager.default.fileExists(atPath: fileURL.path))
+            }
+            #expect(manager.error == nil)
+            #expect(!manager.hasPendingSave)
         }
     }
     

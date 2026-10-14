@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import AppKit.NSApplication
 import Combine
 import Observation
 import OSLog
@@ -137,7 +138,7 @@ enum CloudSettingsError: LocalizedError {
     
     // MARK: Public Methods
     
-    /// Starts observing the iCloud identity, automatic saving setting, and changes to portable settings.
+    /// Starts observing the iCloud identity, automatic saving setting, application activation, and portable settings.
     func start() {
         
         guard self.enabledObserver == nil else { return }
@@ -153,9 +154,19 @@ enum CloudSettingsError: LocalizedError {
         }
         self.ubiquityIdentityToken = FileManager.default.ubiquityIdentityToken
         
+        let activation = NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)
+            .map { [defaults] _ in defaults[.syncsSettings] }
         self.enabledObserver = self.defaults.publisher(for: .syncsSettings)
+            .merge(with: activation)
             .receive(on: RunLoop.main)
-            .sink { [weak self] _ in self?.updateObservation() }
+            .sink { [weak self] _ in
+                guard let self else { return }
+                
+                self.updateObservation()
+                if self.error != nil, !self.hasPendingSave {
+                    self.scheduleSave(immediately: true)
+                }
+            }
         self.updateObservation()
     }
     
