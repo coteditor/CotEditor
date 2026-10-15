@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="設定, iCloud, iCloud Drive, コピー, 読み込み, 書き出し, 別のMac">
+	<link rel="stylesheet" href="../../Shared/sty/standard.css">
+	<script defer src="../../Shared/js/toc.js"></script>
+
+	<title>MacのCotEditorで設定をiCloudに保存する</title>
+</head>
+
+<body>
+<a name="howto_store_settings_in_icloud"></a>
+
+<h1>MacのCotEditorで設定をiCloudに保存する</h1>
+
+<p>CotEditorの設定のコピーをiCloudに保存できます。保存したコピーは、設定を変更するたびに自動的に更新され、必要なときに別のMacで読み込めます。</p>
+
+<p><em class="tip">ヒント:</em> この機能を使用するには、各Macで同じApple Accountにサインインして、iCloud Driveをオンにします。Macユーザガイドの<a href="https://support.apple.com/ja-jp/guide/mac-help/mchle5a61431/mac" rel="external">MacのiCloud Driveにファイルを保存する</a>を参照してください。</p>
+
+
+<section id="keep_copy">
+<h2>設定のコピーをiCloudに保存する</h2>
+
+<ol>
+	<li><p>設定のコピー元のMacでCotEditorアプリ<img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt="">に移動します。</p></li>
+	<li><p>「CotEditor」＞「設定」と選択してから、<a href="settings_general.html">「一般」</a>をクリックします。</p></li>
+	<li><p>「設定の読み込みと書き出し」セクションで、「iCloudにコピーを保存」をオンにします。</p></li>
+</ol>
+
+<p>この設定がオンの間は、対象となるCotEditorの設定を変更すると、コピーが自動的に更新されます。コピーはMacとmacOSのユーザアカウントごとに保存されます。</p>
+
+<p>コピーに含まれる項目については、<a href="howto_port_settings.html">設定を書き出す/読み込む</a>を参照してください。</p>
+
+<p>コピーの自動保存を停止するには、保存元のMacで「iCloudにコピーを保存」をオフにします。保存済みのコピーは、<a href="#delete_copy">削除する</a>までiCloudに残ります。</p>
+</section>
+
+
+<section id="import_copy">
+<h2>iCloudから設定を読み込む</h2>
+
+<ol>
+	<li><p>設定を読み込むMacでCotEditorアプリ<img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt="">に移動します。</p></li>
+	<li><p>「CotEditor」＞「設定」と選択してから、<a href="settings_general.html">「一般」</a>をクリックします。</p></li>
+	<li><p>「設定の読み込みと書き出し」セクションで、「読み込む」の横にある矢印をクリックしてから、読み込みたい設定のコピーを選択します。</p></li>
+	<li><p>読み込む項目を選択してから、「読み込む」をクリックします。</p></li>
+</ol>
+
+<p>このMacの設定は、読み込んだ内容で上書きされます。</p>
+
+<p>このMacで「iCloudにコピーを保存」がオフになっていても、コピーを読み込むことができます。</p>
+</section>
+
+
+<section id="delete_copy">
+<h2>iCloudから設定のコピーを削除する</h2>
+
+<p>コピーが再び作成されないようにするには、先に保存元のMacで「iCloudにコピーを保存」をオフにします。</p>
+
+<ol>
+	<li><p>MacでCotEditorアプリ<img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt="">に移動します。</p></li>
+	<li><p>「CotEditor」＞「設定」と選択してから、<a href="settings_general.html">「一般」</a>をクリックします。</p></li>
+	<li><p>「設定の読み込みと書き出し」セクションで、「読み込む」の横にある矢印をクリックしてから、「iCloudのコピーを管理」を選択します。</p></li>
+	<li><p>削除するコピーを選択してから、「コピーを削除」ボタンをクリックします。</p></li>
+	<li><p>確認ダイアログで「削除」をクリックします。</p></li>
+</ol>
+
+<p>コピーを削除しても、各MacのCotEditorの設定は変更されません。</p>
+</section>
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="settings_general.html">MacのCotEditorで「一般」設定を変更する</a></li>
+	<li><a href="howto_port_settings.html">MacのCotEditorで設定を書き出す/読み込む</a></li>
+</ul>
+</section>
+
+</body>
+</html>

@@ -115,6 +115,8 @@ struct CloudSettingsCopiesView: View {
                 .fixedSize(horizontal: false, vertical: true)
             
             HStack {
+                HelpLink(anchor: "howto_port_settings")
+                
                 Spacer()
                 Button(role: .close) {
                     self.dismiss()
