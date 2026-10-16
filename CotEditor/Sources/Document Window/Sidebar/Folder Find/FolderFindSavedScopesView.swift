@@ -104,7 +104,7 @@ struct FolderFindSavedScopesView: View {
             HStack {
                 Spacer()
                 
-                Button(.ok, role: .close) {
+                Button(role: .close) {
                     self.dismiss()
                 }
                 .keyboardShortcut(.defaultAction)

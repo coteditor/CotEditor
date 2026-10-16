@@ -3925,7 +3925,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bist du sicher, dass du „%@“ löschen willst?"
+            "value" : "Möchtest du „%@“ wirklich löschen?"
           }
         },
         "en" : {
