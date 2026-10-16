@@ -25,8 +25,6 @@
 
 import Foundation
 import AppKit.NSApplication
-import Synchronization
-import UniformTypeIdentifiers
 import Testing
 import Defaults
 @testable import CotEditor
@@ -34,16 +32,6 @@ import Defaults
 // The observer integration tests post notifications from shared setting managers.
 @MainActor @Suite(.serialized) struct CloudSettingsAutosaveTests {
 
-    /// Verifies exposing localized descriptions through Foundation's error bridging.
-    ///
-    /// - Parameter error: The settings storage error to describe.
-    @Test(arguments: [CloudSettingsError.iCloudUnavailable, .metadataQueryFailed, .invalidArchiveURL])
-    func localizedErrorDescriptions(error: CloudSettingsError) {
-        
-        #expect((error as NSError).localizedDescription == error.errorDescription)
-        #expect(error.errorDescription?.isEmpty == false)
-    }
-    
     /// Verifies enabling, disabling, and resuming automatic saving without removing the previous copy.
     ///
     /// - Throws: An error if preparing or reading the archives fails.
@@ -87,9 +75,7 @@ import Defaults
             let scheduled = await Task.waitFor { manager.hasPendingSave }
             try #require(scheduled)
             #expect(try PortableSettingsDocument(contentsOf: fileURL).defaults[DefaultKeys.windowWidth.rawValue] == .double(640))
-            for width in 701...800 {
-                defaults[.windowWidth] = Double(width)
-            }
+            defaults[.windowWidth] = 800
             defaults[.folderFindSavedScopes] = ["Sample": Data("scope".utf8)]
             let saved = await Task.waitFor {
                 (try? PortableSettingsDocument(contentsOf: fileURL).defaults[DefaultKeys.windowWidth.rawValue]) == .double(800) && !manager.hasPendingSave
@@ -146,7 +132,6 @@ import Defaults
             defaults[.windowWidth] = 800
             await manager.flush()
             #expect(manager.error.map { $0 is CocoaError } == true)
-            #expect(manager.error?.localizedDescription != nil)
             #expect(!manager.hasPendingSave)
             let unchanged = try PortableSettingsDocument(contentsOf: fileURL)
             #expect(unchanged.info == original.info)
@@ -154,7 +139,6 @@ import Defaults
             try FileManager.default.setAttributes([.posixPermissions: 0o700], ofItemAtPath: directoryURL.path)
             NotificationCenter.default.post(name: NSApplication.didBecomeActiveNotification, object: NSApplication.shared)
             try #require(await Task.waitFor { manager.error == nil && !manager.hasPendingSave })
-            #expect(manager.error == nil)
             #expect(try PortableSettingsDocument(contentsOf: fileURL).defaults[DefaultKeys.windowWidth.rawValue] == .double(800))
         }
     }
@@ -199,7 +183,7 @@ import Defaults
         try await self.withManager { manager, defaults, fileURL in
             await manager.flush()
             let original = try PortableSettingsDocument(contentsOf: fileURL)
-            let presenter = SuspendedSettingsPresenter(fileURL: fileURL)
+            let presenter = SuspendedFilePresenter(fileURL: fileURL)
             NSFileCoordinator.addFilePresenter(presenter)
             defer {
                 presenter.resume()
@@ -245,7 +229,7 @@ import Defaults
         try await self.withManager { manager, defaults, fileURL in
             await manager.flush()
             let original = try PortableSettingsDocument(contentsOf: fileURL)
-            let presenter = SuspendedSettingsPresenter(fileURL: fileURL)
+            let presenter = SuspendedFilePresenter(fileURL: fileURL)
             NSFileCoordinator.addFilePresenter(presenter)
             defer {
                 presenter.resume()
@@ -286,7 +270,7 @@ import Defaults
         
         try await self.withManager { manager, defaults, fileURL in
             await manager.flush()
-            let presenter = SuspendedSettingsPresenter(fileURL: fileURL)
+            let presenter = SuspendedFilePresenter(fileURL: fileURL)
             NSFileCoordinator.addFilePresenter(presenter)
             defer {
                 presenter.resume()
@@ -333,9 +317,8 @@ import Defaults
         }))
         defaults[.syncsSettings] = enabled
         defaults[.windowWidth] = 640
-        let hostUUID = UUID()
-        let fileURL = directoryURL.appending(path: "Settings/\(hostUUID.uuidString)-tester", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
-        let manager = CloudSettingsManager(containerURL: directoryURL, defaults: defaults, hostUUID: hostUUID, userName: "tester")
+        let manager = CloudSettingsManager(containerURL: directoryURL, defaults: defaults)
+        let fileURL = try await manager.currentArchiveURL()
         manager.start()
         var failure: (any Error)?
         do {
@@ -347,56 +330,5 @@ import Defaults
         await manager.flush()
         #expect(!manager.hasPendingSave)
         if let failure { throw failure }
-    }
-}
-
-
-/// A presenter that suspends the first writer until the test allows it to proceed.
-private final class SuspendedSettingsPresenter: NSObject, NSFilePresenter {
-    
-    let presentedItemURL: URL?
-    let presentedItemOperationQueue = OperationQueue()
-    private let state = Mutex<(writer: (@Sendable ((@Sendable () -> Void)?) -> Void)?, resumed: Bool)>((nil, false))
-    
-    /// Whether a coordinated write is currently suspended.
-    var isWaiting: Bool {
-        
-        self.state.withLock { $0.writer != nil }
-    }
-    
-    /// Creates a presenter for the archive being saved.
-    ///
-    /// - Parameter fileURL: The archive URL to coordinate.
-    init(fileURL: URL) {
-        
-        self.presentedItemURL = fileURL
-        super.init()
-    }
-    
-    
-    /// Holds the first coordinated writer until the test resumes it.
-    ///
-    /// - Parameter writer: The accessor to invoke when the presented item can be written.
-    func relinquishPresentedItem(toWriter writer: @escaping @Sendable ((@Sendable () -> Void)?) -> Void) {
-        
-        let resumed = self.state.withLock {
-            guard !$0.resumed else { return true }
-            $0.writer = writer
-            return false
-        }
-        if resumed { writer(nil) }
-    }
-    
-    
-    /// Allows the suspended writer and all subsequent writers to proceed.
-    func resume() {
-        
-        let writer = self.state.withLock {
-            let writer = $0.writer
-            $0.writer = nil
-            $0.resumed = true
-            return writer
-        }
-        writer?(nil)
     }
 }

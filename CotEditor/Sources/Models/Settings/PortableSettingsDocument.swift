@@ -242,16 +242,14 @@ struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
     ///
     /// - Parameters:
     ///   - types: The setting types to include.
-    ///   - sourceID: The persistent identifier of the source environment, if available.
     ///   - userDefaults: The user defaults store from which settings are exported.
     /// - Throws: An error if encoding the key binding settings fails.
-    init(including types: SettingTypes, sourceID: UUID? = nil, userDefaults: UserDefaults = .standard) throws {
+    init(including types: SettingTypes, userDefaults: UserDefaults = .standard) throws {
         
         self.info = Info(date: .now,
                          version: Bundle.main.version!,
                          machineName: Host.current().localizedName,
-                         userName: NSUserName(),
-                         sourceID: sourceID)
+                         userName: NSUserName())
         
         var keys: [DefaultKeys] = []
         if types.contains(.settings) {

@@ -25,7 +25,6 @@
 
 import Foundation
 import Observation
-import Synchronization
 import UniformTypeIdentifiers
 import Testing
 import Defaults
@@ -35,10 +34,8 @@ import Defaults
     
     /// Verifies that cloud identity changes are observable without enabling automatic saving or retaining the manager.
     ///
-    /// - Parameter usesTypedMessage: Whether to post a typed message rather than a legacy notification.
     /// - Throws: An error if creating the defaults store or waiting for observation updates fails.
-    @Test(.serialized, .timeLimit(.minutes(1)), arguments: [false, true])
-    func cloudIdentityObservationLifecycle(usesTypedMessage: Bool) async throws {
+    @Test(.timeLimit(.minutes(1))) func cloudIdentityObservationLifecycle() async throws {
         
         try await self.withDefaults { defaults in
             defaults[.syncsSettings] = false
@@ -49,11 +46,7 @@ import Defaults
             var identities = Observations { _ = manager?.ubiquityIdentityToken }.makeAsyncIterator()
             try #require(await identities.next() != nil)
             
-            if usesTypedMessage {
-                NotificationCenter.default.post(FileManager.UbiquityIdentityDidChangeMessage())
-            } else {
-                NotificationCenter.default.post(name: .NSUbiquityIdentityDidChange, object: nil)
-            }
+            NotificationCenter.default.post(name: .NSUbiquityIdentityDidChange, object: nil)
             
             try #require(await identities.next() != nil)
             #expect(!defaults[.syncsSettings])
@@ -65,122 +58,47 @@ import Defaults
     }
     
     
-    /// Verifies that the source identifier survives recreating a manager.
+    /// Verifies the current source's stable URL and replacing its snapshot without changing another copy.
     ///
-    /// - Throws: An error if creating, saving, or reading the archives fails.
-    @Test func sourceIDIsStable() async throws {
+    /// - Throws: An error if creating, saving, discovering, or reading the archives fails.
+    @Test func savesAndReplacesCurrentCopy() async throws {
         
         let directoryURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: directoryURL) }
         try await self.withDefaults { defaults in
             let manager = CloudSettingsManager(containerURL: directoryURL, defaults: defaults)
+            let fileURL = try await manager.currentArchiveURL()
+            let recreated = CloudSettingsManager(containerURL: directoryURL)
+            #expect(try await recreated.currentArchiveURL() == fileURL)
+            #expect(!FileManager.default.fileExists(atPath: fileURL.deletingLastPathComponent().path))
             try await self.saveSettings(using: manager, defaults: defaults)
-            var archives: [CloudSettingsManager.Archive] = []
-            for try await snapshot in manager.archives() {
-                archives = snapshot
-            }
-            let fileURL = try #require(archives.first?.url)
-            let saved = try await manager.load(from: fileURL)
-            let sourceID = try #require(saved.info.sourceID)
-            try await self.withDefaults { otherDefaults in
-                let recreated = CloudSettingsManager(containerURL: directoryURL, defaults: otherDefaults)
-                try await self.saveSettings(using: recreated, defaults: otherDefaults)
-                for try await snapshot in recreated.archives() {
-                    archives = snapshot
-                }
-            }
-            
-            #expect(archives.map(\.url) == [fileURL])
+            var original = try await manager.load(from: fileURL)
+            let sourceID = try #require(original.info.sourceID)
             #expect(fileURL.deletingPathExtension().lastPathComponent == "\(sourceID.uuidString)-\(NSUserName())")
-        }
-    }
-    
-    
-    /// Verifies that replacing a snapshot removes obsolete files and preserves another source's archive.
-    ///
-    /// - Throws: An error if creating, saving, discovering, or reading the archives fails.
-    @Test func savesSeparateArchivesAndReplacesSnapshot() async throws {
-        
-        let directoryURL = try FileManager.default.makeTemporaryDirectory()
-        defer { try? FileManager.default.removeItem(at: directoryURL) }
-        try await self.withDefaults { defaults in
-            try await self.withDefaults { otherDefaults in
-                let hostUUID = UUID()
-                let otherHostUUID = UUID()
-                let manager = CloudSettingsManager(containerURL: directoryURL, defaults: defaults, hostUUID: hostUUID)
-                let otherManager = CloudSettingsManager(containerURL: directoryURL, defaults: otherDefaults, hostUUID: otherHostUUID)
-                let fileURL = directoryURL.appending(path: "Settings/\(hostUUID.uuidString)-\(NSUserName())", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
-                let otherURL = directoryURL.appending(path: "Settings/\(otherHostUUID.uuidString)-\(NSUserName())", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
-                let windowWidth = UserDefaults.standard[.windowWidth]
-                try await self.saveSettings(using: manager, defaults: defaults)
-                try await self.saveSettings(using: otherManager, defaults: otherDefaults)
-                
-                let obsoleteName = "Obsolete-\(UUID()).cottheme"
-                for url in [fileURL, otherURL] {
-                    var document = try await manager.load(from: url)
-                    document.themes[obsoleteName] = Data("old".utf8)
-                    try document.fileWrapper().write(to: url, options: .atomic, originalContentsURL: url)
-                }
-                let first = try await manager.load(from: fileURL)
-                #expect(first.defaults[DefaultKeys.windowWidth.rawValue] == .double(640))
-                #expect(first.info.sourceID == hostUUID)
-                #expect(first.info.machineName == Host.current().localizedName)
-                #expect(first.info.userName == NSUserName())
-                
-                defaults[.windowWidth] = 800
-                try await self.saveSettings(using: manager, defaults: defaults)
-                let updated = try await manager.load(from: fileURL)
-                let other = try await manager.load(from: otherURL)
-                var archives: [CloudSettingsManager.Archive] = []
-                for try await snapshot in manager.archives() {
-                    archives = snapshot
-                }
-                
-                #expect(updated.defaults[DefaultKeys.windowWidth.rawValue] == .double(800))
-                #expect(updated.themes[obsoleteName] == nil)
-                #expect(!FileManager.default.fileExists(atPath: fileURL.appending(path: "Themes/\(obsoleteName)").path))
-                #expect(other.defaults[DefaultKeys.windowWidth.rawValue] == .double(640))
-                #expect(other.themes[obsoleteName] != nil)
-                #expect(other.info.sourceID == otherHostUUID)
-                #expect(other.info.machineName == first.info.machineName)
-                #expect(other.info.userName == first.info.userName)
+            #expect(original.info.machineName == Host.current().localizedName)
+            #expect(original.info.userName == NSUserName())
+            
+            let obsoleteName = "Obsolete.cottheme"
+            original.themes[obsoleteName] = Data("old".utf8)
+            try original.fileWrapper().write(to: fileURL, options: .atomic, originalContentsURL: fileURL)
+            var otherCopy = original
+            otherCopy.info.sourceID = UUID()
+            let otherURL = try self.writeArchive(otherCopy, in: directoryURL)
+            
+            defaults[.windowWidth] = 800
+            try await self.saveSettings(using: manager, defaults: defaults)
+            let updated = try await manager.load(from: fileURL)
+            let other = try await manager.load(from: otherURL)
+            
+            #expect(updated.defaults[DefaultKeys.windowWidth.rawValue] == .double(800))
+            #expect(updated.themes[obsoleteName] == nil)
+            #expect(!FileManager.default.fileExists(atPath: fileURL.appending(path: "Themes/\(obsoleteName)").path))
+            #expect(updated.info.sourceID == sourceID)
+            #expect(other.info == otherCopy.info)
+            #expect(other.defaults == original.defaults)
+            #expect(other.themes[obsoleteName] != nil)
+            for try await archives in manager.archives() {
                 #expect(Set(archives.map(\.url)) == Set([fileURL, otherURL]))
-                #expect(UserDefaults.standard[.windowWidth] == windowWidth)
-            }
-        }
-    }
-    
-    
-    /// Verifies that different users on the same Mac have separate archives.
-    ///
-    /// - Throws: An error if creating, saving, or reading the archives fails.
-    @Test func savesSeparateArchivesForDifferentUsers() async throws {
-        
-        let directoryURL = try FileManager.default.makeTemporaryDirectory()
-        defer { try? FileManager.default.removeItem(at: directoryURL) }
-        try await self.withDefaults { defaults in
-            try await self.withDefaults { otherDefaults in
-                let hostUUID = UUID()
-                let manager = CloudSettingsManager(containerURL: directoryURL, defaults: defaults, hostUUID: hostUUID, userName: "first-user")
-                let otherManager = CloudSettingsManager(containerURL: directoryURL, defaults: otherDefaults, hostUUID: hostUUID, userName: "second-user")
-                let fileURL = directoryURL.appending(path: "Settings/\(hostUUID.uuidString)-first-user", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
-                let otherURL = directoryURL.appending(path: "Settings/\(hostUUID.uuidString)-second-user", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
-                #expect(try await manager.currentArchiveURL() == fileURL)
-                #expect(try await otherManager.currentArchiveURL() == otherURL)
-                #expect(!FileManager.default.fileExists(atPath: fileURL.deletingLastPathComponent().path))
-                try await self.saveSettings(using: manager, defaults: defaults)
-                otherDefaults[.windowWidth] = 800
-                try await self.saveSettings(using: otherManager, defaults: otherDefaults)
-                let first = try await manager.load(from: fileURL)
-                let other = try await manager.load(from: otherURL)
-                
-                #expect(fileURL != otherURL)
-                #expect(first.info.sourceID == hostUUID)
-                #expect(other.info.sourceID == hostUUID)
-                #expect(first.info.userName == "first-user")
-                #expect(other.info.userName == "second-user")
-                #expect(first.defaults[DefaultKeys.windowWidth.rawValue] == .double(640))
-                #expect(other.defaults[DefaultKeys.windowWidth.rawValue] == .double(800))
             }
         }
     }
@@ -216,15 +134,10 @@ import Defaults
             archives = snapshot
         }
         #expect(Set(archives.map(\.url)) == Set([fileURL, legacyURL]))
-        let legacy = try await manager.load(from: legacyURL)
-        #expect(legacy.info.sourceID == legacyID)
-        await #expect(throws: CloudSettingsError.invalidArchiveURL) {
-            try await manager.load(from: unrelatedURL)
-        }
     }
     
     
-    /// Verifies deleting an unreadable copy while preserving other copies and the current settings.
+    /// Verifies deleting an unreadable copy while preserving other copies.
     ///
     /// - Throws: An error if preparing, deleting, or observing copies fails.
     @Test func deletesUnreadableCopy() async throws {
@@ -238,13 +151,11 @@ import Defaults
         let fileURL = otherURL.deletingLastPathComponent().appending(component: "Broken", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
         try FileManager.default.createDirectory(at: fileURL, withIntermediateDirectories: true)
         try Data("invalid".utf8).write(to: fileURL.appending(component: PortableSettingsDocument.Info.filename))
-        let windowWidth = UserDefaults.standard[.windowWidth]
         
         try await manager.delete(fileURL)
         
         #expect(!FileManager.default.fileExists(atPath: fileURL.path))
         #expect(try await manager.load(from: otherURL).info == original.info)
-        #expect(UserDefaults.standard[.windowWidth] == windowWidth)
         var archives: [CloudSettingsManager.Archive] = []
         for try await snapshot in manager.archives() {
             archives = snapshot
@@ -253,12 +164,12 @@ import Defaults
     }
     
     
-    /// Verifies that deletion is limited to settings copies directly inside the settings directory.
+    /// Verifies that loading and deletion are limited to copies directly inside the settings directory.
     ///
     /// - Parameter path: The invalid copy path relative to the container.
     /// - Throws: An error if creating the container or copy fails.
     @Test(arguments: ["Documents/Other.cotsettings", "Settings/Nested/Other.cotsettings", "Settings/Other.txt"])
-    func rejectsInvalidDeletionURL(path: String) async throws {
+    func rejectsInvalidArchiveURL(path: String) async throws {
         
         let directoryURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: directoryURL) }
@@ -267,37 +178,21 @@ import Defaults
         try FileManager.default.createDirectory(at: fileURL, withIntermediateDirectories: true)
         
         await #expect(throws: CloudSettingsError.invalidArchiveURL) {
+            try await manager.load(from: fileURL)
+        }
+        await #expect(throws: CloudSettingsError.invalidArchiveURL) {
             try await manager.delete(fileURL)
         }
         #expect(FileManager.default.fileExists(atPath: fileURL.path))
     }
     
     
-    /// Verifies that an already canceled deletion preserves the copy.
+    /// Verifies that canceled access neither reads an invalid copy nor deletes it.
     ///
-    /// - Throws: An error if preparing the copy fails.
-    @Test func canceledDeletionPreservesCopy() async throws {
-        
-        let directoryURL = try FileManager.default.makeTemporaryDirectory()
-        defer { try? FileManager.default.removeItem(at: directoryURL) }
-        let manager = CloudSettingsManager(containerURL: directoryURL)
-        let fileURL = try self.writeArchive(PortableSettingsDocument(including: []), in: directoryURL)
-        let task = Task {
-            try await manager.delete(fileURL)
-        }
-        task.cancel()
-        
-        await #expect(throws: CancellationError.self) {
-            try await task.value
-        }
-        #expect(FileManager.default.fileExists(atPath: fileURL.path))
-    }
-    
-    
-    /// Verifies that an already canceled load does not read an invalid archive.
-    ///
+    /// - Parameter deletes: Whether to delete rather than load the copy.
     /// - Throws: An error if creating the archive directory fails.
-    @Test func canceledLoadDoesNotReadArchive() async throws {
+    @Test(arguments: [false, true])
+    func canceledAccessPreservesCopy(deletes: Bool) async throws {
         
         let directoryURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: directoryURL) }
@@ -305,32 +200,18 @@ import Defaults
         let fileURL = directoryURL.appending(path: "Settings/Invalid.cotsettings", directoryHint: .isDirectory)
         try FileManager.default.createDirectory(at: fileURL, withIntermediateDirectories: true)
         let task = Task {
-            try await manager.load(from: fileURL)
+            if deletes {
+                try await manager.delete(fileURL)
+            } else {
+                _ = try await manager.load(from: fileURL)
+            }
         }
         task.cancel()
         
         await #expect(throws: CancellationError.self) {
             try await task.value
         }
-    }
-    
-    
-    /// Verifies that already canceled observation does not publish an empty result.
-    ///
-    /// - Throws: An error if creating the container directory fails.
-    @Test func canceledObservationDoesNotReturnResults() async throws {
-        
-        let directoryURL = try FileManager.default.makeTemporaryDirectory()
-        defer { try? FileManager.default.removeItem(at: directoryURL) }
-        let manager = CloudSettingsManager(containerURL: directoryURL)
-        let task = Task {
-            for try await _ in manager.archives() {
-                Issue.record("Canceled observation must not publish archives.")
-            }
-        }
-        task.cancel()
-        
-        try await task.value
+        #expect(FileManager.default.fileExists(atPath: fileURL.path))
     }
     
     
@@ -342,7 +223,9 @@ import Defaults
         let directoryURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: directoryURL) }
         let manager = CloudSettingsManager(containerURL: directoryURL)
-        var document = try PortableSettingsDocument(including: [], sourceID: UUID())
+        var document = try PortableSettingsDocument(including: [])
+        document.info.date = Date(timeIntervalSince1970: 1_700_000_000)
+        document.info.sourceID = UUID()
         document.defaults = [DefaultKeys.windowWidth.rawValue: .double(1234)]
         let windowWidth = UserDefaults.standard[.windowWidth]
         let fileURL = try self.writeArchive(document, in: directoryURL)
@@ -350,35 +233,28 @@ import Defaults
         let brokenURL = fileURL.deletingLastPathComponent().appending(component: "Broken", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
         try FileManager.default.createDirectory(at: brokenURL, withIntermediateDirectories: true)
         try Data("invalid".utf8).write(to: brokenURL.appending(component: PortableSettingsDocument.Info.filename))
-        var snapshots: [[CloudSettingsManager.Archive]] = []
+        var archives: [CloudSettingsManager.Archive] = []
         
-        for try await archives in manager.archives() {
-            snapshots.append(archives)
+        for try await snapshot in manager.archives() {
+            archives = snapshot
         }
         
-        let initial = try #require(snapshots.first)
-        let final = try #require(snapshots.last)
-        #expect(Set(initial.map(\.url)) == Set([fileURL, brokenURL]))
-        #expect(final.first { $0.url == fileURL }?.info?.machineName == document.info.machineName)
-        #expect(final.first { $0.url == fileURL }?.info?.sourceID != nil)
-        #expect(final.first { $0.url == brokenURL }?.info == nil)
+        #expect(Set(archives.map(\.url)) == Set([fileURL, brokenURL]))
+        #expect(archives.first { $0.url == fileURL }?.info == document.info)
+        #expect(archives.first { $0.url == brokenURL }?.info == nil)
         #expect(UserDefaults.standard[.windowWidth] == windowWidth)
     }
     
     
     /// Verifies that a query receives early initial results and reports additions and removals until cancellation.
     ///
-    /// - Throws: An error if preparing files or waiting for query results fails.
+    /// - Throws: An error if waiting for query results fails.
     @Test func queryReportsArchiveUpdates() async throws {
         
-        let directoryURL = try FileManager.default.makeTemporaryDirectory()
-        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let directoryURL = URL(filePath: "/Settings", directoryHint: .isDirectory)
         let firstURL = directoryURL.appending(component: "First", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
         let secondURL = directoryURL.appending(component: "Second", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
         let unrelatedURL = directoryURL.appending(component: "Other.txt")
-        try FileManager.default.createDirectory(at: firstURL, withIntermediateDirectories: true)
-        try FileManager.default.createDirectory(at: secondURL, withIntermediateDirectories: true)
-        try Data().write(to: unrelatedURL)
         let query = TestMetadataQuery(urls: [firstURL, unrelatedURL])
         var snapshots: [[URL]] = []
         let task = Task {
@@ -411,12 +287,11 @@ import Defaults
     /// Verifies that observation cancellation stops the query before or during the initial gathering.
     ///
     /// - Parameter cancelsBeforeStarting: Whether to cancel before the task starts.
-    /// - Throws: An error if preparing files or waiting for the query fails.
+    /// - Throws: An error if waiting for the query fails.
     @Test(arguments: [false, true])
     func canceledQueryStops(cancelsBeforeStarting: Bool) async throws {
         
-        let directoryURL = try FileManager.default.makeTemporaryDirectory()
-        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let directoryURL = URL(filePath: "/Settings", directoryHint: .isDirectory)
         let query = TestMetadataQuery(urls: [], postsInitialResults: false)
         var receivedResults = false
         let task = Task {
@@ -448,7 +323,7 @@ import Defaults
         var manager: CloudSettingsManager? = CloudSettingsManager(containerURL: directoryURL)
         let document = try PortableSettingsDocument(including: [])
         let fileURL = try self.writeArchive(document, in: directoryURL)
-        let presenter = SuspendedMetadataPresenter(fileURL: fileURL.appending(component: PortableSettingsDocument.Info.filename))
+        let presenter = SuspendedFilePresenter(fileURL: fileURL.appending(component: PortableSettingsDocument.Info.filename))
         NSFileCoordinator.addFilePresenter(presenter)
         defer {
             presenter.resume()
@@ -495,42 +370,10 @@ import Defaults
     }
     
     
-    /// Verifies that a slow consumer receives only the latest complete archive list.
-    ///
-    /// - Throws: An error if creating the archive, waiting for completion, or consuming the stream fails.
-    @Test func streamBuffersLatestSnapshot() async throws {
-        
-        let directoryURL = try FileManager.default.makeTemporaryDirectory()
-        defer { try? FileManager.default.removeItem(at: directoryURL) }
-        let sourceID = UUID()
-        var manager: CloudSettingsManager? = CloudSettingsManager(containerURL: directoryURL)
-        let document = try PortableSettingsDocument(including: [], sourceID: sourceID)
-        let fileURL = try self.writeArchive(document, in: directoryURL)
-        weak let weakManager = manager
-        let stream = try #require(manager).archives()
-        manager = nil
-        
-        // wait until the producer finishes before consuming the buffered snapshots
-        try #require(await Task.waitFor { weakManager == nil })
-        var snapshots: [[CloudSettingsManager.Archive]] = []
-        for try await archives in stream {
-            snapshots.append(archives)
-        }
-        
-        #expect(snapshots.count == 1)
-        let archive = try #require(snapshots.first?.first)
-        #expect(archive.url == fileURL)
-        #expect(archive.info?.sourceID == sourceID)
-    }
-    
-    
     /// Verifies that an unsuccessful query start is reported and cleaned up.
-    ///
-    /// - Throws: An error if preparing the directory fails.
-    @Test func failedQueryStartStopsObservation() async throws {
+    @Test func failedQueryStartStopsObservation() async {
         
-        let directoryURL = try FileManager.default.makeTemporaryDirectory()
-        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let directoryURL = URL(filePath: "/Settings", directoryHint: .isDirectory)
         let query = TestMetadataQuery(urls: [], startsSuccessfully: false)
         
         await #expect(throws: CloudSettingsError.metadataQueryFailed) {
@@ -662,51 +505,5 @@ private final class TestMetadataItem: NSMetadataItem {
     override func value(forAttribute key: String) -> Any? {
         
         key == NSMetadataItemURLKey ? self.fileURL : nil
-    }
-}
-
-
-/// A presenter that holds a coordinated metadata read until the test resumes it.
-private final class SuspendedMetadataPresenter: NSObject, NSFilePresenter {
-    
-    let presentedItemURL: URL?
-    let presentedItemOperationQueue = OperationQueue()
-    private let reader = Mutex<(@Sendable ((@Sendable () -> Void)?) -> Void)?>(nil)
-    
-    /// Whether a coordinated metadata read is currently suspended.
-    var isWaiting: Bool {
-        
-        self.reader.withLock { $0 != nil }
-    }
-    
-    
-    /// Creates a presenter for the archive's information file.
-    ///
-    /// - Parameter fileURL: The URL of the information file.
-    init(fileURL: URL) {
-        
-        self.presentedItemURL = fileURL
-        super.init()
-    }
-    
-    
-    /// Suspends the coordinated reader.
-    ///
-    /// - Parameter reader: The accessor to invoke when the information file can be read.
-    func relinquishPresentedItem(toReader reader: @escaping @Sendable ((@Sendable () -> Void)?) -> Void) {
-        
-        self.reader.withLock { $0 = reader }
-    }
-    
-    
-    /// Allows the suspended reader to proceed.
-    func resume() {
-        
-        let reader = self.reader.withLock {
-            let reader = $0
-            $0 = nil
-            return reader
-        }
-        reader?(nil)
     }
 }

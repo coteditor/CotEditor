@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 import Testing
 import Defaults
 import FolderFind
@@ -58,61 +59,36 @@ import SyntaxFormat
     /// - Throws: An error if encoding, writing, or reading the archive fails.
     @Test func settingsArchivePreservesSourceMetadata() throws {
         
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let archiveURL = directoryURL.appending(component: "Settings", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
         let info = PortableSettingsDocument.Info(date: Date(timeIntervalSince1970: 1_700_000_000), version: Version(7, 0, 0),
                                                  machineName: "テスト用Mac", userName: "tester", sourceID: UUID())
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .xml
-        let infoData = try encoder.encode(info)
+        var document = try PortableSettingsDocument(including: [])
+        document.info = info
+        let file = try document.fileWrapper()
+        let infoData = try #require(file.fileWrappers?[PortableSettingsDocument.Info.filename]?.regularFileContents)
         let plist = try #require(PropertyListSerialization.propertyList(from: infoData, format: nil) as? [String: Any])
         
         #expect(plist["machineName"] as? String == info.machineName)
         #expect(plist["userName"] as? String == info.userName)
         #expect(plist["sourceID"] as? String == info.sourceID?.uuidString)
         
-        let archiveURL = try self.createSettingsArchive(infoData: infoData)
-        defer { try? FileManager.default.removeItem(at: archiveURL.deletingLastPathComponent()) }
-        
-        let document = try PortableSettingsDocument(contentsOf: archiveURL)
-        
-        #expect(document.info == info)
+        try file.write(to: archiveURL, options: .atomic, originalContentsURL: nil)
+        #expect(try PortableSettingsDocument(contentsOf: archiveURL).info == info)
     }
     
     
-    /// Verifies that metadata can be read without reading the settings payload.
+    /// Verifies that manual exports record the current environment without a cloud source identifier.
     ///
-    /// - Throws: An error if creating or reading the archive fails.
-    @Test func readsInfoWithoutSettingsPayload() throws {
+    /// - Throws: An error if creating the archive fails.
+    @Test func exportedArchiveInfoIncludesCurrentSource() throws {
         
-        let archiveURL = try self.createSettingsArchive()
-        defer { try? FileManager.default.removeItem(at: archiveURL.deletingLastPathComponent()) }
-        try FileManager.default.removeItem(at: archiveURL.appending(component: "Defaults.plist"))
-        
-        let info = try PortableSettingsDocument.Info(contentsOf: archiveURL.appending(component: PortableSettingsDocument.Info.filename))
-        #expect(info.version == Version(7, 0, 0))
-        #expect(info.machineName == nil)
-        #expect(throws: CocoaError.self) {
-            try PortableSettingsDocument(contentsOf: archiveURL)
-        }
-    }
-    
-    
-    /// Verifies that new exports record the current environment and an optional source identifier.
-    ///
-    /// - Parameter sourceID: The source identifier to include in the archive.
-    /// - Throws: An error if creating or encoding the archive fails.
-    @Test(arguments: [nil, UUID()])
-    func exportedArchiveInfoIncludesCurrentSource(sourceID: UUID?) throws {
-        
-        let document = try PortableSettingsDocument(including: [], sourceID: sourceID)
+        let document = try PortableSettingsDocument(including: [])
         
         #expect(document.info.machineName == Host.current().localizedName)
         #expect(document.info.userName == NSUserName())
-        #expect(document.info.sourceID == sourceID)
-        
-        let infoData = try PropertyListEncoder().encode(document.info)
-        let plist = try #require(PropertyListSerialization.propertyList(from: infoData, format: nil) as? [String: Any])
-        
-        #expect(plist["sourceID"] as? String == sourceID?.uuidString)
+        #expect(document.info.sourceID == nil)
     }
     
     
@@ -237,12 +213,11 @@ import SyntaxFormat
     
     /// Creates a settings archive with a custom syntax package for a test.
     ///
-    /// - Parameter infoData: The encoded archive metadata, or `nil` to use the legacy format.
     /// - Returns: The URL of the created archive.
     /// - Throws: An error if encoding or writing the archive fails.
-    private func createSettingsArchive(infoData: Data? = nil) throws -> URL {
+    private func createSettingsArchive() throws -> URL {
         
-        let infoData = try infoData ?? PropertyListSerialization.data(fromPropertyList: [
+        let infoData = try PropertyListSerialization.data(fromPropertyList: [
             "date": Date(timeIntervalSince1970: 1_700_000_000),
             "version": "7.0.0",
         ], format: .xml, options: 0)

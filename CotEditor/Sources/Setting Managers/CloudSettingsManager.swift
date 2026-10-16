@@ -88,7 +88,6 @@ enum CloudSettingsError: LocalizedError {
     private let containerURL: URL?
     private let defaults: UserDefaults
     private var hostUUID: UUID?
-    private let userName: String
     private let fileQueue = OperationQueue()
     
     private var enabledObserver: AnyCancellable?
@@ -111,14 +110,10 @@ enum CloudSettingsError: LocalizedError {
     /// - Parameters:
     ///   - containerURL: A local container URL, or `nil` to use CotEditor's iCloud container.
     ///   - defaults: The user defaults store to observe and export.
-    ///   - hostUUID: A host UUID used for testing, or `nil` to obtain and cache the current Mac's UUID.
-    ///   - userName: The user name used to distinguish archives on the same Mac.
-    init(containerURL: URL? = nil, defaults: UserDefaults = .standard, hostUUID: UUID? = nil, userName: String = NSUserName()) {
+    init(containerURL: URL? = nil, defaults: UserDefaults = .standard) {
         
         self.containerURL = containerURL
         self.defaults = defaults
-        self.hostUUID = hostUUID
-        self.userName = userName
         
         // -> NSFileCoordinator's asynchronous API requires an OperationQueue.
         //    The synchronous API can block Swift concurrency threads while waiting for iCloud.
@@ -276,7 +271,7 @@ enum CloudSettingsError: LocalizedError {
         
         let directoryURL = try await Self.settingsDirectoryURL(containerURL: self.containerURL)
         
-        return directoryURL.appending(component: "\(sourceID.uuidString)-\(self.userName)", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
+        return directoryURL.appending(component: "\(sourceID.uuidString)-\(NSUserName())", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
     }
     
     
@@ -580,7 +575,6 @@ enum CloudSettingsError: LocalizedError {
         
         var document = document
         document.info.sourceID = self.hostUUID
-        document.info.userName = self.userName
         
         let directoryURL = fileURL.deletingLastPathComponent()
         try await self.coordinate(intent: .writingIntent(with: directoryURL)) { url in
