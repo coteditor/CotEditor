@@ -261,6 +261,41 @@ enum CloudSettingsError: LocalizedError {
     }
     
     
+    /// Returns the archive URL for the current Mac and user, caching the host UUID.
+    ///
+    /// - Returns: The URL used for this environment's settings copy.
+    /// - Throws: An error if iCloud is unavailable or the host UUID cannot be obtained.
+    func currentArchiveURL() async throws -> URL {
+        
+        let sourceID = if let hostUUID {
+            hostUUID
+        } else {
+            try await Self.sourceID()
+        }
+        self.hostUUID = sourceID
+        
+        let directoryURL = try await Self.settingsDirectoryURL(containerURL: self.containerURL)
+        
+        return directoryURL.appending(component: "\(sourceID.uuidString)-\(self.userName)", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
+    }
+    
+    
+    /// Deletes a settings copy without reading or applying its contents.
+    ///
+    /// - Parameter fileURL: An archive URL received by `archives()`.
+    /// - Throws: An error if the URL is outside the settings directory, deletion fails, or the operation is canceled.
+    func delete(_ fileURL: URL) async throws {
+        
+        let directoryURL = try await Self.settingsDirectoryURL(containerURL: self.containerURL)
+        
+        guard Self.isSettingsArchiveURL(fileURL, in: directoryURL) else { throw CloudSettingsError.invalidArchiveURL }
+        
+        try await self.coordinate(intent: .writingIntent(with: fileURL, options: .forDeleting)) { url in
+            try FileManager.default.removeItem(at: url)
+        }
+    }
+    
+    
     // MARK: Private Methods
     
     /// The current values of the defaults included in settings archives.
@@ -541,23 +576,16 @@ enum CloudSettingsError: LocalizedError {
     /// - Throws: An error if iCloud is unavailable, encoding or writing fails, or the operation is canceled.
     private func save(_ document: PortableSettingsDocument) async throws {
         
-        let sourceID = if let hostUUID {
-            hostUUID
-        } else {
-            try await Self.sourceID()
-        }
-        self.hostUUID = sourceID
+        let fileURL = try await self.currentArchiveURL()
         
         var document = document
-        document.info.sourceID = sourceID
+        document.info.sourceID = self.hostUUID
         document.info.userName = self.userName
         
-        let directoryURL = try await Self.settingsDirectoryURL(containerURL: self.containerURL)
+        let directoryURL = fileURL.deletingLastPathComponent()
         try await self.coordinate(intent: .writingIntent(with: directoryURL)) { url in
             try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         }
-        
-        let fileURL = directoryURL.appending(component: "\(sourceID.uuidString)-\(self.userName)", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
         
         try await self.coordinate(intent: .writingIntent(with: fileURL)) { [document] url in
             // specify the original URL to preserve the previous package if writing fails

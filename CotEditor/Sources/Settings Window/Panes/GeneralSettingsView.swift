@@ -221,6 +221,7 @@ private struct SettingsImportMenu: View {
     @State private var importingCloudArchiveURL: URL?
     @State private var cloudArchives: [CloudSettingsManager.Archive]?
     @State private var cloudArchivesError: any Error?
+    @State private var isCopiesManagerPresented = false
     
     
     var body: some View {
@@ -233,7 +234,7 @@ private struct SettingsImportMenu: View {
                     if cloudArchives.isEmpty {
                         Text("No Settings Copies in iCloud", tableName: "GeneralSettings", comment: "menu item")
                     }
-                    ForEach(self.sortedCloudArchives) { archive in
+                    ForEach(cloudArchives.sortedBySource) { archive in
                         Button {
                             self.importingCloudArchiveURL = archive.url
                         } label: {
@@ -248,7 +249,14 @@ private struct SettingsImportMenu: View {
                 } else {
                     Text("Loading Settings Copies from iCloud…", tableName: "GeneralSettings", comment: "menu item")
                 }
+                
                 Divider()
+                
+                if let cloudArchives, !cloudArchives.isEmpty {
+                    Button(.init("Manage Copies on iCloud…", table: "GeneralSettings", comment: "verb; menu item")) {
+                        self.isCopiesManagerPresented = true
+                    }
+                }
                 Button(.init("Choose Settings Archive…", table: "GeneralSettings", comment: "verb; menu item")) {
                     self.isImporterPresented = true
                 }
@@ -295,17 +303,14 @@ private struct SettingsImportMenu: View {
                 .frame(width: 420)
                 .presentationSizing(.fitted)
         }
+        .sheet(isPresented: $isCopiesManagerPresented) {
+            CloudSettingsCopiesView(archives: $cloudArchives, loadingError: self.cloudArchivesError)
+                .id(CloudSettingsManager.shared.ubiquityIdentityToken as? NSObject)
+                .scenePadding()
+                .frame(width: 420)
+                .presentationSizing(.fitted)
+        }
         .alert(error: $error)
-    }
-    
-    
-    /// The cloud archives sorted by source name and then by the most recent save date.
-    private var sortedCloudArchives: [CloudSettingsManager.Archive] {
-        
-        (self.cloudArchives ?? []).sorted(using: [
-            KeyPathComparator(\.displayName, comparator: .localizedStandard),
-            KeyPathComparator(\.info?.date, order: .reverse),
-        ])
     }
     
     
@@ -418,18 +423,6 @@ private struct WarningsSettingView: View {
             }.padding(.top)
         }
         .fixedSize()
-    }
-}
-
-
-private extension CloudSettingsManager.Archive {
-    
-    /// The source's display name, falling back to the filename for legacy or unreadable metadata.
-    var displayName: String {
-        
-        let names = [self.info?.machineName, self.info?.userName].compactMap(\.self).filter { !$0.isEmpty }
-        
-        return names.isEmpty ? self.url.deletingPathExtension().lastPathComponent : names.joined(separator: " — ")
     }
 }
 

@@ -165,6 +165,9 @@ import Defaults
                 let otherManager = CloudSettingsManager(containerURL: directoryURL, defaults: otherDefaults, hostUUID: hostUUID, userName: "second-user")
                 let fileURL = directoryURL.appending(path: "Settings/\(hostUUID.uuidString)-first-user", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
                 let otherURL = directoryURL.appending(path: "Settings/\(hostUUID.uuidString)-second-user", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
+                #expect(try await manager.currentArchiveURL() == fileURL)
+                #expect(try await otherManager.currentArchiveURL() == otherURL)
+                #expect(!FileManager.default.fileExists(atPath: fileURL.deletingLastPathComponent().path))
                 try await self.saveSettings(using: manager, defaults: defaults)
                 otherDefaults[.windowWidth] = 800
                 try await self.saveSettings(using: otherManager, defaults: otherDefaults)
@@ -218,6 +221,76 @@ import Defaults
         await #expect(throws: CloudSettingsError.invalidArchiveURL) {
             try await manager.load(from: unrelatedURL)
         }
+    }
+    
+    
+    /// Verifies deleting an unreadable copy while preserving other copies and the current settings.
+    ///
+    /// - Throws: An error if preparing, deleting, or observing copies fails.
+    @Test func deletesUnreadableCopy() async throws {
+        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let manager = CloudSettingsManager(containerURL: directoryURL)
+        let document = try PortableSettingsDocument(including: [])
+        let otherURL = try self.writeArchive(document, in: directoryURL)
+        let original = try await manager.load(from: otherURL)
+        let fileURL = otherURL.deletingLastPathComponent().appending(component: "Broken", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
+        try FileManager.default.createDirectory(at: fileURL, withIntermediateDirectories: true)
+        try Data("invalid".utf8).write(to: fileURL.appending(component: PortableSettingsDocument.Info.filename))
+        let windowWidth = UserDefaults.standard[.windowWidth]
+        
+        try await manager.delete(fileURL)
+        
+        #expect(!FileManager.default.fileExists(atPath: fileURL.path))
+        #expect(try await manager.load(from: otherURL).info == original.info)
+        #expect(UserDefaults.standard[.windowWidth] == windowWidth)
+        var archives: [CloudSettingsManager.Archive] = []
+        for try await snapshot in manager.archives() {
+            archives = snapshot
+        }
+        #expect(archives.map(\.url) == [otherURL])
+    }
+    
+    
+    /// Verifies that deletion is limited to settings copies directly inside the settings directory.
+    ///
+    /// - Parameter path: The invalid copy path relative to the container.
+    /// - Throws: An error if creating the container or copy fails.
+    @Test(arguments: ["Documents/Other.cotsettings", "Settings/Nested/Other.cotsettings", "Settings/Other.txt"])
+    func rejectsInvalidDeletionURL(path: String) async throws {
+        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let manager = CloudSettingsManager(containerURL: directoryURL)
+        let fileURL = directoryURL.appending(path: path, directoryHint: .isDirectory)
+        try FileManager.default.createDirectory(at: fileURL, withIntermediateDirectories: true)
+        
+        await #expect(throws: CloudSettingsError.invalidArchiveURL) {
+            try await manager.delete(fileURL)
+        }
+        #expect(FileManager.default.fileExists(atPath: fileURL.path))
+    }
+    
+    
+    /// Verifies that an already canceled deletion preserves the copy.
+    ///
+    /// - Throws: An error if preparing the copy fails.
+    @Test func canceledDeletionPreservesCopy() async throws {
+        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let manager = CloudSettingsManager(containerURL: directoryURL)
+        let fileURL = try self.writeArchive(PortableSettingsDocument(including: []), in: directoryURL)
+        let task = Task {
+            try await manager.delete(fileURL)
+        }
+        task.cancel()
+        
+        await #expect(throws: CancellationError.self) {
+            try await task.value
+        }
+        #expect(FileManager.default.fileExists(atPath: fileURL.path))
     }
     
     
