@@ -38,6 +38,7 @@ extension DefaultKeys {
     static let enablesRemoteEditing = DefaultKey<Bool>("enablesRemoteEditing")
     static let remoteEditingPort = DefaultKey<Int>("remoteEditingPort")
     static let checksUpdatesForBeta = DefaultKey<Bool>("checksUpdatesForBeta")
+    static let syncsSettings = DefaultKey<Bool>("syncsSettings")
     
     // Appearance
     static let font = DefaultKey<Data?>("font")

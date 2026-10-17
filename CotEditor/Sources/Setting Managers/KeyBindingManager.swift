@@ -30,6 +30,13 @@ import Shortcut
 import URLUtils
 
 @MainActor final class KeyBindingManager {
+
+    /// A message posted after custom key bindings are saved or restored.
+    struct DidUpdateSettingsMessage: NotificationCenter.MainActorMessage {
+    
+        typealias Subject = KeyBindingManager
+    }
+    
     
     // MARK: Public Properties
     
@@ -95,6 +102,7 @@ import URLUtils
         
         self.userKeyBindings.removeAll()
         self.applyShortcutsToMainMenu()
+        NotificationCenter.default.post(DidUpdateSettingsMessage(), subject: self)
     }
     
     
@@ -234,6 +242,7 @@ import URLUtils
         // store new values
         self.userKeyBindings = userKeyBindings
         self.modifiedKeyBindings.formUnion(userKeyBindings)
+        NotificationCenter.default.post(DidUpdateSettingsMessage(), subject: self)
     }
     
     

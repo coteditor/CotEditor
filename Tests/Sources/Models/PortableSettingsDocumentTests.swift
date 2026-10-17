@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 import Testing
 import Defaults
 import FolderFind
@@ -32,6 +33,64 @@ import SyntaxFormat
 @testable import CotEditor
 
 @MainActor struct PortableSettingsDocumentTests {
+    
+    /// Verifies that archives created before source metadata was added remain readable.
+    ///
+    /// - Throws: An error if creating or reading the archive fails.
+    @Test func settingsArchiveWithoutSourceMetadataIsReadable() throws {
+        
+        let archiveURL = try self.createSettingsArchive()
+        defer { try? FileManager.default.removeItem(at: archiveURL.deletingLastPathComponent()) }
+        
+        let document = try PortableSettingsDocument(contentsOf: archiveURL)
+        
+        #expect(document.info.date == Date(timeIntervalSince1970: 1_700_000_000))
+        #expect(document.info.version == Version(7, 0, 0))
+        #expect(document.info.machineName == nil)
+        #expect(document.info.userName == nil)
+        #expect(document.info.sourceID == nil)
+        let info = try PortableSettingsDocument.Info(contentsOf: archiveURL.appending(component: PortableSettingsDocument.Info.filename))
+        #expect(info == document.info)
+    }
+    
+    
+    /// Verifies that an archive preserves the source metadata stored in its property list.
+    ///
+    /// - Throws: An error if encoding, writing, or reading the archive fails.
+    @Test func settingsArchivePreservesSourceMetadata() throws {
+        
+        let directoryURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: directoryURL) }
+        let archiveURL = directoryURL.appending(component: "Settings", directoryHint: .isDirectory).appendingPathExtension(for: .cotSettings)
+        let info = PortableSettingsDocument.Info(date: Date(timeIntervalSince1970: 1_700_000_000), version: Version(7, 0, 0),
+                                                 machineName: "テスト用Mac", userName: "tester", sourceID: UUID())
+        var document = try PortableSettingsDocument(including: [])
+        document.info = info
+        let file = try document.fileWrapper()
+        let infoData = try #require(file.fileWrappers?[PortableSettingsDocument.Info.filename]?.regularFileContents)
+        let plist = try #require(PropertyListSerialization.propertyList(from: infoData, format: nil) as? [String: Any])
+        
+        #expect(plist["machineName"] as? String == info.machineName)
+        #expect(plist["userName"] as? String == info.userName)
+        #expect(plist["sourceID"] as? String == info.sourceID?.uuidString)
+        
+        try file.write(to: archiveURL, options: .atomic, originalContentsURL: nil)
+        #expect(try PortableSettingsDocument(contentsOf: archiveURL).info == info)
+    }
+    
+    
+    /// Verifies that manual exports record the current environment without a cloud source identifier.
+    ///
+    /// - Throws: An error if creating the archive fails.
+    @Test func exportedArchiveInfoIncludesCurrentSource() throws {
+        
+        let document = try PortableSettingsDocument(including: [])
+        
+        #expect(document.info.machineName == Host.current().localizedName)
+        #expect(document.info.userName == NSUserName())
+        #expect(document.info.sourceID == nil)
+    }
+    
     
     @Test(arguments: [false, true])
     func settingsArchiveRoundTripKeepsCustomSyntaxPackage(removesSource: Bool) throws {
@@ -152,11 +211,16 @@ import SyntaxFormat
     
     // MARK: Private Methods
     
+    /// Creates a settings archive with a custom syntax package for a test.
+    ///
+    /// - Returns: The URL of the created archive.
+    /// - Throws: An error if encoding or writing the archive fails.
     private func createSettingsArchive() throws -> URL {
         
-        let info = PortableSettingsDocument.Info(date: .now, version: Version(7, 0, 0))
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .xml
+        let infoData = try PropertyListSerialization.data(fromPropertyList: [
+            "date": Date(timeIntervalSince1970: 1_700_000_000),
+            "version": "7.0.0",
+        ], format: .xml, options: 0)
         
         let defaultsData = try PropertyListSerialization.data(fromPropertyList: [:], format: .xml, options: 0)
         let syntaxInfoData = Data("""
@@ -171,7 +235,7 @@ import SyntaxFormat
             """.utf8)
         
         let archive = FileWrapper(directoryWithFileWrappers: [
-            "Info.plist": FileWrapper(regularFileWithContents: try encoder.encode(info)),
+            "Info.plist": FileWrapper(regularFileWithContents: infoData),
             "Defaults.plist": FileWrapper(regularFileWithContents: defaultsData),
             "Syntaxes": FileWrapper(directoryWithFileWrappers: [
                 "Sample.cotsyntax": FileWrapper(directoryWithFileWrappers: [

@@ -26,6 +26,11 @@
 /// The object invokes the registered action after a specific time interval elapses since the last call.
 @MainActor final class Debouncer {
     
+    // MARK: Public Properties
+    
+    var isScheduled: Bool  { self.task != nil }
+    
+    
     // MARK: Private Properties
     
     private let action: @MainActor @Sendable () -> Void
