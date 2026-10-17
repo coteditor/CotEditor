@@ -239,12 +239,13 @@ struct GeneralSettingsView: View {
 
 private struct SettingsImportMenu: View {
     
-    @State private var error: any Error?
-    @State private var isImporterPresented = false
     @State private var importingSettings: PortableSettingsDocument?
     @State private var importingCloudArchiveURL: URL?
     @State private var cloudArchives: [CloudSettingsManager.Archive]?
     @State private var cloudArchivesError: any Error?
+    @State private var error: any Error?
+    
+    @State private var isImporterPresented = false
     @State private var isCopiesManagerPresented = false
     
     
@@ -256,27 +257,28 @@ private struct SettingsImportMenu: View {
                     Text(cloudArchivesError.localizedDescription)
                 } else if let cloudArchives {
                     if cloudArchives.isEmpty {
-                        Text("No Settings Copies in iCloud", tableName: "GeneralSettings", comment: "menu item")
+                        Text("No Settings Copies in iCloud", tableName: "GeneralSettings", comment: "message; menu item")
                     }
                     ForEach(cloudArchives.sortedBySource) { archive in
                         Button {
                             self.importingCloudArchiveURL = archive.url
                         } label: {
-                            Text(archive.displayName)
-                            if let date = archive.info?.date {
-                                Text("\(date, format: Date.FormatStyle(date: .abbreviated)) (iCloud)", tableName: "GeneralSettings", comment: "Subtitle for a settings copy; %@ is its save date.")
+                            let secondaryLabel = if let info = archive.info {
+                                "\(info.date.formatted(date: .abbreviated, time: .omitted)) (iCloud)"
                             } else {
-                                Text(verbatim: "iCloud")
+                                "iCloud"
                             }
+                            Text(AttributedString(archive.displayName + " ") +
+                                 AttributedString(secondaryLabel, attributes: .init().foregroundColor(.secondary)))
                         }
                     }
                 } else {
-                    Text("Loading Settings Copies from iCloud…", tableName: "GeneralSettings", comment: "menu item")
+                    Text("Loading Settings Copies from iCloud…", tableName: "GeneralSettings", comment: "message; menu item")
                 }
                 
                 Divider()
                 
-                if let cloudArchives, !cloudArchives.isEmpty {
+                if self.cloudArchives?.isEmpty == false {
                     Button(.init("Manage Copies on iCloud…", table: "GeneralSettings", comment: "verb; menu item")) {
                         self.isCopiesManagerPresented = true
                     }

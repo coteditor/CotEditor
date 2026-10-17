@@ -61,7 +61,6 @@ struct CloudSettingsCopiesView: View {
                             ], format: .list(type: .and, width: .narrow))
                             .foregroundStyle(.secondary)
                             .font(.caption)
-                            
                         }
                     }
                     
