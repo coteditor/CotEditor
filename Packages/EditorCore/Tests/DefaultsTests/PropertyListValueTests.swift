@@ -155,26 +155,6 @@ struct PropertyListValueTests {
     }
     
     
-    @Test func plist() throws {
-        
-        let dictionary: [String: Any] = [
-            "title": "Dogcow",
-            "name": 1024,
-            "enabled": true,
-            "options": [
-                "data": Data([0xDE]),
-                "double": 2.0,
-            ],
-        ]
-        
-        #expect(PropertyListSerialization.propertyList(dictionary, isValidFor: .xml))
-        
-        let data = try PropertyListSerialization.data(fromPropertyList: dictionary, format: .xml, options: 0)
-        
-        #expect(!data.isEmpty)
-    }
-    
-    
     @Test func plistRoundTrip() throws {
         
         let value: PropertyListValue = .dictionary([

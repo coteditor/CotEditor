@@ -410,12 +410,14 @@ import Defaults
         
         defaults[.syncsSettings] = true
         manager.start()
-        await manager.flush()
-        let error = manager.error
-        defaults[.syncsSettings] = false
+        defer {
+            defaults[.syncsSettings] = false
+            await manager.flush()
+        }
+        
         await manager.flush()
         
-        if let error { throw error }
+        if let error = manager.error { throw error }
     }
     
     

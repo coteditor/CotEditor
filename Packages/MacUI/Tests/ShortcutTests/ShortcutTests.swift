@@ -50,7 +50,6 @@ struct ShortcutTests {
         #expect(Shortcut("a", modifiers: [.control, .shift])?.keySpecChars == "^$a")
         #expect(Shortcut("b", modifiers: [.command, .option])?.keySpecChars == "~@b")
         #expect(Shortcut("A", modifiers: [.control])?.keySpecChars == "^$a")  // uppercase for Shift key
-        #expect(Shortcut("a", modifiers: [.control, .shift])?.keySpecChars == "^$a")
         
         #expect(Shortcut("a", modifiers: [])?.keySpecChars == "a")
         #expect(Shortcut("a", modifiers: [])?.isAssignable == false)

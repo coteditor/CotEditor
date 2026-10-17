@@ -29,16 +29,15 @@ import Testing
 
 struct CollectionTests {
     
-    @Test(arguments: 0..<10)
-    func partitioningIndex(_: Int) {
+    @Test func partitioningIndex() {
         
-        let array = (0..<20).map { _ in Int.random(in: 0..<100) }.sorted()
-        
-        for _ in 0..<10 {
-            let threshold = Int.random(in: 0..<100)
-            #expect(array.partitioningIndex(where: { $0 > threshold }) ==
-                    (array.firstIndex(where: { $0 > threshold }) ?? array.endIndex))
-        }
+        #expect([].partitioningIndex(where: { $0 > 0 }) == 0)
+        #expect([1].partitioningIndex(where: { $0 > 0 }) == 0)
+        #expect([1].partitioningIndex(where: { $0 > 1 }) == 1)
+        #expect([1, 2, 2, 4].partitioningIndex(where: { $0 > 0 }) == 0)
+        #expect([1, 2, 2, 4].partitioningIndex(where: { $0 > 1 }) == 1)
+        #expect([1, 2, 2, 4].partitioningIndex(where: { $0 > 2 }) == 3)
+        #expect([1, 2, 2, 4].partitioningIndex(where: { $0 > 4 }) == 4)
     }
     
     

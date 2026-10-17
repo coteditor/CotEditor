@@ -320,15 +320,12 @@ import Defaults
         let manager = CloudSettingsManager(containerURL: directoryURL, defaults: defaults)
         let fileURL = try await manager.currentArchiveURL()
         manager.start()
-        var failure: (any Error)?
-        do {
-            try await body(manager, defaults, fileURL)
-        } catch {
-            failure = error
+        defer {
+            defaults[.syncsSettings] = false
+            await manager.flush()
+            #expect(!manager.hasPendingSave)
         }
-        defaults[.syncsSettings] = false
-        await manager.flush()
-        #expect(!manager.hasPendingSave)
-        if let failure { throw failure }
+        
+        try await body(manager, defaults, fileURL)
     }
 }

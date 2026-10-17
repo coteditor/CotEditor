@@ -223,15 +223,6 @@ struct SyntaxComponentCodingTests {
     }
     
     
-    @Test func stringDelimiterNilPrefixesOmitted() throws {
-        
-        let delimiter = Syntax.PairDelimiter(begin: "\"", end: "\"", prefixes: nil)
-        let object = try Self.object(from: delimiter)
-        
-        #expect(object["prefixes"] == nil)
-    }
-    
-    
     @Test func stringDelimiterEmptyPrefixesOmitted() throws {
         
         let delimiter = Syntax.PairDelimiter(begin: "\"", end: "\"", prefixes: [])

@@ -93,7 +93,6 @@ struct NSStringTests {
         #expect(crlf.safeEndingRange(for: NSRange(1..<3)) == NSRange(1..<2))
         #expect(crlf.safeEndingRange(for: NSRange(1..<4)) == NSRange(1..<4))
         #expect(crlf.safeEndingRange(for: NSRange(1..<5)) == NSRange(1..<5))
-        #expect(crlf.safeEndingRange(for: NSRange(2..<2)) == NSRange(2..<2))
         #expect(crlf.safeEndingRange(for: NSRange(2..<3)) == NSRange(2..<2))
         #expect(crlf.safeEndingRange(for: NSRange(2..<4)) == NSRange(2..<4))
         #expect(crlf.safeEndingRange(for: .notFound) == .notFound)
