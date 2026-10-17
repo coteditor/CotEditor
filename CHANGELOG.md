@@ -3,6 +3,9 @@
 7.1.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- [dev] Update the build environment to Xcode 27.1.
 
 
 7.1.2 (2026-10-12)
