@@ -35,6 +35,8 @@ struct GeneralSettingsView: View {
     var showsUpdaterSettings = false
 #endif
     
+    @Environment(\.locale) private var locale
+    
     @Namespace private var accessibility
     
     @AppStorage(.quitAlwaysKeepsWindows) private var quitAlwaysKeepsWindows: Bool
@@ -127,7 +129,7 @@ struct GeneralSettingsView: View {
                 Text("When document is changed by another application:", tableName: "GeneralSettings")
                     .accessibilityLabeledPair(role: .label, id: "documentConflictOption", in: self.accessibility)
                     .gridCellColumns(2)
-            }.padding(.bottom, -8)
+            }.padding(.bottom, -10)
             
             GridRow {
                 Color.clear
@@ -147,10 +149,25 @@ struct GeneralSettingsView: View {
                 .accessibilityLabeledPair(role: .content, id: "documentConflictOption", in: self.accessibility)
             }
             
+            if self.hasLongImportAndExportLabel {
+                GridRow {
+                    Text("Settings import & export:", tableName: "GeneralSettings")
+                        .accessibilityLabeledPair(role: .label, id: "settingsPorting", in: self.accessibility)
+                        .gridCellColumns(2)
+                }.padding(.bottom, -10)
+            }
+            
             GridRow {
-                Text("Settings import & export:", tableName: "GeneralSettings")
-                    .gridColumnAlignment(.trailing)
-                    .accessibilityLabeledPair(role: .label, id: "settingsPorting", in: self.accessibility)
+                if self.hasLongImportAndExportLabel {
+                    Color.clear
+                        .frame(width: 1, height: 1)
+                        .gridCellUnsizedAxes([.horizontal, .vertical])
+                        .accessibilityHidden(true)
+                } else {
+                    Text("Settings import & export:", tableName: "GeneralSettings")
+                        .gridColumnAlignment(.trailing)
+                        .accessibilityLabeledPair(role: .label, id: "settingsPorting", in: self.accessibility)
+                }
                 
                 VStack(alignment: .leading) {
                     Toggle(isOn: $syncsSettings) {
@@ -209,6 +226,13 @@ struct GeneralSettingsView: View {
             }
         }
         .fixedSize(horizontal: false, vertical: true)
+    }
+    
+    
+    /// Whether the localized import and export label needs its own row.
+    private var hasLongImportAndExportLabel: Bool {
+        
+        self.locale.language.languageCode.map([.german, .french, .italian, .spanish].contains) == true
     }
 }
 
