@@ -15,6 +15,7 @@
 - Add an Integration pane to the settings window for managing integration with external tools.
 - Move settings import and export from the File menu to General settings.
 - Update tree-sitter-php to 0.25.1.
+- [dev] Update the build environment to Xcode 27.1.
 
 
 
