@@ -141,7 +141,8 @@ struct PatternSortView: View {
                 .accessibilityElement(children: .contain)
             }
             
-            SubmitButtonGroup(.init("Sort", table: "PatternSort", comment: "verb; button"), helpAnchor: "howto_pattern_sort", action: self.submit) .disabled(self.error != nil)
+            SubmitButtonGroup(.init("Sort", table: "PatternSort", comment: "verb; button"), helpAnchor: "howto_pattern_sort", action: self.submit)
+                .disabled(self.error != nil)
                 .padding(.top)
         }
         .onAppear {
