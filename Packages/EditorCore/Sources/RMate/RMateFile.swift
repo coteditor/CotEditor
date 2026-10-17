@@ -85,7 +85,7 @@ public import Foundation
     
     // MARK: Private Properties
     
-    private weak var connection: (any RMateFileConnection)?
+    private weak var connection: any RMateFileConnection?
     
     
     // MARK: Lifecycle
@@ -105,7 +105,7 @@ public import Foundation
     ///   - metadata: The file metadata.
     ///   - token: The file identifier used by the client.
     ///   - connection: The client connection, or `nil` if disconnected.
-    init(metadata: Metadata, token: String = "", connection: (any RMateFileConnection)?) {
+    init(metadata: Metadata, token: String = "", connection: any RMateFileConnection?) {
         
         self.metadata = metadata
         self.token = token

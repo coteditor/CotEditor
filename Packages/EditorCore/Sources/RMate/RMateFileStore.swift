@@ -151,7 +151,7 @@ public struct RMateFileStore: Sendable {
             return
         }
         
-        var failure: (any Error)?
+        var failure: any Error?
         for url in urls where UUID(uuidString: url.lastPathComponent) != nil {
             do {
                 let values = try url.resourceValues(forKeys: keys)
