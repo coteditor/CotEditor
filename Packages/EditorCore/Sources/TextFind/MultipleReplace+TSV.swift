@@ -45,22 +45,19 @@ public extension MultipleReplace {
     /// - Parameters:
     ///   - tabSeparatedText: The TSV-formatted source string.
     ///   - options: Parsing options.
-    /// - Throws: `TSVParseError.invalidFormat` if an invalid line is encountered and `.failsOnInvalidValue` is specified.
-    init(tabSeparatedText: String, options: TSVParseOptions = []) throws {
+    /// - Throws: `Replacement.TSVParseError.invalidFormat` if an invalid line is encountered and `.failsOnInvalidValue` is specified.
+    init(tabSeparatedText: String, options: TSVParseOptions = []) throws(Replacement.TSVParseError) {
         
-        let replacements = try tabSeparatedText.split(whereSeparator: \.isNewline)
-            .filter { !$0.isEmpty }
-            .compactMap {
-                do {
-                    return try Replacement(line: $0)
-                } catch {
-                    if options.contains(.failsOnInvalidValue) {
-                        throw error
-                    } else {
-                        return nil
-                    }
+        var replacements: [Replacement] = []
+        for line in tabSeparatedText.split(whereSeparator: \.isNewline) where !line.isEmpty {
+            do throws(Replacement.TSVParseError) {
+                replacements.append(try Replacement(line: line))
+            } catch {
+                if options.contains(.failsOnInvalidValue) {
+                    throw error
                 }
             }
+        }
         
         self.init(replacements: replacements)
     }
@@ -69,7 +66,7 @@ public extension MultipleReplace {
 
 extension MultipleReplace.Replacement {
     
-    enum TSVParseError: Error {
+    public enum TSVParseError: Error {
         
         case invalidFormat
     }

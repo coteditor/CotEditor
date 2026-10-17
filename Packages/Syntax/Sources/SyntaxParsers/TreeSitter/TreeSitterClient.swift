@@ -85,7 +85,7 @@ actor TreeSitterClient: IncrementalParsing, HighlightParsing, OutlineParsing {
     }
     
     
-    func noteEdit(editedRange: NSRange, delta: Int, insertedText: String) throws {
+    func noteEdit(editedRange: NSRange, delta: Int, insertedText: String) throws(Content.EditError) {
         
         let oldParseRange = self.parseRange
         let wasCapped = self.content.string.length > self.maximumParseLength

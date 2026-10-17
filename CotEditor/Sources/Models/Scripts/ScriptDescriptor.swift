@@ -156,7 +156,8 @@ struct ScriptDescriptor {
     /// Creates and returns a user script instance.
     ///
     /// - Returns: An instance of `Script` created by the receiver.
-    func makeScript() throws -> any Script {
+    /// - Throws: `ScriptFileError` if the script cannot be loaded.
+    func makeScript() throws(ScriptFileError) -> any Script {
         
         let script = try self.scriptType.init(url: self.url, name: self.name, shortcut: self.shortcut)
         

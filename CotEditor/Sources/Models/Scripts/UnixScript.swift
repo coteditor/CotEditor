@@ -39,16 +39,6 @@ struct UnixScript: Script {
     let shortcut: Shortcut?
     
     
-    // MARK: Lifecycle
-    
-    init(url: URL, name: String, shortcut: Shortcut?) throws {
-        
-        self.url = url
-        self.name = name
-        self.shortcut = shortcut
-    }
-    
-    
     // MARK: Script Methods
     
     /// Executes the script.

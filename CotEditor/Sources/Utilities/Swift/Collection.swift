@@ -76,9 +76,14 @@ extension Dictionary {
     ///
     /// - Parameter transform: A closure that transforms a key. Every transformed key must be unique.
     /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
-    func mapKeys<T>(_ transform: (Key) throws -> T) rethrows -> [T: Value] {
+    /// - Throws: An error thrown by `transform`.
+    func mapKeys<T, E: Error>(_ transform: (Key) throws(E) -> T) throws(E) -> [T: Value] {
         
-        try self.reduce(into: [:]) { $0[try transform($1.key)] = $1.value }
+        var result: [T: Value] = [:]
+        for (key, value) in self {
+            result[try transform(key)] = value
+        }
+        return result
     }
     
     
@@ -86,12 +91,15 @@ extension Dictionary {
     ///
     /// - Parameter transform: A closure that transforms a key. Every transformed key must be unique.
     /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
-    func compactMapKeys<T>(_ transform: (Key) throws -> T?) rethrows -> [T: Value] {
+    /// - Throws: An error thrown by `transform`.
+    func compactMapKeys<T, E: Error>(_ transform: (Key) throws(E) -> T?) throws(E) -> [T: Value] {
         
-        try self.reduce(into: [:]) {
-            guard let key = try transform($1.key) else { return }
-            $0[key] = $1.value
+        var result: [T: Value] = [:]
+        for (key, value) in self {
+            guard let key = try transform(key) else { continue }
+            result[key] = value
         }
+        return result
     }
     
     

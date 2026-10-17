@@ -56,6 +56,35 @@ struct CollectionTests {
     }
     
     
+    @Test func compactMapKeys() {
+        
+        let dict = ["1": 10, "invalid": 20, "3": 30]
+        let mapped = dict.compactMapKeys(Int.init)
+        
+        #expect(mapped == [1: 10, 3: 30])
+    }
+    
+    
+    @Test func mapKeysPropagatesError() {
+        
+        let transform: (Int) throws(KeyTransformError) -> String = { throw .invalidKey($0) }
+        
+        #expect(throws: KeyTransformError.invalidKey(1)) {
+            try [1: 10].mapKeys(transform)
+        }
+    }
+    
+    
+    @Test func compactMapKeysPropagatesError() {
+        
+        let transform: (Int) throws(KeyTransformError) -> String? = { throw .invalidKey($0) }
+        
+        #expect(throws: KeyTransformError.invalidKey(1)) {
+            try [1: 10].compactMapKeys(transform)
+        }
+    }
+    
+    
     @Test func rawRepresentable() {
         
         enum TestKey: String {
@@ -68,5 +97,11 @@ struct CollectionTests {
         
         dict[TestKey.cow] = "🐮"
         #expect(dict[TestKey.cow] == "🐮")
+    }
+    
+    
+    private enum KeyTransformError: Error, Equatable {
+        
+        case invalidKey(Int)
     }
 }

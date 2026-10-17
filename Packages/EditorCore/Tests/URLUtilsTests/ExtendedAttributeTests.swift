@@ -73,6 +73,20 @@ actor ExtendedAttributeTests {
             try file.url.extendedAttribute(for: name)
         }
     }
+    
+    
+    @Test(arguments: [Data([0x01]), nil] as [Data?])
+    func settingExtendedAttributeOnMissingFile(data: Data?) throws {
+        
+        let file = try TemporaryFile()
+        defer { file.cleanup() }
+        
+        let missingURL = file.url.appendingPathExtension("missing")
+        
+        #expect(throws: POSIXError(.ENOENT)) {
+            try missingURL.setExtendedAttribute(data: data, for: "com.coteditor.test")
+        }
+    }
 }
 
 
