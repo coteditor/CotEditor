@@ -115,6 +115,7 @@ struct ImportSettingsView: View {
             }
             
             Text("Select the items to import:", tableName: "SettingsPorting")
+                .zIndex(1)
             PortableTypesView(types: $types, includedTypes: self.document.bundledSettings)
             
             SubmitButtonGroup(.init("Action.import.ellipsis.label", defaultValue: "Import…"), helpAnchor: "howto_port_settings", action: self.importSettings)
