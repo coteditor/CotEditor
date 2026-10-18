@@ -365,6 +365,10 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         } else {
             self.syntaxPopUpButton?.isEnabled = false
         }
+        
+        // update the window title for the new document
+        // -> NSWindowController synchronizes the title before `fileDocument` is updated.
+        self.synchronizeWindowTitleWithDocumentName()
     }
     
     

@@ -375,6 +375,30 @@ protocol AdditionalDocumentPreparing: NSDocument {
     }
     
     
+    /// Adds a document created outside the standard opening flow and displays it, replacing the transient document if available.
+    ///
+    /// - Parameter document: The document to add and display.
+    func addDocumentAndDisplay(_ document: Document) {
+        
+        // obtain the transient document before adding because adding clears the transient status
+        let transientDocument: Document? = if let transientDocument = self.transientDocument,
+                                              transientDocument.windowForSheet?.attachedSheet == nil
+        {
+            transientDocument
+        } else {
+            nil
+        }
+        
+        self.addDocument(document)
+        
+        if let transientDocument {
+            self.replaceTransientDocument(transientDocument, with: document)
+        }
+        document.makeWindowControllers()
+        document.showWindows()
+    }
+    
+    
     /// Performs the user-defined action on the open/reopen event.
     func performOnLaunchAction() {
         

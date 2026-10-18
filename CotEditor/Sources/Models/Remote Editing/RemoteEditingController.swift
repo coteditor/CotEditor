@@ -117,10 +117,8 @@ import LineEnding
         {
             document.setSyntax(name: name)
         }
-        DocumentController.shared.addDocument(document)
         document.didMakeDocumentForExistingFile(url: url)
-        document.makeWindowControllers()
-        document.showWindows()
+        (DocumentController.shared as! DocumentController).addDocumentAndDisplay(document)
         
         if let lineNumber = request.lineNumber, let textView = document.textView {
             let location = document.lineEndingScanner.lineRange(for: lineNumber)?.location ?? document.textStorage.length
