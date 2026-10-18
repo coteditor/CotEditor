@@ -90,7 +90,7 @@ extension ImportingItem {
     /// - Parameter body: The operation to perform.
     /// - Returns: The operation result.
     /// - Throws: An error thrown by `body`.
-    func withSecurityScopedAccess<Result>(_ body: () throws -> Result) rethrows -> Result {
+    func withSecurityScopedAccess<Result, E: Error>(_ body: () throws(E) -> Result) throws(E) -> Result {
         
         guard case .url(let url) = self else {
             return try body()

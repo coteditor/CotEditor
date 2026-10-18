@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,13 +32,14 @@ public extension URL {
     ///
     /// - Parameter name: The key name of the attribute to get.
     /// - Returns: Data.
-    func extendedAttribute(for name: String) throws -> Data {
+    /// - Throws: A `POSIXError` if the attribute cannot be read.
+    func extendedAttribute(for name: String) throws(POSIXError) -> Data {
         
-        unsafe try self.withUnsafeFileSystemRepresentation { fileSystemPath -> Data in
+        unsafe try self.withUnsafeFileSystemRepresentation { fileSystemPath -> Result<Data, POSIXError> in
             // check buffer size
             let length = unsafe getxattr(fileSystemPath, name, nil, 0, 0, XATTR_NOFOLLOW)
             
-            guard length >= 0 else { throw POSIXError(err: errno) }
+            guard length >= 0 else { return .failure(POSIXError(err: errno)) }
             
             // get xattr data
             var data = Data(count: length)
@@ -46,10 +47,11 @@ public extension URL {
                 unsafe getxattr(fileSystemPath, name, $0.baseAddress, length, 0, XATTR_NOFOLLOW)
             }
             
-            guard size >= 0 else { throw POSIXError(err: errno) }
+            guard size >= 0 else { return .failure(POSIXError(err: errno)) }
             
-            return data
+            return .success(data)
         }
+        .get()
     }
     
     
@@ -58,33 +60,41 @@ public extension URL {
     /// - Parameters:
     ///   - data: The data to set.
     ///   - name: The attribute key name to set.
-    func setExtendedAttribute(data: Data?, for name: String) throws {
+    /// - Throws: A `POSIXError` if the attribute cannot be set or removed.
+    func setExtendedAttribute(data: Data?, for name: String) throws(POSIXError) {
         
         // remove if nil is passed
         guard let data else {
             return try self.removeExtendedAttribute(for: name)
         }
         
-        unsafe try self.withUnsafeFileSystemRepresentation { fileSystemPath in
+        unsafe try self.withUnsafeFileSystemRepresentation { fileSystemPath -> Result<Void, POSIXError> in
             let size = unsafe data.withUnsafeBytes {
                 unsafe setxattr(fileSystemPath, name, $0.baseAddress, data.count, 0, XATTR_NOFOLLOW)
             }
             
-            guard size >= 0 else { throw POSIXError(err: errno) }
+            guard size >= 0 else { return .failure(POSIXError(err: errno)) }
+            
+            return .success(())
         }
+        .get()
     }
     
     
     /// Removes extended attribute.
     ///
     /// - Parameter name: The attribute key name to remove.
-    private func removeExtendedAttribute(for name: String) throws {
+    /// - Throws: A `POSIXError` if the attribute cannot be removed.
+    private func removeExtendedAttribute(for name: String) throws(POSIXError) {
         
-        unsafe try self.withUnsafeFileSystemRepresentation { fileSystemPath in
+        unsafe try self.withUnsafeFileSystemRepresentation { fileSystemPath -> Result<Void, POSIXError> in
             let size = unsafe removexattr(fileSystemPath, name, XATTR_NOFOLLOW)
             
-            guard size >= 0 else { throw POSIXError(err: errno) }
+            guard size >= 0 else { return .failure(POSIXError(err: errno)) }
+            
+            return .success(())
         }
+        .get()
     }
 }
 

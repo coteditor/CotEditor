@@ -36,12 +36,17 @@ extension UTType {
 }
 
 
-struct PortableSettingsDocument: FileDocument, Identifiable {
+struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
     
-    struct Info: Equatable, Codable {
+    struct Info: Equatable, Codable, Sendable {
+        
+        static let filename = "Info.plist"
         
         var date: Date
         var version: Version
+        var machineName: String?
+        var userName: String?
+        var sourceID: UUID?
     }
     
     
@@ -67,7 +72,6 @@ struct PortableSettingsDocument: FileDocument, Identifiable {
     
     private enum WrapperKey {
         
-        static let info = "Info.plist"
         static let defaults = "Defaults.plist"
         static let shortcuts = "Shortcuts.plist"
         static let keyBindings = "KeyBindings"
@@ -111,7 +115,7 @@ struct PortableSettingsDocument: FileDocument, Identifiable {
         guard
             file.isDirectory,
             let fileWrappers = file.fileWrappers,
-            let infoData = fileWrappers[WrapperKey.info]?.regularFileContents
+            let infoData = fileWrappers[Info.filename]?.regularFileContents
         else { throw CocoaError(.fileReadCorruptFile) }
         
         self.info = try PropertyListDecoder().decode(Info.self, from: infoData)
@@ -130,7 +134,22 @@ struct PortableSettingsDocument: FileDocument, Identifiable {
     }
     
     
+    /// Creates the archive package for a document export.
+    ///
+    /// - Parameter configuration: The framework's export configuration.
+    /// - Returns: The archive's file wrapper.
+    /// - Throws: An error if encoding the archive metadata or defaults fails.
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        
+        try self.fileWrapper()
+    }
+    
+    
+    /// Creates the file package representing the receiver.
+    ///
+    /// - Returns: The archive's file wrapper.
+    /// - Throws: An error if encoding the archive metadata or defaults fails.
+    func fileWrapper() throws -> FileWrapper {
         
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .xml
@@ -142,7 +161,7 @@ struct PortableSettingsDocument: FileDocument, Identifiable {
         let defaultsWrapper = FileWrapper(regularFileWithContents: defaultsData)
         
         var dictionary: [String: FileWrapper] = [
-            WrapperKey.info: infoWrapper,
+            Info.filename: infoWrapper,
             WrapperKey.defaults: defaultsWrapper,
         ]
         
@@ -219,9 +238,18 @@ struct PortableSettingsDocument: FileDocument, Identifiable {
     }
     
     
+    /// Creates an archive of the selected settings in the current user environment.
+    ///
+    /// - Parameters:
+    ///   - types: The setting types to include.
+    ///   - userDefaults: The user defaults store from which settings are exported.
+    /// - Throws: An error if encoding the key binding settings fails.
     init(including types: SettingTypes, userDefaults: UserDefaults = .standard) throws {
         
-        self.info = Info(date: .now, version: Bundle.main.version!)
+        self.info = Info(date: .now,
+                         version: Bundle.main.version!,
+                         machineName: Host.current().localizedName,
+                         userName: NSUserName())
         
         var keys: [DefaultKeys] = []
         if types.contains(.settings) {
@@ -288,6 +316,19 @@ struct PortableSettingsDocument: FileDocument, Identifiable {
             
             userDefaults[.folderFindSavedScopes].merge(validScopes) { _, imported in imported }
         }
+    }
+}
+
+
+extension PortableSettingsDocument.Info {
+    
+    /// Reads the metadata from an archive's information file.
+    ///
+    /// - Parameter fileURL: The URL of the archive's Info.plist file.
+    /// - Throws: An error if reading or decoding the metadata fails.
+    init(contentsOf fileURL: URL) throws {
+        
+        self = try PropertyListDecoder().decode(Self.self, from: Data(contentsOf: fileURL))
     }
 }
 

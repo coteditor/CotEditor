@@ -171,6 +171,7 @@ extension Logger {
         
         RemoteEditingController.shared.start()
         KeyBindingManager.shared.applyShortcutsToMainMenu()
+        CloudSettingsManager.shared.start()
         
         NSApp.servicesProvider = ServicesProvider()
         NSApp.registerServicesMenuSendTypes([.fileURL], returnTypes: [])
@@ -189,6 +190,20 @@ extension Logger {
         if lastVersion == nil || Int(thisVersion)! > lastVersion! {
             UserDefaults.standard[.lastVersion] = thisVersion
         }
+    }
+    
+    
+    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+        
+        if UserDefaults.standard[.syncsSettings] || CloudSettingsManager.shared.hasPendingSave {
+            Task {
+                await CloudSettingsManager.shared.flush()
+                sender.reply(toApplicationShouldTerminate: true)
+            }
+            return .terminateLater
+        }
+        
+        return .terminateNow
     }
     
     
