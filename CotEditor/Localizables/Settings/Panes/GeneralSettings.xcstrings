@@ -2868,7 +2868,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "儲存這些設定的副本，以便從其他裝置輸入。"
+            "value" : "儲存這些設定的副本，以便其他裝置可以輸入。"
           }
         }
       }
