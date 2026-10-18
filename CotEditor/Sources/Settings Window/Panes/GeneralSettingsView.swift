@@ -369,12 +369,7 @@ private struct SettingsImportMenu: View {
         // -> The account can change before SwiftUI cancels this task.
         let identity = CloudSettingsManager.shared.ubiquityIdentityToken as? NSObject
         
-        let result: Result<PortableSettingsDocument, any Error>
-        do {
-            result = .success(try await CloudSettingsManager.shared.load(from: url))
-        } catch {
-            result = .failure(error)
-        }
+        let result = await Result { try await CloudSettingsManager.shared.load(from: url) }
         
         guard
             !Task.isCancelled,
