@@ -176,6 +176,9 @@ extension RMateServer.ReceiveError: @retroactive LocalizedError {
             case .fileTooLarge:
                 String(localized: "RMateServer.ReceiveError.fileTooLarge.description",
                        defaultValue: "The remote file is too large to open.")
+            case .tooManyFiles:
+                String(localized: "RMateServer.ReceiveError.tooManyFiles.description",
+                       defaultValue: "Some remote files couldn’t be opened.")
         }
     }
     
@@ -187,6 +190,10 @@ extension RMateServer.ReceiveError: @retroactive LocalizedError {
                 String(localized: "RMateServer.ReceiveError.fileTooLarge.recoverySuggestion",
                        defaultValue: "Remote editing supports files up to \(Int64(maximumSize), format: .byteCount(style: .binary)).",
                        comment: "%@ is file size, such as \"100 MB\"")
+            case .tooManyFiles(let maximumCount):
+                String(localized: "RMateServer.ReceiveError.tooManyFiles.recoverySuggestion",
+                       defaultValue: "A single rmate command can open up to \(maximumCount) files at a time.",
+                       comment: "%lld is the number of files")
         }
     }
     

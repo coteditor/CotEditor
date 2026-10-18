@@ -14752,6 +14752,178 @@
         }
       }
     },
+    "RMateServer.ReceiveError.tooManyFiles.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einige entfernte Dateien konnten nicht geöffnet werden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Some remote files couldn’t be opened."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some remote files couldn’t be opened."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No se pudieron abrir algunos archivos remotos."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Certains fichiers distants n’ont pas pu être ouverts."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一部のリモートファイルを開けませんでした。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sommige externe bestanden konden niet worden geopend."
+          }
+        }
+      }
+    },
+    "RMateServer.ReceiveError.tooManyFiles.recoverySuggestion" : {
+      "comment" : "%lld is the number of files",
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Ein einzelner rmate-Befehl kann bis zu %lld Datei gleichzeitig öffnen."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Ein einzelner rmate-Befehl kann bis zu %lld Dateien gleichzeitig öffnen."
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "A single rmate command can open up to %lld file at a time."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "A single rmate command can open up to %lld files at a time."
+                }
+              }
+            }
+          }
+        },
+        "en-GB" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "A single rmate command can open up to %lld file at a time."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "A single rmate command can open up to %lld files at a time."
+                }
+              }
+            }
+          }
+        },
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Un solo comando rmate puede abrir hasta %lld archivo a la vez."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Un solo comando rmate puede abrir hasta %lld archivos a la vez."
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Une seule commande rmate peut ouvrir jusqu’à %lld fichier à la fois."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Une seule commande rmate peut ouvrir jusqu’à %lld fichiers à la fois."
+                }
+              }
+            }
+          }
+        },
+        "ja" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "1回のrmateコマンドで同時に開けるファイルは%lld個までです。"
+                }
+              }
+            }
+          }
+        },
+        "nl" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Eén rmate-opdracht kan maximaal %lld bestand tegelijk openen."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "Eén rmate-opdracht kan maximaal %lld bestanden tegelijk openen."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "ScriptError.noInputTarget.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {

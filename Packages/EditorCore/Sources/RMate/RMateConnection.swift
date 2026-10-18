@@ -30,6 +30,11 @@ import Network
 /// A connection to an `rmate` client.
 @MainActor final class RMateConnection: RMateFileConnection {
     
+    // MARK: Constants
+    
+    static let maximumFileCount = 64
+    
+    
     // MARK: Internal Properties
     
     private(set) var isConnected = true
@@ -47,6 +52,7 @@ import Network
     private var hasReceivedAllRequests = false
     private var files: [ObjectIdentifier: RMateFile] = [:]
     private var pendingCloseCount = 0
+    private var hasReportedFileLimit = false
     
     
     // MARK: Lifecycle
@@ -232,14 +238,15 @@ import Network
     
     /// Passes a received file to the open handler.
     ///
+    /// If the file cannot be opened, only the file is closed and the other files remain connected.
+    ///
     /// - Parameter message: The open request.
-    /// - Throws: `RMateParser.ParseError`, `CancellationError`, or an error from the open handler.
+    /// - Throws: `RMateParser.ParseError` or `CancellationError`.
     private func open(_ message: RMateMessage) async throws {
         
         guard self.isConnected, !Task.isCancelled else { throw CancellationError() }
         
         guard
-            self.files.count < 64,
             let token = message.headers["token"],
             message.headers["data-on-save"] == "yes"
         else { throw RMateParser.ParseError.invalidMessage }
@@ -249,6 +256,31 @@ import Network
         let file = RMateFile(metadata: metadata, token: token, connection: self)
         self.files[ObjectIdentifier(file)] = file
         
-        try await self.onOpen(file, RMateOpenRequest(message: message))
+        do {
+            guard self.files.count <= Self.maximumFileCount else {
+                throw RMateServer.ReceiveError.tooManyFiles(maximumCount: Self.maximumFileCount)
+            }
+            
+            try await self.onOpen(file, RMateOpenRequest(message: message))
+            
+        } catch {
+            // notify the client so that it does not wait for the file
+            self.close(file)
+            
+            switch error {
+                case is CancellationError:
+                    throw error
+                    
+                case RMateServer.ReceiveError.tooManyFiles:
+                    // report the limit only once because the following files are also rejected
+                    guard !self.hasReportedFileLimit else { return }
+                    
+                    self.hasReportedFileLimit = true
+                    self.onError(error)
+                    
+                default:
+                    self.onError(error)
+            }
+        }
     }
 }

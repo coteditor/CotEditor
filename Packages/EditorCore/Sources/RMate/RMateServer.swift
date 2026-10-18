@@ -41,6 +41,7 @@ public import Observation
     public enum ReceiveError: Error {
         
         case fileTooLarge(maximumSize: Int)
+        case tooManyFiles(maximumCount: Int)
     }
     
     
