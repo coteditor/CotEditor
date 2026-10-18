@@ -264,6 +264,12 @@
             "state" : "needs_review",
             "value" : "Kies een instellingenarchief…"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇設定封存檔⋯"
+          }
         }
       }
     },
@@ -1114,6 +1120,12 @@
             "state" : "needs_review",
             "value" : "Bewaar een kopie in iCloud"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在iCloud中保留副本"
+          }
         }
       }
     },
@@ -1268,6 +1280,12 @@
             "state" : "needs_review",
             "value" : "Kopieën van de instellingen worden uit iCloud geladen…"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從iCloud中載入設定副本⋯"
+          }
         }
       }
     },
@@ -1314,6 +1332,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beheer kopieën in iCloud…"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理iCloud中的副本⋯"
           }
         }
       }
@@ -1825,6 +1849,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Geen kopieën van de instellingen in iCloud"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud中沒有設定副本"
           }
         }
       }
@@ -2834,6 +2864,12 @@
             "state" : "needs_review",
             "value" : "Bewaar een kopie van deze instellingen om ze op andere apparaten te kunnen importeren."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存這些設定的副本，以便從其他裝置輸入。"
+          }
         }
       }
     },
@@ -3057,7 +3093,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如可用，更新到預先發佈版本"
+            "value" : "更新到預先發佈版本（如可用）"
           }
         }
       }

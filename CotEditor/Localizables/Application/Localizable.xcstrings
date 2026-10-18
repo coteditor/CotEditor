@@ -3942,6 +3942,12 @@
             "state" : "needs_review",
             "value" : "Er kon geen toegang worden verkregen tot de geselecteerde kopie van de instellingen."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法取用選擇的設定副本。"
+          }
         }
       }
     },
@@ -3987,6 +3993,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het zoeken naar kopieën van de instellingen in iCloud is mislukt."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法在iCloud中找到設定副本。"
           }
         }
       }
