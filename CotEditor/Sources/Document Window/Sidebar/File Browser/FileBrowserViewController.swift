@@ -1178,17 +1178,7 @@ extension FileBrowserViewController: NSOutlineViewDelegate {
         } else {
             .labelColor
         }
-        if let matchedRange = node.filterState?.matchedRange {
-            let paragraphStyle = NSParagraphStyle.default.mutable
-            paragraphStyle.lineBreakMode = .byTruncatingMiddle
-            let attributedName = NSMutableAttributedString(string: node.file.name, attributes: [
-                .paragraphStyle: paragraphStyle,
-            ])
-            attributedName.addAttribute(.foregroundColor, value: NSColor.labelColor, range: matchedRange)
-            attributedName.applyFontTraits(.boldFontMask, range: matchedRange)
-            
-            cellView.textField!.attributedStringValue = attributedName
-        }
+        cellView.matchedRange = node.filterState?.matchedRange
         
         return cellView
     }
@@ -1386,6 +1376,7 @@ private final class FileBrowserTableCellView: NSTableCellView {
     var isAlias: Bool = false  { didSet { self.aliasArrowView?.isHidden = !isAlias } }
     var tags: [FinderTag] = []  { didSet { self.updateTagsView() } }
     var isSelected = false  { didSet { self.updateTagsView() } }
+    var matchedRange: NSRange?  { didSet { self.needsDisplay = true } }
     
     private var aliasArrowView: NSImageView?
     private var tagsView: NSHostingView<TagsView>?
@@ -1407,6 +1398,36 @@ private final class FileBrowserTableCellView: NSTableCellView {
         
         self.identifier = .node
         self.setupSubviews()
+    }
+    
+    
+    override func viewWillDraw() {
+        
+        super.viewWillDraw()
+        
+        // apply after super since it resets the text attributes in the source list style
+        self.highlightMatchedRange()
+    }
+    
+    
+    /// Highlights the part of the filename matched by the filter.
+    private func highlightMatchedRange() {
+        
+        guard
+            let matchedRange,
+            let textField,
+            textField.currentEditor() == nil
+        else { return }
+        
+        // build on the current attributes to inherit the font and color for the row state
+        let name = NSMutableAttributedString(attributedString: textField.attributedStringValue)
+        
+        guard matchedRange.upperBound <= name.length else { return }
+        
+        name.addAttribute(.foregroundColor, value: NSColor.labelColor, range: matchedRange)
+        name.applyFontTraits(.boldFontMask, range: matchedRange)
+        
+        textField.attributedStringValue = name
     }
     
     

@@ -9,6 +9,12 @@
 - [dev] Update the build environment to Xcode 27.1.
 
 
+### Fixes
+
+- Fix an issue in the file browser where the matched part of filenames was not highlighted while filtering.
+
+
+
 7.1.2 (2026-10-12)
 --------------------------
 
