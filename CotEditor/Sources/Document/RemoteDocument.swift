@@ -245,7 +245,13 @@ import RMate
     
     override func finishSaving(data: Data?, for operation: NSDocument.SaveOperationType, completionHandler: @escaping (any Error?) -> Void) {
         
-        guard operation.sendsToRemoteFile, let remoteState, let data else {
+        guard operation.sendsToRemoteFile, let remoteState else {
+            return super.finishSaving(data: data, for: operation, completionHandler: completionHandler)
+        }
+        
+        guard let data else {
+            // keep the document edited and accept subsequent saves even if nothing can be sent
+            remoteState.cancelSaving()
             return super.finishSaving(data: data, for: operation, completionHandler: completionHandler)
         }
         
