@@ -419,7 +419,7 @@ struct RMateTests {
         #expect(document.isDocumentEdited)
         #expect(connection.data == Data("snapshot".utf8))
         await #expect(throws: CocoaError(.userCancelled)) {
-            try await self.save(document, to: url, operation: operation)
+            try await self.save(document, to: url, operation: .autosaveInPlaceOperation)
         }
         connection.finishSave(succeeded: true)
         try await task.value
@@ -537,6 +537,89 @@ struct RMateTests {
         #expect(document.remoteState?.isSaving == false)
         #expect(document.isDocumentEdited)
         #expect(document.textStorage.string == "unsent")
+    }
+    
+    
+    /// Tests that a local save requested during a transmission is performed after the transmission instead of being canceled.
+    ///
+    /// - Parameter operation: The local save operation.
+    /// - Throws: An error if creating or saving the document fails.
+    @Test(.timeLimit(.minutes(1)), arguments: [NSDocument.SaveOperationType.saveAsOperation, .saveToOperation])
+    @MainActor func localSaveWaitsForTransmission(operation: NSDocument.SaveOperationType) async throws {
+        
+        let (document, url) = try self.makeDisconnectedDocument()
+        defer { self.remove(document, url: url) }
+        
+        let connection = TestConnection()
+        document.remoteState = RemoteDocumentState(file: RMateFile(metadata: try #require(document.remoteState?.file.metadata), connection: connection))
+        document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 3), with: "pending")
+        document.updateChangeCount(.changeDone)
+        
+        let task = Task { try await self.save(document, to: url, operation: .saveOperation) }
+        await connection.waitForSave()
+        
+        let destination = FileManager.default.temporaryDirectory.appending(component: UUID().uuidString + ".txt")
+        defer { try? FileManager.default.removeItem(at: destination) }
+        
+        var result: Result<Void, any Error>?
+        document.save(to: destination, ofType: "public.plain-text", for: operation) { error in
+            result = error.map { .failure($0) } ?? .success(())
+        }
+        #expect(result == nil)
+        #expect(!FileManager.default.fileExists(atPath: destination.path(percentEncoded: false)))
+        
+        // autosaves during the transmission are still canceled
+        await #expect(throws: CocoaError(.userCancelled)) {
+            try await self.save(document, to: url, operation: .autosaveInPlaceOperation)
+        }
+        
+        connection.finishSave(succeeded: true)
+        try await task.value
+        while result == nil {
+            try await Task.sleep(for: .milliseconds(10))
+        }
+        try result?.get()
+        #expect(try Data(contentsOf: destination) == Data("pending".utf8))
+        #expect((document.remoteState == nil) == (operation == .saveAsOperation))
+    }
+    
+    
+    /// Tests that a save requested during a transmission sends the content again after the transmission.
+    ///
+    /// - Throws: An error if creating or saving the document fails.
+    @Test(.timeLimit(.minutes(1))) @MainActor func saveDuringTransmissionSendsAgain() async throws {
+        
+        let (document, url) = try self.makeDisconnectedDocument()
+        defer { self.remove(document, url: url) }
+        
+        let connection = TestConnection()
+        document.remoteState = RemoteDocumentState(file: RMateFile(metadata: try #require(document.remoteState?.file.metadata), connection: connection))
+        document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 3), with: "snapshot")
+        document.updateChangeCount(.changeDone)
+        
+        let task = Task { try await self.save(document, to: url, operation: .autosaveInPlaceOperation) }
+        await connection.waitForSave()
+        document.textStorage.append(NSAttributedString(string: " later edit"))
+        document.updateChangeCount(.changeDone)
+        
+        var result: Result<Void, any Error>?
+        document.save(to: url, ofType: "public.plain-text", for: .saveOperation) { error in
+            result = error.map { .failure($0) } ?? .success(())
+        }
+        try #require(result == nil)
+        
+        connection.finishSave(succeeded: true)
+        try await task.value
+        await connection.waitForSave()
+        #expect(connection.data == Data("snapshot later edit".utf8))
+        #expect(result == nil)
+        
+        connection.finishSave(succeeded: true)
+        while result == nil {
+            try await Task.sleep(for: .milliseconds(10))
+        }
+        try result?.get()
+        #expect(!document.isDocumentEdited)
     }
     
     

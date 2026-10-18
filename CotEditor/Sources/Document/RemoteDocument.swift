@@ -42,6 +42,7 @@ import RMate
     
     private let hasRemoteState: Mutex<Bool> = .init(false)  // presence check for background save callbacks
     private var pendingCloseContexts: [DelegateContext] = []
+    private var pendingSaves: [() -> Void] = []
     private var preservesSharedWorkingCopy = false
     
     
@@ -156,9 +157,17 @@ import RMate
     
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping (any Error?) -> Void) {
         
-        // check whether the remote file can receive changes
-        guard self.remoteState?.isSaving != true else { return completionHandler(CocoaError(.userCancelled)) }
+        // perform explicit save operations after the current transmission
+        if self.remoteState?.isSaving == true {
+            guard !saveOperation.isAutosave else { return completionHandler(CocoaError(.userCancelled)) }
+            
+            self.pendingSaves.append {
+                self.save(to: url, ofType: typeName, for: saveOperation, completionHandler: completionHandler)
+            }
+            return
+        }
         
+        // check whether the remote file can receive changes
         let remoteState = saveOperation.sendsToRemoteFile ? self.remoteState : nil
         if let remoteState, !remoteState.file.isConnected {
             remoteState.presentDisconnectAlert(explicitly: saveOperation == .saveOperation)
@@ -173,6 +182,14 @@ import RMate
                 self.detachRemoteFile(removingBackingFileAt: removesWorkingCopy ? previousBackingFileURL : nil)
             }
             completionHandler(error)
+            
+            // resume the save operations requested during the transmission
+            // -> A resumed save that sends to the remote file defers the following saves and closing again.
+            let saves = self.pendingSaves
+            self.pendingSaves.removeAll()
+            for save in saves {
+                save()
+            }
             
             // resume closing only after AppKit has completed its save activity
             let contexts = self.pendingCloseContexts
