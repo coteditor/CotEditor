@@ -30,10 +30,10 @@ import Shortcut
 import URLUtils
 
 @MainActor final class KeyBindingManager {
-
+    
     /// A message posted after custom key bindings are saved or restored.
     struct DidUpdateSettingsMessage: NotificationCenter.MainActorMessage {
-    
+        
         typealias Subject = KeyBindingManager
     }
     

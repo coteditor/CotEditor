@@ -114,7 +114,7 @@ struct CloudSettingsCopiesView: View {
                 .fixedSize(horizontal: false, vertical: true)
             
             HStack {
-                HelpLink(anchor: "howto_port_settings")
+                HelpLink(anchor: "howto_store_settings_in_icloud")
                 
                 Spacer()
                 Button(role: .close) {

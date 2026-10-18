@@ -206,7 +206,7 @@ enum CloudSettingsError: LocalizedError {
             do {
                 var archives: [URL: Archive] = [:]
                 try await self.observeArchiveURLs { urls in
-                    archives = Dictionary(uniqueKeysWithValues: urls.map { ($0, archives[$0] ?? Archive(url: $0)) })
+                    archives = Dictionary(urls.map { ($0, archives[$0] ?? Archive(url: $0)) }, uniquingKeysWith: { $1 })
                     continuation.yield(Array(archives.values))
                     
                     try await withThrowingTaskGroup(of: Archive.self) { group in
@@ -462,7 +462,8 @@ enum CloudSettingsError: LocalizedError {
         
         let query = NSMetadataQuery()
         query.searchScopes = [NSMetadataQueryUbiquitousDataScope]
-        query.predicate = NSPredicate(format: "%K LIKE %@", NSMetadataItemFSNameKey, "*.\(UTType.cotSettings.preferredFilenameExtension!)")
+        query.predicate = NSPredicate(format: "%K LIKE %@", NSMetadataItemFSNameKey,
+                                      "*" + (UTType.cotSettings.preferredFilenameExtension.map { "." + $0 } ?? ""))
         
         try await Self.queryArchiveURLs(using: query, in: directoryURL, action: action)
     }
@@ -574,6 +575,8 @@ enum CloudSettingsError: LocalizedError {
         let fileURL = try await self.currentArchiveURL()
         
         var document = document
+        document.info.machineName = Host.current().localizedName
+        document.info.userName = NSUserName()
         document.info.sourceID = self.hostUUID
         
         let directoryURL = fileURL.deletingLastPathComponent()
@@ -581,8 +584,8 @@ enum CloudSettingsError: LocalizedError {
             try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         }
         
-        try await self.coordinate(intent: .writingIntent(with: fileURL)) { [document] url in
-            // specify the original URL to preserve the previous package if writing fails
+        try await self.coordinate(intent: .writingIntent(with: fileURL, options: .forReplacing)) { [document] url in
+            // -> Specify the original URL to preserve the previous package if writing fails.
             try document.fileWrapper().write(to: url, options: [.atomic, .withNameUpdating], originalContentsURL: url)
             
             // -> This archive always represents the latest settings from this Mac.

@@ -31,7 +31,7 @@ import Defaults
 
 // The observer integration tests post notifications from shared setting managers.
 @MainActor @Suite(.serialized) struct CloudSettingsAutosaveTests {
-
+    
     /// Verifies enabling, disabling, and resuming automatic saving without removing the previous copy.
     ///
     /// - Throws: An error if preparing or reading the archives fails.

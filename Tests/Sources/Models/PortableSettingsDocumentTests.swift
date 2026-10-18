@@ -79,15 +79,15 @@ import SyntaxFormat
     }
     
     
-    /// Verifies that manual exports record the current environment without a cloud source identifier.
+    /// Verifies that manual exports omit the source environment.
     ///
     /// - Throws: An error if creating the archive fails.
-    @Test func exportedArchiveInfoIncludesCurrentSource() throws {
+    @Test func exportedArchiveInfoOmitsSource() throws {
         
         let document = try PortableSettingsDocument(including: [])
         
-        #expect(document.info.machineName == Host.current().localizedName)
-        #expect(document.info.userName == NSUserName())
+        #expect(document.info.machineName == nil)
+        #expect(document.info.userName == nil)
         #expect(document.info.sourceID == nil)
     }
     
