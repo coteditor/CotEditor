@@ -14,8 +14,22 @@
 - Move donations to the CotEditor project from a settings pane to a separate window, accessible from the CotEditor menu.
 - Add an Integration pane to the settings window for managing integration with external tools.
 - Move settings import and export from the File menu to General settings.
+
+
+
+7.1.3 (unreleased)
+--------------------------
+
+### Improvements
+
 - Update tree-sitter-php to 0.25.1.
+- Update tree-sitter-scala to 0.26.3.
 - [dev] Update the build environment to Xcode 27.1.
+
+
+### Fixes
+
+- Fix an issue in the file browser where the matched part of filenames was not highlighted while filtering.
 
 
 

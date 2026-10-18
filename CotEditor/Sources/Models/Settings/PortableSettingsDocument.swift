@@ -246,10 +246,7 @@ struct PortableSettingsDocument: FileDocument, Identifiable, Sendable {
     /// - Throws: An error if encoding the key binding settings fails.
     init(including types: SettingTypes, userDefaults: UserDefaults = .standard) throws {
         
-        self.info = Info(date: .now,
-                         version: Bundle.main.version!,
-                         machineName: Host.current().localizedName,
-                         userName: NSUserName())
+        self.info = Info(date: .now, version: Bundle.main.version!)
         
         var keys: [DefaultKeys] = []
         if types.contains(.settings) {

@@ -319,9 +319,9 @@ extension Logger {
     @IBAction func showAboutPanel(_ sender: Any?) {
         
         let panel = self.aboutPanel ?? NSPanel(view: AboutView(), title: String(localized: "About \(Bundle.main.bundleName)", table: "About", comment: "window title; %@ is app name"))
-        panel.makeKeyAndOrderFront(sender)
-        
         self.aboutPanel = panel
+        
+        panel.makeKeyAndOrderFront(sender)
     }
     
     
@@ -329,9 +329,9 @@ extension Logger {
     @IBAction func showWhatsNew(_ sender: Any?) {
         
         let panel = self.whatsNewPanel ?? NSPanel(view: WhatsNewView())
-        panel.makeKeyAndOrderFront(sender)
-        
         self.whatsNewPanel = panel
+        
+        panel.makeKeyAndOrderFront(sender)
     }
     
     
@@ -353,13 +353,12 @@ extension Logger {
             panel = NSPanel(contentViewController: viewController)
             panel.title = String(localized: "Donation", table: "Donation", comment: "window title")
             panel.hidesOnDeactivate = false
-            panel.setContentSize(viewController.view.intrinsicContentSize)
+            panel.setContentSize(viewController.view.intrinsicContentSize)  // needs for window centering
+            panel.center()
         }
-        
-        panel.center()
-        panel.makeKeyAndOrderFront(nil)
-        
         self.donationPanel = panel
+        
+        panel.makeKeyAndOrderFront(nil)
     }
     
     
