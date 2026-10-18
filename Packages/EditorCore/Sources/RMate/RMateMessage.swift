@@ -33,6 +33,9 @@ struct RMateMessage: Equatable, Sendable {
     var headers: [String: String] = [:]
     var data = Data()
     
+    /// Whether the data exceeded the size limit and was discarded.
+    var isTooLarge = false
+    
     
     /// Encodes the message for sending to the client.
     ///

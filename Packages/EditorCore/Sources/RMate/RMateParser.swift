@@ -33,7 +33,6 @@ struct RMateParser {
         
         case invalidMessage
         case headerTooLarge
-        case fileTooLarge
     }
     
     
@@ -62,7 +61,7 @@ struct RMateParser {
     ///
     /// - Parameter data: The data to append to the receive buffer.
     /// - Returns: The complete messages, in the order received.
-    /// - Throws: `ParseError` if the data is invalid or exceeds the size limit.
+    /// - Throws: `ParseError` if the data is invalid or a header exceeds the size limit.
     mutating func append(_ data: Data) throws(ParseError) -> [RMateMessage] {
         
         guard !self.isFinished else {
@@ -77,7 +76,9 @@ struct RMateParser {
         while !self.buffer.isEmpty {
             if self.remainingDataLength > 0 {
                 let count = min(self.remainingDataLength, self.buffer.count)
-                self.message!.data.append(self.buffer.prefix(count))
+                if !self.message!.isTooLarge {
+                    self.message!.data.append(self.buffer.prefix(count))
+                }
                 self.buffer.removeFirst(count)
                 self.remainingDataLength -= count
                 continue
@@ -150,8 +151,12 @@ struct RMateParser {
         
         if key == "data" {
             guard let length = Int(value), length >= 0 else { throw .invalidMessage }
-            guard length <= Self.maximumDataLength - self.message!.data.count else { throw .fileTooLarge }
             
+            // discard the oversized data but keep parsing the following requests
+            if length > Self.maximumDataLength - self.message!.data.count {
+                self.message!.isTooLarge = true
+                self.message!.data = Data()
+            }
             self.remainingDataLength = length
         } else {
             guard !key.isEmpty, !value.contains("\r"), !value.contains("\0") else { throw .invalidMessage }

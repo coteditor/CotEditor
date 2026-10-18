@@ -100,22 +100,8 @@ import Network
                     
                     guard let self, self.isConnected else { return }
                     
-                    do {
-                        for message in try parser.append(data) {
-                            try await self.open(message)
-                        }
-                    } catch {
-                        self.disconnect()
-                        
-                        switch error {
-                            case RMateParser.ParseError.fileTooLarge:
-                                self.onError(RMateServer.ReceiveError.fileTooLarge(maximumSize: RMateParser.maximumDataLength))
-                            case is RMateParser.ParseError, is CancellationError:
-                                break
-                            default:
-                                self.onError(error)
-                        }
-                        return
+                    for message in try parser.append(data) {
+                        try await self.open(message)
                     }
                     
                     // publish completion only after all received files have been opened
@@ -126,7 +112,7 @@ import Network
                     }
                 }
             } catch {
-                // the deferred disconnect handles connection errors
+                // the deferred disconnect handles connection errors, invalid requests, and cancellation
             }
         }
     }
@@ -257,6 +243,9 @@ import Network
         self.files[ObjectIdentifier(file)] = file
         
         do {
+            guard !message.isTooLarge else {
+                throw RMateServer.ReceiveError.fileTooLarge(maximumSize: RMateParser.maximumDataLength)
+            }
             guard self.files.count <= Self.maximumFileCount else {
                 throw RMateServer.ReceiveError.tooManyFiles(maximumCount: Self.maximumFileCount)
             }

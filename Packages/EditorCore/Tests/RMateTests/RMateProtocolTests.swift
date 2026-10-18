@@ -87,22 +87,43 @@ struct RMateProtocolTests {
     }
     
     
-    /// Tests the cumulative data size limit before receiving the file content.
+    /// Tests that data exceeding the cumulative size limit is discarded without affecting the following requests.
     ///
     /// - Parameter initialDataLength: The length of a preceding data block.
-    /// - Throws: An error if a valid request header is rejected.
+    /// - Throws: An error if parsing the requests fails.
     @Test(arguments: [0, 1]) func dataSizeLimit(initialDataLength: Int) throws {
         
-        var parser = RMateParser()
-        var wire = Data("open\ndata: \(initialDataLength)\n".utf8)
-        wire.append(Data(repeating: 65, count: initialDataLength))
-        #expect(try parser.append(wire).isEmpty)
-        var oversizedParser = parser
+        /// Appends a data block of the given length in chunks.
+        ///
+        /// - Parameters:
+        ///   - length: The length of the data block.
+        ///   - parser: The parser to append to.
+        /// - Returns: The complete messages.
+        func appendData(length: Int, to parser: inout RMateParser) throws -> [RMateMessage] {
+            
+            let chunk = Data(repeating: 65, count: 1024 * 1024)
+            var messages = try parser.append(Data("data: \(length)\n".utf8))
+            for offset in stride(from: 0, to: length, by: chunk.count) {
+                messages += try parser.append(chunk.prefix(length - offset))
+            }
+            return messages
+        }
         
         let remainingLength = RMateParser.maximumDataLength - initialDataLength
-        #expect(try parser.append(Data("data: \(remainingLength)\n".utf8)).isEmpty)
-        #expect(throws: RMateParser.ParseError.fileTooLarge) {
-            try oversizedParser.append(Data("data: \(remainingLength + 1)\n".utf8))
+        
+        for (length, isTooLarge) in [(remainingLength, false), (remainingLength + 1, true)] {
+            var parser = RMateParser()
+            var messages = try parser.append(Data("open\ntoken: a\ndata-on-save: yes\n".utf8))
+            messages += try appendData(length: initialDataLength, to: &parser)
+            messages += try appendData(length: length, to: &parser)
+            messages += try parser.append(Data("\nopen\ntoken: b\ndata-on-save: yes\ndata: 1\nB\n\n.\n".utf8))
+            
+            #expect(parser.isFinished)
+            #expect(messages.map { $0.headers["token"] } == ["a", "b"])
+            #expect(messages.first?.isTooLarge == isTooLarge)
+            #expect(messages.first?.data.count == (isTooLarge ? 0 : RMateParser.maximumDataLength))
+            #expect(messages.last?.isTooLarge == false)
+            #expect(messages.last?.data == Data("B".utf8))
         }
     }
     
