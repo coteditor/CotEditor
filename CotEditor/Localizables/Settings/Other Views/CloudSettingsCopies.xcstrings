@@ -401,6 +401,12 @@
             "state" : "needs_review",
             "value" : "Om geen kopie meer te bewaren, schakel je 'Bewaar een kopie in iCloud' uit op de Mac waarvan de kopie afkomstig is."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如要停止儲存副本，請在原始來源的Mac上關閉「在iCloud中保留副本」。"
+          }
         }
       }
     },

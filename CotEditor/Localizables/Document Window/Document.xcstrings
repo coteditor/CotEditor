@@ -2672,6 +2672,12 @@
             "state" : "needs_review",
             "value" : "Verbinding verbroken"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已中斷連線"
+          }
         }
       }
     },
@@ -14026,6 +14032,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Op afstand"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遙距"
           }
         }
       }

@@ -539,6 +539,12 @@
             "state" : "translated",
             "value" : "集成"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "整合"
+          }
         }
       }
     },

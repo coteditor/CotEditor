@@ -24406,6 +24406,12 @@
             "state" : "needs_review",
             "value" : "Doneer aan CotEditor…"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捐款給CotEditor⋯"
+          }
         }
       }
     },
