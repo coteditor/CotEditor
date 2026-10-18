@@ -3942,6 +3942,12 @@
             "state" : "needs_review",
             "value" : "Er kon geen toegang worden verkregen tot de geselecteerde kopie van de instellingen."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法取用選擇的設定副本。"
+          }
         }
       }
     },
@@ -3987,6 +3993,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het zoeken naar kopieën van de instellingen in iCloud is mislukt."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法在iCloud中找到設定副本。"
           }
         }
       }
@@ -14179,6 +14191,12 @@
             "state" : "needs_review",
             "value" : "De verbinding op afstand is verbroken. Je wijzigingen zijn niet verstuurd."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遙距連線已中斷。你的變更尚未被送出。"
+          }
         }
       }
     },
@@ -14225,6 +14243,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Wil je de wijzigingen in '%@' op deze Mac bewaren?"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存對「%@」的變更至這部Mac嗎？"
           }
         }
       }
@@ -14393,6 +14417,12 @@
             "state" : "needs_review",
             "value" : "Wijzigingen kunnen niet meer op afstand worden bewaard. Bewaar het document op deze Mac om je wijzigingen te behouden."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法遙距儲存變更。如要保留你的變更，請將文件儲存到這部Mac上。"
+          }
         }
       }
     },
@@ -14440,6 +14470,12 @@
             "state" : "needs_review",
             "value" : "De verbinding op afstand voor '%@' is verbroken."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「%@」的遙距連線已中斷。"
+          }
         }
       }
     },
@@ -14486,6 +14522,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "De poort is al in gebruik."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此連接埠已被使用。"
           }
         }
       }
@@ -14654,6 +14696,12 @@
             "state" : "needs_review",
             "value" : "Voer een poortnummer van 1 tot en met 65535 in."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入1至65535之間的一個連接埠編號。"
+          }
         }
       }
     },
@@ -14700,6 +14748,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het externe bestand is te groot om te openen."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遙距檔案太大，無法開啟。"
           }
         }
       }
@@ -14748,6 +14802,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewerken op afstand ondersteunt bestanden tot %@."
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遙距編輯支援最多%@大小的檔案。"
           }
         }
       }
@@ -17966,7 +18026,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "確定要捨棄你所作的更改並使用「%@」重新開啟文件嗎？"
+            "value" : "確定要捨棄你所作的變更並使用「%@」重新開啟文件嗎？"
           }
         }
       }
