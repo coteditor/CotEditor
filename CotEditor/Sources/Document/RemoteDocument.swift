@@ -33,14 +33,6 @@ import RMate
 /// A text document associated with an `rmate` connection.
 @Observable final class RemoteDocument: Document {
     
-    // MARK: Enums
-    
-    private enum SerializationKey {
-        
-        static let remoteMetadata = "remoteMetadata"
-    }
-    
-    
     // MARK: Public Properties
     
     var remoteState: RemoteDocumentState?  { didSet { self.didSetRemoteState(oldState: oldValue) } }
@@ -106,28 +98,6 @@ import RMate
     override static func isNativeType(_ type: String) -> Bool {
         
         Document.isNativeType(type)
-    }
-    
-    
-    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
-        
-        super.encodeRestorableState(with: coder, backgroundQueue: queue)
-        
-        if let remoteState, let data = try? JSONEncoder().encode(remoteState.file.metadata) {
-            coder.encode(data, forKey: SerializationKey.remoteMetadata)
-        }
-    }
-    
-    
-    override func restoreState(with coder: NSCoder) {
-        
-        super.restoreState(with: coder)
-        
-        if let data = coder.decodeObject(of: NSData.self, forKey: SerializationKey.remoteMetadata) as? Data,
-           let metadata = try? JSONDecoder().decode(RMateFile.Metadata.self, from: data)
-        {
-            self.remoteState = RemoteDocumentState(file: RMateFile(metadata: metadata))
-        }
     }
     
     
@@ -391,7 +361,6 @@ import RMate
         
         self.hasRemoteState.withLock { $0 = self.remoteState != nil }
         self.remoteState?.document = self
-        self.invalidateRestorableState()
         if oldState != nil, self.remoteState == nil {
             self.windowController?.window?.subtitle = ""
         }
