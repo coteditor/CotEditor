@@ -113,21 +113,51 @@ public struct RMateFileStore: Sendable {
         
         guard let directory = self.backingDirectory(for: url) else { return }
         
-        let pendingDirectory = self.pendingDeletionDirectory
-        try FileManager.default.createDirectory(at: pendingDirectory, withIntermediateDirectories: true, attributes: [.posixPermissions: 0o700])
+        try self.removeDirectory(directory)
+    }
+    
+    
+    /// Removes old working copies that no document uses.
+    ///
+    /// - Note: Entries whose attributes cannot be read are kept.
+    ///
+    /// - Parameters:
+    ///   - urls: The working copy URLs still in use.
+    ///   - date: The date before which a working copy must have been created to be removed.
+    /// - Throws: An error if removing an unused copy failed.
+    public func removeUnusedFiles(excluding urls: [URL], createdBefore date: Date) throws {
         
-        let values = try pendingDirectory.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
-        guard values.isDirectory == true, values.isSymbolicLink == false else {
-            throw CocoaError(.fileWriteFileExists, userInfo: [NSURLErrorKey: pendingDirectory])
+        let keys: Set<URLResourceKey> = [.isDirectoryKey, .isSymbolicLinkKey, .creationDateKey]
+        let entries = (try? FileManager.default.contentsOfDirectory(at: self.directory, includingPropertiesForKeys: Array(keys))) ?? []
+        
+        // compare the identifiers in the directory names to keep the copies in use even if their paths are spelled differently
+        let usedIdentifiers = Set(urls.compactMap { UUID(uuidString: $0.deletingLastPathComponent().deletingLastPathComponent().lastPathComponent) })
+        
+        var failure: any Error?
+        for url in entries {
+            guard
+                let identifier = UUID(uuidString: url.lastPathComponent),
+                !usedIdentifiers.contains(identifier),
+                let values = try? url.resourceValues(forKeys: keys),
+                values.isDirectory == true,
+                values.isSymbolicLink == false,
+                let creationDate = values.creationDate,
+                creationDate < date
+            else { continue }
+            
+            do {
+                try self.removeDirectory(url)
+                
+            } catch CocoaError.fileNoSuchFile, CocoaError.fileReadNoSuchFile {
+                // a copy can also be removed when its document closes
+                
+            } catch {
+                failure = failure ?? error
+            }
         }
         
-        // retain the deletion intent if removing the directory is interrupted
-        let discardedDirectory = pendingDirectory.appending(component: directory.lastPathComponent, directoryHint: .isDirectory)
-        try FileManager.default.moveItem(at: directory, to: discardedDirectory)
-        do {
-            try FileManager.default.removeItem(at: discardedDirectory)
-        } catch CocoaError.fileNoSuchFile {
-            // the startup cleanup may have already removed the directory
+        if let failure {
+            throw failure
         }
     }
     
@@ -180,6 +210,31 @@ public struct RMateFileStore: Sendable {
     private var pendingDeletionDirectory: URL {
         
         self.directory.appending(component: "Pending Deletion", directoryHint: .isDirectory)
+    }
+    
+    
+    /// Moves a working copy directory to the deletion directory and removes it.
+    ///
+    /// - Parameter directory: The directory containing a working copy and its metadata.
+    /// - Throws: An error if moving or removing the directory failed.
+    private func removeDirectory(_ directory: URL) throws {
+        
+        let pendingDirectory = self.pendingDeletionDirectory
+        try FileManager.default.createDirectory(at: pendingDirectory, withIntermediateDirectories: true, attributes: [.posixPermissions: 0o700])
+        
+        let values = try pendingDirectory.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+        guard values.isDirectory == true, values.isSymbolicLink == false else {
+            throw CocoaError(.fileWriteFileExists, userInfo: [NSURLErrorKey: pendingDirectory])
+        }
+        
+        // retain the deletion intent if removing the directory is interrupted
+        let discardedDirectory = pendingDirectory.appending(component: directory.lastPathComponent, directoryHint: .isDirectory)
+        try FileManager.default.moveItem(at: directory, to: discardedDirectory)
+        do {
+            try FileManager.default.removeItem(at: discardedDirectory)
+        } catch CocoaError.fileNoSuchFile {
+            // the startup cleanup may have already removed the directory
+        }
     }
     
     

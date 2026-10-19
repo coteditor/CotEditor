@@ -293,6 +293,9 @@ import RMate
             for case let document as RemoteDocument in self.otherDocuments(usingBackingFileAt: fileURL) {
                 document.preservesSharedWorkingCopy = true
             }
+            
+            // the cleanup on termination must not delete it either
+            RemoteEditingController.shared.preserveWorkingCopy(at: fileURL)
         }
         
         NotificationCenter.default.removeObserver(self, name: NSApplication.willTerminateNotification, object: nil)

@@ -209,6 +209,8 @@ extension Logger {
     
     func applicationWillTerminate(_ notification: Notification) {
         
+        RemoteEditingController.shared.removeUnusedWorkingCopies()
+        
         if self.needsRelaunch {
             NSApp.relaunch()
         }

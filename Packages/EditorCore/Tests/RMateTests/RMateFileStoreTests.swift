@@ -337,4 +337,92 @@ struct RMateFileStoreTests {
         try reopenedStore.removeDiscardedFiles()
         #expect(try FileManager.default.contentsOfDirectory(at: pendingDirectory, includingPropertiesForKeys: nil).isEmpty)
     }
+    
+    
+    /// Tests removing old unused working copies while keeping copies in use, recent copies, and unrelated entries.
+    ///
+    /// - Throws: An error if creating, reading, or removing the test files failed.
+    @Test func unusedFilesCleanup() throws {
+        
+        let directory = FileManager.default.temporaryDirectory.appending(component: UUID().uuidString, directoryHint: .isDirectory)
+        let outsideDirectory = FileManager.default.temporaryDirectory.appending(component: UUID().uuidString, directoryHint: .isDirectory)
+        defer {
+            try? FileManager.default.removeItem(at: directory)
+            try? FileManager.default.removeItem(at: outsideDirectory)
+        }
+        
+        let store = RMateFileStore(directory: directory)
+        let metadata = RMateFile.Metadata(displayName: "host:test.txt", path: "/tmp/test.txt")
+        let usedURL = try store.makeBackingFile(data: Data("used".utf8), metadata: metadata)
+        let unusedURL = try store.makeBackingFile(data: Data("unused".utf8), metadata: metadata)
+        let recentURL = try store.makeBackingFile(data: Data("recent".utf8), metadata: metadata)
+        
+        // entries that are not working copies
+        let otherDirectory = directory.appending(component: "Other", directoryHint: .isDirectory)
+        try FileManager.default.createDirectory(at: otherDirectory, withIntermediateDirectories: false)
+        try FileManager.default.createDirectory(at: outsideDirectory, withIntermediateDirectories: false)
+        let outsideURL = outsideDirectory.appending(component: "outside.txt")
+        try Data("outside".utf8).write(to: outsideURL)
+        let symbolicLink = directory.appending(component: UUID().uuidString)
+        try FileManager.default.createSymbolicLink(at: symbolicLink, withDestinationURL: outsideDirectory)
+        
+        let oldDate = Date.now.addingTimeInterval(-10 * 24 * 60 * 60)
+        for url in [usedURL.deletingLastPathComponent().deletingLastPathComponent(),
+                    unusedURL.deletingLastPathComponent().deletingLastPathComponent(),
+                    otherDirectory, outsideDirectory]
+        {
+            try FileManager.default.setAttributes([.creationDate: oldDate], ofItemAtPath: url.path(percentEncoded: false))
+        }
+        
+        try store.removeUnusedFiles(excluding: [usedURL], createdBefore: Date.now.addingTimeInterval(-7 * 24 * 60 * 60))
+        
+        #expect(try Data(contentsOf: usedURL) == Data("used".utf8))
+        #expect(try store.metadata(for: usedURL)?.path == metadata.path)
+        #expect(!FileManager.default.fileExists(atPath: unusedURL.deletingLastPathComponent().deletingLastPathComponent().path(percentEncoded: false)))
+        #expect(try Data(contentsOf: recentURL) == Data("recent".utf8))
+        #expect(FileManager.default.fileExists(atPath: otherDirectory.path(percentEncoded: false)))
+        #expect(try symbolicLink.resourceValues(forKeys: [.isSymbolicLinkKey]).isSymbolicLink == true)
+        #expect(try Data(contentsOf: outsideURL) == Data("outside".utf8))
+        
+        let pendingDirectory = directory.appending(component: "Pending Deletion", directoryHint: .isDirectory)
+        #expect(try FileManager.default.contentsOfDirectory(at: pendingDirectory, includingPropertiesForKeys: nil).isEmpty)
+    }
+    
+    
+    /// Tests keeping a working copy in use even if its URL spells the identifier differently.
+    ///
+    /// - Throws: An error if creating, reading, or removing the test files failed.
+    @Test func unusedFilesCleanupKeepsDifferentlySpelledURL() throws {
+        
+        let directory = FileManager.default.temporaryDirectory.appending(component: UUID().uuidString, directoryHint: .isDirectory)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        
+        let store = RMateFileStore(directory: directory)
+        let metadata = RMateFile.Metadata(displayName: "host:test.txt", path: "/tmp/test.txt")
+        let url = try store.makeBackingFile(data: Data("used".utf8), metadata: metadata)
+        let backingDirectory = url.deletingLastPathComponent().deletingLastPathComponent()
+        try FileManager.default.setAttributes([.creationDate: Date.now.addingTimeInterval(-10 * 24 * 60 * 60)],
+                                              ofItemAtPath: backingDirectory.path(percentEncoded: false))
+        
+        let usedURL = directory
+            .appending(component: backingDirectory.lastPathComponent.lowercased(), directoryHint: .isDirectory)
+            .appending(component: "content", directoryHint: .isDirectory)
+            .appending(component: url.lastPathComponent)
+        try store.removeUnusedFiles(excluding: [usedURL], createdBefore: Date.now.addingTimeInterval(-7 * 24 * 60 * 60))
+        
+        #expect(try Data(contentsOf: url) == Data("used".utf8))
+    }
+    
+    
+    /// Tests that removing unused working copies does not create a missing store directory.
+    ///
+    /// - Throws: An error if the cleanup failed.
+    @Test func unusedFilesCleanupWithoutStorage() throws {
+        
+        let directory = FileManager.default.temporaryDirectory.appending(component: UUID().uuidString, directoryHint: .isDirectory)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        
+        try RMateFileStore(directory: directory).removeUnusedFiles(excluding: [], createdBefore: .now)
+        #expect(!FileManager.default.fileExists(atPath: directory.path(percentEncoded: false)))
+    }
 }
