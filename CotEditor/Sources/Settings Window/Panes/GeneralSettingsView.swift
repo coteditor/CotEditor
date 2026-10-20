@@ -266,7 +266,7 @@ private struct SettingsImportMenu: View {
                             let secondaryLabel = if let info = archive.info {
                                 "\(info.date.formatted(date: .abbreviated, time: .omitted)) (iCloud)"
                             } else {
-                                "iCloud"
+                                "(iCloud)"
                             }
                             Text(AttributedString(archive.displayName + " ") +
                                  AttributedString(secondaryLabel, attributes: .init().foregroundColor(.secondary)))
