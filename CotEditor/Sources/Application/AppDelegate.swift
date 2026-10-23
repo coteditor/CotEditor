@@ -93,8 +93,6 @@ extension Logger {
     
     // MARK: Private Properties
     
-    private var isSettingsImporterPresented = false
-    
     private var menuUpdateObservers: [Task<Void, Never>] = []
     
     private lazy var settingsWindowController = SettingsWindowController<SettingsPane>()
@@ -460,8 +458,7 @@ extension Logger {
     private func prepareMainMenu() {
         
         assert(NSApp.mainMenu != nil)
-        
-        guard self.menuUpdateObservers.isEmpty else { return assertionFailure() }
+        assert(self.menuUpdateObservers.isEmpty)
         
         self.syntaxesMenu?.delegate = self
         
