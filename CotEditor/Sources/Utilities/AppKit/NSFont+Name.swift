@@ -1,5 +1,5 @@
 //
-//  NSFont+SystemFont.swift
+//  NSFont+Name.swift
 //
 //  CotEditor
 //  https://coteditor.com

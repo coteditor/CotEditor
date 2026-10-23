@@ -1,5 +1,5 @@
 //
-//  AntialiasingTextField.swift
+//  AntialiasingText.swift
 //
 //  CotEditor
 //  https://coteditor.com

@@ -1,5 +1,5 @@
 //
-//  DefaultKeys+Porting.swift
+//  DefaultSettings+Porting.swift
 //
 //  CotEditor
 //  https://coteditor.com

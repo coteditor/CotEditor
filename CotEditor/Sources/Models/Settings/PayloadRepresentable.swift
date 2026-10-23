@@ -1,5 +1,5 @@
 //
-//  Persistable.swift
+//  PayloadRepresentable.swift
 //
 //  CotEditor
 //  https://coteditor.com

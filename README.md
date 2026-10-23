@@ -23,8 +23,8 @@ CotEditor is a lightweight plain text editor designed for macOS. The project aim
     Portuguese,
     Russian,
     Spanish,
-    Ukrainian,
-    and Turkish
+    Turkish,
+    and Ukrainian
 
 ![screenshot](screenshot@2x.png)
 
@@ -73,7 +73,7 @@ CotEditor is a purely macOS native application written in Swift. It adheres to C
 ### Development Environment
 
 - macOS 27
-- Xcode 27
+- Xcode 27.2
 - Sandbox and hardened runtime enabled
 
 
