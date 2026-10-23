@@ -91,7 +91,7 @@ final class ContentViewController: NSViewController {
     private static func viewController(document: DataDocument?) -> sending NSViewController {
         
         switch document {
-            case let document as Document:
+            case let document as TextDocument:
                 DocumentViewController(document: document)
             case let document as PreviewDocument:
                 Self.hostingController(rootView: FilePreviewView(item: document))

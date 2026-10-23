@@ -31,7 +31,7 @@ import Defaults
 import RMate
 
 /// A text document associated with an `rmate` connection.
-@Observable final class RemoteDocument: Document {
+@Observable final class RemoteDocument: TextDocument {
     
     // MARK: Public Properties
     
@@ -85,20 +85,20 @@ import RMate
     
     override static var readableTypes: [String] {
         
-        // use the types registered for Document in Info.plist
-        Document.readableTypes
+        // use the types registered for TextDocument in Info.plist
+        TextDocument.readableTypes
     }
     
     
     override static var writableTypes: [String] {
         
-        Document.writableTypes
+        TextDocument.writableTypes
     }
     
     
     override static func isNativeType(_ type: String) -> Bool {
         
-        Document.isNativeType(type)
+        TextDocument.isNativeType(type)
     }
     
     

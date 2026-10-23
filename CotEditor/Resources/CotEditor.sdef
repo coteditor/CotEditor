@@ -42,7 +42,7 @@
         </enumeration>
         
         <class-extension extends="document" description="A CotEditor document.">
-            <cocoa class="CotEditor.Document"/>
+            <cocoa class="CotEditor.TextDocument"/>
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <contents name="text" code="ctxt" type="attribute run" access="rw" description="The whole text of the document.">
                 <cocoa key="scriptTextStorage"/>

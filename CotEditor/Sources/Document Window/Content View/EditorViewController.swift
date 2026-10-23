@@ -38,7 +38,7 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Private Properties
     
-    private let document: Document
+    private let document: TextDocument
     private let splitState: SplitState
     
     private lazy var outlineNavigator = OutlineNavigator()
@@ -51,7 +51,7 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Lifecycle
     
-    init(document: Document, splitState: SplitState) {
+    init(document: TextDocument, splitState: SplitState) {
         
         self.document = document
         self.splitState = splitState

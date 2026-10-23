@@ -39,7 +39,7 @@ import StringUtils
             self.invalidateObservation()
         }
     }
-    var document: Document?  { didSet { self.invalidateObservation() } }
+    var document: TextDocument?  { didSet { self.invalidateObservation() } }
     
     var items: [Item] = []  { didSet { self.rebuildOutline() } }
     var selection: Item.ID?  { didSet { self.selectItem(id: selection) } }
@@ -145,7 +145,7 @@ struct OutlineInspectorView: View, HostedPaneView {
         
         typealias Item = OutlineItem
         
-        var document: Document? { get set }
+        var document: TextDocument? { get set }
         var isPresented: Bool { get set }
         
         var items: [Item] { get }
@@ -234,7 +234,7 @@ struct OutlineInspectorView: View, HostedPaneView {
                 .controlSize(.regular)
         }
         .onChange(of: self.document, initial: true) { _, newValue in
-            self.model.document = newValue as? Document
+            self.model.document = newValue as? TextDocument
         }
         .onChange(of: self.isPresented, initial: true) { _, newValue in
             self.model.isPresented = newValue
@@ -442,7 +442,7 @@ private final class OutlineBuildNode {
     
     struct MockedModel: OutlineInspectorView.ModelProtocol {
         
-        var document: Document?
+        var document: TextDocument?
         var isPresented: Bool = true
         
         var items: [Item] = []

@@ -33,7 +33,7 @@ struct InconsistentLineEndingsView: View {
     typealias Item = ValueRange<LineEnding>
     
     
-    var document: Document?
+    var document: TextDocument?
     
     @State var items: [Item] = []
     @State var lineEnding: LineEnding = .lf

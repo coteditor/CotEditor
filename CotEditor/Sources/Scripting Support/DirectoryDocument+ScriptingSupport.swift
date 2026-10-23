@@ -59,9 +59,9 @@ extension DirectoryDocument {
     
     
     /// Current document of the folder document (optional).
-    @objc var scriptCurrentDocument: Document? {
+    @objc var scriptCurrentDocument: TextDocument? {
         
-        self.currentDocument as? Document
+        self.currentDocument as? TextDocument
     }
     
     
@@ -212,9 +212,9 @@ extension DirectoryDocument {
     ///
     /// - Parameter command: The AppleScript command that requires the current document.
     /// - Returns: The current text document, or `nil` if no text document is selected.
-    private func scriptDocument(for command: NSScriptCommand? = nil) -> Document? {
+    private func scriptDocument(for command: NSScriptCommand? = nil) -> TextDocument? {
         
-        guard let document = self.currentDocument as? Document else {
+        guard let document = self.currentDocument as? TextDocument else {
             // report an AppleScript error
             let command = command ?? NSScriptCommand.current()
             command?.scriptErrorNumber = errOSAGeneralError

@@ -48,7 +48,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
     
     // MARK: Private Properties
     
-    private var deferredDocuments: [Document]?  // non-nil while replacing a transient document
+    private var deferredDocuments: [TextDocument]?  // non-nil while replacing a transient document
     
     private var mainWindowObserver: AnyCancellable?
     private var fileDocumentObserver: AnyCancellable?
@@ -76,7 +76,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
                 
                 self.fileDocumentObserver = windowController.publisher(for: \.fileDocument, options: .initial)
                     .debounce(for: .seconds(0.1), scheduler: RunLoop.main)
-                    .sink { [unowned self] in self.observeSyntax(of: $0 as? Document) }
+                    .sink { [unowned self] in self.observeSyntax(of: $0 as? TextDocument) }
             }
     }
     
@@ -103,7 +103,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
         }
         
         // obtain transient document if exists
-        let transientDocument: Document?
+        let transientDocument: TextDocument?
         if let document = self.transientDocument,
            document.windowForSheet?.attachedSheet == nil
         {
@@ -138,7 +138,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
             throw error
         }
         
-        if let document = document as? Document {
+        if let document = document as? TextDocument {
             if let transientDocument {
                 // check the transient document is still intact
                 // -> The user may have edited the transient document while the file was being loaded.
@@ -164,7 +164,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
             }
             
         } else {
-            assertionFailure("The opened document should be Document.")
+            assertionFailure("The opened document should be a TextDocument.")
             
             transientDocument?.isTransient = true
             self.displayDeferredDocuments()
@@ -182,7 +182,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
         
         let document = try super.openUntitledDocumentAndDisplay(displayDocument)
         
-        if let document = document as? Document {
+        if let document = document as? TextDocument {
             // set default syntax
             document.setSyntax(name: UserDefaults.standard[.syntax])
             
@@ -310,7 +310,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
         
         switch item.action {
             case #selector(newDocumentAsTab):
-                return self.currentDocument is Document
+                return self.currentDocument is TextDocument
             default:
                 break
         }
@@ -321,14 +321,14 @@ protocol AdditionalDocumentPreparing: NSDocument {
     
     // MARK: Public Methods
     
-    /// The current `Document`.
-    var currentPlainTextDocument: Document? {
+    /// The current `TextDocument`.
+    var currentPlainTextDocument: TextDocument? {
         
         switch self.currentDocument {
-            case let document as Document:
+            case let document as TextDocument:
                 document
             case let document as DirectoryDocument:
-                document.currentDocument as? Document
+                document.currentDocument as? TextDocument
             default:
                 nil
         }
@@ -341,15 +341,15 @@ protocol AdditionalDocumentPreparing: NSDocument {
     ///   - content: The text to fill in the created document.
     ///   - title: The document title to display in the window, or `nil` to leave it as untitled.
     ///   - displayDocument: `true` if the user interface for the document should be shown, otherwise `false`.
-    /// - Returns: Returns the new Document object.
-    @discardableResult func openUntitledDocument(content: String, title: String? = nil, display displayDocument: Bool) throws -> Document {
+    /// - Returns: Returns the new TextDocument object.
+    @discardableResult func openUntitledDocument(content: String, title: String? = nil, display displayDocument: Bool) throws -> TextDocument {
         
-        let document: Document = if let transientDocument,
-                                    transientDocument.windowForSheet?.attachedSheet == nil
+        let document: TextDocument = if let transientDocument,
+                                        transientDocument.windowForSheet?.attachedSheet == nil
         {
             transientDocument
         } else {
-            try self.openUntitledDocumentAndDisplay(false) as! Document
+            try self.openUntitledDocumentAndDisplay(false) as! TextDocument
         }
         
         if !content.isEmpty {
@@ -378,11 +378,11 @@ protocol AdditionalDocumentPreparing: NSDocument {
     /// Adds a document created outside the standard opening flow and displays it, replacing the transient document if available.
     ///
     /// - Parameter document: The document to add and display.
-    func addDocumentAndDisplay(_ document: Document) {
+    func addDocumentAndDisplay(_ document: TextDocument) {
         
         // obtain the transient document before adding because adding clears the transient status
-        let transientDocument: Document? = if let transientDocument = self.transientDocument,
-                                              transientDocument.windowForSheet?.attachedSheet == nil
+        let transientDocument: TextDocument? = if let transientDocument = self.transientDocument,
+                                                  transientDocument.windowForSheet?.attachedSheet == nil
         {
             transientDocument
         } else {
@@ -437,11 +437,11 @@ protocol AdditionalDocumentPreparing: NSDocument {
     // MARK: Private Methods
     
     /// Transient document to be replaced or `nil`.
-    private var transientDocument: Document? {
+    private var transientDocument: TextDocument? {
         
         guard
             self.documents.count == 1,
-            let document = self.documents.first as? Document,
+            let document = self.documents.first as? TextDocument,
             document.isTransient,
             document.textStorage.length == 0
         else { return nil }
@@ -455,7 +455,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
     /// - Parameters:
     ///   - transientDocument: The transient document to be replaced.
     ///   - document: The new document to replace.
-    private func replaceTransientDocument(_ transientDocument: Document, with document: Document) {
+    private func replaceTransientDocument(_ transientDocument: TextDocument, with document: TextDocument) {
         
         for controller in transientDocument.windowControllers {
             document.addWindowController(controller)
@@ -471,7 +471,7 @@ protocol AdditionalDocumentPreparing: NSDocument {
     /// Observes the given document's syntax as the current syntax.
     ///
     /// - Parameter document: The document to observe.
-    private func observeSyntax(of document: Document?) {
+    private func observeSyntax(of document: TextDocument?) {
         
         self.syntaxObserver?.cancel()
         

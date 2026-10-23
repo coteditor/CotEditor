@@ -78,7 +78,7 @@ struct StatusBar: View {
                 CoffeeBadge(type: self.badgeType)
             }
             
-            if let document = self.model.document as? Document {
+            if let document = self.model.document as? TextDocument {
                 if !document.isEditable {
                     NotEditableBadge()
                         .transition(.opacity.animation(.linear))
@@ -91,9 +91,9 @@ struct StatusBar: View {
             
             if let document = self.model.document {
                 FileSizeView(size: document.fileAttributes?.size)
-                    .padding(.trailing, (document is Document) ? 0 : 8)
+                    .padding(.trailing, (document is TextDocument) ? 0 : 8)
                 
-                if let document = document as? Document {
+                if let document = document as? TextDocument {
                     DocumentStatusBar(document: document)
                 }
             }
@@ -167,7 +167,7 @@ private extension StatusBar.Model {
         let publishers = editorDefaultKeys.map { UserDefaults.standard.publisher(for: $0) }
         self.defaultsObserver = Publishers.MergeMany(publishers)
             .map { _ in UserDefaults.standard.statusBarEditorInfo }
-            .sink { [weak self] in (self?.document as? Document)?.counter.statusBarRequirements = $0 }
+            .sink { [weak self] in (self?.document as? TextDocument)?.counter.statusBarRequirements = $0 }
     }
     
     
@@ -177,7 +177,7 @@ private extension StatusBar.Model {
         self.isActive = false
         
         self.defaultsObserver = nil
-        (self.document as? Document)?.counter.statusBarRequirements = []
+        (self.document as? TextDocument)?.counter.statusBarRequirements = []
     }
     
     
@@ -186,9 +186,9 @@ private extension StatusBar.Model {
     /// - Parameter document: The document to observe.
     private func invalidateObservation(document: DataDocument?) {
         
-        (self.document as? Document)?.counter.statusBarRequirements = []
+        (self.document as? TextDocument)?.counter.statusBarRequirements = []
         
-        if let document = document as? Document, self.isActive {
+        if let document = document as? TextDocument, self.isActive {
             document.counter.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
         }
     }
@@ -249,14 +249,14 @@ private struct FileSizeView: View {
 
 private struct DocumentStatusBar: View {
     
-    private var document: Document
+    private var document: TextDocument
     
     @State private var lineEnding: LineEnding
     @State private var fileEncoding: FileEncoding
     @State private var encodingManager: EncodingManager = .shared
     
     
-    init(document: Document) {
+    init(document: TextDocument) {
         
         self.document = document
         self.lineEnding = document.lineEnding
@@ -453,7 +453,7 @@ private extension UserDefaults {
 // MARK: - Preview
 
 #Preview {
-    let document = Document()
+    let document = TextDocument()
     document.isEditable = false
     document.counter.result.lines = .init(entire: 1024, selected: 64)
     

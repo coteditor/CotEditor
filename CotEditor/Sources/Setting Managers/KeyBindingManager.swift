@@ -286,7 +286,7 @@ import URLUtils
             case #selector((any EncodingChanging).changeEncoding),
                  #selector((any SyntaxChanging).changeSyntax),
                  #selector((any ThemeChanging).changeTheme),
-                 #selector(Document.changeLineEnding(_:)),
+                 #selector(TextDocument.changeLineEnding(_:)),
                  #selector((any SnippetInsertable).insertSnippet),
                  #selector(ScriptManager.launchScript),
                  #selector(AppDelegate.openHelpAnchor),

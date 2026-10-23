@@ -1,5 +1,5 @@
 //
-//  Document.swift
+//  TextDocument.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -42,13 +42,13 @@ import URLUtils
 extension NSTextView: EditorCounter.Source { }
 
 
-@Observable class Document: DataDocument, AdditionalDocumentPreparing, EncodingChanging {
+@Observable class TextDocument: DataDocument, AdditionalDocumentPreparing, EncodingChanging {
     
     // MARK: Notification Messages
     
     struct DidUpdateChangeMessage: NotificationCenter.MainActorMessage {
         
-        typealias Subject = Document
+        typealias Subject = TextDocument
     }
     
     
@@ -325,7 +325,7 @@ extension NSTextView: EditorCounter.Source { }
     
     override func duplicate() throws -> NSDocument {
         
-        let document = try super.duplicate() as! Document
+        let document = try super.duplicate() as! TextDocument
         
         document.setSyntax(name: self.syntaxName)
         document.lineEnding = self.lineEnding
@@ -1693,7 +1693,7 @@ extension NSTextView: EditorCounter.Source { }
 
 // MARK: Editor Selection
 
-private extension Document {
+private extension TextDocument {
     
     typealias EditorSelection = [[NSValue]]
     
@@ -1852,10 +1852,10 @@ private struct DocumentSavingError: LocalizedError, CustomNSError {
     static let errorDomain: String = "CotEditor.DocumentSavingError"
     
     var code: Code
-    var attempter: Document
+    var attempter: TextDocument
     
     
-    init(_ code: Code, attempter: Document) {
+    init(_ code: Code, attempter: TextDocument) {
         
         self.code = code
         self.attempter = attempter

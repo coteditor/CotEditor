@@ -49,10 +49,10 @@ extension DirectoryDocument {
                  #selector(changeLineEnding),
                  #selector(toggleEditable):
                 // -> PreviewDocument doesn't support file manipulation.
-                return (self.currentDocument as? Document)?.validateUserInterfaceItem(item) ?? false
+                return (self.currentDocument as? TextDocument)?.validateUserInterfaceItem(item) ?? false
                 
             case #selector(changeSyntax):
-                guard let document = self.currentDocument as? Document else {
+                guard let document = self.currentDocument as? TextDocument else {
                     if let item = item as? NSMenuItem, let name = item.representedObject as? String {
                         item.state = .off
                         item.isHidden = (item.tag != SyntaxMenuTag.recentItem.rawValue &&
@@ -162,25 +162,25 @@ extension DirectoryDocument {
     
     @objc func changeEncoding(_ sender: NSMenuItem) {
         
-        (self.currentDocument as? Document)?.changeEncoding(sender)
+        (self.currentDocument as? TextDocument)?.changeEncoding(sender)
     }
     
     
     @objc func changeLineEnding(_ sender: NSMenuItem) {
         
-        (self.currentDocument as? Document)?.changeLineEnding(sender)
+        (self.currentDocument as? TextDocument)?.changeLineEnding(sender)
     }
     
     
     @objc func changeSyntax(_ sender: NSMenuItem) {
         
-        (self.currentDocument as? Document)?.changeSyntax(sender)
+        (self.currentDocument as? TextDocument)?.changeSyntax(sender)
     }
     
     
     @objc func toggleEditable(_ sender: Any?) {
         
-        (self.currentDocument as? Document)?.toggleEditable(sender)
+        (self.currentDocument as? TextDocument)?.toggleEditable(sender)
     }
     
     

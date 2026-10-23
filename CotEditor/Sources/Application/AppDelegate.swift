@@ -127,7 +127,7 @@ extension Logger {
     
     func applicationWillFinishLaunching(_ notification: Notification) {
         
-        if Document.autosavesInPlace {
+        if TextDocument.autosavesInPlace {
             ProcessInfo.processInfo.enableSuddenTermination()
         }
         
@@ -468,7 +468,7 @@ extension Logger {
             let item = NSMenuItem()
             item.title = "\(lineEnding.description) (\(lineEnding.label))"
             item.tag = lineEnding.index
-            item.action = #selector(Document.changeLineEnding(_:))
+            item.action = #selector(TextDocument.changeLineEnding(_:))
             item.isHidden = !lineEnding.isBasic
             item.keyEquivalentModifierMask = lineEnding.isBasic ? [] : [.option]
             
@@ -575,7 +575,7 @@ extension AppDelegate: NSMenuDelegate {
         var fileEncodings = EncodingManager.shared.fileEncodings
         
         if checksDocument,
-           let document = NSApp.target(forAction: action) as? Document,
+           let document = NSApp.target(forAction: action) as? TextDocument,
            !fileEncodings.contains(document.fileEncoding)
         {
             fileEncodings.insert(contentsOf: [document.fileEncoding, nil], at: 0)

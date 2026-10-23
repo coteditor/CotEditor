@@ -114,7 +114,7 @@ final class DirectoryDocument: NSDocument {
         
         // observe document updates for the edited marker in the close button
         if self.documentObserver == nil {
-            self.documentObserver = NotificationCenter.default.addObserver(for: Document.DidUpdateChangeMessage.self) { [unowned self] _ in
+            self.documentObserver = NotificationCenter.default.addObserver(for: TextDocument.DidUpdateChangeMessage.self) { [unowned self] _ in
                 let hasEditedDocuments = self.documents.contains(where: \.isDocumentEdited)
                 self.windowController?.setDocumentEdited(hasEditedDocuments)
             }
@@ -260,7 +260,7 @@ final class DirectoryDocument: NSDocument {
     /// Returns the opened document at the given file node.
     ///
     /// - Parameter node: The file node to find.
-    /// - Returns: A Document if found.
+    /// - Returns: A document if found.
     func openedDocument(at node: FileNode) -> DataDocument? {
         
         self.documents.first { $0.fileURL == node.file.fileURL }
@@ -281,7 +281,7 @@ final class DirectoryDocument: NSDocument {
         
         if let currentDocument,
            fileURL == currentDocument.fileURL,
-           !asPlainText || currentDocument is Document
+           !asPlainText || currentDocument is TextDocument
         {
             return true  // already open
         }
@@ -294,7 +294,7 @@ final class DirectoryDocument: NSDocument {
         {
             if let currentDocument,
                resolvedURL == currentDocument.fileURL,
-               !asPlainText || currentDocument is Document
+               !asPlainText || currentDocument is TextDocument
             {
                 return true  // already open
             }
@@ -303,7 +303,7 @@ final class DirectoryDocument: NSDocument {
         }
         
         // existing document
-        if let document = NSDocumentController.shared.document(for: fileURL) as? Document {
+        if let document = NSDocumentController.shared.document(for: fileURL) as? TextDocument {
             if self.documents.contains(document) {
                 self.changeFrontmostDocument(to: document)
                 if recordsHistory {
@@ -450,7 +450,7 @@ final class DirectoryDocument: NSDocument {
             throw error
         }
         
-        if isCurrentDocument, let document = self.currentDocument as? Document {
+        if isCurrentDocument, let document = self.currentDocument as? TextDocument {
             // -> At this point, the document hasn’t updated its fileURL yet.
             document.invalidateSyntax(filename: name)
         }
@@ -636,7 +636,7 @@ final class DirectoryDocument: NSDocument {
             self.documents.removeFirst(document)
             self.invalidateRestorableState()
             
-            if let document = document as? Document {
+            if let document = document as? TextDocument {
                 // create a new window for the document
                 document.windowController = nil
                 document.makeWindowControllers()

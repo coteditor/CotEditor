@@ -128,7 +128,7 @@ import UniformTypeIdentifiers
         #expect(model.result(for: id)?.match?.range == NSRange(location: 4, length: 6))
         
         // edit the file in a document that is not part of the directory document
-        let document = try Document(contentsOf: fileURL, ofType: UTType.plainText.identifier)
+        let document = try TextDocument(contentsOf: fileURL, ofType: UTType.plainText.identifier)
         NSDocumentController.shared.addDocument(document)
         defer { document.close() }
         

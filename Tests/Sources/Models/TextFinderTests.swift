@@ -274,7 +274,7 @@ import Testing
         let string = "before\r|dog\r\ncow|after\r"
         let range = (string as NSString).range(of: "dog\r\ncow")
         let replacement = "dog\(lineEnding.string)cow\(lineEnding.string)"
-        let document = Document()
+        let document = TextDocument()
         document.textStorage.replaceCharacters(in: NSRange(), with: string)
         let controller = EditorTextViewController(document: document)
         defer { withExtendedLifetime(controller) { } }
@@ -319,7 +319,7 @@ import Testing
         let expected = "<key>\r</key><string>insertNewline:</string>\n"
         let findString = #"\n\t<string>"#
         let replacementString = "<string>"
-        let document = Document()
+        let document = TextDocument()
         document.textStorage.replaceCharacters(in: NSRange(), with: string)
         let controller = EditorTextViewController(document: document)
         defer { withExtendedLifetime(controller) { } }
@@ -360,7 +360,7 @@ import Testing
         let expected = "<key>\r</key><string>insertNewline:</string>\n"
         let findString = #"\n\t<string>"#
         let replacementString = "<string>"
-        let document = Document()
+        let document = TextDocument()
         document.textStorage.replaceCharacters(in: NSRange(), with: string)
         let controller = EditorTextViewController(document: document)
         defer { withExtendedLifetime(controller) { } }

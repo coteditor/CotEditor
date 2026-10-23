@@ -49,7 +49,7 @@ struct IncompatibleCharactersView: View {
         var sortOrder: [KeyPathComparator<Item>] = []  { didSet { self.items.sort(using: self.sortOrder) } }
         private(set) var state: State = .idle
         
-        private var document: Document?
+        private var document: TextDocument?
         private var scanRevision = 0
         
         private var task: Task<Void, any Error>?
@@ -58,7 +58,7 @@ struct IncompatibleCharactersView: View {
     }
     
     
-    var document: Document?
+    var document: TextDocument?
     
     @State var model = Model()
     
@@ -180,7 +180,7 @@ private extension IncompatibleCharactersView.Model {
     /// Updates the document.
     ///
     /// - Parameter document: The new document.
-    func updateDocument(_ document: Document?) {
+    func updateDocument(_ document: TextDocument?) {
         
         guard self.document !== document else { return }
         

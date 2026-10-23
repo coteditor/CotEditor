@@ -47,7 +47,7 @@ import SyntaxFormat
     var attributes: FileAttributes?  { self.remotePath == nil ? self.document?.fileAttributes : nil }
     var fileURL: URL?
     var remotePath: String?  { (self.document as? RemoteDocument)?.remoteState?.file.metadata.path }
-    var countResult: EditorCounter.Result?  { (self.document as? Document)?.counter.result }
+    var countResult: EditorCounter.Result?  { (self.document as? TextDocument)?.counter.result }
     
     private var urlObserver: AnyCancellable?
     
@@ -56,7 +56,7 @@ import SyntaxFormat
     
     var textSettings: TextSettings? {
         
-        if let document = self.document as? Document {
+        if let document = self.document as? TextDocument {
             TextSettings(encoding: document.fileEncoding, lineEnding: document.lineEnding, mode: document.mode)
         } else {
             nil
@@ -91,7 +91,7 @@ import SyntaxFormat
     /// Starts observations on the document.
     private func startObservation() {
         
-        (document as? Document)?.counter.updatesAll = true
+        (document as? TextDocument)?.counter.updatesAll = true
         
         self.urlObserver = document?.publisher(for: \.fileURL, options: .initial)
             .receive(on: DispatchQueue.main)
@@ -102,7 +102,7 @@ import SyntaxFormat
     /// Cancels the observations on the document.
     private func cancelObservation() {
         
-        (self.document as? Document)?.counter.updatesAll = false
+        (self.document as? TextDocument)?.counter.updatesAll = false
         self.urlObserver = nil
     }
 }

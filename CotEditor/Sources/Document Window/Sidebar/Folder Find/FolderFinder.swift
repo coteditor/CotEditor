@@ -227,7 +227,7 @@ import TextFind
             else { return }
             
             guard
-                let document = self.document.currentDocument as? Document,
+                let document = self.document.currentDocument as? TextDocument,
                 let textView = document.textView
             else { return }
             
@@ -335,7 +335,7 @@ import TextFind
         
         guard
             let document = NSDocumentController.shared.documents
-                .compactMap({ $0 as? Document })
+                .compactMap({ $0 as? TextDocument })
                 .first(where: { ObjectIdentifier($0.textStorage) == textStorageIdentifier }),
             let fileURL = document.fileURL
         else { return }

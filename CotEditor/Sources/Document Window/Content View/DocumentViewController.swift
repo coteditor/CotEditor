@@ -56,7 +56,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     // MARK: Public Properties
     
-    let document: Document
+    let document: TextDocument
     
     private(set) weak var focusedTextView: EditorTextView?
     
@@ -78,7 +78,7 @@ final class DocumentViewController: NSSplitViewController, ThemeChanging, NSTool
     
     // MARK: Lifecycle
     
-    init(document: Document) {
+    init(document: TextDocument) {
         
         self.document = document
         

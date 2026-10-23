@@ -78,13 +78,13 @@ private enum OSAUnicodeNormalizationType: String {
     
     // MARK: Private Properties
     
-    private weak let document: Document?  // weak to avoid cycle retain
+    private weak let document: TextDocument?  // weak to avoid cycle retain
     private let documentSpecifier: NSScriptObjectSpecifier
     
     
     // MARK: Lifecycle
     
-    required init(document: Document) {
+    required init(document: TextDocument) {
         
         self.document = document
         self.documentSpecifier = document.objectSpecifier

@@ -34,9 +34,9 @@ struct WarningInspectorView: View, HostedPaneView {
     var body: some View {
         
         VSplitView {
-            IncompatibleCharactersView(document: self.isPresented ? self.document as? Document : nil)
+            IncompatibleCharactersView(document: self.isPresented ? self.document as? TextDocument : nil)
                 .padding(.bottom, 12)
-            InconsistentLineEndingsView(document: self.isPresented ? self.document as? Document : nil)
+            InconsistentLineEndingsView(document: self.isPresented ? self.document as? TextDocument : nil)
                 .padding(.top, 8)
         }
         .padding(EdgeInsets(top: 16, leading: 12, bottom: 12, trailing: 12))

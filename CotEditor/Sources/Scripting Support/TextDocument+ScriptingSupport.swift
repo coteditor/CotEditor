@@ -1,5 +1,5 @@
 //
-//  Document+ScriptingSupport.swift
+//  TextDocument+ScriptingSupport.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -66,7 +66,7 @@ private enum OSALineEnding: String {
 }
 
 
-extension Document {
+extension TextDocument {
     
     // MARK: AppleScript Accessors
     

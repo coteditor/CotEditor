@@ -36,11 +36,11 @@ struct RMateTests {
     @Test @MainActor func remoteDocumentSupportsNativeTypes() {
         
         #expect(!RemoteDocument.readableTypes.isEmpty)
-        #expect(RemoteDocument.readableTypes == Document.readableTypes)
-        #expect(RemoteDocument.writableTypes == Document.writableTypes)
+        #expect(RemoteDocument.readableTypes == TextDocument.readableTypes)
+        #expect(RemoteDocument.writableTypes == TextDocument.writableTypes)
         
-        for type in Document.writableTypes {
-            #expect(RemoteDocument.isNativeType(type) == Document.isNativeType(type))
+        for type in TextDocument.writableTypes {
+            #expect(RemoteDocument.isNativeType(type) == TextDocument.isNativeType(type))
         }
         #expect(!RemoteDocument.isNativeType("com.coteditor.unsupported"))
     }
@@ -54,7 +54,7 @@ struct RMateTests {
         let url = FileManager.default.temporaryDirectory.appending(component: UUID().uuidString + ".txt")
         try Data("old".utf8).write(to: url)
         defer { try? FileManager.default.removeItem(at: url) }
-        let document = try #require(DocumentController.shared.makeDocument(withContentsOf: url, ofType: "public.plain-text") as? Document)
+        let document = try #require(DocumentController.shared.makeDocument(withContentsOf: url, ofType: "public.plain-text") as? TextDocument)
         defer { document.close() }
         #expect(!(document is RemoteDocument))
         
@@ -100,7 +100,7 @@ struct RMateTests {
         let (document, url) = try self.makeDisconnectedDocument()
         defer { self.remove(document, url: url) }
         
-        let duplicate = try #require(DocumentController.shared.makeDocument(for: nil, withContentsOf: url, ofType: "public.plain-text") as? Document)
+        let duplicate = try #require(DocumentController.shared.makeDocument(for: nil, withContentsOf: url, ofType: "public.plain-text") as? TextDocument)
         defer { duplicate.close() }
         #expect(!(duplicate is RemoteDocument))
         #expect(duplicate.fileURL == nil)
@@ -185,7 +185,7 @@ struct RMateTests {
         
         let restored = try DocumentController.shared.makeDocument(for: destination, withContentsOf: destination, ofType: "public.plain-text")
         defer { restored.close() }
-        #expect(restored is Document)
+        #expect(restored is TextDocument)
         #expect(!(restored is RemoteDocument))
     }
     
@@ -689,7 +689,7 @@ struct RMateTests {
     ///   - url: The destination URL.
     ///   - operation: The AppKit save operation.
     /// - Throws: The save error returned by the document.
-    @MainActor private func save(_ document: Document, to url: URL, operation: NSDocument.SaveOperationType) async throws {
+    @MainActor private func save(_ document: TextDocument, to url: URL, operation: NSDocument.SaveOperationType) async throws {
         
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, any Error>) in
             document.save(to: url, ofType: "public.plain-text", for: operation) { error in
@@ -708,7 +708,7 @@ struct RMateTests {
     /// - Parameters:
     ///   - document: The test document.
     ///   - url: The working copy URL.
-    @MainActor private func remove(_ document: Document, url: URL) {
+    @MainActor private func remove(_ document: TextDocument, url: URL) {
         
         let backup = document.autosavedContentsFileURL
         
