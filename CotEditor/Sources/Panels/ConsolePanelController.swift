@@ -1,5 +1,5 @@
 //
-//  Console.swift
+//  ConsolePanelController.swift
 //
 //  CotEditor
 //  https://coteditor.com

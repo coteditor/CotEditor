@@ -1,5 +1,5 @@
 //
-//  PrintAccessoryViewController.swift
+//  PrintPanelAccessoryController.swift
 //
 //  CotEditor
 //  https://coteditor.com
