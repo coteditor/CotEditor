@@ -75,7 +75,6 @@ struct WhatsNewView: View {
                                 Text(feature.description)
                                     .font(.body)
                                     .lineSpacing(1.2)
-                                    .fixedSize(horizontal: false, vertical: true)
                                     .foregroundStyle(.secondary)
                                 
                                 if let anchor = feature.helpAnchor {
@@ -87,6 +86,7 @@ struct WhatsNewView: View {
                             
                             feature.supplementalView
                         }
+                        .fixedSize(horizontal: false, vertical: true)
                     }
                 }
             }
@@ -154,14 +154,11 @@ private extension Version.Prerelease {
 
 enum NewFeature: CaseIterable {
     
-    static let version = Version(7, 1, 0)
-    static let buildNumber = 847
+    static let version = Version(7, 2, 0)
+    static let buildNumber = 856
     
-    case folderFind
-    case macOS27
-    case folderNavigationHistory
-    case documentName
-    case customIndentStyle
+    case remoteEditing
+    case copySettingsIniCloud
 }
 
 
@@ -170,16 +167,10 @@ private extension NewFeature {
     var image: Image {
         
         switch self {
-            case .folderFind:
-                Image(.folderBadgeMagnifyingglass)
-            case .macOS27:
-                Image(systemName: "27.circle")
-            case .folderNavigationHistory:
-                Image(systemName: "chevron.left.chevron.right")
-            case .documentName:
-                Image(systemName: "rectangle.and.pencil.and.ellipsis")
-            case .customIndentStyle:
-                Image(systemName: "increase.indent")
+            case .remoteEditing:
+                Image(systemName: "server.rack")
+            case .copySettingsIniCloud:
+                Image(systemName: "icloud.and.arrow.up")
         }
     }
     
@@ -187,25 +178,13 @@ private extension NewFeature {
     var label: LocalizedStringResource {
         
         switch self {
-            case .folderFind:
-                .init("NewFeature.folderFind.label",
-                      defaultValue: "Find it in the folder",
+            case .remoteEditing:
+                .init("NewFeature.remoteEditing.label",
+                      defaultValue: "Edit remote files right on your Mac",
                       table: "WhatsNew")
-            case .macOS27:
-                .init("NewFeature.macOS27.label",
-                      defaultValue: "Ready for macOS 27",
-                      table: "WhatsNew")
-            case .folderNavigationHistory:
-                .init("NewFeature.folderNavigationHistory.label",
-                      defaultValue: "Back and forward in folders",
-                      table: "WhatsNew")
-            case .documentName:
-                .init("NewFeature.documentName.label",
-                      defaultValue: "Let the document name itself",
-                      table: "WhatsNew")
-            case .customIndentStyle:
-                .init("NewFeature.customIndentStyle.label",
-                      defaultValue: "Indentation that fits each syntax",
+            case .copySettingsIniCloud:
+                .init("NewFeature.copySettingsIniCloud.label",
+                      defaultValue: "Your settings, one import away",
                       table: "WhatsNew")
         }
     }
@@ -214,25 +193,13 @@ private extension NewFeature {
     var description: LocalizedStringResource {
         
         switch self {
-            case .folderFind:
-                .init("NewFeature.folderFind.description",
-                      defaultValue: "Search text across files in an opened folder right from the sidebar.",
+            case .remoteEditing:
+                .init("NewFeature.remoteEditing.description",
+                      defaultValue: "Open files on a remote computer using `rmate` over SSH, and save your changes straight back.",
                       table: "WhatsNew")
-            case .macOS27:
-                .init("NewFeature.macOS27.description",
-                      defaultValue: "CotEditor now supports macOS 27 Golden Gate, including refreshed appearance for the latest system.",
-                      table: "WhatsNew")
-            case .folderNavigationHistory:
-                .init("NewFeature.folderNavigationHistory.description",
-                      defaultValue: "Use the toolbar to move back and forward through recently viewed documents in a folder document.",
-                      table: "WhatsNew")
-            case .documentName:
-                .init("NewFeature.documentName.description",
-                      defaultValue: "On macOS 27, untitled documents automatically get a draft name suggested from their content.",
-                      table: "WhatsNew")
-            case .customIndentStyle:
-                .init("NewFeature.customIndentStyle.description",
-                      defaultValue: "Use Mode settings to customize the indentation style for individual syntaxes as you like.",
+            case .copySettingsIniCloud:
+                .init("NewFeature.copySettingsIniCloud.description",
+                      defaultValue: "Keep an up-to-date copy of your settings in iCloud to import on your other Macs anytime.",
                       table: "WhatsNew")
         }
     }
@@ -241,8 +208,10 @@ private extension NewFeature {
     var helpAnchor: String? {
         
         switch self {
-            default:
-                nil
+            case .remoteEditing:
+                "howto_edit_remote"
+            case .copySettingsIniCloud:
+                "howto_store_settings_in_icloud"
         }
     }
     

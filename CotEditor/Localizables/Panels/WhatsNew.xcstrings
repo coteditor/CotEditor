@@ -114,1192 +114,190 @@
         }
       }
     },
-    "NewFeature.customIndentStyle.description" : {
+    "NewFeature.copySettingsIniCloud.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "V nastavení Režim si můžete přizpůsobit styl odsazení pro jednotlivé syntaxe."
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Passe nach Belieben den Einzugsstil für einzelne Syntaxen in den Einstellungen „Modus“ an."
+            "value" : "Behalte eine stets aktuelle Kopie deiner Einstellungen in iCloud, um sie jederzeit auf deinen anderen Macs zu importieren."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Use Mode settings to customize the indentation style for individual syntaxes as you like."
+            "value" : "Keep an up-to-date copy of your settings in iCloud to import on your other Macs anytime."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Use Mode settings to customise the indentation style for individual syntaxes as you like."
+            "value" : "Keep an up-to-date copy of your settings in iCloud to import on your other Macs any time."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Usa los ajustes de Modo para personalizar el estilo de sangría de sintaxis concretas a tu gusto."
+            "value" : "Guarda en iCloud una copia siempre actualizada de tus ajustes para importarla en tus otros Mac cuando quieras."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Utilisez les réglages Mode pour personnaliser le style d’indentation de certaines syntaxes à votre convenance."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "अलग-अलग सिंटैक्स के लिए इंडेंटेशन स्टाइल अपनी पसंद के अनुसार कस्टमाइज़ करने के लिए मोड सेटिंग उपयोग करें।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Usa le impostazioni Modalità per personalizzare lo stile di rientro per ogni sintassi."
+            "value" : "Conservez sur iCloud une copie toujours à jour de vos réglages, à importer à tout moment sur vos autres Mac."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "お好みで、“モード”設定でシンタックスごとにインデントスタイルをカスタマイズできるようになりました。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "모드 설정을 사용하여 개별 구문의 들여쓰기 스타일을 원하는 대로 사용자화할 수 있습니다."
+            "value" : "設定のコピーを常に最新の状態でiCloudに保存して、ほかのMacでいつでも読み込めるようになりました。"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Pas de inspringstijl naar wens per syntaxis aan in de Modusinstellingen."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Użyj ustawień Trybu, by dostosować do własnych upodobań styl wcięć dla poszczególnych składni."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Use os ajustes de Modo para personalizar o estilo de recuo de cada sintaxe como preferir."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Используйте настройки режима, чтобы настроить стиль отступов для каждого синтаксиса по своему усмотрению."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mod ayarlarını kullanarak istediğiniz gibi her bir sözdizimi için girintileme stilini özelleştirebilirsiniz."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Використовуйте параметри режиму, щоб окремо налаштувати стиль відступів для кожного синтаксису."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用“模式”设置，按需为各个语法自定义缩进样式。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用模式設定，依你的喜好為個別語法自訂縮排樣式。"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用「模式設定」按需要自訂個別語法的縮排樣式。"
+            "value" : "Bewaar een altijd actuele kopie van je instellingen in iCloud om ze op je andere Macs te importeren wanneer je maar wilt."
           }
         }
       }
     },
-    "NewFeature.customIndentStyle.label" : {
+    "NewFeature.copySettingsIniCloud.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Odsazení podle syntaxe"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Einrückung passend zur Syntax"
+            "value" : "Deine Einstellungen, nur einen Import entfernt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Indentation that fits each syntax"
+            "value" : "Your settings, one import away"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indentation that fits each syntax"
+            "value" : "Your settings, one import away"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Una sangría adaptada a cada sintaxis"
+            "value" : "Tus ajustes, a solo una importación"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Une indentation adaptée à chaque syntaxe"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "हर सिंटैक्स के अनुरूप इंडेंटेशन"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rientro adatto a ogni sintassi"
+            "value" : "Retrouvez vos réglages en une importation"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "シンタックスに合わせたインデント"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "각 구문에 맞는 들여쓰기"
+            "value" : "読み込むだけで、いつもの設定に"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Inspringing passend bij elke syntaxis"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wcięcie pasujące do każdej składni"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recuo que se ajusta a cada sintaxe"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отступы, соответствующие каждому синтаксису"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Her bir sözdizimine uyan girintileme"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Відступи для кожного синтаксису"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "适配各种语法的缩进"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "貼合每種語法的縮排"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "符合每個語法的縮排"
+            "value" : "Je instellingen, slechts één import verwijderd"
           }
         }
       }
     },
-    "NewFeature.documentName.description" : {
+    "NewFeature.remoteEditing.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "V macOS 27 získají nepojmenované dokumenty automaticky pracovní název navržený podle svého obsahu."
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Unter macOS 27 erhalten unbenannte Dokumente automatisch einen aus ihrem Inhalt vorgeschlagenen Arbeitsnamen."
+            "value" : "Öffne Dateien auf einem entfernten Computer mit `rmate` über SSH und sichere deine Änderungen direkt dort."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "On macOS 27, untitled documents automatically get a draft name suggested from their content."
+            "value" : "Open files on a remote computer using `rmate` over SSH, and save your changes straight back."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On macOS 27, untitled documents automatically get a draft name suggested from their content."
+            "value" : "Open files on a remote computer using `rmate` over SSH, and save your changes straight back."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "En macOS 27, los documentos sin título reciben automáticamente un nombre provisional sugerido a partir de su contenido."
+            "state" : "needs_review",
+            "value" : "Abre archivos de un ordenador remoto con `rmate` mediante SSH y guarda los cambios directamente en él."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Sous macOS 27, les documents sans titre reçoivent automatiquement un nom provisoire suggéré à partir de leur contenu."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "macOS 27 पर, शीर्षकहीन दस्तावेज़ों को उनकी सामग्री से सुझाया गया ड्राफ़्ट नाम स्वतः मिल जाता है।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In macOS 27, i documenti senza titolo ricevono una bozza di nome in base al loro contenuto."
+            "value" : "Ouvrez des fichiers d’un ordinateur distant avec `rmate` via SSH et enregistrez-y directement vos modifications."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "macOS 27では、名称未設定の書類に内容から提案された書類名の草案が自動で付くようになりました。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "macOS 27에서는 무제 문서에 콘텐츠를 기반으로 제안된 이름이 자동으로 지정됩니다."
+            "value" : "`rmate`を使ってSSH経由でリモートコンピュータ上のファイルを開き、変更内容をそのまま保存できるようになりました。"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "In macOS 27 krijgen naamloze documenten automatisch een conceptnaam op basis van hun inhoud."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "W systemie macOS 27 dokumenty bez nazwy automatycznie otrzymują nazwę roboczą sugerowaną na podstawie ich zawartości."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No macOS 27, documentos sem título recebem automaticamente um nome provisório sugerido a partir do conteúdo."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "На macOS 27 неозаглавленные документы автоматически получают имя на основе их содержимого."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "macOS 27’de adsız belgeler otomatik olarak içeriklerinden önerilen bir taslak adı alır."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "У macOS 27 документи без назви автоматично отримують чернеткову назву на основі свого вмісту."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在macOS 27中，系统会根据内容为未命名文稿自动建议一个草稿名称。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在macOS 27上，未命名文件會自動根據內容獲得建議的草稿名稱。"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在macOS 27上，未命名的文件會自動從其內容中建議一個草稿名稱。"
+            "state" : "needs_review",
+            "value" : "Open bestanden op een externe computer met `rmate` via SSH en bewaar je wijzigingen daar direct."
           }
         }
       }
     },
-    "NewFeature.documentName.label" : {
+    "NewFeature.remoteEditing.label" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nechte dokument zvolit vlastní název"
-          }
-        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Dokument benennt sich selbst"
+            "value" : "Entfernte Dateien direkt auf deinem Mac bearbeiten"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Let the document name itself"
+            "value" : "Edit remote files right on your Mac"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Let the document name itself"
+            "value" : "Edit remote files right on your Mac"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Deja que el documento se nombre solo"
+            "value" : "Edita archivos remotos directamente en tu Mac"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Le document se nomme tout seul"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "दस्तावेज़ को स्वयं नाम रखने दें"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nomenclatura automatica dei documenti"
+            "value" : "Modifiez des fichiers distants directement sur votre Mac"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "書類名は書類におまかせ"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "문서 스스로 이름 짓기"
+            "value" : "リモートファイルを手元で編集"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Laat het document zichzelf een naam geven"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pozwól, by dokument sam się nazwał"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deixe o documento se nomear"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Название документа будет создано автоматически"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Belgelerin kendilerini adlandırmalarına izin verin"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дозвольте документу назвати себе"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "让文稿自行命名"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "讓文件自行命名"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使文件自動命名"
-          }
-        }
-      }
-    },
-    "NewFeature.folderFind.description" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vyhledávejte text napříč soubory v otevřené složce přímo z bočního panelu."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suche direkt über die Seitenleiste nach Text in Dateien eines geöffneten Ordners."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Search text across files in an opened folder right from the sidebar."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Search text across files in an opened folder right from the sidebar."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Busca texto en archivos de una carpeta abierta directamente desde la barra lateral."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Recherchez du texte dans les fichiers d’un dossier ouvert directement depuis la barre latérale."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "साइडबार से ही खुले फ़ोल्डर की फ़ाइलों में टेक्स्ट खोजें।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ricerca diretta di un testo in più file di una cartella dalla barra laterale."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "開いているフォルダ内のファイルを、サイドバーから全文検索できるようになりました。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "사이드바에서 바로 열려 있는 폴더의 여러 파일에 있는 텍스트를 검색할 수 있습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Zoek tekst in bestanden in een geopende map, rechtstreeks vanuit de navigatiekolom."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wyszukuj tekst w plikach otwartego folderu, bezpośrednio z paska bocznego."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Busque texto nos arquivos de uma pasta aberta diretamente pela barra lateral."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Поиск текста среди файлов в открытой папке прямо из боковой панели."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Açık bir klasördeki dosyalar arasında metin aramayı doğrudan kenar çubuğundan yapabilirsiniz."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Шукайте текст у файлах відкритої папки безпосередньо з бічної панелі."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "直接在边栏中搜索已打开文件夹内的文本。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "直接從側邊欄搜尋已開啟檔案夾中所有檔案的文字內容。"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "直接透過側邊欄，在開啟的資料夾的檔案裡搜尋文字。"
-          }
-        }
-      }
-    },
-    "NewFeature.folderFind.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hledání ve složce"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Im Ordner finden"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Find it in the folder"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Find it in the folder"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Encuéntralo en la carpeta"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Trouvez-le dans le dossier"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "इसे फ़ोल्डर में ढूँढें"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trova nella cartella"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "フォルダの中から見つけよう"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "폴더에서 찾기"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Vind het in de map"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Znajdź to w folderze"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Encontre na pasta"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Найти в папке"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klasörlerde bulun"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Знайдіть у папці"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在文件夹中查找"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在檔案夾中尋找"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在資料夾中尋找"
-          }
-        }
-      }
-    },
-    "NewFeature.folderNavigationHistory.description" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pomocí panelu nástrojů můžete přecházet zpět a vpřed mezi naposledy zobrazenými dokumenty v otevřené složce."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wechsle in einem Ordnerdokument über die Symbolleiste vor und zurück durch zuletzt angezeigte Dokumente."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Use the toolbar to move back and forward through recently viewed documents in a folder document."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Use the toolbar to move back and forward through recently viewed documents in a folder document."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Usa la barra de herramientas para avanzar y retroceder por los documentos vistos recientemente en un documento de carpeta."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Utilisez la barre d’outils pour naviguer en arrière et en avant parmi les documents récemment consultés dans un document de dossier."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "फ़ोल्डर दस्तावेज़ में हाल में देखे गए दस्तावेज़ों में पीछे और आगे जाने के लिए टूलबार उपयोग करें।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Usa la barra strumenti per scorrere avanti e indietro tra i documenti visti di recente in una cartella."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "フォルダ書類で最近表示した書類を、ツールバーから戻る・進むで辿れるようになりました。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "도구 막대를 사용하여 폴더 문서에서 최근에 본 문서 사이를 뒤로 또는 앞으로 이동할 수 있습니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Gebruik de knoppenbalk om terug en vooruit te gaan door onlangs bekeken documenten in een mapdocument."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Użyj paska narzędzi, by przechodzić wstecz i dalej pomiędzy ostatnio przeglądanymi dokumentami w folderze."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Use a barra de ferramentas para voltar e avançar entre os documentos vistos recentemente em um documento de pasta."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Используйте панель инструментов, чтобы перемещаться назад и вперед среди недавно просмотренных документов в текущей папке."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klasör içindeki belgelerde yakın zamanda görüntülenen belgeler arasında ileri ve geri gitmek için araç çubuğunu kullanın."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Використовуйте панель інструментів, щоб переходити назад і вперед між нещодавно переглянутими документами в папці."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用工具栏在文件夹中前后浏览最近查看过的文稿。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用工具列在檔案夾文件中最近檢視過的文件之間前進與返回。"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用工具列在資料夾中最近檢視過的文件之間前後切換。"
-          }
-        }
-      }
-    },
-    "NewFeature.folderNavigationHistory.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zpět a vpřed ve složkách"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zurück und vorwärts in Ordnern"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Back and forward in folders"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Back and forward in folders"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Atrás y adelante en carpetas"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Précédent et suivant dans les dossiers"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "फ़ोल्डर में पीछे और आगे"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scorri le cartelle avanti e indietro"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "フォルダでも戻る・進む"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "폴더에서 뒤로 및 앞으로 이동"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Terug en vooruit in mappen"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wróć i przejdź dalej w folderach"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voltar e avançar entre pastas"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Назад и вперед в папках"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klasörlerde ileri ve geri gidin"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Назад і вперед у папках"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在文件夹中前后浏览"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在檔案夾中前進與返回"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在資料夾內前後切換"
-          }
-        }
-      }
-    },
-    "NewFeature.macOS27.description" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor nyní podporuje macOS 27 Golden Gate a přebírá jeho nový vzhled."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor unterstützt jetzt macOS 27 Golden Gate, einschließlich überarbeitetem Erscheinungsbild für das neueste System."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "CotEditor now supports macOS 27 Golden Gate, including refreshed appearance for the latest system."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor now supports macOS 27 Golden Gate, including refreshed appearance for the latest system."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor ahora es compatible con macOS 27 Golden Gate, con un aspecto renovado para el sistema más reciente."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "CotEditor prend désormais en charge macOS 27 Golden Gate, avec une apparence actualisée pour le tout dernier système."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor अब macOS 27 Golden Gate का समर्थन करता है, जिसमें नवीनतम सिस्टम के लिए ताज़ा रूप शामिल है।"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor ora supporta macOS 27 Golden Gate, incluse le modifiche all’aspetto dell’ultima versione."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditorがmacOS 27 Golden Gateに対応しました。最新システムに合わせて外観も整えています。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor가 이제 macOS 27 Golden Gate를 지원하며, 최신 시스템에 맞게 새로워진 디자인을 제공합니다."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor ondersteunt nu macOS 27 Golden Gate, inclusief een vernieuwde vormgeving voor het nieuwste systeem."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor obsługuje teraz system macOS 27 Golden Gate, w tym odświeżony wygląd najnowszego systemu."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O CotEditor agora oferece suporte ao macOS 27 Golden Gate, incluindo uma aparência renovada para o sistema mais recente."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor теперь поддерживает macOS 27 Golden Gate, включая обновленное оформление для новейшей системы."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor artık macOS 27 Golden Gate’i destekliyor ve bu en yeni işletim sistemi için yenilenmiş bir görünüşe kavuştu."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor тепер підтримує macOS 27 Golden Gate, зокрема оновлений вигляд для нової системи."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor现已支持macOS 27 Golden Gate，并为最新系统带来全新外观。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor現已支援macOS 27 Golden Gate，包含針對最新系統的煥新外觀。"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CotEditor現已支援macOS 27 Golden Gate，當中包括為最新系統而設的全新外觀。"
-          }
-        }
-      }
-    },
-    "NewFeature.macOS27.label" : {
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Připraveno pro macOS 27"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bereit für macOS 27"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Ready for macOS 27"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ready for macOS 27"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Listo para macOS 27"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Prêt pour macOS 27"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "macOS 27 के लिए तैयार"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pronto per macOS 27"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "macOS 27に対応"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "macOS 27 지원"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klaar voor macOS 27"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gotowy na macOS 27"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pronto para o macOS 27"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Готов к macOS 27"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "macOS 27 için hazır"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Готовий до macOS 27"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "已为macOS 27准备就绪"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "準備好迎接macOS 27"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "為macOS 27準備好"
+            "value" : "Bewerk externe bestanden rechtstreeks op je Mac"
           }
         }
       }
