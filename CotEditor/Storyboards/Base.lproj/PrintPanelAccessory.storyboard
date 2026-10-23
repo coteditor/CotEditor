@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="25408" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="25098"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="25408"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,7 +17,7 @@
                             <view translatesAutoresizingMaskIntoConstraints="NO" id="tOy-S4-hL0">
                                 <rect key="frame" x="12" y="0.0" width="416" height="381"/>
                                 <subviews>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CvE-De-52u">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CvE-De-52u">
                                         <rect key="frame" x="-2" y="320" width="37" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Color" id="yQ7-YE-ZK9">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -24,7 +25,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kYV-zv-wrQ">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kYV-zv-wrQ">
                                         <rect key="frame" x="18" y="279" width="116" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Print Backgrounds" id="5eL-Aw-LdI">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -32,7 +33,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yho-OF-r7g">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yho-OF-r7g">
                                         <rect key="frame" x="-2" y="238" width="120" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Print Line Numbers" id="L7u-ng-jC7">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -59,7 +60,7 @@
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dK7-a2-oXG">
                                         <rect key="frame" x="0.0" y="264" width="416" height="5"/>
                                     </box>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wT3-Se-Vox">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wT3-Se-Vox">
                                         <rect key="frame" x="-2" y="197" width="92" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Print Invisibles" id="M5e-Tg-MlQ">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -67,7 +68,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QKu-nK-alH">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QKu-nK-alH">
                                         <rect key="frame" x="-2" y="156" width="163" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Print Headers and Footers" id="l4b-D2-DDX">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -75,7 +76,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qbD-t6-6u6">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qbD-t6-6u6">
                                         <rect key="frame" x="18" y="115" width="49" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Header" id="JlJ-Fc-tes">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -291,7 +292,7 @@
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="27f-Ln-A2D">
                                         <rect key="frame" x="0.0" y="305" width="416" height="5"/>
                                     </box>
-                                    <textField focusRingType="none" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="pEn-Qn-GtM" customClass="NumberTextField" customModule="ControlUI">
+                                    <textField verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="pEn-Qn-GtM" customClass="NumberTextField" customModule="ControlUI">
                                         <rect key="frame" x="325" y="357" width="48" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="pfn-ZI-xFt"/>
@@ -309,7 +310,7 @@
                                             <binding destination="bU7-R8-ocO" name="value" keyPath="fontSize" id="eG0-pg-3e7"/>
                                         </connections>
                                     </textField>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XHM-1R-Fyr">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XHM-1R-Fyr">
                                         <rect key="frame" x="401" y="361" width="17" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="pt" id="U13-G4-pKV">
                                             <font key="font" metaFont="system"/>
@@ -328,7 +329,7 @@
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="vig-41-Y5L">
                                         <rect key="frame" x="0.0" y="346" width="416" height="5"/>
                                     </box>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dCk-qa-Upw">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dCk-qa-Upw">
                                         <rect key="frame" x="-2" y="361" width="61" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Font Size" id="fSa-V2-D11">
                                             <font key="font" metaFont="system"/>
@@ -339,7 +340,7 @@
                                     <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="cut-IH-GkZ">
                                         <rect key="frame" x="0.0" y="141" width="416" height="5"/>
                                     </box>
-                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Af-55-FYV">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Af-55-FYV">
                                         <rect key="frame" x="18" y="38" width="44" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Footer" id="mY6-Zh-2Uc">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -455,7 +456,6 @@
                     </connections>
                 </viewController>
                 <customObject id="9uD-mB-xHs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController representsSharedInstance="YES" id="Tuc-3F-p1Y"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="-0.5"/>
         </scene>

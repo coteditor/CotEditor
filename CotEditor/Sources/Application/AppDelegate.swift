@@ -119,7 +119,6 @@ extension Logger {
             .compactMapValues(\.self)
             .mapKeys(\.rawValue)
         UserDefaults.standard.register(defaults: defaults)
-        NSUserDefaultsController.shared.initialValues = defaults
     }
     
     
