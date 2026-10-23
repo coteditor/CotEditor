@@ -13,6 +13,7 @@
 ### Fixes
 
 - Fix an issue in the file browser where the matched part of filenames was not highlighted while filtering.
+- [trivial] Fix an issue where an extra space appeared before the script name in the console when using the `write to console` command without a timestamp.
 
 
 

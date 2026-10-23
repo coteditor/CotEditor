@@ -29,9 +29,7 @@ import StringUtils
 
 struct Console {
     
-    struct Log: Hashable, Identifiable {
-        
-        let id = UUID()
+    struct Log {
         
         var message: String
         var title: String?
@@ -153,11 +151,16 @@ private final class ConsoleViewController: NSViewController, TextSizeChanging {
     
     @ViewLoading private var textView: NSTextView
     
-    private var fontSize: Double = max(UserDefaults.standard[.consoleFontSize], NSFont.smallSystemFontSize) {
+    /// The font size of the console text.
+    private var fontSize: Double {
         
-        didSet {
-            UserDefaults.standard[.consoleFontSize] = fontSize
-            self.changeFontSize(fontSize)
+        get {
+            max(UserDefaults.standard[.consoleFontSize], NSFont.smallSystemFontSize)
+        }
+        
+        set {
+            UserDefaults.standard[.consoleFontSize] = newValue
+            self.applyFontSize()
         }
     }
     
@@ -186,11 +189,13 @@ private final class ConsoleViewController: NSViewController, TextSizeChanging {
     func append(log: Console.Log, options: Console.DisplayOptions) {
         
         let textView = self.textView
-        let lastLocation = textView.string.length
-        let attributedString = log.attributedString(fontSize: self.fontSize, options: options)
-        let range = NSRange(location: lastLocation, length: attributedString.length)
         
-        textView.textStorage?.append(attributedString)
+        guard let textStorage = textView.textStorage else { return }
+        
+        let attributedString = log.attributedString(fontSize: self.fontSize, options: options)
+        let range = NSRange(location: textStorage.length, length: attributedString.length)
+        
+        textStorage.append(attributedString)
         NSAccessibility.post(element: textView, notification: .valueChanged)
         
         // scroll to make the message visible
@@ -218,9 +223,9 @@ private final class ConsoleViewController: NSViewController, TextSizeChanging {
     /// Decreases content font size.
     @IBAction func smallerFont(_ sender: Any?) {
         
-        guard UserDefaults.standard[.consoleFontSize] > NSFont.smallSystemFontSize else { return }
+        guard self.fontSize > NSFont.smallSystemFontSize else { return }
         
-        self.fontSize -= 1
+        self.fontSize = max(self.fontSize - 1, NSFont.smallSystemFontSize)
     }
     
     
@@ -228,18 +233,18 @@ private final class ConsoleViewController: NSViewController, TextSizeChanging {
     @IBAction func resetFont(_ sender: Any?) {
         
         UserDefaults.standard.restore(key: .consoleFontSize)
-        self.fontSize = UserDefaults.standard[.consoleFontSize]
+        self.applyFontSize()
     }
     
     
     // MARK: Private Methods
     
-    /// Changes font size of the text view.
-    ///
-    /// - Parameter fontSize: The new font size.
-    private func changeFontSize(_ fontSize: Double) {
+    /// Apply font size of the text view.
+    private func applyFontSize() {
         
         guard let storage = self.textView.textStorage else { return }
+        
+        let fontSize = self.fontSize
         
         storage.beginEditing()
         storage.enumerateAttribute(.font, type: NSFont.self, in: storage.range) { font, range, _ in
@@ -251,12 +256,6 @@ private final class ConsoleViewController: NSViewController, TextSizeChanging {
 
 
 // MARK: -
-
-private extension NSAttributedString.Key {
-    
-    static let consoleLogID = NSAttributedString.Key(rawValue: "consoleLogID")
-}
-
 
 private extension Console.Log {
     
@@ -289,8 +288,9 @@ private extension Console.Log {
             string += NSAttributedString(string: "[\(self.date.formatted(dateFormat))]",
                                          attributes: [.font: Self.font(for: .timestamp, size: fontSize)])
         }
-        if options.contains(.title), let title = self.title {
-            string += NSAttributedString(string: " " + title,
+        if options.contains(.title), let title {
+            let separator = (string.length > 0) ? " " : ""
+            string += NSAttributedString(string: separator + title,
                                          attributes: [.font: Self.font(for: .title, size: fontSize)])
         }
         if string.length > 0 {
@@ -306,10 +306,7 @@ private extension Console.Log {
                                                   .paragraphStyle: paragraphStyle])
         
         // all
-        string.addAttributes([
-            .foregroundColor: NSColor.labelColor,
-            .consoleLogID: self.id,
-        ], range: string.range)
+        string.addAttribute(.foregroundColor, value: NSColor.labelColor, range: string.range)
         
         return string
     }
