@@ -24,9 +24,10 @@
 //
 
 import struct Foundation.Selector
+import Observation
 import Shortcut
 
-final class KeyBindingItem {
+@Observable final class KeyBindingItem {
     
     let action: Selector
     let tag: Int

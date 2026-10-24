@@ -87,9 +87,17 @@ struct ShortcutsSettingsView: View {
     /// Restores shortcut settings to default.
     func restore() {
         
-        try? self.manager.restoreDefaults()
+        do {
+            try self.manager.restoreDefaults()
+        } catch {
+            Logger.app.error("\(error.localizedDescription)")
+            return
+        }
         
-        self.tree = self.manager.menuTree
+        // reset the values in place to keep the expansion state of the table
+        for item in self.tree.flatMap(\.flatValues) {
+            item.shortcut = item.defaultShortcut
+        }
         self.isRestorable = false
         self.error = nil
     }
@@ -115,53 +123,32 @@ private struct ShortcutTreeView: View {
     
     @Bindable var model: KeyBindingModel
     
-    @State private var rootSelection: Item.ID?
     @State private var selection: Item.ID?
     
     
     var body: some View {
         
-        HStack(spacing: 0) {
-            Table(self.model.tree, selection: $rootSelection) {
-                TableColumn(.init("Menu", table: "ShortcutsSettings", comment: "table column header"), value: \.name)
-            }
-            .frame(width: 120)
-            .onChange(of: self.rootSelection) { oldValue, newValue in
-                // keep the menu selected
-                if newValue == nil, oldValue != nil {
-                    self.rootSelection = oldValue
+        Table(of: Item.self, selection: $selection) {
+            TableColumn(.init("Command", table: "ShortcutsSettings", comment: "table column header"), value: \.name)
+            
+            TableColumn(.init("Key", table: "ShortcutsSettings", comment: "table column header; keyboard shortcut")) { node in
+                if let item = node.value {
+                    ShortcutField(value: Binding { item.shortcut } set: { shortcut in
+                        item.shortcut = shortcut
+                        self.model.save()
+                    }, error: $model.error, placeholder: item.defaultShortcut?.symbol)
                 }
             }
+            .width(80)
             
-            Divider()
-            
-            Table(self.nodes, children: \.children, selection: $selection) {
-                TableColumn(.init("Command", table: "ShortcutsSettings", comment: "table column header"), value: \.name)
-                
-                TableColumn(.init("Key", table: "ShortcutsSettings", comment: "table column header; keyboard shortcut")) { node in
-                    if let item = node.value {
-                        ShortcutField(value: Binding { item.shortcut } set: { shortcut in
-                            item.shortcut = shortcut
-                            self.model.save()
-                        }, error: $model.error, placeholder: item.defaultShortcut?.symbol)
-                    }
+        } rows: {
+            ForEach(self.model.tree) { menu in
+                Section(menu.name) {
+                    OutlineGroup(menu.children ?? [], children: \.children)
                 }
-                .width(80)
             }
         }
         .alternatingRowBackgrounds(.disabled)
-        .onChange(of: self.model.tree.map(\.id), initial: true) { oldValue, newValue in
-            // select the menu at the same position in the reloaded tree
-            let index = oldValue.firstIndex { $0 == self.rootSelection } ?? 0
-            self.rootSelection = newValue.indices.contains(index) ? newValue[index] : nil
-        }
-    }
-    
-    
-    /// The child nodes of the selected menu.
-    private var nodes: [Item] {
-        
-        self.model.tree.first { $0.id == self.rootSelection }?.children ?? []
     }
 }
 

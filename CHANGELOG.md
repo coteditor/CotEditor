@@ -14,6 +14,7 @@
 - Move donations to the CotEditor project from a settings pane to a separate window, accessible from the CotEditor menu.
 - Add an Integration pane to the settings window for managing integration with external tools.
 - Move settings import and export from the File menu to General settings.
+- Update the Shortcuts settings layout.
 
 
 
