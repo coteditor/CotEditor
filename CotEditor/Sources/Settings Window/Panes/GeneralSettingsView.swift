@@ -185,7 +185,7 @@ struct GeneralSettingsView: View {
                     }
                     
                     HStack {
-                        Button(.init("Action.export.label", defaultValue: "Export…")) {
+                        Button(.init("Action.export.ellipsis.label", defaultValue: "Export…")) {
                             self.isSettingsExporterPresented.toggle()
                         }
                         SettingsImportMenu()
@@ -432,7 +432,7 @@ private struct WarningsSettingView: View {
         VStack {
             Form {
                 Text("Suppress the following warnings:", tableName: "GeneralSettings")
-                Toggle(.init("Inconsistent line endings", table: "GeneralSettings"), isOn: $suppressesInconsistentLineEndingAlert)
+                Toggle(.init("Inconsistent line endings", table: "GeneralSettings", comment: "checkbox"), isOn: $suppressesInconsistentLineEndingAlert)
             }
             
             HStack {

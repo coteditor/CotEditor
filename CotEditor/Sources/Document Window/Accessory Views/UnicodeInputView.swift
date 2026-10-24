@@ -44,7 +44,7 @@ struct UnicodeInputView: View {
                     .accessibilityHidden(self.character == nil)
                     .frame(minWidth: 30, minHeight: 30)
                 
-                Text(self.characterInformation ?? String(localized: "Invalid code", table: "UnicodeInput"))
+                Text(self.characterInformation ?? String(localized: "Invalid code", table: "UnicodeInput", comment: "noun; message"))
                     .help(self.characterInformation ?? "")
                     .controlSize(.small)
                     .textSelection(.enabled)

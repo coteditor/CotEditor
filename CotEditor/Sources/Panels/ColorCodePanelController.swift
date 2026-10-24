@@ -152,7 +152,7 @@ private struct ColorCodePanelAccessory: View {
                 .labelsVisibility(.hidden)
                 .buttonSizing(.flexible)
                 
-                Button(.init("Insert", table: "ColorCode", comment: "verb; button"), action: self.submit)
+                Button(.init("Action.insert.label", defaultValue: "Insert"), action: self.submit)
                     .keyboardShortcut(.defaultAction)
             }
             .controlSize(.small)

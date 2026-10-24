@@ -3156,7 +3156,7 @@
       }
     },
     "spaces" : {
-      "comment" : "unit for indentation (Refer to the same expression in Script Editor.app)",
+      "comment" : "unit for indentation; Refer to the same expression in Script Editor.app",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

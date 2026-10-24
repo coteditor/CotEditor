@@ -45,7 +45,7 @@ struct ExportSettingsView: View {
         
         VStack(alignment: .leading) {
             VStack(alignment: .leading, spacing: 6) {
-                Text("Export Settings", tableName: "SettingsPorting")
+                Text("Export Settings", tableName: "SettingsPorting", comment: "view title")
                     .font(.system(size: 14, weight: .semibold))
                 Text("Export selected settings as an archive to allow importing into other computers.", tableName: "SettingsPorting")
                     .controlSize(.small)
@@ -55,7 +55,7 @@ struct ExportSettingsView: View {
             
             PortableTypesView(types: $types, includedTypes: self.includedTypes)
             
-            SubmitButtonGroup(.init("Action.export.label", defaultValue: "Export…"), helpAnchor: "howto_port_settings", action: self.exportSettings)
+            SubmitButtonGroup(.init("Action.export.ellipsis.label", defaultValue: "Export…"), helpAnchor: "howto_port_settings", action: self.exportSettings)
                 .disabled(self.types.isEmpty)
                 .padding(.top)
         }
@@ -106,7 +106,7 @@ struct ImportSettingsView: View {
     var body: some View {
         
         VStack(alignment: .leading, spacing: 8) {
-            Text("Import Settings", tableName: "SettingsPorting")
+            Text("Import Settings", tableName: "SettingsPorting", comment: "view title")
                 .font(.system(size: 14, weight: .semibold))
             
             if let documentError {

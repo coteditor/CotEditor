@@ -188,7 +188,7 @@ struct WindowSettingsView: View {
                         StepperNumberField(value: $hangingIndentWidth, default: UserDefaults.standard[initial: .hangingIndentWidth], in: 0...99)
                             .disabled(!self.enablesHangingIndent)
                             .accessibilityLabel(.init("wrapped line indent spaces", table: "WindowSettings", comment: "accessibility label (Refer to the same expression in Script Editor.app)"))
-                        Text("spaces", tableName: "WindowSettings", comment: "unit for indentation (Refer to the same expression in Script Editor.app)")
+                        Text("spaces", tableName: "WindowSettings", comment: "unit for indentation; Refer to the same expression in Script Editor.app")
                     }
                 }
             }

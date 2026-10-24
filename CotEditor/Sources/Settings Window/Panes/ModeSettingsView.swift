@@ -234,17 +234,17 @@ private struct ModeOptionsView: View {
             
             LabeledContent(.init("Substitution:", table: "ModeSettings")) {
                 VStack(alignment: .leading) {
-                    Toggle(.init("Smart copy/paste", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Smart copy/paste", table: "ModeSettings", comment: "checkbox; refer to the same expression by Apple"),
                            isOn: $options.smartInsertDelete)
-                    Toggle(.init("Smart quotes", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Smart quotes", table: "ModeSettings", comment: "checkbox; refer to the same expression by Apple"),
                            isOn: $options.automaticQuoteSubstitution)
-                    Toggle(.init("Smart dashes", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Smart dashes", table: "ModeSettings", comment: "checkbox; refer to the same expression by Apple"),
                            isOn: $options.automaticDashSubstitution)
-                    Toggle(.init("Text replacement", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Text replacement", table: "ModeSettings", comment: "checkbox; refer to the same expression by Apple"),
                            isOn: $options.automaticTextReplacement)
-                    Toggle(.init("Add period with double-space", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Add period with double-space", table: "ModeSettings", comment: "checkbox; refer to the same expression by Apple"),
                            isOn: $options.automaticPeriodSubstitution)
-                    Toggle(.init("Automatically insert closing brackets and quotes", table: "ModeSettings"),
+                    Toggle(.init("Automatically insert closing brackets and quotes", table: "ModeSettings", comment: "checkbox"),
                            isOn: $options.automaticSymbolBalancing)
                 }
                 .fixedSize(horizontal: false, vertical: true)  // allow line break in Toggle
@@ -253,11 +253,11 @@ private struct ModeOptionsView: View {
             
             LabeledContent(.init("Spelling:", table: "ModeSettings")) {
                 VStack(alignment: .leading) {
-                    Toggle(.init("Check spelling while typing", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Check spelling while typing", table: "ModeSettings", comment: "checkbox; refer to the same expression by Apple"),
                            isOn: $options.continuousSpellChecking)
-                    Toggle(.init("Check grammar with spelling", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Check grammar with spelling", table: "ModeSettings", comment: "checkbox; refer to the same expression by Apple"),
                            isOn: $options.grammarChecking)
-                    Toggle(.init("Correct spelling automatically", table: "ModeSettings", comment: "use localization provided by Apple"),
+                    Toggle(.init("Correct spelling automatically", table: "ModeSettings", comment: "checkbox; refer to the same expression by Apple"),
                            isOn: $options.automaticSpellingCorrection)
                 }
                 .fixedSize(horizontal: false, vertical: true)  // allow line break in Toggle
@@ -269,14 +269,14 @@ private struct ModeOptionsView: View {
                     Text("Completion list includes:", tableName: "ModeSettings")
                         .foregroundStyle(self.isEnabled ? .primary : .tertiary)
                     Group {
-                        Toggle(.init("Standard words", table: "ModeSettings"),
+                        Toggle(.init("CompletionWordTypes.standard.label", defaultValue: "Standard words", table: "ModeSettings"),
                                isOn: $options.completionWordTypes.bind(.standard))
-                        Toggle(.init("Words in document", table: "ModeSettings"),
+                        Toggle(.init("CompletionWordTypes.document.label", defaultValue: "Words in document", table: "ModeSettings"),
                                isOn: $options.completionWordTypes.bind(.document))
-                        Toggle(.init("Words defined in syntax", table: "ModeSettings"),
+                        Toggle(.init("CompletionWordTypes.syntax.label", defaultValue: "Words defined in syntax", table: "ModeSettings"),
                                isOn: $options.completionWordTypes.bind(.syntax))
                     }.padding(.leading, 20)
-                    Toggle(.init("Suggest completions while typing", table: "ModeSettings"),
+                    Toggle(.init("Suggest completions while typing", table: "ModeSettings", comment: "checkbox; refer to the same expression in Script Editor.app"),
                            isOn: $options.automaticCompletion)
                     .disabled(self.options.completionWordTypes.isEmpty)
                 }

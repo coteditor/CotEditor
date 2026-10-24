@@ -115,6 +115,7 @@
       }
     },
     "Invalid code" : {
+      "comment" : "noun; message",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

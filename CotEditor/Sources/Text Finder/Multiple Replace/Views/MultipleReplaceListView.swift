@@ -224,8 +224,8 @@ struct MultipleReplaceListView: View {
             }
             
             Button(isContext
-                   ? .init("Action.export.label", defaultValue: "Export…")
-                   : .init("Action.export.named.label", defaultValue: "Export “\(selection)”…"),
+                   ? .init("Action.export.ellipsis.label", defaultValue: "Export…")
+                   : .init("Action.export.ellipsis.named.label", defaultValue: "Export “\(selection)”…"),
                    systemImage: "square.and.arrow.up")
             {
                 if let url = self.manager.urlForUserSetting(name: selection) {

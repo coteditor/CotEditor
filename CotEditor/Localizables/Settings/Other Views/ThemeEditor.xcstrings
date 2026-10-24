@@ -1012,6 +1012,7 @@
       }
     },
     "Reload All Themes" : {
+      "comment" : "verb; menu item",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -1583,12 +1584,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thema"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Theme"
           }
         },
         "en-GB" : {

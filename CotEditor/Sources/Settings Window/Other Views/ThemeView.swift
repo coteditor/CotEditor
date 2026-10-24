@@ -358,8 +358,8 @@ private struct ThemeListView: View {
             }
             
             Button(isContext
-                   ? .init("Action.export.label", defaultValue: "Export…")
-                   : .init("Action.export.named.label", defaultValue: "Export “\(selection.name)”…"),
+                   ? .init("Action.export.ellipsis.label", defaultValue: "Export…")
+                   : .init("Action.export.ellipsis.named.label", defaultValue: "Export “\(selection.name)”…"),
                    systemImage: "square.and.arrow.up")
             {
                 if let url = self.manager.urlForUserSetting(name: selection.name) {
@@ -393,7 +393,7 @@ private struct ThemeListView: View {
                 self.isImporterPresented = true
             }
             .modifierKeyAlternate(.option) {
-                Button(.init("Reload All Themes", table: "ThemeEditor"), systemImage: "arrow.clockwise") {
+                Button(.init("Reload All Themes", table: "ThemeEditor", comment: "verb; menu item"), systemImage: "arrow.clockwise") {
                     Task {
                         await self.manager.invalidateUserSettings()
                     }
