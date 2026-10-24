@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 1024jp
+//  © 2023-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +23,9 @@
 //  limitations under the License.
 //
 
-struct Node<Value> {
+import struct Foundation.UUID
+
+struct Node<Value>: Identifiable {
     
     enum Item {
         
@@ -31,6 +33,7 @@ struct Node<Value> {
         case children([Node])
     }
     
+    let id = UUID()
     var name: String
     var item: Item
 }
