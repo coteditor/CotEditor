@@ -139,6 +139,23 @@ final class ShortcutTextField: NSTextField, NSTextViewDelegate {
     
     // MARK: Text Field Methods
     
+    override init(frame frameRect: NSRect) {
+        
+        super.init(frame: frameRect)
+        
+        // type shortcuts with a Roman keyboard layout
+        (self.cell as? NSTextFieldCell)?.allowedInputSourceLocales = [NSAllRomanInputSourcesLocaleIdentifier]
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        super.init(coder: coder)
+        
+        (self.cell as? NSTextFieldCell)?.allowedInputSourceLocales = [NSAllRomanInputSourcesLocaleIdentifier]
+    }
+    
+    
     isolated deinit {
         
         if let monitor = self.keyDownMonitor {
