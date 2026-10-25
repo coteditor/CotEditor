@@ -29,6 +29,7 @@ import Combine
 import Defaults
 import Invisible
 import LineEnding
+import Shortcut
 import SyntaxFormat
 import StringUtils
 import TextEditing
@@ -455,6 +456,28 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         }
         
         self.isPerformingRectangularSelection = false
+    }
+    
+    
+    override func keyDown(with event: NSEvent) {
+        
+        let bindings = KeyBindingManager.shared.textKeyBindings
+        
+        guard
+            bindings.isCustomized,
+            !self.hasMarkedText(),
+            !self.isShowingCompletion,
+            let shortcut = Shortcut(keyDownEvent: event)
+        else { return super.keyDown(with: event) }
+        
+        switch bindings.action(for: shortcut) {
+            case .perform(let command):
+                self.doCommand(by: command.action)
+            case .suppress:
+                break
+            case nil:
+                super.keyDown(with: event)
+        }
     }
     
     

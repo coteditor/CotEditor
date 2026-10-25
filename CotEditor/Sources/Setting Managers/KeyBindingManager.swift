@@ -43,6 +43,7 @@ import URLUtils
     static let shared = KeyBindingManager()
     
     let defaultKeyBindings: [KeyBinding]
+    var textKeyBindings = TextKeyBindingMap()
     
     
     // MARK: Private Properties
