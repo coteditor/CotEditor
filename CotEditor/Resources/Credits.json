@@ -150,27 +150,27 @@
         {
             "name" : "Kaito Udagawa",
             "url" : "https://github.com/umireon",
-            "description": "scripting hook implementation"
+            "description": "implementation of scripting hooks"
         },
         {
             "name" : "Naotaka Morimoto",
             "url" : "http://naotaka.com",
-            "description": "automatic indent improvement"
+            "description": "improvement of automatic indentation"
         },
         {
             "name" : "Yusuke Terada",
             "url" : "https://doratex.hatenablog.jp",
-            "description": "improvement of the character inspector, and addition of normalizations in NFKC case-fold, modified NFC, and modified NFD"
+            "description": "improvement of the character inspector and addition of the NFKC Case-Fold, Modified NFC, and Modified NFD normalization forms"
         },
         {
             "name" : "Hetima",
             "url" : "http://hetima.com",
-            "description": "improvement of text coloring and completion"
+            "description": "improvement of syntax highlighting and word completion"
         },
         {
             "name" : "Haruka Kataoka",
             "url" : "https://drumsoft.com",
-            "description": "improvement of completion list"
+            "description": "improvement of the completion list"
         },
         {
             "name" : "Hiroto Sakai",
