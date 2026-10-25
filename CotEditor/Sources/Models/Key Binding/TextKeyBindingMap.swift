@@ -23,8 +23,15 @@
 //  limitations under the License.
 //
 
-import Foundation
+import AppKit
 import Shortcut
+
+struct TextKeyBinding: Codable {
+    
+    var action: Selector
+    var shortcuts: [Shortcut]
+}
+
 
 struct TextKeyBindingMap: Equatable {
     
@@ -124,5 +131,43 @@ struct TextKeyBindingMap: Equatable {
         }
         
         self.actions = actions
+    }
+}
+
+
+extension TextKeyBindingMap: Codable {
+    
+    init(from decoder: any Decoder) throws {
+        
+        let container = try decoder.singleValueContainer()
+        let entries = try container.decode([TextKeyBinding].self)
+        
+        var seenActions: Set<Selector> = []
+        for entry in entries {
+            guard seenActions.insert(entry.action).inserted else {
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Duplicate text key binding action: \(entry.action)")
+            }
+            guard let command = TextKeyBindingCommand.allCases.first(where: { $0.action == entry.action }) else { continue }
+            
+            try self.setShortcuts(entry.shortcuts, for: command)
+        }
+    }
+    
+    
+    func encode(to encoder: any Encoder) throws {
+        
+        var container = encoder.singleValueContainer()
+        let entries = self.customizations
+            .map { TextKeyBinding(action: $0.key.action, shortcuts: $0.value) }
+            .sorted(using: KeyPathComparator(\.action.description))
+        
+        for entry in entries {
+            for shortcut in entry.shortcuts where shortcut.modifiers.contains(.function) {
+                throw EncodingError.invalidValue(shortcut, .init(codingPath: encoder.codingPath,
+                                                                 debugDescription: "The Fn modifier cannot be stored in a text key binding."))
+            }
+        }
+        
+        try container.encode(entries)
     }
 }

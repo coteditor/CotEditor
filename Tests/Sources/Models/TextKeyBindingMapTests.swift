@@ -225,4 +225,86 @@ import Shortcut
         #expect(map == TextKeyBindingMap())
         #expect(map.customizations.isEmpty)
     }
+    
+    
+    /// Tests preserving multiple aliases, disabled commands, and system inheritance through storage.
+    ///
+    /// - Throws: If configuring, encoding, or decoding the bindings fails.
+    @Test func propertyListRoundTrip() throws {
+        
+        var map = TextKeyBindingMap()
+        let home = Shortcut(.home, modifiers: [])
+        try map.setShortcuts([home, Shortcut(.f6, modifiers: [])], for: .moveToLeftEndOfLine)
+        try map.setShortcuts([], for: .deleteWordBackward)
+        try map.setShortcuts([Shortcut(.deleteForward, modifiers: [])], for: .deleteForward)
+        
+        let data = try PropertyListEncoder().encode(map)
+        let decoded = try PropertyListDecoder().decode(TextKeyBindingMap.self, from: data)
+        let plist = try #require(PropertyListSerialization.propertyList(from: data, format: nil) as? [[String: Any]])
+        let actions = try plist.map { try #require($0["action"] as? String) }
+        let movement = try #require(plist.first { $0["action"] as? String == "moveToLeftEndOfLine:" })
+        let deletion = try #require(plist.first { $0["action"] as? String == "deleteWordBackward:" })
+        
+        #expect(actions == actions.sorted())
+        #expect(!actions.contains("moveUp:"))
+        for entry in plist {
+            #expect(Set(entry.keys) == ["action", "shortcuts"])
+        }
+        #expect(movement["shortcuts"] as? [String] == [home.keySpecChars, Shortcut(.f6, modifiers: []).keySpecChars])
+        #expect((deletion["shortcuts"] as? [String])?.isEmpty == true)
+        #expect(decoded == map)
+        #expect(decoded.action(for: home) == .perform(.moveToLeftEndOfLine))
+        #expect(decoded.action(for: Shortcut("d", modifiers: .control)) == .suppress)
+        #expect(decoded.action(for: Shortcut(.deleteForward, modifiers: [])) == .perform(.deleteForward))
+    }
+    
+    
+    /// Tests ignoring command names that this application version does not support.
+    ///
+    /// - Throws: If encoding or decoding the test data fails.
+    @Test func ignoresUnknownStoredCommands() throws {
+        
+        let entries = [
+            TextKeyBinding(action: NSSelectorFromString("unknownCommand:"), shortcuts: [Shortcut("q", modifiers: .control)]),
+            TextKeyBinding(action: TextKeyBindingCommand.deleteForward.action, shortcuts: []),
+        ]
+        let data = try PropertyListEncoder().encode(entries)
+        let map = try PropertyListDecoder().decode(TextKeyBindingMap.self, from: data)
+        
+        #expect(map.customizations == [.deleteForward: []])
+    }
+    
+    
+    /// Tests rejecting conflicting shortcuts, malformed shortcuts, and duplicate action records.
+    ///
+    /// - Parameter entries: The invalid action and shortcut records to decode.
+    /// - Throws: If encoding the test data fails.
+    @Test(arguments: [
+        [("moveToLeftEndOfLine:", ["^q"]), ("moveToRightEndOfLine:", ["^q"])],
+        [("moveToLeftEndOfLine:", [""])],
+        [("moveToLeftEndOfLine:", []), ("moveToLeftEndOfLine:", ["^q"])],
+    ] as [[(String, [String])]])
+    func rejectsInvalidStoredBindings(entries: [(action: String, shortcuts: [String])]) throws {
+        
+        let plist: [[String: Any]] = entries.map { ["action": $0.action, "shortcuts": $0.shortcuts] }
+        let data = try PropertyListSerialization.data(fromPropertyList: plist, format: .xml, options: 0)
+        
+        #expect(throws: (any Error).self) {
+            try PropertyListDecoder().decode(TextKeyBindingMap.self, from: data)
+        }
+    }
+    
+    
+    /// Tests rejecting an Fn customization instead of silently dropping its modifier during encoding.
+    ///
+    /// - Throws: If configuring the test binding fails.
+    @Test func rejectsUnstorableModifier() throws {
+        
+        var map = TextKeyBindingMap()
+        try map.setShortcuts([Shortcut("q", modifiers: .function)], for: .moveToLeftEndOfLine)
+        
+        #expect(throws: EncodingError.self) {
+            try PropertyListEncoder().encode(map)
+        }
+    }
 }
