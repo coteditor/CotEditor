@@ -226,6 +226,7 @@ struct GeneralSettingsView: View {
             }
         }
         .fixedSize(horizontal: false, vertical: true)
+        .frame(width: SettingsPane.width)
     }
     
     

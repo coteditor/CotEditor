@@ -61,6 +61,7 @@ struct ShortcutsSettingsView: View {
         .onAppear {
             self.model.load()
         }
+        .frame(width: SettingsPane.width)
     }
 }
 

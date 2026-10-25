@@ -99,7 +99,7 @@ struct WindowSettingsView: View {
                             TextField(value: $windowWidth, format: .number, prompt: Text("Auto", tableName: "WindowSettings", comment: "placeholder for window size field"), label: EmptyView.init)
                                 .monospacedDigit()
                                 .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
-                                .frame(width: 64)
+                                .frame(width: 72)
                                 .accessibilityLabeledPair(role: .content, id: "windowWidth", in: self.accessibility)
                             Text("Width", tableName: "WindowSettings")
                                 .controlSize(.small)
@@ -116,7 +116,7 @@ struct WindowSettingsView: View {
                             TextField(value: $windowHeight, format: .number, prompt: Text("Auto", tableName: "WindowSettings", comment: "placeholder for window size field"), label: EmptyView.init)
                                 .monospacedDigit()
                                 .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
-                                .frame(width: 64)
+                                .frame(width: 72)
                                 .accessibilityLabeledPair(role: .content, id: "windowHeight", in: self.accessibility)
                             Text("Height", tableName: "WindowSettings")
                                 .controlSize(.small)
@@ -142,7 +142,7 @@ struct WindowSettingsView: View {
                     Toggle(.init("Line numbers", table: "WindowSettings", comment: "noun; checkbox"), isOn: $showLineNumbers)
                     
                     Toggle(.init("Invisible characters", table: "WindowSettings", comment: "noun; checkbox"), isOn: $showInvisibles)
-                    Grid(alignment: .leading, horizontalSpacing: 20) {
+                    Grid(alignment: .leading, horizontalSpacing: 12) {
                         GridRow {
                             Toggle(.init("Line ending", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleNewLine)
                             Toggle(.init("Tab", table: "WindowSettings", comment: "invisible character type"), isOn: $showInvisibleTab)
@@ -160,6 +160,7 @@ struct WindowSettingsView: View {
                     Toggle(.init("Indent guides", table: "WindowSettings", comment: "noun; checkbox"), isOn: $showIndentGuides)
                     HStack(alignment: .firstTextBaseline) {
                         Toggle(.init("Page guide at column:", table: "WindowSettings"), isOn: $showPageGuide)
+                            .fixedSize()
                         StepperNumberField(value: $pageGuideColumn, default: UserDefaults.standard[initial: .pageGuideColumn], in: 1...999)
                             .accessibilityLabel(.init("Page guide at column:", table: "WindowSettings", comment: "followed by a number field for the column"))
                             .disabled(!self.showPageGuide)
@@ -230,7 +231,7 @@ struct WindowSettingsView: View {
                     .accessibilityLabeledPair(role: .label, id: "sideBarShows", in: self.accessibility)
                     .gridColumnAlignment(.trailing)
                 
-                HStack(alignment: .firstTextBaseline, spacing: 20) {
+                HStack(alignment: .firstTextBaseline, spacing: 12) {
                     VStack(alignment: .leading) {
                         Toggle(.init("Line count", table: "WindowSettings"), isOn: $showStatusBarLines)
                         Toggle(.init("Character count", table: "WindowSettings"), isOn: $showStatusBarChars)
@@ -251,6 +252,7 @@ struct WindowSettingsView: View {
                 HelpLink(anchor: "settings_window")
             }.padding(.top, -8)
         }
+        .frame(minWidth: SettingsPane.width)
     }
 }
 

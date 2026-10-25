@@ -67,6 +67,7 @@ struct ModeSettingsView: View {
         .onChange(of: self.selection, initial: true) { _, newValue in
             self.options = self.manager.setting(for: newValue)
         }
+        .frame(width: SettingsPane.width)
     }
 }
 
@@ -275,12 +276,14 @@ private struct ModeOptionsView: View {
                                isOn: $options.completionWordTypes.bind(.document))
                         Toggle(.init("CompletionWordTypes.syntax.label", defaultValue: "Words defined in syntax", table: "ModeSettings"),
                                isOn: $options.completionWordTypes.bind(.syntax))
-                    }.padding(.leading, 20)
+                    }
+                    .padding(.leading, 20)
                     Toggle(.init("Suggest completions while typing", table: "ModeSettings", comment: "checkbox; refer to the same expression in Script Editor.app"),
                            isOn: $options.automaticCompletion)
                     .disabled(self.options.completionWordTypes.isEmpty)
                 }
             }
+            .fixedSize(horizontal: false, vertical: true)  // allow line break in Toggle
             .padding(.bottom, 12)
             
             LabeledContent(.init("Indentation:", table: "ModeSettings")) {

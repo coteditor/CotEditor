@@ -51,117 +51,120 @@ struct AppearanceSettingsView: View {
     
     var body: some View {
         
-        Form {
-            LabeledContent(.init("Standard font:", table: "AppearanceSettings")) {
-                FontSettingView(data: $font, fallback: FontType.standard.systemFont(), antialias: $shouldAntialias, ligature: $ligature)
-            }
-            .padding(.bottom, Self.verticalSpace)
-            
-            LabeledContent(.init("Monospaced font:", table: "AppearanceSettings")) {
-                FontSettingView(data: $monospacedFont, fallback: FontType.monospaced.systemFont(), antialias: $monospacedShouldAntialias, ligature: $monospacedLigature)
-                    .onChange(of: self.monospacedFont) { oldValue, newValue in
-                        if self.isRestoringMonospacedFont {
-                            self.isRestoringMonospacedFont = false
-                            return
+        VStack {
+            Form {
+                LabeledContent(.init("Standard font:", table: "AppearanceSettings")) {
+                    FontSettingView(data: $font, fallback: FontType.standard.systemFont(), antialias: $shouldAntialias, ligature: $ligature)
+                }
+                .padding(.bottom, Self.verticalSpace)
+                
+                LabeledContent(.init("Monospaced font:", table: "AppearanceSettings")) {
+                    FontSettingView(data: $monospacedFont, fallback: FontType.monospaced.systemFont(), antialias: $monospacedShouldAntialias, ligature: $monospacedLigature)
+                        .onChange(of: self.monospacedFont) { oldValue, newValue in
+                            if self.isRestoringMonospacedFont {
+                                self.isRestoringMonospacedFont = false
+                                return
+                            }
+                            guard
+                                let newValue,
+                                let font = NSFont(archivedData: newValue),
+                                !font.isFixedPitch
+                            else { return }
+                            
+                            // ignore if only font size changed
+                            if let oldValue,
+                               let oldFont = NSFont(archivedData: oldValue),
+                               font.fontName == oldFont.fontName
+                            { return }
+                            
+                            self.monospacedAlertFont = oldValue
                         }
-                        guard
-                            let newValue,
-                            let font = NSFont(archivedData: newValue),
-                            !font.isFixedPitch
-                        else { return }
+                        .alert(.init("MonospacedFontAlert.title", defaultValue: "The selected font doesn’t seem to be monospaced.", table: "AppearanceSettings"), item: $monospacedAlertFont) { font in
+                            Button(.ok) { }
+                            Button(role: .cancel) {
+                                self.isRestoringMonospacedFont = true
+                                self.monospacedFont = font
+                            }
+                        } message: { _ in
+                            Text(.init("MonospacedFontAlert.message", defaultValue: "Do you want to use it for the monospaced font?", table: "AppearanceSettings", comment: "“it” is the selected font in the title."))
+                        }
+                }
+                .padding(.bottom, Self.verticalSpace)
+                
+                LabeledContent(.init("Line height:", table: "AppearanceSettings")) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Stepper(value: $lineHeight, in: 0.1...10, step: 0.1, format: .number.precision(.fractionLength(1...2)).numberLocale, label: EmptyView.init)
+                            .monospacedDigit()
+                            .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
+                            .accessibilityValue(.init("\(self.lineHeight, format: .number) times", table: "AppearanceSettings",
+                                                      comment: "accessibility label for line height"))
                         
-                        // ignore if only font size changed
-                        if let oldValue,
-                           let oldFont = NSFont(archivedData: oldValue),
-                           font.fontName == oldFont.fontName
-                        { return }
+                        Text("times", tableName: "AppearanceSettings", comment: "unit for line height")
+                            .accessibilityHidden(true)
+                    }
+                    .labelsHidden()
+                }
+                .padding(.bottom, Self.verticalSpace)
+                
+                Picker(.init("Appearance:", table: "AppearanceSettings"), selection: $documentAppearance) {
+                    ForEach(AppearanceMode.allCases, id: \.self) {
+                        Text($0.label)
+                    }
+                }
+                .pickerStyle(.radioGroup)
+                .horizontalRadioGroupLayout()
+                .padding(.bottom, Self.verticalSpace)
+                
+                Picker(.init("Status bar:", table: "AppearanceSettings"), selection: $prefersOpaqueBarBackground) {
+                    Text("Tinted", tableName: "AppearanceSettings", comment: "adjective; radio button; status bar appearance")
+                        .tag(false)
+                    Text("Opaque", tableName: "AppearanceSettings", comment: "adjective; radio button; status bar appearance")
+                        .tag(true)
+                }
+                .pickerStyle(.radioGroup)
+                .horizontalRadioGroupLayout()
+                .padding(.bottom, Self.verticalSpace)
+                
+                LabeledContent(.init("Editor opacity:", table: "AppearanceSettings")) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Slider(value: self.windowAlphaBinding, enabledBounds: Self.windowAlphaRange) {
+                            EmptyView()
+                        } currentValueLabel: {
+                            Text(self.windowAlphaBinding.wrappedValue, format: .percent)
+                        } minimumValueLabel: {
+                            OpacitySample(opacity: Self.windowAlphaRange.lowerBound)
+                                .frame(height: 20)
+                                .help(.init("OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
+                        } maximumValueLabel: {
+                            OpacitySample(opacity: Self.windowAlphaRange.upperBound)
+                                .frame(height: 20)
+                                .help(.init("OpacitySlider.maximumValue.label", defaultValue: "Opaque", table: "AppearanceSettings"))
+                        } ticks: {
+                            SliderTickContentForEach(Array(stride(from: ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 27 ? 0.2 : 0, through: 1, by: 0.1)), id: \.self) { value in
+                                SliderTick(value)
+                            }
+                        }
+                        .frame(maxWidth: 260)
                         
-                        self.monospacedAlertFont = oldValue
+                        TextField(value: self.windowAlphaBinding, format: .percent.precision(.fractionLength(0)), prompt: Text(1, format: .percent), label: EmptyView.init)
+                            .monospacedDigit()
+                            .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
+                            .frame(width: 64)
                     }
-                    .alert(.init("MonospacedFontAlert.title", defaultValue: "The selected font doesn’t seem to be monospaced.", table: "AppearanceSettings"), item: $monospacedAlertFont) { font in
-                        Button(.ok) { }
-                        Button(role: .cancel) {
-                            self.isRestoringMonospacedFont = true
-                            self.monospacedFont = font
-                        }
-                    } message: { _ in
-                        Text(.init("MonospacedFontAlert.message", defaultValue: "Do you want to use it for the monospaced font?", table: "AppearanceSettings", comment: "“it” is the selected font in the title."))
-                    }
-            }
-            .padding(.bottom, Self.verticalSpace)
-            
-            LabeledContent(.init("Line height:", table: "AppearanceSettings")) {
-                HStack(alignment: .firstTextBaseline) {
-                    Stepper(value: $lineHeight, in: 0.1...10, step: 0.1, format: .number.precision(.fractionLength(1...2)).numberLocale, label: EmptyView.init)
-                        .monospacedDigit()
-                        .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
-                        .accessibilityValue(.init("\(self.lineHeight, format: .number) times", table: "AppearanceSettings",
-                                                  comment: "accessibility label for line height"))
-                    
-                    Text("times", tableName: "AppearanceSettings", comment: "unit for line height")
-                        .accessibilityHidden(true)
+                    .labelsHidden()
                 }
-                .labelsHidden()
+                .accessibilityElement(children: .contain)
             }
-            .padding(.bottom, Self.verticalSpace)
+            .padding(.bottom)
             
-            Picker(.init("Appearance:", table: "AppearanceSettings"), selection: $documentAppearance) {
-                ForEach(AppearanceMode.allCases, id: \.self) {
-                    Text($0.label)
-                }
-            }
-            .pickerStyle(.radioGroup)
-            .horizontalRadioGroupLayout()
-            .padding(.bottom, Self.verticalSpace)
+            ThemeView()
             
-            Picker(.init("Status bar:", table: "AppearanceSettings"), selection: $prefersOpaqueBarBackground) {
-                Text("Tinted", tableName: "AppearanceSettings", comment: "adjective; radio button; status bar appearance")
-                    .tag(false)
-                Text("Opaque", tableName: "AppearanceSettings", comment: "adjective; radio button; status bar appearance")
-                    .tag(true)
+            HStack {
+                Spacer()
+                HelpLink(anchor: "settings_appearance")
             }
-            .pickerStyle(.radioGroup)
-            .horizontalRadioGroupLayout()
-            .padding(.bottom, Self.verticalSpace)
-            
-            LabeledContent(.init("Editor opacity:", table: "AppearanceSettings")) {
-                HStack(alignment: .firstTextBaseline) {
-                    Slider(value: self.windowAlphaBinding, enabledBounds: Self.windowAlphaRange) {
-                        EmptyView()
-                    } currentValueLabel: {
-                        Text(self.windowAlphaBinding.wrappedValue, format: .percent)
-                    } minimumValueLabel: {
-                        OpacitySample(opacity: Self.windowAlphaRange.lowerBound)
-                            .frame(height: 20)
-                            .help(.init("OpacitySlider.minimumValue.label", defaultValue: "Transparent", table: "AppearanceSettings"))
-                    } maximumValueLabel: {
-                        OpacitySample(opacity: Self.windowAlphaRange.upperBound)
-                            .frame(height: 20)
-                            .help(.init("OpacitySlider.maximumValue.label", defaultValue: "Opaque", table: "AppearanceSettings"))
-                    } ticks: {
-                        SliderTickContentForEach(Array(stride(from: ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 27 ? 0.2 : 0, through: 1, by: 0.1)), id: \.self) { value in
-                            SliderTick(value)
-                        }
-                    }
-                    .frame(maxWidth: 260)
-                    
-                    TextField(value: self.windowAlphaBinding, format: .percent.precision(.fractionLength(0)), prompt: Text(1, format: .percent), label: EmptyView.init)
-                        .monospacedDigit()
-                        .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
-                        .frame(width: 64)
-                }
-                .labelsHidden()
-            }
-            .accessibilityElement(children: .contain)
         }
-        .padding(.bottom)
-        
-        ThemeView()
-        
-        HStack {
-            Spacer()
-            HelpLink(anchor: "settings_appearance")
-        }
+        .frame(width: SettingsPane.width)
     }
     
     
