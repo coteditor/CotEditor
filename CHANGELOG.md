@@ -14,6 +14,7 @@
 
 - Fix an issue in the file browser where the matched part of filenames was not highlighted while filtering.
 - Fix an issue in Snippets settings where shortcuts were recorded with non-Latin characters when a non-Latin keyboard layout was active.
+- Fix the Settings window layout in Russian localization.
 - [trivial] Fix an issue where an extra space appeared before the script name in the console when using the `write to console` command without a timestamp.
 
 

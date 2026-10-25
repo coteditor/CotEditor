@@ -69,6 +69,7 @@ struct DonationSettingsView: View {
                 HelpLink(anchor: "settings_donation")
             }
         }
+        .frame(width: SettingsPane.width)
     }
 }
 

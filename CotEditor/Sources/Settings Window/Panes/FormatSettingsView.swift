@@ -202,6 +202,7 @@ struct FormatSettingsView: View {
             self.handledEncodingListRequestID = requestID
             self.isEncodingListPresented = true
         }
+        .frame(width: SettingsPane.width)
     }
 }
 

@@ -58,6 +58,7 @@ struct SnippetsSettingsView: View {
                 HelpLink(anchor: "settings_snippets")
             }
         }
+        .frame(width: SettingsPane.width)
     }
 }
 

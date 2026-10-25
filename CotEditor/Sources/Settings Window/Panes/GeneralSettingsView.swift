@@ -222,6 +222,7 @@ struct GeneralSettingsView: View {
             self.commandLineToolURL = manager.linkURL
         }
         .fixedSize(horizontal: false, vertical: true)
+        .frame(width: SettingsPane.width)
     }
 }
 
