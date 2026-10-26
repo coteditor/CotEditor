@@ -18,7 +18,7 @@
 
 
 
-7.1.3 (unreleased)
+7.1.3 (2026-10-28)
 --------------------------
 
 ### Improvements
@@ -26,14 +26,16 @@
 - Update tree-sitter-php to 0.25.1.
 - Update tree-sitter-scala to 0.26.3.
 - [dev] Update the build environment to Xcode 27.2.
+- [non-AppStore ver.] Update Sparkle from 2.10.0 to 2.10.1.
 
 
 ### Fixes
 
 - Fix an issue in the file browser where the matched part of filenames was not highlighted while filtering.
 - Fix an issue in Snippets settings where shortcuts were recorded with non-Latin characters when a non-Latin keyboard layout was active.
+- Fix an issue where VoiceOver read internal descriptions instead of localized labels for document statistics in the editor help.
 - Fix the Settings window layout in Russian localization.
-- [trivial] Fix an issue where an extra space appeared before the script name in the console when using the `write to console` command without a timestamp.
+- [trivial] Fix an issue where an extra space appeared before the script name in the console when using the AppleScript `write to console` command without a timestamp.
 
 
 
