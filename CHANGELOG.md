@@ -8,6 +8,7 @@
 - Update tree-sitter-php to 0.25.1.
 - Update tree-sitter-scala to 0.26.3.
 - [dev] Update the build environment to Xcode 27.2.
+- [non-AppStore ver.] Update Sparkle from 2.10.0 to 2.10.1.
 
 
 ### Fixes
