@@ -143,9 +143,6 @@ struct EncodingListView: View {
                 .labelStyle(.iconOnly)
                 
                 Spacer()
-                
-                Button(.init("Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.model.restore)
-                    .disabled(!self.model.canRestore)
             }
             
             Text("This order is used for the Encoding menu and for encoding detection. Only the encodings listed here are considered during detection, with higher items taking priority.", tableName: "EncodingList")
@@ -155,6 +152,9 @@ struct EncodingListView: View {
             SubmitButtonGroup(helpAnchor: "howto_customize_encoding_order") {
                 self.model.save()
                 self.dismiss()
+            } supplementalButton: {
+                Button(.init("Action.restoreDefaults.label", defaultValue: "Restore Defaults"), action: self.model.restore)
+                    .disabled(!self.model.canRestore)
             }
             .padding(.top)
         }
