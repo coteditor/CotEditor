@@ -31,12 +31,12 @@ struct WindowDraggableTextField: NSViewRepresentable {
     typealias NSViewType = NSTextField
     
     @Binding private var text: String
-    private var prompt: String
+    private var prompt: LocalizedStringResource
     
     private var onSubmit: () -> Void = {}
     
     
-    init(_ prompt: String, text: Binding<String>) {
+    init(_ prompt: LocalizedStringResource, text: Binding<String>) {
         
         self._text = text
         self.prompt = prompt
@@ -47,7 +47,7 @@ struct WindowDraggableTextField: NSViewRepresentable {
         
         let textField = DraggableTextField(string: self.text)
         textField.usesSingleLineMode = true
-        textField.placeholderString = self.prompt
+        textField.placeholderString = String(localized: self.prompt)
         textField.delegate = context.coordinator
         textField.isBordered = false
         textField.drawsBackground = false

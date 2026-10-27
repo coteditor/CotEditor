@@ -64,7 +64,7 @@ struct CommandBarView: View {
             HStack(alignment: .firstTextBaseline) {
                 Image(systemName: "magnifyingglass")
                     .foregroundStyle(.secondary)
-                WindowDraggableTextField(String(localized: "Quick Actions", table: "CommandBar"), text: $model.input)
+                WindowDraggableTextField(.init("Quick Actions", table: "CommandBar"), text: $model.input)
                     .onSubmit(self.perform)
                     .fontWeight(.light)
                     .textFieldStyle(.plain)

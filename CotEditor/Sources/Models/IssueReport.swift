@@ -125,17 +125,17 @@ private extension IssueReport {
             
             switch self {
                 case .environment:
-                    LocalizedStringResource("IssueReport.Heading.environment",
-                                            defaultValue: "Environment")
+                        .init("IssueReport.Heading.environment",
+                              defaultValue: "Environment")
                 case .shortDescription:
-                    LocalizedStringResource("IssueReport.Heading.shortDescription",
-                                            defaultValue: "Short Description")
+                        .init("IssueReport.Heading.shortDescription",
+                              defaultValue: "Short Description")
                 case .stepsToReproduce:
-                    LocalizedStringResource("IssueReport.Heading.stepsToReproduce",
-                                            defaultValue: "Steps to Reproduce the Issue")
+                        .init("IssueReport.Heading.stepsToReproduce",
+                              defaultValue: "Steps to Reproduce the Issue")
                 case .expectedResult:
-                    LocalizedStringResource("IssueReport.Heading.expectedResult",
-                                            defaultValue: "Expected Result")
+                        .init("IssueReport.Heading.expectedResult",
+                              defaultValue: "Expected Result")
             }
         }
     }

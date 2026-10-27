@@ -55,7 +55,7 @@ struct FindPanelFieldView: View {
     var body: some View {
         
         VStack {
-            FindTextField(String(localized: "Find", table: "TextFind", comment: "placeholder"),
+            FindTextField(.init("Find", table: "TextFind", comment: "placeholder"),
                           text: $settings.findString,
                           mode: .search,
                           isRegularExpression: self.usesRegularExpression,
@@ -90,7 +90,7 @@ struct FindPanelFieldView: View {
             .help(.init("Type the text to search for.", table: "TextFind", comment: "tooltip"))
             .frame(minHeight: 44)
             
-            FindTextField(String(localized: "Replace with", table: "TextFind", comment: "placeholder"),
+            FindTextField(.init("Replace with", table: "TextFind", comment: "placeholder"),
                           text: $settings.replacementString,
                           mode: .replacement(unescapes: self.unescapesReplacementString),
                           isRegularExpression: self.usesRegularExpression,
@@ -314,7 +314,7 @@ private struct FindTextField: NSViewRepresentable {
     typealias TextView = RegexTextView
     
     
-    var prompt: String
+    var prompt: LocalizedStringResource
     @Binding var text: String
     @MainActor var action: (() -> Void)?
     @MainActor var onTextChange: ((String) -> Void)?
@@ -326,7 +326,7 @@ private struct FindTextField: NSViewRepresentable {
     @Environment(\.layoutDirection) private var layoutDirection
     
     
-    init(_ prompt: String, text: Binding<String>, mode: RegexParseMode, isRegularExpression: Bool, trailingInset: Double, action: (@MainActor () -> Void)? = nil) {
+    init(_ prompt: LocalizedStringResource, text: Binding<String>, mode: RegexParseMode, isRegularExpression: Bool, trailingInset: Double, action: (@MainActor () -> Void)? = nil) {
         
         self.prompt = prompt
         self._text = text
@@ -342,7 +342,7 @@ private struct FindTextField: NSViewRepresentable {
         let textView = FindPanelTextView()
         textView.allowsUndo = true
         textView.delegate = context.coordinator
-        textView.setValue(self.prompt, forKey: "placeholderString")  // private property in NSTextView
+        textView.setValue(String(localized: self.prompt), forKey: "placeholderString")  // private property in NSTextView
         textView.action = self.action
         
         let scrollView = SynchronizedScrollView()

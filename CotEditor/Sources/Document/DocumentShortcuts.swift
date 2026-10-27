@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2024-2025 1024jp
+//  © 2024-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,8 +34,8 @@ struct DocumentShortcuts: AppShortcutsProvider {
                     phrases: [
                         "Create a document in \(.applicationName)",
                     ],
-                    shortTitle: LocalizedStringResource("CreateDocumentIntent.shortTitle",
-                                                        defaultValue: "Create Document", table: "Intents"),
+                    shortTitle: .init("CreateDocumentIntent.shortTitle",
+                                      defaultValue: "Create Document", table: "Intents"),
                     systemImageName: "text.document")
     }
     
@@ -49,15 +49,15 @@ struct CreateDocumentIntent: AppIntent {
                                                defaultValue: "Create Document", table: "Intents")
     
     static let description = IntentDescription(
-        LocalizedStringResource("CreateDocumentIntent.description",
-                                defaultValue: "Create a new document with the specified text in CotEditor.",
-                                table: "Intents")
+        .init("CreateDocumentIntent.description",
+              defaultValue: "Create a new document with the specified text in CotEditor.",
+              table: "Intents")
     )
     
     static let openAppWhenRun: Bool = true
     
-    @Parameter(title: LocalizedStringResource("CreateDocumentIntent.Parameter.content",
-                                              defaultValue: "Content", table: "Intents"),
+    @Parameter(title: .init("CreateDocumentIntent.Parameter.content",
+                            defaultValue: "Content", table: "Intents"),
                inputOptions: .init(multiline: true))
     var content: String?
     
