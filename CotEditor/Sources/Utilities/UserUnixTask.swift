@@ -24,7 +24,6 @@
 //
 
 import Foundation
-import Synchronization
 
 actor UserUnixTask {
     
@@ -38,139 +37,84 @@ actor UserUnixTask {
     }
     
     
-    private struct InputState: Sendable {
-        
-        var offset: Data.Index = 0
-        var isFinished = false
-    }
-    
-    
     // MARK: Private Properties
     
-    /// Chunk size for piping input; matches a typical macOS pipe buffer.
-    private static let inputChunkSize = 64 * 1024
-    
     private let task: NSUserUnixTask
-    private let inputPipe = Pipe()
-    private let outputPipe = Pipe()
-    private let errorPipe = Pipe()
-    private var outputBuffer: AsyncStream<Data>?
-    private var errorBuffer: AsyncStream<Data>?
+    private var outputBuffer: AsyncThrowingStream<Data, any Error>?
+    private var errorBuffer: AsyncThrowingStream<Data, any Error>?
     private var state: State = .ready
-    private var hasInput = false
     
     
     // MARK: Public Methods
     
-    /// Creates an Unix script task with a script file in the user domain.
+    /// Creates a Unix script task with a script file in the user domain.
     ///
     /// - Parameter url: The script file URL.
+    /// - Throws: An error if the script task cannot be created.
     init(url: URL) throws {
         
         self.task = try NSUserUnixTask(url: url)
-        self.task.standardInput = self.inputPipe.fileHandleForReading
-        self.task.standardOutput = self.outputPipe.fileHandleForWriting
-        self.task.standardError = self.errorPipe.fileHandleForWriting
     }
     
     
     /// Executes the user script.
     ///
     /// - Parameters:
-    ///   - arguments: An array of Strings containing the script arguments.
+    ///   - arguments: An array of strings containing the script arguments.
+    ///   - input: The string to send to the standard input, or `nil` for no input.
     ///   - capturesOutput: Whether to capture the standard output.
-    func execute(arguments: [String] = [], capturesOutput: Bool = true) async throws {
+    /// - Throws: An error if executing the script or writing its input fails.
+    func execute(arguments: [String] = [], input: String? = nil, capturesOutput: Bool = true) async throws {
         
         guard self.state == .ready else { return assertionFailure("The task can be executed only once.") }
         
         self.state = .executing
-        defer { self.state = .finished }
+        
+        // use /dev/null for streams that do not need a pipe
+        let inputData = input.map { Data($0.utf8) } ?? Data()
+        let inputPipe = inputData.isEmpty ? nil : Pipe()
+        let outputPipe = capturesOutput ? Pipe() : nil
+        let errorPipe = Pipe()
+        self.task.standardInput = inputPipe?.fileHandleForReading
+        self.task.standardOutput = outputPipe?.fileHandleForWriting
+        self.task.standardError = errorPipe.fileHandleForWriting
         
         // read output and error asynchronously to safely handle huge output
-        if capturesOutput {
-            self.outputBuffer = self.outputPipe.readingStream
-        } else {
-            self.outputBuffer = nil
-            self.outputPipe.drain()
-        }
-        self.errorBuffer = self.errorPipe.readingStream
+        self.outputBuffer = outputPipe?.readingStream
+        self.errorBuffer = errorPipe.readingStream
         
-        // close the writing end so that scripts reading stdin receive EOF
-        if !self.hasInput {
-            try self.inputPipe.fileHandleForWriting.close()
+        let inputWriter = inputPipe.map { $0.write(inputData) }
+        defer {
+            // stop pending writes on failure or cancellation
+            inputWriter?.channel.close(flags: .stop)
+            try? inputPipe?.fileHandleForReading.close()
+            try? outputPipe?.fileHandleForWriting.close()
+            try? errorPipe.fileHandleForWriting.close()
+            self.state = .finished
         }
         
         do {
             try await self.task.execute(withArguments: arguments)
         } catch let error as POSIXError where error.code == .ENOTBLK {  // on user cancellation
             return
-        } catch {
-            throw error
-        }
-    }
-    
-    
-    /// Sends the input as the standard input to the script.
-    ///
-    /// - Parameter input: The string to input.
-    func pipe(input: String) {
-        
-        guard
-            self.state == .ready,
-            !self.hasInput
-        else { return assertionFailure("Input must be piped only once before executing the task.") }
-        
-        self.hasInput = true
-        let data = Data(input.utf8)
-        
-        guard !data.isEmpty else {
-            do {
-                try self.inputPipe.fileHandleForWriting.close()
-            } catch {
-                assertionFailure(error.localizedDescription)
-            }
-            return
         }
         
-        // write input in chunks so the pipe buffer doesn’t block on large input
-        let chunkSize = Self.inputChunkSize
-        let inputState = Mutex(InputState())
-        self.inputPipe.fileHandleForWriting.writeabilityHandler = { handle in
-            let shouldClose = inputState.withLock { state in
-                guard !state.isFinished else { return false }
-                
-                let endIndex = min(state.offset + chunkSize, data.endIndex)
-                
-                do {
-                    try handle.write(contentsOf: data[state.offset..<endIndex])
-                    state.offset = endIndex
-                } catch {
-                    assertionFailure(error.localizedDescription)
-                    state.offset = data.endIndex
-                }
-                
-                if state.offset == data.endIndex {
-                    state.isFinished = true
-                    return true
-                }
-                
-                return false
-            }
-            
-            if shouldClose {
-                handle.writeabilityHandler = nil
-                try? handle.close()
-            }
+        if let inputWriter {
+            // allow child processes to finish reading; EPIPE ends the write once all readers close
+            try? inputPipe?.fileHandleForReading.close()
+            for try await _ in inputWriter.completion { }
+            try Task.checkCancellation()
         }
     }
     
     
     /// The standard output.
     ///
+    /// - Throws: An error if reading the output fails or is canceled.
     /// - Note: Available only after `execute()` finishes; consumed on first read.
     var output: String? {
         
-        get async {
+        get async throws {
             guard self.state == .finished else {
                 assertionFailure("Output must be read after executing the task.")
                 return nil
@@ -181,7 +125,8 @@ actor UserUnixTask {
             // clear output buffer so it is consumed only once
             self.outputBuffer = nil
             
-            let data = await outputBuffer.reduce(into: Data()) { $0 += $1 }
+            let data = try await outputBuffer.reduce(into: Data()) { $0 += $1 }
+            try Task.checkCancellation()
             
             return String(data: data, encoding: .utf8)
         }
@@ -191,9 +136,10 @@ actor UserUnixTask {
     /// The standard error.
     ///
     /// - Note: Available only after `execute()` finishes; consumed on first read.
+    /// - Throws: An error if reading the error output fails or is canceled.
     var error: String? {
         
-        get async {
+        get async throws {
             guard self.state == .finished else {
                 assertionFailure("Error output must be read after executing the task.")
                 return nil
@@ -204,7 +150,8 @@ actor UserUnixTask {
             // clear error buffer so it is consumed only once
             self.errorBuffer = nil
             
-            let data = await errorBuffer.reduce(into: Data()) { $0 += $1 }
+            let data = try await errorBuffer.reduce(into: Data()) { $0 += $1 }
+            try Task.checkCancellation()
             
             guard !data.isEmpty else { return nil }
             
@@ -217,30 +164,68 @@ actor UserUnixTask {
 private extension Pipe {
     
     /// An asynchronous stream of data read from the pipe.
-    var readingStream: AsyncStream<Data> {
+    var readingStream: AsyncThrowingStream<Data, any Error> {
         
-        AsyncStream { continuation in
-            self.fileHandleForReading.readabilityHandler = { handle in
-                let data = handle.availableData
-                if data.isEmpty {
-                    handle.readabilityHandler = nil
+        AsyncThrowingStream { [handle = self.fileHandleForReading] continuation in
+            let queue = DispatchQueue.global(qos: .utility)
+            let channel = DispatchIO(type: .stream, fileDescriptor: handle.fileDescriptor, queue: queue) { error in
+                if error != 0 {
+                    continuation.finish(throwing: POSIXError(.init(rawValue: error)!))
+                }
+                try? handle.close()
+            }
+            channel.setLimit(lowWater: 1)
+            
+            continuation.onTermination = { _ in
+                channel.close(flags: .stop)
+            }
+            channel.read(offset: 0, length: Int.max, queue: queue) { done, data, error in
+                guard error == 0 else {
+                    continuation.finish(throwing: POSIXError(.init(rawValue: error)!))
+                    return
+                }
+                if let data, !data.isEmpty {
+                    continuation.yield(Data(data))
+                }
+                if done {
                     continuation.finish()
-                } else {
-                    continuation.yield(data)
                 }
             }
         }
     }
     
     
-    /// Reads and discards the pipe output.
-    func drain() {
+    /// Writes data asynchronously and closes the writing end when finished.
+    ///
+    /// - Parameter data: The data to write.
+    /// - Returns: The channel to stop if the reader finishes early and a stream reporting completion or an unexpected write error.
+    func write(_ data: Data) -> (channel: DispatchIO, completion: AsyncThrowingStream<Void, any Error>) {
         
-        self.fileHandleForReading.readabilityHandler = { handle in
-            // read and discard available data; finish on EOF
-            if handle.availableData.isEmpty {
-                handle.readabilityHandler = nil
+        let handle = self.fileHandleForWriting
+        let queue = DispatchQueue.global(qos: .utility)
+        let (completion, continuation) = AsyncThrowingStream<Void, any Error>.makeStream()
+        let channel = DispatchIO(type: .stream, fileDescriptor: handle.fileDescriptor, queue: queue) { error in
+            if error != 0 {
+                continuation.finish(throwing: POSIXError(.init(rawValue: error)!))
+            }
+            try? handle.close()
+        }
+        let data = data.withUnsafeBytes { DispatchData(bytes: $0) }
+        
+        channel.write(offset: 0, data: data, queue: queue) { done, _, error in
+            guard done else { return }
+            
+            channel.close()
+            
+            switch error {
+                case 0, POSIXErrorCode.EPIPE.rawValue, POSIXErrorCode.ECANCELED.rawValue:
+                    // the script may close stdin early, or execution may stop pending writes
+                    continuation.finish()
+                default:
+                    continuation.finish(throwing: POSIXError(.init(rawValue: error)!))
             }
         }
+        
+        return (channel, completion)
     }
 }

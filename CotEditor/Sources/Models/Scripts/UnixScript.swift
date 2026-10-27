@@ -68,17 +68,17 @@ struct UnixScript: Script {
         let arguments: [String] = [document?.fileURL?.path(percentEncoded: false)].compactMap(\.self)
         let task = try UserUnixTask(url: self.url)
         
-        if let input {
-            await task.pipe(input: input)
-        }
+        try await task.execute(arguments: arguments, input: input, capturesOutput: outputType != nil)
         
-        try await task.execute(arguments: arguments, capturesOutput: outputType != nil)
+        // read both streams successfully before applying the output to the document
+        let output = try await task.output
+        let error = try await task.error
         
-        if let outputType, let output = await task.output {
+        if let outputType, let output {
             try await Self.applyOutput(output, type: outputType, editor: document?.textView)
         }
         
-        if let error = await task.error {
+        if let error {
             throw ScriptError.standardError(error)
         }
     }
