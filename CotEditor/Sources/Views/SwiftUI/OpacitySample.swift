@@ -29,27 +29,22 @@ struct OpacitySample: View {
     
     var opacity: Double
     
-    private let inset: Double = 3
     
-    
+    /// The opacity indicator with a shaded triangle inside a rounded square.
     var body: some View {
         
         GeometryReader { geometry in
-            let radius = geometry.size.height / 3
+            let shape = RoundedRectangle(cornerRadius: geometry.size.height / 3, style: .continuous)
             
-            ZStack {
-                RoundedRectangle(cornerRadius: radius, style: .continuous)
-                    .fill(.background)
-                    .strokeBorder(.tertiary)
-                
-                if self.opacity < 1 {
+            shape
+                .fill(.background)
+                .strokeBorder(.tertiary)
+                .overlay {
                     Triangle()
                         .fill(.primary)
                         .opacity(1 - self.opacity)
-                        .clipShape(.rect(cornerRadius: radius, style: .continuous)
-                            .inset(by: self.inset))
+                        .clipShape(shape.inset(by: 3))
                 }
-            }
         }
         .aspectRatio(1, contentMode: .fit)
     }
