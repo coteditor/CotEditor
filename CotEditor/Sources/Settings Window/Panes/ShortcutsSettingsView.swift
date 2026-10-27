@@ -134,13 +134,12 @@ private struct ShortcutTreeView: View {
             
             TableColumn(.init("Key", table: "ShortcutsSettings", comment: "table column header; keyboard shortcut")) { node in
                 if let item = node.value {
-                    ShortcutField(value: Binding { item.shortcut } set: { shortcut in
-                        item.shortcut = shortcut
-                        self.model.save()
-                    }, error: $model.error, placeholder: item.defaultShortcut?.symbol)
+                    ShortcutField(value: Binding(get: { item.shortcut },
+                                                 set: { item.shortcut = $0; self.model.save() }),
+                                  error: $model.error, placeholder: item.defaultShortcut?.symbol)
                 }
             }
-            .width(80)
+            .width(100)
             
         } rows: {
             ForEach(self.model.tree) { menu in
@@ -149,7 +148,6 @@ private struct ShortcutTreeView: View {
                 }
             }
         }
-        .alternatingRowBackgrounds(.disabled)
     }
 }
 
