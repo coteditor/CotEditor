@@ -42,7 +42,7 @@ struct StepperNumberField: View {
     ///
     /// - Parameters:
     ///   - value: The underlying value to edit.
-    ///   - defaultValue: The default value when the field is empty.
+    ///   - defaultValue: The default value when the field is empty or its input is invalid.
     ///   - bounds: A closed range that describes the upper and lower bounds permitted by the stepper.
     ///   - step: The amount to increment or decrement value each time the user clicks or taps the stepper.
     ///   - prompt: A Text which provides users with guidance on what to type into the text field.
@@ -59,7 +59,7 @@ struct StepperNumberField: View {
     var body: some View {
         
         HStack(spacing: 4) {
-            TextField(value: $value, format: .ranged(self.bounds), prompt: self.prompt, label: EmptyView.init)
+            TextField(value: self.clampedValue, format: .number, prompt: self.prompt, label: EmptyView.init)
                 .monospacedDigit()
                 .multilineTextAlignment(self.layoutDirection == .rightToLeft ? .leading : .trailing)
                 .frame(width: self.fieldWidth)
@@ -72,6 +72,15 @@ struct StepperNumberField: View {
     }
     
     
+    /// The numeric field's value constrained to the permitted range, falling back to the default value for invalid input.
+    private var clampedValue: Binding<Int?> {
+        
+        Binding(get: { self.value.clamped(to: self.bounds) },
+                set: { self.value = ($0 ?? self.defaultValue ?? self.value).clamped(to: self.bounds) })
+    }
+    
+    
+    /// The placeholder shown when the numeric field is empty.
     private var prompt: Text? {
         
         if let defaultValue {

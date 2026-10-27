@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2025 1024jp
+//  © 2022-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,30 +41,5 @@ struct FormatStylesTests {
         #expect(try strategy.parse(" a,b,c") == ["a", "b", "c"])
         #expect(try strategy.parse(" a, ,c") == ["a", "", "c"])
         #expect(try CSVFormatStyle(omittingEmptyItems: true).parseStrategy.parse(" a,,c") == ["a", "c"])
-    }
-    
-    
-    @Test func rangedInteger() throws {
-        
-        let formatter = RangedIntegerFormatStyle(range: 1...(.max))
-        
-        #expect(formatter.format(-3) == "1")
-        #expect(try formatter.parseStrategy.parse("0") == 1)
-        #expect(try formatter.parseStrategy.parse("1") == 1)
-        #expect(try formatter.parseStrategy.parse("2") == 2)
-        #expect(try formatter.parseStrategy.parse("a") == 1)
-    }
-    
-    
-    @Test func rangedIntegerWithDefault() throws {
-        
-        let formatter = RangedIntegerFormatStyle(range: -1...(.max), defaultValue: 4)
-        
-        #expect(formatter.format(-3) == "-1")
-        #expect(try formatter.parseStrategy.parse("-2") == -1)
-        #expect(try formatter.parseStrategy.parse("-1") == -1)
-        #expect(try formatter.parseStrategy.parse("0") == 0)
-        #expect(try formatter.parseStrategy.parse("2") == 2)
-        #expect(try formatter.parseStrategy.parse("a") == 4)
     }
 }
