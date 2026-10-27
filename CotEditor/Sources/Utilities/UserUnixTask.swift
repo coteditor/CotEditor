@@ -110,8 +110,8 @@ actor UserUnixTask {
     
     /// The standard output.
     ///
-    /// - Throws: An error if reading the output fails or is canceled.
     /// - Note: Available only after `execute()` finishes; consumed on first read.
+    /// - Throws: An error if reading the output fails or is canceled.
     var output: String? {
         
         get async throws {
@@ -170,7 +170,7 @@ private extension Pipe {
             let queue = DispatchQueue.global(qos: .utility)
             let channel = DispatchIO(type: .stream, fileDescriptor: handle.fileDescriptor, queue: queue) { error in
                 if error != 0 {
-                    continuation.finish(throwing: POSIXError(.init(rawValue: error)!))
+                    continuation.finish(throwing: POSIXError(POSIXErrorCode(rawValue: error) ?? .EIO))
                 }
                 try? handle.close()
             }
@@ -181,7 +181,7 @@ private extension Pipe {
             }
             channel.read(offset: 0, length: Int.max, queue: queue) { done, data, error in
                 guard error == 0 else {
-                    continuation.finish(throwing: POSIXError(.init(rawValue: error)!))
+                    continuation.finish(throwing: POSIXError(POSIXErrorCode(rawValue: error) ?? .EIO))
                     return
                 }
                 if let data, !data.isEmpty {
@@ -206,7 +206,7 @@ private extension Pipe {
         let (completion, continuation) = AsyncThrowingStream<Void, any Error>.makeStream()
         let channel = DispatchIO(type: .stream, fileDescriptor: handle.fileDescriptor, queue: queue) { error in
             if error != 0 {
-                continuation.finish(throwing: POSIXError(.init(rawValue: error)!))
+                continuation.finish(throwing: POSIXError(POSIXErrorCode(rawValue: error) ?? .EIO))
             }
             try? handle.close()
         }
@@ -222,7 +222,7 @@ private extension Pipe {
                     // the script may close stdin early, or execution may stop pending writes
                     continuation.finish()
                 default:
-                    continuation.finish(throwing: POSIXError(.init(rawValue: error)!))
+                    continuation.finish(throwing: POSIXError(POSIXErrorCode(rawValue: error) ?? .EIO))
             }
         }
         
