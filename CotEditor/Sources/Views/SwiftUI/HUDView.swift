@@ -28,14 +28,16 @@ import SwiftUI
 
 extension NSView {
     
-    /// Shows a HUD view as a chid view.
+    /// Shows a HUD view as a child view.
     ///
     /// - Parameters:
     ///   - symbol: The symbol to display in the HUD.
     final func showHUD(symbol: HUDView.Symbol) {
         
         let hudView = NSHostingView(rootView: HUDView(symbol: symbol))
-        hudView.rootView.parent = hudView
+        hudView.rootView.onDismiss = { [weak hudView] in
+            hudView?.removeFromSuperview()
+        }
         hudView.sizingOptions = .preferredContentSize
         
         // remove previous HUD if any
@@ -65,37 +67,37 @@ struct HUDView: View {
     
     
     var symbol: Symbol
-    fileprivate weak var parent: NSHostingView<Self>?
+    var onDismiss: () -> Void = { }
     
     @State private var isPresented = true
     
     
+    /// The HUD symbol and background that fade out after a short delay.
     var body: some View {
         
-        if self.isPresented {
-            Image(systemName: self.symbol.systemName)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 72, height: 72)
-                .scaleEffect(y: self.symbol.isFlipped ? -1 : 1)
-                .padding(28)
-                .foregroundStyle(.secondary)
-                .background(.ultraThinMaterial)
-                .clipShape(.rect(cornerRadius: 14, style: .continuous))
-                .onAppear {
-                    withAnimation(.default.delay(0.5)) {
-                        self.isPresented = false
-                    } completion: {
-                        self.parent?.removeFromSuperview()
-                    }
+        Image(systemName: self.symbol.systemName)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 72, height: 72)
+            .scaleEffect(y: self.symbol.isFlipped ? -1 : 1)
+            .padding(28)
+            .foregroundStyle(.secondary)
+            .background(.ultraThinMaterial, in: .rect(cornerRadius: 14, style: .continuous))
+            .opacity(self.isPresented ? 1 : 0)
+            .onAppear {
+                withAnimation(.default.delay(0.5)) {
+                    self.isPresented = false
+                } completion: {
+                    self.onDismiss()
                 }
-        }
+            }
     }
 }
 
 
 private extension HUDView.Symbol {
     
+    /// The SF Symbol name for the HUD.
     var systemName: String {
         
         switch self {
@@ -106,6 +108,7 @@ private extension HUDView.Symbol {
     }
     
     
+    /// Whether the symbol is flipped vertically.
     var isFlipped: Bool {
         
         switch self {
