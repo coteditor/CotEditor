@@ -64,6 +64,9 @@ struct VersionTests {
         #expect(Version(5, 0, 1, prereleaseIdentifier: "beta.2") < Version(5, 0, 1, prereleaseIdentifier: "beta.10"))
         #expect(Version(5, 0, 1, prereleaseIdentifier: "alpha.1") < Version(5, 0, 1, prereleaseIdentifier: "alpha.beta"))
         #expect(Version(5, 0, 1, prereleaseIdentifier: "0") < Version(5, 0, 1, prereleaseIdentifier: "-0"))
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "9223372036854775808") < Version(5, 0, 1, prereleaseIdentifier: "-"))
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "9223372036854775807") < Version(5, 0, 1, prereleaseIdentifier: "9223372036854775808"))
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "10000000000000000000") < Version(5, 0, 1, prereleaseIdentifier: "20000000000000000000"))
         
         #expect(Version(5, 0, 1, prerelease: .beta) < Version(5, 0, 1))
         #expect(Version(5, 0, 1, prerelease: .alpha) < Version(5, 0, 1, prerelease: .beta))

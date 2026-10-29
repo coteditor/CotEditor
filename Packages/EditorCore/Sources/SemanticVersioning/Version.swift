@@ -229,12 +229,10 @@ private extension Substring {
     }
     
     
-    /// The numeric value of the SemVer prerelease identifier.
-    var numericPrereleaseIdentifier: Int? {
+    /// Whether the SemVer prerelease identifier consists of only digits.
+    var isNumericPrereleaseIdentifier: Bool {
         
-        guard self.unicodeScalars.allSatisfy({ "0"..."9" ~= $0 }) else { return nil }
-        
-        return Int(self)
+        self.unicodeScalars.allSatisfy { "0"..."9" ~= $0 }
     }
     
     
@@ -244,14 +242,20 @@ private extension Substring {
     /// - Returns: Whether the receiver has lower precedence than `other`.
     func precedesPrereleaseIdentifier(_ other: Self) -> Bool {
         
-        switch (self.numericPrereleaseIdentifier, other.numericPrereleaseIdentifier) {
-            case (.some(let lhs), .some(let rhs)):
-                lhs < rhs
-            case (.some, .none):
+        switch (self.isNumericPrereleaseIdentifier, other.isNumericPrereleaseIdentifier) {
+            case (true, true):
+                // compare by digits to support numbers exceeding the range of Int
+                // -> Numeric identifiers have no leading zeros.
+                if self.count != other.count {
+                    self.count < other.count
+                } else {
+                    self.unicodeScalars.lexicographicallyPrecedes(other.unicodeScalars)
+                }
+            case (true, false):
                 true
-            case (.none, .some):
+            case (false, true):
                 false
-            case (.none, .none):
+            case (false, false):
                 self.unicodeScalars.lexicographicallyPrecedes(other.unicodeScalars)
         }
     }
