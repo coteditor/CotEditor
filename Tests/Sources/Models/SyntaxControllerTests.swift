@@ -55,6 +55,24 @@ import ValueRange
     }
     
     
+    @Test func cancelAfterSetup() async {
+        
+        let (controller, layoutManager, _) = self.makeController(
+            text: "foo bar",
+            syntax: Syntax(highlights: [.keywords: [Syntax.Highlight(begin: "foo")]])
+        )
+        
+        controller.setupParser()
+        controller.cancel()
+        
+        let didHighlight = await Task.waitFor(timeout: .seconds(1)) {
+            !layoutManager.syntaxHighlights().isEmpty
+        }
+        
+        #expect(!didHighlight)
+    }
+    
+    
     @Test func updateClearsHighlights() async {
         
         let (controller, layoutManager, _) = self.makeController(

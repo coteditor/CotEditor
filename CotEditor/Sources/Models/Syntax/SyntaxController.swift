@@ -55,6 +55,7 @@ extension NSAttributedString.Key {
     private var highlightParser: any HighlightParsing?
     private var outlineParser: any OutlineParsing?
     
+    private var setupTask: Task<Void, Never>?
     private var highlightParseTask: Task<Void, any Error>?
     private var outlineParseTask: Task<Void, any Error>?
     private var invalidRanges: EditedRangeSet = .init()
@@ -102,11 +103,12 @@ extension NSAttributedString.Key {
         self.isReady = true
         self.invalidRanges.clear()
         
-        Task { [weak self] in
+        self.setupTask = Task { [weak self] in
             if let self, let parser = self.incrementalParser {
                 let content = self.textStorage.string.immutable
                 await parser.update(content: content)
             }
+            guard !Task.isCancelled else { return }
             self?.performInitialHighlight()
             self?.updateOutline(withDelay: false)
         }
@@ -116,6 +118,8 @@ extension NSAttributedString.Key {
     /// Cancels all remaining parsing tasks.
     func cancel() {
         
+        self.setupTask?.cancel()
+        self.setupTask = nil
         self.highlightParseTask?.cancel()
         self.highlightParseTask = nil
         self.outlineParseTask?.cancel()
