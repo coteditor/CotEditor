@@ -292,6 +292,8 @@ public struct TextFind: Equatable, Sendable {
     public func findAll(using block: (_ matches: [NSRange], _ stop: inout Bool) -> Void) throws(CancellationError) {
         
         for range in self.scopeRanges {
+            var ioStop = false
+            
             self.enumerateMatches(in: range) { matchedRange, match, stop in
                 let matches: [NSRange] = if let match {
                     (0..<match.numberOfRanges).map(match.range(at:))
@@ -299,10 +301,12 @@ public struct TextFind: Equatable, Sendable {
                     [matchedRange]
                 }
                 
-                block(matches, &stop)
+                block(matches, &ioStop)
+                stop = ioStop
             }
             
             guard !Task.isCancelled else { throw CancellationError() }
+            guard !ioStop else { break }
         }
     }
     

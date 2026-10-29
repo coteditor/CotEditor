@@ -453,6 +453,23 @@ struct TextFindTests {
     }
     
     
+    @Test func findAllStopsAcrossSelections() throws {
+        
+        let pattern = try TextFind.Pattern(findString: "a", mode: .textual(options: [], fullWord: false))
+        let textFind = try TextFind(for: "a a", pattern: pattern,
+                                    inSelection: true,
+                                    selectedRanges: [NSRange(location: 0, length: 1),
+                                                     NSRange(location: 2, length: 1)])
+        
+        var count = 0
+        try textFind.findAll { _, stop in
+            count += 1
+            stop = true
+        }
+        #expect(count == 1)
+    }
+    
+    
     @Test func replaceAll() throws {
         
         var pattern: TextFind.Pattern
