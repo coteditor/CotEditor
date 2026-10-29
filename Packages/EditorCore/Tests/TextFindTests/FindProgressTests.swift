@@ -48,6 +48,18 @@ struct FindProgressTests {
     }
     
     
+    @Test func fractionCompletedWithOffsetScope() {
+        
+        let progress = FindProgress(scope: 2..<4)
+        
+        progress.updateCompletedUnit(to: 3)
+        #expect(progress.fractionCompleted == 0.5)
+        
+        progress.updateCompletedUnit(to: 4)
+        #expect(progress.fractionCompleted == 1)
+    }
+    
+    
     @Test func fractionCompletedWithEmptyScope() {
         
         let progress = FindProgress(scope: 0..<0)

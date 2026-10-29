@@ -131,10 +131,10 @@ import Synchronization
     
     /// Updates the `completedUnit` to a new value.
     ///
-    /// - Parameter unit: The new completed unit.
+    /// - Parameter unit: The new completed unit in the scope.
     public func updateCompletedUnit(to unit: Int) {
         
-        self.storage.withLock { $0.completedUnit = unit }
+        self.storage.withLock { $0.completedUnit = unit - self.scope.lowerBound }
     }
     
     
