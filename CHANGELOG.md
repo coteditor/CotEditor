@@ -17,6 +17,11 @@
 - Update the Shortcuts settings layout.
 
 
+### Fixes
+
+- Fix an issue where pinch zooming did not synchronize the text size between the find and replace fields in the Find window.
+
+
 
 7.1.3 (2026-10-28)
 --------------------------

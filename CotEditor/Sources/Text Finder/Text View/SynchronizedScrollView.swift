@@ -32,7 +32,23 @@ final class SynchronizedScrollView: NSScrollView {
     var focusRingRadius: CGFloat = 0
     
     
+    // MARK: Private Properties
+    
+    private weak var sibling: SynchronizedScrollView?
+    
+    
     // MARK: Scroll View Methods
+    
+    override func viewWillDraw() {
+        
+        super.viewWillDraw()
+        
+        if self.sibling == nil, let sibling = self.findSibling() {
+            self.sibling = sibling
+            sibling.sibling = self
+        }
+    }
+    
     
     override func drawFocusRingMask() {
         
@@ -70,10 +86,40 @@ final class SynchronizedScrollView: NSScrollView {
     
     // MARK: Private Methods
     
-    /// Auto-founded scroll views to sync (including the receiver itself).
+    /// The receiver and its cached synchronization partner.
     private var siblings: [SynchronizedScrollView] {
         
-        self.superview?.superview?.subviews.flatMap(\.subviews).compactMap { $0 as? SynchronizedScrollView } ?? [self]
+        [self, self.sibling].compactMap(\.self)
+    }
+    
+    
+    /// Finds the other synchronized scroll view in the nearest view controller's view hierarchy.
+    ///
+    /// - Returns: The synchronization partner, or `nil` if it has not been added yet.
+    private func findSibling() -> SynchronizedScrollView? {
+        
+        guard
+            let viewController = sequence(first: self as NSResponder, next: \.nextResponder)
+                .first(where: { $0 is NSViewController }) as? NSViewController
+        else { return nil }
+        
+        return self.descendants(in: viewController.view).first { $0 !== self }
+    }
+    
+    
+    /// Collects synchronized scroll views without entering child view controllers.
+    ///
+    /// - Parameter view: The view whose subview hierarchy will be searched.
+    /// - Returns: The synchronized scroll views in the given hierarchy.
+    private func descendants(in view: NSView) -> [SynchronizedScrollView] {
+        
+        if let scrollView = view as? SynchronizedScrollView {
+            return [scrollView]
+        }
+        
+        return view.subviews
+            .filter { !($0.nextResponder is NSViewController) }
+            .flatMap(self.descendants(in:))
     }
     
     
