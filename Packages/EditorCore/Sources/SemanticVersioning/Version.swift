@@ -95,13 +95,12 @@ extension Version.Prerelease {
         
         if let match = rawValue.wholeMatch(of: /(?<token>[a-z]+)(\.(?<number>[0-9]+))?/) {
             let rawNumber = match.number.map(String.init)
+            let number = rawNumber.flatMap(Int.init)
             
-            if let rawNumber, rawNumber.count > 1, rawNumber.first == "0" {
+            if let rawNumber, (rawNumber.count > 1 && rawNumber.first == "0") || number == nil {
                 self = .other(rawValue)
                 return
             }
-            
-            let number = rawNumber.flatMap(Int.init)
             
             self = switch match.token {
                 case "alpha": .alpha(number)

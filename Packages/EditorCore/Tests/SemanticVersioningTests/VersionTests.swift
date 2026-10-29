@@ -172,6 +172,7 @@ struct VersionTests {
         #expect(Version(5, 0, 1, prereleaseIdentifier: "beta.2").prerelease == .beta(2))
         #expect(Version(5, 0, 1, prereleaseIdentifier: "rc.1").prerelease == .rc(1))
         #expect(Version(5, 0, 1, prereleaseIdentifier: "dogcow").prerelease == .other("dogcow"))
+        #expect(Version(5, 0, 1, prereleaseIdentifier: "alpha.9223372036854775808").prerelease == .other("alpha.9223372036854775808"))
     }
     
     
