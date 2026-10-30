@@ -221,6 +221,145 @@ import Testing
     }
     
     
+    /// Closing Find All results removes their highlights while preserving subsequent explicit highlights.
+    ///
+    /// - Parameters:
+    ///   - closesPanel: Whether to close the panel instead of only the result view.
+    ///   - highlightsAgain: Whether to perform Highlight All after Find All.
+    @Test(arguments: [false, true], [false, true])
+    func closingFindAllResults(closesPanel: Bool, highlightsAgain: Bool) async throws {
+        
+        let controller = FindPanelContentViewController()
+        controller.loadViewIfNeeded()
+        
+        let textView = TestTextView(string: "foo bar foo")
+        textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
+        
+        let finder = TextFinder()
+        finder.client = textView
+        let settings = finder.settings
+        let originalFindString = settings.findString
+        let originalUsesRegularExpression = settings.usesRegularExpression
+        defer {
+            settings.findString = originalFindString
+            settings.usesRegularExpression = originalUsesRegularExpression
+        }
+        settings.findString = "foo"
+        settings.usesRegularExpression = false
+        
+        _ = try await self.performFindAction(.findAll, with: finder)
+        try #require(await Task.waitFor { !controller.splitViewItems[1].isCollapsed })
+        #expect(textView.hasTemporaryBackgroundColor)
+        
+        if highlightsAgain {
+            settings.findString = "bar"
+            _ = try await self.performFindAction(.highlight, with: finder)
+            #expect(textView.hasTemporaryBackgroundColor)
+        }
+        settings.findString = ""
+        
+        await self.closeFindAllResults(controller, closesPanel: closesPanel)
+        try #require(await Task.waitFor { controller.splitViewItems[1].isCollapsed })
+        
+        #expect(textView.hasTemporaryBackgroundColor == highlightsAgain)
+    }
+    
+    
+    /// Closing Find All results preserves explicit highlights in another editor.
+    ///
+    /// - Parameters:
+    ///   - closesPanel: Whether to close the panel instead of only the result view.
+    ///   - sharesTextStorage: Whether the editors share a document as split editors do.
+    @Test(arguments: [false, true], [false, true])
+    func closingFindAllResultsPreservesHighlightsInAnotherEditor(closesPanel: Bool, sharesTextStorage: Bool) async throws {
+        
+        let controller = FindPanelContentViewController()
+        controller.loadViewIfNeeded()
+        
+        let textView = TestTextView(string: "foo bar foo")
+        let otherTextView = sharesTextStorage
+            ? TestTextView(textStorage: try #require(textView.textStorage))
+            : TestTextView(string: "foo bar foo")
+        for view in [textView, otherTextView] {
+            view.setSelectedRange(NSRange(0..<(view.string as NSString).length))
+        }
+        
+        let finder = TextFinder()
+        finder.client = textView
+        let otherFinder = TextFinder()
+        otherFinder.client = otherTextView
+        let settings = finder.settings
+        let originalFindString = settings.findString
+        let originalUsesRegularExpression = settings.usesRegularExpression
+        defer {
+            settings.findString = originalFindString
+            settings.usesRegularExpression = originalUsesRegularExpression
+        }
+        settings.findString = "foo"
+        settings.usesRegularExpression = false
+        
+        _ = try await self.performFindAction(.findAll, with: finder)
+        try #require(await Task.waitFor { !controller.splitViewItems[1].isCollapsed })
+        #expect(textView.hasTemporaryBackgroundColor)
+        
+        settings.findString = "bar"
+        _ = try await self.performFindAction(.highlight, with: otherFinder)
+        #expect(otherTextView.hasTemporaryBackgroundColor)
+        
+        await self.closeFindAllResults(controller, closesPanel: closesPanel)
+        try #require(await Task.waitFor { controller.splitViewItems[1].isCollapsed })
+        
+        #expect(otherTextView.hasTemporaryBackgroundColor)
+        #expect(textView.hasTemporaryBackgroundColor == sharesTextStorage)
+    }
+    
+    
+    /// Closing Find All results preserves subsequent multiple replace highlights in the same document.
+    ///
+    /// - Parameters:
+    ///   - closesPanel: Whether to close the panel instead of only the result view.
+    ///   - usesSplitEditor: Whether to highlight in another editor sharing the same text storage.
+    @Test(arguments: [false, true], [false, true])
+    func closingFindAllResultsPreservesMultipleReplaceHighlights(closesPanel: Bool, usesSplitEditor: Bool) async throws {
+        
+        let controller = FindPanelContentViewController()
+        controller.loadViewIfNeeded()
+        
+        let textView = TestTextView(string: "foo bar foo")
+        textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
+        let highlightTarget = usesSplitEditor
+            ? TestTextView(textStorage: try #require(textView.textStorage))
+            : textView
+        let layoutManager = try #require(highlightTarget.layoutManager)
+        
+        let finder = TextFinder()
+        finder.client = textView
+        let settings = finder.settings
+        let originalFindString = settings.findString
+        let originalUsesRegularExpression = settings.usesRegularExpression
+        defer {
+            settings.findString = originalFindString
+            settings.usesRegularExpression = originalUsesRegularExpression
+        }
+        settings.findString = "foo"
+        settings.usesRegularExpression = false
+        
+        _ = try await self.performFindAction(.findAll, with: finder)
+        try #require(await Task.waitFor { !controller.splitViewItems[1].isCollapsed })
+        #expect(textView.hasTemporaryBackgroundColor)
+        
+        let definition = MultipleReplace(replacements: [.init(findString: "bar")])
+        _ = try await highlightTarget.highlight(definition, inSelection: false)
+        #expect(layoutManager.temporaryAttribute(.backgroundColor, atCharacterIndex: 4, effectiveRange: nil) != nil)
+        #expect(layoutManager.temporaryAttribute(.backgroundColor, atCharacterIndex: 0, effectiveRange: nil) == nil)
+        
+        await self.closeFindAllResults(controller, closesPanel: closesPanel)
+        try #require(await Task.waitFor { controller.splitViewItems[1].isCollapsed })
+        
+        #expect(layoutManager.temporaryAttribute(.backgroundColor, atCharacterIndex: 4, effectiveRange: nil) != nil)
+    }
+    
+    
     @Test func selectAllUsesFindMatchesCache() async throws {
         
         do {
@@ -409,6 +548,28 @@ import Testing
     
     // MARK: Private Methods
     
+    /// Closes Find All results and waits for the collapse animation to finish.
+    ///
+    /// - Parameters:
+    ///   - controller: The controller displaying the results.
+    ///   - closesPanel: Whether to close the panel instead of only the result view.
+    private func closeFindAllResults(_ controller: FindPanelContentViewController, closesPanel: Bool) async {
+        
+        await withCheckedContinuation { continuation in
+            NSAnimationContext.runAnimationGroup { context in
+                context.duration = 0
+                if closesPanel {
+                    controller.viewDidDisappear()
+                } else {
+                    controller.closeResultView(nil)
+                }
+            } completionHandler: {
+                continuation.resume()
+            }
+        }
+    }
+    
+    
     /// Performs a find action and waits for its typed find-result message.
     ///
     /// - Parameters:
@@ -434,9 +595,21 @@ import Testing
 
 @MainActor private final class TestTextView: NSTextView {
     
-    init(string: String) {
+    /// Initializes a text view with its own storage.
+    ///
+    /// - Parameter string: The initial text.
+    convenience init(string: String) {
         
-        let textStorage = NSTextStorage(string: string)
+        self.init(textStorage: NSTextStorage(string: string))
+        self.string = string
+    }
+    
+    
+    /// Initializes a text view using the given storage.
+    ///
+    /// - Parameter textStorage: The text storage, which may be shared with another text view.
+    init(textStorage: NSTextStorage) {
+        
         let layoutManager = TestLayoutManager()
         let textContainer = NSTextContainer()
         
@@ -447,7 +620,6 @@ import Testing
         
         self.isEditable = true
         self.isSelectable = true
-        self.string = string
     }
     
     

@@ -101,6 +101,12 @@ struct FindMatchesCache {
     }
     
     
+    struct ClearFindAllHighlightsMessage: NotificationCenter.MainActorMessage {
+        
+        typealias Subject = NSTextStorage
+    }
+    
+    
     // MARK: Enums
     
     enum Action: Int {
@@ -145,6 +151,7 @@ struct FindMatchesCache {
     
     private var findTask: Task<Void, any Error>?
     private var highlightObservationTask: Task<Void, Never>?
+    private var findAllHighlightObserver: NotificationCenter.ObservationToken?
     private var textChangeObserver: any NSObjectProtocol?
     
     
@@ -153,6 +160,7 @@ struct FindMatchesCache {
     isolated deinit {
         self.findTask?.cancel()
         self.highlightObservationTask?.cancel()
+        self.findAllHighlightObserver.map(NotificationCenter.default.removeObserver)
         self.removeTextChangeObserver()
     }
     
@@ -327,6 +335,7 @@ struct FindMatchesCache {
         
         self.highlightObservationTask?.cancel()
         self.highlightObservationTask = nil
+        self.clearFindAllHighlights(in: self.client)
         
         self.client.unhighlight(nil)
     }
@@ -402,6 +411,19 @@ struct FindMatchesCache {
     
     
     // MARK: Private Methods
+    
+    /// Clears Find All highlights and their observers in editors sharing the client's text storage.
+    ///
+    /// - Parameter client: The text view whose highlights are about to change.
+    private func clearFindAllHighlights(in client: NSTextView) {
+        
+        if let textStorage = client.textStorage {
+            NotificationCenter.default.post(ClearFindAllHighlightsMessage(), subject: textStorage)
+        }
+        self.findAllHighlightObserver.map(NotificationCenter.default.removeObserver)
+        self.findAllHighlightObserver = nil
+    }
+    
     
     /// Observes text changes in the current client and invalidates cache.
     private func observeClientTextChanges() {
@@ -606,6 +628,7 @@ struct FindMatchesCache {
         
         // mark all matches
         if isIncremental {
+            self.clearFindAllHighlights(in: client)
             client.updateBackgroundColor(.unemphasizedSelectedTextBackgroundColor, ranges: matches)
             
             // unmark either when the client view resigned the key window or when the Find panel closed
@@ -715,6 +738,7 @@ struct FindMatchesCache {
         
         self.highlightObservationTask?.cancel()
         self.highlightObservationTask = nil
+        self.clearFindAllHighlights(in: client)
         
         client.updateBackgroundColors(highlights)
         
@@ -727,6 +751,15 @@ struct FindMatchesCache {
         self.notify(FindResult(action: .find, count: matches.count), for: client)
         
         if showsList {
+            if let textStorage = client.textStorage {
+                self.findAllHighlightObserver.map(NotificationCenter.default.removeObserver)
+                self.findAllHighlightObserver = NotificationCenter.default.addObserver(of: textStorage, for: ClearFindAllHighlightsMessage.self) { [weak self, weak client] _ in
+                    client?.unhighlight(nil)
+                    self?.findAllHighlightObserver.map(NotificationCenter.default.removeObserver)
+                    self?.findAllHighlightObserver = nil
+                }
+            }
+            
             let message = DidFindAllMessage(findString: textFind.findString, matches: matches, client: client)
             NotificationCenter.default.post(message, subject: self)
         }

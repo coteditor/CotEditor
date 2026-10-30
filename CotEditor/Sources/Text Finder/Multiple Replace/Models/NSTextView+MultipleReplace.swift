@@ -65,6 +65,9 @@ extension NSTextView {
         
         if progress.count > 0 {
             // apply to the text view
+            if let textStorage {
+                NotificationCenter.default.post(TextFinder.ClearFindAllHighlightsMessage(), subject: textStorage)
+            }
             self.updateBackgroundColor(.textHighlighterColor, ranges: ranges)
         } else {
             NSSound.beep()

@@ -38,6 +38,7 @@ final class FindPanelContentViewController: NSSplitViewController {
     @ViewLoading private var resultSplitViewItem: NSSplitViewItem
     
     private var resultObserver: NotificationCenter.ObservationToken?
+    private var resultCollapseObserver: NSKeyValueObservation?
     
     
     // MARK: Lifecycle
@@ -80,6 +81,14 @@ final class FindPanelContentViewController: NSSplitViewController {
         
         self.resultObserver = NotificationCenter.default.addObserver(for: TextFinder.DidFindAllMessage.self) { [weak self] message in
             self?.didFinishFindAll(message.matches, for: message.findString, in: message.client)
+        }
+        self.resultCollapseObserver = resultViewItem.observe(\.isCollapsed, options: .new) { [weak self] _, change in
+            guard change.newValue == true else { return }
+            
+            MainActor.assumeIsolated {
+                guard let textStorage = self?.resultModel.target?.textStorage else { return }
+                NotificationCenter.default.post(TextFinder.ClearFindAllHighlightsMessage(), subject: textStorage)
+            }
         }
     }
     

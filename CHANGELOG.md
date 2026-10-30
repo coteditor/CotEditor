@@ -20,6 +20,7 @@
 ### Fixes
 
 - Fix an issue where pinch zooming did not synchronize the text size between the find and replace fields in the Find window.
+- Fix an issue where Find All highlights remained in the document after closing the search results.
 
 
 
