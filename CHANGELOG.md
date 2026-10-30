@@ -7,6 +7,7 @@
 
 - Support editing remote files with `rmate` over SSH port forwarding, enabled in Integration settings.
 - Add an option to automatically save a copy of settings in iCloud for manual import on other Macs.
+- Support customizing keyboard shortcuts for text editing commands, such as moving the insertion point and deleting text, in Shortcuts settings.
 
 
 ### Improvements

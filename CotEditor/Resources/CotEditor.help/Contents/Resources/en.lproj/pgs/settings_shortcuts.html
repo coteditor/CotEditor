@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="keywords" content="Shortcuts settings, key bindings, keyboard shortcut, shortcut">
+	<meta name="keywords" content="Shortcuts settings, key bindings, keyboard shortcut, shortcut, text editing">
 	<link rel="stylesheet" href="../../Shared/sty/standard.css">
 	<script defer src="../../Shared/js/toc.js"></script>
 	
@@ -15,7 +15,7 @@
 
 <h1>Change Shortcuts settings in CotEditor on Mac</h1>
 
-<p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac, use Shortcuts settings to change keyboard shortcuts for menu commands.</p>
+<p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_32x32@2x.png" alt=""> on your Mac, use Shortcuts settings to change keyboard shortcuts for menu commands and text editing commands.</p>
 
 <p>To change these settings, choose CotEditor &gt; Settings, then click Shortcuts.</p>
 
@@ -27,13 +27,26 @@
 
 <tbody>
 	<tr>
-		<th>Key</th>
-		<td><p>To change a shortcut, click the key column for the command, then press the new key combination. If the shortcut is already in use or otherwise unavailable, CotEditor keeps the current setting and shows an error. For details, see <a href="howto_customize_shortcut.html">Customize keyboard shortcuts</a>.</p></td>
+		<th>Menu</th>
+		<td><p>Change keyboard shortcuts for menu commands. To change a shortcut, click the key column for the command, then press the new key combination. To remove the shortcut, press <kbd>Delete</kbd> instead of a key combination.</p>
+			<p>If the shortcut is already in use or otherwise unavailable, CotEditor keeps the current setting and shows an error. For details, see <a href="howto_customize_shortcut.html">Customize keyboard shortcuts</a>.</p></td>
+	</tr>
+
+	<tr>
+		<th>Text Editing</th>
+		<td><p>Change keyboard shortcuts for commands that move the insertion point or select, delete, or scroll text in the editor. A command can have more than one shortcut.</p>
+			<p>To edit the shortcuts for a command, do any of the following:</p><ul>
+				<li><p><em>Add a shortcut:</em> Click the empty space on the left side of the key column for the command, then press the new key combination.</p></li>
+				<li><p><em>Change a shortcut:</em> Click the shortcut, then press the new key combination.</p></li>
+				<li><p><em>Remove a shortcut:</em> Click the shortcut, then press <kbd>Delete</kbd>.</p></li>
+			</ul>
+			<p>If you remove all shortcuts for a command, its default shortcuts appear dimmed and don’t work.</p>
+			<p>In addition to the key combinations available for menu commands, you can assign the arrow keys and the <kbd>Forward Delete</kbd> key without modifier keys. If you assign a shortcut that another text editing command uses by default, the shortcut moves to the command you’re changing.</p></td>
 	</tr>
 
 	<tr>
 		<th>Restore Defaults</th>
-		<td><p>Restore all customized keyboard shortcuts to their default settings.</p></td>
+		<td><p>Restore all customized keyboard shortcuts for both menu commands and text editing commands to their default settings. To restore the default shortcuts for a single command, open the contextual menu for the command, then choose Restore Defaults.</p></td>
 	</tr>
 </tbody>
 </table>

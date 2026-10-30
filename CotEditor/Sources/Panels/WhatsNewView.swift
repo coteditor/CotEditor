@@ -159,6 +159,7 @@ enum NewFeature: CaseIterable {
     
     case remoteEditing
     case copySettingsIniCloud
+    case textKeyBinding
 }
 
 
@@ -171,6 +172,8 @@ private extension NewFeature {
                 Image(systemName: "server.rack")
             case .copySettingsIniCloud:
                 Image(systemName: "icloud.and.arrow.up")
+            case .textKeyBinding:
+                Image(systemName: "keyboard")
         }
     }
     
@@ -185,6 +188,10 @@ private extension NewFeature {
             case .copySettingsIniCloud:
                 .init("NewFeature.copySettingsIniCloud.label",
                       defaultValue: "Your settings, one import away",
+                      table: "WhatsNew")
+            case .textKeyBinding:
+                .init("NewFeature.textKeyBinding.label",
+                      defaultValue: "Your keys, your rules",
                       table: "WhatsNew")
         }
     }
@@ -201,6 +208,10 @@ private extension NewFeature {
                 .init("NewFeature.copySettingsIniCloud.description",
                       defaultValue: "Keep an up-to-date copy of your settings in iCloud to import on your other Macs anytime.",
                       table: "WhatsNew")
+            case .textKeyBinding:
+                .init("NewFeature.textKeyBinding.description",
+                      defaultValue: "Customize shortcuts for moving the insertion point, selecting, and deleting text, so your fingers feel right at home.",
+                      table: "WhatsNew")
         }
     }
     
@@ -212,6 +223,8 @@ private extension NewFeature {
                 "howto_edit_remote"
             case .copySettingsIniCloud:
                 "howto_store_settings_in_icloud"
+            case .textKeyBinding:
+                "settings_shortcuts"
         }
     }
     
