@@ -151,6 +151,26 @@ struct ShortcutsSettingsView: View {
     }
     
     
+    /// Restores the default shortcut of a menu command.
+    ///
+    /// - Parameter item: The menu command to restore.
+    func restore(_ item: KeyBindingItem) {
+        
+        if let shortcut = item.defaultShortcut {
+            do {
+                try self.manager.checkCustomizationAvailability(for: shortcut)
+            } catch {
+                self.error = error
+                return
+            }
+        }
+        
+        self.error = nil
+        item.shortcut = item.defaultShortcut
+        self.save()
+    }
+    
+    
     /// Saves the current settings.
     func save() {
         
@@ -231,6 +251,14 @@ private struct ShortcutTreeView: View {
                 Section(menu.name) {
                     OutlineGroup(menu.children ?? [], children: \.children)
                 }
+            }
+        }
+        .contextMenu(forSelectionType: Item.ID.self) { ids in
+            if let id = ids.first, let item = self.model.tree.lazy.compactMap({ $0.node(with: id)?.value }).first {
+                Button(.init("Action.restoreDefaults.label", defaultValue: "Restore Defaults")) {
+                    self.model.restore(item)
+                }
+                .disabled(item.shortcut == item.defaultShortcut)
             }
         }
     }
