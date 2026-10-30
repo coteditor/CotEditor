@@ -37,6 +37,8 @@ struct ShortcutField: NSViewRepresentable {
     
     var placeholder: String?
     
+    var validation: ((Shortcut) throws(Shortcut.CustomizationError) -> Void)?
+    
     
     func makeNSView(context: Context) -> NSTextField {
         
@@ -58,7 +60,7 @@ struct ShortcutField: NSViewRepresentable {
     
     func updateNSView(_ nsView: NSTextField, context: Context) {
         
-        context.coordinator.updateBinding(shortcut: $value)
+        context.coordinator.field = self
         nsView.objectValue = self.value
         nsView.placeholderString = self.placeholder
     }
@@ -66,33 +68,21 @@ struct ShortcutField: NSViewRepresentable {
     
     func makeCoordinator() -> Coordinator {
         
-        Coordinator(shortcut: $value, error: $error)
+        Coordinator(self)
     }
     
     
     @MainActor final class Coordinator: NSObject, NSTextFieldDelegate {
         
-        private var shortcut: Binding<Shortcut?>
-        private var cachedShortcut: Shortcut?
-        
-        @Binding private var error: Shortcut.CustomizationError?
+        var field: ShortcutField
         
         
-        init(shortcut: Binding<Shortcut?>, error: Binding<Shortcut.CustomizationError?>) {
-            
-            self.shortcut = shortcut
-            self.cachedShortcut = shortcut.wrappedValue
-            self._error = error
-        }
-        
-        
-        /// Updates the binding to keep it in sync with the current view state.
+        /// Creates a coordinator for a shortcut field.
         ///
-        /// - Parameter shortcut: The binding to update.
-        func updateBinding(shortcut: Binding<Shortcut?>) {
+        /// - Parameter field: The field whose bindings and validation to use.
+        init(_ field: ShortcutField) {
             
-            self.shortcut = shortcut
-            self.cachedShortcut = shortcut.wrappedValue
+            self.field = field
         }
         
         
@@ -102,17 +92,17 @@ struct ShortcutField: NSViewRepresentable {
             
             let shortcut = sender.objectValue as? Shortcut
             
-            self.error = nil
+            self.field.error = nil
             
             // not edited
-            guard shortcut != self.cachedShortcut else { return }
+            guard shortcut != self.field.value else { return }
             
             if let shortcut {
                 do {
-                    try shortcut.checkCustomizationAvailability(for: NSApp.mainMenu)
+                    try self.field.validation?(shortcut)
                 } catch {
-                    self.error = error
-                    sender.objectValue = self.cachedShortcut  // reset text field
+                    self.field.error = error
+                    sender.objectValue = self.field.value  // reset text field
                     NSSound.beep()
                     
                     // make text field edit mode again
@@ -125,8 +115,8 @@ struct ShortcutField: NSViewRepresentable {
             }
             
             // successfully update data
-            self.shortcut.wrappedValue = shortcut
-            self.cachedShortcut = shortcut
+            self.field.value = shortcut
+            sender.objectValue = self.field.value  // the binding owner may reject the new value
         }
     }
 }

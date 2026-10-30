@@ -164,6 +164,43 @@ import URLUtils
     }
     
     
+    /// Validates and saves a command's shortcuts, or restores its system bindings with `nil`.
+    ///
+    /// - Parameters:
+    ///   - shortcuts: The shortcuts to assign, an empty array to disable the command, or `nil` to restore it.
+    ///   - command: The text editing command to update.
+    /// - Throws: If validation or saving fails.
+    func save(shortcuts: [Shortcut]?, for command: TextKeyBindingCommand) throws {
+        
+        var bindings = self.textKeyBindings
+        try bindings.setShortcuts(shortcuts, for: command)  // check conflicts with the other text editing commands
+        for shortcut in bindings.shortcuts(for: command) {
+            try shortcut.checkCustomizationAvailability(for: self.mainMenu, allowsTextEditingKeys: true)
+        }
+        
+        try self.save(textKeyBindings: bindings)
+    }
+    
+    
+    /// Checks whether a shortcut can be assigned to a menu command or a text editing command.
+    ///
+    /// - Parameters:
+    ///   - shortcut: The shortcut to validate.
+    ///   - command: The text editing command to add the shortcut to, or `nil` for a menu command.
+    /// - Throws: If the shortcut is unsupported or already used by a menu item or a text editing command.
+    func checkCustomizationAvailability(for shortcut: Shortcut, command: TextKeyBindingCommand? = nil) throws(Shortcut.CustomizationError) {
+        
+        try shortcut.checkCustomizationAvailability(for: self.mainMenu, allowsTextEditingKeys: command != nil)
+        
+        guard let owner = TextKeyBindingCommand.allCases.first(where: { self.textKeyBindings.shortcuts(for: $0).contains(shortcut) }) else { return }
+        
+        // text editing commands can take over inherited shortcuts of the other commands
+        guard let command, owner != command, self.textKeyBindings.customizations[owner] == nil else {
+            throw .alreadyTaken(shortcut, name: String(localized: owner.label))
+        }
+    }
+    
+    
     /// Returns the encoded user key binding settings as an XML property list, or `nil` if there are no user-defined key bindings.
     ///
     /// - Throws: An error if encoding the key bindings fails.

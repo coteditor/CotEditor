@@ -211,6 +211,142 @@ import Shortcut
     }
     
     
+    /// Tests assigning navigation keys and Forward Delete without modifiers in the text editing scope.
+    ///
+    /// - Parameter key: The special key to assign.
+    /// - Throws: If validation or saving fails.
+    @Test(arguments: [NSEvent.SpecialKey.home, .end, .leftArrow, .rightArrow, .upArrow, .downArrow, .deleteForward])
+    func assignsTextEditingKeys(key: NSEvent.SpecialKey) throws {
+        
+        try self.withManager { manager, _ in
+            let shortcut = Shortcut(key, modifiers: [])
+            try manager.save(shortcuts: [shortcut], for: .transpose)
+            #expect(manager.textKeyBindings.action(for: shortcut) == .perform(.transpose))
+        }
+    }
+    
+    
+    /// Tests rejecting ordinary typing, unsupported modifiers, and reserved editing keys.
+    ///
+    /// - Parameter shortcut: The unsupported shortcut.
+    /// - Throws: If preparing the manager fails.
+    @Test(arguments: [
+        Shortcut("a", modifiers: []),
+        Shortcut("a", modifiers: .shift),
+        Shortcut("a", modifiers: .function),
+        Shortcut(.leftArrow, modifiers: .function),
+        Shortcut(.tab, modifiers: .control),
+        Shortcut(.backTab, modifiers: .shift),
+        Shortcut(.carriageReturn, modifiers: []),
+        Shortcut(.delete, modifiers: []),
+    ] as [Shortcut])
+    func rejectsUnsupportedTextShortcuts(shortcut: Shortcut) throws {
+        
+        try self.withManager { manager, _ in
+            #expect(throws: Shortcut.CustomizationError.self) {
+                try manager.save(shortcuts: [shortcut], for: .transpose)
+            }
+            #expect(!manager.isCustomized)
+        }
+    }
+    
+    
+    /// Tests rejecting a text assignment already used by the main menu.
+    ///
+    /// - Throws: If preparing the manager fails.
+    @Test func rejectsMenuShortcutForText() throws {
+        
+        try self.withManager { manager, _ in
+            #expect(throws: Shortcut.CustomizationError.self) {
+                try manager.save(shortcuts: [Shortcut("c", modifiers: .command)], for: .transpose)
+            }
+            #expect(!manager.isCustomized)
+        }
+    }
+    
+    
+    /// Tests rejecting menu assignments used by inherited or customized text commands.
+    ///
+    /// - Throws: If updating the text command fails.
+    @Test func rejectsTextShortcutForMenu() throws {
+        
+        try self.withManager { manager, _ in
+            let controlK: Shortcut = Shortcut("k", modifiers: .control)
+            #expect(throws: Shortcut.CustomizationError.self) {
+                try manager.checkCustomizationAvailability(for: controlK)
+            }
+            try manager.save(shortcuts: [], for: .deleteToEndOfParagraph)
+            try manager.checkCustomizationAvailability(for: controlK)
+            let shortcut: Shortcut = Shortcut("j", modifiers: [.command, .option])
+            try manager.save(shortcuts: [shortcut], for: .transpose)
+            #expect(throws: Shortcut.CustomizationError.self) {
+                try manager.checkCustomizationAvailability(for: shortcut)
+            }
+        }
+    }
+    
+    
+    /// Tests validating a shortcut to add to a text editing command.
+    ///
+    /// - Throws: If updating the text command fails.
+    @Test func checksTextShortcutAvailability() throws {
+        
+        try self.withManager { manager, _ in
+            let controlK: Shortcut = Shortcut("k", modifiers: .control)
+            #expect(throws: Shortcut.CustomizationError.self) {
+                try manager.checkCustomizationAvailability(for: controlK, command: .deleteToEndOfParagraph)
+            }
+            try manager.checkCustomizationAvailability(for: controlK, command: .transpose)
+            
+            let shortcut: Shortcut = Shortcut("j", modifiers: [.command, .option])
+            try manager.save(shortcuts: [shortcut], for: .deleteToEndOfParagraph)
+            #expect(throws: Shortcut.CustomizationError.self) {
+                try manager.checkCustomizationAvailability(for: shortcut, command: .transpose)
+            }
+            #expect(throws: Shortcut.CustomizationError.self) {
+                try manager.checkCustomizationAvailability(for: Shortcut("c", modifiers: .command), command: .transpose)
+            }
+        }
+    }
+    
+    
+    /// Tests reassigning inherited keys while rejecting keys customized for another command.
+    ///
+    /// - Throws: If creating or restoring assignments fails.
+    @Test func reassignsInheritedTextShortcut() throws {
+        
+        try self.withManager { manager, _ in
+            let home = Shortcut(.home, modifiers: [])
+            try manager.save(shortcuts: [home], for: .moveToLeftEndOfLine)
+            #expect(manager.textKeyBindings.shortcuts(for: .scrollToBeginningOfDocument).isEmpty)
+            #expect(throws: Shortcut.CustomizationError.self) {
+                try manager.save(shortcuts: [home], for: .moveToRightEndOfLine)
+            }
+            try manager.save(shortcuts: [Shortcut(.leftArrow, modifiers: .command)], for: .moveToRightEndOfLine)
+            try manager.save(shortcuts: nil, for: .moveToLeftEndOfLine)
+            #expect(manager.textKeyBindings.action(for: Shortcut(.leftArrow, modifiers: .command)) == .perform(.moveToRightEndOfLine))
+            #expect(manager.textKeyBindings.action(for: home) == nil)
+        }
+    }
+    
+    
+    /// Tests that restoring a command does not reintroduce a shortcut now assigned to the menu.
+    ///
+    /// - Throws: If preparing the customizations fails.
+    @Test func restoreChecksMenuConflicts() throws {
+        
+        try self.withManager { manager, _ in
+            try manager.save(shortcuts: [], for: .deleteToEndOfParagraph)
+            let binding = KeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("k", modifiers: .control))
+            try manager.importSetting(data: PropertyListEncoder().encode([binding]))
+            #expect(throws: Shortcut.CustomizationError.self) {
+                try manager.save(shortcuts: nil, for: .deleteToEndOfParagraph)
+            }
+            #expect(manager.textKeyBindings.customizations[.deleteToEndOfParagraph]?.isEmpty == true)
+        }
+    }
+    
+    
     /// Runs a synchronous persistence test with an isolated menu and settings directory.
     ///
     /// - Parameter operation: The test using the manager and its settings directory.

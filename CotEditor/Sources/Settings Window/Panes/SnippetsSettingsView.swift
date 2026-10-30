@@ -94,7 +94,9 @@ private struct CommandSnippetsView: View {
                 }
                 
                 TableColumn(.init("Key", table: "SnippetsSettings", comment: "table column header; keyboard shortcut")) { $item in
-                    ShortcutField(value: $item.shortcut, error: $error)
+                    ShortcutField(value: $item.shortcut, error: $error) { shortcut throws(Shortcut.CustomizationError) in
+                        try KeyBindingManager.shared.checkCustomizationAvailability(for: shortcut)
+                    }
                 }
                 .width(80)
                 

@@ -28,7 +28,7 @@ import Shortcut
 
 // cf. https://support.apple.com/en-us/HT201236
 
-enum TextKeyBindingCommand: CaseIterable, Hashable {
+enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
     
     case deleteWordBackward
     case deleteBackward
@@ -66,6 +66,8 @@ enum TextKeyBindingCommand: CaseIterable, Hashable {
     case moveDown
     
     case transpose
+    
+    var id: Self { self }
     
     
     /// The default shortcuts in their canonical key representations.

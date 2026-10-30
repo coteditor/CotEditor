@@ -62,8 +62,11 @@ extension Shortcut {
     
     /// Validates whether the shortcut is available for user customization.
     ///
-    /// - Parameter menu: The menu tree for duplication check.
-    @MainActor func checkCustomizationAvailability(for menu: NSMenu?) throws(Shortcut.CustomizationError) {
+    /// - Parameters:
+    ///   - menu: The menu tree for duplication check.
+    ///   - allowsTextEditingKeys: Whether arrow keys and Forward Delete can be assigned without modifiers.
+    /// - Throws: If the shortcut is unsupported or already assigned.
+    @MainActor func checkCustomizationAvailability(for menu: NSMenu, allowsTextEditingKeys: Bool) throws(Shortcut.CustomizationError) {
         
         // throw unsupported combinations
         if self.keyEquivalent == "\u{9}" ||  // Tab
@@ -80,12 +83,16 @@ extension Shortcut {
         }
         
         // single key is invalid
-        if !self.isAssignable {
+        // -> Delete alone is reserved to clear the shortcut field.
+        let textEditingKeys: [NSEvent.SpecialKey] = [.leftArrow, .rightArrow, .upArrow, .downArrow, .deleteForward]
+        if !self.isAssignable,
+           !(allowsTextEditingKeys && textEditingKeys.contains { self == Shortcut($0, modifiers: []) })
+        {
             throw .singleType
         }
         
         // duplication check
-        if let duplicatedName = menu?.commandName(for: self) {
+        if let duplicatedName = menu.commandName(for: self) {
             throw .alreadyTaken(self, name: duplicatedName)
         }
     }
