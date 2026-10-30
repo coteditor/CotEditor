@@ -326,6 +326,33 @@ struct ShortcutTests {
     }
     
     
+    /// Tests that the Fn modifier is removed only from function keys that carry it by themselves.
+    ///
+    /// - Parameters:
+    ///   - key: The string produced by the key.
+    ///   - keyCode: The virtual key code.
+    ///   - isFunctionKey: Whether the key is in the function-key range.
+    /// - Throws: If creating the event or shortcut fails.
+    @Test(arguments: [
+        ("\u{F702}", UInt16(123), true),  // Left Arrow
+        ("\u{F708}", 96, true),  // F5
+        ("\u{F729}", 115, true),  // Home
+        ("\u{F728}", 117, true),  // Forward Delete
+        ("h", 4, false),
+        ("\r", 36, false),
+    ])
+    func keyDownEventFunctionModifier(_ key: String, keyCode: UInt16, isFunctionKey: Bool) throws {
+        
+        let event = try #require(NSEvent.keyEvent(with: .keyDown, location: .zero, modifierFlags: [.command, .function],
+                                                timestamp: 0, windowNumber: 0, context: nil, characters: key,
+                                                charactersIgnoringModifiers: key, isARepeat: false, keyCode: keyCode))
+        let shortcut = try #require(Shortcut(keyDownEvent: event))
+        
+        #expect(shortcut.modifiers == (isFunctionKey ? .command : [.command, .function]))
+        #expect(shortcut.isAssignable == isFunctionKey)
+    }
+    
+    
     /// Tests that multi-character keys retain their case during normalization.
     ///
     /// - Throws: If creating a shortcut fails.
