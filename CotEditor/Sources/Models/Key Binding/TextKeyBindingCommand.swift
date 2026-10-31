@@ -34,9 +34,9 @@ enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
         
         case movement
         case selection
-        case scrolling
         case deletion
         case editing
+        case scrolling
         
         
         /// The commands in the category.
@@ -85,13 +85,6 @@ enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
     case moveToBeginningOfDocumentAndModifySelection
     case moveToEndOfDocumentAndModifySelection
     
-    case scrollLineUp
-    case scrollLineDown
-    case scrollPageUp
-    case scrollPageDown
-    case scrollToBeginningOfDocument
-    case scrollToEndOfDocument
-    
     case deleteWordBackward
     case deleteWordForward
     case deleteToBeginningOfLine
@@ -101,6 +94,13 @@ enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
     
     case transpose
     case yank
+    
+    case scrollLineUp
+    case scrollLineDown
+    case scrollPageUp
+    case scrollPageDown
+    case scrollToBeginningOfDocument
+    case scrollToEndOfDocument
     
     var id: Self { self }
     
@@ -127,16 +127,16 @@ enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
                  .pageUpAndModifySelection, .pageDownAndModifySelection,
                  .moveToBeginningOfDocumentAndModifySelection, .moveToEndOfDocumentAndModifySelection:
                 .selection
-            case .scrollLineUp, .scrollLineDown,
-                 .scrollPageUp, .scrollPageDown,
-                 .scrollToBeginningOfDocument, .scrollToEndOfDocument:
-                .scrolling
             case .deleteWordBackward, .deleteWordForward,
                  .deleteToBeginningOfLine, .deleteToEndOfLine,
                  .deleteToBeginningOfParagraph, .deleteToEndOfParagraph:
                 .deletion
             case .transpose, .yank:
                 .editing
+            case .scrollLineUp, .scrollLineDown,
+                 .scrollPageUp, .scrollPageDown,
+                 .scrollToBeginningOfDocument, .scrollToEndOfDocument:
+                .scrolling
         }
     }
     
@@ -227,20 +227,6 @@ enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
             case .moveToEndOfDocumentAndModifySelection:
                 [Shortcut(.downArrow, modifiers: [.shift, .command]),
                  Shortcut(.end, modifiers: .shift)]
-            case .scrollLineUp:
-                []
-            case .scrollLineDown:
-                []
-            case .scrollPageUp:
-                [Shortcut(.pageUp, modifiers: []),
-                 Shortcut(.upArrow, modifiers: .control)]
-            case .scrollPageDown:
-                [Shortcut(.pageDown, modifiers: []),
-                 Shortcut(.downArrow, modifiers: .control)]
-            case .scrollToBeginningOfDocument:
-                [Shortcut(.home, modifiers: [])]
-            case .scrollToEndOfDocument:
-                [Shortcut(.end, modifiers: [])]
             case .deleteWordBackward:
                 [Shortcut(.delete, modifiers: .option),
                  Shortcut(.delete, modifiers: [.option, .control])]
@@ -258,6 +244,20 @@ enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
                 [Shortcut("t", modifiers: .control)]
             case .yank:
                 [Shortcut("y", modifiers: .control)]
+            case .scrollLineUp:
+                []
+            case .scrollLineDown:
+                []
+            case .scrollPageUp:
+                [Shortcut(.pageUp, modifiers: []),
+                 Shortcut(.upArrow, modifiers: .control)]
+            case .scrollPageDown:
+                [Shortcut(.pageDown, modifiers: []),
+                 Shortcut(.downArrow, modifiers: .control)]
+            case .scrollToBeginningOfDocument:
+                [Shortcut(.home, modifiers: [])]
+            case .scrollToEndOfDocument:
+                [Shortcut(.end, modifiers: [])]
         }
     }
     
@@ -374,24 +374,6 @@ enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
             case .moveToEndOfDocumentAndModifySelection:
                 .init("TextKeyBindingCommand.moveToEndOfDocumentAndModifySelection",
                       defaultValue: "Move to End of Document Extending Selection", table: "TextKeyBindingCommand")
-            case .scrollLineUp:
-                .init("TextKeyBindingCommand.scrollLineUp",
-                      defaultValue: "Scroll Line Up", table: "TextKeyBindingCommand")
-            case .scrollLineDown:
-                .init("TextKeyBindingCommand.scrollLineDown",
-                      defaultValue: "Scroll Line Down", table: "TextKeyBindingCommand")
-            case .scrollPageUp:
-                .init("TextKeyBindingCommand.scrollPageUp",
-                      defaultValue: "Scroll Page Up", table: "TextKeyBindingCommand")
-            case .scrollPageDown:
-                .init("TextKeyBindingCommand.scrollPageDown",
-                      defaultValue: "Scroll Page Down", table: "TextKeyBindingCommand")
-            case .scrollToBeginningOfDocument:
-                .init("TextKeyBindingCommand.scrollToBeginningOfDocument",
-                      defaultValue: "Scroll to Beginning of Document", table: "TextKeyBindingCommand")
-            case .scrollToEndOfDocument:
-                .init("TextKeyBindingCommand.scrollToEndOfDocument",
-                      defaultValue: "Scroll to End of Document", table: "TextKeyBindingCommand")
             case .deleteWordBackward:
                 .init("TextKeyBindingCommand.deleteWordBackward",
                       defaultValue: "Delete Word Backward", table: "TextKeyBindingCommand")
@@ -416,6 +398,24 @@ enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
             case .yank:
                 .init("TextKeyBindingCommand.yank",
                       defaultValue: "Yank", table: "TextKeyBindingCommand")
+            case .scrollLineUp:
+                .init("TextKeyBindingCommand.scrollLineUp",
+                      defaultValue: "Scroll Line Up", table: "TextKeyBindingCommand")
+            case .scrollLineDown:
+                .init("TextKeyBindingCommand.scrollLineDown",
+                      defaultValue: "Scroll Line Down", table: "TextKeyBindingCommand")
+            case .scrollPageUp:
+                .init("TextKeyBindingCommand.scrollPageUp",
+                      defaultValue: "Scroll Page Up", table: "TextKeyBindingCommand")
+            case .scrollPageDown:
+                .init("TextKeyBindingCommand.scrollPageDown",
+                      defaultValue: "Scroll Page Down", table: "TextKeyBindingCommand")
+            case .scrollToBeginningOfDocument:
+                .init("TextKeyBindingCommand.scrollToBeginningOfDocument",
+                      defaultValue: "Scroll to Beginning of Document", table: "TextKeyBindingCommand")
+            case .scrollToEndOfDocument:
+                .init("TextKeyBindingCommand.scrollToEndOfDocument",
+                      defaultValue: "Scroll to End of Document", table: "TextKeyBindingCommand")
         }
     }
     
@@ -496,18 +496,6 @@ enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
                 #selector((any NSStandardKeyBindingResponding).moveToBeginningOfDocumentAndModifySelection)
             case .moveToEndOfDocumentAndModifySelection:
                 #selector((any NSStandardKeyBindingResponding).moveToEndOfDocumentAndModifySelection)
-            case .scrollLineUp:
-                #selector((any NSStandardKeyBindingResponding).scrollLineUp)
-            case .scrollLineDown:
-                #selector((any NSStandardKeyBindingResponding).scrollLineDown)
-            case .scrollPageUp:
-                #selector((any NSStandardKeyBindingResponding).scrollPageUp)
-            case .scrollPageDown:
-                #selector((any NSStandardKeyBindingResponding).scrollPageDown)
-            case .scrollToBeginningOfDocument:
-                #selector((any NSStandardKeyBindingResponding).scrollToBeginningOfDocument)
-            case .scrollToEndOfDocument:
-                #selector((any NSStandardKeyBindingResponding).scrollToEndOfDocument)
             case .deleteWordBackward:
                 #selector((any NSStandardKeyBindingResponding).deleteWordBackward)
             case .deleteWordForward:
@@ -524,6 +512,18 @@ enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
                 #selector((any NSStandardKeyBindingResponding).transpose)
             case .yank:
                 #selector((any NSStandardKeyBindingResponding).yank)
+            case .scrollLineUp:
+                #selector((any NSStandardKeyBindingResponding).scrollLineUp)
+            case .scrollLineDown:
+                #selector((any NSStandardKeyBindingResponding).scrollLineDown)
+            case .scrollPageUp:
+                #selector((any NSStandardKeyBindingResponding).scrollPageUp)
+            case .scrollPageDown:
+                #selector((any NSStandardKeyBindingResponding).scrollPageDown)
+            case .scrollToBeginningOfDocument:
+                #selector((any NSStandardKeyBindingResponding).scrollToBeginningOfDocument)
+            case .scrollToEndOfDocument:
+                #selector((any NSStandardKeyBindingResponding).scrollToEndOfDocument)
         }
     }
     
@@ -563,15 +563,15 @@ extension TextKeyBindingCommand.Category {
             case .selection:
                 .init("TextKeyBindingCommand.Category.selection",
                       defaultValue: "Selection", table: "TextKeyBindingCommand")
-            case .scrolling:
-                .init("TextKeyBindingCommand.Category.scrolling",
-                      defaultValue: "Scrolling", table: "TextKeyBindingCommand")
             case .deletion:
                 .init("TextKeyBindingCommand.Category.deletion",
                       defaultValue: "Deletion", table: "TextKeyBindingCommand")
             case .editing:
                 .init("TextKeyBindingCommand.Category.editing",
                       defaultValue: "Editing", table: "TextKeyBindingCommand")
+            case .scrolling:
+                .init("TextKeyBindingCommand.Category.scrolling",
+                      defaultValue: "Scrolling", table: "TextKeyBindingCommand")
         }
     }
 }
