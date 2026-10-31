@@ -39,9 +39,7 @@ import Shortcut
     ///   - input: The event's key character, modifier flags, and virtual key code.
     /// - Throws: If creating the event or shortcut fails.
     @Test(arguments: [
-        (TextKeyBindingCommand.deleteBackward, ("h", NSEvent.ModifierFlags.control, UInt16(4))),
-        (.deleteForward, ("d", .control, 2)),
-        (.deleteToEndOfParagraph, ("k", .control, 40)),
+        (TextKeyBindingCommand.deleteToEndOfParagraph, ("k", NSEvent.ModifierFlags.control, UInt16(40))),
         (.moveToBeginningOfParagraph, ("a", .control, 0)),
         (.moveToEndOfParagraph, ("e", .control, 14)),
         (.moveForward, ("f", .control, 3)),
@@ -49,7 +47,6 @@ import Shortcut
         (.moveUp, ("p", .control, 35)),
         (.moveDown, ("n", .control, 45)),
         (.transpose, ("t", .control, 17)),
-        (.deleteForward, ("\u{F728}", .function, 117)),
         (.deleteWordBackward, ("\u{7F}", .option, 51)),
         (.scrollPageUp, ("\u{F72C}", .function, 116)),
         (.scrollPageDown, ("\u{F72D}", .function, 121)),
@@ -59,6 +56,19 @@ import Shortcut
         (.moveToRightEndOfLine, ("\u{F703}", [.command, .function, .numericPad], 124)),
         (.moveLeftAndModifySelection, ("\u{F702}", [.shift, .function, .numericPad], 123)),
         (.moveRightAndModifySelection, ("\u{F703}", [.shift, .function, .numericPad], 124)),
+        (.moveForwardAndModifySelection, ("F", [.control, .shift], 3)),
+        (.deleteWordForward, ("\u{F728}", [.option, .function], 117)),
+        (.deleteToBeginningOfLine, ("\u{7F}", .command, 51)),
+        (.pageUp, ("\u{F72C}", [.option, .function], 116)),
+        (.pageDown, ("v", .control, 9)),
+        (.pageDownAndModifySelection, ("V", [.control, .shift], 9)),
+        (.yank, ("y", .control, 16)),
+        (.scrollPageUp, ("\u{F700}", [.control, .function, .numericPad], 126)),
+        (.moveToBeginningOfDocumentAndModifySelection, ("\u{F729}", [.shift, .function], 115)),
+        (.deleteWordBackward, ("\u{7F}", [.option, .control], 51)),
+        (.moveUpAndModifySelection, ("P", [.control, .shift], 35)),
+        (.moveWordForward, ("f", [.control, .option], 3)),
+        (.moveWordBackwardAndModifySelection, ("B", [.control, .option, .shift], 11)),
     ] as [(TextKeyBindingCommand, (String, NSEvent.ModifierFlags, UInt16))])
     func defaultEvent(_ command: TextKeyBindingCommand, input: (key: String, modifiers: NSEvent.ModifierFlags, keyCode: UInt16)) throws {
         
@@ -68,6 +78,15 @@ import Shortcut
         let shortcut = try #require(Shortcut(keyDownEvent: event))
         
         #expect(command.shortcuts.contains(shortcut))
+    }
+    
+    
+    /// Tests that no default shortcut is shared by multiple commands.
+    @Test func uniqueDefaultShortcuts() {
+        
+        let shortcuts = TextKeyBindingCommand.allCases.flatMap(\.shortcuts)
+        
+        #expect(Set(shortcuts).count == shortcuts.count)
     }
     
     

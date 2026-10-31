@@ -39,7 +39,7 @@ import Shortcut
         #expect(!map.isCustomized)
         #expect(map.action(for: Shortcut(.home, modifiers: [])) == nil)
         #expect(map.action(for: Shortcut(.leftArrow, modifiers: .command)) == nil)
-        #expect(map.shortcuts(for: .moveToLeftEndOfLine) == [Shortcut(.leftArrow, modifiers: .command)])
+        #expect(map.shortcuts(for: .moveToLeftEndOfLine) == [Shortcut(.leftArrow, modifiers: .command), Shortcut(.leftArrow, modifiers: .control)])
     }
     
     
@@ -67,12 +67,12 @@ import Shortcut
     @Test func disablesAllDefaultAliases() throws {
         
         var map = TextKeyBindingMap()
-        try map.setShortcuts([], for: .deleteForward)
+        try map.setShortcuts([], for: .pageDown)
         
         #expect(map.isCustomized)
-        #expect(map.shortcuts(for: .deleteForward).isEmpty)
-        #expect(map.action(for: Shortcut("d", modifiers: .control)) == .suppress)
-        #expect(map.action(for: Shortcut(.deleteForward, modifiers: [])) == .suppress)
+        #expect(map.shortcuts(for: .pageDown).isEmpty)
+        #expect(map.action(for: Shortcut("v", modifiers: .control)) == .suppress)
+        #expect(map.action(for: Shortcut(.pageDown, modifiers: .option)) == .suppress)
     }
     
     
@@ -84,12 +84,12 @@ import Shortcut
         var map = TextKeyBindingMap()
         let home = Shortcut(.home, modifiers: [])
         let f6 = Shortcut(.f6, modifiers: [])
-        try map.setShortcuts([home, f6, home], for: .deleteForward)
+        try map.setShortcuts([home, f6, home], for: .pageDown)
         
-        #expect(map.shortcuts(for: .deleteForward) == [home, f6])
-        #expect(map.action(for: home) == .perform(.deleteForward))
-        #expect(map.action(for: f6) == .perform(.deleteForward))
-        #expect(map.action(for: Shortcut(.deleteForward, modifiers: [])) == .suppress)
+        #expect(map.shortcuts(for: .pageDown) == [home, f6])
+        #expect(map.action(for: home) == .perform(.pageDown))
+        #expect(map.action(for: f6) == .perform(.pageDown))
+        #expect(map.action(for: Shortcut(.pageDown, modifiers: .option)) == .suppress)
     }
     
     
@@ -99,12 +99,12 @@ import Shortcut
     @Test func keepsOneDefaultAlias() throws {
         
         var map = TextKeyBindingMap()
-        let controlD: Shortcut = Shortcut("d", modifiers: .control)
-        try map.setShortcuts([controlD], for: .deleteForward)
+        let controlV: Shortcut = Shortcut("v", modifiers: .control)
+        try map.setShortcuts([controlV], for: .pageDown)
         
         #expect(map.isCustomized)
-        #expect(map.action(for: controlD) == .perform(.deleteForward))
-        #expect(map.action(for: Shortcut(.deleteForward, modifiers: [])) == .suppress)
+        #expect(map.action(for: controlV) == .perform(.pageDown))
+        #expect(map.action(for: Shortcut(.pageDown, modifiers: .option)) == .suppress)
     }
     
     
@@ -133,13 +133,13 @@ import Shortcut
     @Test func defaultShortcutsRestoreInheritance() throws {
         
         var map = TextKeyBindingMap()
-        try map.setShortcuts([Shortcut(.home, modifiers: [])], for: .deleteForward)
-        try map.setShortcuts([Shortcut(.deleteForward, modifiers: []), Shortcut("d", modifiers: .control)], for: .deleteForward)
+        try map.setShortcuts([Shortcut(.home, modifiers: [])], for: .pageDown)
+        try map.setShortcuts([Shortcut("v", modifiers: .control), Shortcut(.pageDown, modifiers: .option)], for: .pageDown)
         
         #expect(!map.isCustomized)
         #expect(map.action(for: Shortcut(.home, modifiers: [])) == nil)
-        #expect(map.action(for: Shortcut("d", modifiers: .control)) == nil)
-        #expect(map.action(for: Shortcut(.deleteForward, modifiers: [])) == nil)
+        #expect(map.action(for: Shortcut("v", modifiers: .control)) == nil)
+        #expect(map.action(for: Shortcut(.pageDown, modifiers: .option)) == nil)
     }
     
     
@@ -219,7 +219,7 @@ import Shortcut
         
         var map = TextKeyBindingMap()
         try map.setShortcuts([Shortcut(.home, modifiers: [])], for: .moveToLeftEndOfLine)
-        try map.setShortcuts([], for: .deleteForward)
+        try map.setShortcuts([], for: .pageDown)
         map.restoreDefaults()
         
         #expect(map == TextKeyBindingMap())
@@ -236,7 +236,7 @@ import Shortcut
         let home = Shortcut(.home, modifiers: [])
         try map.setShortcuts([home, Shortcut(.f6, modifiers: [])], for: .moveToLeftEndOfLine)
         try map.setShortcuts([], for: .deleteWordBackward)
-        try map.setShortcuts([Shortcut(.deleteForward, modifiers: [])], for: .deleteForward)
+        try map.setShortcuts([Shortcut(.pageDown, modifiers: .option)], for: .pageDown)
         
         let data = try PropertyListEncoder().encode(map)
         let decoded = try PropertyListDecoder().decode(TextKeyBindingMap.self, from: data)
@@ -254,8 +254,8 @@ import Shortcut
         #expect((deletion["shortcuts"] as? [String])?.isEmpty == true)
         #expect(decoded == map)
         #expect(decoded.action(for: home) == .perform(.moveToLeftEndOfLine))
-        #expect(decoded.action(for: Shortcut("d", modifiers: .control)) == .suppress)
-        #expect(decoded.action(for: Shortcut(.deleteForward, modifiers: [])) == .perform(.deleteForward))
+        #expect(decoded.action(for: Shortcut("v", modifiers: .control)) == .suppress)
+        #expect(decoded.action(for: Shortcut(.pageDown, modifiers: .option)) == .perform(.pageDown))
     }
     
     
@@ -266,12 +266,12 @@ import Shortcut
         
         let entries = [
             TextKeyBinding(action: NSSelectorFromString("unknownCommand:"), shortcuts: [Shortcut("q", modifiers: .control)]),
-            TextKeyBinding(action: TextKeyBindingCommand.deleteForward.action, shortcuts: []),
+            TextKeyBinding(action: TextKeyBindingCommand.pageDown.action, shortcuts: []),
         ]
         let data = try PropertyListEncoder().encode(entries)
         let map = try PropertyListDecoder().decode(TextKeyBindingMap.self, from: data)
         
-        #expect(map.customizations == [.deleteForward: []])
+        #expect(map.customizations == [.pageDown: []])
     }
     
     

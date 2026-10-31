@@ -1,96 +1,143 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "TextKeyBindingCommand.deleteBackward" : {
+    "TextKeyBindingCommand.deleteToBeginningOfLine" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorheriges Zeichen löschen"
+            "value" : "Bis zum Zeilenanfang löschen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Delete Backward"
+            "value" : "Delete to Beginning of Line"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Delete Backward"
+            "value" : "Delete to Beginning of Line"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Eliminar carácter anterior"
+            "value" : "Eliminar hasta el inicio de la línea"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Supprimer le caractère précédent"
+            "value" : "Supprimer jusqu’au début de la ligne"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "前の文字を削除"
+            "value" : "行の先頭まで削除"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verwijder vorig teken"
+            "value" : "Verwijder tot begin van regel"
           }
         }
       }
     },
-    "TextKeyBindingCommand.deleteForward" : {
+    "TextKeyBindingCommand.deleteToBeginningOfParagraph" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nächstes Zeichen löschen"
+            "value" : "Bis zum Absatzanfang löschen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Delete Forward"
+            "value" : "Delete to Beginning of Paragraph"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Delete Forward"
+            "value" : "Delete to Beginning of Paragraph"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Eliminar carácter siguiente"
+            "value" : "Eliminar hasta el inicio del párrafo"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Supprimer le caractère suivant"
+            "value" : "Supprimer jusqu’au début du paragraphe"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "次の文字を削除"
+            "value" : "段落の先頭まで削除"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verwijder volgend teken"
+            "value" : "Verwijder tot begin van alinea"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.deleteToEndOfLine" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bis zum Zeilenende löschen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete to End of Line"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete to End of Line"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Eliminar hasta el final de la línea"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Supprimer jusqu’à la fin de la ligne"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行の末尾まで削除"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verwijder tot einde van regel"
           }
         }
       }
@@ -189,6 +236,53 @@
         }
       }
     },
+    "TextKeyBindingCommand.deleteWordForward" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nächstes Wort löschen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete Word Forward"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Word Forward"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Eliminar palabra siguiente"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Supprimer le mot suivant"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "次の単語を削除"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verwijder volgend woord"
+          }
+        }
+      }
+    },
     "TextKeyBindingCommand.moveBackward" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -232,6 +326,53 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Verplaats één teken naar achteren"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveBackwardAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Zeichen rückwärts bewegen und Auswahl erweitern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Backward Extending Selection"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move Backward Extending Selection"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Retroceder un carácter ampliando la selección"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Reculer d’un caractère en étendant la sélection"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択しながら1文字戻る"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verplaats één teken naar achteren en breid selectie uit"
           }
         }
       }
@@ -289,31 +430,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eine Zeile nach unten bewegen und Auswahl ändern"
+            "value" : "Eine Zeile nach unten bewegen und Auswahl erweitern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Move Down and Modify Selection"
+            "value" : "Move Down Extending Selection"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move Down and Modify Selection"
+            "value" : "Move Down Extending Selection"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Bajar una línea y modificar la selección"
+            "value" : "Bajar una línea ampliando la selección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Descendre d’une ligne et modifier la sélection"
+            "value" : "Descendre d’une ligne en étendant la sélection"
           }
         },
         "ja" : {
@@ -325,7 +466,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verplaats één regel omlaag en wijzig selectie"
+            "value" : "Verplaats één regel omlaag en breid selectie uit"
           }
         }
       }
@@ -377,37 +518,84 @@
         }
       }
     },
+    "TextKeyBindingCommand.moveForwardAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Zeichen vorwärts bewegen und Auswahl erweitern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Forward Extending Selection"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move Forward Extending Selection"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Avanzar un carácter ampliando la selección"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Avancer d’un caractère en étendant la sélection"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択しながら1文字進む"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verplaats één teken naar voren en breid selectie uit"
+          }
+        }
+      }
+    },
     "TextKeyBindingCommand.moveLeftAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nach links bewegen und Auswahl ändern"
+            "value" : "Nach links bewegen und Auswahl erweitern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Move Left and Modify Selection"
+            "value" : "Move Left Extending Selection"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move Left and Modify Selection"
+            "value" : "Move Left Extending Selection"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Mover a la izquierda y modificar la selección"
+            "value" : "Mover a la izquierda ampliando la selección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Déplacer vers la gauche et modifier la sélection"
+            "value" : "Déplacer vers la gauche en étendant la sélection"
           }
         },
         "ja" : {
@@ -419,7 +607,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verplaats naar links en wijzig selectie"
+            "value" : "Verplaats naar links en breid selectie uit"
           }
         }
       }
@@ -430,31 +618,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Absatzweise rückwärts bewegen und Auswahl ändern"
+            "value" : "Absatzweise rückwärts bewegen und Auswahl erweitern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Move Paragraph Backward and Modify Selection"
+            "value" : "Move Paragraph Backward Extending Selection"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move Paragraph Backward and Modify Selection"
+            "value" : "Move Paragraph Backward Extending Selection"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Retroceder un párrafo y modificar la selección"
+            "value" : "Retroceder un párrafo ampliando la selección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Reculer d’un paragraphe et modifier la sélection"
+            "value" : "Reculer d’un paragraphe en étendant la sélection"
           }
         },
         "ja" : {
@@ -466,7 +654,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verplaats één alinea naar achteren en wijzig selectie"
+            "value" : "Verplaats één alinea naar achteren en breid selectie uit"
           }
         }
       }
@@ -477,31 +665,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Absatzweise vorwärts bewegen und Auswahl ändern"
+            "value" : "Absatzweise vorwärts bewegen und Auswahl erweitern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Move Paragraph Forward and Modify Selection"
+            "value" : "Move Paragraph Forward Extending Selection"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move Paragraph Forward and Modify Selection"
+            "value" : "Move Paragraph Forward Extending Selection"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Avanzar un párrafo y modificar la selección"
+            "value" : "Avanzar un párrafo ampliando la selección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Avancer d’un paragraphe et modifier la sélection"
+            "value" : "Avancer d’un paragraphe en étendant la sélection"
           }
         },
         "ja" : {
@@ -513,7 +701,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verplaats één alinea naar voren en wijzig selectie"
+            "value" : "Verplaats één alinea naar voren en breid selectie uit"
           }
         }
       }
@@ -524,31 +712,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nach rechts bewegen und Auswahl ändern"
+            "value" : "Nach rechts bewegen und Auswahl erweitern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Move Right and Modify Selection"
+            "value" : "Move Right Extending Selection"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move Right and Modify Selection"
+            "value" : "Move Right Extending Selection"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Mover a la derecha y modificar la selección"
+            "value" : "Mover a la derecha ampliando la selección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Déplacer vers la droite et modifier la sélection"
+            "value" : "Déplacer vers la droite en étendant la sélection"
           }
         },
         "ja" : {
@@ -560,7 +748,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verplaats naar rechts en wijzig selectie"
+            "value" : "Verplaats naar rechts en breid selectie uit"
           }
         }
       }
@@ -618,31 +806,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zum Dokumentanfang bewegen und Auswahl ändern"
+            "value" : "Zum Dokumentanfang bewegen und Auswahl erweitern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Move to Beginning of Document and Modify Selection"
+            "value" : "Move to Beginning of Document Extending Selection"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move to Beginning of Document and Modify Selection"
+            "value" : "Move to Beginning of Document Extending Selection"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Ir al inicio del documento y modificar la selección"
+            "value" : "Ir al inicio del documento ampliando la selección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Aller au début du document et modifier la sélection"
+            "value" : "Aller au début du document en étendant la sélection"
           }
         },
         "ja" : {
@@ -654,7 +842,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verplaats naar begin van document en wijzig selectie"
+            "value" : "Verplaats naar begin van document en breid selectie uit"
           }
         }
       }
@@ -702,6 +890,53 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Verplaats naar begin van alinea"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveToBeginningOfParagraphAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zum Absatzanfang bewegen und Auswahl erweitern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move to Beginning of Paragraph Extending Selection"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move to Beginning of Paragraph Extending Selection"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ir al inicio del párrafo ampliando la selección"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Aller au début du paragraphe en étendant la sélection"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択しながら段落の先頭に移動"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verplaats naar begin van alinea en breid selectie uit"
           }
         }
       }
@@ -759,31 +994,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zum Dokumentende bewegen und Auswahl ändern"
+            "value" : "Zum Dokumentende bewegen und Auswahl erweitern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Move to End of Document and Modify Selection"
+            "value" : "Move to End of Document Extending Selection"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move to End of Document and Modify Selection"
+            "value" : "Move to End of Document Extending Selection"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Ir al final del documento y modificar la selección"
+            "value" : "Ir al final del documento ampliando la selección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Aller à la fin du document et modifier la sélection"
+            "value" : "Aller à la fin du document en étendant la sélection"
           }
         },
         "ja" : {
@@ -795,7 +1030,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verplaats naar einde van document en wijzig selectie"
+            "value" : "Verplaats naar einde van document en breid selectie uit"
           }
         }
       }
@@ -843,6 +1078,53 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Verplaats naar einde van alinea"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveToEndOfParagraphAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zum Absatzende bewegen und Auswahl erweitern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move to End of Paragraph Extending Selection"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move to End of Paragraph Extending Selection"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ir al final del párrafo ampliando la selección"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Aller à la fin du paragraphe en étendant la sélection"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択しながら段落の末尾に移動"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verplaats naar einde van alinea en breid selectie uit"
           }
         }
       }
@@ -900,31 +1182,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zum linken Ende der Zeile bewegen und Auswahl ändern"
+            "value" : "Zum linken Ende der Zeile bewegen und Auswahl erweitern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Move to Left End of Line and Modify Selection"
+            "value" : "Move to Left End of Line Extending Selection"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move to Left End of Line and Modify Selection"
+            "value" : "Move to Left End of Line Extending Selection"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Ir al extremo izquierdo de la línea y modificar la selección"
+            "value" : "Ir al extremo izquierdo de la línea ampliando la selección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Aller à l’extrémité gauche de la ligne et modifier la sélection"
+            "value" : "Aller à l’extrémité gauche de la ligne en étendant la sélection"
           }
         },
         "ja" : {
@@ -936,7 +1218,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verplaats naar linkereinde van regel en wijzig selectie"
+            "value" : "Verplaats naar linkereinde van regel en breid selectie uit"
           }
         }
       }
@@ -994,31 +1276,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zum rechten Ende der Zeile bewegen und Auswahl ändern"
+            "value" : "Zum rechten Ende der Zeile bewegen und Auswahl erweitern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Move to Right End of Line and Modify Selection"
+            "value" : "Move to Right End of Line Extending Selection"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move to Right End of Line and Modify Selection"
+            "value" : "Move to Right End of Line Extending Selection"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Ir al extremo derecho de la línea y modificar la selección"
+            "value" : "Ir al extremo derecho de la línea ampliando la selección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Aller à l’extrémité droite de la ligne et modifier la sélection"
+            "value" : "Aller à l’extrémité droite de la ligne en étendant la sélection"
           }
         },
         "ja" : {
@@ -1030,7 +1312,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verplaats naar rechtereinde van regel en wijzig selectie"
+            "value" : "Verplaats naar rechtereinde van regel en breid selectie uit"
           }
         }
       }
@@ -1088,31 +1370,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eine Zeile nach oben bewegen und Auswahl ändern"
+            "value" : "Eine Zeile nach oben bewegen und Auswahl erweitern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Move Up and Modify Selection"
+            "value" : "Move Up Extending Selection"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move Up and Modify Selection"
+            "value" : "Move Up Extending Selection"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Subir una línea y modificar la selección"
+            "value" : "Subir una línea ampliando la selección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Monter d’une ligne et modifier la sélection"
+            "value" : "Monter d’une ligne en étendant la sélection"
           }
         },
         "ja" : {
@@ -1124,7 +1406,195 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verplaats één regel omhoog en wijzig selectie"
+            "value" : "Verplaats één regel omhoog en breid selectie uit"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveWordBackward" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wortweise rückwärts bewegen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Word Backward"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move Word Backward"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Retroceder una palabra"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Reculer d’un mot"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "単語単位で戻る"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verplaats één woord naar achteren"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveWordBackwardAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wortweise rückwärts bewegen und Auswahl erweitern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Word Backward Extending Selection"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move Word Backward Extending Selection"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Retroceder una palabra ampliando la selección"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Reculer d’un mot en étendant la sélection"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択しながら単語単位で戻る"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verplaats één woord naar achteren en breid selectie uit"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveWordForward" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wortweise vorwärts bewegen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Word Forward"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move Word Forward"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Avanzar una palabra"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Avancer d’un mot"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "単語単位で進む"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verplaats één woord naar voren"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveWordForwardAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wortweise vorwärts bewegen und Auswahl erweitern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Word Forward Extending Selection"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move Word Forward Extending Selection"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Avanzar una palabra ampliando la selección"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Avancer d’un mot en étendant la sélection"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択しながら単語単位で進む"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verplaats één woord naar voren en breid selectie uit"
           }
         }
       }
@@ -1182,31 +1652,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wortweise nach links bewegen und Auswahl ändern"
+            "value" : "Wortweise nach links bewegen und Auswahl erweitern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Move Word Left and Modify Selection"
+            "value" : "Move Word Left Extending Selection"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move Word Left and Modify Selection"
+            "value" : "Move Word Left Extending Selection"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Mover una palabra a la izquierda y modificar la selección"
+            "value" : "Mover una palabra a la izquierda ampliando la selección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Déplacer d’un mot vers la gauche et modifier la sélection"
+            "value" : "Déplacer d’un mot vers la gauche en étendant la sélection"
           }
         },
         "ja" : {
@@ -1218,7 +1688,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verplaats één woord naar links en wijzig selectie"
+            "value" : "Verplaats één woord naar links en breid selectie uit"
           }
         }
       }
@@ -1276,31 +1746,31 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wortweise nach rechts bewegen und Auswahl ändern"
+            "value" : "Wortweise nach rechts bewegen und Auswahl erweitern"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Move Word Right and Modify Selection"
+            "value" : "Move Word Right Extending Selection"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Move Word Right and Modify Selection"
+            "value" : "Move Word Right Extending Selection"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Mover una palabra a la derecha y modificar la selección"
+            "value" : "Mover una palabra a la derecha ampliando la selección"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Déplacer d’un mot vers la droite et modifier la sélection"
+            "value" : "Déplacer d’un mot vers la droite en étendant la sélection"
           }
         },
         "ja" : {
@@ -1312,7 +1782,289 @@
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Verplaats één woord naar rechts en wijzig selectie"
+            "value" : "Verplaats één woord naar rechts en breid selectie uit"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.pageDown" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Seite nach unten bewegen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Page Down"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move Page Down"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bajar una página"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Descendre d’une page"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1ページ下に移動"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verplaats één pagina omlaag"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.pageDownAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Seite nach unten bewegen und Auswahl erweitern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Page Down Extending Selection"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move Page Down Extending Selection"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bajar una página ampliando la selección"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Descendre d’une page en étendant la sélection"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択しながら1ページ下に移動"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verplaats één pagina omlaag en breid selectie uit"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.pageUp" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Seite nach oben bewegen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Page Up"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move Page Up"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Subir una página"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Monter d’une page"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1ページ上に移動"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verplaats één pagina omhoog"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.pageUpAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Seite nach oben bewegen und Auswahl erweitern"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Page Up Extending Selection"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move Page Up Extending Selection"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Subir una página ampliando la selección"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Monter d’une page en étendant la sélection"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択しながら1ページ上に移動"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Verplaats één pagina omhoog en breid selectie uit"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.scrollLineDown" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Zeile nach unten scrollen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Scroll Line Down"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scroll Line Down"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Desplazarse una línea hacia abajo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Faire défiler d’une ligne vers le bas"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1行下にスクロール"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scrol één regel omlaag"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.scrollLineUp" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eine Zeile nach oben scrollen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Scroll Line Up"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scroll Line Up"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Desplazarse una línea hacia arriba"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Faire défiler d’une ligne vers le haut"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1行上にスクロール"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scrol één regel omhoog"
           }
         }
       }
@@ -1548,6 +2300,53 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Wissel tekens om"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.yank" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yank"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Yank"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yank"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ヤンク"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
           }
         }
       }
