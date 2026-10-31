@@ -21,6 +21,59 @@
 
 <article headingoffset="1">
 	<header>
+		<h1>CotEditor 7.2.0</h1>
+		<p>release: <time>2026-11</time></p>
+	</header>
+
+	<section>
+		<h2>New Features</h2>
+
+		<ul>
+			<li>Support <a href="howto_edit_remote.html">editing remote files with <code>rmate</code> over SSH port forwarding</a>, enabled in Integration settings.</li>
+			<li>Add an option in General settings to automatically <a href="howto_store_settings_in_icloud.html">save a copy of settings to iCloud</a> for manual import on other Macs.</li>
+			<li>Support customizing keyboard shortcuts for text editing commands, such as moving the insertion point and deleting text, in <a href="settings_shortcuts.html">Shortcuts settings</a>.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Move the Donation settings pane to a separate window accessible from the CotEditor menu.</li>
+			<li>Add the Integration settings pane for managing integration with external tools.</li>
+			<li>Move settings import and export from the File menu to the General settings pane.</li>
+			<li>Redesign the Shortcuts settings pane.</li>
+			<li>Allow restoring the default shortcuts for individual commands in the Shortcuts settings pane using the context menu or the <kbd>Delete</kbd> key.</li>
+			<li>Improve word navigation with <kbd>Control</kbd>-<kbd>Option</kbd>-<kbd>F</kbd> and <kbd>Control</kbd>-<kbd>Option</kbd>-<kbd>B</kbd> to treat periods, commas, and colons as word delimiters, consistent with <kbd>Option</kbd>-<kbd>Left Arrow</kbd> and <kbd>Option</kbd>-<kbd>Right Arrow</kbd>.</li>
+			<li>Change the <kbd>Shift</kbd>-<kbd>Option</kbd>-<kbd>Down Arrow</kbd> shortcut to extend the selection to the end of the line without including the line ending, consistent with <kbd>Option</kbd>-<kbd>Down Arrow</kbd>.</li>
+			<li><span class="trivial">dev</span>: Update the build environment to Xcode 27.2.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue in the Find window where pinch zooming did not synchronize the text size between the find and replace fields.</li>
+			<li>Fix an issue where Find All highlights remained in the document after closing the search results.</li>
+			<li>Fix an issue where searching within multiple selections could continue to subsequent selections after cancellation.</li>
+			<li>Fix an issue where progress could be displayed incorrectly when searching or replacing text within selections.</li>
+			<li>Fix an issue where syntax highlighting and outline parsing could start after closing a document.</li>
+			<li>Fix an issue where shortcuts using function keys, arrow keys, or other navigation keys could not be set in the Shortcuts and Snippets settings panes.</li>
+			<li>Fix an issue where <kbd>Control</kbd>-<kbd>B</kbd>, <kbd>Control</kbd>-<kbd>F</kbd>, <kbd>Option</kbd>-<kbd>Up Arrow</kbd>, or <kbd>Option</kbd>-<kbd>Down Arrow</kbd> could move insertion points incorrectly during multi-cursor editing in right-to-left text.</li>
+			<li>Fix an issue where repeatedly pressing <kbd>Command</kbd>-<kbd>Right Arrow</kbd> during multi-cursor editing could move insertion points to the end of the next wrapped visual line.</li>
+			<li>Fix an issue where selecting or deleting text by word or to the beginning of a line could affect an incorrect range or make the app unresponsive in bidirectional text.</li>
+			<li>Fix an issue where deleting a line break during multi-cursor editing could delete only part of a CRLF line ending.</li>
+			<li>Fix an issue where pressing <kbd>Control</kbd>-<kbd>K</kbd> at the end of a line did not delete the line ending in CRLF documents.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article headingoffset="1">
+	<header>
 		<h1>CotEditor 7.1.3</h1>
 		<p>release: <time>2026-10-28</time></p>
 	</header>
@@ -31,7 +84,7 @@
 		<ul>
 			<li>Update tree-sitter-php to 0.25.1.</li>
 			<li>Update tree-sitter-scala to 0.26.3.</li>
-			<li><span class="trivial">dev</span>: Update the build environment to Xcode 27.2.</li>
+			<li><span class="trivial">dev</span>: Update the build environment to Xcode 27.2 RC.</li>
 			<li><span class="label">non-AppStore ver.</span>: Update Sparkle from 2.10.0 to 2.10.1.</li>
 		</ul>
 	</section>
