@@ -17,6 +17,7 @@
 - Move settings import and export from the File menu to General settings.
 - Update the Shortcuts settings layout.
 - Add a context menu to the list in Shortcuts settings to restore the default shortcut of a single command.
+- [dev] Update the build environment to Xcode 27.2.
 
 
 ### Fixes
@@ -37,7 +38,7 @@
 
 - Update tree-sitter-php to 0.25.1.
 - Update tree-sitter-scala to 0.26.3.
-- [dev] Update the build environment to Xcode 27.2.
+- [dev] Update the build environment to Xcode 27.2 RC.
 - [non-AppStore ver.] Update Sparkle from 2.10.0 to 2.10.1.
 
 
