@@ -375,6 +375,58 @@ import LineEnding
         textView.moveToEndOfLineAndModifySelection(nil)
         #expect(textView.insertionRanges.first == NSRange(3..<lineEnd))
     }
+    
+    
+    /// Tests that deleting to the end of the line removes the rest of the soft-wrapped visual line.
+    ///
+    /// - Parameter isMultiple: Whether to add another insertion point in the second line.
+    /// - Throws: If the first line is not soft-wrapped.
+    @Test(arguments: [false, true])
+    func deleteToEndOfSoftWrappedLine(isMultiple: Bool) throws {
+        
+        let line = String(repeating: "abcd.efg ", count: 14) + "end"
+        let offset = (line as NSString).length + 1
+        let textView = makeEditorTextView(string: line + "\n" + line, selectedRange: NSRange(3..<3), insertionLocations: isMultiple ? [offset + 3] : [])
+        let lineEnd = textView.layoutManager!.lineFragmentRange(at: 3).upperBound
+        
+        try #require(lineEnd < offset - 1)
+        
+        let deletedLine = (line as NSString).replacingCharacters(in: NSRange(3..<lineEnd), with: "")
+        
+        textView.deleteToEndOfLine(nil)
+        #expect(textView.string == deletedLine + "\n" + (isMultiple ? deletedLine : line))
+        #expect(textView.insertionRanges.first == NSRange(3..<3))
+    }
+    
+    
+    /// Tests that deleting to the end of the line at the line end joins the next line, including CRLF.
+    ///
+    /// - Parameter isMultiple: Whether to add another insertion point at the end of the second line.
+    @Test(arguments: [false, true])
+    func deleteToEndOfLineJoinsLines(isMultiple: Bool) {
+        
+        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(3..<3), insertionLocations: isMultiple ? [8] : [])
+        
+        textView.deleteToEndOfLine(nil)
+        
+        #expect(textView.string == (isMultiple ? "abcdefghi" : "abcdef\r\nghi"))
+        #expect(textView.insertionRanges == (isMultiple ? [NSRange(3..<3), NSRange(6..<6)] : [NSRange(3..<3)]))
+    }
+    
+    
+    /// Tests that deleting to the end of the line with selections deletes only the selected text.
+    ///
+    /// - Parameter isMultiple: Whether to add another selection in the second line.
+    @Test(arguments: [false, true])
+    func deleteToEndOfLineWithSelection(isMultiple: Bool) {
+        
+        let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon")
+        textView.selectedRanges = (isMultiple ? [NSRange(6..<10), NSRange(17..<22)] : [NSRange(6..<10)]) as [NSValue]
+        
+        textView.deleteToEndOfLine(nil)
+        
+        #expect(textView.string == (isMultiple ? "alpha \ngamma \nepsilon" : "alpha \ngamma delta\nepsilon"))
+    }
 }
 
 

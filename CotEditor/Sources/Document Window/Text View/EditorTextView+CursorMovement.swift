@@ -817,6 +817,22 @@ extension EditorTextView {
     }
     
     
+    /// Deletes to the end of the visual line.
+    override func deleteToEndOfLine(_ sender: Any?) {
+        
+        guard self.isEditable, self.hasMultipleInsertions else {
+            return super.deleteToEndOfLine(sender)
+        }
+        
+        if self.rangesForUserTextChange?.contains(where: { !$0.rangeValue.isEmpty }) == true {
+            return self.deleteForward(sender)
+        }
+        
+        self.moveToEndOfLineAndModifySelection(sender)
+        self.deleteForward(sender)
+    }
+    
+    
     /// Deletes to the beginning of the visual line (⌘-Delete).
     override func deleteToBeginningOfLine(_ sender: Any?) {
         
