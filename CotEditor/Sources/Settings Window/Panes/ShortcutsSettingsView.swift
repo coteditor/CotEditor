@@ -375,27 +375,26 @@ private struct TabPickerButtonStyle: PrimitiveButtonStyle {
     
     @Environment(\.colorSchemeContrast) private var contrast
     
-    @State private var isHovered = false
-    
     private let shape = RoundedRectangle(cornerRadius: 6)
     
     
     func makeBody(configuration: Configuration) -> some View {
         
-        Button(configuration)
-            .buttonStyle(.borderless)
-            .fontWeight(.medium)
-            .foregroundStyle((self.isSelected || self.isHovered) ? .primary : .secondary)
-            .padding(.vertical, 2)
-            .padding(.horizontal, 10)
-            .background {
-                if self.isSelected {
-                    self.shape.fill(.fill)
-                        .matchedGeometryEffect(id: "selection", in: self.namespace)
-                }
+        Button(action: configuration.trigger) {
+            configuration.label
+                .padding(.vertical, 2)
+                .padding(.horizontal, 10)
+        }
+        .buttonStyle(.borderless)
+        .fontWeight(.medium)
+        .foregroundStyle(self.isSelected ? .primary : .secondary)
+        .background {
+            if self.isSelected {
+                self.shape.fill(.fill)
+                    .matchedGeometryEffect(id: "selection", in: self.namespace)
             }
-            .overlay(self.contrast == .increased ? self.shape.stroke(.tertiary) : nil)
-            .onHover { self.isHovered = $0 }
+        }
+        .overlay(self.contrast == .increased ? self.shape.stroke(.tertiary) : nil)
     }
 }
 
