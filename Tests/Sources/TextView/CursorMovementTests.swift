@@ -399,6 +399,34 @@ import LineEnding
     }
     
     
+    /// Tests that deleting to the end of the paragraph at the line end joins the next line, including CRLF.
+    ///
+    /// - Parameter isMultiple: Whether to add another insertion point at the end of the second line.
+    @Test(arguments: [false, true])
+    func deleteToEndOfParagraphJoinsLines(isMultiple: Bool) {
+        
+        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(3..<3), insertionLocations: isMultiple ? [8] : [])
+        
+        textView.deleteToEndOfParagraph(nil)
+        
+        #expect(textView.string == (isMultiple ? "abcdefghi" : "abcdef\r\nghi"))
+        #expect(textView.insertionRanges == (isMultiple ? [NSRange(3..<3), NSRange(6..<6)] : [NSRange(3..<3)]))
+    }
+    
+    
+    /// Tests that the text deleted to the end of the paragraph in the middle of a CRLF line can be yanked back.
+    @Test func deleteToEndOfParagraphKeepsKillBufferWithCRLF() {
+        
+        let textView = makeEditorTextView(string: "abc def\r\nghi", lineEnding: .crlf, selectedRange: NSRange(3..<3))
+        
+        textView.deleteToEndOfParagraph(nil)
+        #expect(textView.string == "abc\r\nghi")
+        
+        textView.yank(nil)
+        #expect(textView.string == "abc def\r\nghi")
+    }
+    
+    
     /// Tests that deleting to the end of the line at the line end joins the next line, including CRLF.
     ///
     /// - Parameter isMultiple: Whether to add another insertion point at the end of the second line.
