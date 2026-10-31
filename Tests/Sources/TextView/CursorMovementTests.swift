@@ -427,6 +427,38 @@ import LineEnding
         
         #expect(textView.string == (isMultiple ? "alpha \ngamma \nepsilon" : "alpha \ngamma delta\nepsilon"))
     }
+    
+    
+    /// Tests that deleting to the beginning of the paragraph removes the text before each cursor in the logical line.
+    ///
+    /// - Parameter isMultiple: Whether to add another insertion point in the third line.
+    @Test(arguments: [false, true])
+    func deleteToBeginningOfParagraph(isMultiple: Bool) {
+        
+        let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon zeta", selectedRange: NSRange(17..<17), insertionLocations: isMultiple ? [31] : [])
+        
+        textView.deleteToBeginningOfParagraph(nil)
+        
+        #expect(textView.string == (isMultiple ? "alpha beta\ndelta\nzeta" : "alpha beta\ndelta\nepsilon zeta"))
+        #expect(textView.insertionRanges == (isMultiple ? [NSRange(11..<11), NSRange(17..<17)] : [NSRange(11..<11)]))
+    }
+    
+    
+    /// Tests that deleting to the beginning of the paragraph or line at the line start joins the previous line, including CRLF.
+    ///
+    /// - Parameter isMultiple: Whether to add another insertion point at the beginning of the third line.
+    @Test(arguments: [false, true])
+    func deleteToBeginningJoinsLines(isMultiple: Bool) {
+        
+        for selector in [#selector(NSTextView.deleteToBeginningOfParagraph), #selector(NSTextView.deleteToBeginningOfLine)] {
+            let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(5..<5), insertionLocations: isMultiple ? [10] : [])
+            
+            textView.doCommand(by: selector)
+            
+            #expect(textView.string == (isMultiple ? "abcdefghi" : "abcdef\r\nghi"))
+            #expect(textView.insertionRanges == (isMultiple ? [NSRange(3..<3), NSRange(6..<6)] : [NSRange(3..<3)]))
+        }
+    }
 }
 
 

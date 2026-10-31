@@ -833,6 +833,25 @@ extension EditorTextView {
     }
     
     
+    /// Deletes to the beginning of the logical line.
+    override func deleteToBeginningOfParagraph(_ sender: Any?) {
+        
+        guard self.isEditable else {
+            return super.deleteToBeginningOfParagraph(sender)
+        }
+        
+        // -> Do not invoke super, even with a single selection,
+        //    to delete the line ending at the beginning of the line as `deleteToBeginningOfLine(_:)` does.
+        
+        if self.rangesForUserTextChange?.contains(where: { !$0.rangeValue.isEmpty }) == true {
+            return self.deleteBackward(sender)
+        }
+        
+        self.moveToBeginningOfParagraphAndModifySelection(sender)
+        self.deleteBackward(sender)
+    }
+    
+    
     /// Deletes to the beginning of the visual line (⌘-Delete).
     override func deleteToBeginningOfLine(_ sender: Any?) {
         
