@@ -117,9 +117,11 @@ extension MultiCursorEditing {
                    let indentRange = self.string.rangeForSoftTabDeletion(in: range, tabWidth: self.tabWidth)
                 { return indentRange }
                 
-                let location = forward ? range.location : range.location - 1
+                let string = self.string as NSString
                 
-                return (self.string as NSString).rangeOfComposedCharacterSequence(at: location)
+                return forward
+                    ? NSRange(range.location..<string.index(after: range.location))
+                    : NSRange(string.index(before: range.location)..<range.location)
             }
         
         // remove overlappings

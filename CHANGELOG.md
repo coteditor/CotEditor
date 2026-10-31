@@ -33,6 +33,7 @@
 - Fix an issue where moving the insertion point backward or forward with Control-B, Control-F, or Option-Up/Down Arrow with multiple cursors followed the visual order instead of the logical order in right-to-left text.
 - Fix an issue where repeating the Command-Right Arrow command with multiple cursors could move the insertion points to the end of the next wrapped visual line.
 - Fix an issue where extending the selection or deleting text by word or to the beginning of the line could affect an incorrect range or make the app unresponsive in text mixing left-to-right and right-to-left scripts.
+- Fix an issue where deleting a line break with multiple cursors could remove only part of a CRLF line ending.
 
 
 
