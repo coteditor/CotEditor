@@ -16,7 +16,7 @@
 - Add an Integration pane to the settings window for managing integration with external tools.
 - Move settings import and export from the File menu to General settings.
 - Update the Shortcuts settings layout.
-- Add a context menu to the list in Shortcuts settings to restore the default shortcut of a single command.
+- Support restoring the default shortcuts for a single command in Shortcuts settings using the context menu or the Delete key.
 - [dev] Update the build environment to Xcode 27.2.
 
 

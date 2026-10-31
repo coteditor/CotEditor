@@ -35,8 +35,6 @@ struct ShortcutField: NSViewRepresentable {
     @Binding var value: Shortcut?
     @Binding var error: Shortcut.CustomizationError?
     
-    var placeholder: String?
-    
     var validation: ((Shortcut) throws(Shortcut.CustomizationError) -> Void)?
     
     
@@ -62,7 +60,6 @@ struct ShortcutField: NSViewRepresentable {
         
         context.coordinator.field = self
         nsView.objectValue = self.value
-        nsView.placeholderString = self.placeholder
     }
     
     

@@ -242,13 +242,16 @@ private struct ShortcutTreeView: View {
     var body: some View {
         
         Table(of: Item.self, selection: $selection) {
-            TableColumn(.init("Command", table: "ShortcutsSettings", comment: "table column header"), value: \.name)
+            TableColumn(.init("Command", table: "ShortcutsSettings", comment: "table column header")) { node in
+                Text(node.name)
+                    .bold(node.value.map { $0.shortcut != $0.defaultShortcut } ?? false)
+            }
             
             TableColumn(.init("Key", table: "ShortcutsSettings", comment: "table column header; keyboard shortcut")) { node in
                 if let item = node.value {
                     ShortcutField(value: Binding(get: { item.shortcut },
                                                  set: { item.shortcut = $0; self.model.save() }),
-                                  error: $model.error, placeholder: item.defaultShortcut?.symbol,
+                                  error: $model.error,
                                   validation: { shortcut throws(Shortcut.CustomizationError) in try self.model.validate(shortcut) })
                 }
             }
@@ -269,6 +272,15 @@ private struct ShortcutTreeView: View {
                 .disabled(item.shortcut == item.defaultShortcut)
             }
         }
+        .onDeleteCommand {
+            guard
+                let id = self.selection,
+                let item = self.model.tree.lazy.compactMap({ $0.node(with: id)?.value }).first,
+                item.shortcut != item.defaultShortcut
+            else { return }
+            
+            self.model.restore(item)
+        }
     }
 }
 
@@ -285,6 +297,7 @@ private struct TextShortcutTable: View {
         Table(TextKeyBindingCommand.allCases, selection: $selection) {
             TableColumn(.init("Command", table: "ShortcutsSettings", comment: "table column header")) { command in
                 Text(command.label)
+                    .bold(self.model.textKeyBindings.customizations[command] != nil)
             }
             
             TableColumn(.init("Key", table: "ShortcutsSettings", comment: "table column header; keyboard shortcut")) { command in
@@ -299,6 +312,14 @@ private struct TextShortcutTable: View {
                 }
                 .disabled(self.model.textKeyBindings.customizations[command] == nil)
             }
+        }
+        .onDeleteCommand {
+            guard
+                let command = self.selection,
+                self.model.textKeyBindings.customizations[command] != nil
+            else { return }
+            
+            self.model.save(shortcuts: nil, for: command)
         }
     }
 }
@@ -321,7 +342,6 @@ private struct TextShortcutFields: View {
                 }
                 ShortcutField(value: Binding(get: { slots[index] }, set: { self.update($0, at: index) }),
                               error: $model.error,
-                              placeholder: (slots.count == 1) ? self.command.shortcuts.map(\.symbol).joined(separator: ", ") : nil,
                               validation: { shortcut throws(Shortcut.CustomizationError) in try self.model.validate(shortcut, for: self.command) })
                 .accessibilityLabel(.init("Add Shortcut", table: "ShortcutsSettings", comment: "accessibility label for the blank field to add a shortcut"),
                                     isEnabled: index == 0)
