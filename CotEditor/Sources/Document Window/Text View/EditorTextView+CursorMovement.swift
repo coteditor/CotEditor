@@ -832,8 +832,22 @@ extension EditorTextView {
             return self.deleteForward(sender)
         }
         
-        self.moveToEndOfLineAndModifySelection(sender)
-        self.deleteForward(sender)
+        // calculate each deletion before merging ranges so that a cursor at the logical line end
+        // deletes the line ending even when another deletion reaches the same position
+        let string = self.string as NSString
+        let ranges = self.insertionRanges
+            .map { range in
+                let upperBound = (range.location == string.lineContentsEndIndex(at: range.location))
+                    ? string.lineRange(at: range.location).upperBound  // delete the line ending
+                    : self.locationOfEndOfLine(for: range.location)
+                return NSRange(range.location..<upperBound)
+            }
+            .merged
+        
+        guard ranges.contains(where: { !$0.isEmpty }) else { return }
+        
+        // keep empty ranges to preserve cursors at soft-wrapped line ends and the document end
+        self.insertText("", replacementRanges: ranges)
     }
     
     

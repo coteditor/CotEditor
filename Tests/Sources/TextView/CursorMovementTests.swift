@@ -399,6 +399,66 @@ import LineEnding
     }
     
     
+    /// Tests that deleting to the end of the line at a soft-wrapped line end leaves the text and cursors unchanged.
+    ///
+    /// - Parameter isMultiple: Whether to add another insertion point in the second line.
+    /// - Throws: If the first line is not soft-wrapped.
+    @Test(arguments: [false, true])
+    func deleteToEndOfSoftWrappedLineEnd(isMultiple: Bool) throws {
+        
+        let line = String(repeating: "abcd.efg ", count: 14) + "end"
+        let offset = (line as NSString).length + 1
+        let string = line + "\n" + line
+        let textView = makeEditorTextView(string: string, selectedRange: NSRange(3..<3), insertionLocations: isMultiple ? [offset + 3] : [])
+        let lineEnd = textView.layoutManager!.lineFragmentRange(at: 3).upperBound
+        
+        try #require(lineEnd < offset - 1)
+        
+        textView.moveToEndOfLine(nil)
+        let insertionRanges = textView.insertionRanges
+        
+        textView.deleteToEndOfLine(nil)
+        #expect(textView.string == string)
+        #expect(textView.insertionRanges == insertionRanges)
+    }
+    
+    
+    /// Tests that deleting to the end of the line preserves cursors at a soft-wrapped line end and the document end.
+    ///
+    /// - Throws: If the first line is not soft-wrapped.
+    @Test func deleteToEndOfLinePreservesBoundaryCursors() throws {
+        
+        let line = String(repeating: "abcd.efg ", count: 14) + "end"
+        let offset = (line as NSString).length + 1
+        let string = line + "\nshort\n"
+        let textView = makeEditorTextView(string: string, selectedRange: NSRange(3..<3))
+        let lineEnd = textView.layoutManager!.lineFragmentRange(at: 3).upperBound
+        
+        try #require(lineEnd < offset - 1)
+        
+        textView.moveToEndOfLine(nil)
+        textView.insertionLocations = [offset + 2, (string as NSString).length]
+        
+        textView.deleteToEndOfLine(nil)
+        #expect(textView.string == line + "\nsh\n")
+        #expect(textView.insertionRanges == [NSRange(lineEnd..<lineEnd), NSRange((offset + 2)..<(offset + 2)), NSRange((offset + 3)..<(offset + 3))])
+    }
+    
+    
+    /// Tests that overlapping line-end deletions include the line ending requested by the cursor at the logical line end.
+    ///
+    /// - Parameter lineEnding: The line ending to delete.
+    @Test(arguments: [LineEnding.lf, .crlf])
+    func deleteToEndOfLineMergesDeletionRanges(lineEnding: LineEnding) {
+        
+        let textView = makeEditorTextView(string: "abcdef" + lineEnding.string + "last", lineEnding: lineEnding, selectedRange: NSRange(2..<2), insertionLocations: [6])
+        
+        textView.deleteToEndOfLine(nil)
+        #expect(textView.string == "ablast")
+        #expect(textView.insertionRanges == [NSRange(2..<2)])
+    }
+    
+    
     /// Tests that deleting to the end of the paragraph at the line end joins the next line, including CRLF.
     ///
     /// - Parameter isMultiple: Whether to add another insertion point at the end of the second line.
