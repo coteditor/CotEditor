@@ -17,6 +17,8 @@
 - Move settings import and export from the File menu to General settings.
 - Update the Shortcuts settings layout.
 - Support restoring the default shortcuts for a single command in Shortcuts settings using the context menu or the Delete key.
+- Treat periods, commas, and colons as word delimiters also when moving the insertion point with Control-Option-F and Control-Option-B, as with Option-Left Arrow and Option-Right Arrow.
+- Change Shift-Option-Down Arrow to extend the selection to the end of the line without including the line ending, consistent with Option-Down Arrow.
 - [dev] Update the build environment to Xcode 27.2.
 
 
@@ -28,6 +30,8 @@
 - Fix incorrect progress indication when searching or replacing within selections.
 - Fix an issue where syntax highlighting and outline parsing could start after closing a document.
 - Fix an issue where keyboard shortcuts with function keys, arrow keys, or other navigation keys could not be set in Shortcuts and Snippets settings.
+- Fix an issue where moving the insertion point backward or forward with Control-B, Control-F, or Option-Up/Down Arrow with multiple cursors followed the visual order instead of the logical order in right-to-left text.
+- Fix an issue where repeating the Command-Right Arrow command with multiple cursors could move the insertion points to the end of the next wrapped visual line.
 
 
 
