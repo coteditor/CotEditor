@@ -125,6 +125,7 @@ private struct Credits: Decodable {
         
         var name: String
         var url: String?
+        var description: String?
     }
     
     var project: [Contributor] = []
@@ -170,8 +171,16 @@ private struct CreditsView: View {
             }
             
             SectionView(.init("Code Contributors", table: "About", comment: "section heading")) {
-                Text(self.credits.contributors.map(\.name).sorted(using: .localized), format: .list(type: .and))
-                    .textSelection(.enabled)
+                WrappingHStack(alignment: .center, horizontalSpacing: 0, verticalSpacing: 2) {
+                    ForEach(self.codeContributors, id: \.contributor.name) { contributor, separator in
+                        Text(contributor.name + separator)
+                            .help(contributor.description ?? "")
+                    }
+                }
+                .accessibilityRepresentation {
+                    Text(self.codeContributors.map(\.contributor.name), format: .list(type: .and))
+                }
+                .textSelection(.enabled)
             }
             
             SectionView(.init("Special Thanks", table: "About", comment: "section heading")) {
@@ -211,6 +220,22 @@ private struct CreditsView: View {
         .multilineTextAlignment(.center)
         .lineSpacing(2)
         .frame(maxWidth: .infinity)
+    }
+    
+    
+    /// The code contributors sorted by name, each paired with the list separator that follows the name.
+    private var codeContributors: [(contributor: Credits.Contributor, separator: Substring)] {
+        
+        let contributors = self.credits.contributors.sorted(using: KeyPathComparator(\.name, comparator: .localized))
+        let list = contributors.map(\.name).formatted(.list(type: .and))
+        let ranges = contributors.reduce(into: [Range<String.Index>]()) { ranges, contributor in
+            let lowerBound = ranges.last?.upperBound ?? list.startIndex
+            ranges.append(list.range(of: contributor.name, range: lowerBound..<list.endIndex) ?? lowerBound..<lowerBound)
+        }
+        let separators = zip(ranges, ranges.dropFirst().map(\.lowerBound) + [list.endIndex])
+            .map { list[$0.upperBound..<$1] }
+        
+        return Array(zip(contributors, separators))
     }
     
     
