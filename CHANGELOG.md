@@ -32,6 +32,7 @@
 - Fix an issue where keyboard shortcuts with function keys, arrow keys, or other navigation keys could not be set in Shortcuts and Snippets settings.
 - Fix an issue where moving the insertion point backward or forward with Control-B, Control-F, or Option-Up/Down Arrow with multiple cursors followed the visual order instead of the logical order in right-to-left text.
 - Fix an issue where repeating the Command-Right Arrow command with multiple cursors could move the insertion points to the end of the next wrapped visual line.
+- Fix an issue where extending the selection or deleting text by word or to the beginning of the line could affect an incorrect range or make the app unresponsive in text mixing left-to-right and right-to-left scripts.
 
 
 

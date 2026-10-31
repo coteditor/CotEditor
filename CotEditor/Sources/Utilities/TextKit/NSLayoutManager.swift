@@ -191,6 +191,23 @@ extension NSLayoutManager {
     }
     
     
+    /// Checks whether all characters in the range are laid out in the left-to-right base level without bidirectional reordering.
+    ///
+    /// - Parameter range: The character range to check.
+    /// - Returns: `true` when the bidi levels of all characters in the range are zero, otherwise `false`.
+    final func isLeftToRight(in range: NSRange) -> Bool {
+        
+        let glyphRange = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
+        
+        guard !glyphRange.isEmpty else { return true }
+        
+        var bidiLevels = [UInt8](repeating: 0, count: glyphRange.length)
+        self.getGlyphs(in: glyphRange, glyphs: nil, properties: nil, characterIndexes: nil, bidiLevels: &bidiLevels)
+        
+        return bidiLevels.allSatisfy { $0 == 0 }
+    }
+    
+    
     /// Returns the character index of the left side of the given character index in display order.
     ///
     /// - Parameters:

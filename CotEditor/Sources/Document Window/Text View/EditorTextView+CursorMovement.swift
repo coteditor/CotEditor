@@ -325,10 +325,6 @@ extension EditorTextView {
         let cursor = isLowerOrigin ? currentRange.upperBound : currentRange.lowerBound
         let origin = isLowerOrigin ? superRange.lowerBound : superRange.upperBound
         
-        // skip modifying the selection in RTL text as it is too complex
-        // -> Additional word boundaries may be not so necessary in RTL text.
-        guard !self.layoutManager!.isRTL(at: cursor) else { return }
-        
         // calculate original selected range by taking additional word separators into consideration
         let newCursor = self.nextWord(from: cursor, forward: isForward)
         let newRange: NSRange = if (newCursor < origin && origin < cursor) || (cursor < origin && origin < newCursor) {
@@ -343,6 +339,10 @@ extension EditorTextView {
         let superCursor = isLowerOrigin ? superRange.upperBound : superRange.lowerBound
         let diffRange = (superCursor < newCursor) ? NSRange(superCursor..<newCursor) : NSRange(newCursor..<superCursor)
         guard !(self.string as NSString).rangeOfCharacter(from: Self.additionalWordSeparators, range: diffRange).isNotFound else { return }
+        
+        // skip modifying the selection in bidirectional text
+        // -> Additional word boundaries may be not so necessary in RTL text.
+        guard self.canModifySelectionCharacterwise(from: superCursor, to: newRange.isEmpty ? origin : newCursor, anchor: origin) else { return }
         
         // adjust selection range character by character
         var visitedRanges: Set<NSRange> = [self.selectedRange]
@@ -383,7 +383,14 @@ extension EditorTextView {
             
             // determine the end of the selection to move based on the recorded anchor
             var movesUpperBound = !selectedRange.isEmpty && self.selectionOrigins.first == selectedRange.location
-            let location = self.locationOfBeginningOfLine(for: movesUpperBound ? selectedRange.upperBound : selectedRange.location)
+            let cursor = movesUpperBound ? selectedRange.upperBound : selectedRange.location
+            let location = self.locationOfBeginningOfLine(for: cursor)
+            
+            // leave bidirectional text to the default implementation
+            let anchor = (movesUpperBound && location >= selectedRange.location) ? selectedRange.location : selectedRange.upperBound
+            guard self.canModifySelectionCharacterwise(from: cursor, to: location, anchor: anchor) else {
+                return super.moveToBeginningOfLineAndModifySelection(sender)
+            }
             
             // keep the whole selection and extend the lower side by re-anchoring
             // at the upper bound when the goal is behind the selection
@@ -396,15 +403,16 @@ extension EditorTextView {
             // instead of setting `selectedRange` directly.
             // -> This avoids an issue where using ⇧→ immediately after this command
             //    expands the selection in the wrong direction. (2018-11, macOS 10.14, #863)
+            var visitedRanges: Set<NSRange> = [self.selectedRange]
             while (movesUpperBound ? self.selectedRange.upperBound : self.selectedRange.location) > location {
-                let oldRange = self.selectedRange
                 self.moveBackwardAndModifySelection(self)
                 if movesUpperBound, self.selectedRange.isEmpty {
                     movesUpperBound = false
                 }
                 
-                // avoid an infinite loop in case the goal boundary is unreachable
-                guard self.selectedRange != oldRange else { return assertionFailure() }
+                // abort if the same selection appears again to avoid an infinite loop
+                // in case the goal boundary is unreachable by the cursor movement
+                guard visitedRanges.insert(self.selectedRange).inserted else { return assertionFailure() }
             }
             return
         }
@@ -710,6 +718,29 @@ extension EditorTextView {
     
     // MARK: Private Methods
     
+    /// Checks whether the free end of the selection can be moved to the goal by repeating super's character-wise selection modification.
+    ///
+    /// - Note:
+    ///   In bidirectional text, super's `move{Backward|Forward}AndModifySelection(_:)` selects the span between
+    ///   the visual positions of the anchor and the cursor; thereby, the selection jumps or splits into multiple ranges.
+    ///
+    /// - Parameters:
+    ///   - cursor: The current location of the free end of the selection.
+    ///   - goal: The location where the free end of the selection should move to.
+    ///   - anchor: The location of the fixed end of the selection.
+    /// - Returns: `true` if the characters around the movement and the anchor are laid out without bidirectional reordering.
+    private func canModifySelectionCharacterwise(from cursor: Int, to goal: Int, anchor: Int) -> Bool {
+        
+        guard let layoutManager = self.layoutManager else { return false }
+        
+        let length = (self.string as NSString).length
+        let movementRange = NSRange(max(min(cursor, goal) - 1, 0)..<min(max(cursor, goal) + 1, length))
+        let anchorRange = NSRange(max(anchor - 1, 0)..<min(anchor + 1, length))
+        
+        return layoutManager.isLeftToRight(in: movementRange) && layoutManager.isLeftToRight(in: anchorRange)
+    }
+    
+    
     /// Whether the content can contain CRLF line endings that require handling the cursor movement manually.
     ///
     /// The text storage holds the file content as is, so that CRLF line endings can exist also in documents whose document line ending is not CRLF.
@@ -726,7 +757,7 @@ extension EditorTextView {
     /// - Returns: The character location of the line end.
     private func locationOfEndOfLine(for location: Int) -> Int {
         
-        guard let layoutManager = self.layoutManager else { return self.attributedString().length }
+        guard let layoutManager = self.layoutManager else { return self.string.length }
         
         // stay at the soft-wrapped line end where the insertion point with the upstream affinity is drawn
         if self.selectionAffinity == .upstream, location > 0,
