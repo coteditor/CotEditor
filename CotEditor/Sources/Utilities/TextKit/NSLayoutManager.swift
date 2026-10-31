@@ -178,7 +178,7 @@ extension NSLayoutManager {
     ///
     /// - Parameter index: The character index to check.
     /// - Returns: `true` when is right-to-left, otherwise `false`.
-    final func isRTL(at index: Int) -> Bool {
+    final func isRightToLeft(at index: Int) -> Bool {
         
         let glyphIndex = self.glyphIndexForCharacter(at: index)
         

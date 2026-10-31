@@ -48,7 +48,7 @@ extension EditorTextView {
             if range.isEmpty {
                 self.layoutManager!.leftCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
             } else {
-                self.layoutManager!.isRTL(at: range.upperBound) ? range.upperBound : range.lowerBound
+                self.layoutManager!.isRightToLeft(at: range.upperBound) ? range.upperBound : range.lowerBound
             }
         }
     }
@@ -79,7 +79,7 @@ extension EditorTextView {
             if range.isEmpty {
                 self.layoutManager!.rightCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
             } else {
-                self.layoutManager!.isRTL(at: range.lowerBound) ? range.lowerBound : range.upperBound
+                self.layoutManager!.isRightToLeft(at: range.lowerBound) ? range.lowerBound : range.upperBound
             }
         }
     }
@@ -161,7 +161,7 @@ extension EditorTextView {
         //    and does not stop at punctuation such as `.` and `:` (2019-06).
         
         self.moveCursors(affinity: .downstream) { range in
-            self.nextWord(from: range.lowerBound, forward: self.layoutManager!.isRTL(at: range.upperBound))
+            self.nextWord(from: range.lowerBound, forward: self.layoutManager!.isRightToLeft(at: range.upperBound))
         }
     }
     
@@ -176,7 +176,7 @@ extension EditorTextView {
         }
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { cursor, _ in
-            self.nextWord(from: cursor, forward: self.layoutManager!.isRTL(at: cursor))
+            self.nextWord(from: cursor, forward: self.layoutManager!.isRightToLeft(at: cursor))
         }
     }
     
@@ -187,7 +187,7 @@ extension EditorTextView {
         // find word boundaries manually (see `moveWordLeft(_:)`)
         
         self.moveCursors(affinity: .upstream) { range in
-            self.nextWord(from: range.upperBound, forward: !self.layoutManager!.isRTL(at: range.upperBound))
+            self.nextWord(from: range.upperBound, forward: !self.layoutManager!.isRightToLeft(at: range.upperBound))
         }
     }
     
@@ -202,7 +202,7 @@ extension EditorTextView {
         }
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { cursor, _ in
-            self.nextWord(from: cursor, forward: !self.layoutManager!.isRTL(at: cursor))
+            self.nextWord(from: cursor, forward: !self.layoutManager!.isRightToLeft(at: cursor))
         }
     }
     
