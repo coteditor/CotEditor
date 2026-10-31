@@ -24,11 +24,13 @@
 //
 
 import Foundation
+import AppKit.NSEvent
 import UniformTypeIdentifiers
 import Testing
 import Defaults
 import FolderFind
 import SemanticVersioning
+import Shortcut
 import SyntaxFormat
 @testable import CotEditor
 
@@ -89,6 +91,54 @@ import SyntaxFormat
         #expect(document.info.machineName == nil)
         #expect(document.info.userName == nil)
         #expect(document.info.sourceID == nil)
+    }
+    
+    
+    /// Tests exporting shared text customizations only when general settings are selected.
+    ///
+    /// - Parameter includesSettings: Whether general settings are included in the export.
+    /// - Throws: If configuring, exporting, or decoding the customizations fails.
+    @Test(arguments: [false, true])
+    func exportsTextKeyBindings(includesSettings: Bool) throws {
+        
+        let manager = KeyBindingManager.shared
+        let previous = manager.textKeyBindings
+        defer { manager.textKeyBindings = previous }
+        var bindings = TextKeyBindingMap()
+        try bindings.setShortcuts([Shortcut(.home, modifiers: [])], for: .moveToLeftEndOfLine)
+        try bindings.setShortcuts([], for: .deleteForward)
+        manager.textKeyBindings = bindings
+        let document = try PortableSettingsDocument(including: includesSettings ? .settings : [])
+        
+        if includesSettings {
+            let data = try #require(document.textKeyBindings)
+            #expect(try PropertyListDecoder().decode(TextKeyBindingMap.self, from: data) == bindings)
+        } else {
+            #expect(document.textKeyBindings == nil)
+        }
+    }
+    
+    
+    /// Tests importing text payloads only with general settings, preserving current bindings after invalid input.
+    ///
+    /// - Parameter includesSettings: Whether general settings are selected for import.
+    /// - Throws: If preparing the document or defaults store fails.
+    @Test(arguments: [false, true])
+    func importsTextKeyBindingsOnlyWithSettings(includesSettings: Bool) throws {
+        
+        let suiteName = "PortableSettingsDocumentTests.\(UUID())"
+        let defaults = try #require(UserDefaults(suiteName: suiteName))
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+        let previous = KeyBindingManager.shared.textKeyBindings
+        var document = try PortableSettingsDocument(including: [])
+        document.textKeyBindings = Data("invalid".utf8)
+        
+        if includesSettings {
+            #expect(throws: (any Error).self) { try document.applySettings(types: .settings, to: defaults) }
+        } else {
+            try document.applySettings(types: .fileScopes, to: defaults)
+        }
+        #expect(KeyBindingManager.shared.textKeyBindings == previous)
     }
     
     

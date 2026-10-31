@@ -77,4 +77,16 @@ extension Node {
                 nodes.flatMap(\.flatValues)
         }
     }
+    
+    
+    /// Finds the node with the given identifier in the node and its descendants.
+    ///
+    /// - Parameter id: The identifier of the node to find.
+    /// - Returns: The found node, or `nil` if not found.
+    func node(with id: ID) -> Node? {
+        
+        if self.id == id { return self }
+        
+        return self.children?.lazy.compactMap { $0.node(with: id) }.first
+    }
 }

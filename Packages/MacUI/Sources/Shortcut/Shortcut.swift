@@ -55,6 +55,19 @@ public struct Shortcut: Sendable {
     }
     
     
+    /// Initializes Shortcut directly from a key equivalent character and modifiers.
+    ///
+    /// - Parameters:
+    ///   - keyEquivalent: The key equivalent character.
+    ///   - modifiers: The modifier flags.
+    /// - Note: This initializer accepts the Fn key while the others not.
+    public init(_ keyEquivalent: Character, modifiers: NSEvent.ModifierFlags) {
+        
+        self.keyEquivalent = Self.menuKeyEquivalent(for: String(keyEquivalent))
+        self.modifiers = modifiers
+    }
+    
+    
     /// Initializes Shortcut from a special key and modifiers.
     ///
     /// - Parameters:

@@ -43,9 +43,13 @@ import URLUtils
     static let shared = KeyBindingManager()
     
     let defaultKeyBindings: [KeyBinding]
+    var textKeyBindings = TextKeyBindingMap()
     
     
     // MARK: Private Properties
+    
+    private let mainMenu: NSMenu
+    private let settingDirectoryURL: URL
     
     private var userKeyBindings: [KeyBinding] = []
     private var modifiedKeyBindings: Set<KeyBinding> = []
@@ -53,15 +57,31 @@ import URLUtils
     
     // MARK: Lifecycle
     
-    private init() {
+    /// Loads the current user's shortcut settings for the application menu.
+    private convenience init() {
         
         guard let mainMenu = NSApp.mainMenu else {
             fatalError("KeyBindingManager must be initialized after Main.storyboard is loaded.")
         }
         
+        self.init(mainMenu: mainMenu, settingDirectoryURL: URL.applicationSupportDirectory(component: "KeyBindings"))
+    }
+    
+    
+    /// Loads shortcut settings for a menu from the given directory.
+    ///
+    /// - Parameters:
+    ///   - mainMenu: The main menu whose shortcuts are managed.
+    ///   - settingDirectoryURL: The directory containing the shortcut settings.
+    init(mainMenu: NSMenu, settingDirectoryURL: URL) {
+        
+        self.mainMenu = mainMenu
+        self.settingDirectoryURL = settingDirectoryURL
         self.defaultKeyBindings = Self.scanKeyBindings(in: mainMenu)
         
-        self.userKeyBindings = (try? self.loadSettings()) ?? []
+        let keyBindings: [KeyBinding] = (try? self.loadSettings(from: self.settingFileURL)) ?? []
+        self.userKeyBindings = keyBindings.filter { $0.shortcut?.isAssignable ?? true }
+        self.textKeyBindings = (try? self.loadSettings(from: self.textSettingFileURL)) ?? TextKeyBindingMap()
         self.modifiedKeyBindings.formUnion(self.userKeyBindings)
     }
     
@@ -71,14 +91,14 @@ import URLUtils
     /// Whether the key bindings are customized.
     var isCustomized: Bool {
         
-        !self.userKeyBindings.isEmpty
+        !self.userKeyBindings.isEmpty || self.textKeyBindings.isCustomized
     }
     
     
     /// A collection of the menu tree to display in the settings view.
     var menuTree: [Node<KeyBindingItem>] {
         
-        self.menuTree(of: NSApp.mainMenu!)
+        self.menuTree(of: self.mainMenu)
     }
     
     
@@ -87,7 +107,7 @@ import URLUtils
         
         guard !self.modifiedKeyBindings.isEmpty else { return }
         
-        let mainMenu = NSApp.mainMenu!
+        let mainMenu = self.mainMenu
         
         self.clearShortcuts(in: mainMenu)
         self.applyShortcuts(to: mainMenu)
@@ -98,9 +118,11 @@ import URLUtils
     /// Removes all user customization.
     func restoreDefaults() throws {
         
-        try self.removeSettingFile()
+        try self.removeSettingFile(at: self.settingFileURL)
+        try self.removeSettingFile(at: self.textSettingFileURL)
         
         self.userKeyBindings.removeAll()
+        self.textKeyBindings.restoreDefaults()
         self.applyShortcutsToMainMenu()
         NotificationCenter.default.post(DidUpdateSettingsMessage(), subject: self)
     }
@@ -123,6 +145,62 @@ import URLUtils
     }
     
     
+    /// Saves text editing customizations and makes them available to document editors.
+    ///
+    /// - Parameter textKeyBindings: The text editing shortcuts to save.
+    /// - Throws: If encoding or writing the settings fails.
+    func save(textKeyBindings: TextKeyBindingMap) throws {
+        
+        if let data = try self.userSettingsData(for: textKeyBindings) {
+            let fileURL = self.textSettingFileURL
+            try FileManager.default.createIntermediateDirectories(to: fileURL)
+            try data.write(to: fileURL, options: .atomic)
+        } else {
+            try self.removeSettingFile(at: self.textSettingFileURL)
+        }
+        
+        self.textKeyBindings = textKeyBindings
+        NotificationCenter.default.post(DidUpdateSettingsMessage(), subject: self)
+    }
+    
+    
+    /// Validates and saves a command's shortcuts, or restores its system bindings with `nil`.
+    ///
+    /// - Parameters:
+    ///   - shortcuts: The shortcuts to assign, an empty array to disable the command, or `nil` to restore it.
+    ///   - command: The text editing command to update.
+    /// - Throws: If validation or saving fails.
+    func save(shortcuts: [Shortcut]?, for command: TextKeyBindingCommand) throws {
+        
+        var bindings = self.textKeyBindings
+        try bindings.setShortcuts(shortcuts, for: command)  // check conflicts with the other text editing commands
+        for shortcut in bindings.shortcuts(for: command) {
+            try shortcut.checkCustomizationAvailability(for: self.mainMenu, allowsTextEditingKeys: true)
+        }
+        
+        try self.save(textKeyBindings: bindings)
+    }
+    
+    
+    /// Checks whether a shortcut can be assigned to a menu command or a text editing command.
+    ///
+    /// - Parameters:
+    ///   - shortcut: The shortcut to validate.
+    ///   - command: The text editing command to add the shortcut to, or `nil` for a menu command.
+    /// - Throws: If the shortcut is unsupported or already used by a menu item or a text editing command.
+    func checkCustomizationAvailability(for shortcut: Shortcut, command: TextKeyBindingCommand? = nil) throws(Shortcut.CustomizationError) {
+        
+        try shortcut.checkCustomizationAvailability(for: self.mainMenu, allowsTextEditingKeys: command != nil)
+        
+        guard let owner = TextKeyBindingCommand.allCases.first(where: { self.textKeyBindings.shortcuts(for: $0).contains(shortcut) }) else { return }
+        
+        // text editing commands can take over inherited shortcuts of the other commands
+        guard let command, owner != command, self.textKeyBindings.customizations[owner] == nil else {
+            throw .alreadyTaken(shortcut, name: String(localized: owner.label))
+        }
+    }
+    
+    
     /// Returns the encoded user key binding settings as an XML property list, or `nil` if there are no user-defined key bindings.
     ///
     /// - Throws: An error if encoding the key bindings fails.
@@ -130,6 +208,16 @@ import URLUtils
     func userSettingsData() throws -> Data? {
         
         try self.userSettingsData(for: self.userKeyBindings)
+    }
+    
+    
+    /// Returns the text editing customizations as an XML property list.
+    ///
+    /// - Returns: The encoded customizations, or `nil` if there are none.
+    /// - Throws: If encoding the customizations fails.
+    func userTextSettingsData() throws -> Data? {
+        
+        try self.userSettingsData(for: self.textKeyBindings)
     }
     
     
@@ -150,13 +238,33 @@ import URLUtils
     }
     
     
+    /// Imports text editing customizations and applies them to document editors.
+    ///
+    /// - Parameter data: The property-list-encoded text editing customizations.
+    /// - Throws: If decoding or saving the settings fails.
+    func importTextSetting(data: Data) throws {
+        
+        let bindings = try PropertyListDecoder().decode(TextKeyBindingMap.self, from: data)
+        
+        try self.save(textKeyBindings: bindings)
+    }
+    
+    
     // MARK: Private Methods
     
     /// File URL to save custom key bindings file.
     private var settingFileURL: URL {
         
-        URL.applicationSupportDirectory(component: "KeyBindings")
+        self.settingDirectoryURL
             .appendingPathComponent("Shortcuts", conformingTo: .propertyList)
+    }
+    
+    
+    /// The file containing text editing customizations.
+    private var textSettingFileURL: URL {
+        
+        self.settingDirectoryURL
+            .appendingPathComponent("TextKeyBindings", conformingTo: .propertyList)
     }
     
     
@@ -174,29 +282,31 @@ import URLUtils
     
     /// Loads user settings.
     ///
-    /// - Returns: The loaded key bindings.
-    private func loadSettings() throws -> [KeyBinding] {
+    /// - Parameter fileURL: The settings file to read.
+    /// - Returns: The loaded settings, or `nil` if the file does not exist.
+    /// - Throws: If reading or decoding the settings fails.
+    private func loadSettings<T: Decodable>(from fileURL: URL) throws -> T? {
         
-        let fileURL = self.settingFileURL
-        
-        guard fileURL.isReachable else { return [] }
+        guard fileURL.isReachable else { return nil }
         
         let data = try Data(contentsOf: fileURL)
-        let keyBindings = try PropertyListDecoder().decode([KeyBinding].self, from: data)
         
-        return keyBindings.filter { $0.shortcut?.isAssignable ?? true }
+        return try PropertyListDecoder().decode(T.self, from: data)
     }
     
     
     /// Removes the setting file in the user domain, if exists.
-    private func removeSettingFile() throws {
+    ///
+    /// - Parameter fileURL: The settings file to remove.
+    /// - Throws: If removing the settings file fails.
+    private func removeSettingFile(at fileURL: URL) throws {
         
-        guard self.settingFileURL.isReachable else { return }
+        guard fileURL.isReachable else { return }
         
-        try FileManager.default.removeItem(at: self.settingFileURL)
+        try FileManager.default.removeItem(at: fileURL)
         
         // remove also the parent directory
-        let parent = self.settingFileURL.deletingLastPathComponent()
+        let parent = fileURL.deletingLastPathComponent()
         if (try? FileManager.default.contentsOfDirectory(at: parent, includingPropertiesForKeys: [], options: .skipsHiddenFiles).isEmpty) == true {
             try? FileManager.default.removeItem(at: parent)
         }
@@ -220,6 +330,22 @@ import URLUtils
     }
     
     
+    /// Encodes text editing customizations when at least one command is customized.
+    ///
+    /// - Parameter keyBindings: The text editing customizations to encode.
+    /// - Returns: The XML property list, or `nil` if no commands are customized.
+    /// - Throws: If encoding fails.
+    private func userSettingsData(for keyBindings: TextKeyBindingMap) throws -> Data? {
+        
+        guard keyBindings.isCustomized else { return nil }
+        
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .xml
+        
+        return try encoder.encode(keyBindings)
+    }
+    
+    
     /// Saves the passed-in key binding settings to a file.
     ///
     /// - Parameter keyBindings: The key bindings to save.
@@ -236,7 +362,7 @@ import URLUtils
             try data.write(to: fileURL)
             
         } else {
-            try self.removeSettingFile()
+            try self.removeSettingFile(at: self.settingFileURL)
         }
         
         // store new values

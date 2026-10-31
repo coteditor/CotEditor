@@ -302,6 +302,100 @@
         }
       }
     },
+    "NewFeature.textKeyBinding.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passe die Kurzbefehle zum Bewegen der Einfügemarke sowie zum Auswählen und Löschen von Text an, damit sich deine Finger ganz wie zu Hause fühlen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Customize shortcuts for moving the insertion point, selecting, and deleting text, so your fingers feel right at home."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Customise shortcuts for moving the insertion point, selecting, and deleting text, so your fingers feel right at home."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Personaliza los atajos para mover el punto de inserción, seleccionar y eliminar texto, y haz que tus dedos se sientan como en casa."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Personnalisez les raccourcis pour déplacer le point d’insertion, sélectionner et supprimer du texte, et vos doigts se sentiront comme chez eux."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "挿入ポイントの移動やテキストの選択・削除に使うショートカットを、カスタマイズできるようになりました。いつもの指づかいで、もっと快適に。"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pas de toetscombinaties aan voor het verplaatsen van het invoegpunt en het selecteren en verwijderen van tekst, zodat je vingers zich meteen thuis voelen."
+          }
+        }
+      }
+    },
+    "NewFeature.textKeyBinding.label" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Tasten, deine Regeln"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your keys, your rules"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your keys, your rules"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tus teclas, tus reglas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Vos touches, vos règles"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キー操作は自分流に"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Jouw toetsen, jouw regels"
+          }
+        }
+      }
+    },
     "Release Notes" : {
       "localizations" : {
         "cs" : {
