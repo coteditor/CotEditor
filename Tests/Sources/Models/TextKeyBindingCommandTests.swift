@@ -81,6 +81,13 @@ import Shortcut
     }
     
     
+    /// Tests that the categories list all commands in the declaration order.
+    @Test func categoriesKeepOrder() {
+        
+        #expect(TextKeyBindingCommand.Category.allCases.flatMap(\.commands) == TextKeyBindingCommand.allCases)
+    }
+    
+    
     /// Tests that no default shortcut is shared by multiple commands.
     @Test func uniqueDefaultShortcuts() {
         

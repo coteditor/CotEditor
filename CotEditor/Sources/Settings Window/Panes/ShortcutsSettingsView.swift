@@ -294,7 +294,7 @@ private struct TextShortcutTable: View {
     
     var body: some View {
         
-        Table(TextKeyBindingCommand.allCases, selection: $selection) {
+        Table(of: TextKeyBindingCommand.self, selection: $selection) {
             TableColumn(.init("Command", table: "ShortcutsSettings", comment: "table column header")) { command in
                 Text(command.label)
                     .bold(self.model.textKeyBindings.customizations[command] != nil)
@@ -304,6 +304,15 @@ private struct TextShortcutTable: View {
                 TextShortcutFields(model: self.model, command: command)
             }
             .width(160)
+            
+        } rows: {
+            ForEach(TextKeyBindingCommand.Category.allCases, id: \.self) { category in
+                Section(category.label) {
+                    ForEach(category.commands) { command in
+                        TableRow(command)
+                    }
+                }
+            }
         }
         .contextMenu(forSelectionType: TextKeyBindingCommand.self) { commands in
             if let command = commands.first {

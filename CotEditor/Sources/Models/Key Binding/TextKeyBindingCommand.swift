@@ -30,6 +30,23 @@ import Shortcut
 
 enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
     
+    enum Category: CaseIterable {
+        
+        case movement
+        case selection
+        case scrolling
+        case deletion
+        case editing
+        
+        
+        /// The commands in the category.
+        var commands: [TextKeyBindingCommand] {
+            
+            TextKeyBindingCommand.allCases.filter { $0.category == self }
+        }
+    }
+    
+    
     case moveForward
     case moveBackward
     case moveUp
@@ -86,6 +103,42 @@ enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
     case yank
     
     var id: Self { self }
+    
+    
+    /// The category to group the command.
+    var category: Category {
+        
+        switch self {
+            case .moveForward, .moveBackward, .moveUp, .moveDown,
+                 .moveWordForward, .moveWordBackward, .moveWordLeft, .moveWordRight,
+                 .moveToLeftEndOfLine, .moveToRightEndOfLine,
+                 .moveToBeginningOfParagraph, .moveToEndOfParagraph,
+                 .pageUp, .pageDown,
+                 .moveToBeginningOfDocument, .moveToEndOfDocument:
+                .movement
+            case .moveForwardAndModifySelection, .moveBackwardAndModifySelection,
+                 .moveLeftAndModifySelection, .moveRightAndModifySelection,
+                 .moveUpAndModifySelection, .moveDownAndModifySelection,
+                 .moveWordForwardAndModifySelection, .moveWordBackwardAndModifySelection,
+                 .moveWordLeftAndModifySelection, .moveWordRightAndModifySelection,
+                 .moveToLeftEndOfLineAndModifySelection, .moveToRightEndOfLineAndModifySelection,
+                 .moveToBeginningOfParagraphAndModifySelection, .moveToEndOfParagraphAndModifySelection,
+                 .moveParagraphBackwardAndModifySelection, .moveParagraphForwardAndModifySelection,
+                 .pageUpAndModifySelection, .pageDownAndModifySelection,
+                 .moveToBeginningOfDocumentAndModifySelection, .moveToEndOfDocumentAndModifySelection:
+                .selection
+            case .scrollLineUp, .scrollLineDown,
+                 .scrollPageUp, .scrollPageDown,
+                 .scrollToBeginningOfDocument, .scrollToEndOfDocument:
+                .scrolling
+            case .deleteWordBackward, .deleteWordForward,
+                 .deleteToBeginningOfLine, .deleteToEndOfLine,
+                 .deleteToBeginningOfParagraph, .deleteToEndOfParagraph:
+                .deletion
+            case .transpose, .yank:
+                .editing
+        }
+    }
     
     
     /// The default shortcuts in their canonical key representations.
@@ -495,4 +548,30 @@ enum TextKeyBindingCommand: CaseIterable, Hashable, Identifiable {
         #selector((any NSStandardKeyBindingResponding).deleteForward),
         #selector((any NSStandardKeyBindingResponding).deleteBackwardByDecomposingPreviousCharacter),
     ]
+}
+
+
+extension TextKeyBindingCommand.Category {
+    
+    /// The localized category name.
+    var label: LocalizedStringResource {
+        
+        switch self {
+            case .movement:
+                .init("TextKeyBindingCommand.Category.movement",
+                      defaultValue: "Movement", table: "TextKeyBindingCommand")
+            case .selection:
+                .init("TextKeyBindingCommand.Category.selection",
+                      defaultValue: "Selection", table: "TextKeyBindingCommand")
+            case .scrolling:
+                .init("TextKeyBindingCommand.Category.scrolling",
+                      defaultValue: "Scrolling", table: "TextKeyBindingCommand")
+            case .deletion:
+                .init("TextKeyBindingCommand.Category.deletion",
+                      defaultValue: "Deletion", table: "TextKeyBindingCommand")
+            case .editing:
+                .init("TextKeyBindingCommand.Category.editing",
+                      defaultValue: "Editing", table: "TextKeyBindingCommand")
+        }
+    }
 }
