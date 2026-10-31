@@ -4,6 +4,12 @@
     "TextKeyBindingCommand.Category.deletion" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mazání"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34,10 +40,28 @@
             "value" : "Suppression"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "डिलीट करना"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Eliminazione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "삭제"
           }
         },
         "nl" : {
@@ -45,12 +69,66 @@
             "state" : "needs_review",
             "value" : "Verwijderen"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Usuwanie"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Exclusão"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Удаление"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Silme"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Видалення"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "删除"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除"
+          }
         }
       }
     },
     "TextKeyBindingCommand.Category.editing" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Úpravy"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -81,10 +159,28 @@
             "value" : "Édition"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "संपादन"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Modifica"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "編集"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "편집"
           }
         },
         "nl" : {
@@ -92,12 +188,66 @@
             "state" : "needs_review",
             "value" : "Bewerken"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Edycja"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Edição"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Правка"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Düzenleme"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Редагування"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "編輯"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "编辑"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "編輯"
+          }
         }
       }
     },
     "TextKeyBindingCommand.Category.movement" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesun"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -128,10 +278,28 @@
             "value" : "Déplacement"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "संचलन"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Spostamento"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "이동"
           }
         },
         "nl" : {
@@ -139,12 +307,66 @@
             "state" : "needs_review",
             "value" : "Verplaatsen"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przemieszczanie"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Movimentação"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемещение"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hareket"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переміщення"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移動"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移动"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移動"
+          }
         }
       }
     },
     "TextKeyBindingCommand.Category.scrolling" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Posouvání"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -175,10 +397,28 @@
             "value" : "Défilement"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "स्क्रॉलिंग"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scorrimento"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "スクロール"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "스크롤"
           }
         },
         "nl" : {
@@ -186,12 +426,66 @@
             "state" : "needs_review",
             "value" : "Scrollen"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przewijanie"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rolagem"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокрутка"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kaydırma"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокручування"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "捲動"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "滚动"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "捲動"
+          }
         }
       }
     },
     "TextKeyBindingCommand.Category.selection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Výběr"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -222,10 +516,28 @@
             "value" : "Sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택"
           }
         },
         "nl" : {
@@ -233,12 +545,66 @@
             "state" : "needs_review",
             "value" : "Selectie"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zaznaczanie"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Выделение"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçim"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Виділення"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "選擇"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "选择"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "選擇"
+          }
         }
       }
     },
     "TextKeyBindingCommand.deleteToBeginningOfLine" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Smazat do začátku řádku"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -269,10 +635,28 @@
             "value" : "Supprimer jusqu’au début de la ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "पंक्ति के आरंभ तक डिलीट करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Elimina fino all’inizio della riga"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "行の先頭まで削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "줄의 시작 위치까지 삭제"
           }
         },
         "nl" : {
@@ -280,12 +664,66 @@
             "state" : "needs_review",
             "value" : "Verwijder tot begin van regel"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Usuń do początku wiersza"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Apagar até o Início da Linha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Удалить до начала строки"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Satırın Başına Kadar Sil"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Видалити до початку рядка"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除至行首"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "删除到行首"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除到行首"
+          }
         }
       }
     },
     "TextKeyBindingCommand.deleteToBeginningOfParagraph" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Smazat do začátku odstavce"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -316,10 +754,28 @@
             "value" : "Supprimer jusqu’au début du paragraphe"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "अनुच्छेद के आरंभ तक डिलीट करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Elimina fino all’inizio del paragrafo"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "段落の先頭まで削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "단락의 시작 위치까지 삭제"
           }
         },
         "nl" : {
@@ -327,12 +783,66 @@
             "state" : "needs_review",
             "value" : "Verwijder tot begin van alinea"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Usuń do początku akapitu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Apagar até o Início do Parágrafo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Удалить до начала абзаца"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Paragrafın Başına Kadar Sil"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Видалити до початку абзацу"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除至段落開頭"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "删除到段落开头"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除到段落開頭"
+          }
         }
       }
     },
     "TextKeyBindingCommand.deleteToEndOfLine" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Smazat do konce řádku"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -363,10 +873,28 @@
             "value" : "Supprimer jusqu’à la fin de la ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "पंक्ति के अंत तक डिलीट करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Elimina fino alla fine della riga"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "行の末尾まで削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "줄의 끝까지 삭제"
           }
         },
         "nl" : {
@@ -374,12 +902,66 @@
             "state" : "needs_review",
             "value" : "Verwijder tot einde van regel"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Usuń do końca wiersza"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Apagar até o Final da Linha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Удалить до конца строки"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Satırın Sonuna Kadar Sil"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Видалити до кінця рядка"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除至行尾"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "删除到行尾"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除到行尾"
+          }
         }
       }
     },
     "TextKeyBindingCommand.deleteToEndOfParagraph" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Smazat do konce odstavce"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -410,10 +992,28 @@
             "value" : "Supprimer jusqu’à la fin du paragraphe"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "अनुच्छेद के अंत तक डिलीट करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Elimina fino alla fine del paragrafo"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "段落の末尾まで削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "단락의 끝까지 삭제"
           }
         },
         "nl" : {
@@ -421,12 +1021,66 @@
             "state" : "needs_review",
             "value" : "Verwijder tot einde van alinea"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Usuń do końca akapitu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Apagar até o Final do Parágrafo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Удалить до конца абзаца"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Paragrafın Sonuna Kadar Sil"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Видалити до кінця абзацу"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除至段落結尾"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "删除到段落末尾"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除到段落結尾"
+          }
         }
       }
     },
     "TextKeyBindingCommand.deleteWordBackward" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Smazat předchozí slovo"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -457,10 +1111,28 @@
             "value" : "Supprimer le mot précédent"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "पिछला शब्द डिलीट करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Elimina parola precedente"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "前の単語を削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "이전 단어 삭제"
           }
         },
         "nl" : {
@@ -468,12 +1140,66 @@
             "state" : "needs_review",
             "value" : "Verwijder vorig woord"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Usuń poprzedni wyraz"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Apagar Palavra Anterior"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Удалить предыдущее слово"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Önceki Sözcüğü Sil"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Видалити попереднє слово"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除前一個字詞"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "删除前一个单词"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除前一個單字"
+          }
         }
       }
     },
     "TextKeyBindingCommand.deleteWordForward" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Smazat následující slovo"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -504,10 +1230,28 @@
             "value" : "Supprimer le mot suivant"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "अगला शब्द डिलीट करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Elimina parola successiva"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "次の単語を削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "다음 단어 삭제"
           }
         },
         "nl" : {
@@ -515,12 +1259,66 @@
             "state" : "needs_review",
             "value" : "Verwijder volgend woord"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Usuń następny wyraz"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Apagar Próxima Palavra"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Удалить следующее слово"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sonraki Sözcüğü Sil"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Видалити наступне слово"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除後一個字詞"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "删除后一个单词"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "刪除後一個單字"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveBackward" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o znak dozadu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -551,10 +1349,28 @@
             "value" : "Reculer d’un caractère"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक वर्ण पीछे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta indietro di un carattere"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1文字戻る"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "한 문자 뒤로 이동"
           }
         },
         "nl" : {
@@ -562,12 +1378,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één teken naar achteren"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o znak do tyłu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover um Caractere para Trás"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на символ назад"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Karakter Geri Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на символ назад"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向後移動一個字元"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向后移动一个字符"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向後移動一個字元"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveBackwardAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o znak dozadu s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -598,10 +1468,28 @@
             "value" : "Reculer d’un caractère en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए एक वर्ण पीछे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta indietro di un carattere estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら1文字戻る"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 한 문자 뒤로 이동"
           }
         },
         "nl" : {
@@ -609,12 +1497,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één teken naar achteren en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o znak do tyłu z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover um Caractere para Trás Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на символ назад с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Bir Karakter Geri Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на символ назад з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向後移動一個字元並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向后移动一个字符并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向後移動一個字元並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveDown" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o řádek dolů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -645,10 +1587,28 @@
             "value" : "Descendre d’une ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक पंक्ति नीचे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta giù di una riga"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1行下に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "한 줄 아래로 이동"
           }
         },
         "nl" : {
@@ -656,12 +1616,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één regel omlaag"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o wiersz w dół"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Linha para Baixo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на строку вниз"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Satır Aşağı Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на рядок униз"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "下移一行"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "下移一行"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "下移一行"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveDownAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o řádek dolů s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -692,10 +1706,28 @@
             "value" : "Descendre d’une ligne en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए एक पंक्ति नीचे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta giù di una riga estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら1行下に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 한 줄 아래로 이동"
           }
         },
         "nl" : {
@@ -703,12 +1735,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één regel omlaag en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o wiersz w dół z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Linha para Baixo Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на строку вниз с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Bir Satır Aşağı Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на рядок униз з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "下移一行並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "下移一行并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "下移一行並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveForward" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o znak dopředu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -739,10 +1825,28 @@
             "value" : "Avancer d’un caractère"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक वर्ण आगे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta avanti di un carattere"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1文字進む"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "한 문자 앞으로 이동"
           }
         },
         "nl" : {
@@ -750,12 +1854,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één teken naar voren"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o znak do przodu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover um Caractere para Frente"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на символ вперед"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Karakter İleri Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на символ уперед"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移動一個字元"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移动一个字符"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移動一個字元"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveForwardAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o znak dopředu s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -786,10 +1944,28 @@
             "value" : "Avancer d’un caractère en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए एक वर्ण आगे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta avanti di un carattere estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら1文字進む"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 한 문자 앞으로 이동"
           }
         },
         "nl" : {
@@ -797,12 +1973,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één teken naar voren en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o znak do przodu z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover um Caractere para Frente Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на символ вперед с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Bir Karakter İleri Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на символ уперед з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移動一個字元並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移动一个字符并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移動一個字元並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveLeftAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout doleva s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -833,10 +2063,28 @@
             "value" : "Déplacer vers la gauche en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए बाएँ जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta a sinistra estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら左に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 왼쪽으로 이동"
           }
         },
         "nl" : {
@@ -844,12 +2092,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar links en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź w lewo z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover à Esquerda Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить влево с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Sola Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити ліворуч з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向左移動並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向左移动并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向左移動並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveParagraphBackwardAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o odstavec dozadu s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -880,10 +2182,28 @@
             "value" : "Reculer d’un paragraphe en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए एक अनुच्छेद पीछे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta indietro di un paragrafo estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら段落単位で戻る"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 단락 단위로 뒤로 이동"
           }
         },
         "nl" : {
@@ -891,12 +2211,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één alinea naar achteren en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o akapit do tyłu z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover um Parágrafo para Trás Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на абзац назад с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Bir Paragraf Geri Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на абзац назад з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向後移動一個段落並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向后移动一个段落并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向後移動一個段落並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveParagraphForwardAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o odstavec dopředu s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -927,10 +2301,28 @@
             "value" : "Avancer d’un paragraphe en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए एक अनुच्छेद आगे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta avanti di un paragrafo estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら段落単位で進む"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 단락 단위로 앞으로 이동"
           }
         },
         "nl" : {
@@ -938,12 +2330,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één alinea naar voren en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o akapit do przodu z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover um Parágrafo para Frente Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на абзац вперед с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Bir Paragraf İleri Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на абзац уперед з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移動一個段落並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移动一个段落并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移動一個段落並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveRightAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout doprava s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -974,10 +2420,28 @@
             "value" : "Déplacer vers la droite en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए दाएँ जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta a destra estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら右に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 오른쪽으로 이동"
           }
         },
         "nl" : {
@@ -985,12 +2449,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar rechts en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź w prawo z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover à Direita Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить вправо с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Sağa Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити праворуч з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向右移動並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向右移动并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向右移動並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveToBeginningOfDocument" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout na začátek dokumentu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1021,10 +2539,28 @@
             "value" : "Aller au début du document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "दस्तावेज़ के आरंभ में जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta all’inizio del documento"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類の先頭に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "문서의 시작 위치로 이동"
           }
         },
         "nl" : {
@@ -1032,12 +2568,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar begin van document"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź do początku dokumentu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover ao Início do Documento"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить в начало документа"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Belgenin Başına Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на початок документа"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到文件開頭"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移至文稿开头"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到文件開頭"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveToBeginningOfDocumentAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout na začátek dokumentu s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1068,10 +2658,28 @@
             "value" : "Aller au début du document en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए दस्तावेज़ के आरंभ में जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta all’inizio del documento estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら書類の先頭に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 문서의 시작 위치로 이동"
           }
         },
         "nl" : {
@@ -1079,12 +2687,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar begin van document en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź do początku dokumentu z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover ao Início do Documento Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить в начало документа с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Belgenin Başına Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на початок документа з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到文件開頭並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移至文稿开头并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到文件開頭並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveToBeginningOfParagraph" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout na začátek odstavce"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1115,10 +2777,28 @@
             "value" : "Aller au début du paragraphe"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "अनुच्छेद के आरंभ में जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta all’inizio del paragrafo"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "段落の先頭に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "단락의 시작 위치로 이동"
           }
         },
         "nl" : {
@@ -1126,12 +2806,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar begin van alinea"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź do początku akapitu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover ao Início do Parágrafo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить в начало абзаца"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Paragrafın Başına Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на початок абзацу"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到段落開頭"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移至段落开头"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到段落開頭"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveToBeginningOfParagraphAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout na začátek odstavce s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1162,10 +2896,28 @@
             "value" : "Aller au début du paragraphe en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए अनुच्छेद के आरंभ में जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta all’inizio del paragrafo estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら段落の先頭に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 단락의 시작 위치로 이동"
           }
         },
         "nl" : {
@@ -1173,12 +2925,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar begin van alinea en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź do początku akapitu z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover ao Início do Parágrafo Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить в начало абзаца с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Paragrafın Başına Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на початок абзацу з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到段落開頭並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移至段落开头并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到段落開頭並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveToEndOfDocument" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout na konec dokumentu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1209,10 +3015,28 @@
             "value" : "Aller à la fin du document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "दस्तावेज़ के अंत में जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta alla fine del documento"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類の末尾に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "문서의 끝으로 이동"
           }
         },
         "nl" : {
@@ -1220,12 +3044,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar einde van document"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź do końca dokumentu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover ao Final do Documento"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить в конец документа"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Belgenin Sonuna Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити в кінець документа"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到文件結尾"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移至文稿末尾"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到文件結尾"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveToEndOfDocumentAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout na konec dokumentu s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1256,10 +3134,28 @@
             "value" : "Aller à la fin du document en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए दस्तावेज़ के अंत में जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta alla fine del documento estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら書類の末尾に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 문서의 끝으로 이동"
           }
         },
         "nl" : {
@@ -1267,12 +3163,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar einde van document en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź do końca dokumentu z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover ao Final do Documento Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить в конец документа с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Belgenin Sonuna Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити в кінець документа з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到文件結尾並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移至文稿末尾并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到文件結尾並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveToEndOfParagraph" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout na konec odstavce"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1303,10 +3253,28 @@
             "value" : "Aller à la fin du paragraphe"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "अनुच्छेद के अंत में जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta alla fine del paragrafo"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "段落の末尾に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "단락의 끝으로 이동"
           }
         },
         "nl" : {
@@ -1314,12 +3282,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar einde van alinea"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź do końca akapitu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover ao Final do Parágrafo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить в конец абзаца"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Paragrafın Sonuna Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити в кінець абзацу"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到段落結尾"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移至段落末尾"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到段落結尾"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveToEndOfParagraphAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout na konec odstavce s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1350,10 +3372,28 @@
             "value" : "Aller à la fin du paragraphe en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए अनुच्छेद के अंत में जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta alla fine del paragrafo estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら段落の末尾に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 단락의 끝으로 이동"
           }
         },
         "nl" : {
@@ -1361,12 +3401,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar einde van alinea en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź do końca akapitu z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover ao Final do Parágrafo Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить в конец абзаца с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Paragrafın Sonuna Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити в кінець абзацу з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到段落結尾並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移至段落末尾并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到段落結尾並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveToLeftEndOfLine" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout na levý konec řádku"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1397,10 +3491,28 @@
             "value" : "Aller à l’extrémité gauche de la ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "पंक्ति के बाएँ छोर पर जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta all’estremo sinistro della riga"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "行の左端に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "줄의 왼쪽 끝으로 이동"
           }
         },
         "nl" : {
@@ -1408,12 +3520,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar linkereinde van regel"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź do lewego końca wiersza"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover ao Extremo Esquerdo da Linha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить в левый конец строки"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Satırın Sol Ucuna Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити в лівий кінець рядка"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到行的左端"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移至行的左端"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到行的左端"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveToLeftEndOfLineAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout na levý konec řádku s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1444,10 +3610,28 @@
             "value" : "Aller à l’extrémité gauche de la ligne en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए पंक्ति के बाएँ छोर पर जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta all’estremo sinistro della riga estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら行の左端に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 줄의 왼쪽 끝으로 이동"
           }
         },
         "nl" : {
@@ -1455,12 +3639,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar linkereinde van regel en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź do lewego końca wiersza z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover ao Extremo Esquerdo da Linha Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить в левый конец строки с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Satırın Sol Ucuna Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити в лівий кінець рядка з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到行的左端並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移至行的左端并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到行的左端並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveToRightEndOfLine" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout na pravý konec řádku"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1491,10 +3729,28 @@
             "value" : "Aller à l’extrémité droite de la ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "पंक्ति के दाएँ छोर पर जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta all’estremo destro della riga"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "行の右端に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "줄의 오른쪽 끝으로 이동"
           }
         },
         "nl" : {
@@ -1502,12 +3758,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar rechtereinde van regel"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź do prawego końca wiersza"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover ao Extremo Direito da Linha"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить в правый конец строки"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Satırın Sağ Ucuna Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити в правий кінець рядка"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到行的右端"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移至行的右端"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到行的右端"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveToRightEndOfLineAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout na pravý konec řádku s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1538,10 +3848,28 @@
             "value" : "Aller à l’extrémité droite de la ligne en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए पंक्ति के दाएँ छोर पर जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta all’estremo destro della riga estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら行の右端に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 줄의 오른쪽 끝으로 이동"
           }
         },
         "nl" : {
@@ -1549,12 +3877,66 @@
             "state" : "needs_review",
             "value" : "Verplaats naar rechtereinde van regel en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź do prawego końca wiersza z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover ao Extremo Direito da Linha Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить в правый конец строки с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Satırın Sağ Ucuna Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити в правий кінець рядка з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到行的右端並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移至行的右端并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "移到行的右端並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveUp" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o řádek nahoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1585,10 +3967,28 @@
             "value" : "Monter d’une ligne"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक पंक्ति ऊपर जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta su di una riga"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1行上に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "한 줄 위로 이동"
           }
         },
         "nl" : {
@@ -1596,12 +3996,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één regel omhoog"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o wiersz w górę"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Linha para Cima"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на строку вверх"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Satır Yukarı Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на рядок угору"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "上移一行"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "上移一行"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "上移一行"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveUpAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o řádek nahoru s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1632,10 +4086,28 @@
             "value" : "Monter d’une ligne en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए एक पंक्ति ऊपर जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta su di una riga estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら1行上に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 한 줄 위로 이동"
           }
         },
         "nl" : {
@@ -1643,12 +4115,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één regel omhoog en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o wiersz w górę z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Linha para Cima Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на строку вверх с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Bir Satır Yukarı Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на рядок угору з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "上移一行並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "上移一行并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "上移一行並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveWordBackward" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o slovo dozadu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1679,10 +4205,28 @@
             "value" : "Reculer d’un mot"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक शब्द पीछे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta indietro di una parola"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "単語単位で戻る"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "단어 단위로 뒤로 이동"
           }
         },
         "nl" : {
@@ -1690,12 +4234,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één woord naar achteren"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o wyraz do tyłu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Palavra para Trás"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на слово назад"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Sözcük Geri Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на слово назад"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向後移動一個字詞"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向后移动一个单词"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向後移動一個單字"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveWordBackwardAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o slovo dozadu s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1726,10 +4324,28 @@
             "value" : "Reculer d’un mot en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए एक शब्द पीछे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta indietro di una parola estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら単語単位で戻る"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 단어 단위로 뒤로 이동"
           }
         },
         "nl" : {
@@ -1737,12 +4353,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één woord naar achteren en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o wyraz do tyłu z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Palavra para Trás Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на слово назад с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Bir Sözcük Geri Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на слово назад з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向後移動一個字詞並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向后移动一个单词并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向後移動一個單字並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveWordForward" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o slovo dopředu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1773,10 +4443,28 @@
             "value" : "Avancer d’un mot"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक शब्द आगे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta avanti di una parola"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "単語単位で進む"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "단어 단위로 앞으로 이동"
           }
         },
         "nl" : {
@@ -1784,12 +4472,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één woord naar voren"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o wyraz do przodu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Palavra para Frente"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на слово вперед"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Sözcük İleri Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на слово вперед"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移動一個字詞"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移动一个单词"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移動一個單字"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveWordForwardAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o slovo dopředu s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1820,10 +4562,28 @@
             "value" : "Avancer d’un mot en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए एक शब्द आगे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta avanti di una parola estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら単語単位で進む"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 단어 단위로 앞으로 이동"
           }
         },
         "nl" : {
@@ -1831,12 +4591,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één woord naar voren en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o wyraz do przodu z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Palavra para Frente Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на слово вперед с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Bir Sözcük İleri Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на слово вперед з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移動一個字詞並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移动一个单词并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向前移動一個單字並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveWordLeft" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o slovo doleva"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1867,10 +4681,28 @@
             "value" : "Déplacer d’un mot vers la gauche"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक शब्द बाएँ जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta a sinistra di una parola"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "単語単位で左に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "단어 단위로 왼쪽으로 이동"
           }
         },
         "nl" : {
@@ -1878,12 +4710,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één woord naar links"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o wyraz w lewo"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Palavra à Esquerda"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на слово влево"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Sözcük Sola Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на слово ліворуч"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向左移動一個字詞"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向左移动一个单词"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向左移動一個單字"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveWordLeftAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o slovo doleva s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1914,10 +4800,28 @@
             "value" : "Déplacer d’un mot vers la gauche en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए एक शब्द बाएँ जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta a sinistra di una parola estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら単語単位で左に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 단어 단위로 왼쪽으로 이동"
           }
         },
         "nl" : {
@@ -1925,12 +4829,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één woord naar links en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o wyraz w lewo z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Palavra à Esquerda Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на слово влево с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Bir Sözcük Sola Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на слово ліворуч з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向左移動一個字詞並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向左移动一个单词并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向左移動一個單字並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveWordRight" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o slovo doprava"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1961,10 +4919,28 @@
             "value" : "Déplacer d’un mot vers la droite"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक शब्द दाएँ जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta a destra di una parola"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "単語単位で右に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "단어 단위로 오른쪽으로 이동"
           }
         },
         "nl" : {
@@ -1972,12 +4948,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één woord naar rechts"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o wyraz w prawo"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Palavra à Direita"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на слово вправо"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Sözcük Sağa Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на слово праворуч"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向右移動一個字詞"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向右移动一个单词"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向右移動一個單字"
+          }
         }
       }
     },
     "TextKeyBindingCommand.moveWordRightAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o slovo doprava s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2008,10 +5038,28 @@
             "value" : "Déplacer d’un mot vers la droite en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए एक शब्द दाएँ जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta a destra di una parola estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら単語単位で右に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 단어 단위로 오른쪽으로 이동"
           }
         },
         "nl" : {
@@ -2019,12 +5067,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één woord naar rechts en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o wyraz w prawo z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Palavra à Direita Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на слово вправо с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Bir Sözcük Sağa Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на слово праворуч з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向右移動一個字詞並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向右移动一个单词并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向右移動一個單字並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.pageDown" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o stránku dolů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2055,10 +5157,28 @@
             "value" : "Descendre d’une page"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक पृष्ठ नीचे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta giù di una pagina"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1ページ下に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "한 페이지 아래로 이동"
           }
         },
         "nl" : {
@@ -2066,12 +5186,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één pagina omlaag"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o stronę w dół"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Página para Baixo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на страницу вниз"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Sayfa Aşağı Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на сторінку вниз"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "下移一頁"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "下移一页"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "下移一頁"
+          }
         }
       }
     },
     "TextKeyBindingCommand.pageDownAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o stránku dolů s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2102,10 +5276,28 @@
             "value" : "Descendre d’une page en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए एक पृष्ठ नीचे जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta giù di una pagina estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら1ページ下に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 한 페이지 아래로 이동"
           }
         },
         "nl" : {
@@ -2113,12 +5305,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één pagina omlaag en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o stronę w dół z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Página para Baixo Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на страницу вниз с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Bir Sayfa Aşağı Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на сторінку вниз з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "下移一頁並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "下移一页并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "下移一頁並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.pageUp" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o stránku nahoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2149,10 +5395,28 @@
             "value" : "Monter d’une page"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक पृष्ठ ऊपर जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta su di una pagina"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1ページ上に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "한 페이지 위로 이동"
           }
         },
         "nl" : {
@@ -2160,12 +5424,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één pagina omhoog"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o stronę w górę"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Página para Cima"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на страницу вверх"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Sayfa Yukarı Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на сторінку вгору"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "上移一頁"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "上移一页"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "上移一頁"
+          }
         }
       }
     },
     "TextKeyBindingCommand.pageUpAndModifySelection" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přesunout o stránku nahoru s rozšířením výběru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2196,10 +5514,28 @@
             "value" : "Monter d’une page en étendant la sélection"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "चयन बढ़ाते हुए एक पृष्ठ ऊपर जाएँ"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sposta su di una pagina estendendo la selezione"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択しながら1ページ上に移動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "선택 부분을 확장하며 한 페이지 위로 이동"
           }
         },
         "nl" : {
@@ -2207,12 +5543,66 @@
             "state" : "needs_review",
             "value" : "Verplaats één pagina omhoog en breid selectie uit"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przejdź o stronę w górę z zaznaczeniem"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mover uma Página para Cima Estendendo a Seleção"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Переместить на страницу вверх с выделением"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seçimi Genişleterek Bir Sayfa Yukarı Git"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Перемістити на сторінку вгору з виділенням"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "上移一頁並延伸選擇範圍"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "上移一页并扩展选择范围"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "上移一頁並延伸所選範圍"
+          }
         }
       }
     },
     "TextKeyBindingCommand.scrollLineDown" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Posunout obrazovku o řádek dolů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2243,10 +5633,28 @@
             "value" : "Faire défiler d’une ligne vers le bas"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक पंक्ति नीचे स्क्रॉल करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scorri giù di una riga"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1行下にスクロール"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "한 줄 아래로 스크롤"
           }
         },
         "nl" : {
@@ -2254,12 +5662,66 @@
             "state" : "needs_review",
             "value" : "Scrol één regel omlaag"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przewiń o wiersz w dół"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rolar uma Linha para Baixo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокрутить на строку вниз"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Satır Aşağı Kaydır"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокрутити на рядок униз"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向下捲動一行"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向下滚动一行"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向下捲動一行"
+          }
         }
       }
     },
     "TextKeyBindingCommand.scrollLineUp" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Posunout obrazovku o řádek nahoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2290,10 +5752,28 @@
             "value" : "Faire défiler d’une ligne vers le haut"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक पंक्ति ऊपर स्क्रॉल करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scorri su di una riga"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1行上にスクロール"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "한 줄 위로 스크롤"
           }
         },
         "nl" : {
@@ -2301,12 +5781,66 @@
             "state" : "needs_review",
             "value" : "Scrol één regel omhoog"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przewiń o wiersz w górę"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rolar uma Linha para Cima"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокрутить на строку вверх"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Satır Yukarı Kaydır"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокрутити на рядок угору"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向上捲動一行"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向上滚动一行"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向上捲動一行"
+          }
         }
       }
     },
     "TextKeyBindingCommand.scrollPageDown" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Posunout obrazovku o stránku dolů"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2337,10 +5871,28 @@
             "value" : "Faire défiler d’une page vers le bas"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक पृष्ठ नीचे स्क्रॉल करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scorri giù di una pagina"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1ページ下にスクロール"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "한 페이지 아래로 스크롤"
           }
         },
         "nl" : {
@@ -2348,12 +5900,66 @@
             "state" : "needs_review",
             "value" : "Scrol één pagina omlaag"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przewiń o stronę w dół"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rolar uma Página para Baixo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокрутить на страницу вниз"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Sayfa Aşağı Kaydır"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокрутити на сторінку вниз"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向下捲動一頁"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向下滚动一页"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向下捲動一頁"
+          }
         }
       }
     },
     "TextKeyBindingCommand.scrollPageUp" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Posunout obrazovku o stránku nahoru"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2384,10 +5990,28 @@
             "value" : "Faire défiler d’une page vers le haut"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "एक पृष्ठ ऊपर स्क्रॉल करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scorri su di una pagina"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1ページ上にスクロール"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "한 페이지 위로 스크롤"
           }
         },
         "nl" : {
@@ -2395,12 +6019,66 @@
             "state" : "needs_review",
             "value" : "Scrol één pagina omhoog"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przewiń o stronę w górę"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rolar uma Página para Cima"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокрутить на страницу вверх"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bir Sayfa Yukarı Kaydır"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокрутити на сторінку вгору"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向上捲動一頁"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向上滚动一页"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "向上捲動一頁"
+          }
         }
       }
     },
     "TextKeyBindingCommand.scrollToBeginningOfDocument" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Posunout obrazovku na začátek dokumentu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2431,10 +6109,28 @@
             "value" : "Faire défiler jusqu’au début du document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "दस्तावेज़ के आरंभ तक स्क्रॉल करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scorri all’inizio del documento"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類の先頭までスクロール"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "문서의 시작 위치로 스크롤"
           }
         },
         "nl" : {
@@ -2442,12 +6138,66 @@
             "state" : "needs_review",
             "value" : "Scrol naar begin van document"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przewiń do początku dokumentu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rolar para o Início do Documento"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокрутить к началу документа"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Belgenin Başına Kaydır"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокрутити на початок документа"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "捲動到文件開頭"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "滚动到文稿开头"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "捲動到文件開頭"
+          }
         }
       }
     },
     "TextKeyBindingCommand.scrollToEndOfDocument" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Posunout obrazovku na konec dokumentu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2478,10 +6228,28 @@
             "value" : "Faire défiler jusqu’à la fin du document"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "दस्तावेज़ के अंत तक स्क्रॉल करें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Scorri alla fine del documento"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "書類の末尾までスクロール"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "문서의 끝으로 스크롤"
           }
         },
         "nl" : {
@@ -2489,12 +6257,66 @@
             "state" : "needs_review",
             "value" : "Scrol naar einde van document"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Przewiń do końca dokumentu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rolar para o Final do Documento"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокрутить к концу документа"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Belgenin Sonuna Kaydır"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Прокрутити в кінець документа"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "捲動到文件結尾"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "滚动到文稿末尾"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "捲動到文件結尾"
+          }
         }
       }
     },
     "TextKeyBindingCommand.transpose" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Prohodit znaky"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2525,10 +6347,28 @@
             "value" : "Intervertir les caractères"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "आगे-पीछे के वर्ण बदलें"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Inverti caratteri"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "前後の文字を入れ替え"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "앞뒤 문자 바꾸기"
           }
         },
         "nl" : {
@@ -2536,12 +6376,66 @@
             "state" : "needs_review",
             "value" : "Wissel tekens om"
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Zamień znaki miejscami"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Trocar Caracteres"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Поменять символы местами"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Karakterlerin Yerini Değiştir"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Поміняти символи місцями"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "互換前後字元"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "交换前后字符"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "互換前後字元"
+          }
         }
       }
     },
     "TextKeyBindingCommand.yank" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2572,13 +6466,79 @@
             "value" : "Yank"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "ヤンク"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
         "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Yank"

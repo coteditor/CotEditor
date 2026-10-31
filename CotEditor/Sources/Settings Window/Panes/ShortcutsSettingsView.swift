@@ -255,7 +255,7 @@ private struct ShortcutTreeView: View {
                                   validation: { shortcut throws(Shortcut.CustomizationError) in try self.model.validate(shortcut) })
                 }
             }
-            .width(160)
+            .width(120)
             
         } rows: {
             ForEach(self.model.tree) { menu in
@@ -303,7 +303,7 @@ private struct TextShortcutTable: View {
             TableColumn(.init("Key", table: "ShortcutsSettings", comment: "table column header; keyboard shortcut")) { command in
                 TextShortcutFields(model: self.model, command: command)
             }
-            .width(160)
+            .width(120)
             
         } rows: {
             ForEach(TextKeyBindingCommand.Category.allCases, id: \.self) { category in
