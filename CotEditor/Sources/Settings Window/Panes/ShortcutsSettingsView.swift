@@ -37,6 +37,10 @@ struct ShortcutsSettingsView: View {
     }
     
     
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    
+    @Namespace private var namespace
+    
     @State private var model = KeyBindingModel()
     @State private var category: Category = .menu
     
@@ -48,7 +52,7 @@ struct ShortcutsSettingsView: View {
                 .lineLimit(10)
                 .fixedSize(horizontal: false, vertical: true)
             
-            Group {
+            VStack(spacing: 0) {
                 switch self.category {
                     case .menu:
                         ShortcutTreeView(model: self.model)
@@ -59,23 +63,27 @@ struct ShortcutsSettingsView: View {
             .alternatingRowBackgrounds(.disabled)
             .tableColumnHeaders(.hidden)
             .safeAreaBar(edge: .top, alignment: .leading) {
-                Picker(selection: $category) {
+                HStack {
                     ForEach(Category.allCases, id: \.self) { category in
-                        Text(category.label)
-                    }
-                } label: {
-                    EmptyView()
-                }
-                .modifier { content in
-                    if #available(macOS 27, *) {
-                        content
-                            .pickerStyle(.tabs)
-                    } else {
-                        content
-                            .pickerStyle(.segmented)
+                        Button(category.label) {
+                            self.category = category
+                        }
+                        .buttonStyle(TabPickerButtonStyle(isSelected: category == self.category, namespace: self.namespace))
                     }
                 }
-                .labelsHidden()
+                .animation(self.reduceMotion ? nil : .snappy(duration: 0.2), value: self.category)
+                .accessibilityRepresentation {
+                    Picker(selection: $category) {
+                        ForEach(Category.allCases, id: \.self) { category in
+                            Text(category.label)
+                        }
+                    } label: {
+                        EmptyView()
+                    }
+                    .pickerStyle(.segmented)
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 6)
             }
             .scrollEdgeEffectStyle(.hard, for: .top)
             .clipShape(.rect(cornerRadius: 7, style: .continuous))
@@ -355,6 +363,39 @@ private struct TextShortcutFields: View {
         let width = (shortcut.symbol as NSString).size(withAttributes: [.font: NSFont.systemFont(ofSize: 0)]).width
         
         return width + 6
+    }
+}
+
+
+private struct TabPickerButtonStyle: PrimitiveButtonStyle {
+    
+    var isSelected: Bool
+    var namespace: Namespace.ID
+    
+    
+    @Environment(\.colorSchemeContrast) private var contrast
+    
+    @State private var isHovered = false
+    
+    private let shape = RoundedRectangle(cornerRadius: 6)
+    
+    
+    func makeBody(configuration: Configuration) -> some View {
+        
+        Button(configuration)
+            .buttonStyle(.borderless)
+            .fontWeight(.medium)
+            .foregroundStyle((self.isSelected || self.isHovered) ? .primary : .secondary)
+            .padding(.vertical, 2)
+            .padding(.horizontal, 10)
+            .background {
+                if self.isSelected {
+                    self.shape.fill(.fill)
+                        .matchedGeometryEffect(id: "selection", in: self.namespace)
+                }
+            }
+            .overlay(self.contrast == .increased ? self.shape.stroke(.tertiary) : nil)
+            .onHover { self.isHovered = $0 }
     }
 }
 
