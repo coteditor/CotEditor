@@ -129,6 +129,7 @@ public import Observation
                 TCP()
                     .keepalive(idleTimeInSeconds: 30, count: 3, intervalInSeconds: 10)
                     .retransmitConnectionDropTime(30)
+                    .persistTimeout(30)  // drop connections that stop receiving data, for example, through a stalled tunnel
             }
             .localEndpoint(.hostPort(host: .ipv4(.loopback), port: port))
             
