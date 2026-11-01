@@ -272,10 +272,11 @@ extension MultiCursorEditing {
     /// Moves all cursors with the same rule.
     ///
     /// - Parameters:
+    ///   - forward: `true` if the cursors move forward, otherwise `false`.
     ///   - affinity: The selection affinity for the movement.
     ///   - block: The block that describes the rule how to move the cursors.
     ///   - range: The range of each insertion.
-    func moveCursors(affinity: NSSelectionAffinity, using block: (_ range: NSRange) -> Int) {
+    func moveCursors(forward: Bool, affinity: NSSelectionAffinity, using block: (_ range: NSRange) -> Int) {
         
         let ranges = self.insertionRanges.map(block).map { NSRange(location: $0, length: 0) }
         
@@ -285,12 +286,8 @@ extension MultiCursorEditing {
         self.setSelectedRanges(set.selectedRanges, affinity: affinity, stillSelecting: false)
         self.insertionLocations = set.insertionLocations
         
-        let rangeToVisible: NSRange = switch affinity {
-            case .downstream: ranges.first!
-            case .upstream: ranges.last!
-            @unknown default: fatalError()
-        }
-        self.scrollRangeToVisible(rangeToVisible)
+        // make the moved location visible
+        self.scrollRangeToVisible(forward ? ranges.last! : ranges.first!)
     }
     
     
@@ -460,7 +457,7 @@ extension MultiCursorEditing {
         let shouldDraw = self.shouldDrawInsertionPoints
         
         self.insertionIndicators = insertionLocations
-            .compactMap(layoutManager.insertionPointRect(at:))
+            .compactMap { layoutManager.insertionPointRect(at: $0, affinity: self.selectionAffinity) }
             .map { $0.offset(by: self.textContainerOrigin) }
             .map { rect in
                 if let indicator = indicators.popFirst() {

@@ -537,6 +537,55 @@ import LineEnding
     }
     
     
+    /// Tests that moving forward to a soft-wrapped line end draws additional insertion points at the beginning of the next visual line, as with a single cursor.
+    ///
+    /// - Throws: If the line is not soft-wrapped.
+    @Test func insertionIndicatorsAfterMovingForwardToSoftWrappedLineEnd() throws {
+        
+        let line = String(repeating: "abcd.efg ", count: 14) + "end"
+        let offset = (line as NSString).length + 1
+        let textView = makeEditorTextView(string: line + "\n" + line)
+        let layoutManager = try #require(textView.layoutManager)
+        let lineEnd = layoutManager.lineFragmentRange(at: 3).upperBound
+        
+        try #require(lineEnd < offset - 1)
+        
+        textView.setSelectedRange(NSRange(location: lineEnd - 1, length: 0))
+        textView.insertionLocations = [offset + lineEnd - 1]
+        
+        textView.moveRight(nil)
+        textView.updateInsertionIndicators()
+        
+        let lineFragment = layoutManager.lineFragmentRect(forGlyphAt: layoutManager.glyphIndexForCharacter(at: offset + lineEnd), effectiveRange: nil)
+        let glyphRect = layoutManager.boundingRect(forGlyphRange: NSRange(location: layoutManager.glyphIndexForCharacter(at: offset + lineEnd), length: 1), in: try #require(textView.textContainer))
+        #expect(textView.insertionRanges == [NSRange(lineEnd..<lineEnd), NSRange((offset + lineEnd)..<(offset + lineEnd))])
+        #expect(textView.selectionAffinity == .downstream)
+        #expect(textView.insertionIndicators.map(\.frame.origin) == [NSPoint(x: glyphRect.minX + textView.textContainerOrigin.x, y: lineFragment.minY + textView.textContainerOrigin.y)])
+    }
+    
+    
+    /// Tests that additional insertion points at a soft-wrapped line end are drawn at the end of the visual line.
+    ///
+    /// - Throws: If the line is not soft-wrapped.
+    @Test func insertionIndicatorsAtSoftWrappedLineEnd() throws {
+        
+        let line = String(repeating: "abcd.efg ", count: 14) + "end"
+        let offset = (line as NSString).length + 1
+        let textView = makeEditorTextView(string: line + "\n" + line, selectedRange: NSRange(3..<3), insertionLocations: [offset + 3])
+        let layoutManager = try #require(textView.layoutManager)
+        let lineEnd = layoutManager.lineFragmentRange(at: 3).upperBound
+        
+        try #require(lineEnd < offset - 1)
+        
+        textView.moveToEndOfLine(nil)
+        textView.updateInsertionIndicators()
+        
+        let lineFragment = layoutManager.lineFragmentRect(forGlyphAt: layoutManager.glyphIndexForCharacter(at: offset + 3), effectiveRange: nil)
+        let glyphRect = layoutManager.boundingRect(forGlyphRange: NSRange(location: layoutManager.glyphIndexForCharacter(at: offset + lineEnd - 1), length: 1), in: try #require(textView.textContainer))
+        #expect(textView.insertionIndicators.map(\.frame.origin) == [NSPoint(x: glyphRect.maxX + textView.textContainerOrigin.x, y: lineFragment.minY + textView.textContainerOrigin.y)])
+    }
+    
+    
     /// Tests that deleting to the end of the line with selections deletes only the selected text.
     ///
     /// - Parameter isMultiple: Whether to add another selection in the second line.

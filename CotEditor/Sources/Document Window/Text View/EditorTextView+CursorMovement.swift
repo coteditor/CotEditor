@@ -44,7 +44,7 @@ extension EditorTextView {
             return super.moveLeft(sender)
         }
         
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             if range.isEmpty {
                 self.layoutManager!.leftCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
             } else {
@@ -75,7 +75,7 @@ extension EditorTextView {
             return super.moveRight(sender)
         }
         
-        self.moveCursors(affinity: .upstream) { range in
+        self.moveCursors(forward: true, affinity: .downstream) { range in
             if range.isEmpty {
                 self.layoutManager!.rightCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
             } else {
@@ -106,7 +106,7 @@ extension EditorTextView {
             return super.moveUp(sender)
         }
         
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             self.upperInsertionLocation(of: range.lowerBound)
         }
     }
@@ -132,7 +132,7 @@ extension EditorTextView {
             return super.moveDown(sender)
         }
         
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: true, affinity: .downstream) { range in
             self.lowerInsertionLocation(of: range.upperBound)
         }
     }
@@ -160,7 +160,7 @@ extension EditorTextView {
         // -> The default implementation uses `textStorage.nextWord(from: $0.lowerBound, forward: isRTL)`
         //    and does not stop at punctuation such as `.` and `:` (2019-06).
         
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             self.nextWord(from: range.lowerBound, forward: self.layoutManager!.isRightToLeft(at: range.upperBound))
         }
     }
@@ -186,7 +186,7 @@ extension EditorTextView {
         
         // find word boundaries manually (see `moveWordLeft(_:)`)
         
-        self.moveCursors(affinity: .upstream) { range in
+        self.moveCursors(forward: true, affinity: .downstream) { range in
             self.nextWord(from: range.upperBound, forward: !self.layoutManager!.isRightToLeft(at: range.upperBound))
         }
     }
@@ -369,7 +369,7 @@ extension EditorTextView {
         
         // handle manually for the Smart Home behavior that walks through
         // visual line start, indentation, and logical line start
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             self.locationOfBeginningOfLine(for: range.location)
         }
     }
@@ -430,7 +430,7 @@ extension EditorTextView {
             return super.moveToEndOfLine(sender)
         }
         
-        self.moveCursors(affinity: .upstream) { range in
+        self.moveCursors(forward: true, affinity: .upstream) { range in
             self.locationOfEndOfLine(for: range.upperBound)
         }
     }
@@ -461,7 +461,7 @@ extension EditorTextView {
         }
         
         // move in the logical order unlike `moveLeft(_:)` that moves in the visual order
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             range.isEmpty ? (self.string as NSString).index(before: range.location) : range.lowerBound
         }
     }
@@ -493,7 +493,7 @@ extension EditorTextView {
         }
         
         // move in the logical order unlike `moveRight(_:)` that moves in the visual order
-        self.moveCursors(affinity: .upstream) { range in
+        self.moveCursors(forward: true, affinity: .downstream) { range in
             range.isEmpty ? (self.string as NSString).index(after: range.location) : range.upperBound
         }
     }
@@ -524,7 +524,7 @@ extension EditorTextView {
             return super.moveToBeginningOfParagraph(sender)
         }
         
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             (self.string as NSString).lineStartIndex(at: range.lowerBound)
         }
     }
@@ -552,7 +552,7 @@ extension EditorTextView {
             return super.moveToEndOfParagraph(sender)
         }
         
-        self.moveCursors(affinity: .upstream) { range in
+        self.moveCursors(forward: true, affinity: .upstream) { range in
             (self.string as NSString).lineContentsEndIndex(at: range.upperBound)
         }
     }
@@ -575,7 +575,7 @@ extension EditorTextView {
     override func moveWordBackward(_ sender: Any?) {
         
         // find word boundaries manually (see `moveWordLeft(_:)`)
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             self.nextWord(from: range.lowerBound, forward: false)
         }
     }
@@ -604,7 +604,7 @@ extension EditorTextView {
     override func moveWordForward(_ sender: Any?) {
         
         // find word boundaries manually (see `moveWordLeft(_:)`)
-        self.moveCursors(affinity: .upstream) { range in
+        self.moveCursors(forward: true, affinity: .downstream) { range in
             self.nextWord(from: range.upperBound, forward: true)
         }
     }
