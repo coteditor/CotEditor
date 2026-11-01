@@ -4062,6 +4062,12 @@
             "value" : "Er kon geen toegang worden verkregen tot de geselecteerde kopie van de instellingen."
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法存取所選的設定副本。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4112,6 +4118,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het zoeken naar kopieën van de instellingen in iCloud is mislukt."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在iCloud中找不到設定副本。"
           }
         },
         "zh-HK" : {
@@ -14311,6 +14323,12 @@
             "value" : "De verbinding op afstand is verbroken. Je wijzigingen zijn niet verstuurd."
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遠端連線已中斷，你的變更尚未傳送。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14362,6 +14380,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Wil je de wijzigingen in '%@' op deze Mac bewaren?"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要將「%@」的變更儲存在這部Mac上嗎？"
           }
         },
         "zh-HK" : {
@@ -14537,6 +14561,12 @@
             "value" : "Wijzigingen kunnen niet meer op afstand worden bewaard. Bewaar het document op deze Mac om je wijzigingen te behouden."
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "變更已無法儲存到遠端。若要保留變更，請將文件儲存在這部Mac上。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14590,6 +14620,12 @@
             "value" : "De verbinding op afstand voor '%@' is verbroken."
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「%@」的遠端連線已中斷。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14641,6 +14677,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "De poort is al in gebruik."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此連接埠已在使用中。"
           }
         },
         "zh-HK" : {
@@ -14816,6 +14858,12 @@
             "value" : "Voer een poortnummer van 1 tot en met 65535 in."
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請輸入1到65535之間的連接埠號碼。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14867,6 +14915,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het externe bestand is te groot om te openen."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遠端檔案過大，無法開啟。"
           }
         },
         "zh-HK" : {
@@ -14923,6 +14977,12 @@
             "value" : "Bewerken op afstand ondersteunt bestanden tot %@."
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遠端編輯可開啟的檔案大小上限為%@。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14974,6 +15034,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sommige externe bestanden konden niet worden geopend."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "部分遠端檔案無法開啟。"
           }
         }
       }
@@ -15096,6 +15162,18 @@
                 "stringUnit" : {
                   "state" : "needs_review",
                   "value" : "Eén rmate-opdracht kan maximaal %lld bestanden tegelijk openen."
+                }
+              }
+            }
+          }
+        },
+        "zh-Hant" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "單次rmate指令最多可開啟%lld個檔案。"
                 }
               }
             }

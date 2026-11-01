@@ -2673,6 +2673,12 @@
             "value" : "Verbinding verbroken"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已中斷連線"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5228,7 +5234,7 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "已達搜尋上限"
           }
         },
@@ -14145,6 +14151,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Op afstand"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遠端"
           }
         },
         "zh-HK" : {

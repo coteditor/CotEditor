@@ -347,7 +347,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此Mac"
+            "value" : "這部Mac"
           }
         },
         "zh-HK" : {
@@ -400,6 +400,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Om geen kopie meer te bewaren, schakel je 'Bewaar een kopie in iCloud' uit op de Mac waarvan de kopie afkomstig is."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "若要停止儲存副本，請在副本來源的Mac上關閉「在iCloud中保留副本」。"
           }
         },
         "zh-HK" : {

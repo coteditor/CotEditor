@@ -24407,6 +24407,12 @@
             "value" : "Doneer aan CotEditor…"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捐贈給CotEditor⋯"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",

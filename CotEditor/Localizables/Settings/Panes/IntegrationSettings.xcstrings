@@ -40,6 +40,12 @@
             "value" : "Sta rmate-verbindingen toe"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允許rmate連線"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -84,6 +90,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sta toe dat bestanden op afstand in CotEditor worden geopend via het `rmate`-protocol."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允許使用`rmate`協定在CotEditor中開啟遠端檔案。"
           }
         },
         "zh-HK" : {
@@ -817,6 +829,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewerken op afstand:"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遠端編輯："
           }
         },
         "zh-HK" : {

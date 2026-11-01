@@ -265,6 +265,12 @@
             "value" : "Kies een instellingenarchief…"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇設定封存檔⋯"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1122,6 +1128,12 @@
             "value" : "Bewaar een kopie in iCloud"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在iCloud中保留副本"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1282,6 +1294,12 @@
             "value" : "Kopieën van de instellingen worden uit iCloud geladen…"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在從iCloud載入設定副本⋯"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1333,6 +1351,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beheer kopieën in iCloud…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理iCloud上的副本⋯"
           }
         },
         "zh-HK" : {
@@ -1850,6 +1874,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Geen kopieën van de instellingen in iCloud"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud中沒有設定副本"
           }
         },
         "zh-HK" : {
@@ -2708,6 +2738,12 @@
             "value" : "Instellingen importeren en exporteren:"
           }
         },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定的輸入與輸出："
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2864,6 +2900,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewaar een kopie van deze instellingen om ze op andere apparaten te kunnen importeren."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存這些設定的副本，供其他裝置輸入使用。"
           }
         },
         "zh-HK" : {

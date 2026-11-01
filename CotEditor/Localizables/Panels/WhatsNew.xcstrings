@@ -158,6 +158,12 @@
             "state" : "needs_review",
             "value" : "Bewaar een altijd actuele kopie van je instellingen in iCloud om ze op je andere Macs te importeren wanneer je maar wilt."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在iCloud中保留最新的設定副本，隨時可在其他Mac上輸入。"
+          }
         }
       }
     },
@@ -204,6 +210,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Je instellingen, slechts één import verwijderd"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入一次，回到熟悉的設定"
           }
         }
       }
@@ -252,6 +264,12 @@
             "state" : "needs_review",
             "value" : "Open bestanden op een externe computer met `rmate` via SSH en bewaar je wijzigingen daar direct."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透過SSH使用`rmate`開啟遠端電腦上的檔案，並將變更直接存回遠端。"
+          }
         }
       }
     },
@@ -298,6 +316,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewerk externe bestanden rechtstreeks op je Mac"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "直接在Mac上編輯遠端檔案"
           }
         }
       }
@@ -346,6 +370,12 @@
             "state" : "needs_review",
             "value" : "Pas de toetscombinaties aan voor het verplaatsen van het invoegpunt en het selecteren en verwijderen van tekst, zodat je vingers zich meteen thuis voelen."
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可自訂移動插入點、選取與刪除文字的快速鍵，讓你怎麼按都順手。"
+          }
         }
       }
     },
@@ -392,6 +422,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Jouw toetsen, jouw regels"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按鍵操作，由你作主"
           }
         }
       }
