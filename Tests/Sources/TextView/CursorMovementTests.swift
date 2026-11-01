@@ -474,13 +474,16 @@ import LineEnding
     }
     
     
-    /// Tests that the text deleted to the end of the paragraph in the middle of a CRLF line can be yanked back.
+    /// Tests that the text deleted to the end of the paragraph in a CRLF line, including the line ending, can be yanked back.
     @Test func deleteToEndOfParagraphKeepsKillBufferWithCRLF() {
         
         let textView = makeEditorTextView(string: "abc def\r\nghi", lineEnding: .crlf, selectedRange: NSRange(3..<3))
         
         textView.deleteToEndOfParagraph(nil)
         #expect(textView.string == "abc\r\nghi")
+        
+        textView.deleteToEndOfParagraph(nil)
+        #expect(textView.string == "abcghi")
         
         textView.yank(nil)
         #expect(textView.string == "abc def\r\nghi")
@@ -591,6 +594,19 @@ import LineEnding
         
         textView.deleteToEndOfLine(nil)
         #expect(textView.string == "abc d" + lineEnding + "ghi\r\nxyz")
+    }
+    
+    
+    /// Tests that deleting to the end of the paragraph at a line ending other than CRLF behaves as in documents without CRLF.
+    ///
+    /// - Parameter lineEnding: The line ending of the first line.
+    @Test(arguments: ["\u{2028}", "\u{85}"])
+    func deleteToEndOfParagraphAtNonCRLFLineEnding(lineEnding: String) {
+        
+        let textView = makeEditorTextView(string: "abc def" + lineEnding + "ghi\r\nxyz", lineEnding: .crlf, selectedRange: NSRange(7..<7))
+        
+        textView.deleteToEndOfParagraph(nil)
+        #expect(textView.string == "abc def\r\nxyz")
     }
 }
 

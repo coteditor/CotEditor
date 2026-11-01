@@ -804,18 +804,24 @@ extension EditorTextView {
     /// Deletes to the end of the logical line (^K).
     override func deleteToEndOfParagraph(_ sender: Any?) {
         
-        let string = self.string as NSString
-        let isAtLineEnd = self.selectedRange.isEmpty && string.lineContentsEndIndex(at: self.selectedRange.location) == self.selectedRange.location
-        
         // -> The default implementation does not delete CRLF at the end of the line (2026-10, macOS 27, FB25382354).
-        //    Otherwise, use it to put the deleted text in the kill buffer for `yank(_:)`.
-        guard self.isEditable, self.hasMultipleInsertions || (isAtLineEnd && self.containsCRLF) else {
+        //    Use `deleteToEndOfLine(_:)` there instead, which deletes CRLF as expected,
+        //    to put the deleted text in the kill buffer for `yank(_:)`.
+        if self.isEditable, !self.hasMultipleInsertions, self.selectedRange.isEmpty,
+           (self.string as NSString).lineContentsEndIndex(at: self.selectedRange.location) == self.selectedRange.location,
+           self.isCRLFLine(at: self.selectedRange.location)
+        {
+            return super.deleteToEndOfLine(sender)
+        }
+        
+        guard self.isEditable, self.hasMultipleInsertions else {
             return super.deleteToEndOfParagraph(sender)
         }
         
         // build deletion ranges manually
         // -> Otherwise, the character just before the cursor is deleted
         //    when the cursor is already at the end of the line.
+        let string = self.string as NSString
         let ranges = self.insertionRanges
             .map { range in
                 let contentsEnd = string.lineContentsEndIndex(at: range.upperBound)
