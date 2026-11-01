@@ -56,13 +56,24 @@ struct OutlinePicker: NSViewRepresentable {
             if self.items.isDisplayEquivalent(to: context.coordinator.items) {
                 // update only the represented objects to keep the jump ranges fresh
                 // when the changes are only in the ranges by shifting through the user edit
-                for (menuItem, item) in zip(nsView.menu?.items ?? [], self.items) where !item.isSeparator {
+                for (menuItem, item) in zip(nsView.menu?.items.dropFirst() ?? [], self.items) where !item.isSeparator {
                     menuItem.representedObject = item
                 }
             } else {
                 let fontSize = NSFont.systemFontSize(for: nsView.controlSize)
                 let font = nsView.font?.withSize(fontSize) ?? .menuFont(ofSize: fontSize)
-                nsView.menu?.items = self.items.map { item in
+                
+                // hidden item to display when no outline item is selected
+                let placeholder = String(localized: "No Selection", table: "Document",
+                                         comment: "title of the outline menu when no outline item is selected")
+                let placeholderItem = NSMenuItem()
+                placeholderItem.attributedTitle = NSAttributedString(string: placeholder, attributes: [
+                    .font: font,
+                    .foregroundColor: NSColor.secondaryLabelColor,
+                ])
+                placeholderItem.isHidden = true
+                
+                nsView.menu?.items = [placeholderItem] + self.items.map { item in
                     if item.isSeparator {
                         return .separator()
                     } else {
@@ -79,9 +90,9 @@ struct OutlinePicker: NSViewRepresentable {
             context.coordinator.items = self.items
         }
         
-        if let index = self.items.firstIndex(where: { $0.id == self.selection }) {
-            nsView.selectItem(at: index)
-        }
+        // offset by the placeholder item at the top
+        let index = self.items.firstIndex { $0.id == self.selection }.map { $0 + 1 } ?? 0
+        nsView.selectItem(at: index)
         
         if self.isPresented {
             nsView.menu?.popUp(positioning: nil, at: .zero, in: nsView)
