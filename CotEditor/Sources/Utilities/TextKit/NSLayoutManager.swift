@@ -178,7 +178,7 @@ extension NSLayoutManager {
     ///
     /// - Parameter index: The character index to check.
     /// - Returns: `true` when is right-to-left, otherwise `false`.
-    final func isRTL(at index: Int) -> Bool {
+    final func isRightToLeft(at index: Int) -> Bool {
         
         let glyphIndex = self.glyphIndexForCharacter(at: index)
         
@@ -188,6 +188,23 @@ extension NSLayoutManager {
         self.getGlyphs(in: NSRange(location: glyphIndex, length: 1), glyphs: nil, properties: nil, characterIndexes: nil, bidiLevels: &bidiLevel)
         
         return !bidiLevel.isMultiple(of: 2)
+    }
+    
+    
+    /// Checks whether all characters in the range are laid out in the left-to-right base level without bidirectional reordering.
+    ///
+    /// - Parameter range: The character range to check.
+    /// - Returns: `true` when the bidi levels of all characters in the range are zero, otherwise `false`.
+    final func isLeftToRight(in range: NSRange) -> Bool {
+        
+        let glyphRange = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
+        
+        guard !glyphRange.isEmpty else { return true }
+        
+        var bidiLevels = [UInt8](repeating: 0, count: glyphRange.length)
+        self.getGlyphs(in: glyphRange, glyphs: nil, properties: nil, characterIndexes: nil, bidiLevels: &bidiLevels)
+        
+        return bidiLevels.allSatisfy { $0 == 0 }
     }
     
     

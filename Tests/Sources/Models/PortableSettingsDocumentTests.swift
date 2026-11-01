@@ -106,7 +106,7 @@ import SyntaxFormat
         defer { manager.textKeyBindings = previous }
         var bindings = TextKeyBindingMap()
         try bindings.setShortcuts([Shortcut(.home, modifiers: [])], for: .moveToLeftEndOfLine)
-        try bindings.setShortcuts([], for: .deleteForward)
+        try bindings.setShortcuts([], for: .pageDown)
         manager.textKeyBindings = bindings
         let document = try PortableSettingsDocument(including: includesSettings ? .settings : [])
         

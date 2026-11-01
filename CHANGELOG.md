@@ -6,27 +6,36 @@
 ### New Features
 
 - Support editing remote files with `rmate` over SSH port forwarding, enabled in Integration settings.
-- Add an option to automatically save a copy of settings in iCloud for manual import on other Macs.
+- Add an option in General settings to automatically save a copy of settings to iCloud for manual import on other Macs.
 - Support customizing keyboard shortcuts for text editing commands, such as moving the insertion point and deleting text, in Shortcuts settings.
 
 
 ### Improvements
 
-- Move donations to the CotEditor project from a settings pane to a separate window, accessible from the CotEditor menu.
-- Add an Integration pane to the settings window for managing integration with external tools.
-- Move settings import and export from the File menu to General settings.
-- Update the Shortcuts settings layout.
-- Add a context menu to the list in Shortcuts settings to restore the default shortcut of a single command.
+- Move the Donation settings pane to a separate window accessible from the CotEditor menu.
+- Add the Integration settings pane for managing integration with external tools.
+- Move settings import and export from the File menu to the General settings pane.
+- Redesign the Shortcuts settings pane.
+- Allow restoring the default shortcuts for individual commands in the Shortcuts settings pane using the context menu or the Delete key.
+- Improve word navigation with Control-Option-F and Control-Option-B to treat periods, commas, and colons as word delimiters, consistent with Option-Left Arrow and Option-Right Arrow.
+- Change the Shift-Option-Down Arrow shortcut to extend the selection to the end of the line without including the line ending, consistent with Option-Down Arrow.
+- [dev] Update the build environment to Xcode 27.2.
 
 
 ### Fixes
 
-- Fix an issue where pinch zooming did not synchronize the text size between the find and replace fields in the Find window.
+- Fix an issue in the Find window where pinch zooming did not synchronize the text size between the find and replace fields.
 - Fix an issue where Find All highlights remained in the document after closing the search results.
-- Fix an issue where a cancelled search within multiple selections could continue searching subsequent selections.
-- Fix incorrect progress indication when searching or replacing within selections.
+- Fix an issue where searching within multiple selections could continue to subsequent selections after cancellation.
+- Fix an issue where progress could be displayed incorrectly when searching or replacing text within selections.
 - Fix an issue where syntax highlighting and outline parsing could start after closing a document.
-- Fix an issue where keyboard shortcuts with function keys, arrow keys, or other navigation keys could not be set in Shortcuts and Snippets settings.
+- Fix an issue where shortcuts using function keys, arrow keys, or other navigation keys could not be set in the Shortcuts and Snippets settings panes.
+- Fix an issue where Control-B, Control-F, Option-Up Arrow, or Option-Down Arrow could move insertion points incorrectly during multi-cursor editing in right-to-left text.
+- Fix an issue where repeatedly pressing Command-Right Arrow during multi-cursor editing could move insertion points to the end of the next wrapped visual line.
+- Fix an issue where selecting or deleting text by word or to the beginning of a line could affect an incorrect range or make the app unresponsive in bidirectional text.
+- Fix an issue where deleting a line break during multi-cursor editing could delete only part of a CRLF line ending.
+- Fix an issue where pressing Control-K at the end of a line did not delete the line ending in CRLF documents.
+- Fix an issue where the outline menu in the navigation bar could display an empty or incorrect item when the insertion point was before the first outline item.
 
 
 
@@ -37,7 +46,7 @@
 
 - Update tree-sitter-php to 0.25.1.
 - Update tree-sitter-scala to 0.26.3.
-- [dev] Update the build environment to Xcode 27.2.
+- [dev] Update the build environment to Xcode 27.2 RC.
 - [non-AppStore ver.] Update Sparkle from 2.10.0 to 2.10.1.
 
 

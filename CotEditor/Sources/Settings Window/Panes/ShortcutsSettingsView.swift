@@ -242,17 +242,20 @@ private struct ShortcutTreeView: View {
     var body: some View {
         
         Table(of: Item.self, selection: $selection) {
-            TableColumn(.init("Command", table: "ShortcutsSettings", comment: "table column header"), value: \.name)
+            TableColumn(.init("Command", table: "ShortcutsSettings", comment: "table column header")) { node in
+                Text(node.name)
+                    .bold(node.value.map { $0.shortcut != $0.defaultShortcut } ?? false)
+            }
             
             TableColumn(.init("Key", table: "ShortcutsSettings", comment: "table column header; keyboard shortcut")) { node in
                 if let item = node.value {
                     ShortcutField(value: Binding(get: { item.shortcut },
                                                  set: { item.shortcut = $0; self.model.save() }),
-                                  error: $model.error, placeholder: item.defaultShortcut?.symbol,
+                                  error: $model.error,
                                   validation: { shortcut throws(Shortcut.CustomizationError) in try self.model.validate(shortcut) })
                 }
             }
-            .width(160)
+            .width(120)
             
         } rows: {
             ForEach(self.model.tree) { menu in
@@ -269,6 +272,15 @@ private struct ShortcutTreeView: View {
                 .disabled(item.shortcut == item.defaultShortcut)
             }
         }
+        .onDeleteCommand {
+            guard
+                let id = self.selection,
+                let item = self.model.tree.lazy.compactMap({ $0.node(with: id)?.value }).first,
+                item.shortcut != item.defaultShortcut
+            else { return }
+            
+            self.model.restore(item)
+        }
     }
 }
 
@@ -282,15 +294,25 @@ private struct TextShortcutTable: View {
     
     var body: some View {
         
-        Table(TextKeyBindingCommand.allCases, selection: $selection) {
+        Table(of: TextKeyBindingCommand.self, selection: $selection) {
             TableColumn(.init("Command", table: "ShortcutsSettings", comment: "table column header")) { command in
                 Text(command.label)
+                    .bold(self.model.textKeyBindings.customizations[command] != nil)
             }
             
             TableColumn(.init("Key", table: "ShortcutsSettings", comment: "table column header; keyboard shortcut")) { command in
                 TextShortcutFields(model: self.model, command: command)
             }
-            .width(160)
+            .width(120)
+            
+        } rows: {
+            ForEach(TextKeyBindingCommand.Category.allCases, id: \.self) { category in
+                Section(category.label) {
+                    ForEach(category.commands) { command in
+                        TableRow(command)
+                    }
+                }
+            }
         }
         .contextMenu(forSelectionType: TextKeyBindingCommand.self) { commands in
             if let command = commands.first {
@@ -299,6 +321,14 @@ private struct TextShortcutTable: View {
                 }
                 .disabled(self.model.textKeyBindings.customizations[command] == nil)
             }
+        }
+        .onDeleteCommand {
+            guard
+                let command = self.selection,
+                self.model.textKeyBindings.customizations[command] != nil
+            else { return }
+            
+            self.model.save(shortcuts: nil, for: command)
         }
     }
 }
@@ -321,7 +351,6 @@ private struct TextShortcutFields: View {
                 }
                 ShortcutField(value: Binding(get: { slots[index] }, set: { self.update($0, at: index) }),
                               error: $model.error,
-                              placeholder: (slots.count == 1) ? self.command.shortcuts.map(\.symbol).joined(separator: ", ") : nil,
                               validation: { shortcut throws(Shortcut.CustomizationError) in try self.model.validate(shortcut, for: self.command) })
                 .accessibilityLabel(.init("Add Shortcut", table: "ShortcutsSettings", comment: "accessibility label for the blank field to add a shortcut"),
                                     isEnabled: index == 0)
@@ -375,27 +404,26 @@ private struct TabPickerButtonStyle: PrimitiveButtonStyle {
     
     @Environment(\.colorSchemeContrast) private var contrast
     
-    @State private var isHovered = false
-    
     private let shape = RoundedRectangle(cornerRadius: 6)
     
     
     func makeBody(configuration: Configuration) -> some View {
         
-        Button(configuration)
-            .buttonStyle(.borderless)
-            .fontWeight(.medium)
-            .foregroundStyle((self.isSelected || self.isHovered) ? .primary : .secondary)
-            .padding(.vertical, 2)
-            .padding(.horizontal, 10)
-            .background {
-                if self.isSelected {
-                    self.shape.fill(.fill)
-                        .matchedGeometryEffect(id: "selection", in: self.namespace)
-                }
+        Button(action: configuration.trigger) {
+            configuration.label
+                .padding(.vertical, 2)
+                .padding(.horizontal, 10)
+        }
+        .buttonStyle(.borderless)
+        .fontWeight(.medium)
+        .foregroundStyle(self.isSelected ? .primary : .secondary)
+        .background {
+            if self.isSelected {
+                self.shape.fill(.fill)
+                    .matchedGeometryEffect(id: "selection", in: self.namespace)
             }
-            .overlay(self.contrast == .increased ? self.shape.stroke(.tertiary) : nil)
-            .onHover { self.isHovered = $0 }
+        }
+        .overlay(self.contrast == .increased ? self.shape.stroke(.tertiary) : nil)
     }
 }
 

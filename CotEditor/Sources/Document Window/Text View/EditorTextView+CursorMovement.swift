@@ -48,7 +48,7 @@ extension EditorTextView {
             if range.isEmpty {
                 self.layoutManager!.leftCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
             } else {
-                self.layoutManager!.isRTL(at: range.upperBound) ? range.upperBound : range.lowerBound
+                self.layoutManager!.isRightToLeft(at: range.upperBound) ? range.upperBound : range.lowerBound
             }
         }
     }
@@ -79,7 +79,7 @@ extension EditorTextView {
             if range.isEmpty {
                 self.layoutManager!.rightCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
             } else {
-                self.layoutManager!.isRTL(at: range.lowerBound) ? range.lowerBound : range.upperBound
+                self.layoutManager!.isRightToLeft(at: range.lowerBound) ? range.lowerBound : range.upperBound
             }
         }
     }
@@ -161,7 +161,7 @@ extension EditorTextView {
         //    and does not stop at punctuation such as `.` and `:` (2019-06).
         
         self.moveCursors(affinity: .downstream) { range in
-            self.nextWord(from: range.lowerBound, forward: self.layoutManager!.isRTL(at: range.upperBound))
+            self.nextWord(from: range.lowerBound, forward: self.layoutManager!.isRightToLeft(at: range.upperBound))
         }
     }
     
@@ -176,7 +176,7 @@ extension EditorTextView {
         }
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { cursor, _ in
-            self.nextWord(from: cursor, forward: self.layoutManager!.isRTL(at: cursor))
+            self.nextWord(from: cursor, forward: self.layoutManager!.isRightToLeft(at: cursor))
         }
     }
     
@@ -187,7 +187,7 @@ extension EditorTextView {
         // find word boundaries manually (see `moveWordLeft(_:)`)
         
         self.moveCursors(affinity: .upstream) { range in
-            self.nextWord(from: range.upperBound, forward: !self.layoutManager!.isRTL(at: range.upperBound))
+            self.nextWord(from: range.upperBound, forward: !self.layoutManager!.isRightToLeft(at: range.upperBound))
         }
     }
     
@@ -202,7 +202,7 @@ extension EditorTextView {
         }
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { cursor, _ in
-            self.nextWord(from: cursor, forward: !self.layoutManager!.isRTL(at: cursor))
+            self.nextWord(from: cursor, forward: !self.layoutManager!.isRightToLeft(at: cursor))
         }
     }
     
@@ -223,12 +223,71 @@ extension EditorTextView {
     /// Moves the cursor to the end of the logical line and modifies the selection repeatedly (⇧⌥↓).
     override func moveParagraphForwardAndModifySelection(_ sender: Any?) {
         
+        // -> The default implementation moves the cursor beyond the line ending.
         guard self.hasMultipleInsertions || self.containsCRLF else {
-            return super.moveParagraphForwardAndModifySelection(sender)
+            return self.moveParagraphForwardAndModifySingleSelection(sender)
         }
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { cursor, _ in
             (self.string as NSString).lineContentsEndIndex(at: self.string.index(after: cursor))
+        }
+    }
+    
+    
+    /// Expands or reduces a single selection to the end of the logical line contents.
+    ///
+    /// - Note:
+    ///   This method modifies the selection using only super's selection-modification methods so that
+    ///   the text view retains the correct cursor origin for subsequent single-selection changes.
+    ///
+    /// - Parameter sender: The sender of the action.
+    private func moveParagraphForwardAndModifySingleSelection(_ sender: Any?) {
+        
+        assert(!self.hasMultipleInsertions)
+        
+        // let the super change the selection to figure out the direction to expand (or reduce)
+        let currentRange = self.selectedRange
+        super.moveParagraphForwardAndModifySelection(sender)
+        let superRange = self.selectedRange
+        
+        // do nothing if the cursor has already reached the end
+        guard currentRange != superRange else { return }
+        
+        // give up if both bounds are moved
+        guard
+            currentRange.lowerBound == superRange.lowerBound ||
+            currentRange.upperBound == superRange.upperBound
+        else { return }
+        
+        // find selection direction
+        let isLowerOrigin = (currentRange.lowerBound == superRange.lowerBound)
+        let cursor = isLowerOrigin ? currentRange.upperBound : currentRange.lowerBound
+        let origin = isLowerOrigin ? superRange.lowerBound : superRange.upperBound
+        
+        // calculate the selected range in the same way as multiple selections
+        let newCursor = (self.string as NSString).lineContentsEndIndex(at: self.string.index(after: cursor))
+        let newRange: NSRange = if cursor < origin, origin < newCursor {
+            NSRange(origin..<origin)
+        } else if origin < newCursor {
+            NSRange(origin..<newCursor)
+        } else {
+            NSRange(newCursor..<origin)
+        }
+        
+        // jump to the end of the next paragraph or step back character by character
+        var visitedRanges: Set<NSRange> = [self.selectedRange]
+        while self.selectedRange != newRange {
+            if (self.selectedRange.upperBound > newRange.upperBound) ||
+               (self.selectedRange.lowerBound > newRange.lowerBound)
+            {
+                super.moveBackwardAndModifySelection(self)
+            } else {
+                super.moveParagraphForwardAndModifySelection(self)
+            }
+            
+            // abort if the same selection appears again to avoid an infinite loop
+            // in case the goal boundary is unreachable by the cursor movement
+            guard visitedRanges.insert(self.selectedRange).inserted else { return assertionFailure() }
         }
     }
     
@@ -266,10 +325,6 @@ extension EditorTextView {
         let cursor = isLowerOrigin ? currentRange.upperBound : currentRange.lowerBound
         let origin = isLowerOrigin ? superRange.lowerBound : superRange.upperBound
         
-        // skip modifying the selection in RTL text as it is too complex
-        // -> Additional word boundaries may be not so necessary in RTL text.
-        guard !self.layoutManager!.isRTL(at: cursor) else { return }
-        
         // calculate original selected range by taking additional word separators into consideration
         let newCursor = self.nextWord(from: cursor, forward: isForward)
         let newRange: NSRange = if (newCursor < origin && origin < cursor) || (cursor < origin && origin < newCursor) {
@@ -284,6 +339,10 @@ extension EditorTextView {
         let superCursor = isLowerOrigin ? superRange.upperBound : superRange.lowerBound
         let diffRange = (superCursor < newCursor) ? NSRange(superCursor..<newCursor) : NSRange(newCursor..<superCursor)
         guard !(self.string as NSString).rangeOfCharacter(from: Self.additionalWordSeparators, range: diffRange).isNotFound else { return }
+        
+        // skip modifying the selection in bidirectional text
+        // -> Additional word boundaries may be not so necessary in RTL text.
+        guard self.canModifySelectionCharacterwise(from: superCursor, to: newRange.isEmpty ? origin : newCursor, anchor: origin) else { return }
         
         // adjust selection range character by character
         var visitedRanges: Set<NSRange> = [self.selectedRange]
@@ -324,7 +383,14 @@ extension EditorTextView {
             
             // determine the end of the selection to move based on the recorded anchor
             var movesUpperBound = !selectedRange.isEmpty && self.selectionOrigins.first == selectedRange.location
-            let location = self.locationOfBeginningOfLine(for: movesUpperBound ? selectedRange.upperBound : selectedRange.location)
+            let cursor = movesUpperBound ? selectedRange.upperBound : selectedRange.location
+            let location = self.locationOfBeginningOfLine(for: cursor)
+            
+            // leave bidirectional text to the default implementation
+            let anchor = (movesUpperBound && location >= selectedRange.location) ? selectedRange.location : selectedRange.upperBound
+            guard self.canModifySelectionCharacterwise(from: cursor, to: location, anchor: anchor) else {
+                return super.moveToBeginningOfLineAndModifySelection(sender)
+            }
             
             // keep the whole selection and extend the lower side by re-anchoring
             // at the upper bound when the goal is behind the selection
@@ -337,15 +403,16 @@ extension EditorTextView {
             // instead of setting `selectedRange` directly.
             // -> This avoids an issue where using ⇧→ immediately after this command
             //    expands the selection in the wrong direction. (2018-11, macOS 10.14, #863)
+            var visitedRanges: Set<NSRange> = [self.selectedRange]
             while (movesUpperBound ? self.selectedRange.upperBound : self.selectedRange.location) > location {
-                let oldRange = self.selectedRange
                 self.moveBackwardAndModifySelection(self)
                 if movesUpperBound, self.selectedRange.isEmpty {
                     movesUpperBound = false
                 }
                 
-                // avoid an infinite loop in case the goal boundary is unreachable
-                guard self.selectedRange != oldRange else { return assertionFailure() }
+                // abort if the same selection appears again to avoid an infinite loop
+                // in case the goal boundary is unreachable by the cursor movement
+                guard visitedRanges.insert(self.selectedRange).inserted else { return assertionFailure() }
             }
             return
         }
@@ -363,9 +430,8 @@ extension EditorTextView {
             return super.moveToEndOfLine(sender)
         }
         
-        let length = self.attributedString().length
         self.moveCursors(affinity: .upstream) { range in
-            self.layoutManager?.lineFragmentRange(at: range.upperBound).upperBound ?? length
+            self.locationOfEndOfLine(for: range.upperBound)
         }
     }
     
@@ -377,9 +443,8 @@ extension EditorTextView {
             return super.moveToEndOfLineAndModifySelection(sender)
         }
         
-        let length = self.attributedString().length
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { cursor, _ in
-            self.layoutManager?.lineFragmentRange(at: cursor).upperBound ?? length
+            self.locationOfEndOfLine(for: cursor)
         }
     }
     
@@ -395,7 +460,10 @@ extension EditorTextView {
             return super.moveBackward(sender)
         }
         
-        self.moveLeft(sender)
+        // move in the logical order unlike `moveLeft(_:)` that moves in the visual order
+        self.moveCursors(affinity: .downstream) { range in
+            range.isEmpty ? (self.string as NSString).index(before: range.location) : range.lowerBound
+        }
     }
     
     
@@ -409,7 +477,9 @@ extension EditorTextView {
             return super.moveBackwardAndModifySelection(sender)
         }
         
-        self.moveLeftAndModifySelection(sender)
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) { cursor, _ in
+            (self.string as NSString).index(before: cursor)
+        }
     }
     
     
@@ -422,7 +492,10 @@ extension EditorTextView {
             return super.moveForward(sender)
         }
         
-        self.moveRight(sender)
+        // move in the logical order unlike `moveRight(_:)` that moves in the visual order
+        self.moveCursors(affinity: .upstream) { range in
+            range.isEmpty ? (self.string as NSString).index(after: range.location) : range.upperBound
+        }
     }
     
     
@@ -436,7 +509,9 @@ extension EditorTextView {
             return super.moveForwardAndModifySelection(sender)
         }
         
-        self.moveRightAndModifySelection(sender)
+        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) { cursor, _ in
+            (self.string as NSString).index(after: cursor)
+        }
     }
     
     
@@ -499,10 +574,7 @@ extension EditorTextView {
     /// Moves the cursor to the beginning of the word (^⌥B).
     override func moveWordBackward(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions else {
-            return super.moveWordBackward(sender)
-        }
-        
+        // find word boundaries manually (see `moveWordLeft(_:)`)
         self.moveCursors(affinity: .downstream) { range in
             self.nextWord(from: range.lowerBound, forward: false)
         }
@@ -531,10 +603,7 @@ extension EditorTextView {
     /// Moves the cursor to the end of the word (^⌥F).
     override func moveWordForward(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions else {
-            return super.moveWordForward(sender)
-        }
-        
+        // find word boundaries manually (see `moveWordLeft(_:)`)
         self.moveCursors(affinity: .upstream) { range in
             self.nextWord(from: range.upperBound, forward: true)
         }
@@ -649,6 +718,29 @@ extension EditorTextView {
     
     // MARK: Private Methods
     
+    /// Checks whether the free end of the selection can be moved to the goal by repeating super's character-wise selection modification.
+    ///
+    /// - Note:
+    ///   In bidirectional text, super's `move{Backward|Forward}AndModifySelection(_:)` selects the span between
+    ///   the visual positions of the anchor and the cursor; thereby, the selection jumps or splits into multiple ranges.
+    ///
+    /// - Parameters:
+    ///   - cursor: The current location of the free end of the selection.
+    ///   - goal: The location where the free end of the selection should move to.
+    ///   - anchor: The location of the fixed end of the selection.
+    /// - Returns: `true` if the characters around the movement and the anchor are laid out without bidirectional reordering.
+    private func canModifySelectionCharacterwise(from cursor: Int, to goal: Int, anchor: Int) -> Bool {
+        
+        guard let layoutManager = self.layoutManager else { return false }
+        
+        let length = (self.string as NSString).length
+        let movementRange = NSRange(max(min(cursor, goal) - 1, 0)..<min(max(cursor, goal) + 1, length))
+        let anchorRange = NSRange(max(anchor - 1, 0)..<min(anchor + 1, length))
+        
+        return layoutManager.isLeftToRight(in: movementRange) && layoutManager.isLeftToRight(in: anchorRange)
+    }
+    
+    
     /// Whether the content can contain CRLF line endings that require handling the cursor movement manually.
     ///
     /// The text storage holds the file content as is, so that CRLF line endings can exist also in documents whose document line ending is not CRLF.
@@ -656,6 +748,25 @@ extension EditorTextView {
         
         self.lineEnding == .crlf || (self.layoutManager as? LayoutManager)?.lineEndingScanner.inconsistentLineEndings
             .contains { $0.value == .crlf } ?? false
+    }
+    
+    
+    /// Returns the location of the end of the visual line where the insertion point at the given location is drawn.
+    ///
+    /// - Parameter location: The character location for which to return the line end.
+    /// - Returns: The character location of the line end.
+    private func locationOfEndOfLine(for location: Int) -> Int {
+        
+        guard let layoutManager = self.layoutManager else { return self.string.length }
+        
+        // stay at the soft-wrapped line end where the insertion point with the upstream affinity is drawn
+        if self.selectionAffinity == .upstream, location > 0,
+           layoutManager.lineFragmentRange(at: location - 1).upperBound == location
+        {
+            return location
+        }
+        
+        return layoutManager.lineFragmentRange(at: location).upperBound
     }
 }
 
@@ -680,14 +791,18 @@ extension EditorTextView {
     /// Deletes to the end of the logical line (^K).
     override func deleteToEndOfParagraph(_ sender: Any?) {
         
-        guard self.isEditable, self.hasMultipleInsertions else {
+        let string = self.string as NSString
+        let isAtLineEnd = self.selectedRange.isEmpty && string.lineContentsEndIndex(at: self.selectedRange.location) == self.selectedRange.location
+        
+        // -> The default implementation does not delete CRLF at the end of the line (2026-10, macOS 27, FB25382354).
+        //    Otherwise, use it to put the deleted text in the kill buffer for `yank(_:)`.
+        guard self.isEditable, self.hasMultipleInsertions || (isAtLineEnd && self.containsCRLF) else {
             return super.deleteToEndOfParagraph(sender)
         }
         
         // build deletion ranges manually
         // -> Otherwise, the character just before the cursor is deleted
         //    when the cursor is already at the end of the line.
-        let string = self.string as NSString
         let ranges = self.insertionRanges
             .map { range in
                 let contentsEnd = string.lineContentsEndIndex(at: range.upperBound)
@@ -702,6 +817,55 @@ extension EditorTextView {
         guard !ranges.isEmpty else { return }
         
         self.selectedRanges = ranges as [NSValue]
+        self.deleteBackward(sender)
+    }
+    
+    
+    /// Deletes to the end of the visual line.
+    override func deleteToEndOfLine(_ sender: Any?) {
+        
+        guard self.isEditable, self.hasMultipleInsertions else {
+            return super.deleteToEndOfLine(sender)
+        }
+        
+        if self.rangesForUserTextChange?.contains(where: { !$0.rangeValue.isEmpty }) == true {
+            return self.deleteForward(sender)
+        }
+        
+        // calculate each deletion before merging ranges so that a cursor at the logical line end
+        // deletes the line ending even when another deletion reaches the same position
+        let string = self.string as NSString
+        let ranges = self.insertionRanges
+            .map { range in
+                let upperBound = (range.location == string.lineContentsEndIndex(at: range.location))
+                    ? string.lineRange(at: range.location).upperBound  // delete the line ending
+                    : self.locationOfEndOfLine(for: range.location)
+                return NSRange(range.location..<upperBound)
+            }
+            .merged
+        
+        guard ranges.contains(where: { !$0.isEmpty }) else { return }
+        
+        // keep empty ranges to preserve cursors at soft-wrapped line ends and the document end
+        self.insertText("", replacementRanges: ranges)
+    }
+    
+    
+    /// Deletes to the beginning of the logical line.
+    override func deleteToBeginningOfParagraph(_ sender: Any?) {
+        
+        guard self.isEditable else {
+            return super.deleteToBeginningOfParagraph(sender)
+        }
+        
+        // -> Do not invoke super, even with a single selection,
+        //    to delete the line ending at the beginning of the line as `deleteToBeginningOfLine(_:)` does.
+        
+        if self.rangesForUserTextChange?.contains(where: { !$0.rangeValue.isEmpty }) == true {
+            return self.deleteBackward(sender)
+        }
+        
+        self.moveToBeginningOfParagraphAndModifySelection(sender)
         self.deleteBackward(sender)
     }
     

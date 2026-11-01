@@ -40,7 +40,7 @@ import Shortcut
             try manager.importSetting(data: menuData)
             var bindings = TextKeyBindingMap()
             try bindings.setShortcuts([Shortcut(.home, modifiers: [])], for: .moveToLeftEndOfLine)
-            try bindings.setShortcuts([], for: .deleteForward)
+            try bindings.setShortcuts([], for: .pageDown)
             var updates = 0
             let observer = NotificationCenter.default.addObserver(of: manager, for: KeyBindingManager.DidUpdateSettingsMessage.self) { _ in
                 updates += 1
@@ -104,7 +104,7 @@ import Shortcut
         
         try self.withManager { manager, directoryURL in
             var bindings = TextKeyBindingMap()
-            try bindings.setShortcuts([], for: .deleteForward)
+            try bindings.setShortcuts([], for: .pageDown)
             try manager.save(textKeyBindings: bindings)
             #expect(manager.isCustomized)
             try manager.save(textKeyBindings: TextKeyBindingMap())
@@ -125,7 +125,7 @@ import Shortcut
             let binding = KeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("c", modifiers: [.command, .option]))
             try manager.importSetting(data: PropertyListEncoder().encode([binding]))
             var bindings = TextKeyBindingMap()
-            try bindings.setShortcuts([], for: .deleteForward)
+            try bindings.setShortcuts([], for: .pageDown)
             try manager.save(textKeyBindings: bindings)
             try manager.restoreDefaults()
             
@@ -143,7 +143,7 @@ import Shortcut
         
         try self.withManager { manager, directoryURL in
             var bindings = TextKeyBindingMap()
-            try bindings.setShortcuts([], for: .deleteForward)
+            try bindings.setShortcuts([], for: .pageDown)
             try manager.save(textKeyBindings: bindings)
             let fileURL = directoryURL.appending(path: "TextKeyBindings.plist")
             let original = try Data(contentsOf: fileURL)
@@ -168,7 +168,7 @@ import Shortcut
         try self.withManager { manager, directoryURL in
             try Data().write(to: directoryURL)
             var bindings = TextKeyBindingMap()
-            try bindings.setShortcuts([], for: .deleteForward)
+            try bindings.setShortcuts([], for: .pageDown)
             
             #expect(throws: (any Error).self) { try manager.save(textKeyBindings: bindings) }
             #expect(!manager.isCustomized)
@@ -190,7 +190,7 @@ import Shortcut
             }
             var bindings = TextKeyBindingMap()
             try bindings.setShortcuts([Shortcut(.home, modifiers: [])], for: .moveToLeftEndOfLine)
-            try bindings.setShortcuts([], for: .deleteForward)
+            try bindings.setShortcuts([], for: .pageDown)
             try manager.save(textKeyBindings: bindings)
             var document = try PortableSettingsDocument(including: [])
             document.keyBindings = try manager.userSettingsData()
