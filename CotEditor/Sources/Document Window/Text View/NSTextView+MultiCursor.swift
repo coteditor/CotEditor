@@ -104,7 +104,7 @@ extension MultiCursorEditing {
         
         guard ranges.count > 1 else { return false }
         
-        let rangesToDelete: [NSRange] = ranges
+        let replacementRanges = ranges
             .map { range -> NSRange in
                 guard
                     range.isEmpty,
@@ -123,19 +123,7 @@ extension MultiCursorEditing {
                     ? NSRange(range.location..<string.index(after: range.location))
                     : NSRange(string.index(before: range.location)..<range.location)
             }
-        
-        // remove overlappings
-        let deletionRanges: [NSRange] = rangesToDelete
-            .filter { !$0.isEmpty }
-            .compactMap(Range.init)
-            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
-            .rangeView
-            .map(NSRange.init)
-        let preservedRanges = rangesToDelete
-            .filter(\.isEmpty)
-            .filter { range in !deletionRanges.contains { $0.touches(range.location) } }
-        let replacementRanges = (deletionRanges + preservedRanges)
-            .sorted(using: KeyPathComparator(\.location))
+            .merged
         
         guard replacementRanges.contains(where: { !$0.isEmpty }) else { return false }
         
