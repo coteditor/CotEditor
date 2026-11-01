@@ -184,9 +184,9 @@ struct RMateServerTests {
         
         server.listen(port: nil)
         server.listen(port: port)
-        #expect(server.error == nil)
         
-        let newClient = try await RMateClient.connect(port: port)
+        // connect before the server would retry listening after a failure
+        let newClient = try await RMateClient.connect(port: port, timeout: .seconds(2))
         #expect(newClient.greeting == "Test rmate 1")
         #expect(server.error == nil)
         
@@ -194,6 +194,28 @@ struct RMateServerTests {
         try client.send(Self.openRequests(tokens: ["a"]))
         try await waitUntil { recorder.files.count == 1 }
         #expect(recorder.files.first?.isConnected == true)
+    }
+    
+    
+    /// Tests that the server starts accepting connections once the port becomes available.
+    ///
+    /// - Throws: An error if the port could not be occupied or the client could not communicate with the server.
+    @Test func listenAfterPortRelease() async throws {
+        
+        let recorder = Recorder()
+        let server = recorder.makeServer()
+        let port = try availablePort()
+        let fileDescriptor = try makeListeningSocket(port: port)
+        server.listen(port: port)
+        
+        // release the port also when the test fails so as not to affect the following tests
+        let result = await Result { try await waitUntil { server.error != nil } }
+        Darwin.close(fileDescriptor)
+        try result.get()
+        
+        let client = try await RMateClient.connect(port: port)
+        #expect(client.greeting == "Test rmate 1")
+        try await waitUntil { server.error == nil }
     }
     
     
@@ -279,13 +301,15 @@ private final class RMateClient {
     ///
     /// Connection attempts are repeated until the server sends the greeting.
     ///
-    /// - Parameter port: The loopback TCP port.
+    /// - Parameters:
+    ///   - port: The loopback TCP port.
+    ///   - timeout: The maximum duration to wait for the greeting.
     /// - Returns: A connected client.
     /// - Throws: `TimeoutError` if the server does not accept the connection in time.
-    static func connect(port: Int) async throws -> RMateClient {
+    static func connect(port: Int, timeout: Duration = .seconds(10)) async throws -> RMateClient {
         
         var client: RMateClient?
-        try await waitUntil {
+        try await waitUntil(timeout: timeout) {
             if client == nil {
                 client = RMateClient(port: port)
             }
@@ -508,6 +532,34 @@ private func availablePort() throws -> Int {
     }
     
     return Int(UInt16(bigEndian: address.sin_port))
+}
+
+
+/// Opens a TCP socket listening on a loopback port.
+///
+/// - Parameter port: The loopback TCP port.
+/// - Returns: The file descriptor of the socket.
+/// - Throws: `POSIXError` if the port could not be bound.
+private func makeListeningSocket(port: Int) throws -> Int32 {
+    
+    let fileDescriptor = socket(AF_INET, SOCK_STREAM, 0)
+    
+    guard fileDescriptor >= 0 else { throw POSIXError.current }
+    
+    var address = sockaddr_in(loopbackPort: port)
+    let result = withUnsafePointer(to: &address) {
+        unsafe $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+            unsafe bind(fileDescriptor, $0, socklen_t(MemoryLayout<sockaddr_in>.size))
+        }
+    }
+    
+    guard result == 0, listen(fileDescriptor, 1) == 0 else {
+        let error = POSIXError.current
+        close(fileDescriptor)
+        throw error
+    }
+    
+    return fileDescriptor
 }
 
 
