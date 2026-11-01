@@ -36,8 +36,8 @@ import Shortcut
     @Test func persistsMenuAndTextBindings() throws {
         
         try self.withManager { manager, directoryURL in
-            let menuData = try PropertyListEncoder().encode([KeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("c", modifiers: [.command, .option]))])
-            try manager.importSetting(data: menuData)
+            let menuData = try PropertyListEncoder().encode([MenuKeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("c", modifiers: [.command, .option]))])
+            try manager.importMenuSetting(data: menuData)
             var bindings = TextKeyBindingMap()
             try bindings.setShortcuts([Shortcut(.home, modifiers: [])], for: .moveToLeftEndOfLine)
             try bindings.setShortcuts([], for: .pageDown)
@@ -53,11 +53,11 @@ import Shortcut
             #expect(reloaded.isCustomized)
             #expect(updates == 1)
             let storedMenu = try Data(contentsOf: directoryURL.appending(path: "Shortcuts.plist"))
-            #expect(try PropertyListDecoder().decode([KeyBinding].self, from: storedMenu).count == 1)
+            #expect(try PropertyListDecoder().decode([MenuKeyBinding].self, from: storedMenu).count == 1)
             reloaded.applyShortcutsToMainMenu()
             #expect(reloaded.menuTree.first?.flatValues.first?.shortcut == Shortcut("c", modifiers: [.command, .option]))
             
-            try reloaded.save(tree: reloaded.menuTree)
+            try reloaded.save(menuTree: reloaded.menuTree)
             #expect(try PropertyListDecoder().decode(TextKeyBindingMap.self, from: Data(contentsOf: directoryURL.appending(path: "TextKeyBindings.plist"))) == bindings)
         }
     }
@@ -69,13 +69,13 @@ import Shortcut
     @Test func loadsLegacyMenuSettings() throws {
         
         try self.withManager { manager, directoryURL in
-            let binding = KeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("c", modifiers: [.command, .option]))
-            try manager.importSetting(data: PropertyListEncoder().encode([binding]))
+            let binding = MenuKeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("c", modifiers: [.command, .option]))
+            try manager.importMenuSetting(data: PropertyListEncoder().encode([binding]))
             
             let reloaded = KeyBindingManager(mainMenu: self.makeMenu(), settingDirectoryURL: directoryURL)
             #expect(!reloaded.textKeyBindings.isCustomized)
             #expect(try reloaded.userTextSettingsData() == nil)
-            #expect(try reloaded.userSettingsData() != nil)
+            #expect(try reloaded.userMenuSettingsData() != nil)
         }
     }
     
@@ -86,13 +86,13 @@ import Shortcut
     @Test func corruptTextSettingsKeepMenuSettings() throws {
         
         try self.withManager { manager, directoryURL in
-            let binding = KeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("c", modifiers: [.command, .option]))
-            try manager.importSetting(data: PropertyListEncoder().encode([binding]))
+            let binding = MenuKeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("c", modifiers: [.command, .option]))
+            try manager.importMenuSetting(data: PropertyListEncoder().encode([binding]))
             try Data("invalid".utf8).write(to: directoryURL.appending(path: "TextKeyBindings.plist"))
             
             let reloaded = KeyBindingManager(mainMenu: self.makeMenu(), settingDirectoryURL: directoryURL)
             #expect(!reloaded.textKeyBindings.isCustomized)
-            #expect(try reloaded.userSettingsData() != nil)
+            #expect(try reloaded.userMenuSettingsData() != nil)
         }
     }
     
@@ -122,8 +122,8 @@ import Shortcut
     @Test func restoresAllDefaults() throws {
         
         try self.withManager { manager, directoryURL in
-            let binding = KeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("c", modifiers: [.command, .option]))
-            try manager.importSetting(data: PropertyListEncoder().encode([binding]))
+            let binding = MenuKeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("c", modifiers: [.command, .option]))
+            try manager.importMenuSetting(data: PropertyListEncoder().encode([binding]))
             var bindings = TextKeyBindingMap()
             try bindings.setShortcuts([], for: .pageDown)
             try manager.save(textKeyBindings: bindings)
@@ -185,28 +185,28 @@ import Shortcut
         
         try self.withManager { manager, directoryURL in
             if includesMenu {
-                let binding = KeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("c", modifiers: [.command, .option]))
-                try manager.importSetting(data: PropertyListEncoder().encode([binding]))
+                let binding = MenuKeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("c", modifiers: [.command, .option]))
+                try manager.importMenuSetting(data: PropertyListEncoder().encode([binding]))
             }
             var bindings = TextKeyBindingMap()
             try bindings.setShortcuts([Shortcut(.home, modifiers: [])], for: .moveToLeftEndOfLine)
             try bindings.setShortcuts([], for: .pageDown)
             try manager.save(textKeyBindings: bindings)
             var document = try PortableSettingsDocument(including: [])
-            document.keyBindings = try manager.userSettingsData()
+            document.menuKeyBindings = try manager.userMenuSettingsData()
             document.textKeyBindings = try manager.userTextSettingsData()
-            #expect((document.keyBindings != nil) == includesMenu)
+            #expect((document.menuKeyBindings != nil) == includesMenu)
             #expect(document.textKeyBindings != nil)
             let archiveURL = directoryURL.deletingLastPathComponent().appending(path: "Settings.cotsettings")
             try document.fileWrapper().write(to: archiveURL, options: .atomic, originalContentsURL: nil)
             let imported = try PortableSettingsDocument(contentsOf: archiveURL)
             try manager.restoreDefaults()
-            if let data = imported.keyBindings {
-                try manager.importSetting(data: data)
+            if let data = imported.menuKeyBindings {
+                try manager.importMenuSetting(data: data)
             }
             try manager.importTextSetting(data: #require(imported.textKeyBindings))
             #expect(manager.textKeyBindings == bindings)
-            #expect((try manager.userSettingsData() != nil) == includesMenu)
+            #expect((try manager.userMenuSettingsData() != nil) == includesMenu)
         }
     }
     
@@ -279,8 +279,8 @@ import Shortcut
         let controlJ: Shortcut = Shortcut("j", modifiers: .control)
         
         try self.withManager(adding: [self.makeSnippetItem(shortcut: controlT)]) { manager, _ in
-            let binding = KeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("a", modifiers: .control))
-            try manager.importSetting(data: PropertyListEncoder().encode([binding]))
+            let binding = MenuKeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("a", modifiers: .control))
+            try manager.importMenuSetting(data: PropertyListEncoder().encode([binding]))
             
             #expect(manager.shortcuts(for: .transpose, in: manager.textKeyBindings).isEmpty)
             #expect(manager.shortcuts(for: .moveToBeginningOfParagraph, in: manager.textKeyBindings).isEmpty)
@@ -337,11 +337,11 @@ import Shortcut
             let tree = manager.menuTree
             let item = try #require(tree.flatMap(\.flatValues).first { $0.action == #selector(NSText.delete) })
             item.shortcut = Shortcut(.delete, modifiers: [.command, .option])
-            try manager.save(tree: tree)
+            try manager.save(menuTree: tree)
             
             try manager.checkCustomizationAvailability(for: commandDelete)
             item.shortcut = commandDelete
-            try manager.save(tree: tree)
+            try manager.save(menuTree: tree)
             #expect(!manager.isCustomized)
             #expect(manager.shortcuts(for: .deleteToBeginningOfLine, in: manager.textKeyBindings) == [commandDelete])
         }
@@ -439,8 +439,8 @@ import Shortcut
         
         try self.withManager { manager, _ in
             try manager.save(shortcuts: [], for: .deleteToEndOfParagraph)
-            let binding = KeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("k", modifiers: .control))
-            try manager.importSetting(data: PropertyListEncoder().encode([binding]))
+            let binding = MenuKeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("k", modifiers: .control))
+            try manager.importMenuSetting(data: PropertyListEncoder().encode([binding]))
             try manager.save(shortcuts: nil, for: .deleteToEndOfParagraph)
             
             #expect(!manager.textKeyBindings.isCustomized)

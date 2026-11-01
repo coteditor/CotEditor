@@ -125,9 +125,9 @@ struct ShortcutsSettingsView: View {
 
 @MainActor @Observable private final class KeyBindingModel {
     
-    typealias Item = Node<KeyBindingItem>
+    typealias Item = Node<MenuKeyBindingItem>
     
-    private(set) var tree: [Item] = []
+    private(set) var menuTree: [Item] = []
     private(set) var isRestorable: Bool = false
     private(set) var textKeyBindings = TextKeyBindingMap()
     var error: Shortcut.CustomizationError?
@@ -141,7 +141,7 @@ struct ShortcutsSettingsView: View {
     /// Loads data from the user defaults and resets the undo history.
     func load() {
         
-        self.tree = self.manager.menuTree
+        self.menuTree = self.manager.menuTree
         self.textKeyBindings = self.manager.textKeyBindings
         self.isRestorable = self.manager.isCustomized
         self.undoManager?.removeAllActions(withTarget: self)
@@ -162,7 +162,7 @@ struct ShortcutsSettingsView: View {
         self.registerUndo()
         
         // reset the values in place to keep the expansion state of the table
-        for item in self.tree.flatMap(\.flatValues) {
+        for item in self.menuTree.flatMap(\.flatValues) {
             item.shortcut = item.defaultShortcut
         }
         self.isRestorable = false
@@ -174,7 +174,7 @@ struct ShortcutsSettingsView: View {
     /// Restores the default shortcut of a menu command.
     ///
     /// - Parameter item: The menu command to restore.
-    func restore(_ item: KeyBindingItem) {
+    func restore(_ item: MenuKeyBindingItem) {
         
         if let shortcut = item.defaultShortcut {
             do {
@@ -195,13 +195,13 @@ struct ShortcutsSettingsView: View {
     /// - Parameters:
     ///   - shortcut: The new shortcut, or `nil` to remove it.
     ///   - item: The menu command to update.
-    func update(_ shortcut: Shortcut?, for item: KeyBindingItem) {
+    func update(_ shortcut: Shortcut?, for item: MenuKeyBindingItem) {
         
         self.registerUndo()
         item.shortcut = shortcut
         
         do {
-            try self.manager.save(tree: self.tree)
+            try self.manager.save(menuTree: self.menuTree)
         } catch {
             Logger.app.error("\(error.localizedDescription)")
             self.savingError = error
@@ -261,7 +261,7 @@ struct ShortcutsSettingsView: View {
     /// Registers the current settings to restore with undo.
     private func registerUndo() {
         
-        let shortcuts = self.tree.flatMap(\.flatValues).map { ($0, $0.shortcut) }
+        let shortcuts = self.menuTree.flatMap(\.flatValues).map { ($0, $0.shortcut) }
         
         self.undoManager?.registerUndo(withTarget: self) { [textKeyBindings = self.textKeyBindings] target in
             target.registerUndo()
@@ -270,7 +270,7 @@ struct ShortcutsSettingsView: View {
                 item.shortcut = shortcut
             }
             do {
-                try target.manager.save(tree: target.tree)
+                try target.manager.save(menuTree: target.menuTree)
                 try target.manager.save(textKeyBindings: textKeyBindings)
             } catch {
                 Logger.app.error("\(error.localizedDescription)")
@@ -312,14 +312,14 @@ private struct ShortcutTreeView: View {
             .width(120)
             
         } rows: {
-            ForEach(self.model.tree) { menu in
+            ForEach(self.model.menuTree) { menu in
                 Section(menu.name) {
                     OutlineGroup(menu.children ?? [], children: \.children)
                 }
             }
         }
         .contextMenu(forSelectionType: Item.ID.self) { ids in
-            if let id = ids.first, let item = self.model.tree.lazy.compactMap({ $0.node(with: id)?.value }).first {
+            if let id = ids.first, let item = self.model.menuTree.lazy.compactMap({ $0.node(with: id)?.value }).first {
                 Button(.init("Action.restoreDefaults.label", defaultValue: "Restore Defaults")) {
                     self.model.restore(item)
                 }
@@ -329,7 +329,7 @@ private struct ShortcutTreeView: View {
         .onDeleteCommand {
             guard
                 let id = self.selection,
-                let item = self.model.tree.lazy.compactMap({ $0.node(with: id)?.value }).first,
+                let item = self.model.menuTree.lazy.compactMap({ $0.node(with: id)?.value }).first,
                 item.shortcut != item.defaultShortcut
             else { return }
             
