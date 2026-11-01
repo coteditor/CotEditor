@@ -1560,7 +1560,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選擇要匯入的CotEditor設定封存檔。"
+            "value" : "選擇要輸入的CotEditor設定封存檔。"
           }
         },
         "zh-HK" : {
@@ -1798,7 +1798,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "你仍可匯入這些項目，但部分設定可能不相容。"
+            "value" : "你仍可輸入這些項目，但部分設定可能不相容。"
           }
         },
         "zh-HK" : {
@@ -1910,7 +1910,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將選取的設定匯出為封存檔，以便匯入至其他電腦。"
+            "value" : "將選取的設定輸出為封存檔，以便輸入至其他電腦。"
           }
         },
         "zh-HK" : {

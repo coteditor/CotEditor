@@ -109,7 +109,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "加入熱鍵"
+            "value" : "加入快速鍵"
           }
         }
       }
@@ -679,7 +679,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如欲修改鍵盤熱鍵，請點一下熱鍵欄目，再敲下新的熱鍵。"
+            "value" : "如果要更改快速鍵，請按一下按鍵欄位，然後按下新按鍵。"
           }
         },
         "zh-HK" : {

@@ -17553,7 +17553,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "單獨的按鍵類型不能被用作快捷鍵。"
+            "value" : "單獨的按鍵類型不能被用作快速鍵。"
           }
         },
         "zh-HK" : {
@@ -17672,7 +17672,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "組合鍵「%@」無法用作自訂綁定熱鍵。"
+            "value" : "組合鍵「%@」無法用作自訂快速鍵。"
           }
         },
         "zh-HK" : {
