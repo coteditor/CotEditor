@@ -502,6 +502,28 @@ import LineEnding
     }
     
     
+    /// Tests that deleting to the end of the line before CRLF keeps the line ending and the deleted text for yanking.
+    ///
+    /// - Parameter isWrapped: Whether the cursor is in the last visual line of a soft-wrapped line.
+    /// - Throws: If the line is not soft-wrapped as expected.
+    @Test(arguments: [false, true])
+    func deleteToEndOfLineKeepsCRLF(isWrapped: Bool) throws {
+        
+        let line = isWrapped ? String(repeating: "abcd.efg ", count: 14) + "end" : "abc def"
+        let string = line + "\r\nghi"
+        let location = (line as NSString).length - 2
+        let textView = makeEditorTextView(string: string, lineEnding: .crlf, selectedRange: NSRange(location..<location))
+        
+        try #require((textView.layoutManager!.lineFragmentRange(at: location).location > 0) == isWrapped)
+        
+        textView.deleteToEndOfLine(nil)
+        #expect(textView.string == (line as NSString).substring(to: location) + "\r\nghi")
+        
+        textView.yank(nil)
+        #expect(textView.string == string)
+    }
+    
+    
     /// Tests that deleting to the end of the line with selections deletes only the selected text.
     ///
     /// - Parameter isMultiple: Whether to add another selection in the second line.
@@ -546,6 +568,19 @@ import LineEnding
             #expect(textView.string == (isMultiple ? "abcdefghi" : "abcdef\r\nghi"))
             #expect(textView.insertionRanges == (isMultiple ? [NSRange(3..<3), NSRange(6..<6)] : [NSRange(3..<3)]))
         }
+    }
+    
+    
+    /// Tests that deleting to the end of the line keeps the next line after a line ending other than CRLF in a CRLF document.
+    ///
+    /// - Parameter lineEnding: The line ending of the first line.
+    @Test(arguments: ["\u{2028}", "\u{85}"])
+    func deleteToEndOfLineBeforeNonCRLFLineEnding(lineEnding: String) {
+        
+        let textView = makeEditorTextView(string: "abc def" + lineEnding + "ghi\r\nxyz", lineEnding: .crlf, selectedRange: NSRange(5..<5))
+        
+        textView.deleteToEndOfLine(nil)
+        #expect(textView.string == "abc d" + lineEnding + "ghi\r\nxyz")
     }
 }
 

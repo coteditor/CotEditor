@@ -751,6 +751,19 @@ extension EditorTextView {
     }
     
     
+    /// Checks whether the logical line at the given location ends with CRLF.
+    ///
+    /// - Parameter location: The character location in the line.
+    /// - Returns: `true` if the line ending is CRLF; otherwise, `false`.
+    private func isCRLFLine(at location: Int) -> Bool {
+        
+        let string = self.string as NSString
+        
+        // -> CRLF is the only line ending consisting of two characters.
+        return string.lineRange(at: location).upperBound - string.lineContentsEndIndex(at: location) == 2
+    }
+    
+    
     /// Returns the location of the end of the visual line where the insertion point at the given location is drawn.
     ///
     /// - Parameter location: The character location for which to return the line end.
@@ -823,6 +836,18 @@ extension EditorTextView {
     
     /// Deletes to the end of the visual line.
     override func deleteToEndOfLine(_ sender: Any?) {
+        
+        // -> The default implementation also deletes CRLF when the visual line ends with it (2026-11, macOS 27).
+        //    Use `deleteToEndOfParagraph(_:)` there instead, which deletes the same range as expected,
+        //    to put the deleted text in the kill buffer for `yank(_:)`.
+        if self.isEditable, !self.hasMultipleInsertions, self.selectedRange.isEmpty {
+            let location = self.selectedRange.location
+            let contentsEnd = (self.string as NSString).lineContentsEndIndex(at: location)
+            
+            if location < contentsEnd, self.isCRLFLine(at: location), self.locationOfEndOfLine(for: location) == contentsEnd {
+                return super.deleteToEndOfParagraph(sender)
+            }
+        }
         
         guard self.isEditable, self.hasMultipleInsertions else {
             return super.deleteToEndOfLine(sender)
