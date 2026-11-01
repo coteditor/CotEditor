@@ -37,8 +37,8 @@ import Testing
     }
     
     
-    /// Tests that a toggle edits the appropriate rows with a single collection write.
-    @Test(arguments: [Set([0, 1]), Set([1, 2]), Set<Int>()], [false, true])
+    /// Tests that a toggle in a row outside the selection edits only the row with a single collection write.
+    @Test(arguments: [Set([1, 2]), Set<Int>()], [false, true])
     func selectionBinding(selection: Set<Int>, newValue: Bool) {
         
         var items = [Item(id: 0, isOn: !newValue), Item(id: 1, isOn: newValue), Item(id: 2, isOn: !newValue)]

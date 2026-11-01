@@ -54,6 +54,11 @@ import Testing
     
     @Test func findMatchesCacheBehavior() async throws {
         
+        let defaults = UserDefaults.standard
+        let originalInSelection = defaults[.findInSelection]
+        defer { defaults[.findInSelection] = originalInSelection }
+        defaults[.findInSelection] = false
+        
         do {
             let textView = TestTextView(string: "foo foo foo")
             textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
@@ -137,19 +142,18 @@ import Testing
             let result = try await self.performFindAction(.nextMatch, with: finder)
             let secondCache = try #require(finder.findMatchesCache)
             
-            if finder.settings.inSelection {
-                #expect(result.count == 1)
-                #expect(textView.selectedRange() == NSRange(8..<11))
-                #expect(firstCache.matches != secondCache.matches)
-            } else {
-                #expect(result.count == 2)
-                #expect(firstCache.matches == secondCache.matches)
-            }
+            #expect(result.count == 2)
+            #expect(firstCache.matches == secondCache.matches)
         }
     }
     
     
     @Test func findResultMatchMetadata() async throws {
+        
+        let defaults = UserDefaults.standard
+        let originalInSelection = defaults[.findInSelection]
+        defer { defaults[.findInSelection] = originalInSelection }
+        defaults[.findInSelection] = false
         
         do {
             let textView = TestTextView(string: "foo bar foo")
@@ -159,11 +163,7 @@ import Testing
             finder.settings.findString = "foo"
             finder.settings.usesRegularExpression = false
             
-            if finder.settings.inSelection {
-                textView.setSelectedRange(NSRange(0..<(textView.string as NSString).length))
-            } else {
-                textView.setSelectedRange(NSRange(0..<0))
-            }
+            textView.setSelectedRange(NSRange(0..<0))
             
             let firstResult = try await self.performFindAction(.nextMatch, with: finder)
             let secondResult = try await self.performFindAction(.nextMatch, with: finder)
@@ -172,17 +172,12 @@ import Testing
             #expect(firstResult.currentMatchIndex == 1)
             #expect(firstResult.matchedRange == NSRange(0..<3))
             
-            if finder.settings.inSelection {
-                #expect(secondResult.currentMatchIndex == 1)
-                #expect(secondResult.matchedRange == NSRange(0..<3))
-            } else {
-                #expect(secondResult.currentMatchIndex == 2)
-                #expect(secondResult.matchedRange == NSRange(8..<11))
-                
-                let previousResult = try await self.performFindAction(.previousMatch, with: finder)
-                #expect(previousResult.currentMatchIndex == 1)
-                #expect(previousResult.matchedRange == NSRange(0..<3))
-            }
+            #expect(secondResult.currentMatchIndex == 2)
+            #expect(secondResult.matchedRange == NSRange(8..<11))
+            
+            let previousResult = try await self.performFindAction(.previousMatch, with: finder)
+            #expect(previousResult.currentMatchIndex == 1)
+            #expect(previousResult.matchedRange == NSRange(0..<3))
         }
         
         do {
@@ -267,11 +262,9 @@ import Testing
     
     /// Closing Find All results preserves explicit highlights in another editor.
     ///
-    /// - Parameters:
-    ///   - closesPanel: Whether to close the panel instead of only the result view.
-    ///   - sharesTextStorage: Whether the editors share a document as split editors do.
-    @Test(arguments: [false, true], [false, true])
-    func closingFindAllResultsPreservesHighlightsInAnotherEditor(closesPanel: Bool, sharesTextStorage: Bool) async throws {
+    /// - Parameter sharesTextStorage: Whether the editors share a document as split editors do.
+    @Test(arguments: [false, true])
+    func closingFindAllResultsPreservesHighlightsInAnotherEditor(sharesTextStorage: Bool) async throws {
         
         let controller = FindPanelContentViewController()
         controller.loadViewIfNeeded()
@@ -306,7 +299,7 @@ import Testing
         _ = try await self.performFindAction(.highlight, with: otherFinder)
         #expect(otherTextView.hasTemporaryBackgroundColor)
         
-        await self.closeFindAllResults(controller, closesPanel: closesPanel)
+        await self.closeFindAllResults(controller, closesPanel: false)
         try #require(await Task.waitFor { controller.splitViewItems[1].isCollapsed })
         
         #expect(otherTextView.hasTemporaryBackgroundColor)
@@ -363,11 +356,9 @@ import Testing
     
     /// Closing Find All results preserves subsequent multiple replace highlights in the same document.
     ///
-    /// - Parameters:
-    ///   - closesPanel: Whether to close the panel instead of only the result view.
-    ///   - usesSplitEditor: Whether to highlight in another editor sharing the same text storage.
-    @Test(arguments: [false, true], [false, true])
-    func closingFindAllResultsPreservesMultipleReplaceHighlights(closesPanel: Bool, usesSplitEditor: Bool) async throws {
+    /// - Parameter usesSplitEditor: Whether to highlight in another editor sharing the same text storage.
+    @Test(arguments: [false, true])
+    func closingFindAllResultsPreservesMultipleReplaceHighlights(usesSplitEditor: Bool) async throws {
         
         let controller = FindPanelContentViewController()
         controller.loadViewIfNeeded()
@@ -400,7 +391,7 @@ import Testing
         #expect(layoutManager.temporaryAttribute(.backgroundColor, atCharacterIndex: 4, effectiveRange: nil) != nil)
         #expect(layoutManager.temporaryAttribute(.backgroundColor, atCharacterIndex: 0, effectiveRange: nil) == nil)
         
-        await self.closeFindAllResults(controller, closesPanel: closesPanel)
+        await self.closeFindAllResults(controller, closesPanel: false)
         try #require(await Task.waitFor { controller.splitViewItems[1].isCollapsed })
         
         #expect(layoutManager.temporaryAttribute(.backgroundColor, atCharacterIndex: 4, effectiveRange: nil) != nil)

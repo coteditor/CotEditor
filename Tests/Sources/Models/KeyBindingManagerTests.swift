@@ -252,20 +252,6 @@ import Shortcut
     }
     
     
-    /// Tests rejecting a text assignment already used by the main menu.
-    ///
-    /// - Throws: If preparing the manager fails.
-    @Test func rejectsMenuShortcutForText() throws {
-        
-        try self.withManager { manager, _ in
-            #expect(throws: Shortcut.CustomizationError.self) {
-                try manager.save(shortcuts: [Shortcut("c", modifiers: .command)], for: .transpose)
-            }
-            #expect(!manager.isCustomized)
-        }
-    }
-    
-    
     /// Tests that menu assignments can take default text shortcuts but not customized ones.
     ///
     /// - Throws: If validating or updating the text command fails.

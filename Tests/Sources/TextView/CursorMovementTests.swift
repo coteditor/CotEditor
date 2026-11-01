@@ -459,18 +459,35 @@ import LineEnding
     }
     
     
-    /// Tests that deleting to the end of the paragraph at the line end joins the next line, including CRLF.
+    /// Tests that deleting to the end of the paragraph or line at the line end with a single cursor joins the next line, including CRLF.
     ///
-    /// - Parameter isMultiple: Whether to add another insertion point at the end of the second line.
-    @Test(arguments: [false, true])
-    func deleteToEndOfParagraphJoinsLines(isMultiple: Bool) {
+    /// - Parameter selector: The deletion command to perform.
+    @Test(arguments: [#selector(NSTextView.deleteToEndOfParagraph),
+                      #selector(NSTextView.deleteToEndOfLine)])
+    func deleteToEndJoinsLinesWithSingleCursor(selector: Selector) {
         
-        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(3..<3), insertionLocations: isMultiple ? [8] : [])
+        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(3..<3))
         
-        textView.deleteToEndOfParagraph(nil)
+        textView.doCommand(by: selector)
         
-        #expect(textView.string == (isMultiple ? "abcdefghi" : "abcdef\r\nghi"))
-        #expect(textView.insertionRanges == (isMultiple ? [NSRange(3..<3), NSRange(6..<6)] : [NSRange(3..<3)]))
+        #expect(textView.string == "abcdef\r\nghi")
+        #expect(textView.insertionRanges == [NSRange(3..<3)])
+    }
+    
+    
+    /// Tests that deleting to the end of the paragraph or line at the line end with multiple cursors joins the next lines, including CRLF.
+    ///
+    /// - Parameter selector: The deletion command to perform.
+    @Test(arguments: [#selector(NSTextView.deleteToEndOfParagraph),
+                      #selector(NSTextView.deleteToEndOfLine)])
+    func deleteToEndJoinsLinesWithMultipleCursors(selector: Selector) {
+        
+        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(3..<3), insertionLocations: [8])
+        
+        textView.doCommand(by: selector)
+        
+        #expect(textView.string == "abcdefghi")
+        #expect(textView.insertionRanges == [NSRange(3..<3), NSRange(6..<6)])
     }
     
     
@@ -487,21 +504,6 @@ import LineEnding
         
         textView.yank(nil)
         #expect(textView.string == "abc def\r\nghi")
-    }
-    
-    
-    /// Tests that deleting to the end of the line at the line end joins the next line, including CRLF.
-    ///
-    /// - Parameter isMultiple: Whether to add another insertion point at the end of the second line.
-    @Test(arguments: [false, true])
-    func deleteToEndOfLineJoinsLines(isMultiple: Bool) {
-        
-        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(3..<3), insertionLocations: isMultiple ? [8] : [])
-        
-        textView.deleteToEndOfLine(nil)
-        
-        #expect(textView.string == (isMultiple ? "abcdefghi" : "abcdef\r\nghi"))
-        #expect(textView.insertionRanges == (isMultiple ? [NSRange(3..<3), NSRange(6..<6)] : [NSRange(3..<3)]))
     }
     
     
@@ -586,20 +588,34 @@ import LineEnding
     }
     
     
-    /// Tests that deleting to the end of the line or paragraph with selections deletes only the selected text.
+    /// Tests that deleting to the end of the line or paragraph with a selection deletes only the selected text.
     ///
-    /// - Parameter isMultiple: Whether to add another selection in the second line.
-    @Test(arguments: [false, true])
-    func deleteToEndWithSelection(isMultiple: Bool) {
+    /// - Parameter selector: The deletion command to perform.
+    @Test(arguments: [#selector(NSTextView.deleteToEndOfLine),
+                      #selector(NSTextView.deleteToEndOfParagraph)])
+    func deleteToEndWithSingleSelection(selector: Selector) {
         
-        for selector in [#selector(NSTextView.deleteToEndOfLine), #selector(NSTextView.deleteToEndOfParagraph)] {
-            let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon")
-            textView.selectedRanges = (isMultiple ? [NSRange(0..<3), NSRange(11..<14)] : [NSRange(0..<3)]) as [NSValue]
-            
-            textView.doCommand(by: selector)
-            
-            #expect(textView.string == (isMultiple ? "ha beta\nma delta\nepsilon" : "ha beta\ngamma delta\nepsilon"), "\(selector)")
-        }
+        let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon", selectedRange: NSRange(0..<3))
+        
+        textView.doCommand(by: selector)
+        
+        #expect(textView.string == "ha beta\ngamma delta\nepsilon")
+    }
+    
+    
+    /// Tests that deleting to the end of the line or paragraph with multiple selections deletes only the selected text.
+    ///
+    /// - Parameter selector: The deletion command to perform.
+    @Test(arguments: [#selector(NSTextView.deleteToEndOfLine),
+                      #selector(NSTextView.deleteToEndOfParagraph)])
+    func deleteToEndWithMultipleSelections(selector: Selector) {
+        
+        let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon")
+        textView.selectedRanges = [NSRange(0..<3), NSRange(11..<14)] as [NSValue]
+        
+        textView.doCommand(by: selector)
+        
+        #expect(textView.string == "ha beta\nma delta\nepsilon")
     }
     
     
@@ -615,35 +631,59 @@ import LineEnding
     }
     
     
-    /// Tests that deleting to the beginning of the paragraph removes the text before each cursor in the logical line.
-    ///
-    /// - Parameter isMultiple: Whether to add another insertion point in the third line.
-    @Test(arguments: [false, true])
-    func deleteToBeginningOfParagraph(isMultiple: Bool) {
+    /// Tests that deleting to the beginning of the paragraph with a single cursor removes the text before the cursor in the logical line.
+    @Test func deleteToBeginningOfParagraphWithSingleCursor() {
         
-        let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon zeta", selectedRange: NSRange(17..<17), insertionLocations: isMultiple ? [31] : [])
+        let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon zeta", selectedRange: NSRange(17..<17))
         
         textView.deleteToBeginningOfParagraph(nil)
         
-        #expect(textView.string == (isMultiple ? "alpha beta\ndelta\nzeta" : "alpha beta\ndelta\nepsilon zeta"))
-        #expect(textView.insertionRanges == (isMultiple ? [NSRange(11..<11), NSRange(17..<17)] : [NSRange(11..<11)]))
+        #expect(textView.string == "alpha beta\ndelta\nepsilon zeta")
+        #expect(textView.insertionRanges == [NSRange(11..<11)])
     }
     
     
-    /// Tests that deleting to the beginning of the paragraph or line at the line start joins the previous line, including CRLF.
-    ///
-    /// - Parameter isMultiple: Whether to add another insertion point at the beginning of the third line.
-    @Test(arguments: [false, true])
-    func deleteToBeginningJoinsLines(isMultiple: Bool) {
+    /// Tests that deleting to the beginning of the paragraph with multiple cursors removes the text before each cursor in the logical line.
+    @Test func deleteToBeginningOfParagraphWithMultipleCursors() {
         
-        for selector in [#selector(NSTextView.deleteToBeginningOfParagraph), #selector(NSTextView.deleteToBeginningOfLine)] {
-            let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(5..<5), insertionLocations: isMultiple ? [10] : [])
-            
-            textView.doCommand(by: selector)
-            
-            #expect(textView.string == (isMultiple ? "abcdefghi" : "abcdef\r\nghi"))
-            #expect(textView.insertionRanges == (isMultiple ? [NSRange(3..<3), NSRange(6..<6)] : [NSRange(3..<3)]))
-        }
+        let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon zeta", selectedRange: NSRange(17..<17), insertionLocations: [31])
+        
+        textView.deleteToBeginningOfParagraph(nil)
+        
+        #expect(textView.string == "alpha beta\ndelta\nzeta")
+        #expect(textView.insertionRanges == [NSRange(11..<11), NSRange(17..<17)])
+    }
+    
+    
+    /// Tests that deleting to the beginning of the paragraph or line at the line start with a single cursor joins the previous line, including CRLF.
+    ///
+    /// - Parameter selector: The deletion command to perform.
+    @Test(arguments: [#selector(NSTextView.deleteToBeginningOfParagraph),
+                      #selector(NSTextView.deleteToBeginningOfLine)])
+    func deleteToBeginningJoinsLinesWithSingleCursor(selector: Selector) {
+        
+        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(5..<5))
+        
+        textView.doCommand(by: selector)
+        
+        #expect(textView.string == "abcdef\r\nghi")
+        #expect(textView.insertionRanges == [NSRange(3..<3)])
+    }
+    
+    
+    /// Tests that deleting to the beginning of the paragraph or line at the line start with multiple cursors joins the previous lines, including CRLF.
+    ///
+    /// - Parameter selector: The deletion command to perform.
+    @Test(arguments: [#selector(NSTextView.deleteToBeginningOfParagraph),
+                      #selector(NSTextView.deleteToBeginningOfLine)])
+    func deleteToBeginningJoinsLinesWithMultipleCursors(selector: Selector) {
+        
+        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(5..<5), insertionLocations: [10])
+        
+        textView.doCommand(by: selector)
+        
+        #expect(textView.string == "abcdefghi")
+        #expect(textView.insertionRanges == [NSRange(3..<3), NSRange(6..<6)])
     }
     
     
