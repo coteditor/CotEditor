@@ -149,7 +149,14 @@ extension TextKeyBindingMap: Codable {
             }
             guard let command = TextKeyBindingCommand.allCases.first(where: { $0.action == entry.action }) else { continue }
             
-            try self.setShortcuts(entry.shortcuts, for: command)
+            // ignore shortcuts unavailable in the settings, such as those in a hand-edited file
+            let shortcuts = entry.shortcuts
+                .filter { (try? $0.checkCustomizationAvailability(allowsTextEditingKeys: true)) != nil }
+            
+            // inherit the default shortcuts instead of disabling them when no stored shortcut is available
+            guard !shortcuts.isEmpty || entry.shortcuts.isEmpty else { continue }
+            
+            try self.setShortcuts(shortcuts, for: command)
         }
     }
     

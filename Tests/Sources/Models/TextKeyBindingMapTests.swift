@@ -275,6 +275,26 @@ import Shortcut
     }
     
     
+    /// Tests ignoring stored shortcuts unavailable in the settings and inheriting the defaults when none remains.
+    ///
+    /// - Throws: If encoding or decoding the test data fails.
+    @Test func ignoresUnavailableStoredShortcuts() throws {
+        
+        let available: [Shortcut] = [Shortcut("k", modifiers: [.control, .option]), Shortcut(.leftArrow, modifiers: [])]
+        let entries = [
+            TextKeyBinding(action: TextKeyBindingCommand.deleteToEndOfParagraph.action,
+                           shortcuts: [Shortcut("a", modifiers: []), Shortcut("a", modifiers: .shift)] + available),
+            TextKeyBinding(action: TextKeyBindingCommand.pageDown.action, shortcuts: [Shortcut(.tab, modifiers: .control)]),
+        ]
+        let data = try PropertyListEncoder().encode(entries)
+        let map = try PropertyListDecoder().decode(TextKeyBindingMap.self, from: data)
+        
+        #expect(map.customizations == [.deleteToEndOfParagraph: available])
+        #expect(map.action(for: Shortcut("a", modifiers: [])) == nil)
+        #expect(map.shortcuts(for: .pageDown) == TextKeyBindingCommand.pageDown.shortcuts)
+    }
+    
+    
     /// Tests rejecting conflicting shortcuts, malformed shortcuts, and duplicate action records.
     ///
     /// - Parameter entries: The invalid action and shortcut records to decode.
