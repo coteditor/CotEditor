@@ -97,6 +97,31 @@ import Shortcut
     }
     
     
+    /// Tests that customizations for commands not in the menu neither take the default shortcuts of other commands nor remain stored.
+    ///
+    /// - Throws: If preparing, importing, or loading the settings fails.
+    @Test func dropsBindingsForMissingCommands() throws {
+        
+        try self.withManager { manager, directoryURL in
+            let data = try PropertyListEncoder().encode([
+                MenuKeyBinding(action: #selector(NSText.paste), shortcut: Shortcut("c", modifiers: .command)),
+                MenuKeyBinding(action: #selector(NSText.copy), tag: 1, shortcut: Shortcut(.delete, modifiers: .command)),
+            ])
+            
+            try manager.importMenuSetting(data: data)
+            #expect(!manager.isCustomized)
+            #expect(manager.menuTree.flatMap(\.flatValues).allSatisfy { $0.shortcut == $0.defaultShortcut })
+            
+            try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true)
+            try data.write(to: directoryURL.appending(path: "Shortcuts.plist"))
+            let reloaded = KeyBindingManager(mainMenu: self.makeMenu(), settingDirectoryURL: directoryURL)
+            reloaded.applyShortcutsToMainMenu()
+            #expect(!reloaded.isCustomized)
+            #expect(reloaded.menuTree.flatMap(\.flatValues).allSatisfy { $0.shortcut == $0.defaultShortcut })
+        }
+    }
+    
+    
     /// Tests removing the text settings file when its last customization is restored.
     ///
     /// - Throws: If saving or restoring settings fails.

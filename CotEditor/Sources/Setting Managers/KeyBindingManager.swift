@@ -80,7 +80,7 @@ import URLUtils
         self.defaultMenuKeyBindings = Self.scanKeyBindings(in: mainMenu)
         
         let keyBindings: [MenuKeyBinding] = (try? self.loadSettings(from: self.menuSettingFileURL)) ?? []
-        self.userMenuKeyBindings = keyBindings.filter { $0.shortcut?.isAssignable ?? true }
+        self.userMenuKeyBindings = self.customizations(in: keyBindings)
         self.textKeyBindings = (try? self.loadSettings(from: self.textSettingFileURL)) ?? TextKeyBindingMap()
         self.modifiedMenuKeyBindings = Set(self.userMenuKeyBindings)
     }
@@ -402,10 +402,7 @@ import URLUtils
     /// - Throws: If encoding or writing the settings fails.
     private func save(menuKeyBindings: [MenuKeyBinding]) throws {
         
-        let defaultExistsActions = self.defaultMenuKeyBindings.map(\.action)
-        let userMenuKeyBindings: [MenuKeyBinding] = Set(menuKeyBindings).subtracting(self.defaultMenuKeyBindings)
-            .filter { $0.shortcut?.isAssignable ?? true }
-            .filter { $0.shortcut != nil || defaultExistsActions.contains($0.action) }
+        let userMenuKeyBindings = self.customizations(in: menuKeyBindings)
         
         try self.writeSettings(self.userSettingsData(for: userMenuKeyBindings), to: self.menuSettingFileURL)
         
@@ -417,6 +414,21 @@ import URLUtils
         self.applyShortcutsToMainMenu()
         
         NotificationCenter.default.post(DidUpdateSettingsMessage(), subject: self)
+    }
+    
+    
+    /// Extracts the customizations from the passed-in menu key bindings.
+    ///
+    /// - Parameter keyBindings: The menu key bindings to extract from.
+    /// - Returns: The menu key bindings that differ from the defaults, excluding the ones for commands not in the menu or with unassignable shortcuts.
+    private func customizations(in keyBindings: [MenuKeyBinding]) -> [MenuKeyBinding] {
+        
+        // -> Bindings for commands not in the menu would otherwise remove the same shortcuts from the default ones of other commands.
+        Set(keyBindings).subtracting(self.defaultMenuKeyBindings)
+            .filter { $0.shortcut?.isAssignable ?? true }
+            .filter { keyBinding in
+                self.defaultMenuKeyBindings.contains { $0.action == keyBinding.action && $0.tag == keyBinding.tag }
+            }
     }
     
     
