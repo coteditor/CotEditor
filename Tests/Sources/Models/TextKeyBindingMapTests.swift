@@ -232,21 +232,6 @@ import Shortcut
     }
     
     
-    /// Tests restoring all commands, including explicitly disabled commands.
-    ///
-    /// - Throws: If creating the customizations fails.
-    @Test func restoresAllDefaults() throws {
-        
-        var map = TextKeyBindingMap()
-        try map.setShortcuts([Shortcut(.home, modifiers: [])], for: .moveToLeftEndOfLine)
-        try map.setShortcuts([], for: .pageDown)
-        map.restoreDefaults()
-        
-        #expect(map == TextKeyBindingMap())
-        #expect(map.customizations.isEmpty)
-    }
-    
-    
     /// Tests preserving multiple aliases, disabled commands, and system inheritance through storage.
     ///
     /// - Throws: If configuring, encoding, or decoding the bindings fails.

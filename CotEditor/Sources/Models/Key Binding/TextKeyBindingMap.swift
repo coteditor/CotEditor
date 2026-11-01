@@ -113,13 +113,6 @@ struct TextKeyBindingMap: Equatable {
     }
     
     
-    /// Removes all customizations and restores system key handling.
-    mutating func restoreDefaults() {
-        
-        self = .init()
-    }
-    
-    
     /// Resolves a shortcut to a custom command or suppression.
     ///
     /// - Parameter shortcut: The shortcut to resolve.
