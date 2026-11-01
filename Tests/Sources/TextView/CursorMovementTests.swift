@@ -524,6 +524,16 @@ import LineEnding
     }
     
     
+    /// Tests that deleting to the end of the line deletes nothing for a cursor between CR and LF.
+    @Test func deleteToEndOfLineBetweenCRAndLF() {
+        
+        let textView = makeEditorTextView(string: "ab\r\ncd", lineEnding: .crlf, selectedRange: NSRange(1..<1), insertionLocations: [3])
+        
+        textView.deleteToEndOfLine(nil)
+        #expect(textView.string == "a\r\ncd")
+    }
+    
+    
     /// Tests that deleting to the end of the line with selections deletes only the selected text.
     ///
     /// - Parameter isMultiple: Whether to add another selection in the second line.

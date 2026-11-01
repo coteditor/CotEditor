@@ -864,7 +864,7 @@ extension EditorTextView {
             .map { range in
                 let upperBound = (range.location == string.lineContentsEndIndex(at: range.location))
                     ? string.lineRange(at: range.location).upperBound  // delete the line ending
-                    : self.locationOfEndOfLine(for: range.location)
+                    : max(self.locationOfEndOfLine(for: range.location), range.location)  // for a cursor between CR and LF
                 return NSRange(range.location..<upperBound)
             }
             .merged
