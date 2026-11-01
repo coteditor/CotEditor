@@ -174,6 +174,11 @@ final class FindPanelContentViewController: NSSplitViewController {
     ///   - client: The text view where searched.
     private func didFinishFindAll(_ matches: [FindAllMatch], for findString: String, in client: NSTextView?) {
         
+        // clear the highlights of the previous results in another document
+        if let textStorage = self.resultModel.target?.textStorage, textStorage !== client?.textStorage {
+            NotificationCenter.default.post(TextFinder.ClearFindAllHighlightsMessage(), subject: textStorage)
+        }
+        
         self.resultModel.matches = matches
         self.resultModel.findString = findString
         self.resultModel.target = client

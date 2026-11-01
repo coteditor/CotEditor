@@ -314,6 +314,53 @@ import Testing
     }
     
     
+    /// Find All in another editor removes the highlights of the previous results, and closing the results removes the new ones.
+    ///
+    /// - Parameter sharesTextStorage: Whether the editors share a document as split editors do.
+    @Test(arguments: [false, true])
+    func findAllInAnotherEditorReplacesHighlights(sharesTextStorage: Bool) async throws {
+        
+        let controller = FindPanelContentViewController()
+        controller.loadViewIfNeeded()
+        
+        let textView = TestTextView(string: "foo bar foo")
+        let otherTextView = sharesTextStorage
+            ? TestTextView(textStorage: try #require(textView.textStorage))
+            : TestTextView(string: "foo bar foo")
+        for view in [textView, otherTextView] {
+            view.setSelectedRange(NSRange(0..<(view.string as NSString).length))
+        }
+        
+        let finder = TextFinder()
+        finder.client = textView
+        let otherFinder = TextFinder()
+        otherFinder.client = otherTextView
+        let settings = finder.settings
+        let originalFindString = settings.findString
+        let originalUsesRegularExpression = settings.usesRegularExpression
+        defer {
+            settings.findString = originalFindString
+            settings.usesRegularExpression = originalUsesRegularExpression
+        }
+        settings.findString = "foo"
+        settings.usesRegularExpression = false
+        
+        _ = try await self.performFindAction(.findAll, with: finder)
+        try #require(await Task.waitFor { !controller.splitViewItems[1].isCollapsed })
+        #expect(textView.hasTemporaryBackgroundColor)
+        
+        _ = try await self.performFindAction(.findAll, with: otherFinder)
+        #expect(otherTextView.hasTemporaryBackgroundColor)
+        #expect(textView.hasTemporaryBackgroundColor == sharesTextStorage)
+        
+        await self.closeFindAllResults(controller, closesPanel: false)
+        try #require(await Task.waitFor { controller.splitViewItems[1].isCollapsed })
+        
+        #expect(!otherTextView.hasTemporaryBackgroundColor)
+        #expect(!textView.hasTemporaryBackgroundColor)
+    }
+    
+    
     /// Closing Find All results preserves subsequent multiple replace highlights in the same document.
     ///
     /// - Parameters:
