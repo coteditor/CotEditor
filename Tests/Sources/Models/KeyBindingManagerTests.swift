@@ -238,6 +238,7 @@ import Shortcut
         Shortcut(.tab, modifiers: .control),
         Shortcut(.backTab, modifiers: .shift),
         Shortcut(.carriageReturn, modifiers: []),
+        Shortcut(.carriageReturn, modifiers: .shift),
         Shortcut(.delete, modifiers: []),
     ] as [Shortcut])
     func rejectsUnsupportedTextShortcuts(shortcut: Shortcut) throws {

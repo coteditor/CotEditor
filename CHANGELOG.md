@@ -31,6 +31,7 @@
 - Fix an issue where progress could be displayed incorrectly when searching or replacing text within selections.
 - Fix an issue where syntax highlighting and outline parsing could start after closing a document.
 - Fix an issue where shortcuts using function keys, arrow keys, or other navigation keys could not be set in the Shortcuts and Snippets settings panes.
+- Fix an issue where Shift-Return could be assigned as a keyboard shortcut.
 - Fix an issue where Control-B, Control-F, Option-Up Arrow, or Option-Down Arrow could move insertion points incorrectly during multi-cursor editing in right-to-left text.
 - Fix an issue where repeatedly pressing Command-Right Arrow during multi-cursor editing could move insertion points to the end of the next wrapped visual line.
 - Fix an issue where selecting or deleting text by word or to the beginning of a line could affect an incorrect range or make the app unresponsive in bidirectional text.
