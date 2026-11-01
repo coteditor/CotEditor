@@ -173,7 +173,7 @@ struct ShortcutTests {
         ]
         let shortcut = try #require(Shortcut("B", modifiers: .command))
         
-        #expect(menu.commandName(for: shortcut) == "bbb")
+        #expect(menu.item(for: shortcut)?.commandName == "bbb")
     }
     
     

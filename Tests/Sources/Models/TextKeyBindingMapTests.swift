@@ -164,6 +164,26 @@ import Shortcut
     }
     
     
+    /// Tests that an assignment takes a default shortcut kept in another customized command, which gets it back on release.
+    ///
+    /// - Throws: If updating the shortcuts fails.
+    @Test func assignmentTakesKeptDefaultShortcut() throws {
+        
+        var map = TextKeyBindingMap()
+        let controlT: Shortcut = Shortcut("t", modifiers: .control)
+        let controlJ: Shortcut = Shortcut("j", modifiers: .control)
+        try map.setShortcuts([controlJ, controlT], for: .transpose)
+        try map.setShortcuts([controlT], for: .yank)
+        
+        #expect(map.action(for: controlT) == .perform(.yank))
+        #expect(map.shortcuts(for: .transpose) == [controlJ])
+        
+        try map.setShortcuts(nil, for: .yank)
+        #expect(map.action(for: controlT) == .perform(.transpose))
+        #expect(map.shortcuts(for: .transpose) == [controlJ, controlT])
+    }
+    
+    
     /// Tests that conflicting assignments leave the entire map unchanged.
     ///
     /// - Throws: If creating the initial assignment fails.

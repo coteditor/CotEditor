@@ -173,12 +173,40 @@ import URLUtils
     func save(shortcuts: [Shortcut]?, for command: TextKeyBindingCommand) throws {
         
         var bindings = self.textKeyBindings
-        try bindings.setShortcuts(shortcuts, for: command)  // check conflicts with the other text editing commands
-        for shortcut in bindings.shortcuts(for: command) {
-            try shortcut.checkCustomizationAvailability(for: self.mainMenu, allowsTextEditingKeys: true)
+        let current = self.shortcuts(for: command, in: bindings)
+        
+        if let shortcuts {
+            for shortcut in shortcuts where !current.contains(shortcut) {
+                try self.checkCustomizationAvailability(for: shortcut, command: command)
+            }
         }
         
+        // keep the default shortcuts taken by other commands to take them back when released
+        let yielded = (bindings.customizations[command] ?? command.shortcuts).filter { !current.contains($0) }
+        try bindings.setShortcuts(shortcuts.map { $0 + yielded }, for: command)
+        
         try self.save(textKeyBindings: bindings)
+    }
+    
+    
+    /// Returns the shortcuts of a text editing command that are not taken by other commands.
+    ///
+    /// - Parameters:
+    ///   - command: The text editing command.
+    ///   - textKeyBindings: The text editing key bindings to look up.
+    /// - Returns: The shortcuts of the command, excluding the default ones taken by other text editing commands or the menu.
+    func shortcuts(for command: TextKeyBindingCommand, in textKeyBindings: TextKeyBindingMap) -> [Shortcut] {
+        
+        textKeyBindings.shortcuts(for: command).filter { shortcut in
+            guard
+                command.shortcuts.contains(shortcut),
+                let menuItem = self.mainMenu.item(for: shortcut)
+            else { return true }
+            
+            // -> Default shortcuts give way to the ones assigned to menu commands, snippets, or scripts,
+            //    but share the key with the default ones of menu commands.
+            return self.hasDefaultShortcut(menuItem)
+        }
     }
     
     
@@ -190,12 +218,21 @@ import URLUtils
     /// - Throws: If the shortcut is unsupported or already used by a menu item or a text editing command.
     func checkCustomizationAvailability(for shortcut: Shortcut, command: TextKeyBindingCommand? = nil) throws(Shortcut.CustomizationError) {
         
-        try shortcut.checkCustomizationAvailability(for: self.mainMenu, allowsTextEditingKeys: command != nil)
+        try shortcut.checkCustomizationAvailability(allowsTextEditingKeys: command != nil)
         
-        guard let owner = TextKeyBindingCommand.allCases.first(where: { self.textKeyBindings.shortcuts(for: $0).contains(shortcut) }) else { return }
+        // -> A menu command takes the key only while it is enabled,
+        //    such as Delete with Command-Delete only when a text is selected.
+        if let menuItem = self.mainMenu.item(for: shortcut),
+           !(command?.shortcuts.contains(shortcut) == true && self.hasDefaultShortcut(menuItem))
+        {
+            throw .alreadyTaken(shortcut, name: menuItem.commandName)
+        }
         
-        // text editing commands can take over inherited shortcuts of the other commands
-        guard let command, owner != command, self.textKeyBindings.customizations[owner] == nil else {
+        if let command, self.shortcuts(for: command, in: self.textKeyBindings).contains(shortcut) {
+            throw .alreadyTaken(shortcut, name: String(localized: command.label))
+        }
+        
+        if let owner = self.textKeyBindings.explicitOwner(of: shortcut), owner != command {
             throw .alreadyTaken(shortcut, name: String(localized: owner.label))
         }
     }
@@ -384,6 +421,18 @@ import URLUtils
         (usesDefaults ? self.defaultKeyBindings : self.keyBindings)
             .first { $0.action == action && $0.tag == tag }?
             .shortcut
+    }
+    
+    
+    /// Returns whether the menu item has its default shortcut defined in the storyboard.
+    ///
+    /// - Parameter menuItem: The menu item to check.
+    /// - Returns: `false` if the shortcut is customized or the menu item is a snippet or a script.
+    private func hasDefaultShortcut(_ menuItem: NSMenuItem) -> Bool {
+        
+        guard let action = menuItem.action else { return false }
+        
+        return self.defaultKeyBindings.contains(KeyBinding(action: action, tag: menuItem.tag, shortcut: menuItem.shortcut))
     }
     
     

@@ -205,6 +205,16 @@ struct ShortcutsSettingsView: View {
     }
     
     
+    /// Returns the shortcuts of a text editing command to display.
+    ///
+    /// - Parameter command: The text editing command.
+    /// - Returns: The shortcuts not taken by other commands.
+    func shortcuts(for command: TextKeyBindingCommand) -> [Shortcut] {
+        
+        self.manager.shortcuts(for: command, in: self.textKeyBindings)
+    }
+    
+    
     /// Saves the shortcuts of a text editing command, or restores its system bindings with `nil`.
     ///
     /// - Parameters:
@@ -363,7 +373,7 @@ private struct TextShortcutFields: View {
     /// The fields to display: a blank one to add a shortcut, followed by the current shortcuts.
     private var slots: [Shortcut?] {
         
-        [nil] + self.model.textKeyBindings.shortcuts(for: self.command)
+        [nil] + self.model.shortcuts(for: self.command)
     }
     
     

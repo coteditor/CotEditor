@@ -60,23 +60,6 @@ extension Shortcut {
     }
     
     
-    /// Validates whether the shortcut is available for user customization.
-    ///
-    /// - Parameters:
-    ///   - menu: The menu tree for duplication check.
-    ///   - allowsTextEditingKeys: Whether arrow keys and Forward Delete can be assigned without modifiers.
-    /// - Throws: If the shortcut is unsupported or already assigned.
-    @MainActor func checkCustomizationAvailability(for menu: NSMenu, allowsTextEditingKeys: Bool) throws(Shortcut.CustomizationError) {
-        
-        try self.checkCustomizationAvailability(allowsTextEditingKeys: allowsTextEditingKeys)
-        
-        // duplication check
-        if let duplicatedName = menu.commandName(for: self) {
-            throw .alreadyTaken(self, name: duplicatedName)
-        }
-    }
-    
-    
     /// Validates whether the key combination itself is available for user customization regardless of existing assignments.
     ///
     /// - Parameter allowsTextEditingKeys: Whether arrow keys and Forward Delete can be assigned without modifiers.

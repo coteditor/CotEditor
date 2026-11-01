@@ -265,23 +265,138 @@ import Shortcut
     }
     
     
-    /// Tests rejecting menu assignments used by inherited or customized text commands.
+    /// Tests that menu assignments can take default text shortcuts but not customized ones.
     ///
-    /// - Throws: If updating the text command fails.
-    @Test func rejectsTextShortcutForMenu() throws {
+    /// - Throws: If validating or updating the text command fails.
+    @Test func checksTextShortcutForMenu() throws {
         
         try self.withManager { manager, _ in
             let controlK: Shortcut = Shortcut("k", modifiers: .control)
-            #expect(throws: Shortcut.CustomizationError.self) {
-                try manager.checkCustomizationAvailability(for: controlK)
-            }
-            try manager.save(shortcuts: [], for: .deleteToEndOfParagraph)
             try manager.checkCustomizationAvailability(for: controlK)
             let shortcut: Shortcut = Shortcut("j", modifiers: [.command, .option])
-            try manager.save(shortcuts: [shortcut], for: .transpose)
+            try manager.save(shortcuts: [shortcut, controlK], for: .deleteToEndOfParagraph)
+            try manager.checkCustomizationAvailability(for: controlK)
             #expect(throws: Shortcut.CustomizationError.self) {
                 try manager.checkCustomizationAvailability(for: shortcut)
             }
+        }
+    }
+    
+    
+    /// Tests that default text shortcuts give way to snippets and customized menu commands.
+    ///
+    /// - Throws: If importing or updating the settings fails.
+    @Test func textDefaultsGiveWayToMenu() throws {
+        
+        let controlT: Shortcut = Shortcut("t", modifiers: .control)
+        let controlJ: Shortcut = Shortcut("j", modifiers: .control)
+        
+        try self.withManager(adding: [self.makeSnippetItem(shortcut: controlT)]) { manager, _ in
+            let binding = KeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("a", modifiers: .control))
+            try manager.importSetting(data: PropertyListEncoder().encode([binding]))
+            
+            #expect(manager.shortcuts(for: .transpose, in: manager.textKeyBindings).isEmpty)
+            #expect(manager.shortcuts(for: .moveToBeginningOfParagraph, in: manager.textKeyBindings).isEmpty)
+            #expect(manager.shortcuts(for: .deleteToBeginningOfLine, in: manager.textKeyBindings) == [Shortcut(.delete, modifiers: .command)])
+            #expect(throws: Shortcut.CustomizationError.self) {
+                try manager.checkCustomizationAvailability(for: controlT, command: .transpose)
+            }
+            
+            // keep the default shortcut taken by the menu
+            try manager.save(shortcuts: [controlJ] + manager.shortcuts(for: .transpose, in: manager.textKeyBindings), for: .transpose)
+            #expect(manager.textKeyBindings.customizations[.transpose] == [controlJ, controlT])
+            #expect(manager.shortcuts(for: .transpose, in: manager.textKeyBindings) == [controlJ])
+            
+            // show explicit assignments even if the menu overrides them
+            let data = try PropertyListEncoder().encode([TextKeyBinding(action: TextKeyBindingCommand.yank.action, shortcuts: [controlT])])
+            try manager.importTextSetting(data: data)
+            #expect(manager.shortcuts(for: .yank, in: manager.textKeyBindings) == [controlT])
+        }
+    }
+    
+    
+    /// Tests customizing and restoring a text command whose default shortcut is also the default of a menu command.
+    ///
+    /// - Throws: If validating or updating the text command fails.
+    @Test func sharesDefaultShortcutWithMenu() throws {
+        
+        try self.withManager { manager, _ in
+            let commandDelete = Shortcut(.delete, modifiers: .command)
+            let controlU: Shortcut = Shortcut("u", modifiers: .control)
+            try manager.checkCustomizationAvailability(for: controlU, command: .deleteToBeginningOfLine)
+            try manager.save(shortcuts: [controlU, commandDelete], for: .deleteToBeginningOfLine)
+            #expect(manager.shortcuts(for: .deleteToBeginningOfLine, in: manager.textKeyBindings) == [controlU, commandDelete])
+            
+            try manager.save(shortcuts: [controlU], for: .deleteToBeginningOfLine)
+            try manager.checkCustomizationAvailability(for: commandDelete, command: .deleteToBeginningOfLine)
+            #expect(throws: Shortcut.CustomizationError.self) {
+                try manager.checkCustomizationAvailability(for: commandDelete, command: .deleteToBeginningOfParagraph)
+            }
+            
+            try manager.save(shortcuts: nil, for: .deleteToBeginningOfLine)
+            #expect(!manager.isCustomized)
+            #expect(manager.shortcuts(for: .deleteToBeginningOfLine, in: manager.textKeyBindings) == [commandDelete])
+        }
+    }
+    
+    
+    /// Tests restoring the default shortcut of a menu command that is also the default of a text command.
+    ///
+    /// - Throws: If validating or saving the menu settings fails.
+    @Test func restoresMenuDefaultSharedWithText() throws {
+        
+        try self.withManager { manager, _ in
+            let commandDelete = Shortcut(.delete, modifiers: .command)
+            let tree = manager.menuTree
+            let item = try #require(tree.flatMap(\.flatValues).first { $0.action == #selector(NSText.delete) })
+            item.shortcut = Shortcut(.delete, modifiers: [.command, .option])
+            try manager.save(tree: tree)
+            
+            try manager.checkCustomizationAvailability(for: commandDelete)
+            item.shortcut = commandDelete
+            try manager.save(tree: tree)
+            #expect(!manager.isCustomized)
+            #expect(manager.shortcuts(for: .deleteToBeginningOfLine, in: manager.textKeyBindings) == [commandDelete])
+        }
+    }
+    
+    
+    /// Tests moving a default shortcut kept in a customized text command to another command and back.
+    ///
+    /// - Throws: If validating or updating the text commands fails.
+    @Test func movesKeptDefaultShortcut() throws {
+        
+        try self.withManager { manager, _ in
+            let controlT: Shortcut = Shortcut("t", modifiers: .control)
+            let controlJ: Shortcut = Shortcut("j", modifiers: .control)
+            try manager.save(shortcuts: [controlJ, controlT], for: .transpose)
+            try manager.checkCustomizationAvailability(for: controlT, command: .yank)
+            try manager.save(shortcuts: [controlT], for: .yank)
+            #expect(manager.shortcuts(for: .transpose, in: manager.textKeyBindings) == [controlJ])
+            #expect(manager.textKeyBindings.action(for: controlT) == .perform(.yank))
+            
+            try manager.save(shortcuts: nil, for: .yank)
+            #expect(manager.shortcuts(for: .transpose, in: manager.textKeyBindings) == [controlJ, controlT])
+            #expect(manager.textKeyBindings.action(for: controlT) == .perform(.transpose))
+        }
+    }
+    
+    
+    /// Tests that a default shortcut given way to another text command comes back when released.
+    ///
+    /// - Throws: If updating the text commands fails.
+    @Test func takesBackYieldedDefaultShortcut() throws {
+        
+        try self.withManager { manager, _ in
+            let home = Shortcut(.home, modifiers: [])
+            let f6 = Shortcut(.f6, modifiers: [])
+            try manager.save(shortcuts: [home], for: .moveToLeftEndOfLine)
+            #expect(manager.shortcuts(for: .scrollToBeginningOfDocument, in: manager.textKeyBindings).isEmpty)
+            try manager.save(shortcuts: [f6] + manager.shortcuts(for: .scrollToBeginningOfDocument, in: manager.textKeyBindings), for: .scrollToBeginningOfDocument)
+            try manager.save(shortcuts: nil, for: .moveToLeftEndOfLine)
+            
+            #expect(manager.shortcuts(for: .scrollToBeginningOfDocument, in: manager.textKeyBindings) == [f6, home])
+            #expect(manager.textKeyBindings.action(for: home) == .perform(.scrollToBeginningOfDocument))
         }
     }
     
@@ -330,46 +445,66 @@ import Shortcut
     }
     
     
-    /// Tests that restoring a command does not reintroduce a shortcut now assigned to the menu.
+    /// Tests that restoring a command succeeds while its default shortcut now assigned to the menu stays there.
     ///
-    /// - Throws: If preparing the customizations fails.
-    @Test func restoreChecksMenuConflicts() throws {
+    /// - Throws: If preparing or restoring the customizations fails.
+    @Test func restoreYieldsToMenuShortcut() throws {
         
         try self.withManager { manager, _ in
             try manager.save(shortcuts: [], for: .deleteToEndOfParagraph)
             let binding = KeyBinding(action: #selector(NSText.copy), shortcut: Shortcut("k", modifiers: .control))
             try manager.importSetting(data: PropertyListEncoder().encode([binding]))
-            #expect(throws: Shortcut.CustomizationError.self) {
-                try manager.save(shortcuts: nil, for: .deleteToEndOfParagraph)
-            }
-            #expect(manager.textKeyBindings.customizations[.deleteToEndOfParagraph]?.isEmpty == true)
+            try manager.save(shortcuts: nil, for: .deleteToEndOfParagraph)
+            
+            #expect(!manager.textKeyBindings.isCustomized)
+            #expect(manager.shortcuts(for: .deleteToEndOfParagraph, in: manager.textKeyBindings).isEmpty)
         }
     }
     
     
     /// Runs a synchronous persistence test with an isolated menu and settings directory.
     ///
-    /// - Parameter operation: The test using the manager and its settings directory.
+    /// - Parameters:
+    ///   - menuItems: The additional menu items, such as snippets, to append to the test menu.
+    ///   - operation: The test using the manager and its settings directory.
     /// - Throws: If creating the temporary directory or running the test fails.
-    private func withManager(operation: (KeyBindingManager, URL) throws -> Void) throws {
+    private func withManager(adding menuItems: [NSMenuItem] = [], operation: (KeyBindingManager, URL) throws -> Void) throws {
         
         let directoryURL = try FileManager.default.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: directoryURL) }
         let settingsURL = directoryURL.appending(path: "KeyBindings")
-        let manager = KeyBindingManager(mainMenu: self.makeMenu(), settingDirectoryURL: settingsURL)
+        let menu = self.makeMenu()
+        for menuItem in menuItems {
+            menu.addItem(menuItem)
+        }
+        let manager = KeyBindingManager(mainMenu: menu, settingDirectoryURL: settingsURL)
         
         try operation(manager, settingsURL)
     }
     
     
-    /// Creates a menu whose Copy shortcut can be customized independently of the application menu.
+    /// Creates a menu whose Copy and Delete shortcuts can be customized independently of the application menu.
     ///
     /// - Returns: The test menu.
     private func makeMenu() -> NSMenu {
         
         let menu = NSMenu()
         menu.addItem(withTitle: "Copy", action: #selector(NSText.copy), keyEquivalent: "c")
+        menu.addItem(withTitle: "Delete", action: #selector(NSText.delete), keyEquivalent: "\u{8}")  // ⌘⌫ as in Main.storyboard
         
         return menu
+    }
+    
+    
+    /// Creates a snippet menu item, whose shortcut is not managed by the key binding manager.
+    ///
+    /// - Parameter shortcut: The shortcut of the snippet.
+    /// - Returns: The menu item.
+    private func makeSnippetItem(shortcut: Shortcut) -> NSMenuItem {
+        
+        let menuItem = NSMenuItem(title: "Snippet", action: #selector((any SnippetInsertable).insertSnippet), keyEquivalent: "")
+        menuItem.shortcut = shortcut
+        
+        return menuItem
     }
 }
