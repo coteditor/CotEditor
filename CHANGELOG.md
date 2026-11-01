@@ -17,6 +17,7 @@
 - Move settings import and export from the File menu to the General settings pane.
 - Redesign the Shortcuts settings pane.
 - Allow restoring the default shortcuts for individual commands in the Shortcuts settings pane using the context menu or the Delete key.
+- Support undo in the Shortcuts settings pane.
 - Improve word navigation with Control-Option-F and Control-Option-B to treat periods, commas, and colons as word delimiters, consistent with Option-Left Arrow and Option-Right Arrow.
 - Change the Shift-Option-Down Arrow shortcut to extend the selection to the end of the line without including the line ending, consistent with Option-Down Arrow.
 - [dev] Update the build environment to Xcode 27.2.
