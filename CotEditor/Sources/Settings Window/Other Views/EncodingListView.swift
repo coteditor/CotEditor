@@ -48,7 +48,7 @@ struct EncodingListView: View {
         
         private(set) var items: [Item]
         
-        @ObservationIgnored var undoManager: UndoManager?
+        var undoManager: UndoManager?
         
         private let defaults: UserDefaults
         private let defaultEncoding: CFStringEncoding
