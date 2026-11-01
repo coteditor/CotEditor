@@ -586,18 +586,32 @@ import LineEnding
     }
     
     
-    /// Tests that deleting to the end of the line with selections deletes only the selected text.
+    /// Tests that deleting to the end of the line or paragraph with selections deletes only the selected text.
     ///
     /// - Parameter isMultiple: Whether to add another selection in the second line.
     @Test(arguments: [false, true])
-    func deleteToEndOfLineWithSelection(isMultiple: Bool) {
+    func deleteToEndWithSelection(isMultiple: Bool) {
         
-        let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon")
-        textView.selectedRanges = (isMultiple ? [NSRange(6..<10), NSRange(17..<22)] : [NSRange(6..<10)]) as [NSValue]
+        for selector in [#selector(NSTextView.deleteToEndOfLine), #selector(NSTextView.deleteToEndOfParagraph)] {
+            let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon")
+            textView.selectedRanges = (isMultiple ? [NSRange(0..<3), NSRange(11..<14)] : [NSRange(0..<3)]) as [NSValue]
+            
+            textView.doCommand(by: selector)
+            
+            #expect(textView.string == (isMultiple ? "ha beta\nma delta\nepsilon" : "ha beta\ngamma delta\nepsilon"), "\(selector)")
+        }
+    }
+    
+    
+    /// Tests that deleting to the end of the paragraph preserves a cursor at the document end.
+    @Test func deleteToEndOfParagraphPreservesCursorAtDocumentEnd() {
         
-        textView.deleteToEndOfLine(nil)
+        let textView = makeEditorTextView(string: "abc\ndef", selectedRange: NSRange(1..<1), insertionLocations: [7])
         
-        #expect(textView.string == (isMultiple ? "alpha \ngamma \nepsilon" : "alpha \ngamma delta\nepsilon"))
+        textView.deleteToEndOfParagraph(nil)
+        
+        #expect(textView.string == "a\ndef")
+        #expect(textView.insertionRanges == [NSRange(1..<1), NSRange(5..<5)])
     }
     
     

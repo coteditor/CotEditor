@@ -818,25 +818,9 @@ extension EditorTextView {
             return super.deleteToEndOfParagraph(sender)
         }
         
-        // build deletion ranges manually
-        // -> Otherwise, the character just before the cursor is deleted
-        //    when the cursor is already at the end of the line.
-        let string = self.string as NSString
-        let ranges = self.insertionRanges
-            .map { range in
-                let contentsEnd = string.lineContentsEndIndex(at: range.upperBound)
-                let upperBound = (range.isEmpty && range.location == contentsEnd)
-                    ? string.lineRange(at: range.location).upperBound  // delete the line ending
-                    : max(contentsEnd, range.upperBound)
-                return NSRange(range.location..<upperBound)
-            }
-            .merged
-            .filter { !$0.isEmpty }
-        
-        guard !ranges.isEmpty else { return }
-        
-        self.selectedRanges = ranges as [NSValue]
-        self.deleteBackward(sender)
+        self.deleteToEnd(sender) { endLocation in
+            (self.string as NSString).lineContentsEndIndex(at: endLocation)
+        }
     }
     
     
@@ -859,6 +843,18 @@ extension EditorTextView {
             return super.deleteToEndOfLine(sender)
         }
         
+        self.deleteToEnd(sender, upTo: self.locationOfEndOfLine(for:))
+    }
+    
+    
+    /// Deletes from each insertion point to the given end, or the line ending at the end of the logical line, or the selected text if any.
+    ///
+    /// - Parameters:
+    ///   - sender: The sender of the action.
+    ///   - endLocation: The closure returning the location to delete to from the insertion point at the given location.
+    ///   - location: The location of an insertion point.
+    private func deleteToEnd(_ sender: Any?, upTo endLocation: (_ location: Int) -> Int) {
+        
         if self.rangesForUserTextChange?.contains(where: { !$0.rangeValue.isEmpty }) == true {
             return self.deleteForward(sender)
         }
@@ -870,7 +866,7 @@ extension EditorTextView {
             .map { range in
                 let upperBound = (range.location == string.lineContentsEndIndex(at: range.location))
                     ? string.lineRange(at: range.location).upperBound  // delete the line ending
-                    : max(self.locationOfEndOfLine(for: range.location), range.location)  // for a cursor between CR and LF
+                    : max(endLocation(range.location), range.location)  // for a cursor between CR and LF
                 return NSRange(range.location..<upperBound)
             }
             .merged
