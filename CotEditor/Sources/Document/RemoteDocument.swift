@@ -44,6 +44,7 @@ import RMate
     private var pendingCloseContexts: [DelegateContext] = []
     private var pendingOperations: [() -> Void] = []
     private var preservesSharedWorkingCopy = false
+    private var isDuplicating = false
     
     
     // MARK: Lifecycle
@@ -104,8 +105,16 @@ import RMate
     
     override var displayName: String! {
         
-        get { self.remoteState?.file.metadata.displayName ?? super.displayName }
-        set { super.displayName = newValue }
+        get {
+            // -> The working copy has the same name as the remote file.
+            guard !self.isDuplicating, let remoteState else { return super.displayName }
+            
+            return remoteState.file.metadata.displayName
+        }
+        
+        set {
+            super.displayName = newValue
+        }
     }
     
     
@@ -301,6 +310,17 @@ import RMate
         }
         
         super.duplicate(sender)
+    }
+    
+    
+    override func duplicate() throws -> NSDocument {
+        
+        // name the copy after the remote file as a copy of a local file
+        // -> AppKit derives the name of the copy from the display name, which contains the host name.
+        self.isDuplicating = true
+        defer { self.isDuplicating = false }
+        
+        return try super.duplicate()
     }
     
     
