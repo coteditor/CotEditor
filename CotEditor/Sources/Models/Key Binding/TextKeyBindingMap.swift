@@ -130,6 +130,24 @@ struct TextKeyBindingMap: Equatable {
     }
     
     
+    /// Resolves a key event, giving direct character matches priority over alternative keyboard layouts.
+    ///
+    /// - Parameter event: The key down event to resolve.
+    /// - Returns: The custom action, or `nil` to let the text system interpret the event.
+    @MainActor func action(for event: NSEvent) -> Action? {
+        
+        guard let shortcut = Shortcut(keyDownEvent: event) else { return nil }
+        
+        if let action = self.action(for: shortcut) {
+            return action
+        }
+        
+        guard let fallback = Shortcut(keyDownEventUsingCommandLayout: event) else { return nil }
+        
+        return self.action(for: fallback)
+    }
+    
+    
     /// Rebuilds the lookup table, giving explicit assignments priority over the default shortcuts kept or suppressed by customizations.
     private mutating func rebuildActions() {
         
