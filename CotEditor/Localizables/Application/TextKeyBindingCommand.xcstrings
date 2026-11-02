@@ -102,7 +102,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "删除"
           }
         },
@@ -221,7 +221,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "编辑"
           }
         },
@@ -340,7 +340,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "移动"
           }
         },
@@ -459,7 +459,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "滚动"
           }
         },
@@ -578,7 +578,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "选择"
           }
         },
@@ -697,7 +697,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "删除到行首"
           }
         },
@@ -816,7 +816,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "删除到段落开头"
           }
         },
@@ -935,7 +935,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "删除到行尾"
           }
         },
@@ -1054,7 +1054,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "删除到段落末尾"
           }
         },
@@ -1173,7 +1173,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "删除前一个单词"
           }
         },
@@ -1292,7 +1292,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "删除后一个单词"
           }
         },
@@ -1411,7 +1411,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向后移动一个字符"
           }
         },
@@ -1530,7 +1530,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向后移动一个字符并扩展选择范围"
           }
         },
@@ -1649,7 +1649,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "下移一行"
           }
         },
@@ -1768,7 +1768,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "下移一行并扩展选择范围"
           }
         },
@@ -1887,7 +1887,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向前移动一个字符"
           }
         },
@@ -2006,7 +2006,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向前移动一个字符并扩展选择范围"
           }
         },
@@ -2125,7 +2125,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向左移动并扩展选择范围"
           }
         },
@@ -2244,7 +2244,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向后移动一个段落并扩展选择范围"
           }
         },
@@ -2363,7 +2363,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向前移动一个段落并扩展选择范围"
           }
         },
@@ -2482,7 +2482,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向右移动并扩展选择范围"
           }
         },
@@ -2601,7 +2601,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "移至文稿开头"
           }
         },
@@ -2720,7 +2720,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "移至文稿开头并扩展选择范围"
           }
         },
@@ -2839,7 +2839,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "移至段落开头"
           }
         },
@@ -2958,7 +2958,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "移至段落开头并扩展选择范围"
           }
         },
@@ -3077,7 +3077,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "移至文稿末尾"
           }
         },
@@ -3196,7 +3196,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "移至文稿末尾并扩展选择范围"
           }
         },
@@ -3315,7 +3315,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "移至段落末尾"
           }
         },
@@ -3434,7 +3434,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "移至段落末尾并扩展选择范围"
           }
         },
@@ -3553,7 +3553,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "移至行的左端"
           }
         },
@@ -3672,7 +3672,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "移至行的左端并扩展选择范围"
           }
         },
@@ -3791,7 +3791,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "移至行的右端"
           }
         },
@@ -3910,7 +3910,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "移至行的右端并扩展选择范围"
           }
         },
@@ -4029,7 +4029,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "上移一行"
           }
         },
@@ -4148,7 +4148,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "上移一行并扩展选择范围"
           }
         },
@@ -4267,7 +4267,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向后移动一个单词"
           }
         },
@@ -4386,7 +4386,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向后移动一个单词并扩展选择范围"
           }
         },
@@ -4505,7 +4505,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向前移动一个单词"
           }
         },
@@ -4624,7 +4624,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向前移动一个单词并扩展选择范围"
           }
         },
@@ -4743,7 +4743,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向左移动一个单词"
           }
         },
@@ -4862,7 +4862,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向左移动一个单词并扩展选择范围"
           }
         },
@@ -4981,7 +4981,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向右移动一个单词"
           }
         },
@@ -5100,7 +5100,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向右移动一个单词并扩展选择范围"
           }
         },
@@ -5219,7 +5219,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "下移一页"
           }
         },
@@ -5338,7 +5338,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "下移一页并扩展选择范围"
           }
         },
@@ -5457,7 +5457,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "上移一页"
           }
         },
@@ -5576,7 +5576,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "上移一页并扩展选择范围"
           }
         },
@@ -5695,7 +5695,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向下滚动一行"
           }
         },
@@ -5814,7 +5814,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向上滚动一行"
           }
         },
@@ -5933,7 +5933,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向下滚动一页"
           }
         },
@@ -6052,7 +6052,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向上滚动一页"
           }
         },
@@ -6171,7 +6171,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "滚动到文稿开头"
           }
         },
@@ -6290,7 +6290,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "滚动到文稿末尾"
           }
         },
@@ -6409,7 +6409,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "交换前后字符"
           }
         },
@@ -6528,7 +6528,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Yank"
           }
         },

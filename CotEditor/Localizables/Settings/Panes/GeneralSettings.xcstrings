@@ -277,6 +277,12 @@
             "value" : "Выбрать архив настроек…"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选取设置归档…"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1152,6 +1158,12 @@
             "value" : "Сохранить копию в iCloud"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在iCloud中保留副本"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1330,6 +1342,12 @@
             "value" : "Загрузка копий настроек из iCloud…"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在从iCloud加载设置副本…"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1399,6 +1417,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Управление копиями настроек в iCloud…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理iCloud上的副本…"
           }
         },
         "zh-Hant" : {
@@ -1934,6 +1958,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет копий настроек в iCloud"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud中没有设置副本"
           }
         },
         "zh-Hant" : {
@@ -2810,6 +2840,12 @@
             "value" : "Импорт и экспорт настроек:"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置导入与导出："
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2984,6 +3020,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранить копию этих настроек для импорта на другие устройства."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存这些设置的副本，以便其他设备导入。"
           }
         },
         "zh-Hant" : {

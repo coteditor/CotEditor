@@ -414,6 +414,12 @@
             "value" : "Чтобы перестать сохранять копию, отключите «Сохранить копию в iCloud» на Mac, на котором ее включили."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "若要停止保存副本，请在该副本的来源Mac上关闭“在iCloud中保留副本”。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",

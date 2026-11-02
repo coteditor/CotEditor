@@ -52,6 +52,12 @@
             "value" : "Принимать соединения rmate"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "接受rmate连接"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -114,6 +120,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Разрешить открывать файлы на удалённом хосте в CotEditor с помощью протокола `rmate`."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允许使用`rmate`协议在CotEditor中打开远程文件。"
           }
         },
         "zh-Hant" : {
@@ -865,6 +877,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удалённое редактирование:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "远程编辑："
           }
         },
         "zh-Hant" : {

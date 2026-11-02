@@ -2685,6 +2685,12 @@
             "value" : "Отключено"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已断开连接"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5240,7 +5246,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "已达搜索上限"
           }
         },
@@ -14175,6 +14181,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удалённый"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "远程"
           }
         },
         "zh-Hant" : {

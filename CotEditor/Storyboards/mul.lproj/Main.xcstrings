@@ -24419,6 +24419,12 @@
             "value" : "Пожертвовать CotEditor…"
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向CotEditor捐赠…"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",

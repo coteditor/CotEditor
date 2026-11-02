@@ -171,6 +171,12 @@
             "value" : "Храните актуальную копию настроек в iCloud для импорта на другие Mac в любое время."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在iCloud中保留一份最新的设置副本，随时可导入到你的其他Mac。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -240,6 +246,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ваши настройки — одним импортом"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一次导入，设置就位"
           }
         },
         "zh-Hant" : {
@@ -313,6 +325,12 @@
             "value" : "Открывайте файлы на удалённом хосте с помощью `rmate` через SSH и сохраняйте изменения прямо там."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过SSH使用`rmate`打开远程电脑上的文件，并将更改直接存回远程电脑。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -382,6 +400,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Редактируйте файлы на удалённом хосте прямо на вашем Mac"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在Mac上直接编辑远程文件"
           }
         },
         "zh-Hant" : {
@@ -455,6 +479,12 @@
             "value" : "Настройте сочетания клавиш для перемещения курсора, выделения и удаления текста, чтобы ваши пальцы чувствовали себя как дома."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自定移动插入点、选择和删除文本的快捷键，让手指操作得心应手。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -524,6 +554,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ваши клавиши — ваши правила"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的按键，你做主"
           }
         },
         "zh-Hant" : {

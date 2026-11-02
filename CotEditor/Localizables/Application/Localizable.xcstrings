@@ -4068,6 +4068,12 @@
             "value" : "Не удалось получить доступ к выбранной копии настроек."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法访问所选的设置副本。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4130,6 +4136,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не удалось найти копии настроек в iCloud."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法在iCloud中找到设置副本。"
           }
         },
         "zh-Hant" : {
@@ -14347,6 +14359,12 @@
             "value" : "Соединение с удалённым хостом разорвано. Ваши изменения не были отправлены."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "远程连接已断开。你的更改尚未发送。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14416,6 +14434,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранить изменения в «%@» на этом Mac?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要将对“%@”的更改保存到这台Mac上吗？"
           }
         },
         "zh-Hant" : {
@@ -14609,6 +14633,12 @@
             "value" : "Изменения больше не могут быть сохранены на удаленном хосте. Чтобы сохранить изменения, сохраните документ на этом Mac."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更改无法再保存到远程。若要保留更改，请将文稿保存到这台Mac上。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14680,6 +14710,12 @@
             "value" : "Соединение с удалённым хостом для «%@» было разорвано."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”的远程连接已断开。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14749,6 +14785,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Порт уже занят."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此端口已在使用中。"
           }
         },
         "zh-Hant" : {
@@ -14942,6 +14984,12 @@
             "value" : "Введите номер порта от 1 до 65535."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请输入1到65535之间的端口号。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15011,6 +15059,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удалённый файл слишком большой для открытия."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "远程文件太大，无法打开。"
           }
         },
         "zh-Hant" : {
@@ -15085,6 +15139,12 @@
             "value" : "Удалённое редактирование поддерживает файлы до %@."
           }
         },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "远程编辑支持最大%@的文件。"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15154,6 +15214,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не удалось открыть некоторые удалённые файлы."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "部分远程文件无法打开。"
           }
         },
         "zh-Hant" : {
@@ -15318,6 +15384,18 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "Одна команда rmate может открыть до %lld файлов одновременно."
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "单个rmate命令一次最多可打开%lld个文件。"
                 }
               }
             }
