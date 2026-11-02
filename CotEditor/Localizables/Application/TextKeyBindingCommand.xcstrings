@@ -114,12 +114,6 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "刪除"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
             "state" : "translated",
             "value" : "刪除"
           }
@@ -234,12 +228,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "編輯"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
             "value" : "編輯"
           }
         },
@@ -364,12 +352,6 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移動"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
             "state" : "translated",
             "value" : "移動"
           }
@@ -489,12 +471,6 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "捲動"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
             "state" : "translated",
             "value" : "捲動"
           }
@@ -609,12 +585,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選擇"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
             "value" : "選擇"
           }
         },
@@ -1453,12 +1423,6 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向後移動一個字元"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
             "state" : "translated",
             "value" : "向後移動一個字元"
           }
@@ -1930,12 +1894,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移動一個字元"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
             "value" : "向前移動一個字元"
           }
         },
@@ -2655,12 +2613,6 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到文件開頭"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
             "state" : "translated",
             "value" : "移到文件開頭"
           }
@@ -2894,12 +2846,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移到段落開頭"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
             "value" : "移到段落開頭"
           }
         },
@@ -3143,12 +3089,6 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到文件結尾"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
             "state" : "translated",
             "value" : "移到文件結尾"
           }
@@ -3382,12 +3322,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移到段落結尾"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
             "value" : "移到段落結尾"
           }
         },
@@ -3631,12 +3565,6 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到行的左端"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
             "state" : "translated",
             "value" : "移到行左端"
           }
@@ -3870,12 +3798,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移到行的右端"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
             "value" : "移到行的右端"
           }
         },
@@ -5309,12 +5231,6 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "下移一頁"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
             "state" : "translated",
             "value" : "向下移動一頁"
           }
@@ -5548,12 +5464,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "上移一頁"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
             "value" : "上移一頁"
           }
         },
@@ -5797,12 +5707,6 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向下捲動一行"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
             "state" : "translated",
             "value" : "向下捲動一行"
           }
@@ -5917,12 +5821,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向上捲動一行"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
             "value" : "向上捲動一行"
           }
         },
@@ -6047,12 +5945,6 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向下捲動一頁"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
             "state" : "translated",
             "value" : "向下捲動一頁"
           }
@@ -6167,12 +6059,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向上捲動一頁"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
             "value" : "向上捲動一頁"
           }
         },
@@ -6297,12 +6183,6 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "捲動到文件開頭"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
             "state" : "translated",
             "value" : "捲動至文件開頭"
           }
@@ -6422,12 +6302,6 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "捲動到文件結尾"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
             "state" : "translated",
             "value" : "捲動至文件結尾"
           }
@@ -6542,12 +6416,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互換前後字元"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
             "value" : "互換前後字元"
           }
         },
