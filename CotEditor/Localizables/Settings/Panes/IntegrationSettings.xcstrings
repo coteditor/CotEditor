@@ -34,6 +34,12 @@
             "value" : "rmate接続を許可"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rmate 연결 허용"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -90,6 +96,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "`rmate`プロトコルを使用してリモートファイルをCotEditorで開けるようにします。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "`rmate` 프로토콜을 사용하여 CotEditor에서 원격 파일을 열 수 있도록 허용합니다."
           }
         },
         "nl" : {
@@ -835,6 +847,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "リモート編集:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "원격 편집:"
           }
         },
         "nl" : {

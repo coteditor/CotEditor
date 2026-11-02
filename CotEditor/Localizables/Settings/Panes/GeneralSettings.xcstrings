@@ -259,6 +259,12 @@
             "value" : "設定アーカイブを選択…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정 아카이브 선택…"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1128,6 +1134,12 @@
             "value" : "iCloudにコピーを保存"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud에 복사본 유지"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1300,6 +1312,12 @@
             "value" : "iCloudから設定のコピーを読み込み中…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud에서 설정 복사본 로드 중…"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1363,6 +1381,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloudのコピーを管理…"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud의 복사본 관리…"
           }
         },
         "nl" : {
@@ -1892,6 +1916,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "iCloudに設定のコピーがありません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud에 설정 복사본 없음"
           }
         },
         "nl" : {
@@ -2762,6 +2792,12 @@
             "value" : "設定の読み込みと書き出し:"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정 가져오기 및 내보내기:"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -2930,6 +2966,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ほかのデバイスで読み込めるように、設定のコピーを保存します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다른 기기에서 가져올 수 있도록 이 설정의 복사본을 저장합니다."
           }
         },
         "nl" : {

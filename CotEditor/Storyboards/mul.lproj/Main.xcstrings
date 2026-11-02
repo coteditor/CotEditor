@@ -24401,6 +24401,12 @@
             "value" : "CotEditorに寄付…"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor에 기부하기…"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",

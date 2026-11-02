@@ -153,6 +153,12 @@
             "value" : "設定のコピーを常に最新の状態でiCloudに保存して、ほかのMacでいつでも読み込めるようになりました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud에 최신 설정의 복사본을 유지하고, 언제든 다른 Mac에서 가져올 수 있습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -216,6 +222,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "読み込むだけで、いつもの設定に"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가져오기 한 번으로 나의 설정 그대로"
           }
         },
         "nl" : {
@@ -283,6 +295,12 @@
             "value" : "`rmate`を使ってSSH経由でリモートコンピュータ上のファイルを開き、変更内容をそのまま保存できるようになりました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH를 통해 `rmate`로 원격 컴퓨터의 파일을 열고, 변경 사항을 원격 컴퓨터에 바로 저장할 수 있습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -346,6 +364,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "リモートファイルを手元で編集"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mac에서 바로 원격 파일 편집"
           }
         },
         "nl" : {
@@ -413,6 +437,12 @@
             "value" : "挿入ポイントの移動やテキストの選択・削除に使うショートカットを、カスタマイズできるようになりました。いつもの指づかいで、もっと快適に。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삽입점 이동, 텍스트 선택 및 삭제에 사용하는 단축키를 손에 익은 방식으로 사용자화할 수 있습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -476,6 +506,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キー操作は自分流に"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "나에게 맞는 단축키"
           }
         },
         "nl" : {

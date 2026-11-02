@@ -2667,6 +2667,12 @@
             "value" : "切断済み"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "연결 끊김"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5192,8 +5198,8 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "검색 제한에 도달함"
+            "state" : "translated",
+            "value" : "검색 한도에 도달함"
           }
         },
         "nl" : {
@@ -14151,6 +14157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "リモート"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "원격"
           }
         },
         "nl" : {

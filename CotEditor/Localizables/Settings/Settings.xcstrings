@@ -522,6 +522,12 @@
             "value" : "連携"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "통합"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",

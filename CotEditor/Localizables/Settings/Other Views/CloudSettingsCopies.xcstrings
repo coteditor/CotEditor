@@ -396,6 +396,12 @@
             "value" : "コピーの保存を停止するには、保存元のMacで「iCloudにコピーを保存」をオフにしてください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "복사본 저장을 중단하려면 해당 복사본을 생성한 Mac에서 ‘iCloud에 복사본 유지’를 끄십시오."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",

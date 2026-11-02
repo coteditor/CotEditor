@@ -14329,6 +14329,12 @@
             "value" : "リモート接続が切断されています。変更内容は送信されていません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "원격 연결이 끊어졌습니다. 변경 사항이 전송되지 않았습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -14392,6 +14398,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”の変更内容をこのMacに保存しますか?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’의 변경 사항을 이 Mac에 저장하겠습니까?"
           }
         },
         "nl" : {
@@ -14579,6 +14591,12 @@
             "value" : "変更内容をリモートに保存できなくなりました。変更内容を保持するには、書類をこのMacに保存してください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "더 이상 변경 사항을 원격으로 저장할 수 없습니다. 변경 사항을 유지하려면 이 Mac에 문서를 저장하십시오."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -14644,6 +14662,12 @@
             "value" : "“%@”のリモート接続が切断されました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘%@’의 원격 연결이 끊어졌습니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -14707,6 +14731,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "そのポートはすでに使用されています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "해당 포트가 이미 사용 중입니다."
           }
         },
         "nl" : {
@@ -14894,6 +14924,12 @@
             "value" : "1から65535までのポート番号を入力してください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1~65535 사이의 포트 번호를 입력하십시오."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -14957,6 +14993,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "リモートファイルが大きすぎるため開けません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "원격 파일이 너무 커서 열 수 없습니다."
           }
         },
         "nl" : {
@@ -15025,6 +15067,12 @@
             "value" : "リモート編集では%@までのファイルに対応しています。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "원격 편집은 최대 %@ 크기의 파일을 지원합니다."
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -15088,6 +15136,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一部のリモートファイルを開けませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일부 원격 파일을 열 수 없습니다."
           }
         },
         "nl" : {
@@ -15216,6 +15270,18 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "1回のrmateコマンドで同時に開けるファイルは%lld個までです。"
+                }
+              }
+            }
+          }
+        },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "하나의 rmate 명령으로 한 번에 최대 %lld개의 파일을 열 수 있습니다."
                 }
               }
             }
