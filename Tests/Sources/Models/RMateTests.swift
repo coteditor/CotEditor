@@ -32,6 +32,14 @@ import URLUtils
 
 struct RMateTests {
     
+    @MainActor init() {
+        
+        // disable periodic autosaving
+        // -> Otherwise, autosaving can interrupt the save sequences in the tests on slow machines.
+        DocumentController.shared.autosavingDelay = 0
+    }
+    
+    
     /// Tests that remote documents support the same native file types as ordinary documents.
     @Test @MainActor func remoteDocumentSupportsNativeTypes() {
         
