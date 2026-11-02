@@ -41,12 +41,14 @@ struct ShortcutField: NSViewRepresentable {
     func makeNSView(context: Context) -> NSTextField {
         
         let nsView = ShortcutTextField()
-        nsView.cell?.sendsActionOnEndEditing = true
         nsView.delegate = context.coordinator
         nsView.formatter = ShortcutFormatter()
         nsView.isEditable = true
         nsView.isBordered = false
         nsView.drawsBackground = false
+        
+        // type shortcuts with a Roman keyboard layout
+        (nsView.cell as? NSTextFieldCell)?.allowedInputSourceLocales = [NSAllRomanInputSourcesLocaleIdentifier]
         
         // fix the alignment to right regardless the UI layout direction
         nsView.alignment = .right
@@ -129,22 +131,6 @@ private final class ShortcutTextField: NSTextField, NSTextViewDelegate {
     
     // MARK: Text Field Methods
     
-    override init(frame frameRect: NSRect) {
-        
-        super.init(frame: frameRect)
-        
-        // type shortcuts with a Roman keyboard layout
-        (self.cell as? NSTextFieldCell)?.allowedInputSourceLocales = [NSAllRomanInputSourcesLocaleIdentifier]
-    }
-    
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     isolated deinit {
         
         if let monitor = self.keyDownMonitor {
@@ -154,39 +140,13 @@ private final class ShortcutTextField: NSTextField, NSTextViewDelegate {
     }
     
     
-    override func viewWillMove(toSuperview newSuperview: NSView?) {
-        
-        super.viewWillMove(toSuperview: newSuperview)
-        
-        if newSuperview != nil {
-            // fix the alignment to right regardless the UI layout direction
-            self.alignment = .right
-            self.baseWritingDirection = .leftToRight
-        }
-    }
-    
-    
-    override func viewWillMove(toWindow newWindow: NSWindow?) {
-        
-        super.viewWillMove(toWindow: newWindow)
-        
-        if newWindow == nil {
-            self.windowObservationTask?.cancel()
-            self.windowObservationTask = nil
-        }
-    }
-    
-    
     /// Text field turns into edit mode.
     override func becomeFirstResponder() -> Bool {
         
         guard super.becomeFirstResponder() else { return false }
         
-        if let fieldEditor = self.currentEditor() as? NSTextView {
-            // hide insertion point
-            fieldEditor.insertionPointColor = .clear
-            fieldEditor.delegate = self
-        }
+        // hide insertion point
+        (self.currentEditor() as? NSTextView)?.insertionPointColor = .clear
         
         self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [unowned self] event -> NSEvent? in
             guard let shortcut = Shortcut(keyDownEvent: event) else { return event }
@@ -222,10 +182,7 @@ private final class ShortcutTextField: NSTextField, NSTextViewDelegate {
     override func textDidEndEditing(_ notification: Notification) {
         
         // restore field editor
-        if let fieldEditor = self.currentEditor() as? NSTextView {
-            fieldEditor.insertionPointColor = .controlTextColor
-            fieldEditor.delegate = nil
-        }
+        (self.currentEditor() as? NSTextView)?.insertionPointColor = .controlTextColor
         
         // end monitoring key down event
         if let monitor = self.keyDownMonitor {
