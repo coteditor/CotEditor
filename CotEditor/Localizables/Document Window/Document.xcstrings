@@ -12523,8 +12523,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "無選擇"
+            "state" : "translated",
+            "value" : "沒有選取項目"
           }
         }
       }

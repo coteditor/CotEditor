@@ -100,12 +100,6 @@
             "value" : "Видалення"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "刪除"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -115,6 +109,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "刪除"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "刪除"
           }
         }
@@ -219,12 +219,6 @@
             "value" : "Редагування"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "編輯"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -234,6 +228,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "編輯"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "編輯"
           }
         }
@@ -338,12 +338,6 @@
             "value" : "Переміщення"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移動"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -353,6 +347,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "移動"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "移動"
           }
         }
@@ -457,12 +457,6 @@
             "value" : "Прокручування"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "捲動"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -472,6 +466,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "捲動"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "捲動"
           }
         }
@@ -576,12 +576,6 @@
             "value" : "Виділення"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "選擇"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -591,6 +585,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "選擇"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "選擇"
           }
         }
@@ -695,12 +695,6 @@
             "value" : "Видалити до початку рядка"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "刪除至行首"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -711,6 +705,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "刪除到行首"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除至行開頭"
           }
         }
       }
@@ -814,12 +814,6 @@
             "value" : "Видалити до початку абзацу"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "刪除至段落開頭"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -830,6 +824,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "刪除到段落開頭"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除至段落開頭"
           }
         }
       }
@@ -933,12 +933,6 @@
             "value" : "Видалити до кінця рядка"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "刪除至行尾"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -949,6 +943,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "刪除到行尾"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除至行結尾"
           }
         }
       }
@@ -1052,12 +1052,6 @@
             "value" : "Видалити до кінця абзацу"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "刪除至段落結尾"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1068,6 +1062,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "刪除到段落結尾"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除至段落結尾"
           }
         }
       }
@@ -1171,12 +1171,6 @@
             "value" : "Видалити попереднє слово"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "刪除前一個字詞"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1187,6 +1181,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "刪除前一個單字"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除前一個字詞"
           }
         }
       }
@@ -1290,12 +1290,6 @@
             "value" : "Видалити наступне слово"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "刪除後一個字詞"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1306,6 +1300,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "刪除後一個單字"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除後一個字詞"
           }
         }
       }
@@ -1409,12 +1409,6 @@
             "value" : "Перемістити на символ назад"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向後移動一個字元"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1424,6 +1418,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向後移動一個字元"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向後移動一個字元"
           }
         }
@@ -1528,12 +1528,6 @@
             "value" : "Перемістити на символ назад з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向後移動一個字元並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1543,6 +1537,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向後移動一個字元並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向後移動一個字元並延伸所選範圍"
           }
         }
@@ -1647,12 +1647,6 @@
             "value" : "Перемістити на рядок униз"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "下移一行"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1663,6 +1657,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "下移一行"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向下移動一行"
           }
         }
       }
@@ -1766,12 +1766,6 @@
             "value" : "Перемістити на рядок униз з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "下移一行並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1782,6 +1776,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "下移一行並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向下移動一行並延伸所選範圍"
           }
         }
       }
@@ -1885,12 +1885,6 @@
             "value" : "Перемістити на символ уперед"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向前移動一個字元"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -1900,6 +1894,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向前移動一個字元"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向前移動一個字元"
           }
         }
@@ -2004,12 +2004,6 @@
             "value" : "Перемістити на символ уперед з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向前移動一個字元並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -2019,6 +2013,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向前移動一個字元並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向前移動一個字元並延伸所選範圍"
           }
         }
@@ -2123,12 +2123,6 @@
             "value" : "Перемістити ліворуч з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向左移動並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -2138,6 +2132,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向左移動並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向左移動並延伸所選範圍"
           }
         }
@@ -2242,12 +2242,6 @@
             "value" : "Перемістити на абзац назад з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向後移動一個段落並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -2257,6 +2251,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向後移動一個段落並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向後移動一個段落並延伸所選範圍"
           }
         }
@@ -2361,12 +2361,6 @@
             "value" : "Перемістити на абзац уперед з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向前移動一個段落並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -2376,6 +2370,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向前移動一個段落並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向前移動一個段落並延伸所選範圍"
           }
         }
@@ -2480,12 +2480,6 @@
             "value" : "Перемістити праворуч з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向右移動並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -2495,6 +2489,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向右移動並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向右移動並延伸所選範圍"
           }
         }
@@ -2599,12 +2599,6 @@
             "value" : "Перемістити на початок документа"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到文件開頭"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -2614,6 +2608,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "移到文件開頭"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "移到文件開頭"
           }
         }
@@ -2718,12 +2718,6 @@
             "value" : "Перемістити на початок документа з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到文件開頭並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -2733,6 +2727,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "移到文件開頭並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "移到文件開頭並延伸所選範圍"
           }
         }
@@ -2837,12 +2837,6 @@
             "value" : "Перемістити на початок абзацу"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到段落開頭"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -2852,6 +2846,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "移到段落開頭"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "移到段落開頭"
           }
         }
@@ -2956,12 +2956,6 @@
             "value" : "Перемістити на початок абзацу з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到段落開頭並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -2971,6 +2965,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "移到段落開頭並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "移到段落開頭並延伸所選範圍"
           }
         }
@@ -3075,12 +3075,6 @@
             "value" : "Перемістити в кінець документа"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到文件結尾"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -3090,6 +3084,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "移到文件結尾"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "移到文件結尾"
           }
         }
@@ -3194,12 +3194,6 @@
             "value" : "Перемістити в кінець документа з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到文件結尾並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -3209,6 +3203,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "移到文件結尾並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "移到文件結尾並延伸所選範圍"
           }
         }
@@ -3313,12 +3313,6 @@
             "value" : "Перемістити в кінець абзацу"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到段落結尾"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -3328,6 +3322,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "移到段落結尾"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "移到段落結尾"
           }
         }
@@ -3432,12 +3432,6 @@
             "value" : "Перемістити в кінець абзацу з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到段落結尾並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -3447,6 +3441,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "移到段落結尾並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "移到段落結尾並延伸所選範圍"
           }
         }
@@ -3551,12 +3551,6 @@
             "value" : "Перемістити в лівий кінець рядка"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到行的左端"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -3567,6 +3561,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "移到行的左端"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移到行左端"
           }
         }
       }
@@ -3670,12 +3670,6 @@
             "value" : "Перемістити в лівий кінець рядка з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到行的左端並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -3686,6 +3680,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "移到行的左端並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移到行左端並延伸所選範圍"
           }
         }
       }
@@ -3789,12 +3789,6 @@
             "value" : "Перемістити в правий кінець рядка"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到行的右端"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -3805,6 +3799,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "移到行的右端"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移到行右端"
           }
         }
       }
@@ -3908,12 +3908,6 @@
             "value" : "Перемістити в правий кінець рядка з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到行的右端並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -3924,6 +3918,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "移到行的右端並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移到行右端並延伸所選範圍"
           }
         }
       }
@@ -4027,12 +4027,6 @@
             "value" : "Перемістити на рядок угору"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "上移一行"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4043,6 +4037,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "上移一行"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向上移動一行"
           }
         }
       }
@@ -4146,12 +4146,6 @@
             "value" : "Перемістити на рядок угору з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "上移一行並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4162,6 +4156,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "上移一行並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向上移動一行並延伸所選範圍"
           }
         }
       }
@@ -4265,12 +4265,6 @@
             "value" : "Перемістити на слово назад"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向後移動一個字詞"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4281,6 +4275,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "向後移動一個單字"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向後移動一個字詞"
           }
         }
       }
@@ -4384,12 +4384,6 @@
             "value" : "Перемістити на слово назад з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向後移動一個字詞並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4400,6 +4394,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "向後移動一個單字並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向後移動一個字詞並延伸所選範圍"
           }
         }
       }
@@ -4503,12 +4503,6 @@
             "value" : "Перемістити на слово вперед"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向前移動一個字詞"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4519,6 +4513,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "向前移動一個單字"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向前移動一個字詞"
           }
         }
       }
@@ -4622,12 +4622,6 @@
             "value" : "Перемістити на слово вперед з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向前移動一個字詞並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4638,6 +4632,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "向前移動一個單字並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向前移動一個字詞並延伸所選範圍"
           }
         }
       }
@@ -4741,12 +4741,6 @@
             "value" : "Перемістити на слово ліворуч"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向左移動一個字詞"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4757,6 +4751,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "向左移動一個單字"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向左移動一個字詞"
           }
         }
       }
@@ -4860,12 +4860,6 @@
             "value" : "Перемістити на слово ліворуч з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向左移動一個字詞並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4876,6 +4870,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "向左移動一個單字並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向左移動一個字詞並延伸所選範圍"
           }
         }
       }
@@ -4979,12 +4979,6 @@
             "value" : "Перемістити на слово праворуч"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向右移動一個字詞"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4995,6 +4989,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "向右移動一個單字"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向右移動一個字詞"
           }
         }
       }
@@ -5098,12 +5098,6 @@
             "value" : "Перемістити на слово праворуч з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向右移動一個字詞並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5114,6 +5108,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "向右移動一個單字並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向右移動一個字詞並延伸所選範圍"
           }
         }
       }
@@ -5217,12 +5217,6 @@
             "value" : "Перемістити на сторінку вниз"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "下移一頁"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5233,6 +5227,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "下移一頁"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向下移動一頁"
           }
         }
       }
@@ -5336,12 +5336,6 @@
             "value" : "Перемістити на сторінку вниз з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "下移一頁並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5352,6 +5346,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "下移一頁並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向下移動一頁並延伸所選範圍"
           }
         }
       }
@@ -5455,12 +5455,6 @@
             "value" : "Перемістити на сторінку вгору"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "上移一頁"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5471,6 +5465,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "上移一頁"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向上移動一頁"
           }
         }
       }
@@ -5574,12 +5574,6 @@
             "value" : "Перемістити на сторінку вгору з виділенням"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "上移一頁並延伸選擇範圍"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5590,6 +5584,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "上移一頁並延伸所選範圍"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向上移動一頁並延伸所選範圍"
           }
         }
       }
@@ -5693,12 +5693,6 @@
             "value" : "Прокрутити на рядок униз"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向下捲動一行"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5708,6 +5702,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向下捲動一行"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向下捲動一行"
           }
         }
@@ -5812,12 +5812,6 @@
             "value" : "Прокрутити на рядок угору"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向上捲動一行"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5827,6 +5821,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向上捲動一行"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向上捲動一行"
           }
         }
@@ -5931,12 +5931,6 @@
             "value" : "Прокрутити на сторінку вниз"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向下捲動一頁"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5946,6 +5940,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向下捲動一頁"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向下捲動一頁"
           }
         }
@@ -6050,12 +6050,6 @@
             "value" : "Прокрутити на сторінку вгору"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向上捲動一頁"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -6065,6 +6059,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向上捲動一頁"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向上捲動一頁"
           }
         }
@@ -6169,12 +6169,6 @@
             "value" : "Прокрутити на початок документа"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "捲動到文件開頭"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -6185,6 +6179,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "捲動到文件開頭"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捲動至文件開頭"
           }
         }
       }
@@ -6288,12 +6288,6 @@
             "value" : "Прокрутити в кінець документа"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "捲動到文件結尾"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -6304,6 +6298,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "捲動到文件結尾"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捲動至文件結尾"
           }
         }
       }
@@ -6407,12 +6407,6 @@
             "value" : "Поміняти символи місцями"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "互換前後字元"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -6423,6 +6417,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "互換前後字元"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "交換前後字元"
           }
         }
       }
@@ -6526,12 +6526,6 @@
             "value" : "Yank"
           }
         },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Yank"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -6541,6 +6535,12 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "Yank"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "Yank"
           }
         }

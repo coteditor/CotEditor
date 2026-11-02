@@ -215,7 +215,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "你的設定，只需輸入即可"
+            "value" : "你的設定，只需輸入就得"
           }
         }
       }
@@ -370,6 +370,12 @@
             "state" : "needs_review",
             "value" : "Pas de toetscombinaties aan voor het verplaatsen van het invoegpunt en het selecteren en verwijderen van tekst, zodat je vingers zich meteen thuis voelen."
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自訂移動插入點、選擇與刪除文字的快捷鍵，令你打字得心應手。"
+          }
         }
       }
     },
@@ -416,6 +422,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Jouw toetsen, jouw regels"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的按鍵，由你决定"
           }
         }
       }
