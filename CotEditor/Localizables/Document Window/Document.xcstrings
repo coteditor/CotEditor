@@ -2673,6 +2673,18 @@
             "value" : "Verbinding verbroken"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отключено"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已中斷連線"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5204,8 +5216,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Достигнут лимит поиска"
+            "state" : "translated",
+            "value" : "Достигнут предел поиска"
           }
         },
         "tr" : {
@@ -5228,7 +5240,7 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "已達搜尋上限"
           }
         },
@@ -12421,14 +12433,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Žádný výběr"
+            "state" : "translated",
+            "value" : "Nic nevybráno"
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Keine Auswahl"
+            "state" : "translated",
+            "value" : "Nichts ausgewählt"
           }
         },
         "en-GB" : {
@@ -12439,25 +12451,25 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sin selección"
+            "state" : "translated",
+            "value" : "Ningún elemento seleccionado"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Aucune sélection"
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "कोई चयन नहीं"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Nessuna selezione"
           }
         },
@@ -12469,56 +12481,56 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "선택 없음"
+            "state" : "translated",
+            "value" : "선택된 항목 없음"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Geen selectie"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Brak zaznaczenia"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nenhuma seleção"
+            "state" : "translated",
+            "value" : "Nada Selecionado"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ничего не выбрано"
+            "state" : "translated",
+            "value" : "Нет выбранного"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Seçim yok"
+            "state" : "translated",
+            "value" : "Seçim Yok"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Нічого не вибрано"
+            "state" : "translated",
+            "value" : "Немає вибраних елементів"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "无选择"
+            "state" : "translated",
+            "value" : "未选择"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "無選擇"
+            "state" : "translated",
+            "value" : "沒有選取項目"
           }
         },
         "zh-HK" : {
@@ -14145,6 +14157,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Op afstand"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалённый"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遠端"
           }
         },
         "zh-HK" : {

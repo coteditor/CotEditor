@@ -40,6 +40,18 @@
             "value" : "Sta rmate-verbindingen toe"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Принимать соединения rmate"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允許rmate連線"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -84,6 +96,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sta toe dat bestanden op afstand in CotEditor worden geopend via het `rmate`-protocol."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить открывать файлы на удалённом хосте в CotEditor с помощью протокола `rmate`."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允許使用`rmate`協定在CotEditor中開啟遠端檔案。"
           }
         },
         "zh-HK" : {
@@ -817,6 +841,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewerken op afstand:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалённое редактирование:"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "遠端編輯："
           }
         },
         "zh-HK" : {

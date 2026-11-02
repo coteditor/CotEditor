@@ -43,6 +43,8 @@ struct TextKeyBindingMap: Equatable {
     
     
     /// Customized shortcuts; a missing command inherits the system bindings, and an empty array disables its default shortcuts.
+    ///
+    /// Like inherited ones, the command's own default shortcuts in a customization give way to explicit assignments of other commands.
     private(set) var customizations: [TextKeyBindingCommand: [Shortcut]] = [:]
     
     private var actions: [Shortcut: Action] = [:]
@@ -55,17 +57,32 @@ struct TextKeyBindingMap: Equatable {
     }
     
     
-    /// Returns a command's custom shortcuts or its unclaimed default shortcuts.
+    /// Returns a command's shortcuts that are not taken by other commands.
     ///
     /// - Parameter command: The command whose shortcuts are returned.
-    /// - Returns: The custom shortcuts, or default shortcuts not overridden by another customization.
+    /// - Returns: The custom shortcuts or the default shortcuts, excluding the default ones assigned to another command.
     func shortcuts(for command: TextKeyBindingCommand) -> [Shortcut] {
         
         if let shortcuts = self.customizations[command] {
-            return shortcuts
+            return shortcuts.filter { self.actions[$0] == .perform(command) }
         }
         
         return command.shortcuts.filter { self.actions[$0] == nil }
+    }
+    
+    
+    /// Returns the command to which the shortcut is assigned other than as its default shortcut.
+    ///
+    /// - Parameter shortcut: The shortcut to find.
+    /// - Returns: The command, or `nil` if the shortcut is not explicitly assigned.
+    func explicitOwner(of shortcut: Shortcut) -> TextKeyBindingCommand? {
+        
+        guard
+            case .perform(let command) = self.actions[shortcut],
+            !command.shortcuts.contains(shortcut)
+        else { return nil }
+        
+        return command
     }
     
     
@@ -74,15 +91,15 @@ struct TextKeyBindingMap: Equatable {
     /// - Parameters:
     ///   - shortcuts: The new shortcuts, or `nil` to inherit the system bindings.
     ///   - command: The command to customize.
-    /// - Throws: If a shortcut is already assigned to another customized command.
+    /// - Throws: If a shortcut other than the command's default ones is already explicitly assigned to another command.
     mutating func setShortcuts(_ shortcuts: [Shortcut]?, for command: TextKeyBindingCommand) throws(Shortcut.CustomizationError) {
         
         var seen: Set<Shortcut> = []
         let shortcuts = shortcuts?.filter { seen.insert($0).inserted }
         
         if let shortcuts, Set(shortcuts) != Set(command.shortcuts) {
-            for shortcut in shortcuts {
-                if case .perform(let owner)? = self.actions[shortcut], owner != command {
+            for shortcut in shortcuts where !command.shortcuts.contains(shortcut) {
+                if let owner = self.explicitOwner(of: shortcut), owner != command {
                     throw .alreadyTaken(shortcut, name: String(localized: owner.label))
                 }
             }
@@ -96,13 +113,6 @@ struct TextKeyBindingMap: Equatable {
     }
     
     
-    /// Removes all customizations and restores system key handling.
-    mutating func restoreDefaults() {
-        
-        self = .init()
-    }
-    
-    
     /// Resolves a shortcut to a custom command or suppression.
     ///
     /// - Parameter shortcut: The shortcut to resolve.
@@ -113,7 +123,25 @@ struct TextKeyBindingMap: Equatable {
     }
     
     
-    /// Rebuilds the lookup table, giving explicit assignments priority over suppressed default shortcuts.
+    /// Resolves a key event, giving direct character matches priority over alternative keyboard layouts.
+    ///
+    /// - Parameter event: The key down event to resolve.
+    /// - Returns: The custom action, or `nil` to let the text system interpret the event.
+    @MainActor func action(for event: NSEvent) -> Action? {
+        
+        guard let shortcut = Shortcut(keyDownEvent: event) else { return nil }
+        
+        if let action = self.action(for: shortcut) {
+            return action
+        }
+        
+        guard let fallback = Shortcut(keyDownEventUsingCommandLayout: event) else { return nil }
+        
+        return self.action(for: fallback)
+    }
+    
+    
+    /// Rebuilds the lookup table, giving explicit assignments priority over the default shortcuts kept or suppressed by customizations.
     private mutating func rebuildActions() {
         
         var actions: [Shortcut: Action] = [:]
@@ -124,8 +152,9 @@ struct TextKeyBindingMap: Equatable {
             }
         }
         
+        // -> The command's own default shortcuts don't take over the ones explicitly assigned to other commands.
         for (command, shortcuts) in self.customizations {
-            for shortcut in shortcuts {
+            for shortcut in shortcuts where !command.shortcuts.contains(shortcut) || actions[shortcut] == .suppress {
                 actions[shortcut] = .perform(command)
             }
         }
@@ -149,7 +178,14 @@ extension TextKeyBindingMap: Codable {
             }
             guard let command = TextKeyBindingCommand.allCases.first(where: { $0.action == entry.action }) else { continue }
             
-            try self.setShortcuts(entry.shortcuts, for: command)
+            // ignore shortcuts unavailable in the settings, such as those in a hand-edited file
+            let shortcuts = entry.shortcuts
+                .filter { (try? $0.checkCustomizationAvailability(allowsTextEditingKeys: true)) != nil }
+            
+            // inherit the default shortcuts instead of disabling them when no stored shortcut is available
+            guard !shortcuts.isEmpty || entry.shortcuts.isEmpty else { continue }
+            
+            try self.setShortcuts(shortcuts, for: command)
         }
     }
     

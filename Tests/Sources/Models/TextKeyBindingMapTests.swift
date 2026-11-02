@@ -164,6 +164,26 @@ import Shortcut
     }
     
     
+    /// Tests that an assignment takes a default shortcut kept in another customized command, which gets it back on release.
+    ///
+    /// - Throws: If updating the shortcuts fails.
+    @Test func assignmentTakesKeptDefaultShortcut() throws {
+        
+        var map = TextKeyBindingMap()
+        let controlT: Shortcut = Shortcut("t", modifiers: .control)
+        let controlJ: Shortcut = Shortcut("j", modifiers: .control)
+        try map.setShortcuts([controlJ, controlT], for: .transpose)
+        try map.setShortcuts([controlT], for: .yank)
+        
+        #expect(map.action(for: controlT) == .perform(.yank))
+        #expect(map.shortcuts(for: .transpose) == [controlJ])
+        
+        try map.setShortcuts(nil, for: .yank)
+        #expect(map.action(for: controlT) == .perform(.transpose))
+        #expect(map.shortcuts(for: .transpose) == [controlJ, controlT])
+    }
+    
+    
     /// Tests that conflicting assignments leave the entire map unchanged.
     ///
     /// - Throws: If creating the initial assignment fails.
@@ -212,21 +232,6 @@ import Shortcut
     }
     
     
-    /// Tests restoring all commands, including explicitly disabled commands.
-    ///
-    /// - Throws: If creating the customizations fails.
-    @Test func restoresAllDefaults() throws {
-        
-        var map = TextKeyBindingMap()
-        try map.setShortcuts([Shortcut(.home, modifiers: [])], for: .moveToLeftEndOfLine)
-        try map.setShortcuts([], for: .pageDown)
-        map.restoreDefaults()
-        
-        #expect(map == TextKeyBindingMap())
-        #expect(map.customizations.isEmpty)
-    }
-    
-    
     /// Tests preserving multiple aliases, disabled commands, and system inheritance through storage.
     ///
     /// - Throws: If configuring, encoding, or decoding the bindings fails.
@@ -272,6 +277,26 @@ import Shortcut
         let map = try PropertyListDecoder().decode(TextKeyBindingMap.self, from: data)
         
         #expect(map.customizations == [.pageDown: []])
+    }
+    
+    
+    /// Tests ignoring stored shortcuts unavailable in the settings and inheriting the defaults when none remains.
+    ///
+    /// - Throws: If encoding or decoding the test data fails.
+    @Test func ignoresUnavailableStoredShortcuts() throws {
+        
+        let available: [Shortcut] = [Shortcut("k", modifiers: [.control, .option]), Shortcut(.leftArrow, modifiers: [])]
+        let entries = [
+            TextKeyBinding(action: TextKeyBindingCommand.deleteToEndOfParagraph.action,
+                           shortcuts: [Shortcut("a", modifiers: []), Shortcut("a", modifiers: .shift)] + available),
+            TextKeyBinding(action: TextKeyBindingCommand.pageDown.action, shortcuts: [Shortcut(.tab, modifiers: .control)]),
+        ]
+        let data = try PropertyListEncoder().encode(entries)
+        let map = try PropertyListDecoder().decode(TextKeyBindingMap.self, from: data)
+        
+        #expect(map.customizations == [.deleteToEndOfParagraph: available])
+        #expect(map.action(for: Shortcut("a", modifiers: [])) == nil)
+        #expect(map.shortcuts(for: .pageDown) == TextKeyBindingCommand.pageDown.shortcuts)
     }
     
     

@@ -42,8 +42,9 @@ import RMate
     
     private let hasRemoteState: Mutex<Bool> = .init(false)  // presence check for background save callbacks
     private var pendingCloseContexts: [DelegateContext] = []
-    private var pendingSaves: [() -> Void] = []
+    private var pendingOperations: [() -> Void] = []
     private var preservesSharedWorkingCopy = false
+    private var isDuplicating = false
     
     
     // MARK: Lifecycle
@@ -104,8 +105,16 @@ import RMate
     
     override var displayName: String! {
         
-        get { self.remoteState?.file.metadata.displayName ?? super.displayName }
-        set { super.displayName = newValue }
+        get {
+            // -> The working copy has the same name as the remote file.
+            guard !self.isDuplicating, let remoteState else { return super.displayName }
+            
+            return remoteState.file.metadata.displayName
+        }
+        
+        set {
+            super.displayName = newValue
+        }
     }
     
     
@@ -161,7 +170,7 @@ import RMate
         if self.remoteState?.isSaving == true {
             guard !saveOperation.isAutosave else { return completionHandler(CocoaError(.userCancelled)) }
             
-            self.pendingSaves.append {
+            self.pendingOperations.append {
                 self.save(to: url, ofType: typeName, for: saveOperation, completionHandler: completionHandler)
             }
             return
@@ -183,12 +192,12 @@ import RMate
             }
             completionHandler(error)
             
-            // resume the save operations requested during the transmission
-            // -> A resumed save that sends to the remote file defers the following saves and closing again.
-            let saves = self.pendingSaves
-            self.pendingSaves.removeAll()
-            for save in saves {
-                save()
+            // resume the saves and duplication requested during the transmission
+            // -> A resumed save that sends to the remote file defers the following operations and closing again.
+            let operations = self.pendingOperations
+            self.pendingOperations.removeAll()
+            for operation in operations {
+                operation()
             }
             
             // resume closing only after AppKit has completed its save activity
@@ -268,6 +277,14 @@ import RMate
     }
     
     
+    override func performActivity(withSynchronousWaiting waitSynchronously: Bool, using block: @escaping (@escaping () -> Void) -> Void) {
+        
+        // queue the activity instead of waiting synchronously during a transmission, for example, for Save or Print
+        // -> AppKit's synchronous wait for the current save activity would block the MainActor task that sends the remote content.
+        super.performActivity(withSynchronousWaiting: waitSynchronously && self.remoteState?.isSaving != true, using: block)
+    }
+    
+    
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
         // AppKit's synchronous save wait would block the MainActor task that sends the remote content.
@@ -281,6 +298,29 @@ import RMate
         }
         
         super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
+    }
+    
+    
+    override func duplicate(_ sender: Any?) {
+        
+        // AppKit's synchronous file access would block the MainActor task that sends the remote content.
+        if self.remoteState?.isSaving == true {
+            self.pendingOperations.append { self.duplicate(sender) }
+            return
+        }
+        
+        super.duplicate(sender)
+    }
+    
+    
+    override func duplicate() throws -> NSDocument {
+        
+        // name the copy after the remote file as a copy of a local file
+        // -> AppKit derives the name of the copy from the display name, which contains the host name.
+        self.isDuplicating = true
+        defer { self.isDuplicating = false }
+        
+        return try super.duplicate()
     }
     
     

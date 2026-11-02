@@ -139,14 +139,28 @@ public struct Shortcut: Sendable {
         
         assert(event.type == .keyDown)
         
+        self.init(charactersIgnoringModifiers: event.charactersIgnoringModifiers, specialKey: event.specialKey, modifierFlags: event.modifierFlags)
+    }
+    
+    
+    /// Initializes Shortcut from the properties of a key down event.
+    ///
+    /// - Note: The Fn modifier that function keys carry by themselves is removed.
+    ///
+    /// - Parameters:
+    ///   - charactersIgnoringModifiers: The characters of the key, applying only Shift.
+    ///   - specialKey: The special key of the event.
+    ///   - modifierFlags: The modifier flags of the event.
+    init?(charactersIgnoringModifiers: String?, specialKey: NSEvent.SpecialKey?, modifierFlags: NSEvent.ModifierFlags) {
+        
         guard
-            let charactersIgnoringModifiers = event.charactersIgnoringModifiers,
+            let charactersIgnoringModifiers,
             !charactersIgnoringModifiers.isEmpty
         else { return nil }
         
         // correct deletion keys for the NSMenuItem key equivalent
         let keyEquivalent = if charactersIgnoringModifiers.unicodeScalars.count == 1,
-                               let specialKey = event.specialKey
+                               let specialKey
         {
             Self.menuKeyEquivalent(for: specialKey)
         } else {
@@ -158,9 +172,9 @@ public struct Shortcut: Sendable {
         
         // remove Fn that function keys, including navigation keys, carry by themselves
         // -> AppKit reserves the Unicode range U+F700...U+F8FF for these keys.
-        let ignoresFunction = event.specialKey.map { (0xF700...0xF8FF).contains($0.rawValue) } ?? false
+        let ignoresFunction = specialKey.map { (0xF700...0xF8FF).contains($0.rawValue) } ?? false
         
-        let modifiers = event.modifierFlags
+        let modifiers = modifierFlags
             .intersection(ModifierKey.displayCases.mask)
             .subtracting(ignoresShift ? .shift : [])
             .subtracting(ignoresFunction ? .function : [])

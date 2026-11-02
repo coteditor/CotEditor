@@ -397,6 +397,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         let fileURLs = NSApp.windows
             .compactMap(\.windowController)
             .compactMap { $0.document as? NSDocument }
+            .filter { ($0 as? RemoteDocument)?.remoteState == nil }  // exclude working copies of remote files
             .compactMap(\.fileURL)
         
         let uniqueDirectory = (self.document as? NSDocument)?.fileURL?

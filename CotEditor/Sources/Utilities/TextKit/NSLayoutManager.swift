@@ -268,18 +268,32 @@ extension NSLayoutManager {
     ///
     /// - Parameters:
     ///   - characterIndex: The character index.
+    ///   - affinity: The selection affinity determining whether the insertion point at a soft-wrapped line end is drawn at the end of the line.
     /// - Returns: An one-pixel-width rect to draw the insertion point in the layout manager coordinate, or `nil` if no alternate insertion point is provided.
-    final func insertionPointRect(at characterIndex: Int) -> NSRect? {
+    final func insertionPointRect(at characterIndex: Int, affinity: NSSelectionAffinity) -> NSRect? {
         
         assert(characterIndex >= 0)
         
-        let count = self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: false, inDisplayOrder: true, positions: nil, characterIndexes: nil)
+        // use the line fragment ending at the index for the upstream affinity at a soft-wrapped line end
+        var fragmentCharacterIndex = characterIndex
+        if affinity == .upstream,
+           characterIndex > 0,
+           !(self.attributedString().string as NSString).character(at: characterIndex - 1).isNewline
+        {
+            var glyphRange: NSRange = .notFound
+            self.lineFragmentRect(forGlyphAt: self.glyphIndexForCharacter(at: characterIndex - 1), effectiveRange: &glyphRange)
+            if self.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil).upperBound == characterIndex {
+                fragmentCharacterIndex = characterIndex - 1
+            }
+        }
+        
+        let count = self.getLineFragmentInsertionPoints(forCharacterAt: fragmentCharacterIndex, alternatePositions: false, inDisplayOrder: true, positions: nil, characterIndexes: nil)
         
         guard count > 0 else { return nil }
         
         var positions = [CGFloat](repeating: 0, count: count)
         var characterIndexes = [Int](repeating: 0, count: count)
-        self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: false, inDisplayOrder: true, positions: &positions, characterIndexes: &characterIndexes)
+        self.getLineFragmentInsertionPoints(forCharacterAt: fragmentCharacterIndex, alternatePositions: false, inDisplayOrder: true, positions: &positions, characterIndexes: &characterIndexes)
         
         guard let index = characterIndexes.firstIndex(of: characterIndex) else { return nil }
         
@@ -289,7 +303,7 @@ extension NSLayoutManager {
         if characterIndex == self.attributedString().length, self.extraLineFragmentTextContainer != nil {
             lineFragment = self.extraLineFragmentRect
         } else {
-            let glyphIndex = self.glyphIndexForCharacter(at: characterIndex)
+            let glyphIndex = self.glyphIndexForCharacter(at: fragmentCharacterIndex)
             let lastGlyphIndex = self.isValidGlyphIndex(glyphIndex) ? glyphIndex : glyphIndex - 1
             lineFragment = self.lineFragmentRect(forGlyphAt: lastGlyphIndex, effectiveRange: nil, withoutAdditionalLayout: true)
         }

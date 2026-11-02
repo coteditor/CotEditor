@@ -534,10 +534,22 @@
             "value" : "Integração"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интеграция"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "集成"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "整合"
           }
         },
         "zh-HK" : {
@@ -775,7 +787,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "捷徑"
+            "value" : "快速鍵"
           }
         },
         "zh-HK" : {

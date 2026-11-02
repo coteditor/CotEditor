@@ -42,7 +42,7 @@ import URLUtils
     
     static let shared = KeyBindingManager()
     
-    let defaultKeyBindings: [KeyBinding]
+    let defaultMenuKeyBindings: [MenuKeyBinding]
     var textKeyBindings = TextKeyBindingMap()
     
     
@@ -51,8 +51,8 @@ import URLUtils
     private let mainMenu: NSMenu
     private let settingDirectoryURL: URL
     
-    private var userKeyBindings: [KeyBinding] = []
-    private var modifiedKeyBindings: Set<KeyBinding> = []
+    private var userMenuKeyBindings: [MenuKeyBinding] = []
+    private var modifiedMenuKeyBindings: Set<MenuKeyBinding> = []
     
     
     // MARK: Lifecycle
@@ -77,12 +77,12 @@ import URLUtils
         
         self.mainMenu = mainMenu
         self.settingDirectoryURL = settingDirectoryURL
-        self.defaultKeyBindings = Self.scanKeyBindings(in: mainMenu)
+        self.defaultMenuKeyBindings = Self.scanKeyBindings(in: mainMenu)
         
-        let keyBindings: [KeyBinding] = (try? self.loadSettings(from: self.settingFileURL)) ?? []
-        self.userKeyBindings = keyBindings.filter { $0.shortcut?.isAssignable ?? true }
+        let keyBindings: [MenuKeyBinding] = (try? self.loadSettings(from: self.menuSettingFileURL)) ?? []
+        self.userMenuKeyBindings = self.customizations(in: keyBindings)
         self.textKeyBindings = (try? self.loadSettings(from: self.textSettingFileURL)) ?? TextKeyBindingMap()
-        self.modifiedKeyBindings.formUnion(self.userKeyBindings)
+        self.modifiedMenuKeyBindings = Set(self.userMenuKeyBindings)
     }
     
     
@@ -91,12 +91,12 @@ import URLUtils
     /// Whether the key bindings are customized.
     var isCustomized: Bool {
         
-        !self.userKeyBindings.isEmpty || self.textKeyBindings.isCustomized
+        !self.userMenuKeyBindings.isEmpty || self.textKeyBindings.isCustomized
     }
     
     
     /// A collection of the menu tree to display in the settings view.
-    var menuTree: [Node<KeyBindingItem>] {
+    var menuTree: [Node<MenuKeyBindingItem>] {
         
         self.menuTree(of: self.mainMenu)
     }
@@ -105,43 +105,49 @@ import URLUtils
     /// Applies all keyboard shortcuts to the main menu.
     func applyShortcutsToMainMenu() {
         
-        guard !self.modifiedKeyBindings.isEmpty else { return }
+        guard !self.modifiedMenuKeyBindings.isEmpty else { return }
         
-        let mainMenu = self.mainMenu
+        let menuItems = Self.menuItems(in: self.mainMenu, where: self.allowsModifying)
         
-        self.clearShortcuts(in: mainMenu)
-        self.applyShortcuts(to: mainMenu)
-        mainMenu.update()
+        for menuItem in menuItems where self.needsShortcutUpdate(menuItem) {
+            menuItem.shortcut = nil
+        }
+        
+        for menuItem in menuItems {
+            guard
+                self.needsShortcutUpdate(menuItem),
+                let action = menuItem.action
+            else { continue }
+            
+            menuItem.allowsAutomaticKeyEquivalentLocalization = false
+            menuItem.shortcut = self.shortcut(for: action, tag: menuItem.tag)
+        }
+        
+        self.mainMenu.update()
     }
     
     
     /// Removes all user customization.
+    ///
+    /// - Throws: If removing the settings files fails.
     func restoreDefaults() throws {
         
-        try self.removeSettingFile(at: self.settingFileURL)
-        try self.removeSettingFile(at: self.textSettingFileURL)
-        
-        self.userKeyBindings.removeAll()
-        self.textKeyBindings.restoreDefaults()
-        self.applyShortcutsToMainMenu()
-        NotificationCenter.default.post(DidUpdateSettingsMessage(), subject: self)
+        try self.save(menuKeyBindings: [])
+        try self.save(textKeyBindings: TextKeyBindingMap())
     }
     
     
-    /// Saves key bindings in the passed-in tree.
+    /// Saves menu key bindings in the passed-in tree.
     ///
-    /// - Parameter tree: The collection of the menu tree to display in the settings view.
-    func save(tree: [Node<KeyBindingItem>]) throws {
+    /// - Parameter menuTree: The collection of the menu tree to display in the settings view.
+    /// - Throws: If encoding or writing the settings fails.
+    func save(menuTree: [Node<MenuKeyBindingItem>]) throws {
         
-        let keyBindings = tree
+        let keyBindings = menuTree
             .flatMap(\.flatValues)
-            .filter { $0.shortcut?.isAssignable ?? true }
-            .compactMap { KeyBinding(action: $0.action, tag: $0.tag, shortcut: $0.shortcut) }
+            .map { MenuKeyBinding(action: $0.action, tag: $0.tag, shortcut: $0.shortcut) }
         
-        try self.save(keyBindings: keyBindings)
-        
-        // apply new settings to the menu
-        self.applyShortcutsToMainMenu()
+        try self.save(menuKeyBindings: keyBindings)
     }
     
     
@@ -151,13 +157,7 @@ import URLUtils
     /// - Throws: If encoding or writing the settings fails.
     func save(textKeyBindings: TextKeyBindingMap) throws {
         
-        if let data = try self.userSettingsData(for: textKeyBindings) {
-            let fileURL = self.textSettingFileURL
-            try FileManager.default.createIntermediateDirectories(to: fileURL)
-            try data.write(to: fileURL, options: .atomic)
-        } else {
-            try self.removeSettingFile(at: self.textSettingFileURL)
-        }
+        try self.writeSettings(self.userSettingsData(for: textKeyBindings), to: self.textSettingFileURL)
         
         self.textKeyBindings = textKeyBindings
         NotificationCenter.default.post(DidUpdateSettingsMessage(), subject: self)
@@ -173,12 +173,40 @@ import URLUtils
     func save(shortcuts: [Shortcut]?, for command: TextKeyBindingCommand) throws {
         
         var bindings = self.textKeyBindings
-        try bindings.setShortcuts(shortcuts, for: command)  // check conflicts with the other text editing commands
-        for shortcut in bindings.shortcuts(for: command) {
-            try shortcut.checkCustomizationAvailability(for: self.mainMenu, allowsTextEditingKeys: true)
+        let current = self.shortcuts(for: command, in: bindings)
+        
+        if let shortcuts {
+            for shortcut in shortcuts where !current.contains(shortcut) {
+                try self.checkCustomizationAvailability(for: shortcut, command: command)
+            }
         }
         
+        // keep the default shortcuts taken by other commands to take them back when released
+        let yielded = (bindings.customizations[command] ?? command.shortcuts).filter { !current.contains($0) }
+        try bindings.setShortcuts(shortcuts.map { $0 + yielded }, for: command)
+        
         try self.save(textKeyBindings: bindings)
+    }
+    
+    
+    /// Returns the shortcuts of a text editing command that are not taken by other commands.
+    ///
+    /// - Parameters:
+    ///   - command: The text editing command.
+    ///   - textKeyBindings: The text editing key bindings to look up.
+    /// - Returns: The shortcuts of the command, excluding the default ones taken by other text editing commands or the menu.
+    func shortcuts(for command: TextKeyBindingCommand, in textKeyBindings: TextKeyBindingMap) -> [Shortcut] {
+        
+        textKeyBindings.shortcuts(for: command).filter { shortcut in
+            guard
+                command.shortcuts.contains(shortcut),
+                let menuItem = self.mainMenu.item(for: shortcut)
+            else { return true }
+            
+            // -> Default shortcuts give way to the ones assigned to menu commands, snippets, or scripts,
+            //    but share the key with the default ones of menu commands.
+            return self.hasDefaultShortcut(menuItem)
+        }
     }
     
     
@@ -190,24 +218,33 @@ import URLUtils
     /// - Throws: If the shortcut is unsupported or already used by a menu item or a text editing command.
     func checkCustomizationAvailability(for shortcut: Shortcut, command: TextKeyBindingCommand? = nil) throws(Shortcut.CustomizationError) {
         
-        try shortcut.checkCustomizationAvailability(for: self.mainMenu, allowsTextEditingKeys: command != nil)
+        try shortcut.checkCustomizationAvailability(allowsTextEditingKeys: command != nil)
         
-        guard let owner = TextKeyBindingCommand.allCases.first(where: { self.textKeyBindings.shortcuts(for: $0).contains(shortcut) }) else { return }
+        // -> A menu command takes the key only while it is enabled,
+        //    such as Delete with Command-Delete only when a text is selected.
+        if let menuItem = self.mainMenu.item(for: shortcut),
+           !(command?.shortcuts.contains(shortcut) == true && self.hasDefaultShortcut(menuItem))
+        {
+            throw .alreadyTaken(shortcut, name: menuItem.commandName)
+        }
         
-        // text editing commands can take over inherited shortcuts of the other commands
-        guard let command, owner != command, self.textKeyBindings.customizations[owner] == nil else {
+        if let command, self.shortcuts(for: command, in: self.textKeyBindings).contains(shortcut) {
+            throw .alreadyTaken(shortcut, name: String(localized: command.label))
+        }
+        
+        if let owner = self.textKeyBindings.explicitOwner(of: shortcut), owner != command {
             throw .alreadyTaken(shortcut, name: String(localized: owner.label))
         }
     }
     
     
-    /// Returns the encoded user key binding settings as an XML property list, or `nil` if there are no user-defined key bindings.
+    /// Returns the encoded user menu key binding settings as an XML property list, or `nil` if there are no user-defined menu key bindings.
     ///
-    /// - Throws: An error if encoding the key bindings fails.
-    /// - Returns: The encoded user key binding data in XML property list format, or `nil` if there are no user key bindings.
-    func userSettingsData() throws -> Data? {
+    /// - Throws: An error if encoding the menu key bindings fails.
+    /// - Returns: The encoded user menu key binding data in XML property list format, or `nil` if there are no user menu key bindings.
+    func userMenuSettingsData() throws -> Data? {
         
-        try self.userSettingsData(for: self.userKeyBindings)
+        try self.userSettingsData(for: self.userMenuKeyBindings)
     }
     
     
@@ -221,20 +258,16 @@ import URLUtils
     }
     
     
-    /// Imports the given key binding settings data and applies them.
+    /// Imports the given menu key binding settings data and applies them.
     ///
     /// - Parameters:
-    ///   - data: The property-list-encoded user key binding data to import.
-    /// - Throws: An error if decoding the data fails.
-    func importSetting(data: Data) throws {
+    ///   - data: The property-list-encoded user menu key binding data to import.
+    /// - Throws: If decoding or saving the settings fails.
+    func importMenuSetting(data: Data) throws {
         
-        let keyBindings = try PropertyListDecoder().decode([KeyBinding].self, from: data)
-            .filter { $0.shortcut?.isAssignable ?? true }
+        let keyBindings = try PropertyListDecoder().decode([MenuKeyBinding].self, from: data)
         
-        try self.save(keyBindings: keyBindings)
-        
-        // apply new settings to the menu
-        self.applyShortcutsToMainMenu()
+        try self.save(menuKeyBindings: keyBindings)
     }
     
     
@@ -252,8 +285,8 @@ import URLUtils
     
     // MARK: Private Methods
     
-    /// File URL to save custom key bindings file.
-    private var settingFileURL: URL {
+    /// The file containing menu key binding customizations.
+    private var menuSettingFileURL: URL {
         
         self.settingDirectoryURL
             .appendingPathComponent("Shortcuts", conformingTo: .propertyList)
@@ -268,15 +301,15 @@ import URLUtils
     }
     
     
-    /// Actual key bindings.
-    private var keyBindings: [KeyBinding] {
+    /// The menu key bindings in effect, with user customizations applied to the defaults.
+    private var effectiveMenuKeyBindings: [MenuKeyBinding] {
         
-        self.defaultKeyBindings
+        self.defaultMenuKeyBindings
             .filter { kb in
-                !self.userKeyBindings.contains {
+                !self.userMenuKeyBindings.contains {
                     ($0.action == kb.action && $0.tag == kb.tag) || $0.shortcut == kb.shortcut
                 }
-            } + self.userKeyBindings.filter { $0.shortcut != nil }
+            } + self.userMenuKeyBindings.filter { $0.shortcut != nil }
     }
     
     
@@ -292,6 +325,23 @@ import URLUtils
         let data = try Data(contentsOf: fileURL)
         
         return try PropertyListDecoder().decode(T.self, from: data)
+    }
+    
+    
+    /// Writes the settings data to the file, or removes the file if there is nothing to save.
+    ///
+    /// - Parameters:
+    ///   - data: The encoded settings, or `nil` to remove the file.
+    ///   - fileURL: The settings file to write.
+    /// - Throws: If writing or removing the settings file fails.
+    private func writeSettings(_ data: Data?, to fileURL: URL) throws {
+        
+        if let data {
+            try FileManager.default.createIntermediateDirectories(to: fileURL)
+            try data.write(to: fileURL, options: .atomic)
+        } else {
+            try self.removeSettingFile(at: fileURL)
+        }
     }
     
     
@@ -313,20 +363,20 @@ import URLUtils
     }
     
     
-    /// Returns the encoded key binding settings as an XML property list, or `nil` if there are no user-defined key bindings.
+    /// Returns the encoded menu key binding settings as an XML property list, or `nil` if there are no user-defined menu key bindings.
     ///
-    /// - Parameter keyBindings: The user key bindings to encode.
-    /// - Throws: An error if encoding the key bindings fails.
-    /// - Returns: The encoded user key binding data in XML property list format, or `nil` if there are no user key bindings.
-    private func userSettingsData(for keyBindings: [KeyBinding]) throws -> Data? {
+    /// - Parameter keyBindings: The user menu key bindings to encode.
+    /// - Throws: An error if encoding the menu key bindings fails.
+    /// - Returns: The encoded user menu key binding data in XML property list format, or `nil` if there are no user menu key bindings.
+    private func userSettingsData(for keyBindings: [MenuKeyBinding]) throws -> Data? {
         
         guard !keyBindings.isEmpty else { return nil }
         
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .xml
-        let descriptions = keyBindings.sorted(using: KeyPathComparator(\.action.description))
+        let sortedKeyBindings = keyBindings.sorted(using: KeyPathComparator(\.action.description))
         
-        return try encoder.encode(descriptions)
+        return try encoder.encode(sortedKeyBindings)
     }
     
     
@@ -346,44 +396,65 @@ import URLUtils
     }
     
     
-    /// Saves the passed-in key binding settings to a file.
+    /// Saves the passed-in menu key binding settings to a file and applies them to the main menu.
     ///
-    /// - Parameter keyBindings: The key bindings to save.
-    private func save(keyBindings: [KeyBinding]) throws {
+    /// - Parameter menuKeyBindings: The menu key bindings to save.
+    /// - Throws: If encoding or writing the settings fails.
+    private func save(menuKeyBindings: [MenuKeyBinding]) throws {
         
-        let defaultExistsActions = self.defaultKeyBindings.map(\.action)
-        let userKeyBindings: [KeyBinding] = Set(keyBindings).subtracting(self.defaultKeyBindings)
-            .filter { $0.shortcut != nil || defaultExistsActions.contains($0.action) }
+        let userMenuKeyBindings = self.customizations(in: menuKeyBindings)
         
-        // write to file
-        if let data = try self.userSettingsData(for: userKeyBindings) {
-            let fileURL = self.settingFileURL
-            try FileManager.default.createIntermediateDirectories(to: fileURL)
-            try data.write(to: fileURL)
-            
-        } else {
-            try self.removeSettingFile(at: self.settingFileURL)
-        }
+        try self.writeSettings(self.userSettingsData(for: userMenuKeyBindings), to: self.menuSettingFileURL)
         
         // store new values
-        self.userKeyBindings = userKeyBindings
-        self.modifiedKeyBindings.formUnion(userKeyBindings)
+        self.userMenuKeyBindings = userMenuKeyBindings
+        self.modifiedMenuKeyBindings.formUnion(userMenuKeyBindings)
+        
+        // apply new settings to the menu
+        self.applyShortcutsToMainMenu()
+        
         NotificationCenter.default.post(DidUpdateSettingsMessage(), subject: self)
     }
     
     
-    /// Returns the shortcut for the passed-in selector and menu item tag.
+    /// Extracts the customizations from the passed-in menu key bindings.
+    ///
+    /// - Parameter keyBindings: The menu key bindings to extract from.
+    /// - Returns: The menu key bindings that differ from the defaults, excluding the ones for commands not in the menu or with unassignable shortcuts.
+    private func customizations(in keyBindings: [MenuKeyBinding]) -> [MenuKeyBinding] {
+        
+        // -> Bindings for commands not in the menu would otherwise remove the same shortcuts from the default ones of other commands.
+        Set(keyBindings).subtracting(self.defaultMenuKeyBindings)
+            .filter { $0.shortcut?.isAssignable ?? true }
+            .filter { keyBinding in
+                self.defaultMenuKeyBindings.contains { $0.action == keyBinding.action && $0.tag == keyBinding.tag }
+            }
+    }
+    
+    
+    /// Returns the shortcut for the passed-in selector and menu item tag, taking user customizations into account.
     ///
     /// - Parameters:
     ///   - action: The action selector.
     ///   - tag: The menu item tag.
-    ///   - usesDefaults: Whether find the shortcut from the application defaults or user defaults.
-    /// - Returns: A Shortcut struct.
-    private func shortcut(for action: Selector, tag: Int, defaults usesDefaults: Bool = false) -> Shortcut? {
+    /// - Returns: The shortcut, or `nil` if none is assigned.
+    private func shortcut(for action: Selector, tag: Int) -> Shortcut? {
         
-        (usesDefaults ? self.defaultKeyBindings : self.keyBindings)
+        self.effectiveMenuKeyBindings
             .first { $0.action == action && $0.tag == tag }?
             .shortcut
+    }
+    
+    
+    /// Returns whether the menu item has its default shortcut defined in the storyboard.
+    ///
+    /// - Parameter menuItem: The menu item to check.
+    /// - Returns: `false` if the shortcut is customized or the menu item is a snippet or a script.
+    private func hasDefaultShortcut(_ menuItem: NSMenuItem) -> Bool {
+        
+        guard let action = menuItem.action else { return false }
+        
+        return self.defaultMenuKeyBindings.contains(MenuKeyBinding(action: action, tag: menuItem.tag, shortcut: menuItem.shortcut))
     }
     
     
@@ -443,7 +514,7 @@ import URLUtils
             case #selector(NSMenu.submenuAction), .none:
                 return true
             case .some(let action):
-                return self.defaultKeyBindings.contains { $0.action == action }
+                return self.defaultMenuKeyBindings.contains { $0.action == action }
         }
     }
     
@@ -454,7 +525,7 @@ import URLUtils
     /// - Returns: Whether the given menu item was modified by the user.
     private func isModified(_ menuItem: NSMenuItem) -> Bool {
         
-        self.modifiedKeyBindings
+        self.modifiedMenuKeyBindings
             .contains { $0.action == menuItem.action && $0.tag == menuItem.tag }
     }
     
@@ -474,61 +545,34 @@ import URLUtils
     /// Scans all keyboard shortcuts as well as selector names in passed-in menu.
     ///
     /// - Parameter menu: The menu where to collect key bindings.
-    /// - Returns: An array of KeyBindings.
-    private static func scanKeyBindings(in menu: NSMenu) -> [KeyBinding] {
+    /// - Returns: An array of menu key bindings.
+    private static func scanKeyBindings(in menu: NSMenu) -> [MenuKeyBinding] {
         
-        menu.items
-            .filter { Self.allowsModifying($0) }
-            .flatMap { menuItem -> [KeyBinding] in
-                if let submenu = menuItem.submenu {
-                    return self.scanKeyBindings(in: submenu)
-                }
+        Self.menuItems(in: menu, where: Self.allowsModifying)
+            .compactMap { menuItem in
+                guard let action = menuItem.action else { return nil }
                 
-                guard let action = menuItem.action else { return [] }
-                
-                return [KeyBinding(action: action, tag: menuItem.tag, shortcut: menuItem.shortcut)]
+                return MenuKeyBinding(action: action, tag: menuItem.tag, shortcut: menuItem.shortcut)
             }
     }
     
     
-    /// Clears keyboard shortcuts to be modified in the passed-in menu.
+    /// Collects the menu items without a submenu in the passed-in menu and its submenus.
     ///
-    /// - Parameter menu: The menu where to remove shortcuts.
-    private func clearShortcuts(in menu: NSMenu) {
+    /// - Parameters:
+    ///   - menu: The menu where to collect menu items.
+    ///   - isIncluded: The predicate to filter menu items; a submenu is skipped if its parent item doesn't satisfy it.
+    /// - Returns: The menu items in the menu order.
+    private static func menuItems(in menu: NSMenu, where isIncluded: (NSMenuItem) -> Bool) -> [NSMenuItem] {
         
         menu.items
-            .filter { self.allowsModifying($0) }
-            .forEach { menuItem in
+            .filter(isIncluded)
+            .flatMap { menuItem in
                 if let submenu = menuItem.submenu {
-                    return self.clearShortcuts(in: submenu)
+                    Self.menuItems(in: submenu, where: isIncluded)
+                } else {
+                    [menuItem]
                 }
-                
-                guard self.needsShortcutUpdate(menuItem) else { return }
-                
-                menuItem.shortcut = nil
-            }
-    }
-    
-    
-    /// Applies keyboard shortcuts customized by the user to the passed-in menu.
-    ///
-    /// - Parameter menu: The menu where to apply shortcuts.
-    private func applyShortcuts(to menu: NSMenu) {
-        
-        menu.items
-            .filter { self.allowsModifying($0) }
-            .forEach { menuItem in
-                if let submenu = menuItem.submenu {
-                    return self.applyShortcuts(to: submenu)
-                }
-                
-                guard
-                    self.needsShortcutUpdate(menuItem),
-                    let action = menuItem.action
-                else { return }
-                
-                menuItem.allowsAutomaticKeyEquivalentLocalization = false
-                menuItem.shortcut = self.shortcut(for: action, tag: menuItem.tag)
             }
     }
     
@@ -537,11 +581,11 @@ import URLUtils
     ///
     /// - Parameters:
     ///   - menu: The menu where to collect key binding items.
-    /// - Returns: A tree of KeyBindingItem nodes.
-    private func menuTree(of menu: NSMenu) -> [Node<KeyBindingItem>] {
+    /// - Returns: A tree of MenuKeyBindingItem nodes.
+    private func menuTree(of menu: NSMenu) -> [Node<MenuKeyBindingItem>] {
         
         menu.items
-            .filter { self.allowsModifying($0) }
+            .filter(self.allowsModifying)
             .compactMap { menuItem in
                 if let submenu = menuItem.submenu {
                     let subtree = self.menuTree(of: submenu)
@@ -553,8 +597,10 @@ import URLUtils
                 
                 guard let action = menuItem.action else { return nil }
                 
-                let defaultShortcut = self.shortcut(for: action, tag: menuItem.tag, defaults: true)
-                let item = KeyBindingItem(action: action, tag: menuItem.tag, shortcut: menuItem.shortcut, defaultShortcut: defaultShortcut)
+                let defaultShortcut = self.defaultMenuKeyBindings
+                    .first { $0.action == action && $0.tag == menuItem.tag }?
+                    .shortcut
+                let item = MenuKeyBindingItem(action: action, tag: menuItem.tag, shortcut: menuItem.shortcut, defaultShortcut: defaultShortcut)
                 
                 return Node(name: menuItem.title, item: .value(item))
             }

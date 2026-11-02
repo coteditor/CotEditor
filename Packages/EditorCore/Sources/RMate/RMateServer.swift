@@ -91,6 +91,8 @@ public import Observation
     
     /// Starts or stops accepting connections.
     ///
+    /// If listening fails, for example, because another app uses the port, the server reports the failure in `error` and retries periodically until it succeeds.
+    ///
     /// - Note: Existing connections remain open.
     ///
     /// - Parameter port: The loopback TCP port, or `nil` to stop accepting connections.
@@ -111,11 +113,23 @@ public import Observation
             return
         }
         
+        self.startListening(on: port)
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Starts accepting connections on the given port.
+    ///
+    /// - Parameter port: The loopback TCP port.
+    private func startListening(on port: NWEndpoint.Port) {
+        
         do {
             let parameters = NWParametersBuilder {
                 TCP()
                     .keepalive(idleTimeInSeconds: 30, count: 3, intervalInSeconds: 10)
                     .retransmitConnectionDropTime(30)
+                    .persistTimeout(30)  // drop connections that stop receiving data, for example, through a stalled tunnel
             }
             .localEndpoint(.hostPort(host: .ipv4(.loopback), port: port))
             
@@ -126,9 +140,10 @@ public import Observation
                 guard let self, self.listener === listener else { return }
                 
                 switch state {
+                    case .ready:
+                        self.error = nil
                     case .waiting(let error), .failed(let error):
-                        self.error = .failed(underlying: error)
-                        self.listeningTask?.cancel()
+                        self.retryListening(on: port, after: error)
                     default: break
                 }
             }
@@ -153,11 +168,33 @@ public import Observation
                 } catch {
                     guard let self, self.listener === listener, !Task.isCancelled else { return }
                     
-                    self.error = .failed(underlying: error)
+                    self.retryListening(on: port, after: error)
                 }
             }
         } catch {
             self.error = .failed(underlying: error)
+        }
+    }
+    
+    
+    /// Stops the failed listener and tries listening on the same port again later.
+    ///
+    /// - Parameters:
+    ///   - port: The loopback TCP port.
+    ///   - error: The error that stopped the listener.
+    private func retryListening(on port: NWEndpoint.Port, after error: any Error) {
+        
+        self.error = .failed(underlying: error)
+        self.listener = nil
+        self.listeningTask?.cancel()
+        
+        // the port can become available later, for example, when another receiver quits
+        self.listeningTask = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(3), tolerance: .seconds(1))
+            
+            guard let self, !Task.isCancelled else { return }
+            
+            self.startListening(on: port)
         }
     }
 }

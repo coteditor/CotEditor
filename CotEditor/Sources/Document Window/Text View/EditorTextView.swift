@@ -466,11 +466,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         guard
             bindings.isCustomized,
             !self.hasMarkedText(),
-            !self.isShowingCompletion,
-            let shortcut = Shortcut(keyDownEvent: event)
+            !self.isShowingCompletion
         else { return super.keyDown(with: event) }
         
-        switch bindings.action(for: shortcut) {
+        switch bindings.action(for: event) {
             case .perform(let command):
                 self.doCommand(by: command.action)
             case .suppress:

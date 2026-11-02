@@ -1,14 +1,14 @@
 //
-//  KeyBindingItem.swift
+//  MenuKeyBinding.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-06-22.
+//  Created by 1024jp on 2017-12-01.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2024 1024jp
+//  © 2017-2024 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,22 +24,11 @@
 //
 
 import struct Foundation.Selector
-import Observation
 import Shortcut
 
-@Observable final class KeyBindingItem {
+struct MenuKeyBinding: Hashable, Codable {
     
-    let action: Selector
-    let tag: Int
+    var action: Selector
+    var tag: Int = 0
     var shortcut: Shortcut?
-    let defaultShortcut: Shortcut?
-    
-    
-    init(action: Selector, tag: Int, shortcut: Shortcut?, defaultShortcut: Shortcut?) {
-        
-        self.action = action
-        self.tag = tag
-        self.shortcut = shortcut
-        self.defaultShortcut = defaultShortcut
-    }
 }

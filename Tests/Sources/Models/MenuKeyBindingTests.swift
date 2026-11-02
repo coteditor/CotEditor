@@ -1,5 +1,5 @@
 //
-//  KeyBindingTests.swift
+//  MenuKeyBindingTests.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -29,7 +29,7 @@ import AppKit.NSEvent
 import Foundation
 @testable import CotEditor
 
-@MainActor struct KeyBindingTests {
+@MainActor struct MenuKeyBindingTests {
     
     /// Shortcuts that are reserved for use with the Accessibility features in macOS.
     ///
@@ -67,11 +67,11 @@ import Foundation
         Shortcut(.f5, modifiers: [.command]),
     ]
     
-    private let keyBindings = KeyBindingManager.shared.defaultKeyBindings
+    private let keyBindings = KeyBindingManager.shared.defaultMenuKeyBindings
     
     
-    /// Tests .defaultKeyBindings expectedly contains key bindings determined in CotEditor.
-    @Test func defaultKeyBindings() throws {
+    /// Tests .defaultMenuKeyBindings expectedly contains key bindings determined in CotEditor.
+    @Test func defaultMenuKeyBindings() throws {
         
         let shortcut = try #require(Shortcut("k", modifiers: .command))
         let shortcuts = self.keyBindings.compactMap(\.shortcut)
@@ -99,9 +99,9 @@ import Foundation
     func keyStringBindings(_ key: String) throws {
         
         let shortcut = try #require(Shortcut(key, modifiers: [.control, .option]))
-        let binding = KeyBinding(action: #selector(NSDocument.save(_:)), shortcut: shortcut)
+        let binding = MenuKeyBinding(action: #selector(NSDocument.save(_:)), shortcut: shortcut)
         let data = try PropertyListEncoder().encode([binding])
-        let decoded = try #require(PropertyListDecoder().decode([KeyBinding].self, from: data).first)
+        let decoded = try #require(PropertyListDecoder().decode([MenuKeyBinding].self, from: data).first)
         
         #expect(decoded.shortcut?.keyEquivalent == key)
         #expect(decoded.shortcut?.modifiers == shortcut.modifiers)

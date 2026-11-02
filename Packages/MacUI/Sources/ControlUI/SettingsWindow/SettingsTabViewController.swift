@@ -61,6 +61,31 @@ final class SettingsTabViewController: NSTabViewController {
     }
     
     
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        // restore the pane removed when the window closed
+        if let view = self.tabView.selectedTabViewItem?.view, unsafe view.superview == nil {
+            view.frame = self.tabView.contentRect
+            self.tabView.addSubview(view)
+        }
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        // keep the pane while the application is hidden
+        guard !NSApp.isHidden else { return }
+        
+        // remove the pane so that SwiftUI ends its view lifecycle, such as tasks, while the window is closed
+        // -> SwiftUI keeps the views appeared when the window is only ordered out.
+        self.tabView.selectedTabViewItem?.view?.removeFromSuperview()
+    }
+    
+    
     override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
         
         super.tabView(tabView, didSelect: tabViewItem)
@@ -86,15 +111,17 @@ final class SettingsTabViewController: NSTabViewController {
         let frame = window.frameRect(forContentSize: contentSize)
         let animates = !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
         if animates {
-            self.view.isHidden = true
+            // hide the new pane until the window fits it
+            let view = tabViewItem.view
+            view?.isHidden = true
             NSAnimationContext.runAnimationGroup { context in
                 context.allowsImplicitAnimation = true
                 context.duration = window.animationResizeTime(frame)
                 window.setFrame(frame, display: true)
                 
-            } completionHandler: { [weak self] in
+            } completionHandler: { [weak self, weak view] in
                 Task { @MainActor in
-                    self?.view.isHidden = false
+                    view?.isHidden = false
                     self?.title = label
                 }
             }

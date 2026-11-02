@@ -44,7 +44,7 @@ extension EditorTextView {
             return super.moveLeft(sender)
         }
         
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             if range.isEmpty {
                 self.layoutManager!.leftCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
             } else {
@@ -75,7 +75,7 @@ extension EditorTextView {
             return super.moveRight(sender)
         }
         
-        self.moveCursors(affinity: .upstream) { range in
+        self.moveCursors(forward: true, affinity: .downstream) { range in
             if range.isEmpty {
                 self.layoutManager!.rightCharacterIndex(of: range.location, baseWritingDirection: self.baseWritingDirection)
             } else {
@@ -106,7 +106,7 @@ extension EditorTextView {
             return super.moveUp(sender)
         }
         
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             self.upperInsertionLocation(of: range.lowerBound)
         }
     }
@@ -132,7 +132,7 @@ extension EditorTextView {
             return super.moveDown(sender)
         }
         
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: true, affinity: .downstream) { range in
             self.lowerInsertionLocation(of: range.upperBound)
         }
     }
@@ -160,7 +160,7 @@ extension EditorTextView {
         // -> The default implementation uses `textStorage.nextWord(from: $0.lowerBound, forward: isRTL)`
         //    and does not stop at punctuation such as `.` and `:` (2019-06).
         
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             self.nextWord(from: range.lowerBound, forward: self.layoutManager!.isRightToLeft(at: range.upperBound))
         }
     }
@@ -186,7 +186,7 @@ extension EditorTextView {
         
         // find word boundaries manually (see `moveWordLeft(_:)`)
         
-        self.moveCursors(affinity: .upstream) { range in
+        self.moveCursors(forward: true, affinity: .downstream) { range in
             self.nextWord(from: range.upperBound, forward: !self.layoutManager!.isRightToLeft(at: range.upperBound))
         }
     }
@@ -369,7 +369,7 @@ extension EditorTextView {
         
         // handle manually for the Smart Home behavior that walks through
         // visual line start, indentation, and logical line start
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             self.locationOfBeginningOfLine(for: range.location)
         }
     }
@@ -430,7 +430,7 @@ extension EditorTextView {
             return super.moveToEndOfLine(sender)
         }
         
-        self.moveCursors(affinity: .upstream) { range in
+        self.moveCursors(forward: true, affinity: .upstream) { range in
             self.locationOfEndOfLine(for: range.upperBound)
         }
     }
@@ -461,7 +461,7 @@ extension EditorTextView {
         }
         
         // move in the logical order unlike `moveLeft(_:)` that moves in the visual order
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             range.isEmpty ? (self.string as NSString).index(before: range.location) : range.lowerBound
         }
     }
@@ -493,7 +493,7 @@ extension EditorTextView {
         }
         
         // move in the logical order unlike `moveRight(_:)` that moves in the visual order
-        self.moveCursors(affinity: .upstream) { range in
+        self.moveCursors(forward: true, affinity: .downstream) { range in
             range.isEmpty ? (self.string as NSString).index(after: range.location) : range.upperBound
         }
     }
@@ -524,7 +524,7 @@ extension EditorTextView {
             return super.moveToBeginningOfParagraph(sender)
         }
         
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             (self.string as NSString).lineStartIndex(at: range.lowerBound)
         }
     }
@@ -552,7 +552,7 @@ extension EditorTextView {
             return super.moveToEndOfParagraph(sender)
         }
         
-        self.moveCursors(affinity: .upstream) { range in
+        self.moveCursors(forward: true, affinity: .upstream) { range in
             (self.string as NSString).lineContentsEndIndex(at: range.upperBound)
         }
     }
@@ -575,7 +575,7 @@ extension EditorTextView {
     override func moveWordBackward(_ sender: Any?) {
         
         // find word boundaries manually (see `moveWordLeft(_:)`)
-        self.moveCursors(affinity: .downstream) { range in
+        self.moveCursors(forward: false, affinity: .downstream) { range in
             self.nextWord(from: range.lowerBound, forward: false)
         }
     }
@@ -604,7 +604,7 @@ extension EditorTextView {
     override func moveWordForward(_ sender: Any?) {
         
         // find word boundaries manually (see `moveWordLeft(_:)`)
-        self.moveCursors(affinity: .upstream) { range in
+        self.moveCursors(forward: true, affinity: .downstream) { range in
             self.nextWord(from: range.upperBound, forward: true)
         }
     }
@@ -751,6 +751,19 @@ extension EditorTextView {
     }
     
     
+    /// Checks whether the logical line at the given location ends with CRLF.
+    ///
+    /// - Parameter location: The character location in the line.
+    /// - Returns: `true` if the line ending is CRLF; otherwise, `false`.
+    private func isCRLFLine(at location: Int) -> Bool {
+        
+        let string = self.string as NSString
+        
+        // -> CRLF is the only line ending consisting of two characters.
+        return string.lineRange(at: location).upperBound - string.lineContentsEndIndex(at: location) == 2
+    }
+    
+    
     /// Returns the location of the end of the visual line where the insertion point at the given location is drawn.
     ///
     /// - Parameter location: The character location for which to return the line end.
@@ -791,42 +804,56 @@ extension EditorTextView {
     /// Deletes to the end of the logical line (^K).
     override func deleteToEndOfParagraph(_ sender: Any?) {
         
-        let string = self.string as NSString
-        let isAtLineEnd = self.selectedRange.isEmpty && string.lineContentsEndIndex(at: self.selectedRange.location) == self.selectedRange.location
-        
         // -> The default implementation does not delete CRLF at the end of the line (2026-10, macOS 27, FB25382354).
-        //    Otherwise, use it to put the deleted text in the kill buffer for `yank(_:)`.
-        guard self.isEditable, self.hasMultipleInsertions || (isAtLineEnd && self.containsCRLF) else {
+        //    Use `deleteToEndOfLine(_:)` there instead, which deletes CRLF as expected,
+        //    to put the deleted text in the kill buffer for `yank(_:)`.
+        if self.isEditable, !self.hasMultipleInsertions, self.selectedRange.isEmpty,
+           (self.string as NSString).lineContentsEndIndex(at: self.selectedRange.location) == self.selectedRange.location,
+           self.isCRLFLine(at: self.selectedRange.location)
+        {
+            return super.deleteToEndOfLine(sender)
+        }
+        
+        guard self.isEditable, self.hasMultipleInsertions else {
             return super.deleteToEndOfParagraph(sender)
         }
         
-        // build deletion ranges manually
-        // -> Otherwise, the character just before the cursor is deleted
-        //    when the cursor is already at the end of the line.
-        let ranges = self.insertionRanges
-            .map { range in
-                let contentsEnd = string.lineContentsEndIndex(at: range.upperBound)
-                let upperBound = (range.isEmpty && range.location == contentsEnd)
-                    ? string.lineRange(at: range.location).upperBound  // delete the line ending
-                    : max(contentsEnd, range.upperBound)
-                return NSRange(range.location..<upperBound)
-            }
-            .merged
-            .filter { !$0.isEmpty }
-        
-        guard !ranges.isEmpty else { return }
-        
-        self.selectedRanges = ranges as [NSValue]
-        self.deleteBackward(sender)
+        self.deleteToEnd(sender) { endLocation in
+            (self.string as NSString).lineContentsEndIndex(at: endLocation)
+        }
     }
     
     
     /// Deletes to the end of the visual line.
     override func deleteToEndOfLine(_ sender: Any?) {
         
+        // -> The default implementation also deletes CRLF when the visual line ends with it (2026-11, macOS 27).
+        //    Use `deleteToEndOfParagraph(_:)` there instead, which deletes the same range as expected,
+        //    to put the deleted text in the kill buffer for `yank(_:)`.
+        if self.isEditable, !self.hasMultipleInsertions, self.selectedRange.isEmpty {
+            let location = self.selectedRange.location
+            let contentsEnd = (self.string as NSString).lineContentsEndIndex(at: location)
+            
+            if location < contentsEnd, self.isCRLFLine(at: location), self.locationOfEndOfLine(for: location) == contentsEnd {
+                return super.deleteToEndOfParagraph(sender)
+            }
+        }
+        
         guard self.isEditable, self.hasMultipleInsertions else {
             return super.deleteToEndOfLine(sender)
         }
+        
+        self.deleteToEnd(sender, upTo: self.locationOfEndOfLine(for:))
+    }
+    
+    
+    /// Deletes from each insertion point to the given end, or the line ending at the end of the logical line, or the selected text if any.
+    ///
+    /// - Parameters:
+    ///   - sender: The sender of the action.
+    ///   - endLocation: The closure returning the location to delete to from the insertion point at the given location.
+    ///   - location: The location of an insertion point.
+    private func deleteToEnd(_ sender: Any?, upTo endLocation: (_ location: Int) -> Int) {
         
         if self.rangesForUserTextChange?.contains(where: { !$0.rangeValue.isEmpty }) == true {
             return self.deleteForward(sender)
@@ -839,7 +866,7 @@ extension EditorTextView {
             .map { range in
                 let upperBound = (range.location == string.lineContentsEndIndex(at: range.location))
                     ? string.lineRange(at: range.location).upperBound  // delete the line ending
-                    : self.locationOfEndOfLine(for: range.location)
+                    : max(endLocation(range.location), range.location)  // for a cursor between CR and LF
                 return NSRange(range.location..<upperBound)
             }
             .merged

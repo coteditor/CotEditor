@@ -265,6 +265,18 @@
             "value" : "Kies een instellingenarchief…"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбрать архив настроек…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇設定封存檔⋯"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1122,6 +1134,18 @@
             "value" : "Bewaar een kopie in iCloud"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить копию в iCloud"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在iCloud中保留副本"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1282,6 +1306,18 @@
             "value" : "Kopieën van de instellingen worden uit iCloud geladen…"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загрузка копий настроек из iCloud…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在從iCloud載入設定副本⋯"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1333,6 +1369,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beheer kopieën in iCloud…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управление копиями настроек в iCloud…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理iCloud上的副本⋯"
           }
         },
         "zh-HK" : {
@@ -1850,6 +1898,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Geen kopieën van de instellingen in iCloud"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет копий настроек в iCloud"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud中沒有設定副本"
           }
         },
         "zh-HK" : {
@@ -2708,6 +2768,18 @@
             "value" : "Instellingen importeren en exporteren:"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импорт и экспорт настроек:"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定的輸入與輸出："
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2864,6 +2936,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewaar een kopie van deze instellingen om ze op andere apparaten te kunnen importeren."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить копию этих настроек для импорта на другие устройства."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存這些設定的副本，供其他裝置輸入使用。"
           }
         },
         "zh-HK" : {

@@ -235,6 +235,9 @@ import TextFind
             let ranges = result.file.matches.map(\.range)
                 .filter { $0.length > 0 && $0.upperBound <= length }
             
+            if let textStorage = textView.textStorage {
+                NotificationCenter.default.post(TextFinder.ClearFindAllHighlightsMessage(), subject: textStorage)
+            }
             textView.updateBackgroundColor(.unemphasizedSelectedTextBackgroundColor, ranges: ranges)
             self.highlightedTextView = textView
             

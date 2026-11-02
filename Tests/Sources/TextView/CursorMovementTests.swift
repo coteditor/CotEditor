@@ -459,22 +459,39 @@ import LineEnding
     }
     
     
-    /// Tests that deleting to the end of the paragraph at the line end joins the next line, including CRLF.
+    /// Tests that deleting to the end of the paragraph or line at the line end with a single cursor joins the next line, including CRLF.
     ///
-    /// - Parameter isMultiple: Whether to add another insertion point at the end of the second line.
-    @Test(arguments: [false, true])
-    func deleteToEndOfParagraphJoinsLines(isMultiple: Bool) {
+    /// - Parameter selector: The deletion command to perform.
+    @Test(arguments: [#selector(NSTextView.deleteToEndOfParagraph),
+                      #selector(NSTextView.deleteToEndOfLine)])
+    func deleteToEndJoinsLinesWithSingleCursor(selector: Selector) {
         
-        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(3..<3), insertionLocations: isMultiple ? [8] : [])
+        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(3..<3))
         
-        textView.deleteToEndOfParagraph(nil)
+        textView.doCommand(by: selector)
         
-        #expect(textView.string == (isMultiple ? "abcdefghi" : "abcdef\r\nghi"))
-        #expect(textView.insertionRanges == (isMultiple ? [NSRange(3..<3), NSRange(6..<6)] : [NSRange(3..<3)]))
+        #expect(textView.string == "abcdef\r\nghi")
+        #expect(textView.insertionRanges == [NSRange(3..<3)])
     }
     
     
-    /// Tests that the text deleted to the end of the paragraph in the middle of a CRLF line can be yanked back.
+    /// Tests that deleting to the end of the paragraph or line at the line end with multiple cursors joins the next lines, including CRLF.
+    ///
+    /// - Parameter selector: The deletion command to perform.
+    @Test(arguments: [#selector(NSTextView.deleteToEndOfParagraph),
+                      #selector(NSTextView.deleteToEndOfLine)])
+    func deleteToEndJoinsLinesWithMultipleCursors(selector: Selector) {
+        
+        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(3..<3), insertionLocations: [8])
+        
+        textView.doCommand(by: selector)
+        
+        #expect(textView.string == "abcdefghi")
+        #expect(textView.insertionRanges == [NSRange(3..<3), NSRange(6..<6)])
+    }
+    
+    
+    /// Tests that the text deleted to the end of the paragraph in a CRLF line, including the line ending, can be yanked back.
     @Test func deleteToEndOfParagraphKeepsKillBufferWithCRLF() {
         
         let textView = makeEditorTextView(string: "abc def\r\nghi", lineEnding: .crlf, selectedRange: NSRange(3..<3))
@@ -482,70 +499,217 @@ import LineEnding
         textView.deleteToEndOfParagraph(nil)
         #expect(textView.string == "abc\r\nghi")
         
+        textView.deleteToEndOfParagraph(nil)
+        #expect(textView.string == "abcghi")
+        
         textView.yank(nil)
         #expect(textView.string == "abc def\r\nghi")
     }
     
     
-    /// Tests that deleting to the end of the line at the line end joins the next line, including CRLF.
+    /// Tests that deleting to the end of the line before CRLF keeps the line ending and the deleted text for yanking.
     ///
-    /// - Parameter isMultiple: Whether to add another insertion point at the end of the second line.
+    /// - Parameter isWrapped: Whether the cursor is in the last visual line of a soft-wrapped line.
+    /// - Throws: If the line is not soft-wrapped as expected.
     @Test(arguments: [false, true])
-    func deleteToEndOfLineJoinsLines(isMultiple: Bool) {
+    func deleteToEndOfLineKeepsCRLF(isWrapped: Bool) throws {
         
-        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(3..<3), insertionLocations: isMultiple ? [8] : [])
+        let line = isWrapped ? String(repeating: "abcd.efg ", count: 14) + "end" : "abc def"
+        let string = line + "\r\nghi"
+        let location = (line as NSString).length - 2
+        let textView = makeEditorTextView(string: string, lineEnding: .crlf, selectedRange: NSRange(location..<location))
+        
+        try #require((textView.layoutManager!.lineFragmentRange(at: location).location > 0) == isWrapped)
         
         textView.deleteToEndOfLine(nil)
+        #expect(textView.string == (line as NSString).substring(to: location) + "\r\nghi")
         
-        #expect(textView.string == (isMultiple ? "abcdefghi" : "abcdef\r\nghi"))
-        #expect(textView.insertionRanges == (isMultiple ? [NSRange(3..<3), NSRange(6..<6)] : [NSRange(3..<3)]))
+        textView.yank(nil)
+        #expect(textView.string == string)
     }
     
     
-    /// Tests that deleting to the end of the line with selections deletes only the selected text.
+    /// Tests that deleting to the end of the line deletes nothing for a cursor between CR and LF.
+    @Test func deleteToEndOfLineBetweenCRAndLF() {
+        
+        let textView = makeEditorTextView(string: "ab\r\ncd", lineEnding: .crlf, selectedRange: NSRange(1..<1), insertionLocations: [3])
+        
+        textView.deleteToEndOfLine(nil)
+        #expect(textView.string == "a\r\ncd")
+    }
+    
+    
+    /// Tests that moving forward to a soft-wrapped line end draws additional insertion points at the beginning of the next visual line, as with a single cursor.
     ///
-    /// - Parameter isMultiple: Whether to add another selection in the second line.
-    @Test(arguments: [false, true])
-    func deleteToEndOfLineWithSelection(isMultiple: Bool) {
+    /// - Throws: If the line is not soft-wrapped.
+    @Test func insertionIndicatorsAfterMovingForwardToSoftWrappedLineEnd() throws {
+        
+        let line = String(repeating: "abcd.efg ", count: 14) + "end"
+        let offset = (line as NSString).length + 1
+        let textView = makeEditorTextView(string: line + "\n" + line)
+        let layoutManager = try #require(textView.layoutManager)
+        let lineEnd = layoutManager.lineFragmentRange(at: 3).upperBound
+        
+        try #require(lineEnd < offset - 1)
+        
+        textView.setSelectedRange(NSRange(location: lineEnd - 1, length: 0))
+        textView.insertionLocations = [offset + lineEnd - 1]
+        
+        textView.moveRight(nil)
+        textView.updateInsertionIndicators()
+        
+        let lineFragment = layoutManager.lineFragmentRect(forGlyphAt: layoutManager.glyphIndexForCharacter(at: offset + lineEnd), effectiveRange: nil)
+        let glyphRect = layoutManager.boundingRect(forGlyphRange: NSRange(location: layoutManager.glyphIndexForCharacter(at: offset + lineEnd), length: 1), in: try #require(textView.textContainer))
+        #expect(textView.insertionRanges == [NSRange(lineEnd..<lineEnd), NSRange((offset + lineEnd)..<(offset + lineEnd))])
+        #expect(textView.selectionAffinity == .downstream)
+        #expect(textView.insertionIndicators.map(\.frame.origin) == [NSPoint(x: glyphRect.minX + textView.textContainerOrigin.x, y: lineFragment.minY + textView.textContainerOrigin.y)])
+    }
+    
+    
+    /// Tests that additional insertion points at a soft-wrapped line end are drawn at the end of the visual line.
+    ///
+    /// - Throws: If the line is not soft-wrapped.
+    @Test func insertionIndicatorsAtSoftWrappedLineEnd() throws {
+        
+        let line = String(repeating: "abcd.efg ", count: 14) + "end"
+        let offset = (line as NSString).length + 1
+        let textView = makeEditorTextView(string: line + "\n" + line, selectedRange: NSRange(3..<3), insertionLocations: [offset + 3])
+        let layoutManager = try #require(textView.layoutManager)
+        let lineEnd = layoutManager.lineFragmentRange(at: 3).upperBound
+        
+        try #require(lineEnd < offset - 1)
+        
+        textView.moveToEndOfLine(nil)
+        textView.updateInsertionIndicators()
+        
+        let lineFragment = layoutManager.lineFragmentRect(forGlyphAt: layoutManager.glyphIndexForCharacter(at: offset + 3), effectiveRange: nil)
+        let glyphRect = layoutManager.boundingRect(forGlyphRange: NSRange(location: layoutManager.glyphIndexForCharacter(at: offset + lineEnd - 1), length: 1), in: try #require(textView.textContainer))
+        #expect(textView.insertionIndicators.map(\.frame.origin) == [NSPoint(x: glyphRect.maxX + textView.textContainerOrigin.x, y: lineFragment.minY + textView.textContainerOrigin.y)])
+    }
+    
+    
+    /// Tests that deleting to the end of the line or paragraph with a selection deletes only the selected text.
+    ///
+    /// - Parameter selector: The deletion command to perform.
+    @Test(arguments: [#selector(NSTextView.deleteToEndOfLine),
+                      #selector(NSTextView.deleteToEndOfParagraph)])
+    func deleteToEndWithSingleSelection(selector: Selector) {
+        
+        let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon", selectedRange: NSRange(0..<3))
+        
+        textView.doCommand(by: selector)
+        
+        #expect(textView.string == "ha beta\ngamma delta\nepsilon")
+    }
+    
+    
+    /// Tests that deleting to the end of the line or paragraph with multiple selections deletes only the selected text.
+    ///
+    /// - Parameter selector: The deletion command to perform.
+    @Test(arguments: [#selector(NSTextView.deleteToEndOfLine),
+                      #selector(NSTextView.deleteToEndOfParagraph)])
+    func deleteToEndWithMultipleSelections(selector: Selector) {
         
         let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon")
-        textView.selectedRanges = (isMultiple ? [NSRange(6..<10), NSRange(17..<22)] : [NSRange(6..<10)]) as [NSValue]
+        textView.selectedRanges = [NSRange(0..<3), NSRange(11..<14)] as [NSValue]
         
-        textView.deleteToEndOfLine(nil)
+        textView.doCommand(by: selector)
         
-        #expect(textView.string == (isMultiple ? "alpha \ngamma \nepsilon" : "alpha \ngamma delta\nepsilon"))
+        #expect(textView.string == "ha beta\nma delta\nepsilon")
     }
     
     
-    /// Tests that deleting to the beginning of the paragraph removes the text before each cursor in the logical line.
-    ///
-    /// - Parameter isMultiple: Whether to add another insertion point in the third line.
-    @Test(arguments: [false, true])
-    func deleteToBeginningOfParagraph(isMultiple: Bool) {
+    /// Tests that deleting to the end of the paragraph preserves a cursor at the document end.
+    @Test func deleteToEndOfParagraphPreservesCursorAtDocumentEnd() {
         
-        let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon zeta", selectedRange: NSRange(17..<17), insertionLocations: isMultiple ? [31] : [])
+        let textView = makeEditorTextView(string: "abc\ndef", selectedRange: NSRange(1..<1), insertionLocations: [7])
+        
+        textView.deleteToEndOfParagraph(nil)
+        
+        #expect(textView.string == "a\ndef")
+        #expect(textView.insertionRanges == [NSRange(1..<1), NSRange(5..<5)])
+    }
+    
+    
+    /// Tests that deleting to the beginning of the paragraph with a single cursor removes the text before the cursor in the logical line.
+    @Test func deleteToBeginningOfParagraphWithSingleCursor() {
+        
+        let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon zeta", selectedRange: NSRange(17..<17))
         
         textView.deleteToBeginningOfParagraph(nil)
         
-        #expect(textView.string == (isMultiple ? "alpha beta\ndelta\nzeta" : "alpha beta\ndelta\nepsilon zeta"))
-        #expect(textView.insertionRanges == (isMultiple ? [NSRange(11..<11), NSRange(17..<17)] : [NSRange(11..<11)]))
+        #expect(textView.string == "alpha beta\ndelta\nepsilon zeta")
+        #expect(textView.insertionRanges == [NSRange(11..<11)])
     }
     
     
-    /// Tests that deleting to the beginning of the paragraph or line at the line start joins the previous line, including CRLF.
-    ///
-    /// - Parameter isMultiple: Whether to add another insertion point at the beginning of the third line.
-    @Test(arguments: [false, true])
-    func deleteToBeginningJoinsLines(isMultiple: Bool) {
+    /// Tests that deleting to the beginning of the paragraph with multiple cursors removes the text before each cursor in the logical line.
+    @Test func deleteToBeginningOfParagraphWithMultipleCursors() {
         
-        for selector in [#selector(NSTextView.deleteToBeginningOfParagraph), #selector(NSTextView.deleteToBeginningOfLine)] {
-            let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(5..<5), insertionLocations: isMultiple ? [10] : [])
-            
-            textView.doCommand(by: selector)
-            
-            #expect(textView.string == (isMultiple ? "abcdefghi" : "abcdef\r\nghi"))
-            #expect(textView.insertionRanges == (isMultiple ? [NSRange(3..<3), NSRange(6..<6)] : [NSRange(3..<3)]))
-        }
+        let textView = makeEditorTextView(string: "alpha beta\ngamma delta\nepsilon zeta", selectedRange: NSRange(17..<17), insertionLocations: [31])
+        
+        textView.deleteToBeginningOfParagraph(nil)
+        
+        #expect(textView.string == "alpha beta\ndelta\nzeta")
+        #expect(textView.insertionRanges == [NSRange(11..<11), NSRange(17..<17)])
+    }
+    
+    
+    /// Tests that deleting to the beginning of the paragraph or line at the line start with a single cursor joins the previous line, including CRLF.
+    ///
+    /// - Parameter selector: The deletion command to perform.
+    @Test(arguments: [#selector(NSTextView.deleteToBeginningOfParagraph),
+                      #selector(NSTextView.deleteToBeginningOfLine)])
+    func deleteToBeginningJoinsLinesWithSingleCursor(selector: Selector) {
+        
+        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(5..<5))
+        
+        textView.doCommand(by: selector)
+        
+        #expect(textView.string == "abcdef\r\nghi")
+        #expect(textView.insertionRanges == [NSRange(3..<3)])
+    }
+    
+    
+    /// Tests that deleting to the beginning of the paragraph or line at the line start with multiple cursors joins the previous lines, including CRLF.
+    ///
+    /// - Parameter selector: The deletion command to perform.
+    @Test(arguments: [#selector(NSTextView.deleteToBeginningOfParagraph),
+                      #selector(NSTextView.deleteToBeginningOfLine)])
+    func deleteToBeginningJoinsLinesWithMultipleCursors(selector: Selector) {
+        
+        let textView = makeEditorTextView(string: "abc\r\ndef\r\nghi", lineEnding: .crlf, selectedRange: NSRange(5..<5), insertionLocations: [10])
+        
+        textView.doCommand(by: selector)
+        
+        #expect(textView.string == "abcdefghi")
+        #expect(textView.insertionRanges == [NSRange(3..<3), NSRange(6..<6)])
+    }
+    
+    
+    /// Tests that deleting to the end of the line keeps the next line after a line ending other than CRLF in a CRLF document.
+    ///
+    /// - Parameter lineEnding: The line ending of the first line.
+    @Test(arguments: ["\u{2028}", "\u{85}"])
+    func deleteToEndOfLineBeforeNonCRLFLineEnding(lineEnding: String) {
+        
+        let textView = makeEditorTextView(string: "abc def" + lineEnding + "ghi\r\nxyz", lineEnding: .crlf, selectedRange: NSRange(5..<5))
+        
+        textView.deleteToEndOfLine(nil)
+        #expect(textView.string == "abc d" + lineEnding + "ghi\r\nxyz")
+    }
+    
+    
+    /// Tests that deleting to the end of the paragraph at a line ending other than CRLF behaves as in documents without CRLF.
+    ///
+    /// - Parameter lineEnding: The line ending of the first line.
+    @Test(arguments: ["\u{2028}", "\u{85}"])
+    func deleteToEndOfParagraphAtNonCRLFLineEnding(lineEnding: String) {
+        
+        let textView = makeEditorTextView(string: "abc def" + lineEnding + "ghi\r\nxyz", lineEnding: .crlf, selectedRange: NSRange(7..<7))
+        
+        textView.deleteToEndOfParagraph(nil)
+        #expect(textView.string == "abc def\r\nxyz")
     }
 }
 

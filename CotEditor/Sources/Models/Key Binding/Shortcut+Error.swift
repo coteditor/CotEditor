@@ -60,18 +60,16 @@ extension Shortcut {
     }
     
     
-    /// Validates whether the shortcut is available for user customization.
+    /// Validates whether the key combination itself is available for user customization regardless of existing assignments.
     ///
-    /// - Parameters:
-    ///   - menu: The menu tree for duplication check.
-    ///   - allowsTextEditingKeys: Whether arrow keys and Forward Delete can be assigned without modifiers.
-    /// - Throws: If the shortcut is unsupported or already assigned.
-    @MainActor func checkCustomizationAvailability(for menu: NSMenu, allowsTextEditingKeys: Bool) throws(Shortcut.CustomizationError) {
+    /// - Parameter allowsTextEditingKeys: Whether arrow keys and Forward Delete can be assigned without modifiers.
+    /// - Throws: If the shortcut is unsupported.
+    func checkCustomizationAvailability(allowsTextEditingKeys: Bool) throws(Shortcut.CustomizationError) {
         
         // throw unsupported combinations
         if self.keyEquivalent == "\u{9}" ||  // Tab
             self.keyEquivalent == "\u{19}" ||  // Backtab
-            self == Shortcut(.newline, modifiers: .shift)  // Shift-Return
+            self == Shortcut(.carriageReturn, modifiers: .shift)  // Shift-Return
         {
             throw .unsupported(self)
         }
@@ -89,11 +87,6 @@ extension Shortcut {
            !(allowsTextEditingKeys && textEditingKeys.contains { self == Shortcut($0, modifiers: []) })
         {
             throw .singleType
-        }
-        
-        // duplication check
-        if let duplicatedName = menu.commandName(for: self) {
-            throw .alreadyTaken(self, name: duplicatedName)
         }
     }
 }

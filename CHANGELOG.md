@@ -17,6 +17,7 @@
 - Move settings import and export from the File menu to the General settings pane.
 - Redesign the Shortcuts settings pane.
 - Allow restoring the default shortcuts for individual commands in the Shortcuts settings pane using the context menu or the Delete key.
+- Support undo in the Shortcuts settings pane.
 - Improve word navigation with Control-Option-F and Control-Option-B to treat periods, commas, and colons as word delimiters, consistent with Option-Left Arrow and Option-Right Arrow.
 - Change the Shift-Option-Down Arrow shortcut to extend the selection to the end of the line without including the line ending, consistent with Option-Down Arrow.
 - [dev] Update the build environment to Xcode 27.2.
@@ -30,12 +31,20 @@
 - Fix an issue where progress could be displayed incorrectly when searching or replacing text within selections.
 - Fix an issue where syntax highlighting and outline parsing could start after closing a document.
 - Fix an issue where shortcuts using function keys, arrow keys, or other navigation keys could not be set in the Shortcuts and Snippets settings panes.
+- Fix an issue where Shift-Return could be assigned as a keyboard shortcut.
+- Fix an issue where a customized shortcut for a command no longer in the menu could remove the default shortcut of another menu command.
 - Fix an issue where Control-B, Control-F, Option-Up Arrow, or Option-Down Arrow could move insertion points incorrectly during multi-cursor editing in right-to-left text.
 - Fix an issue where repeatedly pressing Command-Right Arrow during multi-cursor editing could move insertion points to the end of the next wrapped visual line.
 - Fix an issue where selecting or deleting text by word or to the beginning of a line could affect an incorrect range or make the app unresponsive in bidirectional text.
 - Fix an issue where deleting a line break during multi-cursor editing could delete only part of a CRLF line ending.
 - Fix an issue where pressing Control-K at the end of a line did not delete the line ending in CRLF documents.
+- Fix an issue where pressing Control-K during multi-cursor editing could delete more than the selected text or remove insertion points at the end of the document.
 - Fix an issue where the outline menu in the navigation bar could display an empty or incorrect item when the insertion point was before the first outline item.
+
+
+### Known Issues
+
+- The text added in CotEditor 7.2.0 is not yet localized in Simplified Chinese, Chinese (Hong Kong), Czech, Hindi, Italian, Korean, Polish, Portuguese, Turkish, and Ukrainian.
 
 
 

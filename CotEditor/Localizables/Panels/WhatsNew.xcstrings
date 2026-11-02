@@ -159,6 +159,18 @@
             "value" : "Bewaar een altijd actuele kopie van je instellingen in iCloud om ze op je andere Macs te importeren wanneer je maar wilt."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Храните актуальную копию настроек в iCloud для импорта на другие Mac в любое время."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在iCloud中保留最新的設定副本，隨時可在其他Mac上輸入。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -210,6 +222,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Je instellingen, slechts één import verwijderd"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваши настройки — одним импортом"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入一次，回到熟悉的設定"
           }
         },
         "zh-HK" : {
@@ -265,6 +289,18 @@
             "value" : "Open bestanden op een externe computer met `rmate` via SSH en bewaar je wijzigingen daar direct."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открывайте файлы на удалённом хосте с помощью `rmate` через SSH и сохраняйте изменения прямо там."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "透過SSH使用`rmate`開啟遠端電腦上的檔案，並將變更直接存回遠端。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -316,6 +352,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewerk externe bestanden rechtstreeks op je Mac"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактируйте файлы на удалённом хосте прямо на вашем Mac"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "直接在Mac上編輯遠端檔案"
           }
         },
         "zh-HK" : {
@@ -371,6 +419,18 @@
             "value" : "Pas de toetscombinaties aan voor het verplaatsen van het invoegpunt en het selecteren en verwijderen van tekst, zodat je vingers zich meteen thuis voelen."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройте сочетания клавиш для перемещения курсора, выделения и удаления текста, чтобы ваши пальцы чувствовали себя как дома."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可自訂移動插入點、選取與刪除文字的快速鍵，讓你怎麼按都順手。"
+          }
+        },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
@@ -422,6 +482,18 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Jouw toetsen, jouw regels"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваши клавиши — ваши правила"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按鍵操作，由你作主"
           }
         },
         "zh-HK" : {
