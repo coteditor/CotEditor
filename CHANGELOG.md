@@ -44,7 +44,7 @@
 
 ### Known Issues
 
-- The text added in CotEditor 7.2.0 is not yet localized in Simplified Chinese, Chinese (Hong Kong), Czech, Hindi, Italian, Korean, Polish, Portuguese, Russian, Turkish, and Ukrainian.
+- The text added in CotEditor 7.2.0 is not yet localized in Simplified Chinese, Chinese (Hong Kong), Czech, Hindi, Italian, Korean, Polish, Portuguese, Turkish, and Ukrainian.
 
 
 

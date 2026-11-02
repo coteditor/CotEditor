@@ -534,6 +534,12 @@
             "value" : "Integração"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интеграция"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

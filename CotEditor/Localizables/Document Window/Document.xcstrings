@@ -2673,6 +2673,12 @@
             "value" : "Verbinding verbroken"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отключено"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5210,8 +5216,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Достигнут лимит поиска"
+            "state" : "translated",
+            "value" : "Достигнут предел поиска"
           }
         },
         "tr" : {
@@ -14151,6 +14157,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Op afstand"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалённый"
           }
         },
         "zh-Hant" : {

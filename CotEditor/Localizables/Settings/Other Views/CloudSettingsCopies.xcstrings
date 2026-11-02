@@ -402,6 +402,12 @@
             "value" : "Om geen kopie meer te bewaren, schakel je 'Bewaar een kopie in iCloud' uit op de Mac waarvan de kopie afkomstig is."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы перестать сохранять копию, отключите «Сохранить копию в iCloud» на Mac, на котором ее включили."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",

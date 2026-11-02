@@ -24407,6 +24407,12 @@
             "value" : "Doneer aan CotEditor…"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пожертвовать CotEditor…"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",

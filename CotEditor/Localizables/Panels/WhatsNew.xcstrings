@@ -159,6 +159,12 @@
             "value" : "Bewaar een altijd actuele kopie van je instellingen in iCloud om ze op je andere Macs te importeren wanneer je maar wilt."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Храните актуальную копию настроек в iCloud для импорта на другие Mac в любое время."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -210,6 +216,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Je instellingen, slechts één import verwijderd"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваши настройки — одним импортом"
           }
         },
         "zh-Hant" : {
@@ -265,6 +277,12 @@
             "value" : "Open bestanden op een externe computer met `rmate` via SSH en bewaar je wijzigingen daar direct."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открывайте файлы на удалённом хосте с помощью `rmate` через SSH и сохраняйте изменения прямо там."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -316,6 +334,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewerk externe bestanden rechtstreeks op je Mac"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактируйте файлы на удалённом хосте прямо на вашем Mac"
           }
         },
         "zh-Hant" : {
@@ -371,6 +395,12 @@
             "value" : "Pas de toetscombinaties aan voor het verplaatsen van het invoegpunt en het selecteren en verwijderen van tekst, zodat je vingers zich meteen thuis voelen."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройте сочетания клавиш для перемещения курсора, выделения и удаления текста, чтобы ваши пальцы чувствовали себя как дома."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -422,6 +452,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Jouw toetsen, jouw regels"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваши клавиши — ваши правила"
           }
         },
         "zh-Hant" : {

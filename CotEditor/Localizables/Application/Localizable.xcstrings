@@ -4062,6 +4062,12 @@
             "value" : "Er kon geen toegang worden verkregen tot de geselecteerde kopie van de instellingen."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось получить доступ к выбранной копии настроек."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4118,6 +4124,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het zoeken naar kopieën van de instellingen in iCloud is mislukt."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось найти копии настроек в iCloud."
           }
         },
         "zh-Hant" : {
@@ -14323,6 +14335,12 @@
             "value" : "De verbinding op afstand is verbroken. Je wijzigingen zijn niet verstuurd."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Соединение с удалённым хостом разорвано. Ваши изменения не были отправлены."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14380,6 +14398,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Wil je de wijzigingen in '%@' op deze Mac bewaren?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить изменения в «%@» на этом Mac?"
           }
         },
         "zh-Hant" : {
@@ -14561,6 +14585,12 @@
             "value" : "Wijzigingen kunnen niet meer op afstand worden bewaard. Bewaar het document op deze Mac om je wijzigingen te behouden."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменения больше не могут быть сохранены на удаленном хосте. Чтобы сохранить изменения, сохраните документ на этом Mac."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14620,6 +14650,12 @@
             "value" : "De verbinding op afstand voor '%@' is verbroken."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Соединение с удалённым хостом для «%@» было разорвано."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14677,6 +14713,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "De poort is al in gebruik."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Порт уже занят."
           }
         },
         "zh-Hant" : {
@@ -14858,6 +14900,12 @@
             "value" : "Voer een poortnummer van 1 tot en met 65535 in."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите номер порта от 1 до 65535."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14915,6 +14963,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Het externe bestand is te groot om te openen."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалённый файл слишком большой для открытия."
           }
         },
         "zh-Hant" : {
@@ -14977,6 +15031,12 @@
             "value" : "Bewerken op afstand ondersteunt bestanden tot %@."
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалённое редактирование поддерживает файлы до %@."
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15034,6 +15094,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sommige externe bestanden konden niet worden geopend."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось открыть некоторые удалённые файлы."
           }
         },
         "zh-Hant" : {
@@ -15162,6 +15228,24 @@
                 "stringUnit" : {
                   "state" : "needs_review",
                   "value" : "Eén rmate-opdracht kan maximaal %lld bestanden tegelijk openen."
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Одна команда rmate может открыть до %lld файл одновременно."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Одна команда rmate может открыть до %lld файлов одновременно."
                 }
               }
             }

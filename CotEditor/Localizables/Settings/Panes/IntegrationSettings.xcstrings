@@ -40,6 +40,12 @@
             "value" : "Sta rmate-verbindingen toe"
           }
         },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Принимать соединения rmate"
+          }
+        },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
@@ -90,6 +96,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Sta toe dat bestanden op afstand in CotEditor worden geopend via het `rmate`-protocol."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить открывать файлы на удалённом хосте в CotEditor с помощью протокола `rmate`."
           }
         },
         "zh-Hant" : {
@@ -829,6 +841,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Bewerken op afstand:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалённое редактирование:"
           }
         },
         "zh-Hant" : {
