@@ -5033,25 +5033,25 @@
             "plural" : {
               "few" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "Найдены только первые совпадения (%lld)."
                 }
               },
               "many" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "Найдены только первые совпадения (%lld)."
                 }
               },
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "Найдены только первые совпадения (%lld)."
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "Найдены только первые совпадения (%lld)."
                 }
               }
@@ -14180,7 +14180,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Удалённый"
+            "value" : "Удаленный"
           }
         },
         "zh-Hans" : {
