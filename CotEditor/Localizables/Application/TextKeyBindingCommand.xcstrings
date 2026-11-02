@@ -117,6 +117,12 @@
             "state" : "needs_review",
             "value" : "刪除"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除"
+          }
         }
       }
     },
@@ -234,6 +240,12 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "編輯"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "編輯"
           }
         }
@@ -355,6 +367,12 @@
             "state" : "needs_review",
             "value" : "移動"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移動"
+          }
         }
       }
     },
@@ -472,6 +490,12 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "捲動"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "捲動"
           }
         }
@@ -593,6 +617,12 @@
             "state" : "needs_review",
             "value" : "選擇"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選擇"
+          }
         }
       }
     },
@@ -709,8 +739,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "刪除至行首"
+            "state" : "translated",
+            "value" : "刪除至行開頭"
           }
         }
       }
@@ -828,7 +858,7 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "刪除至段落開頭"
           }
         }
@@ -947,8 +977,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "刪除至行尾"
+            "state" : "translated",
+            "value" : "刪除至行結尾"
           }
         }
       }
@@ -1066,7 +1096,7 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "刪除至段落結尾"
           }
         }
@@ -1185,7 +1215,7 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "刪除前一個字詞"
           }
         }
@@ -1304,7 +1334,7 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "刪除後一個字詞"
           }
         }
@@ -1426,6 +1456,12 @@
             "state" : "needs_review",
             "value" : "向後移動一個字元"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向後移動一個字元"
+          }
         }
       }
     },
@@ -1542,8 +1578,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向後移動一個字元並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向後移動一個字元並延伸所選範圍"
           }
         }
       }
@@ -1661,8 +1697,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "下移一行"
+            "state" : "translated",
+            "value" : "向下移動一行"
           }
         }
       }
@@ -1780,8 +1816,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "下移一行並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向下移動一行並延伸所選範圍"
           }
         }
       }
@@ -1902,6 +1938,12 @@
             "state" : "needs_review",
             "value" : "向前移動一個字元"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向前移動一個字元"
+          }
         }
       }
     },
@@ -2018,8 +2060,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向前移動一個字元並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向前移動一個字元並延伸所選範圍"
           }
         }
       }
@@ -2137,8 +2179,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向左移動並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向左移動並延伸所選範圍"
           }
         }
       }
@@ -2256,8 +2298,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向後移動一個段落並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向後移動一個段落並延伸所選範圍"
           }
         }
       }
@@ -2375,8 +2417,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向前移動一個段落並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向前移動一個段落並延伸所選範圍"
           }
         }
       }
@@ -2494,8 +2536,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向右移動並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向右移動並延伸所選範圍"
           }
         }
       }
@@ -2616,6 +2658,12 @@
             "state" : "needs_review",
             "value" : "移到文件開頭"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移到文件開頭"
+          }
         }
       }
     },
@@ -2732,8 +2780,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到文件開頭並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "移到文件開頭並延伸所選範圍"
           }
         }
       }
@@ -2854,6 +2902,12 @@
             "state" : "needs_review",
             "value" : "移到段落開頭"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移到段落開頭"
+          }
         }
       }
     },
@@ -2970,8 +3024,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到段落開頭並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "移到段落開頭並延伸所選範圍"
           }
         }
       }
@@ -3092,6 +3146,12 @@
             "state" : "needs_review",
             "value" : "移到文件結尾"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移到文件結尾"
+          }
         }
       }
     },
@@ -3208,8 +3268,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到文件結尾並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "移到文件結尾並延伸所選範圍"
           }
         }
       }
@@ -3330,6 +3390,12 @@
             "state" : "needs_review",
             "value" : "移到段落結尾"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移到段落結尾"
+          }
         }
       }
     },
@@ -3446,8 +3512,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到段落結尾並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "移到段落結尾並延伸所選範圍"
           }
         }
       }
@@ -3568,6 +3634,12 @@
             "state" : "needs_review",
             "value" : "移到行的左端"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移到行左端"
+          }
         }
       }
     },
@@ -3684,8 +3756,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到行的左端並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "移到行左端並延伸所選範圍"
           }
         }
       }
@@ -3806,6 +3878,12 @@
             "state" : "needs_review",
             "value" : "移到行的右端"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移到行右端"
+          }
         }
       }
     },
@@ -3922,8 +4000,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "移到行的右端並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "移到行右端並延伸所選範圍"
           }
         }
       }
@@ -4041,8 +4119,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "上移一行"
+            "state" : "translated",
+            "value" : "向上移動一行"
           }
         }
       }
@@ -4160,8 +4238,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "上移一行並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向上移動一行並延伸所選範圍"
           }
         }
       }
@@ -4279,7 +4357,7 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向後移動一個字詞"
           }
         }
@@ -4398,8 +4476,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向後移動一個字詞並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向後移動一個字詞並延伸所選範圍"
           }
         }
       }
@@ -4517,7 +4595,7 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向前移動一個字詞"
           }
         }
@@ -4636,8 +4714,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向前移動一個字詞並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向前移動一個字詞並延伸所選範圍"
           }
         }
       }
@@ -4755,7 +4833,7 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向左移動一個字詞"
           }
         }
@@ -4874,8 +4952,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向左移動一個字詞並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向左移動一個字詞並延伸所選範圍"
           }
         }
       }
@@ -4993,7 +5071,7 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "向右移動一個字詞"
           }
         }
@@ -5112,8 +5190,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "向右移動一個字詞並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向右移動一個字詞並延伸所選範圍"
           }
         }
       }
@@ -5234,6 +5312,12 @@
             "state" : "needs_review",
             "value" : "下移一頁"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向下移動一頁"
+          }
         }
       }
     },
@@ -5350,8 +5434,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "下移一頁並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向下移動一頁並延伸所選範圍"
           }
         }
       }
@@ -5472,6 +5556,12 @@
             "state" : "needs_review",
             "value" : "上移一頁"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向上移動一頁"
+          }
         }
       }
     },
@@ -5588,8 +5678,8 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "上移一頁並延伸選擇範圍"
+            "state" : "translated",
+            "value" : "向上移動一頁並延伸所選範圍"
           }
         }
       }
@@ -5708,6 +5798,12 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向下捲動一行"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向下捲動一行"
           }
         }
@@ -5829,6 +5925,12 @@
             "state" : "needs_review",
             "value" : "向上捲動一行"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向上捲動一行"
+          }
         }
       }
     },
@@ -5946,6 +6048,12 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "向下捲動一頁"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "向下捲動一頁"
           }
         }
@@ -6067,6 +6175,12 @@
             "state" : "needs_review",
             "value" : "向上捲動一頁"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向上捲動一頁"
+          }
         }
       }
     },
@@ -6185,6 +6299,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "捲動到文件開頭"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捲動至文件開頭"
           }
         }
       }
@@ -6305,6 +6425,12 @@
             "state" : "needs_review",
             "value" : "捲動到文件結尾"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捲動至文件結尾"
+          }
         }
       }
     },
@@ -6424,6 +6550,12 @@
             "state" : "needs_review",
             "value" : "互換前後字元"
           }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "交換前後字元"
+          }
         }
       }
     },
@@ -6540,7 +6672,7 @@
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Yank"
           }
         }
