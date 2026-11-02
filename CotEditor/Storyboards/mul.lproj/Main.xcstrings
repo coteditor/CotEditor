@@ -24419,6 +24419,12 @@
             "value" : "Поддержать CotEditor…"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Підтримати CotEditor…"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

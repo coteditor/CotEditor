@@ -52,6 +52,12 @@
             "value" : "Принимать соединения rmate"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приймати з’єднання rmate"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -120,6 +126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Разрешить открывать файлы на удаленном хосте в CotEditor с помощью протокола `rmate`."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозволити відкриття віддалених файлів у CotEditor за протоколом `rmate`."
           }
         },
         "zh-Hans" : {
@@ -877,6 +889,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удаленное редактирование:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віддалене редагування:"
           }
         },
         "zh-Hans" : {
