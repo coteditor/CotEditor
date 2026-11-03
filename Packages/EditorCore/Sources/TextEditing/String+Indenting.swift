@@ -62,7 +62,15 @@ public extension String {
         let indentLength = indent.length
         
         // create shifted string
-        let lineRanges = string.lineRanges(for: selectedRanges, includingLastEmptyLine: true)
+        var lineRanges = string.lineRanges(for: selectedRanges, includingLastEmptyLine: true)
+        let lastEmptyLineRange = NSRange(location: string.length, length: 0)
+        if selectedRanges.contains(lastEmptyLineRange),
+           string.lineRange(for: lastEmptyLineRange).isEmpty,
+           !lineRanges.contains(lastEmptyLineRange)
+        {
+            // -> `lineRanges(for:includingLastEmptyLine:)` includes the last empty line only for a single insertion point
+            lineRanges.append(lastEmptyLineRange)
+        }
         let newLines = lineRanges.map { indent + string.substring(with: $0) }
         
         // calculate new selection range

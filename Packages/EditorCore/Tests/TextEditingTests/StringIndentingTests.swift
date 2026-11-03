@@ -121,6 +121,15 @@ struct StringIndentationTests {
     }
     
     
+    @Test func indentLastEmptyLineWithMultipleSelections() {
+        
+        // the last empty line is indented also together with other lines
+        let context = "a\n".indent(style: .tab, indentWidth: 4, in: [NSRange(location: 0, length: 0), NSRange(location: 2, length: 0)])
+        
+        #expect(context.strings == ["\ta\n", "\t"])
+    }
+    
+    
     @Test func outdent() throws {
         
         let string = "  foo\n\tbar\nbaz"
