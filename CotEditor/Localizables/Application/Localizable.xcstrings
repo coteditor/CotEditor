@@ -18217,7 +18217,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "插入片段后的光标位置"
+            "value" : "插入片段后的插入点位置"
           }
         },
         "zh-Hant" : {

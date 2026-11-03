@@ -21584,7 +21584,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "选择下一列"
+            "value" : "向下扩展列选择"
           }
         },
         "zh-Hant" : {
@@ -28874,7 +28874,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "选择上一列"
+            "value" : "向上扩展列选择"
           }
         },
         "zh-Hant" : {
