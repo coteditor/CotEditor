@@ -47,7 +47,7 @@
 
 ### Known Issues
 
-- The text added in CotEditor 7.2.0 is not yet localized in Czech, Hindi, Italian, Polish, Portuguese, Turkish, and Ukrainian.
+- The text added in CotEditor 7.2.0 is not yet localized in Czech, Hindi, Italian, Polish, Portuguese, and Turkish.
 
 
 

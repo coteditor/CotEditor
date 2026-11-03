@@ -96,7 +96,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалення"
           }
         },
@@ -215,7 +215,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Редагування"
           }
         },
@@ -334,7 +334,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Переміщення"
           }
         },
@@ -453,7 +453,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокручування"
           }
         },
@@ -572,7 +572,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Виділення"
           }
         },
@@ -691,7 +691,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалити до початку рядка"
           }
         },
@@ -810,7 +810,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалити до початку абзацу"
           }
         },
@@ -929,7 +929,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалити до кінця рядка"
           }
         },
@@ -1048,7 +1048,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалити до кінця абзацу"
           }
         },
@@ -1167,7 +1167,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалити попереднє слово"
           }
         },
@@ -1286,7 +1286,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалити наступне слово"
           }
         },
@@ -1405,7 +1405,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на символ назад"
           }
         },
@@ -1524,7 +1524,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на символ назад з виділенням"
           }
         },
@@ -1643,7 +1643,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на рядок униз"
           }
         },
@@ -1762,7 +1762,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на рядок униз з виділенням"
           }
         },
@@ -1881,7 +1881,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на символ уперед"
           }
         },
@@ -2000,7 +2000,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на символ уперед з виділенням"
           }
         },
@@ -2119,7 +2119,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити ліворуч з виділенням"
           }
         },
@@ -2238,7 +2238,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на абзац назад з виділенням"
           }
         },
@@ -2357,7 +2357,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на абзац уперед з виділенням"
           }
         },
@@ -2476,7 +2476,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити праворуч з виділенням"
           }
         },
@@ -2595,7 +2595,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на початок документа"
           }
         },
@@ -2714,7 +2714,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на початок документа з виділенням"
           }
         },
@@ -2833,7 +2833,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на початок абзацу"
           }
         },
@@ -2952,7 +2952,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на початок абзацу з виділенням"
           }
         },
@@ -3071,7 +3071,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в кінець документа"
           }
         },
@@ -3190,7 +3190,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в кінець документа з виділенням"
           }
         },
@@ -3309,7 +3309,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в кінець абзацу"
           }
         },
@@ -3428,7 +3428,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в кінець абзацу з виділенням"
           }
         },
@@ -3547,7 +3547,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в лівий кінець рядка"
           }
         },
@@ -3666,7 +3666,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в лівий кінець рядка з виділенням"
           }
         },
@@ -3785,7 +3785,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в правий кінець рядка"
           }
         },
@@ -3904,7 +3904,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в правий кінець рядка з виділенням"
           }
         },
@@ -4023,7 +4023,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на рядок угору"
           }
         },
@@ -4142,7 +4142,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на рядок угору з виділенням"
           }
         },
@@ -4261,7 +4261,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово назад"
           }
         },
@@ -4380,7 +4380,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово назад з виділенням"
           }
         },
@@ -4499,7 +4499,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово вперед"
           }
         },
@@ -4618,7 +4618,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово вперед з виділенням"
           }
         },
@@ -4737,7 +4737,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово ліворуч"
           }
         },
@@ -4856,7 +4856,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово ліворуч з виділенням"
           }
         },
@@ -4975,7 +4975,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово праворуч"
           }
         },
@@ -5094,7 +5094,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово праворуч з виділенням"
           }
         },
@@ -5213,7 +5213,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на сторінку вниз"
           }
         },
@@ -5332,7 +5332,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на сторінку вниз з виділенням"
           }
         },
@@ -5451,7 +5451,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на сторінку вгору"
           }
         },
@@ -5570,7 +5570,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на сторінку вгору з виділенням"
           }
         },
@@ -5689,7 +5689,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокрутити на рядок униз"
           }
         },
@@ -5808,7 +5808,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокрутити на рядок угору"
           }
         },
@@ -5927,7 +5927,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокрутити на сторінку вниз"
           }
         },
@@ -6046,7 +6046,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокрутити на сторінку вгору"
           }
         },
@@ -6165,7 +6165,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокрутити на початок документа"
           }
         },
@@ -6284,7 +6284,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокрутити в кінець документа"
           }
         },
@@ -6403,7 +6403,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Поміняти символи місцями"
           }
         },
@@ -6522,7 +6522,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Yank"
           }
         },
