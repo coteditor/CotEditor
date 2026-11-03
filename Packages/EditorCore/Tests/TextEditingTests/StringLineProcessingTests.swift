@@ -400,6 +400,16 @@ struct StringLineProcessingTests {
     }
     
     
+    @Test func deleteDuplicateLineWithPageBreaks() throws {
+        
+        // lines with only a form feed must not be deleted twice
+        let string = "a\n\u{0C}\nb\n\u{0C}\nc"
+        let context = try #require(string.deleteDuplicateLine(in: [string.nsRange]))
+        
+        #expect(context.ranges == context.ranges.uniqued)
+    }
+    
+    
     @Test func duplicateLine() throws {
         
         let string = """

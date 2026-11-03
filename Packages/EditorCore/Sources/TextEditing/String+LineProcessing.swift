@@ -195,6 +195,9 @@ public extension String {
             }
         }
         
+        // -> `lineContentsRanges(for:)` can divide a line into multiple contents at VT or FF
+        replacementRanges = replacementRanges.uniqued
+        
         guard !replacementRanges.isEmpty else { return nil }
         
         let replacementStrings = [String](repeating: "", count: replacementRanges.count)
