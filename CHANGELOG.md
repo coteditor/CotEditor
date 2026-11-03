@@ -47,6 +47,7 @@
 - Fix an issue where the Shift Right command did not indent the last empty line during multi-cursor editing.
 - Fix an issue where pressing the Delete key in indentation with spaces did not delete back to the previous tab stop if the indentation was not aligned with tab stops.
 - Fix an issue where the automatic outdent when typing a closing symbol, such as “}”, did not reach the indent level of the opening symbol if the indentation with spaces was not aligned with tab stops.
+- Fix an issue where pressing the Tab key when spaces were preferred for indentation could insert spaces that did not reach the next tab stop, such as after a tab character in the line.
 - Fix an issue where deleting a line break during multi-cursor editing could delete only part of a CRLF line ending.
 - Fix an issue where pressing Control-K at the end of a line did not delete the line ending in CRLF documents.
 - Fix an issue where pressing Control-K during multi-cursor editing could delete more than the selected text or remove insertion points at the end of the document.

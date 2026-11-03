@@ -304,6 +304,12 @@ struct StringIndentationTests {
         
         // non-empty ranges shift the following columns by the replaced width
         #expect("aa bb cc".softTabs(for: [NSRange(location: 2, length: 3), NSRange(location: 8, length: 0)], tabWidth: 4) == ["  ", " "])
+        
+        // a tab character advances to the next tab stop
+        #expect("a\ta".softTabs(for: [NSRange(location: 3, length: 0)], tabWidth: 4) == ["   "])
+        
+        // the lines joined by replacing the line ending
+        #expect("a\naa".softTabs(for: [NSRange(location: 1, length: 2), NSRange(location: 4, length: 0)], tabWidth: 2) == [" ", " "])
     }
     
     

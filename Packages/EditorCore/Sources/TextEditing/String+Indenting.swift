@@ -310,7 +310,7 @@ public extension String {
         
         guard (self as NSString).range(of: "^ ++$", options: .regularExpression, range: forwardRange).length > 1 else { return nil }
         
-        let column = self.column(of: range.location, tabWidth: tabWidth)
+        let column = forwardRange.length  // only spaces
         let targetLength = (column % tabWidth == 0) ? tabWidth : column % tabWidth
         
         guard range.location >= targetLength else { return nil }
@@ -333,45 +333,29 @@ public extension String {
         
         assert(tabWidth > 0)
         
-        var lastLineStart = -1
-        var shift = 0
+        let string = self as NSString
         
+        // the visual column at `location` after the preceding ranges are replaced
+        var location = 0
+        var column = 0
         return ranges.map { range in
-            let lineStart = (self as NSString).lineStartIndex(at: range.location)
-            if lineStart != lastLineStart {
-                lastLineStart = lineStart
-                shift = 0
+            // -> continue counting if the preceding range joins the lines by replacing the line ending
+            let lineStart = string.lineStartIndex(at: range.location)
+            if lineStart > location {
+                location = lineStart
+                column = 0
             }
             
-            let column = self.column(of: range.location, tabWidth: tabWidth) + shift
-            let length = tabWidth - (((column % tabWidth) + tabWidth) % tabWidth)
-            shift += length - (self.column(of: range.upperBound, tabWidth: tabWidth) -
-                               self.column(of: range.lowerBound, tabWidth: tabWidth))
+            column = (location..<range.location).reduce(into: column) { column, index in
+                column += (string.character(at: index) == 0x9) ? tabWidth - column % tabWidth : 1
+            }
             
-            return length
+            let length = tabWidth - column % tabWidth
+            column += length
+            location = range.upperBound
+            
+            return String(repeating: " ", count: length)
         }
-        .map { String(repeating: " ", count: $0) }
-    }
-    
-    
-    // MARK: Private Methods
-    
-    /// Calculates the visual column from the start of the line to `location` by expanding tab characters.
-    ///
-    /// - Parameters:
-    ///   - location: The base character index as a UTF-16 offset.
-    ///   - tabWidth: The number of spaces that represent one tab stop.
-    /// - Returns: The visual column count from the beginning of the line up to `location`.
-    private func column(of location: Int, tabWidth: Int) -> Int {
-        
-        assert(tabWidth > 0)
-        
-        let index = String.Index(utf16Offset: location, in: self)
-        let lineStartIndex = self.lineStartIndex(at: index)
-        
-        return self[lineStartIndex..<index].lazy
-            .map { $0 == "\t" ? tabWidth : $0.utf16.count }
-            .reduce(0, +)
     }
 }
 
