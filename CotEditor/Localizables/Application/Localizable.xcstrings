@@ -3998,6 +3998,12 @@
             "value" : "iCloud Drive Kullanılamıyor."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud Drive недоступний."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4068,6 +4074,12 @@
             "value" : "Не удалось получить доступ к выбранной копии настроек."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося отримати доступ до вибраної копії параметрів."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4136,6 +4148,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не удалось найти копии настроек в iCloud."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося знайти копії параметрів в iCloud."
           }
         },
         "zh-Hans" : {
@@ -14359,6 +14377,12 @@
             "value" : "Соединение с удаленным хостом разорвано. Ваши изменения не были отправлены."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віддалене з’єднання розірвано. Ваші зміни не надіслано."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14434,6 +14458,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранить изменения в «%@» на этом Mac?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зберегти зміни в «%@» на цьому Mac?"
           }
         },
         "zh-Hans" : {
@@ -14633,6 +14663,12 @@
             "value" : "Изменения больше не могут быть сохранены на удаленном хосте. Чтобы сохранить изменения, сохраните документ на этом Mac."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зміни більше не можна зберігати віддалено. Щоб зберегти внесені зміни, збережіть документ на цьому Mac."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14710,6 +14746,12 @@
             "value" : "Соединение с удаленным хостом для «%@» было разорвано."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віддалене з’єднання для «%@» розірвано."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14785,6 +14827,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Порт уже занят."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Порт уже використовується."
           }
         },
         "zh-Hans" : {
@@ -14984,6 +15032,12 @@
             "value" : "Введите номер порта от 1 до 65535."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введіть номер порту від 1 до 65535."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15059,6 +15113,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удаленный файл слишком большой для открытия."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віддалений файл завеликий для відкриття."
           }
         },
         "zh-Hans" : {
@@ -15139,6 +15199,12 @@
             "value" : "Удаленное редактирование поддерживает файлы до %@."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віддалене редагування підтримує файли розміром до %@."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15214,6 +15280,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не удалось открыть некоторые удаленные файлы."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося відкрити деякі віддалені файли."
           }
         },
         "zh-Hans" : {
@@ -15396,6 +15468,36 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "Одна команда rmate может открыть до %lld файлов одновременно."
+                }
+              }
+            }
+          }
+        },
+        "uk" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Однією командою rmate можна відкрити не більше ніж %lld файли за раз."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Однією командою rmate можна відкрити не більше ніж %lld файлів за раз."
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Однією командою rmate можна відкрити не більше ніж %lld файл за раз."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Однією командою rmate можна відкрити не більше ніж %lld файла за раз."
                 }
               }
             }

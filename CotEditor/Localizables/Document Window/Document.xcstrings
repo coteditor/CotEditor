@@ -2685,6 +2685,12 @@
             "value" : "Отключено"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "З’єднання розірвано"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14181,6 +14187,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удаленный"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віддалений"
           }
         },
         "zh-Hans" : {

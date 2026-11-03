@@ -277,6 +277,12 @@
             "value" : "Выбрать архив настроек…"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибрати архів параметрів…"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1158,6 +1164,12 @@
             "value" : "Сохранять копию в iCloud"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зберігати копію в iCloud"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1342,6 +1354,12 @@
             "value" : "Загрузка копий настроек из iCloud…"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завантаження копій параметрів з iCloud…"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1417,6 +1435,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Управление копиями настроек в iCloud…"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Керувати копіями в iCloud…"
           }
         },
         "zh-Hans" : {
@@ -1958,6 +1982,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет копий настроек в iCloud"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає копій параметрів в iCloud"
           }
         },
         "zh-Hans" : {
@@ -2840,6 +2870,12 @@
             "value" : "Импорт и экспорт настроек:"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Імпорт і експорт параметрів:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3020,6 +3056,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранить копию этих настроек для импорта на другие устройства."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зберігайте копію цих параметрів для імпорту на інших пристроях."
           }
         },
         "zh-Hans" : {
