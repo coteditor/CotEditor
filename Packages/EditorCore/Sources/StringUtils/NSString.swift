@@ -72,10 +72,10 @@ public extension NSString {
         
         guard location > 0 else { return 0 }
         
-        // avoid returning index between CRLF
-        let offset = self.isInsideCRLF(at: location - 1) ? -1 : 0
+        let index = self.rangeOfComposedCharacterSequence(at: location - 1).lowerBound
         
-        return self.rangeOfComposedCharacterSequence(at: location - 1 + offset).lowerBound
+        // avoid returning index between CRLF
+        return self.isInsideCRLF(at: index) ? self.rangeOfComposedCharacterSequence(at: index - 1).lowerBound : index
     }
     
     

@@ -60,6 +60,7 @@ struct NSStringTests {
         #expect(("0\r\n0" as NSString).index(before: 1) == 0)
         #expect(("0\n" as NSString).index(before: 1) == 0)
         #expect(("0\n" as NSString).index(before: 2) == 1)
+        #expect(("\r\n\u{301}" as NSString).index(before: 3) == 0)
     }
     
     
