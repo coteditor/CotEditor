@@ -111,8 +111,9 @@ public extension NSRange {
         
         guard self.length > maxLength else { return self }
         
-        let effectiveHead = min(headPadding, target.location - self.location)
-        let fragmentStart = max(self.location, target.location - effectiveHead)
+        // -> shorten the head padding to include target as much as possible
+        let effectiveHead = min(headPadding, target.location - self.location, max(maxLength - target.length, 0))
+        let fragmentStart = target.location - effectiveHead
         let fragmentEnd = min(self.upperBound, fragmentStart + maxLength)
         
         return NSRange(fragmentStart..<fragmentEnd)

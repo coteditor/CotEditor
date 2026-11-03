@@ -81,6 +81,17 @@ struct NSRangeClampedTests {
     }
     
     
+    @Test func longTarget() {
+        
+        // target longer than maxLength minus head padding -> head padding is shortened to include the whole target
+        let line = NSRange(0..<100_000)
+        let target = NSRange(50_000..<51_000)
+        let result = line.clamped(around: target, maxLength: 1024)
+        
+        #expect(result == NSRange(49_976..<51_000))
+    }
+    
+    
     @Test func customHeadPadding() {
         
         let line = NSRange(0..<100_000)
