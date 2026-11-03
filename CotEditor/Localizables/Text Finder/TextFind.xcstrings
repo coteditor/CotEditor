@@ -2283,7 +2283,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "查找下一个匹配。"
+            "value" : "查找后一个匹配。"
           }
         },
         "zh-Hant" : {
@@ -2509,7 +2509,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "查找上一个匹配。"
+            "value" : "查找前一个匹配。"
           }
         },
         "zh-Hant" : {
