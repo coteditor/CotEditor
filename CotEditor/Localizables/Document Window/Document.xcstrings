@@ -2691,6 +2691,12 @@
             "value" : "Отключено"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağlantı kesildi"
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5246,8 +5252,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Arama Sınırına Ulaşıldı"
+            "state" : "translated",
+            "value" : "Arama Sınırına Erişildi"
           }
         },
         "uk" : {
@@ -14199,6 +14205,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удаленный"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzak"
           }
         },
         "uk" : {

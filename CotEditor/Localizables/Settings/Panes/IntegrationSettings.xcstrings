@@ -58,6 +58,12 @@
             "value" : "Принимать соединения rmate"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rmate bağlantılarını kabul et"
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -138,6 +144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Разрешить открывать файлы на удаленном хосте в CotEditor с помощью протокола `rmate`."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "`rmate` protokolünü kullanarak uzak dosyaların CotEditor’da açılmasına izin verin."
           }
         },
         "uk" : {
@@ -907,6 +919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удаленное редактирование:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzak düzenleme:"
           }
         },
         "uk" : {

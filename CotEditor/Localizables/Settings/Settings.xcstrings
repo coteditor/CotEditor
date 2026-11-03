@@ -546,6 +546,12 @@
             "value" : "Интеграция"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entegrasyon"
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",

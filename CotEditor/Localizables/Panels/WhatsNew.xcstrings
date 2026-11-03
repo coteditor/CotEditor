@@ -177,6 +177,12 @@
             "value" : "Храните актуальную копию настроек в iCloud для импорта на другие Mac в любое время."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlarınızın güncel bir kopyasını iCloud’da tutun; böylece dilediğiniz zaman diğer Mac’lerinize aktarabilirsiniz."
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -264,6 +270,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ваши настройки — одним импортом"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlarınızı tek bir yerde tutun"
           }
         },
         "uk" : {
@@ -355,6 +367,12 @@
             "value" : "Открывайте файлы на удаленном хосте с помощью `rmate` через SSH и сохраняйте изменения прямо там."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH üzerinden `rmate` kullanarak uzak bir bilgisayardaki dosyaları açın ve yaptığınız değişiklikleri doğrudan aynı dosyaya kaydedin."
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -442,6 +460,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Редактируйте файлы на удаленном хосте прямо на вашем Mac"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzak dosyaları Mac’inizde düzenleyin"
           }
         },
         "uk" : {
@@ -533,6 +557,12 @@
             "value" : "Настройте сочетания клавиш для перемещения курсора, выделения и удаления текста, чтобы ваши пальцы чувствовали себя как дома."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İmleci hareket ettirme, metin seçme ve metin silme işlemlerine yönelik kestirmeleri özelleştirin; böylece parmaklarınız kendilerini tamamen rahat hissetsin."
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -620,6 +650,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ваши клавиши — ваши правила"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sizin tuşlarınız, sizin kurallarınız"
           }
         },
         "uk" : {

@@ -3995,7 +3995,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "iCloud Drive Kullanılamıyor."
+            "value" : "iCloud Drive kullanılabilir değil."
           }
         },
         "uk" : {
@@ -4080,6 +4080,12 @@
             "value" : "Не удалось получить доступ к выбранной копии настроек."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçili ayarlar kopyasına erişilemedi."
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4160,6 +4166,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не удалось найти копии настроек в iCloud."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud’da ayarlar kopyası bulunamadı."
           }
         },
         "uk" : {
@@ -14395,6 +14407,12 @@
             "value" : "Соединение с удаленным хостом разорвано. Ваши изменения не были отправлены."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzak bağlantı kesildi. Değişiklikleriniz gönderilmedi."
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14482,6 +14500,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранить изменения в «%@» на этом Mac?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu Mac’te “%@” dosyasına yapılan değişiklikler kaydedilsin mi?"
           }
         },
         "uk" : {
@@ -14693,6 +14717,12 @@
             "value" : "Изменения больше не могут быть сохранены на удаленном хосте. Чтобы сохранить изменения, сохраните документ на этом Mac."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Değişiklikler artık uzaktan kaydedilemiyor. Değişikliklerinizi tutmak için belgeyi bu Mac’te kaydedin."
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14782,6 +14812,12 @@
             "value" : "Соединение с удаленным хостом для «%@» было разорвано."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” için olan uzak bağlantı kesildi."
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14869,6 +14905,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Порт уже занят."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapı hâlihazırda kullanımda."
           }
         },
         "uk" : {
@@ -15080,6 +15122,12 @@
             "value" : "Введите номер порта от 1 до 65535."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 ila 65535 arasında bir kapı numarası girin."
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15167,6 +15215,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удаленный файл слишком большой для открытия."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzak dosya açılmak için pek büyük."
           }
         },
         "uk" : {
@@ -15259,6 +15313,12 @@
             "value" : "Удаленное редактирование поддерживает файлы до %@."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzak düzenleme, %@ büyüklüğüne kadar olan dosyaları destekler."
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15346,6 +15406,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не удалось открыть некоторые удаленные файлы."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bazı uzak dosyalar açılamadı."
           }
         },
         "uk" : {
@@ -15552,6 +15618,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "Одна команда rmate может открыть до %lld файлов одновременно."
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Tek bir rmate komutu, aynı anda %lld dosyaya kadar açabilir."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Tek bir rmate komutu, aynı anda %lld dosyaya kadar açabilir."
                 }
               }
             }

@@ -24425,6 +24425,12 @@
             "value" : "Поддержать CotEditor…"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor’a Bağış Yap…"
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",

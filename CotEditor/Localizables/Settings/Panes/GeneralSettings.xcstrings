@@ -283,6 +283,12 @@
             "value" : "Выбрать архив настроек…"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar Arşivi Seç…"
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1176,6 +1182,12 @@
             "value" : "Сохранять копию в iCloud"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir kopyayı iCloud’da tut"
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1372,6 +1384,12 @@
             "value" : "Загрузка копий настроек из iCloud…"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar iCloud’dan Yükleniyor…"
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1459,6 +1477,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Управление копиями настроек в iCloud…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopyaları iCloud’da Yönet…"
           }
         },
         "uk" : {
@@ -2012,6 +2036,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет копий настроек в iCloud"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud’da Ayarlar Kopyası Yok"
           }
         },
         "uk" : {
@@ -2906,6 +2936,12 @@
             "value" : "Импорт и экспорт настроек:"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarları içe ve dışa aktar:"
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3098,6 +3134,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранить копию этих настроек для импорта на другие устройства."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Başka aygıtlarda da içe aktarılabilmesi için bu ayarların bir kopyasını tutun."
           }
         },
         "uk" : {

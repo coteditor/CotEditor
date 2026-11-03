@@ -90,7 +90,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Silme"
           }
         },
@@ -209,7 +209,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Düzenleme"
           }
         },
@@ -328,7 +328,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Hareket"
           }
         },
@@ -447,8 +447,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Kaydırma"
+            "state" : "translated",
+            "value" : "Sarma"
           }
         },
         "uk" : {
@@ -566,7 +566,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçim"
           }
         },
@@ -685,7 +685,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Satırın Başına Kadar Sil"
           }
         },
@@ -804,7 +804,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Paragrafın Başına Kadar Sil"
           }
         },
@@ -923,7 +923,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Satırın Sonuna Kadar Sil"
           }
         },
@@ -1042,7 +1042,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Paragrafın Sonuna Kadar Sil"
           }
         },
@@ -1161,7 +1161,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Önceki Sözcüğü Sil"
           }
         },
@@ -1280,7 +1280,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sonraki Sözcüğü Sil"
           }
         },
@@ -1399,7 +1399,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Karakter Geri Git"
           }
         },
@@ -1518,7 +1518,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Karakter Geri Git"
           }
         },
@@ -1637,7 +1637,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Satır Aşağı Git"
           }
         },
@@ -1756,7 +1756,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Satır Aşağı Git"
           }
         },
@@ -1875,7 +1875,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Karakter İleri Git"
           }
         },
@@ -1994,7 +1994,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Karakter İleri Git"
           }
         },
@@ -2113,7 +2113,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Sola Git"
           }
         },
@@ -2232,7 +2232,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Paragraf Geri Git"
           }
         },
@@ -2351,7 +2351,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Paragraf İleri Git"
           }
         },
@@ -2470,7 +2470,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Sağa Git"
           }
         },
@@ -2589,7 +2589,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Belgenin Başına Git"
           }
         },
@@ -2708,7 +2708,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Belgenin Başına Git"
           }
         },
@@ -2827,7 +2827,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Paragrafın Başına Git"
           }
         },
@@ -2946,7 +2946,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Paragrafın Başına Git"
           }
         },
@@ -3065,7 +3065,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Belgenin Sonuna Git"
           }
         },
@@ -3184,7 +3184,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Belgenin Sonuna Git"
           }
         },
@@ -3303,7 +3303,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Paragrafın Sonuna Git"
           }
         },
@@ -3422,7 +3422,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Paragrafın Sonuna Git"
           }
         },
@@ -3541,7 +3541,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Satırın Sol Ucuna Git"
           }
         },
@@ -3660,7 +3660,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Satırın Sol Ucuna Git"
           }
         },
@@ -3779,7 +3779,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Satırın Sağ Ucuna Git"
           }
         },
@@ -3898,7 +3898,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Satırın Sağ Ucuna Git"
           }
         },
@@ -4017,7 +4017,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Satır Yukarı Git"
           }
         },
@@ -4136,7 +4136,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Satır Yukarı Git"
           }
         },
@@ -4255,7 +4255,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sözcük Geri Git"
           }
         },
@@ -4374,7 +4374,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Sözcük Geri Git"
           }
         },
@@ -4493,7 +4493,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sözcük İleri Git"
           }
         },
@@ -4612,7 +4612,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Sözcük İleri Git"
           }
         },
@@ -4731,7 +4731,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sözcük Sola Git"
           }
         },
@@ -4850,7 +4850,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Sözcük Sola Git"
           }
         },
@@ -4969,7 +4969,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sözcük Sağa Git"
           }
         },
@@ -5088,7 +5088,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Sözcük Sağa Git"
           }
         },
@@ -5207,7 +5207,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sayfa Aşağı Git"
           }
         },
@@ -5326,7 +5326,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Sayfa Aşağı Git"
           }
         },
@@ -5445,7 +5445,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sayfa Yukarı Git"
           }
         },
@@ -5564,7 +5564,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Sayfa Yukarı Git"
           }
         },
@@ -5683,7 +5683,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Satır Aşağı Kaydır"
           }
         },
@@ -5802,7 +5802,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Satır Yukarı Kaydır"
           }
         },
@@ -5921,7 +5921,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sayfa Aşağı Kaydır"
           }
         },
@@ -6040,7 +6040,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sayfa Yukarı Kaydır"
           }
         },
@@ -6159,7 +6159,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Belgenin Başına Kaydır"
           }
         },
@@ -6278,7 +6278,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Belgenin Sonuna Kaydır"
           }
         },
@@ -6397,7 +6397,7 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Karakterlerin Yerini Değiştir"
           }
         },

@@ -420,6 +420,12 @@
             "value" : "Чтобы перестать сохранять копию, отключите «Сохранять копию в iCloud» на Mac, на котором ее включили."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir kopyasını kaydetmeyi durdurmak için ayarların geldiği Mac üzerinde “Bir kopyayı iCloud’da tut” ayarını kapatın."
+          }
+        },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
