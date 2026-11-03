@@ -21,8 +21,9 @@
 - Improve word navigation with Control-Option-F and Control-Option-B to treat periods, commas, and colons as word delimiters, consistent with Option-Left Arrow and Option-Right Arrow.
 - Change the Shift-Option-Down Arrow shortcut to extend the selection to the end of the line without including the line ending, consistent with Option-Down Arrow.
 - Change the Delete key to delete a closing bracket or quotation mark together with the opening one only when it was automatically inserted.
-- Change the numbering to avoid name conflicts in the file browser and settings to match Finder, such as using “Foo 2” for a copy of “Foo 1”.
+- Change the numbering to avoid name conflicts in the file browser and settings to match Finder, such as using “Foo 2” if “Foo 1” already exists.
 - Optimize the hanging indentation calculation.
+- Improve overall stability and performance.
 - Update tree-sitter-markdown to 0.5.4.
 - Update tree-sitter-scala to 0.26.4.
 - Update tree-sitter-sql.
@@ -34,51 +35,36 @@
 
 - Fix an issue in the Find window where pinch zooming did not synchronize the text size between the find and replace fields.
 - Fix an issue where Find All highlights remained in the document after closing the search results.
-- Fix an issue where searching within multiple selections could continue to subsequent selections after cancellation.
-- Fix an issue where progress could be displayed incorrectly when searching or replacing text within selections.
-- Fix an issue where syntax highlighting and outline parsing could start after closing a document.
 - Fix an issue where shortcuts using function keys, arrow keys, or other navigation keys could not be set in the Shortcuts and Snippets settings panes.
 - Fix an issue where Shift-Return could be assigned as a keyboard shortcut.
 - Fix an issue where a customized shortcut for a command no longer in the menu could remove the default shortcut of another menu command.
-- Fix an issue where Control-B, Control-F, Option-Up Arrow, or Option-Down Arrow could move insertion points incorrectly during multi-cursor editing in right-to-left text.
-- Fix an issue where repeatedly pressing Command-Right Arrow during multi-cursor editing could move insertion points to the end of the next wrapped visual line.
+- Fix an issue where moving insertion points during multi-cursor editing could behave incorrectly in right-to-left text or at the end of wrapped lines.
 - Fix an issue where selecting or deleting text by word or to the beginning of a line could affect an incorrect range or make the app unresponsive in bidirectional text.
 - Fix an issue where the “Convert Indentation” commands did not convert indentation that mixed spaces and tabs.
 - Fix an issue where the Shift Right command did not indent the last empty line during multi-cursor editing.
-- Fix an issue where pressing the Delete key in indentation with spaces did not delete back to the previous tab stop if the indentation was not aligned with tab stops.
-- Fix an issue where the automatic outdent when typing a closing symbol, such as “}”, did not reach the indent level of the opening symbol if the indentation with spaces was not aligned with tab stops.
-- Fix an issue where the automatic outdent when typing a closing symbol did not reach the indent level of the opening symbol if the indentation mixed spaces and tabs.
-- Fix an issue where pressing the Tab key when spaces were preferred for indentation could insert spaces that did not reach the next tab stop, such as after a tab character in the line.
-- Fix an issue where automatic indentation could treat part of a word as a keyword, such as “then”, if a non-ASCII letter adjoined it.
+- Fix an issue where pressing the Tab or Delete key when using spaces for indentation could insert or delete an incorrect number of spaces, such as after a tab character in the line or if the indentation was not a multiple of the indent width.
+- Fix an issue where the automatic outdent when typing a closing symbol, such as “}”, did not reach the indent level of the opening symbol if the indentation was not a multiple of the indent width or mixed spaces and tabs.
 - Fix an issue where trailing whitespace on the previous line was not automatically trimmed while the insertion point was at the beginning of the next line.
 - Fix an issue where deleting a line break during multi-cursor editing could delete only part of a CRLF line ending.
-- Fix an issue where pressing Control-K at the end of a line did not delete the line ending in CRLF documents.
-- Fix an issue where pressing Control-K during multi-cursor editing could delete more than the selected text or remove insertion points at the end of the document.
-- Fix an issue where pressing Control-T with a single insertion point could behave differently from multi-cursor editing, such as doing nothing after an emoji at the end of the document.
-- Fix an issue where pressing Control-T during multi-cursor editing could leave an insertion point inside an emoji, and typing there could break the character.
-- Fix an issue where pressing Control-T with both a selection and an insertion point could swap selected characters, and typing over the selection could break an emoji.
-- Fix an issue where moving lines down during multi-cursor editing could turn insertion points into selections or extend selections.
-- Fix an issue where an insertion point on the last empty line did not move with the line when moving lines down past it during multi-cursor editing.
+- Fix an issue where pressing Control-K could delete an incorrect range, such as not deleting the line ending in CRLF documents or deleting more than the selected text during multi-cursor editing.
+- Fix several issues with pressing Control-T, such as doing nothing after an emoji at the end of the document, or swapping selected characters or breaking an emoji during multi-cursor editing.
+- Fix an issue where moving lines down during multi-cursor editing could turn insertion points into selections, extend selections, or leave an insertion point on the last empty line behind.
 - Fix an issue where the Delete Duplicates command could cause unexpected behavior if lines contained VT (`U+000B`) or FF (`U+000C`).
 - Fix an issue where double-clicking a period, comma, or colon selected nothing or the preceding word instead of the character itself.
 - Fix an issue where the Select Enclosing Symbols command did nothing if an unmatched closing symbol, such as `>` in a comparison, came before the closing symbol of the enclosing pair.
-- Fix an issue where the Toggle Comment and Uncomment commands could fail to uncomment block comments when only part of a line was selected.
-- Fix an issue where the Uncomment command was disabled when a block comment within a line was selected.
-- Fix an issue where the Uncomment command could not uncomment an inline comment within a line when it was selected.
-- Fix an issue where the Inline Comment command inserted the comment delimiter in the middle of a line in syntaxes where it is valid only at the line start, such as Dockerfile.
-- Fix an issue where inline comments indented with tabs were not highlighted in syntaxes where the comment delimiter is valid only at the line start, such as Dockerfile.
+- Fix an issue where the Toggle Comment and Uncomment commands could not uncomment block or inline comments when only part of a line was selected.
+- Fix issues in syntaxes where the comment delimiter is valid only at the line start, such as Dockerfile, where the Inline Comment command inserted the delimiter in the middle of a line and comments indented with tabs were not highlighted.
 - Fix an issue where uncommenting block comments during multi-cursor editing could cause unexpected behavior if an insertion point and a selection were in the same line.
-- Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.
-- Fix an issue where commenting out lines in CRLF documents could insert comment delimiters before the indentation if the lines included a blank line.
-- Fix an issue where commenting out lines could insert comment delimiters in the middle of the indentation if a space preceded a tab.
+- Fix an issue where commenting out lines could insert comment delimiters at an incorrect position relative to the indentation in CRLF documents or if a space preceded a tab.
 - Fix an issue where the outline menu in the navigation bar could display an empty or incorrect item when the insertion point was before the first outline item.
 - Fix an issue where typing after extending selections during multi-cursor editing could insert text at an incorrect location if an insertion point was already at the beginning of a line.
 - Fix an issue where inserting a snippet with line breaks could move the insertion point to an incorrect location or merge multiple insertion points into one if the document’s line endings were not LF.
 - Fix an issue where changing the line height setting did not update the lines displayed in open documents.
 - Fix an issue where text was positioned too high in lines with some fonts, such as Raanana.
-- Fix an issue where the AppleScript `line range` property of the selection included the next line when the selection ended with a line ending.
-- Fix an issue where the AppleScript `line range` property of the selection could return an incorrect line number when the selection started or ended just after VT (`U+000B`) or FF (`U+000C`).
-- Fix an issue where the app could crash when copying, moving, or duplicating an item whose name ends with an extremely large number in the file browser or settings.
+- Fix an issue where the AppleScript `line range` property of the selection could return incorrect lines, such as including the next line when the selection ended with a line ending.
+- [trivial] Fix an issue where progress could be displayed incorrectly when searching or replacing text within selections.
+- [trivial] Fix an issue where automatic indentation could treat part of a word as a keyword, such as “then”, if a non-ASCII letter adjoined it.
+- [trivial] Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.
 - [trivial] Fix an issue where the selection after reversing or shuffling lines did not include an empty line moved to the end.
 
 
