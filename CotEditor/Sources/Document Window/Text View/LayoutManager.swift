@@ -26,6 +26,7 @@
 
 import AppKit
 import Invisible
+import LineEnding
 import StringUtils
 
 class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
@@ -310,7 +311,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
 
 // MARK: Private Extension
 
-private extension NSLayoutManager {
+private extension LayoutManager {
     
     /// Draw indent guides at every given indent width.
     ///
@@ -323,15 +324,17 @@ private extension NSLayoutManager {
         
         guard tabWidth > 0 else { return assertionFailure() }
         
-        // calculate characterRange to seek
         let string = self.attributedString().string as NSString
         let charactersToShow = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
-        let lineStartIndex = string.lineStartIndex(at: charactersToShow.location)
-        let characterRange = NSRange(location: lineStartIndex, length: charactersToShow.upperBound - lineStartIndex)
         
-        // find indent indexes
+        // find indent indexes line by line
         var indentIndexes: [(lineRange: NSRange, indexes: [Int])] = []
-        string.enumerateSubstrings(in: characterRange, options: [.byLines, .substringNotRequired]) { _, range, _, _ in
+        var lineStartIndex = self.lineEndingScanner.lineStartIndex(at: charactersToShow.location)
+        while lineStartIndex < charactersToShow.upperBound {
+            let lineContentsEndIndex = self.lineEndingScanner.lineContentsRange(for: NSRange(location: lineStartIndex, length: 0)).upperBound
+            let range = NSRange(lineStartIndex..<min(lineContentsEndIndex, charactersToShow.upperBound))
+            lineStartIndex = self.lineEndingScanner.lineRange(at: lineStartIndex).upperBound
+            
             var indexes: [Int] = []
             var spaceCount = 0
             loop: for characterIndex in range.lowerBound..<range.upperBound {
@@ -351,7 +354,7 @@ private extension NSLayoutManager {
                 }
             }
             
-            guard !indexes.isEmpty else { return }
+            guard !indexes.isEmpty else { continue }
             
             indentIndexes.append((range, indexes))
         }
