@@ -130,6 +130,7 @@ public extension String {
             let offset = (lineString.last?.isNewline == true)
                 ? lowerLineRange.length
                 : lowerLineRange.length + lowerLineString.last!.utf16.count
+            let lineEnd = lineRange.location + offset + lineString.length
             
             // move selected ranges in the line to move
             for (index, selectedRange) in ranges.enumerated() {
@@ -139,17 +140,18 @@ public extension String {
                     continue
                 }
                 
-                let shiftedRange: NSRange? = if let intersectionRange = selectedRange.intersection(editRange) {
-                    intersectionRange.shifted(by: offset)
-                } else if editRange.touches(selectedRange.location) {
-                    selectedRange.shifted(by: lowerLineRange.length)
+                // -> find in the original line range, as the lines below have already been swapped in `string`
+                let rangeInLine: NSRange? = if selectedRange.isEmpty {
+                    lineRange.contains(selectedRange.location) ? selectedRange : nil
                 } else {
-                    nil
+                    selectedRange.intersection(lineRange)
                 }
                 
-                if let shiftedRange {
-                    movedSelectedRanges[index] = movedSelectedRanges[index]?.union(shiftedRange) ?? shiftedRange
-                }
+                guard let rangeInLine else { continue }
+                
+                // the line loses its line ending when it becomes the last line
+                let shiftedRange = NSRange(min(rangeInLine.lowerBound + offset, lineEnd)..<min(rangeInLine.upperBound + offset, lineEnd))
+                movedSelectedRanges[index] = movedSelectedRanges[index]?.union(shiftedRange) ?? shiftedRange
             }
         }
         

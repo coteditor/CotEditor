@@ -96,7 +96,7 @@ struct StringLineProcessingTests {
         context = try #require(string.moveLineDown(in: [NSRange(4, 1), NSRange(9, 0), NSRange(13, 1)]))
         #expect(context.strings == ["eee\nbbbb\nccc\nd"])
         #expect(context.ranges == [NSRange(3, 14)])
-        #expect(context.selectedRanges == [NSRange(8, 1), NSRange(13, 0), NSRange(17, 1)])
+        #expect(context.selectedRanges == [NSRange(8, 1), NSRange(13, 0), NSRange(17, 0)])
         
         context = try #require(string.moveLineDown(in: [NSRange(4, 6)]))
         #expect(context.strings == ["d\nbbbb\nccc\n"])
@@ -140,6 +140,15 @@ struct StringLineProcessingTests {
         // the caret on the trailing empty line must not be dropped
         context = try #require("aa\nbb\ncc\ndd\n".moveLineDown(in: [NSRange(3, 0), NSRange(12, 0)]))
         #expect(context.selectedRanges == [NSRange(6, 0), NSRange(12, 0)])
+    }
+    
+    
+    @Test func moveLineDownWithSeparateBlocks() throws {
+        
+        // each caret moves only with its own block
+        let context = try #require("a\n\n\nb".moveLineDown(in: [NSRange(0, 0), NSRange(3, 0)]))
+        
+        #expect(context.selectedRanges == [NSRange(1, 0), NSRange(5, 0)])
     }
     
     

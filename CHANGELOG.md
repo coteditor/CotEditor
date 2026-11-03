@@ -46,6 +46,7 @@
 - Fix an issue where deleting a line break during multi-cursor editing could delete only part of a CRLF line ending.
 - Fix an issue where pressing Control-K at the end of a line did not delete the line ending in CRLF documents.
 - Fix an issue where pressing Control-K during multi-cursor editing could delete more than the selected text or remove insertion points at the end of the document.
+- Fix an issue where moving lines down during multi-cursor editing could turn insertion points into selections or extend selections.
 - Fix an issue where double-clicking a period, comma, or colon selected nothing or the preceding word instead of the character itself.
 - Fix an issue where the Select Enclosing Symbols command did nothing if an unmatched closing symbol, such as `>` in a comparison, came before the closing symbol of the enclosing pair.
 - Fix an issue where the Toggle Comment and Uncomment commands could fail to uncomment block comments when only part of a line was selected.
