@@ -69,6 +69,7 @@
 - Fix an issue where the AppleScript `line range` property of the selection included the next line when the selection ended with a line ending.
 - Fix an issue where the AppleScript `line range` property of the selection could return an incorrect line number when the selection started or ended just after VT (`U+000B`) or FF (`U+000C`).
 - Fix an issue where the app could crash when copying, moving, or duplicating an item whose name ends with an extremely large number in the file browser or settings.
+- [trivial] Fix an issue where the selection after reversing or shuffling lines did not include an empty line moved to the end.
 
 
 ### Known Issues

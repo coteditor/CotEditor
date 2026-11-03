@@ -301,6 +301,16 @@ struct StringLineProcessingTests {
     }
     
     
+    @Test func reverseLinesMovingEmptyLineToEnd() throws {
+        
+        // the selection covers the empty line moved to the end
+        let context = try #require("\na".reverseLines(in: NSRange(0, 2)))
+        
+        #expect(context.strings == ["a\n"])
+        #expect(context.selectedRanges == [NSRange(0, 2)])
+    }
+    
+    
     @Test func reverseLinesWithMixedLineEndings() throws {
         
         let string = "b\r\na\nc"

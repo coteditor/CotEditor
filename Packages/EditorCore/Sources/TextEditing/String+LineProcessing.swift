@@ -375,7 +375,10 @@ public extension String {
         
         let newString = predicate(lines)
             .joined(baseLineEnding: baseLineEnding, includingTrailingLineEnding: includesTrailingLineEnding)
-        let length = (newString as NSString).lineContentsRange(for: newString.range).length
+        // -> select the whole string without the trailing line ending, as the last line can be an empty line moved from another position
+        let length = includesTrailingLineEnding
+            ? (newString as NSString).lineContentsRange(for: newString.range).length
+            : newString.length
         let selectedRange = NSRange(location: lineRange.location, length: length)
         
         return EditingContext(strings: [newString], ranges: [lineRange], selectedRanges: [selectedRange])
