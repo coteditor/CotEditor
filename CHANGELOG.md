@@ -43,6 +43,7 @@
 - Fix an issue where Control-B, Control-F, Option-Up Arrow, or Option-Down Arrow could move insertion points incorrectly during multi-cursor editing in right-to-left text.
 - Fix an issue where repeatedly pressing Command-Right Arrow during multi-cursor editing could move insertion points to the end of the next wrapped visual line.
 - Fix an issue where selecting or deleting text by word or to the beginning of a line could affect an incorrect range or make the app unresponsive in bidirectional text.
+- Fix an issue where pressing the Delete key in indentation with spaces did not delete back to the previous tab stop if the indentation was not aligned with tab stops.
 - Fix an issue where deleting a line break during multi-cursor editing could delete only part of a CRLF line ending.
 - Fix an issue where pressing Control-K at the end of a line did not delete the line ending in CRLF documents.
 - Fix an issue where pressing Control-K during multi-cursor editing could delete more than the selected text or remove insertion points at the end of the document.

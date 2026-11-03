@@ -290,6 +290,7 @@ struct StringIndentationTests {
         #expect(string.rangeForSoftTabDeletion(in: NSRange(10..<10), tabWidth: 2) == nil)
         #expect(string.rangeForSoftTabDeletion(in: NSRange(11..<11), tabWidth: 2) == NSRange(9..<11))
         #expect(string.rangeForSoftTabDeletion(in: NSRange(16..<16), tabWidth: 2) == nil)
+        #expect(string.rangeForSoftTabDeletion(in: NSRange(5..<5), tabWidth: 4) == NSRange(4..<5))
     }
 }
 

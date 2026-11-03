@@ -281,6 +281,8 @@ public extension String {
     
     /// Returns the soft-tab deletion range when the insertion point is within leading spaces.
     ///
+    /// The range spans the spaces back to the previous tab stop.
+    ///
     /// - Parameters:
     ///   - range: The current selection.
     ///   - tabWidth: The number of spaces that represent one tab stop.
@@ -298,7 +300,7 @@ public extension String {
         guard (self as NSString).range(of: "^ ++$", options: .regularExpression, range: forwardRange).length > 1 else { return nil }
         
         let column = self.column(of: range.location, tabWidth: tabWidth)
-        let targetLength = tabWidth - (column % tabWidth)
+        let targetLength = (column % tabWidth == 0) ? tabWidth : column % tabWidth
         
         guard range.location >= targetLength else { return nil }
         
