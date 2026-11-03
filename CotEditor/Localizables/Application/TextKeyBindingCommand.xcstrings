@@ -6410,7 +6410,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "交换前后字符"
+            "value" : "互换插入点前后的字符"
           }
         },
         "zh-Hant" : {
