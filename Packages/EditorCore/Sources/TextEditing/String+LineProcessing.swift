@@ -400,8 +400,8 @@ public extension String {
         
         let trimmingRanges: [NSRange] = keepingEditingPoint
             ? whitespaceRanges.filter { range in
-                let lineRange = (self as NSString).lineRange(for: range)
-                return editingRanges.allSatisfy { !$0.touches(lineRange) }
+                let lineContentsRange = (self as NSString).lineContentsRange(for: range)
+                return editingRanges.allSatisfy { !$0.touches(lineContentsRange) }
             }
             : whitespaceRanges
         

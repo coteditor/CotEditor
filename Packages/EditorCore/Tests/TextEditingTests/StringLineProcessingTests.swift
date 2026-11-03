@@ -564,6 +564,17 @@ struct StringTrimmingTests {
         #expect(trimmed == "a  \n b\n")
         #expect(context.selectedRanges == [editRange])
     }
+    
+    
+    @Test func trimTrailingWhitespaceKeepingEditingPointAtNextLineStart() throws {
+        
+        // the insertion point at the beginning of the next line does not keep the previous line
+        let string = "a  \nb"
+        let context = try #require(string.trimTrailingWhitespace(ignoringEmptyLines: false, keepingEditingPoint: true, in: [NSRange(location: 4, length: 0)]))
+        let trimmed = try string.trim(ranges: context.ranges)
+        
+        #expect(trimmed == "a\nb")
+    }
 }
 
 
