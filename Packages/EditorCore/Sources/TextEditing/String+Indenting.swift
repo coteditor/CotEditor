@@ -237,6 +237,8 @@ public extension String {
     
     /// Computes the visual indent level at the given index by expanding tabs.
     ///
+    /// Spaces that do not fill a tab width also count as a level.
+    ///
     /// - Parameters:
     ///   - index: A character index within the string.
     ///   - tabWidth: The number of spaces that represent one tab stop.
@@ -249,8 +251,9 @@ public extension String {
         
         let indent = self[indentRange]
         let numberOfTabs = indent.count { $0 == "\t" }
+        let numberOfSpaces = indent.count - numberOfTabs
         
-        return numberOfTabs + ((indent.count - numberOfTabs) / tabWidth)
+        return numberOfTabs + (numberOfSpaces + tabWidth - 1) / tabWidth
     }
     
     

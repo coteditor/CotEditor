@@ -177,6 +177,18 @@ struct StringIndentationTests {
         let noOutdentRange = NSRange(location: noOutdentString.utf16.count, length: 0)
         
         #expect(noOutdentString.smartOutdentLevel(with: "}", indentWidth: 4, tokens: tokens, in: noOutdentRange) == 0)
+        
+        // spaces off the tab stops count as a level
+        let misalignedString = "{\n     "
+        let misalignedRange = NSRange(location: misalignedString.utf16.count, length: 0)
+        
+        #expect(misalignedString.smartOutdentLevel(with: "}", indentWidth: 4, tokens: tokens, in: misalignedRange) == 2)
+        
+        // also in the line of the opening symbol
+        let misalignedOpeningString = "  {\n      "
+        let misalignedOpeningRange = NSRange(location: misalignedOpeningString.utf16.count, length: 0)
+        
+        #expect(misalignedOpeningString.smartOutdentLevel(with: "}", indentWidth: 4, tokens: tokens, in: misalignedOpeningRange) == 1)
     }
     
     
@@ -257,7 +269,7 @@ struct StringIndentationTests {
         #expect("\tfoo".indentLevel(at: 4, tabWidth: 2) == 1)
         
         // tab-space mix
-        #expect("  \t foo".indentLevel(at: 4, tabWidth: 2) == 2)
+        #expect("  \t foo".indentLevel(at: 4, tabWidth: 2) == 3)
         #expect("   \t foo".indentLevel(at: 4, tabWidth: 2) == 3)
         
         // multiline
