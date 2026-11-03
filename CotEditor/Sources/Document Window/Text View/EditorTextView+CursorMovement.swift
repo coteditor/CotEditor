@@ -998,8 +998,17 @@ extension EditorTextView {
             return proposedWordRange
         }
         
+        let string = self.string as NSString
+        
+        // select the delimiter itself
+        if let character = Unicode.Scalar(string.character(at: delimiterSearchLocation)),
+           Self.additionalWordSeparators.contains(character)
+        {
+            return string.rangeOfComposedCharacterSequence(at: delimiterSearchLocation)
+        }
+        
         // treat some additional punctuation, such as `.` and `:`, as word delimiters
-        return (self.string as NSString).rangeOfCharacter(until: Self.additionalWordSeparators, at: delimiterSearchLocation, range: proposedWordRange)
+        return string.rangeOfCharacter(until: Self.additionalWordSeparators, at: delimiterSearchLocation, range: proposedWordRange)
     }
     
     

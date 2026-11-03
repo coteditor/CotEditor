@@ -50,6 +50,15 @@ import LineEnding
     }
     
     
+    /// Tests that selecting a word at an additional word separator selects the separator itself.
+    @Test func selectWordAtSeparator() {
+        
+        let textView = makeEditorTextView(string: "abc.def")
+        
+        #expect(textView.selectionRange(forProposedRange: NSRange(3..<3), granularity: .selectByWord) == NSRange(3..<4))
+    }
+    
+    
     /// Tests that moving backward word by word with a single cursor stops at additional word separators.
     @Test func moveWordBackwardWithSingleCursor() {
         
