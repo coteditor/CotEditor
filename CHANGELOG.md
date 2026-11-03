@@ -20,6 +20,7 @@
 - Support undo in the Shortcuts settings pane.
 - Improve word navigation with Control-Option-F and Control-Option-B to treat periods, commas, and colons as word delimiters, consistent with Option-Left Arrow and Option-Right Arrow.
 - Change the Shift-Option-Down Arrow shortcut to extend the selection to the end of the line without including the line ending, consistent with Option-Down Arrow.
+- Change the Delete key to delete a closing bracket or quotation mark together with the opening one only when it was automatically inserted.
 - Optimize the hanging indentation calculation.
 - Update tree-sitter-markdown to 0.5.4.
 - Update tree-sitter-scala to 0.26.4.

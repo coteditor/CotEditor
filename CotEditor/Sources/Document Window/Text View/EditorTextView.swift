@@ -663,7 +663,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
            self.rangeForUserTextChange.isEmpty,
            let lastCharacter = self.string.character(before: self.rangeForUserTextChange),
            let nextCharacter = self.string.character(after: self.rangeForUserTextChange),
-           self.matchingSymbolPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
+           self.matchingSymbolPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) }),
+           self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.rangeForUserTextChange.location, effectiveRange: nil) as? Bool == true
         {
             self.setSelectedRangesWithUndo(self.selectedRanges.map(\.rangeValue))
             self.selectedRange = NSRange(location: self.rangeForUserTextChange.location - 1, length: 2)
