@@ -313,13 +313,7 @@ public extension String {
         let column = forwardRange.length  // only spaces
         let targetLength = (column % tabWidth == 0) ? tabWidth : column % tabWidth
         
-        guard range.location >= targetLength else { return nil }
-        
-        let targetRange = NSRange(location: range.location - targetLength, length: targetLength)
-        
-        guard (self as NSString).substring(with: targetRange).allSatisfy({ $0 == " " }) else { return nil }
-        
-        return targetRange
+        return NSRange(location: range.location - targetLength, length: targetLength)
     }
     
     
