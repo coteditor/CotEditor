@@ -89,6 +89,18 @@ import LineEnding
             #expect(textView.insertionRanges == [NSRange(0..<0), NSRange(1..<1)])
         }
     }
+    
+    
+    @Test func insertSnippetWithCRLF() {
+        
+        let textView = makeEditorTextView(string: "a\r\nb", selectedRange: NSRange(1..<1), insertionLocations: [4], lineEnding: .crlf)
+        let item = NSMenuItem()
+        item.representedObject = Snippet(name: "", format: "x\n<<<CURSOR>>>y")
+        textView.insertSnippet(item)
+        
+        #expect(textView.string == "ax\r\ny\r\nbx\r\ny")
+        #expect(textView.insertionRanges == [NSRange(4..<4), NSRange(11..<11)])
+    }
 }
 
 

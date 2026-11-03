@@ -24,13 +24,18 @@
 //
 
 import AppKit
+import LineEnding
 
 extension EditorTextView: SnippetInsertable {
     
     /// Inserts a snippet selected from a menu to the insertion points.
     @IBAction func insertSnippet(_ sender: NSMenuItem) {
         
-        guard let snippet = sender.representedObject as? Snippet else { return assertionFailure() }
+        guard var snippet = sender.representedObject as? Snippet else { return assertionFailure() }
+        
+        // match line endings to the document in advance
+        // -> Otherwise, the delegate standardizes them by replacing the text again, and the insertion points in the snippet are lost.
+        snippet.format = snippet.format.replacingLineEndings(with: self.lineEnding)
         
         self.insert(snippet: snippet)
     }
