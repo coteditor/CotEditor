@@ -48,6 +48,8 @@
 - Fix an issue where pressing Control-K during multi-cursor editing could delete more than the selected text or remove insertion points at the end of the document.
 - Fix an issue where double-clicking a period, comma, or colon selected nothing or the preceding word instead of the character itself.
 - Fix an issue where the Select Enclosing Symbols command did nothing if an unmatched closing symbol, such as `>` in a comparison, came before the closing symbol of the enclosing pair.
+- Fix an issue where the Toggle Comment and Uncomment commands could fail to uncomment block comments when only part of a line was selected.
+- Fix an issue where the Uncomment command was disabled when a block comment within a line was selected.
 - Fix an issue where uncommenting block comments during multi-cursor editing could cause unexpected behavior if an insertion point and a selection were in the same line.
 - Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.
 - Fix an issue where commenting out lines in CRLF documents could insert comment delimiters before the indentation if the lines included a blank line.

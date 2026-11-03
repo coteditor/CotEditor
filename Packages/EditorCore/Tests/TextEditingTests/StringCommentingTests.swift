@@ -354,6 +354,18 @@ struct StringCommentingTests {
     }
     
     
+    @Test func textViewBlockCommentWithPartialSelection() {
+        
+        var editor = Editor(string: "foo", selectedRanges: [NSRange(1..<2)])
+        
+        editor.commentOut(types: .block, at: .line)
+        #expect(editor.string == "<-foo->")
+        #expect(editor.canUncomment(partly: false))
+        editor.uncomment()
+        #expect(editor.string == "foo")
+    }
+    
+    
     @Test func checkIncompatibility() {
         
         let string = """

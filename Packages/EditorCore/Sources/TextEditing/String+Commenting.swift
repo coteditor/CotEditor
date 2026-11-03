@@ -131,7 +131,7 @@ public extension String {
         
         let delimiterRanges: [NSRange] = delimiters.blockDelimiters.lazy
             .compactMap { delimiters in
-                let targetRanges = selectedRanges.map { $0.isEmpty ? self.lineContentsRange(for: $0) : $0 }.uniqued
+                let targetRanges = self.blockCommentTargetRanges(delimiters, for: selectedRanges)
                 return self.rangesOfBlockDelimiters(delimiters, appendsSpacer: appendsSpacer, ranges: targetRanges)
             }.first
         ?? delimiters.inlineDelimiters.lazy
@@ -172,8 +172,9 @@ public extension String {
         guard !targetRanges.isEmpty else { return false }
         
         for delimiters in delimiters.blockDelimiters {
-            if let ranges = self.rangesOfBlockDelimiters(delimiters, appendsSpacer: false, ranges: targetRanges) {
-                return partly ? true : (ranges.count == (2 * targetRanges.count))
+            let blockTargetRanges = self.blockCommentTargetRanges(delimiters, for: selectedRanges)
+            if let ranges = self.rangesOfBlockDelimiters(delimiters, appendsSpacer: false, ranges: blockTargetRanges) {
+                return partly ? true : (ranges.count == (2 * blockTargetRanges.count))
             }
         }
         
@@ -316,6 +317,38 @@ extension String {
     
     
     // MARK: Private Methods
+    
+    /// Returns the ranges where to find block-style delimiters to uncomment the selections.
+    ///
+    /// A non-empty selection that a block fits exactly is used as is.
+    /// The other selections are expanded to their line contents, which are merged in the same way as commenting out lines
+    /// if the merged lines form a block. The line contents overlapping a selection used as is are ignored.
+    ///
+    /// - Parameters:
+    ///   - delimiters: The block delimiters to find.
+    ///   - selectedRanges: The current selected ranges in the editor.
+    /// - Returns: Non-empty ranges where to find.
+    private func blockCommentTargetRanges(_ delimiters: BlockCommentDelimiter, for selectedRanges: [NSRange]) -> [NSRange] {
+        
+        let isBlock = { self.rangesOfBlockDelimiters(delimiters, appendsSpacer: false, ranges: [$0]) != nil }
+        
+        let selections = Dictionary(grouping: selectedRanges) { !$0.isEmpty && isBlock($0) }
+        let exactRanges = selections[true, default: []]
+        let lineRanges = selections[false, default: []]
+            .map(self.lineContentsRange(for:))
+            .filter { !$0.isEmpty }
+            .uniqued
+        let mergedBlockRanges = lineRanges.merged.filter(isBlock)
+        
+        // -> use the line contents that are not merged into a block as they are
+        let mergedBlockIndexes = IndexSet(integersIn: mergedBlockRanges)
+        let exactIndexes = IndexSet(integersIn: exactRanges)
+        let blockRanges = (mergedBlockRanges + lineRanges.filter { !mergedBlockIndexes.intersects(integersIn: Range($0)!) })
+            .filter { !exactIndexes.intersects(integersIn: Range($0)!) }
+        
+        return exactRanges + blockRanges
+    }
+    
     
     /// Validates whether a candidate block delimiter pair is balanced for nestable delimiters.
     ///
