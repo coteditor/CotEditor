@@ -1180,7 +1180,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "刪除前一個單字"
+            "value" : "向後刪除一個單字"
           }
         },
         "zh-HK" : {
@@ -1299,7 +1299,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "刪除後一個單字"
+            "value" : "向前刪除一個單字"
           }
         },
         "zh-HK" : {
@@ -1418,7 +1418,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向後移動一個字元"
+            "value" : "後移一個字元"
           }
         },
         "zh-HK" : {
@@ -1537,7 +1537,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向後移動一個字元並延伸所選範圍"
+            "value" : "後移一個字元並延伸所選範圍"
           }
         },
         "zh-HK" : {
@@ -1894,7 +1894,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移動一個字元"
+            "value" : "前移一個字元"
           }
         },
         "zh-HK" : {
@@ -2013,7 +2013,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移動一個字元並延伸所選範圍"
+            "value" : "前移一個字元並延伸所選範圍"
           }
         },
         "zh-HK" : {
@@ -2251,7 +2251,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向後移動一個段落並延伸所選範圍"
+            "value" : "後移一個段落並延伸所選範圍"
           }
         },
         "zh-HK" : {
@@ -2370,7 +2370,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移動一個段落並延伸所選範圍"
+            "value" : "前移一個段落並延伸所選範圍"
           }
         },
         "zh-HK" : {
@@ -4274,7 +4274,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向後移動一個單字"
+            "value" : "後移一個單字"
           }
         },
         "zh-HK" : {
@@ -4393,7 +4393,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向後移動一個單字並延伸所選範圍"
+            "value" : "後移一個單字並延伸所選範圍"
           }
         },
         "zh-HK" : {
@@ -4512,7 +4512,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移動一個單字"
+            "value" : "前移一個單字"
           }
         },
         "zh-HK" : {
@@ -4631,7 +4631,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移動一個單字並延伸所選範圍"
+            "value" : "前移一個單字並延伸所選範圍"
           }
         },
         "zh-HK" : {
@@ -6416,7 +6416,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互換前後字元"
+            "value" : "互換插入點前後的字元"
           }
         },
         "zh-HK" : {

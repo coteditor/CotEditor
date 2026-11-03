@@ -2289,7 +2289,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "尋找後一個匹配。"
+            "value" : "尋找下一個符合項目。"
           }
         },
         "zh-HK" : {
@@ -2515,7 +2515,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "尋找前一個匹配。"
+            "value" : "尋找上一個符合項目。"
           }
         },
         "zh-HK" : {
