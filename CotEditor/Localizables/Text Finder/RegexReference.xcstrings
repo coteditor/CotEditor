@@ -2241,7 +2241,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "前向"
+            "value" : "往前"
           }
         }
       }
@@ -2353,7 +2353,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "後向"
+            "value" : "往後"
           }
         }
       }

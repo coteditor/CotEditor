@@ -1186,7 +1186,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向後刪除一個字詞"
+            "value" : "刪除前一個字詞"
           }
         }
       }
@@ -1305,7 +1305,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前刪除一個字詞"
+            "value" : "刪除後一個字詞"
           }
         }
       }
@@ -6422,7 +6422,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互換插入點前後的字元"
+            "value" : "交換前後字元"
           }
         }
       }
