@@ -309,6 +309,8 @@ private final class SymbolPairScanner {
     
     private var scanningRange: Range<String.Index>
     private var scanningPair: SymbolPair?
+    private var forwardNestDepths: [SymbolPair: Int] = [:]
+    private var unenclosingPairs: Set<SymbolPair> = []
     private let escapeCharacter: Character?
     private var finished: Bool = false
     private var found: Bool = false
@@ -350,7 +352,6 @@ private final class SymbolPairScanner {
     private func scanForward() {
         
         var index = self.scanningRange.upperBound
-        var nestDepths: [SymbolPair: Int] = [:]
         var isEscaped = if let escapeCharacter {
             self.string.isEscaped(at: index, by: escapeCharacter)
         } else {
@@ -366,12 +367,12 @@ private final class SymbolPairScanner {
             }
             
             if let pair = self.candidates.first(where: { $0.begin == character }) {
-                nestDepths[pair, default: 0] += 1
+                self.forwardNestDepths[pair, default: 0] += 1
                 
             } else if let pair = self.candidates.first(where: { $0.end == character }) {
-                if nestDepths[pair, default: 0] > 0 {
-                    nestDepths[pair, default: 0] -= 1
-                } else {
+                if self.forwardNestDepths[pair, default: 0] > 0 {
+                    self.forwardNestDepths[pair, default: 0] -= 1
+                } else if !self.unenclosingPairs.contains(pair) {
                     self.scanningRange = self.scanningRange.lowerBound..<index
                     self.scanningPair = pair
                     return
@@ -414,6 +415,11 @@ private final class SymbolPairScanner {
             }
         }
         
-        self.finished = true
+        // -> Continue scanning forward for another pair, as this pair does not enclose the range.
+        if let scanningPair {
+            self.unenclosingPairs.insert(scanningPair)
+        } else {
+            self.finished = true
+        }
     }
 }

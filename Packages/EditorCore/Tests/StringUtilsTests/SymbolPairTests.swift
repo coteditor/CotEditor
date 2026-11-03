@@ -79,6 +79,16 @@ struct SymbolPairTests {
     }
     
     
+    @Test func scanAcrossUnmatchedClosingSymbol() {
+        
+        // an unmatched `>` before the closing parenthesis
+        let string = "foo(a > b)"
+        let pairs = SymbolPair.braces + [.ltgt]
+        
+        #expect(string.rangeOfEnclosingSymbolPair(at: string.range(5..<5), candidates: pairs) == string.range(3..<10))
+    }
+    
+    
     @Test func scanWithEscape() {
         
         let pairs = SymbolPair.braces
