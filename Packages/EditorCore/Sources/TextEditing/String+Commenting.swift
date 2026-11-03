@@ -129,7 +129,7 @@ public extension String {
         
         guard !delimiters.isEmpty else { return nil }
         
-        let deletionRanges: [NSRange] = delimiters.blockDelimiters.lazy
+        let delimiterRanges: [NSRange] = delimiters.blockDelimiters.lazy
             .compactMap { delimiters in
                 let targetRanges = selectedRanges.map { $0.isEmpty ? self.lineContentsRange(for: $0) : $0 }.uniqued
                 return self.rangesOfBlockDelimiters(delimiters, appendsSpacer: appendsSpacer, ranges: targetRanges)
@@ -141,8 +141,10 @@ public extension String {
             }.first
         ?? []
         
-        guard !deletionRanges.isEmpty else { return nil }
+        guard !delimiterRanges.isEmpty else { return nil }
         
+        // -> the same delimiters can be found in both the line of an insertion point and a selection in that line
+        let deletionRanges = delimiterRanges.merged
         let newStrings = [String](repeating: "", count: deletionRanges.count)
         let newSelectedRanges = selectedRanges.map { $0.removed(ranges: deletionRanges) }
         

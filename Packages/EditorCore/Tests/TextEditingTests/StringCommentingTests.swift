@@ -223,6 +223,17 @@ struct StringCommentingTests {
     }
     
     
+    @Test func uncommentInsertionPointAndSelectionInSameLine() throws {
+        
+        // both the insertion point and the selection find the same block delimiters
+        let string = " <-a->"
+        let delimiters = Delimiters(blockDelimiters: [.init(begin: "<-", end: "->")])
+        let context = try #require(string.uncomment(delimiters: delimiters, appendsSpacer: false, in: [NSRange(0..<0), NSRange(1..<6)]))
+        
+        #expect(context.ranges == [NSRange(1..<3), NSRange(4..<6)])
+    }
+    
+    
     @Test func canUncommentWithEmptyDelimiters() {
         
         let delimiters = Delimiters()
