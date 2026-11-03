@@ -234,7 +234,9 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
                 return self.lineHeight / 2
             case .horizontal:
                 // remove the space above to make glyphs visually center
-                let diff = self.textFont.ascender - self.textFont.capHeight
+                // -> Some fonts, such as Raanana in the system, can return a negative value for `.capHeight` (2026-11, macOS 27).
+                let capHeight = (self.textFont.capHeight > 0) ? self.textFont.capHeight : self.textFont.ascender
+                let diff = self.textFont.ascender - capHeight
                 return (self.lineHeight + self.defaultBaselineOffset - diff) / 2
             @unknown default: fatalError()
         }

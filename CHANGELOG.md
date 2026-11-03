@@ -44,6 +44,7 @@
 - Fix an issue where pressing Control-K during multi-cursor editing could delete more than the selected text or remove insertion points at the end of the document.
 - Fix an issue where the outline menu in the navigation bar could display an empty or incorrect item when the insertion point was before the first outline item.
 - Fix an issue where changing the line height setting did not update the lines displayed in open documents.
+- Fix an issue where text was positioned too high in lines with some fonts, such as Raanana.
 
 
 ### Known Issues
