@@ -106,6 +106,7 @@ public extension NSRange {
         
         assert(maxLength > 0)
         assert(headPadding >= 0)
+        assert(headPadding < maxLength)
         assert(self.lowerBound <= target.lowerBound && target.lowerBound <= self.upperBound)
         
         guard self.length > maxLength else { return self }
