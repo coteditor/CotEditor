@@ -222,7 +222,7 @@ public extension String {
     }
     
     
-    /// Converts leading indentation to the specified style.
+    /// Converts leading indentation to the specified style keeping its visual width.
     ///
     /// - Parameters:
     ///   - indentStyle: The desired indentation style.
@@ -230,16 +230,16 @@ public extension String {
     /// - Returns: A new string with standardized indentation.
     internal func standardizingIndent(to indentStyle: IndentStyle, tabWidth: Int) -> String {
         
-        let spaces = String(repeating: " ", count: tabWidth)
-        
-        let indent: (before: String, after: String) = switch indentStyle {
-            case .space: (before: "\t", after: spaces)
-            case .tab:   (before: spaces, after: "\t")
+        self.replacing(/^[ \t]+/.anchorsMatchLineEndings()) { match in
+            let width = match.output.reduce(into: 0) { width, character in
+                width += (character == "\t") ? tabWidth - width % tabWidth : 1
+            }
+            
+            return switch indentStyle {
+                case .space: String(repeating: " ", count: width)
+                case .tab:   String(repeating: "\t", count: width / tabWidth) + String(repeating: " ", count: width % tabWidth)
+            }
         }
-        
-        let regex = try! Regex("(^|\\G)" + indent.before).anchorsMatchLineEndings()
-        
-        return self.replacing(regex, with: indent.after)
     }
     
     

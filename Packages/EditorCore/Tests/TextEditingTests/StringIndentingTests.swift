@@ -92,6 +92,14 @@ struct StringIndentationTests {
     }
     
     
+    @Test func standardizeMixedIndentStyle() {
+        
+        // spaces and tabs are converted together by the visual width
+        #expect("  \tfoo".standardizingIndent(to: .space, tabWidth: 4) == "    foo")
+        #expect("\t  foo".standardizingIndent(to: .tab, tabWidth: 2) == "\t\tfoo")
+    }
+    
+    
     // MARK: Text Editing Tests
     
     @Test func indent() {

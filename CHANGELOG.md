@@ -43,6 +43,7 @@
 - Fix an issue where Control-B, Control-F, Option-Up Arrow, or Option-Down Arrow could move insertion points incorrectly during multi-cursor editing in right-to-left text.
 - Fix an issue where repeatedly pressing Command-Right Arrow during multi-cursor editing could move insertion points to the end of the next wrapped visual line.
 - Fix an issue where selecting or deleting text by word or to the beginning of a line could affect an incorrect range or make the app unresponsive in bidirectional text.
+- Fix an issue where the “Convert Indentation” commands did not convert indentation that mixed spaces and tabs.
 - Fix an issue where the Shift Right command did not indent the last empty line during multi-cursor editing.
 - Fix an issue where pressing the Delete key in indentation with spaces did not delete back to the previous tab stop if the indentation was not aligned with tab stops.
 - Fix an issue where the automatic outdent when typing a closing symbol, such as “}”, did not reach the indent level of the opening symbol if the indentation with spaces was not aligned with tab stops.
