@@ -356,13 +356,15 @@ private extension NSLayoutManager {
             indentIndexes.append((range, indexes))
         }
         
-        guard !indentIndexes.isEmpty else { return }
+        guard
+            !indentIndexes.isEmpty,
+            let context = NSGraphicsContext.current?.cgContext
+        else { return }
         
         NSGraphicsContext.saveGraphicsState()
         
         color.set()
         let lineWidth: CGFloat = 0.5
-        let scaleFactor = NSGraphicsContext.current?.cgContext.ctm.a ?? 1
         
         // draw guides logical line by logical line
         for (lineRange, indexes) in indentIndexes {
@@ -387,7 +389,10 @@ private extension NSLayoutManager {
             for index in indexes {
                 let glyphIndex = self.glyphIndexForCharacter(at: index)
                 let glyphLocation = self.location(forGlyphAt: glyphIndex)
-                let guideOrigin = lineFragment.origin.offset(by: origin).offsetBy(dx: glyphLocation.x).aligned(scale: scaleFactor)
+                let guideOrigin = lineFragment.origin
+                    .offset(by: origin)
+                    .offsetBy(dx: glyphLocation.x)
+                    .aligned(in: context)
                 let guideRect = NSRect(origin: guideOrigin, size: guideSize)
                 
                 guideRect.fill()
@@ -401,13 +406,15 @@ private extension NSLayoutManager {
 
 private extension CGPoint {
     
-    /// Make the point pixel-perfect with the desired scale.
+    /// Make the point pixel-perfect in the device space of the given context.
     ///
-    /// - Parameter scale: The scale factor in which the receiver to be pixel-perfect.
+    /// - Parameter context: The graphics context in which the receiver is drawn.
     /// - Returns: An adjusted point.
-    func aligned(scale: CGFloat = 1) -> Self {
+    func aligned(in context: CGContext) -> Self {
         
-        Self(x: (self.x * scale).rounded() / scale,
-             y: (self.y * scale).rounded() / scale)
+        let point = context.convertToDeviceSpace(self)
+        let rounded = Self(x: point.x.rounded(), y: point.y.rounded())
+        
+        return context.convertToUserSpace(rounded)
     }
 }
