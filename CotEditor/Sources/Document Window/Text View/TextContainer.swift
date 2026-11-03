@@ -32,15 +32,9 @@ final class TextContainer: NSTextContainer {
     // MARK: Public Properties
     
     var spaceWidth: Double = 0  { didSet { self.invalidateLayout() } }
+    var tabWidth = 4  { didSet { self.invalidateLayout() } }
     var isHangingIndentEnabled = false  { didSet { self.invalidateLayout() } }
     var hangingIndentWidth = 0  { didSet { self.invalidateLayout() } }
-    
-    var indentAttributes: [NSAttributedString.Key: Any] = [:]  { didSet { self.indentWidthCache.removeAll() } }
-    
-    
-    // MARK: Private Properties
-    
-    private var indentWidthCache: [String: Double] = [:]
     
     
     // MARK: Text Container Methods
@@ -69,30 +63,40 @@ final class TextContainer: NSTextContainer {
         
         guard
             self.isHangingIndentEnabled,
+            self.tabWidth > 0,
+            characterIndex > 0,
             let layoutManager = self.layoutManager as? LayoutManager
         else { return rect }
         
-        let lineStartIndex = layoutManager.lineEndingScanner.lineStartIndex(at: characterIndex)
+        let string = layoutManager.attributedString().string as NSString
         
         // no hanging indent for new line
-        guard characterIndex != lineStartIndex else { return rect }
-        
-        // get base indent
-        let string = layoutManager.attributedString().string as NSString
-        let indentString = string.indentString(in: lineStartIndex..<characterIndex)
-        let baseIndent: CGFloat
-        if indentString.isEmpty {
-            baseIndent = 0
-        } else if let cache = self.indentWidthCache[indentString] {
-            baseIndent = cache
-        } else {
-            baseIndent = (indentString as NSString).size(withAttributes: self.indentAttributes).width
-            self.indentWidthCache[indentString] = baseIndent
+        switch string.character(at: characterIndex - 1) {
+            case 0xA, 0xD, 0x85, 0x2028, 0x2029:  // newlines
+                return rect
+            default:
+                break
         }
         
-        // calculate hanging indent
-        let hangingIndent = CGFloat(self.hangingIndentWidth) * self.spaceWidth
-        let indent = baseIndent + hangingIndent
+        // count base indent in columns
+        // -> Calculate the width from the columns instead of measuring the indent string,
+        //    since the indent consists only of spaces and tabs.
+        //    This holds even with proportional fonts as long as the tab interval is a multiple of the space width.
+        //    Count columns as integers to avoid floating-point errors around tab stops.
+        let lineStartIndex = layoutManager.lineEndingScanner.lineStartIndex(at: characterIndex)
+        var indentColumns = 0
+        for index in lineStartIndex..<characterIndex {
+            let character = string.character(at: index)
+            
+            guard character == 0x0020 || character == 0x0009 else { break }  // SPACE || HORIZONTAL TAB
+            
+            indentColumns += (character == 0x0009) ? self.tabWidth - (indentColumns % self.tabWidth) : 1
+            
+            // stop scanning an extremely long indent that will be given up anyway
+            guard Double(indentColumns + self.hangingIndentWidth + 2) * self.spaceWidth < rect.width else { break }
+        }
+        
+        let indent = Double(indentColumns + self.hangingIndentWidth) * self.spaceWidth
         
         // intentionally give up overflown hanging indent
         guard indent + 2 * self.spaceWidth < rect.width else { return rect }
@@ -116,25 +120,5 @@ final class TextContainer: NSTextContainer {
         guard layoutManager.attributedString().length > 0 else { return }
         
         layoutManager.invalidateLayout(forCharacterRange: layoutManager.attributedString().range, actualCharacterRange: nil)
-    }
-}
-
-
-// MARK: -
-
-private extension NSString {
-    
-    /// The fast way to find the indent characters at the beginning of the given range.
-    ///
-    /// - Parameters:
-    ///   - range: The UTF16-based character range where searching for the indent.
-    /// - Returns: The indent part of the string at the beginning of the given range.
-    func indentString(in range: Range<Int>) -> String {
-        
-        let characters: [unichar] = range.lazy
-            .map { self.character(at: $0) }
-            .prefix { $0 == 0x0020 || $0 == 0x0009 }  // SPACE || HORIZONTAL TAB
-        
-        return String(utf16CodeUnits: characters, count: characters.count)
     }
 }

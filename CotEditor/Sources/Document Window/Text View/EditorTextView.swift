@@ -206,6 +206,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         self.autoresizingMask = .width
         self.textContainerInset = Self.textContainerInset
         
+        layoutManager.tabWidth = self.tabWidth
+        textContainer.tabWidth = self.tabWidth
+        
         // set NSTextView behaviors
         self.allowsUndo = true
         self.isRichText = false
@@ -916,17 +919,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
     }
     
     
-    override var typingAttributes: [NSAttributedString.Key: Any] {
-        
-        didSet {
-            // -> The font can differ from the specified text font while typing marked text.
-            guard self.hasMarkedText() != true else { return }
-            
-            (self.textContainer as? TextContainer)?.indentAttributes = typingAttributes
-        }
-    }
-    
-    
     override var font: NSFont? {
         
         get {
@@ -1298,9 +1290,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         
         didSet {
             tabWidth = max(1, tabWidth)
-            (self.layoutManager as? LayoutManager)?.tabWidth = tabWidth
             
             guard tabWidth != oldValue else { return }
+            
+            (self.layoutManager as? LayoutManager)?.tabWidth = tabWidth
+            (self.textContainer as? TextContainer)?.tabWidth = tabWidth
             
             self.invalidateRestorableState()
             self.invalidateDefaultParagraphStyle()
@@ -1610,10 +1604,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         if paragraphStyle.lineHeightMultiple != self.defaultParagraphStyle?.lineHeightMultiple ||
            paragraphStyle.defaultTabInterval != self.defaultParagraphStyle?.defaultTabInterval
         {
+            // -> Set to LayoutManager first, because applying the paragraph style to the text storage lays out the visible lines immediately.
+            (self.layoutManager as? LayoutManager)?.lineHeightMultiple = paragraphStyle.lineHeightMultiple
             self.defaultParagraphStyle = paragraphStyle
             self.typingAttributes[.paragraphStyle] = paragraphStyle
             self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.range)
-            (self.layoutManager as? LayoutManager)?.lineHeightMultiple = paragraphStyle.lineHeightMultiple
             self.needsUpdateInsertionIndicators = true
         }
         

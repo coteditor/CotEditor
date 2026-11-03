@@ -20,6 +20,7 @@
 - Support undo in the Shortcuts settings pane.
 - Improve word navigation with Control-Option-F and Control-Option-B to treat periods, commas, and colons as word delimiters, consistent with Option-Left Arrow and Option-Right Arrow.
 - Change the Shift-Option-Down Arrow shortcut to extend the selection to the end of the line without including the line ending, consistent with Option-Down Arrow.
+- Optimize the hanging indentation calculation.
 - Update tree-sitter-markdown to 0.5.4.
 - Update tree-sitter-scala to 0.26.4.
 - Update tree-sitter-sql.
@@ -43,11 +44,13 @@
 - Fix an issue where pressing Control-K at the end of a line did not delete the line ending in CRLF documents.
 - Fix an issue where pressing Control-K during multi-cursor editing could delete more than the selected text or remove insertion points at the end of the document.
 - Fix an issue where the outline menu in the navigation bar could display an empty or incorrect item when the insertion point was before the first outline item.
+- Fix an issue where changing the line height setting did not update the lines displayed in open documents.
+- Fix an issue where text was positioned too high in lines with some fonts, such as Raanana.
 
 
 ### Known Issues
 
-- The text added in CotEditor 7.2.0 is not yet localized in Czech, Hindi, Italian, Polish, Portuguese, and Turkish.
+- The text added in CotEditor 7.2.0 is not yet localized in Czech, Hindi, Polish, Portuguese, and Turkish.
 
 
 

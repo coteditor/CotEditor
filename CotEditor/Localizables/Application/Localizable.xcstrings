@@ -14353,6 +14353,12 @@
             "value" : "La connexion distante est interrompue. Vos modifications n’ont pas été envoyées."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La connessione remota è interrotta. Le tue modifiche non sono state inviate."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14434,6 +14440,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Enregistrer les modifications apportées à « %@ » sur ce Mac ?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvare le modifiche a “%@” su questo Mac?"
           }
         },
         "ja" : {
@@ -14639,6 +14651,12 @@
             "value" : "Les modifications ne peuvent plus être enregistrées à distance. Pour les conserver, enregistrez le document sur ce Mac."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non è più possibile salvare le modifiche da remoto. Per conservarle, salvare il documento su questo Mac."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14722,6 +14740,12 @@
             "value" : "La connexion distante pour « %@ » a été interrompue."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La connessione remota a “%@” è stata interrotta."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14803,6 +14827,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Le port est déjà utilisé."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La porta è già in uso."
           }
         },
         "ja" : {
@@ -15008,6 +15038,12 @@
             "value" : "Saisissez un numéro de port compris entre 1 et 65535."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserire un numero di porta da 1 a 65535."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15089,6 +15125,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Le fichier distant est trop volumineux pour être ouvert."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il file remoto è troppo grande per essere aperto."
           }
         },
         "ja" : {
@@ -15175,6 +15217,12 @@
             "value" : "L’édition à distance prend en charge les fichiers d’une taille maximale de %@."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le modifiche da remoto supportano file fino a %@."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15256,6 +15304,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Certains fichiers distants n’ont pas pu être ouverts."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non è stato possibile aprire alcuni dei file remoti."
           }
         },
         "ja" : {
@@ -15396,6 +15450,24 @@
                 "stringUnit" : {
                   "state" : "needs_review",
                   "value" : "Une seule commande rmate peut ouvrir jusqu’à %lld fichiers à la fois."
+                }
+              }
+            }
+          }
+        },
+        "it" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Un singolo comando rmate può aprire al massimo %lld file alla volta."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Un singolo comando rmate può aprire al massimo %lld file alla volta."
                 }
               }
             }

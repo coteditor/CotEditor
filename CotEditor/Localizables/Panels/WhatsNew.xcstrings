@@ -147,6 +147,12 @@
             "value" : "Conservez sur iCloud une copie toujours à jour de vos réglages, à importer à tout moment sur vos autres Mac."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tieni in iCloud una copia aggiornata delle tue impostazioni, per importarle su un altro Mac in qualunque momento."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -228,6 +234,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Retrouvez vos réglages en une importation"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importa rapidamente le tue impostazioni"
           }
         },
         "ja" : {
@@ -313,6 +325,12 @@
             "value" : "Ouvrez des fichiers d’un ordinateur distant avec `rmate` via SSH et enregistrez-y directement vos modifications."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri e modifica file su un computer remoto usando `rmate` su SSH."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -394,6 +412,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Modifiez des fichiers distants directement sur votre Mac"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifica file remoti direttamente dal Mac"
           }
         },
         "ja" : {
@@ -479,6 +503,12 @@
             "value" : "Personnalisez les raccourcis pour déplacer le point d’insertion, sélectionner et supprimer du texte, et vos doigts se sentiront comme chez eux."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalizza come preferisci le scorciatoie per inserimenti, selezioni e cancellazioni di testo."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -560,6 +590,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Vos touches, vos règles"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I tuoi tasti, le tue regole"
           }
         },
         "ja" : {

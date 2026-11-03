@@ -26,6 +26,7 @@
 
 import AppKit
 import Invisible
+import LineEnding
 import StringUtils
 
 class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
@@ -234,7 +235,9 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable {
                 return self.lineHeight / 2
             case .horizontal:
                 // remove the space above to make glyphs visually center
-                let diff = self.textFont.ascender - self.textFont.capHeight
+                // -> Some fonts, such as Raanana in the system, can return a negative value for `.capHeight` (2026-11, macOS 27).
+                let capHeight = (self.textFont.capHeight > 0) ? self.textFont.capHeight : self.textFont.ascender
+                let diff = self.textFont.ascender - capHeight
                 return (self.lineHeight + self.defaultBaselineOffset - diff) / 2
             @unknown default: fatalError()
         }
@@ -308,7 +311,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
 
 // MARK: Private Extension
 
-private extension NSLayoutManager {
+private extension LayoutManager {
     
     /// Draw indent guides at every given indent width.
     ///
@@ -321,15 +324,17 @@ private extension NSLayoutManager {
         
         guard tabWidth > 0 else { return assertionFailure() }
         
-        // calculate characterRange to seek
         let string = self.attributedString().string as NSString
         let charactersToShow = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
-        let lineStartIndex = string.lineStartIndex(at: charactersToShow.location)
-        let characterRange = NSRange(location: lineStartIndex, length: charactersToShow.upperBound - lineStartIndex)
         
-        // find indent indexes
+        // find indent indexes line by line
         var indentIndexes: [(lineRange: NSRange, indexes: [Int])] = []
-        string.enumerateSubstrings(in: characterRange, options: [.byLines, .substringNotRequired]) { _, range, _, _ in
+        var lineStartIndex = self.lineEndingScanner.lineStartIndex(at: charactersToShow.location)
+        while lineStartIndex < charactersToShow.upperBound {
+            let lineContentsEndIndex = self.lineEndingScanner.lineContentsRange(for: NSRange(location: lineStartIndex, length: 0)).upperBound
+            let range = NSRange(lineStartIndex..<min(lineContentsEndIndex, charactersToShow.upperBound))
+            lineStartIndex = self.lineEndingScanner.lineRange(at: lineStartIndex).upperBound
+            
             var indexes: [Int] = []
             var spaceCount = 0
             loop: for characterIndex in range.lowerBound..<range.upperBound {
@@ -349,18 +354,20 @@ private extension NSLayoutManager {
                 }
             }
             
-            guard !indexes.isEmpty else { return }
+            guard !indexes.isEmpty else { continue }
             
             indentIndexes.append((range, indexes))
         }
         
-        guard !indentIndexes.isEmpty else { return }
+        guard
+            !indentIndexes.isEmpty,
+            let context = NSGraphicsContext.current?.cgContext
+        else { return }
         
         NSGraphicsContext.saveGraphicsState()
         
         color.set()
         let lineWidth: CGFloat = 0.5
-        let scaleFactor = NSGraphicsContext.current?.cgContext.ctm.a ?? 1
         
         // draw guides logical line by logical line
         for (lineRange, indexes) in indentIndexes {
@@ -385,7 +392,10 @@ private extension NSLayoutManager {
             for index in indexes {
                 let glyphIndex = self.glyphIndexForCharacter(at: index)
                 let glyphLocation = self.location(forGlyphAt: glyphIndex)
-                let guideOrigin = lineFragment.origin.offset(by: origin).offsetBy(dx: glyphLocation.x).aligned(scale: scaleFactor)
+                let guideOrigin = lineFragment.origin
+                    .offset(by: origin)
+                    .offsetBy(dx: glyphLocation.x)
+                    .aligned(in: context)
                 let guideRect = NSRect(origin: guideOrigin, size: guideSize)
                 
                 guideRect.fill()
@@ -399,13 +409,15 @@ private extension NSLayoutManager {
 
 private extension CGPoint {
     
-    /// Make the point pixel-perfect with the desired scale.
+    /// Make the point pixel-perfect in the device space of the given context.
     ///
-    /// - Parameter scale: The scale factor in which the receiver to be pixel-perfect.
+    /// - Parameter context: The graphics context in which the receiver is drawn.
     /// - Returns: An adjusted point.
-    func aligned(scale: CGFloat = 1) -> Self {
+    func aligned(in context: CGContext) -> Self {
         
-        Self(x: (self.x * scale).rounded() / scale,
-             y: (self.y * scale).rounded() / scale)
+        let point = context.convertToDeviceSpace(self)
+        let rounded = Self(x: point.x.rounded(), y: point.y.rounded())
+        
+        return context.convertToUserSpace(rounded)
     }
 }

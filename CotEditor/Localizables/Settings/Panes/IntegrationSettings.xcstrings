@@ -28,6 +28,12 @@
             "value" : "Accepter les connexions rmate"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accetta connessioni rmate"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -102,6 +108,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Permet d’ouvrir des fichiers distants dans CotEditor à l’aide du protocole `rmate`."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consenti a CotEditor di aprire file remoti usando il protocollo `rmate`."
           }
         },
         "ja" : {
@@ -865,6 +877,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Édition à distance :"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifica da remoto:"
           }
         },
         "ja" : {

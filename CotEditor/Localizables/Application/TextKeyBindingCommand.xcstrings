@@ -60,7 +60,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "삭제"
           }
         },
@@ -179,7 +179,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "편집"
           }
         },
@@ -298,7 +298,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "이동"
           }
         },
@@ -417,7 +417,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "스크롤"
           }
         },
@@ -536,7 +536,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택"
           }
         },
@@ -655,7 +655,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "줄의 시작 위치까지 삭제"
           }
         },
@@ -774,7 +774,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단락의 시작 위치까지 삭제"
           }
         },
@@ -893,7 +893,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "줄의 끝까지 삭제"
           }
         },
@@ -1012,7 +1012,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단락의 끝까지 삭제"
           }
         },
@@ -1131,7 +1131,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "이전 단어 삭제"
           }
         },
@@ -1250,7 +1250,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "다음 단어 삭제"
           }
         },
@@ -1369,7 +1369,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 문자 뒤로 이동"
           }
         },
@@ -1488,7 +1488,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 한 문자 뒤로 이동"
           }
         },
@@ -1607,7 +1607,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 줄 아래로 이동"
           }
         },
@@ -1726,7 +1726,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 한 줄 아래로 이동"
           }
         },
@@ -1845,7 +1845,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 문자 앞으로 이동"
           }
         },
@@ -1964,7 +1964,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 한 문자 앞으로 이동"
           }
         },
@@ -2083,7 +2083,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 왼쪽으로 이동"
           }
         },
@@ -2202,7 +2202,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단락 단위로 뒤로 이동"
           }
         },
@@ -2321,7 +2321,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단락 단위로 앞으로 이동"
           }
         },
@@ -2440,7 +2440,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 오른쪽으로 이동"
           }
         },
@@ -2559,7 +2559,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "문서의 시작 위치로 이동"
           }
         },
@@ -2678,7 +2678,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 문서의 시작 위치로 이동"
           }
         },
@@ -2797,7 +2797,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단락의 시작 위치로 이동"
           }
         },
@@ -2916,7 +2916,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단락의 시작 위치로 이동"
           }
         },
@@ -3035,7 +3035,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "문서의 끝으로 이동"
           }
         },
@@ -3154,7 +3154,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 문서의 끝으로 이동"
           }
         },
@@ -3273,7 +3273,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단락의 끝으로 이동"
           }
         },
@@ -3392,7 +3392,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단락의 끝으로 이동"
           }
         },
@@ -3511,7 +3511,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "줄의 왼쪽 끝으로 이동"
           }
         },
@@ -3630,7 +3630,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 줄의 왼쪽 끝으로 이동"
           }
         },
@@ -3749,7 +3749,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "줄의 오른쪽 끝으로 이동"
           }
         },
@@ -3868,7 +3868,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 줄의 오른쪽 끝으로 이동"
           }
         },
@@ -3987,7 +3987,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 줄 위로 이동"
           }
         },
@@ -4106,7 +4106,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 한 줄 위로 이동"
           }
         },
@@ -4225,7 +4225,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단어 단위로 뒤로 이동"
           }
         },
@@ -4344,7 +4344,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단어 단위로 뒤로 이동"
           }
         },
@@ -4463,7 +4463,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단어 단위로 앞으로 이동"
           }
         },
@@ -4582,7 +4582,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단어 단위로 앞으로 이동"
           }
         },
@@ -4701,7 +4701,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단어 단위로 왼쪽으로 이동"
           }
         },
@@ -4820,7 +4820,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단어 단위로 왼쪽으로 이동"
           }
         },
@@ -4939,7 +4939,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단어 단위로 오른쪽으로 이동"
           }
         },
@@ -5058,7 +5058,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단어 단위로 오른쪽으로 이동"
           }
         },
@@ -5177,7 +5177,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 페이지 아래로 이동"
           }
         },
@@ -5296,7 +5296,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 한 페이지 아래로 이동"
           }
         },
@@ -5415,7 +5415,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 페이지 위로 이동"
           }
         },
@@ -5534,7 +5534,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 한 페이지 위로 이동"
           }
         },
@@ -5653,7 +5653,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 줄 아래로 스크롤"
           }
         },
@@ -5772,7 +5772,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 줄 위로 스크롤"
           }
         },
@@ -5891,7 +5891,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 페이지 아래로 스크롤"
           }
         },
@@ -6010,7 +6010,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 페이지 위로 스크롤"
           }
         },
@@ -6129,7 +6129,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "문서의 시작 위치로 스크롤"
           }
         },
@@ -6248,7 +6248,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "문서의 끝으로 스크롤"
           }
         },
@@ -6367,7 +6367,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "앞뒤 문자 바꾸기"
           }
         },
@@ -6486,7 +6486,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Yank"
           }
         },
