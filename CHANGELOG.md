@@ -51,6 +51,7 @@
 - Fix an issue where typing after extending selections during multi-cursor editing could insert text at an incorrect location if an insertion point was already at the beginning of a line.
 - Fix an issue where changing the line height setting did not update the lines displayed in open documents.
 - Fix an issue where text was positioned too high in lines with some fonts, such as Raanana.
+- Fix an issue where the AppleScript `line range` property of the selection included the next line when the selection ended with a line ending.
 - Fix an issue where the AppleScript `line range` property of the selection could return an incorrect line number when the selection started or ended just after VT (`U+000B`) or FF (`U+000C`).
 - Fix an issue where the app could crash when copying, moving, or duplicating an item whose name ends with an extremely large number in the file browser or settings.
 

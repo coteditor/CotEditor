@@ -171,7 +171,7 @@ private enum OSAUnicodeNormalizationType: String {
             let string = textView.string
             
             let start = string.lineNumber(at: selectedRange.lowerBound)
-            let end = string.lineNumber(at: selectedRange.upperBound)
+            let end = string.lineNumber(at: max(selectedRange.upperBound - 1, selectedRange.lowerBound))
             
             return [start, end - start + 1]
         }
