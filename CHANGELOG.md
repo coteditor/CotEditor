@@ -52,6 +52,7 @@
 - Fix an issue where deleting a line break during multi-cursor editing could delete only part of a CRLF line ending.
 - Fix an issue where pressing Control-K at the end of a line did not delete the line ending in CRLF documents.
 - Fix an issue where pressing Control-K during multi-cursor editing could delete more than the selected text or remove insertion points at the end of the document.
+- Fix an issue where pressing Control-T with a single insertion point could behave differently from multi-cursor editing, such as doing nothing after an emoji at the end of the document.
 - Fix an issue where moving lines down during multi-cursor editing could turn insertion points into selections or extend selections.
 - Fix an issue where an insertion point on the last empty line did not move with the line when moving lines down past it during multi-cursor editing.
 - Fix an issue where double-clicking a period, comma, or colon selected nothing or the preceding word instead of the character itself.

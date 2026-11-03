@@ -961,13 +961,9 @@ extension EditorTextView {
     /// Transposes the characters around each insertion point (^T).
     override func transpose(_ sender: Any?) {
         
-        guard  self.hasMultipleInsertions || self.containsCRLF else {
-            return super.transpose(sender)
-        }
-        
-        // -> Do not invoke super, even with a single selection,
-        //    to workaround the framework issue with CRLF.
-        //    (2026-07, macOS 27)
+        // -> Do not invoke super, even with a single insertion point,
+        //    to behave the same as with multiple insertion points
+        //    and to workaround the framework issue with CRLF (2026-07, macOS 27).
         
         guard let context = self.string.transpose(at: self.insertionRanges) else { return }
         

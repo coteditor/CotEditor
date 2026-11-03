@@ -731,6 +731,16 @@ import LineEnding
         textView.deleteToEndOfParagraph(nil)
         #expect(textView.string == "abc def\r\nxyz")
     }
+    
+    
+    /// Tests that transposing with a single insertion point at the end of the document swaps the preceding characters as with multiple insertion points.
+    @Test func transposeAtDocumentEnd() {
+        
+        let textView = makeEditorTextView(string: "a😀", selectedRange: NSRange(3..<3))
+        
+        textView.transpose(nil)
+        #expect(textView.string == "😀a")
+    }
 }
 
 
