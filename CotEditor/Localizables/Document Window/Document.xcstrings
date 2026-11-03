@@ -2661,6 +2661,12 @@
             "value" : "Déconnecté"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disconnesso"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5198,7 +5204,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Limite di ricerca raggiunto"
           }
         },
@@ -14163,6 +14169,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Distant"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remoto"
           }
         },
         "ja" : {
