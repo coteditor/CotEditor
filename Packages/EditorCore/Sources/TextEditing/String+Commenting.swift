@@ -364,7 +364,7 @@ extension String {
                             visualOffset += tabWidth
                         case " ":
                             visualOffset += 1
-                        case "\n", "\r", "\u{0085}", "\u{2028}", "\u{2029}":  // line breaks
+                        case "\n", "\r", "\r\n", "\u{0085}", "\u{2028}", "\u{2029}":  // line breaks
                             return nil
                         default:
                             return visualOffset

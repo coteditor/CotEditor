@@ -120,6 +120,18 @@ struct StringCommentingTests {
     }
     
     
+    @Test func inlineCommentOutAfterIndentSkipsBlankLineWithCRLF() {
+        
+        // a blank line ending with CRLF is also excluded from the minimum indentation calculation
+        let text = "  foo\r\n\r\n  bar"
+        #expect(text.inlineCommentOut(delimiter: "//", ranges: [text.nsRange], at: .afterIndent(tabWidth: 2)) == [
+            .init(string: "//", location: 2, forward: true),
+            .init(string: "//", location: 7, forward: true),
+            .init(string: "//", location: 11, forward: true),
+        ])
+    }
+    
+    
     @Test func blockCommentOut() {
         
         #expect("foo".blockCommentOut(delimiters: Pair("<-", "->"), appendsSpacer: false, ranges: [], at: .selection).isEmpty)

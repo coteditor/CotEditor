@@ -48,6 +48,7 @@
 - Fix an issue where pressing Control-K during multi-cursor editing could delete more than the selected text or remove insertion points at the end of the document.
 - Fix an issue where the Select Enclosing Symbols command did nothing if an unmatched closing symbol, such as `>` in a comparison, came before the closing symbol of the enclosing pair.
 - Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.
+- Fix an issue where commenting out lines in CRLF documents could insert comment delimiters before the indentation if the lines included a blank line.
 - Fix an issue where the outline menu in the navigation bar could display an empty or incorrect item when the insertion point was before the first outline item.
 - Fix an issue where typing after extending selections during multi-cursor editing could insert text at an incorrect location if an insertion point was already at the beginning of a line.
 - Fix an issue where changing the line height setting did not update the lines displayed in open documents.
