@@ -333,6 +333,17 @@ import LineEnding
     }
     
     
+    /// Tests that extending the selections to the line start with multiple cursors merges the cursor already at the line start into the selection.
+    @Test func moveToBeginningOfLineAndModifySelectionMergesCursors() {
+        
+        let textView = makeEditorTextView(string: "ab\ncd", selectedRange: NSRange(3..<3), insertionLocations: [5])
+        
+        textView.moveToBeginningOfLineAndModifySelection(nil)
+        
+        #expect(textView.insertionRanges == [NSRange(3..<5)])
+    }
+    
+    
     /// Tests that moving to the end of the line repeatedly stays at the end of the soft-wrapped visual line.
     ///
     /// - Parameter isMultiple: Whether to add another insertion point in the second line.

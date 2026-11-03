@@ -223,6 +223,7 @@ extension MultiCursorEditing {
             .map(NSRange.init)
         var emptyRanges = ranges
             .filter(\.isEmpty)
+            .filter { !selectionSet.contains($0.location) }  // lower bound
             .filter { !selectionSet.contains(integersIn: ($0.location - 1)..<$0.location) }  // -1 to check upper bound
         
         // -> In the proper implementation of NSTextView, `selectionRanges` can have
