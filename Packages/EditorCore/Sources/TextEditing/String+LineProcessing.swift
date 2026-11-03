@@ -110,6 +110,7 @@ public extension String {
         let string = NSMutableString(string: self)
         var replacementRange: NSRange?
         var movedSelectedRanges = [NSRange?](repeating: nil, count: ranges.count)
+        var emptyLastLineLocation: Int? = (self.last?.isNewline == true) ? self.length : nil
         
         // swap lines
         for lineRange in lineRanges.reversed() {
@@ -127,6 +128,11 @@ public extension String {
             string.replaceCharacters(in: editRange, with: lowerLineString + lineString)
             replacementRange = replacementRange?.union(editRange) ?? editRange
             
+            // the trailing empty line moves up when the line passes it
+            if lowerLineRange.location == emptyLastLineLocation {
+                emptyLastLineLocation = lineRange.location
+            }
+            
             let offset = (lineString.last?.isNewline == true)
                 ? lowerLineRange.length
                 : lowerLineRange.length + lowerLineString.last!.utf16.count
@@ -134,12 +140,6 @@ public extension String {
             
             // move selected ranges in the line to move
             for (index, selectedRange) in ranges.enumerated() {
-                // keep the caret on the trailing empty line in place
-                if selectedRange == NSRange(location: self.length, length: 0), self.last?.isNewline == true {
-                    movedSelectedRanges[index] = selectedRange
-                    continue
-                }
-                
                 // -> find in the original line range, as the lines below have already been swapped in `string`
                 let rangeInLine: NSRange? = if selectedRange.isEmpty {
                     lineRange.contains(selectedRange.location) ? selectedRange : nil
@@ -156,6 +156,13 @@ public extension String {
         }
         
         guard let replacementRange else { return nil }
+        
+        // move the caret on the trailing empty line together with the line
+        if let emptyLastLineLocation {
+            for (index, selectedRange) in ranges.enumerated() where selectedRange == NSRange(location: self.length, length: 0) {
+                movedSelectedRanges[index] = NSRange(location: emptyLastLineLocation, length: 0)
+            }
+        }
         
         let selectedRanges = movedSelectedRanges.compactMap(\.self).uniqued.sorted(using: KeyPathComparator(\.location))
         

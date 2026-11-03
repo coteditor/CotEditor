@@ -143,6 +143,15 @@ struct StringLineProcessingTests {
     }
     
     
+    @Test func moveLineDownPassingDocumentEndCaret() throws {
+        
+        // the caret on the trailing empty line moves together with the line when the lines pass it
+        let context = try #require("a\nb\n".moveLineDown(in: [NSRange(0, 3), NSRange(4, 0)]))
+        
+        #expect(context.selectedRanges == [NSRange(0, 0), NSRange(1, 3)])
+    }
+    
+    
     @Test func moveLineDownWithSeparateBlocks() throws {
         
         // each caret moves only with its own block
