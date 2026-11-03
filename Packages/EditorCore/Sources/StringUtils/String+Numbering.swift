@@ -26,18 +26,21 @@
 
 public extension String {
     
-    /// Creates a unique name from the given names by adding the smallest unique number if needed.
+    /// Creates a unique name from the given names by appending or incrementing the trailing number if needed.
     ///
     /// - Parameters:
     ///   - names: The names already taken.
     /// - Returns: A unique name.
     func appendingUniqueNumber(in names: any Sequence<String>) -> String {
         
-        let (base, count) = self.numberingComponents
         let usedNames = Set(names)
         
-        return (count...).lazy
-            .map { ($0 < 2) ? base : "\(base) \($0)" }
+        guard usedNames.contains(self) else { return self }
+        
+        let (base, count) = self.numberingComponents
+        
+        return (max(count, 2)...).lazy
+            .map { "\(base) \($0)" }
             .first { !usedNames.contains($0) }!
     }
 }
@@ -45,15 +48,19 @@ public extension String {
 
 extension String {
     
-    /// Splits the receiver into parts of filename for unique numbering..
+    /// Splits the receiver into parts of filename for unique numbering.
     var numberingComponents: (base: String, count: Int) {
         
         assert(!self.isEmpty)
         
         let match = self.wholeMatch(of: /(?<base>.+?)(?: (?<number>[0-9]+))?/)!
-        let base = String(match.base)
-        let count = match.number.flatMap { Int($0) } ?? 1
         
-        return (base, count)
+        // -> ignore too large numbers so that incrementing them does not overflow
+        guard
+            let count = match.number.flatMap({ Int($0) }),
+            count < .max / 2
+        else { return (self, 1) }
+        
+        return (String(match.base), count)
     }
 }

@@ -39,6 +39,7 @@ struct StringNumberingTests {
         #expect("test 5".numberingComponents == ("test", 5))
         #expect("test copy".numberingComponents == ("test copy", 1))
         #expect("test copy 5".numberingComponents == ("test copy", 5))
+        #expect("test \(Int.max)".numberingComponents == ("test \(Int.max)", 1))
     }
     
     
@@ -49,6 +50,8 @@ struct StringNumberingTests {
         #expect("foo".appendingUniqueNumber(in: names) == "foo 2")
         #expect("foo 2".appendingUniqueNumber(in: names) == "foo 2")
         #expect("foo 3".appendingUniqueNumber(in: names) == "foo 5")
+        #expect("foo 1".appendingUniqueNumber(in: ["foo 1"]) == "foo 2")
+        #expect("foo 02".appendingUniqueNumber(in: ["foo 02"]) == "foo 2")
         #expect("foo".appendingUniqueNumber(in: names + ["foo 2", "foo 2"]) == "foo 5")
         
         #expect("foo".appendingUniqueNumber(in: []) == "foo")
