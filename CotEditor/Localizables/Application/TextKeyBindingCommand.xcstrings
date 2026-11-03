@@ -1174,7 +1174,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "删除前一个单词"
+            "value" : "向后删除一个单词"
           }
         },
         "zh-Hant" : {
@@ -1293,7 +1293,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "删除后一个单词"
+            "value" : "向前删除一个单词"
           }
         },
         "zh-Hant" : {
@@ -1412,7 +1412,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移至前一个字符"
+            "value" : "后移一个字符"
           }
         },
         "zh-Hant" : {
@@ -1531,7 +1531,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移至前一个字符并扩展选择范围"
+            "value" : "后移一个字符并扩展选择范围"
           }
         },
         "zh-Hant" : {
@@ -1888,7 +1888,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移至后一个字符"
+            "value" : "前移一个字符"
           }
         },
         "zh-Hant" : {
@@ -2007,7 +2007,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移至后一个字符并扩展选择范围"
+            "value" : "前移一个字符并扩展选择范围"
           }
         },
         "zh-Hant" : {
@@ -2245,7 +2245,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "逐段向文稿开头扩展选择范围"
+            "value" : "后移一个段落并扩展选择范围"
           }
         },
         "zh-Hant" : {
@@ -2364,7 +2364,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "逐段向文稿末尾扩展选择范围"
+            "value" : "前移一个段落并扩展选择范围"
           }
         },
         "zh-Hant" : {
@@ -4268,7 +4268,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移至单词开头"
+            "value" : "后移一个单词"
           }
         },
         "zh-Hant" : {
@@ -4387,7 +4387,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移至单词开头并扩展选择范围"
+            "value" : "后移一个单词并扩展选择范围"
           }
         },
         "zh-Hant" : {
@@ -4506,7 +4506,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移至单词末尾"
+            "value" : "前移一个单词"
           }
         },
         "zh-Hant" : {
@@ -4625,7 +4625,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "移至单词末尾并扩展选择范围"
+            "value" : "前移一个单词并扩展选择范围"
           }
         },
         "zh-Hant" : {
@@ -6410,7 +6410,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "交换前后字符"
+            "value" : "互换插入点前后的字符"
           }
         },
         "zh-Hant" : {
