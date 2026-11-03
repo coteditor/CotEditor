@@ -48,7 +48,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Eliminazione"
           }
         },
@@ -167,7 +167,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Modifica"
           }
         },
@@ -286,7 +286,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Spostamento"
           }
         },
@@ -405,7 +405,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorrimento"
           }
         },
@@ -524,7 +524,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Selezione"
           }
         },
@@ -643,7 +643,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Elimina fino all’inizio della riga"
           }
         },
@@ -762,7 +762,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Elimina fino all’inizio del paragrafo"
           }
         },
@@ -881,7 +881,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Elimina fino alla fine della riga"
           }
         },
@@ -1000,7 +1000,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Elimina fino alla fine del paragrafo"
           }
         },
@@ -1119,7 +1119,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Elimina parola precedente"
           }
         },
@@ -1238,7 +1238,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Elimina parola successiva"
           }
         },
@@ -1357,7 +1357,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta indietro di un carattere"
           }
         },
@@ -1476,7 +1476,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta indietro di un carattere estendendo la selezione"
           }
         },
@@ -1595,7 +1595,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta giù di una riga"
           }
         },
@@ -1714,7 +1714,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta giù di una riga estendendo la selezione"
           }
         },
@@ -1833,7 +1833,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta avanti di un carattere"
           }
         },
@@ -1952,7 +1952,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta avanti di un carattere estendendo la selezione"
           }
         },
@@ -2071,7 +2071,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta a sinistra estendendo la selezione"
           }
         },
@@ -2190,7 +2190,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta indietro di un paragrafo estendendo la selezione"
           }
         },
@@ -2309,7 +2309,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta avanti di un paragrafo estendendo la selezione"
           }
         },
@@ -2428,7 +2428,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta a destra estendendo la selezione"
           }
         },
@@ -2547,7 +2547,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’inizio del documento"
           }
         },
@@ -2666,7 +2666,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’inizio del documento estendendo la selezione"
           }
         },
@@ -2785,7 +2785,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’inizio del paragrafo"
           }
         },
@@ -2904,7 +2904,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’inizio del paragrafo estendendo la selezione"
           }
         },
@@ -3023,7 +3023,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta alla fine del documento"
           }
         },
@@ -3142,7 +3142,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta alla fine del documento estendendo la selezione"
           }
         },
@@ -3261,7 +3261,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta alla fine del paragrafo"
           }
         },
@@ -3380,7 +3380,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta alla fine del paragrafo estendendo la selezione"
           }
         },
@@ -3499,7 +3499,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’estremo sinistro della riga"
           }
         },
@@ -3618,7 +3618,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’estremo sinistro della riga estendendo la selezione"
           }
         },
@@ -3737,7 +3737,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’estremo destro della riga"
           }
         },
@@ -3856,7 +3856,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’estremo destro della riga estendendo la selezione"
           }
         },
@@ -3975,7 +3975,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta su di una riga"
           }
         },
@@ -4094,7 +4094,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta su di una riga estendendo la selezione"
           }
         },
@@ -4213,7 +4213,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta indietro di una parola"
           }
         },
@@ -4332,7 +4332,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta indietro di una parola estendendo la selezione"
           }
         },
@@ -4451,7 +4451,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta avanti di una parola"
           }
         },
@@ -4570,7 +4570,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta avanti di una parola estendendo la selezione"
           }
         },
@@ -4689,7 +4689,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta a sinistra di una parola"
           }
         },
@@ -4808,7 +4808,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta a sinistra di una parola estendendo la selezione"
           }
         },
@@ -4927,7 +4927,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta a destra di una parola"
           }
         },
@@ -5046,7 +5046,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta a destra di una parola estendendo la selezione"
           }
         },
@@ -5165,7 +5165,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta giù di una pagina"
           }
         },
@@ -5284,7 +5284,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta giù di una pagina estendendo la selezione"
           }
         },
@@ -5403,7 +5403,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta su di una pagina"
           }
         },
@@ -5522,7 +5522,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta su di una pagina estendendo la selezione"
           }
         },
@@ -5641,7 +5641,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorri giù di una riga"
           }
         },
@@ -5760,7 +5760,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorri su di una riga"
           }
         },
@@ -5879,7 +5879,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorri giù di una pagina"
           }
         },
@@ -5998,7 +5998,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorri su di una pagina"
           }
         },
@@ -6117,7 +6117,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorri all’inizio del documento"
           }
         },
@@ -6236,7 +6236,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorri alla fine del documento"
           }
         },
@@ -6355,7 +6355,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Inverti caratteri"
           }
         },
@@ -6474,7 +6474,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Yank"
           }
         },

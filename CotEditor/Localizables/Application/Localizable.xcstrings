@@ -4056,6 +4056,12 @@
             "value" : "Impossible d’accéder à la copie des réglages sélectionnée."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile accedere alla copia delle impostazioni scelta."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4130,6 +4136,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "La recherche de copies des réglages sur iCloud a échoué."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile trovare su iCloud copie di impostazioni."
           }
         },
         "ja" : {
@@ -14654,7 +14666,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Non è più possibile salvare le modifiche da remoto. Per conservarle, salvare il documento su questo Mac."
+            "value" : "Non è più possibile salvare le modifiche da remoto. Per conservarle, salva il documento su questo Mac."
           }
         },
         "ja" : {
@@ -15041,7 +15053,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserire un numero di porta da 1 a 65535."
+            "value" : "Inserisci un numero di porta da 1 a 65535."
           }
         },
         "ja" : {
@@ -15220,7 +15232,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le modifiche da remoto supportano file fino a %@."
+            "value" : "La modifica da remoto supporta file fino a %@."
           }
         },
         "ja" : {
