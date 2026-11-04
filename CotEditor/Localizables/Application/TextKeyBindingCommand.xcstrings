@@ -48,7 +48,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Eliminazione"
           }
         },
@@ -60,7 +60,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "삭제"
           }
         },
@@ -90,13 +90,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Silme"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалення"
           }
         },
@@ -167,7 +167,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Modifica"
           }
         },
@@ -179,7 +179,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "편집"
           }
         },
@@ -209,13 +209,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Düzenleme"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Редагування"
           }
         },
@@ -286,7 +286,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Spostamento"
           }
         },
@@ -298,7 +298,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "이동"
           }
         },
@@ -328,13 +328,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Hareket"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Переміщення"
           }
         },
@@ -405,7 +405,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorrimento"
           }
         },
@@ -417,7 +417,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "스크롤"
           }
         },
@@ -447,13 +447,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Kaydırma"
+            "state" : "translated",
+            "value" : "Sarma"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокручування"
           }
         },
@@ -524,7 +524,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Selezione"
           }
         },
@@ -536,7 +536,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택"
           }
         },
@@ -566,13 +566,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçim"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Виділення"
           }
         },
@@ -643,7 +643,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Elimina fino all’inizio della riga"
           }
         },
@@ -655,7 +655,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "줄의 시작 위치까지 삭제"
           }
         },
@@ -685,13 +685,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Satırın Başına Kadar Sil"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалити до початку рядка"
           }
         },
@@ -762,7 +762,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Elimina fino all’inizio del paragrafo"
           }
         },
@@ -774,7 +774,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단락의 시작 위치까지 삭제"
           }
         },
@@ -804,13 +804,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Paragrafın Başına Kadar Sil"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалити до початку абзацу"
           }
         },
@@ -881,7 +881,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Elimina fino alla fine della riga"
           }
         },
@@ -893,7 +893,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "줄의 끝까지 삭제"
           }
         },
@@ -923,13 +923,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Satırın Sonuna Kadar Sil"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалити до кінця рядка"
           }
         },
@@ -1000,7 +1000,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Elimina fino alla fine del paragrafo"
           }
         },
@@ -1012,7 +1012,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단락의 끝까지 삭제"
           }
         },
@@ -1042,13 +1042,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Paragrafın Sonuna Kadar Sil"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалити до кінця абзацу"
           }
         },
@@ -1119,7 +1119,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Elimina parola precedente"
           }
         },
@@ -1131,7 +1131,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "이전 단어 삭제"
           }
         },
@@ -1161,13 +1161,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Önceki Sözcüğü Sil"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалити попереднє слово"
           }
         },
@@ -1180,7 +1180,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "刪除前一個單字"
+            "value" : "向後刪除一個單字"
           }
         },
         "zh-HK" : {
@@ -1238,7 +1238,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Elimina parola successiva"
           }
         },
@@ -1250,7 +1250,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "다음 단어 삭제"
           }
         },
@@ -1280,13 +1280,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sonraki Sözcüğü Sil"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Видалити наступне слово"
           }
         },
@@ -1299,7 +1299,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "刪除後一個單字"
+            "value" : "向前刪除一個單字"
           }
         },
         "zh-HK" : {
@@ -1357,7 +1357,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta indietro di un carattere"
           }
         },
@@ -1369,7 +1369,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 문자 뒤로 이동"
           }
         },
@@ -1399,26 +1399,26 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Karakter Geri Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на символ назад"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向后移动一个字符"
+            "value" : "移至前一个字符"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向後移動一個字元"
+            "value" : "後移一個字元"
           }
         },
         "zh-HK" : {
@@ -1476,7 +1476,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta indietro di un carattere estendendo la selezione"
           }
         },
@@ -1488,7 +1488,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 한 문자 뒤로 이동"
           }
         },
@@ -1518,26 +1518,26 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Karakter Geri Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на символ назад з виділенням"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向后移动一个字符并扩展选择范围"
+            "value" : "移至前一个字符并扩展选择范围"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向後移動一個字元並延伸所選範圍"
+            "value" : "後移一個字元並延伸所選範圍"
           }
         },
         "zh-HK" : {
@@ -1595,7 +1595,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta giù di una riga"
           }
         },
@@ -1607,7 +1607,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 줄 아래로 이동"
           }
         },
@@ -1637,13 +1637,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Satır Aşağı Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на рядок униз"
           }
         },
@@ -1714,7 +1714,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta giù di una riga estendendo la selezione"
           }
         },
@@ -1726,7 +1726,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 한 줄 아래로 이동"
           }
         },
@@ -1756,13 +1756,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Satır Aşağı Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на рядок униз з виділенням"
           }
         },
@@ -1833,7 +1833,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta avanti di un carattere"
           }
         },
@@ -1845,7 +1845,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 문자 앞으로 이동"
           }
         },
@@ -1875,26 +1875,26 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Karakter İleri Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на символ уперед"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移动一个字符"
+            "value" : "移至后一个字符"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移動一個字元"
+            "value" : "前移一個字元"
           }
         },
         "zh-HK" : {
@@ -1952,7 +1952,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta avanti di un carattere estendendo la selezione"
           }
         },
@@ -1964,7 +1964,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 한 문자 앞으로 이동"
           }
         },
@@ -1994,26 +1994,26 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Karakter İleri Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на символ уперед з виділенням"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移动一个字符并扩展选择范围"
+            "value" : "移至后一个字符并扩展选择范围"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移動一個字元並延伸所選範圍"
+            "value" : "前移一個字元並延伸所選範圍"
           }
         },
         "zh-HK" : {
@@ -2071,7 +2071,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta a sinistra estendendo la selezione"
           }
         },
@@ -2083,7 +2083,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 왼쪽으로 이동"
           }
         },
@@ -2113,13 +2113,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Sola Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити ліворуч з виділенням"
           }
         },
@@ -2190,7 +2190,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta indietro di un paragrafo estendendo la selezione"
           }
         },
@@ -2202,7 +2202,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단락 단위로 뒤로 이동"
           }
         },
@@ -2232,26 +2232,26 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Paragraf Geri Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на абзац назад з виділенням"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向后移动一个段落并扩展选择范围"
+            "value" : "逐段向文稿开头扩展选择范围"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向後移動一個段落並延伸所選範圍"
+            "value" : "後移一個段落並延伸所選範圍"
           }
         },
         "zh-HK" : {
@@ -2309,7 +2309,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta avanti di un paragrafo estendendo la selezione"
           }
         },
@@ -2321,7 +2321,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단락 단위로 앞으로 이동"
           }
         },
@@ -2351,26 +2351,26 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Paragraf İleri Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на абзац уперед з виділенням"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移动一个段落并扩展选择范围"
+            "value" : "逐段向文稿末尾扩展选择范围"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移動一個段落並延伸所選範圍"
+            "value" : "前移一個段落並延伸所選範圍"
           }
         },
         "zh-HK" : {
@@ -2428,7 +2428,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta a destra estendendo la selezione"
           }
         },
@@ -2440,7 +2440,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 오른쪽으로 이동"
           }
         },
@@ -2470,13 +2470,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Sağa Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити праворуч з виділенням"
           }
         },
@@ -2547,7 +2547,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’inizio del documento"
           }
         },
@@ -2559,7 +2559,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "문서의 시작 위치로 이동"
           }
         },
@@ -2589,13 +2589,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Belgenin Başına Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на початок документа"
           }
         },
@@ -2666,7 +2666,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’inizio del documento estendendo la selezione"
           }
         },
@@ -2678,7 +2678,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 문서의 시작 위치로 이동"
           }
         },
@@ -2708,13 +2708,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Belgenin Başına Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на початок документа з виділенням"
           }
         },
@@ -2785,7 +2785,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’inizio del paragrafo"
           }
         },
@@ -2797,7 +2797,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단락의 시작 위치로 이동"
           }
         },
@@ -2827,13 +2827,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Paragrafın Başına Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на початок абзацу"
           }
         },
@@ -2904,7 +2904,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’inizio del paragrafo estendendo la selezione"
           }
         },
@@ -2916,7 +2916,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단락의 시작 위치로 이동"
           }
         },
@@ -2946,13 +2946,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Paragrafın Başına Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на початок абзацу з виділенням"
           }
         },
@@ -3023,7 +3023,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta alla fine del documento"
           }
         },
@@ -3035,7 +3035,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "문서의 끝으로 이동"
           }
         },
@@ -3065,13 +3065,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Belgenin Sonuna Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в кінець документа"
           }
         },
@@ -3142,7 +3142,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta alla fine del documento estendendo la selezione"
           }
         },
@@ -3154,7 +3154,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 문서의 끝으로 이동"
           }
         },
@@ -3184,13 +3184,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Belgenin Sonuna Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в кінець документа з виділенням"
           }
         },
@@ -3261,7 +3261,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta alla fine del paragrafo"
           }
         },
@@ -3273,7 +3273,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단락의 끝으로 이동"
           }
         },
@@ -3303,13 +3303,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Paragrafın Sonuna Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в кінець абзацу"
           }
         },
@@ -3380,7 +3380,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta alla fine del paragrafo estendendo la selezione"
           }
         },
@@ -3392,7 +3392,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단락의 끝으로 이동"
           }
         },
@@ -3422,13 +3422,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Paragrafın Sonuna Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в кінець абзацу з виділенням"
           }
         },
@@ -3499,7 +3499,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’estremo sinistro della riga"
           }
         },
@@ -3511,7 +3511,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "줄의 왼쪽 끝으로 이동"
           }
         },
@@ -3541,13 +3541,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Satırın Sol Ucuna Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в лівий кінець рядка"
           }
         },
@@ -3618,7 +3618,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’estremo sinistro della riga estendendo la selezione"
           }
         },
@@ -3630,7 +3630,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 줄의 왼쪽 끝으로 이동"
           }
         },
@@ -3660,13 +3660,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Satırın Sol Ucuna Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в лівий кінець рядка з виділенням"
           }
         },
@@ -3737,7 +3737,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’estremo destro della riga"
           }
         },
@@ -3749,7 +3749,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "줄의 오른쪽 끝으로 이동"
           }
         },
@@ -3779,13 +3779,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Satırın Sağ Ucuna Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в правий кінець рядка"
           }
         },
@@ -3856,7 +3856,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta all’estremo destro della riga estendendo la selezione"
           }
         },
@@ -3868,7 +3868,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 줄의 오른쪽 끝으로 이동"
           }
         },
@@ -3898,13 +3898,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Satırın Sağ Ucuna Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити в правий кінець рядка з виділенням"
           }
         },
@@ -3975,7 +3975,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta su di una riga"
           }
         },
@@ -3987,7 +3987,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 줄 위로 이동"
           }
         },
@@ -4017,13 +4017,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Satır Yukarı Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на рядок угору"
           }
         },
@@ -4094,7 +4094,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta su di una riga estendendo la selezione"
           }
         },
@@ -4106,7 +4106,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 한 줄 위로 이동"
           }
         },
@@ -4136,13 +4136,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Satır Yukarı Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на рядок угору з виділенням"
           }
         },
@@ -4213,7 +4213,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta indietro di una parola"
           }
         },
@@ -4225,7 +4225,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단어 단위로 뒤로 이동"
           }
         },
@@ -4255,26 +4255,26 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sözcük Geri Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово назад"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向后移动一个单词"
+            "value" : "移至单词开头"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向後移動一個單字"
+            "value" : "後移一個單字"
           }
         },
         "zh-HK" : {
@@ -4332,7 +4332,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta indietro di una parola estendendo la selezione"
           }
         },
@@ -4344,7 +4344,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단어 단위로 뒤로 이동"
           }
         },
@@ -4374,26 +4374,26 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Sözcük Geri Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово назад з виділенням"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向后移动一个单词并扩展选择范围"
+            "value" : "移至单词开头并扩展选择范围"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向後移動一個單字並延伸所選範圍"
+            "value" : "後移一個單字並延伸所選範圍"
           }
         },
         "zh-HK" : {
@@ -4451,7 +4451,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta avanti di una parola"
           }
         },
@@ -4463,7 +4463,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단어 단위로 앞으로 이동"
           }
         },
@@ -4493,26 +4493,26 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sözcük İleri Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово вперед"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移动一个单词"
+            "value" : "移至单词末尾"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移動一個單字"
+            "value" : "前移一個單字"
           }
         },
         "zh-HK" : {
@@ -4570,7 +4570,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta avanti di una parola estendendo la selezione"
           }
         },
@@ -4582,7 +4582,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단어 단위로 앞으로 이동"
           }
         },
@@ -4612,26 +4612,26 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Sözcük İleri Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово вперед з виділенням"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移动一个单词并扩展选择范围"
+            "value" : "移至单词末尾并扩展选择范围"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前移動一個單字並延伸所選範圍"
+            "value" : "前移一個單字並延伸所選範圍"
           }
         },
         "zh-HK" : {
@@ -4689,7 +4689,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta a sinistra di una parola"
           }
         },
@@ -4701,7 +4701,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단어 단위로 왼쪽으로 이동"
           }
         },
@@ -4731,13 +4731,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sözcük Sola Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово ліворуч"
           }
         },
@@ -4808,7 +4808,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta a sinistra di una parola estendendo la selezione"
           }
         },
@@ -4820,7 +4820,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단어 단위로 왼쪽으로 이동"
           }
         },
@@ -4850,13 +4850,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Sözcük Sola Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово ліворуч з виділенням"
           }
         },
@@ -4927,7 +4927,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta a destra di una parola"
           }
         },
@@ -4939,7 +4939,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "단어 단위로 오른쪽으로 이동"
           }
         },
@@ -4969,13 +4969,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sözcük Sağa Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово праворуч"
           }
         },
@@ -5046,7 +5046,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta a destra di una parola estendendo la selezione"
           }
         },
@@ -5058,7 +5058,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 단어 단위로 오른쪽으로 이동"
           }
         },
@@ -5088,13 +5088,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Sözcük Sağa Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на слово праворуч з виділенням"
           }
         },
@@ -5165,7 +5165,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta giù di una pagina"
           }
         },
@@ -5177,7 +5177,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 페이지 아래로 이동"
           }
         },
@@ -5207,13 +5207,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sayfa Aşağı Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на сторінку вниз"
           }
         },
@@ -5284,7 +5284,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta giù di una pagina estendendo la selezione"
           }
         },
@@ -5296,7 +5296,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 한 페이지 아래로 이동"
           }
         },
@@ -5326,13 +5326,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Sayfa Aşağı Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на сторінку вниз з виділенням"
           }
         },
@@ -5403,7 +5403,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta su di una pagina"
           }
         },
@@ -5415,7 +5415,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 페이지 위로 이동"
           }
         },
@@ -5445,13 +5445,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sayfa Yukarı Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на сторінку вгору"
           }
         },
@@ -5522,7 +5522,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Sposta su di una pagina estendendo la selezione"
           }
         },
@@ -5534,7 +5534,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "선택 부분을 확장하며 한 페이지 위로 이동"
           }
         },
@@ -5564,13 +5564,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seçimi Genişleterek Bir Sayfa Yukarı Git"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Перемістити на сторінку вгору з виділенням"
           }
         },
@@ -5641,7 +5641,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorri giù di una riga"
           }
         },
@@ -5653,7 +5653,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 줄 아래로 스크롤"
           }
         },
@@ -5683,13 +5683,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Satır Aşağı Kaydır"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокрутити на рядок униз"
           }
         },
@@ -5760,7 +5760,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorri su di una riga"
           }
         },
@@ -5772,7 +5772,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 줄 위로 스크롤"
           }
         },
@@ -5802,13 +5802,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Satır Yukarı Kaydır"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокрутити на рядок угору"
           }
         },
@@ -5879,7 +5879,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorri giù di una pagina"
           }
         },
@@ -5891,7 +5891,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 페이지 아래로 스크롤"
           }
         },
@@ -5921,13 +5921,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sayfa Aşağı Kaydır"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокрутити на сторінку вниз"
           }
         },
@@ -5998,7 +5998,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorri su di una pagina"
           }
         },
@@ -6010,7 +6010,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "한 페이지 위로 스크롤"
           }
         },
@@ -6040,13 +6040,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Bir Sayfa Yukarı Kaydır"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокрутити на сторінку вгору"
           }
         },
@@ -6117,7 +6117,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorri all’inizio del documento"
           }
         },
@@ -6129,7 +6129,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "문서의 시작 위치로 스크롤"
           }
         },
@@ -6159,13 +6159,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Belgenin Başına Kaydır"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокрутити на початок документа"
           }
         },
@@ -6236,7 +6236,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Scorri alla fine del documento"
           }
         },
@@ -6248,7 +6248,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "문서의 끝으로 스크롤"
           }
         },
@@ -6278,13 +6278,13 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Belgenin Sonuna Kaydır"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Прокрутити в кінець документа"
           }
         },
@@ -6355,7 +6355,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Inverti caratteri"
           }
         },
@@ -6367,7 +6367,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "앞뒤 문자 바꾸기"
           }
         },
@@ -6397,26 +6397,26 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Karakterlerin Yerini Değiştir"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Поміняти символи місцями"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "交换前后字符"
+            "value" : "互换插入点前后的字符"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互換前後字元"
+            "value" : "互換插入點前後的字元"
           }
         },
         "zh-HK" : {
@@ -6474,7 +6474,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Yank"
           }
         },
@@ -6486,7 +6486,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Yank"
           }
         },
@@ -6522,7 +6522,7 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Yank"
           }
         },

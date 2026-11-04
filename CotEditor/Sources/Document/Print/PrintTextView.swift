@@ -275,7 +275,11 @@ final class PrintTextView: NSTextView {
         
         let spaceWidth = font.width(of: " ")
         
-        (self.textContainer as? TextContainer)?.spaceWidth = spaceWidth
+        // set whitespace widths for hanging indentation
+        if let textContainer = self.textContainer as? TextContainer {
+            textContainer.spaceWidth = spaceWidth
+            textContainer.tabWidth = self.tabWidth
+        }
         
         // setup paragraph style
         let paragraphStyle = (self.defaultParagraphStyle ?? .default).mutable
@@ -285,9 +289,6 @@ final class PrintTextView: NSTextView {
         self.defaultParagraphStyle = paragraphStyle
         self.typingAttributes[.paragraphStyle] = paragraphStyle
         self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.range)
-        
-        // set attributes for the hanging indent width calculation
-        (self.textContainer as? TextContainer)?.indentAttributes = [.font: font, .paragraphStyle: paragraphStyle]
         
         // set also to layout manager
         if let layoutManager = self.layoutManager as? LayoutManager {

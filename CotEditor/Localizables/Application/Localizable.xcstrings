@@ -3995,7 +3995,13 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "iCloud Drive Kullanılamıyor."
+            "value" : "iCloud Drive kullanılabilir değil."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud Drive недоступний."
           }
         },
         "zh-Hans" : {
@@ -4050,6 +4056,12 @@
             "value" : "Impossible d’accéder à la copie des réglages sélectionnée."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile accedere alla copia delle impostazioni scelta."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4066,6 +4078,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не удалось получить доступ к выбранной копии настроек."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçili ayarlar kopyasına erişilemedi."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося отримати доступ до вибраної копії параметрів."
           }
         },
         "zh-Hans" : {
@@ -4120,6 +4144,12 @@
             "value" : "La recherche de copies des réglages sur iCloud a échoué."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile trovare su iCloud copie di impostazioni."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4136,6 +4166,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не удалось найти копии настроек в iCloud."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud’da ayarlar kopyası bulunamadı."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося знайти копії параметрів в iCloud."
           }
         },
         "zh-Hans" : {
@@ -14335,6 +14377,12 @@
             "value" : "La connexion distante est interrompue. Vos modifications n’ont pas été envoyées."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La connessione remota è interrotta. Le tue modifiche non sono state inviate."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14357,6 +14405,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Соединение с удаленным хостом разорвано. Ваши изменения не были отправлены."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzak bağlantı kesildi. Değişiklikleriniz gönderilmedi."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віддалене зʼєднання розірвано. Ваші зміни не надіслано."
           }
         },
         "zh-Hans" : {
@@ -14412,6 +14472,12 @@
             "value" : "Enregistrer les modifications apportées à « %@ » sur ce Mac ?"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvare le modifiche a “%@” su questo Mac?"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14434,6 +14500,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранить изменения в «%@» на этом Mac?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu Mac’te “%@” dosyasına yapılan değişiklikler kaydedilsin mi?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зберегти зміни в «%@» на цьому Mac?"
           }
         },
         "zh-Hans" : {
@@ -14609,6 +14687,12 @@
             "value" : "Les modifications ne peuvent plus être enregistrées à distance. Pour les conserver, enregistrez le document sur ce Mac."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non è più possibile salvare le modifiche da remoto. Per conservarle, salva il documento su questo Mac."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14631,6 +14715,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Изменения больше не могут быть сохранены на удаленном хосте. Чтобы сохранить изменения, сохраните документ на этом Mac."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Değişiklikler artık uzaktan kaydedilemiyor. Değişikliklerinizi tutmak için belgeyi bu Mac’te kaydedin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зміни більше не можна зберігати віддалено. Щоб зберегти внесені зміни, збережіть документ на цьому Mac."
           }
         },
         "zh-Hans" : {
@@ -14686,6 +14782,12 @@
             "value" : "La connexion distante pour « %@ » a été interrompue."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La connessione remota a “%@” è stata interrotta."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14708,6 +14810,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Соединение с удаленным хостом для «%@» было разорвано."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” için olan uzak bağlantı kesildi."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віддалене зʼєднання для «%@» розірвано."
           }
         },
         "zh-Hans" : {
@@ -14763,6 +14877,12 @@
             "value" : "Le port est déjà utilisé."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La porta è già in uso."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14785,6 +14905,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Порт уже занят."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapı hâlihazırda kullanımda."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Порт уже використовується."
           }
         },
         "zh-Hans" : {
@@ -14960,6 +15092,12 @@
             "value" : "Saisissez un numéro de port compris entre 1 et 65535."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserisci un numero di porta da 1 a 65535."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14982,6 +15120,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Введите номер порта от 1 до 65535."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 ila 65535 arasında bir kapı numarası girin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введіть номер порту від 1 до 65535."
           }
         },
         "zh-Hans" : {
@@ -15037,6 +15187,12 @@
             "value" : "Le fichier distant est trop volumineux pour être ouvert."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il file remoto è troppo grande per essere aperto."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15059,6 +15215,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удаленный файл слишком большой для открытия."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzak dosya açılmak için pek büyük."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віддалений файл завеликий для відкриття."
           }
         },
         "zh-Hans" : {
@@ -15115,6 +15283,12 @@
             "value" : "L’édition à distance prend en charge les fichiers d’une taille maximale de %@."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La modifica da remoto supporta file fino a %@."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15137,6 +15311,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удаленное редактирование поддерживает файлы до %@."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzak düzenleme, %@ büyüklüğüne kadar olan dosyaları destekler."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віддалене редагування підтримує файли розміром до %@."
           }
         },
         "zh-Hans" : {
@@ -15192,6 +15378,12 @@
             "value" : "Certains fichiers distants n’ont pas pu être ouverts."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non è stato possibile aprire alcuni dei file remoti."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15214,6 +15406,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не удалось открыть некоторые удаленные файлы."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bazı uzak dosyalar açılamadı."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося відкрити деякі віддалені файли."
           }
         },
         "zh-Hans" : {
@@ -15329,6 +15533,24 @@
             }
           }
         },
+        "it" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Un singolo comando rmate può aprire al massimo %lld file alla volta."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Un singolo comando rmate può aprire al massimo %lld file alla volta."
+                }
+              }
+            }
+          }
+        },
         "ja" : {
           "variations" : {
             "plural" : {
@@ -15396,6 +15618,54 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "Одна команда rmate может открыть до %lld файлов одновременно."
+                }
+              }
+            }
+          }
+        },
+        "tr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Tek bir rmate komutu, aynı anda %lld dosyaya kadar açabilir."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Tek bir rmate komutu, aynı anda %lld dosyaya kadar açabilir."
+                }
+              }
+            }
+          }
+        },
+        "uk" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Однією командою rmate можна відкрити не більше ніж %lld файли за раз."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Однією командою rmate можна відкрити не більше ніж %lld файлів за раз."
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Однією командою rmate можна відкрити не більше ніж %lld файл за раз."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Однією командою rmate можна відкрити не більше ніж %lld файла за раз."
                 }
               }
             }
@@ -18043,13 +18313,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "插入片段后的光标位置"
+            "value" : "插入片段后的插入点位置"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "插入片段後的遊標位置"
+            "value" : "插入片段後的插入點位置"
           }
         },
         "zh-HK" : {

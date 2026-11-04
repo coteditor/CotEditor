@@ -147,6 +147,12 @@
             "value" : "Conservez sur iCloud une copie toujours à jour de vos réglages, à importer à tout moment sur vos autres Mac."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tieni in iCloud una copia aggiornata delle tue impostazioni, per importarle su un altro Mac in qualunque momento."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -169,6 +175,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Храните актуальную копию настроек в iCloud для импорта на другие Mac в любое время."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlarınızın güncel bir kopyasını iCloud’da tutun; böylece dilediğiniz zaman diğer Mac’lerinize aktarabilirsiniz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зберігайте актуальну копію своїх параметрів в iCloud, щоб будь-коли імпортувати їх на інші свої компʼютери Mac."
           }
         },
         "zh-Hans" : {
@@ -224,6 +242,12 @@
             "value" : "Retrouvez vos réglages en une importation"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importa rapidamente le tue impostazioni"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -246,6 +270,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ваши настройки — одним импортом"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlarınızı tek bir yerde tutun"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваші параметри — за крок до імпорту"
           }
         },
         "zh-Hans" : {
@@ -301,6 +337,12 @@
             "value" : "Ouvrez des fichiers d’un ordinateur distant avec `rmate` via SSH et enregistrez-y directement vos modifications."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri e modifica file su un computer remoto usando `rmate` su SSH."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -323,6 +365,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Открывайте файлы на удаленном хосте с помощью `rmate` через SSH и сохраняйте изменения прямо там."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH üzerinden `rmate` kullanarak uzak bir bilgisayardaki dosyaları açın ve yaptığınız değişiklikleri doğrudan aynı dosyaya kaydedin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відкривайте файли на віддаленому компʼютері за допомогою `rmate` через SSH і зберігайте зміни безпосередньо на ньому."
           }
         },
         "zh-Hans" : {
@@ -378,6 +432,12 @@
             "value" : "Modifiez des fichiers distants directement sur votre Mac"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifica file remoti direttamente dal Mac"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -400,6 +460,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Редактируйте файлы на удаленном хосте прямо на вашем Mac"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzak dosyaları Mac’inizde düzenleyin"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редагуйте віддалені файли просто на своєму Mac"
           }
         },
         "zh-Hans" : {
@@ -455,6 +527,12 @@
             "value" : "Personnalisez les raccourcis pour déplacer le point d’insertion, sélectionner et supprimer du texte, et vos doigts se sentiront comme chez eux."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalizza come preferisci le scorciatoie per spostare il punto di inserimento, selezionare e cancellare il testo."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -477,6 +555,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Настройте сочетания клавиш для перемещения курсора, выделения и удаления текста, чтобы ваши пальцы чувствовали себя как дома."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İmleci hareket ettirme, metin seçme ve metin silme işlemlerine yönelik kestirmeleri özelleştirin; böylece parmaklarınız kendilerini tamamen rahat hissetsin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Налаштуйте клавіатурні скорочення для переміщення точки вставлення, вибору й видалення тексту, щоб працювати було звично та зручно."
           }
         },
         "zh-Hans" : {
@@ -532,6 +622,12 @@
             "value" : "Vos touches, vos règles"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I tuoi tasti, le tue regole"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -554,6 +650,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ваши клавиши — ваши правила"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sizin tuşlarınız, sizin kurallarınız"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваші клавіші — ваші правила"
           }
         },
         "zh-Hans" : {

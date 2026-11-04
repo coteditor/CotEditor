@@ -253,6 +253,12 @@
             "value" : "Choisir une archive de réglages…"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scegli l’archivio delle impostazioni…"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -275,6 +281,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Выбрать архив настроек…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar Arşivi Seç…"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибрати архів параметрів…"
           }
         },
         "zh-Hans" : {
@@ -1134,6 +1152,12 @@
             "value" : "Conserver une copie sur iCloud"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conserva una copia in iCloud"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1156,6 +1180,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранять копию в iCloud"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir kopyayı iCloud’da tut"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зберігати копію в iCloud"
           }
         },
         "zh-Hans" : {
@@ -1318,6 +1354,12 @@
             "value" : "Chargement des copies des réglages depuis iCloud…"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carico le copie delle impostazioni da iCloud…"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1340,6 +1382,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Загрузка копий настроек из iCloud…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar iCloud’dan Yükleniyor…"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завантаження копій параметрів з iCloud…"
           }
         },
         "zh-Hans" : {
@@ -1395,6 +1449,12 @@
             "value" : "Gérer les copies sur iCloud…"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestisci le copie su iCloud…"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1417,6 +1477,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Управление копиями настроек в iCloud…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopyaları iCloud’da Yönet…"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Керувати копіями в iCloud…"
           }
         },
         "zh-Hans" : {
@@ -1936,6 +2008,12 @@
             "value" : "Aucune copie des réglages sur iCloud"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessuna copia delle impostazioni trovata in iCloud"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1958,6 +2036,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет копий настроек в iCloud"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud’da Ayarlar Kopyası Yok"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає копій параметрів в iCloud"
           }
         },
         "zh-Hans" : {
@@ -2816,6 +2906,12 @@
             "value" : "Importation et exportation des réglages :"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importa/esporta impostazioni:"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2838,6 +2934,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Импорт и экспорт настроек:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarları içe ve dışa aktar:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Імпорт і експорт параметрів:"
           }
         },
         "zh-Hans" : {
@@ -2998,6 +3106,12 @@
             "value" : "Enregistrez une copie de ces réglages pour pouvoir les importer sur d’autres appareils."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archivia una copia di queste impostazioni, per importarle su altri dispositivi."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3020,6 +3134,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранить копию этих настроек для импорта на другие устройства."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Başka aygıtlarda da içe aktarılabilmesi için bu ayarların bir kopyasını tutun."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зберігайте копію цих параметрів для імпорту на інших пристроях."
           }
         },
         "zh-Hans" : {

@@ -546,6 +546,18 @@
             "value" : "Интеграция"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entegrasyon"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Інтеграція"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

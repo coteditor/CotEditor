@@ -2283,13 +2283,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "查找后一个匹配。"
+            "value" : "查找下一个匹配。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "尋找後一個匹配。"
+            "value" : "尋找下一個符合項目。"
           }
         },
         "zh-HK" : {
@@ -2509,13 +2509,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "查找前一个匹配。"
+            "value" : "查找上一个匹配。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "尋找前一個匹配。"
+            "value" : "尋找上一個符合項目。"
           }
         },
         "zh-HK" : {

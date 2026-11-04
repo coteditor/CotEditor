@@ -2661,6 +2661,12 @@
             "value" : "Déconnecté"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disconnesso"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2683,6 +2689,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отключено"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağlantı kesildi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зʼєднання розірвано"
           }
         },
         "zh-Hans" : {
@@ -3477,7 +3495,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "提取提纲…"
+            "value" : "正在提取大纲…"
           }
         },
         "zh-Hant" : {
@@ -5192,7 +5210,7 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Limite di ricerca raggiunto"
           }
         },
@@ -5234,8 +5252,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Arama Sınırına Ulaşıldı"
+            "state" : "translated",
+            "value" : "Arama Sınırına Erişildi"
           }
         },
         "uk" : {
@@ -9855,7 +9873,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "下一个提纲项目"
+            "value" : "跳到下一个大纲项目"
           }
         },
         "zh-Hant" : {
@@ -9968,7 +9986,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "上一个提纲项目"
+            "value" : "跳到上一个大纲项目"
           }
         },
         "zh-Hant" : {
@@ -12086,7 +12104,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "下一个大纲项"
+            "value" : "下一个大纲项目"
           }
         },
         "zh-Hant" : {
@@ -14115,7 +14133,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "前一个大纲项"
+            "value" : "上一个大纲项目"
           }
         },
         "zh-Hant" : {
@@ -14159,6 +14177,12 @@
             "value" : "Distant"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remoto"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14181,6 +14205,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удаленный"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzak"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віддалений"
           }
         },
         "zh-Hans" : {
@@ -17391,7 +17427,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "往前"
+            "value" : "前进"
           }
         },
         "zh-Hant" : {
@@ -17629,7 +17665,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "返回/往前"
+            "value" : "返回/前进"
           }
         },
         "zh-Hant" : {

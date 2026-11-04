@@ -28,6 +28,12 @@
             "value" : "Accepter les connexions rmate"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accetta connessioni rmate"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -50,6 +56,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Принимать соединения rmate"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rmate bağlantılarını kabul et"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приймати зʼєднання rmate"
           }
         },
         "zh-Hans" : {
@@ -98,6 +116,12 @@
             "value" : "Permet d’ouvrir des fichiers distants dans CotEditor à l’aide du protocole `rmate`."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consenti a CotEditor di aprire file remoti usando il protocollo `rmate`."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -120,6 +144,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Разрешить открывать файлы на удаленном хосте в CotEditor с помощью протокола `rmate`."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "`rmate` protokolünü kullanarak uzak dosyaların CotEditor’da açılmasına izin verin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозволити відкриття віддалених файлів у CotEditor за протоколом `rmate`."
           }
         },
         "zh-Hans" : {
@@ -855,6 +891,12 @@
             "value" : "Édition à distance :"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifica da remoto:"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -877,6 +919,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удаленное редактирование:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzak düzenleme:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віддалене редагування:"
           }
         },
         "zh-Hans" : {

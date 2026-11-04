@@ -390,6 +390,12 @@
             "value" : "Pour arrêter d’enregistrer une copie, désactivez « Conserver une copie sur iCloud » sur le Mac dont elle provient."
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per interrompere il salvataggio di una copia, disattiva l’opzione “Conserva una copia in iCloud” sul Mac di provenienza."
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
@@ -412,6 +418,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Чтобы перестать сохранять копию, отключите «Сохранять копию в iCloud» на Mac, на котором ее включили."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir kopyasını kaydetmeyi durdurmak için ayarların geldiği Mac üzerinde “Bir kopyayı iCloud’da tut” ayarını kapatın."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Щоб припинити збереження копії, вимкніть опцію «Зберігати копію в iCloud» на тому Mac, з якого вона походить."
           }
         },
         "zh-Hans" : {
