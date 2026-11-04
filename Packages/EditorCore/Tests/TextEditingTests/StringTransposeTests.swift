@@ -76,6 +76,15 @@ struct StringTransposeTests {
     }
     
     
+    @Test func transposeNextToSelection() {
+        
+        // the selected characters must not be swapped
+        let context = "xb😀".transpose(at: [NSRange(location: 0, length: 2),
+                                            NSRange(location: 4, length: 0)])
+        #expect(context == nil)
+    }
+    
+    
     @Test func transposeWithNothingToSwap() {
         
         // do nothing at the document start or on an empty line

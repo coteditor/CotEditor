@@ -33,13 +33,14 @@ public extension String {
     ///
     /// The two characters on either side of each insertion point are swapped, except at the end of a line
     /// or the document, where the two preceding characters are swapped instead. Insertion points at the
-    /// document start or where there is nothing to swap are left untouched.
+    /// document start, where there is nothing to swap, or next to a selection are left untouched.
     ///
     /// - Parameter selectedRanges: The selected ranges at which to transpose the characters.
     /// - Returns: An `EditingContext`, or `nil` if there is nothing to transpose.
     func transpose(at selectedRanges: [NSRange]) -> EditingContext? {
         
         let string = self as NSString
+        let selectedIndexes = IndexSet(integersIn: selectedRanges)
         
         var replacementRanges: [NSRange] = []
         var replacementStrings: [String] = []
@@ -76,6 +77,12 @@ public extension String {
                 let followingIndex = string.index(after: location)
                 let newString = string.substring(with: NSRange(location..<followingIndex)) + string.substring(with: NSRange(precedingIndex..<location))
                 swap = (NSRange(precedingIndex..<followingIndex), newString, followingIndex)
+            }
+            
+            // leave the insertion point if its swap range overlaps a selection
+            guard !selectedIndexes.intersects(integersIn: Range(swap.range)!) else {
+                newSelectedRanges.append(range)
+                continue
             }
             
             // leave the insertion point if its swap range overlaps that of the adjacent insertion point
