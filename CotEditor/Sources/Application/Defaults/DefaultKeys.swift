@@ -34,11 +34,9 @@ extension DefaultKeys {
     static let noDocumentOnLaunchOption = RawRepresentableDefaultKey<NoDocumentOnLaunchOption>("noDocumentOnLaunchOption")
     static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
     static let documentConflictOption = RawRepresentableDefaultKey<DocumentConflictOption>("documentConflictOption")
-    static let suppressesInconsistentLineEndingAlert = DefaultKey<Bool>("suppressesInconsistentLineEndingAlert")
-    static let enablesRemoteEditing = DefaultKey<Bool>("enablesRemoteEditing")
-    static let remoteEditingPort = DefaultKey<Int>("remoteEditingPort")
-    static let checksUpdatesForBeta = DefaultKey<Bool>("checksUpdatesForBeta")
     static let syncsSettings = DefaultKey<Bool>("syncsSettings")
+    static let suppressesInconsistentLineEndingAlert = DefaultKey<Bool>("suppressesInconsistentLineEndingAlert")
+    static let checksUpdatesForBeta = DefaultKey<Bool>("checksUpdatesForBeta")
     
     // Appearance
     static let font = DefaultKey<Data?>("font")
@@ -111,6 +109,10 @@ extension DefaultKeys {
     // Snippets
     static let snippets = DefaultKey<[[String: String]]>("snippets")
     static let fileDropArray = DefaultKey<[[String: String]]>("fileDropArray")
+    
+    // Integration
+    static let enablesRemoteEditing = DefaultKey<Bool>("enablesRemoteEditing")
+    static let remoteEditingPort = DefaultKey<Int>("remoteEditingPort")
     
     // Donation
     static let donationBadgeType = RawRepresentableDefaultKey<BadgeType>("donationBadgeType")

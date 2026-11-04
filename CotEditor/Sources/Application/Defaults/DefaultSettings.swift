@@ -39,11 +39,9 @@ struct DefaultSettings {
             .noDocumentOnLaunchOption: NoDocumentOnLaunchOption.untitledDocument.rawValue,
             .enablesAutosaveInPlace: true,
             .documentConflictOption: DocumentConflictOption.revert.rawValue,
+            .syncsSettings: true,
             .suppressesInconsistentLineEndingAlert: false,
-            .enablesRemoteEditing: false,
-            .remoteEditingPort: RMateServer.defaultPort,
             .checksUpdatesForBeta: false,
-            .syncsSettings: false,
             
             // Appearance
             .font: try? FontType.standard.systemFont().archivedData,
@@ -130,6 +128,10 @@ struct DefaultSettings {
                 FileDropItem(format: "url(\"<<<RELATIVE-PATH>>>\")",
                              scope: "CSS"),
             ].map(\.dictionary),
+            
+            // Integration
+            .enablesRemoteEditing: false,
+            .remoteEditingPort: RMateServer.defaultPort,
             
             // Donation
             .donationBadgeType: BadgeType.mug.rawValue,
