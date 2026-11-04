@@ -62,6 +62,7 @@
 - Fix an issue where the Uncomment command was disabled when a block comment within a line was selected.
 - Fix an issue where the Uncomment command could not uncomment an inline comment within a line when it was selected.
 - Fix an issue where the Inline Comment command inserted the comment delimiter in the middle of a line in syntaxes where it is valid only at the line start, such as Dockerfile.
+- Fix an issue where inline comments indented with tabs were not highlighted in syntaxes where the comment delimiter is valid only at the line start, such as Dockerfile.
 - Fix an issue where uncommenting block comments during multi-cursor editing could cause unexpected behavior if an insertion point and a selection were in the same line.
 - Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.
 - Fix an issue where commenting out lines in CRLF documents could insert comment delimiters before the indentation if the lines included a blank line.

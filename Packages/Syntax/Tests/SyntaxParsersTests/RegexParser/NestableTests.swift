@@ -76,6 +76,18 @@ struct NestableTests {
         }
         
         
+        @Test func inlineCommentsLeadingOnlyAfterTab() throws {
+            
+            let source = "\t# one"
+            let tokens: [NestableToken: SyntaxType] = [
+                .inline("#", leadingOnly: true): .comments
+            ]
+            let dict = try tokens.parseHighlights(in: source, range: source.nsRange)
+            
+            #expect(dict[.comments] == [NSRange(1..<6)])
+        }
+        
+        
         @Test func inlineCommentsIgnoreLaterTokensOnSameLine() throws {
             
             let source = """

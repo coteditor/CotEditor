@@ -182,7 +182,7 @@ private extension NestableToken {
         switch self {
             case .inline(let delimiter, let leadingOnly):
                 return (leadingOnly
-                        ? try! NSRegularExpression(pattern: "^ *(\(NSRegularExpression.escapedPattern(for: delimiter)))", options: .anchorsMatchLines)
+                        ? try! NSRegularExpression(pattern: "^[ \t]*(\(NSRegularExpression.escapedPattern(for: delimiter)))", options: .anchorsMatchLines)
                             .matches(in: string, range: parseRange)
                             .map { $0.range(at: 1) }
                         : string.ranges(of: delimiter, range: parseRange))

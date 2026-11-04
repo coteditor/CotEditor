@@ -114,7 +114,7 @@ public extension String {
         
         let items: [NSRange.InsertionItem] = {
             if types.contains(.inline), let delimiter = delimiters.inlineDelimiters.first {
-                // -> a leading-only delimiter makes no comment in the middle of a line or after a tab
+                // -> a leading-only delimiter makes no comment in the middle of a line
                 let location: CommentOutLocation = switch location {
                     case .selection where delimiter.leadingOnly: .line
                     default: location
