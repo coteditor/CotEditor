@@ -684,13 +684,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Slova definovaná v syntaxi"
+            "value" : "Slova v dokumentu"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wörter, die in der Syntax definiert sind"
+            "value" : "Wörter im Dokument"
           }
         },
         "en" : {
@@ -702,91 +702,91 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Words defined in syntax"
+            "value" : "Words in document"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Palabras definidas en sintaxis"
+            "value" : "Palabras en el documento"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mots définis dans la syntaxe"
+            "value" : "Mots du document"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "सिंटैक्स में परिभाषित शब्द"
+            "value" : "दस्तावेज़ में शब्द"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parole definite nella sintassi"
+            "value" : "Parole del documento"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "シンタックスで定義された単語"
+            "value" : "書類に含まれる単語"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "구문에서 정의된 단어"
+            "value" : "문서 내의 단어"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Woorden gedefinieerd in syntaxis"
+            "value" : "Woorden in document"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wyrazy zdefiniowane w składni"
+            "value" : "Wyrazy w dokumencie"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Palavras Definidas na Sintaxe"
+            "value" : "Palavras no Documento"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Слова, определенные в синтаксисе"
+            "value" : "Слова в документе"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sözdiziminde tanımlı sözcükler"
+            "value" : "Belgedeki sözcükler"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Слова, визначені в синтаксисі"
+            "value" : "Слова в документі"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "语法中包含的单词"
+            "value" : "文稿中的单词"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "被程式文法所定義的單字"
+            "value" : "文件中的單字"
           }
         },
         "zh-HK" : {
@@ -922,13 +922,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Slova v dokumentu"
+            "value" : "Slova definovaná v syntaxi"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wörter im Dokument"
+            "value" : "Wörter, die in der Syntax definiert sind"
           }
         },
         "en" : {
@@ -940,91 +940,91 @@
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Words in document"
+            "value" : "Words defined in syntax"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Palabras en el documento"
+            "value" : "Palabras definidas en sintaxis"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mots du document"
+            "value" : "Mots définis dans la syntaxe"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "दस्तावेज़ में शब्द"
+            "value" : "सिंटैक्स में परिभाषित शब्द"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parole del documento"
+            "value" : "Parole definite nella sintassi"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "書類に含まれる単語"
+            "value" : "シンタックスで定義された単語"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "문서 내의 단어"
+            "value" : "구문에서 정의된 단어"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Woorden in document"
+            "value" : "Woorden gedefinieerd in syntaxis"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wyrazy w dokumencie"
+            "value" : "Wyrazy zdefiniowane w składni"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Palavras no Documento"
+            "value" : "Palavras Definidas na Sintaxe"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Слова в документе"
+            "value" : "Слова, определенные в синтаксисе"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Belgedeki sözcükler"
+            "value" : "Sözdiziminde tanımlı sözcükler"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Слова в документі"
+            "value" : "Слова, визначені в синтаксисі"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文稿中的单词"
+            "value" : "语法中包含的单词"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文件中的單字"
+            "value" : "被程式文法所定義的單字"
           }
         },
         "zh-HK" : {
