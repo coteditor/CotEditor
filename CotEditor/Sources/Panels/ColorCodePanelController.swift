@@ -30,6 +30,9 @@ import Defaults
 
 @objc protocol ColorCodeReceiver: AnyObject {
     
+    /// Inserts the color code into the receiver.
+    ///
+    /// - Parameter colorCode: The color code to insert.
     @MainActor func insertColorCode(_ colorCode: String)
 }
 
@@ -73,7 +76,15 @@ import Defaults
         panel.showsAlpha = true
         panel.delegate = self
         
-        let accessory = ColorCodePanelAccessory(colorCode: colorCode, panel: panel)
+        var initialColorCode = ""
+        var type: ColorCodeType?
+        if let colorCode, let color = NSColor(colorCode: colorCode, type: &type), let type {
+            initialColorCode = colorCode
+            UserDefaults.standard[.colorCodeType] = type.rawValue
+            panel.color = color
+        }
+        
+        let accessory = ColorCodePanelAccessory(colorCode: initialColorCode, panel: panel)
             .padding((ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 27) ? .top : .all, 10)
         let view = NSHostingView(rootView: accessory)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -98,28 +109,13 @@ import Defaults
 
 private struct ColorCodePanelAccessory: View {
     
-    @State private var colorCode: String
-    @AppStorage(.colorCodeType) private var type: Int
+    @State var colorCode: String
+    var panel: NSColorPanel
     
-    private var panel: NSColorPanel
+    @AppStorage(.colorCodeType) private var type: Int
     
     
     // MARK: View
-    
-    init(colorCode: String?, panel: NSColorPanel) {
-        
-        self.panel = panel
-        
-        var type: ColorCodeType?
-        if let colorCode, let color = NSColor(colorCode: colorCode, type: &type), let type {
-            self.colorCode = colorCode
-            self.type = type.rawValue
-            panel.color = color
-        } else {
-            self.colorCode = ""
-        }
-    }
-    
     
     var body: some View {
         
@@ -128,7 +124,7 @@ private struct ColorCodePanelAccessory: View {
                 .font(.system(size: 14, design: .monospaced))
                 .multilineTextAlignment(.center)
                 .onSubmit {
-                    self.apply(colorCode: self.colorCode)
+                    self.apply()
                 }
             
             HStack(alignment: .firstTextBaseline) {
@@ -146,8 +142,8 @@ private struct ColorCodePanelAccessory: View {
                 } label: {
                     EmptyView()
                 }
-                .onChange(of: self.type) { _, newValue in
-                    self.apply(type: newValue)
+                .onChange(of: self.type) {
+                    self.updateColorCode(for: self.panel.color)
                 }
                 .labelsVisibility(.hidden)
                 .buttonSizing(.flexible)
@@ -157,7 +153,9 @@ private struct ColorCodePanelAccessory: View {
             }
             .controlSize(.small)
         }
-        .onReceive(self.panel.publisher(for: \.color), perform: self.apply(color:))
+        .onReceive(self.panel.publisher(for: \.color)) { color in
+            guard self.updateColorCode(for: color) else { return assertionFailure() }
+        }
     }
     
     
@@ -167,22 +165,20 @@ private struct ColorCodePanelAccessory: View {
     private func submit() {
         
         guard
-            self.apply(colorCode: self.colorCode),
+            self.apply(),
             NSApp.sendAction(#selector((any ColorCodeReceiver).insertColorCode), to: nil, from: self.colorCode)
         else { return NSSound.beep() }
     }
     
     
-    /// Sets the color representing the given code to the color panel and selects the corresponding color code type.
+    /// Sets the color representing the color code to the color panel and selects the corresponding color code type.
     ///
-    /// - Parameters:
-    ///   - colorCode: The color code of the color to set.
     /// - Returns: `true` if the given code represents a color; otherwise, `false`.
-    @discardableResult private func apply(colorCode: String) -> Bool {
+    @discardableResult private func apply() -> Bool {
         
         var type: ColorCodeType?
         guard
-            let color = NSColor(colorCode: colorCode, type: &type),
+            let color = NSColor(colorCode: self.colorCode, type: &type),
             let type
         else { return false }
         
@@ -193,49 +189,15 @@ private struct ColorCodePanelAccessory: View {
     }
     
     
-    /// Converts the color code to the specified code type.
+    /// Updates the color code in the selected type, falling back to hexadecimal if no CSS keyword matches.
     ///
-    /// - Parameter rawValue: The rawValue of ColorCodeType.
-    private func apply(type rawValue: Int) {
+    /// - Parameter color: The color to represent.
+    /// - Returns: `true` if the color code was updated; otherwise, `false`.
+    @discardableResult private func updateColorCode(for color: NSColor) -> Bool {
         
-        guard
-            var type = ColorCodeType(rawValue: rawValue),
-            let color = self.panel.color.usingColorSpace(.genericRGB),
-            let colorCode = self.colorCode(for: color, type: &type)
-        else { return }
-        
-        if self.type != type.rawValue {
-            self.type = type.rawValue
-        }
-        self.colorCode = colorCode
-    }
-    
-    
-    /// Updates color code for new color.
-    ///
-    /// - Parameter color: The color.
-    private func apply(color: NSColor) {
+        guard let color = color.usingColorSpace(.genericRGB) else { return false }
         
         var type = ColorCodeType(rawValue: self.type) ?? .hex
-        let color = color.usingColorSpace(.genericRGB)
-        
-        guard let color, let colorCode = self.colorCode(for: color, type: &type) else { return assertionFailure() }
-        
-        if self.type != type.rawValue {
-            self.type = type.rawValue
-        }
-        self.colorCode = colorCode
-    }
-    
-    
-    /// Returns the color code for a color.
-    ///
-    /// - Parameters:
-    ///   - color: The color.
-    ///   - type: The color code type to use. When the value is `.cssKeyword`, it falls back to `.hex` if the color has no CSS keyword.
-    /// - Returns: The color code in the given type.
-    private func colorCode(for color: NSColor, type: inout ColorCodeType) -> String? {
-        
         var colorCode = color.colorCode(type: type)
         
         if colorCode == nil, type == .cssKeyword {
@@ -243,18 +205,26 @@ private struct ColorCodePanelAccessory: View {
             colorCode = color.colorCode(type: type)
         }
         
+        guard var colorCode else { return false }
+        
         // keep letter case
         if ColorCodeType.hexTypes.contains(type), self.colorCode.contains(where: \.isUppercase) {
-            colorCode = colorCode?.uppercased()
+            colorCode = colorCode.uppercased()
         }
         
-        return colorCode
+        if self.type != type.rawValue {
+            self.type = type.rawValue
+        }
+        self.colorCode = colorCode
+        
+        return true
     }
 }
 
 
 private extension ColorCodeType {
     
+    /// The localized name of the color code type.
     var label: LocalizedStringResource {
         
         switch self {
@@ -310,7 +280,10 @@ private extension ColorCodeType {
 // MARK: - Preview
 
 #Preview {
-    ColorCodePanelAccessory(colorCode: "#006699", panel: .shared)
+    let panel = NSColorPanel()
+    panel.color = NSColor(hex: 0x006699)!
+    
+    return ColorCodePanelAccessory(colorCode: "#006699", panel: panel)
         .frame(width: 240)
         .scenePadding()
 }
