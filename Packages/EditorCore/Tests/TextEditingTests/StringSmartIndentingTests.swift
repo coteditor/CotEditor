@@ -190,6 +190,9 @@ struct StringSmartIndentingTests {
         #expect(!"xthen".matches(token: "then", before: 5))
         #expect("a\nthen".matches(token: "then", before: 6))
         #expect("prefix\tthen".matches(token: "then", before: 11))
+        
+        // non-ASCII letters are also a part of a word
+        #expect(!"éthen".matches(token: "then", before: 5))
     }
     
     
@@ -197,6 +200,7 @@ struct StringSmartIndentingTests {
         
         #expect("then".matches(token: "then", after: 0, ignoreCase: false))
         #expect(!"thens".matches(token: "then", after: 0))
+        #expect(!"thené".matches(token: "then", after: 0))
         #expect("}".matches(token: "}", after: 0))
         #expect(!"}".matches(token: "}", after: "}".utf16.count))
     }

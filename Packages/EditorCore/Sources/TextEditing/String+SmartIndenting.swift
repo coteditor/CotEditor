@@ -252,7 +252,7 @@ extension NSString {
         let range = NSRange(max(0, location - token.utf16.count - 1)..<location)
         let options: NSString.CompareOptions = ignoreCase ? .caseInsensitive : []
         let foundRange = if token.first?.isLetter == true {
-            self.range(of: "(?<![A-Za-z0-9_])\(NSRegularExpression.escapedPattern(for: token))\\z", options: options.union(.regularExpression), range: range)
+            self.range(of: "(?<!\\w)\(NSRegularExpression.escapedPattern(for: token))\\z", options: options.union(.regularExpression), range: range)
         } else {
             self.range(of: token, options: options.union([.anchored, .backwards]), range: range)
         }
@@ -275,7 +275,7 @@ extension NSString {
         let range = NSRange(location..<self.length)
         let options: NSString.CompareOptions = ignoreCase ? .caseInsensitive : []
         let foundRange = if token.last?.isLetter == true {
-            self.range(of: "^\(NSRegularExpression.escapedPattern(for: token))(?![A-Za-z0-9_])", options: options.union(.regularExpression), range: range)
+            self.range(of: "^\(NSRegularExpression.escapedPattern(for: token))(?!\\w)", options: options.union(.regularExpression), range: range)
         } else {
             self.range(of: token, options: options.union(.anchored), range: range)
         }
