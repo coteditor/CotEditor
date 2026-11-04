@@ -78,10 +78,13 @@ public extension String {
                 swap = (NSRange(precedingIndex..<followingIndex), newString, followingIndex)
             }
             
-            // keep the insertion point unchanged if there is nothing to swap,
-            // or if its swap range overlaps that of the adjacent insertion point
-            guard replacementRanges.last.map({ swap.range.upperBound <= $0.lowerBound }) ?? true else {
-                newSelectedRanges.append(range)
+            // leave the insertion point if its swap range overlaps that of the adjacent insertion point
+            if let adjacentRange = replacementRanges.last, adjacentRange.lowerBound < swap.range.upperBound {
+                // -> The boundary between the swapped characters moves if their lengths differ.
+                let newLocation = (adjacentRange.lowerBound < location)
+                    ? adjacentRange.lowerBound + adjacentRange.upperBound - location
+                    : location
+                newSelectedRanges.append(NSRange(location: newLocation, length: 0))
                 continue
             }
             
