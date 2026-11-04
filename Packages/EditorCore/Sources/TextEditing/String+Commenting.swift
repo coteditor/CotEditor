@@ -29,9 +29,23 @@ public import StringUtils
 
 public protocol CommentDelimiters: Sendable {
     
-    var inlineDelimiters: [String] { get }
+    var inlineDelimiters: [InlineCommentDelimiter] { get }
     var blockDelimiters: [BlockCommentDelimiter] { get }
     var isEmpty: Bool { get }
+}
+
+
+public struct InlineCommentDelimiter: Equatable, Sendable {
+    
+    public var begin: String
+    public var leadingOnly: Bool
+    
+    
+    public init(begin: String, leadingOnly: Bool = false) {
+        
+        self.begin = begin
+        self.leadingOnly = leadingOnly
+    }
 }
 
 
@@ -100,7 +114,13 @@ public extension String {
         
         let items: [NSRange.InsertionItem] = {
             if types.contains(.inline), let delimiter = delimiters.inlineDelimiters.first {
-                return self.inlineCommentOut(delimiter: delimiter, appendsSpacer: appendsSpacer, ranges: selectedRanges, at: location)
+                // -> a leading-only delimiter makes no comment in the middle of a line or after a tab
+                let location: CommentOutLocation = switch location {
+                    case .selection where delimiter.leadingOnly: .line
+                    default: location
+                }
+                
+                return self.inlineCommentOut(delimiter: delimiter.begin, appendsSpacer: appendsSpacer, ranges: selectedRanges, at: location)
             }
             if types.contains(.block), let delimiters = delimiters.blockDelimiters.first {
                 return self.blockCommentOut(delimiters: delimiters.pair, appendsSpacer: appendsSpacer, ranges: selectedRanges, at: location)
@@ -137,7 +157,7 @@ public extension String {
         ?? delimiters.inlineDelimiters.lazy
             .compactMap { delimiter in
                 let targetRanges = self.inlineCommentTargetRanges(delimiter, for: selectedRanges)
-                return self.rangesOfInlineDelimiter(delimiter, appendsSpacer: appendsSpacer, ranges: targetRanges)
+                return self.rangesOfInlineDelimiter(delimiter.begin, appendsSpacer: appendsSpacer, ranges: targetRanges)
             }.first
         ?? []
         
@@ -176,7 +196,7 @@ public extension String {
         
         for delimiter in delimiters.inlineDelimiters {
             let inlineTargetRanges = self.inlineCommentTargetRanges(delimiter, for: selectedRanges)
-            if let ranges = self.rangesOfInlineDelimiter(delimiter, appendsSpacer: false, ranges: inlineTargetRanges) {
+            if let ranges = self.rangesOfInlineDelimiter(delimiter.begin, appendsSpacer: false, ranges: inlineTargetRanges) {
                 let lineRanges = inlineTargetRanges.flatMap(self.lineContentsRanges(for:)).uniqued
                 return partly ? true : (ranges.count == lineRanges.count)
             }
@@ -317,16 +337,18 @@ extension String {
     
     /// Returns the ranges where to find inline-style delimiters to uncomment the selections.
     ///
-    /// A non-empty selection that begins with the delimiter in the middle of a line is used from its beginning to the end of its line contents.
+    /// A non-empty selection that begins in the middle of a line with a delimiter just after whitespace, other than a leading-only one,
+    /// is used from its beginning to the end of its line contents.
     /// The other selections are expanded to their line contents.
     ///
     /// - Parameters:
     ///   - delimiter: The inline delimiter to find.
     ///   - selectedRanges: The current selected ranges in the editor.
     /// - Returns: Non-empty ranges where to find.
-    private func inlineCommentTargetRanges(_ delimiter: String, for selectedRanges: [NSRange]) -> [NSRange] {
+    private func inlineCommentTargetRanges(_ delimiter: InlineCommentDelimiter, for selectedRanges: [NSRange]) -> [NSRange] {
         
-        let pattern = "[ \t]*" + NSRegularExpression.escapedPattern(for: delimiter)
+        // -> a delimiter just after a non-whitespace character is rarely a comment, such as in a URL
+        let pattern = "[ \t]*(?<=\\s)" + NSRegularExpression.escapedPattern(for: delimiter.begin)
         
         return selectedRanges
             .map { range in
@@ -335,6 +357,7 @@ extension String {
                 // -> commenting out the selection inserts the delimiter in the middle of the line,
                 //    while the delimiter after the indent is found from the beginning of the line
                 guard
+                    !delimiter.leadingOnly,
                     !range.isEmpty,
                     (self as NSString).range(of: pattern, options: [.regularExpression, .anchored], range: range).location != NSNotFound,
                     range.lowerBound > (self.rangeOfIndent(at: range.lowerBound)?.upperBound ?? lineRange.lowerBound)

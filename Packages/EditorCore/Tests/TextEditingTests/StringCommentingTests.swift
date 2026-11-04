@@ -202,7 +202,7 @@ struct StringCommentingTests {
     @Test func commentOutPrefersInline() throws {
         
         let string = "foo"
-        let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [.init(begin: "<-", end: "->")])
+        let delimiters = Delimiters(inlineDelimiters: [.init(begin: "//")], blockDelimiters: [.init(begin: "<-", end: "->")])
         let context = try #require(string.commentOut(types: .both, delimiters: delimiters, appendsSpacer: true, in: [NSRange(0..<3)], at: .selection))
         
         #expect(context.strings == ["// "])
@@ -211,10 +211,39 @@ struct StringCommentingTests {
     }
     
     
+    @Test func commentOutLeadingOnlyDelimiterAtSelection() throws {
+        
+        let string = "foo bar"
+        let delimiters = Delimiters(inlineDelimiters: [.init(begin: "#", leadingOnly: true)])
+        let context = try #require(string.commentOut(types: .inline, delimiters: delimiters, appendsSpacer: false, in: [NSRange(4..<7)], at: .selection))
+        
+        #expect(context.strings == ["#"])
+        #expect(context.ranges == [NSRange(location: 0, length: 0)])
+    }
+    
+    
+    @Test func uncommentLeadingOnlyDelimiterInMiddleOfLine() {
+        
+        let string = "foo #bar"
+        let delimiters = Delimiters(inlineDelimiters: [.init(begin: "#", leadingOnly: true)])
+        
+        #expect(!string.canUncomment(partly: true, delimiters: delimiters, in: [NSRange(4..<8)]))
+    }
+    
+    
+    @Test func uncommentDelimiterJustAfterNonWhitespace() {
+        
+        let string = "http://example.com"
+        let delimiters = Delimiters(inlineDelimiters: [.init(begin: "//")])
+        
+        #expect(!string.canUncomment(partly: true, delimiters: delimiters, in: [NSRange(5..<18)]))
+    }
+    
+    
     @Test func uncommentPrefersBlock() throws {
         
         let string = "<-foo->"
-        let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [.init(begin: "<-", end: "->")])
+        let delimiters = Delimiters(inlineDelimiters: [.init(begin: "//")], blockDelimiters: [.init(begin: "<-", end: "->")])
         let context = try #require(string.uncomment(delimiters: delimiters, appendsSpacer: false, in: [NSRange(0..<7)]))
         
         #expect(context.strings == ["", ""])
@@ -411,7 +440,7 @@ struct StringCommentingTests {
 
 private struct Delimiters: CommentDelimiters {
     
-    var inlineDelimiters: [String] = []
+    var inlineDelimiters: [InlineCommentDelimiter] = []
     var blockDelimiters: [BlockCommentDelimiter] = []
     
     var isEmpty: Bool { self.inlineDelimiters.isEmpty && self.blockDelimiters.isEmpty }
@@ -421,7 +450,7 @@ private struct Delimiters: CommentDelimiters {
 /// TextView mock
 private struct Editor {
     
-    private let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [.init(begin: "<-", end: "->")])
+    private let delimiters = Delimiters(inlineDelimiters: [.init(begin: "//")], blockDelimiters: [.init(begin: "<-", end: "->")])
     
     var string: String
     var selectedRanges: [NSRange] = []
