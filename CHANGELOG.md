@@ -47,6 +47,7 @@
 - Fix an issue where the Shift Right command did not indent the last empty line during multi-cursor editing.
 - Fix an issue where pressing the Delete key in indentation with spaces did not delete back to the previous tab stop if the indentation was not aligned with tab stops.
 - Fix an issue where the automatic outdent when typing a closing symbol, such as “}”, did not reach the indent level of the opening symbol if the indentation with spaces was not aligned with tab stops.
+- Fix an issue where the automatic outdent when typing a closing symbol did not reach the indent level of the opening symbol if the indentation mixed spaces and tabs.
 - Fix an issue where pressing the Tab key when spaces were preferred for indentation could insert spaces that did not reach the next tab stop, such as after a tab character in the line.
 - Fix an issue where automatic indentation could treat part of a word as a keyword, such as “then”, if a non-ASCII letter adjoined it.
 - Fix an issue where trailing whitespace on the previous line was not automatically trimmed while the insertion point was at the beginning of the next line.

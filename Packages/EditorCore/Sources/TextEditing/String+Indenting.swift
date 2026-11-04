@@ -257,11 +257,11 @@ public extension String {
         
         guard let indentRange = self.rangeOfIndent(at: index) else { return 0 }
         
-        let indent = self[indentRange]
-        let numberOfTabs = indent.count { $0 == "\t" }
-        let numberOfSpaces = indent.count - numberOfTabs
+        let width = self[indentRange].reduce(into: 0) { width, character in
+            width += (character == "\t") ? tabWidth - width % tabWidth : 1
+        }
         
-        return numberOfTabs + (numberOfSpaces + tabWidth - 1) / tabWidth
+        return (width + tabWidth - 1) / tabWidth
     }
     
     
