@@ -223,8 +223,8 @@ private extension NewFeature {
                 "howto_edit_remote"
             case .copySettingsIniCloud:
                 "howto_store_settings_in_icloud"
-            case .textKeyBinding:
-                "settings_shortcuts"
+            default:
+                nil
         }
     }
     
