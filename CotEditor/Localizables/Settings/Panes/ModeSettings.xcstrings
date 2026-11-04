@@ -109,7 +109,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "加入全形句號"
+            "value" : "連按兩下空白鍵加入句號"
           }
         }
       }
@@ -792,7 +792,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "語法中定義的字詞"
+            "value" : "文件中的字詞"
           }
         }
       }
@@ -1030,7 +1030,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文件中的字詞"
+            "value" : "語法中定義的字詞"
           }
         }
       }

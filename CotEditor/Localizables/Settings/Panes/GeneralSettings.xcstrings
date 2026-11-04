@@ -1120,7 +1120,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不一致的每行結尾"
+            "value" : "不一致的行結尾"
           }
         }
       }
@@ -2537,7 +2537,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在開啟時："
+            "value" : "在啟動時："
           }
         }
       }
@@ -2649,7 +2649,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無論此設定如何，使用預先發佈版本時永遠都會包括新的預先發佈版本。"
+            "value" : "無論此設定為何，使用預先發佈版本時永遠都會包括新的預先發佈版本。"
           }
         }
       }

@@ -1605,7 +1605,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選擇的字體可能不是等寬字體。"
+            "value" : "選擇的字體似乎不是等寬字體。"
           }
         }
       }

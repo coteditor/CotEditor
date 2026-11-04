@@ -476,7 +476,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "列印標頭與註腳"
+            "value" : "列印頁首與頁尾"
           }
         }
       }
@@ -849,7 +849,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "註腳"
+            "value" : "頁尾"
           }
         }
       }

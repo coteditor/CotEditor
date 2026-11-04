@@ -1234,7 +1234,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "縮排換行"
+            "value" : "自動換行縮排字元數："
           }
         }
       }
@@ -1572,7 +1572,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "每行結尾"
+            "value" : "行結尾"
           }
         }
       }
@@ -2586,7 +2586,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "欄位的頁面指引："
+            "value" : "頁面指引欄位："
           }
         }
       }
@@ -2925,7 +2925,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "關聯系統設定"
+            "value" : "使用系統設定"
           }
         }
       }

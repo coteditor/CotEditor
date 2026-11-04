@@ -6666,7 +6666,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重點標示全部"
+            "value" : "全部重點標示"
           }
         }
       }
@@ -8135,7 +8135,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "取代"
+            "value" : "取代為"
           }
         }
       }

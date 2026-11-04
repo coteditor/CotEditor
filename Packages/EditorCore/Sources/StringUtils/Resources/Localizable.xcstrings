@@ -116,7 +116,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "與修改後的NFD相對應的非正式的基於NFC的標準化格式"
+            "value" : "基於NFC的非官方標準化形式（與修改版NFD對應）"
           }
         }
       }
@@ -356,7 +356,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HFS+中使用的非正式的基於NFD的標準化格式"
+            "value" : "用作HFS+的非官方NFD標準化形式"
           }
         }
       }
@@ -1313,7 +1313,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "套用NFKC、大小寫折疊與移除預設可忽略的代碼位"
+            "value" : "套用NFKC、大小寫折疊與移除預設可忽略的碼位"
           }
         }
       }

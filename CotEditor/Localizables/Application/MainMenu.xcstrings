@@ -2369,7 +2369,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "插入摘錄"
+            "value" : "插入片段"
           }
         }
       }
@@ -2595,7 +2595,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "加入行"
+            "value" : "合併行"
           }
         }
       }
@@ -2708,7 +2708,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "每行結尾更改為%@"
+            "value" : "行結尾更改為%@"
           }
         }
       }
@@ -5759,7 +5759,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直引號"
+            "value" : "轉為直引號"
           }
         }
       }

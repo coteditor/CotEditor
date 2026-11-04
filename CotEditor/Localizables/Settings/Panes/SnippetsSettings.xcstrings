@@ -1700,7 +1700,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "選單命令或鍵盤快捷鍵插入的文字："
+            "value" : "透過選單命令或鍵盤快捷鍵插入的文字："
           }
         }
       }

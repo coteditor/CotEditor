@@ -7067,7 +7067,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@的複製%2$lld"
+            "value" : "%1$@副本%2$lld"
           }
         }
       }
@@ -7187,7 +7187,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@的複製"
+            "value" : "%@副本"
           }
         }
       }
@@ -7782,7 +7782,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "拖放檔案的副檔名（轉換成小寫）。"
+            "value" : "拖放檔案的副檔名（轉換為小寫）。"
           }
         }
       }
@@ -7901,7 +7901,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "拖放檔案的副檔名（轉換成大寫）。"
+            "value" : "拖放檔案的副檔名（轉換為大寫）。"
           }
         }
       }
@@ -9814,7 +9814,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "你要將所有每行結尾轉換成%@（此文件中最常用的每行結尾）嗎？"
+            "value" : "你要將所有行結尾轉換為%@（此文件中最常用的行結尾）嗎？"
           }
         }
       }
@@ -9933,7 +9933,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此文件中最常用的每行結尾是%@。"
+            "value" : "此文件中最常用的行結尾是%@。"
           }
         }
       }
@@ -10052,7 +10052,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此文件的每行結尾不一致。"
+            "value" : "此文件的行結尾不一致。"
           }
         }
       }
@@ -10650,7 +10650,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "名稱不能包括新行。"
+            "value" : "名稱不能包括換行符號。"
           }
         }
       }
@@ -11247,7 +11247,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "依循以下模板填寫，然後將其發佈至%1$@或傳送至%2$@。請注意，可能會在問題頁面上分享你的電子郵件內容。請用英文或日文填寫你的訊息。"
+            "value" : "填寫以下模板，然後將其發佈至%1$@或傳送至%2$@。請注意，可能會在問題頁面上分享你的電子郵件內容。請用英文或日文填寫你的訊息。"
           }
         }
       }
@@ -17968,7 +17968,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Shift鍵只可以與其他變更鍵搭配使用。"
+            "value" : "Shift鍵只可以與其他變更鍵配合使用。"
           }
         }
       }
@@ -18325,7 +18325,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "插入摘錄之後的插入點。"
+            "value" : "插入片段後的插入點。"
           }
         }
       }

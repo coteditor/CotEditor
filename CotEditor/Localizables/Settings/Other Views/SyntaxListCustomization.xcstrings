@@ -108,7 +108,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "隱藏的語法仍可用作自動偵測。"
+            "value" : "隱藏的語法仍可用於自動偵測。"
           }
         }
       }

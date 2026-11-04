@@ -1125,7 +1125,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "代碼位"
+            "value" : "碼位"
           }
         }
       }
@@ -1238,7 +1238,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "代碼位"
+            "value" : "碼位"
           }
         }
       }
@@ -8505,7 +8505,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "找到「%2$@」以外的%1$lld個每行結尾。"
+                  "value" : "找到「%2$@」以外的%1$lld個行結尾。"
                 }
               }
             }
@@ -9186,7 +9186,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "不一致的每行結尾"
+            "value" : "不一致的行結尾"
           }
         }
       }
@@ -9412,7 +9412,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "檢閱器"
+            "value" : "檢閲器"
           }
         }
       }
@@ -9532,7 +9532,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "文件檢閱器"
+            "value" : "文件檢閲器"
           }
         }
       }
@@ -10336,7 +10336,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "每行結尾"
+            "value" : "行結尾"
           }
         }
       }
@@ -10449,7 +10449,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "每行結尾"
+            "value" : "行結尾"
           }
         }
       }
@@ -11777,7 +11777,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "顯示導覽列"
+            "value" : "導覽列"
           }
         }
       }
@@ -20058,7 +20058,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "縮排選擇"
+            "value" : "縮排所選範圍"
           }
         }
       }
@@ -21010,7 +21010,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "保持視窗總是在最上方"
+            "value" : "保持視窗總是位於最上方"
           }
         }
       }

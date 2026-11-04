@@ -221,7 +221,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "字區："
+            "value" : "區塊："
           }
         }
       }
@@ -445,7 +445,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "代碼位："
+            "value" : "碼位："
           }
         }
       }
@@ -670,7 +670,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無字區"
+            "value" : "無區塊"
           }
         }
       }

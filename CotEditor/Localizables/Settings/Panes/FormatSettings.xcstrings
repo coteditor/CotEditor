@@ -446,7 +446,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "預設每行結尾："
+            "value" : "預設行結尾："
           }
         }
       }
@@ -1477,7 +1477,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此語法是自訂的。"
+            "value" : "此語法為自訂。"
           }
         }
       }
