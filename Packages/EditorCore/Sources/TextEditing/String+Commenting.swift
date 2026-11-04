@@ -136,7 +136,7 @@ public extension String {
             }.first
         ?? delimiters.inlineDelimiters.lazy
             .compactMap { delimiter in
-                let targetRanges = selectedRanges.map(self.lineContentsRange(for:)).uniqued
+                let targetRanges = self.inlineCommentTargetRanges(delimiter, for: selectedRanges)
                 return self.rangesOfInlineDelimiter(delimiter, appendsSpacer: appendsSpacer, ranges: targetRanges)
             }.first
         ?? []
@@ -162,14 +162,10 @@ public extension String {
     /// - Returns: `true` if uncommenting is possible.
     func canUncomment(partly: Bool, delimiters: any CommentDelimiters, in selectedRanges: [NSRange]) -> Bool {
         
-        guard !delimiters.isEmpty else { return false }
-        
-        let targetRanges = selectedRanges
-            .map(self.lineContentsRange(for:))
-            .filter({ !$0.isEmpty })
-            .uniqued
-        
-        guard !targetRanges.isEmpty else { return false }
+        guard
+            !delimiters.isEmpty,
+            selectedRanges.contains(where: { !self.lineContentsRange(for: $0).isEmpty })
+        else { return false }
         
         for delimiters in delimiters.blockDelimiters {
             let blockTargetRanges = self.blockCommentTargetRanges(delimiters, for: selectedRanges)
@@ -179,8 +175,9 @@ public extension String {
         }
         
         for delimiter in delimiters.inlineDelimiters {
-            if let ranges = self.rangesOfInlineDelimiter(delimiter, appendsSpacer: false, ranges: targetRanges) {
-                let lineRanges = targetRanges.flatMap(self.lineContentsRanges(for:)).uniqued
+            let inlineTargetRanges = self.inlineCommentTargetRanges(delimiter, for: selectedRanges)
+            if let ranges = self.rangesOfInlineDelimiter(delimiter, appendsSpacer: false, ranges: inlineTargetRanges) {
+                let lineRanges = inlineTargetRanges.flatMap(self.lineContentsRanges(for:)).uniqued
                 return partly ? true : (ranges.count == lineRanges.count)
             }
         }
@@ -317,6 +314,38 @@ extension String {
     
     
     // MARK: Private Methods
+    
+    /// Returns the ranges where to find inline-style delimiters to uncomment the selections.
+    ///
+    /// A non-empty selection that begins with the delimiter in the middle of a line is used from its beginning to the end of its line contents.
+    /// The other selections are expanded to their line contents.
+    ///
+    /// - Parameters:
+    ///   - delimiter: The inline delimiter to find.
+    ///   - selectedRanges: The current selected ranges in the editor.
+    /// - Returns: Non-empty ranges where to find.
+    private func inlineCommentTargetRanges(_ delimiter: String, for selectedRanges: [NSRange]) -> [NSRange] {
+        
+        let pattern = "[ \t]*" + NSRegularExpression.escapedPattern(for: delimiter)
+        
+        return selectedRanges
+            .map { range in
+                let lineRange = self.lineContentsRange(for: range)
+                
+                // -> commenting out the selection inserts the delimiter in the middle of the line,
+                //    while the delimiter after the indent is found from the beginning of the line
+                guard
+                    !range.isEmpty,
+                    (self as NSString).range(of: pattern, options: [.regularExpression, .anchored], range: range).location != NSNotFound,
+                    range.lowerBound > (self.rangeOfIndent(at: range.lowerBound)?.upperBound ?? lineRange.lowerBound)
+                else { return lineRange }
+                
+                return NSRange(range.lowerBound..<lineRange.upperBound)
+            }
+            .filter { !$0.isEmpty }
+            .uniqued
+    }
+    
     
     /// Returns the ranges where to find block-style delimiters to uncomment the selections.
     ///

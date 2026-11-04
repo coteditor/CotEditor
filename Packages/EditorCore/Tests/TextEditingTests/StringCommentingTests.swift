@@ -366,6 +366,18 @@ struct StringCommentingTests {
     }
     
     
+    @Test func textViewInlineCommentAtSelection() {
+        
+        var editor = Editor(string: "foo bar", selectedRanges: [NSRange(4..<7)])
+        
+        editor.commentOut(types: .inline, at: .selection)
+        #expect(editor.string == "foo //bar")
+        #expect(editor.canUncomment(partly: true))
+        editor.uncomment()
+        #expect(editor.string == "foo bar")
+    }
+    
+    
     @Test func checkIncompatibility() {
         
         let string = """
