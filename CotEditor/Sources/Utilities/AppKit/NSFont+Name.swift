@@ -47,7 +47,7 @@ extension NSFont {
     ///   - size: The font size, or `0` to use the default system font size.
     ///   - weight: The font weight.
     /// - Returns: The font with the stylistic alternate, or the unmodified system font if it cannot be created.
-    static func alternativeMonospacedSystemFont(ofSize size: CGFloat = 0, weight: NSFont.Weight = .regular) -> NSFont {
+    static func alternativeMonospacedSystemFont(ofSize size: CGFloat = 0, weight: NSFont.Weight = .regular) -> sending NSFont {
         
         let baseFont = NSFont.monospacedSystemFont(ofSize: size, weight: weight)
         
@@ -71,7 +71,7 @@ extension NSFont {
     ///   - size: The font size.
     ///   - weight: The font weight.
     /// - Returns: The line number font.
-    static func lineNumberFont(ofSize size: CGFloat = 0, weight: NSFont.Weight = .regular) -> NSFont {
+    static func lineNumberFont(ofSize size: CGFloat = 0, weight: NSFont.Weight = .regular) -> sending NSFont {
         
         NSFont(named: .avenirNextCondensed, weight: weight, size: size)
             ?? .monospacedDigitSystemFont(ofSize: size, weight: weight)

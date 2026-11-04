@@ -381,7 +381,7 @@ private final class OutlineBuildNode {
     ///
     /// - Parameter items: The flat outline items.
     /// - Returns: Root nodes of the constructed tree and all node IDs in document order.
-    static func build(from items: [OutlineItem]) -> (roots: [OutlineBuildNode], allIDs: [OutlineItem.ID]) {
+    static func build(from items: [OutlineItem]) -> sending (roots: [OutlineBuildNode], allIDs: [OutlineItem.ID]) {
         
         var roots: [OutlineBuildNode] = []
         var stack: [(level: Int, node: OutlineBuildNode)] = []

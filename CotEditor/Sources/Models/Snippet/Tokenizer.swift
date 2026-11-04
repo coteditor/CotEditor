@@ -48,7 +48,7 @@ extension TokenRepresentable {
     /// Creates a tokenizer for the token type.
     ///
     /// - Returns: A tokenizer configured with all token cases.
-    static func makeTokenizer() -> sending Tokenizer {
+    static func makeTokenizer() -> Tokenizer {
         
         Tokenizer(tokens: Self.allCases.map(\.rawValue), prefix: Self.prefix, suffix: Self.suffix)
     }

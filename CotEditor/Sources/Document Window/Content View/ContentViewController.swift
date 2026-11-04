@@ -88,7 +88,7 @@ final class ContentViewController: NSViewController {
     ///
     /// - Parameter document: The represented document.
     /// - Returns: A view controller.
-    private static func viewController(document: DataDocument?) -> sending NSViewController {
+    private static func viewController(document: DataDocument?) -> NSViewController {
         
         switch document {
             case let document as TextDocument:
@@ -107,7 +107,7 @@ final class ContentViewController: NSViewController {
     ///
     /// - Parameter rootView: The SwiftUI view to host.
     /// - Returns: A hosting controller.
-    private static func hostingController(rootView: some View) -> sending NSViewController {
+    private static func hostingController(rootView: some View) -> NSViewController {
         
         let controller = NSHostingController(rootView: rootView)
         controller.sizingOptions = []

@@ -78,11 +78,12 @@ extension NSTextView {
     /// - Parameter range: The range to draw the rounded background for.
     /// - Returns: The Bezier paths that compose the rounded background.
     /// - Note: This API requires TextKit 1.
-    private func roundedRectPaths(for range: NSRange) -> [NSBezierPath] {
+    private func roundedRectPaths(for range: NSRange) -> sending [NSBezierPath] {
         
         let rects = self.boundingRects(for: range).map(self.centerScanRect)
         
-        return rects.map { rect in
+        var paths: [NSBezierPath] = []
+        for rect in rects {
             let corners: RectCorner = switch rect {
                 case _ where rects.count == 1: .allCorners
                 case rects.first:              [.topLeft, .bottomLeft]
@@ -91,7 +92,9 @@ extension NSTextView {
             }
             let radius = rect.height / 4
             
-            return NSBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadius: radius)
+            paths.append(NSBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadius: radius))
         }
+        
+        return paths
     }
 }

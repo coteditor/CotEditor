@@ -36,7 +36,7 @@ enum FontType: String, CaseIterable, Codable {
     ///
     /// - Parameter size: The size of the font.
     /// - Returns: An NSFont.
-    func systemFont(size: Double = 13) -> NSFont {
+    func systemFont(size: Double = 13) -> sending NSFont {
         
         switch self {
             case .standard:
@@ -56,7 +56,7 @@ extension UserDefaults {
     ///
     /// - Parameter type: The font type.
     /// - Returns: An NSFont.
-    final func font(for type: FontType) -> NSFont {
+    final func font(for type: FontType) -> sending NSFont {
         
         guard
             let data = self[.fontKey(for: type)],

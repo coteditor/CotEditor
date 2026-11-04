@@ -109,7 +109,7 @@ private extension SidebarPane {
     }
     
     
-    @MainActor func viewController(document: DirectoryDocument) -> sending NSViewController {
+    @MainActor func viewController(document: DirectoryDocument) -> NSViewController {
         
         switch self {
             case .fileBrowser:

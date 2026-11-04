@@ -159,7 +159,7 @@ private extension InspectorPane {
     ///
     /// - Parameter document: The document to inspect.
     /// - Returns: A view controller for the pane.
-    @MainActor func viewController(document: DataDocument?) -> sending any NSViewController & InspectorPaneHosting {
+    @MainActor func viewController(document: DataDocument?) -> any NSViewController & InspectorPaneHosting {
         
         switch self {
             case .document:
