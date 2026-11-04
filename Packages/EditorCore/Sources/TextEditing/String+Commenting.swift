@@ -448,7 +448,7 @@ extension String {
                 for character in line {
                     switch character {
                         case "\t":
-                            visualOffset += tabWidth
+                            visualOffset += tabWidth - visualOffset % tabWidth
                         case " ":
                             visualOffset += 1
                         case "\n", "\r", "\r\n", "\u{0085}", "\u{2028}", "\u{2029}":  // line breaks
@@ -469,7 +469,7 @@ extension String {
                 scan: for character in line.string {
                     switch character {
                         case "\t":
-                            visualOffset += tabWidth
+                            visualOffset += tabWidth - visualOffset % tabWidth
                         case " ":
                             visualOffset += 1
                         default:

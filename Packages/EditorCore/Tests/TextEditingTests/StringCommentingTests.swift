@@ -107,6 +107,15 @@ struct StringCommentingTests {
     }
     
     
+    @Test func inlineCommentOutAfterIndentWithSpaceBeforeTab() {
+        
+        // a tab after a space is only as wide as to the next tab stop
+        let text = " \ta\n\ta"
+        
+        #expect(text.inlineCommentOut(delimiter: "//", ranges: [text.nsRange], at: .afterIndent(tabWidth: 4)).map(\.location) == [2, 5])
+    }
+    
+    
     @Test func inlineCommentOutAfterIndentSkipsBlankLine() {
         
         // whitespace-only line is excluded from the minimum indentation calculation,
