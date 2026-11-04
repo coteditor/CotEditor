@@ -6211,7 +6211,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "裁剪後端空白字元"
+            "value" : "移除行尾空白"
           }
         }
       }
