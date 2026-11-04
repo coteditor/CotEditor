@@ -2876,7 +2876,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "直引號"
+            "value" : "轉為直引號"
           }
         }
       }
@@ -3476,7 +3476,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "插入摘錄"
+            "value" : "插入片段"
           }
         }
       }
@@ -8876,7 +8876,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "每行結尾"
+            "value" : "行結尾"
           }
         }
       }
@@ -8996,7 +8996,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "每行結尾"
+            "value" : "行結尾"
           }
         }
       }
@@ -11636,7 +11636,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將英數字元轉換成全形"
+            "value" : "將英數字元轉換為全形"
           }
         }
       }
@@ -11756,7 +11756,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將英數字元轉換成半形"
+            "value" : "將英數字元轉換為半形"
           }
         }
       }
@@ -16436,7 +16436,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "切換至全形格式"
+            "value" : "轉換為全形"
           }
         }
       }
@@ -16556,7 +16556,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "插入摘錄"
+            "value" : "插入片段"
           }
         }
       }
@@ -16796,7 +16796,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將縮排轉換成空格"
+            "value" : "將縮排轉換為空格"
           }
         }
       }
@@ -18476,7 +18476,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "裁剪後端空白字元"
+            "value" : "移除行尾空白"
           }
         }
       }
@@ -21956,7 +21956,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重複行"
+            "value" : "複製行"
           }
         }
       }
@@ -23276,7 +23276,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "編輯程式碼摘錄⋯"
+            "value" : "編輯程式碼片段⋯"
           }
         }
       }
@@ -23996,7 +23996,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將縮排轉換成定位符號"
+            "value" : "將縮排轉換為定位符號"
           }
         }
       }
@@ -25514,7 +25514,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "切換至半形格式"
+            "value" : "轉換為半形"
           }
         }
       }
@@ -26234,7 +26234,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "加入文字行"
+            "value" : "合併行"
           }
         }
       }
@@ -26594,7 +26594,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "透過Unicode代碼位插入⋯"
+            "value" : "透過Unicode碼位插入⋯"
           }
         }
       }

@@ -594,7 +594,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "計算使用指定編碼方式編碼的文字的Byte數。"
+            "value" : "計數使用指定編碼方式編碼的文字的Byte數。"
           }
         }
       }
@@ -834,7 +834,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "以Unicode中定義的直覺方式計數。由多個Unicode代碼位（如表情符號）組成的字元以一個字元計算。"
+            "value" : "以Unicode中定義的直覺方式計數。由多個Unicode碼位組成的字元（如表情符號）計為一個字元。"
           }
         }
       }
@@ -954,7 +954,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "字位聚類"
+            "value" : "字素叢集"
           }
         }
       }
@@ -1074,7 +1074,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "計數Unicode代碼位（與計數UTF-32相同）。"
+            "value" : "計數Unicode碼位（與計數UTF-32相同）。"
           }
         }
       }
@@ -1314,7 +1314,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "計數Unicode代碼位，但將代理配對計算為兩個字元。"
+            "value" : "計數Unicode碼位，但將代理對計為兩個字元。"
           }
         }
       }
@@ -1885,7 +1885,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "忽略每行結尾"
+            "value" : "忽略行結尾"
           }
         }
       }

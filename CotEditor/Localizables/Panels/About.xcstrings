@@ -1236,7 +1236,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "僅非App Store版本使用"
+            "value" : "僅於非App Store版本使用"
           }
         }
       }

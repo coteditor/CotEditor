@@ -893,7 +893,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "至少0次但不多於n次"
+            "value" : "至少0次但不超過n次"
           }
         }
       }
@@ -1005,7 +1005,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "至少n次但不多過m次"
+            "value" : "至少n次但不超過m次"
           }
         }
       }
@@ -1680,7 +1680,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "十進位制"
+            "value" : "十進位數字"
           }
         }
       }
@@ -2241,7 +2241,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "往前"
+            "value" : "前向"
           }
         }
       }
@@ -2353,7 +2353,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "往後"
+            "value" : "後向"
           }
         }
       }
@@ -2577,7 +2577,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "新行字元"
+            "value" : "換行字元"
           }
         }
       }

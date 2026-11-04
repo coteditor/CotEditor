@@ -2757,7 +2757,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "完全符合"
+            "value" : "完整符合內容"
           }
         }
       }
@@ -3096,7 +3096,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "特點"
+            "value" : "特性"
           }
         }
       }
@@ -4223,7 +4223,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "解讀器："
+            "value" : "解譯器："
           }
         }
       }
@@ -7322,7 +7322,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "解譯器用於在文件中透過「`#!`」確定語法的標頭。"
+            "value" : "解譯器用於從文件中的`#!`標頭確定語法。"
           }
         }
       }

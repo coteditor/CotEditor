@@ -918,7 +918,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "註腳"
+            "value" : "頁尾"
           }
         }
       }
@@ -1031,7 +1031,7 @@
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "標頭"
+            "value" : "頁首"
           }
         }
       }
