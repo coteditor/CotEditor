@@ -102,9 +102,10 @@ public extension String {
         let lineRanges = (self as NSString).lineRanges(for: ranges)
         
         // cannot perform Move Line Down if one of the selections is already in the last line
+        // -> VT and FF at the document end do not make an empty last line.
         guard
             !lineRanges.isEmpty,
-            lineRanges.last!.upperBound != self.length || self.last?.isNewline == true
+            lineRanges.last!.upperBound != self.length || self.utf16.last?.isLineEnding == true
         else { return nil }
         
         let string = NSMutableString(string: self)

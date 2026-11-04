@@ -200,6 +200,13 @@ struct StringLineProcessingTests {
     }
     
     
+    @Test func moveLineDownInLastLineEndingWithPageBreak() {
+        
+        // a form feed is not a line ending, so there is no empty line below to swap with
+        #expect("a\n\u{0C}".moveLineDown(in: [NSRange(0, 3)]) == nil)
+    }
+    
+    
     @Test func sortLinesAscending() throws {
         
         let string = """
