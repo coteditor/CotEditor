@@ -1,14 +1,15 @@
 //
-//  ArithmeticsTests.swift
+//  Arithmetics.swift
+//  StringUtils
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2022-06-30.
+//  Created by 1024jp on 2021-09-23.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022-2024 1024jp
+//  © 2021-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,14 +24,17 @@
 //  limitations under the License.
 //
 
-import Testing
-@testable import CotEditor
-
-struct ArithmeticsTests {
+extension Int {
     
-    @Test func digits() {
+    /// Array of digits from the ones place.
+    public var digits: [Int] {
         
-        #expect(0.digits == [0])
-        #expect(1024.digits == [4, 2, 0, 1])
+        assert(self >= 0)
+        
+        if self == 0 { return [0] }
+        
+        return sequence(first: self) { $0 / 10 }
+            .prefix { $0 > 0 }
+            .map { $0 % 10 }
     }
 }
