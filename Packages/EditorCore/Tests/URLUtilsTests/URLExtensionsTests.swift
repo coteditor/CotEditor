@@ -71,6 +71,15 @@ struct URLExtensionsTests {
     }
     
     
+    @Test func createRelativeURLToRoot() {
+        
+        let url = URL(filePath: "/")
+        
+        #expect(url.path(relativeTo: URL(filePath: "/foo/bar/", directoryHint: .isDirectory)) == "../..")
+        #expect(url.path(relativeTo: URL(filePath: "/file.txt")) == ".")
+    }
+    
+    
     @Test func ancestor() throws {
         
         let leaf = URL(filePath: "/Dog/Cow/Cat")

@@ -68,6 +68,13 @@ public extension URL {
         let pathComponents = self.pathComponents.dropLast()
         let basePathComponents = baseURL.pathComponents.dropLast(isDirectory ? 0 : 1)
         
+        // the root directory has no name to append
+        if self.pathComponents == ["/"] {
+            let parentComponents = basePathComponents.dropFirst().map { _ in ".." }
+            
+            return parentComponents.isEmpty ? "." : parentComponents.joined(separator: "/")
+        }
+        
         let sameCount = zip(basePathComponents, pathComponents).prefix(while: { $0.0 == $0.1 }).count
         let parentCount = basePathComponents.count - sameCount
         let parentComponents = [String](repeating: "..", count: parentCount)
