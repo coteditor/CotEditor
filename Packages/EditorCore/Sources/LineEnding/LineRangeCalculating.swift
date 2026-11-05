@@ -74,7 +74,7 @@ public extension LineRangeCalculating {
         
         assert(characterIndex <= self.length)
         
-        (self as? any LazyLineEndingCaching)?.ensureLineEndings(upTo: characterIndex - 1)
+        (self as? any LazyLineEndingCaching)?.ensureLine(at: characterIndex)
         
         return self.lineEndings.lineIndex(at: characterIndex) + 1
     }
@@ -88,7 +88,7 @@ public extension LineRangeCalculating {
         
         assert(characterIndex <= self.length)
         
-        (self as? any LazyLineEndingCaching)?.ensureLineEndings(upTo: characterIndex - 1)
+        (self as? any LazyLineEndingCaching)?.ensureLine(at: characterIndex)
         
         return self.lineEndings.lineBounds(for: NSRange(location: characterIndex, length: 0)).start
     }
@@ -102,7 +102,7 @@ public extension LineRangeCalculating {
         
         assert(characterIndex <= self.length)
         
-        (self as? any LazyLineEndingCaching)?.ensureLineEndings(upTo: characterIndex, needsNextEnd: true)
+        (self as? any LazyLineEndingCaching)?.ensureLine(at: characterIndex)
         
         let bounds = self.lineEndings.lineBounds(for: NSRange(location: characterIndex, length: 0))
         
@@ -122,7 +122,7 @@ public extension LineRangeCalculating {
         
         if let cache = self as? any LazyLineEndingCaching {
             while cache.lineEndings.count < lineNumber, cache.firstUnparsedIndex < self.length {
-                cache.ensureLineEndings(upTo: cache.firstUnparsedIndex, needsNextEnd: true)
+                cache.ensureLine(at: cache.firstUnparsedIndex)
             }
         }
         
@@ -144,7 +144,7 @@ public extension LineRangeCalculating {
         
         assert(range.upperBound <= self.length)
         
-        (self as? any LazyLineEndingCaching)?.ensureLineEndings(upTo: range.upperBound, needsNextEnd: true)
+        (self as? any LazyLineEndingCaching)?.ensureLine(at: range.upperBound)
         
         let bounds = self.lineEndings.lineBounds(for: range)
         

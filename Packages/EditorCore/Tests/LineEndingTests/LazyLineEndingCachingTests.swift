@@ -49,6 +49,14 @@ struct LazyLineEndingCachingTests {
     }
     
     
+    @Test func calculateLineNumberAfterUnparsedLineEnding() {
+        
+        let counter = LineCounter(string: "a\u{2028}b")
+        
+        #expect(counter.lineNumber(at: 2) == 2)
+    }
+    
+    
     @Test func calculateNumberOfLines() {
         
         for string in ["", "a", "\n", "\n\n", "a\nb", "a\nb\n", "a\r\nb\r\n"] {
@@ -74,6 +82,15 @@ struct LazyLineEndingCachingTests {
                         "At \(index) with string \"\(string)\"")
             }
         }
+    }
+    
+    
+    @Test func calculateLineRangeAfterLineNumber() {
+        
+        let counter = LineCounter(string: "abcdefg\nh")
+        
+        #expect(counter.lineNumber(at: 6) == 1)
+        #expect(counter.lineRange(at: 3) == NSRange(0..<8))
     }
     
     

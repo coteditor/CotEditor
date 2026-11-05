@@ -38,7 +38,7 @@ public extension RangeReplaceableCollection where Self: RandomAccessCollection {
     ///   - items: The items to replace with.
     ///   - editedRange: The edited range.
     ///   - delta: The change in length.
-    mutating func replace<Value>(items: [Element], in editedRange: NSRange, changeInLength delta: Int = 0) where Element == ValueRange<Value> {
+    mutating func replace<Value>(items: [Element], in editedRange: NSRange, changeInLength delta: Int) where Element == ValueRange<Value> {
         
         let lowerEditedIndex = self.partitioningIndex { $0.lowerBound >= editedRange.lowerBound }
         

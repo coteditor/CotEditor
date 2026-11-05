@@ -84,7 +84,7 @@ public extension String {
     }
     
     
-    /// Returns the next line ending with its range after the given character `location`.
+    /// Returns the line ending of the line containing the given character `location` with its range.
     ///
     /// The method returns `nil` if there is no line ending until the end of the string.
     ///
