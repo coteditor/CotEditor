@@ -35,6 +35,7 @@
 
 - Fix an issue in the Find window where pinch zooming did not synchronize the text size between the find and replace fields.
 - Fix an issue where Find All highlights remained in the document after closing the search results.
+- Fix an issue where the expansion state of folders in the file browser was sometimes not restored from the last session.
 - Fix an issue where shortcuts using function keys, arrow keys, or other navigation keys could not be set in the Shortcuts and Snippets settings panes.
 - Fix an issue where Shift-Return could be assigned as a keyboard shortcut.
 - Fix an issue where a customized shortcut for a command no longer in the menu could remove the default shortcut of another menu command.

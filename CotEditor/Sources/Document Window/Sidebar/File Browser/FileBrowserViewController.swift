@@ -1084,7 +1084,8 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
             let path = object as? String
         else { return nil }
         
-        let url = URL(filePath: path, relativeTo: rootURL)
+        // -> File nodes for folders have the trailing slash in their URL.
+        let url = rootURL.appending(path: path, directoryHint: .checkFileSystem)
         
         return self.document.fileNode?.node(at: url)
     }
