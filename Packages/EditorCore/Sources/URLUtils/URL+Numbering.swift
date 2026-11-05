@@ -113,7 +113,7 @@ extension NumberingFormat {
             .replacing("%@", with: "(?<base>.+)")
             .replacing("0", with: "(?<count>[0-9]+)")
         
-        return try! Regex(pattern)
+        return try! Regex(pattern).dotMatchesNewlines()
     }
     
     
@@ -123,6 +123,6 @@ extension NumberingFormat {
         let pattern = NSRegularExpression.escapedPattern(for: self.format("%@"))
             .replacing("%@", with: "(?<base>.+)")
         
-        return try! Regex(pattern)
+        return try! Regex(pattern).dotMatchesNewlines()
     }
 }

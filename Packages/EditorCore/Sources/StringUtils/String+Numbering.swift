@@ -53,7 +53,7 @@ extension String {
         
         assert(!self.isEmpty)
         
-        let match = self.wholeMatch(of: /(?<base>.+?)(?: (?<number>[0-9]+))?/)!
+        let match = self.wholeMatch(of: /(?<base>.+?)(?: (?<number>[0-9]+))?/.dotMatchesNewlines())!
         
         // -> ignore too large numbers so that incrementing them does not overflow
         guard

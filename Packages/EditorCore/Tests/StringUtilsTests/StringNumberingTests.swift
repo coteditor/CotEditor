@@ -40,6 +40,7 @@ struct StringNumberingTests {
         #expect("test copy".numberingComponents == ("test copy", 1))
         #expect("test copy 5".numberingComponents == ("test copy", 5))
         #expect("test \(Int.max)".numberingComponents == ("test \(Int.max)", 1))
+        #expect("foo\nbar 5".numberingComponents == ("foo\nbar", 5))
     }
     
     

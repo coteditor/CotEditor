@@ -29,14 +29,14 @@ public extension String {
     /// The remainder of the string after the last dot removed.
     var deletingPathExtension: String {
         
-        self.replacing(/^(.+)\.[^ .]+$/, with: \.1)
+        self.replacing(/^(.+)\.[^ .]+$/.dotMatchesNewlines(), with: \.1)
     }
     
     
     /// The file extension part of the receiver by assuming the string is a filename.
     var pathExtension: String? {
         
-        guard let match = self.firstMatch(of: /.\.([^ .]+)$/) else { return nil }
+        guard let match = self.firstMatch(of: /.\.([^ .]+)$/.dotMatchesNewlines()) else { return nil }
         
         return String(match.1)
     }

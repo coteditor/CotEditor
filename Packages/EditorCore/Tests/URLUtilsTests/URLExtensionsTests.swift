@@ -146,6 +146,20 @@ struct URLExtensionsTests {
     }
     
     
+    @Test func appendingUniqueNumberWithLineBreakInFilename() throws {
+        
+        let directory = try TemporaryDirectory()
+        defer { directory.cleanup() }
+        
+        let base = directory.url.appending(component: "foo\nbar 2.txt")
+        
+        #expect(base.appendingUniqueNumber().lastPathComponent == "foo\nbar 2.txt")
+        
+        try Data().write(to: base)
+        #expect(base.appendingUniqueNumber().lastPathComponent == "foo\nbar 3.txt")
+    }
+    
+    
     @Test func appendingUniqueNumberWithFormat() throws {
         
         let directory = try TemporaryDirectory()
