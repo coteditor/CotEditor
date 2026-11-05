@@ -70,7 +70,7 @@
 
 ### Known Issues
 
-- The text added in CotEditor 7.2.0 is not yet localized in Czech, Hindi, Polish, and Portuguese.
+- The text added in CotEditor 7.2.0 is not yet localized in Czech, Polish, and Portuguese.
 
 
 
