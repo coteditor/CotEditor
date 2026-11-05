@@ -24395,6 +24395,12 @@
             "value" : "Faire un don à CotEditor…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CotEditor को दान करें…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",

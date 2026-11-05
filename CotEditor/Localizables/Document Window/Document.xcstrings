@@ -2661,6 +2661,12 @@
             "value" : "Déconnecté"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डिस्कनेक्ट किया गया"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14175,6 +14181,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Distant"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रिमोट"
           }
         },
         "it" : {

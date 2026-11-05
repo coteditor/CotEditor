@@ -147,6 +147,12 @@
             "value" : "Conservez sur iCloud une copie toujours à jour de vos réglages, à importer à tout moment sur vos autres Mac."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपनी सेटिंग की ताज़ा कॉपी iCloud में रखें, ताकि जब चाहें अपने दूसरे Mac पर इंपोर्ट कर सकें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -240,6 +246,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Retrouvez vos réglages en une importation"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपकी सेटिंग, बस एक इंपोर्ट दूर"
           }
         },
         "it" : {
@@ -337,6 +349,12 @@
             "value" : "Ouvrez des fichiers d’un ordinateur distant avec `rmate` via SSH et enregistrez-y directement vos modifications."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SSH के ज़रिए `rmate` से किसी रिमोट कंप्यूटर की फ़ाइलें खोलें, और बदलाव सीधे वहीं सहेजें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -430,6 +448,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Modifiez des fichiers distants directement sur votre Mac"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपने Mac पर ही रिमोट फ़ाइलें संपादित करें"
           }
         },
         "it" : {
@@ -527,6 +551,12 @@
             "value" : "Personnalisez les raccourcis pour déplacer le point d’insertion, sélectionner et supprimer du texte, et vos doigts se sentiront comme chez eux."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सम्मिलन बिंदु हिलाने, टेक्स्ट चुनने और डिलीट करने के शॉर्टकट अपनी पसंद से बदलें, ताकि आपकी उँगलियाँ सहज रहें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -620,6 +650,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Vos touches, vos règles"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपकी कीज़, आपके नियम"
           }
         },
         "it" : {

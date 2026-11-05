@@ -510,6 +510,12 @@
             "value" : "Intégration"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंटीग्रेशन"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",

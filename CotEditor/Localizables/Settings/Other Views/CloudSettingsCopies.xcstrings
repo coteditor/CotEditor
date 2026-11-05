@@ -390,6 +390,12 @@
             "value" : "Pour arrêter d’enregistrer une copie, désactivez « Conserver une copie sur iCloud » sur le Mac dont elle provient."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कॉपी रखना बंद करने के लिए, जिस Mac से वह आई है उस पर “iCloud में कॉपी रखें” बंद करें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",

@@ -42,8 +42,8 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "डिलीट करना"
+            "state" : "translated",
+            "value" : "डिलीट"
           }
         },
         "it" : {
@@ -161,7 +161,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "संपादन"
           }
         },
@@ -280,8 +280,8 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "संचलन"
+            "state" : "translated",
+            "value" : "मूवमेंट"
           }
         },
         "it" : {
@@ -399,7 +399,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "स्क्रॉलिंग"
           }
         },
@@ -518,7 +518,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन"
           }
         },
@@ -637,7 +637,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "पंक्ति के आरंभ तक डिलीट करें"
           }
         },
@@ -756,7 +756,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "अनुच्छेद के आरंभ तक डिलीट करें"
           }
         },
@@ -875,7 +875,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "पंक्ति के अंत तक डिलीट करें"
           }
         },
@@ -994,7 +994,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "अनुच्छेद के अंत तक डिलीट करें"
           }
         },
@@ -1113,7 +1113,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "पिछला शब्द डिलीट करें"
           }
         },
@@ -1232,7 +1232,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "अगला शब्द डिलीट करें"
           }
         },
@@ -1351,7 +1351,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक वर्ण पीछे जाएँ"
           }
         },
@@ -1470,7 +1470,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए एक वर्ण पीछे जाएँ"
           }
         },
@@ -1589,7 +1589,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक पंक्ति नीचे जाएँ"
           }
         },
@@ -1708,7 +1708,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए एक पंक्ति नीचे जाएँ"
           }
         },
@@ -1827,7 +1827,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक वर्ण आगे जाएँ"
           }
         },
@@ -1946,7 +1946,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए एक वर्ण आगे जाएँ"
           }
         },
@@ -2065,7 +2065,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए बाएँ जाएँ"
           }
         },
@@ -2184,7 +2184,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए एक अनुच्छेद पीछे जाएँ"
           }
         },
@@ -2303,7 +2303,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए एक अनुच्छेद आगे जाएँ"
           }
         },
@@ -2422,7 +2422,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए दाएँ जाएँ"
           }
         },
@@ -2541,7 +2541,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "दस्तावेज़ के आरंभ में जाएँ"
           }
         },
@@ -2660,7 +2660,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए दस्तावेज़ के आरंभ में जाएँ"
           }
         },
@@ -2779,7 +2779,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "अनुच्छेद के आरंभ में जाएँ"
           }
         },
@@ -2898,7 +2898,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए अनुच्छेद के आरंभ में जाएँ"
           }
         },
@@ -3017,7 +3017,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "दस्तावेज़ के अंत में जाएँ"
           }
         },
@@ -3136,7 +3136,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए दस्तावेज़ के अंत में जाएँ"
           }
         },
@@ -3255,7 +3255,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "अनुच्छेद के अंत में जाएँ"
           }
         },
@@ -3374,7 +3374,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए अनुच्छेद के अंत में जाएँ"
           }
         },
@@ -3493,7 +3493,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "पंक्ति के बाएँ छोर पर जाएँ"
           }
         },
@@ -3612,7 +3612,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए पंक्ति के बाएँ छोर पर जाएँ"
           }
         },
@@ -3731,7 +3731,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "पंक्ति के दाएँ छोर पर जाएँ"
           }
         },
@@ -3850,7 +3850,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए पंक्ति के दाएँ छोर पर जाएँ"
           }
         },
@@ -3969,7 +3969,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक पंक्ति ऊपर जाएँ"
           }
         },
@@ -4088,7 +4088,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए एक पंक्ति ऊपर जाएँ"
           }
         },
@@ -4207,7 +4207,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक शब्द पीछे जाएँ"
           }
         },
@@ -4326,7 +4326,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए एक शब्द पीछे जाएँ"
           }
         },
@@ -4445,7 +4445,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक शब्द आगे जाएँ"
           }
         },
@@ -4564,7 +4564,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए एक शब्द आगे जाएँ"
           }
         },
@@ -4683,7 +4683,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक शब्द बाएँ जाएँ"
           }
         },
@@ -4802,7 +4802,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए एक शब्द बाएँ जाएँ"
           }
         },
@@ -4921,7 +4921,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक शब्द दाएँ जाएँ"
           }
         },
@@ -5040,7 +5040,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए एक शब्द दाएँ जाएँ"
           }
         },
@@ -5159,7 +5159,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक पृष्ठ नीचे जाएँ"
           }
         },
@@ -5278,7 +5278,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए एक पृष्ठ नीचे जाएँ"
           }
         },
@@ -5397,7 +5397,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक पृष्ठ ऊपर जाएँ"
           }
         },
@@ -5516,7 +5516,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "चयन बढ़ाते हुए एक पृष्ठ ऊपर जाएँ"
           }
         },
@@ -5635,7 +5635,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक पंक्ति नीचे स्क्रॉल करें"
           }
         },
@@ -5754,7 +5754,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक पंक्ति ऊपर स्क्रॉल करें"
           }
         },
@@ -5873,7 +5873,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक पृष्ठ नीचे स्क्रॉल करें"
           }
         },
@@ -5992,7 +5992,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "एक पृष्ठ ऊपर स्क्रॉल करें"
           }
         },
@@ -6111,7 +6111,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "दस्तावेज़ के आरंभ तक स्क्रॉल करें"
           }
         },
@@ -6230,7 +6230,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "दस्तावेज़ के अंत तक स्क्रॉल करें"
           }
         },
@@ -6349,8 +6349,8 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "आगे-पीछे के वर्ण बदलें"
+            "state" : "translated",
+            "value" : "कर्सर के आसपास के दो वर्ण आपस में बदलें"
           }
         },
         "it" : {
@@ -6468,7 +6468,7 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Yank"
           }
         },

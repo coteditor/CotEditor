@@ -3950,6 +3950,12 @@
             "value" : "iCloud Drive n’est pas disponible."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud Drive उपलब्ध नहीं है।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4056,6 +4062,12 @@
             "value" : "Impossible d’accéder à la copie des réglages sélectionnée."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "चुनी गई सेटिंग कॉपी तक पहुँचा नहीं जा सका।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4142,6 +4154,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "La recherche de copies des réglages sur iCloud a échoué."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud में सेटिंग कॉपियाँ नहीं मिलीं।"
           }
         },
         "it" : {
@@ -14377,6 +14395,12 @@
             "value" : "La connexion distante est interrompue. Vos modifications n’ont pas été envoyées."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रिमोट कनेक्शन डिस्कनेक्ट किया गया है। आपके बदलाव भेजे नहीं गए हैं।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14470,6 +14494,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Enregistrer les modifications apportées à « %@ » sur ce Mac ?"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "क्या “%@” के बदलाव इस Mac पर सहेजने हैं?"
           }
         },
         "it" : {
@@ -14687,6 +14717,12 @@
             "value" : "Les modifications ne peuvent plus être enregistrées à distance. Pour les conserver, enregistrez le document sur ce Mac."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बदलाव अब रिमोट पर सहेजे नहीं जा सकते। अपने बदलाव रखने के लिए दस्तावेज़ को इस Mac पर सहेजें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14782,6 +14818,12 @@
             "value" : "La connexion distante pour « %@ » a été interrompue."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” का रिमोट कनेक्शन डिस्कनेक्ट किया गया।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14875,6 +14917,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Le port est déjà utilisé."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह पोर्ट पहले से उपयोग में है।"
           }
         },
         "it" : {
@@ -15092,6 +15140,12 @@
             "value" : "Saisissez un numéro de port compris entre 1 et 65535."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 से 65535 के बीच का पोर्ट नंबर दर्ज करें।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15185,6 +15239,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Le fichier distant est trop volumineux pour être ouvert."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रिमोट फ़ाइल खोलने के लिए बहुत बड़ी है।"
           }
         },
         "it" : {
@@ -15283,6 +15343,12 @@
             "value" : "L’édition à distance prend en charge les fichiers d’une taille maximale de %@."
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रिमोट एडिटिंग में %@ तक की फ़ाइलें खोली जा सकती हैं।"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15376,6 +15442,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Certains fichiers distants n’ont pas pu être ouverts."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कुछ रिमोट फ़ाइलें खोली नहीं जा सकीं।"
           }
         },
         "it" : {
@@ -15528,6 +15600,24 @@
                 "stringUnit" : {
                   "state" : "needs_review",
                   "value" : "Une seule commande rmate peut ouvrir jusqu’à %lld fichiers à la fois."
+                }
+              }
+            }
+          }
+        },
+        "hi" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "एक rmate कमांड एक बार में अधिकतम %lld फ़ाइल खोल सकता है।"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "एक rmate कमांड एक बार में अधिकतम %lld फ़ाइलें खोल सकता है।"
                 }
               }
             }
