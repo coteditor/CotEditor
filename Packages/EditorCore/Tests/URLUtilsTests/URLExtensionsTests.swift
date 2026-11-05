@@ -82,6 +82,20 @@ struct URLExtensionsTests {
     }
     
     
+    @Test func ancestorOfMissingFileInSymbolicLink() throws {
+        
+        let directory = try TemporaryDirectory()
+        defer { directory.cleanup() }
+        
+        let folder = directory.url.appending(component: "folder", directoryHint: .isDirectory)
+        let link = directory.url.appending(component: "link")
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: false)
+        try FileManager.default.createSymbolicLink(at: link, withDestinationURL: folder)
+        
+        #expect(link.isAncestor(of: link.appending(component: "missing.txt")))
+    }
+    
+    
     @Test func firstUniqueDirectoryURL() {
         
         let urls: [URL] = [
