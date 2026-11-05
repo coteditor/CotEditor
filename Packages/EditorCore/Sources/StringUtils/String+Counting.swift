@@ -76,7 +76,7 @@ public extension StringProtocol {
             count += 1
         }
         
-        if includesLastBreak, self[range].last?.isNewline == true {
+        if includesLastBreak, self[range].utf16.last?.isLineEnding == true {
             count += 1
         }
         
@@ -109,7 +109,7 @@ public extension StringProtocol {
                 lineRanges.insert(substringRange)
             }
             
-            if includesLastBreak, self[range].last?.isNewline == true {
+            if includesLastBreak, self[range].utf16.last?.isLineEnding == true {
                 lineRanges.insert(self.lineRange(at: range.upperBound))
             }
         }
@@ -164,7 +164,7 @@ public extension String {
         }
         
         if includesLastBreak,
-           string.character(at: range.upperBound - 1).isNewline,
+           string.character(at: range.upperBound - 1).isLineEnding,
            !string.isInsideCRLF(at: range.upperBound)
         {
             count += 1

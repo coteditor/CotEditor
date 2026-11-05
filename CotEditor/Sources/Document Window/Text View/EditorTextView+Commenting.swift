@@ -82,7 +82,7 @@ extension EditorTextView: Commenting {
 
 extension Syntax.Comment: @retroactive CommentDelimiters {
     
-    var inlineDelimiters: [String]  { self.inlines.map(\.begin) }
+    var inlineDelimiters: [InlineCommentDelimiter]  { self.inlines.map { .init(begin: $0.begin, leadingOnly: $0.leadingOnly) } }
     var blockDelimiters: [BlockCommentDelimiter]  { self.blocks.map { .init(begin: $0.begin, end: $0.end, isNestable: $0.isNestable) } }
 }
 

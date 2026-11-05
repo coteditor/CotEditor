@@ -65,6 +65,26 @@ struct StringTransposeTests {
     }
     
     
+    @Test func transposeWithOverlappingSwap() throws {
+        
+        // the left insertion point stays between the swapped characters
+        let context = try #require("b😀".transpose(at: [NSRange(location: 1, length: 0),
+                                                        NSRange(location: 3, length: 0)]))
+        #expect(context.strings == ["😀b"])
+        #expect(context.ranges == [NSRange(location: 0, length: 3)])
+        #expect(context.selectedRanges == [NSRange(location: 2, length: 0), NSRange(location: 3, length: 0)])
+    }
+    
+    
+    @Test func transposeNextToSelection() {
+        
+        // the selected characters must not be swapped
+        let context = "xb😀".transpose(at: [NSRange(location: 0, length: 2),
+                                            NSRange(location: 4, length: 0)])
+        #expect(context == nil)
+    }
+    
+    
     @Test func transposeWithNothingToSwap() {
         
         // do nothing at the document start or on an empty line

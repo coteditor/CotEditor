@@ -72,10 +72,10 @@ public extension NSString {
         
         guard location > 0 else { return 0 }
         
-        // avoid returning index between CRLF
-        let offset = self.isInsideCRLF(at: location - 1) ? -1 : 0
+        let index = self.rangeOfComposedCharacterSequence(at: location - 1).lowerBound
         
-        return self.rangeOfComposedCharacterSequence(at: location - 1 + offset).lowerBound
+        // avoid returning index between CRLF
+        return self.isInsideCRLF(at: index) ? self.rangeOfComposedCharacterSequence(at: index - 1).lowerBound : index
     }
     
     
@@ -249,7 +249,7 @@ public extension NSString {
             count += 1
         }
         
-        if self.character(at: location - 1).isNewline, !self.isInsideCRLF(at: location) {
+        if self.character(at: location - 1).isLineEnding, !self.isInsideCRLF(at: location) {
             count += 1
         }
         
@@ -356,6 +356,18 @@ public extension unichar {
         
         switch self {
             case 0xA, 0xB, 0xC, 0xD, 0x85, 0x2028, 0x2029: true
+            default: false
+        }
+    }
+    
+    
+    /// A Boolean value indicating whether this character is a line ending character.
+    ///
+    /// Unlike `isNewline`, VT (U+000B) and FF (U+000C) are excluded because they break lines only visually.
+    var isLineEnding: Bool {
+        
+        switch self {
+            case 0xA, 0xD, 0x85, 0x2028, 0x2029: true
             default: false
         }
     }

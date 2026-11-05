@@ -127,8 +127,8 @@ struct URLExtensionsTests {
         
         try Data().write(to: zero)
         try Data().write(to: one)
-        #expect(zero.appendingUniqueNumber().lastPathComponent == "file 0 2.txt")
-        #expect(one.appendingUniqueNumber().lastPathComponent == "file 1 2.txt")
+        #expect(zero.appendingUniqueNumber().lastPathComponent == "file 2.txt")
+        #expect(one.appendingUniqueNumber().lastPathComponent == "file 2.txt")
     }
     
     

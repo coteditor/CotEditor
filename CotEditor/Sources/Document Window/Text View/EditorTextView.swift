@@ -568,17 +568,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
         }
         
         // smart outdent with certain symbols
-        if self.isAutomaticIndentEnabled, replacementRange.isEmpty {
-            let levelToReduce = self.string.smartOutdentLevel(with: plainString, indentWidth: self.tabWidth, tokens: self.indentTokens, in: self.rangeForUserTextChange)
-            for _ in 0..<levelToReduce {
-                // select the whole space run for a single indent level beforehand
-                // -> Otherwise, `deleteBackward(_:)` deletes only a single character per level when the automatic tab expansion is disabled.
-                if let deletionRange = self.string.rangeForSoftTabDeletion(in: self.rangeForUserTextChange, tabWidth: self.tabWidth) {
-                    self.setSelectedRangesWithUndo(self.selectedRanges.map(\.rangeValue))
-                    self.selectedRange = deletionRange
-                }
-                self.deleteBackward(nil)
-            }
+        if self.isAutomaticIndentEnabled, replacementRange.isEmpty,
+           let deletionRange = self.string.rangeForSmartOutdent(with: plainString, indentWidth: self.tabWidth, tokens: self.indentTokens, in: self.rangeForUserTextChange)
+        {
+            self.setSelectedRangesWithUndo(self.selectedRanges.map(\.rangeValue))
+            self.selectedRange = deletionRange
+            self.deleteBackward(nil)
         }
         
         super.insertText(plainString, replacementRange: replacementRange)
@@ -663,7 +658,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, MultiCursorEdit
            self.rangeForUserTextChange.isEmpty,
            let lastCharacter = self.string.character(before: self.rangeForUserTextChange),
            let nextCharacter = self.string.character(after: self.rangeForUserTextChange),
-           self.matchingSymbolPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
+           self.matchingSymbolPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) }),
+           self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.rangeForUserTextChange.location, effectiveRange: nil) as? Bool == true
         {
             self.setSelectedRangesWithUndo(self.selectedRanges.map(\.rangeValue))
             self.selectedRange = NSRange(location: self.rangeForUserTextChange.location - 1, length: 2)

@@ -139,6 +139,16 @@ struct StringCountingTests {
     }
     
     
+    @Test func lineNumberAfterFormFeed() {
+        
+        // FF breaks lines only visually and is not a line ending
+        let string = "a\u{0C}b"
+        
+        #expect(string.lineNumber(at: 2) == 1)
+        #expect((string as NSString).lineNumber(at: 2) == 1)
+    }
+    
+    
     @Test func columnNumberAtIndex() {
         
         let string = "aaa \r\n🐱 "

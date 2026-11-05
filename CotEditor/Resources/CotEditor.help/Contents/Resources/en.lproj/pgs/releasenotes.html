@@ -48,9 +48,14 @@
 			<li>Support undo in the Shortcuts settings pane.</li>
 			<li>Improve word navigation with <kbd>Control</kbd>-<kbd>Option</kbd>-<kbd>F</kbd> and <kbd>Control</kbd>-<kbd>Option</kbd>-<kbd>B</kbd> to treat periods, commas, and colons as word delimiters, consistent with <kbd>Option</kbd>-<kbd>Left Arrow</kbd> and <kbd>Option</kbd>-<kbd>Right Arrow</kbd>.</li>
 			<li>Change the <kbd>Shift</kbd>-<kbd>Option</kbd>-<kbd>Down Arrow</kbd> shortcut to extend the selection to the end of the line without including the line ending, consistent with <kbd>Option</kbd>-<kbd>Down Arrow</kbd>.</li>
+			<li>Change the <kbd>Delete</kbd> key to delete a closing bracket or quotation mark together with the opening one only when it was automatically inserted.</li>
+			<li>Change the numbering to avoid name conflicts in the file browser and settings to match Finder, such as using “Foo 2” if “Foo 1” already exists.</li>
+			<li>Optimize the hanging indentation calculation.</li>
+			<li>Improve overall stability and performance.</li>
 			<li>Update tree-sitter-markdown to 0.5.4.</li>
 			<li>Update tree-sitter-scala to 0.26.4.</li>
 			<li>Update tree-sitter-sql.</li>
+			<li><span class="trivial">trivial</span>: Improve find results to include as much of a long match as possible in the line excerpt.</li>
 			<li><span class="trivial">dev</span>: Update the build environment to Xcode 27.2.</li>
 		</ul>
 	</section>
@@ -62,19 +67,37 @@
 		<ul>
 			<li>Fix an issue in the Find window where pinch zooming did not synchronize the text size between the find and replace fields.</li>
 			<li>Fix an issue where Find All highlights remained in the document after closing the search results.</li>
-			<li>Fix an issue where searching within multiple selections could continue to subsequent selections after cancellation.</li>
-			<li>Fix an issue where progress could be displayed incorrectly when searching or replacing text within selections.</li>
-			<li>Fix an issue where syntax highlighting and outline parsing could start after closing a document.</li>
 			<li>Fix an issue where shortcuts using function keys, arrow keys, or other navigation keys could not be set in the Shortcuts and Snippets settings panes.</li>
 			<li>Fix an issue where <kbd>Shift</kbd>-<kbd>Return</kbd> could be assigned as a keyboard shortcut.</li>
 			<li>Fix an issue where a customized shortcut for a command no longer in the menu could remove the default shortcut of another menu command.</li>
-			<li>Fix an issue where <kbd>Control</kbd>-<kbd>B</kbd>, <kbd>Control</kbd>-<kbd>F</kbd>, <kbd>Option</kbd>-<kbd>Up Arrow</kbd>, or <kbd>Option</kbd>-<kbd>Down Arrow</kbd> could move insertion points incorrectly during multi-cursor editing in right-to-left text.</li>
-			<li>Fix an issue where repeatedly pressing <kbd>Command</kbd>-<kbd>Right Arrow</kbd> during multi-cursor editing could move insertion points to the end of the next wrapped visual line.</li>
+			<li>Fix an issue where moving insertion points during multi-cursor editing could behave incorrectly in right-to-left text or at the end of wrapped lines.</li>
 			<li>Fix an issue where selecting or deleting text by word or to the beginning of a line could affect an incorrect range or make the app unresponsive in bidirectional text.</li>
+			<li>Fix an issue where the “Convert Indentation” commands did not convert indentation that mixed spaces and tabs.</li>
+			<li>Fix an issue where the Shift Right command did not indent the last empty line during multi-cursor editing.</li>
+			<li>Fix an issue where pressing the <kbd>Tab</kbd> or <kbd>Delete</kbd> key when using spaces for indentation could insert or delete an incorrect number of spaces, such as after a tab character in the line or if the indentation was not a multiple of the indent width.</li>
+			<li>Fix an issue where the automatic outdent when typing a closing symbol, such as “<code>}</code>”, did not reach the indent level of the opening symbol if the indentation was not a multiple of the indent width or mixed spaces and tabs.</li>
+			<li>Fix an issue where trailing whitespace on the previous line was not automatically trimmed while the insertion point was at the beginning of the next line.</li>
 			<li>Fix an issue where deleting a line break during multi-cursor editing could delete only part of a CRLF line ending.</li>
-			<li>Fix an issue where pressing <kbd>Control</kbd>-<kbd>K</kbd> at the end of a line did not delete the line ending in CRLF documents.</li>
-			<li>Fix an issue where pressing <kbd>Control</kbd>-<kbd>K</kbd> during multi-cursor editing could delete more than the selected text or remove insertion points at the end of the document.</li>
+			<li>Fix an issue where pressing <kbd>Control</kbd>-<kbd>K</kbd> could delete an incorrect range, such as not deleting the line ending in CRLF documents or deleting more than the selected text during multi-cursor editing.</li>
+			<li>Fix several issues with pressing <kbd>Control</kbd>-<kbd>T</kbd>, such as doing nothing after an emoji at the end of the document, or swapping selected characters or breaking an emoji during multi-cursor editing.</li>
+			<li>Fix an issue where moving lines down during multi-cursor editing could turn insertion points into selections, extend selections, or leave an insertion point on the last empty line behind.</li>
+			<li>Fix an issue where the Delete Duplicates command could cause unexpected behavior if lines contained VT (<code>U+000B</code>) or FF (<code>U+000C</code>).</li>
+			<li>Fix an issue where double-clicking a period, comma, or colon selected nothing or the preceding word instead of the character itself.</li>
+			<li>Fix an issue where the Select Enclosing Symbols command did nothing if an unmatched closing symbol, such as <code>&gt;</code> in a comparison, came before the closing symbol of the enclosing pair.</li>
+			<li>Fix an issue where the Toggle Comment and Uncomment commands could not uncomment block or inline comments when only part of a line was selected.</li>
+			<li>Fix issues in syntaxes where the comment delimiter is valid only at the line start, such as Dockerfile, where the Inline Comment command inserted the delimiter in the middle of a line and comments indented with tabs were not highlighted.</li>
+			<li>Fix an issue where uncommenting block comments during multi-cursor editing could cause unexpected behavior if an insertion point and a selection were in the same line.</li>
+			<li>Fix an issue where commenting out lines could insert comment delimiters at an incorrect position relative to the indentation in CRLF documents or if a space preceded a tab.</li>
 			<li>Fix an issue where the outline menu in the navigation bar could display an empty or incorrect item when the insertion point was before the first outline item.</li>
+			<li>Fix an issue where typing after extending selections during multi-cursor editing could insert text at an incorrect location if an insertion point was already at the beginning of a line.</li>
+			<li>Fix an issue where inserting a snippet with line breaks could move the insertion point to an incorrect location or merge multiple insertion points into one if the document’s line endings were not LF.</li>
+			<li>Fix an issue where changing the line height setting did not update the lines displayed in open documents.</li>
+			<li>Fix an issue where text was positioned too high in lines with some fonts, such as Raanana.</li>
+			<li>Fix an issue where the AppleScript <code>line range</code> property of the selection could return incorrect lines, such as including the next line when the selection ended with a line ending.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where progress could be displayed incorrectly when searching or replacing text within selections.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where automatic indentation could treat part of a word as a keyword, such as “<code>then</code>”, if a non-ASCII letter adjoined it.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where the selection after reversing or shuffling lines did not include an empty line moved to the end.</li>
 		</ul>
 	</section>
 </article>

@@ -96,7 +96,7 @@ struct StringLineProcessingTests {
         context = try #require(string.moveLineDown(in: [NSRange(4, 1), NSRange(9, 0), NSRange(13, 1)]))
         #expect(context.strings == ["eee\nbbbb\nccc\nd"])
         #expect(context.ranges == [NSRange(3, 14)])
-        #expect(context.selectedRanges == [NSRange(8, 1), NSRange(13, 0), NSRange(17, 1)])
+        #expect(context.selectedRanges == [NSRange(8, 1), NSRange(13, 0), NSRange(17, 0)])
         
         context = try #require(string.moveLineDown(in: [NSRange(4, 6)]))
         #expect(context.strings == ["d\nbbbb\nccc\n"])
@@ -143,6 +143,24 @@ struct StringLineProcessingTests {
     }
     
     
+    @Test func moveLineDownPassingDocumentEndCaret() throws {
+        
+        // the caret on the trailing empty line moves together with the line when the lines pass it
+        let context = try #require("a\nb\n".moveLineDown(in: [NSRange(0, 3), NSRange(4, 0)]))
+        
+        #expect(context.selectedRanges == [NSRange(0, 0), NSRange(1, 3)])
+    }
+    
+    
+    @Test func moveLineDownWithSeparateBlocks() throws {
+        
+        // each caret moves only with its own block
+        let context = try #require("a\n\n\nb".moveLineDown(in: [NSRange(0, 0), NSRange(3, 0)]))
+        
+        #expect(context.selectedRanges == [NSRange(1, 0), NSRange(5, 0)])
+    }
+    
+    
     @Test func moveLineUpWithCRLF() throws {
         
         // CR+LF is treated as a single Character; offsets must use UTF-16 lengths.
@@ -179,6 +197,13 @@ struct StringLineProcessingTests {
         #expect(context.strings == ["bbbb\r\naa"])
         #expect(context.ranges == [NSRange(0, 8)])
         #expect(context.selectedRanges == [NSRange(6, 1)])
+    }
+    
+    
+    @Test func moveLineDownInLastLineEndingWithPageBreak() {
+        
+        // a form feed is not a line ending, so there is no empty line below to swap with
+        #expect("a\n\u{0C}".moveLineDown(in: [NSRange(0, 3)]) == nil)
     }
     
     
@@ -283,6 +308,16 @@ struct StringLineProcessingTests {
     }
     
     
+    @Test func reverseLinesMovingEmptyLineToEnd() throws {
+        
+        // the selection covers the empty line moved to the end
+        let context = try #require("\na".reverseLines(in: NSRange(0, 2)))
+        
+        #expect(context.strings == ["a\n"])
+        #expect(context.selectedRanges == [NSRange(0, 2)])
+    }
+    
+    
     @Test func reverseLinesWithMixedLineEndings() throws {
         
         let string = "b\r\na\nc"
@@ -369,6 +404,16 @@ struct StringLineProcessingTests {
         #expect(context.strings == [""])
         #expect(context.ranges == [NSRange(12, 4)])
         #expect(context.selectedRanges == nil)
+    }
+    
+    
+    @Test func deleteDuplicateLineWithPageBreaks() throws {
+        
+        // lines with only a form feed must not be deleted twice
+        let string = "a\n\u{0C}\nb\n\u{0C}\nc"
+        let context = try #require(string.deleteDuplicateLine(in: [string.nsRange]))
+        
+        #expect(context.ranges == context.ranges.uniqued)
     }
     
     
@@ -545,6 +590,17 @@ struct StringTrimmingTests {
         
         #expect(trimmed == "a  \n b\n")
         #expect(context.selectedRanges == [editRange])
+    }
+    
+    
+    @Test func trimTrailingWhitespaceKeepingEditingPointAtNextLineStart() throws {
+        
+        // the insertion point at the beginning of the next line does not keep the previous line
+        let string = "a  \nb"
+        let context = try #require(string.trimTrailingWhitespace(ignoringEmptyLines: false, keepingEditingPoint: true, in: [NSRange(location: 4, length: 0)]))
+        let trimmed = try string.trim(ranges: context.ranges)
+        
+        #expect(trimmed == "a\nb")
     }
 }
 

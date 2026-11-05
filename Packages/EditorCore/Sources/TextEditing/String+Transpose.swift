@@ -33,13 +33,14 @@ public extension String {
     ///
     /// The two characters on either side of each insertion point are swapped, except at the end of a line
     /// or the document, where the two preceding characters are swapped instead. Insertion points at the
-    /// document start or where there is nothing to swap are left untouched.
+    /// document start, where there is nothing to swap, or next to a selection are left untouched.
     ///
     /// - Parameter selectedRanges: The selected ranges at which to transpose the characters.
     /// - Returns: An `EditingContext`, or `nil` if there is nothing to transpose.
     func transpose(at selectedRanges: [NSRange]) -> EditingContext? {
         
         let string = self as NSString
+        let selectedIndexes = IndexSet(integersIn: selectedRanges)
         
         var replacementRanges: [NSRange] = []
         var replacementStrings: [String] = []
@@ -78,10 +79,19 @@ public extension String {
                 swap = (NSRange(precedingIndex..<followingIndex), newString, followingIndex)
             }
             
-            // keep the insertion point unchanged if there is nothing to swap,
-            // or if its swap range overlaps that of the adjacent insertion point
-            guard replacementRanges.last.map({ swap.range.upperBound <= $0.lowerBound }) ?? true else {
+            // leave the insertion point if its swap range overlaps a selection
+            guard !selectedIndexes.intersects(integersIn: Range(swap.range)!) else {
                 newSelectedRanges.append(range)
+                continue
+            }
+            
+            // leave the insertion point if its swap range overlaps that of the adjacent insertion point
+            if let adjacentRange = replacementRanges.last, adjacentRange.lowerBound < swap.range.upperBound {
+                // -> The boundary between the swapped characters moves if their lengths differ.
+                let newLocation = (adjacentRange.lowerBound < location)
+                    ? adjacentRange.lowerBound + adjacentRange.upperBound - location
+                    : location
+                newSelectedRanges.append(NSRange(location: newLocation, length: 0))
                 continue
             }
             

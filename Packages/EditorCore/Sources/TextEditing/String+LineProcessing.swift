@@ -102,14 +102,16 @@ public extension String {
         let lineRanges = (self as NSString).lineRanges(for: ranges)
         
         // cannot perform Move Line Down if one of the selections is already in the last line
+        // -> VT and FF at the document end do not make an empty last line.
         guard
             !lineRanges.isEmpty,
-            lineRanges.last!.upperBound != self.length || self.last?.isNewline == true
+            lineRanges.last!.upperBound != self.length || self.utf16.last?.isLineEnding == true
         else { return nil }
         
         let string = NSMutableString(string: self)
         var replacementRange: NSRange?
         var movedSelectedRanges = [NSRange?](repeating: nil, count: ranges.count)
+        var emptyLastLineLocation: Int? = (self.last?.isNewline == true) ? self.length : nil
         
         // swap lines
         for lineRange in lineRanges.reversed() {
@@ -127,33 +129,41 @@ public extension String {
             string.replaceCharacters(in: editRange, with: lowerLineString + lineString)
             replacementRange = replacementRange?.union(editRange) ?? editRange
             
+            // the trailing empty line moves up when the line passes it
+            if lowerLineRange.location == emptyLastLineLocation {
+                emptyLastLineLocation = lineRange.location
+            }
+            
             let offset = (lineString.last?.isNewline == true)
                 ? lowerLineRange.length
                 : lowerLineRange.length + lowerLineString.last!.utf16.count
+            let lineEnd = lineRange.location + offset + lineString.length
             
             // move selected ranges in the line to move
             for (index, selectedRange) in ranges.enumerated() {
-                // keep the caret on the trailing empty line in place
-                if selectedRange == NSRange(location: self.length, length: 0), self.last?.isNewline == true {
-                    movedSelectedRanges[index] = selectedRange
-                    continue
-                }
-                
-                let shiftedRange: NSRange? = if let intersectionRange = selectedRange.intersection(editRange) {
-                    intersectionRange.shifted(by: offset)
-                } else if editRange.touches(selectedRange.location) {
-                    selectedRange.shifted(by: lowerLineRange.length)
+                // -> find in the original line range, as the lines below have already been swapped in `string`
+                let rangeInLine: NSRange? = if selectedRange.isEmpty {
+                    lineRange.contains(selectedRange.location) ? selectedRange : nil
                 } else {
-                    nil
+                    selectedRange.intersection(lineRange)
                 }
                 
-                if let shiftedRange {
-                    movedSelectedRanges[index] = movedSelectedRanges[index]?.union(shiftedRange) ?? shiftedRange
-                }
+                guard let rangeInLine else { continue }
+                
+                // the line loses its line ending when it becomes the last line
+                let shiftedRange = NSRange(min(rangeInLine.lowerBound + offset, lineEnd)..<min(rangeInLine.upperBound + offset, lineEnd))
+                movedSelectedRanges[index] = movedSelectedRanges[index]?.union(shiftedRange) ?? shiftedRange
             }
         }
         
         guard let replacementRange else { return nil }
+        
+        // move the caret on the trailing empty line together with the line
+        if let emptyLastLineLocation {
+            for (index, selectedRange) in ranges.enumerated() where selectedRange == NSRange(location: self.length, length: 0) {
+                movedSelectedRanges[index] = NSRange(location: emptyLastLineLocation, length: 0)
+            }
+        }
         
         let selectedRanges = movedSelectedRanges.compactMap(\.self).uniqued.sorted(using: KeyPathComparator(\.location))
         
@@ -185,6 +195,9 @@ public extension String {
                 replacementRanges.append(string.lineRange(for: lineContentsRange))
             }
         }
+        
+        // -> `lineContentsRanges(for:)` can divide a line into multiple contents at VT or FF
+        replacementRanges = replacementRanges.uniqued
         
         guard !replacementRanges.isEmpty else { return nil }
         
@@ -366,7 +379,10 @@ public extension String {
         
         let newString = predicate(lines)
             .joined(baseLineEnding: baseLineEnding, includingTrailingLineEnding: includesTrailingLineEnding)
-        let length = (newString as NSString).lineContentsRange(for: newString.range).length
+        // -> select the whole string without the trailing line ending, as the last line can be an empty line moved from another position
+        let length = includesTrailingLineEnding
+            ? (newString as NSString).lineContentsRange(for: newString.range).length
+            : newString.length
         let selectedRange = NSRange(location: lineRange.location, length: length)
         
         return EditingContext(strings: [newString], ranges: [lineRange], selectedRanges: [selectedRange])
@@ -391,8 +407,8 @@ public extension String {
         
         let trimmingRanges: [NSRange] = keepingEditingPoint
             ? whitespaceRanges.filter { range in
-                let lineRange = (self as NSString).lineRange(for: range)
-                return editingRanges.allSatisfy { !$0.touches(lineRange) }
+                let lineContentsRange = (self as NSString).lineContentsRange(for: range)
+                return editingRanges.allSatisfy { !$0.touches(lineContentsRange) }
             }
             : whitespaceRanges
         

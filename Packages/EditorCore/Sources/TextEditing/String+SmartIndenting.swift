@@ -170,27 +170,29 @@ public extension String {
     }
     
     
-    /// Returns how many indent levels should be reduced when inserting a closing token.
+    /// Returns the range to delete to reduce the indentation when inserting a closing token.
+    ///
+    /// The range spans the indentation before the insertion point beyond the indent level of the line with the opening token.
     ///
     /// - Parameters:
     ///   - string: The inserted string to evaluate.
     ///   - indentWidth: The number of characters for the indentation.
     ///   - tokens: The tokens to determine indentation behavior.
     ///   - range: The insertion range in the receiver.
-    /// - Returns: The number of indent levels to reduce.
-    func smartOutdentLevel(with string: String, indentWidth: Int, tokens: [IndentToken] = [], in range: NSRange) -> Int {
+    /// - Returns: The range to delete, or `nil` if the indentation should be left as is.
+    func rangeForSmartOutdent(with string: String, indentWidth: Int, tokens: [IndentToken] = [], in range: NSRange) -> NSRange? {
         
         assert(indentWidth > 0)
         
         guard
             let pair = tokens.compactMap(\.characters).first(where: { String($0.end) == string })
-        else { return 0 }
+        else { return nil }
         
         let insertionIndex = String.Index(utf16Offset: range.upperBound, in: self)
         let lineRange = self.lineRange(at: insertionIndex)
         
         // decrease indent level if the line is consists of only whitespace
-        guard self[lineRange].starts(with: /[ \t]+\R?$/) else { return 0 }
+        guard self[lineRange].starts(with: /[ \t]+\R?$/) else { return nil }
         
         // limit the backward search range for performance in a large document
         // -> A matching opening token farther than the margin just leaves the indentation untouched.
@@ -201,13 +203,22 @@ public extension String {
             : self.startIndex
         
         guard let precedingIndex = self.indexOfSymbolPair(endIndex: insertionIndex, pair: pair, until: searchStart)
-        else { return 0 }
+        else { return nil }
         
-        let desiredLevel = self.indentLevel(at: precedingIndex, tabWidth: indentWidth)
-        let currentLevel = self.indentLevel(at: insertionIndex, tabWidth: indentWidth)
-        let levelToReduce = currentLevel - desiredLevel
+        // find the indentation to keep
+        // -> The desired column is on a tab stop, so a tab never steps over it.
+        let desiredColumn = self.indentLevel(at: precedingIndex, tabWidth: indentWidth) * indentWidth
+        var column = 0
+        let indent = self[lineRange.lowerBound..<insertionIndex].prefix { character in
+            guard column < desiredColumn else { return false }
+            
+            column += (character == "\t") ? indentWidth - column % indentWidth : 1
+            return true
+        }
         
-        return max(levelToReduce, 0)
+        guard indent.endIndex < insertionIndex else { return nil }
+        
+        return NSRange(indent.endIndex..<insertionIndex, in: self).union(range)
     }
 }
 
@@ -252,7 +263,7 @@ extension NSString {
         let range = NSRange(max(0, location - token.utf16.count - 1)..<location)
         let options: NSString.CompareOptions = ignoreCase ? .caseInsensitive : []
         let foundRange = if token.first?.isLetter == true {
-            self.range(of: "(?<![A-Za-z0-9_])\(NSRegularExpression.escapedPattern(for: token))\\z", options: options.union(.regularExpression), range: range)
+            self.range(of: "(?<!\\w)\(NSRegularExpression.escapedPattern(for: token))\\z", options: options.union(.regularExpression), range: range)
         } else {
             self.range(of: token, options: options.union([.anchored, .backwards]), range: range)
         }
@@ -275,7 +286,7 @@ extension NSString {
         let range = NSRange(location..<self.length)
         let options: NSString.CompareOptions = ignoreCase ? .caseInsensitive : []
         let foundRange = if token.last?.isLetter == true {
-            self.range(of: "^\(NSRegularExpression.escapedPattern(for: token))(?![A-Za-z0-9_])", options: options.union(.regularExpression), range: range)
+            self.range(of: "^\(NSRegularExpression.escapedPattern(for: token))(?!\\w)", options: options.union(.regularExpression), range: range)
         } else {
             self.range(of: token, options: options.union(.anchored), range: range)
         }

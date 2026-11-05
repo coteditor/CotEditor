@@ -29,9 +29,23 @@ public import StringUtils
 
 public protocol CommentDelimiters: Sendable {
     
-    var inlineDelimiters: [String] { get }
+    var inlineDelimiters: [InlineCommentDelimiter] { get }
     var blockDelimiters: [BlockCommentDelimiter] { get }
     var isEmpty: Bool { get }
+}
+
+
+public struct InlineCommentDelimiter: Equatable, Sendable {
+    
+    public var begin: String
+    public var leadingOnly: Bool
+    
+    
+    public init(begin: String, leadingOnly: Bool = false) {
+        
+        self.begin = begin
+        self.leadingOnly = leadingOnly
+    }
 }
 
 
@@ -100,7 +114,13 @@ public extension String {
         
         let items: [NSRange.InsertionItem] = {
             if types.contains(.inline), let delimiter = delimiters.inlineDelimiters.first {
-                return self.inlineCommentOut(delimiter: delimiter, appendsSpacer: appendsSpacer, ranges: selectedRanges, at: location)
+                // -> a leading-only delimiter makes no comment in the middle of a line
+                let location: CommentOutLocation = switch location {
+                    case .selection where delimiter.leadingOnly: .line
+                    default: location
+                }
+                
+                return self.inlineCommentOut(delimiter: delimiter.begin, appendsSpacer: appendsSpacer, ranges: selectedRanges, at: location)
             }
             if types.contains(.block), let delimiters = delimiters.blockDelimiters.first {
                 return self.blockCommentOut(delimiters: delimiters.pair, appendsSpacer: appendsSpacer, ranges: selectedRanges, at: location)
@@ -129,20 +149,22 @@ public extension String {
         
         guard !delimiters.isEmpty else { return nil }
         
-        let deletionRanges: [NSRange] = delimiters.blockDelimiters.lazy
+        let delimiterRanges: [NSRange] = delimiters.blockDelimiters.lazy
             .compactMap { delimiters in
-                let targetRanges = selectedRanges.map { $0.isEmpty ? self.lineContentsRange(for: $0) : $0 }.uniqued
+                let targetRanges = self.blockCommentTargetRanges(delimiters, for: selectedRanges)
                 return self.rangesOfBlockDelimiters(delimiters, appendsSpacer: appendsSpacer, ranges: targetRanges)
             }.first
         ?? delimiters.inlineDelimiters.lazy
             .compactMap { delimiter in
-                let targetRanges = selectedRanges.map(self.lineContentsRange(for:)).uniqued
-                return self.rangesOfInlineDelimiter(delimiter, appendsSpacer: appendsSpacer, ranges: targetRanges)
+                let targetRanges = self.inlineCommentTargetRanges(delimiter, for: selectedRanges)
+                return self.rangesOfInlineDelimiter(delimiter.begin, appendsSpacer: appendsSpacer, ranges: targetRanges)
             }.first
         ?? []
         
-        guard !deletionRanges.isEmpty else { return nil }
+        guard !delimiterRanges.isEmpty else { return nil }
         
+        // -> the same delimiters can be found in both the line of an insertion point and a selection in that line
+        let deletionRanges = delimiterRanges.merged
         let newStrings = [String](repeating: "", count: deletionRanges.count)
         let newSelectedRanges = selectedRanges.map { $0.removed(ranges: deletionRanges) }
         
@@ -160,24 +182,22 @@ public extension String {
     /// - Returns: `true` if uncommenting is possible.
     func canUncomment(partly: Bool, delimiters: any CommentDelimiters, in selectedRanges: [NSRange]) -> Bool {
         
-        guard !delimiters.isEmpty else { return false }
-        
-        let targetRanges = selectedRanges
-            .map(self.lineContentsRange(for:))
-            .filter({ !$0.isEmpty })
-            .uniqued
-        
-        guard !targetRanges.isEmpty else { return false }
+        guard
+            !delimiters.isEmpty,
+            selectedRanges.contains(where: { !self.lineContentsRange(for: $0).isEmpty })
+        else { return false }
         
         for delimiters in delimiters.blockDelimiters {
-            if let ranges = self.rangesOfBlockDelimiters(delimiters, appendsSpacer: false, ranges: targetRanges) {
-                return partly ? true : (ranges.count == (2 * targetRanges.count))
+            let blockTargetRanges = self.blockCommentTargetRanges(delimiters, for: selectedRanges)
+            if let ranges = self.rangesOfBlockDelimiters(delimiters, appendsSpacer: false, ranges: blockTargetRanges) {
+                return partly ? true : (ranges.count == (2 * blockTargetRanges.count))
             }
         }
         
         for delimiter in delimiters.inlineDelimiters {
-            if let ranges = self.rangesOfInlineDelimiter(delimiter, appendsSpacer: false, ranges: targetRanges) {
-                let lineRanges = targetRanges.flatMap(self.lineContentsRanges(for:)).uniqued
+            let inlineTargetRanges = self.inlineCommentTargetRanges(delimiter, for: selectedRanges)
+            if let ranges = self.rangesOfInlineDelimiter(delimiter.begin, appendsSpacer: false, ranges: inlineTargetRanges) {
+                let lineRanges = inlineTargetRanges.flatMap(self.lineContentsRanges(for:)).uniqued
                 return partly ? true : (ranges.count == lineRanges.count)
             }
         }
@@ -315,6 +335,73 @@ extension String {
     
     // MARK: Private Methods
     
+    /// Returns the ranges where to find inline-style delimiters to uncomment the selections.
+    ///
+    /// A non-empty selection that begins in the middle of a line with a delimiter just after whitespace, other than a leading-only one,
+    /// is used from its beginning to the end of its line contents.
+    /// The other selections are expanded to their line contents.
+    ///
+    /// - Parameters:
+    ///   - delimiter: The inline delimiter to find.
+    ///   - selectedRanges: The current selected ranges in the editor.
+    /// - Returns: Non-empty ranges where to find.
+    private func inlineCommentTargetRanges(_ delimiter: InlineCommentDelimiter, for selectedRanges: [NSRange]) -> [NSRange] {
+        
+        // -> a delimiter just after a non-whitespace character is rarely a comment, such as in a URL
+        let pattern = "[ \t]*(?<=\\s)" + NSRegularExpression.escapedPattern(for: delimiter.begin)
+        
+        return selectedRanges
+            .map { range in
+                let lineRange = self.lineContentsRange(for: range)
+                
+                // -> commenting out the selection inserts the delimiter in the middle of the line,
+                //    while the delimiter after the indent is found from the beginning of the line
+                guard
+                    !delimiter.leadingOnly,
+                    !range.isEmpty,
+                    (self as NSString).range(of: pattern, options: [.regularExpression, .anchored], range: range).location != NSNotFound,
+                    range.lowerBound > (self.rangeOfIndent(at: range.lowerBound)?.upperBound ?? lineRange.lowerBound)
+                else { return lineRange }
+                
+                return NSRange(range.lowerBound..<lineRange.upperBound)
+            }
+            .filter { !$0.isEmpty }
+            .uniqued
+    }
+    
+    
+    /// Returns the ranges where to find block-style delimiters to uncomment the selections.
+    ///
+    /// A non-empty selection that a block fits exactly is used as is.
+    /// The other selections are expanded to their line contents, which are merged in the same way as commenting out lines
+    /// if the merged lines form a block. The line contents overlapping a selection used as is are ignored.
+    ///
+    /// - Parameters:
+    ///   - delimiters: The block delimiters to find.
+    ///   - selectedRanges: The current selected ranges in the editor.
+    /// - Returns: Non-empty ranges where to find.
+    private func blockCommentTargetRanges(_ delimiters: BlockCommentDelimiter, for selectedRanges: [NSRange]) -> [NSRange] {
+        
+        let isBlock = { self.rangesOfBlockDelimiters(delimiters, appendsSpacer: false, ranges: [$0]) != nil }
+        
+        let selections = Dictionary(grouping: selectedRanges) { !$0.isEmpty && isBlock($0) }
+        let exactRanges = selections[true, default: []]
+        let lineRanges = selections[false, default: []]
+            .map(self.lineContentsRange(for:))
+            .filter { !$0.isEmpty }
+            .uniqued
+        let mergedBlockRanges = lineRanges.merged.filter(isBlock)
+        
+        // -> use the line contents that are not merged into a block as they are
+        let mergedBlockIndexes = IndexSet(integersIn: mergedBlockRanges)
+        let exactIndexes = IndexSet(integersIn: exactRanges)
+        let blockRanges = (mergedBlockRanges + lineRanges.filter { !mergedBlockIndexes.intersects(integersIn: Range($0)!) })
+            .filter { !exactIndexes.intersects(integersIn: Range($0)!) }
+        
+        return exactRanges + blockRanges
+    }
+    
+    
     /// Validates whether a candidate block delimiter pair is balanced for nestable delimiters.
     ///
     /// - Parameters:
@@ -361,10 +448,10 @@ extension String {
                 for character in line {
                     switch character {
                         case "\t":
-                            visualOffset += tabWidth
+                            visualOffset += tabWidth - visualOffset % tabWidth
                         case " ":
                             visualOffset += 1
-                        case "\n", "\r", "\u{0085}", "\u{2028}", "\u{2029}":  // line breaks
+                        case "\n", "\r", "\r\n", "\u{0085}", "\u{2028}", "\u{2029}":  // line breaks
                             return nil
                         default:
                             return visualOffset
@@ -382,7 +469,7 @@ extension String {
                 scan: for character in line.string {
                     switch character {
                         case "\t":
-                            visualOffset += tabWidth
+                            visualOffset += tabWidth - visualOffset % tabWidth
                         case " ":
                             visualOffset += 1
                         default:

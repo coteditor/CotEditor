@@ -61,16 +61,17 @@ struct StringFilenameTests {
             "\(base) copy \(count)"
         }
         
-        #expect(format.components(" ") == (" ", 1))
-        #expect(format.components("1") == ("1", 1))
-        #expect(format.components(" 1") == (" 1", 1))
-        #expect(format.components("test") == ("test", 1))
-        #expect(format.components("test 5") == ("test 5", 1))
-        #expect(format.components("test copy") == ("test", 1))
+        #expect(format.components(" ") == (" ", nil))
+        #expect(format.components("1") == ("1", nil))
+        #expect(format.components(" 1") == (" 1", nil))
+        #expect(format.components("test") == ("test", nil))
+        #expect(format.components("test 5") == ("test 5", nil))
+        #expect(format.components("test copy") == ("test", nil))
         #expect(format.components("test copy 5") == ("test", 5))
-        #expect(format.components(" copy") == (" copy", 1))
-        #expect(format.components("  copy") == (" ", 1))
-        #expect(format.components("copy 5") == ("copy 5", 1))
+        #expect(format.components(" copy") == (" copy", nil))
+        #expect(format.components("  copy") == (" ", nil))
+        #expect(format.components("copy 5") == ("copy 5", nil))
+        #expect(format.components("test copy \(Int.max)") == ("test copy \(Int.max)", nil))
         
         #expect(format.filename("test", count: 1) == "test copy")
         #expect(format.filename("test 1", count: 1) == "test 1 copy")
@@ -86,16 +87,16 @@ struct StringFilenameTests {
         } numbered: { base, count in
             "\(base) (kopie \(count))"
         }
-        #expect(format.components(" ") == (" ", 1))
-        #expect(format.components("1") == ("1", 1))
-        #expect(format.components(" 1") == (" 1", 1))
-        #expect(format.components("test") == ("test", 1))
-        #expect(format.components("test 5") == ("test 5", 1))
-        #expect(format.components("test (kopie)") == ("test", 1))
+        #expect(format.components(" ") == (" ", nil))
+        #expect(format.components("1") == ("1", nil))
+        #expect(format.components(" 1") == (" 1", nil))
+        #expect(format.components("test") == ("test", nil))
+        #expect(format.components("test 5") == ("test 5", nil))
+        #expect(format.components("test (kopie)") == ("test", nil))
         #expect(format.components("test (kopie 5)") == ("test", 5))
-        #expect(format.components(" (kopie)") == (" (kopie)", 1))
-        #expect(format.components("  (kopie)") == (" ", 1))
-        #expect(format.components("(kopie 5)") == ("(kopie 5)", 1))
+        #expect(format.components(" (kopie)") == (" (kopie)", nil))
+        #expect(format.components("  (kopie)") == (" ", nil))
+        #expect(format.components("(kopie 5)") == ("(kopie 5)", nil))
         
         #expect(format.filename("test", count: 1) == "test (kopie)")
         #expect(format.filename("test 1", count: 1) == "test 1 (kopie)")
@@ -111,16 +112,16 @@ struct StringFilenameTests {
         } numbered: { base, count in
             "Copia de \(base) \(count)"
         }
-        #expect(format.components(" ") == (" ", 1))
-        #expect(format.components("1") == ("1", 1))
-        #expect(format.components(" 1") == (" 1", 1))
-        #expect(format.components("test") == ("test", 1))
-        #expect(format.components("test 5") == ("test 5", 1))
-        #expect(format.components("Copia de test") == ("test", 1))
+        #expect(format.components(" ") == (" ", nil))
+        #expect(format.components("1") == ("1", nil))
+        #expect(format.components(" 1") == (" 1", nil))
+        #expect(format.components("test") == ("test", nil))
+        #expect(format.components("test 5") == ("test 5", nil))
+        #expect(format.components("Copia de test") == ("test", nil))
         #expect(format.components("Copia de test 5") == ("test", 5))
-        #expect(format.components("Copia de ") == ("Copia de ", 1))
-        #expect(format.components("Copia de  ") == (" ", 1))
-        #expect(format.components("Copia de 5") == ("5", 1))
+        #expect(format.components("Copia de ") == ("Copia de ", nil))
+        #expect(format.components("Copia de  ") == (" ", nil))
+        #expect(format.components("Copia de 5") == ("5", nil))
         
         #expect(format.filename("test", count: 1) == "Copia de test")
         #expect(format.filename("test 1", count: 1) == "Copia de test 1")

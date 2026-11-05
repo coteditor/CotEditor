@@ -64,13 +64,14 @@ struct NSRangeTests {
         #expect(NSRange(1..<1).inserted(items: [.init(string: "abc", location: 0, forward: false)]) == NSRange(4..<4))
         #expect(NSRange(0..<5).inserted(items: [.init(string: "abc", location: 2, forward: true)]) == NSRange(0..<8))
         #expect(NSRange(0..<5).inserted(items: [.init(string: "abc", location: 6, forward: true)]) == NSRange(0..<5))
+        #expect(NSRange(2..<5).inserted(items: [.init(string: "abc", location: 2, forward: false)]) == NSRange(5..<8))
         
         #expect(NSRange(2..<2).inserted(items: [.init(string: "abc", location: 2, forward: true),
                                                 .init(string: "abc", location: 2, forward: false)]) == NSRange(5..<5))
         #expect(NSRange(2..<3).inserted(items: [.init(string: "abc", location: 2, forward: true),
-                                                .init(string: "abc", location: 2, forward: false)]) == NSRange(2..<6))
+                                                .init(string: "abc", location: 2, forward: false)]) == NSRange(8..<9))
         #expect(NSRange(2..<3).inserted(items: [.init(string: "abc", location: 3, forward: true),
-                                                .init(string: "abc", location: 3, forward: false)]) == NSRange(2..<6))
+                                                .init(string: "abc", location: 3, forward: false)]) == NSRange(2..<3))
     }
     
     

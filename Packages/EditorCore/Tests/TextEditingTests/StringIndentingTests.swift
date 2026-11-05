@@ -92,6 +92,14 @@ struct StringIndentationTests {
     }
     
     
+    @Test func standardizeMixedIndentStyle() {
+        
+        // spaces and tabs are converted together by the visual width
+        #expect("  \tfoo".standardizingIndent(to: .space, tabWidth: 4) == "    foo")
+        #expect("\t  foo".standardizingIndent(to: .tab, tabWidth: 2) == "\t\tfoo")
+    }
+    
+    
     // MARK: Text Editing Tests
     
     @Test func indent() {
@@ -118,6 +126,15 @@ struct StringIndentationTests {
         
         #expect(context.strings == ["    aaa\n", "    bbb\n", "    ccc\n", "    ddd"])
         #expect(context.selectedRanges == [NSRange(location: 4, length: 11), NSRange(location: 20, length: 11)])
+    }
+    
+    
+    @Test func indentLastEmptyLineWithMultipleSelections() {
+        
+        // the last empty line is indented also together with other lines
+        let context = "a\n".indent(style: .tab, indentWidth: 4, in: [NSRange(location: 0, length: 0), NSRange(location: 2, length: 0)])
+        
+        #expect(context.strings == ["\ta\n", "\t"])
     }
     
     
@@ -163,36 +180,59 @@ struct StringIndentationTests {
         #expect(caretContext.selectedRanges == [NSRange(location: 0, length: 0)])
     }
     
-    @Test func smartOutdentLevel() {
+    @Test func rangeForSmartOutdent() {
         
         let tokens: [IndentToken] = [IndentToken(begin: "{", end: "}")!]
         
         let string = "{\n    foo\n    "
         let range = NSRange(location: string.utf16.count, length: 0)
         
-        #expect(string.smartOutdentLevel(with: "}", indentWidth: 4, tokens: tokens, in: range) == 1)
-        #expect(string.smartOutdentLevel(with: ")", indentWidth: 4, tokens: tokens, in: range) == 0)
+        #expect(string.rangeForSmartOutdent(with: "}", indentWidth: 4, tokens: tokens, in: range) == NSRange(10..<14))
+        #expect(string.rangeForSmartOutdent(with: ")", indentWidth: 4, tokens: tokens, in: range) == nil)
         
         let noOutdentString = "{\n    foo\n    bar"
         let noOutdentRange = NSRange(location: noOutdentString.utf16.count, length: 0)
         
-        #expect(noOutdentString.smartOutdentLevel(with: "}", indentWidth: 4, tokens: tokens, in: noOutdentRange) == 0)
+        #expect(noOutdentString.rangeForSmartOutdent(with: "}", indentWidth: 4, tokens: tokens, in: noOutdentRange) == nil)
+        
+        // spaces off the tab stops count as a level
+        let misalignedString = "{\n     "
+        let misalignedRange = NSRange(location: misalignedString.utf16.count, length: 0)
+        
+        #expect(misalignedString.rangeForSmartOutdent(with: "}", indentWidth: 4, tokens: tokens, in: misalignedRange) == NSRange(2..<7))
+        
+        // also in the line of the opening symbol
+        let misalignedOpeningString = "  {\n      "
+        let misalignedOpeningRange = NSRange(location: misalignedOpeningString.utf16.count, length: 0)
+        
+        #expect(misalignedOpeningString.rangeForSmartOutdent(with: "}", indentWidth: 4, tokens: tokens, in: misalignedOpeningRange) == NSRange(8..<10))
+        
+        // tabs and spaces are mixed
+        let mixedString = "{\n\t{\n\t\t  "
+        let mixedRange = NSRange(location: mixedString.utf16.count, length: 0)
+        
+        #expect(mixedString.rangeForSmartOutdent(with: "}", indentWidth: 4, tokens: tokens, in: mixedRange) == NSRange(6..<9))
+        
+        // the selection is also replaced
+        let selectionRange = NSRange(location: 3, length: string.utf16.count - 3)
+        
+        #expect(string.rangeForSmartOutdent(with: "}", indentWidth: 4, tokens: tokens, in: selectionRange) == selectionRange)
     }
     
     
-    @Test func smartOutdentLevelSearchRange() {
+    @Test func rangeForSmartOutdentSearchRange() {
         
         let tokens: [IndentToken] = [IndentToken(begin: "{", end: "}")!]
         
         // the opening token within the search margin is matched even in a large text
         let nearString = "{\n" + String(repeating: " ", count: 40_000) + "\n    "
         let nearRange = NSRange(location: nearString.utf16.count, length: 0)
-        #expect(nearString.smartOutdentLevel(with: "}", indentWidth: 4, tokens: tokens, in: nearRange) == 1)
+        #expect(nearString.rangeForSmartOutdent(with: "}", indentWidth: 4, tokens: tokens, in: nearRange)?.length == 4)
         
         // the opening token farther than the search margin is left unmatched
         let farString = "{\n" + String(repeating: " ", count: 60_000) + "\n    "
         let farRange = NSRange(location: farString.utf16.count, length: 0)
-        #expect(farString.smartOutdentLevel(with: "}", indentWidth: 4, tokens: tokens, in: farRange) == 0)
+        #expect(farString.rangeForSmartOutdent(with: "}", indentWidth: 4, tokens: tokens, in: farRange) == nil)
     }
     
     
@@ -257,8 +297,9 @@ struct StringIndentationTests {
         #expect("\tfoo".indentLevel(at: 4, tabWidth: 2) == 1)
         
         // tab-space mix
-        #expect("  \t foo".indentLevel(at: 4, tabWidth: 2) == 2)
+        #expect("  \t foo".indentLevel(at: 4, tabWidth: 2) == 3)
         #expect("   \t foo".indentLevel(at: 4, tabWidth: 2) == 3)
+        #expect("  \tfoo".indentLevel(at: 3, tabWidth: 4) == 1)
         
         // multiline
         #expect("    foo\n  bar".indentLevel(at: 10, tabWidth: 2) == 1)
@@ -275,6 +316,12 @@ struct StringIndentationTests {
         
         // non-empty ranges shift the following columns by the replaced width
         #expect("aa bb cc".softTabs(for: [NSRange(location: 2, length: 3), NSRange(location: 8, length: 0)], tabWidth: 4) == ["  ", " "])
+        
+        // a tab character advances to the next tab stop
+        #expect("a\ta".softTabs(for: [NSRange(location: 3, length: 0)], tabWidth: 4) == ["   "])
+        
+        // the lines joined by replacing the line ending
+        #expect("a\naa".softTabs(for: [NSRange(location: 1, length: 2), NSRange(location: 4, length: 0)], tabWidth: 2) == [" ", " "])
     }
     
     
@@ -290,6 +337,7 @@ struct StringIndentationTests {
         #expect(string.rangeForSoftTabDeletion(in: NSRange(10..<10), tabWidth: 2) == nil)
         #expect(string.rangeForSoftTabDeletion(in: NSRange(11..<11), tabWidth: 2) == NSRange(9..<11))
         #expect(string.rangeForSoftTabDeletion(in: NSRange(16..<16), tabWidth: 2) == nil)
+        #expect(string.rangeForSoftTabDeletion(in: NSRange(5..<5), tabWidth: 4) == NSRange(4..<5))
     }
 }
 

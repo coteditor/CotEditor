@@ -107,6 +107,15 @@ struct StringCommentingTests {
     }
     
     
+    @Test func inlineCommentOutAfterIndentWithSpaceBeforeTab() {
+        
+        // a tab after a space is only as wide as to the next tab stop
+        let text = " \ta\n\ta"
+        
+        #expect(text.inlineCommentOut(delimiter: "//", ranges: [text.nsRange], at: .afterIndent(tabWidth: 4)).map(\.location) == [2, 5])
+    }
+    
+    
     @Test func inlineCommentOutAfterIndentSkipsBlankLine() {
         
         // whitespace-only line is excluded from the minimum indentation calculation,
@@ -116,6 +125,18 @@ struct StringCommentingTests {
             .init(string: "//", location: 0, forward: true),
             .init(string: "//", location: 6, forward: true),
             .init(string: "//", location: 9, forward: true),
+        ])
+    }
+    
+    
+    @Test func inlineCommentOutAfterIndentSkipsBlankLineWithCRLF() {
+        
+        // a blank line ending with CRLF is also excluded from the minimum indentation calculation
+        let text = "  foo\r\n\r\n  bar"
+        #expect(text.inlineCommentOut(delimiter: "//", ranges: [text.nsRange], at: .afterIndent(tabWidth: 2)) == [
+            .init(string: "//", location: 2, forward: true),
+            .init(string: "//", location: 7, forward: true),
+            .init(string: "//", location: 11, forward: true),
         ])
     }
     
@@ -190,7 +211,7 @@ struct StringCommentingTests {
     @Test func commentOutPrefersInline() throws {
         
         let string = "foo"
-        let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [.init(begin: "<-", end: "->")])
+        let delimiters = Delimiters(inlineDelimiters: [.init(begin: "//")], blockDelimiters: [.init(begin: "<-", end: "->")])
         let context = try #require(string.commentOut(types: .both, delimiters: delimiters, appendsSpacer: true, in: [NSRange(0..<3)], at: .selection))
         
         #expect(context.strings == ["// "])
@@ -199,15 +220,55 @@ struct StringCommentingTests {
     }
     
     
+    @Test func commentOutLeadingOnlyDelimiterAtSelection() throws {
+        
+        let string = "foo bar"
+        let delimiters = Delimiters(inlineDelimiters: [.init(begin: "#", leadingOnly: true)])
+        let context = try #require(string.commentOut(types: .inline, delimiters: delimiters, appendsSpacer: false, in: [NSRange(4..<7)], at: .selection))
+        
+        #expect(context.strings == ["#"])
+        #expect(context.ranges == [NSRange(location: 0, length: 0)])
+    }
+    
+    
+    @Test func uncommentLeadingOnlyDelimiterInMiddleOfLine() {
+        
+        let string = "foo #bar"
+        let delimiters = Delimiters(inlineDelimiters: [.init(begin: "#", leadingOnly: true)])
+        
+        #expect(!string.canUncomment(partly: true, delimiters: delimiters, in: [NSRange(4..<8)]))
+    }
+    
+    
+    @Test func uncommentDelimiterJustAfterNonWhitespace() {
+        
+        let string = "http://example.com"
+        let delimiters = Delimiters(inlineDelimiters: [.init(begin: "//")])
+        
+        #expect(!string.canUncomment(partly: true, delimiters: delimiters, in: [NSRange(5..<18)]))
+    }
+    
+    
     @Test func uncommentPrefersBlock() throws {
         
         let string = "<-foo->"
-        let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [.init(begin: "<-", end: "->")])
+        let delimiters = Delimiters(inlineDelimiters: [.init(begin: "//")], blockDelimiters: [.init(begin: "<-", end: "->")])
         let context = try #require(string.uncomment(delimiters: delimiters, appendsSpacer: false, in: [NSRange(0..<7)]))
         
         #expect(context.strings == ["", ""])
         #expect(context.ranges == [NSRange(0..<2), NSRange(5..<7)])
         #expect(context.selectedRanges == [NSRange(0..<3)])
+    }
+    
+    
+    @Test func uncommentInsertionPointAndSelectionInSameLine() throws {
+        
+        // both the insertion point and the selection find the same block delimiters
+        let string = " <-a->"
+        let delimiters = Delimiters(blockDelimiters: [.init(begin: "<-", end: "->")])
+        let context = try #require(string.uncomment(delimiters: delimiters, appendsSpacer: false, in: [NSRange(0..<0), NSRange(1..<6)]))
+        
+        #expect(context.ranges == [NSRange(1..<3), NSRange(4..<6)])
     }
     
     
@@ -331,6 +392,30 @@ struct StringCommentingTests {
     }
     
     
+    @Test func textViewBlockCommentWithPartialSelection() {
+        
+        var editor = Editor(string: "foo", selectedRanges: [NSRange(1..<2)])
+        
+        editor.commentOut(types: .block, at: .line)
+        #expect(editor.string == "<-foo->")
+        #expect(editor.canUncomment(partly: false))
+        editor.uncomment()
+        #expect(editor.string == "foo")
+    }
+    
+    
+    @Test func textViewInlineCommentAtSelection() {
+        
+        var editor = Editor(string: "foo bar", selectedRanges: [NSRange(4..<7)])
+        
+        editor.commentOut(types: .inline, at: .selection)
+        #expect(editor.string == "foo //bar")
+        #expect(editor.canUncomment(partly: true))
+        editor.uncomment()
+        #expect(editor.string == "foo bar")
+    }
+    
+    
     @Test func checkIncompatibility() {
         
         let string = """
@@ -364,7 +449,7 @@ struct StringCommentingTests {
 
 private struct Delimiters: CommentDelimiters {
     
-    var inlineDelimiters: [String] = []
+    var inlineDelimiters: [InlineCommentDelimiter] = []
     var blockDelimiters: [BlockCommentDelimiter] = []
     
     var isEmpty: Bool { self.inlineDelimiters.isEmpty && self.blockDelimiters.isEmpty }
@@ -374,7 +459,7 @@ private struct Delimiters: CommentDelimiters {
 /// TextView mock
 private struct Editor {
     
-    private let delimiters = Delimiters(inlineDelimiters: ["//"], blockDelimiters: [.init(begin: "<-", end: "->")])
+    private let delimiters = Delimiters(inlineDelimiters: [.init(begin: "//")], blockDelimiters: [.init(begin: "<-", end: "->")])
     
     var string: String
     var selectedRanges: [NSRange] = []

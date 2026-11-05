@@ -62,7 +62,15 @@ public extension String {
         let indentLength = indent.length
         
         // create shifted string
-        let lineRanges = string.lineRanges(for: selectedRanges, includingLastEmptyLine: true)
+        var lineRanges = string.lineRanges(for: selectedRanges, includingLastEmptyLine: true)
+        let lastEmptyLineRange = NSRange(location: string.length, length: 0)
+        if selectedRanges.contains(lastEmptyLineRange),
+           string.lineRange(for: lastEmptyLineRange).isEmpty,
+           !lineRanges.contains(lastEmptyLineRange)
+        {
+            // -> `lineRanges(for:includingLastEmptyLine:)` includes the last empty line only for a single insertion point
+            lineRanges.append(lastEmptyLineRange)
+        }
         let newLines = lineRanges.map { indent + string.substring(with: $0) }
         
         // calculate new selection range
@@ -214,7 +222,7 @@ public extension String {
     }
     
     
-    /// Converts leading indentation to the specified style.
+    /// Converts leading indentation to the specified style keeping its visual width.
     ///
     /// - Parameters:
     ///   - indentStyle: The desired indentation style.
@@ -222,20 +230,22 @@ public extension String {
     /// - Returns: A new string with standardized indentation.
     internal func standardizingIndent(to indentStyle: IndentStyle, tabWidth: Int) -> String {
         
-        let spaces = String(repeating: " ", count: tabWidth)
-        
-        let indent: (before: String, after: String) = switch indentStyle {
-            case .space: (before: "\t", after: spaces)
-            case .tab:   (before: spaces, after: "\t")
+        self.replacing(/^[ \t]+/.anchorsMatchLineEndings()) { match in
+            let width = match.output.reduce(into: 0) { width, character in
+                width += (character == "\t") ? tabWidth - width % tabWidth : 1
+            }
+            
+            return switch indentStyle {
+                case .space: String(repeating: " ", count: width)
+                case .tab:   String(repeating: "\t", count: width / tabWidth) + String(repeating: " ", count: width % tabWidth)
+            }
         }
-        
-        let regex = try! Regex("(^|\\G)" + indent.before).anchorsMatchLineEndings()
-        
-        return self.replacing(regex, with: indent.after)
     }
     
     
     /// Computes the visual indent level at the given index by expanding tabs.
+    ///
+    /// Spaces that do not fill a tab width also count as a level.
     ///
     /// - Parameters:
     ///   - index: A character index within the string.
@@ -247,10 +257,11 @@ public extension String {
         
         guard let indentRange = self.rangeOfIndent(at: index) else { return 0 }
         
-        let indent = self[indentRange]
-        let numberOfTabs = indent.count { $0 == "\t" }
+        let width = self[indentRange].reduce(into: 0) { width, character in
+            width += (character == "\t") ? tabWidth - width % tabWidth : 1
+        }
         
-        return numberOfTabs + ((indent.count - numberOfTabs) / tabWidth)
+        return (width + tabWidth - 1) / tabWidth
     }
     
     
@@ -281,6 +292,8 @@ public extension String {
     
     /// Returns the soft-tab deletion range when the insertion point is within leading spaces.
     ///
+    /// The range spans the spaces back to the previous tab stop.
+    ///
     /// - Parameters:
     ///   - range: The current selection.
     ///   - tabWidth: The number of spaces that represent one tab stop.
@@ -297,16 +310,10 @@ public extension String {
         
         guard (self as NSString).range(of: "^ ++$", options: .regularExpression, range: forwardRange).length > 1 else { return nil }
         
-        let column = self.column(of: range.location, tabWidth: tabWidth)
-        let targetLength = tabWidth - (column % tabWidth)
+        let column = forwardRange.length  // only spaces
+        let targetLength = (column % tabWidth == 0) ? tabWidth : column % tabWidth
         
-        guard range.location >= targetLength else { return nil }
-        
-        let targetRange = NSRange(location: range.location - targetLength, length: targetLength)
-        
-        guard (self as NSString).substring(with: targetRange).allSatisfy({ $0 == " " }) else { return nil }
-        
-        return targetRange
+        return NSRange(location: range.location - targetLength, length: targetLength)
     }
     
     
@@ -320,45 +327,29 @@ public extension String {
         
         assert(tabWidth > 0)
         
-        var lastLineStart = -1
-        var shift = 0
+        let string = self as NSString
         
+        // the visual column at `location` after the preceding ranges are replaced
+        var location = 0
+        var column = 0
         return ranges.map { range in
-            let lineStart = (self as NSString).lineStartIndex(at: range.location)
-            if lineStart != lastLineStart {
-                lastLineStart = lineStart
-                shift = 0
+            // -> continue counting if the preceding range joins the lines by replacing the line ending
+            let lineStart = string.lineStartIndex(at: range.location)
+            if lineStart > location {
+                location = lineStart
+                column = 0
             }
             
-            let column = self.column(of: range.location, tabWidth: tabWidth) + shift
-            let length = tabWidth - (((column % tabWidth) + tabWidth) % tabWidth)
-            shift += length - (self.column(of: range.upperBound, tabWidth: tabWidth) -
-                               self.column(of: range.lowerBound, tabWidth: tabWidth))
+            column = (location..<range.location).reduce(into: column) { column, index in
+                column += (string.character(at: index) == 0x9) ? tabWidth - column % tabWidth : 1
+            }
             
-            return length
+            let length = tabWidth - column % tabWidth
+            column += length
+            location = range.upperBound
+            
+            return String(repeating: " ", count: length)
         }
-        .map { String(repeating: " ", count: $0) }
-    }
-    
-    
-    // MARK: Private Methods
-    
-    /// Calculates the visual column from the start of the line to `location` by expanding tab characters.
-    ///
-    /// - Parameters:
-    ///   - location: The base character index as a UTF-16 offset.
-    ///   - tabWidth: The number of spaces that represent one tab stop.
-    /// - Returns: The visual column count from the beginning of the line up to `location`.
-    private func column(of location: Int, tabWidth: Int) -> Int {
-        
-        assert(tabWidth > 0)
-        
-        let index = String.Index(utf16Offset: location, in: self)
-        let lineStartIndex = self.lineStartIndex(at: index)
-        
-        return self[lineStartIndex..<index].lazy
-            .map { $0 == "\t" ? tabWidth : $0.utf16.count }
-            .reduce(0, +)
     }
 }
 

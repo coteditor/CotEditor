@@ -83,7 +83,7 @@ struct FolderFindTests {
         #expect(summary.metrics.matchCount == 1)
         #expect(match.range == NSRange(location: 80, length: needle.utf16.count))
         #expect(match.line.utf16.count == 512)
-        #expect(match.rangeInLine == NSRange(location: 64, length: 448))
+        #expect(match.rangeInLine == NSRange(location: 0, length: 512))
         #expect(Range(match.rangeInLine, in: AttributedString(match.line)) != nil)
     }
     

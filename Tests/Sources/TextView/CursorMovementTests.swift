@@ -50,6 +50,15 @@ import LineEnding
     }
     
     
+    /// Tests that selecting a word at an additional word separator selects the separator itself.
+    @Test func selectWordAtSeparator() {
+        
+        let textView = makeEditorTextView(string: "abc.def")
+        
+        #expect(textView.selectionRange(forProposedRange: NSRange(3..<3), granularity: .selectByWord) == NSRange(3..<4))
+    }
+    
+    
     /// Tests that moving backward word by word with a single cursor stops at additional word separators.
     @Test func moveWordBackwardWithSingleCursor() {
         
@@ -330,6 +339,17 @@ import LineEnding
                 #expect(single.insertionRanges.first == multiple.insertionRanges.first, "location: \(location), sequence: \(sequence)")
             }
         }
+    }
+    
+    
+    /// Tests that extending the selections to the line start with multiple cursors merges the cursor already at the line start into the selection.
+    @Test func moveToBeginningOfLineAndModifySelectionMergesCursors() {
+        
+        let textView = makeEditorTextView(string: "ab\ncd", selectedRange: NSRange(3..<3), insertionLocations: [5])
+        
+        textView.moveToBeginningOfLineAndModifySelection(nil)
+        
+        #expect(textView.insertionRanges == [NSRange(3..<5)])
     }
     
     
@@ -710,6 +730,16 @@ import LineEnding
         
         textView.deleteToEndOfParagraph(nil)
         #expect(textView.string == "abc def\r\nxyz")
+    }
+    
+    
+    /// Tests that transposing with a single insertion point at the end of the document swaps the preceding characters as with multiple insertion points.
+    @Test func transposeAtDocumentEnd() {
+        
+        let textView = makeEditorTextView(string: "a😀", selectedRange: NSRange(3..<3))
+        
+        textView.transpose(nil)
+        #expect(textView.string == "😀a")
     }
 }
 
