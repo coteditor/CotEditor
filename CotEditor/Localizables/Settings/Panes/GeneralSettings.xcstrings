@@ -253,6 +253,12 @@
             "value" : "Choisir une archive de réglages…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग आर्काइव चुनें…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1152,6 +1158,12 @@
             "value" : "Conserver une copie sur iCloud"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud में कॉपी रखें"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1354,6 +1366,12 @@
             "value" : "Chargement des copies des réglages depuis iCloud…"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud से सेटिंग कॉपियाँ लोड हो रही हैं…"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1447,6 +1465,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Gérer les copies sur iCloud…"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud पर कॉपियाँ प्रबंधित करें…"
           }
         },
         "it" : {
@@ -2006,6 +2030,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Aucune copie des réglages sur iCloud"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud में कोई सेटिंग कॉपी नहीं है"
           }
         },
         "it" : {
@@ -2906,6 +2936,12 @@
             "value" : "Importation et exportation des réglages :"
           }
         },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग इंपोर्ट और एक्सपोर्ट :"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3104,6 +3140,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Enregistrez une copie de ces réglages pour pouvoir les importer sur d’autres appareils."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इन सेटिंग की एक कॉपी रखें, ताकि दूसरे डिवाइस उसे इंपोर्ट कर सकें।"
           }
         },
         "it" : {
