@@ -536,7 +536,7 @@ final class DirectoryDocument: NSDocument {
         let documentsToClose = self.documents.filter { document in
             guard let fileURL = document.fileURL else { return false }
             
-            return fileURL == node.file.fileURL || node.file.fileURL.isAncestor(of: fileURL)
+            return fileURL == node.file.fileURL || (node.file.isDirectory && node.file.fileURL.isAncestor(of: fileURL))
         }
         
         var trashedURL: NSURL?

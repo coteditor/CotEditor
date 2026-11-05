@@ -993,7 +993,7 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
         guard
             destNode.file.isWritable,
             !fileURLs.contains(destNode.file.fileURL),
-            !fileURLs.contains(where: { $0.isAncestor(of: destNode.file.fileURL) })
+            !fileURLs.contains(where: { (try? $0.isDirectory) == true && $0.isAncestor(of: destNode.file.fileURL) })
         else { return [] }
         
         if info.draggingSourceOperationMask == .copy { return .copy }

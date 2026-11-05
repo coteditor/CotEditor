@@ -30,6 +30,20 @@ import DocumentFile
 
 struct FileNodeTests {
     
+    @Test func findingNodeSkipsSymbolicLinkToFolder() throws {
+        
+        let urls = try self.makeDirectoryTree()
+        defer { try? FileManager.default.removeItem(at: urls.rootURL) }
+        
+        let linkURL = urls.rootURL.appending(path: "a link", directoryHint: .notDirectory)
+        try FileManager.default.createSymbolicLink(at: linkURL, withDestinationURL: urls.folderURL)
+        
+        let rootNode = FileNode(file: try File(at: urls.rootURL))
+        
+        #expect(rootNode.node(at: urls.leafURL) != nil)
+    }
+    
+    
     @Test func renamingFolderUpdatesCachedDescendantURLs() throws {
         
         let urls = try self.makeDirectoryTree()

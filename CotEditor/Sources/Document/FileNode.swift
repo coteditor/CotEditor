@@ -216,7 +216,7 @@ extension FileNode {
             return node
         }
         
-        guard let child = children.first(where: { $0.file.fileURL.isAncestor(of: fileURL) }) else { return nil }
+        guard let child = children.first(where: { $0.file.isDirectory && $0.file.fileURL.isAncestor(of: fileURL) }) else { return nil }
         
         return child.node(at: fileURL, inCache: inCache)
     }

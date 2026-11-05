@@ -68,6 +68,7 @@
 - [trivial] Fix an issue where automatic indentation could treat part of a word as a keyword, such as “then”, if a non-ASCII letter adjoined it.
 - [trivial] Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.
 - [trivial] Fix an issue where the selection after reversing or shuffling lines did not include an empty line moved to the end.
+- [trivial] Fix an issue in the file browser where moving a symbolic link to a folder to the Trash also closed open documents in that folder.
 
 
 ### Known Issues
