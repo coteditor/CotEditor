@@ -62,6 +62,7 @@
 - Fix an issue where changing the line height setting did not update the lines displayed in open documents.
 - Fix an issue where text was positioned too high in lines with some fonts, such as Raanana.
 - Fix an issue where the AppleScript `line range` property of the selection could return incorrect lines, such as including the next line when the selection ended with a line ending.
+- [trivial] Fix an issue where the app could crash when duplicating an item in the file browser if the system used non-Latin digits.
 - [trivial] Fix an issue where progress could be displayed incorrectly when searching or replacing text within selections.
 - [trivial] Fix an issue where automatic indentation could treat part of a word as a keyword, such as “then”, if a non-ASCII letter adjoined it.
 - [trivial] Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.

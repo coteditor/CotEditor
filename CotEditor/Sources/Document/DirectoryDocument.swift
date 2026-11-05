@@ -510,7 +510,9 @@ final class DirectoryDocument: NSDocument {
             String(localized: "FileCopyFormat.single", defaultValue: "\(base) copy",
                    comment: "duplicated form of filename")
         } numbered: { base, count in
+            // -> `NumberingFormat` reads the number only in ASCII digits without grouping separators.
             String(localized: "FileCopyFormat.numbered", defaultValue: "\(base) copy \(count)",
+                   locale: Locale(identifier: "en_US_POSIX"),
                    comment: "duplicated form of filename with number")
         }
         let duplicatedURL = node.file.fileURL.appendingUniqueNumber(format: format)

@@ -32,6 +32,13 @@ public struct NumberingFormat: Sendable {
     private var numberedFormat: @Sendable (String, Int) -> String
     
     
+    /// Creates a numbering format.
+    ///
+    /// - Note: The `numberedFormat` must write the count in ASCII digits without grouping separators so that the numbered name can be parsed.
+    ///
+    /// - Parameters:
+    ///   - format: The closure that creates the name without a number from the base name.
+    ///   - numberedFormat: The closure that creates the name with a number from the base name and the count.
     public init(_ format: @escaping @Sendable (_ base: String) -> String, numbered numberedFormat: @escaping @Sendable (_ base: String, _ count: Int) -> String) {
         
         self.format = format

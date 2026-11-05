@@ -55,6 +55,30 @@ struct DirectoryDocumentTests {
     }
     
     
+    @Test @MainActor func duplicatingItemNumbersFilenameWithPlainDigits() throws {
+        
+        let rootURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        let fileURL = rootURL.appending(path: "file.txt", directoryHint: .notDirectory)
+        try Data().write(to: fileURL)
+        
+        let document = DirectoryDocument()
+        document.fileURL = rootURL
+        try document.read(from: rootURL, ofType: "public.folder")
+        
+        let rootNode = try #require(document.fileNode)
+        let originalNode = try #require(rootNode.node(at: fileURL))
+        let copyNode = try document.duplicateItem(at: originalNode)
+        let numberedNode = try document.duplicateItem(at: copyNode)
+        let expectedName = numberedNode.file.name.replacing("2", with: "1000")
+        
+        try document.renameItem(at: numberedNode, with: numberedNode.file.name.replacing("2", with: "999"))
+        
+        #expect(try document.duplicateItem(at: numberedNode).file.name == expectedName)
+    }
+    
+    
     // MARK: Private Methods
     
     private struct MoveConflictTreeURLs {
