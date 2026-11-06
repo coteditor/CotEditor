@@ -145,6 +145,8 @@ struct EncodingDetectionTests {
         #expect(Data("fileencoding: utf8".utf8).scanEncodingDeclaration() == .utf8)  // Vim
         #expect(Data("encoding=utf8".utf8).scanEncodingDeclaration() == .utf8)  // Python
         
+        #expect(Data("<?xml version=\"1.0\" encoding=\"utf-16\"?>".utf8).scanEncodingDeclaration() == nil)
+        
         // HTML (1024 bytes)
         let data = Data("<meta charset=\"utf-8\">".utf8)
         #expect((Data(repeating: 0, count: 512) + data).scanEncodingDeclaration() == .utf8)

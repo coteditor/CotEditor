@@ -285,10 +285,15 @@ extension Data {
         else { return nil }
         
         let cfEncoding = CFStringConvertIANACharSetNameToEncoding(encodingName as CFString)
-        if cfEncoding != kCFStringEncodingInvalidId {
-            return String.Encoding(cfEncoding: cfEncoding)
-        }
         
-        return nil
+        guard cfEncoding != kCFStringEncodingInvalidId else { return nil }
+        
+        let encoding = String.Encoding(cfEncoding: cfEncoding)
+        
+        // -> The declaration was found by reading the data as ASCII. An encoding that reads it differently,
+        //    such as UTF-16, cannot be the actual encoding of the data.
+        guard String(data: Data(encodingName.utf8), encoding: encoding) == String(encodingName) else { return nil }
+        
+        return encoding
     }
 }
