@@ -52,15 +52,13 @@ public extension Data {
         
         guard let string = String(data: self, encoding: .ascii) else { return nil }
         
-        let components = string.split(separator: ";")
+        let components = string.split(separator: ";", omittingEmptySubsequences: false)
         
         guard
-            let cfEncoding: CFStringEncoding = if components.count >= 2 {
+            let cfEncoding: CFStringEncoding = if components.count >= 2, !components[1].isEmpty {
                 UInt32(components[1])
-            } else if let ianaCharSetName = components.first {
-                CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
             } else {
-                nil
+                CFStringConvertIANACharSetNameToEncoding(components[0] as CFString)
             },
         cfEncoding != kCFStringEncodingInvalidId
         else { return nil }

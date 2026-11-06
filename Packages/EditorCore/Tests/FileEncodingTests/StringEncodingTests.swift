@@ -78,6 +78,7 @@ struct StringEncodingTests {
         
         
         #expect(Data("x;12345".utf8).decodingXattrEncoding == nil)
+        #expect(Data(";2569".utf8).decodingXattrEncoding == String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.big5_E.rawValue)))
     }
     
     
