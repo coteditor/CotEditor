@@ -157,6 +157,17 @@ struct IncompatibleCharacterTests {
     }
     
     
+    @Test func scanInconsistentComposedCharacterSequences() throws {
+        
+        // -> `rangeOfComposedCharacterSequence(at:)` returns different ranges for the flag and the ZWJ.
+        let string = "a🇯🇵\u{200D}b"
+        let incompatibles = try string.charactersIncompatible(with: .plainShiftJIS)
+        
+        #expect(incompatibles.first?.lowerBound == 1)
+        #expect(incompatibles.last?.upperBound == 6)
+    }
+    
+    
     @Test func scanNormalizationChangingConversion() throws {
         
         let string = "e" + "\u{0301}"  // decomposed é

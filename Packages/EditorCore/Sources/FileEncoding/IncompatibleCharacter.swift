@@ -75,13 +75,10 @@ public extension NSString {
             
             let length = min(chunkLength, self.length - location)
             let rawRange = NSRange(location: location, length: length)
-            let range = self.rangeOfComposedCharacterSequences(for: rawRange)
             
-            // avoid infinite loop
-            guard range.length > 0 else {
-                location = max(location + length, location + 1)
-                continue
-            }
+            // -> Keep the lower bound since the previous chunk has already covered the characters before it.
+            let upperBound = self.rangeOfComposedCharacterSequences(for: rawRange).upperBound
+            let range = NSRange(location..<max(upperBound, rawRange.upperBound))
             
             results.append(contentsOf: try self.findIncompatibles(in: range, encoding: encoding))
             
@@ -104,46 +101,24 @@ private extension NSString {
     /// - Throws: `CancellationError` if the task is cancelled.
     func findIncompatibles(in range: NSRange, encoding: String.Encoding) throws(CancellationError) -> [ValueRange<IncompatibleCharacter>] {
         
-        assert(range == self.rangeOfComposedCharacterSequences(for: range),
-               "Range is expected to be already normalized to composed boundaries.")
-        
         guard !Task.isCancelled else { throw CancellationError() }
         
         let converted = self.roundTrip(in: range, encoding: encoding)
+        let originalChunk = self.substring(with: range)
         
-        if let converted {
-            let originalChunk = self.substring(with: range)
-            
-            // -> Use strict comparison instead of `==` to detect Unicode-normalized conversions.
-            // -> `String.compare(_:options: .literal)` is significantly slower here than
-            //    `NSString.isEqual(to:)`, which provides the same strict equality.
-            guard !(converted as NSString).isEqual(to: originalChunk) else { return [] }
-            
-            if self.isSingleComposedCharacter(in: range) {
-                let incompatible = IncompatibleCharacter(character: originalChunk.first, converted: converted)
-                return [ValueRange(value: incompatible, range: range)]
-            }
-            
-        } else if self.isSingleComposedCharacter(in: range) {
-            let originalChunk = self.substring(with: range)
-            let incompatible = IncompatibleCharacter(character: originalChunk.first, converted: nil)
+        // -> Use strict comparison instead of `==` to detect Unicode-normalized conversions.
+        // -> `String.compare(_:options: .literal)` is significantly slower here than
+        //    `NSString.isEqual(to:)`, which provides the same strict equality.
+        if let converted, (converted as NSString).isEqual(to: originalChunk) { return [] }
+        
+        // split and recurse
+        guard let split = self.composedCharacterBoundary(in: range) else {
+            let incompatible = IncompatibleCharacter(character: originalChunk.first, converted: converted)
             return [ValueRange(value: incompatible, range: range)]
         }
         
-        // split and recurse
-        let (left, right) = self.splitRangeOnComposedBoundary(in: range)
-        
-        var results: [ValueRange<IncompatibleCharacter>] = []
-        results.reserveCapacity(8)
-        
-        if left.length > 0 {
-            results.append(contentsOf: try self.findIncompatibles(in: left, encoding: encoding))
-        }
-        if right.length > 0 {
-            results.append(contentsOf: try self.findIncompatibles(in: right, encoding: encoding))
-        }
-        
-        return results
+        return try self.findIncompatibles(in: NSRange(range.lowerBound..<split), encoding: encoding)
+            + self.findIncompatibles(in: NSRange(split..<range.upperBound), encoding: encoding)
     }
     
     
@@ -189,57 +164,23 @@ private extension NSString {
     }
     
     
-    /// Returns `true` if the given range spans exactly one composed character sequence.
-    ///
-    /// - Parameters:
-    ///   - range: The range to check.
-    /// - Returns: `true` if the range is a single composed character sequence; otherwise, `false`.
-    func isSingleComposedCharacter(in range: NSRange) -> Bool {
-        
-        guard range.length > 0 else { return false }
-        
-        let singleRange = self.rangeOfComposedCharacterSequence(at: range.location)
-        
-        return singleRange == range
-    }
-    
-    
-    /// Splits the given range roughly in half, snapping to composed character boundaries.
+    /// Finds a composed character boundary near the middle of the given range.
     ///
     /// - Parameters:
     ///   - range: The range to split.
-    /// - Returns: A tuple of two ranges, left and right, such that both are on composed boundaries and together span the original range.
-    func splitRangeOnComposedBoundary(in range: NSRange) -> (NSRange, NSRange) {
+    /// - Returns: A location strictly inside the range, or `nil` if the first composed character sequence reaches the end of the range.
+    func composedCharacterBoundary(in range: NSRange) -> Int? {
         
-        // split near middle, then snap to composed character boundary
-        let mid = range.location + (range.length / 2)
+        // workaround the issue that `rangeOfComposedCharacterSequence(at:)` can return different ranges
+        // for the indexes in a sequence (2026-11, macOS 27)
+        // -> Take a location inside the range without expanding it so that the recursion always narrows the range.
+        let first = self.rangeOfComposedCharacterSequence(at: range.location)
         
-        // ensure mid is within bounds
-        let clampedMid = min(max(mid, range.location), range.upperBound - 1)
-        let midRange = self.rangeOfComposedCharacterSequence(at: clampedMid)
+        guard first.upperBound < range.upperBound else { return nil }
         
-        // prefer splitting at the start of the composed character that contains mid
-        var split = midRange.location
+        let middle = self.rangeOfComposedCharacterSequence(at: range.location + range.length / 2)
         
-        // avoid empty left
-        if split <= range.lowerBound {
-            split = midRange.upperBound
-        }
-        
-        // avoid empty right
-        if split >= range.upperBound {
-            split = midRange.lowerBound
-        }
-        
-        // if still degenerate, force a 1-code-unit split (should be rare due to composed normalization).
-        if split <= range.location || split >= range.upperBound {
-            split = range.location + max(1, range.length / 2)
-        }
-        
-        let left = NSRange(location: range.location, length: split - range.location)
-        let right = NSRange(location: split, length: range.upperBound - split)
-        
-        return (self.rangeOfComposedCharacterSequences(for: left),
-                self.rangeOfComposedCharacterSequences(for: right))
+        return [middle.upperBound, middle.lowerBound]
+            .first { range.lowerBound < $0 && $0 < range.upperBound } ?? first.upperBound
     }
 }
