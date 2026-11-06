@@ -95,7 +95,14 @@
 			<li>Fix an issue where changing the line height setting did not update the lines displayed in open documents.</li>
 			<li>Fix an issue where text was positioned too high in lines with some fonts, such as Raanana.</li>
 			<li>Fix an issue where the AppleScript <code>line range</code> property of the selection could return incorrect lines, such as including the next line when the selection ended with a line ending.</li>
+			<li>Fix an issue where the “Refer to encoding declaration in document” option could garble documents that declared UTF-16 but were not saved in UTF-16.</li>
+			<li>Fix an issue where characters that could not be converted were saved as invalid bytes when saving a document in ASCII.</li>
+			<li>Fix an issue where the Warnings inspector displayed an incorrect conversion result for yen signs that the text encoding could not represent.</li>
 			<li><span class="trivial">trivial</span>: Fix an issue where the app could crash when duplicating an item in the file browser if the system used non-Latin digits.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where the app could crash or stop responding when saving a document in certain encodings if the text contained combining marks that could not be converted.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where the app could crash when saving a document if the file’s extended attributes specified an unavailable text encoding.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where non-ASCII characters were lost without warning when saving a document in Non-lossy ASCII.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where the app could crash while the Warnings inspector was open if the document contained certain sequences of emoji or decomposed Hangul characters that the current text encoding could not represent.</li>
 			<li><span class="trivial">trivial</span>: Fix an issue where progress could be displayed incorrectly when searching or replacing text within selections.</li>
 			<li><span class="trivial">trivial</span>: Fix an issue where automatic indentation could treat part of a word as a keyword, such as “<code>then</code>”, if a non-ASCII letter adjoined it.</li>
 			<li><span class="trivial">trivial</span>: Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.</li>
