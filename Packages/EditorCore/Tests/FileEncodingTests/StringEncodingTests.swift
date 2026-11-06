@@ -75,6 +75,9 @@ struct StringEncodingTests {
         #expect(String.Encoding.japaneseEUC.xattrEncodingData == eucJPData)
         #expect(eucJPData.decodingXattrEncoding == .japaneseEUC)
         #expect(Data("euc-jp".utf8).decodingXattrEncoding == .japaneseEUC)
+        
+        
+        #expect(Data("x;12345".utf8).decodingXattrEncoding == nil)
     }
     
     

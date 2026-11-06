@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2025 1024jp
+//  © 2020-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -65,6 +65,8 @@ public extension Data {
         cfEncoding != kCFStringEncodingInvalidId
         else { return nil }
         
-        return String.Encoding(cfEncoding: cfEncoding)
+        let encoding = String.Encoding(cfEncoding: cfEncoding)
+        
+        return String.availableStringEncodings.contains(encoding) ? encoding : nil
     }
 }
