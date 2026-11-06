@@ -146,6 +146,15 @@ struct IncompatibleCharacterTests {
     }
     
     
+    @Test func scanYenSign() throws {
+        
+        let incompatibles = try "¥".charactersIncompatible(with: .ascii)
+        
+        #expect(incompatibles.count == 1)
+        #expect(incompatibles[0].value.converted == "\\")
+    }
+    
+    
     @Test func scanCombiningMarks() throws {
         
         let string = "e" + "\u{0301}"  // decomposed é

@@ -103,7 +103,7 @@ private extension NSString {
         
         guard !Task.isCancelled else { throw CancellationError() }
         
-        let converted = self.roundTrip(in: range, encoding: encoding)
+        var converted = self.roundTrip(in: range, encoding: encoding)
         let originalChunk = self.substring(with: range)
         
         // -> Use strict comparison instead of `==` to detect Unicode-normalized conversions.
@@ -113,7 +113,14 @@ private extension NSString {
         
         // split and recurse
         guard let split = self.composedCharacterBoundary(in: range) else {
+            // -> Saving replaces the yen signs that the encoding cannot represent in advance.
+            if originalChunk.unicodeScalars.contains("¥") {
+                let saved = originalChunk.convertYenSign(for: encoding) as NSString
+                converted = saved.roundTrip(in: NSRange(0..<saved.length), encoding: encoding)
+            }
+            
             let incompatible = IncompatibleCharacter(character: originalChunk.first, converted: converted)
+            
             return [ValueRange(value: incompatible, range: range)]
         }
         
