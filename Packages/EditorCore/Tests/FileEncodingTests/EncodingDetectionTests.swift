@@ -144,6 +144,8 @@ struct EncodingDetectionTests {
         
         #expect(Data("fileencoding: utf8".utf8).scanEncodingDeclaration() == .utf8)  // Vim
         #expect(Data("encoding=utf8".utf8).scanEncodingDeclaration() == .utf8)  // Python
+        #expect(Data("coding:\tutf8".utf8).scanEncodingDeclaration() == .utf8)  // PEP 263
+        #expect(Data("<?xml encoding = \"utf-8\"?>".utf8).scanEncodingDeclaration() == .utf8)  // XML
         
         #expect(Data("<?xml version=\"1.0\" encoding=\"utf-16\"?>".utf8).scanEncodingDeclaration() == nil)
         

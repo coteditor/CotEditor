@@ -289,7 +289,7 @@ extension Data {
             .prefix(2)  // first 2 lines
             .lazy
             .compactMap { line in
-                line.firstMatch(of: /(?:(?:file)?encoding|coding)[:=] *["']? *(?<encoding>[-_.a-zA-Z0-9]+)/)
+                line.firstMatch(of: /(?:(?:file)?encoding|coding)(?::|[ \t]*=)[ \t]*["']?[ \t]*(?<encoding>[-_.a-zA-Z0-9]+)/)
                     .map { EncodingDeclaration(range: $0.range, encodingName: $0.encoding) }
             }
             .first
