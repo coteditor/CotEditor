@@ -111,6 +111,60 @@ public extension String {
         
         "¥".canBeConverted(to: encoding) ? self : self.replacingOccurrences(of: "¥", with: "\\", options: .literal)
     }
+    
+    
+    /// Encodes the string in the given encoding, replacing the characters that the encoding cannot represent.
+    ///
+    /// - Note: Use this method for arbitrary text to workaround the issue that `data(using:allowLossyConversion:)` can raise an exception,
+    ///         return `nil`, or never return, for example, with a combining mark after a composed character (2026-11, macOS 27).
+    ///
+    /// - Parameters:
+    ///   - encoding: The text encoding to convert to.
+    /// - Returns: The encoded data.
+    func lossyData(using encoding: String.Encoding) -> Data {
+        
+        // -> `String` converts these encodings by itself, and the conversion always reaches the end.
+        if encoding.isUnicodeEncoding || encoding == .ascii || encoding == .nonLossyASCII,
+           let data = self.data(using: encoding, allowLossyConversion: true)
+        {
+            return data
+        }
+        
+        let string = self as NSString
+        
+        // workaround the issue that the conversion may never return when the buffer gets full (2026-11, macOS 27)
+        // -> Neither `maximumLengthOfBytes(using:)` nor counting the bytes in advance is enough for all encodings.
+        //    Thus, reserve the size for the longest output.
+        return withUnsafeTemporaryAllocation(of: UInt8.self, capacity: (string.length + 10) * 8) { buffer in
+            // workaround the issue that the conversion can report more bytes than it wrote in some encodings,
+            // which never exceed the maximum length (2026-11, macOS 27)
+            unsafe buffer.prefix(string.maximumLengthOfBytes(using: encoding.rawValue)).initialize(repeating: 0)
+            
+            var data = Data()
+            var options: NSString.EncodingConversionOptions = [.allowLossy, .externalRepresentation]
+            var location = 0
+            
+            // workaround the issue that `getBytes(...)` can stop before the end even with `.allowLossy` (2026-11, macOS 27)
+            while location < string.length {
+                var usedLength = 0
+                var remaining = NSRange()
+                
+                unsafe string.getBytes(buffer.baseAddress, maxLength: buffer.count, usedLength: &usedLength, encoding: encoding.rawValue, options: options, range: NSRange(location..<string.length), remaining: &remaining)
+                unsafe data.append(contentsOf: buffer[..<usedLength])
+                options.remove(.externalRepresentation)
+                
+                if remaining.location > location {
+                    location = remaining.location
+                } else {
+                    // replace the character that cannot be converted at all
+                    data.append(contentsOf: "?".utf8)
+                    location += 1
+                }
+            }
+            
+            return data
+        }
+    }
 }
 
 

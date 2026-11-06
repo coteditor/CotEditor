@@ -430,10 +430,9 @@ extension NSTextView: EditorCounter.Source { }
         let fileEncoding = self.fileEncoding
         
         // get data from string to save
-        // -> .data(using:allowLossyConversion:) never returns nil as long as allowLossyConversion is true.
         var data = self.textStorage.string
             .convertYenSign(for: fileEncoding.encoding)
-            .data(using: fileEncoding.encoding, allowLossyConversion: true)!
+            .lossyData(using: fileEncoding.encoding)
         
         // reset `allowsLossySaving` flag if the compatibility issue is solved
         if self.allowsLossySaving, self.canBeConverted() {

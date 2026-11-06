@@ -64,6 +64,7 @@
 - Fix an issue where text was positioned too high in lines with some fonts, such as Raanana.
 - Fix an issue where the AppleScript `line range` property of the selection could return incorrect lines, such as including the next line when the selection ended with a line ending.
 - [trivial] Fix an issue where the app could crash when duplicating an item in the file browser if the system used non-Latin digits.
+- [trivial] Fix an issue where the app could crash or stop responding when saving a document in certain encodings if the text contained combining marks that could not be converted.
 - [trivial] Fix an issue where the app could crash while the Warnings inspector was open if the document contained certain sequences of emoji or decomposed Hangul characters that the current text encoding could not represent.
 - [trivial] Fix an issue where progress could be displayed incorrectly when searching or replacing text within selections.
 - [trivial] Fix an issue where automatic indentation could treat part of a word as a keyword, such as “then”, if a non-ASCII letter adjoined it.
