@@ -366,7 +366,7 @@ private final class RMateClient {
         
         guard let newline = self.received.firstIndex(of: 0x0A) else { return nil }
         
-        return String(decoding: self.received[..<newline], as: UTF8.self)
+        return String(bytes: self.received[..<newline], encoding: .utf8)
     }
     
     
@@ -394,7 +394,7 @@ private final class RMateClient {
             guard let newline = payload[index...].firstIndex(of: 0x0A) else { return nil }
             
             defer { index = newline + 1 }
-            return String(decoding: payload[index..<newline], as: UTF8.self)
+            return String(bytes: payload[index..<newline], encoding: .utf8)
         }
         
         parsing: while let command = readLine() {

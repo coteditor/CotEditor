@@ -309,7 +309,8 @@ struct RMateTests {
     @Test(arguments: [true, false], [true, false])
     @MainActor func releasingRestoredDocumentKeepsSharedWorkingCopy(savesLocalCopy: Bool, releasesAutosaveFirst: Bool) async throws {
         
-        let (original, autosaved, url, backup) = try await self.makeRestoredDocuments()
+        let (original, autosaved, url) = try await self.makeRestoredDocuments()
+        let backup = try #require(autosaved.autosavedContentsFileURL)
         defer {
             self.remove(original, url: url)
             self.remove(autosaved, url: url)
@@ -349,7 +350,8 @@ struct RMateTests {
     @Test(arguments: [true, false])
     @MainActor func releasingLastDocumentKeepsCopyRequiredForRestoration(savesLocalCopy: Bool) async throws {
         
-        let (original, autosaved, url, backup) = try await self.makeRestoredDocuments()
+        let (original, autosaved, url) = try await self.makeRestoredDocuments()
+        let backup = try #require(autosaved.autosavedContentsFileURL)
         defer {
             self.remove(original, url: url)
             self.remove(autosaved, url: url)
@@ -658,9 +660,9 @@ struct RMateTests {
     
     /// Reopens one remote working copy from its original and autosaved contents.
     ///
-    /// - Returns: The two restored documents, their shared working copy URL, and the autosaved contents URL.
+    /// - Returns: The two restored documents and their shared working copy URL.
     /// - Throws: An error if creating or reopening the files fails.
-    @MainActor private func makeRestoredDocuments() async throws -> (RemoteDocument, RemoteDocument, URL, URL) {
+    @MainActor private func makeRestoredDocuments() async throws -> (RemoteDocument, RemoteDocument, URL) {
         
         let metadata = RMateFile.Metadata(displayName: "host:test.txt", path: "/tmp/test.txt")
         let url = try RemoteEditingController.fileStore.makeBackingFile(data: Data("old".utf8), metadata: metadata)
@@ -670,7 +672,7 @@ struct RMateTests {
         let (original, _) = try await DocumentController.shared.reopenDocument(for: url, withContentsOf: url, display: false)
         let (autosaved, _) = try await DocumentController.shared.reopenDocument(for: url, withContentsOf: backup, display: false)
         
-        return (try #require(original as? RemoteDocument), try #require(autosaved as? RemoteDocument), url, backup)
+        return (try #require(original as? RemoteDocument), try #require(autosaved as? RemoteDocument), url)
     }
     
     

@@ -295,8 +295,8 @@ struct ShortcutTests {
         
         let modifiers: NSEvent.ModifierFlags = [.command, .shift]
         let event = try #require(NSEvent.keyEvent(with: .keyDown, location: .zero, modifierFlags: modifiers,
-                                                timestamp: 0, windowNumber: 0, context: nil, characters: key,
-                                                charactersIgnoringModifiers: key, isARepeat: false, keyCode: 0))
+                                                  timestamp: 0, windowNumber: 0, context: nil, characters: key,
+                                                  charactersIgnoringModifiers: key, isARepeat: false, keyCode: 0))
         let shortcut = try #require(Shortcut(keyDownEvent: event))
         
         #expect(shortcut.keyEquivalent == key)

@@ -28,7 +28,6 @@ opt_in_rules:
   - last_where
   - legacy_multiple
   - let_var_whitespace
-  - local_doc_comment
   - lower_acl_than_parent
   - multiline_function_chains
   - multiline_parameters

@@ -311,7 +311,7 @@ public extension String {
         guard (self as NSString).range(of: "^ ++$", options: .regularExpression, range: forwardRange).length > 1 else { return nil }
         
         let column = forwardRange.length  // only spaces
-        let targetLength = (column % tabWidth == 0) ? tabWidth : column % tabWidth
+        let targetLength = column.isMultiple(of: tabWidth) ? tabWidth : column % tabWidth
         
         return NSRange(location: range.location - targetLength, length: targetLength)
     }
