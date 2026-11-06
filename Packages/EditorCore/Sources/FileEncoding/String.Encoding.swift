@@ -50,10 +50,13 @@ public extension String.Encoding {
     /// - Parameter ianaCharSetName: The IANA charset name of the encoding to find.
     init?(ianaCharSetName: String) {
         
+        let encodings = String.availableStringEncodings.lazy
+        
+        // -> Prefer the exact name because some names differ only in case, such as `Shift_JIS` and `shift_jis`.
         guard
-            let encoding = String.availableStringEncodings.lazy
-                .first(where: { $0.ianaCharSetName?.caseInsensitiveCompare(ianaCharSetName) == .orderedSame })
-            else { return nil }
+            let encoding = encodings.first(where: { $0.ianaCharSetName == ianaCharSetName })
+                ?? encodings.first(where: { $0.ianaCharSetName?.caseInsensitiveCompare(ianaCharSetName) == .orderedSame })
+        else { return nil }
         
         self = encoding
     }

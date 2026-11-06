@@ -33,6 +33,8 @@ struct StringEncodingIANACharSetTests {
     @Test func ianaCharsetName() {
         
         #expect(String.Encoding(ianaCharSetName: "iso-8859-2") == .isoLatin2)
+        #expect(String.Encoding(ianaCharSetName: "shift_jis") == String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)))
+        #expect(String.Encoding(ianaCharSetName: "Shift_JIS") == String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)))
         
         #expect(String.Encoding.utf8.ianaCharSetName == "utf-8")
         #expect(String.Encoding.isoLatin1.ianaCharSetName == "iso-8859-1")
