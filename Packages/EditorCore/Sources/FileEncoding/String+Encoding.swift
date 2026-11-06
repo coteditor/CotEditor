@@ -89,7 +89,7 @@ public extension String {
             case .automatic(let options):
                 (content, encoding) = try String.string(data: data, options: options)
             case .specific(let readingEncoding):
-                guard let string = String(data: data, encoding: readingEncoding) else {
+                guard let string = String(decoding: data, encoding: readingEncoding) else {
                     throw CocoaError(.fileReadInapplicableStringEncoding, userInfo: [NSStringEncodingErrorKey: readingEncoding.rawValue])
                 }
                 content = string
@@ -123,9 +123,10 @@ public extension String {
     /// - Returns: The encoded data.
     func lossyData(using encoding: String.Encoding) -> Data {
         
-        // -> `String` converts these encodings by itself, and the conversion always reaches the end.
-        //    `.ascii` is not one of them to workaround `String` writing 0xFF for the characters out of ASCII (2026-11, macOS 27).
-        if encoding.isUnicodeEncoding || encoding == .nonLossyASCII,
+        // -> `String` converts the Unicode encodings by itself, and the conversion always reaches the end.
+        //    `.ascii` and `.nonLossyASCII` are not here to workaround `String` replacing the characters out of ASCII
+        //    with 0xFF and `?` (2026-11, macOS 27).
+        if encoding.isUnicodeEncoding,
            let data = self.data(using: encoding, allowLossyConversion: true)
         {
             return data
@@ -171,6 +172,26 @@ public extension String {
 
 extension String {
     
+    /// Creates a string by decoding the given data.
+    ///
+    /// - Note: Use this initializer to workaround the issue that `init(data:encoding:)` leaves
+    ///         the escape sequences in Non-lossy ASCII as they are (2026-11, macOS 27).
+    ///
+    /// - Parameters:
+    ///   - data: The data to decode.
+    ///   - encoding: The text encoding of the data.
+    init?(decoding data: Data, encoding: String.Encoding) {
+        
+        if encoding == .nonLossyASCII {
+            guard let string = NSString(data: data, encoding: encoding.rawValue) else { return nil }
+            
+            self = string as String
+        } else {
+            self.init(data: data, encoding: encoding)
+        }
+    }
+    
+    
     /// Reads string from data by detecting the text encoding based on the detection options.
     ///
     /// - Parameters:
@@ -193,7 +214,7 @@ extension String {
         // try interpreting with xattr encoding
         if let xattrEncoding = options.xattrEncoding {
             // just trust xattr encoding if the content is empty
-            if let string = data.isEmpty ? "" : String(data: data, encoding: xattrEncoding) {
+            if let string = data.isEmpty ? "" : String(decoding: data, encoding: xattrEncoding) {
                 return (string, xattrEncoding)
             }
         }
@@ -202,14 +223,14 @@ extension String {
         if options.respectsDeclaration,
            let encoding = data.scanEncodingDeclaration(),
            options.candidates.contains(encoding),
-           let string = String(data: data, encoding: encoding)
+           let string = String(decoding: data, encoding: encoding)
         {
             return (string, encoding)
         }
         
         // try applying encodings in order from the top of the candidates
         for encoding in options.candidates {
-            if let string = String(data: data, encoding: encoding) {
+            if let string = String(decoding: data, encoding: encoding) {
                 return (string, encoding)
             }
         }
