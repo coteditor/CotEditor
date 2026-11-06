@@ -64,6 +64,7 @@
 - Fix an issue where text was positioned too high in lines with some fonts, such as Raanana.
 - Fix an issue where the AppleScript `line range` property of the selection could return incorrect lines, such as including the next line when the selection ended with a line ending.
 - Fix an issue where the “Refer to encoding declaration in document” option could garble documents that declared UTF-16 but were not saved in UTF-16.
+- Fix an issue where characters that could not be converted were saved as invalid bytes when saving a document in ASCII.
 - [trivial] Fix an issue where the app could crash when duplicating an item in the file browser if the system used non-Latin digits.
 - [trivial] Fix an issue where the app could crash or stop responding when saving a document in certain encodings if the text contained combining marks that could not be converted.
 - [trivial] Fix an issue where the app could crash when saving a document if the file’s extended attributes specified an unavailable text encoding.

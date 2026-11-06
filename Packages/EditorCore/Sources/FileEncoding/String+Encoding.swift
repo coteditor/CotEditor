@@ -124,7 +124,8 @@ public extension String {
     func lossyData(using encoding: String.Encoding) -> Data {
         
         // -> `String` converts these encodings by itself, and the conversion always reaches the end.
-        if encoding.isUnicodeEncoding || encoding == .ascii || encoding == .nonLossyASCII,
+        //    `.ascii` is not one of them to workaround `String` writing 0xFF for the characters out of ASCII (2026-11, macOS 27).
+        if encoding.isUnicodeEncoding || encoding == .nonLossyASCII,
            let data = self.data(using: encoding, allowLossyConversion: true)
         {
             return data

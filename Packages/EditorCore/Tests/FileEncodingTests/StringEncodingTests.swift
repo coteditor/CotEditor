@@ -81,19 +81,11 @@ struct StringEncodingTests {
     }
     
     
-    /// Checks the characters that stop `data(using:allowLossyConversion:)`.
-    ///
-    /// - Parameters:
-    ///   - string: The string to encode.
-    ///   - encoding: The text encoding to convert to.
-    ///   - bytes: The expected bytes.
-    @Test(arguments: [
-        ("あ\u{3099}", String.Encoding.shiftJIS, [0x3F]),
-        ("a\u{0301}\u{0301}b", String.Encoding.isoLatin1, [0xE1, 0x3F, 0x62]),
-        ("\u{FFFE}a", String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue)), [0x3F, 0x61]),
-    ] as [(String, String.Encoding, [UInt8])])
-    func lossyData(string: String, encoding: String.Encoding, bytes: [UInt8]) {
+    @Test func lossyData() {
         
-        #expect(string.lossyData(using: encoding) == Data(bytes))
+        #expect("あ\u{3099}".lossyData(using: .shiftJIS) == Data([0x3F]))
+        #expect("a\u{0301}\u{0301}b".lossyData(using: .isoLatin1) == Data([0xE1, 0x3F, 0x62]))
+        #expect("\u{FFFE}a".lossyData(using: String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))) == Data([0x3F, 0x61]))
+        #expect("é".lossyData(using: .ascii) == Data([0x65]))
     }
 }
