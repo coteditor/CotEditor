@@ -251,6 +251,7 @@ extension Data {
     /// - HTML: `charset=`
     ///   - Within the first 1,024 bytes.
     ///   - Uses an IANA charset name.
+    ///   - The value is quoted, or follows `;` in a quoted `content` value (HTML 4).
     /// - XML: `encoding=`
     ///   - Inside the `<?xml ...?>` declaration, which must appear at the beginning of the file.
     ///   - Uses an IANA charset name.
@@ -293,7 +294,7 @@ extension Data {
             }
             .first
         
-        let htmlDeclaration = string.firstMatch(of: /\scharset\s*= *["'](?<encoding>[-_.a-zA-Z0-9]+)["']/.ignoresCase())
+        let htmlDeclaration = string.firstMatch(of: /(?:\scharset\s*= *["']|;\s*charset\s*= *)(?<encoding>[-_.a-zA-Z0-9]+)["']/.ignoresCase())
             .flatMap { match in
                 string[..<match.range.lowerBound].unicodeScalars.allSatisfy(\.isASCII)
                     ? EncodingDeclaration(range: match.range, encodingName: match.encoding)

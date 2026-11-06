@@ -154,6 +154,8 @@ struct EncodingDetectionTests {
         #expect(Data("<meta charset=\"utf-8\" 犬".utf8).scanEncodingDeclaration() == .utf8)
         #expect(Data("犬<meta charset=\"utf-8\"".utf8).scanEncodingDeclaration() == nil)
         #expect(Data("<meta charset=utf-8".utf8).scanEncodingDeclaration() == nil)
+        #expect(Data("<meta content=\"text/html; charset=EUC-JP\">".utf8).scanEncodingDeclaration() == .japaneseEUC)
+        #expect(Data("text/html; charset=utf-8".utf8).scanEncodingDeclaration() == nil)
         
         #expect(Data("<meta charset=\"utf-8\">\n# coding: shift-jis".utf8).scanEncodingDeclaration() == .utf8)
         #expect(Data("# coding: shift-jis\n<meta charset=\"utf-8\">".utf8).scanEncodingDeclaration() == .shiftJIS)
