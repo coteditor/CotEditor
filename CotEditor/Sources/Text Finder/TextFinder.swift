@@ -68,6 +68,17 @@ struct FindMatchesCache {
         var mode: TextFind.Mode
         var inSelection: Bool
         var selectedRanges: [NSRange]
+        
+        
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            
+            // -> Use literal comparison because the regular expression matches canonically equivalent strings differently.
+            lhs.textVersion == rhs.textVersion &&
+            lhs.findString.compare(rhs.findString, options: .literal) == .orderedSame &&
+            lhs.mode == rhs.mode &&
+            lhs.inSelection == rhs.inSelection &&
+            lhs.selectedRanges == rhs.selectedRanges
+        }
     }
     
     

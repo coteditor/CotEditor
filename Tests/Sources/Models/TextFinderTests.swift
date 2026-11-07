@@ -148,6 +148,19 @@ import Testing
     }
     
     
+    /// Distinguishes canonically equivalent find strings because the regular expression matches them differently.
+    @Test func findOptionsDistinguishEquivalentFindStrings() {
+        
+        let options = FindMatchesCache.FindOptions(textVersion: 0, findString: "\u{00E9}",
+                                                   mode: .regularExpression(options: [], unescapesReplacement: false),
+                                                   inSelection: false, selectedRanges: [])
+        var equivalentOptions = options
+        equivalentOptions.findString = "e\u{0301}"
+        
+        #expect(options != equivalentOptions)
+    }
+    
+    
     @Test func findResultMatchMetadata() async throws {
         
         let defaults = UserDefaults.standard
