@@ -80,7 +80,8 @@ public struct TextFind: Equatable, Sendable {
                 case .textual(let options, let isFullWord):
                     assert(!options.contains(.backwards))
                     self.regex = nil
-                    self.fullWordChecker = isFullWord ? try! NSRegularExpression(pattern: #"^\b.+\b$"#) : nil
+                    // -> An end of the find string that is not a word character needs no word boundary.
+                    self.fullWordChecker = isFullWord ? try! NSRegularExpression(pattern: #"^(?:\b|(?=\W))[\s\S]+(?:\b|(?<=\W))$"#) : nil
                     
                 case .regularExpression(let options, _):
                     do {
@@ -263,10 +264,13 @@ public struct TextFind: Equatable, Sendable {
         let selectedRange = self.selectedRanges.first!
         
         switch self.mode {
-            case .textual(let options, _):
-                let matchedRange = (string as NSString).range(of: self.findString, options: options, range: selectedRange)
-                guard matchedRange.location != NSNotFound else { return nil }
-                guard self.checkFullWord(in: matchedRange) else { return nil }
+            case .textual(let options, let fullWord):
+                var firstRange: NSRange?
+                self.enumerateTextualMatches(in: selectedRange, options: options, fullWord: fullWord) { range, _, stop in
+                    firstRange = range
+                    stop = true
+                }
+                guard let matchedRange = firstRange else { return nil }
                 
                 return ReplacementItem(value: self.normalizeLineEndings(in: replacementString), range: matchedRange)
                 
@@ -460,7 +464,7 @@ public struct TextFind: Equatable, Sendable {
         let string = self.string as NSString
         var searchRange = range
         
-        while searchRange.location != NSNotFound {
+        while searchRange.location < range.upperBound {
             guard !Task.isCancelled else { return }
             
             searchRange.length = range.upperBound - searchRange.location
@@ -468,9 +472,13 @@ public struct TextFind: Equatable, Sendable {
             
             guard !foundRange.isNotFound else { break }
             
-            searchRange.location = foundRange.upperBound
+            guard self.checkFullWord(in: foundRange) else {
+                // -> The next candidate can overlap the rejected one.
+                searchRange.location = foundRange.location + 1
+                continue
+            }
             
-            guard self.checkFullWord(in: foundRange) else { continue }
+            searchRange.location = foundRange.upperBound
             
             var stop = false
             block(foundRange, nil, &stop)

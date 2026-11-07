@@ -301,6 +301,55 @@ struct TextFindTests {
     }
     
     
+    /// Keeps searching from inside a candidate that is not a whole word.
+    ///
+    /// - Throws: A find pattern or cancellation error.
+    @Test func fullWordOverlappingRejectedCandidate() throws {
+        
+        let pattern = try TextFind.Pattern(findString: "1.1", mode: .textual(options: [], fullWord: true))
+        let textFind = TextFind(for: "21.1.1", pattern: pattern)
+        
+        #expect(try textFind.matches == [NSRange(3..<6)])
+    }
+    
+    
+    /// Finds a whole word including a line ending.
+    ///
+    /// - Throws: A find pattern or cancellation error.
+    @Test func fullWordIncludingLineEnding() throws {
+        
+        let pattern = try TextFind.Pattern(findString: "a\nb", mode: .textual(options: [], fullWord: true))
+        let textFind = TextFind(for: "x a\nb y", pattern: pattern)
+        
+        #expect(try textFind.matches == [NSRange(2..<5)])
+    }
+    
+    
+    /// Requires a word boundary only at the ends that are word characters.
+    ///
+    /// - Throws: A find pattern or cancellation error.
+    @Test func fullWordWithSymbolAtEnds() throws {
+        
+        var pattern = try TextFind.Pattern(findString: "c++", mode: .textual(options: [], fullWord: true))
+        #expect(try TextFind(for: "c++ abc++", pattern: pattern).matches == [NSRange(0..<3)])
+        
+        pattern = try TextFind.Pattern(findString: "#tag", mode: .textual(options: [], fullWord: true))
+        #expect(try TextFind(for: "a #tag #tags", pattern: pattern).matches == [NSRange(2..<6)])
+    }
+    
+    
+    /// Replaces the first whole word in the selection.
+    ///
+    /// - Throws: A find pattern or selection error.
+    @Test func replaceFullWordInSelection() throws {
+        
+        let pattern = try TextFind.Pattern(findString: "cat", mode: .textual(options: [], fullWord: true))
+        let textFind = try TextFind(for: "cats cat", pattern: pattern, selectedRanges: [NSRange(0..<8)])
+        
+        #expect(textFind.replace(with: "dog") == .init(value: "dog", range: NSRange(5..<8)))
+    }
+    
+    
     @Test func unescapedRegexFind() throws {
         
         let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: true)
