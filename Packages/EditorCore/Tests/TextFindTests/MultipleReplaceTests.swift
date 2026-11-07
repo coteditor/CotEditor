@@ -204,6 +204,22 @@ struct MultipleReplaceTests {
     }
     
     
+    /// Treats line endings in find strings as the line ending of the document.
+    ///
+    /// - Throws: A cancellation error.
+    @Test func lineEndingInFindString() throws {
+        
+        let definition = MultipleReplace(replacements: [.init(findString: "a\nb", replacementString: "Z")])
+        let string = "a\r\nb"
+        
+        let result = try definition.replace(string: string, ranges: [NSRange(0..<0)], inSelection: false, lineEnding: .crlf)
+        let ranges = try definition.find(string: string, ranges: [NSRange(0..<0)], inSelection: false, lineEnding: .crlf)
+        
+        #expect(result.string == "Z")
+        #expect(ranges == [NSRange(0..<4)])
+    }
+    
+    
     @Test func find() throws {
         
         let definition = MultipleReplace(replacements: [

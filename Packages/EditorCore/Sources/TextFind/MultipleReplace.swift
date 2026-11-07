@@ -151,17 +151,18 @@ extension MultipleReplace {
     ///   - string: The string to find in.
     ///   - ranges: The ranges of selection in the text view.
     ///   - inSelection: Whether find only in selection.
+    ///   - lineEnding: The line ending to use in find strings, or `nil` to preserve their line endings.
     ///   - progress: The progress object to observe cancellation by the user and notify the find progress.
     /// - Returns: The found ranges. This method will return once all search is finished.
     /// - Throws: `CancellationError` if the search is cancelled by the user or the task.
-    public func find(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws(CancellationError) -> [NSRange] {
+    public func find(string: String, ranges: [NSRange], inSelection: Bool, lineEnding: LineEnding? = nil, progress: FindProgress? = nil) throws(CancellationError) -> [NSRange] {
         
         var result: [NSRange] = []
         
         for replacement in self.replacements where replacement.isEnabled {
             // -> Invalid replacement rules will just be ignored.
             guard
-                let pattern = try? replacement.pattern(settings: self.settings),
+                let pattern = try? replacement.pattern(settings: self.settings, lineEnding: lineEnding),
                 let textFind = try? TextFind(for: string, pattern: pattern, inSelection: inSelection, selectedRanges: ranges)
             else { continue }
             
@@ -193,7 +194,7 @@ extension MultipleReplace {
     ///   - string: The string to replace.
     ///   - ranges: The ranges of selection in the text view.
     ///   - inSelection: Whether replace only in selection.
-    ///   - lineEnding: The line ending to use in inserted text, or `nil` to preserve its line endings.
+    ///   - lineEnding: The line ending to use in find strings and inserted text, or `nil` to preserve their line endings.
     ///   - progress: The progress object to observe cancellation by the user and notify the replacement progress.
     /// - Returns: The result of the replacement. This method will return once all replacement is finished.
     /// - Throws: `CancellationError` if the replacement is cancelled by the user or the task.
@@ -206,7 +207,7 @@ extension MultipleReplace {
             
             // -> Invalid replacement rules will just be ignored.
             guard
-                let pattern = try? replacement.pattern(settings: self.settings),
+                let pattern = try? replacement.pattern(settings: self.settings, lineEnding: lineEnding),
                 let textFind = try? TextFind(for: result.string, pattern: pattern, lineEnding: lineEnding, inSelection: inSelection, selectedRanges: findRanges)
             else { continue }
             
@@ -249,12 +250,16 @@ private extension MultipleReplace.Replacement {
     
     /// Creates a compiled text find pattern with Replacement.
     ///
-    /// - Parameter settings: The replacement settings to obtain the pattern.
+    /// - Parameters:
+    ///   - settings: The replacement settings to obtain the pattern.
+    ///   - lineEnding: The line ending to use in the find string, or `nil` to preserve its line endings.
     /// - Returns: The compiled text find pattern.
     /// - Throws: `TextFind.Error` if the find string is empty or an invalid regular expression.
-    func pattern(settings: MultipleReplace.Settings) throws(TextFind.Error) -> TextFind.Pattern {
+    func pattern(settings: MultipleReplace.Settings, lineEnding: LineEnding? = nil) throws(TextFind.Error) -> TextFind.Pattern {
         
-        try TextFind.Pattern(findString: self.findString, mode: self.mode(settings: settings))
+        let findString = lineEnding.map { self.findString.replacingLineEndings(with: $0) } ?? self.findString
+        
+        return try TextFind.Pattern(findString: findString, mode: self.mode(settings: settings))
     }
     
     

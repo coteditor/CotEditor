@@ -44,11 +44,12 @@ extension NSTextView {
         self.isEditable = false
         defer { self.isEditable = wasEditable }
         
+        let lineEnding = (self as? EditorTextView)?.lineEnding
         let string = self.string.immutable
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         let progress = FindProgress(scope: 0..<definition.replacements.endIndex)
         async let foundRanges = { @concurrent () async throws(CancellationError) -> [NSRange] in
-            try definition.find(string: string, ranges: selectedRanges, inSelection: inSelection, progress: progress)
+            try definition.find(string: string, ranges: selectedRanges, inSelection: inSelection, lineEnding: lineEnding, progress: progress)
                 .sorted(using: KeyPathComparator(\.location))
         }()
         
