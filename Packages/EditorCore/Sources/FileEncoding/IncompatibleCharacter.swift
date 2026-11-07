@@ -179,7 +179,7 @@ private extension NSString {
     func composedCharacterBoundary(in range: NSRange) -> Int? {
         
         // workaround the issue that `rangeOfComposedCharacterSequence(at:)` can return different ranges
-        // for the indexes in a sequence (2026-11, macOS 27)
+        // for the indexes in a sequence (2026-11, macOS 27.2, FB25468506)
         // -> Take a location inside the range without expanding it so that the recursion always narrows the range.
         let first = self.rangeOfComposedCharacterSequence(at: range.location)
         

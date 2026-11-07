@@ -116,16 +116,16 @@ public extension String {
     /// Encodes the string in the given encoding, replacing the characters that the encoding cannot represent.
     ///
     /// - Note: Use this method for arbitrary text to workaround the issue that `data(using:allowLossyConversion:)` can raise an exception,
-    ///         return `nil`, or never return, for example, with a combining mark after a composed character (2026-11, macOS 27).
+    ///         return `nil`, or never return, for example, with a combining mark that cannot be composed (2026-11, macOS 27.2, FB25468311 and FB25468345).
     ///
     /// - Parameters:
     ///   - encoding: The text encoding to convert to.
     /// - Returns: The encoded data.
     func lossyData(using encoding: String.Encoding) -> Data {
         
-        // -> `String` converts the Unicode encodings by itself, and the conversion always reaches the end.
+        // -> The Unicode encodings can represent all characters, thus the conversion always reaches the end.
         //    `.ascii` and `.nonLossyASCII` are not here to workaround `String` replacing the characters out of ASCII
-        //    with 0xFF and `?` (2026-11, macOS 27).
+        //    with 0xFF and `?` (2026-11, macOS 27.2, FB25468366 and FB25468642).
         if encoding.isUnicodeEncoding,
            let data = self.data(using: encoding, allowLossyConversion: true)
         {
@@ -134,19 +134,19 @@ public extension String {
         
         let string = self as NSString
         
-        // workaround the issue that the conversion may never return when the buffer gets full (2026-11, macOS 27)
+        // workaround the issue that the conversion may never return when the buffer gets full (2026-11, macOS 27.2, FB25468345)
         // -> Neither `maximumLengthOfBytes(using:)` nor counting the bytes in advance is enough for all encodings.
         //    Thus, reserve the size for the longest output.
         return withUnsafeTemporaryAllocation(of: UInt8.self, capacity: (string.length + 10) * 8) { buffer in
-            // workaround the issue that the conversion can report more bytes than it wrote in some encodings,
-            // which never exceed the maximum length (2026-11, macOS 27)
+            // workaround the issue that the conversion in Simplified Chinese (Mac OS) can report more bytes than it wrote,
+            // which never exceed the maximum length (2026-11, macOS 27.2, FB25468488)
             unsafe buffer.prefix(string.maximumLengthOfBytes(using: encoding.rawValue)).initialize(repeating: 0)
             
             var data = Data()
             var options: NSString.EncodingConversionOptions = [.allowLossy, .externalRepresentation]
             var location = 0
             
-            // workaround the issue that `getBytes(...)` can stop before the end even with `.allowLossy` (2026-11, macOS 27)
+            // workaround the issue that `getBytes(...)` can stop before the end even with `.allowLossy` (2026-11, macOS 27.2, FB25468311)
             while location < string.length {
                 var usedLength = 0
                 var remaining = NSRange()
@@ -175,7 +175,7 @@ extension String {
     /// Creates a string by decoding the given data.
     ///
     /// - Note: Use this initializer to workaround the issue that `init(data:encoding:)` leaves
-    ///         the escape sequences in Non-lossy ASCII as they are (2026-11, macOS 27).
+    ///         the escape sequences in Non-lossy ASCII as they are (2026-11, macOS 27.2, FB25468642).
     ///
     /// - Parameters:
     ///   - data: The data to decode.
