@@ -42,13 +42,13 @@
 		<ul>
 			<li><p><em>Entire line:</em> Compare entire lines.</p>
 	
-			<li><p><em>Column:</em> Treat lines as CSV (character-separated values) format and use the specific column for comparison. Whitespace around the separator is ignored.</p>
+			<li><p><em>Column:</em> Treat lines as CSV (character-separated values) format and use a specific column for comparison. Whitespace around the separator is ignored.</p>
 				<table>
 					<thead>
 						<tr><th>Option</th><th>Description</th></tr>
 					</thead>
 					<tbody>
-						<tr><td>Delimiter</td><td><p>The character separating each column. You can use escape sequences such as <code>\t</code> for the tabular character. A comma is used when this field is blank.</p></td></tr>
+						<tr><td>Delimiter</td><td><p>The character separating each column. You can use escape sequences such as <code>\t</code> for the tab character. A comma is used when this field is blank.</p></td></tr>
 						<tr><td>Position</td><td><p>The number of the column to use as the sort key. The column count starts at 1.</p></td></tr>
 					</tbody>
 				</table>
@@ -69,7 +69,7 @@
 		</ul>
 	</li>
 	
-	<li><p><em>Sort options:</em> Configure the behaviors on comparing sort keys.</p>
+	<li><p><em>Sort options:</em> Configure the behavior when comparing sort keys.</p>
 		
 		<table>
 			<thead>
@@ -78,7 +78,7 @@
 			<tbody>
 				<tr><td>Ignore case</td><td><p>Ignore character case on sort.</p></td></tr>
 				<tr><td>Respect language rules</td><td><p>Fuzzily sort respecting the current language setting. For example, ignoring trivial differences such as character widths or diacritical marks.</p></td></tr>
-				<tr><td>Treat numbers as numeric values</td><td><p>Numbers within the sort keys are compared as numeric value. (for example, file12 &gt; file5)</p></td></tr>
+				<tr><td>Treat numbers as numeric values</td><td><p>Numbers within the sort keys are compared as numeric values (for example, file12 &gt; file5).</p></td></tr>
 				<tr><td>Keep the first line at the top</td><td><p>Exclude the first line from sorting.</p></td></tr>
 				<tr><td>In descending order</td><td><p>Sort results in descending order.</p></td></tr>
 			</tbody>

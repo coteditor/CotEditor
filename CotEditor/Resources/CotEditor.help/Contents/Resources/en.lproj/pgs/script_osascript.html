@@ -17,7 +17,7 @@
 
 <p>You can automate many tasks such as creating and editing documents, working with selections, and controlling windows using AppleScript or JavaScript for Automation (JXA). This page describes the scripting interface provided by CotEditor, focusing on the available classes and commands.</p>
 
-<p>CotEditor extends the standard system scripting terms with its own classes and commands, allowing scripts to interact more directly with CotEditor documents and features. You can also use script hooks to automatically run scripts in response to specific events. For details, see <a href="script_hook.html">Run script on specific events</a>.</p>
+<p>CotEditor extends the standard system scripting terms with its own classes and commands, allowing scripts to interact more directly with CotEditor documents and features. You can also use script hooks to automatically run scripts in response to specific events. For details, see <a href="script_hook.html">Run scripts on specific events</a>.</p>
 
 <p>You can also view CotEditor’s scripting interface in Script Editor’s library. To open the scripting dictionary:</p>
 
@@ -60,7 +60,7 @@
 		The IANA charset name of the document. (text, such as <code>Shift_JIS</code> or <code>EUC-JP</code>)</p></li>
 
 		<li><p><em><code>has BOM</code>:</em>
-		Has the text encoding a BOM (byte order mark)? (boolean) <span class="added">new on CotEditor 4.1</span></p></li>
+		Does the text encoding have a BOM (byte order mark)? (boolean) <span class="added">new on CotEditor 4.1</span></p></li>
 
 		<li><p><em><code>line ending</code>:</em>
 		The line ending code of the document. (<code>CR</code> <span class="separator">/</span> <code>LF</code> <span class="separator">/</span> <code>CRLF</code> <span class="separator">/</span> <code>NEL</code> <span class="separator">/</span> <code>LS</code> <span class="separator">/</span> <code>PS</code>)</p></li>
@@ -69,7 +69,7 @@
 		The width of a tab character in space equivalents. (int) <span class="added">new on CotEditor 2.1</span></p></li>
 
 		<li><p><em><code>expands tab</code>:</em>
-		Are tab characters expanded to space? (boolean) <span class="added">new on CotEditor 3.1.2</span></p></li>
+		Are tab characters expanded to spaces? (boolean) <span class="added">new on CotEditor 3.1.2</span></p></li>
 
 		<li><p><em><code>wrap lines</code>:</em>
 		Whether to wrap lines or not. (boolean)</p></li>
@@ -140,7 +140,7 @@ end tell</code></pre>
 		The range of characters in the selection. The format is '{location, length}'.</p></li>
 
 		<li><p><em><code>line range</code>:</em>
-		The range of lines in the selection. The format is '{location, length}'. (<code>length</code> can be omitted, one line is selected even if it were <code>0</code> or <code>1</code>)</p></li>
+		The range of lines in the selection. The format is '{location, length}'. (<code>length</code> can be omitted; one line is selected even if it is <code>0</code> or <code>1</code>)</p></li>
 	</ul></dd>
 </dl>
 
@@ -201,10 +201,10 @@ end tell</code></pre>
 	<dt>Parameters</dt>
 	<dd><ul>
 		<li><p><em>[<code>title</code> (boolean)]:</em>
-		Should the script name appear with? <span class="added">(added on CotEditor 5.0.7)</span></p></li>
+		Should the script name appear with it? <span class="added">(added on CotEditor 5.0.7)</span></p></li>
 
 		<li><p><em>[<code>timestamp</code> (boolean)]:</em>
-		Should the timestamp appear with? <span class="added">(added on CotEditor 5.0.7)</span></p></li>
+		Should the timestamp appear with it? <span class="added">(added on CotEditor 5.0.7)</span></p></li>
 	</ul></dd>
 	
 	<dt>Availability</dt>
@@ -261,14 +261,14 @@ Returns <code>true</code> if a match is found; otherwise, returns <code>false</c
 
 <figure>
 	<pre class="source"><code class="AppleScript">find front document for &quot;Apple&quot; with ignore case</code></pre>
-	<figcaption>Searches “Apple” ignoring case, starting from the current selection to the end of the current document, then returns the result.</figcaption>
+	<figcaption>Searches for “Apple,” ignoring case, starting from the current selection to the end of the current document, then returns the result.</figcaption>
 </figure>
 
 
 <h3>Discussion</h3>
 
-<p>The search starts from the current selection (insertion point). For example, when not using the <code>wrap</code> or <code>backwards</code> options and when there are no matching text after the current selection, then <code>false</code> is returned.</p>
-<p>The regular expression search cannot search backwards. If both options were specified at the same time, <code>RE</code> takes precedence and <code>backwards</code> is ignored.</p>
+<p>The search starts from the current selection (insertion point). For example, when not using the <code>wrap</code> or <code>backwards</code> options and when there is no matching text after the current selection, then <code>false</code> is returned.</p>
+<p>The regular expression search cannot search backwards. If both options are specified at the same time, <code>RE</code> takes precedence and <code>backwards</code> is ignored.</p>
 </section>
 
 
@@ -276,7 +276,7 @@ Returns <code>true</code> if a match is found; otherwise, returns <code>false</c
 <p class="type">command</p>
 <h2><code>replace</code></h2>
 
-<p>Searches for text and replaces them with other text.
+<p>Searches for text and replaces it with other text.
 Returns the number of replacements, if any, otherwise returns <code>0</code>.</p>
 
 <dl>
@@ -316,15 +316,15 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <figure>
 	<pre class="source"><code class="AppleScript">replace front document for &quot;Apple&quot; to &quot;Orange&quot; with all and ignore case</code></pre>
-	<figcaption>Searches “Apple” with ignoring case in the current document, replaces the matching text with “Orange” and returns the number of replacements.</figcaption>
+	<figcaption>Searches for “Apple,” ignoring case in the current document, replaces the matching text with “Orange” and returns the number of replacements.</figcaption>
 </figure>
 
 
 <h3>Discussion</h3>
 
 <p>As in the case of the <code>find</code> command, the search starts from the current selection (insertion point). Use the <code>all</code> option for searching the whole document.</p>
-<p>After replacing the whole document using the <code>all</code> option, the insertion point moves to the head of the document. If there were no matching text, the insertion point doesn’t move.</p>
-<p>The regular expression search cannot search backwards. If both options were specified at the same time, the <code>backwards</code> option is ignored.</p>
+<p>After replacing the whole document using the <code>all</code> option, the insertion point moves to the head of the document. If there is no matching text, the insertion point doesn’t move.</p>
+<p>The regular expression search cannot search backwards. If both options are specified at the same time, the <code>backwards</code> option is ignored.</p>
 </section>
 
 
@@ -359,10 +359,10 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 	<dt>Parameters</dt>
 	<dd><ul>
 		<li><p><em><code>to line</code> (int):</em>
-		The number of the line to jump.</p></li>
+		The number of the line to jump to.</p></li>
 
 		<li><p><em>[<code>column</code> (int)]:</em>
-		The location in the line to jump.</p></li>
+		The location in the line to jump to.</p></li>
 	</ul></dd>
 	
 	<dt>Availability</dt>
@@ -393,10 +393,10 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 	<dt>Parameters</dt>
 	<dd><ul>
 		<li><p><em><code>to</code> (text):</em>
-		The new encoding, either in localized encoding name or an IANA charset name.</p></li>
+		The new encoding, either a localized encoding name or an IANA charset name.</p></li>
 
 		<li><p><em>[<code>lossy</code>] (boolean):</em>
-		Whether to allow “lossy” conversion (might result in loss of character that couldn’t be converted) or not.</p></li>
+		Whether to allow “lossy” conversion (might result in loss of characters that couldn’t be converted) or not.</p></li>
 
 		<li><p><em>[<code>BOM</code>] (boolean):</em>
 		Whether to add a BOM (byte order mark). <span class="added">(added on CotEditor 4.1)</span></p></li>
@@ -414,12 +414,12 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <figure>
 	<pre class="source"><code class="AppleScript">convert front document to &quot;Unicode (UTF-8)&quot; with BOM without lossy</code></pre>
-	<figcaption>Converts the text encoding of the current window to Unicode (UTF-8) with BOM, returns the result.</figcaption>
+	<figcaption>Converts the text encoding of the current window to Unicode (UTF-8) with BOM and returns the result.</figcaption>
 </figure>
 
 <h3>Discussion</h3>
 
-<p>From CotEditor 4.0.7 on, the new encoding name accepts also IANA charset names.</p>
+<p>From CotEditor 4.0.7 on, the new encoding name also accepts IANA charset names.</p>
 </section>
 
 
@@ -433,7 +433,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 	<dt>Parameters</dt>
 	<dd><ul>
 		<li><p><em><code>as</code> (text):</em>
-		The encoding for reinterpreting, either in localized encoding name or an IANA charset name.</p></li>
+		The encoding for reinterpreting, either a localized encoding name or an IANA charset name.</p></li>
 	</ul></dd>
 	
 	<dt>Return value</dt>
@@ -448,7 +448,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <figure>
 	<pre class="source"><code class="AppleScript">reinterpret front document as &quot;Japanese (EUC)&quot;</code></pre>
-	<figcaption>Reinterprets the document with EUC-JP, returns the result.</figcaption>
+	<figcaption>Reinterprets the document with EUC-JP and returns the result.</figcaption>
 </figure>
 
 
@@ -520,7 +520,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <h3>Discussion</h3>
 
-<p>These commands do nothing if not possible for example in cases where no delimiters are set in the current syntax or no comment delimiters to remove are available.</p>
+<p>These commands do nothing if not possible, for example, in cases where no delimiters are set in the current syntax or no comment delimiters to remove are available.</p>
 </section>
 
 
@@ -576,7 +576,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 
 <h3>Discussion</h3>
 
-<p>Returns an error if the specified range was invalid.</p>
+<p>Returns an error if the specified range is invalid.</p>
 <p>This command doesn’t change the specified range.</p>
 </section>
 
@@ -812,7 +812,7 @@ Returns the number of replacements, if any, otherwise returns <code>0</code>.</p
 <ul>
 	<li><a href="script_overview.html">Automate tasks with scripting in CotEditor on Mac</a></li>
 	<li><a href="script_osascript_changes.html">Support different CotEditor versions in AppleScript on Mac</a></li>
-	<li><a href="script_hook.html">Run script on specific events in CotEditor on Mac</a></li>
+	<li><a href="script_hook.html">Run scripts on specific events in CotEditor on Mac</a></li>
 </ul>
 </section>
 

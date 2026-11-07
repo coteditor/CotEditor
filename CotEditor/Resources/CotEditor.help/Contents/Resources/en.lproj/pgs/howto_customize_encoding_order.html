@@ -44,7 +44,7 @@
 
 <p>Encodings not on this list aren’t considered candidates for the automatic encoding detection when opening documents. Keep encodings on the list that you want to use as candidates for encoding detection, even if you don’t use them directly.</p>
 
-<p>“Unicode (UTF-8)” and “Unicode (UTF-8) with BOM” can’t be removed from the list and are always handled as a set. Because the BOM (byte order mark) is taken into account when interpreting data as UTF-8, there is no effect on the detection precision that the order of these two encodings is fixed.</p>
+<p>“Unicode (UTF-8)” and “Unicode (UTF-8) with BOM” can’t be removed from the list and are always handled as a set. Because the BOM (byte order mark) is taken into account when interpreting data as UTF-8, the fixed order of these two encodings has no effect on the detection precision.</p>
 
 <p>Place “Unicode (UTF-16)” after other commonly used encodings, because UTF-16 can represent a wide range of characters and may match text more easily than expected.</p>
 </section>

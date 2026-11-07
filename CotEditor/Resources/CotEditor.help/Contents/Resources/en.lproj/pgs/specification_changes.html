@@ -19,21 +19,21 @@
 <section>
 <h2>Syntax Style Format</h2>
 
-<p>The format for syntax style definition has been changed significantly. The user customized styles will be translated automatically to the new style format on the first launch of CotEditor 2. However, it is recommend to update or rewrite your styles to conform to the new features for syntax style like the comment-out toggling or new highlighting variations.</p>
+<p>The format for syntax style definition has been changed significantly. The user customized styles will be translated automatically to the new style format on the first launch of CotEditor 2. However, it is recommended to update or rewrite your styles to conform to the new features for syntax style like the comment-out toggling or new highlighting variations.</p>
 <p>You may find some new additional syntax styles on our <a href="https://github.com/coteditor/CotEditor/wiki/Additional-Syntax-Styles" rel="external">Wiki page</a>.</p>
 </section>
 
 
 <section>
-<h2>Regular Expression Engine for outline Extracting</h2>
+<h2>Regular Expression Engine for Outline Extraction</h2>
 
-<p>Those who have customized syntax styles in CotEditor 1.x may have to fix their definition to extract outline menu manually, because the regular expression engine for outline parsing has been changed in 2.0 from Oniguruma to ICU library.
-Validate your customized syntax styles in syntax style editor and follow the messages.</p>
+<p>Those who have customized syntax styles in CotEditor 1.x may have to fix their definitions to extract the outline menu manually, because the regular expression engine for outline parsing has been changed in 2.0 from Oniguruma to the ICU library.
+Validate your customized syntax styles in the syntax style editor and follow the messages.</p>
 
 <p>The typical points to fix are:</p>
 
 <ul>
-	<li><p>The “<code>{</code>” and “<code>}</code>” as character must always be escaped with backslash “<code>\</code>” in ICU, however not in Oniguruma.</p></li>
+	<li><p>The “<code>{</code>” and “<code>}</code>” as characters must always be escaped with a backslash “<code>\</code>” in ICU, however not in Oniguruma.</p></li>
 	<li><p>The definition of “<code>$&amp;</code>” for the whole matched text was removed in 2.0. Use “<code>$0</code>” instead to get the same effect.</p></li>
 </ul>
 
@@ -44,16 +44,16 @@ Validate your customized syntax styles in syntax style editor and follow the mes
 <section>
 <h2>API for AppleScript</h2>
 
-<p>Some specifications for scripting support have been updated on CotEditor 2.0. From this, some user scripts may not run correctly on 2.0 without modifying. For details about this specification change, see <a href="script_osascript.html">Automate tasks using AppleScript</a>.</p>
+<p>Some specifications for scripting support have been updated on CotEditor 2.0. From this, some user scripts may not run correctly on 2.0 without modification. For details about this specification change, see <a href="script_osascript.html">Automate tasks using AppleScript</a>.</p>
 </section>
 
 
 <section>
 <h2>Bundle Identifier</h2>
 
-<p>The bundle identifier for CotEditor was changed from “com.aynimac.CotEditor” to “com.coteditor.CotEditor”. From this change, file mappings or other links to CotEditor (such as, external editor) outside CotEditor can be reset. Please link them again, if links are lost.</p>
+<p>The bundle identifier for CotEditor was changed from “com.aynimac.CotEditor” to “com.coteditor.CotEditor”. From this change, file mappings or other links to CotEditor (such as an external editor) outside CotEditor can be reset. Please link them again, if links are lost.</p>
 
-<p><em>For advanced users</em>: Notice that the filenames for preferences and the domain name for “<code>defaults</code>” command in Terminal was also changed.</p>
+<p><em>For advanced users</em>: Notice that the filenames for preferences and the domain name for the “<code>defaults</code>” command in Terminal were also changed.</p>
 </section>
 
 
