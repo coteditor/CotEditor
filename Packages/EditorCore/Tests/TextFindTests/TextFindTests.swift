@@ -632,6 +632,22 @@ struct TextFindTests {
     }
     
     
+    /// Ignores a match going beyond the selection that ends between CR and LF.
+    ///
+    /// - Throws: A find pattern, selection, or cancellation error.
+    @Test func replaceAllIgnoresMatchBeyondSelection() throws {
+        
+        let pattern = try TextFind.Pattern(findString: #"\R"#,
+                                           mode: .regularExpression(options: [], unescapesReplacement: true))
+        let textFind = try TextFind(for: "ab\r\ncd", pattern: pattern, inSelection: true, selectedRanges: [NSRange(0..<3)])
+        
+        let (items, selectedRanges) = try textFind.replaceAll(with: "Z") { _, _, _ in }
+        
+        #expect(items.isEmpty)
+        #expect(selectedRanges == [NSRange(0..<3)])
+    }
+    
+    
     @Test func replaceAllTextualCanonicallyEquivalentCharacter() throws {
         
         let pattern = try TextFind.Pattern(findString: "\u{00B7}", mode: .textual(options: [], fullWord: false))

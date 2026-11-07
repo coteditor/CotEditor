@@ -272,7 +272,9 @@ public struct TextFind: Equatable, Sendable {
                 
             case .regularExpression:
                 let regex = self.pattern.regex!
-                guard let match = regex.firstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: selectedRange) else { return nil }
+                guard let match = regex.firstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: selectedRange),
+                      match.range.upperBound <= selectedRange.upperBound  // workaround the issue that `\R` can take the LF after the range end (2026-11, macOS 27.2)
+                else { return nil }
                 
                 let template = self.replacementString(from: replacementString)
                 let replacedString = regex.replacementString(for: match, in: string, offset: 0, template: template)
@@ -502,6 +504,9 @@ public struct TextFind: Equatable, Sendable {
             }
             
             guard let result else { return }
+            
+            // workaround the issue that `\R` can take the LF after the range end (2026-11, macOS 27.2)
+            guard result.range.upperBound <= range.upperBound else { return }
             
             var ioStop = false
             block(result.range, result, &ioStop)

@@ -71,6 +71,7 @@
 - [trivial] Fix an issue where the app could crash when saving a document if the file’s extended attributes specified an unavailable text encoding.
 - [trivial] Fix an issue where non-ASCII characters were lost without warning when saving a document in Non-lossy ASCII.
 - [trivial] Fix an issue where the app could crash while the Warnings inspector was open if the document contained certain sequences of emoji or decomposed Hangul characters that the current text encoding could not represent.
+- [trivial] Fix an issue where the app could crash when replacing text within selections with a regular expression containing `\R` if a selection ended in the middle of a CRLF line ending.
 - [trivial] Fix an issue where progress could be displayed incorrectly when searching or replacing text within selections.
 - [trivial] Fix an issue where automatic indentation could treat part of a word as a keyword, such as “then”, if a non-ASCII letter adjoined it.
 - [trivial] Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.
