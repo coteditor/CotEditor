@@ -344,7 +344,10 @@ public struct TextFind: Equatable, Sendable {
                 case .textual(options: let options, fullWord: let fullWord) where !fullWord:
                     // replace at once for performance
                     let replacementString = self.normalizeLineEndings(in: replacementString)
-                    let count = scopeString.replaceOccurrences(of: self.findString, with: replacementString, options: options, range: scopeString.range)
+                    // workaround the issue that replacing a combining mark found as an empty range never ends (2026-11, macOS 27.2)
+                    let count = scopeString.range(of: self.findString, options: options).isEmpty
+                        ? 0
+                        : scopeString.replaceOccurrences(of: self.findString, with: replacementString, options: options, range: scopeString.range)
                     block(scopeRange, count, &ioStop)
                     
                 default:
@@ -469,7 +472,8 @@ public struct TextFind: Equatable, Sendable {
             searchRange.length = range.upperBound - searchRange.location
             let foundRange = string.range(of: self.findString, options: options, range: searchRange)
             
-            guard !foundRange.isNotFound else { break }
+            // workaround the issue that `.caseInsensitive` finds some combining marks as an empty range (2026-11, macOS 27.2)
+            guard !foundRange.isNotFound, !foundRange.isEmpty else { break }
             
             guard self.checkFullWord(in: foundRange) else {
                 // -> The next candidate can overlap the rejected one.

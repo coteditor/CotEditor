@@ -335,6 +335,9 @@ extension TextDocument {
             let mutableString = NSMutableString(string: string)
             let count: Int = if let regex {
                 regex.replaceMatches(in: mutableString, range: string.nsRange, withTemplate: replacementString)
+            } else if mutableString.range(of: searchString, options: options).isEmpty {
+                // workaround the issue that replacing a combining mark found as an empty range never ends (2026-11, macOS 27.2)
+                0
             } else {
                 mutableString.replaceOccurrences(of: searchString, with: replacementString, options: options, range: string.nsRange)
             }

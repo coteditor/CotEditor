@@ -313,6 +313,20 @@ struct TextFindTests {
     }
     
     
+    /// Ends the search for a combining mark that the comparison finds as an empty range.
+    ///
+    /// - Parameter fullWord: Whether to find whole words.
+    /// - Throws: A find pattern or cancellation error.
+    @Test(arguments: [false, true]) func combiningMarkFoundAsEmptyRange(fullWord: Bool) throws {
+        
+        let pattern = try TextFind.Pattern(findString: "\u{0902}", mode: .textual(options: .caseInsensitive, fullWord: fullWord))
+        let textFind = TextFind(for: "a\u{0902}a", pattern: pattern)
+        
+        #expect(try textFind.matches.allSatisfy { $0.length > 0 })
+        #expect(try textFind.replaceAll(with: "Z") { _, _, _ in }.replacementItems.count <= 1)
+    }
+    
+    
     /// Finds a whole word including a line ending.
     ///
     /// - Throws: A find pattern or cancellation error.
