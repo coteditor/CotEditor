@@ -22,6 +22,7 @@
 - Change the Shift-Option-Down Arrow shortcut to extend the selection to the end of the line without including the line ending, consistent with Option-Down Arrow.
 - Change the Delete key to delete a closing bracket or quotation mark together with the opening one only when it was automatically inserted.
 - Change the numbering to avoid name conflicts in the file browser and settings to match Finder, such as using “Foo 2” if “Foo 1” already exists.
+- Optimize Replace All when using regular expressions or the “Match only whole words” find option.
 - Optimize the hanging indentation calculation.
 - Improve overall stability and performance.
 - Update tree-sitter-markdown to 0.5.4.

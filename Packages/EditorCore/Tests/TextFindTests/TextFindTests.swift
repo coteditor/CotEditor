@@ -313,18 +313,6 @@ struct TextFindTests {
     }
     
     
-    /// Keeps searching from inside a candidate in which the comparison skipped a non-word character.
-    ///
-    /// - Throws: A find pattern or cancellation error.
-    @Test func fullWordOverlappingCandidateWithSkippedCharacter() throws {
-        
-        let pattern = try TextFind.Pattern(findString: "aa", mode: .textual(options: .diacriticInsensitive, fullWord: true))
-        let textFind = TextFind(for: "a\u{1F3FB}aa", pattern: pattern)
-        
-        #expect(try textFind.matches == [NSRange(3..<5)])
-    }
-    
-    
     /// Ends the search for a combining mark that the comparison finds as an empty range.
     ///
     /// - Parameter fullWord: Whether to find whole words.

@@ -62,7 +62,6 @@ public struct TextFind: Equatable, Sendable {
         
         fileprivate let regex: NSRegularExpression?
         fileprivate let fullWordChecker: NSRegularExpression?
-        fileprivate let canOverlapRejectedCandidate: Bool
         
         
         /// Creates a compiled text find pattern.
@@ -84,9 +83,6 @@ public struct TextFind: Equatable, Sendable {
                     // -> An end of the find string that is not a word character needs no word boundary.
                     //    The atomic group avoids retrying the end at every position of a rejected candidate.
                     self.fullWordChecker = isFullWord ? try! NSRegularExpression(pattern: #"^(?:\W|\b)(?>[\s\S]*)(?:\b|(?<=\W))$"#) : nil
-                    // -> In word characters, a candidate overlapping a rejected one always starts in the middle of a word.
-                    //    However, ignoring diacritics also skips non-word characters in the text, such as emoji modifiers.
-                    self.canOverlapRejectedCandidate = isFullWord && (options.contains(.diacriticInsensitive) || findString.range(of: #"\W"#, options: .regularExpression) != nil)
                     
                 case .regularExpression(let options, _):
                     do {
@@ -95,7 +91,6 @@ public struct TextFind: Equatable, Sendable {
                         throw .regularExpression(reason: error.localizedDescription)
                     }
                     self.fullWordChecker = nil
-                    self.canOverlapRejectedCandidate = false
             }
             
             self.findString = findString
@@ -336,64 +331,50 @@ public struct TextFind: Equatable, Sendable {
     /// - Throws: `CancellationError` if the task is cancelled.
     public func replaceAll(with replacementString: String, using block: @escaping (_ range: NSRange, _ count: Int, _ stop: inout Bool) -> Void) throws(CancellationError) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
         
+        let string = self.string as NSString
         let replacementString = self.replacementString(from: replacementString)
+        let normalizedReplacementString = self.normalizeLineEndings(in: replacementString)
         var replacementItems: [ReplacementItem] = []
         var selectedRanges: [NSRange] = []
         var locationOffset = 0
         
         for scopeRange in self.scopeRanges {
-            let scopeString = NSMutableString(string: (self.string as NSString).substring(with: scopeRange))
+            let scopeString = NSMutableString()
+            var location = scopeRange.lowerBound
             var ioStop = false
             
             // replace string
-            switch self.mode {
-                // workaround the issue that replacing a string that the comparison ignores can crash (2026-11, macOS 27.2)
-                // -> The comparison ignores the whole find string, such as only combining marks with `.diacriticInsensitive`,
-                //    if "ab" matches the find string put between "a" and "b".
-                //    Such a find string is replaced one by one below, because each found range needs to be checked.
-                case .textual(options: let options, fullWord: let fullWord) where !fullWord && ("ab" as NSString).range(of: "a\(self.findString)b", options: options).isNotFound:
-                    // replace at once for performance
-                    let replacementString = self.normalizeLineEndings(in: replacementString)
-                    // workaround the issue that replacing a combining mark found as an empty range never ends (2026-11, macOS 27.2)
-                    let count = scopeString.range(of: self.findString, options: options).isEmpty
-                        ? 0
-                        : scopeString.replaceOccurrences(of: self.findString, with: replacementString, options: options, range: scopeString.range)
-                    block(scopeRange, count, &ioStop)
-                    
-                default:
-                    var offset = 0
-                    self.enumerateMatches(in: scopeRange) { matchedRange, match, stop in
-                        let replacedString: String = if let match, let regex = match.regularExpression {
-                            regex.replacementString(for: match, in: self.string, offset: 0, template: replacementString)
-                        } else {
-                            replacementString
-                        }
-                        
-                        let normalizedString = self.normalizeLineEndings(in: replacedString)
-                        
-                        let localRange = matchedRange.shifted(by: -scopeRange.location - offset)
-                        scopeString.replaceCharacters(in: localRange, with: normalizedString)
-                        offset += matchedRange.length - normalizedString.length
-                        
-                        block(matchedRange, 1, &ioStop)
-                        stop = ioStop
-                    }
+            // -> Build the result in order, because replacing in place moves the rest of the scope at every match.
+            self.enumerateMatches(in: scopeRange) { matchedRange, match, stop in
+                let replacedString: String = if let match, let regex = match.regularExpression {
+                    self.normalizeLineEndings(in: regex.replacementString(for: match, in: self.string, offset: 0, template: replacementString))
+                } else {
+                    normalizedReplacementString
+                }
+                
+                scopeString.append(string.substring(with: NSRange(location..<matchedRange.lowerBound)))
+                scopeString.append(replacedString)
+                location = matchedRange.upperBound
+                
+                block(matchedRange, 1, &ioStop)
+                stop = ioStop
             }
             
             guard !Task.isCancelled else { throw CancellationError() }
             guard !ioStop else { break }
             
+            scopeString.append(string.substring(with: NSRange(location..<scopeRange.upperBound)))
+            
             // append only when actually modified
             // -> Use literal comparison to detect normalization-equivalent scalar changes.
-            let originalString = (self.string as NSString).substring(with: scopeRange)
+            let originalString = string.substring(with: scopeRange)
             if scopeString.compare(originalString, options: .literal) != .orderedSame {
                 replacementItems.append(ReplacementItem(value: scopeString.copy() as! String, range: scopeRange))
             }
             
             // build selectedRange
             if self.inSelection {
-                let location = scopeRange.location + locationOffset
-                selectedRanges.append(NSRange(location: location, length: scopeString.length))
+                selectedRanges.append(NSRange(location: scopeRange.location + locationOffset, length: scopeString.length))
                 locationOffset += scopeString.length - scopeRange.length
             }
         }
@@ -483,14 +464,11 @@ public struct TextFind: Equatable, Sendable {
             let foundRange = string.range(of: self.findString, options: options, range: searchRange)
             
             // workaround the issue that combining marks can be found as an empty range or a range beyond the search range (2026-11, macOS 27.2)
-            guard
-                !foundRange.isNotFound,
-                !foundRange.isEmpty,
-                foundRange.upperBound <= range.upperBound
-            else { break }
+            guard !foundRange.isEmpty, foundRange.upperBound <= range.upperBound else { break }
             
             guard self.checkFullWord(in: foundRange) else {
-                searchRange.location = self.pattern.canOverlapRejectedCandidate ? foundRange.location + 1 : foundRange.upperBound
+                // -> The next candidate can overlap the rejected one.
+                searchRange.location = foundRange.location + 1
                 continue
             }
             
