@@ -109,10 +109,11 @@ import Synchronization
     /// - Throws: The error thrown by the work, such as `CancellationError` when cancelled.
     public func perform<Success: Sendable>(_ operation: @escaping @Sendable () async throws -> Success) async throws -> Success {
         
-        let task = Task { try await operation() }
-        let isCancelled = self.storage.withLock {
+        // -> Create the task in the lock so that `cancel()` in the operation always finds the handler.
+        let (task, isCancelled) = self.storage.withLock {
+            let task = Task { try await operation() }
             $0.cancellationHandler = { task.cancel() }
-            return $0.state == .cancelled
+            return (task, $0.state == .cancelled)
         }
         
         if isCancelled {
