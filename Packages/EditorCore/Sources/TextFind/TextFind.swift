@@ -264,9 +264,9 @@ public struct TextFind: Equatable, Sendable {
         let selectedRange = self.selectedRanges.first!
         
         switch self.mode {
-            case .textual(let options, let fullWord):
+            case .textual(let options, _):
                 var firstRange: NSRange?
-                self.enumerateTextualMatches(in: selectedRange, options: options, fullWord: fullWord) { range, _, stop in
+                self.enumerateTextualMatches(in: selectedRange, options: options) { range, _, stop in
                     firstRange = range
                     stop = true
                 }
@@ -442,8 +442,8 @@ public struct TextFind: Equatable, Sendable {
     private func enumerateMatches(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         switch self.mode {
-            case let .textual(options, fullWord):
-                self.enumerateTextualMatches(in: range, options: options, fullWord: fullWord, using: block)
+            case .textual(let options, _):
+                self.enumerateTextualMatches(in: range, options: options, using: block)
             case .regularExpression:
                 self.enumerateRegularExpressionMatches(in: range, using: block)
         }
@@ -455,9 +455,8 @@ public struct TextFind: Equatable, Sendable {
     /// - Parameters:
     ///   - range: The range of the string to search.
     ///   - options: The search options.
-    ///   - fullWord: When `true`, only full words are matched.
     ///   - block: The block that enumerates the matches.
-    private func enumerateTextualMatches(in range: NSRange, options: String.CompareOptions, fullWord: Bool, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
+    private func enumerateTextualMatches(in range: NSRange, options: String.CompareOptions, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         guard !self.string.isEmpty else { return }
         
