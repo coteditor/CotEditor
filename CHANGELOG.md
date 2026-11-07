@@ -78,7 +78,7 @@
 - [trivial] Fix an issue where the “Unescape replacement text” find option did not convert `\n` or `\t` followed by a combining mark.
 - [trivial] Fix an issue where searching with a regular expression or the “Distinguish characters strictly” find option could show the previous results after changing the find string to a canonically equivalent one.
 - [trivial] Fix an issue where Multiple Replace could not find text containing line endings if the document’s line endings were not LF.
-- [trivial] Fix an issue where the app could stop responding when finding or replacing certain combining marks, such as `U+0902`, with the “Ignore Case” find option.
+- [trivial] Fix an issue where the app could crash or stop responding when finding or replacing only combining marks, such as `U+0902`, with the “Ignore Case” or “Ignore diacritical marks” find option.
 - [trivial] Fix an issue where automatic indentation could treat part of a word as a keyword, such as “then”, if a non-ASCII letter adjoined it.
 - [trivial] Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.
 - [trivial] Fix an issue where the selection after reversing or shuffling lines did not include an empty line moved to the end.

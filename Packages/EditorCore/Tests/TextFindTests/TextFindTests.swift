@@ -339,6 +339,21 @@ struct TextFindTests {
     }
     
     
+    /// Ends the search for combining marks that the comparison finds beyond the text.
+    ///
+    /// - Parameter fullWord: Whether to find whole words.
+    /// - Throws: A find pattern or cancellation error.
+    @Test(arguments: [false, true]) func combiningMarksFoundBeyondText(fullWord: Bool) throws {
+        
+        let string = "a\u{1F408}\u{FE0F}\u{FF9E}"
+        let pattern = try TextFind.Pattern(findString: "\u{3099}\u{FE0F}\u{3099}\u{FF9E}", mode: .textual(options: [.caseInsensitive, .diacriticInsensitive], fullWord: fullWord))
+        let textFind = TextFind(for: string, pattern: pattern)
+        
+        #expect(try textFind.matches.allSatisfy { $0.upperBound <= string.utf16.count })
+        #expect(try textFind.replaceAll(with: "Z") { _, _, _ in }.replacementItems.count <= 1)
+    }
+    
+    
     /// Finds a whole word including a line ending.
     ///
     /// - Throws: A find pattern or cancellation error.

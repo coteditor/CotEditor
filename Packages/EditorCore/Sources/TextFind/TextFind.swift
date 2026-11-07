@@ -347,7 +347,11 @@ public struct TextFind: Equatable, Sendable {
             
             // replace string
             switch self.mode {
-                case .textual(options: let options, fullWord: let fullWord) where !fullWord:
+                // workaround the issue that replacing a string that the comparison ignores can crash (2026-11, macOS 27.2)
+                // -> The comparison ignores the whole find string, such as only combining marks with `.diacriticInsensitive`,
+                //    if "ab" matches the find string put between "a" and "b".
+                //    Such a find string is replaced one by one below, because each found range needs to be checked.
+                case .textual(options: let options, fullWord: let fullWord) where !fullWord && ("ab" as NSString).range(of: "a\(self.findString)b", options: options).isNotFound:
                     // replace at once for performance
                     let replacementString = self.normalizeLineEndings(in: replacementString)
                     // workaround the issue that replacing a combining mark found as an empty range never ends (2026-11, macOS 27.2)
@@ -478,8 +482,12 @@ public struct TextFind: Equatable, Sendable {
             searchRange.length = range.upperBound - searchRange.location
             let foundRange = string.range(of: self.findString, options: options, range: searchRange)
             
-            // workaround the issue that `.caseInsensitive` finds some combining marks as an empty range (2026-11, macOS 27.2)
-            guard !foundRange.isNotFound, !foundRange.isEmpty else { break }
+            // workaround the issue that combining marks can be found as an empty range or a range beyond the search range (2026-11, macOS 27.2)
+            guard
+                !foundRange.isNotFound,
+                !foundRange.isEmpty,
+                foundRange.upperBound <= range.upperBound
+            else { break }
             
             guard self.checkFullWord(in: foundRange) else {
                 searchRange.location = self.pattern.canOverlapRejectedCandidate ? foundRange.location + 1 : foundRange.upperBound
