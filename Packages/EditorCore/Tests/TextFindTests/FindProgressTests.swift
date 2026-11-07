@@ -30,7 +30,7 @@ struct FindProgressTests {
         
         let progress = FindProgress(scope: 0..<10)
         
-        #expect(progress.state == .ready)
+        #expect(progress.state == .processing)
         #expect(progress.count == 0)
         #expect(progress.fractionCompleted == 0)
     }

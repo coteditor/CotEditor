@@ -30,7 +30,6 @@ import Synchronization
     
     public enum State: Sendable {
         
-        case ready
         case processing
         case finished
         case cancelled
@@ -40,7 +39,7 @@ import Synchronization
         public var isTerminated: Bool {
             
             switch self {
-                case .ready, .processing: false
+                case .processing: false
                 case .finished, .cancelled: true
             }
         }
@@ -49,7 +48,7 @@ import Synchronization
     
     private struct Storage {
         
-        var state: State = .ready
+        var state: State = .processing
         var count: Int = 0
         var completedUnit: Int = 0
     }

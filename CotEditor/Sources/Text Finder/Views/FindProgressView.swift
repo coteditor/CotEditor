@@ -82,7 +82,7 @@ struct FindProgressView: View {
         }
         .onChange(of: self.progress.state) { _, newValue in
             switch newValue {
-                case .ready, .processing:
+                case .processing:
                     break
                 case .finished:
                     self.updateDescription()
