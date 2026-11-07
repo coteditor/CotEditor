@@ -329,7 +329,7 @@ public struct TextFind: Equatable, Sendable {
     ///   - replacementItems: ReplacementItem per selectedRange.
     ///   - selectedRanges: New selections for textView only if the replacement is performed within selection. Otherwise, `nil`.
     /// - Throws: `CancellationError` if the task is cancelled.
-    public func replaceAll(with replacementString: String, using block: @escaping (_ range: NSRange, _ count: Int, _ stop: inout Bool) -> Void) throws(CancellationError) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
+    public func replaceAll(with replacementString: String, using block: @escaping (_ range: NSRange, _ stop: inout Bool) -> Void) throws(CancellationError) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
         
         let string = self.string as NSString
         let replacementString = self.replacementString(from: replacementString)
@@ -356,7 +356,7 @@ public struct TextFind: Equatable, Sendable {
                 scopeString.append(replacedString)
                 location = matchedRange.upperBound
                 
-                block(matchedRange, 1, &ioStop)
+                block(matchedRange, &ioStop)
                 stop = ioStop
             }
             

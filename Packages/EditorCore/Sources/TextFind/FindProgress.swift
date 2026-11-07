@@ -151,11 +151,9 @@ import Synchronization
     
     
     /// Increments count.
-    ///
-    /// - Parameter count: The amount to increment.
-    public func incrementCount(by count: Int = 1) {
+    public func incrementCount() {
         
-        self.storage.withLock { $0.count += count }
+        self.storage.withLock { $0.count += 1 }
     }
     
     

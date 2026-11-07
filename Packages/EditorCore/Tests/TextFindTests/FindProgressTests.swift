@@ -73,9 +73,9 @@ struct FindProgressTests {
         let progress = FindProgress(scope: 0..<5)
         
         progress.incrementCount()
-        progress.incrementCount(by: 2)
+        progress.incrementCount()
         
-        #expect(progress.count == 3)
+        #expect(progress.count == 2)
     }
     
     

@@ -914,14 +914,14 @@ struct FindMatchesCache {
     /// - Throws: `CancellationError` if the task is cancelled.
     @concurrent private static func replaceAll(for textFind: TextFind, with replacementString: String, progress: FindProgress) async throws(CancellationError) -> (replacementItems: [TextFind.ReplacementItem], selectedRanges: [NSRange]?) {
         
-        try textFind.replaceAll(with: replacementString) { range, count, stop in
+        try textFind.replaceAll(with: replacementString) { range, stop in
             guard progress.state != .cancelled else {
                 stop = true
                 return
             }
             
             progress.updateCompletedUnit(to: range.upperBound)
-            progress.incrementCount(by: count)
+            progress.incrementCount()
         }
     }
 }
