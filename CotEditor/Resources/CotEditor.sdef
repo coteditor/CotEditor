@@ -207,7 +207,7 @@
             <parameter name="BOM" code="wBOM" type="boolean" description="Does the document’s text encoding have a BOM (byte order mark)?" optional="yes">
                 <cocoa key="BOM"/>
             </parameter>
-            <parameter name="to" code="nEcd" type="text" description="The new encoding, either in localized encoding name or an IANA charset name.">
+            <parameter name="to" code="nEcd" type="text" description="The new encoding, either a localized encoding name or an IANA charset name.">
                 <cocoa key="newEncoding"/>
             </parameter>
             <result type="boolean" description="Did the conversion succeed?"/>
@@ -231,13 +231,13 @@
             <parameter name="wrap" code="wRsc" type="boolean" optional="yes" description="Should the search wrap?">
                 <cocoa key="wrapSearch"/>
             </parameter>
-            <result type="boolean" description="Did the text found?"/>
+            <result type="boolean" description="Was the text found?"/>
         </command>
         
         <command name="reinterpret" code="cEd1RIpt" description="Reinterpret the document text as new encoding.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="document" description="The document to reinterpret encoding."/>
-            <parameter name="as" code="rEcd" type="text" description="The new encoding, either in localized encoding name or an IANA charset name.">
+            <parameter name="as" code="rEcd" type="text" description="The new encoding, either a localized encoding name or an IANA charset name.">
                 <cocoa key="newEncoding"/>
             </parameter>
             <result type="boolean" description="Did the reinterpretation succeed?"/>
@@ -278,10 +278,10 @@
         <command name="jump" code="cEd1Jump" description="Move the caret to the specified location. At least one parameter is required.">
             <access-group identifier="*"/>
             <direct-parameter type="document" description="The document to move."/>
-            <parameter name="to line" code="line" type="integer" description="The number of the line to go. If a negative value is provided, the line is counted from the end of the document.">
+            <parameter name="to line" code="line" type="integer" description="The number of the line to go to. If a negative value is provided, the line is counted from the end of the document.">
                 <cocoa key="line"/>
             </parameter>
-            <parameter name="column" code="colm" type="integer" optional="yes" description="The location in the line to jump. If a negative value is provided, the column is counted from the end of the line.">
+            <parameter name="column" code="colm" type="integer" optional="yes" description="The location in the line to jump to. If a negative value is provided, the column is counted from the end of the line.">
                 <cocoa key="column"/>
             </parameter>
         </command>
