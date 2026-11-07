@@ -55,6 +55,7 @@ struct StringExtensionsTests {
             #expect(#"\\foo\\\\\0bar\\"#.unescaped == "\\foo\\\\\u{0}bar\\")
             #expect(#"\\\\\\\\foo"#.unescaped == "\\\\\\\\foo")
             #expect(#"foo: \r\n1"#.unescaped == "foo: \r\n1")
+            #expect("\\n\u{0301}".unescaped == "\n\u{0301}")
         }
     }
     

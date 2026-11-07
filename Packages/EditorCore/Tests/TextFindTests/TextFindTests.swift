@@ -370,6 +370,7 @@ struct TextFindTests {
         #expect(textFind.replace(with: #"\\n"#)?.value == #"\n"#)
         #expect(textFind.replace(with: #"\\\\n"#)?.value == #"\\n"#)
         #expect(textFind.replace(with: #"\t"#)?.value == "\t")
+        #expect(textFind.replace(with: "\\n\u{0301}")?.value == "\n\u{0301}")
         #expect(textFind.replace(with: #"\$0"#)?.value == "$0")
         #expect(textFind.replace(with: "$0")?.value == "\n")
     }

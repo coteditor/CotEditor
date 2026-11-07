@@ -536,7 +536,7 @@ private extension String {
     /// interprets them as literal backslashes.
     var unescapedTemplate: String {
         
-        self.replacing(/\\([0tnr"'\\])/) { match in
+        self.replacing(/\\([0tnr"'\\])/.matchingSemantics(.unicodeScalar)) { match in
             // -> According to the Swift documentation, these are the all combinations with backslash.
             //    cf. https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID295
             switch match.1 {
