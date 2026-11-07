@@ -62,6 +62,7 @@ public struct TextFind: Equatable, Sendable {
         
         fileprivate let regex: NSRegularExpression?
         fileprivate let fullWordChecker: NSRegularExpression?
+        fileprivate let canOverlapRejectedCandidate: Bool
         
         
         /// Creates a compiled text find pattern.
@@ -81,7 +82,11 @@ public struct TextFind: Equatable, Sendable {
                     assert(!options.contains(.backwards))
                     self.regex = nil
                     // -> An end of the find string that is not a word character needs no word boundary.
-                    self.fullWordChecker = isFullWord ? try! NSRegularExpression(pattern: #"^(?:\b|(?=\W))[\s\S]+(?:\b|(?<=\W))$"#) : nil
+                    //    The atomic group avoids retrying the end at every position of a rejected candidate.
+                    self.fullWordChecker = isFullWord ? try! NSRegularExpression(pattern: #"^(?:\W|\b)(?>[\s\S]*)(?:\b|(?<=\W))$"#) : nil
+                    // -> In word characters, a candidate overlapping a rejected one always starts in the middle of a word.
+                    //    However, ignoring diacritics also skips non-word characters in the text, such as emoji modifiers.
+                    self.canOverlapRejectedCandidate = isFullWord && (options.contains(.diacriticInsensitive) || findString.range(of: #"\W"#, options: .regularExpression) != nil)
                     
                 case .regularExpression(let options, _):
                     do {
@@ -90,6 +95,7 @@ public struct TextFind: Equatable, Sendable {
                         throw .regularExpression(reason: error.localizedDescription)
                     }
                     self.fullWordChecker = nil
+                    self.canOverlapRejectedCandidate = false
             }
             
             self.findString = findString
@@ -476,8 +482,7 @@ public struct TextFind: Equatable, Sendable {
             guard !foundRange.isNotFound, !foundRange.isEmpty else { break }
             
             guard self.checkFullWord(in: foundRange) else {
-                // -> The next candidate can overlap the rejected one.
-                searchRange.location = foundRange.location + 1
+                searchRange.location = self.pattern.canOverlapRejectedCandidate ? foundRange.location + 1 : foundRange.upperBound
                 continue
             }
             
