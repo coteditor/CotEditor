@@ -91,6 +91,26 @@ struct FindProgressTests {
     }
     
     
+    /// Cancels the task performing the work when the progress is cancelled.
+    @Test(.timeLimit(.minutes(1)))
+    func cancelPerformingTask() async {
+        
+        let progress = FindProgress(scope: 0..<1)
+        let task = Task {
+            try await progress.perform {
+                while !Task.isCancelled {
+                    await Task.yield()
+                }
+                try Task.checkCancellation()
+            }
+        }
+        
+        progress.cancel()
+        
+        await #expect(throws: CancellationError.self) { try await task.value }
+    }
+    
+    
     @Test func stateTransitions() {
         
         let progress = FindProgress(scope: 0..<1)

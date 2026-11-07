@@ -51,6 +51,7 @@ import Synchronization
         var state: State = .processing
         var count: Int = 0
         var completedUnit: Int = 0
+        var cancellationHandler: (@Sendable () -> Void)?
     }
     
     
@@ -101,12 +102,42 @@ import Synchronization
     }
     
     
-    /// Changes the state to `.cancelled`.
+    /// Performs the given work in a task that is cancelled together with the progress.
+    ///
+    /// - Parameter operation: The work to perform.
+    /// - Returns: The result of the work.
+    /// - Throws: The error thrown by the work, such as `CancellationError` when cancelled.
+    public func perform<Success: Sendable>(_ operation: @escaping @Sendable () async throws -> Success) async throws -> Success {
+        
+        let task = Task { try await operation() }
+        let isCancelled = self.storage.withLock {
+            $0.cancellationHandler = { task.cancel() }
+            return $0.state == .cancelled
+        }
+        
+        if isCancelled {
+            task.cancel()
+        }
+        
+        return try await withTaskCancellationHandler {
+            try await task.value
+        } onCancel: {
+            task.cancel()
+        }
+    }
+    
+    
+    /// Changes the state to `.cancelled` and cancels the task performing the work.
     public func cancel() {
         
-        withMutation(keyPath: \.state) {
-            self.storage.withLock { $0.state = .cancelled }
+        let cancellationHandler = withMutation(keyPath: \.state) {
+            self.storage.withLock {
+                $0.state = .cancelled
+                return $0.cancellationHandler
+            }
         }
+        
+        cancellationHandler?()
     }
     
     

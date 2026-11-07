@@ -726,7 +726,7 @@ struct FindMatchesCache {
         defer { client.isEditable = wasEditable }
         
         let progress = FindProgress(scope: textFind.scopeRange)
-        async let findResult = Self.findAll(for: textFind, showsList: showsList, progress: progress)
+        async let findResult = progress.perform { try await Self.findAll(for: textFind, showsList: showsList, progress: progress) }
         
         // present progress view
         client.window?.beginSheet {
@@ -790,7 +790,7 @@ struct FindMatchesCache {
         let editorTextView = client as? EditorTextView
         let replacementString = self.settings.replacementString
         let progress = FindProgress(scope: textFind.scopeRange)
-        async let replacementResult = Self.replaceAll(for: textFind, with: replacementString, progress: progress)
+        async let replacementResult = progress.perform { try await Self.replaceAll(for: textFind, with: replacementString, progress: progress) }
         
         // present progress view
         client.window?.beginSheet {

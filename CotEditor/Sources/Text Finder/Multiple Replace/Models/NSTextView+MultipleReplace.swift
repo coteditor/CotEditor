@@ -48,10 +48,10 @@ extension NSTextView {
         let string = self.string.immutable
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         let progress = FindProgress(scope: 0..<definition.replacements.endIndex)
-        async let foundRanges = { @concurrent () async throws(CancellationError) -> [NSRange] in
+        async let foundRanges = progress.perform { @concurrent () async throws -> [NSRange] in
             try definition.find(string: string, ranges: selectedRanges, inSelection: inSelection, lineEnding: lineEnding, progress: progress)
                 .sorted(using: KeyPathComparator(\.location))
-        }()
+        }
         
         // present progress view
         self.window?.beginSheet {
@@ -102,9 +102,9 @@ extension NSTextView {
         let string = self.string.immutable
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
         let progress = FindProgress(scope: 0..<definition.replacements.endIndex)
-        async let replacementResult = { @concurrent () async throws(CancellationError) -> MultipleReplace.Result in
+        async let replacementResult = progress.perform { @concurrent () async throws -> MultipleReplace.Result in
             try definition.replace(string: string, ranges: selectedRanges, inSelection: inSelection, lineEnding: lineEnding, progress: progress)
-        }()
+        }
         
         // present progress view
         self.window?.beginSheet {
