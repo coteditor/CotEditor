@@ -67,6 +67,7 @@ struct LineSortTests {
             """
         
         #expect(pattern.sort(lines) == lines)
+        #expect(pattern.sort(lines, options: SortOptions(descending: true)) == lines)
     }
     
     

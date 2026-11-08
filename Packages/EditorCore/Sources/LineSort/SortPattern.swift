@@ -67,7 +67,10 @@ extension SortPattern {
             .map { (line: $0, key: self.sortKey(for: $0.contents)) }
             .sorted {
                 switch ($0.key, $1.key) {
-                    case let (.some(key0), .some(key1)):
+                    case let (.some(lhs), .some(rhs)):
+                        // -> swap keys instead of reversing the result to keep lines with the same key and those without a key in their original order
+                        let (key0, key1) = options.descending ? (rhs, lhs) : (lhs, rhs)
+                        
                         // sort items by evaluating values as numbers
                         // -> This code still ignores numbers in the middle of keys.
                         if let number0 = options.parse(key0),
@@ -89,10 +92,6 @@ extension SortPattern {
                 }
             }
             .map(\.line)
-        
-        if options.descending {
-            lines.reverse()
-        }
         
         if let firstLine {
             lines.insert(firstLine, at: 0)
