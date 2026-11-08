@@ -65,7 +65,7 @@ struct StepperNumberField: View {
                 .frame(width: self.fieldWidth)
             
             Stepper(value: $value, in: self.bounds, step: self.step, label: EmptyView.init)
-                .accessibilityValue(self.value.formatted())
+                .accessibilityValue(self.value.clamped(to: self.bounds).formatted())
         }
         .labelsVisibility(.hidden)
         .fixedSize()
