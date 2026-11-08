@@ -723,6 +723,21 @@ struct FolderFindTests {
     }
     
     
+    @Test func fileScopeRegularExpressionMatchesPrecomposedName() throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        let fileURL = rootURL.appending(path: "データ.txt")
+        try Data("needle".utf8).write(to: fileURL)
+        let candidate = try FolderFind.Candidate(at: fileURL)
+        
+        #expect(try FileScope(rules: [
+            FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: #"データ\.txt"#),
+        ]).contains(candidate, relativeTo: rootURL))
+    }
+    
+    
     @Test func fileScopeRuleComparisons() throws {
         
         let rootURL = try Self.makeTemporaryDirectory()

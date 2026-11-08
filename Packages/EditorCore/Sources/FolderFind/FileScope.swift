@@ -271,8 +271,9 @@ private extension FileScope {
             
             let fileURL = candidate.fileURL.standardizedFileURL
             
-            self.filename = fileURL.lastPathComponent
-            self.filePath = fileURL.searchPath(under: rootURL)
+            // -> `standardizedFileURL` decomposes the names, while the rule values are typed in the precomposed form.
+            self.filename = fileURL.lastPathComponent.precomposedStringWithCanonicalMapping
+            self.filePath = fileURL.searchPath(under: rootURL).precomposedStringWithCanonicalMapping
             self.fileExtension = fileURL.pathExtension
         }
         
