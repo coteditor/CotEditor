@@ -223,7 +223,11 @@ public struct Search: Sendable {
                 ? NSRange(location: contentsRange.upperBound, length: 0)
                 : range
             let clampedLineRange = contentsRange.clamped(around: displayedRange, maxLength: maximumLineLength)
-            let lineRange = nsString.rangeOfComposedCharacterSequences(for: clampedLineRange)
+            // -> `rangeOfComposedCharacterSequences(for:)` returns the character at the location for an empty range,
+            //    which is a line ending on an empty line.
+            let lineRange = clampedLineRange.isEmpty
+                ? clampedLineRange
+                : nsString.rangeOfComposedCharacterSequences(for: clampedLineRange)
             let line = nsString.substring(with: lineRange)
             let rangeInLine = NSRange(location: displayedRange.location - lineRange.location,
                                       length: min(displayedRange.upperBound, lineRange.upperBound) - displayedRange.location)

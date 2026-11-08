@@ -148,6 +148,21 @@ struct FolderFindTests {
     }
     
     
+    @Test func matchOnEmptyLineHasEmptyLine() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("a\n\nb".utf8).write(to: rootURL.appending(path: "a.txt"))
+        let pattern = try FolderFind.Query(findString: "^$", mode: .regularExpression(options: .anchorsMatchLines, unescapesReplacement: false)).pattern()
+        var search = try Search(rootURL: rootURL, pattern: pattern)
+        let summary = try await search.run()
+        let match = try #require(summary.files.first?.matches.first)
+        
+        #expect(match.line.isEmpty)
+    }
+    
+    
     @Test func filteredSearchPreservesDirectoryTraversalAndOrdering() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()
