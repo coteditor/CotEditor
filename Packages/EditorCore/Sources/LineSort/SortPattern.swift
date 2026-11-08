@@ -64,7 +64,10 @@ extension SortPattern {
         let firstLine = options.keepsFirstLine ? lines.removeFirst() : nil
         
         lines = lines
-            .map { (line: $0, key: self.sortKey(for: $0.contents)) }
+            .map { line in
+                // parse numbers once per line rather than in every comparison
+                (line: line, key: self.sortKey(for: line.contents).map { (string: $0, number: options.parse($0)) })
+            }
             .sorted {
                 switch ($0.key, $1.key) {
                     case let (.some(lhs), .some(rhs)):
@@ -73,13 +76,13 @@ extension SortPattern {
                         
                         // sort items by evaluating values as numbers
                         // -> This code still ignores numbers in the middle of keys.
-                        if let number0 = options.parse(key0),
-                           let number1 = options.parse(key1),
+                        if let number0 = key0.number,
+                           let number1 = key1.number,
                            number0 != number1
                         {
                             return number0 < number1
                         }
-                        return key0.compare(key1, options: options.compareOptions, locale: options.usedLocale) == .orderedAscending
+                        return key0.string.compare(key1.string, options: options.compareOptions, locale: options.usedLocale) == .orderedAscending
                         
                     case (.none, .some):
                         return false
