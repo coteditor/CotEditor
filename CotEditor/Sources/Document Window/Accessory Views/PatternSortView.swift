@@ -161,7 +161,10 @@ struct PatternSortView: View {
         switch self.sortKey {
             case .entire: return EntireLineSortPattern()
             case .column: return self.columnSortPattern
-            case .regularExpression: return self.regularExpressionSortPattern
+            case .regularExpression:
+                var pattern = self.regularExpressionSortPattern
+                pattern.group = pattern.group.clamped(to: 0...pattern.numberOfCaptureGroups)
+                return pattern
         }
     }
     
