@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2025 1024jp
+//  © 2018-2026 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ public struct SortOptions: Equatable, Sendable {
     /// If the receiver's `.numeric` property is `false`, it certainly returns `nil`.
     ///
     /// - Parameter value: The string to parse.
-    /// - Returns: The numeric value or `nil` if failed.
+    /// - Returns: The numeric value, or `nil` if failed or the value is NaN.
     func parse(_ value: String) -> Double? {
         
         guard self.numeric else { return nil }
@@ -75,6 +75,9 @@ public struct SortOptions: Equatable, Sendable {
         let locale = self.usedLocale ?? .init(identifier: "en")
         let numberParser = FloatingPointFormatStyle<Double>(locale: locale).parseStrategy
         
-        return try? numberParser.parse(value)
+        // -> NaN cannot be ordered, and the lenient parser also reads words starting with "nan", such as "Nancy", as NaN.
+        guard let number = try? numberParser.parse(value), !number.isNaN else { return nil }
+        
+        return number
     }
 }

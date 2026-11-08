@@ -215,6 +215,7 @@ struct LineSortTests {
         #expect(options.parse("-1000,1 m/s") == -1000)
         #expect(options.parse("+1,000") == 1000)
         #expect(options.parse("dog 10") == nil)
+        #expect(options.parse("Nancy") == nil)
         
         options.locale = .init(identifier: "de")
         #expect(options.numeric)

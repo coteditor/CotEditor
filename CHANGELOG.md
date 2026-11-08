@@ -55,6 +55,7 @@
 - Fix several issues with pressing Control-T, such as doing nothing after an emoji at the end of the document, or swapping selected characters or breaking an emoji during multi-cursor editing.
 - Fix an issue where moving lines down during multi-cursor editing could turn insertion points into selections, extend selections, or leave an insertion point on the last empty line behind.
 - Fix an issue where the Delete Duplicates command could cause unexpected behavior if lines contained VT (`U+000B`) or FF (`U+000C`).
+- Fix an issue where Sort by Pattern with the “Treat numbers as numeric values” option could sort lines incorrectly if sort keys started with “nan”, such as “NaN” or “Nancy”.
 - Fix an issue where double-clicking a period, comma, or colon selected nothing or the preceding word instead of the character itself.
 - Fix an issue where the Select Enclosing Symbols command did nothing if an unmatched closing symbol, such as `>` in a comparison, came before the closing symbol of the enclosing pair.
 - Fix an issue where the Toggle Comment and Uncomment commands could not uncomment block or inline comments when only part of a line was selected.
