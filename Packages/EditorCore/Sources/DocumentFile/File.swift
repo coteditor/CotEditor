@@ -42,13 +42,14 @@ public struct File: Equatable, Sendable {
     }
     
     
-    public nonisolated static let metadataResourceKeys: Set<URLResourceKey> = [.isDirectoryKey, .isHiddenKey, .isWritableKey, .isAliasFileKey, .contentTypeKey]
+    public nonisolated static let metadataResourceKeys: Set<URLResourceKey> = [.isDirectoryKey, .isHiddenKey, .isWritableKey, .isUserImmutableKey, .isAliasFileKey, .contentTypeKey]
     
     public var name: String
     public var fileURL: URL
     public let isDirectory: Bool
     public var isHidden: Bool
     public var isWritable: Bool
+    public var isUserImmutable: Bool
     public var isAlias: Bool
     public var kind: Kind
     public var tags: [FinderTag]
@@ -69,6 +70,7 @@ public struct File: Equatable, Sendable {
         self.isDirectory = isDirectory
         self.isHidden = fileURL.lastPathComponent.starts(with: ".")
         self.isWritable = true
+        self.isUserImmutable = false
         self.isAlias = false
         self.kind = Kind(pathExtension: fileURL.pathExtension, isDirectory: isDirectory)
         self.tags = []
@@ -91,6 +93,7 @@ public struct File: Equatable, Sendable {
         self.isDirectory = resourceValues.isDirectory ?? false
         self.isHidden = resourceValues.isHidden ?? false
         self.isWritable = resourceValues.isWritable ?? true
+        self.isUserImmutable = resourceValues.isUserImmutable ?? false
         self.isAlias = resourceValues.isAliasFile ?? false
         
         self.kind = if self.isAlias, (try? URL(resolvingAliasFileAt: fileURL).isDirectory) == true {

@@ -39,6 +39,7 @@
 - Fix several issues with the “Match only whole words” find option, such as not finding text that starts or ends with a symbol, like “#tag”, or text that contains a line ending.
 - Fix an issue where the document could remain uneditable after canceling Find All, Replace All, or Multiple Replace.
 - Fix an issue where the expansion state of folders in the file browser was sometimes not restored from the last session.
+- Fix an issue in the file browser where read-only files in a writable folder could not be renamed and the Move to Trash command was unavailable for them.
 - Fix an issue where shortcuts using function keys, arrow keys, or other navigation keys could not be set in the Shortcuts and Snippets settings panes.
 - Fix an issue where Shift-Return could be assigned as a keyboard shortcut.
 - Fix an issue where a customized shortcut for a command no longer in the menu could remove the default shortcut of another menu command.

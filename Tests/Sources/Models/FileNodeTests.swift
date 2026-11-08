@@ -44,6 +44,21 @@ struct FileNodeTests {
     }
     
     
+    @Test func readOnlyFileInWritableFolderCanBeRenamed() throws {
+        
+        let urls = try self.makeDirectoryTree()
+        defer { try? FileManager.default.removeItem(at: urls.rootURL) }
+        
+        try FileManager.default.setAttributes([.posixPermissions: 0o444], ofItemAtPath: urls.leafURL.path(percentEncoded: false))
+        
+        let rootNode = FileNode(file: try File(at: urls.rootURL))
+        let leafNode = try #require(rootNode.node(at: urls.leafURL))
+        
+        #expect(leafNode.isRenamable)
+        #expect(leafNode.isMovable)
+    }
+    
+    
     @Test func renamingFolderUpdatesCachedDescendantURLs() throws {
         
         let urls = try self.makeDirectoryTree()

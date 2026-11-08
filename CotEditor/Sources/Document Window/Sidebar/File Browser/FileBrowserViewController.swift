@@ -421,7 +421,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             case #selector(moveToTrash):
                 let targetNodes = self.targetNodes(for: menuItem)
                 menuItem.isHidden = targetNodes.isEmpty
-                return targetNodes.contains(where: \.file.isWritable)
+                return targetNodes.contains(where: \.isMovable)
                 
             case #selector(share):
                 menuItem.isHidden = self.targetRows(for: menuItem).isEmpty
@@ -1244,7 +1244,7 @@ extension FileBrowserViewController: NSTextFieldDelegate {
         // avoid renaming unsaved document
         guard self.document.openedDocument(at: node)?.isDocumentEdited != true else { return false }
         
-        return node.file.isWritable
+        return node.isRenamable
     }
     
     
