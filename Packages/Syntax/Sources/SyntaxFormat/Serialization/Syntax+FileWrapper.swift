@@ -77,7 +77,7 @@ extension Syntax {
     /// - Throws: `CocoaError(.fileReadCorruptFile)` if required files are missing or JSON decoding fails.
     public init(fileWrapper: FileWrapper) throws {
         
-        guard let infoData = fileWrapper.fileWrappers?[Filename.info]?.regularFileContents else {
+        guard fileWrapper.isDirectory, let infoData = fileWrapper.fileWrappers?[Filename.info]?.fileContents else {
             throw CocoaError(.fileReadCorruptFile)
         }
         
@@ -88,21 +88,21 @@ extension Syntax {
         self.fileMap = info.fileMap ?? .init()
         self.metadata = info.metadata ?? .init()
         
-        let edit = try fileWrapper.fileWrappers?[Filename.edit]?.regularFileContents
+        let edit = try fileWrapper.fileWrappers?[Filename.edit]?.fileContents
             .map { try decoder.decode(Edit.self, from: $0) }
         self.commentDelimiters = edit?.comment ?? .init()
         self.stringDelimiters = edit?.stringDelimiters ?? []
         self.characterDelimiters = edit?.characterDelimiters ?? []
         self.indentation = edit?.indentation ?? .init()
         
-        self.completions = try fileWrapper.fileWrappers?[Filename.completion]?.regularFileContents
+        self.completions = try fileWrapper.fileWrappers?[Filename.completion]?.fileContents
             .map { try decoder.decode([CompletionWord].self, from: $0) } ?? []
         
         // load regex-based definition
-        if let wrapper = fileWrapper.fileWrappers?[Filename.regex] {
-            self.highlights = try wrapper.fileWrappers?[Filename.highlights]?.regularFileContents
+        if let wrapper = fileWrapper.fileWrappers?[Filename.regex], wrapper.isDirectory {
+            self.highlights = try wrapper.fileWrappers?[Filename.highlights]?.fileContents
                 .map { try decoder.decode([SyntaxType: [Highlight]].self, from: $0) } ?? [:]
-            self.outlines = try wrapper.fileWrappers?[Filename.outlines]?.regularFileContents
+            self.outlines = try wrapper.fileWrappers?[Filename.outlines]?.fileContents
                 .map { try decoder.decode([Outline].self, from: $0) } ?? []
         } else {
             self.highlights = [:]
@@ -158,6 +158,13 @@ extension Syntax {
             return fileWrapper
         }
     }
+}
+
+
+private extension FileWrapper {
+    
+    /// The contents of the regular file, or `nil` for the other types (`regularFileContents` raises an exception for them).
+    var fileContents: Data?  { self.isRegularFile ? self.regularFileContents : nil }
 }
 
 

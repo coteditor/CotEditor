@@ -101,4 +101,16 @@ struct SyntaxFileWrapperLoadingTests {
             _ = try Syntax(fileWrapper: wrapper)
         }
     }
+    
+    
+    @Test func fileWrapperRequiresRegularInfo() {
+        
+        let wrapper = FileWrapper(directoryWithFileWrappers: [
+            "Info.json": FileWrapper(directoryWithFileWrappers: [:]),
+        ])
+        
+        #expect(throws: CocoaError.self) {
+            _ = try Syntax(fileWrapper: wrapper)
+        }
+    }
 }
