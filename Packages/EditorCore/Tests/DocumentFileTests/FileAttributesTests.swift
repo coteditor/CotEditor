@@ -57,6 +57,15 @@ struct FileAttributesTests {
         ])
     }
     
+    
+    @Test func formatPermissionsOfSymbolicLink() {
+        
+        let attributes = FileAttributes(dictionary: [.type: FileAttributeType.typeSymbolicLink, .posixPermissions: Int16(0o755)])
+        
+        #expect(attributes.permissions.formatted(.filePermissions(isSymbolicLink: attributes.isSymbolicLink)) == "755 (lrwxr-xr-x)")
+    }
+    
+    
     private static func userTagsData(_ tags: [String]) throws -> Data {
         
         let encoder = PropertyListEncoder()

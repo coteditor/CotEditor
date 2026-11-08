@@ -44,11 +44,13 @@ public extension FilePermissions {
         
         
         var style: Style
+        var isSymbolicLink: Bool
         
         
-        init(_ style: Style = .full) {
+        init(_ style: Style = .full, isSymbolicLink: Bool = false) {
             
             self.style = style
+            self.isSymbolicLink = isSymbolicLink
         }
     }
 }
@@ -59,13 +61,15 @@ extension FilePermissions.FormatStyle: FormatStyle {
     /// Formats permission number to human readable permission expression.
     public func format(_ value: FilePermissions) -> String {
         
-        switch self.style {
+        let fileType = self.isSymbolicLink ? "l" : "-"
+        
+        return switch self.style {
             case .octal:
                 value.octal
             case .symbolic:
-                "-\(value.symbolic)"
+                "\(fileType)\(value.symbolic)"
             case .full:
-                "\(value.octal) (-\(value.symbolic))"
+                "\(value.octal) (\(fileType)\(value.symbolic))"
         }
     }
 }
@@ -103,9 +107,10 @@ public extension FormatStyle where Self == FilePermissions.FormatStyle {
     ///
     /// - Parameters:
     ///   - style: The format style.
+    ///   - isSymbolicLink: Whether the permissions belong to a symbolic link.
     /// - Returns: A FilePermissions.FormatStyle.
-    static func filePermissions(_ style: FilePermissions.FormatStyle.Style = .full) -> FilePermissions.FormatStyle {
+    static func filePermissions(_ style: FilePermissions.FormatStyle.Style = .full, isSymbolicLink: Bool = false) -> FilePermissions.FormatStyle {
         
-        FilePermissions.FormatStyle(style)
+        FilePermissions.FormatStyle(style, isSymbolicLink: isSymbolicLink)
     }
 }

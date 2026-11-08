@@ -207,7 +207,7 @@ private struct DocumentFileView: View {
                     }
                 }
                 LabeledContent(.init("Permissions", table: "Document", comment: "label in document inspector"),
-                               optional: self.attributes?.permissions.formatted())
+                               optional: self.attributes.map { $0.permissions.formatted(.filePermissions(isSymbolicLink: $0.isSymbolicLink)) })
                 LabeledContent(.init("Owner", table: "Document", comment: "label in document inspector"),
                                optional: self.attributes?.owner)
                 
