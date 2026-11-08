@@ -47,6 +47,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
     private var expandedItems: [Any]?
     
     private var expandingNodes: [FileNode: [FileNode]] = [:]
+    private var draggedNodes: [FileNode] = []
     
     private var contextMenuSession = 0
     private var isContextMenuShown = false
@@ -297,7 +298,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
             // open the Quick Look panel by pressing the Space key
             self.quickLook(with: event)
             
-        } else if hasNoModifier, event.specialKey == .delete, !self.outlineView.selectedRowIndexes.isEmpty {
+        } else if hasNoModifier, event.specialKey == .delete, self.targetNodes(for: nil).contains(where: \.isMovable) {
             // delete selected items by pressing the Delete key
             self.delete(self)
             
@@ -393,7 +394,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                 return !self.targetRows(for: menuItem).isEmpty
                 
             case #selector(delete):
-                return !self.outlineView.selectedRowIndexes.isEmpty
+                return self.targetNodes(for: menuItem).contains(where: \.isMovable)
                 
             case #selector(showInFinder):
                 menuItem.isHidden = self.targetRows(for: menuItem).isEmpty
@@ -417,6 +418,7 @@ final class FileBrowserViewController: NSViewController, NSMenuItemValidation {
                 } else {
                     true
                 }
+                return targetNodes.first?.parent?.file.isWritable == true
                 
             case #selector(moveToTrash):
                 let targetNodes = self.targetNodes(for: menuItem)
@@ -1000,7 +1002,12 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
         
         let isInternal = info.draggingSource as? NSOutlineView == outlineView
         
-        return isInternal ? .move : .copy
+        guard isInternal else { return .copy }
+        
+        // avoid moving items that cannot be moved, such as items in a read-only folder
+        guard self.draggedNodes.contains(where: \.isMovable) else { return [] }
+        
+        return .move
     }
     
     
@@ -1062,7 +1069,15 @@ extension FileBrowserViewController: NSOutlineViewDataSource {
     }
     
     
+    func outlineView(_ outlineView: NSOutlineView, draggingSession session: NSDraggingSession, willBeginAt screenPoint: NSPoint, forItems draggedItems: [Any]) {
+        
+        self.draggedNodes = draggedItems.compactMap { $0 as? FileNode }
+    }
+    
+    
     func outlineView(_ outlineView: NSOutlineView, draggingSession session: NSDraggingSession, endedAt screenPoint: NSPoint, operation: NSDragOperation) {
+        
+        self.draggedNodes = []
         
         switch operation {
             case .delete:  // ended at the Trash
