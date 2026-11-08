@@ -651,8 +651,9 @@ struct FolderFindTests {
         let rootURL = try Self.makeTemporaryDirectory()
         defer { try? FileManager.default.removeItem(at: rootURL) }
         
-        // The first 8 KiB end within the emoji's surrogate pair for UTF-16.
-        let string = String(repeating: "a", count: 4_095) + "🐈needle"
+        // The first 8 KiB end within the emoji's surrogate pair for UTF-16,
+        // and “ß” is invalid in the other byte order, unlike “a”.
+        let string = String(repeating: "ß", count: 4_095) + "🐈needle"
         let url = rootURL.appending(path: "text.txt")
         try #require(string.data(using: encoding)).write(to: url)
         if usesExtendedAttribute {
