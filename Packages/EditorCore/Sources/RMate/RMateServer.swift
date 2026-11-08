@@ -55,11 +55,14 @@ public import Observation
     
     // MARK: Private Properties
     
+    private static let initialRetryDelay: Duration = .milliseconds(100)
+    
     private let applicationName: String
     private let onOpen: @MainActor (RMateFile, RMateOpenRequest) async throws -> Void
     private let onError: @MainActor (any Error) -> Void
     private var listener: NetworkListener<TCP>?
     private var listeningTask: Task<Void, Never>?
+    private var retryDelay: Duration = RMateServer.initialRetryDelay
     private var connections: [ObjectIdentifier: RMateConnection] = [:]
     
     
@@ -92,7 +95,7 @@ public import Observation
     
     /// Starts or stops accepting connections.
     ///
-    /// If listening fails, for example, because another app uses the port, the server reports the failure in `error` and retries periodically until it succeeds.
+    /// If listening fails, for example, because another app uses the port, the server reports the failure in `error` and retries repeatedly until it succeeds.
     ///
     /// - Note: Existing connections remain open.
     ///
@@ -143,6 +146,7 @@ public import Observation
                 switch state {
                     case .ready:
                         self.error = nil
+                        self.retryDelay = Self.initialRetryDelay
                     case .waiting(let error), .failed(let error):
                         self.retryListening(on: port, after: error)
                     default: break
@@ -189,9 +193,13 @@ public import Observation
         self.listener = nil
         self.listeningTask?.cancel()
         
-        // the port can become available later, for example, when another receiver quits
+        // retry at gradually increasing intervals
+        // -> The previous listener may release the port in a moment, while another app may hold it much longer.
+        let delay = self.retryDelay
+        self.retryDelay = min(delay * 2, .seconds(3))
+        
         self.listeningTask = Task { [weak self] in
-            try? await Task.sleep(for: .seconds(3), tolerance: .seconds(1))
+            try? await Task.sleep(for: delay, tolerance: delay / 4)
             
             guard let self, !Task.isCancelled else { return }
             

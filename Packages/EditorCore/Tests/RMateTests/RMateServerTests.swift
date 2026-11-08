@@ -210,7 +210,7 @@ struct RMateServerTests {
         server.listen(port: nil)
         server.listen(port: port)
         
-        // connect before the server would retry listening after a failure
+        // the restart can require some quick retries until the stopped listener releases the port
         let newClient = try await RMateClient.connect(port: port, timeout: .seconds(2))
         #expect(newClient.greeting == "Test rmate 1")
         #expect(server.error == nil)
