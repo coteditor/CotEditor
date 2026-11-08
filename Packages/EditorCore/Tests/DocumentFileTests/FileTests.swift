@@ -57,6 +57,14 @@ struct FileTests {
     }
     
     
+    @Test func initializeTypeScriptModuleAsGeneralKind() {
+        
+        let file = File(at: URL(filePath: "/tmp/module.mts", directoryHint: .notDirectory), isDirectory: false)
+        
+        #expect(file.kind == .general)
+    }
+    
+    
     @Test func invalidateKindUpdatesFromCurrentFilename() {
         
         var file = File(at: URL(filePath: "/tmp/plain.txt", directoryHint: .notDirectory), isDirectory: false)
