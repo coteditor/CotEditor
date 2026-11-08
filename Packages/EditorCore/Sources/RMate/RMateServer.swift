@@ -42,6 +42,7 @@ public import Observation
         
         case fileTooLarge(maximumSize: Int)
         case tooManyFiles(maximumCount: Int)
+        case invalidRequest
     }
     
     

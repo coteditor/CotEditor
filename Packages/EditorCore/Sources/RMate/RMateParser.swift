@@ -44,6 +44,7 @@ struct RMateParser {
     
     // MARK: Internal Properties
     
+    private(set) var hasReceivedCommand = false
     private(set) var isFinished = false
     
     
@@ -115,6 +116,7 @@ struct RMateParser {
                 
                 self.message = RMateMessage(command: line)
                 self.headerLength = 0
+                self.hasReceivedCommand = true
                 
                 continue
             }

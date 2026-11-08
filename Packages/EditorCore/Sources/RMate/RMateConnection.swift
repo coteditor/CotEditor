@@ -87,7 +87,7 @@ import Network
     /// - Parameter applicationName: The application name sent in the greeting.
     func start(applicationName: String) {
         
-        self.receiveTask = Task { [weak self, connection] in
+        self.receiveTask = Task { [weak self, connection, onError] in
             defer { self?.disconnect() }
             
             var parser = RMateParser()
@@ -111,8 +111,12 @@ import Network
                         return
                     }
                 }
+            } catch is RMateParser.ParseError where parser.hasReceivedCommand {
+                // report after this task ends because the connection closes only when released,
+                // whereas the handler can present an alert that waits for the user
+                Task { onError(RMateServer.ReceiveError.invalidRequest) }
             } catch {
-                // the deferred disconnect handles connection errors, invalid requests, and cancellation
+                // the deferred disconnect handles connection errors, clients other than rmate, and cancellation
             }
         }
     }

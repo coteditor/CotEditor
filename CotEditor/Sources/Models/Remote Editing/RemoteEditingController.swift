@@ -254,6 +254,9 @@ extension RMateServer.ReceiveError: @retroactive LocalizedError {
             case .tooManyFiles:
                 String(localized: "RMateServer.ReceiveError.tooManyFiles.description",
                        defaultValue: "Some remote files couldn’t be opened.")
+            case .invalidRequest:
+                String(localized: "RMateServer.ReceiveError.invalidRequest.description",
+                       defaultValue: "The remote files couldn’t be opened because the request from rmate isn’t in the correct format.")
         }
     }
     
@@ -269,6 +272,9 @@ extension RMateServer.ReceiveError: @retroactive LocalizedError {
                 String(localized: "RMateServer.ReceiveError.tooManyFiles.recoverySuggestion",
                        defaultValue: "A single rmate command can open up to \(maximumCount) files at a time.",
                        comment: "%lld is the number of files")
+            case .invalidRequest:
+                String(localized: "RMateServer.ReceiveError.invalidRequest.recoverySuggestion",
+                       defaultValue: "A file name may include invalid characters. Rename the file on the remote computer, and then try again.")
         }
     }
     

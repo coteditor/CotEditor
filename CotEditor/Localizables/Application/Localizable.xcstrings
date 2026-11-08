@@ -15411,6 +15411,244 @@
         }
       }
     },
+    "RMateServer.ReceiveError.invalidRequest.description" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vzdálené soubory nelze otevřít, protože požadavek od rmate není ve správném formátu."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die entfernten Dateien konnten nicht geöffnet werden, da die Anforderung von rmate nicht das korrekte Format hat."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The remote files couldn’t be opened because the request from rmate isn’t in the correct format."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The remote files couldn’t be opened because the request from rmate isn’t in the correct format."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Los archivos remotos no han podido abrirse porque la solicitud de rmate no tiene el formato correcto."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d’ouvrir les fichiers distants car le format de la requête de rmate n’est pas correct."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रिमोट फ़ाइलें खोली नहीं जा सकीं क्योंकि rmate से आया अनुरोध सही फ़ॉर्मैट में नहीं है।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile aprire i file remoti perché la richiesta di rmate non è nel formato corretto."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rmateからのリクエストのフォーマットが正しくないため、リモートファイルを開けませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rmate에서 보낸 요청이 올바른 포맷이 아니기 때문에 원격 파일을 열 수 없습니다."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "De externe bestanden konden niet worden geopend, omdat het verzoek van rmate niet de juiste structuur heeft."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie można otworzyć zdalnych plików, ponieważ żądanie wysłane przez rmate ma nieprawidłowy format."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível abrir os arquivos remotos porque a solicitação do rmate não está no formato correto."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось открыть удаленные файлы, так как запрос от rmate имеет неверный формат."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rmate komutundan gelen istek doğru biçimde olmadığı için uzak dosyalar açılamadı."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося відкрити віддалені файли, оскільки запит від rmate має неправильний формат."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未能打开远程文件，因为来自rmate的请求格式不正确。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法開啟遠端檔案，因為來自rmate的要求格式不正確。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法開啟遙距檔案，因為來自rmate的要求格式不正確。"
+          }
+        }
+      }
+    },
+    "RMateServer.ReceiveError.invalidRequest.recoverySuggestion" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je možné, že název souboru obsahuje neplatné znaky. Přejmenujte soubor na vzdáleném počítači a zkuste to znovu."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Möglicherweise enthält ein Dateiname ungültige Zeichen. Benenne die Datei auf dem entfernten Computer um und versuche es erneut."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "A file name may include invalid characters. Rename the file on the remote computer, and then try again."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A file name may include invalid characters. Rename the file on the remote computer, and then try again."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Es posible que el nombre de un archivo contenga caracteres no válidos. Cambia el nombre del archivo en el ordenador remoto e inténtalo de nuevo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un nom de fichier contient peut-être des caractères non valides. Renommez le fichier sur l’ordinateur distant puis réessayez."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हो सकता है कि किसी फ़ाइल के नाम में अमान्य वर्ण शामिल हों। रिमोट कंप्यूटर पर फ़ाइल का नाम बदलें और फिर कोशिश करें।"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il nome di un file potrebbe includere caratteri non validi. Rinomina il file sul computer remoto e riprova."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイル名に無効な文字が含まれている可能性があります。リモートコンピュータ上でファイル名を変更してから、やり直してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 이름에 유효하지 않은 문자가 포함되어 있을 수 있습니다. 원격 컴퓨터에서 파일 이름을 변경한 다음 다시 시도하십시오."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mogelijk bevat een bestandsnaam ongeldige tekens. Wijzig de naam van het bestand op de externe computer en probeer het opnieuw."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nazwa pliku może zawierać niedozwolone znaki. Zmień nazwę pliku na zdalnym komputerze i spróbuj ponownie."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Talvez o nome de um arquivo inclua caracteres inválidos. Renomeie o arquivo no computador remoto e tente novamente."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Возможно, имя файла содержит недействительные символы. Переименуйте файл на удаленном хосте и повторите попытку."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir dosya adı geçersiz karakterler içeriyor olabilir. Uzak bilgisayardaki dosyayı yeniden adlandırın ve daha sonra yeniden deneyin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Можливо, імʼя файлу містить неприпустимі символи. Перейменуйте файл на віддаленому компʼютері і спробуйте ще раз."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件名称可能包含无效的字符。请在远程电脑上重新命名文件，然后重试。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案名稱可能包含無效的字元。請在遠端電腦上重新命名檔案，然後再試一次。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案名稱可能包含無效的字元。請在遙距電腦上重新命名檔案，然後再試。"
+          }
+        }
+      }
+    },
     "RMateServer.ReceiveError.tooManyFiles.description" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {

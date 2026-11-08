@@ -169,6 +169,31 @@ struct RMateServerTests {
     }
     
     
+    /// Tests that an invalid request is reported.
+    ///
+    /// - Throws: An error if the client could not communicate with the server.
+    @Test func invalidRequest() async throws {
+        
+        let recorder = Recorder()
+        let server = recorder.makeServer()
+        let port = try availablePort()
+        server.listen(port: port)
+        
+        // a file name that is not UTF-8
+        let client = try await RMateClient.connect(port: port)
+        try client.send(Data("open\ntoken: caf".utf8) + Data([0xE9]) + Data("\ndata-on-save: yes\ndata: 0\n\n.\n".utf8))
+        try await waitUntil { !recorder.errors.isEmpty }
+        #expect(recorder.files.isEmpty)
+        #expect(recorder.errors.count == 1)
+        switch try #require(recorder.errors.first as? RMateServer.ReceiveError) {
+            case .invalidRequest:
+                break
+            case let error:
+                Issue.record("Unexpected error: \(error)")
+        }
+    }
+    
+    
     /// Tests restarting listening on the same port while keeping the existing connection.
     ///
     /// - Throws: An error if the client could not communicate with the server.
