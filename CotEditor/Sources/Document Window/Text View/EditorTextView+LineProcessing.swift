@@ -203,8 +203,12 @@ extension EditorTextView {
         guard !lineRange.isEmpty else { return }
         
         let lineString = string.substring(with: lineRange)
+        let includesTrailingLineEnding = lineString.last?.isNewline == true
         let newString = pattern.sort(lineString, options: options, baseLineEnding: self.lineEnding.string)
-        let length = (newString as NSString).lineContentsRange(for: newString.range).length
+        // -> select the whole string without the trailing line ending, as the last line can be an empty line moved from another position
+        let length = includesTrailingLineEnding
+            ? (newString as NSString).lineContentsRange(for: newString.range).length
+            : newString.length
         let selectedRange = NSRange(location: lineRange.location, length: length)
         
         self.isApprovedTextChange = true
