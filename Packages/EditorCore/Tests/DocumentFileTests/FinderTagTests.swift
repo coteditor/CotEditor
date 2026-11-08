@@ -44,6 +44,16 @@ struct FinderTagTests {
     }
     
     
+    @Test func parseTagsWithEmptyNameOrCRLF() throws {
+        
+        let data = try Self.userTagsData(["\n0", "Work\r\n6"])
+        
+        let tags = FinderTag.tags(data: data)
+        
+        #expect(tags == [FinderTag(name: "Work\r", color: .red)])
+    }
+    
+    
     @Test func parseTagsFromInvalidExtendedAttributeData() {
         
         let tags = FinderTag.tags(data: Data("not a plist".utf8))

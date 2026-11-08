@@ -77,11 +77,14 @@ public extension FinderTag {
     /// - Parameter string: The string stored in the extended attributes.
     private init?(string: String) {
         
-        let components = string.split(separator: "\n")
+        // -> Split at LF scalars without omitting empty lines to read tags in the same way as Foundation.
+        let components = string.unicodeScalars
+            .split(separator: "\n", omittingEmptySubsequences: false)
+            .map(String.init)
         
-        guard let name = components.first else { return nil }
+        guard let name = components.first, !name.isEmpty else { return nil }
         
-        self.name = String(name)
+        self.name = name
         
         if components.count > 1,
            let number = Int(components[1]),
