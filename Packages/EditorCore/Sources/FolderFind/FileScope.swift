@@ -268,15 +268,22 @@ private extension FileScope {
         /// Initializes values from a candidate.
         ///
         /// - Parameters:
-        ///   - candidate: The file candidate to read.
+        ///   - candidate: The file candidate to read. Its file URL must be standardized.
         ///   - rootURL: The root folder URL for relative file paths.
         init(candidate: FolderFind.Candidate, rootURL: URL) {
             
-            let fileURL = candidate.fileURL.standardizedFileURL
+            assert(candidate.fileURL == candidate.fileURL.standardizedFileURL)
             
-            // -> `standardizedFileURL` decomposes the names, while the rule values are typed in the precomposed form.
+            let fileURL = candidate.fileURL
+            let pathComponents = fileURL.pathComponents
+            let rootPathComponents = rootURL.standardizedFileURL.pathComponents
+            let filePath = pathComponents.starts(with: rootPathComponents)
+                ? pathComponents.dropFirst(rootPathComponents.count).joined(separator: "/")
+                : fileURL.path(percentEncoded: false)
+            
+            // -> The names in the standardized file URL are decomposed, while the rule values are typed in the precomposed form.
             self.filename = fileURL.lastPathComponent.precomposedStringWithCanonicalMapping
-            self.filePath = fileURL.searchPath(under: rootURL).precomposedStringWithCanonicalMapping
+            self.filePath = filePath.precomposedStringWithCanonicalMapping
             self.fileExtension = fileURL.pathExtension
         }
         
@@ -293,25 +300,5 @@ private extension FileScope {
                 case .fileExtension: self.fileExtension
             }
         }
-    }
-}
-
-
-private extension URL {
-    
-    /// Returns a slash-separated path relative to the given root folder.
-    ///
-    /// - Parameter rootURL: The root URL.
-    /// - Returns: The relative path, or the absolute path if the URL is not under the root URL.
-    func searchPath(under rootURL: URL) -> String {
-        
-        let pathComponents = self.standardizedFileURL.pathComponents
-        let rootPathComponents = rootURL.standardizedFileURL.pathComponents
-        
-        guard pathComponents.starts(with: rootPathComponents) else {
-            return self.standardizedFileURL.path(percentEncoded: false)
-        }
-        
-        return pathComponents.dropFirst(rootPathComponents.count).joined(separator: "/")
     }
 }
