@@ -67,20 +67,17 @@ public struct CSVSortPattern: SortPattern, Equatable, Sendable {
         guard components.indices.contains(index) else { return nil }
         
         let component = components[index]
-        let offset = components[..<index].map { $0 + delimiter }.joined().count
-        let start = line.index(line.startIndex, offsetBy: offset)
-        let end = line.index(start, offsetBy: component.count)
         
-        // trim whitespace
-        let headTrim = component.prefix(while: \.isWhitespace).count
-        let endTrim = component.reversed().prefix(while: \.isWhitespace).count
-        let trimmedStart = line.index(start, offsetBy: headTrim)
-        let trimmedEnd = line.index(end, offsetBy: -endTrim)
+        guard !component.isEmpty else { return component.startIndex..<component.endIndex }
         
-        // order can be opposite when component contains only whitespace
-        guard trimmedStart <= trimmedEnd else { return nil }
+        // trim whitespace in the same way as `sortKey(for:)`
+        let scalars = component.unicodeScalars
+        guard
+            let lowerBound = scalars.firstIndex(where: { !CharacterSet.whitespaces.contains($0) }),
+            let lastIndex = scalars.lastIndex(where: { !CharacterSet.whitespaces.contains($0) })
+        else { return nil }  // component contains only whitespace
         
-        return trimmedStart..<trimmedEnd
+        return lowerBound..<scalars.index(after: lastIndex)
     }
     
     

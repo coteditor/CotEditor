@@ -200,6 +200,9 @@ struct LineSortTests {
         let range = try #require(pattern.range(for: tsvString))
         #expect(pattern.sortKey(for: tsvString) == tsvString)
         #expect(NSRange(range, in: tsvString) == NSRange(0..<3))
+        
+        let zeroWidthSpaceString = "\u{200B}dog"
+        #expect(pattern.range(for: zeroWidthSpaceString) == Range(NSRange(1..<4), in: zeroWidthSpaceString))
     }
     
     
