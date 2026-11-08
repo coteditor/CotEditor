@@ -50,6 +50,7 @@
 			<li>Change the <kbd>Shift</kbd>-<kbd>Option</kbd>-<kbd>Down Arrow</kbd> shortcut to extend the selection to the end of the line without including the line ending, consistent with <kbd>Option</kbd>-<kbd>Down Arrow</kbd>.</li>
 			<li>Change the <kbd>Delete</kbd> key to delete a closing bracket or quotation mark together with the opening one only when it was automatically inserted.</li>
 			<li>Change the numbering to avoid name conflicts in the file browser and settings to match Finder, such as using “Foo 2” if “Foo 1” already exists.</li>
+			<li>Change regular expressions in folder search to match <code>^</code> and <code>$</code> at the beginning and end of each line, consistent with the default of the Find window.</li>
 			<li>Optimize Replace All when using regular expressions or the “Match only whole words” find option.</li>
 			<li>Optimize the hanging indentation calculation.</li>
 			<li>Improve overall stability and performance.</li>
@@ -70,6 +71,7 @@
 			<li>Fix an issue where Find All highlights remained in the document after closing the search results.</li>
 			<li>Fix several issues with the “Match only whole words” find option, such as not finding text that starts or ends with a symbol, like “<code>#tag</code>”, or text that contains a line ending.</li>
 			<li>Fix an issue where the document could remain uneditable after canceling Find All, Replace All, or Multiple Replace.</li>
+			<li>Fix an issue where the app could crash when searching in a folder with a regular expression, such as <code>\n</code> or <code>\s</code>, if files had CRLF line endings.</li>
 			<li>Fix an issue where the expansion state of folders in the file browser was sometimes not restored from the last session.</li>
 			<li>Fix an issue in the file browser where read-only files in a writable folder could not be renamed and the Move to Trash command was unavailable for them.</li>
 			<li>Fix an issue where shortcuts using function keys, arrow keys, or other navigation keys could not be set in the Shortcuts and Snippets settings panes.</li>
@@ -116,6 +118,8 @@
 			<li><span class="trivial">trivial</span>: Fix an issue where searching with a regular expression or the “Distinguish characters strictly” find option could show the previous results after changing the find string to a canonically equivalent one.</li>
 			<li><span class="trivial">trivial</span>: Fix an issue where Multiple Replace could not find text containing line endings if the document’s line endings were not LF.</li>
 			<li><span class="trivial">trivial</span>: Fix an issue where the app could crash or stop responding when finding or replacing only combining marks, such as <code>U+0902</code>, with the “Ignore Case” or “Ignore diacritical marks” find option.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where regular expression conditions in the file scope of folder search did not match names containing certain characters, such as “é”, “が”, or Hangul.</li>
+			<li><span class="trivial">trivial</span>: Fix an issue where regular expression conditions in the file scope of folder search accepted some invalid patterns, such as those with unbalanced parentheses.</li>
 			<li><span class="trivial">trivial</span>: Fix an issue where automatic indentation could treat part of a word as a keyword, such as “<code>then</code>”, if a non-ASCII letter adjoined it.</li>
 			<li><span class="trivial">trivial</span>: Fix an issue where the selection could move to an incorrect range when commenting out lines with block comment delimiters while only line endings were selected.</li>
 			<li><span class="trivial">trivial</span>: Fix an issue where the selection after reversing, shuffling, or sorting lines by pattern did not include an empty line moved to the end.</li>
