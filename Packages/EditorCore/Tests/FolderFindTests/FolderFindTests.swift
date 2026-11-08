@@ -132,6 +132,22 @@ struct FolderFindTests {
     }
     
     
+    @Test func matchStartingInsideCRLFIsAtEndOfLine() async throws {
+        
+        let rootURL = try Self.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("xa\r\nb".utf8).write(to: rootURL.appending(path: "a.txt"))
+        let pattern = try FolderFind.Query(findString: #"\n"#, mode: .regularExpression(options: [], unescapesReplacement: false)).pattern()
+        var search = try Search(rootURL: rootURL, pattern: pattern)
+        let summary = try await search.run()
+        let match = try #require(summary.files.first?.matches.first)
+        
+        #expect(match.line == "xa")
+        #expect(match.rangeInLine == NSRange(location: 2, length: 0))
+    }
+    
+    
     @Test func filteredSearchPreservesDirectoryTraversalAndOrdering() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()

@@ -216,12 +216,17 @@ public struct Search: Sendable {
             }
             
             let range = ranges[0]
-            let clampedLineRange = lineCounter.lineContentsRange(for: range)
-                .clamped(around: range, maxLength: maximumLineLength)
+            let contentsRange = lineCounter.lineContentsRange(for: range)
+            // -> A match can start at the LF of a CRLF, after the end of the line contents.
+            //    Display it as an empty range at the end of the line, like the same match in LF.
+            let displayedRange = (range.location > contentsRange.upperBound)
+                ? NSRange(location: contentsRange.upperBound, length: 0)
+                : range
+            let clampedLineRange = contentsRange.clamped(around: displayedRange, maxLength: maximumLineLength)
             let lineRange = nsString.rangeOfComposedCharacterSequences(for: clampedLineRange)
             let line = nsString.substring(with: lineRange)
-            let rangeInLine = NSRange(location: range.location - lineRange.location,
-                                      length: min(range.upperBound, lineRange.upperBound) - range.location)
+            let rangeInLine = NSRange(location: displayedRange.location - lineRange.location,
+                                      length: min(displayedRange.upperBound, lineRange.upperBound) - displayedRange.location)
             
             matches.append(FolderFind.Match(range: range, line: line, rangeInLine: rangeInLine))
         }
