@@ -870,6 +870,12 @@ struct FolderFindTests {
             ]))
         }
         
+        #expect(throws: FileScope.Error.invalidRegularExpression(pattern: "a)|(b")) {
+            _ = try FileScope.Matcher(FileScope(rules: [
+                FileScope.Rule(target: .filename, comparison: .matchesRegularExpression, value: "a)|(b"),
+            ]))
+        }
+        
         #expect(throws: FileScope.Error.emptyValue) {
             _ = try FileScope.Matcher(FileScope(rules: [
                 FileScope.Rule(target: .filename, comparison: .contains, value: ""),

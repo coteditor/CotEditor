@@ -201,6 +201,9 @@ private extension FileScope.Matcher {
             guard rule.comparison == .matchesRegularExpression else { return }
             
             do {
+                // validate regex pattern
+                _ = try NSRegularExpression(pattern: rule.value)
+                
                 // wrap in anchors to require matching the whole target value
                 // enable extended mode only at the end to terminate a trailing comment without matching the newline
                 self.regularExpression = try NSRegularExpression(pattern: #"\A(?:"# + rule.value + "(?x)\n" + #")\z"#)
