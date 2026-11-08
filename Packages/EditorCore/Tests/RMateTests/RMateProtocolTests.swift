@@ -76,6 +76,18 @@ struct RMateProtocolTests {
     }
     
     
+    /// Tests that a header value can start with a character that is combined with the preceding space.
+    ///
+    /// - Throws: An error if parsing the request fails.
+    @Test func valueStartingWithCombiningMark() throws {
+        
+        var parser = RMateParser()
+        let messages = try parser.append(Data("open\ntoken: \u{301}.txt\ndata: 0\n\n.\n".utf8))
+        
+        #expect(messages.first?.headers["token"] == "\u{301}.txt")
+    }
+    
+    
     @Test(arguments: ["data: -1", "data: nope", "broken", "token: bad\rvalue"])
     func invalidHeaders(header: String) {
         
