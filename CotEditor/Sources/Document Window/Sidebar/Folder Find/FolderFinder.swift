@@ -358,7 +358,7 @@ private extension TextFind.Mode {
     init(usesRegularExpression: Bool, ignoresCase: Bool) {
         
         self = if usesRegularExpression {
-            .regularExpression(options: ignoresCase ? .caseInsensitive : [], unescapesReplacement: false)
+            .regularExpression(options: ignoresCase ? [.anchorsMatchLines, .caseInsensitive] : [.anchorsMatchLines], unescapesReplacement: false)
         } else {
             .textual(options: ignoresCase ? .caseInsensitive : [], fullWord: false)
         }

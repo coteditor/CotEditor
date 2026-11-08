@@ -143,6 +143,23 @@ import UniformTypeIdentifiers
     
     
     @Test(.timeLimit(.minutes(1)))
+    func regularExpressionAnchorsMatchLines() async throws {
+        
+        let rootURL = try FileManager.default.makeTemporaryDirectory()
+        defer { try? FileManager.default.removeItem(at: rootURL) }
+        
+        try Data("import a\nimport b\n".utf8).write(to: rootURL.appending(path: "a.txt"))
+        
+        let model = try Self.makeModel(rootURL: rootURL)
+        model.find(findString: "^import", usesRegularExpression: true, ignoresCase: false, includesHiddenFiles: false)
+        
+        let summary = try await Self.finishedSummary(from: model)
+        
+        #expect(summary.metrics.matchCount == 2)
+    }
+    
+    
+    @Test(.timeLimit(.minutes(1)))
     func invalidRegularExpressionFails() async throws {
         
         let rootURL = try FileManager.default.makeTemporaryDirectory()
