@@ -294,6 +294,7 @@ public extension FolderFind.Summary {
     /// Updates match ranges in the file after text editing.
     ///
     /// This method updates only the ranges used to reveal matches. The display line snapshots are intentionally kept unchanged.
+    /// A match within a larger edit becomes an empty range at the beginning of the edit, because its position is unknown.
     ///
     /// - Parameters:
     ///   - fileURL: The URL of the edited file.
@@ -335,6 +336,18 @@ private extension FolderFind.Match {
         let oldRange = self.range
         let oldEditedLength = max(editedRange.length - changeInLength, 0)
         let oldEditedRange = NSRange(location: editedRange.location, length: oldEditedLength)
+        
+        // -> The position of a match within a larger edit is unknown,
+        //    because an edit can consist of several replacements at once, such as Replace All.
+        if oldEditedRange != oldRange,
+           oldEditedRange.contains(oldRange.lowerBound),
+           oldRange.upperBound <= oldEditedRange.upperBound
+        {
+            self.range = NSRange(location: min(editedRange.location, length), length: 0)
+            
+            return self.range != oldRange
+        }
+        
         let newLowerBound = Self.updatedLowerBound(of: self.range, oldEditedRange: oldEditedRange,
                                                    editedRange: editedRange, changeInLength: changeInLength)
         let newUpperBound = Self.updatedUpperBound(of: self.range, oldEditedRange: oldEditedRange,

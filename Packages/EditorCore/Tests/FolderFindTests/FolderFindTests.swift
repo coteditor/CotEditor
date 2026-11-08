@@ -460,6 +460,24 @@ struct FolderFindTests {
     }
     
     
+    @Test func summaryEmptiesMatchWithinLargerEdit() throws {
+        
+        let fileURL = URL(fileURLWithPath: "/tmp/a.txt").standardizedFileURL
+        var summary = FolderFind.Summary(metrics: .init(findString: "abc"),
+                                         files: [
+                                            FolderFind.FileResult(fileURL: fileURL, directoryPathComponents: [],
+                                                                  matches: [
+                                                                    FolderFind.Match(range: NSRange(location: 2, length: 3), line: "x-abc-x", rangeInLine: NSRange(location: 2, length: 3)),
+                                                                  ]),
+                                         ])
+        
+        // replacing both "x" in "x-abc-x" with "yy" at once is notified as the edit of the whole text
+        summary.updateMatchRanges(in: fileURL, editedRange: NSRange(location: 0, length: 9), changeInLength: 2, length: 9)
+        
+        #expect(summary.files[0].matches[0].range == NSRange(location: 0, length: 0))
+    }
+    
+    
     @Test func caseInsensitiveSearch() async throws {
         
         let rootURL = try Self.makeTemporaryDirectory()
