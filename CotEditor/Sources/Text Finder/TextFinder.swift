@@ -48,14 +48,15 @@ struct FindResult {
 }
 
 
-struct FindAllMatch: Identifiable {
+struct FindAllMatch: Identifiable, Sendable {
     
     let id = UUID()
     
     var range: NSRange
     var lineNumber: Int
     var inlineLocation: Int
-    var attributedLineString: NSAttributedString
+    var lineString: String
+    var highlights: [ValueRange<NSColor>] = []
 }
 
 
@@ -726,7 +727,9 @@ struct FindMatchesCache {
         defer { client.isEditable = wasEditable }
         
         let progress = FindProgress(scope: textFind.scopeRange)
-        async let findResult = progress.perform { try await Self.findAll(for: textFind, showsList: showsList, progress: progress) }
+        async let findResult = progress.perform {
+            try await Self.findAll(for: textFind, showsList: showsList, progress: progress)
+        }
         
         // present progress view
         client.window?.beginSheet {
@@ -790,7 +793,9 @@ struct FindMatchesCache {
         let editorTextView = client as? EditorTextView
         let replacementString = self.settings.replacementString
         let progress = FindProgress(scope: textFind.scopeRange)
-        async let replacementResult = progress.perform { try await Self.replaceAll(for: textFind, with: replacementString, progress: progress) }
+        async let replacementResult = progress.perform {
+            try await Self.replaceAll(for: textFind, with: replacementString, progress: progress)
+        }
         
         // present progress view
         client.window?.beginSheet {
@@ -880,20 +885,21 @@ struct FindMatchesCache {
             if showsList {
                 let matchedRange = matches[0]
                 
-                // build a highlighted line string for result table
+                // build the line string and highlight ranges for result table
                 let lineFragmentRange = lineCounter.lineContentsRange(for: matchedRange)
                     .clamped(around: matchedRange, maxLength: 1024)  // -> limit to avoid out of memory with very long lines
                 let lineString = (textFind.string as NSString).substring(with: lineFragmentRange)
-                let attrLineString = NSMutableAttributedString(string: lineString)
+                var lineHighlights: [ValueRange<NSColor>] = []
                 for (color, range) in zip(highlightColors, matches) where !range.isEmpty {
-                    guard let inlineRange = range.shifted(by: -lineFragmentRange.location).intersection(attrLineString.range) else { continue }
-                    attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
+                    guard let inlineRange = range.shifted(by: -lineFragmentRange.location).intersection(lineString.range) else { continue }
+                    lineHighlights.append(ValueRange(value: color, range: inlineRange))
                 }
                 
                 let lineNumber = lineCounter.lineNumber(at: matchedRange.location)
                 let inlineLocation = matchedRange.location - lineFragmentRange.location
                 
-                resultMatches.append(.init(range: matchedRange, lineNumber: lineNumber, inlineLocation: inlineLocation, attributedLineString: attrLineString))
+                resultMatches.append(.init(range: matchedRange, lineNumber: lineNumber, inlineLocation: inlineLocation,
+                                           lineString: lineString, highlights: lineHighlights))
             }
             
             progress.updateCompletedUnit(to: matches[0].upperBound)
